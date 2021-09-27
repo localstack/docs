@@ -21,7 +21,7 @@ or
     
 ### install hugo
 
-[install hugo](https://gohugo.io/getting-started/installing/https://gohugo.io/getting-started/installing/). Make sure to install the _extended version_.
+[install hugo](https://gohugo.io/getting-started/installing). Make sure to install the _extended version_.
 
 
 ### run locally
