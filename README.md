@@ -18,6 +18,11 @@ or
     git clone git@github.com:localstack/docs.git
     cd docs
     git submodule update --init --recursive
+    
+### install hugo
+
+[install hugo](https://gohugo.io/getting-started/installing/https://gohugo.io/getting-started/installing/). Make sure to install the _extended version_.
+
 
 ### run locally
 
