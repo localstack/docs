@@ -9,7 +9,7 @@ description: >
 
 AWS Kinesis is a fully managed data streaming service, which enables your application to ingest, buffer, and process data in real-time. 
 
-Kinesis is shipped with the LocalStack Community version and is [extensively supported](https://github.com/localstack/localstack/blob/master/doc/feature_coverage.md). Trying to run the examples in the [official AWS developer guide](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) running against LocalStack is a great place to start.
+Kinesis is shipped with the LocalStack Community version and is [extensively supported](https://github.com/localstack/localstack/blob/master/doc/feature_coverage.md). Trying to run the examples in the [official AWS developer guide](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) against LocalStack is a great place to start.
 
 Assuming you have `awslocal` installed you can also try out the following commands:
 
