@@ -33,4 +33,6 @@ $ AWS_ACCESS_KEY_ID=123000000123 aws --endpoint-url=http://localhost:4566 s3 ls
 An error occurred (404) when calling the ListBuckets operation: Not Found
 ```
 
+{{< alert >}}
 **Note:** For now, the account ID is encoded directly in the `AWS_ACCESS_KEY_ID` client-side variable, for simplicity. In a future version, we will support proper access key IDs issued by the local IAM service, which will then internally be translated to corresponding account IDs.
+{{< /alert >}}

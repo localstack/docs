@@ -21,4 +21,6 @@ mnist_estimator.fit(inputs, logs=False)
 
 The code snippet above uploads the model training code to local S3, submits a new training job to the local SageMaker API, and finally puts the trained model back to an output S3 bucket. Please refer to the sample repo for more details.
 
+{{< alert >}}
 **Note:** SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
+{{< /alert >}}

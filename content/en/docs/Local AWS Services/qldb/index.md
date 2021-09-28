@@ -13,6 +13,7 @@ The Quantum Ledger Database (QLDB) API supports queries over cryptographically v
 QLDB uses the [Amazon ION data format](https://amzn.github.io/ion-docs), a data serialization format that represents a superset of JSON, with a number of additional features.
 
 A simple QLDB example running on LocalStack is provided in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/qldb-ledger-queries). The sample consists of two simple scenarios: (1) to create and list tables via the `pyqldb` Python library, and (2) to insert data into two tables and perform a `JOIN` query that combines data from the two tables. The sample output is posted below:
+
 ```
 Scenario 1: create and list tables in ledger
 -----------

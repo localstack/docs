@@ -20,4 +20,6 @@ $ dig @localhost test.example.com
 test.example.com.	300	IN	A	1.2.3.4
 ```
 
+{{< alert >}}
 **Note**: Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the `DNS_ADDRESS` configuration variable).
+{{< /alert >}}

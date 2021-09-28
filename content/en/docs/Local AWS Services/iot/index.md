@@ -5,7 +5,7 @@ date: 2021-09-28
 weight: 5
 categories: ["LocalStack Pro"]
 description: >
-  IoT
+  AWS IoT
 ---
 
 Basic support for [IoT](https://aws.amazon.com/iot/) (including IoT Analytics, IoT Data, and related APIs) is provided in the Pro version. The main endpoints for creating and updating entities are currently implemented, as well as the CloudFormation integrations for creating them.

@@ -30,19 +30,19 @@ type DDBString {
 1. a GraphQL API
 2. a data source of type `AMAZON_DYNAMODB` that references the `"posts"` DynamoDB table
 3. a request mapping template with a content like this:
-```
+```json
 {
     "version" : "2017-02-28",
     "operation" : "Scan"
 }
 ```
 4. a response mapping template with a content like this:
-```
+```javascript
 $util.toJson($context.result["Items"])
 ```
 
 Once things have been wired up properly, and assuming the ID of your GraphQL API is `"api123"`, you should be able to run the following GraphQL query to retrieve all items from the `"posts"` DynamoDB table:
-```
+```bash
 curl -d '{"query":"query {getPosts{id{S}}}"}' http://localhost:4605/graphql/api123
 ```
 

@@ -11,7 +11,7 @@ description: >
 LocalStack Pro contains basic support for authentication via [AWS Cognito](https://eu-central-1.console.aws.amazon.com/cognito/). You can create Cognito user pools, sign up and confirm users, and use the `COGNITO_USER_POOLS` authorizer integration with API Gateway.
 
 For example, if you happen to use [Serverless](https://serverless.com/) to deploy your application, take this snippet of a `serverless.yml` configuration:
-```
+```yaml
 service: test
 
 plugins:
