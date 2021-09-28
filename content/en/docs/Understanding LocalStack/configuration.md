@@ -17,7 +17,7 @@ SERVICES=kinesis,lambda,sqs,dynamodb DEBUG=1 localstack start
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `SERVICES`| `kinesis,lambda,sqs`,`serverless`| Comma-separated list of [AWS CLI service names](http://docs.aws.amazon.com/cli/latest/reference/#available-services) or shorthands to start up. |
+| `SERVICES`| `kinesis,lambda,sqs`,`serverless`| Comma-separated list of [AWS CLI service names][1] or shorthands to start up. |
 | `EDGE_BIND_HOST`| `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to.|
 | `EDGE_PORT` | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
 | `HOSTNAME`| `localhost` (default) | Name of the host to expose the services internally. For framework-internal communication, e.g., services are started in different containers using docker-compose.|
@@ -38,6 +38,7 @@ SERVICES=kinesis,lambda,sqs,dynamodb DEBUG=1 localstack start
 | `INIT_SCRIPTS_PATH` | `/some/path` | Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d.` |
 | `LS_LOG` | `trace`, `trace-internal`, `debug`, `info`, `warn`, `error`, `warning`| Specify the log level. Currently overrides the `DEBUG` configuration. `trace` for detailed request/response, `trace-internal` for internal calls, too. |
 
+[1]: http://docs.aws.amazon.com/cli/latest/reference/#available-services
 
 ## Lambda 
 
