@@ -1,0 +1,8 @@
+{{ $src := (.Page.Resources.GetMatch (printf "**%s*" (.Get "src"))) }}
+<img src="{{ if $src }}{{ $src.RelPermalink }}{{ else }}{{ .Get "src" }}{{ end }}" 
+     {{- if or (.Get "alt") (.Get "caption") }}
+     alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}"
+     {{- end -}}
+     {{- with .Get "width" }} width="{{ . }}"{{ end -}}
+     {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+/> <!-- Closing img tag -->
