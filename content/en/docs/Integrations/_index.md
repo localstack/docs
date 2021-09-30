@@ -13,10 +13,10 @@ This section of the documentation covers tools that are officially supported by 
 ## The Cloud Development Ecosystem
 
 Cloud development has many facets and a rich ecosystem of tools to cover them.
-Whether you are using Infrastructure-as-Code (IaC) to manage you AWS infrastructure,
+Whether you are using Infrastructure-as-Code (IaC) to manage your AWS infrastructure,
 or are developing applications using AWS SDKs like boto, LocalStack allows you to run your workflow completely on your local machine.
 
-{{< figure src="/docs/integrations/integrations-overview.png" width="70%" title="Sample of supported tools" >}}
+{{< figure src="/docs/integrations/integrations-overview.png" width="70%" caption="Sample of supported tools" >}}
 
 ## Integrations
 
