@@ -32,3 +32,16 @@ or
 or run in developer mode with automatic reload
 
     hugo server --watch=true --disableFastRender -D
+
+
+## Best Practices
+
+Please follow these best practices when writing documentation here:
+- Stick to markdown if possible.
+- Use one line for each sentence in markdown.
+  If you don't add a backslash at the end of the line or add two new-lines, there won't be linebreak in the rendered text.
+- For snippets, define the correct syntax highlighting.
+  Here's a list of the supported languages:
+  https://gohugo.io/content-management/syntax-highlighting/
+
+PS.: Feel free to add more best practices here (also give us a heads-up in [#sig-docs](https://localstack-cloud.slack.com/archives/C02FZH6UB2A)).
