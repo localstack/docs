@@ -8,7 +8,7 @@ description: >
   Use the Pulumi Infrastructure as Code framework with LocalStack
 ---
 
-{{< img-simple src="pulumi-logo.svg" width="300px" caption="Sample of supported tools" >}}
+![Pulumi logo](pulumi-logo.svg)
 
 ## Overview
 
