@@ -14,14 +14,14 @@ description: >
 
 Pulumi's infrastructure-as-code SDK helps you create, deploy, and manage AWS containers, serverless functions, and infrastructure using familiar programming languages.
 The endpoints configuration environment of Pulumi allows us to easily point Pulumi to LocalStack.
-This guide follows the instructions from Pulumi's [Get Started with Pulumi and AWS](https://www.pulumi.com/docs/get-started/aws/) guide, with additional explanation of how to make it work with LocalStack.
+This guide follows the instructions from Pulumi's [Get Started with Pulumi and AWS](https://www.pulumi.com/docs/get-started/aws/) guide, with additional explanations of how to make it work with LocalStack.
 
 
 ## Quickstart
 
 ### Create a new Pulumi stack
 
-First, run the following commands and follow the instructions in the CLI create a new project.
+First, run the following commands and follow the instructions in the CLI to create a new project.
 
 ```
 mkdir quickstart && cd quickstart
@@ -141,7 +141,7 @@ config:
 ### Deploy the stack to LocalStack
 
 Make sure your LocalStack is running.
-For the example stack the only required service is S3.
+For the example stack, the only required service is S3.
 After updating the stack configuration, and starting localstack, you can run:
 
 ```bash
