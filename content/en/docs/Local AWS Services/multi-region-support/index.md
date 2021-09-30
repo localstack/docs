@@ -1,8 +1,6 @@
 ---
 title: "Multi-Region Support"
 linkTitle: "Multi-Region Support"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro", "Stub"]
 description: >
   Multi-Region Support

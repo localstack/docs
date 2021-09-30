@@ -1,8 +1,6 @@
 ---
 title: "Identity and Access Management (IAM)"
 linkTitle: "Identity and Access Management (IAM)"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro"]
 description: >
   Identity and Access Management (IAM)

@@ -1,6 +1,5 @@
 ---
 title: "Persistence Mechanism Configuration"
-date: 2021-09-27
 weight: 5
 description: >
   How the LocalStack persistence mechanism works and how you can configure it.

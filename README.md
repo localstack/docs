@@ -47,7 +47,7 @@ Please follow these best practices when writing documentation here:
   If you want to use images in your post, create a new [leaf bundle directory](https://github.com/gohugoio/hugo/issues/1240) and put the image and the post (named `index.md`) in there (you can find examples in the docs already, f.e. the cognito service docs).
   
   Then you can use the usual markdown syntax with a relative path (f.e.:
-  `![Alternative Text](filenexttopost.png)`).
+  `![Alternative_Text](file_next_to_post.png)`).
   
   If you want to resize the image, use the `figure` shortcode.
 

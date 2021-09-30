@@ -1,8 +1,6 @@
 ---
 title: "Elastic Container Service (ECS)"
 linkTitle: "Elastic Container Service (ECS)"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro"]
 description: >
   Elastic Container Service (ECS)

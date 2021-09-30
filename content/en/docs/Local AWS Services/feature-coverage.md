@@ -2,7 +2,6 @@
 title: "AWS Service Feature Coverage"
 linkTitle: "⭐ Feature Coverage"
 weight: 1
-date: 2021-09-30
 description: >
   Overview of the implemented APIs and features provided by LocalStack
 ---

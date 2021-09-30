@@ -1,6 +1,5 @@
 ---
 title: "Cloud Pods"
-date: 2021-09-27
 weight: 5
 categories: ["LocalStack Pro", "Tools", "Persistence"]
 description: >

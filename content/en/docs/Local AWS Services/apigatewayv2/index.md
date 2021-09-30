@@ -1,8 +1,6 @@
 ---
 title: "API Gateway V2"
 linkTitle: "API Gateway V2"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro"]
 description: >
   API Gateway V2

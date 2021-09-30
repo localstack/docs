@@ -1,8 +1,6 @@
 ---
 title: "Elastic Kubernetes Service (EKS)"
 linkTitle: "Elastic Kubernetes Service (EKS)"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro"]
 description: >
   Elastic Kubernetes Service (EKS)

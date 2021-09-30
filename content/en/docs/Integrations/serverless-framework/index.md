@@ -1,7 +1,6 @@
 ---
 title: "Serverless Framework"
 tags: ["serverless-framework"] 
-date: 2021-09-27
 weight: 4
 description: >
   Use the Serverless Framework with LocalStack

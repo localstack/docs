@@ -1,7 +1,5 @@
 ---
 title: "SQS"
-date: 2021-09-27
-weight: 5
 categories: ["LocalStack Community"]
 description: >
   Explaining the different SQS providers and how to configure the service.

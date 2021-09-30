@@ -1,8 +1,6 @@
 ---
 title: "CodeCommit"
 linkTitle: "CodeCommit"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro"]
 description: >
   CodeCommit

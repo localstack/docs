@@ -1,8 +1,6 @@
 ---
 title: "Lambda Layers"
 linkTitle: "Lambda Layers"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro", "Stub"]
 description: >
   Lambda Layers

@@ -1,6 +1,5 @@
 ---
 title: "CircleCI"
-date: 2021-09-27
 tags: ["continuous-integration", "ci", "continuous-delivery", "testing"] 
 weight: 4
 description: >

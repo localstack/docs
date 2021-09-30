@@ -1,8 +1,6 @@
 ---
 title: "Relational Database Service (RDS)"
 linkTitle: "Relational Database Service (RDS)"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro"]
 description: >
   Relational Database Service (RDS)

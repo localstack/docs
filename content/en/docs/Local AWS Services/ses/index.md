@@ -1,8 +1,6 @@
 ---
 title: "Simple Email Service (SES)"
 linkTitle: "Simple Email Service (SES)"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro"]
 description: >
   Simple Email Service (SES)

@@ -1,6 +1,5 @@
 ---
 title: "Lambda Executor Modes"
-date: 2021-09-27
 weight: 5
 description: >
   Overview of the different Lambda execution modes

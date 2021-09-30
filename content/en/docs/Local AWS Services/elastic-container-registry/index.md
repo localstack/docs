@@ -1,8 +1,6 @@
 ---
 title: "Elastic Container Registry (ECR)"
 linkTitle: "Elastic Container Registry (ECR)"
-date: 2021-09-28
-weight: 5
 categories: ["LocalStack Pro"]
 description: >
   Elastic Container Registry (ECR)
