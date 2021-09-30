@@ -1,0 +1,13 @@
+{{ if not .Params.notoc }}
+{{ with .TableOfContents }}
+{{/* https://discourse.gohugo.io/t/check-for-empty-tableofcontents/29737 */}}
+{{ if ne . "<nav id=\"TableOfContents\"></nav>" }}
+{{ with $.Site.Params.ui.toc_title }}
+<h5 class="toc-title">{{ . }}</h5>
+{{ end }}
+{{ end }}
+{{ if ge (len .) 200 }}
+<div class="td-toc">{{ . }}</div>
+{{ end }}
+{{ end }}
+{{ end }}
