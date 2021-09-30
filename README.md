@@ -43,5 +43,12 @@ Please follow these best practices when writing documentation here:
 - For snippets, define the correct syntax highlighting.
   Here's a list of the supported languages:
   https://gohugo.io/content-management/syntax-highlighting/
+- Handling images can be a bit tedious with Hugo.
+  If you want to use images in your post, create a new [leaf bundle directory](https://github.com/gohugoio/hugo/issues/1240) and put the image and the post (named `index.md`) in there (you can find examples in the docs already, f.e. the cognito service docs).
+  
+  Then you can use the usual markdown syntax with a relative path (f.e.:
+  `![Alternative Text](filenexttopost.png)`).
+  
+  If you want to resize the image, use the `figure` shortcode.
 
 PS.: Feel free to add more best practices here (also give us a heads-up in [#sig-docs](https://localstack-cloud.slack.com/archives/C02FZH6UB2A)).

@@ -32,7 +32,7 @@ Local Cloud Pods support different storage mechanisms - currently we're focusing
 
 You can use the LocalStack Web UI to create a new local cloud pod - see screenshot below (make sure to adjust Git URL and branch name to point to your repo).
 
-![Local Cloud Pods UI](/cloudPodsUI.png)
+![Local Cloud Pods UI](cloudPodsUI.png)
 
 Once the pod has been created, you should be able to login and list it via the CLI as well:
 ```

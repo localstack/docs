@@ -11,7 +11,7 @@ LocalStack Pro allows you to use the [EKS](https://docs.aws.amazon.com/eks/) API
 
 Please note that EKS requires an existing local Kubernetes installation. In recent versions of Docker, you can simply enable Kubernetes as an embedded service running inside Docker. See below for a screenshot of the Docker settings for Kubernetes in MacOS (similar configurations apply for Linux/Windows). By default, it is asssumed that Kubernetes API runs on the local TCP port `6443`.
 
-{{< img-simple src="kubernetes.png" alt="Kubernetes in Docker" >}}
+![Kubernetes in Docker](kubernetes.png)
 
 The example below illustrates how to create an EKS cluster configuration (assuming you have [`awslocal`](https://github.com/localstack/awscli-local) installed):
 ```
