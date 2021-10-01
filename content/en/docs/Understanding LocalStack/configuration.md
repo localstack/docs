@@ -81,7 +81,7 @@ This section covers configuration values that are specific to AWS services.
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode) |
+| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in [Lambda Executor Modes](../lambda-executors). |
 | | `docker` (default) | Run each function invocation in a separate Docker container. |
 | | `local` (fallback) | Run Lambda functions in a temporary directory on the local machine. |
 | | `docker-reuse` | Create one Docker container per function and reuse it across invocations. |

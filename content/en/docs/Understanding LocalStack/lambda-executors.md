@@ -22,7 +22,7 @@ The `docker` execution mode will execute lambdas in an docker container.
 For this, every lambda invocation creates and runs a new docker container and returns its result when its finished.
 The advantage of this mode is the fresh lambda environment from each start, so possible leftovers during previous invocations will be purged.
 Due to the nature of this mode, mainly recreating the container for each invocation, this mode is rather slow.
-A typical invocation of a dummy python lambda can take around 3 seconds from start to finish.
+A typical invocation of a dummy python lambda can take around 3 seconds from start to finish (awscli invoke - start to finish).
 All supported lambda types can be used with this executor.
 
 * `docker-reuse` executor:
