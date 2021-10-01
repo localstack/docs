@@ -6,6 +6,10 @@ description: >
   Use the Serverless Framework with LocalStack
 ---
 
+![Serverless logo](serverless-logo.png)
+
+## Overview
+
 This guide explains how to integrate LocalStack with the [Serverless Framework](https://www.serverless.com/).
 Although it probably requires a few code changes, integrating LocalStack with the Serverless Framework is fairly straightforward. 
 
@@ -15,6 +19,7 @@ In particular, the setup consists of the following two steps.
 2. Adjusting AWS endpoints in Lambda functions.
 
 ## Prerequisites
+
 This guide assumes that you have the following tools installed.
 
 * LocalStack ([Install](https://localstack.cloud/docs/getting-started/installation/))

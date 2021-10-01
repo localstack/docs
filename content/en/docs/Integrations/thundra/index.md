@@ -6,6 +6,8 @@ description: >
   Monitor and debug your AWS Lambda functions with LocalStack and [Thundra](https://thundra.io).
 ---
 
+![Thundra logo](thundra-logo.svg)
+
 This guide describes how you can monitor and debug your AWS Lambda functions with [Thundra](https://thundra.io).
 
 
