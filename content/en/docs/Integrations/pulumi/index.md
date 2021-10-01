@@ -2,7 +2,6 @@
 title: "Pulumi"
 tags: ["pulumi", "infrastructure-as-code"]
 categories: []
-date: 2021-09-29
 weight: 10
 description: >
   Use the Pulumi Infrastructure as Code framework with LocalStack
