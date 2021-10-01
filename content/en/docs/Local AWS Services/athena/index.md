@@ -36,5 +36,5 @@ $ awslocal athena get-query-results --query-execution-id c9f453ad
 ```
 
 {{< alert >}}**Note**:
-In order to use the Athena API, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.2GB which includes Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you're on a decent internet connection when pulling the dependencies for the first time.
+In order to use the Athena API, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you're on a decent internet connection when pulling the dependencies for the first time.
 {{< /alert >}}

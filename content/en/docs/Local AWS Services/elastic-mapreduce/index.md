@@ -20,4 +20,6 @@ The commmand above will spin up one more more Docker containers on your local ma
 
 Note that you can also specify startup commands using the `--steps=...` command line argument to the `create-cluster` command. A simple demo project with more details can be found in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/emr-hadoop-spark-jobs).
 
-**Note:** In order to use the EMR API, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Spark, Hadoop, Pig and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you're on a decent internet connection when pulling the dependencies for the first time.
+{{< alert >}}**Note**:
+In order to use the EMR API, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you're on a decent internet connection when pulling the dependencies for the first time.
+{{< /alert >}}

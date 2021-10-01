@@ -8,7 +8,10 @@ description: >
 
 By default, LocalStack uses not enforce security policies for client requests. The IAM security enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.
 
-**Please note:** The environment configuration `ENFORCE_IAM=1` is required to enable this feature (by default, IAM enforcement is disabled).
+
+{{< alert >}}**Note**:
+The environment configuration `ENFORCE_IAM=1` is required to enable this feature. (By default, IAM enforcement is disabled, and all APIs can be accessed without authentication.)
+{{< /alert >}}
 
 Below is a simple example that illustrates the use of IAM policy enforcement. It first attempts to create an S3 bucket with the default user (which fails), then create a user and attempts to create a bucket with that user (which fails again), and then finally attaches a policy to the user to allow `s3:CreateBucket`, which allows the bucket to be created.
 ```
