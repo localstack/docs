@@ -1,6 +1,8 @@
 ---
 title: "Python Boto3"
 linkTitle: "Python: Boto3"
+categories: ["Stub"]
+tags: ["sdk"]
 description: >
   How to use the Boto3 Python AWS SDK with LocalStack.
 ---
