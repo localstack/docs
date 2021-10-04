@@ -9,7 +9,6 @@ description: >
 ## Overview
 
 LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.
-In contrast, the community (open source) edition requires the application code to configure each AWS SDK client instance with the target `endpoint URL` to point to the respective ports on `localhost` (see list of default ports [here](https://github.com/localstack/localstack)).
 
 When the system starts up, the log output contains the IP address of the local DNS server. Typically, this address by default is either `0.0.0.0` (see example below) or `127.0.0.1` if LocalStack cannot bind to `0.0.0.0` due to a conflicting service.
 ```
