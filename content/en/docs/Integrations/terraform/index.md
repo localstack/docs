@@ -12,13 +12,15 @@ description: >
 Terraform allows you to automate the management of AWS resources such as containers, lambda functions and so on by declaring them in the HashiCorp Configuration Language (HCL). On this page we are going to discuss how Terraform and LocalStack can be used together. If you are adapting an existing configuration, you might be able to skip certain steps at your own discretion.
 
 ## Quickstart
-Using Terraform alongside LocalStack does not require a lot of configuration. Apart from some information Terraform expects there are basically only 2 things to take care of inside the AWS provider.
+If you have not done so yet, [install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
+
+Using Terraform alongside LocalStack does not require a lot of work. Apart from some information Terraform expects there are basically only two things to take care of in the configuration.
 
 Before we start changing the configuration, create and change into a new directory for this sample
 ```
 mkdir terraform_quickstart && cd terraform_quickstart
 ```
-Inside this directory create a file called ```main.tf```. The following changes go into this file.
+Inside this directory, create a file called ```main.tf```. The following changes go into this file.
 
 ### General Configuration
 First, we have to supply Terraform with some mock data for access and region, as these items are expected
@@ -50,7 +52,7 @@ provider "aws" {
 ```
 
 ### Services
-Third, we have to point the individual services to LocalStack. In case of S3, this looks like the following snippet
+Additionally, we have to point the individual services to LocalStack. In case of S3, this looks like the following snippet
 
 ```
 endpoints {
@@ -93,7 +95,7 @@ resource "aws_s3_bucket" "test-bucket" {
   bucket = "my-bucket"
 }
 ```
-After starting LocalStack you can now deploy the s3 bucket via ```terraform```, and interact with the (still empty) s3 container via ```awslocal```!
+After starting LocalStack you can now deploy the s3 bucket via ```terraform``` and interact with the (still empty) s3 container via ```awslocal```!
 All you need to do is to initialize Terraform
 ```
 terraform init
@@ -104,4 +106,4 @@ terraform deploy
 ```
 
 
-For a more detailled example, you can take a look at our [terraform sample]() in our repository.
+For more examples, you can take a look at our [terraform sample](https://github.com/localstack/localstack-pro-samples/tree/master/terraform-resources) or the [terraform localstack section](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack).
