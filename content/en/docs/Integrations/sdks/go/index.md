@@ -8,10 +8,10 @@ description: >
 
 ## Overview
 
-The [AWS SDK for Go](https://aws.amazon.com/sdk-for-go/), like other AWS SDKs, let you set the endpoint when creating resource clients,
+The [AWS SDK for Go](https://aws.amazon.com/sdk-for-go/), like other AWS SDKs, lets you set the endpoint when creating resource clients,
 which is the preferred way of integrating the Go SDK with LocalStack.
 
-The Go SDK has two major version, each with their own way of specifying the LocalStack endpoint
+The Go SDK has two major versions, each with their own way of specifying the LocalStack endpoint:
 
 * [aws-sdk-go](https://github.com/aws/aws-sdk-go)
 * [aws-sdk-go-v2](https://github.com/aws/aws-sdk-go-v2)

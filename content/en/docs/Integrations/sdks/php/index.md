@@ -8,7 +8,7 @@ description: >
 
 ## Overview
 
-The [AWS SDK for PHP](https://aws.amazon.com/sdk-for-php/), like other AWS SDKs, let you set the endpoint when creating resource clients,
+The [AWS SDK for PHP](https://aws.amazon.com/sdk-for-php/), like other AWS SDKs, lets you set the endpoint when creating resource clients,
 which is the preferred way of integrating the PHP SDK with LocalStack.
 
 ## Example
