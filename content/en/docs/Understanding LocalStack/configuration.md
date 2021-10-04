@@ -152,6 +152,16 @@ Some of the services can be configured to switch to a particular provider:
 | `DEVELOP_PORT` | | Port number for debugpy server
 | `WAIT_FOR_DEBUGGER` | | Forces LocalStack to wait for a debugger to start the services
 
+## DNS
+
+More information [here](../../localstack-tools/transparent-execution-mode/dns-server).
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `DNS_ADDRESS` | 0.0.0.0 (default) | Address the LocalStack should bind the DNS server on (port 53 tcp/udp). Value `0` to disable.
+| `DNS_SERVER` | 8.8.8.8 (default) | Fallback DNS server for non-modified queries.
+| `DNS_LOCAL_NAME_PATTERNS` | | Names which should be resolved to the LocalStack IP, as python-compatible regex.
+
 ## Read-only
 
 | Variable | Usage Example | Description |
