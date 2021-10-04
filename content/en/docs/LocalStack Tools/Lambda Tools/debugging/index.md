@@ -108,3 +108,8 @@ With our function from above you have about 15 seconds (timeout configurable) to
 The screenshot below shows with the breakpoint selected, including the Lambda event message `'Hello from LocalStack!'`:
 
 ![Visual Studio Code debugging](vscode-debugging.png)
+
+### Limitations
+
+Due to the ports used by the debugger, you can currently only debug one Lambda at a time.
+Multiple concurrent invocations will not work.
