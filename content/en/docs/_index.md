@@ -1,4 +1,0 @@
----
-linktitle: Documentation
-title: Documentation
----
