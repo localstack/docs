@@ -55,7 +55,7 @@ If you want to add further configuration for LocalStack, you can use the `env` s
 
 ## Activating LocalStack Pro
 
-If you want to use LocalStack Pro in your GitHub Actions job, you should use an [Github Encrypted Secret][3] to store your API key securely.
+If you want to use LocalStack Pro in your GitHub Actions job, you should use a [Github Encrypted Secret][3] to store your API key securely.
 In the above example, you can see us setting the `LOCALSTACK_API_KEY` environment variable to the value of the secret `LOCALSTACK_API_KEY`.
 
 You can set your secret at an environment, repository or organization level, for more information see [here][3].
