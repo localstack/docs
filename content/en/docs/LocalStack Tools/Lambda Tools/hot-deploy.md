@@ -8,7 +8,7 @@ description: >
 
 Quickly iterating over Lambda function code can be quite cumbersome, as you need to deploy your function on every change. 
 With LocalStack you can avoid this hurdle by mounting your code directly from the source folder. 
-This way, any saved change inside your source file directly affects the already deployed lambda function -- without any redeployment!
+This way, any saved change inside your source file directly affects the already deployed Lambda function -- without any redeployment!
 
 We show you how you can do this with a simple example function, taken directly from the [AWS Lambda developer guide](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py).
 You can check out that code, or use your own lambda functions to follow along. 
