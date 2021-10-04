@@ -298,7 +298,7 @@ In the coverage tables below, the features are marked with their respective avai
 | Snapshots                                               | \-             |                 |       |
 | Tags                                                    | ⭐⭐⭐⭐       |                 |       |
 | Users / User Groups                                     | \-             |                 |       |
-| **Elasticsearch Service**                               |                |                 |       |
+| [**Elasticsearch Service**](../elasticsearch)           |                |                 |       |
 | Cross-Cluster Search Connections                        | \-             |                 |       |
 | Elasticsearch Domains                                   | ⭐⭐⭐⭐       |                 |       |
 | Packages                                                | \-             |                 |       |

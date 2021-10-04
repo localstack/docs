@@ -1,12 +1,12 @@
 ---
-title: "OpenSearch Service"
-linkTitle: "OpenSearch Service"
-categories: ["LocalStack Community", "Stub"]
+title: "Elasticsearch Service"
+linkTitle: "Elasticsearch Service"
+categories: ["LocalStack Community"]
 description: >
-  Amazon OpenSearch Service (formerly AWS Elasticsearch)
+  Amazon Elasticsearch Service
 ---
 
-The OpenSearch Service in LocalStack lets you create a single node Elasticsearch cluster that behaves like the [Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html) (successor to Amazon Elasticsearch Service).
+The Elasticsearch Service in LocalStack lets you create a single node Elasticsearch cluster that behaves like the [Amazon Elasticsearch Service](https://aws.amazon.com/opensearch-service/the-elk-stack/what-is-elasticsearch/).
 
 
 ## Creating an Elasticsearch cluster
@@ -75,7 +75,7 @@ In the LocalStack log you will see something like
 
 ```
 
-and after some time, you should see that the `Created` state of the domain is set to true:
+and after some time, you should see that the `Created` state of the domain is set to `true`:
 
 ```bash
 $ awslocal es describe-elasticsearch-domain --domain-name foobar | jq ".DomainStatus.Created"
