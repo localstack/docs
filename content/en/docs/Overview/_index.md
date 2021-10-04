@@ -3,7 +3,6 @@ title: Overview
 linkTitle: Overview
 main_menu: true
 weight: 1
-hide_feedback: true
 menu:
   main:
     name: "Documentation"
