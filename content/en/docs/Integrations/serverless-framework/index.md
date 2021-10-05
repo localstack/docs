@@ -6,7 +6,7 @@ description: >
   Use the Serverless Framework with LocalStack
 ---
 
-![Serverless logo](serverless-logo.png)
+<img src="serverless-logo.png" width="600px" alt="Serverless logo">
 
 ## Overview
 

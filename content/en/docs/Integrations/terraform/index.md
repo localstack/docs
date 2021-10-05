@@ -6,7 +6,7 @@ description: >
   Use the Terraform Infrastructure as Code framework with LocalStack
 ---
 
-![Terraform logo](logo-terraform-main.svg)
+<img src="logo-terraform-main.svg" width="600px" alt="terraform logo">
 
 ## Overview
 
