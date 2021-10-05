@@ -67,7 +67,12 @@ docker run \
 localstack/localstack
 {{< / highlight >}}
 
-For more information about starting LocalStack, please consult [Getting Started]({{< ref "Getting started" >}})
+For more information about starting LocalStack, please consult [Getting Started]({{< ref "Getting started" >}}).
+
+## Licensing related configuration
+
+You wish to start LocalStack only if LocalStack Pro can be activated or want to supress licensing related error messages?
+Please consult our [configuration guide]({{< ref "configuration.md#localstack-pro">}}) regarding LocalStack Pro.
 
 ## Checking License activation
 
