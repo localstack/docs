@@ -6,7 +6,7 @@ description: >
 ---
 
 Using a debugger with Lambda functions used to be a really difficult task.
-LocalStack changes that with the same local code mounting functionality that also helps you to [iterate quickly over your function code](../hot-deploy).
+LocalStack changes that with the same local code mounting functionality that also helps you to [iterate quickly over your function code]({{< ref "hot-deploy" >}}.
 
 Currently, we provide information on remote debugging for Python Lambda functions and [Visual Studio Code](https://code.visualstudio.com/) as an IDE. 
 More examples and tooling support for local Lambda debugging (including support for other IDEs like PyCharm, IntelliJ, etc.) is coming soon - stay tuned!
@@ -16,7 +16,7 @@ There, the necessary code fragments for enabling debugging are already present.
 
 ### Starting up LocalStack
 
-First, make sure that LocalStack is started with the following configuration (see the [Configuration Documentation](../../../understanding-localstack/configuration/#lambda) for more information):
+First, make sure that LocalStack is started with the following configuration (see the [Configuration Documentation]({{< ref "configuration#lambda" >}} for more information):
 ```sh
 LOCALSTACK_API_KEY=... \
     LAMBDA_REMOTE_DOCKER=0 \

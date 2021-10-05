@@ -143,7 +143,7 @@ When correctly configured, either using the LocalStack CLI command or manually, 
 #### Other resolution settings
 
 Depending on your Linux distribution, the settings to set a DNS server can be quite different.
-In some systems, directly editing `/etc/resolv.conf` is possible, like described in [Mac OS](#mac-os).
+In some systems, directly editing `/etc/resolv.conf` is possible, like described in [Mac OS]({{< ref "#mac-os" >}}.
 If your `/etc/resolv.conf` is overwritten by some service, it might be possible to install and enable/start `resolvconf` and specify the nameserver in `/etc/resolvconf/resolv.conf.d/head` with `nameserver 127.0.0.1`.
 This will prepend this line in the resolv.conf file even after changes.
 

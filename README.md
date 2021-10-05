@@ -37,6 +37,8 @@ or run in developer mode with automatic reload
 ## Best Practices
 
 Please follow these best practices when writing documentation here:
+- Use the [`ref` or `relref` shortcode](https://gohugo.io/content-management/cross-references/#use-ref-and-relref) when creating non-external links (but still use the markdown native image linking, ref doesn't work there).
+  You can either use `ref` or `relref`, the point is to have compile time internal-link checks (which works for both).
 - Stick to markdown if possible.
 - Use one line for each sentence in markdown.
   If you don't add a backslash at the end of the line or add two new-lines, there won't be linebreak in the rendered text.

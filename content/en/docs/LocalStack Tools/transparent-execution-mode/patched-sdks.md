@@ -28,7 +28,7 @@ def handler(event, context):
 
 {{< alert >}}
 **Note:** This functionality only works when using the SDKs provided by the Lambda execution environment itself.
-If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the [DNS based transparent execution](../dns-server) if enabled, since those SDK versions will not be patched.
+If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the [DNS based transparent execution]({{< ref "dns-server" >}} if enabled, since those SDK versions will not be patched.
 {{< /alert >}}
 
 This feature works by patching the AWS SDKs in the docker images, which provide the execution environment for Lambdas within LocalStack.
@@ -51,7 +51,7 @@ Currently, LocalStack supports patching the SDKs for the following runtimes:
 * Ruby
 * Java
 
-Also, these patched SDKs are only available in the following [Lambda execution modes](../../../understanding-localstack/lambda-executors):
+Also, these patched SDKs are only available in the following [Lambda execution modes]({{< ref "lambda-executors" >}}:
 
 * docker
 * docker-reuse

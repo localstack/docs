@@ -11,26 +11,26 @@ With LocalStack, you can run your AWS applications or Lambdas entirely on your l
 Whether you are testing complex CDK applications or Terraform configurations, or just beginning to learn about AWS services,
 LocalStack helps speed up and simplify your testing and development workflow.
 
-LocalStack supports a growing number of [AWS services](../local-aws-services), like AWS Lambda, [S3](../local-aws-services/s3), DynamoDB, [Kinesis](../local-aws-services/kinesis), [SQS](../local-aws-services/sqs), SNS, and **many** more!
+LocalStack supports a growing number of [AWS services]({{< ref "Local AWS Services" >}}, like AWS Lambda, [S3]({{< ref "s3" >}}, DynamoDB, [Kinesis]({{< ref "kinesis" >}}, [SQS]({{< ref "sqs" >}}, SNS, and **many** more!
 The [**Pro version** of LocalStack](https://localstack.cloud/pricing) supports additional APIs and advanced features.
-You can find a comprehensive list of supported APIs on our [⭐ Feature Coverage](../local-aws-services/feature-coverage) page.
+You can find a comprehensive list of supported APIs on our [⭐ Feature Coverage]({{< ref "feature-coverage" >}} page.
 
 LocalStack also provides additional features to make your life as a cloud developer easier!
-Check out LocalStack's [Cloud Developer Tools](../localstack-tools).
+Check out LocalStack's [Cloud Developer Tools]({{< ref "LocalStack Tools" >}}.
 
 ## Get LocalStack Up and Running
 The first thing when getting started with LocalStack is to choose your preferred way of starting and managing your LocalStack instance.\
 LocalStack currently provides the following options:
-- [LocalStack CLI](#localstack-cli)\
+- [LocalStack CLI]({{< ref "#localstack-cli" >}}\
   The easiest way to start and manage LocalStack - either on your machine, in a Docker container on your machine, or even on a remote Docker host.
 
-- [Docker](#docker)\
+- [Docker]({{< ref "#docker" >}}\
   Use the `docker` CLI to manually start the LocalStack Docker container.
 
-- [Docker-Compose](#docker-compose)\
+- [Docker-Compose]({{< ref "#docker-compose" >}}\
   Use `docker-compose` to configure and start your LocalStack Docker container.
 
-- [Helm](#helm)\
+- [Helm]({{< ref "#helm" >}}\
   Use `helm` to create a LocalStack deployment in a Kubernetes cluster.
 
 
@@ -94,13 +94,13 @@ localstack start
 
 - On MacOS you may have to run `TMPDIR=/private$TMPDIR localstack start --docker` if `$TMPDIR` contains a symbolic link that cannot be mounted by Docker.
 
-- From 2020-07-11 onwards, the default image `localstack/localstack` in Docker Hub refers to the "light version", which has some large dependency files like Elasticsearch removed (and lazily downloads them, if required). (Note that the `localstack/localstack-light` image alias may get removed in the future). In case you need the full set of dependencies, the `localstack/localstack-full` image can be used instead. Please also refer to the [`USE_LIGHT_IMAGE` environment variable](../understanding-localstack/configuration/#core).
+- From 2020-07-11 onwards, the default image `localstack/localstack` in Docker Hub refers to the "light version", which has some large dependency files like Elasticsearch removed (and lazily downloads them, if required). (Note that the `localstack/localstack-light` image alias may get removed in the future). In case you need the full set of dependencies, the `localstack/localstack-full` image can be used instead. Please also refer to the [`USE_LIGHT_IMAGE` environment variable]({{< ref "configuration#core" >}}.
 
-- Although we strongly recommend to use Docker, the infrastructure can also be spun up directly on the host machine using the `--host` startup flag. Note that this will require [additional dependencies](#developing), and is not supported on some operating systems, including Windows.
+- Although we strongly recommend to use Docker, the infrastructure can also be spun up directly on the host machine using the `--host` startup flag. Note that this will require [additional dependencies]({{< ref "#developing" >}}, and is not supported on some operating systems, including Windows.
 {{< /alert >}}
 
 ### Docker
-If you do not want to use the [LocalStack CLI](#localstack-cli), you can also decide to manually start the LocalStack Docker container.
+If you do not want to use the [LocalStack CLI]({{< ref "#localstack-cli" >}}, you can also decide to manually start the LocalStack Docker container.
 
 #### Prerequisites
 Please make sure that you have a working [`docker` environment](https://docs.docker.com/get-docker/) on your machine before moving on.
@@ -121,7 +121,7 @@ docker run --rm -it -p 4566:4566 -p 4571:4571 localstack/localstack
 - This command does not bind all ports which are potentially used by LocalStack, nor does it mount any volumes.
   When using Docker to manually start LocalStack, you will have to configure the container on your own.
   This could be seen as the "expert mode" of starting LocalStack.
-  If you are looking for a simpler method of starting LocalStack, please use the [LocalStack CLI](#localstack-cli).
+  If you are looking for a simpler method of starting LocalStack, please use the [LocalStack CLI]({{< ref "#localstack-cli" >}}.
 
 - This command starts all services provided by LocalStack.
   You can limit the services to a subset by setting the environment variable `SERVICES` (for example with `-e "SERVICES=dynamodb,s3"`).
@@ -176,10 +176,10 @@ If you run into any issues or problems with this guide, please [submit an issue]
 
 ## What's next?
 Now that you have LocalStack up and running, the following resources might be useful for your next steps:
-- [Use the LocalStack integrations](../integrations) to interact with LocalStack and other integrated tools, for example:
+- [Use the LocalStack integrations]({{< ref "integrations" >}} to interact with LocalStack and other integrated tools, for example:
   - Use `awslocal` to use the AWS CLI against your local cloud!
   - Use the Serverless Framework with LocalStack!
   - And many more!
-- [Find out how to configure LocalStack](../understanding-localstack/configuration) such that it perfectly fits your need.
-- [Use LocalStack in your CI environment](../localstack-in-ci) to increase your code quality.
-- [Checkout LocalStack's Cloud Developer Tools](../localstack-tools) to further increase your development efficiency with LocalStack.
+- [Find out how to configure LocalStack]({{< ref "configuration" >}} such that it perfectly fits your need.
+- [Use LocalStack in your CI environment]({{< ref "LocalStack in CI" >}} to increase your code quality.
+- [Checkout LocalStack's Cloud Developer Tools]({{< ref "LocalStack Tools" >}} to further increase your development efficiency with LocalStack.

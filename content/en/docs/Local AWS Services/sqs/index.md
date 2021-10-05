@@ -7,10 +7,10 @@ description: >
 
 AWS SQS is a fully managed distributed message queuing service.
 
-SQS is shipped with the LocalStack Community version and is [extensively supported](../feature-coverage/).
+SQS is shipped with the LocalStack Community version and is [extensively supported]({{< ref "feature-coverage" >}}.
 Trying to run the examples in the [official AWS developer](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) guide against LocalStack is a great place to start.
 
-Assuming you have [`awslocal`](../../integrations/aws-cli/) installed you can also try the following commands:
+Assuming you have [`awslocal`]({{< ref "aws-cli" >}} installed you can also try the following commands:
 
 ```bash
 $ awslocal sqs create-queue --queue-name sample-queue
@@ -43,5 +43,5 @@ ElasticMQ only supports a subset of the SQS query (only the REST query interface
 On the other hand, moto has near-complete support for SQS but has limited scalability. 
 
 {{% alert title="Persistence Support" color="info" %}}
-As of now the [LocalStack Pro persistence mechanism](../../understanding-localstack/persistence-mechanism/#persistence-mechanism---pro-version) is only supported for `moto`. 
+As of now the [LocalStack Pro persistence mechanism]({{< ref "persistence-mechanism#persistence-mechanism---pro-version" >}} is only supported for `moto`. 
 {{% /alert %}}

@@ -10,8 +10,8 @@ For instance, you may want to run consecutive integration tests where each test 
 Commonly, you may simply have a local development server that relies on a non-ephemeral application state.
 
 While the persistence mechanism covers most services, not all of them are supported yet.
-Please make sure to check the [feature coverage page](../../local-aws-services/feature-coverage) to see whether your desired services are covered.
-Please note that the coverage is only guaranteed for the _Pro_ version, while the _Community_ version attempts to restore the state on a best-effort basis using a *record-and-replay* approach (more on that in the [Technical Details](#technical-details) section).
+Please make sure to check the [feature coverage page]({{< ref "feature-coverage" >}} to see whether your desired services are covered.
+Please note that the coverage is only guaranteed for the _Pro_ version, while the _Community_ version attempts to restore the state on a best-effort basis using a *record-and-replay* approach (more on that in the [Technical Details]({{< ref "#technical-details" >}} section).
 
 To enable the persistence mechanism simply set the `DATA_DIR` environment variable.
 For instance, `DATA_DIR=/tmp/localstack/data` will store all relevant files to the `/tmp/localstack/data` directory.
@@ -70,7 +70,7 @@ While this approach is generic enough to cover a sizable amount of services, the
    For instance, sending messages to an SQS queue is done by providing the queue URL.
    However, there is no guarantee that our `sample-queue` will have the same URL after a reboot, which then would result in `NonExistingQueue` during the replay of `send-message` API calls.
    For this reason, LocalStack provides no guarantees of the correctness and completeness for any state restored using the *record-and-replay* approach.
-3. The state recorded this way cannot be used to create [CloudPods](../../localstack-tools/cloud-pods/).
+3. The state recorded this way cannot be used to create [CloudPods]({{< ref "cloud-pods" >}}.
 
 ### Persistence Mechanism - Pro Version
 

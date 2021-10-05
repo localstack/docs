@@ -8,9 +8,9 @@ description: >
 
 AWS S3 is a managed scalable object storage service that can be used to store any amount of data for a wide range of use cases. 
 
-S3 is shipped with the LocalStack Community version and is [extensively supported](../feature-coverage/). Trying to run the examples in the [official AWS developer](https://docs.aws.amazon.com/s3/index.html) guide against LocalStack is a great place to start.
-
-Assuming you have [`awslocal`](../../integrations/aws-cli/) installed you can also try the following commands:
+S3 is shipped with the LocalStack Community version and is [extensively supported]({{< ref "feature-coverage" >}}). Trying to run the examples in the [official AWS developer](https://docs.aws.amazon.com/s3/index.html) guide against LocalStack is a great place to start.
+"
+Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed you can also try the following commands:
 
 ```bash
 $ awslocal s3api create-bucket --bucket sample-bucket

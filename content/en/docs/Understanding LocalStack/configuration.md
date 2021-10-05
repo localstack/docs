@@ -54,10 +54,10 @@ Docker is used extensively by LocalStack, and there are several configuration pa
 
 This section covers configuration values that are specific to AWS services.
 
-* [DynamoDB](#dynamodb)
-* [Kinesis](#kinesis)
-* [Lambda](#lambda)
-* [Stepfunctions](#stepfunctions)
+* [DynamoDB]({{< ref "#dynamodb" >}}
+* [Kinesis]({{< ref "#kinesis" >}}
+* [Lambda]({{< ref "#lambda" >}}
+* [Stepfunctions]({{< ref "#stepfunctions" >}}
 
 
 ### DynamoDB
@@ -81,7 +81,7 @@ This section covers configuration values that are specific to AWS services.
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in [Lambda Executor Modes](../lambda-executors). |
+| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in [Lambda Executor Modes]({{< ref "lambda-executors" >}}. |
 | | `docker` (default) | Run each function invocation in a separate Docker container. |
 | | `local` (fallback) | Run Lambda functions in a temporary directory on the local machine. |
 | | `docker-reuse` | Create one Docker container per function and reuse it across invocations. |
@@ -154,7 +154,7 @@ Some of the services can be configured to switch to a particular provider:
 
 ## DNS
 
-More information [here](../../localstack-tools/transparent-execution-mode/dns-server).
+More information [here]({{< ref "dns-server" >}}.
 
 | Variable | Example Values | Description |
 | - | - | - |
