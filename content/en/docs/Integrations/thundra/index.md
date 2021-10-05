@@ -8,8 +8,9 @@ description: >
 
 <img src="thundra-logo.svg" width="600px" alt="Thundra logo">
 
-This guide describes how you can monitor and debug your AWS Lambda functions with [Thundra](https://thundra.io).
+## Overview
 
+This guide describes how you can monitor and debug your AWS Lambda functions with [Thundra](https://thundra.io).
 
 ## Integrating Thundra with LocalStack
 
