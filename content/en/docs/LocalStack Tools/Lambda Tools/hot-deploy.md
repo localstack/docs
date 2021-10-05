@@ -22,7 +22,7 @@ git clone git@github.com:awsdocs/aws-doc-sdk-examples.git
 ### Starting up LocalStack 
 
 First, we need to make sure we start LocalStack with the right configuration.
-This is as simple as setting `LAMBDA_REMOTE_DOCKER`(see the [Configuration Documentation]({{< ref "configuration#lambda" >}} for more information):
+This is as simple as setting `LAMBDA_REMOTE_DOCKER`(see the [Configuration Documentation]({{< ref "configuration#lambda" >}}) for more information):
 
 ```sh
 LAMBDA_REMOTE_DOCKER=0 localstack start

@@ -19,7 +19,7 @@ curl -k https://$domain/hello.txt
 ```
 
 {{< alert >}}
-**Note:** In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "#configuring-local-dns-server" >}} for details.
+**Note:** In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "#configuring-local-dns-server" >}}) for details.
 {{< /alert >}}
 
 {{< alert >}}
