@@ -162,6 +162,16 @@ More information [here]({{< ref "dns-server" >}}).
 | `DNS_SERVER` | 8.8.8.8 (default) | Fallback DNS server for non-modified queries.
 | `DNS_LOCAL_NAME_PATTERNS` | | Names which should be resolved to the LocalStack IP, as python-compatible regex.
 
+## LocalStack Pro
+
+More information [here]({{< ref "getting-started-pro" >}}).
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `LOCALSTACK_API_KEY` | | API key to activate LocalStack Pro.
+| `LOG_LICENSE_ISSUES` | 1 (default) | Whether to log issues with the license activation to the console.
+| `REQUIRE_PRO` | 0 (default) | Whether to require license activation to succeed to start LocalStack. If set to 0 (default) LocalStack will start as community version if the license cannot be activated.
+
 ## Read-only
 
 | Variable | Usage Example | Description |
