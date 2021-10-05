@@ -20,7 +20,7 @@ Starting DNS servers (tcp/udp port 53 on 0.0.0.0)...
 The DNS server can be configured to match your usecase.
 
 * The DNS server can be configured using the `DNS_ADDRESS` environment variable.
-    To bind the server to `127.0.0.1`, you have to set:
+    To bind the server to `127.0.0.1`, you can set:
 
     ```bash
     DNS_ADDRESS=127.0.0.1
@@ -32,13 +32,15 @@ The DNS server can be configured to match your usecase.
     DNS_ADDRESS=0
     ```
 
-* You can also specify which exact URLs should be redirected to LocalStack by defining a regex using:
+* You can also specify which exact URLs should be redirected to LocalStack by defining a hostname regex like:
 
     ```bash
     DNS_LOCAL_NAME_PATTERNS='.*(ecr|lambda).*.amazonaws.com'
     ```
 
-    Using this configuration, the LocalStack DNS server only redirects ecr and lambda domains of AWS to LocalStack, and the rest will be forwarded to `$DNS_SERVER`.
+    Using this configuration, the LocalStack DNS server only redirects ECR and Lambda domains to LocalStack, and the rest will be resolved via `$DNS_SERVER`. This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target LocalStack, whereas other services will target real AWS.
+
+    **Note:** We generally do not recommend connecting to real AWS from within LocalStack, in fact you should avoid using real AWS credentials anywhere in your LocalStack apps. Use this configuration with caution.
 
 * There is the possibility to manually set the DNS server all not-redirected queries will be forwarded to:
 
@@ -88,7 +90,7 @@ In Linux, the configuration depends on your network manager / DNS configuration.
 
 On many modern systemd-based distributions, like Ubuntu, systemd-resolved is used for name resolution.
 LocalStack provides a CLI command for exactly this scenario.
-To use systemd-resolved and the LocalStack domain resolution, you have to perform the following steps.
+To use systemd-resolved and the LocalStack domain resolution, try the following steps.
 
 * Start LocalStack Pro with `DNS_ADDRESS=127.0.0.1` as environment variable.
 This makes LocalStack bind port 53 on 127.0.0.1, whereas systemd-resolved binds its stub resolver to 127.0.0.53:53, which prevents a conflict.
@@ -103,7 +105,7 @@ Once LocalStack is started, you can test the DNS server using `dig @127.0.0.1 s3
     ```bash
     $ localstack dns systemd-resolved --revert
     ```
-        
+
     **Note**: You need sudo privileges to execute this command.
 
     This command sets the DNS server of the bridge interface of the docker network LocalStack currently runs in to the LocalStack container's IP address.
@@ -129,7 +131,7 @@ If you use the default bridge network, it is usually `docker0`.
     # resolvectl dns <network_name> <container_ip>
     ```
 
-3. Set the DNS route to route only the above mentioned domain names (and subdomains) to LocalStack: 
+3. Set the DNS route to route only the above mentioned domain names (and subdomains) to LocalStack:
     ```
     # resolvectl domain <network_name> ~amazonaws.com ~aws.amazon.com ~cloudfront.net ~localhost.localstack.cloud
     ```
