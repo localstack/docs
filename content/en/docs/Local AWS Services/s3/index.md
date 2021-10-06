@@ -12,7 +12,7 @@ S3 is shipped with the LocalStack Community version and is [extensively supporte
 
 Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed you can also try the following commands:
 
-```bash
+{{< command >}}
 $ awslocal s3api create-bucket --bucket sample-bucket
 
 {
@@ -38,7 +38,7 @@ $ awslocal s3api put-object --bucket sample-bucket --key index.html --body index
 {
     "ETag": "\"d41d8cd98f00b204e9800998ecf8427e\""
 }
-```
+{{< / command >}}
 
  When working with the `SERVICES` environment variable, please make sure to include `s3` in the list of services.
 For instance, to load the S3, SQS, and Kinesis service you'd pass the variable as `SERVICES=s3,sqs,kinesis`.

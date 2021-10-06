@@ -13,7 +13,7 @@ Kinesis is shipped with the LocalStack Community version and is [extensively sup
 Trying to run the example applications from the [official AWS developer guide](https://docs.aws.amazon.com/streams/latest/dev/examples.html) against LocalStack is a great place to start.
 Assuming you have `awslocal` installed you can also try out the following commands:
 
-```bash
+{{< command >}}
 $ awslocal kinesis create-stream --stream-name samplestream --shard-count 
 
 $ awslocal kinesis list-streams 
@@ -29,7 +29,7 @@ $ awslocal kinesis put-record --cli-binary-format raw-in-base64-out --stream-nam
     "SequenceNumber": "49622467803485029265018102167378141645049970239670845458",
     "EncryptionType": "NONE"
 }
-```
+{{< / command >}}
 
 ## Kinesis backend providers
 

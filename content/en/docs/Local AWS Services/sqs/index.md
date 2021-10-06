@@ -12,7 +12,7 @@ Trying to run the examples in the [official AWS developer](https://docs.aws.amaz
 
 Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed you can also try the following commands:
 
-```bash
+{{< command >}}
 $ awslocal sqs create-queue --queue-name sample-queue
 {
     "QueueUrl": "http://localhost:4566/000000000000/sample-queue"
@@ -26,12 +26,11 @@ $ awslocal sqs list-queues
 }
 
 $ awslocal sqs send-message --queue-url http://localhost:4566/00000000000/sample-queue --message-body test
-
 {
     "MD5OfMessageBody": "098f6bcd4621d373cade4e832627b4f6",
     "MessageId": "74861aab-05f8-0a75-ae20-74d109b7a76e"
 }
-```
+{{< / command >}}
 
 When working with the `SERVICES` environment variable, please make sure to include `sqs` in the list of services.
 For instance, to load the DynamoDB, SQS, and Kinesis service you'd pass the variable as `SERVICES=dynamodb,sqs,kinesis`.
