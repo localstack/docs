@@ -33,6 +33,11 @@ or run in developer mode with automatic reload
 
     hugo server --watch=true --disableFastRender -D
 
+alternatively:
+
+    npm run dev
+
+
 
 ## Best Practices
 
