@@ -126,7 +126,7 @@ terraform deploy
 
 ## Endpoint configuration
 
-Here is an configuration example with additional endpoints:
+Here is a configuration example with additional endpoints:
 
 ```
 provider "aws" {
