@@ -68,9 +68,9 @@ resources:
 
 ## Install and configure Serverless-LocalStack Plugin
 To install the plugin, execute the following command in the root of your project.
-```bash
-npm install -D serverless-localstack
-```
+{{< command >}}
+$ npm install -D serverless-localstack
+{{< / command >}}
 
 Next, set up the plugin by adding the following properties to `serverless.yml`.
 ```yaml
@@ -126,14 +126,14 @@ else:
 You can now deploy your Serverless service to LocalStack.
 
 First, start LocalStack by running
-```bash
-localstack start
-```
+{{< command >}}
+$ localstack start
+{{< / command >}}
 
 Then deploy the endpoint by running
-```bash
-serverless deploy --stage local
-```
+{{< command >}}
+$ serverless deploy --stage local
+{{< / command >}}
 
 The expected result should be similar to:
 

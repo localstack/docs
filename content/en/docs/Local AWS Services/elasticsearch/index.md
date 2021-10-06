@@ -22,7 +22,7 @@ You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslo
 **Note**: The default Elasticsearch version used is 7.7.
 {{< /alert >}}
 
-```bash
+{{< command >}}
 $ awslocal es create-elasticsearch-domain --domain-name foobar
 {
     "DomainStatus": {
@@ -53,7 +53,7 @@ $ awslocal es create-elasticsearch-domain --domain-name foobar
         }
     }
 }
-```
+{{< / command >}}
 
 In the LocalStack log you will see something like
 
@@ -77,10 +77,10 @@ In the LocalStack log you will see something like
 
 and after some time, you should see that the `Created` state of the domain is set to `true`:
 
-```bash
+{{< command >}}
 $ awslocal es describe-elasticsearch-domain --domain-name foobar | jq ".DomainStatus.Created"
 true
-```
+{{< / command >}}
 
 ## Interact with the cluster
 
@@ -93,7 +93,7 @@ Additional domains share the same Elasticsearch cluster.
 
 For example:
 
-```bash
+{{< command >}}
 $ curl http://localhost:4571
 {
   "name" : "om",
@@ -112,12 +112,12 @@ $ curl http://localhost:4571
   },
   "tagline" : "You Know, for Search"
 }
-```
+{{< / command >}}
 
 Or the health endpoint:
 
-```bash
-curl -s http://localhost:4571/_cluster/health | jq .
+{{< command >}}
+$ curl -s http://localhost:4571/_cluster/health | jq .
 {
   "cluster_name": "elasticsearch",
   "status": "green",
@@ -135,4 +135,4 @@ curl -s http://localhost:4571/_cluster/health | jq .
   "task_max_waiting_in_queue_millis": 0,
   "active_shards_percent_as_number": 100
 }
-```
+{{< / command >}}

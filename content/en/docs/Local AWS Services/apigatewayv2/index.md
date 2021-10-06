@@ -23,7 +23,7 @@ functions:
 
 Upon deployment of the Serverless project, a new API Gateway V2 endpoint will be created in LocalStack. The [`awslocal`](https://github.com/localstack/awscli-local) CLI can be used to get the list of APIs, which should contain the WebSocket endpoint, e.g., `ws://localhost:4510` in the example below:
 
-```bash
+{{< command >}}
 $ awslocal apigatewayv2 get-apis
 {
     "Items": [{
@@ -32,7 +32,7 @@ $ awslocal apigatewayv2 get-apis
         ...
     }]
 }
-```
+{{< / command >}}
 
 Assuming your project contains a simple Lambda `handler.js` like this:
 

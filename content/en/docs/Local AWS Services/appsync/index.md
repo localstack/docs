@@ -40,8 +40,8 @@ $util.toJson($context.result["Items"])
 ```
 
 Once things have been wired up properly, and assuming the ID of your GraphQL API is `"api123"`, you should be able to run the following GraphQL query to retrieve all items from the `"posts"` DynamoDB table:
-```bash
-curl -d '{"query":"query {getPosts{id{S}}}"}' http://localhost:4605/graphql/api123
-```
+{{< command >}}
+$ curl -d '{"query":"query {getPosts{id{S}}}"}' http://localhost:4605/graphql/api123
+{{< / command >}}
 
 For more details, please refer to the self-contained sample published in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/appsync-graphql-api).

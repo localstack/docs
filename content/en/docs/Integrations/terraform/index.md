@@ -23,9 +23,9 @@ Apart from some information Terraform expects there are basically only two thing
 
 Before we start changing the configuration, create and change into a new directory for this sample
 
-```bash
-mkdir terraform_quickstart && cd terraform_quickstart
-```
+{{< command >}}
+$ mkdir terraform_quickstart && cd terraform_quickstart
+{{< / command >}}
 
 Inside this directory, create a file called `main.tf`.
 The following changes go into this file.
@@ -115,14 +115,14 @@ After starting LocalStack you can now deploy the s3 bucket via `terraform` and i
 
 All you need to do is to initialize Terraform
 
-```bash
-terraform init
-```
+{{< command >}}
+$ terraform init
+{{< / command >}}
 
 and then deploy the configuration
-```bash
-terraform deploy
-```
+{{< command >}}
+$ terraform deploy
+{{< / command >}}
 
 ## Endpoint configuration
 

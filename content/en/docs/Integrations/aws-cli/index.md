@@ -68,14 +68,14 @@ The source code can be found on GitHub: https://github.com/localstack/awscli-loc
 
 You can install the `awslocal` command via `pip`:
 
-```
-pip install awscli-local[ver1]
-```
+{{< command >}}
+$ pip install awscli-local[ver1]
+{{< / command >}}
 
 Note that the command above also installs the latest version of the underlying AWS CLI version 1 (`awscli`) package. Use this command if you prefer to manage your own version of `awscli` (e.g., `v1`/`v2`) and install the wrapper script only:
-```
-pip install awscli-local
-```
+{{< command >}}
+$ pip install awscli-local
+{{< / command >}}
 
 {{< alert >}}
 **Note:** Automatic installation of AWS CLI version 2 is currently not supported yet (at the time of writing there is no official pypi package for `v2` available), but the `awslocal` technically also works with AWS CLI v2 (see [this section]({{< ref "#limitations" >}}) for more details).
@@ -107,11 +107,11 @@ To work around this issue, you have 2 options:
   We do not recommend this, but it is technically possible.
   Also, you should install these libraries in a Python virtualenv, to avoid version clashes with other libraries on your system:
 
-```bash
-virtualenv .venv
-. .venv/bin/activate
-pip install https://github.com/boto/botocore/archive/v2.zip https://github.com/aws/aws-cli/archive/v2.zip
-```
+{{< command >}}
+$ virtualenv .venv
+$ . .venv/bin/activate
+$ pip install https://github.com/boto/botocore/archive/v2.zip https://github.com/aws/aws-cli/archive/v2.zip
+{{< / command >}}
 
 ## AWS CLI v2
 
@@ -123,10 +123,11 @@ By default, the container running [amazon/aws-cli](https://docs.aws.amazon.com/c
 
 To ensure that the two docker containers can communicate create a network on the docker engine:
 
-```bash
+{{< command >}}
 $ docker network create localstack
 0c9cb3d37b0ea1bfeb6b77ade0ce5525e33c7929d69f49c3e5ed0af457bdf123
-```
+{{< / command >}}
+
 Then modify the `docker-compose.yml` specifying the network to use:
 
 ```yaml
@@ -138,24 +139,24 @@ networks:
 
 Run AWS Cli v2 docker container using this network (example):
 
-```bash
+{{< command >}}
 $ docker run --network localstack --rm -it amazon/aws-cli --endpoint-url=http://localstack:4566 lambda list-functions
 {
     "Functions": []
 }
-```
+{{< / command >}}
 
 If you use AWS CLI v2 from a docker container often, create an alias:
 
-```bash
+{{< command >}}
 $ alias laws='docker run --network localstack --rm -it amazon/aws-cli --endpoint-url=http://localstack:4566'
-```
+{{< / command >}}
 
 So you can type:
 
-```bash
+{{< command >}}
 $ laws lambda list-functions
 {
     "Functions": []
 }
-```
+{{< / command >}}
