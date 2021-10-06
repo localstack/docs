@@ -106,9 +106,8 @@ Check out the official [AWS CloudFormation User Guide](https://docs.aws.amazon.c
 
 ## Support
 
-We are steadily increasing our support for CloudFormation, but since these services are in a constant state of change and new resources are added constantly, it is infeasible to cover all 800+ resources on AWS.
-Your feature requests help us prioritize which resources we need to support, so feel free to head over to our GitHub and [open a new issue](https://github.com/localstack/localstack/issues/new?assignees=&labels=feature-request&template=feature-request.yml&title=feature+request%3A+%3Ctitle%3E) or add a thumbs up to an existing issue.
-
+We are constantly improving our feature coverage for CloudFormation, with new resource types getting added on an ongoing basis.
+Your feature requests help us prioritize which resources we need to prioritize, so please feel free to [open a new GitHub issue](https://github.com/localstack/localstack/issues/new?assignees=&labels=feature-request&template=feature-request.yml&title=feature+request%3A+%3Ctitle%3E) or add a _thumbs up_ to an existing issue.
 
 ### Features
 
@@ -205,8 +204,8 @@ Prefer re-creating a stack rather than updating an existing one.
 
 ### Resources (Pro / Enterprise Edition)
 
-The resources below are only available with a valid LocalStack Pro License Key.
-When running the Community Edition, any unsupported resources in the stack are ignored.
+The resources below are only available with a valid Pro license key.
+When running the Community Edition, any unsupported resources in the stack are ignored and will not get deployed.
 
 - `AWS::Amplify::App`
 - `AWS::Amplify::Branch`
@@ -292,9 +291,6 @@ When running the Community Edition, any unsupported resources in the stack are i
 - `AWS::ServiceDiscovery::PrivateDnsNamespace`
 - `AWS::ServiceDiscovery::PublicDnsNamespace`
 - `AWS::ServiceDiscovery::Service`
-
-
-
 
 
 <!-- ## Community resources
