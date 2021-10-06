@@ -125,7 +125,7 @@ In the coverage tables below, the features are marked with their respective avai
 | Job Definitions                                                    | ⭐⭐⭐         |                 |       |
 | Jobs                                                               | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **CloudFormation**                                                 |                |                 |       |
+| [**CloudFormation**]({{< ref "cloudformation" >}})                 |                |                 |       |
 | Change Sets                                                        | ⭐⭐⭐⭐       |                 |       |
 | Stacks                                                             | ⭐⭐⭐⭐       |                 |       |
 | Stack Drifts                                                       | \-             |                 |       |
