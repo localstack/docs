@@ -6,27 +6,24 @@ description: >
   Attach a debugger to your Lambda functions from your IDE.
 ---
 
+## Overview
+
+This guide covers the remote debugging of Lambda functions with [Visual Studio Code](https://code.visualstudio.com/) or IntelliJ IDEA as an IDE.
+For a simple working example of this feature, check out [our samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
+
 | Complexity   | ★☆☆☆☆             |
 |--------------|-------------------|
 | Time to read | 5 minutes         |
 | Edition      | community/pro     |
 | Platform     | any               |
 
-<<<<<<< HEAD
-Currently, this guide covers the remote debugging for Python Lambda functions and [Visual Studio Code](https://code.visualstudio.com/) as an IDE. 
-More examples and tooling support for local Lambda debugging (including support for other IDEs like PyCharm, IntelliJ, etc.) is coming soon - stay tuned!
+More examples and tooling support for local Lambda debugging (including support for other IDEs like PyCharm) is coming soon - stay tuned!
 
-For a simple working example of this feature, you can refer to [our samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
-=======
-## Covered Topics
+### Covered Topics
 
 * [Debugging Python lambdas](#debugging-python-lambdas)
 * [Debugging JVM lambdas](#debugging-jvm-lambdas)
-* Debugging Nodejs lambdas (under development)
 * [Useful Links](#useful-links)
-
-More examples and tooling support for local Lambda debugging (including support
-for other IDEs like PyCharm, etc.) is coming soon - stay tuned!
 
 ## Debugging Python lambdas
 
@@ -36,18 +33,11 @@ to [iterate quickly over your function code]({{< ref "hot-swapping" >}}).
 
 For a simple working example of this feature, you can refer to
 [our samples](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
->>>>>>> feat(spring): cloud fn and jvm adjustments
 There, the necessary code fragments for enabling debugging are already present.
 
 ### Configure LocalStack for remote Python debugging
 
-<<<<<<< HEAD
 First, make sure that LocalStack is started with the following configuration (see the [Configuration docs]({{< ref "configuration#lambda" >}}) for more information):
-=======
-First, make sure that LocalStack is started with the following configuration
-(see the [Configuration Documentation]({{< ref "configuration#lambda" >}})
-for more information):
->>>>>>> feat(spring): cloud fn and jvm adjustments
 ```sh
 LAMBDA_REMOTE_DOCKER=0 \
     LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
@@ -65,12 +55,8 @@ debugpy.listen(19891)
 debugpy.wait_for_client()  # blocks execution until client is attached
 ```
 For extra convenience, you can use the `wait_for_debug_client` function from our example.
-<<<<<<< HEAD
 It implements the above-mentioned start of the debug server and also adds an automatic cancellation of the wait task if the debug client (i.e. VSCode) doesn't connect.
-=======
-It implements the above-mentioned and also adds an automatic cancellation of
-the wait task should the debug client (i.e. VSCode) not connect.
->>>>>>> feat(spring): cloud fn and jvm adjustments
+
 ```python
 def wait_for_debug_client(timeout=15):
     """Utility function to enable debugging with Visual Studio Code"""
@@ -141,18 +127,10 @@ For attaching the debug server from Visual Studio Code, you need to add a run co
 }
 ```
 
-<<<<<<< HEAD
 With our function from above you have about 15 seconds (the timeout is configurable) to switch to Visual Studio Code and run the preconfigured remote debugger.
 Make sure to set a breakpoint in the Lambda handler code first, which can then later be inspected.
 
 The screenshot below shows the triggered breakpoint with our `'Hello from LocalStack!'` in the variable inspection view:
-=======
-With our function from above, you have about 15 seconds (timeout configurable) to
-switch to Visual Studio Code and run the preconfigured remote debugger.
-Make sure to set a breakpoint in the Lambda handler code first, which can then later be inspected.
-
-The screenshot below shows the breakpoint at work, including the Lambda event message `'Hello from LocalStack!'`:
->>>>>>> feat(spring): cloud fn and jvm adjustments
 
 ![Visual Studio Code debugging](vscode-debugging-py-1.png)
 
@@ -251,7 +229,7 @@ Now to debug your lambda function, click on the `Debug` icon with
 `Remote JVM on LS Debug` configuration selected, and then invoke your
 lambda function.
 
-## Useful Links
+## Resources
 
 * [Lambda Code Mounting and Debugging (Python)](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging)
 * [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice)
