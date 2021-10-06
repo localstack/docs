@@ -9,12 +9,12 @@ description: >
 LocalStack Pro allows running data analytics workloads locally via the [EMR](https://aws.amazon.com/emr) API. EMR utilizes various tools in the [Hadoop](https://hadoop.apache.org/) and [Spark](https://spark.apache.org) ecosystem, and your EMR instance is automatically configured to connect seamlessly to the LocalStack S3 API.
 
 To create a virtual EMR cluster locally from the command line (assuming you have [`awslocal`](https://github.com/localstack/awscli-local) installed):
-```
+{{< command >}}
 $ awslocal emr create-cluster --release-label emr-5.9.0 --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m4.large InstanceGroupType=CORE,InstanceCount=1,InstanceType=m4.large
 {
     "ClusterId": "j-A2KF3EKLAOWRI"
 }
-```
+{{< / command >}}
 
 The commmand above will spin up one more more Docker containers on your local machine that can be used to run analytics workloads using Spark, Hadoop, Pig, and other tools.
 

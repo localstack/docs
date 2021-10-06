@@ -1,6 +1,6 @@
 {{/* Command shortcode. Current limitations: will interpret comments as root command (# prefixes will not be selectable, use ## if this is necessary)*/}}
 
-{{ $inner := trim .Inner "\n" }}
+{{ $inner := trim .Inner "\n " }}
 {{ $inner = replaceRE `(?m)^ *((?:\$|#) )` "###CUSTOM_PREFIX###$1###CUSTOM_PREFIX_END###" $inner}}
 {{ $options := "" }}
 {{ with .Get 0 }}

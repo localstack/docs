@@ -9,12 +9,12 @@ description: >
 Basic support for [IoT](https://aws.amazon.com/iot/) (including IoT Analytics, IoT Data, and related APIs) is provided in the Pro version. The main endpoints for creating and updating entities are currently implemented, as well as the CloudFormation integrations for creating them.
 
 The IoT API ships with a built-in MQTT message broker. In order to get the MQTT endpoint, the `describe-endpoint` API can be used; for example, using [`awslocal`](https://github.com/localstack/awscli-local):
-```
+{{< command >}}
 $ awslocal iot describe-endpoint
 {
     "endpointAddress": "localhost:4520"
 }
-```
+{{< / command >}}
 
 This endpoint can then be used with any MQTT client to send/receive messages (e.g., using the endpoint URL `mqtt://localhost:4520`).
 

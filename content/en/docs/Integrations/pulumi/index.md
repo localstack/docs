@@ -22,10 +22,10 @@ This guide follows the instructions from Pulumi's [Get Started with Pulumi and A
 
 First, run the following commands and follow the instructions in the CLI to create a new project.
 
-```
-mkdir quickstart && cd quickstart
-pulumi new aws-typescript
-```
+{{< command >}}
+$ mkdir quickstart && cd quickstart
+$ pulumi new aws-typescript
+{{< / command >}}
 
 We use the default configuration values:
 

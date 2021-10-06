@@ -44,7 +44,7 @@ The DNS server can be configured to match your usecase.
 
 * There is the possibility to manually set the DNS server all not-redirected queries will be forwarded to:
 
-    ```
+    ```bash
     DNS_SERVER=1.1.1.1
     ```
 

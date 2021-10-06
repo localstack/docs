@@ -13,38 +13,37 @@ All CLI commands that access [services that are implemented in LocalStack]({{< r
 There are two ways to use the CLI:
 
 * Use our `awslocal` drop-in replacement:
-  ```
-  awslocal kinesis list-streams
-  ```
+  {{< command >}}
+  $ awslocal kinesis list-streams
+  {{< / command >}}
 * Configure AWS test environment variables and add the `--endpoint-url=<localstack-url>` flag to your `aws` CLI invocations.
   For example:
-  ```
-  export AWS_ACCESS_KEY_ID="test"
-  export AWS_SECRET_ACCESS_KEY="test"
-  export AWS_DEFAULT_REGION="us-east-1"
+  {{< command >}}
+  $ export AWS_ACCESS_KEY_ID="test"
+  $ export AWS_SECRET_ACCESS_KEY="test"
+  $ export AWS_DEFAULT_REGION="us-east-1"
 
-  aws --endpoint-url=http://localhost:4566 kinesis list-streams
-  ```
+  $ aws --endpoint-url=http://localhost:4566 kinesis list-streams
+  {{< / command >}}
 
 ## AWS CLI
 
 Use the below command to install `aws`, if not installed already.
 
-```
-pip install awscli
-```
+{{< command >}}
+$ pip install awscli
+{{< / command >}}
 
 ### Setting up local region and credentials to run LocalStack
 
 aws requires the region and the credentials to be set in order to run the aws commands.
 Create the default configuration and the credentials.
 Below key will ask for the Access key id, secret Access Key, region & output format.
+Config & credential file will be created under ~/.aws folder
 
-```
-aws configure --profile default
-
-# Config & credential file will be created under ~/.aws folder
-```
+{{< command >}}
+$ aws configure --profile default
+{{< / command >}}
 
 {{< alert >}}
 **Note** Please use `test` as value for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to make pre-signed URLs for S3 buckets work.

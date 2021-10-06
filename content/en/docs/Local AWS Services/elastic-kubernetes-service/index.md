@@ -12,7 +12,7 @@ Please note that EKS requires an existing local Kubernetes installation. In rece
 ![Kubernetes in Docker](kubernetes.png)
 
 The example below illustrates how to create an EKS cluster configuration (assuming you have [`awslocal`](https://github.com/localstack/awscli-local) installed):
-```
+{{< command >}}
 $ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}'
 {
     "cluster": {
@@ -30,5 +30,5 @@ $ awslocal eks list-clusters
         "cluster1"
     ]
 }
-```
+{{< / command >}}
 Simply configure your Kubernetes client (e.g., `kubectl` or other SDK) to point to the `endpoint` specified in the `create-cluster` output above. Depending on whether you're calling the Kubernetes API from the local machine or from within a Lambda, you may have to use different endpoint URLs (`https://localhost:6443` vs `https://172.17.0.1:6443`).
