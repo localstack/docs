@@ -1,6 +1,6 @@
 ---
-title: "Getting Started"
-linkTitle: "🚀 Getting Started"
+title: "Get Started"
+linkTitle: "🚀 Get Started"
 weight: 2
 description: >
   How to get up to speed with LocalStack.

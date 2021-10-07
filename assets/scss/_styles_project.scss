@@ -47,9 +47,9 @@
     }
 
     & a.card {
-        min-height: 210px;
-
+        min-height: 220px;
         display: block;
+        transition: transform 100ms ease-in-out;
 
         & h5 {
             margin-top: 75px;
@@ -60,6 +60,11 @@
             background-size: auto 60px;
             background-origin: content-box; // makes sure the parent padding is respected
         }
+    }
+
+    & a.card:hover {
+        transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        border-color: $gray-500;
     }
 
     & .card-getting-started .card-body {
@@ -84,5 +89,9 @@
 
     & .card-understanding-localstack .card-body {
         background-image: url("/images/understanding.svg");
+    }
+
+    & .card-title i {
+        font-size: 85%;
     }
 }
