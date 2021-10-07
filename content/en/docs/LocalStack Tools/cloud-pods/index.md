@@ -12,7 +12,7 @@ You can create and manage Local Cloud Pods via the Web UI, and in order to load 
 
 Below is a simple example of how you can push and pull Local Cloud Pods using the `localstack` CLI:
 
-```sh
+```bash
 # User 1 pushes state of Cloud Pod to persistent server
 $ awslocal kinesis list-streams
 {"StreamNames": ["mystream123"]}
@@ -37,7 +37,7 @@ You can use the [LocalStack Web UI](https://app.localstack.cloud/pods) to create
 ![Local Cloud Pods UI](cloudPodsUI.png)
 
 Once the pod has been created, can use the CLI to log in and list the pod in your terminal:
-```
+{{< command >}}
 $ export LOCALSTACK_API_KEY=...
 $ localstack login
 ...
@@ -45,7 +45,7 @@ $ localstack pod list
 Name    Backend    URL                                Size    State
 ------  ---------  ---------------------------------  ------  -------
 pod1    git        ssh://git@github.com/your_org/...  1.68MB  Shared
-```
+{{< / command >}}
 
 {{% alert title="LocalStack Pro feature" color="info" %}}
 Cloud Pods are a feature of LocalStack Pro.

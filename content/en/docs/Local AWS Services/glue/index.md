@@ -15,7 +15,7 @@ In order to run Glue jobs, some additional dependencies have to be fetched from 
 ## Creating Databases and Table Metadata
 
 The commands below illustrate the creation of some very basic entries (databases, tables) in the Glue data catalog:
-```
+{{< command >}}
 $ awslocal glue create-database --database-input '{"Name":"db1"}'
 $ awslocal glue create-table --database db1 --table-input '{"Name":"table1"}'
 $ awslocal glue get-tables --database db1
@@ -27,30 +27,30 @@ $ awslocal glue get-tables --database db1
         }
     ]
 }
-```
+{{< / command >}}
 
 ## Running Scripts with Scala and PySpark
 
 Assuming we would like to deploy a simple PySpark script `job.py` in the local folder, we can first copy the script to an S3 bucket:
-```
+{{< command >}}
 $ awslocal s3 mb s3://glue-test
 $ awslocal s3 cp job.py s3://glue-test/job.py
-```
+{{< / command >}}
 
 Next, we can create a job definition:
-```
+{{< command >}}
 $ awslocal glue create-job --name job1 --role r1 \
   --command '{"Name": "pythonshell", "ScriptLocation": "s3://glue-test/job.py"}'
-```
+{{< / command >}}
 ... and finally start the job:
-```
+{{< command >}}
 $ awslocal glue start-job-run --job-name job1
 {
     "JobRunId": "733b76d0"
 }
-```
+{{< / command >}}
 The returned `JobRunId` can be used to query the status job the job execution, until it becomes `SUCCEEDED`:
-```
+{{< command >}}
 $ awslocal glue get-job-run --job-name job1 --run-id 733b76d0
 {
     "JobRun": {
@@ -59,7 +59,7 @@ $ awslocal glue get-job-run --job-name job1 --run-id 733b76d0
         "JobRunState": "SUCCEEDED"
     }
 }
-```
+{{< / command >}}
 
 For a more detailed example illustrating how to run a local Glue PySpark job, please refer to this [sample repository](https://github.com/localstack/localstack-pro-samples/tree/master/glue-etl-jobs).
 
@@ -68,19 +68,19 @@ For a more detailed example illustrating how to run a local Glue PySpark job, pl
 The Glue data catalog is integrated with Athena, and the database/table definitions can be imported via the `import-catalog-to-glue` API.
 
 Assume you are running the following Athena queries to create databases and table definitions:
-```
+```sql
 CREATE DATABASE db2
 CREATE EXTERNAL TABLE db2.table1 (a1 Date, a2 STRING, a3 INT) LOCATION 's3://test/table1'
 CREATE EXTERNAL TABLE db2.table2 (a1 Date, a2 STRING, a3 INT) LOCATION 's3://test/table2'
 ```
 
 Then this command will import these DB/table definitions into the Glue data catalog:
-```
+{{< command >}}
 $ awslocal glue import-catalog-to-glue
-```
+{{< / command >}}
 
 ... and finally they will be available in Glue:
-```
+{{< command >}}
 $ awslocal glue get-databases
 {
     "DatabaseList": [
@@ -112,7 +112,7 @@ $ awslocal glue get-tables --database-name db2
         }
     ]
 }
-```
+{{< / command >}}
 
 ## Further Reading
 

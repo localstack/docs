@@ -48,9 +48,9 @@ Please make sure to install the following tools on your machine before moving on
 #### Installation
 The easiest way to install the LocalStack CLI is via `pip`:
 
-```sh
-python3 -m pip install localstack
-```
+{{< command >}}
+$ python3 -m pip install localstack
+{{< / command >}}
 
 {{< alert >}}
 **Note**: Please do **not** use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
@@ -58,7 +58,8 @@ If you have problems with permissions in MacOS X Sierra, install with `python3 -
 {{< /alert >}}
 
 Afterwards you should be able to use the LocalStack CLI in your terminal:
-```
+
+{{< command >}}
 $ localstack --help
 Usage: localstack [OPTIONS] COMMAND [ARGS]...
 
@@ -66,7 +67,7 @@ Usage: localstack [OPTIONS] COMMAND [ARGS]...
 
 Options:
 ...
-```
+{{< / command >}}
 
 #### Troubleshooting
 ##### The installation is successful, but I cannot execute `localstack` on my terminal.
@@ -75,16 +76,16 @@ If you can successfully install LocalStack using `pip` but you cannot use it in 
 - If you are using a MacOS or Linux operating system, please make sure that the `PATH` is correctly set up - either system wide, or in your terminal.
 
 As a workaround you can call the LocalStack CLI python module directly:
-```sh
-python3 -m localstack.cli.main
-```
+{{< command >}}
+$ python3 -m localstack.cli.main
+{{< / command >}}
 
 #### Starting LocalStack with the LocalStack CLI
 By default, LocalStack is started inside a Docker container by running:
 
-```sh
-localstack start
-```
+{{< command >}}
+$ localstack start
+{{< / command >}}
 
 {{< alert title="Notes" >}}
 - This command starts all services provided by LocalStack.
@@ -108,9 +109,9 @@ You can check if `docker` is correctly configured on your machine by executing `
 
 #### Starting LocalStack with Docker
 You can start the Docker container simply by executing the following `docker run` command:
-```
-docker run --rm -it -p 4566:4566 -p 4571:4571 localstack/localstack
-```
+{{< command >}}
+$ docker run --rm -it -p 4566:4566 -p 4571:4571 localstack/localstack
+{{< / command >}}
 
 {{< alert title="Notes" >}}
 - This command pulls the current nighty build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
@@ -139,9 +140,9 @@ If you want to manually manage your Docker container, it's usually a good idea t
 #### Starting LocalStack with Docker-Compose
 You can use the [`docker-compose.yml` file from the official LocalStack repository](https://github.com/localstack/localstack/blob/master/docker-compose.yml) and use this command (currently requires `docker-compose` version 1.9.0+):
 
-```
-docker-compose up
-```
+{{< command >}}
+$ docker-compose up
+{{< / command >}}
 
 {{< alert title="Notes" >}}
 - This command pulls the current nighty build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
@@ -163,10 +164,10 @@ If you want to deply LocalStack in your [Kubernetes](https://kubernetes.io) clus
 
 #### Deploy LocalStack using Helm
 You can deploy LocalStack in a Kubernetes cluster by running these commands:
-```sh
-helm repo add localstack-repo https://helm.localstack.cloud
-helm upgrade --install localstack localstack-repo/localstack
-```
+{{< command >}}
+$ helm repo add localstack-repo https://helm.localstack.cloud
+$ helm upgrade --install localstack localstack-repo/localstack
+{{< / command >}}
 
 The Helm charts are not maintained in the main repository, but in a [separate one](https://github.com/localstack/helm-charts).
 

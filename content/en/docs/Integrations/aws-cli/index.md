@@ -13,38 +13,37 @@ All CLI commands that access [services that are implemented in LocalStack]({{< r
 There are two ways to use the CLI:
 
 * Use our `awslocal` drop-in replacement:
-  ```
-  awslocal kinesis list-streams
-  ```
+  {{< command >}}
+  $ awslocal kinesis list-streams
+  {{< / command >}}
 * Configure AWS test environment variables and add the `--endpoint-url=<localstack-url>` flag to your `aws` CLI invocations.
   For example:
-  ```
-  export AWS_ACCESS_KEY_ID="test"
-  export AWS_SECRET_ACCESS_KEY="test"
-  export AWS_DEFAULT_REGION="us-east-1"
+  {{< command >}}
+  $ export AWS_ACCESS_KEY_ID="test"
+  $ export AWS_SECRET_ACCESS_KEY="test"
+  $ export AWS_DEFAULT_REGION="us-east-1"
 
-  aws --endpoint-url=http://localhost:4566 kinesis list-streams
-  ```
+  $ aws --endpoint-url=http://localhost:4566 kinesis list-streams
+  {{< / command >}}
 
 ## AWS CLI
 
 Use the below command to install `aws`, if not installed already.
 
-```
-pip install awscli
-```
+{{< command >}}
+$ pip install awscli
+{{< / command >}}
 
 ### Setting up local region and credentials to run LocalStack
 
 aws requires the region and the credentials to be set in order to run the aws commands.
 Create the default configuration and the credentials.
 Below key will ask for the Access key id, secret Access Key, region & output format.
+Config & credential file will be created under ~/.aws folder
 
-```
-aws configure --profile default
-
-# Config & credential file will be created under ~/.aws folder
-```
+{{< command >}}
+$ aws configure --profile default
+{{< / command >}}
 
 {{< alert >}}
 **Note** Please use `test` as value for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to make pre-signed URLs for S3 buckets work.
@@ -68,14 +67,14 @@ The source code can be found on GitHub: https://github.com/localstack/awscli-loc
 
 You can install the `awslocal` command via `pip`:
 
-```
-pip install awscli-local[ver1]
-```
+{{< command >}}
+$ pip install awscli-local[ver1]
+{{< / command >}}
 
 Note that the command above also installs the latest version of the underlying AWS CLI version 1 (`awscli`) package. Use this command if you prefer to manage your own version of `awscli` (e.g., `v1`/`v2`) and install the wrapper script only:
-```
-pip install awscli-local
-```
+{{< command >}}
+$ pip install awscli-local
+{{< / command >}}
 
 {{< alert >}}
 **Note:** Automatic installation of AWS CLI version 2 is currently not supported yet (at the time of writing there is no official pypi package for `v2` available), but the `awslocal` technically also works with AWS CLI v2 (see [this section]({{< ref "#limitations" >}}) for more details).
@@ -107,11 +106,11 @@ To work around this issue, you have 2 options:
   We do not recommend this, but it is technically possible.
   Also, you should install these libraries in a Python virtualenv, to avoid version clashes with other libraries on your system:
 
-```bash
-virtualenv .venv
-. .venv/bin/activate
-pip install https://github.com/boto/botocore/archive/v2.zip https://github.com/aws/aws-cli/archive/v2.zip
-```
+{{< command >}}
+$ virtualenv .venv
+$ . .venv/bin/activate
+$ pip install https://github.com/boto/botocore/archive/v2.zip https://github.com/aws/aws-cli/archive/v2.zip
+{{< / command >}}
 
 ## AWS CLI v2
 
@@ -123,10 +122,11 @@ By default, the container running [amazon/aws-cli](https://docs.aws.amazon.com/c
 
 To ensure that the two docker containers can communicate create a network on the docker engine:
 
-```bash
+{{< command >}}
 $ docker network create localstack
 0c9cb3d37b0ea1bfeb6b77ade0ce5525e33c7929d69f49c3e5ed0af457bdf123
-```
+{{< / command >}}
+
 Then modify the `docker-compose.yml` specifying the network to use:
 
 ```yaml
@@ -138,24 +138,24 @@ networks:
 
 Run AWS Cli v2 docker container using this network (example):
 
-```bash
+{{< command >}}
 $ docker run --network localstack --rm -it amazon/aws-cli --endpoint-url=http://localstack:4566 lambda list-functions
 {
     "Functions": []
 }
-```
+{{< / command >}}
 
 If you use AWS CLI v2 from a docker container often, create an alias:
 
-```bash
+{{< command >}}
 $ alias laws='docker run --network localstack --rm -it amazon/aws-cli --endpoint-url=http://localstack:4566'
-```
+{{< / command >}}
 
 So you can type:
 
-```bash
+{{< command >}}
 $ laws lambda list-functions
 {
     "Functions": []
 }
-```
+{{< / command >}}

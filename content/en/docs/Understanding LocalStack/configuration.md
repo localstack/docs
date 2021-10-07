@@ -8,9 +8,9 @@ description: >
 LocalStack allows for many different configuration options.
 You can pass these via environment variables, e.g., like the following:
 
-```bash
-SERVICES=kinesis,lambda,sqs,dynamodb DEBUG=1 localstack start
-```
+{{< command >}}
+$ SERVICES=kinesis,lambda,sqs,dynamodb DEBUG=1 localstack start
+{{< / command >}}
 
 ## Core
 

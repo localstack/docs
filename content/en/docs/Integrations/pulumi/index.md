@@ -22,10 +22,10 @@ This guide follows the instructions from Pulumi's [Get Started with Pulumi and A
 
 First, run the following commands and follow the instructions in the CLI to create a new project.
 
-```
-mkdir quickstart && cd quickstart
-pulumi new aws-typescript
-```
+{{< command >}}
+$ mkdir quickstart && cd quickstart
+$ pulumi new aws-typescript
+{{< / command >}}
 
 We use the default configuration values:
 
@@ -52,8 +52,8 @@ Installing dependencies...
 
 This will create the following directory structure.
 
-```language
- % tree -L 1
+{{< command >}}
+$ tree -L 1
 .
 ├── index.ts
 ├── node_modules
@@ -62,7 +62,7 @@ This will create the following directory structure.
 ├── Pulumi.dev.yaml
 ├── Pulumi.yaml
 └── tsconfig.json
-```
+{{< / command >}}
 
 Now edit your stack configuration `Pulumi.dev.yaml` as follows:
 
@@ -143,15 +143,15 @@ Make sure your LocalStack is running.
 For the example stack, the only required service is S3.
 After updating the stack configuration, and starting localstack, you can run:
 
-```bash
-pulumi up
-```
+{{< command >}}
+$ pulumi up
+{{< / command >}}
 
 once the stack update was performed, you can run:
 
-```bash
-awslocal s3 ls
-```
+{{< command >}}
+$ awslocal s3 ls
+{{< / command >}}
 
 Where you should see something like
 
@@ -169,16 +169,16 @@ You can find the source code repository here: https://github.com/localstack/pulu
 `pulumilocal` requires that you already have the `pulumi` command in your path.
 Then, simply run
 
-```bash
-pip install pulumi-local
-```
+{{< command >}}
+$ pip install pulumi-local
+{{< / command >}}
 
 then,
 
-```
+{{< command >}}
 pulumi version
 pulumilocal version
-```
+{{< / command >}}
 
 should output the same value.
 
@@ -186,17 +186,17 @@ should output the same value.
 
 Instead of manually editing a stack configuration as explained earlier, you can run
 
-```bash
-pulumilocal init
-```
+{{< command >}}
+$ pulumilocal init
+{{< / command >}}
 
 which will create a `Pulumi.localstack.yaml` stack configuration, and initialize an additional stack named `localstack`.
 
 You can now run
 
-```bash
-pulumilocal up
-```
+{{< command >}}
+$ pulumilocal up
+{{< / command >}}
 
 to start the localstack stack.
 

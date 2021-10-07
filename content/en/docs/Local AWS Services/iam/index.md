@@ -14,7 +14,7 @@ The environment configuration `ENFORCE_IAM=1` is required to enable this feature
 {{< /alert >}}
 
 Below is a simple example that illustrates the use of IAM policy enforcement. It first attempts to create an S3 bucket with the default user (which fails), then create a user and attempts to create a bucket with that user (which fails again), and then finally attaches a policy to the user to allow `s3:CreateBucket`, which allows the bucket to be created.
-```
+{{< command >}}
 $ awslocal s3 mb s3://test
 make_bucket failed: s3://test An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied
 $ awslocal iam create-user --user-name test
@@ -32,7 +32,7 @@ $ awslocal iam create-policy --policy-name p1 --policy-document '{"Version":"201
 $ awslocal iam attach-user-policy --user-name test --policy-arn arn:aws:iam::000000000000:policy/p1
 $ awslocal s3 mb s3://test
 make_bucket: test
-```
+{{< / command >}}
 
 ### Supported APIs
 

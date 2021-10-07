@@ -11,7 +11,7 @@ The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to 
 This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.
 
 Assuming you had a Python Lambda handler that attempts to list all S3 buckets. In the past, you had to manually configure the `endpoint_url` parameter on the boto3 client (and potentially use environment switches for dev/prod in your test code):
-```
+```python
 import boto3
 def handler(event, context):
     client = boto3.client("s3", endpoint_url="http://localhost:4566")
@@ -19,7 +19,7 @@ def handler(event, context):
 ```
 
 With the patched AWS SDKs, it now becomes possible to deploy your unmodified production code to LocalStack, simply creating a boto3 client with default settings. The invocations of the boto3 client will be automatically forwarded to the local APIs:
-```
+```python
 import boto3
 def handler(event, context):
     client = boto3.client("s3")
@@ -37,9 +37,9 @@ The main advantage of this mode is, that no DNS magic is involved, and SSL certi
 
 ## Configuration
 
-If you want to disable this behavior, and use the DNS server to resolve the endpoints for AWS, you can disable this behavior using:
+If you want to disable this behavior, and use the DNS server to resolve the endpoints for AWS, you can disable this behavior by using:
 
-```
+```bash
 TRANSPARENT_LOCAL_ENDPOINTS=0
 ```
 

@@ -38,11 +38,11 @@ There, the necessary code fragments for enabling debugging are already present.
 ### Configure LocalStack for remote Python debugging
 
 First, make sure that LocalStack is started with the following configuration (see the [Configuration docs]({{< ref "configuration#lambda" >}}) for more information):
-```sh
-LAMBDA_REMOTE_DOCKER=0 \
+{{< command >}}
+$ LAMBDA_REMOTE_DOCKER=0 \
     LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
     DEBUG=1 localstack start
-```
+{{< /command >}}
 
 ### Preparing your code
 
@@ -86,19 +86,19 @@ To create the Lambda function, you just need to take care of two things:
 
 So, in our [example](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging), this would be:
 
-```sh
-awslocal lambda create-function --function-name my-cool-local-function \
+{{< command >}}
+$ awslocal lambda create-function --function-name my-cool-local-function \
     --code S3Bucket="__local__",S3Key="$(pwd)/" \
     --handler handler.handler \
     --runtime python3.8 \
     --role cool-stacklifter
-```
+{{< /command >}}
 
 We can quickly verify that it works by invoking it with a simple payload:
 
-```sh
-awslocal lambda invoke --function-name my-cool-local-function --payload '{"message": "Hello from LocalStack!"}' output.txt
-```
+{{< command >}}
+$ awslocal lambda invoke --function-name my-cool-local-function --payload '{"message": "Hello from LocalStack!"}' output.txt
+{{< /command >}}
 
 ### Configuring Visual Studio Code for remote Python debugging
 

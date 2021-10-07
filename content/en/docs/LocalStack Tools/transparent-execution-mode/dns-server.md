@@ -44,7 +44,7 @@ The DNS server can be configured to match your usecase.
 
 * There is the possibility to manually set the DNS server all not-redirected queries will be forwarded to:
 
-    ```
+    ```bash
     DNS_SERVER=1.1.1.1
     ```
 
@@ -53,17 +53,18 @@ The DNS server can be configured to match your usecase.
 ## Limitations
 
 When you configure transparent execution mode using DNS, you may still have to configure your application's AWS SDK to **accept self-signed certificates**. This is a technical limitation caused by the SSL certificate validation mechanism, due to the fact that we are repointing AWS domain names (e.g., `*.amazonaws.com`) to `localhost`. For example, the following command will fail with an SSL error:
-```
+{{< command >}}
 $ aws kinesis list-streams
 SSL validation failed for https://kinesis.us-east-1.amazonaws.com/ [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1076)
-```
+{{< / command >}}
 ... whereas the following command works:
-```
+{{< command >}}
 $ PYTHONWARNINGS=ignore aws --no-verify-ssl kinesis list-streams
 {
     "StreamNames": []
 }
-```
+{{< / command >}}
+
 Disabling SSL validation depends on the programming language and version of the AWS SDK used. For example, the [`boto3` AWS SDK for Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client) provides a parameter `verify=False` to disable SSL verification. Similar parameters are available for most other AWS SDKs.
 
 ## System DNS configuration
@@ -97,14 +98,10 @@ This makes LocalStack bind port 53 on 127.0.0.1, whereas systemd-resolved binds 
 Once LocalStack is started, you can test the DNS server using `dig @127.0.0.1 s3.amazonaws.com` versus `dig @127.0.0.53 s3.amazonaws.com`, the former should return an A record `127.0.0.1`, the latter the real AWS DNS result.
 
 * Run:
-    ```bash
-    $ localstack dns systemd-resolved
-    ```
+    {{< command >}}$ localstack dns systemd-resolved{{< / command >}}
 
     To revert, please run:
-    ```bash
-    $ localstack dns systemd-resolved --revert
-    ```
+    {{< command >}}$ localstack dns systemd-resolved --revert{{< / command >}}
 
     **Note**: You need sudo privileges to execute this command.
 
@@ -127,14 +124,10 @@ If the interface name is not mentioned, it is usually the first 12 characters of
 If you use the default bridge network, it is usually `docker0`.
 
 2. Configure the DNS resolver for the bridge network:
-    ```
-    # resolvectl dns <network_name> <container_ip>
-    ```
+    {{< command >}}# resolvectl dns <network_name> <container_ip>{{< / command >}}
 
 3. Set the DNS route to route only the above mentioned domain names (and subdomains) to LocalStack:
-    ```
-    # resolvectl domain <network_name> ~amazonaws.com ~aws.amazon.com ~cloudfront.net ~localhost.localstack.cloud
-    ```
+    {{< command >}}# resolvectl domain <network_name> ~amazonaws.com ~aws.amazon.com ~cloudfront.net ~localhost.localstack.cloud{{< / command >}}
 
 In both cases, you can use `resolvectl query s3.amazonaws.com` or `resolvectl query example.com` to check which interface your DNS request is routed through, to confirm only the above mentioned domains (and its subdomains) are routed to LocalStack.
 

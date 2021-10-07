@@ -1,0 +1,13 @@
+{{/* Command shortcode. Current limitations: will interpret comments as root command (# prefixes will not be selectable, use ## if this is necessary)*/}}
+{{/* The content of the shortcode has to be trimmed of newlines, in case shortcode open/close are on separate lines */}}
+{{ $inner := trim .Inner "\n " }}
+{{/* We encapsulate, for each line, the prefix (if present) in custom prefix tags so we find it after highlighting */}}
+{{ $inner = replaceRE `(?m)^ *((?:\$|#) )` "###CUSTOM_PREFIX###$1###CUSTOM_PREFIX_END###" $inner}}
+{{/* We need to set a default for the hightlighting options here */}}
+{{ $options := "" }}
+{{ with .Get 0 }}
+{{ $options = . }}
+{{ end }}
+{{ $highlighted := highlight $inner "text" $options }}
+{{/* Now we replace the custom prefixes with a span that contains the prefix, which is not selectable by users */}}
+{{- replaceRE `###CUSTOM_PREFIX###((?:\$|#)\s)###CUSTOM_PREFIX_END###` "<span class=\"command-prefix\">$1</span>" $highlighted | safeHTML -}}

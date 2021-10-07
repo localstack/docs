@@ -22,7 +22,7 @@ You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslo
 **Note**: The default Elasticsearch version used is 7.7.
 {{< /alert >}}
 
-```bash
+{{< command >}}
 $ awslocal es create-elasticsearch-domain --domain-name foobar
 {
     "DomainStatus": {
@@ -53,7 +53,7 @@ $ awslocal es create-elasticsearch-domain --domain-name foobar
         }
     }
 }
-```
+{{< / command >}}
 
 In the LocalStack log you will see something like
 
@@ -72,15 +72,14 @@ In the LocalStack log you will see something like
 2021-10-01T21:14:27:INFO:localstack.services.install: Installing Elasticsearch plugin analysis-stempel
 2021-10-01T21:14:45:INFO:localstack.services.install: Installing Elasticsearch plugin analysis-ukrainian
 2021-10-01T21:15:01:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=59237 -E http.publish_port=59237 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data="/opt/code/localstack/localstack/infra/elasticsearch/data" -E path.repo="/tmp/localstack/es_backup" -E xpack.ml.enabled=false with env {'ES_JAVA_OPTS': '-Xms200m -Xmx600m', 'ES_TMPDIR': '/opt/code/localstack/localstack/infra/elasticsearch/tmp'}
-
 ```
 
 and after some time, you should see that the `Created` state of the domain is set to `true`:
 
-```bash
+{{< command >}}
 $ awslocal es describe-elasticsearch-domain --domain-name foobar | jq ".DomainStatus.Created"
 true
-```
+{{< / command >}}
 
 ## Interact with the cluster
 
@@ -93,7 +92,7 @@ Additional domains share the same Elasticsearch cluster.
 
 For example:
 
-```bash
+{{< command >}}
 $ curl http://localhost:4571
 {
   "name" : "om",
@@ -112,12 +111,12 @@ $ curl http://localhost:4571
   },
   "tagline" : "You Know, for Search"
 }
-```
+{{< / command >}}
 
 Or the health endpoint:
 
-```bash
-curl -s http://localhost:4571/_cluster/health | jq .
+{{< command >}}
+$ curl -s http://localhost:4571/_cluster/health | jq .
 {
   "cluster_name": "elasticsearch",
   "status": "green",
@@ -135,4 +134,4 @@ curl -s http://localhost:4571/_cluster/health | jq .
   "task_max_waiting_in_queue_millis": 0,
   "active_shards_percent_as_number": 100
 }
-```
+{{< / command >}}

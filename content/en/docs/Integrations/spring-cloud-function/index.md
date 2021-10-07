@@ -79,16 +79,16 @@ install the Gradle build tool on your machine.
 
 Then run the following command to initialize a new Gradle project
 
-```shell
-gradle init
-```
+{{< command >}}
+$ gradle init
+{{< / command >}}
 
 After initialization, you will find the Gradle wrapper script `gradlew`.
 From now on, we will use the wrapper instead of the globally installed Gradle binary:
 
-```
-./gradlew <command>
-```
+{{< command >}}
+$ ./gradlew <command>
+{{< / command >}}
 
 ### Project Settings
 
@@ -245,7 +245,7 @@ Let's configure it to lookup our function Beans by HTTP method and path, create 
 new `application.properties` file under `src/main/resources/application.properties`
 with the following content:
 
-```properties
+```env
 spring.main.banner-mode=off
 spring.cloud.function.definition=functionRouter
 spring.cloud.function.routing-expression=headers['httpMethod'].concat(' ').concat(headers['path'])

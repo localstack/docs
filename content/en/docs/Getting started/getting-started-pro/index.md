@@ -31,16 +31,16 @@ You can find your API key in the [LocalStack Web Interface](https://app.localsta
 LocalStack Pro expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`.
 Before starting LocalStack, please define the environment variable in your terminal like this:
 
-```sh
+{{< command >}}
 $ export LOCALSTACK_API_KEY=<your-api-key>
-```
+{{< / command >}}
 
 ### Starting LocalStack Pro using the CLI
 
 When starting LocalStack using the LocalStack CLI, you dot not have to perform any further steps (after exporting the environment variable).
-```sh
+{{< command >}}
 $ localstack start
-```
+{{< / command >}}
 
 LocalStack will detect the API key and properly pass it to the LocalStack container.
 
@@ -48,14 +48,14 @@ LocalStack will detect the API key and properly pass it to the LocalStack contai
 
 When starting LocalStack using a `docker run` command, you have to specify the API key using the `-e` flag for environment variables like this:
 
-{{< highlight bash "hl_lines=5" >}}
-docker run \
+{{< command "hl_lines=5" >}}
+$ docker run \
   --rm -it \
   -p 4566:4566 \
   -p 4571:4571 \
   -e LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:- } \
   localstack/localstack
-{{< / highlight >}}
+{{< / command >}}
 
 For more information about starting LocalStack, take a look at our general [Getting Started]({{< ref "Getting started" >}}) guide.
 
@@ -79,9 +79,9 @@ If you want to make sure that LocalStack is only started if LocalStack Pro can b
 
 The easiest way to check if LocalStack Pro is activated is to check the health endpoing of LocalStack for a list of the running services:
 
-```
-curl localhost:4566/health | jq
-```
+{{< command >}}
+$ curl localhost:4566/health | jq
+{{< / command >}}
 
 If a Pro-only [service]({{< ref "Local AWS Services" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack Pro has started successfully.
 
@@ -129,9 +129,9 @@ socket.gaierror: [Errno -3] Temporary failure in name resolution
 
 Please confirm this by using a tool like `dig`:
 
-```sh
-dig api.localstack.cloud
-```
+{{< command >}}
+$ dig api.localstack.cloud
+{{< / command >}}
 
 If the result has some other status than `status: NOERROR`, your machine cannot resolve this domain.
 

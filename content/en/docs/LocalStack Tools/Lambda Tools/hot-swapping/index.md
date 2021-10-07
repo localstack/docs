@@ -49,9 +49,9 @@ First, create a watchman wrapper by using
 [one of our examples](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice/bin/watchman.sh)
 
 Don't forget to adjust permissions:
-```shell
-chmod +x bin/watchman.sh
-```
+{{< command >}}
+$ chmod +x bin/watchman.sh
+{{< / command >}}
 
 Now configure your build tool to unzip the FatJar to some folder, which will be
 then mounted to LocalStack. We are using `Gradle` build tool to unpack the
@@ -68,9 +68,9 @@ buildHot.dependsOn shadowJar
 
 Now run the following command to start watching your project in a hot-swapping mode:
 
-```shell
-bin/watchman.sh src "./gradlew buildHot"
-```
+{{< command >}}
+$ bin/watchman.sh src "./gradlew buildHot"
+{{< / command >}}
 
 Please note that you still need to configure your deployment tool to use
 local code mounting. Read the "[Deployment Configuration Examples](#deployment-configuration-examples)"
@@ -83,19 +83,19 @@ We will show you how you can do this with a simple example function, taken direc
 
 You can check out that code, or use your own lambda functions to follow along. To use the example just do:
 
-```sh
-cd /tmp
-git clone git@github.com:awsdocs/aws-doc-sdk-examples.git
-```
+{{< command >}}
+$ cd /tmp
+$ git clone git@github.com:awsdocs/aws-doc-sdk-examples.git
+{{< / command >}}
 
 #### Starting up LocalStack
 
 First, we need to make sure we start LocalStack with the right configuration.
 This is as simple as setting `LAMBDA_REMOTE_DOCKER`(see the [Configuration Documentation]({{< ref "configuration#lambda" >}}) for more information):
 
-```sh
-LAMBDA_REMOTE_DOCKER=0 localstack start
-```
+{{< command >}}
+$ LAMBDA_REMOTE_DOCKER=0 localstack start
+{{< / command >}}
 
 Accordingly, if you are launching LocalStack via Docker or Docker Compose:
 
@@ -119,21 +119,21 @@ To create the Lambda function, you just need to take care of two things:
 
 So, using the AWS example, this would be:
 
-```sh
-awslocal lambda create-function --function-name my-cool-local-function \
+{{< command >}}
+$ awslocal lambda create-function --function-name my-cool-local-function \
     --code S3Bucket="__local__",S3Key="/tmp/aws-doc-sdk-examples/python/example_code/lambda/boto_client_examples" \
     --handler lambda_handler_basic.lambda_handler \
     --runtime python3.8 \
     --role cool-stacklifter
-```
+{{< / command >}}
 
 You can also check out some of our "[Deployment Configuration Examples](#deployment-configuration-examples)".
 
 We can also quickly make sure that it works by invoking it with a simple payload:
 
-```sh
-awslocal lambda invoke --function-name my-cool-local-function --payload '{"action": "square", "number": 3}' output.txt
-```
+{{< command >}}
+$ awslocal lambda invoke --function-name my-cool-local-function --payload '{"action": "square", "number": 3}' output.txt
+{{< / command >}}
 
 The invocation returns itself returns:
 
@@ -232,9 +232,9 @@ custom:
 Pass `LAMBDA_MOUNT_CWD` env var with path to the built code directory
 (in our case to the folder with unzipped FatJar):
 
-```shell
-LAMBDA_MOUNT_CWD=$(pwd)/build/hot serverless deploy --stage local
-```
+{{< command >}}
+$ LAMBDA_MOUNT_CWD=$(pwd)/build/hot serverless deploy --stage local
+{{< / command >}}
 
 ### AWS Cloud Development Kit (CDK) Configuration
 
@@ -283,11 +283,11 @@ class ApplicationStack(parent: Construct, name: String) : Stack(parent, name) {
 
 Then to bootstrap and deploy the stack run the following shell script
 
-```shell
-STAGE=local && LAMBDA_MOUNT_CWD=$(pwd)/build/hot &&
+{{< command >}}
+$ STAGE=local && LAMBDA_MOUNT_CWD=$(pwd)/build/hot &&
   cdklocal bootstrap aws://000000000000/$(AWS_REGION) && \
   cdklocal deploy
-```
+{{< / command >}}
 
 ### Terraform Configuration
 
@@ -369,10 +369,10 @@ resource "aws_lambda_function" "exampleFunctionOne" {
 }
 ```
 
-```shell
-terraform init && \
+{{< command >}}
+$ terraform init && \
   terraform apply -var "STAGE=local" -var "LAMBDA_MOUNT_CWD=$(pwd)/build/hot"
-```
+{{< / command >}}
 
 ## Useful Links
 
