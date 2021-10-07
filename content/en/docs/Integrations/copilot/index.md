@@ -14,7 +14,7 @@ Copilot CLI makes it very simple to deploy your application, without the need fo
 ## Copilot Local
 
 `copilotlocal` is a [fork of AWS Copilot CLI](https://github.com/localstack/copilot-cli-local), where the endpoints for all services are redirected to `http://localhost:4566`.
-Using `copilotlocal` instead of `copilot` in your command line therefore ensures the deployment of your service against LocalStack instead of AWS.
+Using `copilotlocal` instead of `copilot` in your command line therefore ensures the deployment of your service on LocalStack instead of AWS.
 
 ### Download / Installation
 
@@ -41,7 +41,7 @@ Invoke-WebRequest -Uri https://github.com/localstack/copilot-cli/raw/localstack-
 
 ### Configuration
 
-* `LOCALSTACK_HOSTNAME`: Target hostname under which LocalStack endpoints are available (default: `localhost`)
+* `LOCALSTACK_HOSTNAME`: Target hostname under which LocalStack endpoints are available (default: `localhost.localstack.cloud`)
 * `EDGE_PORT`: Target port under which LocalStack endpoints are available (default: `4566`)
 * `LOCALSTACK_DISABLE`: Optional flag to disable the local endpoints and use the default behavior of `copilot` (set to `1` or `true` to enable)
 
