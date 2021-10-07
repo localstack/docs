@@ -46,7 +46,7 @@ way you'll be installing packages for `x86_64` platform.
 What we will be doing now is installing Java and Python executables using
 Homebrew, it should automatically resolve packages to proper architecture versions.
 
-```shell
+```bash
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 

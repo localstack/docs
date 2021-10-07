@@ -17,7 +17,7 @@ LocalStack Pro contains basic support for authentication via Cognito. You can cr
 {{< /alert >}}
 
 First, start up LocalStack. In addition to the normal setup, we need to pass several SMTP settings as environment variables.
-```
+```env
 SMTP_HOST=<smtp-host-address>
 SMTP_USER=<email-user-name>
 SMTP_PASS=<email-password>
@@ -28,12 +28,12 @@ Don't forget to pass Cognito as a service as well.
 ## Creating a User Pool
 
 Just as with aws, you can create a User Pool in LocalStack via 
-```
-awslocal cognito-idp create-user-pool --pool-name test
-```
+{{< command >}}
+$ awslocal cognito-idp create-user-pool --pool-name test
+{{< /command >}}
 The response should look similar to this
 
-```
+```json
 "UserPool": {
         "Id": "us-east-1_fd924693e9b04f549f989283123a29c2",
         "Name": "test",
@@ -60,28 +60,31 @@ The response should look similar to this
             "AllowAdminCreateUserOnly": false
         },
         "Arn": "arn:aws:cognito-idp:us-east-1:000000000000:userpool/us-east-1_fd924693e9b04f549f989283123a29c2"
+}
 ```
-We will need the pool-id for further operations, so save it in a ```pool_id``` variable.
+We will need the pool-id for further operations, so save it in a `pool_id` variable.
 Alternatively, you can also use a JSON processor like [jq](https://stedolan.github.io/jq/) to directly extract the necessary information when creating a pool.
-```
-pool_id=$(awslocal cognito-idp create-user-pool --pool-name test | jq -rc ".UserPool.Id")
-```
+
+{{< command >}}
+$ pool_id=$(awslocal cognito-idp create-user-pool --pool-name test | jq -rc ".UserPool.Id")
+{{< /command >}}
+
 ## Adding a Client
 
 Now we add a client to our newly created pool. We will also need the ID of the created client for the next step. The complete command for client creation with subsequent ID extraction is therefore
 
-```
-client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client | jq -rc ".UserPoolClient.ClientId")
-```
+{{< command >}}
+$ client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client | jq -rc ".UserPoolClient.ClientId")
+{{< /command >}}
 
 ## Signing up and confirming a user
 
 With these steps already taken, we can now sign up a user.
-```
-awslocal cognito-idp sign-up --client-id $client_id --username example_user --password 12345678 --user-attributes Name=email,Value=<your.email@address.com>
-```
+{{< command >}}
+$ awslocal cognito-idp sign-up --client-id $client_id --username example_user --password 12345678 --user-attributes Name=email,Value=<your.email@address.com>
+{{< /command >}}
 The response should look similar to this
-```
+```json
 {
     "UserConfirmed": false,
     "UserSub": "5fdbe1d5-7901-4fee-9d1d-518103789c94"
@@ -91,17 +94,17 @@ and you should have received a new e-mail!
 
 As you can see, our user is still unconfirmed. We can change this with the following instruction.
 
-```
-awslocal cognito-idp confirm-sign-up --client-id $client_id --username example_user --confirmation-code <received-confirmation-code>
-```
+{{< command >}}
+$ awslocal cognito-idp confirm-sign-up --client-id $client_id --username example_user --confirmation-code <received-confirmation-code>
+{{< /command >}}
 The verification code for the user is in the e-mail you received. Additionally, LocalStack prints out the verification code in the console.
 
 The above command doesn't return an answer, you need to check the pool to see that it was successful
-```
-awslocal cognito-idp list-users --user-pool-id $pool_id 
-```
+{{< command >}}
+$ awslocal cognito-idp list-users --user-pool-id $pool_id 
+{{< /command >}}
 which should return something similar to this
-<pre>
+```json {hl_lines=[20]}
 {
     "Users": [
         {
@@ -121,12 +124,11 @@ which should return something similar to this
                 }
             ],
             "Enabled": true,
-            <b>"UserStatus": "CONFIRMED"</b>
+            "UserStatus": "CONFIRMED"
         }
     ]
 }
-
-</pre>
+```
 
 ## OAuth Flows via Cognito Login Form
 

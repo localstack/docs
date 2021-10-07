@@ -68,7 +68,7 @@ For a more detailed example illustrating how to run a local Glue PySpark job, pl
 The Glue data catalog is integrated with Athena, and the database/table definitions can be imported via the `import-catalog-to-glue` API.
 
 Assume you are running the following Athena queries to create databases and table definitions:
-```
+```sql
 CREATE DATABASE db2
 CREATE EXTERNAL TABLE db2.table1 (a1 Date, a2 STRING, a3 INT) LOCATION 's3://test/table1'
 CREATE EXTERNAL TABLE db2.table2 (a1 Date, a2 STRING, a3 INT) LOCATION 's3://test/table2'

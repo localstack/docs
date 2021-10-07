@@ -52,8 +52,8 @@ Installing dependencies...
 
 This will create the following directory structure.
 
-```language
- % tree -L 1
+{{< command >}}
+$ tree -L 1
 .
 ├── index.ts
 ├── node_modules
@@ -62,7 +62,7 @@ This will create the following directory structure.
 ├── Pulumi.dev.yaml
 ├── Pulumi.yaml
 └── tsconfig.json
-```
+{{< / command >}}
 
 Now edit your stack configuration `Pulumi.dev.yaml` as follows:
 

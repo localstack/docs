@@ -34,7 +34,7 @@ The following changes go into this file.
 
 First, we have to specify mock credentials for the AWS provider:
 
-```
+```hcl
 provider "aws" {
   
   access_key = "test"
@@ -48,7 +48,7 @@ provider "aws" {
 Second, we need to avoid issues with routing and authentication (as we do not need it).
 Therefore we need to supply some general parameters:
 
-```
+```hcl
 provider "aws" {
   
   access_key                  = "test"
@@ -66,7 +66,7 @@ provider "aws" {
 Additionally, we have to point the individual services to LocalStack.
 In case of S3, this looks like the following snippet
 
-```
+```hcl
   endpoints {
     s3             = "http://localhost:4566"
   }
@@ -79,7 +79,7 @@ In case of S3, this looks like the following snippet
 ### S3 Bucket
 
 Now we are adding a minimal s3 bucket outside the provider
-```
+```hcl
 resource "aws_s3_bucket" "test-bucket" {
   bucket = "my-bucket"
 }
@@ -89,7 +89,7 @@ resource "aws_s3_bucket" "test-bucket" {
 ### Final Configuration
 
 The final (minimal) configuration to deploy an s3 bucket thus looks like this
-```
+```hcl
 provider "aws" {
   
   access_key                  = "mock_access_key"
@@ -128,7 +128,7 @@ $ terraform deploy
 
 Here is a configuration example with additional endpoints:
 
-```
+```hcl
 provider "aws" {
   access_key                  = "test"
   secret_key                  = "test"

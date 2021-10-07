@@ -37,9 +37,9 @@ The main advantage of this mode is, that no DNS magic is involved, and SSL certi
 
 ## Configuration
 
-If you want to disable this behavior, and use the DNS server to resolve the endpoints for AWS, you can disable this behavior using:
+If you want to disable this behavior, and use the DNS server to resolve the endpoints for AWS, you can disable this behavior by using:
 
-```
+```bash
 TRANSPARENT_LOCAL_ENDPOINTS=0
 ```
 

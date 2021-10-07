@@ -245,7 +245,7 @@ Let's configure it to lookup our function Beans by HTTP method and path, create 
 new `application.properties` file under `src/main/resources/application.properties`
 with the following content:
 
-```properties
+```env
 spring.main.banner-mode=off
 spring.cloud.function.definition=functionRouter
 spring.cloud.function.routing-expression=headers['httpMethod'].concat(' ').concat(headers['path'])
