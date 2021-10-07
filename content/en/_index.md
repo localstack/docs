@@ -1,8 +1,7 @@
-+++
-title = "LocalStack"
-linkTitle = "LocalStack"
-
-+++
+---
+title: "LocalStack"
+linkTitle: "LocalStack"
+---
 
 {{< blocks/cover title="Welcome to LocalStack Academy!" image_anchor="top" height="full" color="orange" >}}
 <div class="mx-auto">

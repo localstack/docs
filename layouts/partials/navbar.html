@@ -1,0 +1,48 @@
+<div class="header-bar fixed-top"><!-- for visual compatibility with website --></div>
+{{ $cover := and (.HasShortcode "blocks/cover") (not .Site.Params.ui.navbar_translucent_over_cover_disable) }}
+<nav class="js-navbar-scroll navbar navbar-expand {{ if $cover}} td-navbar-cover {{ end }}flex-column flex-md-row td-navbar">
+    <div class="navbar-brand">
+        <a class="brand-link" href="{{ .Site.Params.brand_link }}">
+            <span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span>
+        </a>
+        <a class="home-link" href="{{ .Site.Home.RelPermalink }}">
+            <span class="text-lowercase font-weight-bold">{{ .Site.Title }}</span>
+        </a>
+    </div>
+
+    <div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+        <ul class="navbar-nav mt-2 mt-lg-0">
+            <!-- disabled link menus (we currenlty only use this website for a single menu page: docs)
+            {{ $p := . }}
+            {{ range .Site.Menus.main }}
+            <li class="nav-item mr-4 mb-2 mb-lg-0">
+                {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) }}
+                {{ with .Page }}
+                {{ $active = or $active ( $.IsDescendant .)  }}
+                {{ end }}
+                {{ $pre := .Pre }}
+                {{ $post := .Post }}
+                {{ $url := urls.Parse .URL }}
+                {{ $baseurl := urls.Parse $.Site.Params.Baseurl }}
+                <a class="nav-link{{if $active }} active{{end}}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}" {{ if ne $url.Host $baseurl.Host }}target="_blank" {{ end }}>{{ with .Pre}}{{ $pre }}{{ end }}<span{{if $active }} class="active"{{end}}>{{ .Name }}</span>{{ with .Post}}{{ $post }}{{ end }}</a>
+            </li>
+            {{ end }}
+            -->
+            {{ if  .Site.Params.versions }}
+            <li class="nav-item dropdown mr-4 d-none d-lg-block">
+                {{ partial "navbar-version-selector.html" . }}
+            </li>
+            {{ end }}
+            {{ if  (gt (len .Site.Home.Translations) 0) }}
+            <li class="nav-item dropdown mr-4 d-none d-lg-block">
+                {{ partial "navbar-lang-selector.html" . }}
+            </li>
+            {{ end }}
+            <li>
+                <div class="navbar-nav d-none d-lg-block">{{ partial "search-input.html" . }}</div>
+            </li>
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://twitter.com/_localstack"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"></path></svg></a></li>
+            <li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/localstack"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"></path></svg></a></li>
+        </ul>
+    </div>
+</nav>

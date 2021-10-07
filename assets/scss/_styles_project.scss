@@ -21,6 +21,56 @@
 // workaround for https://github.com/google/docsy/issues/694
 @import "/css/shortcodes.css";
 
+// custom header bar for visual compatibility with old website
+.header-bar {
+    border-top: 4px solid;
+    border-image-source: linear-gradient(90deg, #4755AC, #8ed6fb 50%, #d32e9d);
+    border-image-slice: 1;
+}
+
+body > header {
+    & nav {
+        border-bottom: 1px solid $gray-200;
+    }
+
+    & .td-navbar {
+        background-color: $white;
+
+        & .navbar-brand {
+            color: $black;
+        }
+
+        & .navbar-brand:hover {
+            color: $primary;
+        }
+
+        & .td-search-input {
+            border: 1px solid $gray-300;
+
+            @include placeholder {
+                color: $gray-500;
+                border: none;
+            }
+        }
+
+        & .navbar-brand svg {
+            margin-right: 0;
+        }
+
+        & .navbar-brand .home-link {
+            font-size: 95%;
+        }
+
+        & .nav-link {
+            color: #1d2d35;
+            tranisition: color 0.15s ease-in-out;
+        }
+        & .nav-link:hover {
+            color: $primary;
+        }
+    }
+}
+
 // doc overview grid (TODO: move to separate scss file)
 .doc-overview-grid {
 
