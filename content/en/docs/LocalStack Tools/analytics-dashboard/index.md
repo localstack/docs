@@ -7,6 +7,8 @@ description: >
   An Introduction to the LocalStack Pro Analytics Dashboard
 ---
 
+## LocalStack Event Analytics
+
 LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall.
 
 Simply configure your system with the `LOCALSTACK_API_KEY` environment variable, and the system will start making your events accessible on the LocalStack dashboard at https://app.localstack.cloud/dashboard.
@@ -18,3 +20,11 @@ Please note that data privacy is one of our key concerns; data is only collected
 The following screenshot shows an the Analytics Dashboard in action:
 
 ![Analytics Dashboard](analytics-dashboard.png)
+
+The top row shows a summary of your LocalStack usage.
+A test process or Process ID refers to a single run of LocalStack.
+The table shows the detailed list of events sorted by date.
+
+## Configuration
+
+You can disable event reporting on your LocalStack client by setting the environment variable `DISABLE_EVENTS=1`.
