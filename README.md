@@ -60,6 +60,5 @@ Please follow these best practices when writing documentation here:
   `![Alternative_Text](file_next_to_post.png)`).
 
   If you want to resize the image, use the `figure` shortcode.
-- Use relative paths to cross-reference between pages
 
 PS.: Feel free to add more best practices here (also give us a heads-up in [#sig-docs](https://localstack-cloud.slack.com/archives/C02FZH6UB2A)).

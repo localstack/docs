@@ -23,7 +23,7 @@ use Aws\Exception\AwsException;
 $s3 = new Aws\S3\S3Client([
     'version' => '2006-03-01',
     'region' => 'us-east-1',
-    // Enable 'use_path_style_endpoint' => true, if bucket name is non dns complient
+    // Enable 'use_path_style_endpoint' => true, if bucket name is non DNS compliant
     'use_path_style_endpoint' => true,
     'endpoint' => 'http://s3.localhost.localstack.cloud:4566',
 ]);
