@@ -10,7 +10,7 @@ description: >
 ![AWS CDK](aws-cdk-logo.svg)
 ## Overview
 
-The AWS Cloud Development Kit (CDK) is an IaC (Infrastructure-as-Code) tool using general-purpose programming languages such as TypeScript/JavaScript, Python, Java and .NET to programmatically define your cloud architecture on AWS.
+The AWS Cloud Development Kit (CDK) is an IaC (Infrastructure-as-Code) tool using general-purpose programming languages such as TypeScript/JavaScript, Python, Java, and .NET to programmatically define your cloud architecture on AWS.
 
 ## AWS CDK CLI for LocalStack
 
@@ -29,7 +29,7 @@ cdklocal --version
 # e.g. 1.65.5
 ```
 
-{{% alert title="Local node_modules" color=" ing" %}}
+{{% alert title="Local node_modules" color="warning" %}}
 Using `cdklocal` locally (e.g. within the `node_modules` of your repo instead of globally installed) does not work at the moment for some setups, so make sure you install both `aws-cdk` and `aws-cdk-local` with the `-G` flag.
 {{% /alert %}}
 
@@ -37,9 +37,9 @@ Using `cdklocal` locally (e.g. within the `node_modules` of your repo instead of
 
 `cdklocal` can be used as a drop-in replacement of where you would otherwise use `cdk` when targeting the AWS Cloud.
 
-```bash
-cdklocal --help
-```
+{{< command >}}
+$ cdklocal --help
+{{< /command >}}
 ### Configuration
 
 
@@ -54,9 +54,9 @@ The following environment variables can be configured:
 
 Make sure that LocalStack is installed and successfully started with the required services before running the example
 
-```bash
-curl http://localhost:4566/health
-```
+{{< command >}}
+$ curl http://localhost:4566/health
+{{< /command >}}
 
 The CDK command line ships with a sample app generator to run a quick test for getting started.
 
@@ -72,16 +72,17 @@ cdklocal deploy
 
 Once the deployment is done, you can inspect the created resources via the [`awslocal`](https://github.com/localstack/awscli-local) command line
 
-```bash
-awslocal sns list-topics
-# {
-#     "Topics": [
-#         {
-#             "TopicArn": "arn:aws:sns:us-east-1:000000000000:TestStack-TestTopic339EC197-79F43WWCCS4Z"
-#         }
-#     ]
-# }
-```
+{{< command >}}
+$ awslocal sns list-topics
+ {
+     "Topics": [
+         {
+             "TopicArn": "arn:aws:sns:us-east-1:000000000000:TestStack-TestTopic339EC197-79F43WWCCS4Z"
+         }
+     ]
+}
+{{< /command >}}
+
 ## External resources
 
 - [aws-cdk-local](https://github.com/localstack/aws-cdk-local)
