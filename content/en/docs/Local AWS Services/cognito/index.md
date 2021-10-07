@@ -7,27 +7,15 @@ description: >
 ---
 [AWS Cognito](https://aws.amazon.com/cognito/) enables you to manage authentication and access control for AWS-backed apps and resources.
 
-LocalStack Pro contains basic support for authentication via Cognito. You can create Cognito user pools, sign up and confirm users, and use the `COGNITO_USER_POOLS` authorizer integration with API Gateway.
-## Setup
-{{< alert title="SMTP settings" >}}
-For some Cognito features you will require an e-mail address and the corresponding SMTP settings. Check with your provider for details.
-{{< /alert >}}
-{{< alert title="sudo" >}}
-When using Cognito, LocalStack may prompt you for your sudo password.
-{{< /alert >}}
+LocalStack Pro contains basic support for authentication via Cognito. You can create Cognito user pools, sign up and confirm users, set up Lambda triggers, and use the `COGNITO_USER_POOLS` authorizer integration with API Gateway.
 
-First, start up LocalStack. In addition to the normal setup, we need to pass the SMTP settings as environment variables:
-```env
-SMTP_HOST=<smtp-host-address>
-SMTP_USER=<email-user-name>
-SMTP_PASS=<email-password>
-SMTP_EMAIL=<email-address>
-```
-If you only start a subset of the services by using the `SERVICES` environment variable, don't forget to add Cognito as well.
+{{< alert title="SMTP settings" >}}
+By default, Cognito does not send actual email messages. To enable this feature, you will require an e-mail address and the corresponding SMTP settings ([see below](#smtp-integration)).
+{{< /alert >}}
 
 ## Creating a User Pool
 
-Just as with AWS, you can create a User Pool in LocalStack with the following command:
+Just as with AWS, you can create a user pool in LocalStack with the following command:
 {{< command >}}
 $ awslocal cognito-idp create-user-pool --pool-name test
 {{< /command >}}
@@ -64,12 +52,12 @@ The response should look similar to this:
 }
 ```
 
-We will need the UserPool's `id` for further operations, so save it in a `pool_id` variable:
+We will need the user pool's `id` for further operations, so save it in a `pool_id` variable:
 {{< command >}}
 $ pool_id=<your-pool-id>
 {{< /command >}}
 
-Alternatively, you can also use a JSON processor like `[jq](https://stedolan.github.io/jq/)` to directly extract the necessary information when creating a pool in the first place:
+Alternatively, you can also use a JSON processor like [`jq`](https://stedolan.github.io/jq/) to directly extract the necessary information when creating a pool in the first place:
 
 {{< command >}}
 $ pool_id=$(awslocal cognito-idp create-user-pool --pool-name test | jq -rc ".UserPool.Id")
@@ -98,17 +86,19 @@ The response should look similar to this:
 }
 ```
 
-In addition to the response, you should receive a new email.
+After the user is created, a confirmation code is generated. The code is printed in the LocalStack container logs (see below), and can optionally also be sent via email if you have [SMTP configured](#smtp-integration).
 
-As you can see, our user is still unconfirmed.
-We can change this with the following instruction:
+```
+INFO:localstack_ext.services.cognito.cognito_idp_api: Confirmation code for Cognito user example_user: 125796
+DEBUG:localstack_ext.bootstrap.email_utils: Sending confirmation code via email to "your.email@address.com"
+```
+
+We can confirm the user with the activation code, using the following command:
 {{< command >}}
 $ awslocal cognito-idp confirm-sign-up --client-id $client_id --username example_user --confirmation-code <received-confirmation-code>
 {{< /command >}}
 
-The verification code for the user is in the e-mail you received. Additionally, LocalStack prints out the verification code in the console logs.
-
-The above command doesn't return an answer, you need to check the pool to see that the request was successful:
+As the above command doesn't return an answer, we check the pool to see that the request was successful:
 {{< command "hl_lines=21" >}}
 $ awslocal cognito-idp list-users --user-pool-id $pool_id 
 {
@@ -136,6 +126,20 @@ $ awslocal cognito-idp list-users --user-pool-id $pool_id
 }
 {{< /command >}}
 
+## Cognito Lambda Triggers
+
+Cognito provides a number of lifecycle hooks in the form of Cognito Lambda triggers. These triggers can be used to react to various lifecycle events and customize the behavior of user signup, confirmation, migration, etc.
+
+For example, to define a _user migration_ Lambda trigger, we can first create a Lambda function (say, named `"f1"`) capable of performing the migration, and then define the corresponding `--lambda-config` on the user pool creation:
+
+{{<command >}}
+awslocal cognito-idp create-user-pool --pool-name test2 --lambda-config '{"UserMigration":"arn:aws:lambda:us-east-1:000000000000:function:f1"}'
+{{< /command >}}
+
+Upon authentication of a non-registered user, Cognito will then automatically call the migration Lambda function and finally add the migrated user to the pool.
+
+More details on Cognito Lambda triggers can be found in the [AWS documentation](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html).
+
 ## OAuth Flows via Cognito Login Form
 
 You can also access the local [Cognito login form](https://docs.aws.amazon.com/cognito/latest/developerguide/login-endpoint.html) by entering the following URL in your browser:
@@ -150,10 +154,21 @@ The login form should look similar to the screenshot below:
 After successful login, the page will redirect to the specified redirect URI, with a path parameter `?code=<code>` appended, e.g., `http://example.com?code=test123`.
 This authentication code can then be used to obtain a token via the Cognito OAuth2 TOKEN Endpoint documented [here](https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html).
 
+## SMTP Integration
+
+In order to enable sending activation emails, configure the following SMTP settings as environment variables:
+```env
+SMTP_HOST=<smtp-host-address>
+SMTP_USER=<email-user-name>
+SMTP_PASS=<email-password>
+SMTP_EMAIL=<email-address>
+```
+
+Please check with your email provider for details regarding the SMTP settings above.
+
 ## Serverless and Cognito
+
 You can also use Cognito and Localstack in conjunction with the [Serverless framework](https://www.serverless.com/).
-Again, if you only start a subset of the services by using the `SERVICES` environment variable, don't forget to add `serverless` as well.
- (you need to include serverless in the LocalStack services).
 
 For example, take this snippet of a `serverless.yml` configuration:
 ```yaml
@@ -189,6 +204,7 @@ The serverless configuration can then be deployed using `serverless deploy --sta
 The example contains a Lambda function `http_request` which is connected to an API Gateway endpoint.
 Once deployed, the `v1/request` API Gateway endpoint will be secured against the Cognito user pool "`ExampleUserPool`".
 You can then register users against that local pool, using the same API calls as for AWS.
+
 In order to make requests against the secured API Gateway endpoint, use the local Cognito API to retrieve identity credentials which can be sent along as `Authentication` HTTP headers (where `test-1234567` is the name of the access key ID generated by Cognito):
 
 ```
@@ -196,4 +212,5 @@ Authentication: AWS4-HMAC-SHA256 Credential=test-1234567/20190821/us-east-1/cogn
 ```
 
 ## Further reading
-For a more extensive example you can check our [sample repository](https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt).
+
+For a more detailed example, please check out our [sample repository](https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt).
