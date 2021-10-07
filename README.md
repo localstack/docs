@@ -42,6 +42,7 @@ alternatively:
 ## Best Practices
 
 Please follow these best practices when writing documentation here:
+- Use the custom `command` shortcode for all one-liner commands (also when their output is presented). Do not use it for bash scripts with comments. You can find a more detailed description here: https://github.com/localstack/docs/pull/55
 - Use the [`ref` or `relref` shortcode](https://gohugo.io/content-management/cross-references/#use-ref-and-relref) when creating non-external links (but still use the markdown native image linking, ref doesn't work there).
   You can either use `ref` or `relref`, the point is to have compile time internal-link checks (which works for both).
 - Stick to markdown if possible.
@@ -50,6 +51,8 @@ Please follow these best practices when writing documentation here:
 - For snippets, define the correct syntax highlighting.
   Here's a list of the supported languages:
   https://gohugo.io/content-management/syntax-highlighting/
+- If you want to hightlight a specific line, there's a feature for that: https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences
+  - This is also supported by the `command` shortcode!
 - Handling images can be a bit tedious with Hugo.
   If you want to use images in your post, create a new [leaf bundle directory](https://github.com/gohugoio/hugo/issues/1240) and put the image and the post (named `index.md`) in there (you can find examples in the docs already, f.e. the cognito service docs).
 
