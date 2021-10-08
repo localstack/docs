@@ -186,3 +186,4 @@ Now that you have LocalStack up and running, the following resources might be us
 - [Find out how to configure LocalStack]({{< ref "configuration" >}}) such that it perfectly fits your need.
 - [Use LocalStack in your CI environment]({{< ref "ci" >}}) to increase your code quality.
 - [Checkout LocalStack's Cloud Developer Tools]({{< ref "tools" >}}) to further increase your development efficiency with LocalStack.
+- Find out about the ways you can [configure LocalStack]({{< ref "configuration" >}}).
