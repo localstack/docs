@@ -1,0 +1,26 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – architect</title><link>/tags/architect/</link><description>Recent content in architect on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/architect/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: Architect</title><link>/integrations/architect/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/architect/</guid><description>
+&lt;img src="architect_logo.png" width="600px" alt="architect logo">
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Architect enables you to quickly build large serverless apps without worrying about the underlying infrastructure.
+On this page we discuss how Architect and LocalStack can be used together.
+If you are adapting an existing configuration, you might be able to skip certain steps at your own discretion.&lt;/p>
+&lt;h2 id="example">Example&lt;/h2>
+&lt;h3 id="setup">Setup&lt;/h3>
+&lt;p>To use Architect in conjunction with Localstack, simply install the &lt;code>arclocal&lt;/code> command (sources can be found &lt;a href="https://github.com/localstack/architect-local">here&lt;/a>).
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>npm install -g architect-local @architect/architect aws-sdk&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>The &lt;code>arclocal&lt;/code> command has the same usage as the &lt;code>arc&lt;/code> command, so you can start right away.&lt;/p>
+&lt;p>Create a test directory&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>mkdir architect_quickstart &amp;amp;&amp;amp; cd architect_quickstart&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>then create an architect project&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>arclocal init&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="deployment">Deployment&lt;/h3>
+&lt;p>Now you need to start LocalStack. For Architect to work properly, you need to start the following services in LocalStack (using the &lt;code>SERVICES&lt;/code> &lt;a href="/localstack/configuration/">configuration option&lt;/a>):&lt;/p>
+&lt;ul>
+&lt;li>s3&lt;/li>
+&lt;li>ssm&lt;/li>
+&lt;li>cloudformation&lt;/li>
+&lt;/ul>
+&lt;p>After LocalStack has started you can deploy your Architect setup via:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>arclocal deploy&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="further-reading">Further reading&lt;/h2>
+&lt;p>For more architect examples, you can take a look at the &lt;a href="https://arc.codes">official architect docs&lt;/a>.&lt;/p></description></item></channel></rss>

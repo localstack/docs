@@ -1,0 +1,44 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Persistence</title><link>/categories/persistence/</link><description>Recent content in Persistence on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/categories/persistence/index.xml" rel="self" type="application/rss+xml"/><item><title>Tools: Cloud Pods</title><link>/tools/cloud-pods/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/cloud-pods/</guid><description>
+&lt;p>Local Cloud Pods are a mechanism that allows you to take a snapshot of your local instance, persist it to a storage backend (e.g., git repository), and easily share it out with your team members.&lt;/p>
+&lt;p>You can create and manage Local Cloud Pods via the Web UI, and in order to load and store the persistent state of pods, you can use the &lt;code>localstack&lt;/code> command line interface (CLI).&lt;/p>
+&lt;p>Below is a simple example of how you can push and pull Local Cloud Pods using the &lt;code>localstack&lt;/code> CLI:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># User 1 pushes state of Cloud Pod to persistent server&lt;/span>
+$ awslocal kinesis list-streams
+&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;StreamNames&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;mystream123&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]}&lt;/span>
+$ localstack pod push mypod1
+...
+&lt;span style="color:#8f5902;font-style:italic"># User 2 pulls state from the server to local instance&lt;/span>
+$ localstack pod pull mypod1
+$ awslocal kinesis list-streams
+&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;StreamNames&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;mystream123&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Persistence configuration&lt;/h4>
+Using local Cloud pods requires setting the &lt;code>DATA_DIR&lt;/code> configuration variable to point to a folder on your local machine - this folder will be used to persist and load the state of cloud pods in your local instance.
+&lt;/div>
+&lt;p>Local Cloud Pods support different storage mechanisms - currently we&amp;rsquo;re focusing on using &lt;code>git&lt;/code> repositories as the storage backend, as &lt;code>git&lt;/code> is often readily available on developers' machines and is easy to integrate with (no additional access control settings required).
+Support for more storage backends is coming soon (e.g., S3 buckets, FTP servers, etc.).&lt;/p>
+&lt;p>You can use the &lt;a href="https://app.localstack.cloud/pods">LocalStack Web UI&lt;/a> to create a new Local Cloud Pod (make sure to adjust the Git URL and branch name to point to your repository):&lt;/p>
+&lt;p>&lt;img src="cloudPodsUI.png" alt="Local Cloud Pods UI">&lt;/p>
+&lt;p>Once the pod has been created, can use the CLI to log in and list the pod in your terminal:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>export LOCALSTACK_API_KEY=...
+&lt;span class="command-prefix">$ &lt;/span>localstack login
+...
+&lt;span class="command-prefix">$ &lt;/span>localstack pod list
+Name Backend URL Size State
+------ --------- --------------------------------- ------ -------
+pod1 git ssh://git@github.com/your_org/... 1.68MB Shared&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">LocalStack Pro feature&lt;/h4>
+Cloud Pods are a feature of LocalStack Pro.
+Please ensure that the &lt;code>LOCALSTACK_API_KEY&lt;/code> is properly configured.
+&lt;/div>
+&lt;p>After the pod definition has been created, you should be able to use the &lt;code>push&lt;/code>/&lt;code>pull&lt;/code> commands listed above to push and pull the pod state to the Git repo.
+After pulling the pod, LocalStack will automatically inject pod state in your instance at runtime without requiring a restart.&lt;/p>
+&lt;p>In some cases, you may want to reset your current application state before pulling a pod.
+This can be achieved by manually deleting the &lt;code>DATA_DIR&lt;/code> and restarting the application with the &lt;code>localstack pod reset&lt;/code> command.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Backup your state&lt;/h4>
+If you &lt;code>pull&lt;/code> a Local Cloud Pod, it will attempt to merge the stored pod state with the existing state in your LocalStack instance.
+Please make sure to create a backup of any data before pulling a cloud pod, if required.
+&lt;/div></description></item></channel></rss>

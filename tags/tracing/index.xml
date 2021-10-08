@@ -1,0 +1,58 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – tracing</title><link>/tags/tracing/</link><description>Recent content in tracing on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/tracing/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: Thundra</title><link>/integrations/thundra/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/thundra/</guid><description>
+&lt;img src="thundra-logo.svg" width="600px" alt="Thundra logo">
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>This guide describes how you can monitor and debug your AWS Lambda functions with &lt;a href="https://thundra.io">Thundra&lt;/a>.&lt;/p>
+&lt;h2 id="integrating-thundra-with-localstack">Integrating Thundra with LocalStack&lt;/h2>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Supported languages&lt;/h4>
+Currently only &lt;strong>Node.js&lt;/strong>, &lt;strong>Python&lt;/strong> and &lt;strong>Java&lt;/strong> Lambdas are supported in this integration - support for other runtimes (.NET, Go) is coming soon.
+&lt;/div>
+&lt;p>LocalStack comes with out-of-the-box support for Thundra. Simply obtain a Thundra API key &lt;a href="https://console.thundra.io/onboarding/serverless">here&lt;/a> and add it to your Lambda function&amp;rsquo;s environment variables (&lt;code>THUNDRA_APIKEY&lt;/code>):&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-AWS-SAM"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab" onclick="handleClick(&amp;#34;AWS-SAM&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="true">
+AWS SAM
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-AWS-CDK"
+id="tabs-1-1-tab" data-toggle="tab" href="#tabs-1-1" role="tab" onclick="handleClick(&amp;#34;AWS-CDK&amp;#34;);"
+aria-controls="tabs-1-1" aria-selected="false">
+AWS CDK
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Serverless-Framework"
+id="tabs-1-2-tab" data-toggle="tab" href="#tabs-1-2" role="tab" onclick="handleClick(&amp;#34;Serverless-Framework&amp;#34;);"
+aria-controls="tabs-1-2" aria-selected="false">
+Serverless Framework
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">Resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">MyFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Type&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">AWS::Serverless::Function&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Properties&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">// other function properties&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Variables&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">// other environment variables&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">THUNDRA_APIKEY&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">&amp;lt;YOUR-THUNDRA-API-KEY&amp;gt;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-1-1" role="tabpanel" aria-labelled-by="tabs-1-1-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-js" data-lang="js">&lt;span style="color:#204a87;font-weight:bold">const&lt;/span> &lt;span style="color:#000">myFunction&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#204a87">Function&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;MyFunction&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000;font-weight:bold">...,&lt;/span> &lt;span style="color:#8f5902;font-style:italic">// other function properties
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">environment&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000;font-weight:bold">...,&lt;/span> &lt;span style="color:#8f5902;font-style:italic">// other environment variables
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">THUNDRA_APIKEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">MY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">THUNDRA&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">API&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">});&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-1-2" role="tabpanel" aria-labelled-by="tabs-1-2-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">functions&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">MyFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">// other function properties&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">// other environment variables&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">THUNDRA_APIKEY&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">&amp;lt;YOUR-THUNDRA-API-KEY&amp;gt;&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>After invoking your AWS Lambda function, you can inspect the invocations and traces in the &lt;a href="https://console.thundra.io">Thundra Console&lt;/a>. You can find more details in the &lt;a href="https://apm.docs.thundra.io">Thundra documentation&lt;/a>.&lt;/p>
+&lt;h2 id="further-reading">Further Reading&lt;/h2>
+&lt;p>For a complete example, you may check our blog post &amp;ldquo;&lt;a href="https://localstack.cloud/blog/2021-09-16-test-monitoring-for-localstack-apps">Test Monitoring for LocalStack Apps with Thundra&lt;/a>&amp;rdquo; and take a look at the example project &lt;a href="https://github.com/thundra-io/thundra-demo-localstack-java">here&lt;/a>.&lt;/p></description></item></channel></rss>

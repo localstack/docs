@@ -1,0 +1,663 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – infrastructure-as-code</title><link>/tags/infrastructure-as-code/</link><description>Recent content in infrastructure-as-code on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/infrastructure-as-code/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: Architect</title><link>/integrations/architect/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/architect/</guid><description>
+&lt;img src="architect_logo.png" width="600px" alt="architect logo">
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Architect enables you to quickly build large serverless apps without worrying about the underlying infrastructure.
+On this page we discuss how Architect and LocalStack can be used together.
+If you are adapting an existing configuration, you might be able to skip certain steps at your own discretion.&lt;/p>
+&lt;h2 id="example">Example&lt;/h2>
+&lt;h3 id="setup">Setup&lt;/h3>
+&lt;p>To use Architect in conjunction with Localstack, simply install the &lt;code>arclocal&lt;/code> command (sources can be found &lt;a href="https://github.com/localstack/architect-local">here&lt;/a>).
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>npm install -g architect-local @architect/architect aws-sdk&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>The &lt;code>arclocal&lt;/code> command has the same usage as the &lt;code>arc&lt;/code> command, so you can start right away.&lt;/p>
+&lt;p>Create a test directory&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>mkdir architect_quickstart &amp;amp;&amp;amp; cd architect_quickstart&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>then create an architect project&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>arclocal init&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="deployment">Deployment&lt;/h3>
+&lt;p>Now you need to start LocalStack. For Architect to work properly, you need to start the following services in LocalStack (using the &lt;code>SERVICES&lt;/code> &lt;a href="/localstack/configuration/">configuration option&lt;/a>):&lt;/p>
+&lt;ul>
+&lt;li>s3&lt;/li>
+&lt;li>ssm&lt;/li>
+&lt;li>cloudformation&lt;/li>
+&lt;/ul>
+&lt;p>After LocalStack has started you can deploy your Architect setup via:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>arclocal deploy&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="further-reading">Further reading&lt;/h2>
+&lt;p>For more architect examples, you can take a look at the &lt;a href="https://arc.codes">official architect docs&lt;/a>.&lt;/p></description></item><item><title>Integrations: Terraform</title><link>/integrations/terraform/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/terraform/</guid><description>
+&lt;img src="logo-terraform-main.svg" width="600px" alt="terraform logo">
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Terraform allows you to automate the management of AWS resources such as containers, lambda functions and so on by declaring them in the HashiCorp Configuration Language (HCL).
+On this page we discuss how Terraform and LocalStack can be used together.
+If you are adapting an existing configuration, you might be able to skip certain steps at your own discretion.&lt;/p>
+&lt;h2 id="example">Example&lt;/h2>
+&lt;p>If you have not done so yet, &lt;a href="https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started">install Terraform&lt;/a>.&lt;/p>
+&lt;p>Using Terraform with LocalStack requires little extra configuration.
+Apart from some information Terraform expects there are basically only two things to take care of in the configuration.&lt;/p>
+&lt;p>Before we start changing the configuration, create and change into a new directory for this sample&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>mkdir terraform_quickstart &amp;amp;&amp;amp; cd terraform_quickstart&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Inside this directory, create a file called &lt;code>main.tf&lt;/code>.
+The following changes go into this file.&lt;/p>
+&lt;h3 id="general-configuration">General Configuration&lt;/h3>
+&lt;p>First, we have to specify mock credentials for the AWS provider:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000">access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="request-management">Request Management&lt;/h3>
+&lt;p>Second, we need to avoid issues with routing and authentication (as we do not need it).
+Therefore we need to supply some general parameters:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000">access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;span style="color:#000">s3_force_path_style&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_credentials_validation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_metadata_api_check&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_requesting_account_id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="services">Services&lt;/h3>
+&lt;p>Additionally, we have to point the individual services to LocalStack.
+In case of S3, this looks like the following snippet&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl"> &lt;span style="color:#204a87;font-weight:bold">endpoints&lt;/span> {
+&lt;span style="color:#000"> s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>: To enable domain style routing for s3 buckets, the endpoint &lt;code>http://s3.localhost.localstack.cloud:4566&lt;/code> should be used.
+&lt;/div>
+&lt;h3 id="s3-bucket">S3 Bucket&lt;/h3>
+&lt;p>Now we are adding a minimal s3 bucket outside the provider&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_s3_bucket&amp;#34; &amp;#34;test-bucket&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> bucket&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my-bucket&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="final-configuration">Final Configuration&lt;/h3>
+&lt;p>The final (minimal) configuration to deploy an s3 bucket thus looks like this&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000">access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;mock_access_key&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;mock_secret_key&amp;#34;&lt;/span>
+&lt;span style="color:#000">region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;span style="color:#000">s3_force_path_style&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_credentials_validation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_metadata_api_check&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_requesting_account_id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">endpoints&lt;/span> {
+&lt;span style="color:#000"> s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://s3.localhost.localstack.cloud:4566&amp;#34;&lt;/span>
+}
+}
+&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_s3_bucket&amp;#34; &amp;#34;test-bucket&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> bucket&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my-bucket&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>After starting LocalStack you can now deploy the s3 bucket via &lt;code>terraform&lt;/code> and interact with the (still empty) s3 bucket via &lt;code>awslocal&lt;/code>!&lt;/p>
+&lt;p>All you need to do is to initialize Terraform&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>terraform init&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>and then deploy the configuration
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>terraform deploy&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="endpoint-configuration">Endpoint configuration&lt;/h2>
+&lt;p>Here is a configuration example with additional endpoints:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;span style="color:#000"> s3_force_path_style&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_credentials_validation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_metadata_api_check&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_requesting_account_id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">endpoints&lt;/span> {
+&lt;span style="color:#000"> apigateway&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> cloudformation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> cloudwatch&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> dynamodb&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> ec2&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> es&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> elasticache&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> firehose&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> iam&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> kinesis&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> lambda&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> rds&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> redshift&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> route53&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secretsmanager&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> ses&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> sns&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> sqs&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> ssm&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> stepfunctions&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> sts&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="further-reading">Further reading&lt;/h2>
+&lt;p>For more examples, you can take a look at our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/terraform-resources">terraform sample&lt;/a> or the &lt;a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack">terraform localstack section&lt;/a>.&lt;/p>
+&lt;h3 id="community-resources">Community resources&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://dev.to/mrwormhole/localstack-with-terraform-and-docker-for-running-aws-locally-3a6d">Localstack with Terraform and Docker for running AWS locally. 2021-07-04&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Integrations: AWS SAM</title><link>/integrations/aws-sam/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/aws-sam/</guid><description>
+&lt;p>&lt;img src="aws-sam-logo.jpg" alt="AWS SAM">&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The AWS Serverless Application Model (SAM) is a framework on top of CloudFormation to quickly develop Cloud Applications with a focus on serverless services such as S3, Lambda, API Gateway, Step Functions and more.&lt;/p>
+&lt;h2 id="aws-sam-cli-for-localstack">AWS SAM CLI for LocalStack&lt;/h2>
+&lt;p>To deploy SAM applications on &lt;a href="https://github.com/localstack/localstack">LocalStack&lt;/a> you can use &lt;a href="https://github.com/localstack/aws-sam-cli-local">samlocal&lt;/a>, a wrapper for the &lt;a href="https://github.com/aws/aws-sam-cli">AWS SAM CLI&lt;/a>.&lt;/p>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>Simply use &lt;code>pip&lt;/code> to install &lt;code>samlocal&lt;/code> as a Python library on your machine:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>pip install aws-sam-cli-local&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="usage">Usage&lt;/h3>
+&lt;p>The &lt;code>samlocal&lt;/code> command has the exact same usage as the underlying &lt;code>sam&lt;/code> command. The main difference is that for commands like &lt;code>samlocal deploy&lt;/code> the operations will be executed against the LocalStack endpoints (&lt;code>http://localhost:4566&lt;/code> by default) instead of real AWS endpoints.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>samlocal --help&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Start using &lt;code>samlocal&lt;/code> by deploying a &lt;a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html">Hello World Application&lt;/a>.
+Please make sure to replace all &lt;code>sam&lt;/code> calls with &lt;code>samlocal&lt;/code> when following the AWS tutorial.&lt;/p>
+&lt;h3 id="configuration">Configuration&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>EDGE_PORT&lt;/code>: Port number under which the LocalStack edge service is available (default: &lt;code>4566&lt;/code>)&lt;/li>
+&lt;li>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>: Host under which the LocalStack edge service is available (default: &lt;code>localhost&lt;/code>)&lt;/li>
+&lt;/ul></description></item><item><title>Integrations: AWS CDK</title><link>/integrations/aws-cdk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/aws-cdk/</guid><description>
+&lt;p>&lt;img src="aws-cdk-logo.svg" alt="AWS CDK">&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The AWS Cloud Development Kit (CDK) is an IaC (Infrastructure-as-Code) tool using general-purpose programming languages such as TypeScript/JavaScript, Python, Java, and .NET to programmatically define your cloud architecture on AWS.&lt;/p>
+&lt;h2 id="aws-cdk-cli-for-localstack">AWS CDK CLI for LocalStack&lt;/h2>
+&lt;p>&lt;code>cdklocal&lt;/code> is a thin wrapper script for using the &lt;a href="https://github.com/aws/aws-cdk">AWS CDK&lt;/a> library against local APIs provided by &lt;a href="https://github.com/localstack/localstack">LocalStack&lt;/a>.&lt;/p>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>The &lt;code>cdklocal&lt;/code> command line is published as an &lt;a href="https://www.npmjs.com/package/aws-cdk-local">npm library&lt;/a>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># Install globally&lt;/span>
+npm install -g aws-cdk-local aws-cdk
+&lt;span style="color:#8f5902;font-style:italic"># Verify it installed correctly&lt;/span>
+cdklocal --version
+&lt;span style="color:#8f5902;font-style:italic"># e.g. 1.65.5&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Local node_modules&lt;/h4>
+Using &lt;code>cdklocal&lt;/code> locally (e.g. within the &lt;code>node_modules&lt;/code> of your repo instead of globally installed) does not work at the moment for some setups, so make sure you install both &lt;code>aws-cdk&lt;/code> and &lt;code>aws-cdk-local&lt;/code> with the &lt;code>-G&lt;/code> flag.
+&lt;/div>
+&lt;h3 id="usage">Usage&lt;/h3>
+&lt;p>&lt;code>cdklocal&lt;/code> can be used as a drop-in replacement of where you would otherwise use &lt;code>cdk&lt;/code> when targeting the AWS Cloud.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cdklocal --help&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="configuration">Configuration&lt;/h3>
+&lt;p>The following environment variables can be configured:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>EDGE_PORT&lt;/code>: Port under which LocalStack edge service is accessible (default: &lt;code>4566&lt;/code>)&lt;/li>
+&lt;li>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>: Target host under which LocalStack edge service is accessible (default: &lt;code>localhost&lt;/code>)&lt;/li>
+&lt;li>&lt;code>LAMBDA_MOUNT_CODE&lt;/code>: Whether to use local Lambda code mounting (via setting &lt;code>__local__&lt;/code> S3 bucket name)&lt;/li>
+&lt;/ul>
+&lt;h3 id="example">Example&lt;/h3>
+&lt;p>Make sure that LocalStack is installed and successfully started with the required services before running the example&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:4566/health&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The CDK command line ships with a sample app generator to run a quick test for getting started.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># create sample app&lt;/span>
+mkdir /tmp/test&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87">cd&lt;/span> /tmp/test
+cdklocal init sample-app --language&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>javascript
+&lt;span style="color:#8f5902;font-style:italic"># deploy the sample app &lt;/span>
+cdklocal deploy
+&amp;gt; Do you wish to deploy these changes &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>y/n&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>? y
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once the deployment is done, you can inspect the created resources via the &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> command line&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-topics
+{
+&amp;#34;Topics&amp;#34;: [
+{
+&amp;#34;TopicArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:TestStack-TestTopic339EC197-79F43WWCCS4Z&amp;#34;
+}
+]
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="external-resources">External resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/aws-cdk-local">aws-cdk-local&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html">AWS CDK API reference&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/cdk/latest/guide/home.html">AWS CDK Developer Guide&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="community-resources">Community resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local">https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.youtube.com/watch?v=3_sqr0G9zb0">https://www.youtube.com/watch?v=3_sqr0G9zb0&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Integrations: Pulumi</title><link>/integrations/pulumi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/pulumi/</guid><description>
+&lt;img src="pulumi-logo.svg" width="600px" alt="Pulumi logo">
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Pulumi&amp;rsquo;s infrastructure-as-code SDK helps you create, deploy, and manage AWS containers, serverless functions, and infrastructure using familiar programming languages.
+The endpoints configuration environment of Pulumi allows us to easily point Pulumi to LocalStack.
+This guide follows the instructions from Pulumi&amp;rsquo;s &lt;a href="https://www.pulumi.com/docs/get-started/aws/">Get Started with Pulumi and AWS&lt;/a> guide, with additional explanations of how to make it work with LocalStack.&lt;/p>
+&lt;h2 id="quickstart">Quickstart&lt;/h2>
+&lt;h3 id="create-a-new-pulumi-stack">Create a new Pulumi stack&lt;/h3>
+&lt;p>First, run the following commands and follow the instructions in the CLI to create a new project.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>mkdir quickstart &amp;amp;&amp;amp; cd quickstart
+&lt;span class="command-prefix">$ &lt;/span>pulumi new aws-typescript&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We use the default configuration values:&lt;/p>
+&lt;pre>&lt;code>This command will walk you through creating a new Pulumi project.
+Enter a value or leave blank to accept the (default), and press &amp;lt;ENTER&amp;gt;.
+Press ^C at any time to quit.
+project name: (quickstart)
+project description: (A minimal AWS TypeScript Pulumi program)
+Created project 'quickstart'
+Please enter your desired stack name.
+To create a stack in an organization, use the format &amp;lt;org-name&amp;gt;/&amp;lt;stack-name&amp;gt; (e.g. `acmecorp/dev`).
+stack name: (dev)
+Created stack 'dev'
+aws:region: The AWS region to deploy into: (us-east-1)
+Saved config
+Installing dependencies...
+&lt;/code>&lt;/pre>&lt;p>This will create the following directory structure.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>tree -L 1
+.
+├── index.ts
+├── node_modules
+├── package.json
+├── package-lock.json
+├── Pulumi.dev.yaml
+├── Pulumi.yaml
+└── tsconfig.json&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Now edit your stack configuration &lt;code>Pulumi.dev.yaml&lt;/code> as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">config&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">aws:accessKey&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">test&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">aws:endpoints&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">acm&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">amplify&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">apigateway&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">applicationautoscaling&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">appsync&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">athena&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">autoscaling&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">batch&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cloudformation&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cloudfront&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cloudsearch&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cloudtrail&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cloudwatch&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cloudwatchevents&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cloudwatchlogs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">codecommit&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cognitoidentity&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cognitoidp&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">docdb&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">dynamodb&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ec2&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ecr&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ecs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">eks&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">elasticache&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">elasticbeanstalk&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">elb&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">emr&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">es&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">firehose&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">glacier&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">glue&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">iam&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">iot&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">kafka&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">kinesis&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">kinesisanalytics&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">kms&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambda&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">mediastore&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">neptune&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">organizations&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">qldb&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">rds&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">redshift&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">route53&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">s3&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">sagemaker&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">secretsmanager&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">servicediscovery&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ses&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">sns&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">sqs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ssm&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">stepfunctions&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">sts&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">swf&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">transfer&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">xray&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">http://localhost:4566&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">aws:s3ForcePathStyle&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;true&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">aws:secretKey&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">test&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">aws:skipCredentialsValidation&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;true&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">aws:skipRequestingAccountId&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;true&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="deploy-the-stack-to-localstack">Deploy the stack to LocalStack&lt;/h3>
+&lt;p>Make sure your LocalStack is running.
+For the example stack, the only required service is S3.
+After updating the stack configuration, and starting localstack, you can run:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>pulumi up&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>once the stack update was performed, you can run:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Where you should see something like&lt;/p>
+&lt;pre>&lt;code>2021-09-30 11:50:59 my-bucket-6c21027
+&lt;/code>&lt;/pre>&lt;h2 id="pulumilocal">Pulumilocal&lt;/h2>
+&lt;p>&lt;code>pulumilocal&lt;/code> is a wrapper script and drop-in replacement for the &lt;code>pulumi&lt;/code> CLI, that also provides commands to better interface Pulumi with LocalStack.
+You can find the source code repository here: &lt;a href="https://github.com/localstack/pulumi-local">https://github.com/localstack/pulumi-local&lt;/a>&lt;/p>
+&lt;h3 id="install">Install&lt;/h3>
+&lt;p>&lt;code>pulumilocal&lt;/code> requires that you already have the &lt;code>pulumi&lt;/code> command in your path.
+Then, simply run&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>pip install pulumi-local&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>then,&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">pulumi version
+pulumilocal version&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>should output the same value.&lt;/p>
+&lt;h3 id="use">Use&lt;/h3>
+&lt;p>Instead of manually editing a stack configuration as explained earlier, you can run&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>pulumilocal init&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>which will create a &lt;code>Pulumi.localstack.yaml&lt;/code> stack configuration, and initialize an additional stack named &lt;code>localstack&lt;/code>.&lt;/p>
+&lt;p>You can now run&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>pulumilocal up&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>to start the localstack stack.&lt;/p>
+&lt;h3 id="configuration">Configuration&lt;/h3>
+&lt;p>You can configure the integration between pulumi-local and LocalStack by adding these environment variables before running &lt;code>pulumilocal&lt;/code>:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Variable&lt;/th>
+&lt;th>Default value&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>PULUMI_CMD&lt;/code>&lt;/td>
+&lt;td>pulumi&lt;/td>
+&lt;td>The Pulumi command that is being delegated to&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>PULUMI_STACK_NAME&lt;/code>&lt;/td>
+&lt;td>localstack&lt;/td>
+&lt;td>The Pulumi stack name used for looking up the stack file (&lt;code>Pulumi.&amp;lt;stack&amp;gt;.yaml&lt;/code>)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>&lt;/td>
+&lt;td>localhost&lt;/td>
+&lt;td>The name of the host LocalStack is reachable at&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>EDGE_PORT&lt;/code>&lt;/td>
+&lt;td>4566&lt;/td>
+&lt;td>The port LocalStack is reachable at&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>USE_SSL&lt;/code>&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>A truthy (&lt;code>1&lt;/code>, &lt;code>true&lt;/code>) string that indicates whether to use SSL when connecting to LocalStack&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="community-resources">Community resources&lt;/h2>
+&lt;h3 id="articles">Articles&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://delitescere.medium.com/pulumi-and-localstack-beyond-the-basics-d993f3b94d17">Pulumi and LocalStack &amp;ndash; beyond the basics. 2021-08-26&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://overflowed.dev/blog/how-to-deploy-localstack-with-pulumi">How to deploy Localstack with Pulumi. 2020-09-22&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Aws: CloudFormation</title><link>/aws/cloudformation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/cloudformation/</guid><description>
+&lt;p>&lt;img src="cloudformation-logo.svg" alt="CloudFormation logo">&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>AWS CloudFormation is AWS&amp;rsquo;s primary Infrastructure-as-Code (IaC) service. It is used to declaratively define your architecture on the AWS cloud, including resources such as S3 Buckets, Lambda Functions, and much more.&lt;/p>
+&lt;p>CloudFormation &lt;strong>Stack&lt;/strong> templates are written in either YAML or JSON and can be written manually or generated by higher-level tools such as &lt;a href="/integrations/aws-cdk/">AWS CDK&lt;/a>, &lt;a href="/integrations/aws-sam/">AWS SAM&lt;/a>, &lt;a href="/integrations/pulumi/">Pulumi&lt;/a> or &lt;a href="/integrations/serverless-framework/">Serverless Framework&lt;/a>.&lt;/p>
+&lt;h2 id="quickstart">Quickstart&lt;/h2>
+&lt;p>In this quickstart guide we will deploy a simple CloudFormation stack consisting of a single S3 Bucket.&lt;/p>
+&lt;h3 id="prerequisites">Prerequisites&lt;/h3>
+&lt;p>Make sure you&amp;rsquo;ve set up &lt;a href="/integrations/aws-cli/#localstack-aws-cli-awslocal">&lt;code>awslocal&lt;/code>&lt;/a> and that you have a running LocalStack instance.&lt;/p>
+&lt;h3 id="deploy-a-cloudformation-stack-to-localstack">Deploy a CloudFormation Stack to LocalStack&lt;/h3>
+&lt;ul class="nav nav-tabs" id="tabs-5" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-YAML"
+id="tabs-5-0-tab" data-toggle="tab" href="#tabs-5-0" role="tab" onclick="handleClick(&amp;#34;YAML&amp;#34;);"
+aria-controls="tabs-5-0" aria-selected="true">
+YAML
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-JSON"
+id="tabs-5-1-tab" data-toggle="tab" href="#tabs-5-1" role="tab" onclick="handleClick(&amp;#34;JSON&amp;#34;);"
+aria-controls="tabs-5-1" aria-selected="false">
+JSON
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-5-content">&lt;div class="tab-pane fade show active"
+id="tabs-5-0" role="tabpanel" aria-labelled-by="tabs-5-0-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">Resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">LocalBucket&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Type&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">AWS::S3::Bucket&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Properties&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">BucketName&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">cfn-quickstart-bucket&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-5-1" role="tabpanel" aria-labelled-by="tabs-5-1-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resources&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;LocalBucket&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;AWS::S3::Bucket&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Properties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;BucketName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;cfn-quickstart-bucket&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;p>Use this code snippet and save the content in either &lt;code>cfn-quickstart-stack.yaml&lt;/code> or &lt;code>cfn-quickstart-stack.json&lt;/code> respectively.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># Deploy the bucket on LocalStack&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># The template file (ending with .yaml or .json) should contain the stack content from above&lt;/span>
+awslocal cloudformation deploy --stack-name cfn-quickstart-stack --template-file &lt;span style="color:#4e9a06">&amp;#34;./cfn-quickstart-stack.yaml&amp;#34;&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># Verify the bucket was created successfully&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># The output should include a bucket with the name cfn-quickstart-bucket&lt;/span>
+awslocal s3api list-buckets
+&lt;span style="color:#8f5902;font-style:italic"># Delete the stack (this will also delete the bucket)&lt;/span>
+awslocal cloudformation delete-stack --stack-name cfn-quickstart-stack
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Check out the official &lt;a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">AWS CloudFormation User Guide&lt;/a> for a general introduction to CloudFormation concepts and a more comprehensive introduction on how to write CloudFormation templates.&lt;/p>
+&lt;h2 id="support">Support&lt;/h2>
+&lt;p>We are constantly improving our feature coverage for CloudFormation, with new resource types getting added on an ongoing basis.
+Your feature requests help us prioritize which resources we need to prioritize, so please feel free to &lt;a href="https://github.com/localstack/localstack/issues/new?assignees=&amp;amp;labels=feature-request&amp;amp;template=feature-request.yml&amp;amp;title=feature+request%3A+%3Ctitle%3E">open a new GitHub issue&lt;/a> or add a &lt;em>thumbs up&lt;/em> to an existing issue.&lt;/p>
+&lt;h3 id="features">Features&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:left">Feature&lt;/th>
+&lt;th style="text-align:left">Support&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:left">Parameters&lt;/td>
+&lt;td style="text-align:left">Partial&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Dynamic References&lt;/td>
+&lt;td style="text-align:left">-&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Rules&lt;/td>
+&lt;td style="text-align:left">-&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Mappings&lt;/td>
+&lt;td style="text-align:left">&lt;strong>Full&lt;/strong>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Conditions&lt;/td>
+&lt;td style="text-align:left">&lt;strong>Full&lt;/strong>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Transform&lt;/td>
+&lt;td style="text-align:left">Partial (Only for &lt;code>AWS::Serverless-2016-10-31&lt;/code>)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Outputs&lt;/td>
+&lt;td style="text-align:left">&lt;strong>Full&lt;/strong>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Custom resources&lt;/td>
+&lt;td style="text-align:left">Partial&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Drift detection&lt;/td>
+&lt;td style="text-align:left">-&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Importing Resources&lt;/td>
+&lt;td style="text-align:left">-&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Change sets&lt;/td>
+&lt;td style="text-align:left">&lt;strong>Full&lt;/strong>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Nested stacks&lt;/td>
+&lt;td style="text-align:left">Partial&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">StackSets&lt;/td>
+&lt;td style="text-align:left">Partial&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>In general &lt;code>UPDATE&lt;/code> support for resources is currently limited.
+Prefer re-creating a stack rather than updating an existing one.&lt;/p>
+&lt;h3 id="resources-community-edition">Resources (Community Edition)&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>AWS::ApiGateway::Account&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::ApiKey&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::BasePathMapping&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::Deployment&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::DomainName&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::GatewayResponse&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::Method&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::Model&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::RequestValidator&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::Resource&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::RestApi&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::Stage&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::UsagePlan&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::UsagePlanKey&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CertificateManager::Certificate&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudFormation::Stack&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudWatch::Alarm&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudWatch::CompositeAlarm&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::DynamoDB::Table&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::Instance&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::InternetGateway&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::NatGateway&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::Route&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::RouteTable&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::SecurityGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::Subnet&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::SubnetRouteTableAssociation&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::VPC&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::VPCGatewayAttachment&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Elasticsearch::Domain&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Events::Connection&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Events::EventBus&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Events::EventBusPolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Events::Rule&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IAM::Group&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IAM::InstanceProfile&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IAM::ManagedPolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IAM::Policy&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IAM::Role&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IAM::User&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::KMS::Alias&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::KMS::Key&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Kinesis::Stream&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Kinesis::StreamConsumer&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::KinesisFirehose::DeliveryStream&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Lambda::EventInvokeConfig&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Lambda::EventSourceMapping&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Lambda::Function&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Lambda::Permission&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Lambda::Version&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Logs::LogGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Logs::SubscriptionFilter&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Redshift::Cluster&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ResourceGroups::Group&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Route53::RecordSet&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::S3::Bucket&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::S3::BucketPolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SNS::Subscription&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SNS::Topic&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SQS::Queue&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SQS::QueuePolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SSM::Parameter&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SecretsManager::ResourcePolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SecretsManager::RotationSchedule&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SecretsManager::Secret&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SecretsManager::SecretTargetAttachment&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::StepFunctions::Activity&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::StepFunctions::StateMachine&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h3 id="resources-pro--enterprise-edition">Resources (Pro / Enterprise Edition)&lt;/h3>
+&lt;p>The resources below are only available with a valid Pro license key.
+When running the Community Edition, any unsupported resources in the stack are ignored and will not get deployed.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>AWS::Amplify::App&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Amplify::Branch&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGateway::Authorizer&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::Api&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::Authorizer&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::Deployment&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::DomainName&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::Integration&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::IntegrationResponse&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::Route&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::RouteResponse&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::Stage&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApiGatewayV2::VpcLink&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::AppSync::ApiKey&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::AppSync::DataSource&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::AppSync::FunctionConfiguration&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::AppSync::GraphQLApi&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::AppSync::GraphQLSchema&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::AppSync::Resolver&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApplicationAutoScaling::ScalableTarget&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ApplicationAutoScaling::ScalingPolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Backup::BackupPlan&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CDK::Metadata&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudFormation::CustomResource&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudFront::CloudFrontOriginAccessIdentity&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudFront::Distribution&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudFront::Function&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudFront::OriginRequestPolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::CloudTrail::Trail&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Cognito::IdentityPool&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Cognito::IdentityPoolRoleAttachment&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Cognito::UserPool&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Cognito::UserPoolClient&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Cognito::UserPoolDomain&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Cognito::UserPoolGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Cognito::UserPoolIdentityProvider&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::EIP&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::SecurityGroupEgress&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::SecurityGroupIngress&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::SubnetRouteTableAssociation&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::EC2::VPCEndpoint&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ECR::Repository&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ECS::Cluster&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ECS::Service&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ECS::TaskDefinition&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElastiCache::CacheCluster&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElastiCache::ParameterGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElastiCache::ReplicationGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElastiCache::SecurityGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElastiCache::SubnetGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElasticLoadBalancingV2::Listener&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElasticLoadBalancingV2::ListenerRule&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElasticLoadBalancingV2::LoadBalancer&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ElasticLoadBalancingV2::TargetGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Glue::Classifier&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Glue::Crawler&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Glue::Database&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Glue::Job&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Glue::Table&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Glue::Trigger&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Glue::Workflow&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IoT::Certificate&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IoTAnalytics::Channel&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IoTAnalytics::Dataset&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IoTAnalytics::Datastore&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::IoTAnalytics::Pipeline&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::KinesisAnalytics::Application&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::KinesisAnalytics::ApplicationOutput&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Lambda::Alias&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Lambda::LayerVersion&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Lambda::LayerVersionPermission&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::RDS::DBCluster&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::RDS::DBInstance&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::RDS::DBParameterGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::RDS::DBSubnetGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Redshift::ClusterParameterGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Redshift::ClusterSecurityGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Redshift::ClusterSubnetGroup&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::Route53::HostedZone&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::SES::Template&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ServiceDiscovery::HttpNamespace&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ServiceDiscovery::PrivateDnsNamespace&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ServiceDiscovery::PublicDnsNamespace&lt;/code>&lt;/li>
+&lt;li>&lt;code>AWS::ServiceDiscovery::Service&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;!-- ## Community resources
+### Articles --></description></item></channel></rss>

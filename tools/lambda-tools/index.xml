@@ -1,0 +1,511 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Lambda Tools</title><link>/tools/lambda-tools/</link><description>Recent content in Lambda Tools on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tools/lambda-tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Tools: Hot Swapping</title><link>/tools/lambda-tools/hot-swapping/</link><pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate><guid>/tools/lambda-tools/hot-swapping/</guid><description>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Complexity&lt;/th>
+&lt;th>★☆☆☆☆&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Time to read&lt;/td>
+&lt;td>5 minutes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Edition&lt;/td>
+&lt;td>community/pro&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Platform&lt;/td>
+&lt;td>any&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Quickly iterating over Lambda function code can be quite cumbersome, as you need to deploy your function on every change.
+With LocalStack you can avoid this hurdle by mounting your code directly from the source folder.
+This way, any saved change inside your source file directly affects the already deployed Lambda function &amp;ndash; without any redeployment!&lt;/p>
+&lt;h2 id="covered-topics">Covered Topics&lt;/h2>
+&lt;p>&lt;a href="#application-configuration-examples">Application Configuration Examples&lt;/a>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="#code-hot-swapping-for-jvm-lambdas">Code hot-swapping for JVM Lambdas&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#code-hot-swapping-for-python-lambdas">Code hot-swapping for Python Lambdas&lt;/a>&lt;/li>
+&lt;li>Debugging Nodejs lambdas (under development)&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="#deployment-configuration-examples">Deployment Configuration Examples&lt;/a>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="#serverless-framework-configuration">Serverless Framework Configuration&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#aws-cloud-development-kit-cdk-configuration">AWS Cloud Development Kit (CDK) Configuration&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#terraform-configuration">Terraform Configuration&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="#useful-links">Useful Links&lt;/a>&lt;/p>
+&lt;h2 id="application-configuration-examples">Application Configuration Examples&lt;/h2>
+&lt;h3 id="code-hot-swapping-for-jvm-lambdas">Code hot-swapping for JVM Lambdas&lt;/h3>
+&lt;p>Since lambda containers lifetime is usually limited, regular hot code swapping
+techniques are not applicable here.&lt;/p>
+&lt;p>In our implementation, we will be watching for fs changes under the project folder,
+then build a &lt;code>FatJar&lt;/code>, unzip it, and mount it into the Lambda Docker Container.&lt;/p>
+&lt;p>We assume you already have:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://facebook.github.io/watchman/">watchman&lt;/a>&lt;/li>
+&lt;li>configured JVM project capable of building FatJars using your preferred build tool&lt;/li>
+&lt;/ul>
+&lt;p>First, create a watchman wrapper by using
+&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice/bin/watchman.sh">one of our examples&lt;/a>&lt;/p>
+&lt;p>Don&amp;rsquo;t forget to adjust permissions:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>chmod +x bin/watchman.sh&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Now configure your build tool to unzip the FatJar to some folder, which will be
+then mounted to LocalStack. We are using &lt;code>Gradle&lt;/code> build tool to unpack the
+&lt;code>FatJar&lt;/code> into the &lt;code>build/hot&lt;/code> folder:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-gradle" data-lang="gradle">&lt;span style="color:#8f5902;font-style:italic">// We assume you are using something like `Shadow` plugin that comes with `shadowJar` task
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">task&lt;/span> &lt;span style="color:#000">buildHot&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#f57900">type:&lt;/span> &lt;span style="color:#000">Copy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">from&lt;/span> &lt;span style="color:#000">zipTree&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;${project.buildDir}/libs/${project.name}-all.jar&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">into&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;${project.buildDir}/hot&amp;#34;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000">buildHot&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">dependsOn&lt;/span> &lt;span style="color:#000">shadowJar&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now run the following command to start watching your project in a hot-swapping mode:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>bin/watchman.sh src &amp;#34;./gradlew buildHot&amp;#34;&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Please note that you still need to configure your deployment tool to use
+local code mounting. Read the &amp;ldquo;&lt;a href="#deployment-configuration-examples">Deployment Configuration Examples&lt;/a>&amp;rdquo;
+for more information.&lt;/p>
+&lt;h3 id="code-hot-swapping-for-python-lambdas">Code hot-swapping for Python Lambdas&lt;/h3>
+&lt;p>We will show you how you can do this with a simple example function, taken directly from the
+&lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py">AWS Lambda developer guide&lt;/a>.&lt;/p>
+&lt;p>You can check out that code, or use your own lambda functions to follow along. To use the example just do:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cd /tmp
+&lt;span class="command-prefix">$ &lt;/span>git clone git@github.com:awsdocs/aws-doc-sdk-examples.git&lt;/code>&lt;/pre>&lt;/div>
+&lt;h4 id="starting-up-localstack">Starting up LocalStack&lt;/h4>
+&lt;p>First, we need to make sure we start LocalStack with the right configuration.
+This is as simple as setting &lt;code>LAMBDA_REMOTE_DOCKER&lt;/code>(see the &lt;a href="/localstack/configuration/#lambda">Configuration Documentation&lt;/a> for more information):&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>LAMBDA_REMOTE_DOCKER=0 localstack start&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Accordingly, if you are launching LocalStack via Docker or Docker Compose:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#8f5902;font-style:italic">#docker-compose.yml&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_REMOTE_DOCKER=false&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="creating-the-lambda-function">Creating the Lambda Function&lt;/h4>
+&lt;p>To create the Lambda function, you just need to take care of two things:&lt;/p>
+&lt;ol>
+&lt;li>Deploy via an S3 Bucket. You need to use the magic variable &lt;code>__local__&lt;/code> as the bucket.&lt;/li>
+&lt;li>Set the S3 key to the path of the directory your lambda function resides in.
+The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.&lt;/li>
+&lt;/ol>
+&lt;p>So, using the AWS example, this would be:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name my-cool-local-function \
+--code S3Bucket=&amp;#34;__local__&amp;#34;,S3Key=&amp;#34;/tmp/aws-doc-sdk-examples/python/example_code/lambda/boto_client_examples&amp;#34; \
+--handler lambda_handler_basic.lambda_handler \
+--runtime python3.8 \
+--role cool-stacklifter&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can also check out some of our &amp;ldquo;&lt;a href="#deployment-configuration-examples">Deployment Configuration Examples&lt;/a>&amp;rdquo;.&lt;/p>
+&lt;p>We can also quickly make sure that it works by invoking it with a simple payload:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;square&amp;#34;, &amp;#34;number&amp;#34;: 3}&amp;#39; output.txt&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The invocation returns itself returns:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;StatusCode&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">200&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;LogResult&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;ExecutedVersion&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;$LATEST&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>and &lt;code>output.txt&lt;/code> contains:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">9&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="changing-things-up">Changing things up&lt;/h4>
+&lt;p>Now, that we got everything up and running, the fun begins.
+Because the function is now mounted as a file in the executing container, any change that we save on the file will be there in an instant.&lt;/p>
+&lt;p>For example, we can now make a minor change to the API and replace the response in &lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py#L41">line 41&lt;/a> with the following:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python"> &lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;math_result&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Without redeploying or updating the function, the result of the previous request will look like this:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;math_result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">9&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Cool!&lt;/p>
+&lt;h4 id="usage-with-viertualenv">Usage with Viertualenv&lt;/h4>
+&lt;p>For Virtualenv-driven projects, all dependencies should be available under the same folder as the project itself.
+The easiest way to achieve that is to implement a watchman script that will be preparing a special folder for hot code swapping.&lt;/p>
+&lt;p>In our example, we are using &lt;code>build/hot&lt;/code> folder as a mounting point for our Lambdas.&lt;/p>
+&lt;p>First, create a watchman wrapper by using
+&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice/bin/watchman.sh">one of our examples&lt;/a>&lt;/p>
+&lt;p>After that, you can use the following &lt;code>Makefile&lt;/code> snippet, or implement another shell script to prepare the codebase for hot swapping:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-make" data-lang="make">&lt;span style="color:#000">VENV_DIR&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?=&lt;/span> .venv
+&lt;span style="color:#000">VENV_RUN&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?=&lt;/span> . &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>VENV_DIR&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/bin/activate
+&lt;span style="color:#000">BUILD_FOLDER&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?=&lt;/span> build
+&lt;span style="color:#000">PROJECT_MODULE_NAME&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> my_project_module
+&lt;span style="color:#000">build-hot&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>VENV_RUN&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+rm -rf &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> mkdir -p &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+cp -r &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>VENV_DIR&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/lib/python&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>shell python --version &lt;span style="color:#000;font-weight:bold">|&lt;/span> grep -oE &lt;span style="color:#4e9a06">&amp;#39;[0-9]\.[0-9]&amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/site-packages/* &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+cp -r &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>PROJECT_MODULE_NAME&lt;span style="color:#204a87;font-weight:bold">)&lt;/span> &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot/&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>PROJECT_MODULE_NAME&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+cp *.toml &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;span style="color:#000">watch&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>
+bin/watchman.sh &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>PROJECT_MODULE_NAME&lt;span style="color:#204a87;font-weight:bold">)&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;make build-hot&amp;#34;&lt;/span>
+&lt;span style="color:#000">.PHONY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">build&lt;/span>-&lt;span style="color:#000">hot&lt;/span> &lt;span style="color:#000">watch&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>As you can see, all we do here is just copying the project module &lt;code>PROJECT_MODULE_NAME&lt;/code>
+along with all dependencies into the &lt;code>build/hot&lt;/code> folder, which is then mounted to
+LocalStack&amp;rsquo;s Lambda container.&lt;/p>
+&lt;p>To run the example above run &lt;code>make watch&lt;/code>&lt;/p>
+&lt;h2 id="deployment-configuration-examples">Deployment Configuration Examples&lt;/h2>
+&lt;h3 id="serverless-framework-configuration">Serverless Framework Configuration&lt;/h3>
+&lt;p>Enable local code mounting&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">custom&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambda&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">mountCode&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#8f5902;font-style:italic"># or if you need to enable code mounting only for specific stages&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">custom&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">stages&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">local&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">mountCode&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">testing&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">mountCode&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">stages&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">local&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">testing&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambda&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">mountCode&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">${self:custom.stages.${opt:stage}.mountCode}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Pass &lt;code>LAMBDA_MOUNT_CWD&lt;/code> env var with path to the built code directory
+(in our case to the folder with unzipped FatJar):&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>LAMBDA_MOUNT_CWD=$(pwd)/build/hot serverless deploy --stage local&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="aws-cloud-development-kit-cdk-configuration">AWS Cloud Development Kit (CDK) Configuration&lt;/h3>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.cdkstack&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.util.UUID&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.core.Construct&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.core.Duration&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.core.Stack&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.lambda.*&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.s3.Bucket&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">STAGE&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">System&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getenv&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;STAGE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">LAMBDA_MOUNT_CWD&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">System&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getenv&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;LAMBDA_MOUNT_CWD&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">const&lt;/span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">JAR_PATH&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;build/libs/localstack-sampleproject-all.jar&amp;#34;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">ApplicationStack&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">parent&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Construct&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Stack&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">parent&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">name&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">init&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">lambdaCodeSource&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">buildCodeSource&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000">SingletonFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Builder&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ExampleFunctionOne&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">code&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">lambdaCodeSource&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;org.localstack.sampleproject.api.LambdaApi&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">mapOf&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;FUNCTION_NAME&amp;#34;&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;functionOne&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">timeout&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Duration&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">seconds&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAVA_11&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">uuid&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">UUID&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">randomUUID&lt;/span>&lt;span style="color:#000;font-weight:bold">().&lt;/span>&lt;span style="color:#000">toString&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">/**
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> * Mount code for hot-reloading when STAGE=local
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> */&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">buildCodeSource&lt;/span>&lt;span style="color:#000;font-weight:bold">():&lt;/span> &lt;span style="color:#000">Code&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">bucket&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">Bucket&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">fromBucketName&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;HotReloadingBucket&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;__local__&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">Code&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">fromBucket&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">bucket&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">LAMBDA_MOUNT_CWD&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">Code&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">fromAsset&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>Then to bootstrap and deploy the stack run the following shell script&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>STAGE=local &amp;amp;&amp;amp; LAMBDA_MOUNT_CWD=$(pwd)/build/hot &amp;amp;&amp;amp;
+cdklocal bootstrap aws://000000000000/$(AWS_REGION) &amp;amp;&amp;amp; \
+cdklocal deploy&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="terraform-configuration">Terraform Configuration&lt;/h3>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">ariable&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;STAGE&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> type&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">string&lt;/span>
+&lt;span style="color:#000"> default&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span>
+}
+&lt;span style="color:#204a87;font-weight:bold">variable&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;AWS_REGION&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> type&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">string&lt;/span>
+&lt;span style="color:#000"> default&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+}
+&lt;span style="color:#204a87;font-weight:bold">variable&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;JAR_PATH&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> type&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">string&lt;/span>
+&lt;span style="color:#000"> default&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;build/libs/localstack-sampleproject-all.jar&amp;#34;&lt;/span>
+}
+&lt;span style="color:#204a87;font-weight:bold">variable&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;LAMBDA_MOUNT_CWD&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> type&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">string&lt;/span>
+}
+&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test_access_key&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test_secret_key&amp;#34;&lt;/span>
+&lt;span style="color:#000"> region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#204a87;font-weight:bold">AWS_REGION&lt;/span>
+&lt;span style="color:#000"> s3_force_path_style&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_credentials_validation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_metadata_api_check&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_requesting_account_id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">endpoints&lt;/span> {
+&lt;span style="color:#000"> apigateway&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34; ? &amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+&lt;span style="color:#000"> cloudformation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34; ? &amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+&lt;span style="color:#000"> cloudwatch&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34; ? &amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+&lt;span style="color:#000"> cloudwatchevents&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34; ? &amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+&lt;span style="color:#000"> iam&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34; ? &amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+&lt;span style="color:#000"> lambda&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34; ? &amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+&lt;span style="color:#000"> s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34; ? &amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+}
+}
+&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_iam_role&amp;#34; &amp;#34;lambda-execution-role&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> name&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;lambda-execution-role&amp;#34;&lt;/span>
+&lt;span style="color:#000"> assume_role_policy&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#a40000">&amp;lt;&amp;lt;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">EOF&lt;/span>
+{
+&lt;span style="color:#4e9a06">&amp;#34;Version&amp;#34;: &amp;#34;2012-10-17&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;Statement&amp;#34;&lt;/span>&lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+{
+&lt;span style="color:#4e9a06">&amp;#34;Action&amp;#34;: &amp;#34;sts:AssumeRole&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;Principal&amp;#34;&lt;/span>&lt;span style="color:#a40000">:&lt;/span> {
+&lt;span style="color:#4e9a06">&amp;#34;Service&amp;#34;: &amp;#34;lambda.amazonaws.com&amp;#34;&lt;/span>
+}&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;Sid&amp;#34;: &amp;#34;&amp;#34;&lt;/span>
+}
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+}
+&lt;span style="color:#204a87;font-weight:bold">EOF&lt;/span>
+}
+&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_lambda_function&amp;#34; &amp;#34;exampleFunctionOne&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> s3_bucket&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34; ? &amp;#34;__local__&amp;#34;&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+&lt;span style="color:#000"> s3_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#204a87;font-weight:bold">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#204a87;font-weight:bold">LAMBDA_MOUNT_CWD&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>
+&lt;span style="color:#000"> filename&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> var.STAGE&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span> &lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#204a87;font-weight:bold">JAR_PATH&lt;/span>
+&lt;span style="color:#000"> function_name&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ExampleFunctionOne&amp;#34;&lt;/span>
+&lt;span style="color:#000"> role&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">aws_iam_role&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambda&lt;/span>&lt;span style="color:#a40000">-&lt;/span>&lt;span style="color:#204a87;font-weight:bold">execution&lt;/span>&lt;span style="color:#a40000">-&lt;/span>&lt;span style="color:#204a87;font-weight:bold">role&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#204a87;font-weight:bold">arn&lt;/span>
+&lt;span style="color:#000"> handler&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.localstack.sampleproject.api.LambdaApi&amp;#34;&lt;/span>
+&lt;span style="color:#000"> runtime&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;java11&amp;#34;&lt;/span>
+&lt;span style="color:#000"> timeout&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>
+&lt;span style="color:#000"> source_code_hash&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">filebase64sha256&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#204a87;font-weight:bold">JAR_PATH&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span> {
+&lt;span style="color:#000"> variables&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> {
+&lt;span style="color:#000"> FUNCTION_NAME&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;functionOne&amp;#34;&lt;/span>
+}
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>terraform init &amp;amp;&amp;amp; \
+terraform apply -var &amp;#34;STAGE=local&amp;#34; -var &amp;#34;LAMBDA_MOUNT_CWD=$(pwd)/build/hot&amp;#34;&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="useful-links">Useful Links&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice">Spring Cloud Function on LocalStack (Kotlin JVM)&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Tools: Remote debugging</title><link>/tools/lambda-tools/debugging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/lambda-tools/debugging/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>This guide covers the remote debugging of Lambda functions with &lt;a href="https://code.visualstudio.com/">Visual Studio Code&lt;/a> or IntelliJ IDEA as an IDE.
+For a simple working example of this feature, check out &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">our samples repository&lt;/a>.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Complexity&lt;/th>
+&lt;th>★☆☆☆☆&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Time to read&lt;/td>
+&lt;td>5 minutes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Edition&lt;/td>
+&lt;td>community/pro&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Platform&lt;/td>
+&lt;td>any&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>More examples and tooling support for local Lambda debugging (including support for other IDEs like PyCharm) is coming soon - stay tuned!&lt;/p>
+&lt;h3 id="covered-topics">Covered Topics&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="#debugging-python-lambdas">Debugging Python lambdas&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#debugging-jvm-lambdas">Debugging JVM lambdas&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#useful-links">Useful Links&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="debugging-python-lambdas">Debugging Python lambdas&lt;/h2>
+&lt;p>Lambda functions debugging used to be a difficult task. LocalStack changes that
+with the same local code mounting functionality that also helps you
+to &lt;a href="/tools/lambda-tools/hot-swapping/">iterate quickly over your function code&lt;/a>.&lt;/p>
+&lt;p>For a simple working example of this feature, you can refer to
+&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">our samples&lt;/a>.
+There, the necessary code fragments for enabling debugging are already present.&lt;/p>
+&lt;h3 id="configure-localstack-for-remote-python-debugging">Configure LocalStack for remote Python debugging&lt;/h3>
+&lt;p>First, make sure that LocalStack is started with the following configuration (see the &lt;a href="/localstack/configuration/#lambda">Configuration docs&lt;/a> for more information):
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>LAMBDA_REMOTE_DOCKER=0 \
+LAMBDA_DOCKER_FLAGS=&amp;#39;-p 19891:19891&amp;#39; \
+DEBUG=1 localstack start&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h3 id="preparing-your-code">Preparing your code&lt;/h3>
+&lt;p>For providing the debug server, we use &lt;a href="https://github.com/microsoft/debugpy">&lt;code>debugpy&lt;/code>&lt;/a>
+inside the Lambda function code. In general, all you need is the following code
+fragment placed inside your handler code:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">debugpy&lt;/span>
+&lt;span style="color:#000">debugpy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">listen&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">19891&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">debugpy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">wait_for_client&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># blocks execution until client is attached&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>For extra convenience, you can use the &lt;code>wait_for_debug_client&lt;/code> function from our example.
+It implements the above-mentioned start of the debug server and also adds an automatic cancellation of the wait task if the debug client (i.e. VSCode) doesn&amp;rsquo;t connect.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">wait_for_debug_client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">timeout&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">15&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&amp;#34;Utility function to enable debugging with Visual Studio Code&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">time&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">threading&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">sys&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">glob&lt;/span>
+&lt;span style="color:#000">sys&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">path&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">append&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">glob&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">glob&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;.venv/lib/python*/site-packages&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)[&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">debugpy&lt;/span>
+&lt;span style="color:#000">debugpy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">listen&lt;/span>&lt;span style="color:#000;font-weight:bold">((&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;0.0.0.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">19891&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">threading&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Thread&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;span style="color:#000">daemon&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#3465a4">True&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">run&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#3465a4">self&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;span style="color:#000">time&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">sleep&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">timeout&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Canceling debug wait task ...&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">debugpy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">wait_for_client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">cancel&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">start&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Waiting for client to attach debugger ...&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">debugpy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">wait_for_client&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="creating-the-lambda-function">Creating the Lambda function&lt;/h3>
+&lt;p>To create the Lambda function, you just need to take care of two things:&lt;/p>
+&lt;ol>
+&lt;li>Deploy the function via an S3 Bucket. You need to use the magic variable &lt;code>__local__&lt;/code> as the bucket name.&lt;/li>
+&lt;li>Set the S3 key to the path of the directory your lambda function resides in.
+The handler is then referenced by the filename of your lambda code and the function in that code that should be invoked.&lt;/li>
+&lt;/ol>
+&lt;p>So, in our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">example&lt;/a>, this would be:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name my-cool-local-function \
+--code S3Bucket=&amp;#34;__local__&amp;#34;,S3Key=&amp;#34;$(pwd)/&amp;#34; \
+--handler handler.handler \
+--runtime python3.8 \
+--role cool-stacklifter&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can quickly verify that it works by invoking it with a simple payload:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function --payload &amp;#39;{&amp;#34;message&amp;#34;: &amp;#34;Hello from LocalStack!&amp;#34;}&amp;#39; output.txt&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="configuring-visual-studio-code-for-remote-python-debugging">Configuring Visual Studio Code for remote Python debugging&lt;/h3>
+&lt;p>For attaching the debug server from Visual Studio Code, you need to add a run configuration.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0.2.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;configurations&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Python: Remote Attach&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;python&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;request&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;attach&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;connect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;host&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;port&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">19891&lt;/span>
+&lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;pathMappings&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;localRoot&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;${workspaceFolder}&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;remoteRoot&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;.&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>With our function from above you have about 15 seconds (the timeout is configurable) to switch to Visual Studio Code and run the preconfigured remote debugger.
+Make sure to set a breakpoint in the Lambda handler code first, which can then later be inspected.&lt;/p>
+&lt;p>The screenshot below shows the triggered breakpoint with our &lt;code>'Hello from LocalStack!'&lt;/code> in the variable inspection view:&lt;/p>
+&lt;p>&lt;img src="vscode-debugging-py-1.png" alt="Visual Studio Code debugging">&lt;/p>
+&lt;h3 id="limitations">Limitations&lt;/h3>
+&lt;p>Due to the ports used by the debugger, you can currently only debug one Lambda at a time.
+Multiple concurrent invocations will not work.&lt;/p>
+&lt;h2 id="debugging-jvm-lambdas">Debugging JVM lambdas&lt;/h2>
+&lt;h3 id="configure-localstack-for-remote-jvm-debugging">Configure LocalStack for remote JVM debugging&lt;/h3>
+&lt;p>Set &lt;code>LAMBDA_JAVA_OPTS&lt;/code> with &lt;code>jdwp&lt;/code> settings and expose the debug port
+(you can use any other port of your choice):&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#8f5902;font-style:italic">#docker-compose.yml&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5050&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_DOCKER_FLAGS=-p 127.0.0.1:5050:5050&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note the &lt;code>suspend=y&lt;/code> option here, it will delay code execution until debugger is
+attached to debgger server. If you want to change that simply switch to &lt;code>suspend=n&lt;/code>.&lt;/p>
+&lt;h3 id="configuring-intellij-idea-for-remote-jvm-debugging">Configuring IntelliJ IDEA for remote JVM debugging&lt;/h3>
+&lt;p>Open the &lt;code>Run/Debug Configurations&lt;/code> window and create a new &lt;code>Shell Script&lt;/code> with
+the following content:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#204a87;font-weight:bold">while&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[[&lt;/span> -z &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>docker ps &lt;span style="color:#000;font-weight:bold">|&lt;/span> grep :5050&lt;span style="color:#204a87;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">]]&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> sleep 1&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">done&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="inteliji-debugging-jvm-1.png" alt="Run/Debug Configurations">&lt;/p>
+&lt;p>This shell script should simplify the process a bit since the debugger server is not
+immediately available (only once lambda container is up).&lt;/p>
+&lt;p>Then create a new &lt;code>Remote JVM Debug&lt;/code> configuration and use the script from
+above as a &lt;code>Before launch&lt;/code> target:&lt;/p>
+&lt;p>&lt;img src="inteliji-debugging-jvm-2.png" alt="Run/Debug Configurations">&lt;/p>
+&lt;p>Now to debug your lambda function, simply click on the &lt;code>Debug&lt;/code> icon with
+&lt;code>Remote JVM on LS Debug&lt;/code> configuration selected, and then invoke your
+lambda function.&lt;/p>
+&lt;h3 id="configuring-visual-studio-code-for-remote-jvm-debugging">Configuring Visual Studio Code for remote JVM debugging&lt;/h3>
+&lt;p>Make sure you installed the following extensions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://marketplace.visualstudio.com/items?itemName=redhat.java">Language Support for Java(TM) by Red Hat&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug">Debugger for Java&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Add a new task by creating/modifying the &lt;code>.vscode/tasks.json&lt;/code> file:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2.0.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;tasks&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Wait Remote Debugger Server&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;shell&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;command&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;while [[ -z $(docker ps | grep :5050) ]]; do sleep 1; done; sleep 1;&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Create a new &lt;code>launch.json&lt;/code> file or edit an existing one from the &lt;code>Run and Debug&lt;/code> tab,
+then add the following configuration:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0.2.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;configurations&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;java&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Remote JVM on LS Debug&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;projectRoot&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;${workspaceFolder}&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;request&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;attach&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;hostName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;preLaunchTask&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Wait Remote Debugger Server&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;port&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">5050&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now to debug your lambda function, click on the &lt;code>Debug&lt;/code> icon with
+&lt;code>Remote JVM on LS Debug&lt;/code> configuration selected, and then invoke your
+lambda function.&lt;/p>
+&lt;h2 id="resources">Resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice">Spring Cloud Function on LocalStack (Kotlin JVM)&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

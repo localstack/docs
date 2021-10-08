@@ -1,0 +1,1213 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – serverless-framework</title><link>/tags/serverless-framework/</link><description>Recent content in serverless-framework on Docs</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 28 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/serverless-framework/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: Serverless Framework</title><link>/integrations/serverless-framework/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/serverless-framework/</guid><description>
+&lt;img src="serverless-logo.png" width="600px" alt="Serverless logo">
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>This guide explains how to integrate LocalStack with the &lt;a href="https://www.serverless.com/">Serverless Framework&lt;/a>.
+Although it probably requires a few code changes, integrating LocalStack with the Serverless Framework is fairly straightforward.&lt;/p>
+&lt;p>In particular, the setup consists of the following two steps.&lt;/p>
+&lt;ol>
+&lt;li>Installing and configuring the &lt;a href="https://github.com/localstack/serverless-localstack">Serverless-LocalStack plugin&lt;/a>.&lt;/li>
+&lt;li>Adjusting AWS endpoints in Lambda functions.&lt;/li>
+&lt;/ol>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;p>This guide assumes that you have the following tools installed.&lt;/p>
+&lt;ul>
+&lt;li>LocalStack (&lt;a href="https://localstack.cloud/docs/getting-started/installation/">Install&lt;/a>)&lt;/li>
+&lt;li>Serverless (&lt;a href="https://www.serverless.com/framework/docs/getting-started/">Install&lt;/a>)&lt;/li>
+&lt;/ul>
+&lt;p>It also assumes that you already have a Serverless app set up consisting of a couple of Lambda functions and a &lt;code>serverless.yml&lt;/code> file similar to the following. An example Serverless app integrated with LocalStack can be found here: &lt;a href="https://github.com/localstack/serverless-python-rest-api-with-dynamodb">&lt;i class="fab fa-github">&lt;/i> Simple REST API using the Serverless Framework and LocalStack&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">service&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">my-service&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">frameworkVersion&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&amp;gt;=1.1.0 &amp;lt;=2.50.0&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">python3.8&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">DYNAMODB_TABLE&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">${self:service}-${opt:stage, self:provider.stage}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">iamRoleStatements&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">Effect&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Allow&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Action&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">dynamodb:Query&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Resource&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">functions&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">create&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">todos/create.create&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">events&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">http&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">path&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">todos&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">method&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">post&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cors&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Resources&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">TodosDynamoDbTable&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Type&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;AWS::DynamoDB::Table&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">DeletionPolicy&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Retain&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">Properties&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">TableName&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">${self:provider.environment.DYNAMODB_TABLE}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="install-and-configure-serverless-localstack-plugin">Install and configure Serverless-LocalStack Plugin&lt;/h2>
+&lt;p>To install the plugin, execute the following command in the root of your project.
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>npm install -D serverless-localstack&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Next, set up the plugin by adding the following properties to &lt;code>serverless.yml&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">plugins&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">serverless-localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">custom&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">stages&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">local&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This sets up Serverless to use the LocalStack plugin but only for the stage &amp;ldquo;local&amp;rdquo;.
+Next, you need make minor adjustments to your function code in order to make your application work no matter if it is deployed on AWS or LocalStack.&lt;/p>
+&lt;h2 id="adjust-aws-endpoints-in-lambda-functions">Adjust AWS endpoints in Lambda functions&lt;/h2>
+&lt;p>You are likely using an AWS SDK (such as &lt;a href="https://github.com/boto/boto3">Boto3&lt;/a> for Python) in your Lambda functions to interact with other AWS services such as DynamoDB.&lt;/p>
+&lt;p>For example, in Python, your code to set up a connection to DynamoDB may look like this:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;span style="color:#000">dynamodb&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">resource&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;dynamodb&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>By default, this call attempts to create a connection via the usual AWS endpoints. However, when running services in LocalStack, we need to make sure, our applications creates a connection via the LocalStack endpoint instead.&lt;/p>
+&lt;p>Usually, all of LocalStack&amp;rsquo;s services are available via a specific port on localhost (e.g. &lt;code>localhost:4566&lt;/code>). However, this endpoint only works when accessing LocalStack from outside its Docker runtime.&lt;/p>
+&lt;p>Since the Lambda functions execute within the LocalStack Docker container, Lambda functions cannot access other services via the usual localhost endpoint.&lt;/p>
+&lt;p>Instead, LocalStack provides a special environment variable &lt;code>LOCALSTACK_HOSTNAME&lt;/code> which contains the internal endpoint of the LocalStack services from within its runtime environment.&lt;/p>
+&lt;p>Hence, you need to configure the Lambda functions to use the &lt;code>LOCALSTACK_HOSTNAME&lt;/code> endpoint when accessing other AWS services in LocalStack.&lt;/p>
+&lt;p>In Python, this may look something like. The code detects if it is running in LocalStack by checking if the &lt;code>LOCALSTACK_HOSTNAME&lt;/code> variable exists and then configures the endpoint URL accordingly.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;LOCALSTACK_HOSTNAME&amp;#39;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">in&lt;/span> &lt;span style="color:#000">os&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">environ&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>
+&lt;span style="color:#000">dynamodb_endpoint&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;http://&lt;/span>&lt;span style="color:#4e9a06">%s&lt;/span>&lt;span style="color:#4e9a06">:4566&amp;#39;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">%&lt;/span> &lt;span style="color:#000">os&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">environ&lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;LOCALSTACK_HOSTNAME&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000">dynamodb&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">resource&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;dynamodb&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">dynamodb_endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">else&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>
+&lt;span style="color:#000">dynamodb&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">resource&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;dynamodb&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;p>Ideally, we want to make LocalStack&amp;rsquo;s Lambda execution environment &amp;ldquo;LocalStack-agnostic&amp;rdquo;, so that you are not required to adjust endpoints in your function code anymore. You want to help us with that? &lt;a href="https://localstack-community.slack.com">Drop us a line in Slack&lt;/a>!.&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="deploying-to-localstack">Deploying to LocalStack&lt;/h2>
+&lt;p>You can now deploy your Serverless service to LocalStack.&lt;/p>
+&lt;p>First, start LocalStack by running
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>localstack start&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Then deploy the endpoint by running
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>serverless deploy --stage local&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>The expected result should be similar to:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">Serverless: Packaging service...
+Serverless: Excluding development dependencies...
+Serverless: Creating Stack...
+Serverless: Checking Stack create progress...
+........
+Serverless: Stack create finished...
+Serverless: Uploading CloudFormation file to S3...
+Serverless: Uploading artifacts...
+Serverless: Uploading service my-service.zip file to S3 &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>38.3 KB&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>...
+Serverless: Validating template...
+Serverless: Skipping template validation: Unsupported in Localstack
+Serverless: Updating Stack...
+Serverless: Checking Stack update progress...
+.....................................
+Serverless: Stack update finished...
+Service Information
+service: my-service
+stage: &lt;span style="color:#204a87">local&lt;/span>
+region: us-east-1
+stack: my-service-local
+resources: &lt;span style="color:#0000cf;font-weight:bold">35&lt;/span>
+api keys:
+None
+endpoints:
+http://localhost:4566/restapis/XXXXXXXXXX/local/_user_request_
+functions:
+...
+layers:
+None
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Use the displayed endpoint &lt;code>http://localhost:4566/restapis/XXXXXXXXXX/local/_user_request_/my/custom/endpoint&lt;/code> to make requests to the deployed service.&lt;/p>
+&lt;h2 id="advanced-topics">Advanced topics&lt;/h2>
+&lt;h3 id="local-code-mounting-for-lambda-functions">Local code mounting for lambda functions&lt;/h3>
+&lt;p>serverless-localstack supports a feature for lambda functions that allows local code mounting:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#8f5902;font-style:italic"># serverless.yml&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">custom&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># ...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambda&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">mountCode&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When this flag is set, the lambda code will be mounted into the container running the function directly from your local directory instead of packaging and uploading it.&lt;/p>
+&lt;p>If you want to use this feature together with the local lambda executor (&lt;code>LAMBDA_EXECUTOR=local&lt;/code>), you need to make sure the container running localstack itself can find the code.
+To do that, you need to manually mount the code into the localstack container, here is a snippet using a &lt;code>docker-compose.yml&lt;/code> with the essentials.
+Where &lt;code>/absolute/path/to/todos&lt;/code> is the path on your local machine that points to the &lt;code>todos/&lt;/code> directory containing the lambda code from our previous example.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#8f5902;font-style:italic"># docker-compose.yml to start localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># ...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_EXECUTOR=local&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_REMOTE_DOCKER=0&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># ...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># ...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/absolute/path/to/todos:/absolute/path/to/todos&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="ran-into-trouble">Ran into trouble?&lt;/h2>
+&lt;p>If you run into any issues or problems while integrating LocalStack with your Serverless app, please &lt;a href="https://github.com/localstack/serverless-localstack/issues">submit an issue&lt;/a>.&lt;/p></description></item><item><title>Integrations: Spring Cloud Function</title><link>/integrations/spring-cloud-function/</link><pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate><guid>/integrations/spring-cloud-function/</guid><description>
+&lt;p>&lt;img src="spring-logo.svg" width="600px" alt="Spring logo">&lt;br />&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>In this guide, you will learn how to use LocalStack to test
+your serverless applications powered by Spring Cloud Function framework.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Complexity&lt;/th>
+&lt;th>★★★☆☆&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Time to read&lt;/td>
+&lt;td>30 minutes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Edition&lt;/td>
+&lt;td>community [pro]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Platform&lt;/td>
+&lt;td>x64_86 (-aarch64)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">aarch64 warning&lt;/h4>
+Some features and services described in this document may not work properly on
+aarch64, including Apple&amp;rsquo;s M1 silicon
+&lt;/div>
+&lt;h2 id="covered-topics">Covered Topics&lt;/h2>
+&lt;p>We will create a new Rest API application that will route requests
+to a Cloud Function using &lt;code>functionRouter&lt;/code> and routing expressions.&lt;/p>
+&lt;p>The primary language for the application is Kotlin powered by
+&lt;a href="https://gradle.org">Gradle&lt;/a> build tool, but the described concepts would work for
+any other JVM setup.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="#limitations">Limitations&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#setting-up-an-application">Setting up an Application&lt;/a>
+&lt;ul>
+&lt;li>&lt;a href="#starting-a-new-project">Starting a new Project&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#project-settings">Project Settings&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#configure-log4j2-for-aws-lambda">Configure Log4J2 for AWS Lambda&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#configure-spring-cloud-function-for-rest-api">Configure Spring Cloud Function for Rest API&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#define-an-application-class">Define an Application class&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#configure-jackson">Configure Jackson&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#define-logging-utility">Define Logging Utility&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#add-requestresponse-utilities">Add Request/Response utilities&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#creating-a-sample-model--dto">Creating a sample Model / DTO&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#creating-rest-api-endpoints">Creating Rest API endpoints&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#cold-start-and-warmup-pro">Cold Start and Warmup (PRO)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#creating-other-lambda-handlers">Creating other lambda Handlers&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="#settings-up-deployment">Setting up Deployment&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#testing-debugging-and-code-hot-swapping">Testing, Debugging and Code hot-swapping&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#useful-links">Useful links&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="limitations">Limitations&lt;/h3>
+&lt;p>This document demonstrates the usage of the Spring Cloud Function framework
+together with LocalStack.
+It does not cover some of the application-specific topics,
+like 404 error handling, or parametrized routing, that you need to consider
+when building production-ready applications.&lt;/p>
+&lt;h2 id="setting-up-an-application">Setting up an Application&lt;/h2>
+&lt;p>We recommend using &lt;a href="https://www.jenv.be">jenv&lt;/a> to manage multiple Java runtimes.&lt;/p>
+&lt;h3 id="starting-a-new-project">Starting a new Project&lt;/h3>
+&lt;p>Please follow the instructions from the official &lt;a href="https://gradle.org">website&lt;/a> to
+install the Gradle build tool on your machine.&lt;/p>
+&lt;p>Then run the following command to initialize a new Gradle project&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>gradle init&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After initialization, you will find the Gradle wrapper script &lt;code>gradlew&lt;/code>.
+From now on, we will use the wrapper instead of the globally installed Gradle binary:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>./gradlew &amp;lt;command&amp;gt;&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="project-settings">Project Settings&lt;/h3>
+&lt;p>Let&amp;rsquo;s give our project a name:
+open &lt;code>settings.gradle&lt;/code>, and adjust the autogenerated name to something meaningful.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-gradle" data-lang="gradle">&lt;span style="color:#000">rootProject&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">name&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;localstack-sampleproject&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now we need to define our dependencies.
+Here&amp;rsquo;s a list of what we will be using in our project.&lt;/p>
+&lt;p>Gradle plugins:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.gradle.org/current/userguide/java_plugin.html">java&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kotlinlang.org/docs/gradle.html#targeting-the-jvm">kotlin jvm&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kotlinlang.org/docs/all-open-plugin.html#spring-support">kotlin spring plugin&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/">spring boot plugin&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/#managing-dependencies">spring dependency management plugin&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/johnrengelman/shadow">shadow plugin&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Dependencies:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib">kotlin stdlib&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-function-web">spring cloud starter function web&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-function-adapter-aws">spring cloud function adapter for aws&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-log4j2">lambda log4j2&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-events">lambda events&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core">jackson core&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind">jackson databind&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations">jackson annotations&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-kotlin">jackson module kotlin&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>In order to deploy our application to AWS, we need to build so-called &amp;ldquo;fat jar&amp;rdquo;
+which contains all application dependencies.
+To that end, we use the &amp;ldquo;Shadow Jar&amp;rdquo; plugin.&lt;/p>
+&lt;p>Here&amp;rsquo;s our final &lt;code>build.gradle&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">56
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">57
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">58
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">59
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">60
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">61
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">62
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">63
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">64
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">65
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">66
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">67
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">68
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">69
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">73
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">74
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">75
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">76
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-gradle" data-lang="gradle">&lt;span style="color:#000">plugins&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;java&amp;#34;&lt;/span>
+&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.jetbrains.kotlin.jvm&amp;#34;&lt;/span> &lt;span style="color:#000">version&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;1.5.31&amp;#39;&lt;/span>
+&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.jetbrains.kotlin.plugin.spring&amp;#34;&lt;/span> &lt;span style="color:#000">version&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;1.5.31&amp;#39;&lt;/span>
+&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;org.springframework.boot&amp;#39;&lt;/span> &lt;span style="color:#000">version&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;2.5.5&amp;#39;&lt;/span>
+&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;io.spring.dependency-management&amp;#34;&lt;/span> &lt;span style="color:#000">version&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;1.0.11.RELEASE&amp;#39;&lt;/span>
+&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;com.github.johnrengelman.shadow&amp;#34;&lt;/span> &lt;span style="color:#000">version&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;7.0.0&amp;#39;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000">group&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;org.localstack.sampleproject&amp;#39;&lt;/span>
+&lt;span style="color:#000">sourceCompatibility&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">11&lt;/span>
+&lt;span style="color:#000">tasks&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">withType&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">JavaCompile&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">options&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">encoding&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;UTF-8&amp;#39;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000">repositories&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">mavenCentral&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000">maven&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span> &lt;span style="color:#000">url&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;https://plugins.gradle.org/m2/&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000">ext&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">springCloudVersion&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;3.1.4&amp;#34;&lt;/span>
+&lt;span style="color:#000">awsLambdaLog4jVersion&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1.2.0&amp;#34;&lt;/span>
+&lt;span style="color:#000">awsLambdaJavaEventsVersion&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;3.10.0&amp;#34;&lt;/span>
+&lt;span style="color:#000">jacksonVersion&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2.12.5&amp;#34;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000">dependencies&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.jetbrains.kotlin:kotlin-stdlib&amp;#34;&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.springframework.cloud:spring-cloud-starter-function-web:$springCloudVersion&amp;#34;&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.springframework.cloud:spring-cloud-function-adapter-aws:$springCloudVersion&amp;#34;&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;com.amazonaws:aws-lambda-java-log4j2:$awsLambdaLog4jVersion&amp;#34;&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;com.amazonaws:aws-lambda-java-events:$awsLambdaJavaEventsVersion&amp;#34;&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;com.fasterxml.jackson.core:jackson-core:$jacksonVersion&amp;#34;&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;com.fasterxml.jackson.core:jackson-databind:$jacksonVersion&amp;#34;&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion&amp;#34;&lt;/span>
+&lt;span style="color:#000">implementation&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion&amp;#34;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.github.jengelman.gradle.plugins.shadow.transformers.*&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Configure the main class
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">jar&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">manifest&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">attributes&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;Start-Class&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;org.localstack.sampleproject.Application&amp;#39;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Build a fatjar (with dependencies) for aws lambda
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">shadowJar&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">transform&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Log4j2PluginsCacheFileTransformer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">dependencies&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">exclude&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>
+&lt;span style="color:#000">dependency&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;org.springframework.cloud:spring-cloud-function-web:${springCloudVersion}&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Required for Spring
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">mergeServiceFiles&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000">append&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;META-INF/spring.handlers&amp;#39;&lt;/span>
+&lt;span style="color:#000">append&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;META-INF/spring.schemas&amp;#39;&lt;/span>
+&lt;span style="color:#000">append&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;META-INF/spring.tooling&amp;#39;&lt;/span>
+&lt;span style="color:#000">transform&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">PropertiesFileTransformer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">paths&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;META-INF/spring.factories&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;span style="color:#000">mergeStrategy&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;append&amp;#34;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000">assemble&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">dependsOn&lt;/span> &lt;span style="color:#000">shadowJar&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>Please note that we will be using &lt;code>org.localstack.sampleproject&lt;/code> as a
+working namespace, and &lt;code>org.localstack.sampleproject.Application&lt;/code> as an
+entry class for our application.
+You can adjust it for your needs, but don&amp;rsquo;t forget to change your package names accordingly.&lt;/p>
+&lt;h3 id="configure-log4j2-for-aws-lambda">Configure Log4J2 for AWS Lambda&lt;/h3>
+&lt;p>Spring framework comes with Log4J logger, so all we need to do is to configure
+it for AWS Lambda.
+In this project, we are following
+&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/java-logging.html#java-wt-logging-using-log4j2.8">official documentation&lt;/a>
+to setup up &lt;code>src/main/resources/log4j2.xml&lt;/code> content.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-xml" data-lang="xml">&lt;span style="color:#8f5902;font-style:italic">&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;Configuration&lt;/span> &lt;span style="color:#c4a000">packages=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;com.amazonaws.services.lambda.runtime.log4j2.LambdaAppender&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;Appenders&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;Lambda&lt;/span> &lt;span style="color:#c4a000">name=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Lambda&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;PatternLayout&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;pattern&amp;gt;&lt;/span>%d{yyyy-MM-dd HH:mm:ss} %X{AWSRequestId} %-5p %c{1}:%L - %m%n&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/pattern&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/PatternLayout&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/Lambda&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/Appenders&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;Loggers&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;Root&lt;/span> &lt;span style="color:#c4a000">level=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;debug&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;AppenderRef&lt;/span> &lt;span style="color:#c4a000">ref=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Lambda&amp;#34;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">/&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/Root&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/Loggers&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/Configuration&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="configure-spring-cloud-function-for-rest-api">Configure Spring Cloud Function for Rest API&lt;/h3>
+&lt;p>Spring Function comes with &lt;code>functionRouter&lt;/code> that can route
+requests to different &lt;code>Beans&lt;/code> based on predefined routing expressions.
+Let&amp;rsquo;s configure it to lookup our function Beans by HTTP method and path, create a
+new &lt;code>application.properties&lt;/code> file under &lt;code>src/main/resources/application.properties&lt;/code>
+with the following content:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-env" data-lang="env">spring.main.banner-mode&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>off
+spring.cloud.function.definition&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>functionRouter
+spring.cloud.function.routing-expression&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>headers&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;httpMethod&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>.concat&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39; &amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>.concat&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>headers&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;path&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">])&lt;/span>
+spring.cloud.function.scan.packages&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>org.localstack.sampleproject.api
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once configured, you can use &lt;code>FunctionInvoker&lt;/code> as a handler for your Rest API lambda function.
+It will automatically pick up the configuration we have just set.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#000">org&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">springframework&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">cloud&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">function&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">adapter&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">aws&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">FunctionInvoker&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">::&lt;/span>&lt;span style="color:#000">handleRequest&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="define-an-application-class">Define an Application class&lt;/h3>
+&lt;p>Now our application needs an entry-class, the one we referenced earlier.
+Let&amp;rsquo;s add it under &lt;code>src/main/kotlin/org/localstack/sampleproject/Application.kt&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.boot.autoconfigure.SpringBootApplication&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@SpringBootApplication&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">Application&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">main&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">args&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Array&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Do nothing unless you use a custom runtime
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;h3 id="configure-jackson">Configure Jackson&lt;/h3>
+&lt;p>In our sample project we are using a JSON format for reqeusts and responses.
+The easiest way to get started with JSON is to use the Jackson library.
+Let&amp;rsquo;s configure it by creating a new configuration class &lt;code>JacksonConfiguration.kt&lt;/code> under
+&lt;code>src/main/kotlin/org/localstack/sampleproject/config&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.config&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.fasterxml.jackson.annotation.JsonInclude&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.fasterxml.jackson.databind.*&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.context.annotation.Bean&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.context.annotation.Configuration&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.context.annotation.Primary&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.http.converter.json.Jackson2ObjectMapperBuilder&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.text.DateFormat&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Configuration&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">JacksonConfiguration&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">jacksonBuilder&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">Jackson2ObjectMapperBuilder&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">dateFormat&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">DateFormat&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getDateInstance&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">DateFormat&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">FULL&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Primary&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">():&lt;/span> &lt;span style="color:#000">ObjectMapper&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">ObjectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">().&lt;/span>&lt;span style="color:#000">apply&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">configure&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">DeserializationFeature&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">FAIL_ON_UNKNOWN_PROPERTIES&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">configure&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">SerializationFeature&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">FAIL_ON_EMPTY_BEANS&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">configure&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">SerializationFeature&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">WRITE_ENUMS_USING_TO_STRING&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">configure&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">SerializationFeature&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">WRITE_DATES_AS_TIMESTAMPS&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">configure&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">SerializationFeature&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ORDER_MAP_ENTRIES_BY_KEYS&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">configure&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">MapperFeature&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">SORT_PROPERTIES_ALPHABETICALLY&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">setSerializationInclusion&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">JsonInclude&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Include&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">NON_NULL&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">findAndRegisterModules&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>In applications where you need support for multiple formats or a format
+different from JSON (for example, SOAP/XML applications) simply use multiple
+beans with corresponding
+&lt;a href="https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml">ObjectMapper&lt;/a>
+implementations.&lt;/p>
+&lt;h3 id="define-logging-utility">Define Logging Utility&lt;/h3>
+&lt;p>Let&amp;rsquo;s create a small logging utility to simplify interactions with the logger&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.apache.logging.log4j.LogManager&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.apache.logging.log4j.Logger&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">open&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">Logger&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Logger&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">LogManager&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getLogger&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">javaClass&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">enclosingClass&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;h3 id="add-requestresponse-utilities">Add Request/Response utilities&lt;/h3>
+&lt;p>To reduce the amount of boilerplate code, we are going to introduce three
+utility functions for our Rest API communications:&lt;/p>
+&lt;ul>
+&lt;li>to build regular json response&lt;/li>
+&lt;li>to build error json response&lt;/li>
+&lt;li>to parse request payload using ObjectMapper.
+Note that ObjectMapper does not necessarily need to be a JSON only.
+It could also be XML or any other Mapper extended from standard ObjectMapper.
+Your application may even support multiple protocols with different request/response formats at once.&lt;/li>
+&lt;/ul>
+&lt;p>Let&amp;rsquo;s define utility functions to to build API gateway responses:&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.messaging.Message&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.messaging.support.MessageBuilder&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">data&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">ResponseError&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">message&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>&lt;span style="color:#000">buildJsonResponse&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">data&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">code&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Int&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">200&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span> &lt;span style="color:#000">Message&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">MessageBuilder&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">withPayload&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">data&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">setHeader&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Content-Type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;application/json&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">setHeader&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Access-Control-Allow-Origin&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;*&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">setHeader&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Access-Control-Allow-Methods&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;OPTIONS,POST,GET&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">setHeader&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;statusCode&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">code&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">buildJsonErrorResponse&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">message&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">code&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Int&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">500&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span>
+&lt;span style="color:#000">buildJsonResponse&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">ResponseError&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">message&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span> &lt;span style="color:#000">code&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>And now a utility function to process API Gateway requests:&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.fasterxml.jackson.databind.ObjectMapper&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.messaging.Message&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.util.function.Function&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span>&lt;span style="color:#000">apiGatewayFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">ObjectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000">callable&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">message&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Message&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">APIGatewayProxyRequestEvent&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&amp;gt;&lt;/span> &lt;span style="color:#000">Message&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;*&amp;gt;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">):&lt;/span> &lt;span style="color:#000">Function&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">Message&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;,&lt;/span> &lt;span style="color:#000">Message&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;*&amp;gt;&amp;gt;&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">Function&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">input&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&amp;gt;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">try&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">context&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">readValue&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">writeValueAsString&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">input&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">headers&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000">APIGatewayProxyRequestEvent&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">::&lt;/span>&lt;span style="color:#204a87;font-weight:bold">class&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">java&lt;/span>
+&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span>&lt;span style="color:#5c35cc;font-weight:bold">@Function&lt;/span> &lt;span style="color:#000">callable&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">input&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span> &lt;span style="color:#204a87;font-weight:bold">catch&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">e&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Throwable&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">message&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">e&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">message&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?.&lt;/span>&lt;span style="color:#000">replace&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">\n&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?.&lt;/span>&lt;span style="color:#000">replace&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">\&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#39;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span>&lt;span style="color:#5c35cc;font-weight:bold">@Function&lt;/span> &lt;span style="color:#000">buildJsonErrorResponse&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">message&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">500&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;h3 id="creating-a-sample-model--dto">Creating a sample Model / DTO&lt;/h3>
+&lt;p>To transfer data from requests into something more meaningful than JSON strings
+(and back) you will be using a lot of Models and Data Transfer Objects (DTOs).
+It&amp;rsquo;s time to define our first one.&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.model&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.fasterxml.jackson.annotation.JsonIgnore&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">data&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">SampleModel&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">id&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Int&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@JsonIgnore&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">jsonIgnoredProperty&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">?&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;h3 id="creating-rest-api-endpoints">Creating Rest API endpoints&lt;/h3>
+&lt;p>Let&amp;rsquo;s add our first endpoints to simulate CRUD operations on previously
+defined &lt;code>SampleModel&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.api&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.fasterxml.jackson.databind.ObjectMapper&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.model.SampleModel&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util.Logger&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util.apiGatewayFunction&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util.buildJsonResponse&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.context.annotation.Bean&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.stereotype.Component&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">SAMPLE_RESPONSE&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">mutableListOf&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;span style="color:#000">SampleModel&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">name&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Sample #1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000">SampleModel&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">name&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Sample #2&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Component&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">SampleApi&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">ObjectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">companion&lt;/span> &lt;span style="color:#204a87;font-weight:bold">object&lt;/span> &lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Logger&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;POST /v1/entities&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">createSampleEntity&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">apiGatewayFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">SampleModel&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;(&lt;/span>&lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">input&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&amp;gt;&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;calling POST /v1/entities&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">SAMPLE_RESPONSE&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">add&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">input&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">payload&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">buildJsonResponse&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">input&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">payload&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">code&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">201&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;GET /v1/entities&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">listSampleEntities&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">apiGatewayFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">ByteArray&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;(&lt;/span>&lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">input&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&amp;gt;&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;calling GET /v1/entities&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">buildJsonResponse&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;hello world&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;GET /v1/entities/get&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">getSampleEntity&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">apiGatewayFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">ByteArray&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;(&lt;/span>&lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">input&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&amp;gt;&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;calling GET /v1/entities/get&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">desiredId&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">queryStringParameters&lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">!!&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">toInt&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000">buildJsonResponse&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">SAMPLE_RESPONSE&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">find&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#204a87;font-weight:bold">it&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#000">desiredId&lt;/span> &lt;span style="color:#000;font-weight:bold">})&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>Note how we used Spring&amp;rsquo;s dependency injection to inject &lt;code>ObjectMapper&lt;/code> Bean we
+configured earlier.&lt;/p>
+&lt;h4 id="cold-start-and-warmup-pro">Cold Start and Warmup (PRO)&lt;/h4>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Pro Features&lt;/h4>
+Please note that &lt;em>EVENTS&lt;/em> is a LocalStack PRO feature and is not supported
+in Community version
+&lt;/div>
+&lt;p>We know Java&amp;rsquo;s cold start is always a pain.
+To minimize this pain, we will try to define a pre-warming endpoint within the Rest API.
+By invoking this function every 5-10 mins we can make sure Rest API lambda is always kept in a pre-warmed state.&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.api&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.fasterxml.jackson.databind.ObjectMapper&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util.apiGatewayFunction&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util.buildJsonResponse&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.context.annotation.Bean&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.stereotype.Component&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Component&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">ScheduleApi&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">ObjectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;SCHEDULE warmup&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">warmup&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">apiGatewayFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">ByteArray&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;(&lt;/span>&lt;span style="color:#000">objectMapper&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">input&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">-&amp;gt;&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// execute scheduled events
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">buildJsonResponse&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;OK&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>Now you can add a scheduled event to the Rest API lambda function with the following synthetic payload (to simulate API gateway request).
+This way, you can define any other scheduled events, but we recommend using pure lambda functions.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;httpMethod&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;SCHEDULE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">&amp;#34;path&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;warmup&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>As you may have guessed, this input will get mapped to the &lt;code>SCHEDULE warmup&lt;/code> Bean.&lt;/p>
+&lt;blockquote>
+&lt;p>For more information, please read the &amp;ldquo;Setting up Deployment&amp;rdquo; section.&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="creating-other-lambda-handlers">Creating other lambda Handlers&lt;/h3>
+&lt;p>HTTP requests are not the only thing our Spring Function-powered lambdas can do.
+We can still define pure lambda functions, DynamoDB stream handlers, and so on.&lt;/p>
+&lt;p>Below you can find a little example of few lambda functions grouped in &lt;code>LambdaApi&lt;/code> class.&lt;/p>
+&lt;div class="highlight">&lt;div style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37
+&lt;/span>&lt;span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.api&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">com.amazonaws.services.lambda.runtime.events.DynamodbEvent&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.model.SampleModel&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.localstack.sampleproject.util.Logger&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.context.annotation.Bean&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">org.springframework.stereotype.Component&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.util.function.Function&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Component&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">LambdaApi&lt;/span> &lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">SpringBootStreamHandler&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">companion&lt;/span> &lt;span style="color:#204a87;font-weight:bold">object&lt;/span> &lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Logger&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">functionOne&lt;/span>&lt;span style="color:#000;font-weight:bold">():&lt;/span> &lt;span style="color:#000">Function&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">Any&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">Function&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;calling function one&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span>&lt;span style="color:#5c35cc;font-weight:bold">@Function&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ONE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">functionTwo&lt;/span>&lt;span style="color:#000;font-weight:bold">():&lt;/span> &lt;span style="color:#000">Function&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">SampleModel&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">SampleModel&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">Function&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;calling function two&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span>&lt;span style="color:#5c35cc;font-weight:bold">@Function&lt;/span> &lt;span style="color:#204a87;font-weight:bold">it&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#5c35cc;font-weight:bold">@Bean&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">dynamoDbStreamHandlerExample&lt;/span>&lt;span style="color:#000;font-weight:bold">():&lt;/span> &lt;span style="color:#000">Function&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">DynamodbEvent&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">Unit&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">Function&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">LOGGER&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;handling DynamoDB stream event&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>
+&lt;p>As you can see from the example above, we are using &lt;code>SpringBootStreamHandler&lt;/code>
+class as a base that takes care of the application bootstrapping process and
+AWS requests transformation.&lt;/p>
+&lt;p>Now &lt;code>org.localstack.sampleproject.api.LambdaApi&lt;/code> can be used as a handler for
+your lambda function along with &lt;code>FUNCTION_NAME&lt;/code> environmental variable with
+the function bean name.&lt;/p>
+&lt;p>You may have noticed we used &lt;code>DynamodbEvent&lt;/code> in the last example.
+The &lt;code>Lambda-Events&lt;/code> package comes with a set of predefined wrappers that you can use to handle different lifecycle events from AWS.&lt;/p>
+&lt;h2 id="setting-up-deployment">Setting up Deployment&lt;/h2>
+&lt;p>Check our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice">sample project&lt;/a>
+for usage examples.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-14" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-Serverless"
+id="tabs-14-0-tab" data-toggle="tab" href="#tabs-14-0" role="tab" onclick="handleClick(&amp;#34;Serverless&amp;#34;);"
+aria-controls="tabs-14-0" aria-selected="true">
+Serverless
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-AWS-CDK"
+id="tabs-14-1-tab" data-toggle="tab" href="#tabs-14-1" role="tab" onclick="handleClick(&amp;#34;AWS-CDK&amp;#34;);"
+aria-controls="tabs-14-1" aria-selected="false">
+AWS CDK
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-Terraform"
+id="tabs-14-2-tab" data-toggle="tab" href="#tabs-14-2" role="tab" onclick="handleClick(&amp;#34;Terraform&amp;#34;);"
+aria-controls="tabs-14-2" aria-selected="false">
+Terraform
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-14-content">&lt;div class="tab-pane fade show active"
+id="tabs-14-0" role="tabpanel" aria-labelled-by="tabs-14-0-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">service&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack-sampleproject-serverless&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">java11&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">stage&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">${opt:stage}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">region&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">us-west-1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambdaHashingVersion&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">20201221&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">deploymentBucket&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">deployment-bucket&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">package&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">artifact&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">build/libs/localstack-sampleproject-all.jar&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">plugins&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">serverless-localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">serverless-deployment-bucket&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">custom&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">stages&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">local&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">functions&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">http_proxy&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">timeout&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">events&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">http&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">path&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">/{proxy+}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">method&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">ANY&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">cors&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Please, note that events are a LocalStack PRO feature&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">schedule&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">rate&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">rate(10 minutes)&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">enabled&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">input&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">httpMethod&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">SCHEDULE&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">path&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">warmup&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambda_helloOne&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">timeout&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">org.localstack.sampleproject.api.LambdaApi&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">FUNCTION_NAME&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">functionOne&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambda_helloTwo&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">timeout&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">org.localstack.sampleproject.api.LambdaApi&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">FUNCTION_NAME&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">functionTwo&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-14-1" role="tabpanel" aria-labelled-by="tabs-14-1-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">org.localstack.cdkstack&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">java.util.UUID&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.core.Construct&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.core.Duration&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.core.Stack&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.apigateway.CorsOptions&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.apigateway.LambdaRestApi&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.apigateway.StageOptions&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.events.Rule&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.events.RuleTargetInput&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.events.Schedule&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.events.targets.LambdaFunction&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.lambda.*&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.lambda.Function&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">software.amazon.awscdk.services.s3.Bucket&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">STAGE&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">System&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getenv&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;STAGE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">const&lt;/span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">JAR_PATH&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;../../build/libs/localstack-sampleproject-all.jar&amp;#34;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">ApplicationStack&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">parent&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Construct&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">Stack&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">parent&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">name&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">init&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">restApiLambda&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">Function&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Builder&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;RestApiFunction&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">code&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Code&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">fromAsset&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;org.springframework.cloud.function.adapter.aws.FunctionInvoker&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">timeout&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Duration&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">seconds&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAVA_11&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">tracing&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Tracing&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ACTIVE&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">corsOptions&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">CorsOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">builder&lt;/span>&lt;span style="color:#000;font-weight:bold">().&lt;/span>&lt;span style="color:#000">allowOrigins&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">listOf&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;*&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)).&lt;/span>&lt;span style="color:#000">allowMethods&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">listOf&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;*&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)).&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000">LambdaRestApi&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Builder&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ExampleRestApi&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">proxy&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">restApiName&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;ExampleRestApi&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">defaultCorsPreflightOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">corsOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">deployOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">StageOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Builder&lt;/span>&lt;span style="color:#000;font-weight:bold">().&lt;/span>&lt;span style="color:#000">stageName&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">STAGE&lt;/span>&lt;span style="color:#000;font-weight:bold">).&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">restApiLambda&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">warmupRule&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">Rule&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Builder&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;WarmupRule&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">schedule&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Schedule&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">rate&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Duration&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">minutes&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">)))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">warmupTarget&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">LambdaFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Builder&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">restApiLambda&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">RuleTargetInput&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">fromObject&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">mapOf&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;httpMethod&amp;#34;&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;SCHEDULE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;path&amp;#34;&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;warmup&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Please note that events is a LocalStack PRO feature
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">warmupRule&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">addTarget&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">warmupTarget&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">SingletonFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Builder&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ExampleFunctionOne&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">code&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Code&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">fromAsset&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;org.localstack.sampleproject.api.LambdaApi&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">mapOf&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;FUNCTION_NAME&amp;#34;&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;functionOne&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">timeout&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Duration&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">seconds&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAVA_11&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">uuid&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">UUID&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">randomUUID&lt;/span>&lt;span style="color:#000;font-weight:bold">().&lt;/span>&lt;span style="color:#000">toString&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000">SingletonFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Builder&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">this&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ExampleFunctionTwo&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">code&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Code&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">fromAsset&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;org.localstack.sampleproject.api.LambdaApi&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">mapOf&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;FUNCTION_NAME&amp;#34;&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;functionTwo&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">timeout&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Duration&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">seconds&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>&lt;span style="color:#000;font-weight:bold">))&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Runtime&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAVA_11&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">uuid&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">UUID&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">randomUUID&lt;/span>&lt;span style="color:#000;font-weight:bold">().&lt;/span>&lt;span style="color:#000">toString&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
+&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">build&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-14-2" role="tabpanel" aria-labelled-by="tabs-14-2-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-tf" data-lang="tf">&lt;span style="color:#204a87;font-weight:bold">variable&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;STAGE&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">type&lt;/span> = &lt;span style="color:#000">string&lt;/span>
+&lt;span style="color:#c4a000">default&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">variable&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;AWS_REGION&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">type&lt;/span> = &lt;span style="color:#000">string&lt;/span>
+&lt;span style="color:#c4a000">default&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">variable&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;JAR_PATH&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">type&lt;/span> = &lt;span style="color:#000">string&lt;/span>
+&lt;span style="color:#c4a000">default&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;build/libs/localstack-sampleproject-all.jar&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">access_key&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;test_access_key&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">secret_key&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;test_secret_key&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">region&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">AWS_REGION&lt;/span>
+&lt;span style="color:#c4a000">s3_force_path_style&lt;/span> = &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#c4a000">skip_credentials_validation&lt;/span> = &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#c4a000">skip_metadata_api_check&lt;/span> = &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#c4a000">skip_requesting_account_id&lt;/span> = &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000">endpoints&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">apigateway&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">STAGE&lt;/span> =&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">null&lt;/span>
+&lt;span style="color:#c4a000">cloudformation&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">STAGE&lt;/span> =&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">null&lt;/span>
+&lt;span style="color:#c4a000">cloudwatch&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">STAGE&lt;/span> =&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">null&lt;/span>
+&lt;span style="color:#c4a000">cloudwatchevents&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">STAGE&lt;/span> =&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">null&lt;/span>
+&lt;span style="color:#c4a000">iam&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">STAGE&lt;/span> =&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">null&lt;/span>
+&lt;span style="color:#c4a000">lambda&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">STAGE&lt;/span> =&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">null&lt;/span>
+&lt;span style="color:#c4a000">s3&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">STAGE&lt;/span> =&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;local&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">null&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_iam_role&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;lambda-execution-role&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">name&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;lambda-execution-role&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">assume_role_policy&lt;/span> = &lt;span style="color:#ce5c00;font-weight:bold">&amp;lt;&amp;lt;EOF&lt;/span>&lt;span style="color:#4e9a06">
+&lt;/span>&lt;span style="color:#4e9a06">{
+&lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;Version&amp;#34;: &amp;#34;2012-10-17&amp;#34;,
+&lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;Statement&amp;#34;: [
+&lt;/span>&lt;span style="color:#4e9a06"> {
+&lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;Action&amp;#34;: &amp;#34;sts:AssumeRole&amp;#34;,
+&lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;Principal&amp;#34;: {
+&lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;Service&amp;#34;: &amp;#34;lambda.amazonaws.com&amp;#34;
+&lt;/span>&lt;span style="color:#4e9a06"> },
+&lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;,
+&lt;/span>&lt;span style="color:#4e9a06"> &amp;#34;Sid&amp;#34;: &amp;#34;&amp;#34;
+&lt;/span>&lt;span style="color:#4e9a06"> }
+&lt;/span>&lt;span style="color:#4e9a06"> ]
+&lt;/span>&lt;span style="color:#4e9a06">}
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">EOF&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_lambda_function&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;restApiLambdaFunction&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">filename&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>
+&lt;span style="color:#c4a000">function_name&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;RestApiFunction&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">role&lt;/span> = &lt;span style="color:#000">aws_iam_role&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">lambda&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">execution&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">role&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">arn&lt;/span>
+&lt;span style="color:#c4a000">handler&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;org.springframework.cloud.function.adapter.aws.FunctionInvoker&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">runtime&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;java11&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">timeout&lt;/span> = &lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>
+&lt;span style="color:#c4a000">source_code_hash&lt;/span> = &lt;span style="color:#204a87">filebase64sha256&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_api_gateway_rest_api&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;rest-api&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">name&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;ExampleRestApi&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_api_gateway_resource&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;proxy&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">rest_api_id&lt;/span> = &lt;span style="color:#000">aws_api_gateway_rest_api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">rest&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">id&lt;/span>
+&lt;span style="color:#c4a000">parent_id&lt;/span> = &lt;span style="color:#000">aws_api_gateway_rest_api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">rest&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">root_resource_id&lt;/span>
+&lt;span style="color:#c4a000">path_part&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;{proxy+}&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_api_gateway_method&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;proxy&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">rest_api_id&lt;/span> = &lt;span style="color:#000">aws_api_gateway_rest_api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">rest&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">id&lt;/span>
+&lt;span style="color:#c4a000">resource_id&lt;/span> = &lt;span style="color:#000">aws_api_gateway_resource&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">proxy&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">id&lt;/span>
+&lt;span style="color:#c4a000">http_method&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;ANY&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">authorization&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;NONE&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_api_gateway_integration&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;proxy&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">rest_api_id&lt;/span> = &lt;span style="color:#000">aws_api_gateway_rest_api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">rest&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">id&lt;/span>
+&lt;span style="color:#c4a000">resource_id&lt;/span> = &lt;span style="color:#000">aws_api_gateway_method&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">proxy&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">resource_id&lt;/span>
+&lt;span style="color:#c4a000">http_method&lt;/span> = &lt;span style="color:#000">aws_api_gateway_method&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">proxy&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">http_method&lt;/span>
+&lt;span style="color:#c4a000">integration_http_method&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;POST&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">type&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;AWS_PROXY&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">uri&lt;/span> = &lt;span style="color:#000">aws_lambda_function&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">restApiLambdaFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">invoke_arn&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_api_gateway_deployment&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;rest-api-deployment&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">depends_on&lt;/span> = &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#000">aws_api_gateway_integration&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">proxy&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;span style="color:#c4a000">rest_api_id&lt;/span> = &lt;span style="color:#000">aws_api_gateway_rest_api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">rest&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">api&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">id&lt;/span>
+&lt;span style="color:#c4a000">stage_name&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">STAGE&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_cloudwatch_event_rule&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;warmup&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">name&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;warmup-event-rule&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">schedule_expression&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;rate(10 minutes)&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_cloudwatch_event_target&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;warmup&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">target_id&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;warmup&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">rule&lt;/span> = &lt;span style="color:#000">aws_cloudwatch_event_rule&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">warmup&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">name&lt;/span>
+&lt;span style="color:#c4a000">arn&lt;/span> = &lt;span style="color:#000">aws_lambda_function&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">restApiLambdaFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">arn&lt;/span>
+&lt;span style="color:#c4a000">input&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;{&lt;/span>&lt;span style="color:#a40000">\&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">httpMethod&lt;/span>&lt;span style="color:#a40000">\&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;: &lt;/span>&lt;span style="color:#a40000">\&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">SCHEDULE&lt;/span>&lt;span style="color:#a40000">\&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;, &lt;/span>&lt;span style="color:#a40000">\&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">path&lt;/span>&lt;span style="color:#a40000">\&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;: &lt;/span>&lt;span style="color:#a40000">\&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000">warmup&lt;/span>&lt;span style="color:#a40000">\&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;}&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_lambda_permission&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;warmup-permission&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">statement_id&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;AllowExecutionFromCloudWatch&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">action&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;lambda:InvokeFunction&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">function_name&lt;/span> = &lt;span style="color:#000">aws_lambda_function&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">restApiLambdaFunction&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">function_name&lt;/span>
+&lt;span style="color:#c4a000">principal&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;events.amazonaws.com&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">source_arn&lt;/span> = &lt;span style="color:#000">aws_cloudwatch_event_rule&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">warmup&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">arn&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_lambda_function&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;exampleFunctionOne&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">filename&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>
+&lt;span style="color:#c4a000">function_name&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;ExampleFunctionOne&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">role&lt;/span> = &lt;span style="color:#000">aws_iam_role&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">lambda&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">execution&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">role&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">arn&lt;/span>
+&lt;span style="color:#c4a000">handler&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;org.localstack.sampleproject.api.LambdaApi&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">runtime&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;java11&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">timeout&lt;/span> = &lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>
+&lt;span style="color:#c4a000">source_code_hash&lt;/span> = &lt;span style="color:#204a87">filebase64sha256&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">environment&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">variables&lt;/span> = &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">FUNCTION_NAME&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;functionOne&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">
+&lt;/span>&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_lambda_function&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;exampleFunctionTwo&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">filename&lt;/span> = &lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>
+&lt;span style="color:#c4a000">function_name&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;ExampleFunctionTwo&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">role&lt;/span> = &lt;span style="color:#000">aws_iam_role&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">lambda&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">execution&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">role&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">arn&lt;/span>
+&lt;span style="color:#c4a000">handler&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;org.localstack.sampleproject.api.LambdaApi&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">runtime&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;java11&amp;#34;&lt;/span>
+&lt;span style="color:#c4a000">timeout&lt;/span> = &lt;span style="color:#0000cf;font-weight:bold">30&lt;/span>
+&lt;span style="color:#c4a000">source_code_hash&lt;/span> = &lt;span style="color:#204a87">filebase64sha256&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87">var&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">JAR_PATH&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">environment&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">variables&lt;/span> = &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#c4a000">FUNCTION_NAME&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;functionTwo&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h2 id="testing-debugging-and-code-hot-swapping">Testing, Debugging and Code hot-swapping&lt;/h2>
+&lt;p>Please read our &lt;a href="docs/localstack-tools/lambda-tools/">Lambda Tools&lt;/a>
+documentation to learn more about testing, debugging and code hot-swapping
+for JVM Lambda functions.&lt;/p>
+&lt;h2 id="useful-links">Useful Links&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice">Spring Cloud Function on LocalStack (Kotlin JVM)&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

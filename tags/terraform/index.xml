@@ -1,0 +1,111 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – terraform</title><link>/tags/terraform/</link><description>Recent content in terraform on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/terraform/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: Terraform</title><link>/integrations/terraform/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/terraform/</guid><description>
+&lt;img src="logo-terraform-main.svg" width="600px" alt="terraform logo">
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>Terraform allows you to automate the management of AWS resources such as containers, lambda functions and so on by declaring them in the HashiCorp Configuration Language (HCL).
+On this page we discuss how Terraform and LocalStack can be used together.
+If you are adapting an existing configuration, you might be able to skip certain steps at your own discretion.&lt;/p>
+&lt;h2 id="example">Example&lt;/h2>
+&lt;p>If you have not done so yet, &lt;a href="https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started">install Terraform&lt;/a>.&lt;/p>
+&lt;p>Using Terraform with LocalStack requires little extra configuration.
+Apart from some information Terraform expects there are basically only two things to take care of in the configuration.&lt;/p>
+&lt;p>Before we start changing the configuration, create and change into a new directory for this sample&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>mkdir terraform_quickstart &amp;amp;&amp;amp; cd terraform_quickstart&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Inside this directory, create a file called &lt;code>main.tf&lt;/code>.
+The following changes go into this file.&lt;/p>
+&lt;h3 id="general-configuration">General Configuration&lt;/h3>
+&lt;p>First, we have to specify mock credentials for the AWS provider:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000">access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="request-management">Request Management&lt;/h3>
+&lt;p>Second, we need to avoid issues with routing and authentication (as we do not need it).
+Therefore we need to supply some general parameters:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000">access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;span style="color:#000">s3_force_path_style&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_credentials_validation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_metadata_api_check&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_requesting_account_id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="services">Services&lt;/h3>
+&lt;p>Additionally, we have to point the individual services to LocalStack.
+In case of S3, this looks like the following snippet&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl"> &lt;span style="color:#204a87;font-weight:bold">endpoints&lt;/span> {
+&lt;span style="color:#000"> s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>: To enable domain style routing for s3 buckets, the endpoint &lt;code>http://s3.localhost.localstack.cloud:4566&lt;/code> should be used.
+&lt;/div>
+&lt;h3 id="s3-bucket">S3 Bucket&lt;/h3>
+&lt;p>Now we are adding a minimal s3 bucket outside the provider&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_s3_bucket&amp;#34; &amp;#34;test-bucket&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> bucket&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my-bucket&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="final-configuration">Final Configuration&lt;/h3>
+&lt;p>The final (minimal) configuration to deploy an s3 bucket thus looks like this&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000">access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;mock_access_key&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;mock_secret_key&amp;#34;&lt;/span>
+&lt;span style="color:#000">region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;span style="color:#000">s3_force_path_style&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_credentials_validation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_metadata_api_check&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_requesting_account_id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">endpoints&lt;/span> {
+&lt;span style="color:#000"> s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://s3.localhost.localstack.cloud:4566&amp;#34;&lt;/span>
+}
+}
+&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_s3_bucket&amp;#34; &amp;#34;test-bucket&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> bucket&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my-bucket&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>After starting LocalStack you can now deploy the s3 bucket via &lt;code>terraform&lt;/code> and interact with the (still empty) s3 bucket via &lt;code>awslocal&lt;/code>!&lt;/p>
+&lt;p>All you need to do is to initialize Terraform&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>terraform init&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>and then deploy the configuration
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>terraform deploy&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="endpoint-configuration">Endpoint configuration&lt;/h2>
+&lt;p>Here is a configuration example with additional endpoints:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
+&lt;span style="color:#000"> region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;span style="color:#000"> s3_force_path_style&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_credentials_validation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_metadata_api_check&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000"> skip_requesting_account_id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">endpoints&lt;/span> {
+&lt;span style="color:#000"> apigateway&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> cloudformation&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> cloudwatch&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> dynamodb&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> ec2&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> es&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> elasticache&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> firehose&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> iam&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> kinesis&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> lambda&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> rds&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> redshift&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> route53&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> secretsmanager&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> ses&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> sns&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> sqs&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> ssm&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> stepfunctions&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000"> sts&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="further-reading">Further reading&lt;/h2>
+&lt;p>For more examples, you can take a look at our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/terraform-resources">terraform sample&lt;/a> or the &lt;a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack">terraform localstack section&lt;/a>.&lt;/p>
+&lt;h3 id="community-resources">Community resources&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://dev.to/mrwormhole/localstack-with-terraform-and-docker-for-running-aws-locally-3a6d">Localstack with Terraform and Docker for running AWS locally. 2021-07-04&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

@@ -1,0 +1,58 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – cdk</title><link>/tags/cdk/</link><description>Recent content in cdk on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/cdk/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: AWS CDK</title><link>/integrations/aws-cdk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/aws-cdk/</guid><description>
+&lt;p>&lt;img src="aws-cdk-logo.svg" alt="AWS CDK">&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The AWS Cloud Development Kit (CDK) is an IaC (Infrastructure-as-Code) tool using general-purpose programming languages such as TypeScript/JavaScript, Python, Java, and .NET to programmatically define your cloud architecture on AWS.&lt;/p>
+&lt;h2 id="aws-cdk-cli-for-localstack">AWS CDK CLI for LocalStack&lt;/h2>
+&lt;p>&lt;code>cdklocal&lt;/code> is a thin wrapper script for using the &lt;a href="https://github.com/aws/aws-cdk">AWS CDK&lt;/a> library against local APIs provided by &lt;a href="https://github.com/localstack/localstack">LocalStack&lt;/a>.&lt;/p>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>The &lt;code>cdklocal&lt;/code> command line is published as an &lt;a href="https://www.npmjs.com/package/aws-cdk-local">npm library&lt;/a>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># Install globally&lt;/span>
+npm install -g aws-cdk-local aws-cdk
+&lt;span style="color:#8f5902;font-style:italic"># Verify it installed correctly&lt;/span>
+cdklocal --version
+&lt;span style="color:#8f5902;font-style:italic"># e.g. 1.65.5&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Local node_modules&lt;/h4>
+Using &lt;code>cdklocal&lt;/code> locally (e.g. within the &lt;code>node_modules&lt;/code> of your repo instead of globally installed) does not work at the moment for some setups, so make sure you install both &lt;code>aws-cdk&lt;/code> and &lt;code>aws-cdk-local&lt;/code> with the &lt;code>-G&lt;/code> flag.
+&lt;/div>
+&lt;h3 id="usage">Usage&lt;/h3>
+&lt;p>&lt;code>cdklocal&lt;/code> can be used as a drop-in replacement of where you would otherwise use &lt;code>cdk&lt;/code> when targeting the AWS Cloud.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cdklocal --help&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="configuration">Configuration&lt;/h3>
+&lt;p>The following environment variables can be configured:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>EDGE_PORT&lt;/code>: Port under which LocalStack edge service is accessible (default: &lt;code>4566&lt;/code>)&lt;/li>
+&lt;li>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>: Target host under which LocalStack edge service is accessible (default: &lt;code>localhost&lt;/code>)&lt;/li>
+&lt;li>&lt;code>LAMBDA_MOUNT_CODE&lt;/code>: Whether to use local Lambda code mounting (via setting &lt;code>__local__&lt;/code> S3 bucket name)&lt;/li>
+&lt;/ul>
+&lt;h3 id="example">Example&lt;/h3>
+&lt;p>Make sure that LocalStack is installed and successfully started with the required services before running the example&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:4566/health&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The CDK command line ships with a sample app generator to run a quick test for getting started.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># create sample app&lt;/span>
+mkdir /tmp/test&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87">cd&lt;/span> /tmp/test
+cdklocal init sample-app --language&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>javascript
+&lt;span style="color:#8f5902;font-style:italic"># deploy the sample app &lt;/span>
+cdklocal deploy
+&amp;gt; Do you wish to deploy these changes &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>y/n&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>? y
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once the deployment is done, you can inspect the created resources via the &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> command line&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-topics
+{
+&amp;#34;Topics&amp;#34;: [
+{
+&amp;#34;TopicArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:TestStack-TestTopic339EC197-79F43WWCCS4Z&amp;#34;
+}
+]
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="external-resources">External resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/aws-cdk-local">aws-cdk-local&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/cdk/api/latest/docs/aws-construct-library.html">AWS CDK API reference&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/cdk/latest/guide/home.html">AWS CDK Developer Guide&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="community-resources">Community resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local">https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.youtube.com/watch?v=3_sqr0G9zb0">https://www.youtube.com/watch?v=3_sqr0G9zb0&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

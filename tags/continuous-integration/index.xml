@@ -1,0 +1,113 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – continuous-integration</title><link>/tags/continuous-integration/</link><description>Recent content in continuous-integration on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/continuous-integration/index.xml" rel="self" type="application/rss+xml"/><item><title>Ci: CircleCI</title><link>/ci/circle-ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/ci/circle-ci/</guid><description>
+&lt;p>This guide describes how to start and use LocalStack in your CircleCI pipelines.&lt;/p>
+&lt;h2 id="the-localstack-circle-ci-orb">The LocalStack Circle CI Orb&lt;/h2>
+&lt;p>LocalStack is an official partner of &lt;a href="https://circleci.com/">Circle CI&lt;/a> and can easily be integrated into your pipeline by using the &lt;a href="https://circleci.com/developer/orbs/orb/localstack/platform">official CircleCI Orb&lt;/a>.&lt;br>
+The &lt;a href="https://circleci.com/developer/orbs/orb/localstack/platform">Orb&amp;rsquo;s documentation&lt;/a> features examples, as well as a description of the available commands.&lt;/p>
+&lt;p>When using the official CircleCI Orb, using LocalStack in your pipeline is as easy as adding the Orb to your pipeline and executing the startup command.&lt;br>
+The following example CircleCI config (&lt;code>.circleci/config.yml&lt;/code>) starts LocalStack, creates a new S3 bucket, and prints a nice message in the end:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">2.1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">orbs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack/platform@1.0&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">jobs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">run-integration-tests&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">executor&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack/default&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">steps&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">localstack/startup&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">command&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">awslocal s3 mb s3://test-bucket&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">command&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">echo &amp;#34;Execute your tests here :)&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">workflows&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">integration-test&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">jobs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">run-integration-tests&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="activate-localstack-pro">Activate LocalStack Pro&lt;/h2>
+&lt;p>You can easily enable LocalStack Pro by adding your API key to the project&amp;rsquo;s environment variables. The LocalStack Orb will automatically pick it up and activate the Pro features.&lt;/p>
+&lt;p>Just go to the project settings in CircleCI, click on &lt;code>Environment Variables&lt;/code> in the sidebar and add your API key:&lt;/p>
+&lt;p>&lt;img src="circleci-env-config.png" alt="Adding the LocalStack API key in CircleCI">&lt;/p>
+&lt;h2 id="ran-into-trouble">Ran into trouble?&lt;/h2>
+&lt;p>If you run into any issues or problems while integrating LocalStack with CircleCI, please &lt;a href="https://github.com/localstack/ci-plugin-circleci/issues">submit an issue&lt;/a>.&lt;/p></description></item><item><title>Ci: GitHub Actions</title><link>/ci/github-actions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/ci/github-actions/</guid><description>
+&lt;p>This guide shows you how to start LocalStack in a Github Actions job.&lt;/p>
+&lt;h2 id="setting-up-your-github-actions-job">Setting up your Github Actions job&lt;/h2>
+&lt;p>In order to start LocalStack, we recommend to start it in a separate &lt;a href="https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#steps" title="GitHub Action Build Steps">build step&lt;/a>, to separate its log output / status from the rest of your job.&lt;/p>
+&lt;p>We recommend taking the following steps:&lt;/p>
+&lt;ul>
+&lt;li>Install the LocalStack CLI (and maybe also &lt;code>awslocal&lt;/code>).&lt;/li>
+&lt;li>Make sure your LocalStack docker image is up-to-date by pulling the latest version.&lt;/li>
+&lt;li>Use the LocalStack CLI to start LocalStack. Make sure to use the &lt;code>DOCKER_FLAGS='-d'&lt;/code> to start the LocalStack docker container in detached mode.&lt;/li>
+&lt;li>Wait for the container to report that it is up and running.&lt;/li>
+&lt;/ul>
+&lt;p>An official GitHub action for this also planned, to make the configuration easier and less verbose.&lt;/p>
+&lt;p>The following example can be integrated into your GitHub workflow.
+As an example, it will use awslocal to create bucket and list it afterwards.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack-action-example&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">on&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">push&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">jobs&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">example-job&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">runs-on&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">ubuntu-latest&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">steps&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Start LocalStack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">env&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">LOCALSTACK_API_KEY&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">${{ secrets.LOCALSTACK_API_KEY }}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">|&lt;/span>&lt;span style="color:#8f5902;font-style:italic">
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # install LocalStack cli and awslocal
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> pip install localstack awscli-local[ver1]
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # Make sure to pull the latest version of the image
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> docker pull localstack/localstack
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # Start LocalStack
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> DOCKER_FLAGS=&amp;#39;-d&amp;#39; localstack start
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # Wait for the LocalStack docker container to become ready
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> echo &amp;#34;Waiting for LocalStack startup...&amp;#34;
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> for i in {1..45}; do if [ `docker logs localstack_main | grep &amp;#39;Ready.&amp;#39;` ]; then break; fi; sleep 1; done
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> echo &amp;#34;Startup complete&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Run some Tests against LocalStack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">|&lt;/span>&lt;span style="color:#8f5902;font-style:italic">
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> awslocal s3 mb s3://test
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> awslocal s3 ls
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> echo &amp;#34;Test Execution complete!&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you want to add further configuration for LocalStack, you can use the &lt;code>env&lt;/code> section of your build step to set the configuration variables as described &lt;a href="https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv" title="GitHub Action Steps - Environment variables">here&lt;/a>.&lt;/p>
+&lt;h2 id="activating-localstack-pro">Activating LocalStack Pro&lt;/h2>
+&lt;p>If you want to use LocalStack Pro in your GitHub Actions job, you should use a &lt;a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets" title="GitHub Encrypted Secrets">Github Encrypted Secret&lt;/a> to store your API key securely.
+In the above example, you can see us setting the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable to the value of the secret &lt;code>LOCALSTACK_API_KEY&lt;/code>.&lt;/p>
+&lt;p>You can set your secret at an environment, repository or organization level, for more information see &lt;a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets" title="GitHub Encrypted Secrets">here&lt;/a>.
+In the simplest case, you just set it at the repository level.
+For this, you go, in your repository, to Settings =&amp;gt; Secrets and press &amp;ldquo;New Repository Secret&amp;rdquo;.&lt;/p>
+&lt;p>There, you create the secret for your API key like in the following image, replacing &lt;code>foobar&lt;/code> with your API key.&lt;/p>
+&lt;p>&lt;img src="github-create-secret.png" alt="Adding the LocalStack API key as secret in GitHub">&lt;/p></description></item><item><title>Ci: Travis CI</title><link>/ci/travis-ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/ci/travis-ci/</guid><description>
+&lt;p>This guide shows how to start and use LocalStack in your Travis CI jobs.&lt;/p>
+&lt;h2 id="setting-up-the-travis-ci-job">Setting up the Travis CI job&lt;/h2>
+&lt;p>When you want to integrate LocalStack into your job configuration, you just have to execute the following steps:&lt;/p>
+&lt;ul>
+&lt;li>Install the LocalStack CLI (and maybe also &lt;code>awslocal&lt;/code>).&lt;/li>
+&lt;li>Make sure your LocalStack docker image is up-to-date by pulling the latest version.&lt;/li>
+&lt;li>Use the LocalStack CLI to start LocalStack. Make sure to use the &lt;code>DOCKER_FLAGS='-d'&lt;/code> to start the LocalStack docker container in detached mode.&lt;/li>
+&lt;li>Wait for the container to report that it is up and running.&lt;/li>
+&lt;/ul>
+&lt;p>The following example Travis CI job config (&lt;code>.travis.yaml&lt;/code>) executes these steps, creates a new S3 bucket, and prints a nice message in the end:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">language&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">python&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">docker&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">python&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;3.8&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">before_install&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Install the LocalStack CLI and awslocal&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">python -m pip install localstack awscli-local[ver1]&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Make sure to pull the latest version of the image&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">docker pull localstack/localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Start localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DOCKER_FLAGS=&amp;#39;-d&amp;#39; localstack start&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Wait for the localstack docker container to become ready&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">for i in {1..45}; do if [ `docker logs localstack_main | grep &amp;#39;Ready.&amp;#39;` ]; then break; fi; sleep 1; done&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">script&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Test LocalStack by creating a new S3 bucket (and verify that it has been created by listing all buckets)&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">awslocal s3 mb s3://test&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">awslocal s3 ls&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">echo &amp;#34;Execute your tests here :)&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="activate-localstack-pro">Activate LocalStack Pro&lt;/h2>
+&lt;p>You can easily enable LocalStack Pro by adding your API key to the project&amp;rsquo;s environment variables. The LocalStack CLI will automatically pick it up and activate the Pro features.&lt;/p>
+&lt;p>Just go to the project settings in Travis CI (&lt;code>More options&lt;/code> → &lt;code>Settings&lt;/code>), scroll down to the &lt;code>Environment Variables&lt;/code> section, and add your API key:&lt;/p>
+&lt;p>&lt;img src="travis-ci-env-config.png" alt="Adding the LocalStack API key in Travis CI">&lt;/p></description></item></channel></rss>

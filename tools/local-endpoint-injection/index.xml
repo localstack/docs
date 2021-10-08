@@ -1,0 +1,138 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Local Endpoint Injection</title><link>/tools/local-endpoint-injection/</link><description>Recent content in Local Endpoint Injection on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tools/local-endpoint-injection/index.xml" rel="self" type="application/rss+xml"/><item><title>Tools: DNS Server</title><link>/tools/local-endpoint-injection/dns-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/local-endpoint-injection/dns-server/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.&lt;/p>
+&lt;p>When the system starts up, the log output contains the IP address of the local DNS server. Typically, this address by default is either &lt;code>0.0.0.0&lt;/code> (see example below) or &lt;code>127.0.0.1&lt;/code> if LocalStack cannot bind to &lt;code>0.0.0.0&lt;/code> due to a conflicting service.&lt;/p>
+&lt;pre>&lt;code>Starting DNS servers (tcp/udp port 53 on 0.0.0.0)...
+&lt;/code>&lt;/pre>&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The DNS server can be configured to match your usecase.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>The DNS server can be configured using the &lt;code>DNS_ADDRESS&lt;/code> environment variable.
+To bind the server to &lt;code>127.0.0.1&lt;/code>, you can set:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#000">DNS_ADDRESS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>127.0.0.1
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>You can disable the DNS server (which will prevent LocalStack from binding port 53) using:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#000">DNS_ADDRESS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>You can also specify which exact URLs should be redirected to LocalStack by defining a hostname regex like:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#000">DNS_LOCAL_NAME_PATTERNS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;.*(ecr|lambda).*.amazonaws.com&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Using this configuration, the LocalStack DNS server only redirects ECR and Lambda domains to LocalStack, and the rest will be resolved via &lt;code>$DNS_SERVER&lt;/code>. This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target LocalStack, whereas other services will target real AWS.&lt;/p>
+&lt;p>&lt;strong>Note:&lt;/strong> We generally do not recommend connecting to real AWS from within LocalStack, in fact you should avoid using real AWS credentials anywhere in your LocalStack apps. Use this configuration with caution.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>There is the possibility to manually set the DNS server all not-redirected queries will be forwarded to:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#000">DNS_SERVER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>1.1.1.1
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Per default, LocalStack uses the Google DNS resolver at &lt;code>8.8.8.8&lt;/code>.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>When you configure transparent execution mode using DNS, you may still have to configure your application&amp;rsquo;s AWS SDK to &lt;strong>accept self-signed certificates&lt;/strong>. This is a technical limitation caused by the SSL certificate validation mechanism, due to the fact that we are repointing AWS domain names (e.g., &lt;code>*.amazonaws.com&lt;/code>) to &lt;code>localhost&lt;/code>. For example, the following command will fail with an SSL error:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>aws kinesis list-streams
+SSL validation failed for https://kinesis.us-east-1.amazonaws.com/ [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1076)&lt;/code>&lt;/pre>&lt;/div>
+&amp;hellip; whereas the following command works:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>PYTHONWARNINGS=ignore aws --no-verify-ssl kinesis list-streams
+{
+&amp;#34;StreamNames&amp;#34;: []
+}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Disabling SSL validation depends on the programming language and version of the AWS SDK used. For example, the &lt;a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client">&lt;code>boto3&lt;/code> AWS SDK for Python&lt;/a> provides a parameter &lt;code>verify=False&lt;/code> to disable SSL verification. Similar parameters are available for most other AWS SDKs.&lt;/p>
+&lt;h2 id="system-dns-configuration">System DNS configuration&lt;/h2>
+&lt;p>In order to use transparent execution mode, the system needs to be configured to use the predefined DNS server.
+This is necessary if you want to test code running directly on your system against LocalStack, instead of AWS.
+The configuration depends on the operating system.&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong>: Please be careful when changing the network configuration on your system, as this may have undesired side effects.&lt;/p>
+&lt;h3 id="mac-os">Mac OS&lt;/h3>
+&lt;p>In Mac OS it can be configured in the Network System Settings, under Linux this is usually achieved by configuring &lt;code>/etc/resolv.conf&lt;/code> as follows:&lt;/p>
+&lt;pre>&lt;code>nameserver 0.0.0.0
+&lt;/code>&lt;/pre>&lt;p>The example above needs to be adjusted to the actual IP address of the DNS server. You can also configure a custom IP address by setting the &lt;code>DNS_ADDRESS&lt;/code> environment variable (e.g., &lt;code>DNS_ADDRESS=127.0.0.1&lt;/code>).&lt;/p>
+&lt;h3 id="linux">Linux&lt;/h3>
+&lt;p>In Linux, the configuration depends on your network manager / DNS configuration.&lt;/p>
+&lt;h4 id="systemd-resolved">systemd-resolved&lt;/h4>
+&lt;p>On many modern systemd-based distributions, like Ubuntu, systemd-resolved is used for name resolution.
+LocalStack provides a CLI command for exactly this scenario.
+To use systemd-resolved and the LocalStack domain resolution, try the following steps.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Start LocalStack Pro with &lt;code>DNS_ADDRESS=127.0.0.1&lt;/code> as environment variable.
+This makes LocalStack bind port 53 on 127.0.0.1, whereas systemd-resolved binds its stub resolver to 127.0.0.53:53, which prevents a conflict.
+Once LocalStack is started, you can test the DNS server using &lt;code>dig @127.0.0.1 s3.amazonaws.com&lt;/code> versus &lt;code>dig @127.0.0.53 s3.amazonaws.com&lt;/code>, the former should return an A record &lt;code>127.0.0.1&lt;/code>, the latter the real AWS DNS result.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Run:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>To revert, please run:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved --revert&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong>: You need sudo privileges to execute this command.&lt;/p>
+&lt;p>This command sets the DNS server of the bridge interface of the docker network LocalStack currently runs in to the LocalStack container&amp;rsquo;s IP address.
+(The command does not work with host networking or without LocalStack running for this reason.)
+Also, it configures the DNS route to exclusively (and only) route the following DNS names (and its subdomains) to the LocalStack DNS:&lt;/p>
+&lt;pre>&lt;code>~amazonaws.com
+~aws.amazon.com
+~cloudfront.net
+~localhost.localstack.cloud
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;/ul>
+&lt;p>If you want to perform this action manually, please do the following steps:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Find out the bridge interface and container IP of your LocalStack container.
+Use &lt;code>docker inspect localstack_main&lt;/code> to get the IP address and network, then &lt;code>docker inspect network&lt;/code> to get the interface name.
+If the interface name is not mentioned, it is usually the first 12 characters of the network ID prefixed with &lt;code>br-&lt;/code>, like &lt;code>br-0ae393d3345e&lt;/code>.
+If you use the default bridge network, it is usually &lt;code>docker0&lt;/code>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Configure the DNS resolver for the bridge network:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix"># &lt;/span>resolvectl dns &amp;lt;network_name&amp;gt; &amp;lt;container_ip&amp;gt;&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Set the DNS route to route only the above mentioned domain names (and subdomains) to LocalStack:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix"># &lt;/span>resolvectl domain &amp;lt;network_name&amp;gt; ~amazonaws.com ~aws.amazon.com ~cloudfront.net ~localhost.localstack.cloud&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>In both cases, you can use &lt;code>resolvectl query s3.amazonaws.com&lt;/code> or &lt;code>resolvectl query example.com&lt;/code> to check which interface your DNS request is routed through, to confirm only the above mentioned domains (and its subdomains) are routed to LocalStack.&lt;/p>
+&lt;p>When correctly configured, either using the LocalStack CLI command or manually, only the requests for the mentioned domain names are routed to LocalStack, all other queries will resolve as usual.&lt;/p>
+&lt;h4 id="other-resolution-settings">Other resolution settings&lt;/h4>
+&lt;p>Depending on your Linux distribution, the settings to set a DNS server can be quite different.
+In some systems, directly editing &lt;code>/etc/resolv.conf&lt;/code> is possible, like described in &lt;a href="#mac-os">Mac OS&lt;/a>.
+If your &lt;code>/etc/resolv.conf&lt;/code> is overwritten by some service, it might be possible to install and enable/start &lt;code>resolvconf&lt;/code> and specify the nameserver in &lt;code>/etc/resolvconf/resolv.conf.d/head&lt;/code> with &lt;code>nameserver 127.0.0.1&lt;/code>.
+This will prepend this line in the resolv.conf file even after changes.&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong>: Using this options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain aws domains).
+LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions / in debug mode.&lt;/p></description></item><item><title>Tools: Patched AWS SDKs for Lambdas</title><link>/tools/local-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/local-endpoint-injection/patched-sdks/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
+This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.&lt;/p>
+&lt;p>Assuming you had a Python Lambda handler that attempts to list all S3 buckets. In the past, you had to manually configure the &lt;code>endpoint_url&lt;/code> parameter on the boto3 client (and potentially use environment switches for dev/prod in your test code):&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;s3&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_buckets&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>With the patched AWS SDKs, it now becomes possible to deploy your unmodified production code to LocalStack, simply creating a boto3 client with default settings. The invocations of the boto3 client will be automatically forwarded to the local APIs:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;s3&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_buckets&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note:&lt;/strong> This functionality only works when using the SDKs provided by the Lambda execution environment itself.
+If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the &lt;a href="/tools/local-endpoint-injection/dns-server/">DNS based transparent execution&lt;/a> if enabled, since those SDK versions will not be patched.
+&lt;/div>
+&lt;p>This feature works by patching the AWS SDKs in the docker images, which provide the execution environment for Lambdas within LocalStack.&lt;/p>
+&lt;p>The main advantage of this mode is, that no DNS magic is involved, and SSL certificate checks do not have to be disabled.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>If you want to disable this behavior, and use the DNS server to resolve the endpoints for AWS, you can disable this behavior by using:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#000">TRANSPARENT_LOCAL_ENDPOINTS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="supported-runtimes">Supported Runtimes&lt;/h2>
+&lt;p>Currently, LocalStack supports patching the SDKs for the following runtimes:&lt;/p>
+&lt;ul>
+&lt;li>Python (using boto3)&lt;/li>
+&lt;li>NodeJS&lt;/li>
+&lt;li>Ruby&lt;/li>
+&lt;li>Java&lt;/li>
+&lt;/ul>
+&lt;p>Also, these patched SDKs are only available in the following &lt;a href="/localstack/lambda-executors/">Lambda execution modes&lt;/a>:&lt;/p>
+&lt;ul>
+&lt;li>docker&lt;/li>
+&lt;li>docker-reuse&lt;/li>
+&lt;/ul>
+&lt;p>This feature is currently not supported for custom Lambda container images.&lt;/p></description></item></channel></rss>

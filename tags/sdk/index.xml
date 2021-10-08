@@ -1,0 +1,135 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – sdk</title><link>/tags/sdk/</link><description>Recent content in sdk on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/sdk/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: Go</title><link>/integrations/sdks/go/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/sdks/go/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;a href="https://aws.amazon.com/sdk-for-go/">AWS SDK for Go&lt;/a>, like other AWS SDKs, lets you set the endpoint when creating resource clients,
+which is the preferred way of integrating the Go SDK with LocalStack.&lt;/p>
+&lt;p>The Go SDK has two major versions, each with their own way of specifying the LocalStack endpoint:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/aws/aws-sdk-go">aws-sdk-go&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/aws/aws-sdk-go-v2">aws-sdk-go-v2&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>Here is an example of how to create an S3 Client from a Session with the endpoint set to LocalStack.
+Full examples for both SDK versions can be found &lt;a href="https://github.com/localstack/localstack-aws-sdk-examples/tree/main/go">in our samples repository&lt;/a>.&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active tab-aws-go-sdk"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab" onclick="handleClick(&amp;#34;aws-go-sdk&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="true">
+aws-go-sdk
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link tab-aws-go-sdk-v2"
+id="tabs-0-1-tab" data-toggle="tab" href="#tabs-0-1" role="tab" onclick="handleClick(&amp;#34;aws-go-sdk-v2&amp;#34;);"
+aria-controls="tabs-0-1" aria-selected="false">
+aws-go-sdk-v2
+&lt;/a>
+&lt;/li>&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-golang" data-lang="golang">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">main&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;github.com/aws/aws-sdk-go/aws&amp;#34;&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;github.com/aws/aws-sdk-go/aws/session&amp;#34;&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;github.com/aws/aws-sdk-go/service/s3&amp;#34;&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;github.com/aws/aws-sdk-go/aws/credentials&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">func&lt;/span> &lt;span style="color:#000">main&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Initialize a session
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">sess&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">_&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span> &lt;span style="color:#000">session&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">NewSession&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Config&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">Region&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000">Credentials&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">credentials&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">NewStaticCredentials&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000">S3ForcePathStyle&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Bool&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000">Endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000;font-weight:bold">})&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Create S3 service client
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span> &lt;span style="color:#000">s3&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">New&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">sess&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// ...
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-0-1" role="tabpanel" aria-labelled-by="tabs-0-1-tab">&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-golang" data-lang="golang">&lt;span style="color:#204a87;font-weight:bold">package&lt;/span> &lt;span style="color:#000">main&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;context&amp;#34;&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;log&amp;#34;&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;github.com/aws/aws-sdk-go-v2/aws&amp;#34;&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;github.com/aws/aws-sdk-go-v2/config&amp;#34;&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#34;github.com/aws/aws-sdk-go-v2/service/s3&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">func&lt;/span> &lt;span style="color:#000">main&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">awsEndpoint&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000">awsRegion&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;span style="color:#000">customResolver&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span> &lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">EndpointResolverFunc&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">func&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">service&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">region&lt;/span> &lt;span style="color:#204a87;font-weight:bold">string&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">error&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#000">awsEndpoint&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">!=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">PartitionID&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000">URL&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">awsEndpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000">SigningRegion&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">awsRegion&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000;font-weight:bold">},&lt;/span> &lt;span style="color:#204a87;font-weight:bold">nil&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// returning EndpointNotFoundError will allow the service to fallback to its default resolution
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">{},&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">EndpointNotFoundError&lt;/span>&lt;span style="color:#000;font-weight:bold">{}&lt;/span>
+&lt;span style="color:#000;font-weight:bold">})&lt;/span>
+&lt;span style="color:#000">awsCfg&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">err&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">:=&lt;/span> &lt;span style="color:#000">config&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">LoadDefaultConfig&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">TODO&lt;/span>&lt;span style="color:#000;font-weight:bold">(),&lt;/span>
+&lt;span style="color:#000">config&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">WithRegion&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">awsRegion&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000">config&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">WithEndpointResolver&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">customResolver&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span>
+&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#000">err&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">!=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">nil&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">log&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Fatalf&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Cannot load the AWS configs: %s&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">err&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Create the resource client
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000">client&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">s3&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">NewFromConfig&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">awsCfg&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">func&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">o&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">*&lt;/span>&lt;span style="color:#000">s3&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Options&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">o&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">UsePathStyle&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
+&lt;span style="color:#000;font-weight:bold">})&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// ...
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h2 id="resources">Resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-aws-sdk-examples/tree/main/go">localstack-aws-sdk-examples for Go&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://aws.amazon.com/sdk-for-go/">AWS SDK for Go&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/aws/aws-sdk-go">Official repository of the AWS SDK for Go (v1)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/aws/aws-sdk-go-v2">Official repository of the AWS SDK for Go (v2)&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Integrations: PHP</title><link>/integrations/sdks/php/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/sdks/php/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;a href="https://aws.amazon.com/sdk-for-php/">AWS SDK for PHP&lt;/a>, like other AWS SDKs, lets you set the endpoint when creating resource clients,
+which is the preferred way of integrating the PHP SDK with LocalStack.&lt;/p>
+&lt;h2 id="example">Example&lt;/h2>
+&lt;p>Here is an example of how to create an &lt;code>S3Client&lt;/code> with the endpoint set to LocalStack.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-php" data-lang="php">&lt;span style="color:#204a87;font-weight:bold">use&lt;/span> &lt;span style="color:#000">Aws\S3\S3Client&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">use&lt;/span> &lt;span style="color:#000">Aws\Exception\AwsException&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Configuring S3 Client
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">$s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">Aws\S3\S3Client&lt;/span>&lt;span style="color:#000;font-weight:bold">([&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#39;version&amp;#39;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&amp;gt;&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;2006-03-01&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#39;region&amp;#39;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&amp;gt;&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;us-east-1&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic">// Enable &amp;#39;use_path_style_endpoint&amp;#39; =&amp;gt; true, if bucket name is non DNS compliant
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;use_path_style_endpoint&amp;#39;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&amp;gt;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#4e9a06">&amp;#39;endpoint&amp;#39;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&amp;gt;&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;http://s3.localhost.localstack.cloud:4566&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000;font-weight:bold">]);&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>A full example can be found &lt;a href="https://github.com/localstack/localstack-aws-sdk-examples/tree/main/php">in our samples repository&lt;/a>.&lt;/p>
+&lt;h2 id="resources">Resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-aws-sdk-examples/tree/main/php">localstack-aws-sdk-examples for PHP&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://aws.amazon.com/sdk-for-php/">AWS SDK for PHP&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/aws/aws-sdk-php">Official repository of the AWS SDK for PHP&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Integrations: Python Boto3</title><link>/integrations/sdks/python/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/sdks/python/</guid><description>
+&lt;p>&lt;a href="https://github.com/boto/boto3">Boto3&lt;/a> is the Amazon Web Services (AWS) Software Development Kit (SDK) for Python, which allows Python developers to write software that makes use of AWS services.&lt;/p>
+&lt;p>You can easily create a &lt;code>boto3&lt;/code> client that interacts with your LocalStack instance. The example below creates a &lt;code>boto3&lt;/code> client that lists all available Lambda functions:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python3" data-lang="python3">&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
+&lt;span style="color:#000">endpoint_url&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost.localstack.cloud:4566&amp;#34;&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># alternatively, to use HTTPS endpoint on port 443:&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># endpoint_url = &amp;#34;https://localhost.localstack.cloud&amp;#34;&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">main&lt;/span>&lt;span style="color:#000;font-weight:bold">():&lt;/span>
+&lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lambda&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#000">result&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_functions&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#000">__name__&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>
+&lt;span style="color:#000">main&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Note:&lt;/strong> If you&amp;rsquo;re connecting from within a Python &lt;strong>Lambda function&lt;/strong> handler in LocalStack, you can create a default client without configuring the &lt;code>endpoint_url&lt;/code> - LocalStack will automatically forward the invocations to the local API endpoints (available in Pro, see &lt;a href="/tools/local-endpoint-injection/">here&lt;/a> for more details).&lt;/p>
+&lt;pre>&lt;code>client = boto3.client(&amp;quot;lambda&amp;quot;)
+...
+&lt;/code>&lt;/pre>&lt;p>Alternatively, if you prefer to (or need to) set the endpoints directly, you can use the &lt;code>$LOCALSTACK_HOSTNAME&lt;/code> environment variable which is available when executing user code (e.g., Lambda functions, ECS containers) in LocalStack:&lt;/p>
+&lt;pre>&lt;code>import os
+endpoint_url = f&amp;quot;http://{os.getenv(&amp;quot;LOCALSTACK_HOSTNAME&amp;quot;)}:{os.getenv(&amp;quot;EDGE_PORT&amp;quot;)}&amp;quot;
+client = boto3.client(&amp;quot;lambda&amp;quot;, endpoint_url=endpoint_url)
+...
+&lt;/code>&lt;/pre>&lt;h3 id="further-material">Further Material:&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-python-client">localstack-python-client&lt;/a>: small Python library with additional utils for interacting with LocalStack&lt;/li>
+&lt;/ul></description></item></channel></rss>
