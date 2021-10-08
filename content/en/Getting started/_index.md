@@ -13,7 +13,7 @@ With LocalStack, you can run your AWS applications or Lambdas entirely on your l
 Whether you are testing complex CDK applications or Terraform configurations, or just beginning to learn about AWS services,
 LocalStack helps speed up and simplify your testing and development workflow.
 
-LocalStack supports a growing number of [AWS services]({{< ref "Local AWS Services" >}}), like AWS Lambda, [S3]({{< ref "s3" >}}), DynamoDB, [Kinesis]({{< ref "kinesis" >}}), [SQS]({{< ref "sqs" >}}), SNS, and **many** more!
+LocalStack supports a growing number of [AWS services]({{< ref "aws" >}}), like AWS Lambda, [S3]({{< ref "s3" >}}), DynamoDB, [Kinesis]({{< ref "kinesis" >}}), [SQS]({{< ref "sqs" >}}), SNS, and **many** more!
 The [**Pro version** of LocalStack](https://localstack.cloud/pricing) supports additional APIs and advanced features.
 You can find a comprehensive list of supported APIs on our [⭐ Feature Coverage]({{< ref "feature-coverage" >}}) page.
 

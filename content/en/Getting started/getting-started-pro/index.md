@@ -83,7 +83,7 @@ The easiest way to check if LocalStack Pro is activated is to check the health e
 $ curl localhost:4566/health | jq
 {{< / command >}}
 
-If a Pro-only [service]({{< ref "Local AWS Services" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack Pro has started successfully.
+If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack Pro has started successfully.
 
 **Note**: This only works if your `SERVICES` config variable contains LocalStack Pro services.
 If in doubt, try starting LocalStack without this variable set, so all services can start.
