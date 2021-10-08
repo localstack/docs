@@ -4,6 +4,8 @@ linkTitle: "LocalStack in CI"
 weight: 20
 description: >
   Using LocalStack in your Continuous Integration workflow
+cascade:
+  type: docs
 ---
 
 LocalStack is key component of testing and delivering cloud-native applications in Continuous Integration/Delivery pipelines without complicated AWS testing and staging environments.

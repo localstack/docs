@@ -4,6 +4,8 @@ linkTitle: "🚀 Get Started"
 weight: 2
 description: >
   How to get up to speed with LocalStack.
+cascade:
+  type: docs
 ---
 
 [LocalStack](https://localstack.cloud) is a cloud service emulator that runs in a single container on your laptop or in your CI environment.

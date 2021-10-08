@@ -4,6 +4,8 @@ linkTitle: "Integrations"
 weight: 10
 description: >
   How to use your favorite cloud development tools with LocalStack.
+cascade:
+  type: docs
 ---
 
 LocalStack supports a wide range of tools from the cloud development ecosystem.
