@@ -33,6 +33,9 @@ The `samlocal` command has the exact same usage as the underlying `sam` command.
 $ samlocal --help
 {{< / command >}}
 
+Start using `samlocal` by deploying a [Hello World Application](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html).
+Please make sure to replace all `sam` calls with `samlocal` when following the AWS tutorial.
+
 ### Configuration
 
 * `EDGE_PORT`: Port number under which the LocalStack edge service is available (default: `4566`)
