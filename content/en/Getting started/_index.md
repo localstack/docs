@@ -18,7 +18,7 @@ The [**Pro version** of LocalStack](https://localstack.cloud/pricing) supports a
 You can find a comprehensive list of supported APIs on our [⭐ Feature Coverage]({{< ref "feature-coverage" >}}) page.
 
 LocalStack also provides additional features to make your life as a cloud developer easier!
-Check out LocalStack's [Cloud Developer Tools]({{< ref "LocalStack Tools" >}}).
+Check out LocalStack's [Cloud Developer Tools]({{< ref "tools" >}}).
 
 ## Get LocalStack Up and Running
 The first thing when getting started with LocalStack is to choose your preferred way of starting and managing your LocalStack instance.\
@@ -185,4 +185,4 @@ Now that you have LocalStack up and running, the following resources might be us
   - And many more!
 - [Find out how to configure LocalStack]({{< ref "configuration" >}}) such that it perfectly fits your need.
 - [Use LocalStack in your CI environment]({{< ref "ci" >}}) to increase your code quality.
-- [Checkout LocalStack's Cloud Developer Tools]({{< ref "LocalStack Tools" >}}) to further increase your development efficiency with LocalStack.
+- [Checkout LocalStack's Cloud Developer Tools]({{< ref "tools" >}}) to further increase your development efficiency with LocalStack.
