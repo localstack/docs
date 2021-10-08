@@ -57,7 +57,7 @@ $ docker run \
   localstack/localstack
 {{< / command >}}
 
-For more information about starting LocalStack, take a look at our general [Getting Started]({{< ref "Getting started" >}}) guide.
+For more information about starting LocalStack, take a look at our general [Getting Started]({{< ref "get-started" >}}) guide.
 
 ### Starting LocalStack Pro using Docker-Compose
 
