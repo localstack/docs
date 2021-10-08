@@ -164,7 +164,7 @@ More information [here]({{< ref "dns-server" >}}).
 
 ## LocalStack Pro
 
-More information [here]({{< ref "getting-started-pro" >}}).
+More information [here]({{< ref "pro" >}}).
 
 | Variable | Example Values | Description |
 | - | - | - |
