@@ -13,6 +13,11 @@ clone the repoitory and init submodules recursively (`themes/docsy` is a submodu
 
     git clone --recurse-submodules --depth 1 git@github.com:localstack/docs.git
 
+this performs a shallow clone, which leads to only the main branch being configured for your remote.
+To be able to pull/push from/to all branches, please run:
+
+    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch
+
 or
 
     git clone git@github.com:localstack/docs.git
