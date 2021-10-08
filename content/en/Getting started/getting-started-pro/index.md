@@ -23,7 +23,7 @@ You can find your API key in the [LocalStack Web Interface](https://app.localsta
 
 - If you accidentally publish your API key, please [contact us](https://localstack.cloud/contact/) to get your API key rotated!
 
-- If you want to use your API key in your CI environment, please check out our [CI documentation]({{< ref "LocalStack in CI" >}}) to see the proper way to handle secrets in your CI environment.
+- If you want to use your API key in your CI environment, please check out our [CI documentation]({{< ref "ci" >}}) to see the proper way to handle secrets in your CI environment.
 {{< /alert >}}
 
 ## Using your API key

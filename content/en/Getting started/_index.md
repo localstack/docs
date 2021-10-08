@@ -184,5 +184,5 @@ Now that you have LocalStack up and running, the following resources might be us
   - Use the Serverless Framework with LocalStack!
   - And many more!
 - [Find out how to configure LocalStack]({{< ref "configuration" >}}) such that it perfectly fits your need.
-- [Use LocalStack in your CI environment]({{< ref "LocalStack in CI" >}}) to increase your code quality.
+- [Use LocalStack in your CI environment]({{< ref "ci" >}}) to increase your code quality.
 - [Checkout LocalStack's Cloud Developer Tools]({{< ref "LocalStack Tools" >}}) to further increase your development efficiency with LocalStack.
