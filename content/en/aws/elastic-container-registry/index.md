@@ -9,7 +9,7 @@ description: >
 A basic version of Elastic Container Registry (ECR) is available to store application images. ECR is often used in combination with other APIs that deploy containerized apps, like ECS or EKS.
 
 {{< command >}}
-$ $ awslocal ecr create-repository --repository-name repo1
+$ awslocal ecr create-repository --repository-name repo1
 {
     "repository": {
         "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/repo1",
@@ -25,10 +25,16 @@ You can then build and tag a new Docker image, and push it to the repository URL
 $ cat Dockerfile
 FROM nginx
 ENV foo=bar
+{{< / command >}}
+
+{{< command >}}
 $ docker build -t localhost:4510/repo1 .
 ...
 Successfully built e2cfb3cf012d
 Successfully tagged localhost:4510/repo1:latest
+{{< / command >}}
+
+{{< command >}}
 $ docker push localhost:4510/repo1
 The push refers to repository [localhost:4510/repo1]
 318be7aea8fc: Pushed

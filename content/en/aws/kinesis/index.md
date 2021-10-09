@@ -14,16 +14,20 @@ Trying to run the example applications from the [official AWS developer guide](h
 Assuming you have `awslocal` installed you can also try out the following commands:
 
 {{< command >}}
-$ awslocal kinesis create-stream --stream-name samplestream --shard-count 
+$ awslocal kinesis create-stream --stream-name samplestream --shard-count  1
+{{< /command >}}
 
+{{< command >}}
 $ awslocal kinesis list-streams 
 {
     "StreamNames": [
         "samplestream"
     ]
 }
+{{< /command >}}
 
-$ awslocal kinesis put-record --cli-binary-format raw-in-base64-out --stream-name samplestream --data '{"symbol":"TEST","sampleno":42}' --partition-key test1 
+{{< command >}}
+$ awslocal kinesis put-record --stream-name samplestream --data '{"symbol":"TEST","sampleno":42}' --partition-key test1 
 {
     "ShardId": "shardId-000000000001",
     "SequenceNumber": "49622467803485029265018102167378141645049970239670845458",
