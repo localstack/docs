@@ -2126,7 +2126,7 @@ You can then register users against that local pool, using the same API calls as
 &lt;/code>&lt;/pre>&lt;h2 id="further-reading">Further reading&lt;/h2>
 &lt;p>For a more detailed example, please check out our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt">sample repository&lt;/a>.&lt;/p></description></item><item><title>Aws: Elastic Container Registry (ECR)</title><link>/aws/elastic-container-registry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/elastic-container-registry/</guid><description>
 &lt;p>A basic version of Elastic Container Registry (ECR) is available to store application images. ECR is often used in combination with other APIs that deploy containerized apps, like ECS or EKS.&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>$ awslocal ecr create-repository --repository-name repo1
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository --repository-name repo1
 {
 &amp;#34;repository&amp;#34;: {
 &amp;#34;repositoryArn&amp;#34;: &amp;#34;arn:aws:ecr:us-east-1:000000000000:repository/repo1&amp;#34;,
@@ -2138,18 +2138,18 @@ You can then register users against that local pool, using the same API calls as
 &lt;p>You can then build and tag a new Docker image, and push it to the repository URL (&lt;code>localhost:4510/repo1&lt;/code> in the example above):
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cat Dockerfile
 FROM nginx
-ENV foo=bar
-&lt;span class="command-prefix">$ &lt;/span>docker build -t localhost:4510/repo1 .
+ENV foo=bar&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker build -t localhost:4510/repo1 .
 ...
 Successfully built e2cfb3cf012d
-Successfully tagged localhost:4510/repo1:latest
-&lt;span class="command-prefix">$ &lt;/span>docker push localhost:4510/repo1
+Successfully tagged localhost:4510/repo1:latest&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker push localhost:4510/repo1
 The push refers to repository [localhost:4510/repo1]
 318be7aea8fc: Pushed
 fe08d5d042ab: Pushed
 f2cb0ecef392: Pushed
 latest: digest: sha256:4dd893a43df24c8f779a5ab343b7ef172fb147c69ed5e1278d95b97fe0f584a5 size: 948
-...&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item><item><title>Aws: Elastic Container Service (ECS)</title><link>/aws/elastic-container-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/elastic-container-service/</guid><description>
+...&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Aws: Elastic Container Service (ECS)</title><link>/aws/elastic-container-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/elastic-container-service/</guid><description>
 &lt;p>Basic support for creating and deploying containerized apps using &lt;a href="https://aws.amazon.com/ecs">ECS&lt;/a> is provided in the Pro version. LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.&lt;/p>
 &lt;p>By default, the ECS Fargate launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.&lt;/p>
 &lt;p>Note that more complex features like integration of application load balancers (ALBs) are currently not available, but are being developed and will be available in the near future.&lt;/p>

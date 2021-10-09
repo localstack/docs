@@ -1788,14 +1788,14 @@ Kinesis is shipped with the LocalStack Community version and is &lt;a href="/aws
 &lt;h2 id="quickstart">Quickstart&lt;/h2>
 &lt;p>Trying to run the example applications from the &lt;a href="https://docs.aws.amazon.com/streams/latest/dev/examples.html">official AWS developer guide&lt;/a> against LocalStack is a great place to start.
 Assuming you have &lt;code>awslocal&lt;/code> installed you can also try out the following commands:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream --stream-name samplestream --shard-count
-&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis list-streams
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream --stream-name samplestream --shard-count 1&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis list-streams
 {
 &amp;#34;StreamNames&amp;#34;: [
 &amp;#34;samplestream&amp;#34;
 ]
-}
-&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis put-record --cli-binary-format raw-in-base64-out --stream-name samplestream --data &amp;#39;{&amp;#34;symbol&amp;#34;:&amp;#34;TEST&amp;#34;,&amp;#34;sampleno&amp;#34;:42}&amp;#39; --partition-key test1
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis put-record --stream-name samplestream --data &amp;#39;{&amp;#34;symbol&amp;#34;:&amp;#34;TEST&amp;#34;,&amp;#34;sampleno&amp;#34;:42}&amp;#39; --partition-key test1
 {
 &amp;#34;ShardId&amp;#34;: &amp;#34;shardId-000000000001&amp;#34;,
 &amp;#34;SequenceNumber&amp;#34;: &amp;#34;49622467803485029265018102167378141645049970239670845458&amp;#34;,
@@ -1874,28 +1874,28 @@ For instance, to load the S3, SQS, and Kinesis service you&amp;rsquo;d pass the 
 &lt;/code>&lt;/pre>&lt;p>As a special case in LocalStack, leaving out &lt;code>.s3.&amp;lt;region&amp;gt;&lt;/code> also works for the &lt;code>localhost.localstack.cloud&lt;/code> domain:&lt;/p>
 &lt;p>&lt;code>&amp;lt;bucket-name&amp;gt;.localhost.localstack.cloud&lt;/code> is also a host-style request.&lt;/p>
 &lt;p>All other requests will be considered path-style requests.&lt;/p>
-&lt;/div></description></item><item><title>Aws: SQS</title><link>/aws/sqs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/sqs/</guid><description>
-&lt;p>AWS SQS is a fully managed distributed message queuing service.&lt;/p>
-&lt;p>SQS is shipped with the LocalStack Community version and is &lt;a href="/aws/feature-coverage/">extensively supported&lt;/a>.
-Trying to run the examples in the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html">official AWS developer&lt;/a> guide against LocalStack is a great place to start.&lt;/p>
-&lt;p>Assuming you have &lt;a href="/integrations/aws-cli/">&lt;code>awslocal&lt;/code>&lt;/a> installed you can also try the following commands:&lt;/p>
+&lt;/div></description></item><item><title>Aws: Simple Queue Service (SQS)</title><link>/aws/sqs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/sqs/</guid><description>
+&lt;p>AWS SQS is a fully managed distributed message queuing service.
+SQS is shipped with the LocalStack Community version and is &lt;a href="/aws/feature-coverage/">extensively supported&lt;/a>.&lt;/p>
+&lt;h2 id="example">Example&lt;/h2>
+&lt;p>Trying to run the examples in the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html">official AWS developer&lt;/a> guide against LocalStack is a great place to start.
+Assuming you have &lt;a href="/integrations/aws-cli/">&lt;code>awslocal&lt;/code>&lt;/a> installed you can also try the following commands:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal sqs create-queue --queue-name sample-queue
 {
 &amp;#34;QueueUrl&amp;#34;: &amp;#34;http://localhost:4566/000000000000/sample-queue&amp;#34;
-}
-&lt;span class="command-prefix">$ &lt;/span>awslocal sqs list-queues
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal sqs list-queues
 {
 &amp;#34;QueueUrls&amp;#34;: [
 &amp;#34;http://localhost:4566/000000000000/sample-queue&amp;#34;
 ]
-}
-&lt;span class="command-prefix">$ &lt;/span>awslocal sqs send-message --queue-url http://localhost:4566/00000000000/sample-queue --message-body test
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal sqs send-message --queue-url http://localhost:4566/00000000000/sample-queue --message-body test
 {
 &amp;#34;MD5OfMessageBody&amp;#34;: &amp;#34;098f6bcd4621d373cade4e832627b4f6&amp;#34;,
 &amp;#34;MessageId&amp;#34;: &amp;#34;74861aab-05f8-0a75-ae20-74d109b7a76e&amp;#34;
 }&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>When working with the &lt;code>SERVICES&lt;/code> environment variable, please make sure to include &lt;code>sqs&lt;/code> in the list of services.
-For instance, to load the DynamoDB, SQS, and Kinesis service you&amp;rsquo;d pass the variable as &lt;code>SERVICES=dynamodb,sqs,kinesis&lt;/code>.&lt;/p>
+&lt;h2 id="providers">Providers&lt;/h2>
 &lt;p>LocalStack supports two third-party providers for SQS - namely, &lt;a href="https://github.com/spulec/moto">moto&lt;/a> and &lt;a href="https://github.com/softwaremill/elasticmq">elasticmq&lt;/a>. By default, &lt;code>moto&lt;/code> is used. Your desired provider can be set with the environment variable &lt;code>SQS_PROVIDER&lt;/code>.&lt;br>
 For instance, if you wish to use &lt;code>elasticmq&lt;/code> you&amp;rsquo;d pass the environment variable as &lt;code>SQS_PROVIDER=elasticmq&lt;/code>.&lt;/p>
 &lt;p>ElasticMQ only supports a subset of the SQS query (only the REST query interface). However, it provides better scalability for local development and test servers that wish to create realistic scenarios in which lots of messages are sent with a high throughput.
