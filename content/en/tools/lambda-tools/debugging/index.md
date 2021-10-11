@@ -1,5 +1,5 @@
 ---
-title: "Remote debugging"
+title: "Remote Debugging"
 weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
