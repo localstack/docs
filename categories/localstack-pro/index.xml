@@ -2179,18 +2179,15 @@ f05770ec8523 rancher/k3s:v1.21.5-k3s2 &amp;#34;/bin/k3s server --t…&amp;#34; 1
 ...
 }
 }&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>We can then configure the &lt;code>kubectl&lt;/code> command line with the new cluster endpoint:
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>kubectl config set-cluster cluster1 --server=https://localhost.localstack.cloud:4513&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;h3 id="troubleshooting">Troubleshooting&lt;/h3>
-&lt;p>In case you&amp;rsquo;re seeing an SSL certificate error when creating an EKS cluster using Terraform:&lt;/p>
-&lt;pre>&lt;code>Error: Kubernetes cluster unreachable: Get &amp;quot;https://localhost.localstack.cloud:4510/version?timeout=32s&amp;quot;: x509: certificate signed by unknown authority
-&lt;/code>&lt;/pre>&lt;p>&amp;hellip; you may need to download the following key file which contains a test SSL certificate:
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>wget https://github.com/localstack/localstack-artifacts/raw/master/local-certs/server.key&lt;/code>&lt;/pre>&lt;/div>
-&amp;hellip; and then add the following config to your Terraform provider section:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-terraform" data-lang="terraform">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;kubernetes&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;span style="color:#c4a000">cluster_ca_certificate&lt;/span> = &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#204a87">file&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;server.key&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
-&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="using-an-existing-kubernetes-installation">Using an existing Kubernetes installation&lt;/h2>
+&lt;p>We can then configure the &lt;code>kubectl&lt;/code> command line to interact with the new cluster endpoint:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal eks update-kubeconfig --name cluster1
+Updated context arn:aws:eks:us-east-1:000000000000:cluster/cluster1 in ~/.kube/config
+&lt;span class="command-prefix">$ &lt;/span>kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
+Switched to context &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/cluster1&amp;#34;.
+&lt;span class="command-prefix">$ &lt;/span>kubectl get services
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
+service/kubernetes ClusterIP 10.43.0.1 &amp;lt;none&amp;gt; 443/TCP 70s&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="using-an-existing-kubernetes-installation">Using an existing Kubernetes installation&lt;/h2>
 &lt;p>You can also use the EKS API using an existing local Kubernetes installation. This works by mounting the &lt;code>$HOME/.kube/config&lt;/code> file into the LocalStack container - e.g., when using docker-compose.yml:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;${HOME}/.kube/config:/root/.kube/config&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
