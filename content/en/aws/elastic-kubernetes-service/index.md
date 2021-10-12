@@ -41,27 +41,16 @@ Once the cluster has been created and initialized, we can determine the server `
 }
 {{</ command >}}
 
-We can then configure the `kubectl` command line with the new cluster endpoint:
+We can then configure the `kubectl` command line to interact with the new cluster endpoint:
 {{< command >}}
-$ kubectl config set-cluster cluster1 --server=https://localhost.localstack.cloud:4513
+$ awslocal eks update-kubeconfig --name cluster1
+Updated context arn:aws:eks:us-east-1:000000000000:cluster/cluster1 in ~/.kube/config
+$ kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
+Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/cluster1".
+$ kubectl get services
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP   70s
 {{</ command >}}
-
-### Troubleshooting
-
-In case you're seeing an SSL certificate error when creating an EKS cluster using Terraform:
-```
-Error: Kubernetes cluster unreachable: Get "https://localhost.localstack.cloud:4510/version?timeout=32s": x509: certificate signed by unknown authority
-```
-... you may need to download the following key file which contains a test SSL certificate:
-{{< command >}}
-$ wget https://github.com/localstack/localstack-artifacts/raw/master/local-certs/server.key
-{{</ command >}}
-... and then add the following config to your Terraform provider section:
-```terraform
-provider "kubernetes" {
-  cluster_ca_certificate = "${file("server.key")}"
-}
-```
 
 ## Using an existing Kubernetes installation
 
