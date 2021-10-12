@@ -116,7 +116,7 @@ $ docker run --rm -it -p 4566:4566 -p 4571:4571 localstack/localstack
 {{< / command >}}
 
 {{< alert title="Notes" >}}
-- This command pulls the current nighty build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
+- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version, use the appropriate tag (for example `localstack/localstack:0.12.18`).
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
@@ -147,7 +147,7 @@ $ docker-compose up
 {{< / command >}}
 
 {{< alert title="Notes" >}}
-- This command pulls the current nighty build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
+- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version, use the appropriate tag (for example `localstack/localstack:0.12.18`).
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
