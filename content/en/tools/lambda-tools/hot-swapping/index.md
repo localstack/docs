@@ -164,7 +164,7 @@ Without redeploying or updating the function, the result of the previous request
 ```
 Cool!
 
-#### Usage with Viertualenv
+#### Usage with Virtualenv
 
 For Virtualenv-driven projects, all dependencies should be available under the same folder as the project itself.
 The easiest way to achieve that is to implement a watchman script that will be preparing a special folder for hot code swapping.
