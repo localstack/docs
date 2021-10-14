@@ -158,7 +158,7 @@ $ docker-compose up
 {{< /alert >}}
 
 ### Helm
-If you want to deply LocalStack in your [Kubernetes](https://kubernetes.io) cluster, you can use [Helm](https://helm.sh).
+If you want to deploy LocalStack in your [Kubernetes](https://kubernetes.io) cluster, you can use [Helm](https://helm.sh).
 
 #### Prerequisites
 - [Kubernetes](https://kubernetes.io)
