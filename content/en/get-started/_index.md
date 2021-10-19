@@ -157,6 +157,13 @@ $ docker-compose up
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_SERVICES=s3` is equivalent to `SERVICES=s3`.
 {{< /alert >}}
 
+Please note that there's a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, environment variables, etc.). We recommend using the LocalStack CLI to validate your configuration, which will print warning messages in case it detects any (potential) misconfigurations:
+
+{{< command >}}
+$ localstack config validate
+...
+{{< / command >}}
+
 ### Helm
 If you want to deploy LocalStack in your [Kubernetes](https://kubernetes.io) cluster, you can use [Helm](https://helm.sh).
 
