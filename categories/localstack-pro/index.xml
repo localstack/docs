@@ -2497,7 +2497,17 @@ Query result: [{'Vehicle': {'id': 'v1'}}, {'Vehicle': {'id': 'v2'}}, {'Vehicle':
 &lt;p>LocalStack supports a basic version of &lt;a href="https://aws.amazon.com/rds/">RDS&lt;/a> for testing. Currently, it is possible to spin up PostgreSQL databases on the local machine; support for MySQL and other DB engines is under development and coming soon.&lt;/p>
 &lt;p>The local RDS service also supports the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">RDS Data API&lt;/a>, which allows executing data queries over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS database, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple &lt;code>SELECT 123&lt;/code> query via the RDS Data API.
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-instance --db-instance-identifier db1 --db-instance-class c1 --engine postgres
+{
+&amp;#34;DBInstance&amp;#34;: {
 ...
+&amp;#34;Endpoint&amp;#34;: {
+&amp;#34;Address&amp;#34;: &amp;#34;localhost&amp;#34;,
+&amp;#34;Port&amp;#34;: 4513 # may vary
+}
+...
+}
+...
+}
 &lt;span class="command-prefix">$ &lt;/span>awslocal secretsmanager create-secret --name dbpass --secret-string test
 {
 &amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:secretsmanager:eu-central-1:1234567890:secret:dbpass-cfnAX&amp;#34;,
@@ -2513,7 +2523,10 @@ Query result: [{'Vehicle': {'id': 'v1'}}, {'Vehicle': {'id': 'v2'}}, {'Vehicle':
 &amp;#34;records&amp;#34;: [[
 { &amp;#34;doubleValue&amp;#34;: 123 }
 ]]
-}&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item><item><title>Aws: Route 53</title><link>/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/route53/</guid><description>
+}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>You can also use other clients like &lt;code>psql&lt;/code> to interact with the database. The hostname and port of your created instance can be found in the output from above or by running &lt;code>awslocal rds describe-db-instances&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>psql -d test -U test -p 4513 -h localhost -W
+Password: &amp;lt;enter &amp;#34;test&amp;#34;&amp;gt;&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Aws: Route 53</title><link>/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/route53/</guid><description>
 &lt;p>The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.&lt;/p>
 &lt;p>The example below illustrates the creation of a hosted zone &lt;code>example.com&lt;/code>, registration of an A record named &lt;code>test.example.com&lt;/code> that points to &lt;code>1.2.3.4&lt;/code>, and finally querying the DNS record by using the &lt;code>dig&lt;/code> command against the DNS server running on &lt;code>localhost&lt;/code> (inside the LocalStack container, on port &lt;code>53&lt;/code>):
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name example.com --caller-reference r1 | jq -r &amp;#39;.HostedZone.Id&amp;#39;)
