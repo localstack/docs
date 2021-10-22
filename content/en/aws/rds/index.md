@@ -11,13 +11,25 @@ LocalStack supports a basic version of [RDS](https://aws.amazon.com/rds/) for te
 The local RDS service also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS database, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple `SELECT 123` query via the RDS Data API.
 {{< command >}}
 $ awslocal rds create-db-instance --db-instance-identifier db1 --db-instance-class c1 --engine postgres
-...
+{
+    "DBInstance": {
+        ...
+        "Endpoint": {
+            "Address": "localhost",
+            "Port": 4513  # may vary
+        }
+        ...
+    }
+    ...
+}
+
 $ awslocal secretsmanager create-secret --name dbpass --secret-string test
 {
     "ARN": "arn:aws:secretsmanager:eu-central-1:1234567890:secret:dbpass-cfnAX",
     "Name": "dbpass",
     "VersionId": "fffa1f4a-2381-4a2b-a977-4869d59a16c0"
 }
+
 $ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds:eu-central-1:000000000000:db:db1 --secret-arn arn:aws:secretsmanager:eu-central-1:1234567890:secret:dbpass-cfnAX --sql 'SELECT 123'
 {
     "columnMetadata": [{
@@ -28,4 +40,11 @@ $ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds
         { "doubleValue": 123 }
     ]]
 }
+{{< / command >}}
+
+You can also use other clients like `psql` to interact with the database. The hostname and port of your created instance can be found in the output from above or by running `awslocal rds describe-db-instances`.
+
+{{< command >}}
+$ psql -d test -U test -p 4513 -h localhost -W
+Password: <enter "test">
 {{< / command >}}
