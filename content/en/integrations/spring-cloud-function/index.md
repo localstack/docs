@@ -83,7 +83,13 @@ Then run the following command to initialize a new Gradle project
 $ gradle init
 {{< / command >}}
 
-After initialization, you will find the Gradle wrapper script `gradlew`.
+Running the command below will run the gradle wrapper task
+
+{{< command >}}
+$ gradle wrapper
+{{< / command >}}
+
+After running the wrapper task, you will find the Gradle wrapper script `gradlew`.
 From now on, we will use the wrapper instead of the globally installed Gradle binary:
 
 {{< command >}}
