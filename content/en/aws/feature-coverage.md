@@ -639,3 +639,4 @@ The list below summarizes the APIs for which persistence has been implemented an
 - Serverless Repo
 - SES
 - STS
+- KMS
