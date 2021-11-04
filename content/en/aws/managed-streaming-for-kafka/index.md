@@ -30,7 +30,7 @@ The brokernodegroupinfo.json contains the following info:
     ]
 }
 {{< / command >}}
-The output of the following command looks as follows:
+The output of the command looks as follows:
 {{< command >}}
 {
     "ClusterArn": "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster",
