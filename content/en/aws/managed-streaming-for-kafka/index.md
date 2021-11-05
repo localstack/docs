@@ -6,9 +6,9 @@ description: >
   Managed Streaming for Kafka (MSK)
 ---
 
-LocalStack supports a basic version of [Managed Streaming for Kafka (MSK)](https://aws.amazon.com/msk/) for testing. Currently, it is possible to spin up Kafka Topics on the local machine.
+LocalStack supports a basic version of [Managed Streaming for Kafka (MSK)](https://aws.amazon.com/msk/) for testing. This allows you to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic.
 
-To create a local Amazon MSK cluster, the following create-cluster example creates an MSK cluster named EventsCluster with three broker nodes. A JSON file named brokernodegroupinfo.json specifies the three subnets over which you want yout local Amazon MSK to distribute the broker nodes. This example doesn't specify the monitoring level, so the cluster gets the DEFAULT level.
+To create a local MSK cluster, the following create-cluster example creates an MSK cluster named EventsCluster with three broker nodes. A JSON file named `brokernodegroupinfo.json` specifies the three subnets over which you want yout local Amazon MSK to distribute the broker nodes. This example doesn't specify the monitoring level, so the cluster gets the DEFAULT level.
 
 {{< command >}}
 $ awslocal kafka create-cluster \
@@ -39,7 +39,8 @@ The output of the command looks as follows:
 }
 {{< / command >}}
 
-Describing the MSK cluster can be as simple as pasting the following command
+Describing the MSK cluster can be as simple as running the following command with the ClusterArn displayed after the creation of the cluser
+
 {{< command >}}
 awslocal kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster"
 {{< / command >}}
