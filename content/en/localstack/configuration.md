@@ -55,6 +55,7 @@ Docker is used extensively by LocalStack, and there are several configuration pa
 This section covers configuration values that are specific to AWS services.
 
 * [DynamoDB]({{< ref "#dynamodb" >}})
+* [Elasticsearch]({{< ref "#elasticsearch" >}})
 * [Kinesis]({{< ref "#kinesis" >}})
 * [Lambda]({{< ref "#lambda" >}})
 * [Stepfunctions]({{< ref "#stepfunctions" >}})
@@ -70,6 +71,14 @@ This section covers configuration values that are specific to AWS services.
 | `DYNAMODB_OPTIMIZE_DB_BEFORE_STARTUP` | `0`\|`1` | Optimize the database tables in the store before starting |
 | `DYNAMODB_DELAY_TRANSIENT_STATUSES` | `0`\|`1` | When activated, DynamoDB will introduce artificial delays in resource creation to simulate the actual cloud service more closely. Currently works only for CREATING and DELETING online index statuses. |
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
+
+
+### Elasticsearch
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `ES_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. |
+| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`off` | Governs how domain endpoints are created to access a cluster (see [Elasticsearch#endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 
 
 ### Kinesis
