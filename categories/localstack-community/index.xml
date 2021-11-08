@@ -1688,22 +1688,22 @@ lambda function.&lt;/p>
 &lt;h2 id="creating-an-elasticsearch-cluster">Creating an Elasticsearch cluster&lt;/h2>
 &lt;p>You can go ahead and use &lt;a href="/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a> to create a new elasticsearch domain via the &lt;code>aws es create-elasticsearch-domain&lt;/code> command.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: The first time you create a cluster, the Elasticsearch binary is downloaded, which may take a while to download.
+&lt;strong>Note&lt;/strong>: Unless you use the Elasticsearch default version, the first time you create a cluster with a specific version, the Elasticsearch binary is downloaded, which may take a while to download.
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: The default Elasticsearch version used is 7.7.
+&lt;strong>Note&lt;/strong>: The default Elasticsearch version used is 7.10.0.
 &lt;/div>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name foobar
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name my-domain
 {
 &amp;#34;DomainStatus&amp;#34;: {
-&amp;#34;DomainId&amp;#34;: &amp;#34;000000000000/foobar&amp;#34;,
-&amp;#34;DomainName&amp;#34;: &amp;#34;foobar&amp;#34;,
-&amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:es:us-east-1:000000000000:domain/foobar&amp;#34;,
-&amp;#34;Created&amp;#34;: false,
+&amp;#34;DomainId&amp;#34;: &amp;#34;000000000000/my-domain&amp;#34;,
+&amp;#34;DomainName&amp;#34;: &amp;#34;my-domain&amp;#34;,
+&amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:es:us-east-1:000000000000:domain/my-domain&amp;#34;,
+&amp;#34;Created&amp;#34;: true,
 &amp;#34;Deleted&amp;#34;: false,
-&amp;#34;Endpoint&amp;#34;: &amp;#34;http://localhost:4571&amp;#34;,
-&amp;#34;Processing&amp;#34;: false,
-&amp;#34;ElasticsearchVersion&amp;#34;: &amp;#34;7.7&amp;#34;,
+&amp;#34;Endpoint&amp;#34;: &amp;#34;my-domain.us-east-1.es.localhost.localstack.cloud:4566&amp;#34;,
+&amp;#34;Processing&amp;#34;: true,
+&amp;#34;ElasticsearchVersion&amp;#34;: &amp;#34;7.10.0&amp;#34;,
 &amp;#34;ElasticsearchClusterConfig&amp;#34;: {
 &amp;#34;InstanceType&amp;#34;: &amp;#34;m3.medium.elasticsearch&amp;#34;,
 &amp;#34;InstanceCount&amp;#34;: 1,
@@ -1723,51 +1723,44 @@ lambda function.&lt;/p>
 }
 }
 }&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>In the LocalStack log you will see something like&lt;/p>
-&lt;pre>&lt;code>2021-10-01T21:12:47:INFO:localstack.services.es.es_api: starting &amp;lt;class 'localstack.services.es.cluster.ProxiedElasticsearchCluster'&amp;gt; on localhost:4571
-2021-10-01T21:12:47:INFO:localstack.services.install: Downloading and installing local Elasticsearch (7.7.0) server. This may take some time.
-[2021-10-01 21:12:47 +0200] [16518] [INFO] Running on http://0.0.0.0:4571 (CTRL + C to quit)
-2021-10-01T21:12:47:INFO:hypercorn.error: Running on http://0.0.0.0:4571 (CTRL + C to quit)
-2021-10-01T21:13:32:INFO:localstack.services.install: Installing Elasticsearch plugin analysis-icu
-2021-10-01T21:13:41:INFO:localstack.services.install: Installing Elasticsearch plugin ingest-attachment
-2021-10-01T21:13:54:INFO:localstack.services.install: Installing Elasticsearch plugin analysis-kuromoji
-2021-10-01T21:14:01:INFO:localstack.services.install: Installing Elasticsearch plugin mapper-murmur3
-2021-10-01T21:14:07:INFO:localstack.services.install: Installing Elasticsearch plugin mapper-size
-2021-10-01T21:14:14:INFO:localstack.services.install: Installing Elasticsearch plugin analysis-phonetic
-2021-10-01T21:14:21:INFO:localstack.services.install: Installing Elasticsearch plugin analysis-smartcn
-2021-10-01T21:14:27:INFO:localstack.services.install: Installing Elasticsearch plugin analysis-stempel
-2021-10-01T21:14:45:INFO:localstack.services.install: Installing Elasticsearch plugin analysis-ukrainian
-2021-10-01T21:15:01:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=59237 -E http.publish_port=59237 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data=&amp;quot;/opt/code/localstack/localstack/infra/elasticsearch/data&amp;quot; -E path.repo=&amp;quot;/tmp/localstack/es_backup&amp;quot; -E xpack.ml.enabled=false with env {'ES_JAVA_OPTS': '-Xms200m -Xmx600m', 'ES_TMPDIR': '/opt/code/localstack/localstack/infra/elasticsearch/tmp'}
-&lt;/code>&lt;/pre>&lt;p>and after some time, you should see that the &lt;code>Created&lt;/code> state of the domain is set to &lt;code>true&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain --domain-name foobar | jq &amp;#34;.DomainStatus.Created&amp;#34;
-true&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In the LocalStack log you will see something like, where you can see the cluster starting up in the background.&lt;/p>
+&lt;pre>&lt;code>2021-11-08T16:29:28:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=57705 -E http.publish_port=57705 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data=&amp;quot;/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data&amp;quot; -E path.repo=&amp;quot;/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup&amp;quot; -E xpack.ml.enabled=false with env {'ES_JAVA_OPTS': '-Xms200m -Xmx600m', 'ES_TMPDIR': '/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp'}
+2021-11-08T16:29:28:INFO:localstack.services.es.cluster: registering an endpoint proxy for http://my-domain.us-east-1.es.localhost.localstack.cloud:4566 =&amp;gt; http://127.0.0.1:57705
+2021-11-08T16:29:30:INFO:localstack.services.es.cluster: OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,502][INFO ][o.e.n.Node ] [noctua] version[7.10.0], pid[22403], build[default/tar/51e9d6f22758d0374a0f3f5c6e8f3a7997850f96/2020-11-09T21:30:33.964949Z], OS[Linux/5.4.0-89-generic/amd64], JVM[Ubuntu/OpenJDK 64-Bit Server VM/11.0.11/11.0.11+9-Ubuntu-0ubuntu2.20.04]
+2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,510][INFO ][o.e.n.Node ] [noctua] JVM home [/usr/lib/jvm/java-11-openjdk-amd64], using bundled JDK [false]
+2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,511][INFO ][o.e.n.Node ] [noctua] JVM arguments [-Xshare:auto, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -Djava.io.tmpdir=/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms200m, -Xmx600m, -XX:MaxDirectMemorySize=314572800, -Des.path.home=/opt/code/localstack/localstack/localstack/infra/elasticsearch, -Des.path.conf=/opt/code/localstack/localstack/localstack/infra/elasticsearch/config, -Des.distribution.flavor=default, -Des.distribution.type=tar, -Des.bundled_jdk=true]
+2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,258][INFO ][o.e.p.PluginsService ] [noctua] loaded module [aggs-matrix-stats]
+2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,259][INFO ][o.e.p.PluginsService ] [noctua] loaded module [analysis-common]
+2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,260][INFO ][o.e.p.PluginsService ] [noctua] loaded module [constant-keyword]
+...
+&lt;/code>&lt;/pre>&lt;p>and after some time, you should see that the &lt;code>Processing&lt;/code> state of the domain is set to &lt;code>false&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain --domain-name my-domain | jq &amp;#34;.DomainStatus.Processing&amp;#34;
+false&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="interact-with-the-cluster">Interact with the cluster&lt;/h2>
-&lt;p>You can now interact with the cluster at the cluster API endpoint &lt;code>http://localhost:4571&lt;/code>.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Only one Elasticsearch cluster instance is created locally.
-Additional domains share the same Elasticsearch cluster.
-&lt;/div>
+&lt;p>You can now interact with the cluster at the cluster API endpoint for the domain,
+in this case &lt;code>http://my-domain.us-east-1.es.localhost.localstack.cloud:4566&lt;/code>.&lt;/p>
 &lt;p>For example:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:4571
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://my-domain.us-east-1.es.localhost.localstack.cloud:4566
 {
-&amp;#34;name&amp;#34; : &amp;#34;om&amp;#34;,
+&amp;#34;name&amp;#34; : &amp;#34;localstack&amp;#34;,
 &amp;#34;cluster_name&amp;#34; : &amp;#34;elasticsearch&amp;#34;,
-&amp;#34;cluster_uuid&amp;#34; : &amp;#34;z8n5oqE1SAmmhg3bR9jd2A&amp;#34;,
+&amp;#34;cluster_uuid&amp;#34; : &amp;#34;IC7E9daNSiepRBB9Ksul7w&amp;#34;,
 &amp;#34;version&amp;#34; : {
-&amp;#34;number&amp;#34; : &amp;#34;7.7.0&amp;#34;,
+&amp;#34;number&amp;#34; : &amp;#34;7.10.0&amp;#34;,
 &amp;#34;build_flavor&amp;#34; : &amp;#34;default&amp;#34;,
 &amp;#34;build_type&amp;#34; : &amp;#34;tar&amp;#34;,
-&amp;#34;build_hash&amp;#34; : &amp;#34;81a1e9eda8e6183f5237786246f6dced26a10eaf&amp;#34;,
-&amp;#34;build_date&amp;#34; : &amp;#34;2020-05-12T02:01:37.602180Z&amp;#34;,
+&amp;#34;build_hash&amp;#34; : &amp;#34;51e9d6f22758d0374a0f3f5c6e8f3a7997850f96&amp;#34;,
+&amp;#34;build_date&amp;#34; : &amp;#34;2020-11-09T21:30:33.964949Z&amp;#34;,
 &amp;#34;build_snapshot&amp;#34; : false,
-&amp;#34;lucene_version&amp;#34; : &amp;#34;8.5.1&amp;#34;,
+&amp;#34;lucene_version&amp;#34; : &amp;#34;8.7.0&amp;#34;,
 &amp;#34;minimum_wire_compatibility_version&amp;#34; : &amp;#34;6.8.0&amp;#34;,
 &amp;#34;minimum_index_compatibility_version&amp;#34; : &amp;#34;6.0.0-beta1&amp;#34;
 },
 &amp;#34;tagline&amp;#34; : &amp;#34;You Know, for Search&amp;#34;
 }&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Or the health endpoint:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl -s http://localhost:4571/_cluster/health | jq .
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl -s http://my-domain.us-east-1.es.localhost.localstack.cloud:4566/_cluster/health | jq .
 {
 &amp;#34;cluster_name&amp;#34;: &amp;#34;elasticsearch&amp;#34;,
 &amp;#34;status&amp;#34;: &amp;#34;green&amp;#34;,
@@ -1784,7 +1777,70 @@ Additional domains share the same Elasticsearch cluster.
 &amp;#34;number_of_in_flight_fetch&amp;#34;: 0,
 &amp;#34;task_max_waiting_in_queue_millis&amp;#34;: 0,
 &amp;#34;active_shards_percent_as_number&amp;#34;: 100
-}&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Aws: Kinesis</title><link>/aws/kinesis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/kinesis/</guid><description>
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="advanced-topics">Advanced topics&lt;/h2>
+&lt;h3 id="endpoints">Endpoints&lt;/h3>
+&lt;p>There are three configurable strategies that govern how domain endpoints are created, and can be configured via the &lt;code>ES_ENDPOINT_STRATEGY&lt;/code> environment variable.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Value&lt;/th>
+&lt;th>Format&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>domain&lt;/code>&lt;/td>
+&lt;td>&lt;code>&amp;lt;domain-name&amp;gt;.&amp;lt;region&amp;gt;.es.localhost.localstack.cloud:4566&lt;/code>&lt;/td>
+&lt;td>This is the default strategy that uses the &lt;code>localhost.localstack.cloud&lt;/code> domain to route to your localhost&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>path&lt;/code>&lt;/td>
+&lt;td>&lt;code>localhost:4566/es/&amp;lt;region&amp;gt;/&amp;lt;domain-name&amp;gt;&lt;/code>&lt;/td>
+&lt;td>An alternative that can be useful if you cannot resolve LocalStack&amp;rsquo;s localhost domain&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>off&lt;/code>&lt;/td>
+&lt;td>&lt;code>http://localhost:4571&lt;/code>&lt;/td>
+&lt;td>Exposes the default cluster directly on the given endpoint (only works with &lt;code>ES_MULTI_CLUSTER=0&lt;/code>)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="custom-endpoints">Custom Endpoints&lt;/h4>
+&lt;p>LocalStack allows you to set arbitrary custom endpoints for your clusters in the domain endpoint options.
+This can be used to overwrite the behavior of the endpoint strategies described above.
+You can also choose custom domains, however it is important to add the edge port (&lt;code>80&lt;/code>/&lt;code>443&lt;/code> or by default &lt;code>4566&lt;/code>).&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal es create-elasticsearch-domain --domain-name my-domain \
+--elasticsearch-version 7.10 \
+--domain-endpoint-options &amp;#39;{ &amp;#34;CustomEndpoint&amp;#34;: &amp;#34;http://localhost:4566/my-custom-endpoint&amp;#34;, &amp;#34;CustomEndpointEnabled&amp;#34;: true }&amp;#39;&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Once the domain processing is complete, you can access the cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">curl http://localhost:4566/my-custom-endpoint/_cluster/health&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="re-using-a-single-cluster-instance">Re-using a single cluster instance&lt;/h3>
+&lt;p>In some cases, you may not want to create a new cluster instance for each domain,
+for example when you are only interested in testing API interactions instead of actual Elasticsearch functionality.
+In this case, you can set &lt;code>ES_MULTI_CLUSTER=0&lt;/code>, which will multiplex all domains to the same cluster.
+This can however lead to unexpected behavior when persisting data into Elastichsearch, or creating clusters with different versions, so we do not recommend it.&lt;/p>
+&lt;h3 id="storage-layout">Storage Layout&lt;/h3>
+&lt;p>Elasticsearch will be organized in your &lt;code>DATA_DIR&lt;/code>, or the temporary directory (e.g., &lt;code>/tmp/localstack&lt;/code>), as follows:&lt;/p>
+&lt;pre>&lt;code>localstack@machine /tmp/localstack % tree -L 4
+.
+├── elasticsearch
+│ └── arn:aws:es:us-east-1:000000000000:domain
+│ ├── my-cluster-1
+│ │ ├── backup
+│ │ ├── data
+│ │ └── tmp
+│ ├── my-cluster-2
+│ │ ├── backup
+│ │ ├── data
+│ │ └── tmp
+&lt;/code>&lt;/pre>&lt;h2 id="differences-to-aws">Differences to AWS&lt;/h2>
+&lt;ul>
+&lt;li>By default, AWS only sets the &lt;code>Endpoint&lt;/code> attribute of the cluster status once the cluster is up.
+LocalStack will return the endpoint immediately, but keep &lt;code>Processing = &amp;quot;true&amp;quot;&lt;/code> until the cluster has been started.&lt;/li>
+&lt;li>The &lt;code>CustomEndpointOptions&lt;/code> allows arbitrary endpoint URLs, which is not allowed in AWS&lt;/li>
+&lt;/ul></description></item><item><title>Aws: Kinesis</title><link>/aws/kinesis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/kinesis/</guid><description>
 &lt;p>AWS Kinesis is a fully managed data streaming service, which enables your application to ingest, buffer, and process data in real-time.
 Kinesis is shipped with the LocalStack Community version and is &lt;a href="/aws/feature-coverage/">extensively supported&lt;/a>.&lt;/p>
 &lt;h2 id="quickstart">Quickstart&lt;/h2>
