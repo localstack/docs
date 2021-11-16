@@ -13,6 +13,30 @@ Help us getting aware of current issues with the ARM64 image by &lt;a href="http
 &lt;p>You can check the architecture of the pulled image by using &lt;code>docker inspect&lt;/code>:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker inspect localstack/localstack | jq .[0].Architecture
 &amp;#34;arm64&amp;#34;&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="using-amd64-lambda-functions-and-binaries-on-arm64">Using AMD64 Lambda functions and binaries on ARM64&lt;/h2>
+&lt;p>If you want to execute Docker Lambda functions or binaries which have not been built for your architecture, you need to configure cross-platform emulation on your system.&lt;/p>
+&lt;p>You can do so by installing a AMD64 &lt;code>bin_fmt&lt;/code> emulator on your ARM64 host system with the following command:&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Affects host system&lt;/h4>
+The following command installs additionals emulators on your &lt;em>host system&lt;/em>.
+&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt --install amd64&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can check the current status with:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt
+{
+&lt;span style="display:block;width:100%;background-color:#dfdfdf"> &amp;#34;supported&amp;#34;: [
+&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> &amp;#34;linux/amd64&amp;#34;,
+&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> &amp;#34;linux/arm64&amp;#34;,
+&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> &amp;#34;linux/386&amp;#34;
+&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> ],
+&lt;/span> &amp;#34;emulators&amp;#34;: [
+&amp;#34;jar&amp;#34;,
+&amp;#34;llvm-12-runtime.binfmt&amp;#34;,
+&amp;#34;python3.10&amp;#34;,
+&amp;#34;python3.9&amp;#34;,
+&amp;#34;qemu-aarch64&amp;#34;
+]
+}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
 &lt;h3 id="pulling-images-for-other-architectures">Pulling images for other architectures&lt;/h3>
 &lt;p>
