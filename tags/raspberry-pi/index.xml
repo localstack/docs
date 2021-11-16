@@ -1,0 +1,67 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – raspberry pi</title><link>/tags/raspberry-pi/</link><description>Recent content in raspberry pi on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml"/><item><title>Localstack: ARM64 Support</title><link>/localstack/arm64-support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/localstack/arm64-support/</guid><description>
+&lt;p>With &lt;a href="https://github.com/localstack/localstack/releases/tag/v0.13.0">version 0.13&lt;/a>, LocalStack officially publishes a &lt;a href="https://hub.docker.com/r/localstack/localstack">multi-architecture Docker manifest&lt;/a>.
+This manifest contains links to a Linux AMD64 as well as a Linux ARM64 image.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Experimental&lt;/h4>
+&lt;p>The ARM64 image of LocalStack is still experimental.
+Help us getting aware of current issues with the ARM64 image by &lt;a href="https://github.com/localstack/localstack/issues/new?assignees=&amp;amp;labels=bug,ARM64%2Cneeds-triaging&amp;amp;template=bug-report.yml&amp;amp;title=bug%3A+%3Ctitle%3E">filing an issue&lt;/a> if you experience any problems.&lt;/p>
+&lt;p>Currently known limitations are collected in the GitHub issue &lt;a href="https://github.com/localstack/localstack/issues/4921">localstack/localstack#4921&lt;/a>.&lt;/p>
+&lt;/div>
+&lt;h2 id="pulling-the-image">Pulling the image&lt;/h2>
+&lt;p>With the multi-arch Docker manifest, your Docker client (and therefore the &lt;a href="/get-started/#localstack-cli">LocalStack CLI&lt;/a>) now automatically selects the image according to your platform:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker pull localstack/localstack&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>You can check the architecture of the pulled image by using &lt;code>docker inspect&lt;/code>:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker inspect localstack/localstack | jq .[0].Architecture
+&amp;#34;arm64&amp;#34;&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;h3 id="pulling-images-for-other-architectures">Pulling images for other architectures&lt;/h3>
+&lt;p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Unsupported&lt;/h4>
+Please be aware that this workaround is not supported by LocalStack at all.
+&lt;/div>
+If you want to use a LocalStack image which has been built for another architecture than yours, you can instruct Docker to use another platform by setting the &lt;code>DOCKER_DEFAULT_PLATFORM&lt;/code> environment variable:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>export DOCKER_DEFAULT_PLATFORM=linux/amd64&lt;/code>&lt;/pre>&lt;/div>
+When using Docker Compose, you can use the &lt;code>platform&lt;/code> element &lt;a href="https://github.com/compose-spec/compose-spec/blob/master/spec.md#platform">as described in the specification&lt;/a>.&lt;/p>
+&lt;h3 id="apple-silicon--apple-m1">Apple Silicon / Apple M1&lt;/h3>
+&lt;p>If you are experiencing issues with the ARM64 image (and after you created an issue to make us aware of the problem 😉), you can try to use the AMD64 packages on your Apple Silicon device and use Apple Rosetta to emulate the AMD64 / x86_64 CPU architecture.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Unsupported&lt;/h4>
+Please be aware that this workaround is not supported by LocalStack at all.
+&lt;/div>
+&lt;p>First, you should enable &amp;ldquo;Rosetta&amp;rdquo; on your preferred terminal.
+This way you&amp;rsquo;ll be installing packages for &lt;code>x86_64&lt;/code> platform.&lt;/p>
+&lt;p>&lt;img src="m1-trouble-1.png" alt="Rosetta">&lt;/p>
+&lt;p>What we will be doing now is installing Java and Python executables using Homebrew, it should automatically resolve packages to proper architecture versions.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># Install Homebrew&lt;/span>
+/bin/bash -c &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># Install java11 and follow instructions&lt;/span>
+brew install java11
+&lt;span style="color:#8f5902;font-style:italic"># Install jenv and follow instructions&lt;/span>
+brew install jenv
+&lt;span style="color:#8f5902;font-style:italic"># Add Java11 to jenv and use it globally&lt;/span>
+jenv add /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home/
+jenv global &lt;span style="color:#0000cf;font-weight:bold">11&lt;/span>
+&lt;span style="color:#8f5902;font-style:italic"># Install pyenv and follow instructions&lt;/span>
+brew install pyenv
+&lt;span style="color:#8f5902;font-style:italic"># Install python 3.8.10 and enable it globally&lt;/span>
+pyenv install 3.8.10
+pyenv global 3.8.10
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then clone LocalStack to your machine, run &lt;code>make install&lt;/code> and then &lt;code>make start&lt;/code>.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Note on JVM Lambda&lt;/h4>
+You need to use the &lt;code>local&lt;/code> lambda executor for JVM Lambda functions.
+&lt;/div>
+&lt;h3 id="raspberry-pi">Raspberry Pi&lt;/h3>
+&lt;p>If you want to run LocalStack on your Raspberry Pi, make sure to use a 64bit operating system.
+In our experience, it works best on a Raspberry Pi 4 8GB with &lt;a href="https://ubuntu.com/download/raspberry-pi">Ubuntu Server 20.04 64Bit for Raspberry Pi&lt;/a>.&lt;/p>
+&lt;p>You can check if Docker is running and your architecture is ARM64 / aarch64 by using &lt;code>docker info&lt;/code>:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker info
+Client:
+...
+Server:
+...
+&lt;span style="display:block;width:100%;background-color:#dfdfdf"> Operating System: Ubuntu 20.04
+&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> OSType: linux
+&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> Architecture: aarch64
+&lt;/span> ...&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item></channel></rss>
