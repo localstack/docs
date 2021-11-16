@@ -2644,7 +2644,35 @@ mnist_estimator.fit(inputs, logs=False)
 &lt;p>Once your SMTP server has been configured, you can use the SES user interface in the Web app to create a new email account (e.g., &lt;code>user1@yourdomain.com&lt;/code>), and then send an email via the command line (or your SES client SDK):
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal ses send-email --from user1@yourdomain.com --message &amp;#39;Body={Text={Data=&amp;#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...&amp;#34;}},Subject={Data=Test Email}&amp;#39; --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>The &lt;a href="https://app.localstack.cloud">Web user interface&lt;/a> then allows you to interactively browse through the sent email messages, as illustrated in the screenshot below:&lt;/p>
-&lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item><item><title>Aws: Transfer</title><link>/aws/transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/transfer/</guid><description>
+&lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item><item><title>Aws: Timestream</title><link>/aws/timestream/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/timestream/</guid><description>
+&lt;p>LocalStack Pro contains basic support for Timestream time series databases, including these operations:&lt;/p>
+&lt;ul>
+&lt;li>Creating databases&lt;/li>
+&lt;li>Creating tables&lt;/li>
+&lt;li>Writing records to tables&lt;/li>
+&lt;li>Querying timeseries data from tables&lt;/li>
+&lt;/ul>
+&lt;h2 id="simple-usage-example">Simple Usage Example&lt;/h2>
+&lt;p>The following example illustrates the basic operations, using the &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> command line.&lt;/p>
+&lt;p>First, we create a test database and table:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write create-database --database-name testDB
+&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write create-table --database-name testDB --table-name testTable&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can then add a few records with a timestamp, measure name, and value to the table:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write write-records --database-name testDB --table-name testTable --records &amp;#39;[{&amp;#34;MeasureName&amp;#34;:&amp;#34;cpu&amp;#34;,&amp;#34;MeasureValue&amp;#34;:&amp;#34;60&amp;#34;,&amp;#34;TimeUnit&amp;#34;:&amp;#34;SECONDS&amp;#34;,&amp;#34;Time&amp;#34;:&amp;#34;1636986409&amp;#34;}]&amp;#39;
+&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write write-records --database-name testDB --table-name testTable --records &amp;#39;[{&amp;#34;MeasureName&amp;#34;:&amp;#34;cpu&amp;#34;,&amp;#34;MeasureValue&amp;#34;:&amp;#34;80&amp;#34;,&amp;#34;TimeUnit&amp;#34;:&amp;#34;SECONDS&amp;#34;,&amp;#34;Time&amp;#34;:&amp;#34;1636986412&amp;#34;}]&amp;#39;
+&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write write-records --database-name testDB --table-name testTable --records &amp;#39;[{&amp;#34;MeasureName&amp;#34;:&amp;#34;cpu&amp;#34;,&amp;#34;MeasureValue&amp;#34;:&amp;#34;70&amp;#34;,&amp;#34;TimeUnit&amp;#34;:&amp;#34;SECONDS&amp;#34;,&amp;#34;Time&amp;#34;:&amp;#34;1636986414&amp;#34;}]&amp;#39;&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Finally, we can run a query to retrieve the timeseries data (or aggregate values) from the table:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-query query --query-string &amp;#34;SELECT CREATE_TIME_SERIES(time, measure_value::double) as cpu FROM timeStreamDB.timeStreamTable WHERE measure_name=&amp;#39;cpu&amp;#39;&amp;#34;
+{
+&amp;#34;Rows&amp;#34;: [{
+&amp;#34;Data&amp;#34;: [{
+&amp;#34;TimeSeriesValue&amp;#34;: [{
+&amp;#34;Time&amp;#34;: &amp;#34;2021-11-15T14:26:49&amp;#34;,
+&amp;#34;Value&amp;#34;: {
+&amp;#34;ScalarValue&amp;#34;: 60
+}
+},
+...&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item><item><title>Aws: Transfer</title><link>/aws/transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/transfer/</guid><description>
 &lt;p>The AWS Transfer API provides the ability to create FTP(S) servers to make files in S3 buckets accessible directly via FTP.&lt;/p>
 &lt;p>A simple example using AWS Transfer is included in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/transfer-ftp-s3">this Github repository&lt;/a>. The sample creates an FTP server via the Transfer API locally, uploads two files via FTP to S3, and then finally downloads the files from the target S3 bucket.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
