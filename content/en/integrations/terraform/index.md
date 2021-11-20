@@ -119,9 +119,9 @@ All you need to do is to initialize Terraform
 $ terraform init
 {{< / command >}}
 
-and then deploy the configuration
+and then provision s3 bucket specified in the configuration
 {{< command >}}
-$ terraform deploy
+$ terraform apply
 {{< / command >}}
 
 ## Endpoint configuration

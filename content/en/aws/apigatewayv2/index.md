@@ -6,9 +6,63 @@ description: >
   API Gateway V2
 ---
 
-Basic support for API Gateway V2 is included in the Pro version, which allows for creation of local WebSocket APIs for long-lived connections and bi-directional communication between the API and your clients.
+The Pro version has support for API Gateway V2 (in addition to V1), which allows for creation of local HTTP as well as WebSocket APIs - for long-lived connections and bi-directional communication between the API and your clients.
 
-For example, given the following [Serverless](https://serverless.com/) configuration:
+## Accessing HTTP APIs via local domain name
+
+For example, the following [Serverless](https://serverless.com/) configuration illustrates two Lambda functions (`serviceV1` and `serviceV2`) connected to an API Gateway v1 (`http` event) and an API Gateway v2 endpoint (`httpApi` event), respectively:
+```yaml
+...
+plugins:
+  - serverless-localstack
+custom:
+  localstack:
+    stages: [local]
+functions:
+  serviceV1:
+    handler: handler.handler
+    events:
+      - http:    # for API GW v1 integration
+          method: POST
+          path: /my/path1
+  serviceV2:
+    handler: handler.handler
+    events:
+      - httpApi: # for API GW v2 integration
+          method: POST
+          path: /my/path2
+```
+
+Once deployed, the API Gateway endpoints above can be accessed via the LocalStack edge port (`4566` by default).
+
+There are two alternative URL formats for accessing the APIs (for both, v1 and v2 APIs). The recommended format is to use the following URL syntax with an `execute-api` hostname:
+
+<pre><code>http://<b>&lt;apiId></b>.execute-api.localhost.localstack.cloud:4566/<b>&lt;stageId></b>/<b>&lt;path></b>
+</code></pre>
+
+Assuming the ID of the deployed HTTP/REST API is `0v1p6q6`, the invocation URL would be:
+```
+http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/local/my/path2
+```
+The alternative format (sometimes used, e.g., in case of local DNS issues) is an endpoint with the predefined path marker `_user_request_`:
+
+<pre><code>http://localhost:4566/restapis/<b>&lt;apiId></b>/<b>&lt;stageId></b>/_user_request_/<b>&lt;path></b>
+</code></pre>
+
+... which for the example above would result in:
+```
+http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
+```
+
+
+{{< alert >}}
+Please note that the URLs above include the name of the API Gateway stage (`local`) - adding the stage is required for API Gateway v1 APIs, but optional for API Gateway v2 APIs (in case they include the wildcard `$default` stage).
+In other words, for v2 the URL `http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/my/path1` should also work.
+{{</ alert >}}
+
+## WebSocket APIs
+
+To illustrate the use of WebSockets, assume we define the following [Serverless](https://serverless.com/) configuration:
 ```yaml
 ...
 plugins:

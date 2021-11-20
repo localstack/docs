@@ -55,6 +55,7 @@ Docker is used extensively by LocalStack, and there are several configuration pa
 This section covers configuration values that are specific to AWS services.
 
 * [DynamoDB]({{< ref "#dynamodb" >}})
+* [Elasticsearch]({{< ref "#elasticsearch" >}})
 * [Kinesis]({{< ref "#kinesis" >}})
 * [Lambda]({{< ref "#lambda" >}})
 * [Stepfunctions]({{< ref "#stepfunctions" >}})
@@ -66,6 +67,18 @@ This section covers configuration values that are specific to AWS services.
 | - | - | - |
 | `DYNAMODB_ERROR_PROBABILITY` | Decimal value between `0.0`(default) and `1.0` | Randomly inject `ProvisionedThroughputExceededException` errors into DynamoDB API responses. |
 | `DYNAMODB_HEAP_SIZE` | `256m` (default), `1G` | Sets the JAVA EE maximum memory size for DynamoDB; full table scans require more memory |
+| `DYNAMODB_SHARE_DB` | `0`\|`1` | When activated, DynamodDB will use a single database instead of separate databases for each credential and region. |
+| `DYNAMODB_OPTIMIZE_DB_BEFORE_STARTUP` | `0`\|`1` | Optimize the database tables in the store before starting |
+| `DYNAMODB_DELAY_TRANSIENT_STATUSES` | `0`\|`1` | When activated, DynamoDB will introduce artificial delays in resource creation to simulate the actual cloud service more closely. Currently works only for CREATING and DELETING online index statuses. |
+| `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
+
+
+### Elasticsearch
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `ES_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. |
+| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`off` | Governs how domain endpoints are created to access a cluster (see [Elasticsearch#endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 
 
 ### Kinesis
@@ -90,7 +103,7 @@ This section covers configuration values that are specific to AWS services.
 | | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. Also, `HOST_TMP_FOLDER` must be set properly, and a volume mount like `${HOST_TMP_FOLDER}:/tmp/localstack` needs to be configured if you're using docker-compose. |
 | `BUCKET_MARKER_LOCAL` | | Optional bucket name for running lambdas locally.|
 | `LAMBDA_CODE_EXTRACT_TIME` | `25` | Time in seconds to wait at max while extracting Lambda code. By default it is 25 seconds for limiting the execution time to avoid client/network timeout issues.| 
-| `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. |
+| `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. |
 | `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function. |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Lambda Docker `run`\|`create` commands (e.g., useful for specifying custom volume mounts). Does only support environment, volume, port and add-host flags |
 | `LAMBDA_CONTAINER_REGISTRY` | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.|
@@ -142,6 +155,9 @@ Some of the services can be configured to switch to a particular provider:
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
 | `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments).
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events |
+| `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself. |
+| `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself. |
+| `REQUESTS_CA_BUNDLE` | `/tmp/localstack/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack |
 
 
 ## Debugging

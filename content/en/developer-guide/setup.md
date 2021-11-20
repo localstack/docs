@@ -5,6 +5,9 @@ description: >
   Set up your development environment for developing LocalStack.
 ---
 
+{{% alert %}}
+**Note:** We have recently added a couple of refactorings and enhancements in the core framework and application architecture, hence this page is no longer fully up to date. We're planning to publish an updated version soon.
+{{% /alert %}}
 
 ## Development requirements
 
@@ -25,7 +28,7 @@ You will need the following tools for local development of LocalStack.
 
 ### Installation instructions
 
-Here are very basic installation instructions for the dependencies you will need.
+Below are some basic installation instructions for the dependencies you will need (assuming you're on Debian/Ubuntu Linux).
 
 * Python 3.7+
   ```bash
