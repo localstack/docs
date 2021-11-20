@@ -114,10 +114,49 @@ $ awslocal glue get-tables --database-name db2
 }
 {{< / command >}}
 
+## Crawlers
+
+Glue crawlers allow extracting metadata from structured data sources. The example below illustrates crawling tables and partition metadata from S3 buckets.
+
+First, we create an S3 bucket with a couple of items:
+{{< command >}}
+$ awslocal s3 mb s3://test
+$ echo '1, 2, 3, 4' > /tmp/file.csv
+$ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Jan/day=1/file.csv
+$ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Jan/day=2/file.csv
+$ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=1/file.csv
+$ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=2/file.csv
+{{< / command >}}
+
+Then we can create and trigger the crawler:
+{{< command >}}
+$ awslocal glue create-database --database-input '{"Name":"db1"}'
+$ awslocal glue create-crawler --name c1 --database-name db1 --role r1 --targets '{"S3Targets": [{"Path": "s3://test/table1"}]}'
+$ awslocal glue start-crawler --name c1
+{{< / command >}}
+
+Finally, we can query the table and partitions metadata that has been created by the crawler:
+{{< command >}}
+$ awslocal glue get-tables --database-name db1
+{
+    "TableList": [{
+        "Name": "table1",
+        "DatabaseName": "db1",
+        "PartitionKeys": [ ... ]
+...
+$ awslocal glue get-partitions --database-name db1 --table-name table1
+{
+    "Partitions": [{
+        "Values": ["2021", "Jan", "1"],
+        "DatabaseName": "db1",
+        "TableName": "table1",
+...
+{{< / command >}}
+
 ## Further Reading
 
 The AWS Glue API is a fairly comprehensive service - more details can be found in the official [AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html).
 
 ## Current Limitations
 
-Support for crawlers and triggers is currently limited - the basic API endpoints are implemented, but starting a crawler process is currently still under development (more details coming soon).
+Support for triggers is currently limited - the basic API endpoints are implemented, but triggers are currently still under development (more details coming soon).

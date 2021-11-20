@@ -5,6 +5,9 @@ description: >
   This document contains a few essential instructions for developing new features and bug fixes for *LocalStack*.
 ---
 
+{{% alert %}}
+**Note:** We have recently added a couple of refactorings and enhancements in the core framework and application architecture, hence this page is no longer fully up to date. We're planning to publish an updated version soon.
+{{% /alert %}}
 
 ## General Application Architecture
 
@@ -42,7 +45,3 @@ The figure below illustrates the proxy mechanism and ports for the API Gateway s
 The proxy follows a simple protocol by implementing 2 methods: `forward_request` which is called *before* a request is forwarded to the backend, and `return_response` which is called *after* a response has been received from the backend: https://github.com/localstack/localstack/blob/master/localstack/services/generic_proxy.py
 
 The proxy implementation for API Gateway can be found here: https://github.com/localstack/localstack/blob/master/localstack/services/apigateway/apigateway_listener.py#L81
-
-## Patching/Releasing a Third-Party Libraries
-
-To enable a fast release cycle of *LocalStack*, we're using forked versions of various third-party libraries. For example, we have a forked version of `moto` which is published as a separate `moto-ext` pip package: https://github.com/whummer/moto/tree/localstack-fixes . If you decide to extend `moto`, you can either raise a PR against that repo, or against the main repo `spulec/moto` (then we need to take care of cross-merging and releasing new versions).
