@@ -106,13 +106,13 @@ awslocal kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:000000000
 Run the following command, replacing ```ZookeeperConnectString``` with the value that you saved after you ran the describe-cluster command.
 
 {{< command >}}
-bin/kafka-topics.sh --create --zookeeper localhost:4513 --replication-factor 1 --partitions 1 --topic LocalStackMSKTopic
+bin/kafka-topics.sh --create --zookeeper localhost:4513 --replication-factor 1 --partitions 1 --topic LocalMSKTopic
 {{< / command >}}
 
 Your output should be similar to this one
 
 {{< command >}}
-Created topic LocalStackMSKTopic.
+Created topic LocalMSKTopic.
 {{< / command >}}
 
 ## Interacting with the topic
@@ -147,7 +147,7 @@ From the JSON result of the command, save the value associated with the string n
 Run the following command in the bin folder, replacing `BootstrapBrokerStringTls` with the value that you obtained when you ran the previous command.
 
 {{< command >}}
-./kafka-console-producer.sh --broker-list BootstrapBrokerStringTls --producer.config client.properties --topic LocalStackMSKTopic
+./kafka-console-producer.sh --broker-list BootstrapBrokerStringTls --producer.config client.properties --topic LocalMSKTopic
 {{< / command >}}
 
 Enter any message that you want, and press Enter. Repeat this step two or three times. Every time you enter a line and press Enter, that line is sent to your Apache Kafka cluster as a separate message.
@@ -157,7 +157,7 @@ Keep the connection to the client machine open, and then open a second, separate
 In the following command, replace ```BootstrapBrokerStringTls``` with the value that you saved earlier. Then, go to the bin folder and run the command using your second connection to the client machine.
 
 {{< command >}}
-./kafka-console-consumer.sh --bootstrap-server BootstrapBrokerStringTls --consumer.config client.properties --topic LocalStackMSKTopic --from-beginning
+./kafka-console-consumer.sh --bootstrap-server BootstrapBrokerStringTls --consumer.config client.properties --topic LocalMSKTopic --from-beginning
 {{< / command >}}
 
 You start seeing the messages you entered earlier when you used the console producer command. These messages are TLS encrypted in transit.
@@ -182,12 +182,12 @@ awslocal kafka delete-cluster --region us-east-1 --cluster-arn ClusterArn
 
 ### Adding a local MSK trigger 
 
-The following example uses the create-event-source-mapping awslocal command to map a Lambda function named my-kafka-function to a Kafka topic named LocalStackMSKTopic. The topic's starting position is set to LATEST.
+The following example uses the create-event-source-mapping awslocal command to map a Lambda function named my-kafka-function to a Kafka topic named LocalMSKTopic. The topic's starting position is set to LATEST.
 
 {{< command >}}
 awslocal lambda create-event-source-mapping \
   --event-source-arn arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster \
-  --topics LocalStackMSKTopic \
+  --topics LocalMSKTopic \
   --starting-position LATEST \
   --function-name my-kafka-function
 {{< / command >}}
@@ -207,7 +207,7 @@ The following answer is to be expected
     "State": "Enabled",
     "StateTransitionReason": "User action",
     "Topics": [
-        "LocalStackMSKTopic"
+        "LocalMSKTopic"
     ]
 }
 {{< / command >}}
