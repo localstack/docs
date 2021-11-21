@@ -173,7 +173,50 @@ awslocal kafka list-clusters --region us-east-1
 {{< / command >}}
 
 From the list of clusters, pick the ```ClusterARN``` of the cluster you want deleted and run the command
-{{< command >}}
 
+{{< command >}}
 awslocal kafka delete-cluster --region us-east-1 --cluster-arn ClusterArn
 {{< / command >}}
+
+## Local MSK and Lambdas
+
+### Adding a local MSK trigger 
+
+The following example uses the create-event-source-mapping awslocal command to map a Lambda function named my-kafka-function to a Kafka topic named LocalStackMSKTopic. The topic's starting position is set to LATEST.
+
+{{< command >}}
+awslocal lambda create-event-source-mapping \
+  --event-source-arn arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster \
+  --topics LocalStackMSKTopic \
+  --starting-position LATEST \
+  --function-name my-kafka-function
+{{< / command >}}
+
+The following answer is to be expected
+
+{{< command >}}
+{
+    "UUID": "9c353a2b-bc1a-48b5-95a6-04baf67f01e4",
+    "StartingPosition": "LATEST",
+    "BatchSize": 100,
+    "ParallelizationFactor": 1,
+    "EventSourceArn": "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster",
+    "FunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:my-kafka-function",
+    "LastModified": "2021-11-21T20:55:49.438914+01:00",
+    "LastProcessingResult": "OK",
+    "State": "Enabled",
+    "StateTransitionReason": "User action",
+    "Topics": [
+        "LocalStackMSKTopic"
+    ]
+}
+{{< / command >}}
+
+
+### Viewing the status using the awslocal
+
+{{< command >}}
+awslocal lambda get-event-source-mapping \
+  --uuid 9c353a2b-bc1a-48b5-95a6-04baf67f01e4
+{{< / command >}}
+
