@@ -8,7 +8,7 @@ description: >
 
 LocalStack supports a basic version of [Managed Streaming for Kafka (MSK)](https://aws.amazon.com/msk/) for testing. This allows you to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic.
 
-# Create a local MSK Cluster
+## Create a local MSK Cluster
 
 To create a local MSK cluster, the following create-cluster example creates an MSK cluster named EventsCluster with three broker nodes. A JSON file named `brokernodegroupinfo.json` specifies the three subnets over which you want yout local Amazon MSK to distribute the broker nodes. This example doesn't specify the monitoring level, so the cluster gets the DEFAULT level.
 
@@ -73,7 +73,9 @@ The expected output is something like the following
 }
 {{< / command >}}
 
-In this step of Getting Started Using LocalStack MSK, you create a client machine. You use this client machine to create a topic that produces and consumes data.
+## Create a kafka topic
+
+In this step of using LocalStack MSK, you create a client machine. You use this client machine to create a topic that produces and consumes data.
 
 First, Install Java on the client machine by running the following command:
 
@@ -113,3 +115,65 @@ Your output should be similar to this one
 Created topic LocalStackMSKTopic.
 {{< / command >}}
 
+## Interacting with the topic
+
+In this example we use the JVM truststore to talk to the MSK cluster. To do this, first create a folder named `/tmp` on the client machine. Then, go to the bin folder of the Apache Kafka installation and run the following command, replacing ```java_home``` with the path of your ```java_home```. In this instance, the ```java_home``` is ``` /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home```.
+
+{{< command >}}
+cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks
+{{< / command >}}
+
+While still in the bin folder of the Apache Kafka installation on the client machine, create a text file named `client.properties` with the following contents.
+
+{{< command >}}
+ssl.truststore.location=/tmp/kafka.client.truststore.jks
+{{< / command >}}
+
+Run the following command, replacing ```ClusterArn``` with the Amazon Resource Name (ARN).
+
+
+{{< command >}}
+awslocal kafka get-bootstrap-brokers --region us-east-1 --cluster-arn ClusterArn
+{{< / command >}}
+
+From the JSON result of the command, save the value associated with the string named "`BootstrapBrokerStringTls`" because you need it in the following commands.
+
+{{< command >}}
+{
+    "BootstrapBrokerString": "localhost:4514"
+}
+{{< / command >}}
+
+Run the following command in the bin folder, replacing `BootstrapBrokerStringTls` with the value that you obtained when you ran the previous command.
+
+{{< command >}}
+./kafka-console-producer.sh --broker-list BootstrapBrokerStringTls --producer.config client.properties --topic LocalStackMSKTopic
+{{< / command >}}
+
+Enter any message that you want, and press Enter. Repeat this step two or three times. Every time you enter a line and press Enter, that line is sent to your Apache Kafka cluster as a separate message.
+
+Keep the connection to the client machine open, and then open a second, separate connection to that machine in a new window.
+
+In the following command, replace ```BootstrapBrokerStringTls``` with the value that you saved earlier. Then, go to the bin folder and run the command using your second connection to the client machine.
+
+{{< command >}}
+./kafka-console-consumer.sh --bootstrap-server BootstrapBrokerStringTls --consumer.config client.properties --topic LocalStackMSKTopic --from-beginning
+{{< / command >}}
+
+You start seeing the messages you entered earlier when you used the console producer command. These messages are TLS encrypted in transit.
+
+Enter more messages in the producer window, and watch them appear in the consumer window.
+
+## Delete the local MSK cluster
+
+Run the following command to list your msk clusters
+
+{{< command >}}
+awslocal kafka list-clusters --region us-east-1
+{{< / command >}}
+
+From the list of clusters, pick the ```ClusterARN``` of the cluster you want deleted and run the command
+{{< command >}}
+
+awslocal kafka delete-cluster --region us-east-1 --cluster-arn ClusterArn
+{{< / command >}}
