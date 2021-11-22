@@ -292,7 +292,7 @@ $ STAGE=local && LAMBDA_MOUNT_CWD=$(pwd)/build/hot &&
 ### Terraform Configuration
 
 ```hcl
-ariable "STAGE" {
+variable "STAGE" {
     type    = string
     default = "local"
 }
