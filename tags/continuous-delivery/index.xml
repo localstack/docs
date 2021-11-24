@@ -94,7 +94,7 @@ Just remember to replace &lt;code>copilot&lt;/code> with &lt;code>copilotlocal&l
 &lt;ul>
 &lt;li>Install the LocalStack CLI (and maybe also &lt;code>awslocal&lt;/code>).&lt;/li>
 &lt;li>Make sure your LocalStack docker image is up-to-date by pulling the latest version.&lt;/li>
-&lt;li>Use the LocalStack CLI to start LocalStack. Make sure to use the &lt;code>DOCKER_FLAGS='-d'&lt;/code> to start the LocalStack docker container in detached mode.&lt;/li>
+&lt;li>Use the LocalStack CLI to start LocalStack. Make sure to use the &lt;code>-d&lt;/code> flag to start the LocalStack docker container in detached mode.&lt;/li>
 &lt;li>Wait for the container to report that it is up and running.&lt;/li>
 &lt;/ul>
 &lt;p>An official GitHub action for this also planned, to make the configuration easier and less verbose.&lt;/p>
@@ -114,11 +114,11 @@ As an example, it will use awslocal to create bucket and list it afterwards.&lt;
 &lt;/span>&lt;span style="color:#8f5902;font-style:italic"> pip install localstack awscli-local[ver1]
 &lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # Make sure to pull the latest version of the image
 &lt;/span>&lt;span style="color:#8f5902;font-style:italic"> docker pull localstack/localstack
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # Start LocalStack
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> DOCKER_FLAGS=&amp;#39;-d&amp;#39; localstack start
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # Wait for the LocalStack docker container to become ready
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # Start LocalStack in the background
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> localstack start -d
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> # Wait 30 seconds for the LocalStack container to become ready before timing out
 &lt;/span>&lt;span style="color:#8f5902;font-style:italic"> echo &amp;#34;Waiting for LocalStack startup...&amp;#34;
-&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> for i in {1..45}; do if [ `docker logs localstack_main | grep &amp;#39;Ready.&amp;#39;` ]; then break; fi; sleep 1; done
+&lt;/span>&lt;span style="color:#8f5902;font-style:italic"> localstack wait -t 30
 &lt;/span>&lt;span style="color:#8f5902;font-style:italic"> echo &amp;#34;Startup complete&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Run some Tests against LocalStack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">run&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">|&lt;/span>&lt;span style="color:#8f5902;font-style:italic">
@@ -140,7 +140,7 @@ For this, you go, in your repository, to Settings =&amp;gt; Secrets and press &a
 &lt;ul>
 &lt;li>Install the LocalStack CLI (and maybe also &lt;code>awslocal&lt;/code>).&lt;/li>
 &lt;li>Make sure your LocalStack docker image is up-to-date by pulling the latest version.&lt;/li>
-&lt;li>Use the LocalStack CLI to start LocalStack. Make sure to use the &lt;code>DOCKER_FLAGS='-d'&lt;/code> to start the LocalStack docker container in detached mode.&lt;/li>
+&lt;li>Use the LocalStack CLI to start LocalStack. Make sure to use the &lt;code>-d&lt;/code> flag to start the LocalStack docker container in detached mode.&lt;/li>
 &lt;li>Wait for the container to report that it is up and running.&lt;/li>
 &lt;/ul>
 &lt;p>The following example Travis CI job config (&lt;code>.travis.yaml&lt;/code>) executes these steps, creates a new S3 bucket, and prints a nice message in the end:&lt;/p>
@@ -157,10 +157,12 @@ For this, you go, in your repository, to Settings =&amp;gt; Secrets and press &a
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">python -m pip install localstack awscli-local[ver1]&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Make sure to pull the latest version of the image&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">docker pull localstack/localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Start localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DOCKER_FLAGS=&amp;#39;-d&amp;#39; localstack start&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Wait for the localstack docker container to become ready&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">for i in {1..45}; do if [ `docker logs localstack_main | grep &amp;#39;Ready.&amp;#39;` ]; then break; fi; sleep 1; done&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Start LocalStack in the background&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">localstack start -d&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Wait 30 seconds for the LocalStack container to become ready before timing out&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">echo &amp;#34;Waiting for LocalStack startup...&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">localstack wait -t 30&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">echo &amp;#34;Startup complete&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">script&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Test LocalStack by creating a new S3 bucket (and verify that it has been created by listing all buckets)&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
