@@ -15,7 +15,7 @@ In order to start LocalStack, we recommend to start it in a separate [build step
 We recommend taking the following steps:
 - Install the LocalStack CLI (and maybe also `awslocal`).
 - Make sure your LocalStack docker image is up-to-date by pulling the latest version.
-- Use the LocalStack CLI to start LocalStack. Make sure to use the `DOCKER_FLAGS='-d'` to start the LocalStack docker container in detached mode.
+- Use the LocalStack CLI to start LocalStack. Make sure to use the `-d` flag to start the LocalStack docker container in detached mode.
 - Wait for the container to report that it is up and running.
 
 An official GitHub action for this also planned, to make the configuration easier and less verbose.
@@ -38,11 +38,11 @@ jobs:
           pip install localstack awscli-local[ver1]
           # Make sure to pull the latest version of the image
           docker pull localstack/localstack
-          # Start LocalStack
-          DOCKER_FLAGS='-d' localstack start
-          # Wait for the LocalStack docker container to become ready
+          # Start LocalStack in the background
+          localstack start -d
+          # Wait 30 seconds for the LocalStack container to become ready before timing out
           echo "Waiting for LocalStack startup..."
-          for i in {1..45}; do if [ `docker logs localstack_main | grep 'Ready.'` ]; then break; fi; sleep 1; done
+          localstack wait -t 30
           echo "Startup complete"
       - name: Run some Tests against LocalStack
         run: |

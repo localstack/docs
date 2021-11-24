@@ -13,7 +13,7 @@ This guide shows how to start and use LocalStack in your Travis CI jobs.
 When you want to integrate LocalStack into your job configuration, you just have to execute the following steps:
 - Install the LocalStack CLI (and maybe also `awslocal`).
 - Make sure your LocalStack docker image is up-to-date by pulling the latest version.
-- Use the LocalStack CLI to start LocalStack. Make sure to use the `DOCKER_FLAGS='-d'` to start the LocalStack docker container in detached mode.
+- Use the LocalStack CLI to start LocalStack. Make sure to use the `-d` flag to start the LocalStack docker container in detached mode.
 - Wait for the container to report that it is up and running.
 
 The following example Travis CI job config (`.travis.yaml`) executes these steps, creates a new S3 bucket, and prints a nice message in the end:
@@ -31,10 +31,12 @@ before_install:
   - python -m pip install localstack awscli-local[ver1]
   # Make sure to pull the latest version of the image
   - docker pull localstack/localstack
-  # Start localstack
-  - DOCKER_FLAGS='-d' localstack start
-  # Wait for the localstack docker container to become ready
-  - for i in {1..45}; do if [ `docker logs localstack_main | grep 'Ready.'` ]; then break; fi; sleep 1; done
+  # Start LocalStack in the background
+  - localstack start -d
+  # Wait 30 seconds for the LocalStack container to become ready before timing out
+  - echo "Waiting for LocalStack startup..."
+  - localstack wait -t 30
+  - echo "Startup complete"
 
 script:
   # Test LocalStack by creating a new S3 bucket (and verify that it has been created by listing all buckets)
