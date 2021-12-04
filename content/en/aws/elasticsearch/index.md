@@ -187,6 +187,129 @@ localstack@machine /tmp/localstack % tree -L 4
 │       │   └── tmp
 ```
 
+## Custom Elasticsearch backends
+
+Localstack downloads elasticsearch asynchronously the first time you run the `aws es create-elasticsearch-domain`, so you will get the response from localstack first and then (after download/install) you will have your elasticsearch cluster running locally.
+You may not want this, and instead use your already running elasticsearch cluster.
+This can also be useful when you want to run a cluster with a custom configuration that localstack does not support.
+
+To customize the elasticsearch backend, you can your own elasticsearch cluster locally and point localstack to it using the `ES_CUSTOM_BACKEND` environment variable.
+Note that only a single backend can be configured, meaning that you will get a similar behavior as when you  [re-use a single cluster instance](#re-using-a-single-cluster-instance).
+
+### Example
+
+The following shows a sample docker-compose file that contain a single-noded elasticsearch cluster and a basic localstack setp.
+
+```yaml
+version: "3.9"
+
+services:
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    network_mode: bridge
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack
+    network_mode: bridge
+    ports:
+      - "4566:4566"
+    depends_on:
+      - elasticsearch
+    environment:
+      - ES_CUSTOM_BACKEND=http://elasticsearch:9200
+      - DEBUG=${DEBUG- }
+      - DATA_DIR=${DATA_DIR- }
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - HOST_TMP_FOLDER=${TMPDIR}
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    links:
+      - elasticsearch
+
+volumes:
+  data01:
+    driver: local
+```
+
+1. Run docker compose:
+{{< command >}}
+$ docker-compose up -d
+{{< /command >}}
+
+2. Create the Elasticsearch domain:
+{{< command >}}
+$ awslocal es create-elasticsearch-domain \
+    --domain-name mylogs-2 \
+    --elasticsearch-version 7.10 \
+    --elasticsearch-cluster-config '{ "InstanceType": "m3.xlarge.elasticsearch", "InstanceCount": 4, "DedicatedMasterEnabled": true, "ZoneAwarenessEnabled": true, "DedicatedMasterType": "m3.xlarge.elasticsearch", "DedicatedMasterCount": 3}'
+{
+    "DomainStatus": {
+        "DomainId": "000000000000/mylogs-2",
+        "DomainName": "mylogs-2",
+        "ARN": "arn:aws:es:us-east-1:000000000000:domain/mylogs-2",
+        "Created": true,
+        "Deleted": false,
+        "Endpoint": "mylogs-2.us-east-1.es.localhost.localstack.cloud:4566",
+        "Processing": true,
+        "ElasticsearchVersion": "7.10",
+        "ElasticsearchClusterConfig": {
+            "InstanceType": "m3.xlarge.elasticsearch",
+            "InstanceCount": 4,
+            "DedicatedMasterEnabled": true,
+            "ZoneAwarenessEnabled": true,
+            "DedicatedMasterType": "m3.xlarge.elasticsearch",
+            "DedicatedMasterCount": 3
+        },
+        "EBSOptions": {
+            "EBSEnabled": true,
+            "VolumeType": "gp2",
+            "VolumeSize": 10,
+            "Iops": 0
+        },
+        "CognitoOptions": {
+            "Enabled": false
+        }
+    }
+}
+{{< /command >}}
+
+3. If the `Processing` status is true, it means that the cluster is not yet healthy. You can run `decribe-elasticsearch-domain` to receive the status:
+{{< command >}}
+$ awslocal es describe-elasticsearch-domain --domain-name mylogs-2
+{{< /command >}}
+
+4. Check the cluster health endpoint and create indices:
+{{< command >}}
+$ curl mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/_cluster/health
+{"cluster_name":"es-docker-cluster","status":"green","timed_out":false,"number_of_nodes":1,"number_of_data_nodes":1,"active_primary_shards":0,"active_shards":0,"relocating_shards":0,"initializing_shards":0,"unassigned_shards":0,"delayed_unassigned_shards":0,"number_of_pending_tasks":0,"number_of_in_flight_fetch":0,"task_max_waiting_in_queue_millis":0,"active_shards_percent_as_number":100.0}[~]
+{{< /command >}}
+
+5. Create an example index:
+{{< command >}}
+$ curl -X PUT mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/my-index
+{"acknowledged":true,"shards_acknowledged":true,"index":"my-index"}
+{{< /command >}}
+
+
 ## Differences to AWS
 
 * By default, AWS only sets the `Endpoint` attribute of the cluster status once the cluster is up.

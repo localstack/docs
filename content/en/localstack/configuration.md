@@ -77,7 +77,8 @@ This section covers configuration values that are specific to AWS services.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `ES_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. |
+| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Elasticsearch#custom-elasticsearch-backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
+| `ES_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
 | `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`off` | Governs how domain endpoints are created to access a cluster (see [Elasticsearch#endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 
 
