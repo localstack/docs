@@ -73,6 +73,7 @@ config:
   - acm: http://localhost:4566
     amplify: http://localhost:4566
     apigateway: http://localhost:4566
+    apigatewayv2: http://localhost:4566
     applicationautoscaling: http://localhost:4566
     appsync: http://localhost:4566
     athena: http://localhost:4566
