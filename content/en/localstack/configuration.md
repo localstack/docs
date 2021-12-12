@@ -72,7 +72,6 @@ This section covers configuration values that are specific to AWS services.
 | `DYNAMODB_DELAY_TRANSIENT_STATUSES` | `0`\|`1` | When activated, DynamoDB will introduce artificial delays in resource creation to simulate the actual cloud service more closely. Currently works only for CREATING and DELETING online index statuses. |
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
 
-
 ### Elasticsearch
 
 | Variable | Example Values | Description |
@@ -80,7 +79,6 @@ This section covers configuration values that are specific to AWS services.
 | `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Elasticsearch#custom-elasticsearch-backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
 | `ES_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
 | `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`off` | Governs how domain endpoints are created to access a cluster (see [Elasticsearch#endpoints]({{< ref "elasticsearch#endpoints" >}})) |
-
 
 ### Kinesis
 
@@ -109,11 +107,12 @@ This section covers configuration values that are specific to AWS services.
 | `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function. |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Lambda Docker `run`\|`create` commands (e.g., useful for specifying custom volume mounts). Does only support environment, volume, port and add-host flags |
 | `LAMBDA_CONTAINER_REGISTRY` | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.|
-| `LAMBDA_REMOVE_CONTAINERS` | `true` (default) | Whether to remove containers after Lambdas finished executing.|
+| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas finished executing.|
 | `LAMBDA_FALLBACK_URL` | | Fallback URL to use when a non-existing Lambda is invoked. Either records invocations in DynamoDB (value `dynamodb://<table_name>`) or forwards invocations as a POST request (value `http(s)://...`).|
 | `LAMBDA_FORWARD_URL` | | URL used to forward all Lambda invocations (useful to run Lambdas via an external service).
 | `LAMBDA_JAVA_OPTS` | `-Xmx512M` | Allow passing custom JVM options to Java Lambdas executed in Docker. Use `_debug_port_` placeholder to configure the debug port, e.g., `-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=_debug_port_`. |
 | `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`. |
+| `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times) |
 
 ### Stepfunction
 
