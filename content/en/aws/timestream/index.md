@@ -45,3 +45,15 @@ $ awslocal timestream-query query --query-string "SELECT CREATE_TIME_SERIES(time
     },
 ...
 {{</ command >}}
+
+## Date / Time Functions
+
+LocalStack supports the following functions for querying Timestream data:
+
+| Function | Description                                                         | Data type |
+|----------|---------------------------------------------------------------------|-----------|
+| ago (interval)      | Returns the value corresponding to current_timestamp `interval`.    | timestamp |
+| bin (timestamp, interval)     | Returns a rounded value down to a multiple of given bin `interval`. | timestamp |
+| parse_duration (string) | Returns an `interval` equivalent parsed out of the input string. | interval |
+| from_iso8601_date (string) | Parses the ISO 8601 date string into internal Timestamp format for UTC 00:00:00 of the specified date. | timestamp |
+| from_iso8601_timestamp (string) | Parses the ISO 8601 timestamp into internal timestamp format. | timestamp |
