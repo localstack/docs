@@ -2700,7 +2700,45 @@ mnist_estimator.fit(inputs, logs=False)
 &amp;#34;ScalarValue&amp;#34;: 60
 }
 },
-...&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item><item><title>Aws: Transfer</title><link>/aws/transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/transfer/</guid><description>
+...&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="date--time-functions">Date / Time Functions&lt;/h2>
+&lt;p>LocalStack supports the following functions for querying Timestream data:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Function&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>Data type&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>ago (interval)&lt;/td>
+&lt;td>Returns the value corresponding to current_timestamp &lt;code>interval&lt;/code>.&lt;/td>
+&lt;td>timestamp&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bin (timestamp, interval)&lt;/td>
+&lt;td>Returns a rounded value down to a multiple of given bin &lt;code>interval&lt;/code>.&lt;/td>
+&lt;td>timestamp&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>parse_duration (string)&lt;/td>
+&lt;td>Returns an &lt;code>interval&lt;/code> equivalent parsed out of the input string.&lt;/td>
+&lt;td>interval&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>from_iso8601_date (string)&lt;/td>
+&lt;td>Parses the ISO 8601 date string into internal Timestamp format for UTC 00:00:00 of the specified date.&lt;/td>
+&lt;td>timestamp&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>from_iso8601_timestamp (string)&lt;/td>
+&lt;td>Parses the ISO 8601 timestamp into internal timestamp format.&lt;/td>
+&lt;td>timestamp&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Aws: Transfer</title><link>/aws/transfer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/transfer/</guid><description>
 &lt;p>The AWS Transfer API provides the ability to create FTP(S) servers to make files in S3 buckets accessible directly via FTP.&lt;/p>
 &lt;p>A simple example using AWS Transfer is included in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/transfer-ftp-s3">this Github repository&lt;/a>. The sample creates an FTP server via the Transfer API locally, uploads two files via FTP to S3, and then finally downloads the files from the target S3 bucket.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
