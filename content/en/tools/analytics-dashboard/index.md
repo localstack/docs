@@ -28,3 +28,7 @@ The table shows the detailed list of events sorted by date.
 ## Configuration
 
 You can disable event reporting on your LocalStack client by setting the environment variable `DISABLE_EVENTS=1`.
+
+{{% alert title="Additional Info" color="info" %}}
+Brave blocks `localhost` requests due to security by default via shields, some sites need access to `localhost/127.0.0.1` to work correctly. Easy option to allow a user to enable this is manually enabling via the site `brave://settings/content/insecureContent`.
+{{% /alert %}}
