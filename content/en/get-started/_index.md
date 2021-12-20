@@ -155,6 +155,8 @@ $ docker-compose up
 - On MacOS you may have to run `TMPDIR=/private$TMPDIR docker-compose up` if `$TMPDIR` contains a symbolic link that cannot be mounted by Docker.
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_SERVICES=s3` is equivalent to `SERVICES=s3`.
+
+- If you do not connect your LocalStack container to the default bridge network with `network_mode: bridge` as in the example, you need to set `LAMBDA_DOCKER_NETWORK=<docker-compose-network>`. 
 {{< /alert >}}
 
 Please note that there's a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, environment variables, etc.). We recommend using the LocalStack CLI to validate your configuration, which will print warning messages in case it detects any (potential) misconfigurations:
