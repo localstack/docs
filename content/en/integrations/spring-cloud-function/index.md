@@ -870,7 +870,7 @@ resource "aws_lambda_function" "exampleFunctionTwo" {
 
 ## Testing, Debugging and Code hot-swapping
 
-Please read our [Lambda Tools](docs/localstack-tools/lambda-tools/)
+Please read our [Lambda Tools](/content/en/tools/lambda-tools/_index.md)
 documentation to learn more about testing, debugging and code hot-swapping
 for JVM Lambda functions.
 

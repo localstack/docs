@@ -22,7 +22,7 @@ In particular, the setup consists of the following two steps.
 
 This guide assumes that you have the following tools installed.
 
-* LocalStack ([Install](https://localstack.cloud/docs/getting-started/installation/))
+* LocalStack ([Install](https://docs.localstack.cloud/get-started/#installation))
 * Serverless ([Install](https://www.serverless.com/framework/docs/getting-started/))
 
 It also assumes that you already have a Serverless app set up consisting of a couple of Lambda functions and a `serverless.yml` file similar to the following. An example Serverless app integrated with LocalStack can be found here: <a href="https://github.com/localstack/serverless-python-rest-api-with-dynamodb"><i class="fab fa-github"></i>  Simple REST API using the Serverless Framework and LocalStack</a>
