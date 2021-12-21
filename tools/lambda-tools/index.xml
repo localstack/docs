@@ -69,7 +69,7 @@ local code mounting. Read the &amp;ldquo;&lt;a href="#deployment-configuration-e
 for more information.&lt;/p>
 &lt;h3 id="code-hot-swapping-for-python-lambdas">Code hot-swapping for Python Lambdas&lt;/h3>
 &lt;p>We will show you how you can do this with a simple example function, taken directly from the
-&lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py">AWS Lambda developer guide&lt;/a>.&lt;/p>
+&lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py">AWS Lambda developer guide&lt;/a>.&lt;/p>
 &lt;p>You can check out that code, or use your own lambda functions to follow along. To use the example just do:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cd /tmp
 &lt;span class="command-prefix">$ &lt;/span>git clone git@github.com:awsdocs/aws-doc-sdk-examples.git&lt;/code>&lt;/pre>&lt;/div>
@@ -113,7 +113,7 @@ The handler is then referenced by the filename of your lambda code and the funct
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="changing-things-up">Changing things up&lt;/h4>
 &lt;p>Now, that we got everything up and running, the fun begins.
 Because the function is now mounted as a file in the executing container, any change that we save on the file will be there in an instant.&lt;/p>
-&lt;p>For example, we can now make a minor change to the API and replace the response in &lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py#L41">line 41&lt;/a> with the following:&lt;/p>
+&lt;p>For example, we can now make a minor change to the API and replace the response in &lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py#L41">line 41&lt;/a> with the following:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python"> &lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;math_result&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Without redeploying or updating the function, the result of the previous request will look like this:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;math_result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">9&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
