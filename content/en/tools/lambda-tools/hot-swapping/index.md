@@ -79,7 +79,7 @@ for more information.
 ### Code hot-swapping for Python Lambdas
 
 We will show you how you can do this with a simple example function, taken directly from the
-[AWS Lambda developer guide](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py).
+[AWS Lambda developer guide](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py).
 
 You can check out that code, or use your own lambda functions to follow along. To use the example just do:
 
@@ -154,11 +154,14 @@ and `output.txt` contains:
 Now, that we got everything up and running, the fun begins.
 Because the function is now mounted as a file in the executing container, any change that we save on the file will be there in an instant.
 
-For example, we can now make a minor change to the API and replace the response in [line 41](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/boto_client_examples/lambda_handler_basic.py#L41) with the following:
+For example, we can now make a minor change to the API and replace the response in [line 41](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py#L41) with the following:
+
 ```python
     response = {'math_result': result}
 ```
+
 Without redeploying or updating the function, the result of the previous request will look like this:
+
 ```json
 {"math_result":9}
 ```
