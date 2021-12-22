@@ -130,6 +130,7 @@ Please be aware that the following configurations may have severe security impli
 | `DISABLE_CORS_CHECKS` | `0` (default) | Whether to disable all CSRF mitigations. |
 | `DISABLE_CUSTOM_CORS_S3` | `0` (default) | Whether to disable CORS override by S3. |
 | `DISABLE_CUSTOM_CORS_APIGATEWAY` | `0` (default)| Whether to disable CORS override by apigateway. |
+| `ENABLE_CONFIG_UPDATES` | `0` (default) | Whether to enable dynamic configuration updates at runtime. |
 | `EXTRA_CORS_ALLOWED_ORIGINS` | | Comma-separated list of origins that are allowed to communicate with localstack. |
 | `EXTRA_CORS_ALLOWED_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Allow-Headers CORS header. |
 | `EXTRA_CORS_EXPOSE_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Expose-Headers CORS header. |
@@ -155,6 +156,7 @@ Some of the services can be configured to switch to a particular provider:
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins.
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
 | `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments).
+| `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods. |
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events |
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself. |
 | `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself. |
@@ -168,6 +170,10 @@ Some of the services can be configured to switch to a particular provider:
 | `DEVELOP` | | Starts a debugpy server before starting LocalStack services
 | `DEVELOP_PORT` | | Port number for debugpy server
 | `WAIT_FOR_DEBUGGER` | | Forces LocalStack to wait for a debugger to start the services
+
+Additionally, the following *read-only* environment variables are available:
+
+* `LOCALSTACK_HOSTNAME`: Name of the host where LocalStack services are available. Use this     hostname as endpoint (e.g., `http://${LOCALSTACK_HOSTNAME}:4566`) in order to **access the services from within your Lambda functions** (e.g., to store an item to DynamoDB or S3 from a Lambda).
 
 ## DNS
 
