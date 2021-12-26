@@ -28,7 +28,9 @@ $ SERVICES=kinesis,lambda,sqs,dynamodb DEBUG=1 localstack start
 | `TMPDIR`| `/tmp` (default)| Temporary folder on the host running the CLI and inside the LocalStack container .|
 | `HOST_TMP_FOLDER` | `/some/path` | Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
 | `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | Local directory for saving persistent data (see: TODO)|
-| `PERSISTENCE_SINGLE_FILE` | `true` (default)| Specify if persistence files should be combined. |
+| `PERSISTENCE_SINGLE_FILE` | `true` (default)| Specify if persistence files should be combined (deprecated - only relevant for legacy persistence in Community version, not relevant for advanced persistence in Pro version). |
+| `PERSIST_ALL` | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, Cognito users, etc). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
+| `LEGACY_PERSISTENCE` | `true` (default) | Whether to enable legacy persistence mechanism based on API calls record&replay (deprecated). Only relevant for Community version, not relevant for advanced persistence mechanism in Pro. |
 | `<SERVICE>_BACKEND` | | Custom endpoint URL to use for a specific service, where <SERVICE> is the uppercase service name. See (TODO) for supported services and (TODO) for examples for third-party integration |
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
 | `INIT_SCRIPTS_PATH` | `/some/path` | Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d.` |
@@ -52,14 +54,13 @@ Docker is used extensively by LocalStack, and there are several configuration pa
 
 ## Local AWS Services
 
-This section covers configuration values that are specific to AWS services.
+This section covers configuration values that are specific to certain AWS services.
 
 * [DynamoDB]({{< ref "#dynamodb" >}})
 * [Elasticsearch]({{< ref "#elasticsearch" >}})
 * [Kinesis]({{< ref "#kinesis" >}})
 * [Lambda]({{< ref "#lambda" >}})
 * [Stepfunctions]({{< ref "#stepfunctions" >}})
-
 
 ### DynamoDB
 
@@ -114,7 +115,7 @@ This section covers configuration values that are specific to AWS services.
 | `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`. |
 | `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times) |
 
-### Stepfunction
+### StepFunctions
 
 | Variable | Example Values | Description |
 | - | - | - |
@@ -134,7 +135,6 @@ Please be aware that the following configurations may have severe security impli
 | `EXTRA_CORS_ALLOWED_ORIGINS` | | Comma-separated list of origins that are allowed to communicate with localstack. |
 | `EXTRA_CORS_ALLOWED_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Allow-Headers CORS header. |
 | `EXTRA_CORS_EXPOSE_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Expose-Headers CORS header. |
-
 
 
 ## Provider
@@ -175,6 +175,7 @@ Additionally, the following *read-only* environment variables are available:
 
 * `LOCALSTACK_HOSTNAME`: Name of the host where LocalStack services are available. Use this     hostname as endpoint (e.g., `http://${LOCALSTACK_HOSTNAME}:4566`) in order to **access the services from within your Lambda functions** (e.g., to store an item to DynamoDB or S3 from a Lambda).
 
+
 ## DNS
 
 More information [here]({{< ref "dns-server" >}}).
@@ -202,7 +203,6 @@ More information [here]({{< ref "pro" >}}).
 | `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). |
 
 ## Deprecated
-
 
 | Variable | Example Values | Description |
 | - | - | - |
