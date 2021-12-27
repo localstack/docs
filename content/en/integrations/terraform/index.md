@@ -36,7 +36,7 @@ First, we have to specify mock credentials for the AWS provider:
 
 ```hcl
 provider "aws" {
-  
+
   access_key = "test"
   secret_key = "test"
   region     = "us-east-1"
@@ -50,11 +50,14 @@ Therefore we need to supply some general parameters:
 
 ```hcl
 provider "aws" {
-  
+
   access_key                  = "test"
   secret_key                  = "test"
   region                      = "us-east-1"
-  
+
+
+  # only required for non virtual hosted-style endpoint use case.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs#s3_force_path_style
   s3_force_path_style         = true
   skip_credentials_validation = true
   skip_metadata_api_check     = true
@@ -64,16 +67,17 @@ provider "aws" {
 
 ### Services
 Additionally, we have to point the individual services to LocalStack.
-In case of S3, this looks like the following snippet
+In case of S3, this looks like the following snippet, in this case we opted to use the virtual hosted-style endpoint.
 
 ```hcl
   endpoints {
-    s3             = "http://localhost:4566"
+    s3             = "http://s3.localhost.localstack.cloud:4566"
   }
 ```
 
 {{< alert >}}
-**Note**: To enable domain style routing for s3 buckets, the endpoint `http://s3.localhost.localstack.cloud:4566` should be used.
+**Note**: In case of issues resolving this DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `s3_force_path_style = true`. The S3 service endpoint is slightly
+different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
 {{< /alert >}}
 
 ### S3 Bucket
@@ -91,11 +95,11 @@ resource "aws_s3_bucket" "test-bucket" {
 The final (minimal) configuration to deploy an s3 bucket thus looks like this
 ```hcl
 provider "aws" {
-  
+
   access_key                  = "mock_access_key"
-  secret_key                  = "mock_secret_key"  
+  secret_key                  = "mock_secret_key"
   region                      = "us-east-1"
-  
+
   s3_force_path_style         = true
   skip_credentials_validation = true
   skip_metadata_api_check     = true
@@ -133,7 +137,7 @@ provider "aws" {
   access_key                  = "test"
   secret_key                  = "test"
   region                      = "us-east-1"
-  s3_force_path_style         = true
+  s3_force_path_style         = false
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
@@ -154,7 +158,7 @@ provider "aws" {
     rds            = "http://localhost:4566"
     redshift       = "http://localhost:4566"
     route53        = "http://localhost:4566"
-    s3             = "http://localhost:4566"
+    s3             = "http://s3.localhost.localstack.cloud:4566"
     secretsmanager = "http://localhost:4566"
     ses            = "http://localhost:4566"
     sns            = "http://localhost:4566"
