@@ -611,32 +611,33 @@ In the coverage tables below, the features are marked with their respective avai
 The list below summarizes the APIs for which persistence has been implemented and (ideally) tested in the Pro version (list may not be exhaustive/complete). More details following soon.
 
 - Amplify
+- Appconfig
+- Appsync
 - Athena
 - Backup
 - Cognito Identity
 - Cognito Identity Provider
-- DynamoDB
-- EC2
-- Elastic File System
-- Kinesis
-- QLDB
-- S3
-- Secrets Manager
-- SNS
-- SQS
-- Route53
-- RDS
-- Appconfig
-- Appsync
-- Lambda
 - CloudFormation
 - CloudFront
 - CodeCommit
 - Cost Explorer
+- DynamoDB
+- EC2
+- Elastic File System
 - Glue
 - IoT
+- Kinesis
 - Lake Formation
+- Lambda
+- KMS
+- QLDB
+- Route53
+- RDS
+- S3
+- Secrets Manager
 - Serverless Repo
 - SES
+- SNS
+- SQS
+- Stepfunctions
 - STS
-- KMS
