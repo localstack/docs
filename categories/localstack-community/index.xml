@@ -1811,11 +1811,11 @@ in this case &lt;code>http://my-domain.us-east-1.es.localhost.localstack.cloud:4
 &lt;p>LocalStack allows you to set arbitrary custom endpoints for your clusters in the domain endpoint options.
 This can be used to overwrite the behavior of the endpoint strategies described above.
 You can also choose custom domains, however it is important to add the edge port (&lt;code>80&lt;/code>/&lt;code>443&lt;/code> or by default &lt;code>4566&lt;/code>).&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal es create-elasticsearch-domain --domain-name my-domain \
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name my-domain \
 --elasticsearch-version 7.10 \
 --domain-endpoint-options &amp;#39;{ &amp;#34;CustomEndpoint&amp;#34;: &amp;#34;http://localhost:4566/my-custom-endpoint&amp;#34;, &amp;#34;CustomEndpointEnabled&amp;#34;: true }&amp;#39;&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Once the domain processing is complete, you can access the cluster:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">curl http://localhost:4566/my-custom-endpoint/_cluster/health&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:4566/my-custom-endpoint/_cluster/health&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="re-using-a-single-cluster-instance">Re-using a single cluster instance&lt;/h3>
 &lt;p>In some cases, you may not want to create a new cluster instance for each domain,
 for example when you are only interested in testing API interactions instead of actual Elasticsearch functionality.
@@ -2008,7 +2008,103 @@ Moreover, the &lt;a href="/tools/cloud-pods/">Cloud Pods&lt;/a> feature provides
 &lt;td>A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. For instance, &lt;code>KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1&lt;/code> &lt;strong>Important&lt;/strong>: Only supported by &lt;code>kinesis-mock&lt;/code>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Aws: S3</title><link>/aws/s3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/s3/</guid><description>
+&lt;/table></description></item><item><title>Aws: Kinesis Data Firehose</title><link>/aws/kinesis-firehose/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/kinesis-firehose/</guid><description>
+&lt;p>Kinesis Data Firehose is a service to extract, transform and load (ETL service) data to multiple destinations.
+LocalStack supports Firehose with Kinesis as source, and S3, Elasticsearch or HttpEndpoints as targets.&lt;/p>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>We will provide some examples to illustrate the possibilities of Firehose in LocalStack.&lt;/p>
+&lt;h3 id="using-firehose-to-load-kinesis-data-into-elasticsearch-with-s3-backup">Using Firehose to load Kinesis data into Elasticsearch with S3 Backup&lt;/h3>
+&lt;p>As example, we want to deliver data sent to a Kinesis stream into Elasticsearch via Firehose, while making a full backup into a S3 bucket.
+We will assume LocalStack is already &lt;a href="/get-started/">started correctly&lt;/a> and we have &lt;code>awslocal&lt;/code> &lt;a href="/integrations/aws-cli/">installed&lt;/a>.&lt;/p>
+&lt;p>First we will create our Elasticsearch domain:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name es_local
+{
+&amp;#34;DomainStatus&amp;#34;: {
+&amp;#34;DomainId&amp;#34;: &amp;#34;000000000000/es_local&amp;#34;,
+&amp;#34;DomainName&amp;#34;: &amp;#34;es_local&amp;#34;,
+&amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:es:us-east-1:000000000000:domain/es_local&amp;#34;,
+&amp;#34;Created&amp;#34;: true,
+&amp;#34;Deleted&amp;#34;: false,
+&amp;#34;Endpoint&amp;#34;: &amp;#34;es_local.us-east-1.es.localhost.localstack.cloud:443&amp;#34;,
+&amp;#34;Processing&amp;#34;: true,
+&amp;#34;ElasticsearchVersion&amp;#34;: &amp;#34;7.10.0&amp;#34;,
+&amp;#34;ElasticsearchClusterConfig&amp;#34;: {
+&amp;#34;InstanceType&amp;#34;: &amp;#34;m3.medium.elasticsearch&amp;#34;,
+&amp;#34;InstanceCount&amp;#34;: 1,
+&amp;#34;DedicatedMasterEnabled&amp;#34;: true,
+&amp;#34;ZoneAwarenessEnabled&amp;#34;: false,
+&amp;#34;DedicatedMasterType&amp;#34;: &amp;#34;m3.medium.elasticsearch&amp;#34;,
+&amp;#34;DedicatedMasterCount&amp;#34;: 1
+},
+&amp;#34;EBSOptions&amp;#34;: {
+&amp;#34;EBSEnabled&amp;#34;: true,
+&amp;#34;VolumeType&amp;#34;: &amp;#34;gp2&amp;#34;,
+&amp;#34;VolumeSize&amp;#34;: 10,
+&amp;#34;Iops&amp;#34;: 0
+},
+&amp;#34;CognitoOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+}
+}
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We need the &lt;code>Endpoint&lt;/code> returned here later for the confirmation of our setup.&lt;/p>
+&lt;p>Now let us create our target S3 bucket and our source Kinesis stream:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://kinesis-activity-backup-local
+make_bucket: kinesis-activity-backup-local&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream --stream-name kinesis_es_local_stream --shard-count 2&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Next, we will create our Firehose delivery stream with Elasticsearch as destination, and S3 as target for our AllDocuments backup.
+We set the ARN of our Kinesis stream in the &lt;code>kinesis-stream-source-configuration&lt;/code> as well as the role we want to use for accessing the stream.
+In the &lt;code>elasticsearch-destination-configuration&lt;/code> we set (again) the access role, the &lt;code>DomainARN&lt;/code> of the Elasticsearch domain we want to publish to, as well as &lt;code>IndexName&lt;/code> and &lt;code>TypeName&lt;/code> for Elasticsearch.
+Since we want to backup all documents to S3, we also set &lt;code>S3BackupMode&lt;/code> to &lt;code>AllDocuments&lt;/code> and provide a &lt;code>S3Configuration&lt;/code> pointing to our created bucket.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note:&lt;/strong> In LocalStack, per default, the IAM roles will not be verified, so you can provide any ARN here. In AWS, you need to check the access rights of the specified role for the task.
+&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal firehose create-delivery-stream --delivery-stream-name activity-to-elasticsearch-local --delivery-stream-type KinesisStreamAsSource --kinesis-stream-source-configuration &amp;#34;KinesisStreamARN=arn:aws:kinesis:us-east-1:000000000000:stream/kinesis_es_local_stream,RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role&amp;#34; --elasticsearch-destination-configuration &amp;#34;RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,DomainARN=arn:aws:es:us-east-1:000000000000:domain/es_local,IndexName=activity,TypeName=activity,S3BackupMode=AllDocuments,S3Configuration={RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,BucketARN=arn:aws:s3:::kinesis-activity-backup-local}&amp;#34;
+{
+&amp;#34;DeliveryStreamARN&amp;#34;: &amp;#34;arn:aws:firehose:us-east-1:000000000000:deliverystream/activity-to-elasticsearch-local&amp;#34;
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Before testing the integration, we should check whether the Elasticsearch cluster is already started up.
+We can do this using the following command (for more information about this, check out the &lt;a href="/aws/elasticsearch/">docs page about Elasticsearch&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain --domain-name es_local | jq &amp;#34;.DomainStatus.Processing&amp;#34;
+false&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Once this command returns &lt;code>false&lt;/code>, we are ready to proceed with ingesting our data.
+We can input our data into our source Kinesis stream, our put it directly into the Firehose delivery stream.&lt;/p>
+&lt;p>To put it into Kinesis, run:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis put-record --stream-name kinesis_es_local_stream --data &amp;#39;{ &amp;#34;target&amp;#34;: &amp;#34;barry&amp;#34; }&amp;#39; --partition-key partition --cli-binary-format raw-in-base64-out
+{
+&amp;#34;ShardId&amp;#34;: &amp;#34;shardId-000000000001&amp;#34;,
+&amp;#34;SequenceNumber&amp;#34;: &amp;#34;49625461294598302663271645332877318906244481566013128722&amp;#34;,
+&amp;#34;EncryptionType&amp;#34;: &amp;#34;NONE&amp;#34;
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Or directly into the Firehose delivery stream:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal firehose put-record --delivery-stream-name activity-to-elasticsearch-local --record &amp;#39;{ &amp;#34;Data&amp;#34;: &amp;#34;eyJ0YXJnZXQiOiAiSGVsbG8gd29ybGQifQ==&amp;#34; }&amp;#39;
+{
+&amp;#34;RecordId&amp;#34;: &amp;#34;00333086-7581-48a2-bc7c-8ac1ed97ed3d&amp;#34;
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If we now check the entries we made in Elasticsearch (we will use curl for simplicity). Note to replace the url with the &amp;ldquo;Endpoint&amp;rdquo; field of our &lt;code>create-elasticsearch-domain&lt;/code> operation at the beginning.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl -s http://es_local.us-east-1.es.localhost.localstack.cloud:443/activity/_search | jq &amp;#39;.hits.hits&amp;#39;
+[
+{
+&amp;#34;_index&amp;#34;: &amp;#34;activity&amp;#34;,
+&amp;#34;_type&amp;#34;: &amp;#34;activity&amp;#34;,
+&amp;#34;_id&amp;#34;: &amp;#34;f38e2c49-d101-46aa-9ce2-0d2ea8fcd133&amp;#34;,
+&amp;#34;_score&amp;#34;: 1,
+&amp;#34;_source&amp;#34;: {
+&amp;#34;target&amp;#34;: &amp;#34;Hello world&amp;#34;
+}
+},
+{
+&amp;#34;_index&amp;#34;: &amp;#34;activity&amp;#34;,
+&amp;#34;_type&amp;#34;: &amp;#34;activity&amp;#34;,
+&amp;#34;_id&amp;#34;: &amp;#34;d2f1c125-b3b0-4c7c-ba90-8acf4075a682&amp;#34;,
+&amp;#34;_score&amp;#34;: 1,
+&amp;#34;_source&amp;#34;: {
+&amp;#34;target&amp;#34;: &amp;#34;barry&amp;#34;
+}
+}
+]&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If you get a similar output, you have correctly set up a Firehose delivery stream!
+Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>Aws: S3</title><link>/aws/s3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/s3/</guid><description>
 &lt;p>AWS S3 is a managed scalable object storage service that can be used to store any amount of data for a wide range of use cases.&lt;/p>
 &lt;p>S3 is shipped with the LocalStack Community version and is &lt;a href="/aws/feature-coverage/">extensively supported&lt;/a>. Trying to run the examples in the &lt;a href="https://docs.aws.amazon.com/s3/index.html">official AWS developer&lt;/a> guide against LocalStack is a great place to start.&lt;/p>
 &lt;p>Assuming you have &lt;a href="/integrations/aws-cli/">&lt;code>awslocal&lt;/code>&lt;/a> installed you can also try the following commands:&lt;/p>
