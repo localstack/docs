@@ -53,9 +53,9 @@ $ awslocal es create-elasticsearch-domain --domain-name es_local
 }
 {{< / command >}}
 
-We need the Endpoint returned here later for the confirmation of our setup.
+We need the `Endpoint` returned here later for the confirmation of our setup.
 
-Now let us create our target S3 bucket and our source kinesis stream:
+Now let us create our target S3 bucket and our source Kinesis stream:
 
 {{< command >}}
 $ awslocal s3 mb s3://kinesis-activity-backup-local
@@ -67,9 +67,9 @@ $ awslocal kinesis create-stream --stream-name kinesis_es_local_stream --shard-c
 {{< / command >}}
 
 
-Next, we will create our firehose delivery stream with Elasticsearch as destination, and S3 as target for our AllDocuments backup.
-We set the ARN of our kinesis stream in the `kinesis-stream-source-configuration` as well as the role we want to use for accessing the stream.
-In the `elasticsearch-destination-configuration` we set (again) the access role, the DomainARN of the Elasticsearch domain we want to publish to, as well as IndexName and TypeName for Elasticsearch.
+Next, we will create our Firehose delivery stream with Elasticsearch as destination, and S3 as target for our AllDocuments backup.
+We set the ARN of our Kinesis stream in the `kinesis-stream-source-configuration` as well as the role we want to use for accessing the stream.
+In the `elasticsearch-destination-configuration` we set (again) the access role, the `DomainARN` of the Elasticsearch domain we want to publish to, as well as `IndexName` and `TypeName` for Elasticsearch.
 Since we want to backup all documents to S3, we also set `S3BackupMode` to `AllDocuments` and provide a `S3Configuration` pointing to our created bucket.
 
 {{< alert >}}
@@ -92,10 +92,10 @@ $ awslocal es describe-elasticsearch-domain --domain-name es_local | jq ".Domain
 false
 {{< / command >}}
 
-Once this command returns `false`, we are ready to proceed with inputing our data.
-We can input our data into our source kinesis stream, our put it directly into the firehose delivery stream.
+Once this command returns `false`, we are ready to proceed with ingesting our data.
+We can input our data into our source Kinesis stream, our put it directly into the Firehose delivery stream.
 
-To put it into kinesis, run:
+To put it into Kinesis, run:
 
 {{< command >}}
 $ awslocal kinesis put-record --stream-name kinesis_es_local_stream --data '{ "target": "barry" }' --partition-key partition --cli-binary-format raw-in-base64-out
@@ -106,7 +106,7 @@ $ awslocal kinesis put-record --stream-name kinesis_es_local_stream --data '{ "t
 }
 {{< / command >}}
 
-Or directly into the firehose delivery stream:
+Or directly into the Firehose delivery stream:
 
 {{< command >}}
 $ awslocal firehose put-record --delivery-stream-name activity-to-elasticsearch-local --record '{ "Data": "eyJ0YXJnZXQiOiAiSGVsbG8gd29ybGQifQ==" }' 
@@ -141,5 +141,5 @@ $ curl -s http://es_local.us-east-1.es.localhost.localstack.cloud:443/activity/_
 ]
 {{< / command >}}
 
-If you get a similar output, you have correctly setup a firehose delivery stream!
+If you get a similar output, you have correctly set up a Firehose delivery stream!
 Also checkout the specified S3 bucket to check if your backup is working correctly.
