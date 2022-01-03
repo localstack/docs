@@ -148,7 +148,7 @@ This can be used to overwrite the behavior of the endpoint strategies described 
 You can also choose custom domains, however it is important to add the edge port (`80`/`443` or by default `4566`).
 
 {{< command >}}
-awslocal es create-elasticsearch-domain --domain-name my-domain \
+$ awslocal es create-elasticsearch-domain --domain-name my-domain \
     --elasticsearch-version 7.10 \
     --domain-endpoint-options '{ "CustomEndpoint": "http://localhost:4566/my-custom-endpoint", "CustomEndpointEnabled": true }'
 {{< / command >}}
@@ -156,7 +156,7 @@ awslocal es create-elasticsearch-domain --domain-name my-domain \
 Once the domain processing is complete, you can access the cluster:
 
 {{< command >}}
-curl http://localhost:4566/my-custom-endpoint/_cluster/health
+$ curl http://localhost:4566/my-custom-endpoint/_cluster/health
 {{< / command >}}
 
 
