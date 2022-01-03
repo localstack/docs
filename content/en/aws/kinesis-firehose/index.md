@@ -11,7 +11,6 @@ LocalStack supports Firehose with Kinesis as source, and S3, Elasticsearch or Ht
 
 ## Examples
 
-Firehose is a quite powerful service.
 We will provide some examples to illustrate the possibilities of Firehose in LocalStack.
 
 ### Using Firehose to load Kinesis data into Elasticsearch with S3 Backup
@@ -116,7 +115,7 @@ $ awslocal firehose put-record --delivery-stream-name activity-to-elasticsearch-
 }
 {{< / command >}}
 
-If we now check the entries for our index in Elasticsearch (we will use curl for simplicity). Note to replace the url with the "Endpoint" field of our `create-elasticsearch-domain` operation at the beginning.
+If we now check the entries we made in Elasticsearch (we will use curl for simplicity). Note to replace the url with the "Endpoint" field of our `create-elasticsearch-domain` operation at the beginning.
 
 {{< command >}}
 $ curl -s http://es_local.us-east-1.es.localhost.localstack.cloud:443/activity/_search | jq '.hits.hits'
