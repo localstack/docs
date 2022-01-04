@@ -30,7 +30,7 @@ Local executor mode currently supports the following Lambda Platforms:
 * Java
 * Go
 
-Lambdas on other platforms like .Net currently need to be executed in on of the docker modes.
+Lambdas on other platforms like .Net currently need to be executed in one of the docker modes.
 
 ### Docker
 
