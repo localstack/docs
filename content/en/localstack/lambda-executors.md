@@ -30,15 +30,15 @@ Local executor mode currently supports the following Lambda Platforms:
 * Java
 * Go
 
-Lambdas on other platforms like .Net currently need to be executed in on of the docker modes.
+Lambdas on other platforms like .Net currently need to be executed in one of the docker modes.
 
 ### Docker
 
 Configuration: `LAMBDA_EXECUTOR=docker`
 
 
-The `docker` execution mode will execute lambdas in an docker container.
-For this, every lambda invocation creates and runs a new docker container and returns its result when its finished.
+The `docker` execution mode will execute lambdas in a docker container.
+For this, every lambda invocation creates and runs a new docker container and returns its result when it's finished.
 The advantage of this mode is the fresh lambda environment from each start, so possible leftovers during previous invocations will be purged.
 Due to the nature of this mode, mainly recreating the container for each invocation, this mode is rather slow.
 A typical invocation of a dummy python lambda can take around 3 seconds from start to finish (awscli invoke - start to finish).
@@ -68,6 +68,6 @@ This mode is the default if LocalStack is started in host mode.
 If you experience failures using the stay-open mode (either due to the mentioned restrictions or networking problems), you can force this mode by setting `LAMBDA_STAY_OPEN_MODE=0`.
 
 This execution mode provides a balance between the speed of a local execution and the feature set and isolation of the `docker` executor.
-While the initial call, which creates the container, will take roughly the same time of `docker` executor, the subsequent invocations will only take around 1 second (start to finish, invoked using the awscli), which roughly the time an actual aws invocation using this method takes.
+While the initial call, which creates the container, will take roughly the same time of `docker` executor, the subsequent invocations will only take around 1 second (start to finish, invoked using the awscli), which is roughly the time an actual aws invocation using this method takes.
 The container is kept running 10 minutes after the last invocation for this lambda, then it will be destroyed (and recreated if necessary for the next invocation).
 The complete lambda process is called using `docker-exec` each time of the invocation. While the invocation is still faster than `docker` execution mode, it is not as fast as with the stay-open mode (since the lambda has to be loaded and initialized every time).
