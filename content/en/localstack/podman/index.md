@@ -9,7 +9,7 @@ tags: ["podman", "docker"]
 ## Overview
 
 By default, the LocalStack CLI starts the LocalStack runtime inside a Docker container.
-Docker may not be awailable on your system, and a popular alternative is [Podman](https://podman.io/getting-started/) which you can use to run LocalStack.
+Docker may not be available on your system, and a popular alternative is [Podman](https://podman.io/getting-started/) which you can use to run LocalStack.
 Podman support is still experimental, and the following docs give you an overview of the current state.
 
 From the Podman docs:
@@ -21,7 +21,7 @@ To run `localstack`, simply aliasing `alias docker=podman` is not enough, for th
 - `localstack` is using [docker-py](https://pypi.org/project/docker/) which requires a connection to `/var/run/docker.sock`
 - `LAMBDA_EXECUTOR=docker` requires mounting `/var/run/docker.sock` into the container
 
-Here are several options how to run LocalStack using podman:
+Here are several options on running LocalStack using podman:
 
 ### podman-docker
 The package `podman-docker` emulates the Docker CLI using podman. It creates the following links:

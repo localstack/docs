@@ -236,6 +236,7 @@ When running the Community Edition, any unsupported resources in the stack are i
 - `AWS::Lambda::Alias`
 - `AWS::Lambda::LayerVersion`
 - `AWS::Lambda::LayerVersionPermission`
+- `AWS::QLDB::Ledger`
 - `AWS::RDS::DBCluster`
 - `AWS::RDS::DBInstance`
 - `AWS::RDS::DBParameterGroup`
