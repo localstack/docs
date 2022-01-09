@@ -1,0 +1,81 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Pro &amp; Enterprise</title><link>/categories/localstack-pro-enterprise/</link><description>Recent content in LocalStack Pro &amp; Enterprise on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/categories/localstack-pro-enterprise/index.xml" rel="self" type="application/rss+xml"/><item><title>Get-Started: LocalStack Pro and Enterprise</title><link>/get-started/pro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/get-started/pro/</guid><description>
+&lt;p>This guide shows how to use your shiny new LocalStack licenses, and go over some best-practices regarding usage, activation, and safety of your LocalStack API key.&lt;/p>
+&lt;h2 id="requirements">Requirements&lt;/h2>
+&lt;p>First, you need an API key for LocalStack Pro or Enterprise.
+&lt;a href="https://localstack.cloud/pricing/">You can get your key by signing up on our website&lt;/a>.&lt;br>
+Don&amp;rsquo;t worry, you can sign-up without any payment details and try LocalStack Pro within your free trial for 14 days.&lt;/p>
+&lt;h2 id="getting-your-api-key">Getting your API key&lt;/h2>
+&lt;p>You can find your API key in the &lt;a href="https://app.localstack.cloud">LocalStack Web Interface&lt;/a> in the &lt;code>Account → Subscriptions&lt;/code> section.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">API Key Security&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>Do not share your API key with anyone. Especially make sure that you do not commit it to any source code management systems (like Git repositories).
+If you push an API key to a repository, it has potentially ben exposed to the public and it might remain in the history (even if you try to rewrite the history).&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If you accidentally publish your API key, please &lt;a href="https://localstack.cloud/contact/">contact us&lt;/a> to get your API key rotated!&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If you want to use your API key in your CI environment, please check out our &lt;a href="/ci/">CI documentation&lt;/a> to see the proper way to handle secrets in your CI environment.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;h2 id="using-your-api-key">Using your API key&lt;/h2>
+&lt;p>LocalStack Pro or Enterprise expect your API key to be present in the environment variable &lt;code>LOCALSTACK_API_KEY&lt;/code>.
+Before starting LocalStack, please define the environment variable in your terminal like this:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>export LOCALSTACK_API_KEY=&amp;lt;your-api-key&amp;gt;&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="starting-localstack-pro-or-enterprise-using-the-cli">Starting LocalStack Pro or Enterprise using the CLI&lt;/h3>
+&lt;p>When starting LocalStack using the LocalStack CLI, you dot not have to perform any further steps (after exporting the environment variable).
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>localstack start&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>LocalStack will detect the API key and properly pass it to the LocalStack container.&lt;/p>
+&lt;h3 id="starting-localstack-pro-or-enterprise-using-docker">Starting LocalStack Pro or Enterprise using Docker&lt;/h3>
+&lt;p>When starting LocalStack using a &lt;code>docker run&lt;/code> command, you have to specify the API key using the &lt;code>-e&lt;/code> flag for environment variables like this:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker run \
+--rm -it \
+-p 4566:4566 \
+-p 4571:4571 \
+&lt;span style="display:block;width:100%;background-color:#dfdfdf"> -e LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:- } \
+&lt;/span> localstack/localstack&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>For more information about starting LocalStack, take a look at our general &lt;a href="/get-started/">Getting Started&lt;/a> guide.&lt;/p>
+&lt;h3 id="starting-localstack-pro-or-enterprise-using-docker-compose">Starting LocalStack Pro or Enterprise using Docker-Compose&lt;/h3>
+&lt;p>When starting LocalStack using &lt;code>docker-compose&lt;/code>, you have to make sure your API key is passed properly to the LocalStack container.
+For this, you have to make sure to include the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable in your &lt;code>docker-compose.yml&lt;/code> like this:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This statement sets the API key we defined before (by using the &lt;code>export&lt;/code> command) into your LocalStack container, such that the key activation can take place.&lt;/p>
+&lt;h2 id="licensing-related-configuration">Licensing-related configuration&lt;/h2>
+&lt;p>If you want to make sure that LocalStack is only started if LocalStack Pro or Enterprise can be activated, or if you want to supporess licensing-related error messages, take a look at our &lt;a href="/localstack/configuration/#localstack-pro">configuration guide&lt;/a> regarding LocalStack Pro.&lt;/p>
+&lt;h2 id="checking-license-activation">Checking license activation&lt;/h2>
+&lt;p>The easiest way to check if LocalStack Pro or Enterprise is activated is to check the health endpoing of LocalStack for a list of the running services:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl localhost:4566/health | jq&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If a Pro-only &lt;a href="/aws/">service&lt;/a> &amp;ndash; like &lt;a href="/aws/xray-tracing/">XRay&lt;/a> &amp;ndash; is running, LocalStack Pro or Enterprise has started successfully.&lt;/p>
+&lt;p>&lt;strong>Note&lt;/strong>: This only works if your &lt;code>SERVICES&lt;/code> config variable contains LocalStack Pro services.
+If in doubt, try starting LocalStack without this variable set, so all services can start.&lt;/p>
+&lt;p>Otherwise, please check our collected most &lt;a href="#common-activation-issues">common activation issues&lt;/a>.&lt;/p>
+&lt;h2 id="common-activation-issues">Common activation issues&lt;/h2>
+&lt;h3 id="invalid-api-key">Invalid API key&lt;/h3>
+&lt;p>If your API key is invalid, you will see an error message like this in the logs of LocalStack:&lt;/p>
+&lt;pre>&lt;code>Activation key &amp;quot;abc...&amp;quot;(10) is invalid or expired! Reason: ...
+&lt;/code>&lt;/pre>&lt;p>If this error occurs, something is wrong with your API key or license.
+Please make sure your API key is set correctly (check for typos!) and your license is valid.
+If the API key still does not work, please &lt;a href="https://localstack.cloud/contact/">contact us&lt;/a>.&lt;/p>
+&lt;h3 id="no-connection-to-the-localstack-api">No connection to the LocalStack API&lt;/h3>
+&lt;p>If your log output contains lines like:&lt;/p>
+&lt;pre>&lt;code>WARNING:localstack_ext.bootstrap.licensing: Error activating API key &amp;quot;abc...&amp;quot;(10):
+...
+ConnectionRefusedError: [Errno 111] Connection refused
+&lt;/code>&lt;/pre>&lt;p>LocalStack cannot contact our API to perform the license activation.
+Please confirm with your network administrator that no policies block the connection to our backend.&lt;/p>
+&lt;h3 id="cannot-resolve-apilocalstackcloud">Cannot resolve api.localstack.cloud&lt;/h3>
+&lt;p>Log output like the following indicates that your machine cannot resolve the domain of the LocalStack API.&lt;/p>
+&lt;pre>&lt;code>WARNING:localstack_ext.bootstrap.licensing: Error activating API key &amp;quot;abc...&amp;quot;(10):
+...
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+&lt;/code>&lt;/pre>&lt;p>Please confirm this by using a tool like &lt;code>dig&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>dig api.localstack.cloud&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If the result has some other status than &lt;code>status: NOERROR&lt;/code>, your machine cannot resolve this domain.&lt;/p>
+&lt;p>Some corporate DNS servers might filter requests to certain domains.
+Please contact your network administrator in order to whitelist &lt;code>localstack.cloud&lt;/code> domains.&lt;/p>
+&lt;h3 id="your-issue-isnt-listed-here">Your issue isn&amp;rsquo;t listed here?&lt;/h3>
+&lt;p>If you have any problems concerning your API key activation not mentioned here, or if these steps do not help, please do not hesitate to &lt;a href="https://localstack.cloud/contact/">contact us&lt;/a>.&lt;/p></description></item></channel></rss>
