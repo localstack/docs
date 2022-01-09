@@ -1,15 +1,15 @@
 ---
-title: "LocalStack Pro"
-categories: ["LocalStack Pro"]
+title: "LocalStack Pro and Enterprise"
+categories: ["LocalStack Pro & Enterprise"]
 description: >
-  Use your API key to start LocalStack Pro.
+  Use your API key to start LocalStack Pro or Enterprise.
 ---
 
-This guide shows how to use your shiny new LocalStack Pro license, and go over some best-practices regarding usage, activation, and safety of your LocalStack Pro API key.
+This guide shows how to use your shiny new LocalStack licenses, and go over some best-practices regarding usage, activation, and safety of your LocalStack API key.
 
 ## Requirements
 
-First, you need an API key for LocalStack Pro.
+First, you need an API key for LocalStack Pro or Enterprise.
 [You can get your key by signing up on our website](https://localstack.cloud/pricing/).\
 Don't worry, you can sign-up without any payment details and try LocalStack Pro within your free trial for 14 days.
 
@@ -28,14 +28,14 @@ You can find your API key in the [LocalStack Web Interface](https://app.localsta
 
 ## Using your API key
 
-LocalStack Pro expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`.
+LocalStack Pro or Enterprise expect your API key to be present in the environment variable `LOCALSTACK_API_KEY`.
 Before starting LocalStack, please define the environment variable in your terminal like this:
 
 {{< command >}}
 $ export LOCALSTACK_API_KEY=<your-api-key>
 {{< / command >}}
 
-### Starting LocalStack Pro using the CLI
+### Starting LocalStack Pro or Enterprise using the CLI
 
 When starting LocalStack using the LocalStack CLI, you dot not have to perform any further steps (after exporting the environment variable).
 {{< command >}}
@@ -44,7 +44,7 @@ $ localstack start
 
 LocalStack will detect the API key and properly pass it to the LocalStack container.
 
-### Starting LocalStack Pro using Docker
+### Starting LocalStack Pro or Enterprise using Docker
 
 When starting LocalStack using a `docker run` command, you have to specify the API key using the `-e` flag for environment variables like this:
 
@@ -59,7 +59,7 @@ $ docker run \
 
 For more information about starting LocalStack, take a look at our general [Getting Started]({{< ref "get-started" >}}) guide.
 
-### Starting LocalStack Pro using Docker-Compose
+### Starting LocalStack Pro or Enterprise using Docker-Compose
 
 When starting LocalStack using `docker-compose`, you have to make sure your API key is passed properly to the LocalStack container.
 For this, you have to make sure to include the `LOCALSTACK_API_KEY` environment variable in your `docker-compose.yml` like this:
@@ -73,17 +73,17 @@ This statement sets the API key we defined before (by using the `export` command
 
 ## Licensing-related configuration
 
-If you want to make sure that LocalStack is only started if LocalStack Pro can be activated, or if you want to supporess licensing-related error messages, take a look at our [configuration guide]({{< ref "configuration.md#localstack-pro">}}) regarding LocalStack Pro.
+If you want to make sure that LocalStack is only started if LocalStack Pro or Enterprise can be activated, or if you want to supporess licensing-related error messages, take a look at our [configuration guide]({{< ref "configuration.md#localstack-pro">}}) regarding LocalStack Pro.
 
 ## Checking license activation
 
-The easiest way to check if LocalStack Pro is activated is to check the health endpoing of LocalStack for a list of the running services:
+The easiest way to check if LocalStack Pro or Enterprise is activated is to check the health endpoing of LocalStack for a list of the running services:
 
 {{< command >}}
 $ curl localhost:4566/health | jq
 {{< / command >}}
 
-If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack Pro has started successfully.
+If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack Pro or Enterprise has started successfully.
 
 **Note**: This only works if your `SERVICES` config variable contains LocalStack Pro services.
 If in doubt, try starting LocalStack without this variable set, so all services can start.
