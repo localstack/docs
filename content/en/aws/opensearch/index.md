@@ -408,3 +408,8 @@ $ curl -X PUT my-domain.us-east-1.es.localhost.localstack.cloud:4566/my-index
 * By default, AWS only sets the `Endpoint` attribute of the cluster status once the cluster is up.
   LocalStack will return the endpoint immediately, but keep `Processing = "true"` until the cluster has been started.
 * The `CustomEndpointOptions` allows arbitrary endpoint URLs, which is not allowed in AWS.
+
+
+## Troubleshooting
+
+If you are using the `OPENSEARCH_ENDPOINT_STRATEGY=domain` (which is the default) and are having issues with resolving the subdomains, [please check if your DNS blocks rebind queries]({{< ref "limitations#dns-rebind-protection" >}}).
