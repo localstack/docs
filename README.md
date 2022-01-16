@@ -1,11 +1,8 @@
-docs.localstack.cloud
-=====================
+# docs.localstack.cloud
 
 Repository for docs.localstack.cloud
 
-
-get started
------------
+## get started
 
 ### clone repo
 
@@ -28,7 +25,6 @@ or
 
 [install hugo](https://gohugo.io/getting-started/installing). Make sure to install the _extended version_.
 
-
 ### run locally
 
     npm install
@@ -42,11 +38,10 @@ alternatively:
 
     npm run dev
 
-
-
 ## Best Practices
 
 Please follow these best practices when writing documentation here:
+
 - Use the custom `command` shortcode for all one-liner commands (also when their output is presented). Do not use it for bash scripts with comments. You can find a more detailed description here: https://github.com/localstack/docs/pull/55
 - Use the [`ref` or `relref` shortcode](https://gohugo.io/content-management/cross-references/#use-ref-and-relref) when creating non-external links (but still use the markdown native image linking, ref doesn't work there).
   You can either use `ref` or `relref`, the point is to have compile time internal-link checks (which works for both).
@@ -65,5 +60,7 @@ Please follow these best practices when writing documentation here:
   `![Alternative_Text](file_next_to_post.png)`).
 
   If you want to resize the image, use the `figure` shortcode.
+
+- Every image should be of `.webp` form apart from `.svg` and `.gif` and favicons images. So make sure to use the `.webp` version of the image.
 
 PS.: Feel free to add more best practices here (also give us a heads-up in [#sig-docs](https://localstack-cloud.slack.com/archives/C02FZH6UB2A)).

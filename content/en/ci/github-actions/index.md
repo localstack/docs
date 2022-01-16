@@ -64,7 +64,7 @@ For this, you go, in your repository, to Settings => Secrets and press "New Repo
 
 There, you create the secret for your API key like in the following image, replacing `foobar` with your API key.
 
-![Adding the LocalStack API key as secret in GitHub](github-create-secret.png)
+![Adding the LocalStack API key as secret in GitHub](github-create-secret.webp)
 
 [1]: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#steps "GitHub Action Build Steps"
 [2]: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv "GitHub Action Steps - Environment variables"

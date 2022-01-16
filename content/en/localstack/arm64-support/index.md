@@ -81,7 +81,7 @@ Please be aware that this workaround is not supported by LocalStack at all.
 First, you should enable "Rosetta" on your preferred terminal.
 This way you'll be installing packages for `x86_64` platform.
 
-![Rosetta](m1-trouble-1.png)
+![Rosetta](m1-trouble-1.webp)
 
 What we will be doing now is installing Java and Python executables using Homebrew, it should automatically resolve packages to proper architecture versions.
 

@@ -17,4 +17,4 @@ $ awslocal ses send-email --from user1@yourdomain.com --message 'Body={Text={Dat
 
 The [Web user interface](https://app.localstack.cloud) then allows you to interactively browse through the sent email messages, as illustrated in the screenshot below:
 
-![SES Web Interface](sesInterface.png)
+![SES Web Interface](sesInterface.webp)

@@ -19,7 +19,7 @@ Please note that data privacy is one of our key concerns; data is only collected
 
 The following screenshot shows an the Analytics Dashboard in action:
 
-![Analytics Dashboard](analytics-dashboard.png)
+![Analytics Dashboard](analytics-dashboard.webp)
 
 The top row shows a summary of your LocalStack usage.
 A test process or Process ID refers to a single run of LocalStack.

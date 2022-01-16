@@ -12,5 +12,5 @@ The following figure shows an overview of the covered topics:
 
 <br>
 <div style="max-width: 80%">
-{{< figure src="understanding-localstack-overview.png" alt="Overview of LocalStack internals" >}}
+{{< figure src="understanding-localstack-overview.webp" alt="Overview of LocalStack internals" >}}
 </div>

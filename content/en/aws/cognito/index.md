@@ -149,7 +149,7 @@ http://localhost:4566/login?response_type=code&client_id=<client_id>&redirect_ur
 Please replace `<client_id>` with the ID of an existing user pool client ID (in this case, `example_user`), and `<redirect_uri>` with the redirect URI of your application (e.g., `http://example.com`).
 
 The login form should look similar to the screenshot below:
-{{< figure src="cognitoLogin.png" width="320" >}}
+{{< figure src="cognitoLogin.webp" width="320" >}}
 
 After successful login, the page will redirect to the specified redirect URI, with a path parameter `?code=<code>` appended, e.g., `http://example.com?code=test123`.
 This authentication code can then be used to obtain a token via the Cognito OAuth2 TOKEN Endpoint documented [here](https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html).

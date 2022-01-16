@@ -132,7 +132,7 @@ Make sure to set a breakpoint in the Lambda handler code first, which can then l
 
 The screenshot below shows the triggered breakpoint with our `'Hello from LocalStack!'` in the variable inspection view:
 
-![Visual Studio Code debugging](vscode-debugging-py-1.png)
+![Visual Studio Code debugging](vscode-debugging-py-1.webp)
 
 ### Limitations
 
@@ -170,7 +170,7 @@ the following content:
 while [[ -z $(docker ps | grep :5050) ]]; do sleep 1; done
 ```
 
-![Run/Debug Configurations](inteliji-debugging-jvm-1.png)
+![Run/Debug Configurations](inteliji-debugging-jvm-1.webp)
 
 This shell script should simplify the process a bit since the debugger server is not
 immediately available (only once lambda container is up).
@@ -178,7 +178,7 @@ immediately available (only once lambda container is up).
 Then create a new `Remote JVM Debug` configuration and use the script from
 above as a `Before launch` target:
 
-![Run/Debug Configurations](inteliji-debugging-jvm-2.png)
+![Run/Debug Configurations](inteliji-debugging-jvm-2.webp)
 
 Now to debug your lambda function, simply click on the `Debug` icon with
 `Remote JVM on LS Debug` configuration selected, and then invoke your

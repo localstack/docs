@@ -34,7 +34,7 @@ Support for more storage backends is coming soon (e.g., S3 buckets, FTP servers,
 
 You can use the [LocalStack Web UI](https://app.localstack.cloud/pods) to create a new Local Cloud Pod (make sure to adjust the Git URL and branch name to point to your repository):
 
-![Local Cloud Pods UI](cloudPodsUI.png)
+![Local Cloud Pods UI](cloudPodsUI.webp)
 
 Once the pod has been created, can use the CLI to log in and list the pod in your terminal:
 {{< command >}}

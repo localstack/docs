@@ -6,7 +6,7 @@ description: >
   Use the Architect Infrastructure as Code framework with LocalStack
 ---
 
-<img src="architect_logo.png" width="600px" alt="architect logo">
+<img src="architect_logo.webp" width="600px" alt="architect logo">
 
 ## Overview
 

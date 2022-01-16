@@ -19,7 +19,7 @@ Client applications can use the standard AWS SDKs to connect to LocalStack; most
 option to configure the endpoint URLs of the target services (e.g., configure `http://localhost:4572`
 as endpoint URL to connect to local DynamoDB).
 
-![architecture](architecture.png)
+![architecture](architecture.webp)
 
 To handle incoming requests on the external network ports, LocalStack uses proxy threads which inspect
 the incoming request message, forward the requests to corresponding backend service processes, and

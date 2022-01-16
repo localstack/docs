@@ -50,4 +50,4 @@ You can easily enable LocalStack Pro by adding your API key to the project's env
 
 Just go to the project settings in Travis CI (`More options` → `Settings`), scroll down to the `Environment Variables` section, and add your API key:
 
-![Adding the LocalStack API key in Travis CI](travis-ci-env-config.png)
+![Adding the LocalStack API key in Travis CI](travis-ci-env-config.webp)

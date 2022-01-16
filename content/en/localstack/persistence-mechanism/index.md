@@ -82,7 +82,7 @@ Each serialization mechanism has its own root folder.
 As of now, all supported services are serialized as pickle files, except for Kinesis (which is serialized as JSON) and DynamoDB (which is serialized as an SQLite database).
 This is illustrated with the diagram below.
 
-![Structure of the DATA_DIR](datadir_structure.png)
+![Structure of the DATA_DIR](datadir_structure.webp)
 
 This approach does not suffer from the same limitations as *record-and-replay*.
 Restoring the state -- even for large projects -- usually only takes a few milliseconds.

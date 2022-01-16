@@ -7,7 +7,7 @@ description: >
   Use the AWS SAM (Serverless Application Model) with LocalStack
 ---
 
-![AWS SAM](aws-sam-logo.jpg)
+![AWS SAM](aws-sam-logo.webp)
 
 ## Overview
 

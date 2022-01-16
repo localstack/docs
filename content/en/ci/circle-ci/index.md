@@ -39,7 +39,7 @@ You can easily enable LocalStack Pro by adding your API key to the project's env
 
 Just go to the project settings in CircleCI, click on `Environment Variables` in the sidebar and add your API key:
 
-![Adding the LocalStack API key in CircleCI](circleci-env-config.png)
+![Adding the LocalStack API key in CircleCI](circleci-env-config.webp)
 
 
 
