@@ -2104,7 +2104,364 @@ We can input our data into our source Kinesis stream, our put it directly into t
 }
 ]&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>If you get a similar output, you have correctly set up a Firehose delivery stream!
-Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>Aws: S3</title><link>/aws/s3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/s3/</guid><description>
+Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>Aws: OpenSearch Service</title><link>/aws/opensearch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/opensearch/</guid><description>
+&lt;p>The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the &lt;a href="https://aws.amazon.com/opensearch-service/">Amazon OpenSearch Service&lt;/a>.&lt;/p>
+&lt;h2 id="creating-an-opensearch-cluster">Creating an OpenSearch cluster&lt;/h2>
+&lt;p>You can go ahead and use &lt;a href="/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a> to create a new OpenSearch domain via the &lt;code>aws opensearch create-domain&lt;/code> command.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>: Everytime when you create a cluster with a version of OpenSearch you haven&amp;rsquo;t used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
+&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>: The default OpenSearch version used is 1.1.0.
+&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal opensearch create-domain --domain-name my-domain
+{
+&amp;#34;DomainStatus&amp;#34;: {
+&amp;#34;DomainId&amp;#34;: &amp;#34;000000000000/my-domain&amp;#34;,
+&amp;#34;DomainName&amp;#34;: &amp;#34;my-domain&amp;#34;,
+&amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:es:us-east-1:000000000000:domain/my-domain&amp;#34;,
+&amp;#34;Created&amp;#34;: true,
+&amp;#34;Deleted&amp;#34;: false,
+&amp;#34;Endpoint&amp;#34;: &amp;#34;my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566&amp;#34;,
+&amp;#34;Processing&amp;#34;: true,
+&amp;#34;UpgradeProcessing&amp;#34;: false,
+&amp;#34;EngineVersion&amp;#34;: &amp;#34;OpenSearch_1.1&amp;#34;,
+&amp;#34;ClusterConfig&amp;#34;: {
+&amp;#34;InstanceType&amp;#34;: &amp;#34;m3.medium.search&amp;#34;,
+&amp;#34;InstanceCount&amp;#34;: 1,
+&amp;#34;DedicatedMasterEnabled&amp;#34;: true,
+&amp;#34;ZoneAwarenessEnabled&amp;#34;: false,
+&amp;#34;DedicatedMasterType&amp;#34;: &amp;#34;m3.medium.search&amp;#34;,
+&amp;#34;DedicatedMasterCount&amp;#34;: 1,
+&amp;#34;WarmEnabled&amp;#34;: false,
+&amp;#34;ColdStorageOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+}
+},
+&amp;#34;EBSOptions&amp;#34;: {
+&amp;#34;EBSEnabled&amp;#34;: true,
+&amp;#34;VolumeType&amp;#34;: &amp;#34;gp2&amp;#34;,
+&amp;#34;VolumeSize&amp;#34;: 10,
+&amp;#34;Iops&amp;#34;: 0
+},
+&amp;#34;AccessPolicies&amp;#34;: &amp;#34;&amp;#34;,
+&amp;#34;SnapshotOptions&amp;#34;: {
+&amp;#34;AutomatedSnapshotStartHour&amp;#34;: 0
+},
+&amp;#34;CognitoOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+},
+&amp;#34;EncryptionAtRestOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+},
+&amp;#34;NodeToNodeEncryptionOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+},
+&amp;#34;AdvancedOptions&amp;#34;: {
+&amp;#34;override_main_response_version&amp;#34;: &amp;#34;false&amp;#34;,
+&amp;#34;rest.action.multi.allow_explicit_index&amp;#34;: &amp;#34;true&amp;#34;
+},
+&amp;#34;ServiceSoftwareOptions&amp;#34;: {
+&amp;#34;CurrentVersion&amp;#34;: &amp;#34;&amp;#34;,
+&amp;#34;NewVersion&amp;#34;: &amp;#34;&amp;#34;,
+&amp;#34;UpdateAvailable&amp;#34;: false,
+&amp;#34;Cancellable&amp;#34;: false,
+&amp;#34;UpdateStatus&amp;#34;: &amp;#34;COMPLETED&amp;#34;,
+&amp;#34;Description&amp;#34;: &amp;#34;There is no software update available for this domain.&amp;#34;,
+&amp;#34;AutomatedUpdateDate&amp;#34;: 0.0,
+&amp;#34;OptionalDeployment&amp;#34;: true
+},
+&amp;#34;DomainEndpointOptions&amp;#34;: {
+&amp;#34;EnforceHTTPS&amp;#34;: false,
+&amp;#34;TLSSecurityPolicy&amp;#34;: &amp;#34;Policy-Min-TLS-1-0-2019-07&amp;#34;,
+&amp;#34;CustomEndpointEnabled&amp;#34;: false
+},
+&amp;#34;AdvancedSecurityOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false,
+&amp;#34;InternalUserDatabaseEnabled&amp;#34;: false
+},
+&amp;#34;AutoTuneOptions&amp;#34;: {
+&amp;#34;State&amp;#34;: &amp;#34;ENABLE_IN_PROGRESS&amp;#34;
+}
+}
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In the LocalStack log you will see something like, where you can see the cluster starting up in the background.&lt;/p>
+&lt;pre>&lt;code>2022-01-13T10:36:29.436:INFO:localstack.services.opensearch.cluster: starting opensearch: /tmp/localstack/var_libs/opensearch/1.1.0/bin/opensearch -E http.port=35403 -E http.publish_port=35403 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data=&amp;quot;/tmp/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data&amp;quot; -E path.repo=&amp;quot;/tmp/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup&amp;quot; -E plugins.security.disabled=true with env {'OPENSEARCH_JAVA_OPTS': '-Xms200m -Xmx600m', 'OPENSEARCH_TMPDIR': '/tmp/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp'}
+2022-01-13T10:36:29.437:INFO:localstack.services.opensearch.cluster: registering an endpoint proxy for http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566 =&amp;gt; http://127.0.0.1:35403
+2022-01-13T10:36:32.803:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,800][INFO ][o.o.n.Node ] [host-pc] version[1.1.0], pid[231895], build[tar/15e9f137622d878b79103df8f82d78d782b686a1/2021-10-04T21:29:03.079792Z], OS[Linux/5.11.0-46-generic/amd64], JVM[AdoptOpenJDK/OpenJDK 64-Bit Server VM/15.0.1/15.0.1+9]
+2022-01-13T10:36:32.805:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,805][INFO ][o.o.n.Node ] [host-pc] JVM home [/tmp/localstack/var_libs/opensearch/1.1.0/jdk], using bundled JDK [true]
+2022-01-13T10:36:32.806:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,805][INFO ][o.o.n.Node ] [host-pc] JVM arguments [-Xshare:auto, -Dopensearch.networkaddress.cache.ttl=60, -Dopensearch.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -XX:+ShowCodeDetailsInExceptionMessages, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -XX:+UseG1GC, -XX:G1ReservePercent=25, -XX:InitiatingHeapOccupancyPercent=30, -Djava.io.tmpdir=/tmp/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms200m, -Xmx600m, -XX:MaxDirectMemorySize=314572800, -Dopensearch.path.home=/tmp/localstack/var_libs/opensearch/1.1.0, -Dopensearch.path.conf=/tmp/localstack/var_libs/opensearch/1.1.0/config, -Dopensearch.distribution.type=tar, -Dopensearch.bundled_jdk=true]
+...
+&lt;/code>&lt;/pre>&lt;p>and after some time, you should see that the &lt;code>Processing&lt;/code> state of the domain is set to &lt;code>false&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal opensearch describe-domain --domain-name my-domain | jq &amp;#34;.DomainStatus.Processing&amp;#34;
+false&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="interact-with-the-cluster">Interact with the cluster&lt;/h2>
+&lt;p>You can now interact with the cluster at the cluster API endpoint for the domain, in this case &lt;code>http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566&lt;/code>.&lt;/p>
+&lt;p>For example:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566
+{
+&amp;#34;name&amp;#34; : &amp;#34;host-pc&amp;#34;,
+&amp;#34;cluster_name&amp;#34; : &amp;#34;opensearch&amp;#34;,
+&amp;#34;cluster_uuid&amp;#34; : &amp;#34;DMN-2TlwRkuhMH4aRRqrkA&amp;#34;,
+&amp;#34;version&amp;#34; : {
+&amp;#34;distribution&amp;#34; : &amp;#34;opensearch&amp;#34;,
+&amp;#34;number&amp;#34; : &amp;#34;1.1.0&amp;#34;,
+&amp;#34;build_type&amp;#34; : &amp;#34;tar&amp;#34;,
+&amp;#34;build_hash&amp;#34; : &amp;#34;15e9f137622d878b79103df8f82d78d782b686a1&amp;#34;,
+&amp;#34;build_date&amp;#34; : &amp;#34;2021-10-04T21:29:03.079792Z&amp;#34;,
+&amp;#34;build_snapshot&amp;#34; : false,
+&amp;#34;lucene_version&amp;#34; : &amp;#34;8.9.0&amp;#34;,
+&amp;#34;minimum_wire_compatibility_version&amp;#34; : &amp;#34;6.8.0&amp;#34;,
+&amp;#34;minimum_index_compatibility_version&amp;#34; : &amp;#34;6.0.0-beta1&amp;#34;
+},
+&amp;#34;tagline&amp;#34; : &amp;#34;The OpenSearch Project: https://opensearch.org/&amp;#34;
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Or the health endpoint:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl -s http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health | jq .
+{
+&amp;#34;cluster_name&amp;#34;: &amp;#34;opensearch&amp;#34;,
+&amp;#34;status&amp;#34;: &amp;#34;green&amp;#34;,
+&amp;#34;timed_out&amp;#34;: false,
+&amp;#34;number_of_nodes&amp;#34;: 1,
+&amp;#34;number_of_data_nodes&amp;#34;: 1,
+&amp;#34;discovered_master&amp;#34;: true,
+&amp;#34;active_primary_shards&amp;#34;: 0,
+&amp;#34;active_shards&amp;#34;: 0,
+&amp;#34;relocating_shards&amp;#34;: 0,
+&amp;#34;initializing_shards&amp;#34;: 0,
+&amp;#34;unassigned_shards&amp;#34;: 0,
+&amp;#34;delayed_unassigned_shards&amp;#34;: 0,
+&amp;#34;number_of_pending_tasks&amp;#34;: 0,
+&amp;#34;number_of_in_flight_fetch&amp;#34;: 0,
+&amp;#34;task_max_waiting_in_queue_millis&amp;#34;: 0,
+&amp;#34;active_shards_percent_as_number&amp;#34;: 100
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="advanced-topics">Advanced topics&lt;/h2>
+&lt;h3 id="endpoints">Endpoints&lt;/h3>
+&lt;p>There are two configurable strategies that govern how domain endpoints are created. The strategy can be configured via the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY&lt;/code> environment variable.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Value&lt;/th>
+&lt;th>Format&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>domain&lt;/code>&lt;/td>
+&lt;td>&lt;code>&amp;lt;domain-name&amp;gt;.&amp;lt;region&amp;gt;.opensearch.localhost.localstack.cloud:4566&lt;/code>&lt;/td>
+&lt;td>This is the default strategy that uses the &lt;code>localhost.localstack.cloud&lt;/code> domain to route to your localhost&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>path&lt;/code>&lt;/td>
+&lt;td>&lt;code>localhost:4566/opensearch/&amp;lt;region&amp;gt;/&amp;lt;domain-name&amp;gt;&lt;/code>&lt;/td>
+&lt;td>An alternative that can be useful if you cannot resolve LocalStack&amp;rsquo;s localhost domain&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>: Please be aware that &amp;ndash; in contrast to the &lt;a href="/aws/elasticsearch/">Elasticsearch Service&lt;/a> &amp;ndash; the OpenSearch Service does &lt;em>not&lt;/em> support the endpoint strategy &lt;code>off&lt;/code>.
+&lt;/div>
+&lt;h4 id="custom-endpoints">Custom Endpoints&lt;/h4>
+&lt;p>LocalStack allows you to set arbitrary custom endpoints for your clusters in the domain endpoint options.
+This can be used to overwrite the behavior of the endpoint strategies described above.
+You can also choose custom domains, however it is important to add the edge port (&lt;code>80&lt;/code>/&lt;code>443&lt;/code> or by default &lt;code>4566&lt;/code>).&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal opensearch create-domain --domain-name my-domain \
+--domain-endpoint-options &amp;#39;{ &amp;#34;CustomEndpoint&amp;#34;: &amp;#34;http://localhost:4566/my-custom-endpoint&amp;#34;, &amp;#34;CustomEndpointEnabled&amp;#34;: true }&amp;#39;&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Once the domain processing is complete, you can access the cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:4566/my-custom-endpoint/_cluster/health&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="re-using-a-single-cluster-instance">Re-using a single cluster instance&lt;/h3>
+&lt;p>In some cases, you may not want to create a new cluster instance for each domain,
+for example when you are only interested in testing API interactions instead of actual OpenSearch functionality.
+In this case, you can set &lt;code>OPENSEARCH_MULTI_CLUSTER=0&lt;/code>, which will multiplex all domains to the same cluster.
+This can however lead to unexpected behavior when persisting data into OpenSearch, or creating clusters with different versions, so we do not recommend it.&lt;/p>
+&lt;h3 id="storage-layout">Storage Layout&lt;/h3>
+&lt;p>OpenSearch will be organized in your &lt;code>DATA_DIR&lt;/code>, or the temporary directory (e.g., &lt;code>/tmp/localstack&lt;/code>), as follows:&lt;/p>
+&lt;pre>&lt;code>localstack@machine /tmp/localstack % tree -L 4
+.
+├── opensearch
+│ └── arn:aws:es:us-east-1:000000000000:domain
+│ ├── my-cluster-1
+│ │ ├── backup
+│ │ ├── data
+│ │ └── tmp
+│ ├── my-cluster-2
+│ │ ├── backup
+│ │ ├── data
+│ │ └── tmp
+&lt;/code>&lt;/pre>&lt;h2 id="custom-opensearch-backends">Custom OpenSearch backends&lt;/h2>
+&lt;p>LocalStack downloads OpenSearch asynchronously the first time you run the &lt;code>aws opensearch create-domain&lt;/code>, so you will get the response from LocalStack first and then (after download/install) you will have your OpenSearch cluster running locally.
+You may not want this, and instead use your already running OpenSearch cluster.
+This can also be useful when you want to run a cluster with a custom configuration that LocalStack does not support.&lt;/p>
+&lt;p>To customize the OpenSearch backend, you can start your own OpenSearch cluster locally and point LocalStack to it using the &lt;code>OPENSEARCH_CUSTOM_BACKEND&lt;/code> environment variable.
+Note that only a single backend can be configured, meaning that you will get a similar behavior as when you &lt;a href="#re-using-a-single-cluster-instance">re-use a single cluster instance&lt;/a>.&lt;/p>
+&lt;h3 id="example">Example&lt;/h3>
+&lt;p>The following shows a sample &lt;code>docker-compose.yaml&lt;/code> file that contains a single-node OpenSearch cluster and a basic LocalStack setup.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;3.9&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">opensearch&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">opensearch&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">opensearchproject/opensearch:1.1.0&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">network_mode&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">bridge&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">node.name=opensearch&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">cluster.name=opensearch-docker-cluster&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">discovery.type=single-node&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">bootstrap.memory_lock=true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;DISABLE_SECURITY_PLUGIN=true&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;9200:9200&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ulimits&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">memlock&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">soft&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>-&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">hard&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>-&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">data01:/usr/share/opensearch/data&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;${LOCALSTACK_DOCKER_NAME-localstack_main}&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack/localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">network_mode&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">bridge&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;4566:4566&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">depends_on&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">opensearch&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">OPENSEARCH_CUSTOM_BACKEND=http://opensearch:9200&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DEBUG=${DEBUG- }&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DATA_DIR=${DATA_DIR- }&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DOCKER_HOST=unix:///var/run/docker.sock&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">HOST_TMP_FOLDER=${TMPDIR}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;${TMPDIR:-/tmp/localstack}:/tmp/localstack&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">links&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">opensearch&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">data01&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">driver&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">local&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
+&lt;li>
+&lt;p>Run docker compose:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker-compose up -d&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Create the OpenSearch domain:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal opensearch create-domain --domain-name my-cluster
+{
+&amp;#34;DomainStatus&amp;#34;: {
+&amp;#34;DomainId&amp;#34;: &amp;#34;000000000000/my-domain&amp;#34;,
+&amp;#34;DomainName&amp;#34;: &amp;#34;my-domain&amp;#34;,
+&amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:es:us-east-1:000000000000:domain/my-domain&amp;#34;,
+&amp;#34;Created&amp;#34;: true,
+&amp;#34;Deleted&amp;#34;: false,
+&amp;#34;Endpoint&amp;#34;: &amp;#34;my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566&amp;#34;,
+&amp;#34;Processing&amp;#34;: false,
+&amp;#34;UpgradeProcessing&amp;#34;: false,
+&amp;#34;EngineVersion&amp;#34;: &amp;#34;OpenSearch_1.1&amp;#34;,
+&amp;#34;ClusterConfig&amp;#34;: {
+&amp;#34;InstanceType&amp;#34;: &amp;#34;m3.medium.search&amp;#34;,
+&amp;#34;InstanceCount&amp;#34;: 1,
+&amp;#34;DedicatedMasterEnabled&amp;#34;: true,
+&amp;#34;ZoneAwarenessEnabled&amp;#34;: false,
+&amp;#34;DedicatedMasterType&amp;#34;: &amp;#34;m3.medium.search&amp;#34;,
+&amp;#34;DedicatedMasterCount&amp;#34;: 1,
+&amp;#34;WarmEnabled&amp;#34;: false,
+&amp;#34;ColdStorageOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+}
+},
+&amp;#34;EBSOptions&amp;#34;: {
+&amp;#34;EBSEnabled&amp;#34;: true,
+&amp;#34;VolumeType&amp;#34;: &amp;#34;gp2&amp;#34;,
+&amp;#34;VolumeSize&amp;#34;: 10,
+&amp;#34;Iops&amp;#34;: 0
+},
+&amp;#34;AccessPolicies&amp;#34;: &amp;#34;&amp;#34;,
+&amp;#34;SnapshotOptions&amp;#34;: {
+&amp;#34;AutomatedSnapshotStartHour&amp;#34;: 0
+},
+&amp;#34;CognitoOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+},
+&amp;#34;EncryptionAtRestOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+},
+&amp;#34;NodeToNodeEncryptionOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false
+},
+&amp;#34;AdvancedOptions&amp;#34;: {
+&amp;#34;override_main_response_version&amp;#34;: &amp;#34;false&amp;#34;,
+&amp;#34;rest.action.multi.allow_explicit_index&amp;#34;: &amp;#34;true&amp;#34;
+},
+&amp;#34;ServiceSoftwareOptions&amp;#34;: {
+&amp;#34;CurrentVersion&amp;#34;: &amp;#34;&amp;#34;,
+&amp;#34;NewVersion&amp;#34;: &amp;#34;&amp;#34;,
+&amp;#34;UpdateAvailable&amp;#34;: false,
+&amp;#34;Cancellable&amp;#34;: false,
+&amp;#34;UpdateStatus&amp;#34;: &amp;#34;COMPLETED&amp;#34;,
+&amp;#34;Description&amp;#34;: &amp;#34;There is no software update available for this domain.&amp;#34;,
+&amp;#34;AutomatedUpdateDate&amp;#34;: 0.0,
+&amp;#34;OptionalDeployment&amp;#34;: true
+},
+&amp;#34;DomainEndpointOptions&amp;#34;: {
+&amp;#34;EnforceHTTPS&amp;#34;: false,
+&amp;#34;TLSSecurityPolicy&amp;#34;: &amp;#34;Policy-Min-TLS-1-0-2019-07&amp;#34;,
+&amp;#34;CustomEndpointEnabled&amp;#34;: false
+},
+&amp;#34;AdvancedSecurityOptions&amp;#34;: {
+&amp;#34;Enabled&amp;#34;: false,
+&amp;#34;InternalUserDatabaseEnabled&amp;#34;: false
+},
+&amp;#34;AutoTuneOptions&amp;#34;: {
+&amp;#34;State&amp;#34;: &amp;#34;ENABLE_IN_PROGRESS&amp;#34;
+}
+}
+}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If the &lt;code>Processing&lt;/code> status is &lt;code>true&lt;/code>, it means that the cluster is not yet healthy. You can run &lt;code>decribe-domain&lt;/code> to receive the status:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal opensearch describe-domain --domain-name my-domain&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Check the cluster health endpoint and create indices:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health | jq
+{
+&amp;#34;name&amp;#34;: &amp;#34;host-pc&amp;#34;,
+&amp;#34;cluster_name&amp;#34;: &amp;#34;opensearch&amp;#34;,
+&amp;#34;cluster_uuid&amp;#34;: &amp;#34;DMN-2TlwRkuhMH4aRRqrkA&amp;#34;,
+&amp;#34;version&amp;#34;: {
+&amp;#34;distribution&amp;#34;: &amp;#34;opensearch&amp;#34;,
+&amp;#34;number&amp;#34;: &amp;#34;1.1.0&amp;#34;,
+&amp;#34;build_type&amp;#34;: &amp;#34;tar&amp;#34;,
+&amp;#34;build_hash&amp;#34;: &amp;#34;15e9f137622d878b79103df8f82d78d782b686a1&amp;#34;,
+&amp;#34;build_date&amp;#34;: &amp;#34;2021-10-04T21:29:03.079792Z&amp;#34;,
+&amp;#34;build_snapshot&amp;#34;: false,
+&amp;#34;lucene_version&amp;#34;: &amp;#34;8.9.0&amp;#34;,
+&amp;#34;minimum_wire_compatibility_version&amp;#34;: &amp;#34;6.8.0&amp;#34;,
+&amp;#34;minimum_index_compatibility_version&amp;#34;: &amp;#34;6.0.0-beta1&amp;#34;
+},
+&amp;#34;tagline&amp;#34;: &amp;#34;The OpenSearch Project: https://opensearch.org/&amp;#34;
+}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Create an example index:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl -X PUT my-domain.us-east-1.es.localhost.localstack.cloud:4566/my-index
+{&amp;#34;acknowledged&amp;#34;:true,&amp;#34;shards_acknowledged&amp;#34;:true,&amp;#34;index&amp;#34;:&amp;#34;my-index&amp;#34;}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="differences-to-aws">Differences to AWS&lt;/h2>
+&lt;ul>
+&lt;li>By default, AWS only sets the &lt;code>Endpoint&lt;/code> attribute of the cluster status once the cluster is up.
+LocalStack will return the endpoint immediately, but keep &lt;code>Processing = &amp;quot;true&amp;quot;&lt;/code> until the cluster has been started.&lt;/li>
+&lt;li>The &lt;code>CustomEndpointOptions&lt;/code> allows arbitrary endpoint URLs, which is not allowed in AWS.&lt;/li>
+&lt;/ul>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;p>If you are using the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY=domain&lt;/code> (which is the default) and are having issues with resolving the subdomains, &lt;a href="/localstack/limitations/#dns-rebind-protection">please check if your DNS blocks rebind queries&lt;/a>.&lt;/p></description></item><item><title>Aws: S3</title><link>/aws/s3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/s3/</guid><description>
 &lt;p>AWS S3 is a managed scalable object storage service that can be used to store any amount of data for a wide range of use cases.&lt;/p>
 &lt;p>S3 is shipped with the LocalStack Community version and is &lt;a href="/aws/feature-coverage/">extensively supported&lt;/a>. Trying to run the examples in the &lt;a href="https://docs.aws.amazon.com/s3/index.html">official AWS developer&lt;/a> guide against LocalStack is a great place to start.&lt;/p>
 &lt;p>Assuming you have &lt;a href="/integrations/aws-cli/">&lt;code>awslocal&lt;/code>&lt;/a> installed you can also try the following commands:&lt;/p>
