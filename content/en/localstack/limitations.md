@@ -34,11 +34,12 @@ When this lambda is executed locally from the `/tmp` folder, the package can not
 ### DNS Rebind Protection
 
 For certain LocalStack features it is necessary that the DNS resolves to the local network.
-For example, OpenSearch clusters which are created by LocalStack can be reached via `<domain-name>.<region>.opensearch.localhost.localstack.cloud`.
+For example, LocalStack is using virtual-host based addressing for S3, ElsaticSearch, and OpenSearch by default.
+S3 buckets can be reached via `<bucket-name>.s3.<region>.localhost.localstack.cloud` and OpenSearch clusters which are created by LocalStack can be reached via `<domain-name>.<region>.opensearch.localhost.localstack.cloud`.
 This is handled correctly if you [configured your system's DNS for the transparent execution mode of LocalStack Pro]({{< ref "dns-server#system-dns-configuration" >}}).
 
 However, if you rely on your local network's DNS, your router / DNS server might block those requests due to the DNS Rebind Protection.
-This feature is enabled by default in OpenWRT, AVM FritzBox, and potentially also other devices.
+This feature is enabled by default in pfSense, OPNSense, OpenWRT, AVM FritzBox, and potentially also other devices.
 Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (like OpenWRT).
 
 You can check if your DNS setup works correctly by resolving a subdomain of `localhost.localstack.cloud`:

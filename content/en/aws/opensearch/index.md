@@ -3,7 +3,7 @@ title: "OpenSearch Service"
 linkTitle: "OpenSearch Service"
 categories: ["LocalStack Community"]
 description: >
-  Amazon OpenSearch Service
+  Amazon OpenSearch Service (successor to Amazon Elasticsearch Service)
 ---
 
 The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/).
@@ -11,7 +11,7 @@ The OpenSearch Service in LocalStack lets you create one or more single-node Ope
 
 ## Creating an OpenSearch cluster
 
-You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new opensearch domain via the `aws opensearch create-domain` command.
+You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new OpenSearch domain via the `aws opensearch create-domain` command.
 
 {{< alert >}}
 **Note**: Everytime when you create a cluster with a version of OpenSearch you haven't used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
@@ -178,7 +178,7 @@ There are two configurable strategies that govern how domain endpoints are creat
 | `path` | `localhost:4566/opensearch/<region>/<domain-name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
 
 {{< alert >}}
-**Note**: Please be aware that - in contrast to the [Elasticsearch Service]({{< ref "elasticsearch" >}}) - the OpenSearch Service does _not_ support the endpoint strategy `off`.
+**Note**: Please be aware that -- in contrast to the [Elasticsearch Service]({{< ref "elasticsearch" >}}) -- the OpenSearch Service does _not_ support the endpoint strategy `off`.
 {{< /alert >}}
 
 
@@ -238,7 +238,7 @@ Note that only a single backend can be configured, meaning that you will get a s
 
 ### Example
 
-The following shows a sample docker-compose file that contain a single-node OpenSearch cluster and a basic LocalStack setup.
+The following shows a sample `docker-compose.yaml` file that contains a single-node OpenSearch cluster and a basic LocalStack setup.
 
 ```yaml
 version: "3.9"
@@ -378,7 +378,7 @@ $ awslocal opensearch describe-domain --domain-name my-domain
 {{< command >}}
 $ curl my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health | jq
 {
-  "name": "alex-notebook",
+  "name": "host-pc",
   "cluster_name": "opensearch",
   "cluster_uuid": "DMN-2TlwRkuhMH4aRRqrkA",
   "version": {
