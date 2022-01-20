@@ -1,5 +1,6 @@
 ---
 title: "LocalStack Pro and Enterprise"
+weight: 5
 categories: ["LocalStack Pro & Enterprise"]
 description: >
   Use your API key to start LocalStack Pro or Enterprise.

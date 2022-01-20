@@ -26,6 +26,9 @@ LocalStack currently provides the following options:
 - [LocalStack CLI]({{< ref "#localstack-cli" >}})\
   The easiest way to start and manage LocalStack - either on your machine, in a Docker container on your machine, or even on a remote Docker host.
 
+- [LocalStack Cockpit]({{< ref "#localstack-cockpit" >}})\
+  Get a desktop experience and work with your local LocalStack instance via the UI.
+
 - [Docker]({{< ref "#docker" >}})\
   Use the `docker` CLI to manually start the LocalStack Docker container.
 
@@ -101,6 +104,10 @@ $ localstack start
 
 - Although we strongly recommend to use Docker, the infrastructure can also be spun up directly on the host machine using the `--host` startup flag. Note that this will require [additional dependencies]({{< ref "#developing" >}}), and is not supported on some operating systems, including Windows.
 {{< /alert >}}
+
+### LocalStack Cockpit
+
+See [LocalStack Cockpit]({{< ref "cockpit" >}}).
 
 ### Docker
 If you do not want to use the [LocalStack CLI]({{< ref "#localstack-cli" >}}), you can also decide to manually start the LocalStack Docker container.
