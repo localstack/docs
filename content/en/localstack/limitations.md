@@ -34,7 +34,7 @@ When this lambda is executed locally from the `/tmp` folder, the package can not
 ### DNS Rebind Protection
 
 For certain LocalStack features it is necessary that the DNS resolves to the local network.
-For example, LocalStack is using virtual-host based addressing for S3, ElsaticSearch, and OpenSearch by default.
+For example, LocalStack is using virtual-host based addressing for S3, ElasticSearch, and OpenSearch by default.
 S3 buckets can be reached via `<bucket-name>.s3.<region>.localhost.localstack.cloud` and OpenSearch clusters which are created by LocalStack can be reached via `<domain-name>.<region>.opensearch.localhost.localstack.cloud`.
 This is handled correctly if you [configured your system's DNS for the transparent execution mode of LocalStack Pro]({{< ref "dns-server#system-dns-configuration" >}}).
 
