@@ -160,15 +160,16 @@ Some of the services can be configured to switch to a particular provider:
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SKIP_INFRA_DOWNLOADS` | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions).
-| `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins.
+| `SKIP_INFRA_DOWNLOADS` | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
+| `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud
+| `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
-| `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments).
-| `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods. |
-| `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events |
-| `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself. |
-| `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself. |
-| `REQUESTS_CA_BUNDLE` | `/tmp/localstack/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack |
+| `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments)
+| `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
+| `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
+| `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
+| `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
+| `REQUESTS_CA_BUNDLE` | `/tmp/localstack/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack
 
 
 ## Debugging
