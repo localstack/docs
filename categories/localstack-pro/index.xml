@@ -2447,6 +2447,11 @@ make_bucket: test&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;!-- TODO: describe mechanism to reference public layers on AWS ("layer-fetcher" microservice) -->
 &lt;p>More details and samples following soon.&lt;/p></description></item><item><title>Aws: Managed Streaming for Kafka (MSK)</title><link>/aws/managed-streaming-for-kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/managed-streaming-for-kafka/</guid><description>
 &lt;p>LocalStack supports a basic version of &lt;a href="https://aws.amazon.com/msk/">Managed Streaming for Kafka (MSK)&lt;/a> for testing. This allows you to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic.&lt;/p>
+&lt;h2 id="create-a-local-msk-cluster">Create a local MSK Cluster&lt;/h2>
+&lt;h3 id="prerequisites">Prerequisites&lt;/h3>
+&lt;ul>
+&lt;li>Java 8&lt;/li>
+&lt;/ul>
 &lt;p>To create a local MSK cluster, the following create-cluster example creates an MSK cluster named EventsCluster with three broker nodes. A JSON file named &lt;code>brokernodegroupinfo.json&lt;/code> specifies the three subnets over which you want yout local Amazon MSK to distribute the broker nodes. This example doesn&amp;rsquo;t specify the monitoring level, so the cluster gets the DEFAULT level.&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal kafka create-cluster \
 --cluster-name &amp;#34;EventsCluster&amp;#34; \
@@ -2490,9 +2495,73 @@ The output of the command looks as follows:
 },
 &amp;#34;NumberOfBrokerNodes&amp;#34;: 3,
 &amp;#34;State&amp;#34;: &amp;#34;ACTIVE&amp;#34;,
-&amp;#34;ZookeeperConnectString&amp;#34;: &amp;#34;localhost:4515&amp;#34;
+&amp;#34;ZookeeperConnectString&amp;#34;: &amp;#34;localhost:4513&amp;#34;
 }
-}&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Aws: Multi-Account Setups</title><link>/aws/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/multi-account-setups/</guid><description>
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="create-a-kafka-topic">Create a kafka topic&lt;/h2>
+&lt;p>In this step of using LocalStack MSK, we&amp;rsquo;ll download and use the Kafka command line interface (CLI) to create a topic that produces and consumes data.&lt;/p>
+&lt;p>Run the following command to download Apache Kafka.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
+tar -xzf kafka_2.12-2.2.1.tgz&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Now, &lt;strong>Go to the kafka_2.12-2.2.1 directory.&lt;/strong>&lt;/p>
+&lt;p>The cluster creation can take a few minutes. To find out whether the cluster you created is ready, run the following command, replacing &lt;code>ClusterArn&lt;/code> with the Amazon Resource Name (ARN) that you obtained above when you created then Cluster.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal kafka describe-cluster --cluster-arn &amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster&amp;#34;&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Run the following command, replacing &lt;code>ZookeeperConnectString&lt;/code> with the value that you saved after you ran the describe-cluster command.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">bin/kafka-topics.sh --create --zookeeper localhost:4513 --replication-factor 1 --partitions 1 --topic LocalMSKTopic&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Your output should be similar to this one&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">Created topic LocalMSKTopic.&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="interacting-with-the-topic">Interacting with the topic&lt;/h2>
+&lt;p>In this example we use the JVM truststore to talk to the MSK cluster. To do this, first create a folder named &lt;code>/tmp&lt;/code> on the client machine. Then, go to the bin folder of the Apache Kafka installation and run the following command, replacing &lt;code>java_home&lt;/code> with the path of your &lt;code>java_home&lt;/code>. In this instance, the &lt;code>java_home&lt;/code> is &lt;code> /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home&lt;/code>.&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;strong>Note&lt;/strong>: The following step is optional and may not be required, depending on the operating system environment being used.&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>While still in the bin folder of the Apache Kafka installation on the client machine, create a text file named &lt;code>client.properties&lt;/code> with the following contents.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">ssl.truststore.location=/tmp/kafka.client.truststore.jks&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Run the following command, replacing &lt;code>ClusterArn&lt;/code> with the Amazon Resource Name (ARN).&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal kafka get-bootstrap-brokers --cluster-arn ClusterArn&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>From the JSON result of the command, save the value associated with the string named &amp;ldquo;&lt;code>BootstrapBrokerStringTls&lt;/code>&amp;rdquo; because you need it in the following commands.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">{
+&amp;#34;BootstrapBrokerString&amp;#34;: &amp;#34;localhost:4514&amp;#34;
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Run the following command in the bin folder, replacing &lt;code>BootstrapBrokerStringTls&lt;/code> with the value that you obtained when you ran the previous command.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">./kafka-console-producer.sh --broker-list BootstrapBrokerStringTls --producer.config client.properties --topic LocalMSKTopic&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Enter any message that you want, and press Enter. Repeat this step two or three times. Every time you enter a line and press Enter, that line is sent to your Apache Kafka cluster as a separate message.&lt;/p>
+&lt;p>Keep the connection to the client machine open, and then open a second, separate connection to that machine in a new window.&lt;/p>
+&lt;p>In the following command, replace &lt;code>BootstrapBrokerStringTls&lt;/code> with the value that you saved earlier. Then, go to the bin folder and run the command using your second connection to the client machine.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">./kafka-console-consumer.sh --bootstrap-server BootstrapBrokerStringTls --consumer.config client.properties --topic LocalMSKTopic --from-beginning&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You start seeing the messages you entered earlier when you used the console producer command. These messages are TLS encrypted in transit.&lt;/p>
+&lt;p>Enter more messages in the producer window, and watch them appear in the consumer window.&lt;/p>
+&lt;h2 id="delete-the-local-msk-cluster">Delete the local MSK cluster&lt;/h2>
+&lt;p>Run the following command to list your MSK clusters&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal kafka list-clusters --region us-east-1&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>From the list of clusters, pick the &lt;code>ClusterARN&lt;/code> of the cluster you want deleted and run the command&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal kafka delete-cluster --cluster-arn ClusterArn&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="local-msk-and-lambdas">Local MSK and Lambdas&lt;/h2>
+&lt;h3 id="adding-a-local-msk-trigger">Adding a local MSK trigger&lt;/h3>
+&lt;p>The following example uses the Lambda Event Source Mapping API to map a Lambda function named my-kafka-function to a Kafka topic named LocalMSKTopic. The topic&amp;rsquo;s starting position is set to LATEST.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal lambda create-event-source-mapping \
+--event-source-arn arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster \
+--topics LocalMSKTopic \
+--starting-position LATEST \
+--function-name my-kafka-function&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following response is to be expected&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">{
+&amp;#34;UUID&amp;#34;: &amp;#34;9c353a2b-bc1a-48b5-95a6-04baf67f01e4&amp;#34;,
+&amp;#34;StartingPosition&amp;#34;: &amp;#34;LATEST&amp;#34;,
+&amp;#34;BatchSize&amp;#34;: 100,
+&amp;#34;ParallelizationFactor&amp;#34;: 1,
+&amp;#34;EventSourceArn&amp;#34;: &amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster&amp;#34;,
+&amp;#34;FunctionArn&amp;#34;: &amp;#34;arn:aws:lambda:us-east-1:000000000000:function:my-kafka-function&amp;#34;,
+&amp;#34;LastModified&amp;#34;: &amp;#34;2021-11-21T20:55:49.438914+01:00&amp;#34;,
+&amp;#34;LastProcessingResult&amp;#34;: &amp;#34;OK&amp;#34;,
+&amp;#34;State&amp;#34;: &amp;#34;Enabled&amp;#34;,
+&amp;#34;StateTransitionReason&amp;#34;: &amp;#34;User action&amp;#34;,
+&amp;#34;Topics&amp;#34;: [
+&amp;#34;LocalMSKTopic&amp;#34;
+]
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Using this event source mapping, LocalStack will automatically spawn Lambda functions for each message that gets published to the target Kafka topic. You can use the &lt;code>kafka-console-producer.sh&lt;/code> client script (see above) to publish messages to the topic, and then observe the LocalStack log output to see how Lambda function are executed (in Docker containers) as new messages arrive.&lt;/p></description></item><item><title>Aws: Multi-Account Setups</title><link>/aws/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/multi-account-setups/</guid><description>
 &lt;p>Unlike the open source LocalStack, which uses a single hardcoded account ID (&lt;code>000000000000&lt;/code>), the Pro version allows to use multiple instances for different AWS account IDs in parallel.&lt;/p>
 &lt;p>In order to set up a multi-account environment, simply configure the &lt;code>TEST_AWS_ACCOUNT_ID&lt;/code> to include a comma-separated list of account IDs. For example, use the following to start up LocalStack with two account IDs:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>TEST_AWS_ACCOUNT_ID=000000000001,000000000002 SERVICES=s3 localstack start&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
