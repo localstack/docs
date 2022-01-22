@@ -10,6 +10,10 @@ LocalStack supports a basic version of [Managed Streaming for Kafka (MSK)](https
 
 ## Create a local MSK Cluster
 
+### Prerequisites
+
+- [Java 8](https://www.java.com/en/)
+
 To create a local MSK cluster, the following create-cluster example creates an MSK cluster named EventsCluster with three broker nodes. A JSON file named `brokernodegroupinfo.json` specifies the three subnets over which you want yout local Amazon MSK to distribute the broker nodes. This example doesn't specify the monitoring level, so the cluster gets the DEFAULT level.
 
 {{< command >}}
@@ -75,29 +79,19 @@ The expected output is something like the following
 
 ## Create a kafka topic
 
-In this step of using LocalStack MSK, you create a client machine. You use this client machine to create a topic that produces and consumes data.
-
-First, Install Java on the client machine by running the following command:
-
-{{< command >}}
-sudo yum install java-1.8.0
-{{< / command >}}
+In this step of using LocalStack MSK, we'll download and use the Kafka command line interface (CLI) to create a topic that produces and consumes data.
 
 Run the following command to download Apache Kafka.
 
 {{< command >}}
 wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
-{{< / command >}}
-
-Run the following command in the directory where you downloaded the TAR file in the previous step.
-
-{{< command >}}
 tar -xzf kafka_2.12-2.2.1.tgz
 {{< / command >}}
 
+
 Now, **Go to the kafka_2.12-2.2.1 directory.**
 
-Cluster creation can take a few minutes. To find out whether the cluster you created is ready, run the following command, replacing ```ClusterArn``` with the Amazon Resource Name (ARN) that you obtained above when you created then Cluster.
+The cluster creation can take a few minutes. To find out whether the cluster you created is ready, run the following command, replacing `ClusterArn` with the Amazon Resource Name (ARN) that you obtained above when you created then Cluster.
 
 {{< command >}}
 awslocal kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster"
@@ -119,6 +113,8 @@ Created topic LocalMSKTopic.
 
 In this example we use the JVM truststore to talk to the MSK cluster. To do this, first create a folder named `/tmp` on the client machine. Then, go to the bin folder of the Apache Kafka installation and run the following command, replacing ```java_home``` with the path of your ```java_home```. In this instance, the ```java_home``` is ``` /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home```.
 
+> **Note**: The following step is optional and may not be required, depending on the operating system environment being used.
+
 {{< command >}}
 cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks
 {{< / command >}}
@@ -133,7 +129,7 @@ Run the following command, replacing ```ClusterArn``` with the Amazon Resource N
 
 
 {{< command >}}
-awslocal kafka get-bootstrap-brokers --region us-east-1 --cluster-arn ClusterArn
+awslocal kafka get-bootstrap-brokers --cluster-arn ClusterArn
 {{< / command >}}
 
 From the JSON result of the command, save the value associated with the string named "`BootstrapBrokerStringTls`" because you need it in the following commands.
@@ -166,7 +162,7 @@ Enter more messages in the producer window, and watch them appear in the consume
 
 ## Delete the local MSK cluster
 
-Run the following command to list your msk clusters
+Run the following command to list your MSK clusters
 
 {{< command >}}
 awslocal kafka list-clusters --region us-east-1
@@ -175,14 +171,14 @@ awslocal kafka list-clusters --region us-east-1
 From the list of clusters, pick the ```ClusterARN``` of the cluster you want deleted and run the command
 
 {{< command >}}
-awslocal kafka delete-cluster --region us-east-1 --cluster-arn ClusterArn
+awslocal kafka delete-cluster --cluster-arn ClusterArn
 {{< / command >}}
 
 ## Local MSK and Lambdas
 
 ### Adding a local MSK trigger 
 
-The following example uses the create-event-source-mapping awslocal command to map a Lambda function named my-kafka-function to a Kafka topic named LocalMSKTopic. The topic's starting position is set to LATEST.
+The following example uses the Lambda Event Source Mapping API to map a Lambda function named my-kafka-function to a Kafka topic named LocalMSKTopic. The topic's starting position is set to LATEST.
 
 {{< command >}}
 awslocal lambda create-event-source-mapping \
@@ -192,7 +188,7 @@ awslocal lambda create-event-source-mapping \
   --function-name my-kafka-function
 {{< / command >}}
 
-The following answer is to be expected
+The following response is to be expected
 
 {{< command >}}
 {
@@ -212,11 +208,4 @@ The following answer is to be expected
 }
 {{< / command >}}
 
-
-### Viewing the status using the awslocal
-
-{{< command >}}
-awslocal lambda get-event-source-mapping \
-  --uuid 9c353a2b-bc1a-48b5-95a6-04baf67f01e4
-{{< / command >}}
-
+Using this event source mapping, LocalStack will automatically spawn Lambda functions for each message that gets published to the target Kafka topic. You can use the `kafka-console-producer.sh` client script (see above) to publish messages to the topic, and then observe the LocalStack log output to see how Lambda function are executed (in Docker containers) as new messages arrive.
