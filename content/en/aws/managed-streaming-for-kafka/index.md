@@ -12,7 +12,7 @@ LocalStack supports a basic version of [Managed Streaming for Kafka (MSK)](https
 
 ### Prerequisites
 
-- [Java 8](https://www.java.com)
+- Java 8
 
 To create a local MSK cluster, the following create-cluster example creates an MSK cluster named EventsCluster with three broker nodes. A JSON file named `brokernodegroupinfo.json` specifies the three subnets over which you want yout local Amazon MSK to distribute the broker nodes. This example doesn't specify the monitoring level, so the cluster gets the DEFAULT level.
 
