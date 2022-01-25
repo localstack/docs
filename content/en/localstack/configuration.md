@@ -115,6 +115,14 @@ This section covers configuration values that are specific to certain AWS servic
 | `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`. |
 | `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times) |
 
+### OpenSearch
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `OPENSEARCH_CUSTOM_BACKEND` | `http://opensearch:9200` | URL to a custom OpenSearch backend cluster. If this is set to a valid URL, then LocalStack will not create OpenSearch cluster instances, but instead forward all domains to the given backend (see [OpenSearch#custom-opensearch-backends]({{< ref "opensearch#custom-opensearch-backends" >}})). |
+| `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
+| `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain` | Governs how domain endpoints are created to access a cluster (see [OpenSearch#endpoints]({{< ref "opensearch#endpoints" >}})). |
+
 ### StepFunctions
 
 | Variable | Example Values | Description |
@@ -152,15 +160,16 @@ Some of the services can be configured to switch to a particular provider:
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SKIP_INFRA_DOWNLOADS` | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions).
-| `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins.
+| `SKIP_INFRA_DOWNLOADS` | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
+| `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud
+| `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
-| `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments).
-| `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods. |
-| `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events |
-| `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself. |
-| `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself. |
-| `REQUESTS_CA_BUNDLE` | `/tmp/localstack/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack |
+| `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments)
+| `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
+| `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
+| `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
+| `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
+| `REQUESTS_CA_BUNDLE` | `/tmp/localstack/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack
 
 
 ## Debugging

@@ -437,6 +437,12 @@ In the coverage tables below, the features are marked with their respective avai
 | Event Subscriptions                                                | \-             |                 |       |
 | Events                                                             | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
+| [**OpenSearch Service**]({{< ref "opensearch" >}})                 |                |                 |       |
+| Cross-Cluster Search Connections                                   | \-             |                 |       |
+| OpenSearch Domains                                                 | ⭐⭐⭐⭐       |                 |       |
+| Packages                                                           | \-             |                 |       |
+| Reserved Instances                                                 | \-             |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | [**QLDB** (Pro)]({{< ref "qldb" >}})                               |                |                 |       |
 | Blocks                                                             | ⭐⭐⭐         |                 |       |
 | Digests                                                            | ⭐⭐⭐         |                 |       |
