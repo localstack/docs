@@ -140,7 +140,7 @@ There are three configurable strategies that govern how domain endpoints are cre
 | - | - | - |
 | `domain` | `<domain-name>.<region>.es.localhost.localstack.cloud:4566` | This is the default strategy that uses the `localhost.localstack.cloud` domain to route to your localhost |
 | `path` | `localhost:4566/es/<region>/<domain-name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
-| `port` | `localhost:<port-from-range>` | Exposes the cluster(s) directly with ports from [the external service port range](localstack.cloud)|
+| `port` | `localhost:<port-from-range>` | Exposes the cluster(s) directly with ports from the [external service port range]({{< ref "external-ports" >}})|
 | `off` | | *Deprecated*. This value now reverts to the `port` setting, using a port from the given range instead of `4571` |
 
 Regardless of the service from which the clusters were created, the domain of the cluster always corresponds to the engine type (OpenSearch or Elasticsearch) of the cluster.
