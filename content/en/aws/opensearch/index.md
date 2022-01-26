@@ -7,6 +7,8 @@ description: >
 ---
 
 The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/).
+This service is, like its AWS counterpart, heavily linked with the [Elasticsearch Service](../elasticsearch).
+Any cluster created with the OpenSearch Service will show up in the Elasticsearch Service and vice versa.
 
 
 ## Creating an OpenSearch cluster
@@ -114,6 +116,12 @@ $ awslocal opensearch describe-domain --domain-name my-domain | jq ".DomainStatu
 false
 {{< / command >}}
 
+### Creating an Elasticsearch cluster
+
+Like in AWS, the OpenSearch service can create Elasticsearch clusters and manage them.
+To do so, you can use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) and select an Elasticsearch version with the `--engine-version` parameter of the `awslocal opensearch create-domain` command.
+For an overview of existing Elasticsearch versions you can use `awslocal opensearch list-versions`.
+
 ## Interact with the cluster
 
 You can now interact with the cluster at the cluster API endpoint for the domain, in this case `http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566`.
@@ -166,6 +174,7 @@ $ curl -s http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/
 {{< / command >}}
 
 
+
 ## Advanced topics
 
 ### Endpoints
@@ -174,13 +183,12 @@ There are two configurable strategies that govern how domain endpoints are creat
 
 | Value | Format | Description |
 | - | - | - |
-| `domain` | `<domain-name>.<region>.opensearch.localhost.localstack.cloud:4566` | This is the default strategy that uses the `localhost.localstack.cloud` domain to route to your localhost |
-| `path` | `localhost:4566/opensearch/<region>/<domain-name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
+| `domain` | `<domain-name>.<region>.<engine-type>.localhost.localstack.cloud:4566` | This is the default strategy that uses the `localhost.localstack.cloud` domain to route to your localhost |
+| `path` | `localhost:4566/<engine-type>/<region>/<domain-name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
+| `port` | `localhost:<port-from-range>` | Exposes the cluster(s) directly with ports from [the external service port range](localstack.cloud)|
 
-{{< alert >}}
-**Note**: Please be aware that -- in contrast to the [Elasticsearch Service]({{< ref "elasticsearch" >}}) -- the OpenSearch Service does _not_ support the endpoint strategy `off`.
-{{< /alert >}}
-
+Regardless of the service from which the clusters were created, the domain of the cluster always corresponds to the engine type (OpenSearch or Elasticsearch) of the cluster.
+OpenSearch cluster therefore have `opensearch` in their domain (e.g. `my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566`) and Elasticsearch clusters have `es` in their domain (e.g. `my-domain.us-east-1.es.localhost.localstack.cloud:4566`)
 
 #### Custom Endpoints
 

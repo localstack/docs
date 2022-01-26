@@ -143,6 +143,8 @@ There are three configurable strategies that govern how domain endpoints are cre
 | `port` | `localhost:<port-from-range>` | Exposes the cluster(s) directly with ports from [the external service port range](localstack.cloud)|
 | `off` | | *Deprecated*. This value now reverts to the `port` setting, using a port from the given range instead of `4571` |
 
+Regardless of the service from which the clusters were created, the domain of the cluster always corresponds to the engine type (OpenSearch or Elasticsearch) of the cluster.
+OpenSearch cluster therefore have `opensearch` in their domain (e.g. `my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566`) and Elasticsearch clusters have `es` in their domain (e.g. `my-domain.us-east-1.es.localhost.localstack.cloud:4566`)
 
 #### Custom Endpoints
 
