@@ -185,7 +185,7 @@ There are two configurable strategies that govern how domain endpoints are creat
 | - | - | - |
 | `domain` | `<domain-name>.<region>.<engine-type>.localhost.localstack.cloud:4566` | This is the default strategy that uses the `localhost.localstack.cloud` domain to route to your localhost |
 | `path` | `localhost:4566/<engine-type>/<region>/<domain-name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
-| `port` | `localhost:<port-from-range>` | Exposes the cluster(s) directly with ports from [the external service port range](localstack.cloud)|
+| `port` | `localhost:<port-from-range>` | Exposes the cluster(s) directly with ports from [the external service port range]({{< ref "external-ports" >}})|
 
 Regardless of the service from which the clusters were created, the domain of the cluster always corresponds to the engine type (OpenSearch or Elasticsearch) of the cluster.
 OpenSearch cluster therefore have `opensearch` in their domain (e.g. `my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566`) and Elasticsearch clusters have `es` in their domain (e.g. `my-domain.us-east-1.es.localhost.localstack.cloud:4566`)
@@ -218,10 +218,10 @@ This can however lead to unexpected behavior when persisting data into OpenSearc
 
 ### Storage Layout
 
-OpenSearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack`), as follows:
+OpenSearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack/data`), as follows:
 
 ```
-localstack@machine /tmp/localstack % tree -L 4
+localstack@machine /tmp/localstack/data % tree -L 4
 .
 ├── opensearch
 │   └── arn:aws:es:us-east-1:000000000000:domain

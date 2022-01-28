@@ -176,10 +176,10 @@ This can however lead to unexpected behavior when persisting data into Elasticse
 
 ### Storage Layout
 
-Elasticsearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack`), as follows:
+Elasticsearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack/data`), as follows:
 
 ```
-localstack@machine /tmp/localstack % tree -L 4
+localstack@machine /tmp/localstack/data % tree -L 4
 .
 ├── elasticsearch
 │   └── arn:aws:es:us-east-1:000000000000:domain
