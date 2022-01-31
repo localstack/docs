@@ -100,7 +100,7 @@ $ awslocal cognito-idp confirm-sign-up --client-id $client_id --username example
 
 As the above command doesn't return an answer, we check the pool to see that the request was successful:
 {{< command "hl_lines=21" >}}
-$ awslocal cognito-idp list-users --user-pool-id $pool_id 
+$ awslocal cognito-idp list-users --user-pool-id $pool_id
 {
     "Users": [
         {
@@ -151,8 +151,19 @@ Please replace `<client_id>` with the ID of an existing user pool client ID (in 
 The login form should look similar to the screenshot below:
 {{< figure src="cognitoLogin.png" width="320" >}}
 
-After successful login, the page will redirect to the specified redirect URI, with a path parameter `?code=<code>` appended, e.g., `http://example.com?code=test123`.
-This authentication code can then be used to obtain a token via the Cognito OAuth2 TOKEN Endpoint documented [here](https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html).
+After successful login, the page will redirect to the specified `<redirect_uri>`, with a path parameter `?code=<code>` appended, e.g., `http://example.com?code=test123`.
+Obtain a token by submitting that code with `grant_type=authorization_code` the LocalStack's implementation of the Cognito OAuth2 TOKEN Endpoint documented [here](https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html).
+Note that the value of the `redirect_uri` parameter must match the value provided during login.
+
+```sh
+% curl \
+  --data-urlencode 'grant_type=authorization_code' \
+  --data-urlencode 'redirect_uri=http://example.com' \
+  --data-urlencode "client_id=${client_id}" \
+  --data-urlencode 'code=test123' \
+  'http://localhost:4566/oauth2/token'
+{"access_token": "eyJ0eXAi…lKaHx44Q", "expires_in": 86400, "token_type": "Bearer", "refresh_token": "e3f08304", "id_token": "eyJ0eXAi…ADTXv5mA"}
+```
 
 ## SMTP Integration
 
