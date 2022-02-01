@@ -6,7 +6,9 @@ description: >
   Amazon Elasticsearch Service
 ---
 
-The Elasticsearch Service in LocalStack lets you create a single node Elasticsearch cluster that behaves like the [Amazon Elasticsearch Service](https://aws.amazon.com/opensearch-service/the-elk-stack/what-is-elasticsearch/).
+The Elasticsearch Service in LocalStack lets you create one or more single-node Elasticsearch/OpenSearch cluster that behaves like the [Amazon Elasticsearch Service](https://aws.amazon.com/opensearch-service/the-elk-stack/what-is-elasticsearch/).
+This service is, like its AWS counterpart, heavily linked with the [OpenSearch Service](../opensearch).
+Any cluster created with the Elasticsearch Service will show up in the OpenSearch Service and vice versa.
 
 
 ## Creating an Elasticsearch cluster
@@ -18,7 +20,7 @@ You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslo
 {{< /alert >}}
 
 {{< alert >}}
-**Note**: The default Elasticsearch version used is 7.10.0.
+**Note**: The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in Localstack.
 {{< /alert >}}
 
 {{< command >}}
@@ -54,7 +56,7 @@ $ awslocal es create-elasticsearch-domain --domain-name my-domain
 }
 {{< / command >}}
 
-In the LocalStack log you will see something like, where you can see the cluster starting up in the background.
+In the LocalStack log you will see something like the following, where you can see the cluster starting up in the background.
 
 ```
 2021-11-08T16:29:28:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=57705 -E http.publish_port=57705 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data="/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data" -E path.repo="/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup" -E xpack.ml.enabled=false with env {'ES_JAVA_OPTS': '-Xms200m -Xmx600m', 'ES_TMPDIR': '/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp'}
@@ -132,14 +134,17 @@ $ curl -s http://my-domain.us-east-1.es.localhost.localstack.cloud:4566/_cluster
 
 ### Endpoints
 
-There are three configurable strategies that govern how domain endpoints are created, and can be configured via the `ES_ENDPOINT_STRATEGY` environment variable.
+There are three configurable strategies that govern how domain endpoints are created, and can be configured via the `OPENSEARCH_ENDPOINT_STRATEGY` (previously `ES_ENDPOINT_STRATEGY`) environment variable.
 
 | Value | Format | Description |
 | - | - | - |
 | `domain` | `<domain-name>.<region>.es.localhost.localstack.cloud:4566` | This is the default strategy that uses the `localhost.localstack.cloud` domain to route to your localhost |
 | `path` | `localhost:4566/es/<region>/<domain-name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
-| `off` | `http://localhost:4571` | Exposes the default cluster directly on the given endpoint (only works with `ES_MULTI_CLUSTER=0`) |
+| `port` | `localhost:<port-from-range>` | Exposes the cluster(s) directly with ports from the [external service port range]({{< ref "external-ports" >}})|
+| `off` | | *Deprecated*. This value now reverts to the `port` setting, using a port from the given range instead of `4571` |
 
+Regardless of the service from which the clusters were created, the domain of the cluster always corresponds to the engine type (OpenSearch or Elasticsearch) of the cluster.
+OpenSearch cluster therefore have `opensearch` in their domain (e.g. `my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566`) and Elasticsearch clusters have `es` in their domain (e.g. `my-domain.us-east-1.es.localhost.localstack.cloud:4566`)
 
 #### Custom Endpoints
 
@@ -164,16 +169,17 @@ $ curl http://localhost:4566/my-custom-endpoint/_cluster/health
 
 In some cases, you may not want to create a new cluster instance for each domain,
 for example when you are only interested in testing API interactions instead of actual Elasticsearch functionality.
-In this case, you can set `ES_MULTI_CLUSTER=0`, which will multiplex all domains to the same cluster.
-This can however lead to unexpected behavior when persisting data into Elastichsearch, or creating clusters with different versions, so we do not recommend it.
+In this case, you can set `OPENSEARCH_MULTI_CLUSTER=0` (previously `ES_MULTI_CLUSTER`).
+This will multiplex all domains to the same cluster, or return the same port every time when using the `port` endpoint strategy.
+This can however lead to unexpected behavior when persisting data into Elasticsearch, or creating clusters with different versions, so we do not recommend it.
 
 
 ### Storage Layout
 
-Elasticsearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack`), as follows:
+Elasticsearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack/data`), as follows:
 
 ```
-localstack@machine /tmp/localstack % tree -L 4
+localstack@machine /tmp/localstack/data % tree -L 4
 .
 ├── elasticsearch
 │   └── arn:aws:es:us-east-1:000000000000:domain
@@ -193,12 +199,12 @@ Localstack downloads elasticsearch asynchronously the first time you run the `aw
 You may not want this, and instead use your already running elasticsearch cluster.
 This can also be useful when you want to run a cluster with a custom configuration that localstack does not support.
 
-To customize the elasticsearch backend, you can your own elasticsearch cluster locally and point localstack to it using the `ES_CUSTOM_BACKEND` environment variable.
+To customize the elasticsearch backend, you can your own elasticsearch cluster locally and point localstack to it using the `OPENSEARCH_CUSTOM_BACKEND` (previously `ES_CUSTOM_BACKEND`) environment variable.
 Note that only a single backend can be configured, meaning that you will get a similar behavior as when you  [re-use a single cluster instance](#re-using-a-single-cluster-instance).
 
 ### Example
 
-The following shows a sample docker-compose file that contain a single-noded elasticsearch cluster and a basic localstack setp.
+The following shows a sample docker-compose file that contains a single-noded elasticsearch cluster and a basic localstack setp.
 
 ```yaml
 version: "3.9"
@@ -292,7 +298,7 @@ $ awslocal es create-elasticsearch-domain \
 }
 {{< /command >}}
 
-3. If the `Processing` status is true, it means that the cluster is not yet healthy. You can run `decribe-elasticsearch-domain` to receive the status:
+3. If the `Processing` status is true, it means that the cluster is not yet healthy. You can run `describe-elasticsearch-domain` to receive the status:
 {{< command >}}
 $ awslocal es describe-elasticsearch-domain --domain-name mylogs-2
 {{< /command >}}
