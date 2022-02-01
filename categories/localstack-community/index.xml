@@ -1684,14 +1684,16 @@ lambda function.&lt;/p>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice">Spring Cloud Function on LocalStack (Kotlin JVM)&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>Aws: Elasticsearch Service</title><link>/aws/elasticsearch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/elasticsearch/</guid><description>
-&lt;p>The Elasticsearch Service in LocalStack lets you create a single node Elasticsearch cluster that behaves like the &lt;a href="https://aws.amazon.com/opensearch-service/the-elk-stack/what-is-elasticsearch/">Amazon Elasticsearch Service&lt;/a>.&lt;/p>
+&lt;p>The Elasticsearch Service in LocalStack lets you create one or more single-node Elasticsearch/OpenSearch cluster that behaves like the &lt;a href="https://aws.amazon.com/opensearch-service/the-elk-stack/what-is-elasticsearch/">Amazon Elasticsearch Service&lt;/a>.
+This service is, like its AWS counterpart, heavily linked with the &lt;a href="../opensearch">OpenSearch Service&lt;/a>.
+Any cluster created with the Elasticsearch Service will show up in the OpenSearch Service and vice versa.&lt;/p>
 &lt;h2 id="creating-an-elasticsearch-cluster">Creating an Elasticsearch cluster&lt;/h2>
 &lt;p>You can go ahead and use &lt;a href="/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a> to create a new elasticsearch domain via the &lt;code>aws es create-elasticsearch-domain&lt;/code> command.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;strong>Note&lt;/strong>: Unless you use the Elasticsearch default version, the first time you create a cluster with a specific version, the Elasticsearch binary is downloaded, which may take a while to download.
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: The default Elasticsearch version used is 7.10.0.
+&lt;strong>Note&lt;/strong>: The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in Localstack.
 &lt;/div>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name my-domain
 {
@@ -1723,7 +1725,7 @@ lambda function.&lt;/p>
 }
 }
 }&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>In the LocalStack log you will see something like, where you can see the cluster starting up in the background.&lt;/p>
+&lt;p>In the LocalStack log you will see something like the following, where you can see the cluster starting up in the background.&lt;/p>
 &lt;pre>&lt;code>2021-11-08T16:29:28:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=57705 -E http.publish_port=57705 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data=&amp;quot;/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data&amp;quot; -E path.repo=&amp;quot;/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup&amp;quot; -E xpack.ml.enabled=false with env {'ES_JAVA_OPTS': '-Xms200m -Xmx600m', 'ES_TMPDIR': '/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp'}
 2021-11-08T16:29:28:INFO:localstack.services.es.cluster: registering an endpoint proxy for http://my-domain.us-east-1.es.localhost.localstack.cloud:4566 =&amp;gt; http://127.0.0.1:57705
 2021-11-08T16:29:30:INFO:localstack.services.es.cluster: OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
@@ -1780,7 +1782,7 @@ in this case &lt;code>http://my-domain.us-east-1.es.localhost.localstack.cloud:4
 }&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="advanced-topics">Advanced topics&lt;/h2>
 &lt;h3 id="endpoints">Endpoints&lt;/h3>
-&lt;p>There are three configurable strategies that govern how domain endpoints are created, and can be configured via the &lt;code>ES_ENDPOINT_STRATEGY&lt;/code> environment variable.&lt;/p>
+&lt;p>There are three configurable strategies that govern how domain endpoints are created, and can be configured via the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY&lt;/code> (previously &lt;code>ES_ENDPOINT_STRATEGY&lt;/code>) environment variable.&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1801,12 +1803,19 @@ in this case &lt;code>http://my-domain.us-east-1.es.localhost.localstack.cloud:4
 &lt;td>An alternative that can be useful if you cannot resolve LocalStack&amp;rsquo;s localhost domain&lt;/td>
 &lt;/tr>
 &lt;tr>
+&lt;td>&lt;code>port&lt;/code>&lt;/td>
+&lt;td>&lt;code>localhost:&amp;lt;port-from-range&amp;gt;&lt;/code>&lt;/td>
+&lt;td>Exposes the cluster(s) directly with ports from the &lt;a href="/localstack/external-ports/">external service port range&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
 &lt;td>&lt;code>off&lt;/code>&lt;/td>
-&lt;td>&lt;code>http://localhost:4571&lt;/code>&lt;/td>
-&lt;td>Exposes the default cluster directly on the given endpoint (only works with &lt;code>ES_MULTI_CLUSTER=0&lt;/code>)&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;em>Deprecated&lt;/em>. This value now reverts to the &lt;code>port&lt;/code> setting, using a port from the given range instead of &lt;code>4571&lt;/code>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>Regardless of the service from which the clusters were created, the domain of the cluster always corresponds to the engine type (OpenSearch or Elasticsearch) of the cluster.
+OpenSearch cluster therefore have &lt;code>opensearch&lt;/code> in their domain (e.g. &lt;code>my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566&lt;/code>) and Elasticsearch clusters have &lt;code>es&lt;/code> in their domain (e.g. &lt;code>my-domain.us-east-1.es.localhost.localstack.cloud:4566&lt;/code>)&lt;/p>
 &lt;h4 id="custom-endpoints">Custom Endpoints&lt;/h4>
 &lt;p>LocalStack allows you to set arbitrary custom endpoints for your clusters in the domain endpoint options.
 This can be used to overwrite the behavior of the endpoint strategies described above.
@@ -1819,11 +1828,12 @@ You can also choose custom domains, however it is important to add the edge port
 &lt;h3 id="re-using-a-single-cluster-instance">Re-using a single cluster instance&lt;/h3>
 &lt;p>In some cases, you may not want to create a new cluster instance for each domain,
 for example when you are only interested in testing API interactions instead of actual Elasticsearch functionality.
-In this case, you can set &lt;code>ES_MULTI_CLUSTER=0&lt;/code>, which will multiplex all domains to the same cluster.
-This can however lead to unexpected behavior when persisting data into Elastichsearch, or creating clusters with different versions, so we do not recommend it.&lt;/p>
+In this case, you can set &lt;code>OPENSEARCH_MULTI_CLUSTER=0&lt;/code> (previously &lt;code>ES_MULTI_CLUSTER&lt;/code>).
+This will multiplex all domains to the same cluster, or return the same port every time when using the &lt;code>port&lt;/code> endpoint strategy.
+This can however lead to unexpected behavior when persisting data into Elasticsearch, or creating clusters with different versions, so we do not recommend it.&lt;/p>
 &lt;h3 id="storage-layout">Storage Layout&lt;/h3>
-&lt;p>Elasticsearch will be organized in your &lt;code>DATA_DIR&lt;/code>, or the temporary directory (e.g., &lt;code>/tmp/localstack&lt;/code>), as follows:&lt;/p>
-&lt;pre>&lt;code>localstack@machine /tmp/localstack % tree -L 4
+&lt;p>Elasticsearch will be organized in your &lt;code>DATA_DIR&lt;/code>, or the temporary directory (e.g., &lt;code>/tmp/localstack/data&lt;/code>), as follows:&lt;/p>
+&lt;pre>&lt;code>localstack@machine /tmp/localstack/data % tree -L 4
 .
 ├── elasticsearch
 │ └── arn:aws:es:us-east-1:000000000000:domain
@@ -1839,10 +1849,10 @@ This can however lead to unexpected behavior when persisting data into Elastichs
 &lt;p>Localstack downloads elasticsearch asynchronously the first time you run the &lt;code>aws es create-elasticsearch-domain&lt;/code>, so you will get the response from localstack first and then (after download/install) you will have your elasticsearch cluster running locally.
 You may not want this, and instead use your already running elasticsearch cluster.
 This can also be useful when you want to run a cluster with a custom configuration that localstack does not support.&lt;/p>
-&lt;p>To customize the elasticsearch backend, you can your own elasticsearch cluster locally and point localstack to it using the &lt;code>ES_CUSTOM_BACKEND&lt;/code> environment variable.
+&lt;p>To customize the elasticsearch backend, you can your own elasticsearch cluster locally and point localstack to it using the &lt;code>OPENSEARCH_CUSTOM_BACKEND&lt;/code> (previously &lt;code>ES_CUSTOM_BACKEND&lt;/code>) environment variable.
 Note that only a single backend can be configured, meaning that you will get a similar behavior as when you &lt;a href="#re-using-a-single-cluster-instance">re-use a single cluster instance&lt;/a>.&lt;/p>
 &lt;h3 id="example">Example&lt;/h3>
-&lt;p>The following shows a sample docker-compose file that contain a single-noded elasticsearch cluster and a basic localstack setp.&lt;/p>
+&lt;p>The following shows a sample docker-compose file that contains a single-noded elasticsearch cluster and a basic localstack setp.&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;3.9&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -1932,7 +1942,7 @@ Note that only a single backend can be configured, meaning that you will get a s
 }&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>If the &lt;code>Processing&lt;/code> status is true, it means that the cluster is not yet healthy. You can run &lt;code>decribe-elasticsearch-domain&lt;/code> to receive the status:
+&lt;p>If the &lt;code>Processing&lt;/code> status is true, it means that the cluster is not yet healthy. You can run &lt;code>describe-elasticsearch-domain&lt;/code> to receive the status:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain --domain-name mylogs-2&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;/li>
 &lt;li>
@@ -2105,7 +2115,9 @@ We can input our data into our source Kinesis stream, our put it directly into t
 ]&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>If you get a similar output, you have correctly set up a Firehose delivery stream!
 Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>Aws: OpenSearch Service</title><link>/aws/opensearch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/opensearch/</guid><description>
-&lt;p>The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the &lt;a href="https://aws.amazon.com/opensearch-service/">Amazon OpenSearch Service&lt;/a>.&lt;/p>
+&lt;p>The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the &lt;a href="https://aws.amazon.com/opensearch-service/">Amazon OpenSearch Service&lt;/a>.
+This service is, like its AWS counterpart, heavily linked with the &lt;a href="../elasticsearch">Elasticsearch Service&lt;/a>.
+Any cluster created with the OpenSearch Service will show up in the Elasticsearch Service and vice versa.&lt;/p>
 &lt;h2 id="creating-an-opensearch-cluster">Creating an OpenSearch cluster&lt;/h2>
 &lt;p>You can go ahead and use &lt;a href="/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a> to create a new OpenSearch domain via the &lt;code>aws opensearch create-domain&lt;/code> command.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
@@ -2195,6 +2207,10 @@ Also checkout the specified S3 bucket to check if your backup is working correct
 &lt;/code>&lt;/pre>&lt;p>and after some time, you should see that the &lt;code>Processing&lt;/code> state of the domain is set to &lt;code>false&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal opensearch describe-domain --domain-name my-domain | jq &amp;#34;.DomainStatus.Processing&amp;#34;
 false&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="creating-an-elasticsearch-cluster">Creating an Elasticsearch cluster&lt;/h3>
+&lt;p>Like in AWS, the OpenSearch service can create Elasticsearch clusters and manage them.
+To do so, you can use &lt;a href="/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a> and select an Elasticsearch version with the &lt;code>--engine-version&lt;/code> parameter of the &lt;code>awslocal opensearch create-domain&lt;/code> command.
+For an overview of existing Elasticsearch versions you can use &lt;code>awslocal opensearch list-versions&lt;/code>.&lt;/p>
 &lt;h2 id="interact-with-the-cluster">Interact with the cluster&lt;/h2>
 &lt;p>You can now interact with the cluster at the cluster API endpoint for the domain, in this case &lt;code>http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566&lt;/code>.&lt;/p>
 &lt;p>For example:&lt;/p>
@@ -2250,19 +2266,23 @@ false&lt;/code>&lt;/pre>&lt;/div>
 &lt;tbody>
 &lt;tr>
 &lt;td>&lt;code>domain&lt;/code>&lt;/td>
-&lt;td>&lt;code>&amp;lt;domain-name&amp;gt;.&amp;lt;region&amp;gt;.opensearch.localhost.localstack.cloud:4566&lt;/code>&lt;/td>
+&lt;td>&lt;code>&amp;lt;domain-name&amp;gt;.&amp;lt;region&amp;gt;.&amp;lt;engine-type&amp;gt;.localhost.localstack.cloud:4566&lt;/code>&lt;/td>
 &lt;td>This is the default strategy that uses the &lt;code>localhost.localstack.cloud&lt;/code> domain to route to your localhost&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>path&lt;/code>&lt;/td>
-&lt;td>&lt;code>localhost:4566/opensearch/&amp;lt;region&amp;gt;/&amp;lt;domain-name&amp;gt;&lt;/code>&lt;/td>
+&lt;td>&lt;code>localhost:4566/&amp;lt;engine-type&amp;gt;/&amp;lt;region&amp;gt;/&amp;lt;domain-name&amp;gt;&lt;/code>&lt;/td>
 &lt;td>An alternative that can be useful if you cannot resolve LocalStack&amp;rsquo;s localhost domain&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>port&lt;/code>&lt;/td>
+&lt;td>&lt;code>localhost:&amp;lt;port-from-range&amp;gt;&lt;/code>&lt;/td>
+&lt;td>Exposes the cluster(s) directly with ports from &lt;a href="/localstack/external-ports/">the external service port range&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Please be aware that &amp;ndash; in contrast to the &lt;a href="/aws/elasticsearch/">Elasticsearch Service&lt;/a> &amp;ndash; the OpenSearch Service does &lt;em>not&lt;/em> support the endpoint strategy &lt;code>off&lt;/code>.
-&lt;/div>
+&lt;p>Regardless of the service from which the clusters were created, the domain of the cluster always corresponds to the engine type (OpenSearch or Elasticsearch) of the cluster.
+OpenSearch cluster therefore have &lt;code>opensearch&lt;/code> in their domain (e.g. &lt;code>my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566&lt;/code>) and Elasticsearch clusters have &lt;code>es&lt;/code> in their domain (e.g. &lt;code>my-domain.us-east-1.es.localhost.localstack.cloud:4566&lt;/code>)&lt;/p>
 &lt;h4 id="custom-endpoints">Custom Endpoints&lt;/h4>
 &lt;p>LocalStack allows you to set arbitrary custom endpoints for your clusters in the domain endpoint options.
 This can be used to overwrite the behavior of the endpoint strategies described above.
@@ -2277,8 +2297,8 @@ for example when you are only interested in testing API interactions instead of 
 In this case, you can set &lt;code>OPENSEARCH_MULTI_CLUSTER=0&lt;/code>, which will multiplex all domains to the same cluster.
 This can however lead to unexpected behavior when persisting data into OpenSearch, or creating clusters with different versions, so we do not recommend it.&lt;/p>
 &lt;h3 id="storage-layout">Storage Layout&lt;/h3>
-&lt;p>OpenSearch will be organized in your &lt;code>DATA_DIR&lt;/code>, or the temporary directory (e.g., &lt;code>/tmp/localstack&lt;/code>), as follows:&lt;/p>
-&lt;pre>&lt;code>localstack@machine /tmp/localstack % tree -L 4
+&lt;p>OpenSearch will be organized in your &lt;code>DATA_DIR&lt;/code>, or the temporary directory (e.g., &lt;code>/tmp/localstack/data&lt;/code>), as follows:&lt;/p>
+&lt;pre>&lt;code>localstack@machine /tmp/localstack/data % tree -L 4
 .
 ├── opensearch
 │ └── arn:aws:es:us-east-1:000000000000:domain
