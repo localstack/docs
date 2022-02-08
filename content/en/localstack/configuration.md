@@ -78,11 +78,15 @@ This section covers configuration values that are specific to certain AWS servic
 
 ### Elasticsearch
 
+{{% alert title="Deprecated" color="warning" %}}
+While the ElasticSearch API is actively maintained, the configuration variables for ElasticSearch have been deprecated. Please use the [OpenSearch configuration variables](#opensearch) instead. The OpenSearch configuration variables are used to manage both, OpenSearch and ElasticSearch clusters.
+{{% /alert %}}
+
 | Variable | Example Values | Description |
 | - | - | - |
-| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Elasticsearch#custom-elasticsearch-backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
-| `ES_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
-| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`off` | Governs how domain endpoints are created to access a cluster (see [Elasticsearch#endpoints]({{< ref "elasticsearch#endpoints" >}})) |
+| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | *Deprecated*. Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Elasticsearch#custom-elasticsearch-backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
+| `ES_MULTI_CLUSTER` | `0`\|`1` | *Deprecated*. Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
+| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | *Deprecated*. Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch#endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 
 ### Kinesis
 
@@ -124,7 +128,7 @@ This section covers configuration values that are specific to certain AWS servic
 | - | - | - |
 | `OPENSEARCH_CUSTOM_BACKEND` | `http://opensearch:9200` | URL to a custom OpenSearch backend cluster. If this is set to a valid URL, then LocalStack will not create OpenSearch cluster instances, but instead forward all domains to the given backend (see [OpenSearch#custom-opensearch-backends]({{< ref "opensearch#custom-opensearch-backends" >}})). |
 | `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
-| `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain` | Governs how domain endpoints are created to access a cluster (see [OpenSearch#endpoints]({{< ref "opensearch#endpoints" >}})). |
+| `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [OpenSearch#endpoints]({{< ref "opensearch#endpoints" >}})). |
 
 ### StepFunctions
 
