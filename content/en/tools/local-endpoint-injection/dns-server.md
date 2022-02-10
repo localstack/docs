@@ -67,6 +67,15 @@ $ PYTHONWARNINGS=ignore aws --no-verify-ssl kinesis list-streams
 
 Disabling SSL validation depends on the programming language and version of the AWS SDK used. For example, the [`boto3` AWS SDK for Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client) provides a parameter `verify=False` to disable SSL verification. Similar parameters are available for most other AWS SDKs.
 
+For Node.js, you can set this environment variable in your application, to allow the AWS SDK to talk to the local APIs via SSL:
+```nodejs
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+```
+
+{{< alert >}}
+**Note:** Disabling SSL validation may have undesired side effects and security implications. Make sure to use this only for local testing, and never in production.
+{{< /alert >}}
+
 ## System DNS configuration
 
 In order to use transparent execution mode, the system needs to be configured to use the predefined DNS server.
