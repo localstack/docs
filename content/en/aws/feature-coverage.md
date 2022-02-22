@@ -213,7 +213,14 @@ In the coverage tables below, the features are marked with their respective avai
 | User Pools                                                         | ⭐⭐⭐⭐       |                 |       |
 | Users                                                              | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **DynamoDB**                                                       |                |                 |       |
+| **DocumentDB** (Pro)                                               |               |                 |       |
+| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
+| DB/Cluster Snapshots                                               | ⭐            |                 |       |
+| DB Clusters/Instances                                              | ⭐⭐⭐⭐       |                 |       |
+| DB Subnet Groups                                                   | ⭐⭐          |                 |       |
+| Event Subscriptions                                                | \-           |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **DynamoDB**                                                       |               |                 |       |
 | Backups (Pro)                                                      | ⭐⭐⭐⭐       |                 |       |
 | Batch Operations                                                   | ⭐⭐⭐⭐       |                 |       |
 | Global Tables                                                      | ⭐⭐⭐⭐       |                 |       |
