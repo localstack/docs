@@ -14,6 +14,12 @@ The VirtualBox backend requires the [Oracle VM VirtualBox](https://www.virtualbo
 
 <!-- Where is the stuff about EC2 local daemon documented? Link it here? -->
 
+The VirtualBox backend supports following operations:
+
+| Operation | Notes |
+|:----------|:------|
+| RunInstance | Creates and launches a virtual machine |
+
 ### Docker
 
 The Docker backend uses the [Docker Engine](https://docs.docker.com/engine/) to simulate instances.
