@@ -12,13 +12,22 @@ The manager can be configured by using the `EC2_VM_MANAGER` environment variable
 
 The VirtualBox backend requires the [Oracle VM VirtualBox](https://www.virtualbox.org/) installed on your system.
 
-<!-- Where is the stuff about EC2 local daemon documented? Link it here? -->
+To leverage the full functionality of the EC2 VirtualBox emulation, it is necessary to run a daemon process on the host which takes care of creating and managing the VirtualBox VM instances.
+You can use the LocalStack command-line interface to start up the daemon:
+
+{{< command >}}
+$ export LOCALSTACK_API_KEY=...
+$ localstack daemons start
+{{< /command >}}
+
+Depending on your host operating system, you may be asked to enter your `sudo` password.
+This is required to create virtual network interfaces on the local machine with IP addresses that allow to easily SSH into the created VirtualBox instances.
 
 The VirtualBox backend supports following operations:
 
 | Operation | Notes |
 |:----------|:------|
-| RunInstance | Creates and launches a virtual machine |
+| RunInstances | Creates and launches a virtual machine |
 
 ### Docker
 
@@ -38,7 +47,7 @@ AWS EC2 provides a default set of AMIs from which new AMIs can be created.
 By tagging an existing Docker image with a compatible name, this can be replicated within LocalStack, for example:
 
 {{< command >}}
-docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
+$ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
 {{< /command >}}
 
 The AMI `ami-000001` will then be available for use.
