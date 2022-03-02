@@ -105,7 +105,7 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | | `docker` (default) | Run each function invocation in a separate Docker container. |
 | | `local` (fallback) | Run Lambda functions in a temporary directory on the local machine. |
 | | `docker-reuse` | Create one Docker container per function and reuse it across invocations. |
-| `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the [stay-open mode]({{< ref "lambda-executors#stay-open-mode" >}}) of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. |
+| `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the [stay-open mode]({{< ref "lambda-executors#stay-open-mode" >}}) of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Swapping]({{< ref "hot-swapping" >}}).|
 | `LAMBDA_REMOTE_DOCKER` | | determines whether Lambda code is copied or mounted into containers |
 | | `true` (default) | your Lambda function definitions will be passed to the container by copying the zip file (potentially slower). It allows for remote execution, where the host and the client are not on the same machine.|
 | | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. Also, `HOST_TMP_FOLDER` must be set properly, and a volume mount like `${HOST_TMP_FOLDER}:/tmp/localstack` needs to be configured if you're using docker-compose. |
