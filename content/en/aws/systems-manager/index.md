@@ -59,4 +59,6 @@ $ awslocal ssm get-command-invocation \
 
 ### Limitations
 
-When using `AWS-RunShellScript`, the standard output and standard error streams will be empty if the command returns a non-zero code.
+- Only `AWS-RunShellScript` is supported for Dockerised instances.
+- If the command returns a non-zero code, the standard output and standard error streams are not captured and will be empty.
+- Shell constructs like job controls (`&&`, `||`), redirection (`>`) etc. are not supported.
