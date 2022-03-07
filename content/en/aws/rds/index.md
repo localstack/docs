@@ -48,3 +48,9 @@ You can also use other clients like `psql` to interact with the database. The ho
 $ psql -d test -U test -p 4513 -h localhost -W
 Password: <enter "test">
 {{< / command >}}
+
+{{< alert title="Notes" >}}
+- The default for master-username, master-user-password and db-name is "test".
+- You can use any master-username, except "postgres", for creating a new RDS instance. The user will automatically be created.
+- The user "postgres" is special, and it is not be possible to create a new RDS instance with this user name. 
+{{< /alert >}}
