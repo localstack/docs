@@ -59,11 +59,17 @@ Docker is used extensively by LocalStack, and there are several configuration pa
 
 This section covers configuration values that are specific to certain AWS services.
 
+* [Batch]({{< ref "#batch" >}})
 * [DynamoDB]({{< ref "#dynamodb" >}})
 * [Elasticsearch]({{< ref "#elasticsearch" >}})
 * [Kinesis]({{< ref "#kinesis" >}})
 * [Lambda]({{< ref "#lambda" >}})
 * [Stepfunctions]({{< ref "#stepfunctions" >}})
+
+### Batch
+| Variable | Example Values | Description |
+| - | - | - |
+| `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Only flags for volumes, ports, environment variables and add-hosts are allowed. |
 
 ### DynamoDB
 
