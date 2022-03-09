@@ -76,6 +76,7 @@ config:
   aws:endpoints:
     - accessanalyzer: http://localhost:4566
       account: http://localhost:4566
+      acm: http://localhost:4566
       acmpca: http://localhost:4566
       alexaforbusiness: http://localhost:4566
       amp: http://localhost:4566
