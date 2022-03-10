@@ -52,5 +52,5 @@ Password: <enter "test">
 {{< alert title="Notes" >}}
 - The default for master-username, master-user-password and db-name is "test".
 - You can use any master-username, except "postgres", for creating a new RDS instance. The user will automatically be created.
-- The user "postgres" is special, and it is not be possible to create a new RDS instance with this user name. 
+- The user "postgres" is special, and it is not possible to create a new RDS instance with this user name. 
 {{< /alert >}}
