@@ -45,3 +45,27 @@ $ curl -d '{"query":"query {getPosts{id{S}}}"}' http://localhost:4605/graphql/ap
 {{< / command >}}
 
 For more details, please refer to the self-contained sample published in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/appsync-graphql-api).
+
+### Custom GraphQL API IDs
+
+It is possible to use a predefined ID when creating GraphQL APIs by setting the tag `_custom_id_`.
+For example:
+
+{{< command >}}
+$ awslocal appsync create-graphql-api --name my-api --authentication-type API_KEY --tags _custom_id_=faceb00c
+{
+    "graphqlApi": {
+        "name": "my-api",
+        "apiId": "faceb00c",
+        "authenticationType": "API_KEY",
+        "arn": "arn:aws:appsync:us-east-1:000000000000:apis/my-api",
+        "uris": {
+            "GRAPHQL": "http://localhost:4566/graphql/faceb00c",
+            "REALTIME": "ws://localhost:4510/graphql/faceb00c"
+        },
+        "tags": {
+            "_custom_id_": "faceb00c"
+        }
+    }
+}
+{{< /command >}}
