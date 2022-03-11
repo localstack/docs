@@ -1,52 +1,61 @@
-docs.localstack.cloud
+LocalStack Docs
 =====================
 
-Repository for docs.localstack.cloud
+Repository for [docs.localstack.cloud](https://docs.localstack.cloud).
 
 
-get started
+Getting Started
 -----------
 
-### clone repo
+### Basics
+LocalStack Docs is using the following technology stack:
+- [Hugo](https://gohugo.io) to generate the static site.
+- [Docsy](https://docsy.dev) as a theme for Hugo.
+- [GitHub Pages](https://pages.github.com/) to automatically deploy every commit on the `main` branch of this repository on [docs.localstack.cloud](https://docs.localstack.cloud).  
 
-clone the repoitory and init submodules recursively (`themes/docsy` is a submodule that again has submodules for vendored assets like fontawesome).
+
+### Clone the repo
+Clone this repository and initialize the Git submodules recursively (`themes/docsy` is a submodule that again has submodules for vendored assets like fontawesome).
 
     git clone --recurse-submodules --depth 1 git@github.com:localstack/docs.git
 
-this performs a shallow clone, which leads to only the main branch being configured for your remote.
+This performs a shallow clone, which leads to only the main branch being configured for your remote.
 To be able to pull/push from/to all branches, please run:
 
     git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch
 
-or
+or:
 
     git clone git@github.com:localstack/docs.git
     cd docs
     git submodule update --init --recursive
 
-### install hugo
+### Install Hugo
+LocalStack Docs is based on the [Hugo static site generator](https://gohugo.io).
 
-[install hugo](https://gohugo.io/getting-started/installing). Make sure to install the _extended version_.
+In order to contribute to LocalStack Docs, you need to [install Hugo](https://gohugo.io/getting-started/installing) in order to verify your changes. Make sure to install the _extended_ version of Hugo.
 
+### Run locally
+Once you have Hugo installed, you can start your local server with the following command:
 
-### run locally
+    hugo serve
 
-    npm install
-    hugo server
+or run in developer mode with automatic reload:
 
-or run in developer mode with automatic reload
+    hugo serve --watch=true --disableFastRender -D
 
-    hugo server --watch=true --disableFastRender -D
+Once the server is started, the locally served Docs are available at https://localhost:1313. 
 
-alternatively:
+### Writing content
+The whole site is generated with Hugo, a powerful static-site generator.
 
-    npm run dev
+You can find an extensive documentation on how to use Hugo [in their docs](https://gohugo.io/documentation/), however most of the content is written in plain Markdown.
 
-
+Make sure to follow the best practices below when contributing content.
 
 ## Best Practices
 
-Please follow these best practices when writing documentation here:
+Please follow these best practices when writing documentation in this repository:
 - Use the custom `command` shortcode for all one-liner commands (also when their output is presented). Do not use it for bash scripts with comments. You can find a more detailed description here: https://github.com/localstack/docs/pull/55
 - Use the [`ref` or `relref` shortcode](https://gohugo.io/content-management/cross-references/#use-ref-and-relref) when creating non-external links (but still use the markdown native image linking, ref doesn't work there).
   You can either use `ref` or `relref`, the point is to have compile time internal-link checks (which works for both).
@@ -67,4 +76,16 @@ Please follow these best practices when writing documentation here:
   If you want to resize the image, use the `figure` or `img` shortcode. For example:
   `{{< img src="cockpit-init-check.png" class="img-fluid shadow rounded" width="150px" >}}`
 
-PS.: Feel free to add more best practices here (also give us a heads-up in [#sig-docs](https://localstack-cloud.slack.com/archives/C02FZH6UB2A)).
+PS.: Feel free to add more best practices here.
+
+## Troubleshooting
+This section covers common issues when working with LocalStack Docs:
+### Missing shortcodes
+Example error:
+```
+Start building sites … 
+hugo v0.88.1-5BC54738+extended linux/amd64 BuildDate=2021-09-04T09:39:19Z VendorInfo=gohugoio
+Error: Error building site: "/home/localstack/Repos/docs-test/content/en/get-started/_index.md:57:1": failed to extract shortcode: template for shortcode "alert" not found
+Built in 45 ms
+```
+Make sure to correctly clone and initialize the git submodules of this repo. For details see the section "[Clone the repo](#clone-the-repo)" above.
