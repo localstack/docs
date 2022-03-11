@@ -1983,7 +1983,26 @@ S: String!
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="color:#000">$util&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">toJson&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">$context&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Items&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Once things have been wired up properly, and assuming the ID of your GraphQL API is &lt;code>&amp;quot;api123&amp;quot;&lt;/code>, you should be able to run the following GraphQL query to retrieve all items from the &lt;code>&amp;quot;posts&amp;quot;&lt;/code> DynamoDB table:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl -d &amp;#39;{&amp;#34;query&amp;#34;:&amp;#34;query {getPosts{id{S}}}&amp;#34;}&amp;#39; http://localhost:4605/graphql/api123&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>For more details, please refer to the self-contained sample published in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/appsync-graphql-api">this Github repository&lt;/a>.&lt;/p></description></item><item><title>Aws: Athena</title><link>/aws/athena/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/athena/</guid><description>
+&lt;p>For more details, please refer to the self-contained sample published in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/appsync-graphql-api">this Github repository&lt;/a>.&lt;/p>
+&lt;h3 id="custom-graphql-api-ids">Custom GraphQL API IDs&lt;/h3>
+&lt;p>It is possible to use a predefined ID when creating GraphQL APIs by setting the tag &lt;code>_custom_id_&lt;/code>.
+For example:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal appsync create-graphql-api --name my-api --authentication-type API_KEY --tags _custom_id_=faceb00c
+{
+&amp;#34;graphqlApi&amp;#34;: {
+&amp;#34;name&amp;#34;: &amp;#34;my-api&amp;#34;,
+&amp;#34;apiId&amp;#34;: &amp;#34;faceb00c&amp;#34;,
+&amp;#34;authenticationType&amp;#34;: &amp;#34;API_KEY&amp;#34;,
+&amp;#34;arn&amp;#34;: &amp;#34;arn:aws:appsync:us-east-1:000000000000:apis/my-api&amp;#34;,
+&amp;#34;uris&amp;#34;: {
+&amp;#34;GRAPHQL&amp;#34;: &amp;#34;http://localhost:4566/graphql/faceb00c&amp;#34;,
+&amp;#34;REALTIME&amp;#34;: &amp;#34;ws://localhost:4510/graphql/faceb00c&amp;#34;
+},
+&amp;#34;tags&amp;#34;: {
+&amp;#34;_custom_id_&amp;#34;: &amp;#34;faceb00c&amp;#34;
+}
+}
+}&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Aws: Athena</title><link>/aws/athena/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/athena/</guid><description>
 &lt;p>LocalStack Pro ships with built-in support for &lt;a href="https://aws.amazon.com/athena">Athena&lt;/a>, Amazon&amp;rsquo;s serverless data warehouse and analytics platform. Athena uses &lt;a href="https://prestodb.github.io/">Presto&lt;/a> under the covers, and your Athena instance will be automatically configured with a Hive metastore that connects seamlessly to the LocalStack S3 API. That is, you can easily connect your local S3 buckets and query data directly from S3 via the powerful Athena query API.&lt;/p>
 &lt;p>The following commands illustrate how to use Athena from the command line (assuming you have &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> installed):&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal athena start-query-execution --query-string &amp;#39;SELECT 1, 2, 3&amp;#39;
