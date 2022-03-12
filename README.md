@@ -44,7 +44,7 @@ or run in developer mode with automatic reload:
 
     hugo serve --watch=true --disableFastRender -D
 
-Once the server is started, the locally served Docs are available at https://localhost:1313. 
+Once the server is started, the locally served Docs are available at http://localhost:1313.
 
 ### Writing content
 The whole site is generated with Hugo, a powerful static-site generator.
