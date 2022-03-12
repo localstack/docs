@@ -64,6 +64,7 @@ Please follow these best practices when writing documentation here:
   Then you can use the usual markdown syntax with a relative path (f.e.:
   `![Alternative_Text](file_next_to_post.png)`).
 
-  If you want to resize the image, use the `figure` shortcode.
+  If you want to resize the image, use the `figure` or `img` shortcode. For example:
+  `{{< img src="cockpit-init-check.png" class="img-fluid shadow rounded" width="150px" >}}`
 
 PS.: Feel free to add more best practices here (also give us a heads-up in [#sig-docs](https://localstack-cloud.slack.com/archives/C02FZH6UB2A)).
