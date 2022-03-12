@@ -2148,9 +2148,17 @@ DEBUG:localstack_ext.bootstrap.email_utils: Sending confirmation code via email 
 &lt;img src="/aws/cognito/cognitoLogin.png" width="320"/>
 &lt;/figure>
 &lt;/p>
-&lt;p>After successful login, the page will redirect to the specified redirect URI, with a path parameter &lt;code>?code=&amp;lt;code&amp;gt;&lt;/code> appended, e.g., &lt;code>http://example.com?code=test123&lt;/code>.
-This authentication code can then be used to obtain a token via the Cognito OAuth2 TOKEN Endpoint documented &lt;a href="https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html">here&lt;/a>.&lt;/p>
-&lt;h2 id="smtp-integration">SMTP Integration&lt;/h2>
+&lt;p>After successful login, the page will redirect to the specified &lt;code>&amp;lt;redirect_uri&amp;gt;&lt;/code>, with a path parameter &lt;code>?code=&amp;lt;code&amp;gt;&lt;/code> appended, e.g., &lt;code>http://example.com?code=test123&lt;/code>.
+Obtain a token by submitting that code with &lt;code>grant_type=authorization_code&lt;/code> the LocalStack&amp;rsquo;s implementation of the Cognito OAuth2 TOKEN Endpoint documented &lt;a href="https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html">here&lt;/a>.
+Note that the value of the &lt;code>redirect_uri&lt;/code> parameter must match the value provided during login.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">% curl &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --data-urlencode &lt;span style="color:#4e9a06">&amp;#39;grant_type=authorization_code&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --data-urlencode &lt;span style="color:#4e9a06">&amp;#39;redirect_uri=http://example.com&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --data-urlencode &lt;span style="color:#4e9a06">&amp;#34;client_id=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">client_id&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> --data-urlencode &lt;span style="color:#4e9a06">&amp;#39;code=test123&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;http://localhost:4566/oauth2/token&amp;#39;&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;access_token&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;eyJ0eXAi…lKaHx44Q&amp;#34;&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;expires_in&amp;#34;&lt;/span>: 86400, &lt;span style="color:#4e9a06">&amp;#34;token_type&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Bearer&amp;#34;&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;refresh_token&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;e3f08304&amp;#34;&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;id_token&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;eyJ0eXAi…ADTXv5mA&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="smtp-integration">SMTP Integration&lt;/h2>
 &lt;p>In order to enable sending activation emails, configure the following SMTP settings as environment variables:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-env" data-lang="env">&lt;span style="color:#000">SMTP_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;smtp-host-address&amp;gt;
 &lt;span style="color:#000">SMTP_USER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&amp;lt;email-user-name&amp;gt;
