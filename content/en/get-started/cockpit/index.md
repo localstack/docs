@@ -6,7 +6,10 @@ description: >
   Manage your local LocalStack instance via the Cockpit Desktop UI.
 ---
 
-Getting started with LocalStack via the Cockpit is easy: just download the Cockpit App for your operating system at https://localstack.cloud/products/cockpit, make sure you have Docker installed, and you're ready to go!
+Getting started with LocalStack via the Cockpit is easy:
+just download the Cockpit App for your operating system at
+https://localstack.cloud/products/cockpit
+make sure you have Docker installed, and you're ready to go!
 
 ![Cockpit](cockpit-screenshot.png)
 
