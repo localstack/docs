@@ -63,7 +63,7 @@ The environment and Services screen give you instant insights into your running 
 
 Get quick access to your LocalStack logs for instant insights.
 
-*Note*: Te beta version does not yet have auto-follow, so you need to click "Refresh" and "Scroll to end".
+*Note*: The beta version does not yet have auto-followcockpit, so you need to click "Refresh" and "Scroll to end".
 
 <p>
 {{< img src="cockpit-logs.png" class="img-fluid shadow rounded" >}}
