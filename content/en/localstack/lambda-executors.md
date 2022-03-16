@@ -16,12 +16,18 @@ The active lambda executor can be set using the `LAMBDA_EXECUTOR` environment va
 
 The default option is `docker`, unless LocalStack has no access to a docker daemon itself when it will be set to `local`.
 
+Running docker containers inside the Localstack docker images requires to bind mount the `/var/run/docker.socket`. See the example below:
+{{< command >}}
+$ docker run --rm -it -v "/var/run/docker.sock:/var/run/docker.sock" -e DEBUG=1 -e LAMBDA_EXECUTOR=<mode> -p 4566:4566  localstack/localstack
+{{</command >}}
+
+
 ### Local execution
 
 Configuration: `LAMBDA_EXECUTOR=local`
 
 In this execution mode, the lambda code is executed directly in the context of LocalStack itself.
-Therefore, if LocalStack is executed within docker, all the Lambda executions take place within that same container, and if it is executed in host mode, it will be executed directly on your machine. 
+Therefore, if LocalStack is executed within docker, all the Lambda executions take place within that same container, and if it is executed in host mode, it will be executed directly on your machine.
 If lambda container images are used, and the `local` executor is set, the execution of these images will automatically take place using the `docker` executor (regular lambdas will continue to use the `local` executor).
 
 Local executor mode currently supports the following Lambda Platforms:
@@ -44,7 +50,6 @@ Due to the nature of this mode, mainly recreating the container for each invocat
 A typical invocation of a dummy python lambda can take around 3 seconds from start to finish (awscli invoke - start to finish).
 All supported lambda types can be used with this executor.
 
-
 ### Docker reuse
 
 Configuration: `LAMBDA_EXECUTOR=docker-reuse`
@@ -61,7 +66,6 @@ The stay-open mode is the new default method when using `docker-reuse` as lambda
 * Problems with error handling in some runtimes
 
 A list of failing tests with this mode can be found [in this GitHub issue](https://github.com/localstack/localstack/pull/5088).
-
 
 #### Docker-exec execution mode
 This mode is the default if LocalStack is started in host mode.
