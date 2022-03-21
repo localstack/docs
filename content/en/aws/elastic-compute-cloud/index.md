@@ -5,37 +5,19 @@ categories: ["LocalStack Pro"]
 description: AWS Elastic Compute Cloud (EC2)
 ---
 
-LocalStack supports two backends for running instances locally: `virtualbox` (default) and `docker`.
-Backends can be configured by setting the `EC2_VM_MANAGER` environment variable.
+LocalStack currently supports the Docker backend for running instances.
 
-### VirtualBox
 
-The VirtualBox backend requires the [Oracle VM VirtualBox](https://www.virtualbox.org/) installed on your system.
-
-To leverage the full functionality of the EC2 VirtualBox emulation, it is necessary to run a local daemon process on the host which takes care of creating and managing the VirtualBox VM instances.
-You can use the LocalStack command-line interface to start up the daemon:
-
-{{< command >}}
-$ export LOCALSTACK_API_KEY=...
-$ localstack daemons start
-{{< /command >}}
-
-Depending on your host operating system, you may be asked to enter your `sudo` password.
-This is required to create virtual network interfaces on the local machine with IP addresses that allow to easily SSH into the created VirtualBox instances.
-
-The VirtualBox backend supports following operations:
-
-| Operation | Notes |
-|:----------|:------|
-| RunInstances | Creates and launches a virtual machine |
-
-### Docker
+## Docker
 
 The Docker backend uses the [Docker Engine](https://docs.docker.com/engine/) to emulate EC2 instances.
 All limitations that apply to containers apply to EC2 instances backed by the Docker manager, including root access and networking.
 Access to the Docker socket is required which can be made available to LocalStack by mounting the socket file during launch.
 
 Instances have the Docker socket mounted inside them, making Docker-in-Docker usecases possible.
+
+
+### Base Images
 
 LocalStack uses a naming scheme to recognise and manage the containers and images associated with it.
 Containers are named `localstack-ec2.<InstanceId>`, while images are tagged `localstack-ec2/<AmiName>:<AmiId>`.
@@ -49,8 +31,27 @@ $ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
 
 The AMI `ami-000001` will then be available for use.
 
-When the LocalStack local daemon is running on the host system, LocalStack creates the necessary network configuration to allow SSH access to the container.
-TODO
+
+### Networking
+
+LocalStack supports assignment of unique private IP addresses for Dockerised instances.
+To leverage this feature, it is necessary to run the LocalStack daemon process on the host which takes care of creating and managing networking on the host system.
+
+{{< command >}}
+$ export LOCALSTACK_API_KEY=...
+$ localstack daemons start
+{{< /command >}}
+
+The address for SSH access to the instance is printed in the logs when the instance is initialised.
+
+```
+2022-03-21T14:46:49.540:INFO:localstack_ext.services.ec2.vmmanager.docker: Instance i-f6a80f48 will be accessible via SSH at: 192.168.123.25:22, 127.0.0.1:48805
+```
+
+If the LocalStack daemon is not running, the instance will be only accessible over SSH at `127.0.0.1` and the specified port.
+
+
+### Operations
 
 The Docker backend supports following operations:
 
