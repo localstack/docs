@@ -14,7 +14,7 @@ The Docker backend uses the [Docker Engine](https://docs.docker.com/engine/) to 
 All limitations that apply to containers apply to EC2 instances backed by the Docker manager, including root access and networking.
 Access to the Docker socket is required which can be made available to LocalStack by mounting the socket file during launch.
 
-Instances have the Docker socket mounted inside them, making Docker-in-Docker usecases possible.
+Instances have the Docker socket (`/var/run/docker.sock`) mounted inside them, making Docker-in-Docker use cases possible.
 
 
 ### Base Images
