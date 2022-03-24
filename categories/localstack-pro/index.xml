@@ -2202,46 +2202,28 @@ You can then register users against that local pool, using the same API calls as
 &lt;pre>&lt;code>Authentication: AWS4-HMAC-SHA256 Credential=test-1234567/20190821/us-east-1/cognito-idp/aws4_request ...
 &lt;/code>&lt;/pre>&lt;h2 id="further-reading">Further reading&lt;/h2>
 &lt;p>For a more detailed example, please check out our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt">sample repository&lt;/a>.&lt;/p></description></item><item><title>Aws: Elastic Compute Cloud (EC2)</title><link>/aws/elastic-compute-cloud/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/elastic-compute-cloud/</guid><description>
-&lt;p>LocalStack has basic support for two backend managers for running instances locally: &lt;code>virtualbox&lt;/code> (default) and &lt;code>docker&lt;/code>.
-The manager can be configured by using the &lt;code>EC2_VM_MANAGER&lt;/code> environment variable.&lt;/p>
-&lt;h3 id="virtualbox">VirtualBox&lt;/h3>
-&lt;p>The VirtualBox backend requires the &lt;a href="https://www.virtualbox.org/">Oracle VM VirtualBox&lt;/a> installed on your system.&lt;/p>
-&lt;p>To leverage the full functionality of the EC2 VirtualBox emulation, it is necessary to run a daemon process on the host which takes care of creating and managing the VirtualBox VM instances.
-You can use the LocalStack command-line interface to start up the daemon:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>export LOCALSTACK_API_KEY=...
-&lt;span class="command-prefix">$ &lt;/span>localstack daemons start&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Depending on your host operating system, you may be asked to enter your &lt;code>sudo&lt;/code> password.
-This is required to create virtual network interfaces on the local machine with IP addresses that allow to easily SSH into the created VirtualBox instances.&lt;/p>
-&lt;p>The VirtualBox backend supports following operations:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th style="text-align:left">Operation&lt;/th>
-&lt;th style="text-align:left">Notes&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td style="text-align:left">RunInstances&lt;/td>
-&lt;td style="text-align:left">Creates and launches a virtual machine&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h3 id="docker">Docker&lt;/h3>
-&lt;p>The Docker backend uses the &lt;a href="https://docs.docker.com/engine/">Docker Engine&lt;/a> to simulate instances.
+&lt;p>LocalStack currently supports the Docker backend for running instances.&lt;/p>
+&lt;h2 id="docker">Docker&lt;/h2>
+&lt;p>The Docker backend uses the &lt;a href="https://docs.docker.com/engine/">Docker Engine&lt;/a> to emulate EC2 instances.
 All limitations that apply to containers apply to EC2 instances backed by the Docker manager, including root access and networking.
 Access to the Docker socket is required which can be made available to LocalStack by mounting the socket file during launch.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
-The Docker backend manager for EC2 is under active development.
-Please report any bugs and issues you may encounter.
-&lt;/div>
+&lt;p>Instances have the Docker socket (&lt;code>/var/run/docker.sock&lt;/code>) mounted inside them, making Docker-in-Docker use cases possible.&lt;/p>
+&lt;h3 id="base-images">Base Images&lt;/h3>
 &lt;p>LocalStack uses a naming scheme to recognise and manage the containers and images associated with it.
 Containers are named &lt;code>localstack-ec2.&amp;lt;InstanceId&amp;gt;&lt;/code>, while images are tagged &lt;code>localstack-ec2/&amp;lt;AmiName&amp;gt;:&amp;lt;AmiId&amp;gt;&lt;/code>.&lt;/p>
 &lt;p>AWS EC2 provides a default set of AMIs from which new AMIs can be created.
-By tagging an existing Docker image with a compatible name, this can be replicated within LocalStack, for example:&lt;/p>
+This can be replicated within LocalStack by tagging an existing Docker image with a compatible name, for example:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The AMI &lt;code>ami-000001&lt;/code> will then be available for use.&lt;/p>
+&lt;h3 id="networking">Networking&lt;/h3>
+&lt;p>LocalStack supports assignment of unique private IP addresses for Dockerised instances.
+To leverage this feature, it is necessary to run the LocalStack daemon process on the host which takes care of creating and managing networking on the host system.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>export LOCALSTACK_API_KEY=...
+&lt;span class="command-prefix">$ &lt;/span>localstack daemons start&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The address for SSH access to the instance is printed in the logs when the instance is initialised.&lt;/p>
+&lt;pre>&lt;code>2022-03-21T14:46:49.540:INFO:localstack_ext.services.ec2.vmmanager.docker: Instance i-f6a80f48 will be accessible via SSH at: 192.168.123.25:22, 127.0.0.1:48805
+&lt;/code>&lt;/pre>&lt;p>If the LocalStack daemon is not running, the instance will be only accessible over SSH at &lt;code>127.0.0.1&lt;/code> and the specified port.&lt;/p>
+&lt;h3 id="operations">Operations&lt;/h3>
 &lt;p>The Docker backend supports following operations:&lt;/p>
 &lt;table>
 &lt;thead>
@@ -2265,7 +2247,7 @@ By tagging an existing Docker image with a compatible name, this can be replicat
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">RunInstances&lt;/td>
-&lt;td style="text-align:left">Supports the &lt;code>ImageId&lt;/code> and &lt;code>MaxCount&lt;/code> request parameter&lt;/td>
+&lt;td style="text-align:left">Supports &lt;code>ImageId&lt;/code>, &lt;code>MaxCount&lt;/code>, &lt;code>KeyPair&lt;/code> and &lt;code>UserData&lt;/code> request parameters&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">StopInstances&lt;/td>
