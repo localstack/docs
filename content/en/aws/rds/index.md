@@ -6,6 +6,13 @@ description: >
   Relational Database Service (RDS)
 ---
 
+{{< alert title="Caveats" >}}
+- The default for master-username, master-user-password and db-name is "test".
+- You can use any master-username, except "postgres", for creating a new RDS instance. The user will automatically be created.
+- The user "postgres" is special, and it is not possible to create a new RDS instance with this user name.
+- The db-name "postgres" is special, and it is not possible to create a new RDS instance with this db name.
+{{< /alert >}}
+
 LocalStack supports a basic version of [RDS](https://aws.amazon.com/rds/) for testing. Currently, it is possible to spin up PostgreSQL databases on the local machine; support for MySQL and other DB engines is under development and coming soon.
 
 The local RDS service also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS database, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple `SELECT 123` query via the RDS Data API.
@@ -48,9 +55,3 @@ You can also use other clients like `psql` to interact with the database. The ho
 $ psql -d test -U test -p 4513 -h localhost -W
 Password: <enter "test">
 {{< / command >}}
-
-{{< alert title="Notes" >}}
-- The default for master-username, master-user-password and db-name is "test".
-- You can use any master-username, except "postgres", for creating a new RDS instance. The user will automatically be created.
-- The user "postgres" is special, and it is not possible to create a new RDS instance with this user name. 
-{{< /alert >}}
