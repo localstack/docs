@@ -97,10 +97,10 @@ make install
 
 This will install the required pip dependencies in a local Python virtualenv directory `.venv` (your global python packages will remain untouched), as well as some node modules in `./localstack/node_modules/`. Depending on your system, some pip/npm modules may require additional native libs installed.
 
-The Makefile contains a target to conveniently run the local infrastructure for development:
+The Makefile contains a start command to conveniently start:
 
 ```
-make infra
+make start
 ```
 
 ### Building the Docker image for Development
