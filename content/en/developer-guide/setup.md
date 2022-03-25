@@ -87,6 +87,32 @@ Below are some basic installation instructions for the dependencies you will nee
   sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
   ```
 
+### Development Environment
+
+If you pull the repo in order to extend/modify LocalStack, run this command to install all the dependencies:
+
+```
+make install
+```
+
+This will install the required pip dependencies in a local Python virtualenv directory `.venv` (your global python packages will remain untouched), as well as some node modules in `./localstack/node_modules/`. Depending on your system, some pip/npm modules may require additional native libs installed.
+
+The Makefile contains a target to conveniently run the local infrastructure for development:
+
+```
+make infra
+```
+
+### Building the Docker image for Development
+
+Please note that there are a few commands we need to run on the host to prepare the local environment for the Docker build - specifically, downloading some dependencies like the StepFunctions local binary. Therefore, simply running `docker build .` in a fresh clone of the repo may not work.
+
+We generally recommend using this command to build the Docker image locally (works on Linux/MacOS):
+
+```
+make docker-build
+```
+
 ### Tips
 
 
