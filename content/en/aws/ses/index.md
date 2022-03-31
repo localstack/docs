@@ -2,7 +2,7 @@
 title: "Simple Email Service (SES)"
 linkTitle: "Simple Email Service (SES)"
 categories: ["LocalStack Pro"]
-description: AWS Simple Email Service (SES)
+description: Amazon Simple Email Service (Amazon SES)
 ---
 
 The Pro version ships with extended support Simple Email Service (SES), including a simple user interface to inspect email accounts and sent messages, as well as support for sending SES messages through an actual SMTP email server.

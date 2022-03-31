@@ -2,7 +2,7 @@
 title: "Elastic Compute Cloud (EC2)"
 linkTitle: "Elastic Compute Cloud (EC2)"
 categories: ["LocalStack Pro"]
-description: AWS Elastic Compute Cloud (EC2)
+description: Amazon Elastic Compute Cloud (Amazon EC2)
 ---
 
 LocalStack currently supports the Docker backend for running instances.
@@ -38,6 +38,7 @@ LocalStack supports assignment of unique private IP addresses for Dockerised ins
 To leverage this feature, it is necessary to run the LocalStack daemon process on the host which takes care of creating and managing networking on the host system.
 
 {{< command >}}
+$ pip install localstack[runtime]
 $ export LOCALSTACK_API_KEY=...
 $ localstack daemons start
 {{< /command >}}
