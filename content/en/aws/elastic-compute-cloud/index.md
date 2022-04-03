@@ -5,10 +5,9 @@ categories: ["LocalStack Pro"]
 description: Amazon Elastic Compute Cloud (Amazon EC2)
 ---
 
-LocalStack currently supports the Docker backend for running instances.
+## Pro
 
-
-## Docker
+LocalStack Pro supports the Docker backend for running instances.
 
 The Docker backend uses the [Docker Engine](https://docs.docker.com/engine/) to emulate EC2 instances.
 All limitations that apply to containers apply to EC2 instances backed by the Docker manager, including root access and networking.
