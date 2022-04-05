@@ -35,8 +35,30 @@ If you are adapting an existing configuration, you might be able to skip certain
 Apart from some information Terraform expects there are basically only two things to take care of in the configuration.&lt;/p>
 &lt;p>Before we start changing the configuration, create and change into a new directory for this sample&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>mkdir terraform_quickstart &amp;amp;&amp;amp; cd terraform_quickstart&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Inside this directory, create a file called &lt;code>main.tf&lt;/code>.
-The following changes go into this file.&lt;/p>
+&lt;p>Inside this directory, create a file called &lt;code>main.tf&lt;/code>. The following changes go into this file.&lt;/p>
+&lt;p>Now we are adding a minimal S3 bucket configuration to the &lt;code>main.tf&lt;/code> file:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_s3_bucket&amp;#34; &amp;#34;test-bucket&amp;#34;&lt;/span> {
+&lt;span style="color:#000"> bucket&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my-bucket&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="using-the-tflocal-script">Using the &lt;code>tflocal&lt;/code> script&lt;/h2>
+&lt;p>We provide &lt;code>tflocal&lt;/code>, a thin wrapper script around the &lt;code>terraform&lt;/code> command line client. &lt;code>tflocal&lt;/code> takes care of automatically configuring the local service endpoints, which allows you to easily deploy your unmodified Terraform scripts against LocalStack.&lt;/p>
+&lt;p>You can install the &lt;code>tflocal&lt;/code> command via &lt;code>pip&lt;/code> (requires a local Python installation):
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>pip install terraform-local&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Once installed, the &lt;code>tflocal&lt;/code> command should be available, with the same interface as the &lt;code>terraform&lt;/code> command line:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>tflocal --help
+Usage: terraform [global options] &amp;lt;subcommand&amp;gt; [args]
+...&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>: Alternatively, you can also manually configure the local endpoints in the &lt;code>provider&lt;/code> section of your Terraform script - see further below.
+&lt;/div>
+&lt;h3 id="deployment">Deployment&lt;/h3>
+&lt;p>After starting LocalStack you can now deploy the S3 bucket via &lt;code>tflocal&lt;/code> and interact with the (still empty) S3 bucket via &lt;code>awslocal&lt;/code>!&lt;/p>
+&lt;p>All you need to do is to initialize Terraform:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>tflocal init&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>&amp;hellip; and then provision s3 bucket specified in the configuration:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>tflocal apply&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="manual-configuration">Manual Configuration&lt;/h2>
+&lt;p>As an alternative to using the &lt;code>tflocal&lt;/code> script, you may also manually configure the local service endpoints and credentials. We&amp;rsquo;ll walk through the detailed steps in the following sections.&lt;/p>
 &lt;h3 id="general-configuration">General Configuration&lt;/h3>
 &lt;p>First, we have to specify mock credentials for the AWS provider:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
@@ -71,13 +93,8 @@ In case of S3, this looks like the following snippet, in this case we opted to u
 &lt;strong>Note&lt;/strong>: In case of issues resolving this DNS record, we can fallback to &lt;code>http://localhost:4566&lt;/code> in combination with the provider setting &lt;code>s3_force_path_style = true&lt;/code>. The S3 service endpoint is slightly
 different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
 &lt;/div>
-&lt;h3 id="s3-bucket">S3 Bucket&lt;/h3>
-&lt;p>Now we are adding a minimal s3 bucket outside the provider&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_s3_bucket&amp;#34; &amp;#34;test-bucket&amp;#34;&lt;/span> {
-&lt;span style="color:#000"> bucket&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my-bucket&amp;#34;&lt;/span>
-}
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="final-configuration">Final Configuration&lt;/h3>
-&lt;p>The final (minimal) configuration to deploy an s3 bucket thus looks like this&lt;/p>
+&lt;h3 id="final-configuration">Final Configuration&lt;/h3>
+&lt;p>The final (minimal) configuration to deploy an S3 bucket thus looks like this&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
 &lt;span style="color:#000"> access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;mock_access_key&amp;#34;&lt;/span>
 &lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;mock_secret_key&amp;#34;&lt;/span>
@@ -93,13 +110,9 @@ different from the other service endpoints, because AWS is deprecating path-styl
 &lt;span style="color:#204a87;font-weight:bold">resource&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_s3_bucket&amp;#34; &amp;#34;test-bucket&amp;#34;&lt;/span> {
 &lt;span style="color:#000"> bucket&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my-bucket&amp;#34;&lt;/span>
 }
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>After starting LocalStack you can now deploy the s3 bucket via &lt;code>terraform&lt;/code> and interact with the (still empty) s3 bucket via &lt;code>awslocal&lt;/code>!&lt;/p>
-&lt;p>All you need to do is to initialize Terraform&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>terraform init&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>and then provision s3 bucket specified in the configuration
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>terraform apply&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;h2 id="endpoint-configuration">Endpoint configuration&lt;/h2>
-&lt;p>Here is a configuration example with additional endpoints:&lt;/p>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="endpoint-configuration">Endpoint Configuration&lt;/h3>
+&lt;p>Below is a configuration example with additional service endpoints.
+Again, these provider configurations should no longer be required if you use the &lt;code>tflocal&lt;/code> script (see above).&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="color:#204a87;font-weight:bold">provider&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws&amp;#34;&lt;/span> {
 &lt;span style="color:#000"> access_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
 &lt;span style="color:#000"> secret_key&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>
@@ -134,9 +147,9 @@ different from the other service endpoints, because AWS is deprecating path-styl
 &lt;span style="color:#000"> sts&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
 }
 }
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="further-reading">Further reading&lt;/h2>
-&lt;p>For more examples, you can take a look at our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/terraform-resources">terraform sample&lt;/a> or the &lt;a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack">terraform localstack section&lt;/a>.&lt;/p>
-&lt;h3 id="community-resources">Community resources&lt;/h3>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="further-reading">Further Reading&lt;/h2>
+&lt;p>For more examples, you can take a look at our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/terraform-resources">Terraform sample&lt;/a> or the &lt;a href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack">Terraform LocalStack section&lt;/a>.&lt;/p>
+&lt;h3 id="community-resources">Community Resources&lt;/h3>
 &lt;ul>
 &lt;li>&lt;a href="https://dev.to/mrwormhole/localstack-with-terraform-and-docker-for-running-aws-locally-3a6d">Localstack with Terraform and Docker for running AWS locally. 2021-07-04&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>Integrations: AWS SAM</title><link>/integrations/aws-sam/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/aws-sam/</guid><description>
