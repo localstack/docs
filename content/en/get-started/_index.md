@@ -75,6 +75,7 @@ Options:
 {{< / command >}}
 
 #### Troubleshooting
+
 ##### The installation is successful, but I cannot execute `localstack` on my terminal.
 If you can successfully install LocalStack using `pip` but you cannot use it in your terminal, you most likely haven't set up your operating system's / terminal's `PATH` variable (in order to tell them where to find programs installed via `pip`).
 - If you are using Windows, you can enable the `PATH` configuration when installing Python, [as described in the official docs of Python](https://docs.python.org/3/using/windows.html#finding-the-python-executable).
@@ -84,6 +85,28 @@ As a workaround you can call the LocalStack CLI python module directly:
 {{< command >}}
 $ python3 -m localstack.cli.main
 {{< / command >}}
+
+##### Updating LocalStack using pip does not work
+
+If you get a error message containing:
+
+```sh
+ImportError: module 'plugin.setuptools' has no attribute 'load_plux_entrypoints'
+```
+
+You might need to execute additional steps to upgrade the LocalStack CLI. Push the following command on your terminal:
+
+{{< command >}}
+$ pip uninstall localstack-plugin-loader
+{{< / command >}}
+
+Reinstall LocalStack afterwards using the following command:
+
+{{< command >}}
+$ pip install --force-reinstall localstack plux
+{{< / command >}}
+
+It will fix the dependency conflict. After this, LocalStack should be updateable in the future. As an alternative, if you are using a virtual environment, please delete it and create a new one, for a clean installation.
 
 #### Starting LocalStack with the LocalStack CLI
 By default, LocalStack is started inside a Docker container by running:
@@ -163,7 +186,9 @@ $ docker-compose up
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_SERVICES=s3` is equivalent to `SERVICES=s3`.
 
-- If you do not connect your LocalStack container to the default bridge network with `network_mode: bridge` as in the example, you need to set `LAMBDA_DOCKER_NETWORK=<docker-compose-network>`. 
+- Before 0.13: If you do not connect your LocalStack container to the default bridge network with `network_mode: bridge` as in the example, you need to set `LAMBDA_DOCKER_NETWORK=<docker-compose-network>`. 
+
+- If using using the Docker default bridge network using `network_mode: bridge`, container name resolution will not work inside your containers. Please consider removing it, if this functionality is needed.
 {{< /alert >}}
 
 Please note that there's a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, environment variables, etc.). We recommend using the LocalStack CLI to validate your configuration, which will print warning messages in case it detects any (potential) misconfigurations:
