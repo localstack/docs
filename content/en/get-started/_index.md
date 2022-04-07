@@ -75,6 +75,7 @@ Options:
 {{< / command >}}
 
 #### Troubleshooting
+
 ##### The installation is successful, but I cannot execute `localstack` on my terminal.
 If you can successfully install LocalStack using `pip` but you cannot use it in your terminal, you most likely haven't set up your operating system's / terminal's `PATH` variable (in order to tell them where to find programs installed via `pip`).
 - If you are using Windows, you can enable the `PATH` configuration when installing Python, [as described in the official docs of Python](https://docs.python.org/3/using/windows.html#finding-the-python-executable).
@@ -86,23 +87,26 @@ $ python3 -m localstack.cli.main
 {{< / command >}}
 
 ##### Updating LocalStack using pip does not work
-If you get a error message containing
 
-```
+If you get a error message containing:
+
+```sh
 ImportError: module 'plugin.setuptools' has no attribute 'load_plux_entrypoints'
 ```
 
-You might need to execute additional steps to upgrade the LocalStack CLI.
-Please run
+You might need to execute additional steps to upgrade the LocalStack CLI. Push the following command on your terminal:
+
 {{< command >}}
 $ pip uninstall localstack-plugin-loader
 {{< / command >}}
-and reinstall LocalStack afterwards using
+
+Reinstall LocalStack afterwards using the following command:
+
 {{< command >}}
 $ pip install --force-reinstall localstack plux
 {{< / command >}}
-to fix the dependency conflict. After this, LocalStack should be updateable in the future.
-As an alternative, if you are using a virtual environment, please delete it and create a new one, for a clean installation.
+
+It will fix the dependency conflict. After this, LocalStack should be updateable in the future. As an alternative, if you are using a virtual environment, please delete it and create a new one, for a clean installation.
 
 #### Starting LocalStack with the LocalStack CLI
 By default, LocalStack is started inside a Docker container by running:
