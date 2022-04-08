@@ -50,6 +50,8 @@ The address for SSH access to the instance is printed in the logs when the insta
 
 If the LocalStack daemon is not running, the instance will be only accessible over SSH at `127.0.0.1` and the specified port.
 
+LocalStack daemon is supported on Linux and MacOS.
+
 
 ### Operations
 
