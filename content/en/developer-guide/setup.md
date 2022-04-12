@@ -28,16 +28,23 @@ You will need the following tools for local development of LocalStack.
 
 ### Installation instructions
 
-Below are some basic installation instructions for the dependencies you will need (assuming you're on Debian/Ubuntu Linux).
+Below are some basic installation instructions for the dependencies you will need (assuming you're on Debian/Ubuntu Linux). In the case of Fedora/Centos most of the packages are pretty same named with a few exceptions.
 
 * Python 3.7+
   ```bash
   update-alternatives --install /usr/bin/python python /usr/bin/python3.8 2
   ```
 * Sasl
+ 
+  For Debian 
   ```bash
   apt install libsasl2-dev
   ```
+  For Fedora
+  ```bash
+  dnf install cyrus-sasl-devel
+  ```
+ 
 * Pip
   ```bash
   apt-get install python3-pip
@@ -47,10 +54,18 @@ Below are some basic installation instructions for the dependencies you will nee
   ```bash
     pip install virtualenv
   ```
+  
 * OpenJDK
+
+  For Debian
   ```bash
     apt-get install openjdk-11-jdk
   ```
+  For Fedora
+  ```bash
+    sudo dnf install java-11-openjdk
+  ```
+
 * Node
   ```bash
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
