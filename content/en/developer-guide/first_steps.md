@@ -12,7 +12,7 @@ You should be able to create the python virtualenv with
  
  Then, to install all the libraries into the containers, run 
   ```bash
-  make install 
+  make install-dev 
   ```
   
   Finally, you should able to run 
