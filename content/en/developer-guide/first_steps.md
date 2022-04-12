@@ -35,7 +35,15 @@ You should be able to create the python virtualenv with
 
 ```
 
-### Initializa Services
+Also, considerate the debugging flags at
+
+https://docs.localstack.cloud/localstack/configuration/#debugging
+
+```
+  DEVELOP=1 SERVICES=s3,ec2, DEBUG=1  make start
+```
+
+### Initialize Services
 
 ```
    SERVICES=s3 DEBUG=1  make start
