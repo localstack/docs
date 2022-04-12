@@ -26,3 +26,9 @@ You should be able to create the python virtualenv with
    ```bash
    localhost/bin$ python3 localstack start --host 
   ```
+
+### Debugging Local changes
+
+```
+   python3 -m pdb localstack start --host
+```
