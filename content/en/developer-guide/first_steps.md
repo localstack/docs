@@ -20,3 +20,9 @@ You should be able to create the python virtualenv with
   make start 
   ```
   You will see localstack running, and the url to http://localhost:4566/ shows `{"status": "running"}`
+  
+  If you are looking for running directly the Python repo
+ 
+   ```bash
+   localhost/bin$ python3 localstack start --host 
+  ```
