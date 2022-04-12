@@ -31,4 +31,6 @@ You should be able to create the python virtualenv with
 
 ```
    python3 -m pdb localstack start --host
+   python3 -m pdb bin/localstack start --host  
+
 ```
