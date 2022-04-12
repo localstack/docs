@@ -34,3 +34,10 @@ You should be able to create the python virtualenv with
    python3 -m pdb bin/localstack start --host  
 
 ```
+
+### Initializa Services
+
+```
+   SERVICES=s3 DEBUG=1  make start
+
+```
