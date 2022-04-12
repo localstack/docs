@@ -10,9 +10,9 @@ You should be able to create the python virtualenv with
   ```
  it will create the virtualenv with the python version 3.8, and load it.
  
- Then, to install all the libraries into the containers, run 
+ Then, to install all the deps and third-party libraries into the venv, run 
   ```bash
-  make install-dev 
+  make install 
   ```
   
   Finally, you should able to run 
