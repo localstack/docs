@@ -46,7 +46,7 @@ In addition you can easily check the status or open a shell in your LocalStack i
 
 #### Prerequisites
 Please make sure to install the following tools on your machine before moving on:
-- [`python`](https://docs.python.org/3/using/index.html) (Python 3.6 up to 3.9 is supported)
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.6 up to 3.10 is supported)
 - [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
 - [`docker`](https://docs.docker.com/get-docker/)
 

@@ -52,6 +52,148 @@ NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
 service/kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP   70s
 {{</ command >}}
 
+### Use images pushed to ECR in EKS
+
+In this section we will, by the use of an example, explore the usage of ECR images inside EKS.
+
+#### Initial configuration
+
+You can use the [configuration]({{< ref "configuration" >}}) variable `HOSTNAME_EXTERNAL` to modify the return value of the resource URIs for most services, including ECR.
+By default, ECR will return a `repositoryUri` starting with `localhost`, like: `localhost:<port>/<repository-name>`.
+If we set the `HOSTNAME_EXTERNAL` to `localhost.localstack.cloud`, ECR will return a `repositoryUri` like `localhost.localstack.cloud:<port>/<repository_name>`.
+
+{{< alert title="Notes" >}}
+In this section, we will assume `localhost.localstack.cloud` resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about [DNS rebind protection]({{< ref "limitations#dns-rebind-protection" >}}) to learn more.
+If this domain does not resolve on your host it is also possible not to set `HOSTNAME_EXTERNAL`, please nevertheless use `localhost.localstack.cloud` as registry in your pod configuration.
+LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` within ECR itself, and you can use the `localhost:<port>/<repository_name>` Uri for tagging and pushing the image on your host.
+{{< / alert >}}
+
+If this configuration is correct, you can use your ECR image in EKS like expected.
+
+In order to demonstrate this behavior, take a look at the following small tutorial which leads to the point where the image is correctly pulled.
+For the sake of this tutorial, we will retag the `nginx` image to be pushed to ECR using another name, and use it for a pod configuration.
+First, we create a new repository with a chosen name:
+{{< command >}}
+$ awslocal ecr create-repository --repository-name "fancier-nginx"
+{
+    "repository": {
+        "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/fancier-nginx",
+        "registryId": "c75fd0e2",
+        "repositoryName": "fancier-nginx",
+        "repositoryUri": "localhost.localstack.cloud:4510/fancier-nginx",
+        "createdAt": "2022-04-13T14:22:47+02:00",
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": {
+            "scanOnPush": false
+        },
+        "encryptionConfiguration": {
+            "encryptionType": "AES256"
+        }
+    }
+}
+{{< / command >}}
+
+Now let us pull the nginx image:
+{{< command >}}
+$ docker pull nginx
+{{< / command >}}
+tag it to our repository name
+{{< command >}}
+$ docker tag nginx localhost.localstack.cloud:4510/fancier-nginx
+{{< / command >}}
+and push it to ECR:
+{{< command >}}
+$ docker push localhost.localstack.cloud:4510/fancier-nginx
+{{< / command >}}
+
+Now, let us setup the EKS cluster using the just-pushed ECR image.
+{{< command >}}
+$ awslocal eks create-cluster --name fancier-cluster --role-arn "r1" --resources-vpc-config "{}"
+{
+    "cluster": {
+        "name": "fancier-cluster",
+        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster",
+        "createdAt": "2022-04-13T16:38:24.850000+02:00",
+        "roleArn": "r1",
+        "resourcesVpcConfig": {},
+        "identity": {
+            "oidc": {
+                "issuer": "https://localhost.localstack.cloud/eks-oidc"
+            }
+        },
+        "status": "CREATING",
+        "clientRequestToken": "cbdf2bb6-fd3b-42b1-afe0-3c70980b5959"
+    }
+}
+{{< / command >}}
+
+Once the cluster status is "ACTIVE"
+{{< command >}}
+awslocal eks describe-cluster --name "fancier-cluster"
+{
+    "cluster": {
+        "name": "fancier-cluster",
+        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster",
+        "createdAt": "2022-04-13T17:12:39.738000+02:00",
+        "endpoint": "https://localhost.localstack.cloud:4511",
+        "roleArn": "r1",
+        "resourcesVpcConfig": {},
+        "identity": {
+            "oidc": {
+                "issuer": "https://localhost.localstack.cloud/eks-oidc"
+            }
+        },
+        "status": "ACTIVE",
+        "certificateAuthority": {
+            "data": "..."
+        },
+        "clientRequestToken": "d188f578-b353-416b-b309-5d8c76ecc4e2"
+    }
+}
+{{< / command >}}
+we will configure `kubectl`
+{{< command >}}
+$ awslocal eks update-kubeconfig --name fancier-cluster && kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster
+Added new context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster to /home/localstack/.kube/config
+Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster".
+{{< / command >}}
+
+and add a deployment configuration
+{{< command >}}
+$ cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fancier-nginx
+  labels:
+    app: fancier-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fancier-nginx
+  template:
+    metadata:
+      labels:
+        app: fancier-nginx
+    spec:
+      containers:
+      - name: fancier-nginx
+        image: localhost.localstack.cloud:4510/fancier-nginx:latest
+        ports:
+        - containerPort: 80
+EOF
+{{< / command >}}
+
+Now, when we run
+{{< command >}}
+kubectl describe pod fancier-nginx
+{{< / command >}}
+we can see, in the events, that the pull from ECR was successful:
+```
+  Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
+```
+
 ## Using an existing Kubernetes installation
 
 You can also use the EKS API using an existing local Kubernetes installation. This works by mounting the `$HOME/.kube/config` file into the LocalStack container - e.g., when using docker-compose.yml:
