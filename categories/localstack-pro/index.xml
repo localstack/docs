@@ -2330,7 +2330,118 @@ Switched to context &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/cluster1
 &lt;span class="command-prefix">$ &lt;/span>kubectl get services
 NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
 service/kubernetes ClusterIP 10.43.0.1 &amp;lt;none&amp;gt; 443/TCP 70s&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;h2 id="using-an-existing-kubernetes-installation">Using an existing Kubernetes installation&lt;/h2>
+&lt;h3 id="use-images-pushed-to-ecr-in-eks">Use images pushed to ECR in EKS&lt;/h3>
+&lt;p>In this section we will, by the use of an example, explore the usage of ECR images inside EKS.&lt;/p>
+&lt;h4 id="initial-configuration">Initial configuration&lt;/h4>
+&lt;p>You can use the &lt;a href="/localstack/configuration/">configuration&lt;/a> variable &lt;code>HOSTNAME_EXTERNAL&lt;/code> to modify the return value of the resource URIs for most services, including ECR.
+By default, ECR will return a &lt;code>repositoryUri&lt;/code> starting with &lt;code>localhost&lt;/code>, like: &lt;code>localhost:&amp;lt;port&amp;gt;/&amp;lt;repository-name&amp;gt;&lt;/code>.
+If we set the &lt;code>HOSTNAME_EXTERNAL&lt;/code> to &lt;code>localhost.localstack.cloud&lt;/code>, ECR will return a &lt;code>repositoryUri&lt;/code> like &lt;code>localhost.localstack.cloud:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Notes&lt;/h4>
+In this section, we will assume &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about &lt;a href="/localstack/limitations/#dns-rebind-protection">DNS rebind protection&lt;/a> to learn more.
+If this domain does not resolve on your host it is also possible not to set &lt;code>HOSTNAME_EXTERNAL&lt;/code>, please nevertheless use &lt;code>localhost.localstack.cloud&lt;/code> as registry in your pod configuration.
+LocalStack will take care of the DNS resolution of &lt;code>localhost.localstack.cloud&lt;/code> within ECR itself, and you can use the &lt;code>localhost:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code> Uri for tagging and pushing the image on your host.
+&lt;/div>
+&lt;p>If this configuration is correct, you can use your ECR image in EKS like expected.&lt;/p>
+&lt;p>In order to demonstrate this behavior, take a look at the following small tutorial which leads to the point where the image is correctly pulled.
+For the sake of this tutorial, we will retag the &lt;code>nginx&lt;/code> image to be pushed to ECR using another name, and use it for a pod configuration.
+First, we create a new repository with a chosen name:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository --repository-name &amp;#34;fancier-nginx&amp;#34;
+{
+&amp;#34;repository&amp;#34;: {
+&amp;#34;repositoryArn&amp;#34;: &amp;#34;arn:aws:ecr:us-east-1:000000000000:repository/fancier-nginx&amp;#34;,
+&amp;#34;registryId&amp;#34;: &amp;#34;c75fd0e2&amp;#34;,
+&amp;#34;repositoryName&amp;#34;: &amp;#34;fancier-nginx&amp;#34;,
+&amp;#34;repositoryUri&amp;#34;: &amp;#34;localhost.localstack.cloud:4510/fancier-nginx&amp;#34;,
+&amp;#34;createdAt&amp;#34;: &amp;#34;2022-04-13T14:22:47+02:00&amp;#34;,
+&amp;#34;imageTagMutability&amp;#34;: &amp;#34;MUTABLE&amp;#34;,
+&amp;#34;imageScanningConfiguration&amp;#34;: {
+&amp;#34;scanOnPush&amp;#34;: false
+},
+&amp;#34;encryptionConfiguration&amp;#34;: {
+&amp;#34;encryptionType&amp;#34;: &amp;#34;AES256&amp;#34;
+}
+}
+}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Now let us pull the nginx image:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker pull nginx&lt;/code>&lt;/pre>&lt;/div>
+tag it to our repository name
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker tag nginx localhost.localstack.cloud:4510/fancier-nginx&lt;/code>&lt;/pre>&lt;/div>
+and push it to ECR:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker push localhost.localstack.cloud:4510/fancier-nginx&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Now, let us setup the EKS cluster using the just-pushed ECR image.
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name fancier-cluster --role-arn &amp;#34;r1&amp;#34; --resources-vpc-config &amp;#34;{}&amp;#34;
+{
+&amp;#34;cluster&amp;#34;: {
+&amp;#34;name&amp;#34;: &amp;#34;fancier-cluster&amp;#34;,
+&amp;#34;arn&amp;#34;: &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster&amp;#34;,
+&amp;#34;createdAt&amp;#34;: &amp;#34;2022-04-13T16:38:24.850000+02:00&amp;#34;,
+&amp;#34;roleArn&amp;#34;: &amp;#34;r1&amp;#34;,
+&amp;#34;resourcesVpcConfig&amp;#34;: {},
+&amp;#34;identity&amp;#34;: {
+&amp;#34;oidc&amp;#34;: {
+&amp;#34;issuer&amp;#34;: &amp;#34;https://localhost.localstack.cloud/eks-oidc&amp;#34;
+}
+},
+&amp;#34;status&amp;#34;: &amp;#34;CREATING&amp;#34;,
+&amp;#34;clientRequestToken&amp;#34;: &amp;#34;cbdf2bb6-fd3b-42b1-afe0-3c70980b5959&amp;#34;
+}
+}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Once the cluster status is &amp;ldquo;ACTIVE&amp;rdquo;
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal eks describe-cluster --name &amp;#34;fancier-cluster&amp;#34;
+{
+&amp;#34;cluster&amp;#34;: {
+&amp;#34;name&amp;#34;: &amp;#34;fancier-cluster&amp;#34;,
+&amp;#34;arn&amp;#34;: &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster&amp;#34;,
+&amp;#34;createdAt&amp;#34;: &amp;#34;2022-04-13T17:12:39.738000+02:00&amp;#34;,
+&amp;#34;endpoint&amp;#34;: &amp;#34;https://localhost.localstack.cloud:4511&amp;#34;,
+&amp;#34;roleArn&amp;#34;: &amp;#34;r1&amp;#34;,
+&amp;#34;resourcesVpcConfig&amp;#34;: {},
+&amp;#34;identity&amp;#34;: {
+&amp;#34;oidc&amp;#34;: {
+&amp;#34;issuer&amp;#34;: &amp;#34;https://localhost.localstack.cloud/eks-oidc&amp;#34;
+}
+},
+&amp;#34;status&amp;#34;: &amp;#34;ACTIVE&amp;#34;,
+&amp;#34;certificateAuthority&amp;#34;: {
+&amp;#34;data&amp;#34;: &amp;#34;...&amp;#34;
+},
+&amp;#34;clientRequestToken&amp;#34;: &amp;#34;d188f578-b353-416b-b309-5d8c76ecc4e2&amp;#34;
+}
+}&lt;/code>&lt;/pre>&lt;/div>
+we will configure &lt;code>kubectl&lt;/code>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal eks update-kubeconfig --name fancier-cluster &amp;amp;&amp;amp; kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster
+Added new context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster to /home/localstack/.kube/config
+Switched to context &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster&amp;#34;.&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>and add a deployment configuration
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: fancier-nginx
+labels:
+app: fancier-nginx
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: fancier-nginx
+template:
+metadata:
+labels:
+app: fancier-nginx
+spec:
+containers:
+- name: fancier-nginx
+image: localhost.localstack.cloud:4510/fancier-nginx:latest
+ports:
+- containerPort: 80
+EOF&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Now, when we run
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">kubectl describe pod fancier-nginx&lt;/code>&lt;/pre>&lt;/div>
+we can see, in the events, that the pull from ECR was successful:&lt;/p>
+&lt;pre>&lt;code> Normal Pulled 10s kubelet Successfully pulled image &amp;quot;localhost.localstack.cloud:4510/fancier-nginx:latest&amp;quot; in 2.412775896s
+&lt;/code>&lt;/pre>&lt;h2 id="using-an-existing-kubernetes-installation">Using an existing Kubernetes installation&lt;/h2>
 &lt;p>You can also use the EKS API using an existing local Kubernetes installation. This works by mounting the &lt;code>$HOME/.kube/config&lt;/code> file into the LocalStack container - e.g., when using docker-compose.yml:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;${HOME}/.kube/config:/root/.kube/config&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
