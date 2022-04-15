@@ -28,7 +28,7 @@ You will need the following tools for local development of LocalStack.
 
 ### Installation instructions
 
-Below are some basic installation instructions for the dependencies you will need (assuming you're on Debian/Ubuntu Linux). In the case of Fedora/Centos most of the packages are pretty same named with a few exceptions.
+Below are some basic installation instructions for the dependencies you will need (assuming you're on Debian/Ubuntu Linux). In the case of Fedora/CentOS, most of the packages have pretty much the same name, with a few exceptions.
 
 * Python 3.7+
   ```bash
