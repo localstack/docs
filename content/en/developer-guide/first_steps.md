@@ -1,51 +1,53 @@
 ### Running Localstack
 
-Once you have cloned the localstack repository, and setup the environment, with dependencies installed,
-You should be able to create the python virtualenv with
+Once you have cloned the LocalStack repository, and setup the environment, with the OS System dependencies installed,
+you should be able to create the Python virtualenv.
 
-  ```bash
-  virtualenv -p 3.8 venv 
-  source venv/bin/activate 
+We recommend create the virtualenv inside `.venv`, 
+which is automatically created whith the Make utility available in the root of the repository.
 
-  ```
- it will create the virtualenv with the python version 3.8, and load it.
- 
- Then, to install all the deps and third-party libraries into the venv, run 
-  ```bash
-  make install 
-  ```
+Create the virtualenv with
+
+{{< command >}}
+make venv
+{{< / command >}}
+
+ The command above will create the Python virtualenv with the dependencies.
+ Then, to build and install all the Python dependencies and third-party libraries into the venv, excecute 
   
-  Finally, you should able to run 
-  ```bash
-  make start 
-  ```
-  You will see localstack running, and the url to http://localhost:4566/ shows `{"status": "running"}`
-  
-  If you are looking for running directly the Python repo
+{{< command >}}
+make install 
+{{< / command >}}
+
+Finally, you should able to run Localstack with 
+{{< command >}}
+make start
+{{< / command >}}
+
+You will see LocalStack running, and the url to http://localhost:4566/ shows `{"status": "running"}`
+
+If you are looking for running LocalStack directly with Python, execute
  
-   ```bash
-   localhost/bin$ python3 localstack start --host 
-  ```
+{{< command >}}
+localhost/bin$ python3 localstack start --host
+{{< / command >}}
 
 ### Debugging Local changes
 
-```
-   python3 -m pdb localstack start --host
-   python3 -m pdb bin/localstack start --host  
+{{< / command >}}
+python3 -m pdb localstack start --host
+python3 -m pdb bin/localstack start --host  
+{{< / command >}}
 
-```
-
-Also, considerate the debugging flags at
-
+Also, consider the debugging flags at
 https://docs.localstack.cloud/localstack/configuration/#debugging
 
-```
+{{< command >}}
   DEVELOP=1 SERVICES=s3,ec2, DEBUG=1  make start
-```
+{{< / command >}}
 
 ### Initialize Services
 
-```
-   SERVICES=s3 DEBUG=1  make start
-
-```
+{{< command >}}
+SERVICES=s3 DEBUG=1  make start
+{{< / command >}}
