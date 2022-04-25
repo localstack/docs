@@ -70,6 +70,8 @@ LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` 
 
 If this configuration is correct, you can use your ECR image in EKS like expected.
 
+#### Deploying a sample application from an ECR image
+
 In order to demonstrate this behavior, take a look at the following small tutorial which leads to the point where the image is correctly pulled.
 For the sake of this tutorial, we will retag the `nginx` image to be pushed to ECR using another name, and use it for a pod configuration.
 First, we create a new repository with a chosen name:
@@ -97,16 +99,16 @@ Now let us pull the nginx image:
 {{< command >}}
 $ docker pull nginx
 {{< / command >}}
-tag it to our repository name
+... tag it to our repository name:
 {{< command >}}
 $ docker tag nginx localhost.localstack.cloud:4510/fancier-nginx
 {{< / command >}}
-and push it to ECR:
+... and push it to ECR:
 {{< command >}}
 $ docker push localhost.localstack.cloud:4510/fancier-nginx
 {{< / command >}}
 
-Now, let us setup the EKS cluster using the just-pushed ECR image.
+Now, let us set up the EKS cluster using the image pushed to local ECR.
 {{< command >}}
 $ awslocal eks create-cluster --name fancier-cluster --role-arn "r1" --resources-vpc-config "{}"
 {
@@ -127,7 +129,7 @@ $ awslocal eks create-cluster --name fancier-cluster --role-arn "r1" --resources
 }
 {{< / command >}}
 
-Once the cluster status is "ACTIVE"
+Once the cluster status is "ACTIVE":
 {{< command >}}
 awslocal eks describe-cluster --name "fancier-cluster"
 {
@@ -151,14 +153,15 @@ awslocal eks describe-cluster --name "fancier-cluster"
     }
 }
 {{< / command >}}
-we will configure `kubectl`
+
+... we will configure `kubectl`:
 {{< command >}}
 $ awslocal eks update-kubeconfig --name fancier-cluster && kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster
 Added new context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster to /home/localstack/.kube/config
 Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster".
 {{< / command >}}
 
-and add a deployment configuration
+... and add a deployment configuration:
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
@@ -185,14 +188,55 @@ spec:
 EOF
 {{< / command >}}
 
-Now, when we run
+Now, if we describe the pod:
 {{< command >}}
 kubectl describe pod fancier-nginx
 {{< / command >}}
-we can see, in the events, that the pull from ECR was successful:
+... we can see, in the events, that the pull from ECR was successful:
 ```
   Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
 ```
+
+### Configuring an Ingress for your services
+
+In order to make an EKS service externally accessible, we need to create an `Ingress` configuration that exposes the service on a certain path to the load balancer.
+
+Assuming we have created an `nginx` Kubernetes service for our sample above, we can now use the following ingress configuration to expose the nginx service on path `/test123`:
+
+{{< command >}}
+$ cat <<EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /test123
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              number: 80
+EOF
+{{< /command >}}
+
+We should then be able to send a request to `nginx` via the load balancer port `8081` from the host:
+{{< command >}}
+$ curl http://localhost:8081/test123
+<html>
+...
+<hr><center>nginx/1.21.6</center>
+...
+{{< / command >}}
+
+{{< alert title="Note" >}}
+You can customize the load balancer port by configuring `EKS_LOADBALANCER_PORT` in your environment.
+{{< /alert >}}
 
 ## Using an existing Kubernetes installation
 
