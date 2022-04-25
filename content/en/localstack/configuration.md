@@ -61,12 +61,14 @@ This section covers configuration values that are specific to certain AWS servic
 
 * [Batch]({{< ref "#batch" >}})
 * [DynamoDB]({{< ref "#dynamodb" >}})
+* [Elastic Kubernetes Service (EKS)]({{< ref "#eks" >}})
 * [Elasticsearch]({{< ref "#elasticsearch" >}})
 * [Kinesis]({{< ref "#kinesis" >}})
 * [Lambda]({{< ref "#lambda" >}})
 * [Stepfunctions]({{< ref "#stepfunctions" >}})
 
 ### Batch
+
 | Variable | Example Values | Description |
 | - | - | - |
 | `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Only flags for volumes, ports, environment variables and add-hosts are allowed. |
@@ -81,6 +83,12 @@ This section covers configuration values that are specific to certain AWS servic
 | `DYNAMODB_OPTIMIZE_DB_BEFORE_STARTUP` | `0`\|`1` | Optimize the database tables in the store before starting |
 | `DYNAMODB_DELAY_TRANSIENT_STATUSES` | `0`\|`1` | When activated, DynamoDB will introduce artificial delays in resource creation to simulate the actual cloud service more closely. Currently works only for CREATING and DELETING online index statuses. |
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
+
+### EKS
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
 
 ### Elasticsearch
 
