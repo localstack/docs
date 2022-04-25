@@ -61,8 +61,8 @@ The Docker backend supports following operations:
 |:----------|:------|
 | CreateImage | Uses Docker commit to take a snapshot of a running instance into a new AMI |
 | DescribeImages | Retrieve a list of Docker images available for use within LocalStack |
-| DescribeInstances | Supports the `InstanceId.N` request parameter |
-| RunInstances | Supports `ImageId`, `MaxCount`, `KeyPair` and `UserData` request parameters |
-| StopInstances | Corresponds to pausing a container. Supports the `InstanceId.N` request parameter |
-| StartInstances | Corresponds to unpausing a container. Supports the `InstanceId.N` request parameter |
-| TerminateInstances | Corresponds to stopping a container. Supports the `InstanceId.N` request parameter |
+| DescribeInstances | Describe 'mock' instances as well as Docker-backed instances |
+| RunInstances | Launch an instance. Supports `ImageId`, `MaxCount`, `KeyPair` and `UserData` parameters |
+| StopInstances | Corresponds to pausing a container |
+| StartInstances | Corresponds to unpausing a container |
+| TerminateInstances | Corresponds to stopping a container |
