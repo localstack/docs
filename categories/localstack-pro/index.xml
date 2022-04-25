@@ -2343,6 +2343,7 @@ If this domain does not resolve on your host it is also possible not to set &lt;
 LocalStack will take care of the DNS resolution of &lt;code>localhost.localstack.cloud&lt;/code> within ECR itself, and you can use the &lt;code>localhost:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code> Uri for tagging and pushing the image on your host.
 &lt;/div>
 &lt;p>If this configuration is correct, you can use your ECR image in EKS like expected.&lt;/p>
+&lt;h4 id="deploying-a-sample-application-from-an-ecr-image">Deploying a sample application from an ECR image&lt;/h4>
 &lt;p>In order to demonstrate this behavior, take a look at the following small tutorial which leads to the point where the image is correctly pulled.
 For the sake of this tutorial, we will retag the &lt;code>nginx&lt;/code> image to be pushed to ECR using another name, and use it for a pod configuration.
 First, we create a new repository with a chosen name:
@@ -2365,11 +2366,11 @@ First, we create a new repository with a chosen name:
 }&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Now let us pull the nginx image:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker pull nginx&lt;/code>&lt;/pre>&lt;/div>
-tag it to our repository name
+&amp;hellip; tag it to our repository name:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker tag nginx localhost.localstack.cloud:4510/fancier-nginx&lt;/code>&lt;/pre>&lt;/div>
-and push it to ECR:
+&amp;hellip; and push it to ECR:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker push localhost.localstack.cloud:4510/fancier-nginx&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>Now, let us setup the EKS cluster using the just-pushed ECR image.
+&lt;p>Now, let us set up the EKS cluster using the image pushed to local ECR.
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name fancier-cluster --role-arn &amp;#34;r1&amp;#34; --resources-vpc-config &amp;#34;{}&amp;#34;
 {
 &amp;#34;cluster&amp;#34;: {
@@ -2387,7 +2388,7 @@ and push it to ECR:
 &amp;#34;clientRequestToken&amp;#34;: &amp;#34;cbdf2bb6-fd3b-42b1-afe0-3c70980b5959&amp;#34;
 }
 }&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>Once the cluster status is &amp;ldquo;ACTIVE&amp;rdquo;
+&lt;p>Once the cluster status is &amp;ldquo;ACTIVE&amp;rdquo;:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal eks describe-cluster --name &amp;#34;fancier-cluster&amp;#34;
 {
 &amp;#34;cluster&amp;#34;: {
@@ -2408,12 +2409,12 @@ and push it to ECR:
 },
 &amp;#34;clientRequestToken&amp;#34;: &amp;#34;d188f578-b353-416b-b309-5d8c76ecc4e2&amp;#34;
 }
-}&lt;/code>&lt;/pre>&lt;/div>
-we will configure &lt;code>kubectl&lt;/code>
+}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>&amp;hellip; we will configure &lt;code>kubectl&lt;/code>:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal eks update-kubeconfig --name fancier-cluster &amp;amp;&amp;amp; kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster
 Added new context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster to /home/localstack/.kube/config
 Switched to context &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster&amp;#34;.&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>and add a deployment configuration
+&lt;p>&amp;hellip; and add a deployment configuration:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
@@ -2437,11 +2438,43 @@ image: localhost.localstack.cloud:4510/fancier-nginx:latest
 ports:
 - containerPort: 80
 EOF&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>Now, when we run
+&lt;p>Now, if we describe the pod:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">kubectl describe pod fancier-nginx&lt;/code>&lt;/pre>&lt;/div>
-we can see, in the events, that the pull from ECR was successful:&lt;/p>
+&amp;hellip; we can see, in the events, that the pull from ECR was successful:&lt;/p>
 &lt;pre>&lt;code> Normal Pulled 10s kubelet Successfully pulled image &amp;quot;localhost.localstack.cloud:4510/fancier-nginx:latest&amp;quot; in 2.412775896s
-&lt;/code>&lt;/pre>&lt;h2 id="using-an-existing-kubernetes-installation">Using an existing Kubernetes installation&lt;/h2>
+&lt;/code>&lt;/pre>&lt;h3 id="configuring-an-ingress-for-your-services">Configuring an Ingress for your services&lt;/h3>
+&lt;p>In order to make an EKS service externally accessible, we need to create an &lt;code>Ingress&lt;/code> configuration that exposes the service on a certain path to the load balancer.&lt;/p>
+&lt;p>Assuming we have created an &lt;code>nginx&lt;/code> Kubernetes service for our sample above, we can now use the following ingress configuration to expose the nginx service on path &lt;code>/test123&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+name: nginx
+annotations:
+ingress.kubernetes.io/ssl-redirect: &amp;#34;false&amp;#34;
+spec:
+rules:
+- http:
+paths:
+- path: /test123
+pathType: Prefix
+backend:
+service:
+name: nginx
+port:
+number: 80
+EOF&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We should then be able to send a request to &lt;code>nginx&lt;/code> via the load balancer port &lt;code>8081&lt;/code> from the host:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:8081/test123
+&amp;lt;html&amp;gt;
+...
+&amp;lt;hr&amp;gt;&amp;lt;center&amp;gt;nginx/1.21.6&amp;lt;/center&amp;gt;
+...&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+You can customize the load balancer port by configuring &lt;code>EKS_LOADBALANCER_PORT&lt;/code> in your environment.
+&lt;/div>
+&lt;h2 id="using-an-existing-kubernetes-installation">Using an existing Kubernetes installation&lt;/h2>
 &lt;p>You can also use the EKS API using an existing local Kubernetes installation. This works by mounting the &lt;code>$HOME/.kube/config&lt;/code> file into the LocalStack container - e.g., when using docker-compose.yml:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;${HOME}/.kube/config:/root/.kube/config&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
