@@ -99,11 +99,11 @@ Now let us pull the nginx image:
 {{< command >}}
 $ docker pull nginx
 {{< / command >}}
-tag it to our repository name
+... tag it to our repository name:
 {{< command >}}
 $ docker tag nginx localhost.localstack.cloud:4510/fancier-nginx
 {{< / command >}}
-and push it to ECR:
+... and push it to ECR:
 {{< command >}}
 $ docker push localhost.localstack.cloud:4510/fancier-nginx
 {{< / command >}}
@@ -188,11 +188,11 @@ spec:
 EOF
 {{< / command >}}
 
-Now, when we run
+Now, if we describe the pod:
 {{< command >}}
 kubectl describe pod fancier-nginx
 {{< / command >}}
-we can see, in the events, that the pull from ECR was successful:
+... we can see, in the events, that the pull from ECR was successful:
 ```
   Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
 ```
@@ -235,7 +235,7 @@ $ curl http://localhost:8081/test123
 {{< / command >}}
 
 {{< alert title="Note" >}}
-Note: You can customize the load balancer port by configuring `EKS_LOADBALANCER_PORT` in your environment.
+You can customize the load balancer port by configuring `EKS_LOADBALANCER_PORT` in your environment.
 {{< /alert >}}
 
 ## Using an existing Kubernetes installation
