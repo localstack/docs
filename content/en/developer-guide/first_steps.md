@@ -34,7 +34,7 @@ localhost/bin$ python3 localstack start --host
 
 ### Debugging Local changes
 
-{{< / command >}}
+{{< command >}}
 python3 -m pdb localstack start --host
 python3 -m pdb bin/localstack start --host  
 {{< / command >}}
