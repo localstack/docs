@@ -1,3 +1,14 @@
+---
+title: "First steps"
+weight: 5
+description: Run Localstack and test your changes.
+
+---
+
+{{% alert %}}
+**Note:** We have recently added a couple of refactorings and enhancements in the core framework and application architecture, hence this page is no longer fully up to date. We're planning to publish an updated version soon.
+{{% /alert %}}
+
 ### Running Localstack
 
 Once you have cloned the LocalStack repository, and setup the environment, with the OS System dependencies installed,
@@ -6,7 +17,9 @@ you should be able to create the Python virtualenv.
 We recommend create the virtualenv inside `.venv`, 
 which is automatically created whith the Make utility available in the root of the repository.
 
+
 Create the virtualenv with
+
 
 {{< command >}}
 make venv
