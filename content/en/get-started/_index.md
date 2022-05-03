@@ -142,7 +142,7 @@ You can check if `docker` is correctly configured on your machine by executing `
 #### Starting LocalStack with Docker
 You can start the Docker container simply by executing the following `docker run` command:
 {{< command >}}
-$ docker run --rm -it -p 4566:4566 -p 4571:4571 localstack/localstack
+$ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
 {{< / command >}}
 
 {{< alert title="Notes" >}}
@@ -155,9 +155,6 @@ $ docker run --rm -it -p 4566:4566 -p 4571:4571 localstack/localstack
   When using Docker to manually start LocalStack, you will have to configure the container on your own.
   This could be seen as the "expert mode" of starting LocalStack.
   If you are looking for a simpler method of starting LocalStack, please use the [LocalStack CLI]({{< ref "#localstack-cli" >}}).
-
-- This command starts all services provided by LocalStack.
-  You can limit the services to a subset by setting the environment variable `SERVICES` (for example with `-e "SERVICES=dynamodb,s3"`).
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_SERVICES=s3` is equivalent to `SERVICES=s3`.
 {{< /alert >}}
