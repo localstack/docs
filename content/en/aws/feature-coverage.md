@@ -435,6 +435,12 @@ In the coverage tables below, the features are marked with their respective avai
 | Lifecycle Policies                                                 | \-             |                 |       |
 | Metric Policies                                                    | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
+| **Managed Workflows for Apache Airflow (MWAA)** (Pro)              |                |                 |       |
+| CLI Tokens                                                         | -           |                 |       |
+| Environments                                                       | ⭐⭐⭐          |                 |       |
+| S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐        |                 |       |
+| Web Login                                                          | ⭐⭐⭐          |                 |       |
 | [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      |                |                 |       |
 | DB Clusters                                                        | ⭐⭐⭐⭐       |                 |       |
 | DB Cluster Endpoints                                               | ⭐⭐⭐⭐       |                 |       |

@@ -151,3 +151,9 @@ This will prepend this line in the resolv.conf file even after changes.
 
 **Note**: Using this options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain aws domains).
 LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions / in debug mode.
+
+## Customizing internal endpoint resolution
+
+The DNS name `localhost.localstack.cloud` (and any subdomains like `mybucket.s3.localhost.localstack.cloud`) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.
+
+Please refer to the steps in the [Route53 docs]({{< ref "route53" >}}) for more details on how the internal DNS name can be customized.
