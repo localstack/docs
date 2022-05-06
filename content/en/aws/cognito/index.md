@@ -9,9 +9,9 @@ description: >
 
 LocalStack Pro contains basic support for authentication via Cognito. You can create Cognito user pools, sign up and confirm users, set up Lambda triggers, and use the `COGNITO_USER_POOLS` authorizer integration with API Gateway.
 
-{{< alert title="SMTP settings" >}}
-By default, Cognito does not send actual email messages. To enable this feature, you will require an e-mail address and the corresponding SMTP settings ([see below](#smtp-integration)).
-{{< /alert >}}
+By default, Cognito does not send actual email messages.
+To enable this feature, you will require an email address and the corresponding SMTP settings.
+Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server.
 
 ## Creating a User Pool
 
@@ -164,18 +164,6 @@ Note that the value of the `redirect_uri` parameter must match the value provide
   'http://localhost:4566/oauth2/token'
 {"access_token": "eyJ0eXAi…lKaHx44Q", "expires_in": 86400, "token_type": "Bearer", "refresh_token": "e3f08304", "id_token": "eyJ0eXAi…ADTXv5mA"}
 ```
-
-## SMTP Integration
-
-In order to enable sending activation emails, configure the following SMTP settings as environment variables:
-```env
-SMTP_HOST=<smtp-host-address>
-SMTP_USER=<email-user-name>
-SMTP_PASS=<email-password>
-SMTP_EMAIL=<email-address>
-```
-
-Please check with your email provider for details regarding the SMTP settings above.
 
 ## Serverless and Cognito
 

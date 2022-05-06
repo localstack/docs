@@ -167,6 +167,18 @@ Please be aware that the following configurations may have severe security impli
 | `EXTRA_CORS_EXPOSE_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Expose-Headers CORS header. |
 
 
+## Emails
+
+Please check with your SMTP email service provider for the following settings.
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `SMTP_HOST` | `localhost` | Hostname of the SMTP server. The port defaults to 25. |
+| `SMTP_USER` |  | Login username for the SMTP server if required. |
+| `SMTP_PASS` |  | Login password for the SMTP server if required. |
+| `SMTP_EMAIL` | `sender@example.com` | Origin email address. Required for Cognito only. |
+
+
 ## Provider
 
 Some of the services can be configured to switch to a particular provider:

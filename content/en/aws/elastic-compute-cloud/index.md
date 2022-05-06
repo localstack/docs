@@ -52,6 +52,8 @@ If the LocalStack daemon is not running, the instance will be only accessible ov
 
 LocalStack daemon is supported on Linux and MacOS.
 
+Ports other than 22 (SSH) are currently not exposed from the Dockerised instances.
+
 
 ### Operations
 
@@ -61,7 +63,7 @@ The Docker backend supports following operations:
 |:----------|:------|
 | CreateImage | Uses Docker commit to take a snapshot of a running instance into a new AMI |
 | DescribeImages | Retrieve a list of Docker images available for use within LocalStack |
-| DescribeInstances | Describe 'mock' instances as well as Docker-backed instances |
+| DescribeInstances | Describe 'mock' instances as well as Docker-backed instances. Docker-backed instances have the resource tag `ec2_vm_manager:docker` |
 | RunInstances | Launch an instance. Supports `ImageId`, `MaxCount`, `KeyPair` and `UserData` parameters |
 | StopInstances | Corresponds to pausing a container |
 | StartInstances | Corresponds to unpausing a container |
