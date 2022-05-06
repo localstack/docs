@@ -145,14 +145,6 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
 | `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [OpenSearch#endpoints]({{< ref "opensearch#endpoints" >}})). |
 
-### Simple Email Service
-
-| Variable | Example Values | Description |
-| - | - | - |
-| `SMTP_HOST` | `localhost` | Hostname of the SMTP server. The port defaults to 25. |
-| `SMTP_USER` |  | Login username for the SMTP server if required. |
-| `SMTP_PASS` |  | Login password for the SMTP server if required. |
-
 ### StepFunctions
 
 | Variable | Example Values | Description |
@@ -173,6 +165,18 @@ Please be aware that the following configurations may have severe security impli
 | `EXTRA_CORS_ALLOWED_ORIGINS` | | Comma-separated list of origins that are allowed to communicate with localstack. |
 | `EXTRA_CORS_ALLOWED_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Allow-Headers CORS header. |
 | `EXTRA_CORS_EXPOSE_HEADERS` | | Comma-separated list of header names to be be added to Access-Control-Expose-Headers CORS header. |
+
+
+## Emails
+
+Please check with your SMTP email service provider for the following settings.
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `SMTP_HOST` | `localhost` | Hostname of the SMTP server. The port defaults to 25. |
+| `SMTP_USER` |  | Login username for the SMTP server if required. |
+| `SMTP_PASS` |  | Login password for the SMTP server if required. |
+| `SMTP_EMAIL` | `sender@example.com` | Origin email address. Required for Cognito only. |
 
 
 ## Provider
