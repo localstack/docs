@@ -145,6 +145,14 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
 | `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [OpenSearch#endpoints]({{< ref "opensearch#endpoints" >}})). |
 
+### Simple Email Service
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `SMTP_HOST` | `localhost` | Hostname of the SMTP server. The port defaults to 25. |
+| `SMTP_USER` |  | Login username for the SMTP server if required. |
+| `SMTP_PASS` |  | Login password for the SMTP server if required. |
+
 ### StepFunctions
 
 | Variable | Example Values | Description |
