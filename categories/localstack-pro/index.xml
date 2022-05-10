@@ -1850,7 +1850,10 @@ In some systems, directly editing &lt;code>/etc/resolv.conf&lt;/code> is possibl
 If your &lt;code>/etc/resolv.conf&lt;/code> is overwritten by some service, it might be possible to install and enable/start &lt;code>resolvconf&lt;/code> and specify the nameserver in &lt;code>/etc/resolvconf/resolv.conf.d/head&lt;/code> with &lt;code>nameserver 127.0.0.1&lt;/code>.
 This will prepend this line in the resolv.conf file even after changes.&lt;/p>
 &lt;p>&lt;strong>Note&lt;/strong>: Using this options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain aws domains).
-LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions / in debug mode.&lt;/p></description></item><item><title>Tools: Patched AWS SDKs for Lambdas</title><link>/tools/local-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/local-endpoint-injection/patched-sdks/</guid><description>
+LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions / in debug mode.&lt;/p>
+&lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
+&lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
+&lt;p>Please refer to the steps in the &lt;a href="/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item><item><title>Tools: Patched AWS SDKs for Lambdas</title><link>/tools/local-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/local-endpoint-injection/patched-sdks/</guid><description>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
 This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.&lt;/p>
@@ -2932,7 +2935,21 @@ Password: &amp;lt;enter &amp;#34;test&amp;#34;&amp;gt;&lt;/code>&lt;/pre>&lt;/di
 test.example.com. 300 IN A 1.2.3.4&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;strong>Note&lt;/strong>: Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the &lt;code>DNS_ADDRESS&lt;/code> configuration variable).
-&lt;/div></description></item><item><title>Aws: SageMaker</title><link>/aws/sagemaker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/sagemaker/</guid><description>
+&lt;/div>
+&lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
+&lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
+&lt;p>Customizing the internal LocalStack DNS name is not a common requirement - it should work out of the box for most use cases. However, in some cases you may want to customize the external resolution of this DNS name, for example if your LocalStack instance is running on a separate Docker network than your application code, or even on a different machine.&lt;/p>
+&lt;p>Assume we&amp;rsquo;d like to have all &lt;code>*.localhost.localstack.cloud&lt;/code> subdomains resolve to the address &lt;code>5.6.7.8&lt;/code> (i.e., if this is the IP where your LocalStack instance is accessible) when querying the built-in DNS server. We can utilize Route53 to that effect:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name localhost.localstack.cloud --caller-reference r1 | jq -r .HostedZone.Id)
+&lt;span class="command-prefix">$ &lt;/span>awslocal route53 change-resource-record-sets --hosted-zone-id $zone_id --change-batch &amp;#39;{&amp;#34;Changes&amp;#34;:[{&amp;#34;Action&amp;#34;:&amp;#34;CREATE&amp;#34;,&amp;#34;ResourceRecordSet&amp;#34;:{&amp;#34;Name&amp;#34;:&amp;#34;localhost.localstack.cloud&amp;#34;,&amp;#34;Type&amp;#34;:&amp;#34;A&amp;#34;,&amp;#34;ResourceRecords&amp;#34;:[{&amp;#34;Value&amp;#34;:&amp;#34;5.6.7.8&amp;#34;}]}},{&amp;#34;Action&amp;#34;:&amp;#34;CREATE&amp;#34;,&amp;#34;ResourceRecordSet&amp;#34;:{&amp;#34;Name&amp;#34;:&amp;#34;*.localhost.localstack.cloud&amp;#34;,&amp;#34;Type&amp;#34;:&amp;#34;A&amp;#34;,&amp;#34;ResourceRecords&amp;#34;:[{&amp;#34;Value&amp;#34;:&amp;#34;5.6.7.8&amp;#34;}]}}]}&amp;#39;
+&lt;span class="command-prefix">$ &lt;/span>dig @127.0.0.1 bucket1.s3.localhost.localstack.cloud
+...
+;; ANSWER SECTION:
+localhost.localstack.cloud. 300 IN A 5.6.7.8
+&lt;span class="command-prefix">$ &lt;/span>dig @127.0.0.1 localhost.localstack.cloud
+...
+;; ANSWER SECTION:
+localhost.localstack.cloud. 300 IN A 5.6.7.8&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item><item><title>Aws: SageMaker</title><link>/aws/sagemaker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/sagemaker/</guid><description>
 &lt;p>LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using TensorFlow).&lt;/p>
 &lt;p>A basic example using the &lt;code>sagemaker.tensorflow.TensorFlow&lt;/code> class is provided in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sagemaker-ml-jobs">this Github repository&lt;/a>. Essentially, the code boils down to these core lines:&lt;/p>
 &lt;pre>&lt;code>inputs = ... # load training data files

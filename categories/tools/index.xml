@@ -147,7 +147,10 @@ In some systems, directly editing &lt;code>/etc/resolv.conf&lt;/code> is possibl
 If your &lt;code>/etc/resolv.conf&lt;/code> is overwritten by some service, it might be possible to install and enable/start &lt;code>resolvconf&lt;/code> and specify the nameserver in &lt;code>/etc/resolvconf/resolv.conf.d/head&lt;/code> with &lt;code>nameserver 127.0.0.1&lt;/code>.
 This will prepend this line in the resolv.conf file even after changes.&lt;/p>
 &lt;p>&lt;strong>Note&lt;/strong>: Using this options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain aws domains).
-LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions / in debug mode.&lt;/p></description></item><item><title>Tools: Patched AWS SDKs for Lambdas</title><link>/tools/local-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/local-endpoint-injection/patched-sdks/</guid><description>
+LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions / in debug mode.&lt;/p>
+&lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
+&lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
+&lt;p>Please refer to the steps in the &lt;a href="/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item><item><title>Tools: Patched AWS SDKs for Lambdas</title><link>/tools/local-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/local-endpoint-injection/patched-sdks/</guid><description>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
 This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.&lt;/p>
