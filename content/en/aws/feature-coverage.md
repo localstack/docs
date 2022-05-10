@@ -157,7 +157,7 @@ In the coverage tables below, the features are marked with their respective avai
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Trails                                                             | ⭐⭐⭐         |                 |       |
 | Start/Stop Logging                                                 | ⭐⭐⭐         |                 |       |
-| **CloudWatch**                                                     |                |                 |       |
+| [**CloudWatch**]({{< ref "cloudwatch" >}})                         |                |                 |       |
 | Alarms                                                             | ⭐⭐           |                 |       |
 | Alarm Histories                                                    | \-             |                 |       |
 | Anomaly Detectors                                                  | \-             |                 |       |
