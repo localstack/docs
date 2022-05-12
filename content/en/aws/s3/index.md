@@ -31,6 +31,7 @@ $ awslocal s3api list-buckets
     "Owner": {
         "DisplayName": "webfile",
         "ID": "bcaf1ffd86f41161ca5fb16fd081034f"
+    }
 }
 
 $ awslocal s3api put-object --bucket sample-bucket --key index.html --body index.html
