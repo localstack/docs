@@ -153,6 +153,50 @@ $ awslocal glue get-partitions --database-name db1 --table-name table1
 ...
 {{< / command >}}
 
+## Schema Registry
+
+The Glue Schema Registry allows you to centrally discover, control, and evolve data stream schemas.
+With the Schema Registry, you can manage and enforce schemas and schema compatibilities in your streaming applications.
+It integrates nicely with [Managed Streaming for Kafka (MSK)](../managed-streaming-for-kafka).
+
+{{< alert >}}**Note**:
+Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry. Support for other dataformats will be added in the future.
+{{< /alert >}}
+
+{{< command >}}
+$ awslocal glue create-registry --registry-name demo-registry
+{
+    "RegistryArn": "arn:aws:glue:us-east-1:000000000000:file-registry/demo-registry",
+    "RegistryName": "demo-registry"
+}
+$ awslocal glue create-schema --schema-name demo-schema --registry-id RegistryName=demo-registry --data-format AVRO --compatibility FORWARD \
+  --schema-definition '{"type":"record","namespace":"Demo","name":"Person","fields":[{"name":"Name","type":"string"}]}'
+{
+    "RegistryName": "demo-registry",
+    "RegistryArn": "arn:aws:glue:us-east-1:000000000000:file-registry/demo-registry",
+    "SchemaName": "demo-schema",
+    "SchemaArn": "arn:aws:glue:us-east-1:000000000000:schema/demo-registry/demo-schema",
+    "DataFormat": "AVRO",
+    "Compatibility": "FORWARD",
+    "SchemaCheckpoint": 1,
+    "LatestSchemaVersion": 1,
+    "NextSchemaVersion": 2,
+    "SchemaStatus": "AVAILABLE",
+    "SchemaVersionId": "546d3220-6ab8-452c-bb28-0f1f075f90dd",
+    "SchemaVersionStatus": "AVAILABLE"
+}
+$ awslocal glue register-schema-version --schema-id SchemaName=demo-schema,RegistryName=demo-registry \
+  --schema-definition '{"type":"record","namespace":"Demo","name":"Person","fields":[{"name":"Name","type":"string"}, {"name":"Address","type":"string"}]}'
+{
+    "SchemaVersionId": "ee38732b-b299-430d-a88b-4c429d9e1208",
+    "VersionNumber": 2,
+    "Status": "AVAILABLE"
+}
+{{< / command >}}
+
+You can find a more advanced sample in our [localstack-pro-samples repository on GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/glue-msk-schema-registry), which showcases the integration with AWS MSK and automatic schema registrations (including schema rejections based on the compatibilities).
+
+
 ## Further Reading
 
 The AWS Glue API is a fairly comprehensive service - more details can be found in the official [AWS Glue Developer Guide](https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html).
