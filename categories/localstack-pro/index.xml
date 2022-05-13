@@ -2678,6 +2678,43 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &amp;#34;DatabaseName&amp;#34;: &amp;#34;db1&amp;#34;,
 &amp;#34;TableName&amp;#34;: &amp;#34;table1&amp;#34;,
 ...&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="schema-registry">Schema Registry&lt;/h2>
+&lt;p>The Glue Schema Registry allows you to centrally discover, control, and evolve data stream schemas.
+With the Schema Registry, you can manage and enforce schemas and schema compatibilities in your streaming applications.
+It integrates nicely with &lt;a href="../managed-streaming-for-kafka">Managed Streaming for Kafka (MSK)&lt;/a>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>:
+Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry. Support for other dataformats will be added in the future.
+&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-registry --registry-name demo-registry
+{
+&amp;#34;RegistryArn&amp;#34;: &amp;#34;arn:aws:glue:us-east-1:000000000000:file-registry/demo-registry&amp;#34;,
+&amp;#34;RegistryName&amp;#34;: &amp;#34;demo-registry&amp;#34;
+}
+&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-schema --schema-name demo-schema --registry-id RegistryName=demo-registry --data-format AVRO --compatibility FORWARD \
+--schema-definition &amp;#39;{&amp;#34;type&amp;#34;:&amp;#34;record&amp;#34;,&amp;#34;namespace&amp;#34;:&amp;#34;Demo&amp;#34;,&amp;#34;name&amp;#34;:&amp;#34;Person&amp;#34;,&amp;#34;fields&amp;#34;:[{&amp;#34;name&amp;#34;:&amp;#34;Name&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}]}&amp;#39;
+{
+&amp;#34;RegistryName&amp;#34;: &amp;#34;demo-registry&amp;#34;,
+&amp;#34;RegistryArn&amp;#34;: &amp;#34;arn:aws:glue:us-east-1:000000000000:file-registry/demo-registry&amp;#34;,
+&amp;#34;SchemaName&amp;#34;: &amp;#34;demo-schema&amp;#34;,
+&amp;#34;SchemaArn&amp;#34;: &amp;#34;arn:aws:glue:us-east-1:000000000000:schema/demo-registry/demo-schema&amp;#34;,
+&amp;#34;DataFormat&amp;#34;: &amp;#34;AVRO&amp;#34;,
+&amp;#34;Compatibility&amp;#34;: &amp;#34;FORWARD&amp;#34;,
+&amp;#34;SchemaCheckpoint&amp;#34;: 1,
+&amp;#34;LatestSchemaVersion&amp;#34;: 1,
+&amp;#34;NextSchemaVersion&amp;#34;: 2,
+&amp;#34;SchemaStatus&amp;#34;: &amp;#34;AVAILABLE&amp;#34;,
+&amp;#34;SchemaVersionId&amp;#34;: &amp;#34;546d3220-6ab8-452c-bb28-0f1f075f90dd&amp;#34;,
+&amp;#34;SchemaVersionStatus&amp;#34;: &amp;#34;AVAILABLE&amp;#34;
+}
+&lt;span class="command-prefix">$ &lt;/span>awslocal glue register-schema-version --schema-id SchemaName=demo-schema,RegistryName=demo-registry \
+--schema-definition &amp;#39;{&amp;#34;type&amp;#34;:&amp;#34;record&amp;#34;,&amp;#34;namespace&amp;#34;:&amp;#34;Demo&amp;#34;,&amp;#34;name&amp;#34;:&amp;#34;Person&amp;#34;,&amp;#34;fields&amp;#34;:[{&amp;#34;name&amp;#34;:&amp;#34;Name&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}, {&amp;#34;name&amp;#34;:&amp;#34;Address&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}]}&amp;#39;
+{
+&amp;#34;SchemaVersionId&amp;#34;: &amp;#34;ee38732b-b299-430d-a88b-4c429d9e1208&amp;#34;,
+&amp;#34;VersionNumber&amp;#34;: 2,
+&amp;#34;Status&amp;#34;: &amp;#34;AVAILABLE&amp;#34;
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can find a more advanced sample in our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-msk-schema-registry">localstack-pro-samples repository on GitHub&lt;/a>, which showcases the integration with AWS MSK and automatic schema registrations (including schema rejections based on the compatibilities).&lt;/p>
 &lt;h2 id="further-reading">Further Reading&lt;/h2>
 &lt;p>The AWS Glue API is a fairly comprehensive service - more details can be found in the official &lt;a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html">AWS Glue Developer Guide&lt;/a>.&lt;/p>
 &lt;h2 id="current-limitations">Current Limitations&lt;/h2>
