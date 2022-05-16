@@ -462,6 +462,6 @@ You can configure the integration between pulumi-local and LocalStack by adding 
 ### Articles
 
 * [Pulumi and LocalStack -- beyond the basics. 2021-08-26](https://delitescere.medium.com/pulumi-and-localstack-beyond-the-basics-d993f3b94d17)
-* [How to deploy Localstack with Pulumi. 2020-09-22](https://overflowed.dev/blog/how-to-deploy-localstack-with-pulumi)
+* [How to deploy LocalStack with Pulumi. 2020-09-22](https://overflowed.dev/blog/how-to-deploy-localstack-with-pulumi)
 
 

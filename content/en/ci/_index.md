@@ -22,7 +22,7 @@ The tests then execute the application in the cloud environment emulated by Loca
 After a successful test run, the more expensive AWS CodeBuild pipeline for deploying your application can be executed.
 The test reports created by your testing framework can be enriched with traces and analytics generated inside LocalStack.
 
-{{< figure src="localstack-in-ci.svg" alt="An example CI/CD workflow using Localstack" width="70%">}}
+{{< figure src="localstack-in-ci.svg" alt="An example CI/CD workflow using LocalStack" width="70%">}}
 
 
 ## Running LocalStack in CI environments

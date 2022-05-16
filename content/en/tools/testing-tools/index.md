@@ -103,7 +103,7 @@ public class SESMessagingTest {
 
 #### PowerMockLocalStack Utility
 
-This utility makes easier to use PowerMock with Localstack.
+This utility makes easier to use PowerMock with LocalStack.
 
 ```java
 ...

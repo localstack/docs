@@ -201,4 +201,4 @@ For more examples, you can take a look at our [Terraform sample](https://github.
 
 ### Community Resources
 
-* [Localstack with Terraform and Docker for running AWS locally. 2021-07-04](https://dev.to/mrwormhole/localstack-with-terraform-and-docker-for-running-aws-locally-3a6d)
+* [LocalStack with Terraform and Docker for running AWS locally. 2021-07-04](https://dev.to/mrwormhole/localstack-with-terraform-and-docker-for-running-aws-locally-3a6d)
