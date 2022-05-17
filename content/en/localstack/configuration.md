@@ -73,6 +73,13 @@ This section covers configuration values that are specific to certain AWS servic
 | - | - | - |
 | `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Only flags for volumes, ports, environment variables and add-hosts are allowed. |
 
+### Bigdata (EMR, Athena, Glue,...)
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
+| `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
+
 ### DynamoDB
 
 | Variable | Example Values | Description |
@@ -130,7 +137,7 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function. |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Lambda Docker `run`\|`create` commands (e.g., useful for specifying custom volume mounts). Does only support environment, volume, port and add-host flags |
 | `LAMBDA_CONTAINER_REGISTRY` | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.|
-| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas finished executing.|
+| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. Only applicable when using docker-reuse executor. |
 | `LAMBDA_FALLBACK_URL` | | Fallback URL to use when a non-existing Lambda is invoked. Either records invocations in DynamoDB (value `dynamodb://<table_name>`) or forwards invocations as a POST request (value `http(s)://...`).|
 | `LAMBDA_FORWARD_URL` | | URL used to forward all Lambda invocations (useful to run Lambdas via an external service).
 | `LAMBDA_JAVA_OPTS` | `-Xmx512M` | Allow passing custom JVM options to Java Lambdas executed in Docker. Use `_debug_port_` placeholder to configure the debug port, e.g., `-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=_debug_port_`. |
