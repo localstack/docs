@@ -1487,7 +1487,7 @@ id="tabs-1-1" role="tabpanel" aria-labelled-by="tabs-1-1-tab">&lt;div class="hig
 &lt;span style="color:#000">AmazonSimpleEmailService&lt;/span> &lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">amazonSimpleEmailServiceClientBuilder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">defaultClient&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
 &lt;span style="color:#ce5c00;font-weight:bold">....&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="powermocklocalstack-utility">PowerMockLocalStack Utility&lt;/h4>
-&lt;p>This utility makes easier to use PowerMock with Localstack.&lt;/p>
+&lt;p>This utility makes easier to use PowerMock with LocalStack.&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-java" data-lang="java">&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
 &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">PowerMockLocalStackExampleTest&lt;/span> &lt;span style="color:#204a87;font-weight:bold">extends&lt;/span> &lt;span style="color:#000">PowerMockLocalStack&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">static&lt;/span> &lt;span style="color:#204a87;font-weight:bold">final&lt;/span> &lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">TOPIC&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;topic&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
@@ -1693,7 +1693,7 @@ Any cluster created with the Elasticsearch Service will show up in the OpenSearc
 &lt;strong>Note&lt;/strong>: Unless you use the Elasticsearch default version, the first time you create a cluster with a specific version, the Elasticsearch binary is downloaded, which may take a while to download.
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in Localstack.
+&lt;strong>Note&lt;/strong>: The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.
 &lt;/div>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name my-domain
 {
@@ -1846,7 +1846,7 @@ This can however lead to unexpected behavior when persisting data into Elasticse
 │ │ ├── data
 │ │ └── tmp
 &lt;/code>&lt;/pre>&lt;h2 id="custom-elasticsearch-backends">Custom Elasticsearch backends&lt;/h2>
-&lt;p>Localstack downloads elasticsearch asynchronously the first time you run the &lt;code>aws es create-elasticsearch-domain&lt;/code>, so you will get the response from localstack first and then (after download/install) you will have your elasticsearch cluster running locally.
+&lt;p>LocalStack downloads elasticsearch asynchronously the first time you run the &lt;code>aws es create-elasticsearch-domain&lt;/code>, so you will get the response from localstack first and then (after download/install) you will have your elasticsearch cluster running locally.
 You may not want this, and instead use your already running elasticsearch cluster.
 This can also be useful when you want to run a cluster with a custom configuration that localstack does not support.&lt;/p>
 &lt;p>To customize the elasticsearch backend, you can your own elasticsearch cluster locally and point localstack to it using the &lt;code>OPENSEARCH_CUSTOM_BACKEND&lt;/code> (previously &lt;code>ES_CUSTOM_BACKEND&lt;/code>) environment variable.
