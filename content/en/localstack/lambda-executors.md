@@ -16,7 +16,7 @@ The active lambda executor can be set using the `LAMBDA_EXECUTOR` environment va
 
 The default option is `docker`, unless LocalStack has no access to a docker daemon itself when it will be set to `local`.
 
-Running docker containers inside the Localstack docker images requires to bind mount the `/var/run/docker.sock`. See the example below:
+Running docker containers inside the LocalStack docker images requires to bind mount the `/var/run/docker.sock`. See the example below:
 {{< command >}}
 $ docker run --rm -it -v "/var/run/docker.sock:/var/run/docker.sock" -e DEBUG=1 -e LAMBDA_EXECUTOR=<mode> -p 4566:4566  localstack/localstack
 {{</command >}}

@@ -20,7 +20,7 @@ You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslo
 {{< /alert >}}
 
 {{< alert >}}
-**Note**: The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in Localstack.
+**Note**: The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.
 {{< /alert >}}
 
 {{< command >}}
@@ -195,7 +195,7 @@ localstack@machine /tmp/localstack/data % tree -L 4
 
 ## Custom Elasticsearch backends
 
-Localstack downloads elasticsearch asynchronously the first time you run the `aws es create-elasticsearch-domain`, so you will get the response from localstack first and then (after download/install) you will have your elasticsearch cluster running locally.
+LocalStack downloads elasticsearch asynchronously the first time you run the `aws es create-elasticsearch-domain`, so you will get the response from localstack first and then (after download/install) you will have your elasticsearch cluster running locally.
 You may not want this, and instead use your already running elasticsearch cluster.
 This can also be useful when you want to run a cluster with a custom configuration that localstack does not support.
 

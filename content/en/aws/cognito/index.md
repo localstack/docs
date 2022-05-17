@@ -167,7 +167,7 @@ Note that the value of the `redirect_uri` parameter must match the value provide
 
 ## Serverless and Cognito
 
-You can also use Cognito and Localstack in conjunction with the [Serverless framework](https://www.serverless.com/).
+You can also use Cognito and LocalStack in conjunction with the [Serverless framework](https://www.serverless.com/).
 
 For example, take this snippet of a `serverless.yml` configuration:
 ```yaml

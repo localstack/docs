@@ -7,7 +7,7 @@ description: >
 
 Services like [OpenSearch]({{< ref "opensearch" >}}) or [Elasticsearch]({{< ref "elasticsearch" >}}) use external software which binds to separate ports.
 
-Depending on the configuration of the individual LocalStack service, these services can either be accessed by using the proxy functionality of Localstack which assigns local domains to these external services.
+Depending on the configuration of the individual LocalStack service, these services can either be accessed by using the proxy functionality of LocalStack which assigns local domains to these external services.
 For example, if OpenSearch is configured to use the [`OPENSEARCH_ENDPOINT_STRATEGY=domain`]({{< ref "opensearch#endpoints" >}}), a cluster can be reached by using the domain name `<domain-name>.<region>.<engine-type>.localhost.localstack.cloud`.
 Messages coming to those domains are then relayed to the servers running on ports which do not have to be accessible from outside the Docker container.
 
