@@ -6,9 +6,9 @@ description: >
 ---
 
 AWS SQS is a fully managed distributed message queuing service.
-SQS is shipped with the LocalStack Community version and is [extensively supported]({{< ref "feature-coverage" >}}).
+SQS is shipped with the LocalStack Community version and is [extensively supported and tested]({{< ref "feature-coverage" >}}).
 
-## Example
+## Getting started
 
 Trying to run the examples in the [official AWS developer](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) guide against LocalStack is a great place to start.
 Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed you can also try the following commands:
@@ -37,14 +37,48 @@ $ awslocal sqs send-message --queue-url http://localhost:4566/00000000000/sample
 }
 {{< / command >}}
 
-## Providers
 
-LocalStack supports two third-party providers for SQS - namely, [moto](https://github.com/spulec/moto) and [elasticmq](https://github.com/softwaremill/elasticmq). By default, `moto` is used. Your desired provider can be set with the environment variable `SQS_PROVIDER`.\
-For instance, if you wish to use `elasticmq` you'd pass the environment variable as `SQS_PROVIDER=elasticmq`. 
+## SQS Query API
 
-ElasticMQ only supports a subset of the SQS query (only the REST query interface). However, it provides better scalability for local development and test servers that wish to create realistic scenarios in which lots of messages are sent with a high throughput.
-On the other hand, moto has near-complete support for SQS but has limited scalability. 
+The [SQS Query API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html) exposes SQS Queue URLs as endpoints and allows you to make HTTP requests directly against the Queue.
+LocalStack also supports the Query API.
+
+
+LocalStack makes it easy to test SQS Query API calls without having to sign or add `AUTHPARAMS` to your HTTP requests.
+For example, you could send a `SendMessage` command using a `MessageBody` attribute with a simple curl command:
+{{< command >}}
+$ curl "http://localhost:4566/000000000000/sample-queue?Action=SendMessage&MessageBody=hello%2Fworld"
+
+<?xml version='1.0' encoding='utf-8'?>
+<SendMessageResponse xmlns="http://queue.amazonaws.com/doc/2012-11-05/"><SendMessageResult><MD5OfMessageBody>c6be4e95a26409675447367b3e79f663</MD5OfMessageBody><MessageId>466144ab-1d03-4ec5-8d70-97535b2957fb</MessageId></SendMessageResult><ResponseMetadata><RequestId>JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF</RequestId></ResponseMetadata></SendMessageResponse>
+{{< / command >}}
+
+{{% alert title="JSON output format" color="info" %}}
+When the client sets the `Accept: application/json` header, AWS responds with a JSON response instead of XML.
+This is currently not supported by LocalStack.
+{{% /alert %}}
+
+{{% alert title="Behavior changes in 0.14.2" color="info" %}}
+In previous releases, an empty HTTP request to a queue would return a `<GetQueueUrlResponse>`.
+This has since been aligned to the behavior of AWS, which returns a `<UnknownOperationException/>`.
+To run a `GetQueueUrl` request, add the `?Action=GetQueueUrl&QueueName=<QueueName>"` query string to the URL.
+{{% /alert %}}
+
+## Queue URLs
+
+You can control the format of the generated Queue URLs by setting the environment variable `SQS_ENDPOINT_STRATEGY` when starting LocalStack to one of the following values.
+
+| Value | URL format | Description |
+| - | - | - |
+| `domain` | `<region>.queue.localhost.localstack.cloud:4566/<account_id>/<queue_name>` | This strategy behaves like the [SQS legacy service endpoints](https://docs.aws.amazon.com/general/latest/gr/sqs-service.html#sqs_region), and uses `localhost.localstack.cloud` to resolve to localhost. When using `us-east-1`, the `<region>.` prefix is omitted. |
+| `path` | `localhost:4566/queue/<region>/<account_id>/<queue_name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
+| `off` | `localhost:4566/<account_id>/<queue_name>` | Currently the default for backwards compatibility. Since this format does not encode the region, you cannot query queues that exist in different regions with the same name. |
+
+## Deprecated providers
+
+LocalStack has two other third-party providers for SQS that have since been deprecated: [moto](https://github.com/spulec/moto) and [elasticmq](https://github.com/softwaremill/elasticmq). To activate the moto provider, start localstack with `PROVIDER_OVERRIDE_SQS=legacy`. If you want to activate elasticmq, you need to set both `PROVIDER_OVERRIDE_SQS=legacy SQS_PROVIDER=elasticmq`.
+The two providers are no longer tested or supported.
 
 {{% alert title="Persistence Support" color="info" %}}
-As of now the [LocalStack Pro persistence mechanism]({{< ref "persistence-mechanism#persistence-mechanism---pro-version" >}}) is only supported for `moto`. 
+As of now the [LocalStack Pro persistence mechanism]({{< ref "persistence-mechanism#persistence-mechanism---pro-version" >}}) is only supported for the default SQS provider.
 {{% /alert %}}
