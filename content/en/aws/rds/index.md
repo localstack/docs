@@ -53,4 +53,5 @@ Password: <enter "test">
 - The default for master-username, master-user-password and db-name is "test".
 - You can use any master-username, except "postgres", for creating a new RDS instance. The user will automatically be created.
 - The user "postgres" is special, and it is not possible to create a new RDS instance with this user name. 
+- Do not use db-name "postgres" as it is already in use by LocalStack.
 {{< /alert >}}
