@@ -2,8 +2,12 @@
 title: "Multi-Account Setups"
 linkTitle: "Multi-Account Setups"
 categories: ["LocalStack Pro"]
+tags: ["multi-tenant", "multi-account", "account-id"]
+aliases:
+  - /aws/multi-account-setups/
+weight: 5
 description: >
-  Multi-Account Setups
+  Using multiple tenants on LocalStack
 ---
 
 Unlike the open source LocalStack, which uses a single hardcoded account ID (`000000000000`), the Pro version allows to use multiple instances for different AWS account IDs in parallel.
