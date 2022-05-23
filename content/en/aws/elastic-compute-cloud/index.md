@@ -21,14 +21,21 @@ Instances have the Docker socket (`/var/run/docker.sock`) mounted inside them, m
 LocalStack uses a naming scheme to recognise and manage the containers and images associated with it.
 Containers are named `localstack-ec2.<InstanceId>`, while images are tagged `localstack-ec2/<AmiName>:<AmiId>`.
 
-AWS EC2 provides a default set of AMIs from which new AMIs can be created.
-This can be replicated within LocalStack by tagging an existing Docker image with a compatible name, for example:
+The Docker backend treats Docker images with the above naming scheme as AMIs.
+For example, the following command can be used to associate the Ubuntu Focal image as `ami-000001`.
 
 {{< command >}}
 $ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
 {{< /command >}}
 
-The AMI `ami-000001` will then be available for use.
+These Docker-backed AMIs have the resource tag `ec2_vm_manager:docker` and can be listed with the following command:
+
+{{< command >}}
+$ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
+{{< /command >}}
+
+All other AMIs are 'mocked' and are based off the community edition of LocalStack.
+Attempting to launch Dockerised instances with these AMIs will return `InvalidAMIID.NotFound` error.
 
 
 ### Networking
@@ -50,9 +57,10 @@ The address for SSH access to the instance is printed in the logs when the insta
 
 If the LocalStack daemon is not running, the instance will be only accessible over SSH at `127.0.0.1` and the specified port.
 
-LocalStack daemon is supported on Linux and MacOS.
+The LocalStack daemon is supported on Linux and MacOS.
 
-Ports other than 22 (SSH) are currently not exposed from the Dockerised instances.
+Security Groups are not applied to Dockerised instances.
+Ports other than 22 (SSH) are currently not exposed.
 
 
 ### Operations
