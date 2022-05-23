@@ -2206,10 +2206,13 @@ Access to the Docker socket is required which can be made available to LocalStac
 &lt;h3 id="base-images">Base Images&lt;/h3>
 &lt;p>LocalStack uses a naming scheme to recognise and manage the containers and images associated with it.
 Containers are named &lt;code>localstack-ec2.&amp;lt;InstanceId&amp;gt;&lt;/code>, while images are tagged &lt;code>localstack-ec2/&amp;lt;AmiName&amp;gt;:&amp;lt;AmiId&amp;gt;&lt;/code>.&lt;/p>
-&lt;p>AWS EC2 provides a default set of AMIs from which new AMIs can be created.
-This can be replicated within LocalStack by tagging an existing Docker image with a compatible name, for example:&lt;/p>
+&lt;p>The Docker backend treats Docker images with the above naming scheme as AMIs.
+For example, the following command can be used to associate the Ubuntu Focal image as &lt;code>ami-000001&lt;/code>.&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The AMI &lt;code>ami-000001&lt;/code> will then be available for use.&lt;/p>
+&lt;p>These Docker-backed AMIs have the resource tag &lt;code>ec2_vm_manager:docker&lt;/code> and can be listed with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>All other AMIs are &amp;lsquo;mocked&amp;rsquo; and are based off the community edition of LocalStack.
+Attempting to launch Dockerised instances with these AMIs will return &lt;code>InvalidAMIID.NotFound&lt;/code> error.&lt;/p>
 &lt;h3 id="networking">Networking&lt;/h3>
 &lt;p>LocalStack supports assignment of unique private IP addresses for Dockerised instances.
 To leverage this feature, it is necessary to run the LocalStack daemon process on the host which takes care of creating and managing networking on the host system.&lt;/p>
@@ -2219,8 +2222,9 @@ To leverage this feature, it is necessary to run the LocalStack daemon process o
 &lt;p>The address for SSH access to the instance is printed in the logs when the instance is initialised.&lt;/p>
 &lt;pre>&lt;code>2022-03-21T14:46:49.540:INFO:localstack_ext.services.ec2.vmmanager.docker: Instance i-f6a80f48 will be accessible via SSH at: 192.168.123.25:22, 127.0.0.1:48805
 &lt;/code>&lt;/pre>&lt;p>If the LocalStack daemon is not running, the instance will be only accessible over SSH at &lt;code>127.0.0.1&lt;/code> and the specified port.&lt;/p>
-&lt;p>LocalStack daemon is supported on Linux and MacOS.&lt;/p>
-&lt;p>Ports other than 22 (SSH) are currently not exposed from the Dockerised instances.&lt;/p>
+&lt;p>The LocalStack daemon is supported on Linux and MacOS.&lt;/p>
+&lt;p>Security Groups are not applied to Dockerised instances.
+Ports other than 22 (SSH) are currently not exposed.&lt;/p>
 &lt;h3 id="operations">Operations&lt;/h3>
 &lt;p>The Docker backend supports following operations:&lt;/p>
 &lt;table>
