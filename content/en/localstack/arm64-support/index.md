@@ -24,7 +24,7 @@ $ docker pull localstack/localstack
 
 You can check the architecture of the pulled image by using `docker inspect`:
 {{< command >}}
-$ docker inspect localstack/localstack | jq .[0].Architecture
+$ docker inspect localstack/localstack | jq '.[0].Architecture'
 "arm64"
 {{< / command >}}
 
