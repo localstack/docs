@@ -59,6 +59,7 @@ Docker is used extensively by LocalStack, and there are several configuration pa
 
 This section covers configuration values that are specific to certain AWS services.
 
+* [AppSync]({{< ref "#appsync" >}})
 * [Batch]({{< ref "#batch" >}})
 * [DynamoDB]({{< ref "#dynamodb" >}})
 * [Elastic Kubernetes Service (EKS)]({{< ref "#eks" >}})
@@ -66,6 +67,12 @@ This section covers configuration values that are specific to certain AWS servic
 * [Kinesis]({{< ref "#kinesis" >}})
 * [Lambda]({{< ref "#lambda" >}})
 * [Stepfunctions]({{< ref "#stepfunctions" >}})
+
+### AppSync
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `GRAPHQL_ENDPOINT_STRATEGY` | `legacy`\|`domain`\|`path` |  Governs how AppSync endpoints are created to access a GraphQL API (see [AppSync#endpoints]({{< ref "appsync#endpoints" >}})) |
 
 ### Batch
 

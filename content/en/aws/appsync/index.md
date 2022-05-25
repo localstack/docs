@@ -69,3 +69,13 @@ $ awslocal appsync create-graphql-api --name my-api --authentication-type API_KE
     }
 }
 {{< /command >}}
+
+### GraphQL Endpoints 
+
+There are three configurable strategies that govern how GraphQL API endpoints are created. The strategy can be configured via the `GRAPHQL_ENDPOINT_STRATEGY` environment variable.
+
+| Value | Format | Description |
+| - | - | - |
+| `domain` | `<api-id>.appsync-api.localhost.localstack.cloud:4566` | This will be the default strategy in the future that uses the `localhost.localstack.cloud` domain to route to your localhost |
+| `path` | `localhost:4566/appsync-api/<api-id>/graphql` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
+| `legacy` | `localhost:4566/graphql/<api-id>` | The old shape of the endpoint, which is currently the default but will be phased out|
