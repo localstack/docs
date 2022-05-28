@@ -64,7 +64,9 @@ This has since been aligned to the behavior of AWS, which returns a `<UnknownOpe
 To run a `GetQueueUrl` request, add the `?Action=GetQueueUrl&QueueName=<QueueName>"` query string to the URL.
 {{% /alert %}}
 
-## Queue URLs
+## Configuration
+
+### Queue URLs
 
 You can control the format of the generated Queue URLs by setting the environment variable `SQS_ENDPOINT_STRATEGY` when starting LocalStack to one of the following values.
 
@@ -73,6 +75,13 @@ You can control the format of the generated Queue URLs by setting the environmen
 | `domain` | `<region>.queue.localhost.localstack.cloud:4566/<account_id>/<queue_name>` | This strategy behaves like the [SQS legacy service endpoints](https://docs.aws.amazon.com/general/latest/gr/sqs-service.html#sqs_region), and uses `localhost.localstack.cloud` to resolve to localhost. When using `us-east-1`, the `<region>.` prefix is omitted. |
 | `path` | `localhost:4566/queue/<region>/<account_id>/<queue_name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
 | `off` | `localhost:4566/<account_id>/<queue_name>` | Currently the default for backwards compatibility. Since this format does not encode the region, you cannot query queues that exist in different regions with the same name. |
+
+### Enabling QueueDeletedRecently errors
+
+AWS does not allow creating a queue with the same name for 60 seconds after it was deleted.
+See the [DeleteQueue API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
+LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with `SQS_DELAY_RECENTLY_DELETED=1`.
+
 
 ## Deprecated providers
 
