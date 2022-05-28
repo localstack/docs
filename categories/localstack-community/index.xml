@@ -2588,7 +2588,8 @@ In previous releases, an empty HTTP request to a queue would return a &lt;code>&
 This has since been aligned to the behavior of AWS, which returns a &lt;code>&amp;lt;UnknownOperationException/&amp;gt;&lt;/code>.
 To run a &lt;code>GetQueueUrl&lt;/code> request, add the &lt;code>?Action=GetQueueUrl&amp;amp;QueueName=&amp;lt;QueueName&amp;gt;&amp;quot;&lt;/code> query string to the URL.
 &lt;/div>
-&lt;h2 id="queue-urls">Queue URLs&lt;/h2>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;h3 id="queue-urls">Queue URLs&lt;/h3>
 &lt;p>You can control the format of the generated Queue URLs by setting the environment variable &lt;code>SQS_ENDPOINT_STRATEGY&lt;/code> when starting LocalStack to one of the following values.&lt;/p>
 &lt;table>
 &lt;thead>
@@ -2616,6 +2617,10 @@ To run a &lt;code>GetQueueUrl&lt;/code> request, add the &lt;code>?Action=GetQue
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;h3 id="enabling-queuedeletedrecently-errors">Enabling QueueDeletedRecently errors&lt;/h3>
+&lt;p>AWS does not allow creating a queue with the same name for 60 seconds after it was deleted.
+See the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html">DeleteQueue API Reference&lt;/a>.
+LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with &lt;code>SQS_DELAY_RECENTLY_DELETED=1&lt;/code>.&lt;/p>
 &lt;h2 id="deprecated-providers">Deprecated providers&lt;/h2>
 &lt;p>LocalStack has two other third-party providers for SQS that have since been deprecated: &lt;a href="https://github.com/spulec/moto">moto&lt;/a> and &lt;a href="https://github.com/softwaremill/elasticmq">elasticmq&lt;/a>. To activate the moto provider, start localstack with &lt;code>PROVIDER_OVERRIDE_SQS=legacy&lt;/code>. If you want to activate elasticmq, you need to set both &lt;code>PROVIDER_OVERRIDE_SQS=legacy SQS_PROVIDER=elasticmq&lt;/code>.
 The two providers are no longer tested or supported.&lt;/p>
