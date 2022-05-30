@@ -418,7 +418,7 @@ In the coverage tables below, the features are marked with their respective avai
 | Function Concurrencies                                             | ⭐⭐⭐         |                 |       |
 | Functions                                                          | ⭐⭐⭐⭐       |                 |       |
 | Invoke Functions                                                   | ⭐⭐⭐⭐       |                 |       |
-| [Layers (Pro)]({{< ref "lambda-layers" >}})                        | ⭐⭐⭐⭐       |                 |       |
+| [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       |                 |       |
 | Permissions                                                        | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **Managed Streaming for Kafka (MSK)** (Pro)                        |                |                 |       |
