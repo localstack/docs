@@ -1180,29 +1180,40 @@ Because the function is now mounted as a file in the executing container, any ch
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;math_result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">9&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Cool!&lt;/p>
 &lt;h4 id="usage-with-virtualenv">Usage with Virtualenv&lt;/h4>
-&lt;p>For Virtualenv-driven projects, all dependencies should be available under the same folder as the project itself.
-The easiest way to achieve that is to implement a watchman script that will be preparing a special folder for hot code swapping.&lt;/p>
+&lt;p>For &lt;a href="https://virtualenv.pypa.io">virtualenv&lt;/a>-driven projects, all dependencies should be made
+available to the Python interpreter at runtime. There are different ways to achieve that, including:&lt;/p>
+&lt;ul>
+&lt;li>expanding the Python module search path in your Lambda handler&lt;/li>
+&lt;li>creating a watchman script to copy the libraries&lt;/li>
+&lt;/ul>
+&lt;h5 id="expanding-the-module-search-path-in-your-lambda-handler">Expanding the module search path in your Lambda handler&lt;/h5>
+&lt;p>The easiest approach is to expand the module search path (&lt;code>sys.path&lt;/code>) and add the &lt;code>site-packages&lt;/code> folder inside the virtualenv.
+We can add the following two lines of code at the top of the Lambda handler script:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-python" data-lang="python">&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">sys&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">glob&lt;/span>
+&lt;span style="color:#000">sys&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">path&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">insert&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">glob&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">glob&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;.venv/lib/python*/site-packages&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)[&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
+&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">some_lib_from_virtualenv&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># import your own modules here&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This way you can easily import modules from your virtualenv, without having to change the file system layout.&lt;/p>
+&lt;p>Note: As an alternative to modifying &lt;code>sys.path&lt;/code>, you could also set the &lt;code>PYTHONPATH&lt;/code> environment variable when creating your Lambda function, to add the additional path.&lt;/p>
+&lt;h5 id="using-a-watchman-script-to-copy-libraries">Using a watchman script to copy libraries&lt;/h5>
+&lt;p>Another alternative is to implement a watchman script that will be preparing a special folder for hot code swapping.&lt;/p>
 &lt;p>In our example, we are using &lt;code>build/hot&lt;/code> folder as a mounting point for our Lambdas.&lt;/p>
 &lt;p>First, create a watchman wrapper by using
 &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice/bin/watchman.sh">one of our examples&lt;/a>&lt;/p>
 &lt;p>After that, you can use the following &lt;code>Makefile&lt;/code> snippet, or implement another shell script to prepare the codebase for hot swapping:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-make" data-lang="make">&lt;span style="color:#000">VENV_DIR&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?=&lt;/span> .venv
-&lt;span style="color:#000">VENV_RUN&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?=&lt;/span> . &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>VENV_DIR&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/bin/activate
-&lt;span style="color:#000">BUILD_FOLDER&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?=&lt;/span> build
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-make" data-lang="make">&lt;span style="color:#000">BUILD_FOLDER&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">?=&lt;/span> build
 &lt;span style="color:#000">PROJECT_MODULE_NAME&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> my_project_module
 &lt;span style="color:#000">build-hot&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>
-&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>VENV_RUN&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
-rm -rf &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> mkdir -p &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot&lt;span style="color:#000;font-weight:bold">;&lt;/span>
-cp -r &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>VENV_DIR&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/lib/python&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>shell python --version &lt;span style="color:#000;font-weight:bold">|&lt;/span> grep -oE &lt;span style="color:#4e9a06">&amp;#39;[0-9]\.[0-9]&amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/site-packages/* &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot&lt;span style="color:#000;font-weight:bold">;&lt;/span>
-cp -r &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>PROJECT_MODULE_NAME&lt;span style="color:#204a87;font-weight:bold">)&lt;/span> &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot/&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>PROJECT_MODULE_NAME&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
-cp *.toml &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+rm -rf &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> mkdir -p &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot
+cp -r &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>VENV_DIR&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/lib/python&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>shell python --version &lt;span style="color:#000;font-weight:bold">|&lt;/span> grep -oE &lt;span style="color:#4e9a06">&amp;#39;[0-9]\.[0-9]&amp;#39;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/site-packages/* &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot/
+cp -r &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>PROJECT_MODULE_NAME&lt;span style="color:#204a87;font-weight:bold">)&lt;/span> &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot/&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>PROJECT_MODULE_NAME&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+cp *.toml &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>BUILD_FOLDER&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>/hot
 &lt;span style="color:#000">watch&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>
 bin/watchman.sh &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>PROJECT_MODULE_NAME&lt;span style="color:#204a87;font-weight:bold">)&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;make build-hot&amp;#34;&lt;/span>
 &lt;span style="color:#000">.PHONY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000">build&lt;/span>-&lt;span style="color:#000">hot&lt;/span> &lt;span style="color:#000">watch&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>As you can see, all we do here is just copying the project module &lt;code>PROJECT_MODULE_NAME&lt;/code>
-along with all dependencies into the &lt;code>build/hot&lt;/code> folder, which is then mounted to
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To run the example above, run &lt;code>make watch&lt;/code>. The script is copying the project module &lt;code>PROJECT_MODULE_NAME&lt;/code>
+along with all dependencies into the &lt;code>build/hot&lt;/code> folder, which is then mounted into
 LocalStack&amp;rsquo;s Lambda container.&lt;/p>
-&lt;p>To run the example above run &lt;code>make watch&lt;/code>&lt;/p>
 &lt;h2 id="deployment-configuration-examples">Deployment Configuration Examples&lt;/h2>
 &lt;h3 id="serverless-framework-configuration">Serverless Framework Configuration&lt;/h3>
 &lt;p>Enable local code mounting&lt;/p>
