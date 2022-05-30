@@ -20,7 +20,7 @@ You can find your API key in the [LocalStack Web Interface](https://app.localsta
 
 {{< alert title="API Key Security" >}}
 - Do not share your API key with anyone. Especially make sure that you do not commit it to any source code management systems (like Git repositories).
-  If you push an API key to a repository, it has potentially ben exposed to the public and it might remain in the history (even if you try to rewrite the history).
+  If you push an API key to a repository, it has potentially been exposed to the public and it might remain in the history (even if you try to rewrite the history).
 
 - If you accidentally publish your API key, please [contact us](https://localstack.cloud/contact/) to get your API key rotated!
 
@@ -29,7 +29,7 @@ You can find your API key in the [LocalStack Web Interface](https://app.localsta
 
 ## Using your API key
 
-LocalStack Pro or Enterprise expect your API key to be present in the environment variable `LOCALSTACK_API_KEY`.
+LocalStack Pro or Enterprise expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`.
 Before starting LocalStack, please define the environment variable in your terminal like this:
 
 {{< command >}}
@@ -74,11 +74,11 @@ This statement sets the API key we defined before (by using the `export` command
 
 ## Licensing-related configuration
 
-If you want to make sure that LocalStack is only started if LocalStack Pro or Enterprise can be activated, or if you want to supporess licensing-related error messages, take a look at our [configuration guide]({{< ref "configuration.md#localstack-pro">}}) regarding LocalStack Pro.
+If you want to make sure that LocalStack is only started if LocalStack Pro or Enterprise can be activated, or if you want to suppress licensing-related error messages, take a look at our [configuration guide]({{< ref "configuration.md#localstack-pro">}}) regarding LocalStack Pro.
 
 ## Checking license activation
 
-The easiest way to check if LocalStack Pro or Enterprise is activated is to check the health endpoing of LocalStack for a list of the running services:
+The easiest way to check if LocalStack Pro or Enterprise is activated is to check the health endpoint of LocalStack for a list of the running services:
 
 {{< command >}}
 $ curl localhost:4566/health | jq
