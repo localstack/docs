@@ -169,8 +169,30 @@ Cool!
 
 #### Usage with Virtualenv
 
-For Virtualenv-driven projects, all dependencies should be available under the same folder as the project itself.
-The easiest way to achieve that is to implement a watchman script that will be preparing a special folder for hot code swapping.
+For [virtualenv](https://virtualenv.pypa.io)-driven projects, all dependencies should be made
+available to the Python interpreter at runtime. There are different ways to achieve that, including:
+* expanding the Python module search path in your Lambda handler
+* creating a watchman script to copy the libraries
+
+##### Expanding the module search path in your Lambda handler
+
+The easiest approach is to expand the module search path (`sys.path`) and add the `site-packages` folder inside the virtualenv.
+We can add the following two lines of code at the top of the Lambda handler script:
+
+```python
+import sys, glob
+sys.path.insert(0, glob.glob(".venv/lib/python*/site-packages")[0])
+...
+import some_lib_from_virtualenv  # import your own modules here
+```
+
+This way you can easily import modules from your virtualenv, without having to change the file system layout.
+
+Note: As an alternative to modifying `sys.path`, you could also set the `PYTHONPATH` environment variable when creating your Lambda function, to add the additional path.
+
+##### Using a watchman script to copy libraries
+
+Another alternative is to implement a watchman script that will be preparing a special folder for hot code swapping.
 
 In our example, we are using `build/hot` folder as a mounting point for our Lambdas.
 
@@ -180,17 +202,14 @@ First, create a watchman wrapper by using
 After that, you can use the following `Makefile` snippet, or implement another shell script to prepare the codebase for hot swapping:
 
 ```make
-VENV_DIR ?= .venv
-VENV_RUN ?= . $(VENV_DIR)/bin/activate
 BUILD_FOLDER ?= build
 PROJECT_MODULE_NAME = my_project_module
 
 build-hot:
-	$(VENV_RUN);
-  rm -rf $(BUILD_FOLDER)/hot && mkdir -p $(BUILD_FOLDER)/hot;
-	cp -r $(VENV_DIR)/lib/python$(shell python --version | grep -oE '[0-9]\.[0-9]')/site-packages/* $(BUILD_FOLDER)/hot;
-	cp -r $(PROJECT_MODULE_NAME) $(BUILD_FOLDER)/hot/$(PROJECT_MODULE_NAME);
-	cp *.toml $(BUILD_FOLDER)/hot;
+	rm -rf $(BUILD_FOLDER)/hot && mkdir -p $(BUILD_FOLDER)/hot
+	cp -r $(VENV_DIR)/lib/python$(shell python --version | grep -oE '[0-9]\.[0-9]')/site-packages/* $(BUILD_FOLDER)/hot/
+	cp -r $(PROJECT_MODULE_NAME) $(BUILD_FOLDER)/hot/$(PROJECT_MODULE_NAME)
+	cp *.toml $(BUILD_FOLDER)/hot
 
 watch:
 	bin/watchman.sh $(PROJECT_MODULE_NAME) "make build-hot"
@@ -198,11 +217,9 @@ watch:
 .PHONY: build-hot watch
 ```
 
-As you can see, all we do here is just copying the project module `PROJECT_MODULE_NAME`
-along with all dependencies into the `build/hot` folder, which is then mounted to
+To run the example above, run `make watch`. The script is copying the project module `PROJECT_MODULE_NAME`
+along with all dependencies into the `build/hot` folder, which is then mounted into
 LocalStack's Lambda container.
-
-To run the example above run `make watch`
 
 ## Deployment Configuration Examples
 
