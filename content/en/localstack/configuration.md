@@ -213,7 +213,7 @@ Some of the services can be configured to switch to a particular provider:
 
 ## Profiles
 
-LocalStack support configuration profiles which is stored in the `~/.localstack` config directory. A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory. Here is an example of what configuration profiles might look like:
+LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory. A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory. Here is an example of what configuration profiles might look like:
 
 ```sh
 % tree ~/.localstack 
@@ -223,10 +223,11 @@ LocalStack support configuration profiles which is stored in the `~/.localstack`
 └── pro.env
 ```
 
-Let's say you wish to have a look at the `dev.env` profile. You can do so by pushing the following command:
+Here is an example of what a specific environment profile looks like
 
 ```sh
-% cat ~/.localstack/dev.env
+% cat ~/.localstack/pro-debug.env
+LOCALSTACK_API_KEY=XXXXX
 DEBUG=1
 DEVELOP=1
 ```
@@ -237,7 +238,9 @@ You can load a profile by either setting the `env` variable `CONFIG_PROFILE=<pro
 python -m localstack.cli.main --profile=dev start --host
 {{< / command >}}
 
-If no profile is specified, the `default.env` profile will be loaded. While explicitly specified, the environment variables will always overwrite the profile. To display the config environment variables, you can use the following command:
+If no profile is specified, the `default.env` profile will be loaded. While explicitly specified, the environment variables will always overwrite the profile. 
+
+To display the config environment variables, you can use the following command:
 
 {{< command >}}
 python -m localstack.cli.main --profile=dev config show
