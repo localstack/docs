@@ -30,7 +30,7 @@ LocalStack Pro samples contains a number of code examples that demonstrate how t
 
 [Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) are an AWS feature that allows to pull in additional code and content into your Lambda functions.
 
-LocalStack Pro provides support for deploying Lambda layers locally - for more details on general usage, please follow the documentation and examples on the [AWS website](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+LocalStack Pro provides support for deploying Lambda layers locally - for more details on general usage, please follow the documentation and examples in the [AWS documentation on Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 
 ### Creating Lambda layers locally
 
