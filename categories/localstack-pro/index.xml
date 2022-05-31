@@ -2329,13 +2329,17 @@ fe08d5d042ab: Pushed
 f2cb0ecef392: Pushed
 latest: digest: sha256:4dd893a43df24c8f779a5ab343b7ef172fb147c69ed5e1278d95b97fe0f584a5 size: 948
 ...&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Aws: Elastic Container Service (ECS)</title><link>/aws/elastic-container-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/elastic-container-service/</guid><description>
-&lt;p>Basic support for creating and deploying containerized apps using &lt;a href="https://aws.amazon.com/ecs">ECS&lt;/a> is provided in the Pro version. LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.&lt;/p>
-&lt;p>By default, the ECS Fargate launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.&lt;/p>
-&lt;p>Note that more complex features like integration of application load balancers (ALBs) are currently not available, but are being developed and will be available in the near future.&lt;/p>
-&lt;p>Task instances are started in a local Docker engine which needs to be accessible to the LocalStack container. The name pattern for task containers is &lt;code>localstack_&amp;lt;family&amp;gt;_&amp;lt;revision&amp;gt;&lt;/code>, where &lt;code>&amp;lt;family&amp;gt;&lt;/code> refers to the task family and &lt;code>&amp;lt;revision&amp;gt;&lt;/code> refers to a task revision (for example, &lt;code>localstack_nginx_1&lt;/code>).&lt;/p>
+&lt;p>LocalStack Pro version provides a basic support for creating and deploying containerized apps using &lt;a href="https://aws.amazon.com/ecs">Amazon ECS&lt;/a>. LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.&lt;/p>
+&lt;p>By default, the &lt;strong>ECS Fargate&lt;/strong> launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>:
+More complex features like integration of application load balancers (ALBs) are currently not available. Nonetheless, they are being developed and will be available in the near future.
+&lt;/div>
+&lt;p>Task instances are started in a local Docker engine, which needs to be accessible to the LocalStack container. The name pattern for task containers is &lt;code>localstack_&amp;lt;family&amp;gt;_&amp;lt;revision&amp;gt;&lt;/code>, where &lt;code>&amp;lt;family&amp;gt;&lt;/code> refers to the task family and &lt;code>&amp;lt;revision&amp;gt;&lt;/code> refers to a task revision (for example, &lt;code>localstack_nginx_1&lt;/code>).&lt;/p>
 &lt;p>You can use the configuration option &lt;code>LAMBDA_DOCKER_NETWORK&lt;/code> to specify the network the ECS containers are started in.
 If your ECS containers depend on LocalStack services, this should be the network the LocalStack container is located in.
-For more information regarding the configuration of LocalStack, please check the &lt;a href="/localstack/configuration/">LocalStack configuration&lt;/a> section.&lt;/p></description></item><item><title>Aws: Elastic Kubernetes Service (EKS)</title><link>/aws/elastic-kubernetes-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/elastic-kubernetes-service/</guid><description>
+For more information regarding the configuration of LocalStack, please check the &lt;a href="/localstack/configuration/">LocalStack configuration&lt;/a> section.&lt;/p>
+&lt;p>If you are running LocalStack through a &lt;code>docker run&lt;/code> command, do not forget to enable the communication from the container to the Docker Engine API. You can provide the access by adding the following option &lt;code>-v /var/run/docker.sock:/var/run/docker.sock&lt;/code>.&lt;/p></description></item><item><title>Aws: Elastic Kubernetes Service (EKS)</title><link>/aws/elastic-kubernetes-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/elastic-kubernetes-service/</guid><description>
 &lt;p>LocalStack Pro allows you to use the &lt;a href="https://docs.aws.amazon.com/eks/">EKS&lt;/a> API to create Kubernetes clusters and easily deploy containerized apps locally.&lt;/p>
 &lt;p>There are two modes for creating EKS clusters on LocalStack:&lt;/p>
 &lt;ul>
