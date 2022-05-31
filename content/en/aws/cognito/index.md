@@ -133,7 +133,7 @@ Cognito provides a number of lifecycle hooks in the form of Cognito Lambda trigg
 For example, to define a _user migration_ Lambda trigger, we can first create a Lambda function (say, named `"f1"`) capable of performing the migration, and then define the corresponding `--lambda-config` on the user pool creation:
 
 {{<command >}}
-awslocal cognito-idp create-user-pool --pool-name test2 --lambda-config '{"UserMigration":"arn:aws:lambda:us-east-1:000000000000:function:f1"}'
+$ awslocal cognito-idp create-user-pool --pool-name test2 --lambda-config '{"UserMigration":"arn:aws:lambda:us-east-1:000000000000:function:f1"}'
 {{< /command >}}
 
 Upon authentication of a non-registered user, Cognito will then automatically call the migration Lambda function and finally add the migrated user to the pool.
