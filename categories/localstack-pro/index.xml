@@ -2177,7 +2177,7 @@ DEBUG:localstack_ext.bootstrap.email_utils: Sending confirmation code via email 
 &lt;h2 id="cognito-lambda-triggers">Cognito Lambda Triggers&lt;/h2>
 &lt;p>Cognito provides a number of lifecycle hooks in the form of Cognito Lambda triggers. These triggers can be used to react to various lifecycle events and customize the behavior of user signup, confirmation, migration, etc.&lt;/p>
 &lt;p>For example, to define a &lt;em>user migration&lt;/em> Lambda trigger, we can first create a Lambda function (say, named &lt;code>&amp;quot;f1&amp;quot;&lt;/code>) capable of performing the migration, and then define the corresponding &lt;code>--lambda-config&lt;/code> on the user pool creation:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">awslocal cognito-idp create-user-pool --pool-name test2 --lambda-config &amp;#39;{&amp;#34;UserMigration&amp;#34;:&amp;#34;arn:aws:lambda:us-east-1:000000000000:function:f1&amp;#34;}&amp;#39;&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp create-user-pool --pool-name test2 --lambda-config &amp;#39;{&amp;#34;UserMigration&amp;#34;:&amp;#34;arn:aws:lambda:us-east-1:000000000000:function:f1&amp;#34;}&amp;#39;&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Upon authentication of a non-registered user, Cognito will then automatically call the migration Lambda function and finally add the migrated user to the pool.&lt;/p>
 &lt;p>More details on Cognito Lambda triggers can be found in the &lt;a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html">AWS documentation&lt;/a>.&lt;/p>
 &lt;h2 id="oauth-flows-via-cognito-login-form">OAuth Flows via Cognito Login Form&lt;/h2>
@@ -2800,11 +2800,56 @@ make_bucket: test&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>This endpoint can then be used with any MQTT client to send/receive messages (e.g., using the endpoint URL &lt;code>mqtt://localhost:4520&lt;/code>).&lt;/p>
 &lt;p>LocalStack Pro also supports advanced features like SQL queries for IoT topic rules. For example, you can use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html">&lt;code>CreateTopicRule&lt;/code> API&lt;/a> to define a topic rule with a SQL query &lt;code>SELECT * FROM 'my/topic' where attr=123&lt;/code> which will trigger a Lambda function whenever a message with attribute &lt;code>attr=123&lt;/code> is received on the MQTT topic &lt;code>my/topic&lt;/code>.&lt;/p></description></item><item><title>Aws: Kinesis Data Analytics</title><link>/aws/kinesis-analytics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/kinesis-analytics/</guid><description>
 &lt;p>The Kinesis Data Analytics API allows you to run continuous SQL queries directly over your Kinesis data streams. Basic support is included in LocalStack Pro - it allows you to create Kinesis Analytics applications, define input and output streams and schema types, and run continuous queries locally.&lt;/p>
-&lt;p>A simple example has been added to &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/kinesis-analytics">this sample repository on Github&lt;/a>. More details are following soon.&lt;/p></description></item><item><title>Aws: Lambda Layers</title><link>/aws/lambda-layers/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/lambda-layers/</guid><description>
+&lt;p>A simple example has been added to &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/kinesis-analytics">this sample repository on Github&lt;/a>. More details are following soon.&lt;/p></description></item><item><title>Aws: Lambda</title><link>/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/lambda/</guid><description>
+&lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem. Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units. With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.&lt;/p>
+&lt;p>LocalStack allows you to execute your Lambda functions locally, without the need to deploy them to AWS. This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS. LocalStack allows you to execute your Lambda functions, in various execution modes, which is detailed on our &lt;a href="/localstack/lambda-executors/">Lambda execution modes&lt;/a> page.&lt;/p>
+&lt;h2 id="special-tooling-for-lambdas">Special tooling for Lambdas&lt;/h2>
+&lt;p>We also provide tools to help you develop, debug and test your Lambda functions more efficiently:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="/tools/lambda-tools/hot-swapping/">Hot swapping&lt;/a>: Hot code swapping for Lambda functions using LocalStack’s code mounting feature.&lt;/li>
+&lt;li>&lt;a href="/tools/lambda-tools/debugging/">Remote debugging&lt;/a>: Attaching a debugger to your Lambda function using your IDE.&lt;/li>
+&lt;/ul>
+&lt;h2 id="lambda-sample-applications">Lambda sample applications&lt;/h2>
+&lt;p>LocalStack Pro samples contains a number of code examples that demonstrate how to use LocalStack to execute Lambda functions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray">Lambda XRay Tracing&lt;/a>: Simple demo application illustrating Lambda XRay tracing using LocalStack, deployed via the Serverless framework.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image">Lambda Container Images&lt;/a>: Simple demo application illustrating Lambda container images in LocalStack. The Lambda image is built using Docker and pushed to a local ECR registry.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging&lt;/a>: Simple demo application to illustrate debugging Lambdas locally.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers">Lambda Layers&lt;/a>: Simple demo application illustrating Lambda layers using LocalStack, deployed via the Serverless framework.&lt;/li>
+&lt;/ul>
+&lt;h2 id="lambda-layers">Lambda Layers&lt;/h2>
 &lt;p>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layers&lt;/a> are an AWS feature that allows to pull in additional code and content into your Lambda functions.&lt;/p>
-&lt;p>Simply point your Lambda client code at your LocalStack instance, e.g., running on http://localhost. For more details on how to use Lambda layers, please follow the documentation and examples on the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS website&lt;/a>.&lt;/p>
-&lt;!-- TODO: describe mechanism to reference public layers on AWS ("layer-fetcher" microservice) -->
-&lt;p>More details and samples following soon.&lt;/p></description></item><item><title>Aws: Managed Streaming for Kafka (MSK)</title><link>/aws/managed-streaming-for-kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/managed-streaming-for-kafka/</guid><description>
+&lt;p>LocalStack Pro provides support for deploying Lambda layers locally - for more details on general usage, please follow the documentation and examples in the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS documentation on Lambda layers&lt;/a>.&lt;/p>
+&lt;h3 id="creating-lambda-layers-locally">Creating Lambda layers locally&lt;/h3>
+&lt;p>To create a Lambda layer locally, you can simply use the &lt;code>PublishLayerVersion&lt;/code> API against LocalStack.
+Below is a simple example for creating a Lambda layer in Python with a &lt;code>util()&lt;/code> function that prints some test output.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>mkdir -p /tmp/python/
+&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;def util():&amp;#39; &amp;gt; /tmp/python/testlayer.py
+&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; print(&amp;#34;Output from Lambda layer util function&amp;#34;)&amp;#39; &amp;gt;&amp;gt; /tmp/python/testlayer.py
+&lt;span class="command-prefix">$ &lt;/span>(cd /tmp; zip -r testlayer.zip python)
+&lt;span class="command-prefix">$ &lt;/span>awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can then create a simple Lambda function which references and imports the Lambda layer:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;def handler(*args, **kwargs):&amp;#39; &amp;gt; /tmp/testlambda.py
+&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; import testlayer; testlayer.util()&amp;#39; &amp;gt;&amp;gt; /tmp/testlambda.py
+&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; print(&amp;#34;Debug output from Lambda function&amp;#34;)&amp;#39; &amp;gt;&amp;gt; /tmp/testlambda.py
+&lt;span class="command-prefix">$ &lt;/span>(cd /tmp; zip testlambda.zip testlambda.py)
+&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name func1 --runtime python3.8 --role r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers arn:aws:lambda:$AWS_DEFAULT_REGION:000000000000:layer:layer1:1&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with &lt;code>DEBUG=1&lt;/code> enabled), which includes the output from the layer util function:&lt;/p>
+&lt;pre>&lt;code>&amp;gt; START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
+&amp;gt; Output from Lambda layer util function
+&amp;gt; Debug output from Lambda function
+&amp;gt; END RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23
+&lt;/code>&lt;/pre>&lt;h3 id="referencing-lambda-layers-from-real-aws">Referencing Lambda layers from real AWS&lt;/h3>
+&lt;p>Alternatively, if your Lambda function references a layer in real AWS, there is also a mechanism to integrate such a remote layer into your local dev environment.&lt;/p>
+&lt;p>In order to achieve that, you&amp;rsquo;ll need to make your Lambda layer accessible from the &lt;code>886468871268&lt;/code> AWS account ID (this is an account managed by LocalStack on AWS).
+Assuming you&amp;rsquo;ve created a layer named &lt;code>test-layer&lt;/code> with version &lt;code>1&lt;/code>, you can use the following command to grant access to your layer:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>aws lambda add-layer-version-permission
+--layer-name test-layer
+--version-number 1
+--statement-id layerAccessFromLocalStack
+--principal 886468871268
+--action lambda:GetLayerVersion&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Next time you reference this layer (with the real AWS Lambda layer ARN) in one of your local Lambda functions, it will get automatically pulled down and integrated into your local dev environment.&lt;/p></description></item><item><title>Aws: Managed Streaming for Kafka (MSK)</title><link>/aws/managed-streaming-for-kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/managed-streaming-for-kafka/</guid><description>
 &lt;p>LocalStack supports a basic version of &lt;a href="https://aws.amazon.com/msk/">Managed Streaming for Kafka (MSK)&lt;/a> for testing. This allows you to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic.&lt;/p>
 &lt;h2 id="create-a-local-msk-cluster">Create a local MSK Cluster&lt;/h2>
 &lt;h3 id="prerequisites">Prerequisites&lt;/h3>

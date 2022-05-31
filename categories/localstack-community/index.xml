@@ -2128,18 +2128,53 @@ We can input our data into our source Kinesis stream, our put it directly into t
 Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>Aws: Lambda</title><link>/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/lambda/</guid><description>
 &lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem. Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units. With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.&lt;/p>
 &lt;p>LocalStack allows you to execute your Lambda functions locally, without the need to deploy them to AWS. This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS. LocalStack allows you to execute your Lambda functions, in various execution modes, which is detailed on our &lt;a href="/localstack/lambda-executors/">Lambda execution modes&lt;/a> page.&lt;/p>
+&lt;h2 id="special-tooling-for-lambdas">Special tooling for Lambdas&lt;/h2>
 &lt;p>We also provide tools to help you develop, debug and test your Lambda functions more efficiently:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="/tools/lambda-tools/hot-swapping/">Hot swapping&lt;/a>: Hot code swapping for Lambda functions using LocalStack’s code mounting feature.&lt;/li>
 &lt;li>&lt;a href="/tools/lambda-tools/debugging/">Remote debugging&lt;/a>: Attaching a debugger to your Lambda function using your IDE.&lt;/li>
 &lt;/ul>
-&lt;p>LocalStack Pro samples contain significant code examples that demonstrate how to use LocalStack to execute Lambda functions:&lt;/p>
+&lt;h2 id="lambda-sample-applications">Lambda sample applications&lt;/h2>
+&lt;p>LocalStack Pro samples contains a number of code examples that demonstrate how to use LocalStack to execute Lambda functions:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray">Lambda XRay Tracing&lt;/a>: Simple demo application illustrating Lambda XRay tracing using LocalStack, deployed via the Serverless framework.&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image">Lambda Container Images&lt;/a>: Simple demo application illustrating Lambda container images in LocalStack. The Lambda image is built using Docker and pushed to a local ECR registry.&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging&lt;/a>: Simple demo application to illustrate debugging Lambdas locally.&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers">Lambda Layers&lt;/a>: Simple demo application illustrating Lambda layers using LocalStack, deployed via the Serverless framework.&lt;/li>
-&lt;/ul></description></item><item><title>Aws: OpenSearch Service</title><link>/aws/opensearch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/opensearch/</guid><description>
+&lt;/ul>
+&lt;h2 id="lambda-layers">Lambda Layers&lt;/h2>
+&lt;p>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layers&lt;/a> are an AWS feature that allows to pull in additional code and content into your Lambda functions.&lt;/p>
+&lt;p>LocalStack Pro provides support for deploying Lambda layers locally - for more details on general usage, please follow the documentation and examples in the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS documentation on Lambda layers&lt;/a>.&lt;/p>
+&lt;h3 id="creating-lambda-layers-locally">Creating Lambda layers locally&lt;/h3>
+&lt;p>To create a Lambda layer locally, you can simply use the &lt;code>PublishLayerVersion&lt;/code> API against LocalStack.
+Below is a simple example for creating a Lambda layer in Python with a &lt;code>util()&lt;/code> function that prints some test output.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>mkdir -p /tmp/python/
+&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;def util():&amp;#39; &amp;gt; /tmp/python/testlayer.py
+&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; print(&amp;#34;Output from Lambda layer util function&amp;#34;)&amp;#39; &amp;gt;&amp;gt; /tmp/python/testlayer.py
+&lt;span class="command-prefix">$ &lt;/span>(cd /tmp; zip -r testlayer.zip python)
+&lt;span class="command-prefix">$ &lt;/span>awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can then create a simple Lambda function which references and imports the Lambda layer:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;def handler(*args, **kwargs):&amp;#39; &amp;gt; /tmp/testlambda.py
+&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; import testlayer; testlayer.util()&amp;#39; &amp;gt;&amp;gt; /tmp/testlambda.py
+&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; print(&amp;#34;Debug output from Lambda function&amp;#34;)&amp;#39; &amp;gt;&amp;gt; /tmp/testlambda.py
+&lt;span class="command-prefix">$ &lt;/span>(cd /tmp; zip testlambda.zip testlambda.py)
+&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name func1 --runtime python3.8 --role r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers arn:aws:lambda:$AWS_DEFAULT_REGION:000000000000:layer:layer1:1&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with &lt;code>DEBUG=1&lt;/code> enabled), which includes the output from the layer util function:&lt;/p>
+&lt;pre>&lt;code>&amp;gt; START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
+&amp;gt; Output from Lambda layer util function
+&amp;gt; Debug output from Lambda function
+&amp;gt; END RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23
+&lt;/code>&lt;/pre>&lt;h3 id="referencing-lambda-layers-from-real-aws">Referencing Lambda layers from real AWS&lt;/h3>
+&lt;p>Alternatively, if your Lambda function references a layer in real AWS, there is also a mechanism to integrate such a remote layer into your local dev environment.&lt;/p>
+&lt;p>In order to achieve that, you&amp;rsquo;ll need to make your Lambda layer accessible from the &lt;code>886468871268&lt;/code> AWS account ID (this is an account managed by LocalStack on AWS).
+Assuming you&amp;rsquo;ve created a layer named &lt;code>test-layer&lt;/code> with version &lt;code>1&lt;/code>, you can use the following command to grant access to your layer:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>aws lambda add-layer-version-permission
+--layer-name test-layer
+--version-number 1
+--statement-id layerAccessFromLocalStack
+--principal 886468871268
+--action lambda:GetLayerVersion&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Next time you reference this layer (with the real AWS Lambda layer ARN) in one of your local Lambda functions, it will get automatically pulled down and integrated into your local dev environment.&lt;/p></description></item><item><title>Aws: OpenSearch Service</title><link>/aws/opensearch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/opensearch/</guid><description>
 &lt;p>The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the &lt;a href="https://aws.amazon.com/opensearch-service/">Amazon OpenSearch Service&lt;/a>.
 This service is, like its AWS counterpart, heavily linked with the &lt;a href="../elasticsearch">Elasticsearch Service&lt;/a>.
 Any cluster created with the OpenSearch Service will show up in the Elasticsearch Service and vice versa.&lt;/p>
