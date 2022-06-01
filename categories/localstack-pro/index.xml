@@ -2093,12 +2093,14 @@ In order to use the Athena API, some additional dependencies have to be fetched 
 &lt;p>LocalStack Pro contains basic support for CodeCommit code repositories. The CodeCommit API can be used to create Git repositories, clone these repos to local folders, push commits with changes, etc.&lt;/p>
 &lt;p>A simple example has been added in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/codecommit-git-repo">this Github repository&lt;/a>. The sample creates an Git repository via the AWS CodeCommit API locally, commits and pushes a test file to the repository, and then checks out the file in a fresh clone of the repository.&lt;/p>
 &lt;p>Please note that CodeCommit is a fairly large API and currently not all methods are supported yet, but we are actively extending the implementation on an ongoing basis.&lt;/p></description></item><item><title>Aws: Cognito</title><link>/aws/cognito/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/cognito/</guid><description>
-&lt;p>&lt;a href="https://aws.amazon.com/cognito/">AWS Cognito&lt;/a> enables you to manage authentication and access control for AWS-backed apps and resources.&lt;/p>
+&lt;p>The &lt;a href="https://aws.amazon.com/cognito/">AWS Cognito&lt;/a> service enables you to manage authentication and access control for AWS-backed apps and resources.&lt;/p>
 &lt;p>LocalStack Pro contains basic support for authentication via Cognito. You can create Cognito user pools, sign up and confirm users, set up Lambda triggers, and use the &lt;code>COGNITO_USER_POOLS&lt;/code> authorizer integration with API Gateway.&lt;/p>
-&lt;p>By default, Cognito does not send actual email messages.
+&lt;p>&lt;strong>Note:&lt;/strong> By default, local Cognito does not send actual email messages.
 To enable this feature, you will require an email address and the corresponding SMTP settings.
 Please refer to the &lt;a href="/localstack/configuration/#emails">Configuration&lt;/a> guide for instructions on how to configure the connection parameters of your SMTP server.&lt;/p>
-&lt;h2 id="creating-a-user-pool">Creating a User Pool&lt;/h2>
+&lt;h2 id="user-pools-and-basic-authentication-flows">User pools and basic authentication flows&lt;/h2>
+&lt;p>The following subsections illustrate how you can create a user pool and client, and then sign up and authenticate a new user in the pool.&lt;/p>
+&lt;h3 id="creating-a-user-pool">Creating a User Pool&lt;/h3>
 &lt;p>Just as with AWS, you can create a user pool in LocalStack with the following command:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp create-user-pool --pool-name test&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>The response should look similar to this:&lt;/p>
@@ -2133,10 +2135,10 @@ Please refer to the &lt;a href="/localstack/configuration/#emails">Configuration
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>pool_id=&amp;lt;your-pool-id&amp;gt;&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Alternatively, you can also use a JSON processor like &lt;a href="https://stedolan.github.io/jq/">&lt;code>jq&lt;/code>&lt;/a> to directly extract the necessary information when creating a pool in the first place:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>pool_id=$(awslocal cognito-idp create-user-pool --pool-name test | jq -rc &amp;#34;.UserPool.Id&amp;#34;)&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="adding-a-client">Adding a Client&lt;/h2>
+&lt;h3 id="adding-a-client">Adding a Client&lt;/h3>
 &lt;p>Now we add a client to our newly created pool. Again, we will also need the ID of the created client for the next step. The complete command for client creation with subsequent ID extraction is therefore:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client | jq -rc &amp;#34;.UserPoolClient.ClientId&amp;#34;)&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="signing-up-and-confirming-a-user">Signing up and confirming a user&lt;/h2>
+&lt;h3 id="signing-up-and-confirming-a-user">Signing up and confirming a user&lt;/h3>
 &lt;p>With these steps already taken, we can now sign up a user:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp sign-up --client-id $client_id --username example_user --password 12345678 --user-attributes Name=email,Value=&amp;lt;your.email@address.com&amp;gt;&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>The response should look similar to this:&lt;/p>
@@ -2174,6 +2176,18 @@ DEBUG:localstack_ext.bootstrap.email_utils: Sending confirmation code via email 
 &lt;/span> }
 ]
 }&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h3 id="jwt-token-issuer-and-json-web-key-sets-jwks-endpoints">JWT token issuer and JSON Web Key Sets (JWKS) endpoints&lt;/h3>
+&lt;p>The JWT tokens created by Cognito contain an issuer (&lt;code>iss&lt;/code>) attribute that represents the endpoint of the corresponding user pool.
+The issuer endpoint generally follows this pattern, where &lt;code>&amp;lt;pool_id&amp;gt;&lt;/code> is the ID of the Cognito user pool:&lt;/p>
+&lt;pre>&lt;code>http://localhost:4566/&amp;lt;pool_id&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>Under certain circumstances (depending on your configurations), there may be slight nuances of the issuer URL, like:&lt;/p>
+&lt;pre>&lt;code>https://cognito-idp.localhost.localstack.cloud/&amp;lt;pool_id&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>You can access the JSON Web Key Sets (JWKS) configuration under the following standardized well-known URL for each user pool:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl &amp;#39;http://localhost:4566/&amp;lt;pool_id&amp;gt;/.well-known/jwks.json&amp;#39;
+{&amp;#34;keys&amp;#34;: [{&amp;#34;kty&amp;#34;: &amp;#34;RSA&amp;#34;, &amp;#34;alg&amp;#34;: &amp;#34;RS256&amp;#34;, &amp;#34;use&amp;#34;: &amp;#34;sig&amp;#34;, &amp;#34;kid&amp;#34;: &amp;#34;test-key&amp;#34;, &amp;#34;n&amp;#34;: &amp;#34;k6lrbEH...&amp;#34;]}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Additionally, the global region-specific public keys for Cognito Identity Pools can be retrieved under this endpoint:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:4566/.well-known/jwks_uri
+{&amp;#34;keys&amp;#34;: [{&amp;#34;kty&amp;#34;: &amp;#34;RSA&amp;#34;, &amp;#34;alg&amp;#34;: &amp;#34;RS512&amp;#34;, &amp;#34;use&amp;#34;: &amp;#34;sig&amp;#34;, &amp;#34;kid&amp;#34;: &amp;#34;ap-northeast-11&amp;#34;, &amp;#34;n&amp;#34;: &amp;#34;AI7mc1assO5...&amp;#34;]}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;h2 id="cognito-lambda-triggers">Cognito Lambda Triggers&lt;/h2>
 &lt;p>Cognito provides a number of lifecycle hooks in the form of Cognito Lambda triggers. These triggers can be used to react to various lifecycle events and customize the behavior of user signup, confirmation, migration, etc.&lt;/p>
 &lt;p>For example, to define a &lt;em>user migration&lt;/em> Lambda trigger, we can first create a Lambda function (say, named &lt;code>&amp;quot;f1&amp;quot;&lt;/code>) capable of performing the migration, and then define the corresponding &lt;code>--lambda-config&lt;/code> on the user pool creation:&lt;/p>
