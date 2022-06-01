@@ -5,15 +5,20 @@ categories: ["LocalStack Pro"]
 description: >
   Cognito
 ---
-[AWS Cognito](https://aws.amazon.com/cognito/) enables you to manage authentication and access control for AWS-backed apps and resources.
+
+The [AWS Cognito](https://aws.amazon.com/cognito/) service enables you to manage authentication and access control for AWS-backed apps and resources.
 
 LocalStack Pro contains basic support for authentication via Cognito. You can create Cognito user pools, sign up and confirm users, set up Lambda triggers, and use the `COGNITO_USER_POOLS` authorizer integration with API Gateway.
 
-By default, Cognito does not send actual email messages.
+**Note:** By default, local Cognito does not send actual email messages.
 To enable this feature, you will require an email address and the corresponding SMTP settings.
 Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server.
 
-## Creating a User Pool
+## User pools and basic authentication flows
+
+The following subsections illustrate how you can create a user pool and client, and then sign up and authenticate a new user in the pool.
+
+### Creating a User Pool
 
 Just as with AWS, you can create a user pool in LocalStack with the following command:
 {{< command >}}
@@ -63,7 +68,7 @@ Alternatively, you can also use a JSON processor like [`jq`](https://stedolan.gi
 $ pool_id=$(awslocal cognito-idp create-user-pool --pool-name test | jq -rc ".UserPool.Id")
 {{< /command >}}
 
-## Adding a Client
+### Adding a Client
 
 Now we add a client to our newly created pool. Again, we will also need the ID of the created client for the next step. The complete command for client creation with subsequent ID extraction is therefore:
 
@@ -71,7 +76,7 @@ Now we add a client to our newly created pool. Again, we will also need the ID o
 $ client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client | jq -rc ".UserPoolClient.ClientId")
 {{< /command >}}
 
-## Signing up and confirming a user
+### Signing up and confirming a user
 
 With these steps already taken, we can now sign up a user:
 {{< command >}}
@@ -125,6 +130,31 @@ $ awslocal cognito-idp list-users --user-pool-id $pool_id
     ]
 }
 {{< /command >}}
+
+### JWT token issuer and JSON Web Key Sets (JWKS) endpoints
+
+The JWT tokens created by Cognito contain an issuer (`iss`) attribute that represents the endpoint of the corresponding user pool.
+The issuer endpoint generally follows this pattern, where `<pool_id>` is the ID of the Cognito user pool:
+```
+http://localhost:4566/<pool_id>
+```
+
+Under certain circumstances (depending on your configurations), there may be slight nuances of the issuer URL, like:
+```
+https://cognito-idp.localhost.localstack.cloud/<pool_id>
+```
+
+You can access the JSON Web Key Sets (JWKS) configuration under the following standardized well-known URL for each user pool:
+{{< command >}}
+$ curl 'http://localhost:4566/<pool_id>/.well-known/jwks.json'
+{"keys": [{"kty": "RSA", "alg": "RS256", "use": "sig", "kid": "test-key", "n": "k6lrbEH..."]}
+{{</ command >}}
+
+Additionally, the global region-specific public keys for Cognito Identity Pools can be retrieved under this endpoint:
+{{< command >}}
+$ curl http://localhost:4566/.well-known/jwks_uri
+{"keys": [{"kty": "RSA", "alg": "RS512", "use": "sig", "kid": "ap-northeast-11", "n": "AI7mc1assO5..."]}
+{{</ command >}}
 
 ## Cognito Lambda Triggers
 
