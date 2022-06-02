@@ -10,18 +10,25 @@ description: >
   Using LocalStack in multi-tenant setups
 ---
 
-LocalStack Pro supports multiple AWS accounts on a single running instance.
-In contrast, LocalStack Community has a non-configurable AWS Account ID (`000000000000`).
+LocalStack Community uses a fixed AWS Account ID (`000000000000`).
+In contrast, LocalStack Pro supports namespacing based on AWS Account ID on the single running instance.
 
-AWS resources can be addressed by accounts using the `AWS_ACCESS_KEY_ID` variable.
-As can be seen in the example below, all created resources are namespaced by account ID.
+Namespaced AWS resources can be accessed by using the `AWS_ACCESS_KEY_ID` variable as illustrated below.
+
+{{< alert >}}
+**Important:**
+Region must be configured not to be `us-east-1`.
+See [limitation note](#limitations).
+{{< /alert >}}
 
 {{< command >}}
-$ AWS_ACCESS_KEY_ID=001 awslocal ec2 create-key-pair --key-name green-hospital
+$ export AWS_DEFAULT_REGION=eu-central-1
 
-$ AWS_ACCESS_KEY_ID=002 awslocal ec2 create-key-pair --key-name red-medicine
+$ AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 create-key-pair --key-name green-hospital
 
-$ AWS_ACCESS_KEY_ID=001 awslocal ec2 describe-key-pairs
+$ AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 create-key-pair --key-name red-medicine
+
+$ AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 describe-key-pairs
 {
     "KeyPairs": [
         {
@@ -31,7 +38,7 @@ $ AWS_ACCESS_KEY_ID=001 awslocal ec2 describe-key-pairs
     ]
 }
 
-$ AWS_ACCESS_KEY_ID=002 awslocal ec2 describe-key-pairs
+$ AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 describe-key-pairs
 {
     "KeyPairs": [
         {
@@ -43,7 +50,7 @@ $ AWS_ACCESS_KEY_ID=002 awslocal ec2 describe-key-pairs
 {{< / command >}}
 
 In absence of an explicit value for Account ID, LocalStack reverts to the default value of `000000000000`.
-Thus, in this example, not setting an explicit Account ID will return no resources.
+In the current example, not setting an explicit Account ID will return no resources.
 
 {{< command >}}
 $ awslocal ec2 describe-key-pairs
@@ -58,11 +65,22 @@ LocalStack uses the `AWS_ACCESS_KEY_ID` client-side variable for Account ID.
 In future LocalStack may support proper access key IDs issued by the local IAM service, which will then internally be translated to corresponding account IDs.
 {{< /alert >}}
 
+### Limitations
+
+In order to use multi-accounts, the region must be configured to something other than `us-east-1`.
+Note that `us-east-1` is the default region and must be explicitly overridden.
+This can be done using the `AWS_DEFAULT_REGION` or the `--region` argument in AWS CLI.
+More information can be found on [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+
 Multi-accounts is currently supported by following services:
+<!--
+Services that use the Moto backend.
+In phase 2 of multi-accounts, this list will be expanded to LocalStack RegionBackend.
+-->
 - ACM
 - Batch
 - CloudWatch
-- EC2 (partial)
+- EC2
 - ECS
 - ELB
 - IAM
@@ -72,6 +90,6 @@ Multi-accounts is currently supported by following services:
 - Resource Groups
 - Secrets Manager
 - SES
-- SSM (partial)
+- SSM
 - SWF
 - Xray
