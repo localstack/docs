@@ -13,7 +13,7 @@ description: >
 
 You will need the following tools for local development of LocalStack.
 
-* Python 3.7+
+* Python 3.10+
 * Sasl
 * Pip
 * Virtualenv
@@ -30,9 +30,9 @@ You will need the following tools for local development of LocalStack.
 
 Below are some basic installation instructions for the dependencies you will need (assuming you're on Debian/Ubuntu Linux). In the case of Fedora/CentOS, most of the packages have pretty much the same name, with a few exceptions.
 
-* Python 3.7+
+* Python 3.10+
   ```bash
-  update-alternatives --install /usr/bin/python python /usr/bin/python3.8 2
+  update-alternatives --install /usr/bin/python python /usr/bin/python3.10 2
   ```
 * Sasl
  
@@ -130,9 +130,7 @@ make docker-build
 
 ### Tips
 
-
-* Python 3.9+ currently does not work. Use pyenv (<https://github.com/pyenv/pyenv>) to manage python versions. Quick start:`pyenv install 3.8.10 && pyenv global 3.8.10`
-* If virtualenv chooses system python installations before your pyenv installations, manually initialize virtualenv before running `make install` like this: `virtualenv -p ~/.pyenv/shims/python3.8 .venv` .
+* If virtualenv chooses system python installations before your pyenv installations, manually initialize virtualenv before running `make install` like this: `virtualenv -p ~/.pyenv/shims/python3.10 .venv` .
 * Terraform needs version <0.14 to work currently. Use tfenv (<https://github.com/tfutils/tfenv>) to manage terraform versions comfortable. Quick start: `tfenv install 0.13.7 && tfenv use 0.13.7`
 * Set env variable LS_LOG='trace' to print every http request sent to localstack and their responses. Useful for debugging certain issues.
 * As per dev guide, it requires `libsasl2-dev`. Arch based Distro equivalent: `libsasl`
