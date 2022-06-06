@@ -102,7 +102,7 @@ module.exports.handler = function(event, context, callback) {
 A backend service can push data to the connection using the [Amazon API Gateway Management API](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/apigatewaymanagementapi/index.html). In LocalStack, it looks like this:
 
 {{< command >}}
-aws apigatewaymanagementapi --endpoint-url http://localhost:4566 post-to-connection --connection-id <connectionId> --data '{"msg": "Hi"}' --debug
+$ awslocal apigatewaymanagementapi post-to-connection --connection-id '<connectionId>' --data '{"msg": "Hi"}'
 {{< / command >}}
 
 
