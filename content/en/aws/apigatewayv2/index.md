@@ -98,4 +98,12 @@ module.exports.handler = function(event, context, callback) {
 
 ... then sending a message to the WebSocket at `ws://localhost:4510` will result in the same message getting returned as a response on the same WebSocket.
 
+
+A backend service can push data to the connection using the [Amazon API Gateway Management API](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/apigatewaymanagementapi/index.html). In LocalStack, it looks like this:
+
+{{< command >}}
+aws apigatewaymanagementapi --endpoint-url http://localhost:4566 post-to-connection --connection-id <connectionId> --data '{"msg": "Hi"}' --debug
+{{< / command >}}
+
+
 For a simple, self-contained example please refer to [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets).
