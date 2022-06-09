@@ -13,11 +13,12 @@ description: >
 LocalStack Community uses a fixed AWS Account ID (`000000000000`).
 In contrast, LocalStack Pro supports namespacing based on AWS Account ID on the single running instance.
 
-Namespaced AWS resources can be accessed by using the `AWS_ACCESS_KEY_ID` variable as illustrated below.
+Namespaced AWS resources can be accessed by using the `AWS_ACCESS_KEY_ID` variable when making requests.
+No additional configuration is required on LocalStack side.
 
 {{< alert >}}
 **Important:**
-Region must be configured not to be `us-east-1`.
+Any region other than `us-east-1` must be used.
 See [limitation note](#limitations).
 {{< /alert >}}
 
@@ -71,25 +72,3 @@ In order to use multi-accounts, the region must be configured to something other
 Note that `us-east-1` is the default region and must be explicitly overridden.
 This can be done using the `AWS_DEFAULT_REGION` or the `--region` argument in AWS CLI.
 More information can be found on [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
-
-Multi-accounts is currently supported by following services:
-<!--
-Services that use the Moto backend.
-In phase 2 of multi-accounts, this list will be expanded to LocalStack RegionBackend.
--->
-- ACM
-- Batch
-- CloudWatch
-- EC2
-- ECS
-- ELB
-- IAM
-- KMS
-- CloudWatch
-- Organisations
-- Resource Groups
-- Secrets Manager
-- SES
-- SSM
-- SWF
-- Xray
