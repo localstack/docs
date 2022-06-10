@@ -1,4 +1,28 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Language SDKs</title><link>/integrations/sdks/</link><description>Recent content in Language SDKs on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/integrations/sdks/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: Go</title><link>/integrations/sdks/go/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/sdks/go/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Language SDKs</title><link>/integrations/sdks/</link><description>Recent content in Language SDKs on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/integrations/sdks/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrations: .NET</title><link>/integrations/sdks/dotnet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/sdks/dotnet/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>The &lt;a href="https://aws.amazon.com/sdk-for-net/">AWS SDK for .NET&lt;/a>, like other AWS SDKs, lets you set the endpoint when creating resource clients,
+which is the preferred way of integrating the .NET SDK with LocalStack.&lt;/p>
+&lt;h2 id="example">Example&lt;/h2>
+&lt;p>Here is an example of how to create an &lt;code>LambdaClient&lt;/code> with the endpoint set to LocalStack.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-csharp" data-lang="csharp">&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">lambdaClient&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">AmazonLambdaClient&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">AmazonLambdaConfig&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">ServiceURL&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">});&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you want to specify a region and credentials when creating the client, please set them as &lt;code>AuthenticationRegion&lt;/code> and &lt;code>BasicAWSCredentials&lt;/code>, like in this example:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-csharp" data-lang="csharp">&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">lambdaClient&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">AmazonLambdaClient&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">BasicAWSCredentials&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;temp&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;temp&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">),&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">AmazonLambdaConfig&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;span style="color:#000">ServiceURL&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;span style="color:#000">AuthenticationRegion&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;eu-west-1&amp;#34;&lt;/span>
+&lt;span style="color:#000;font-weight:bold">});&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+Make sure you are setting the &lt;code>AuthenticationRegion&lt;/code> and not the &lt;code>RegionEndpoint&lt;/code>. Setting the &lt;code>RegionEndpoint&lt;/code> to a constant like &lt;code>RegionEndpoint.EUWest1&lt;/code> will override the ServiceURL, and your request will end up against AWS.
+&lt;/div>
+&lt;h2 id="resources">Resources&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://aws.amazon.com/sdk-for-net/">AWS SDK for .NET&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/aws/aws-sdk-net">Official repository of the AWS SDK for .NET&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Integrations: Go</title><link>/integrations/sdks/go/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/integrations/sdks/go/</guid><description>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The &lt;a href="https://aws.amazon.com/sdk-for-go/">AWS SDK for Go&lt;/a>, like other AWS SDKs, lets you set the endpoint when creating resource clients,
 which is the preferred way of integrating the Go SDK with LocalStack.&lt;/p>
