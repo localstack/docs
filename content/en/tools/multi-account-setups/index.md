@@ -10,15 +10,15 @@ description: >
   Using LocalStack in multi-tenant setups
 ---
 
-LocalStack Community uses a fixed AWS Account ID (`000000000000`).
-In contrast, LocalStack Pro supports namespacing based on AWS Account ID on the single running instance.
+LocalStack Community only supports a single AWS Account ID, `000000000000` by default.
+By contrast, LocalStack Pro ships with multi-account support which adds namespacing based on AWS Account ID
 
 Namespaced AWS resources can be accessed by using the `AWS_ACCESS_KEY_ID` variable when making requests.
-No additional configuration is required on LocalStack side.
+No additional server-side configuration is required.
 
 {{< alert >}}
 **Important:**
-Any region other than `us-east-1` must be used.
+Multi-account is not supported for the `us-east-1` region.
 See [limitation note](#limitations).
 {{< /alert >}}
 
@@ -70,5 +70,5 @@ In future LocalStack may support proper access key IDs issued by the local IAM s
 
 In order to use multi-accounts, the region must be configured to something other than `us-east-1`.
 Note that `us-east-1` is the default region and must be explicitly overridden.
-This can be done using the `AWS_DEFAULT_REGION` or the `--region` argument in AWS CLI.
+For the AWS CLI, this can be done using the `AWS_DEFAULT_REGION` or the `--region` argument.
 More information can be found on [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
