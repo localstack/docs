@@ -10,9 +10,9 @@ This guide shows you how to start LocalStack in a Drone CI pipeline.
 
 ## Drone CI Pipelines
 
-There are a few restrictions in Drone CI Pipelines that make it hard to customize the behavior of Docker. For example, mounting the host machine Docker socket is considered highly insecure, and hence alleviated privileges are required to run commands like `localstack wait`. Learn more about configuring Docker for Drone CI pipelines over [their official documentation](https://docs.drone.io/pipeline/docker/overview/).
+There are a few restrictions in Drone CI Pipelines that make it hard to customize the behavior of Docker. For example, mounting the host machine Docker socket is considered insecure, and hence alleviated privileges are required to run commands like `localstack wait`. Learn more about configuring Docker for Drone CI pipelines over [their official documentation](https://docs.drone.io/pipeline/docker/overview/).
 
-A possible work-around to mount the Docker socket (`/var/run/docker.sock`) into the container to communicate with the docker daemon on the host is by exposing the port `2375`, which is reachable in the main LocalStack container. However, it requires changes to the typical Docker-Compose setup.
+A possible alternative to mounting the Docker socket (`/var/run/docker.sock`) into the container to communicate with the Docker daemon on the host is to expose port `2375` and make it reachable in the main LocalStack container. However, it requires changes to the typical Docker-Compose setup.
 
 ## Example
 
