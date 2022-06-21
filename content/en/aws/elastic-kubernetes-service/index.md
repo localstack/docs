@@ -272,3 +272,56 @@ $ awslocal eks list-clusters
 {{< / command >}}
 
 Simply configure your Kubernetes client (e.g., `kubectl` or other SDK) to point to the `endpoint` specified in the `create-cluster` output above. Depending on whether you're calling the Kubernetes API from the local machine or from within a Lambda, you may have to use different endpoint URLs (`https://localhost:6443` vs `https://172.17.0.1:6443`).
+
+## Mounting directories from host to pod
+
+If you have specific directories which you want to mount from your local dev machine into one of your pods you can do this with two simple steps:
+
+First, make sure to create your cluster with the special tag `__k3d_volume_mount__`, specifying how you want to mount a volume from your dev machine to the cluster nodes:
+
+{{< command >}}
+$ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}' --tags '{"__k3d_volume_mount__":"/path/on/host:/path/on/node"}'
+{
+    "cluster": {
+        "name": "cluster1",
+        "arn": "arn:aws:eks:eu-central-1:000000000000:cluster/cluster1",
+        "createdAt": "Sat, 05 Oct 2019 12:29:26 GMT",
+        "endpoint": "https://172.17.0.1:6443",
+        "status": "ACTIVE",
+        "tags": {
+            "__k3d_volume_mount__" : "/path/on/host:/path/on/node"
+        }
+        ...
+    }
+}
+{{< / command >}}
+
+Then, you can create your path with volume mounts as usual, with a configuration similar to this:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test
+spec:
+  volumes:
+    - name: example-volume
+      hostPath:
+         path: /path/on/node
+  containers:
+  - image: alpine:3.12
+    command: ["/bin/sh","-c"]
+    args:
+      - echo "Starting the update command";
+        apk update;
+        echo "Adding the openssh command";
+        apk add openssh;
+        echo "openssh completed";
+        sleep 240m;
+    imagePullPolicy: IfNotPresent
+    name: alpine
+    volumeMounts:
+      - mountPath: "/path/on/pod"
+        name: example-volume
+  restartPolicy: Always
+```
