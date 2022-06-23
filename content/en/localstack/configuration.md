@@ -31,6 +31,7 @@ $ SERVICES=kinesis,lambda,sqs,dynamodb DEBUG=1 localstack start
 | `PERSISTENCE_SINGLE_FILE` | `true` (default)| Specify if persistence files should be combined (deprecated - only relevant for legacy persistence in Community version, not relevant for advanced persistence in Pro version). |
 | `PERSIST_ALL` | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, Cognito users, etc). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `LEGACY_PERSISTENCE` | `true` (default) | Whether to enable legacy persistence mechanism based on API calls record&replay (deprecated). Only relevant for Community version, not relevant for advanced persistence mechanism in Pro. |
+| `MULTI_ACCOUNTS` | `0` (default) | Enable multi-accounts (preview) |
 | `<SERVICE>_BACKEND` | | Custom endpoint URL to use for a specific service, where <SERVICE> is the uppercase service name. See (TODO) for supported services and (TODO) for examples for third-party integration |
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
 | `INIT_SCRIPTS_PATH` | `/some/path` | Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
