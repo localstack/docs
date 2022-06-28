@@ -16,19 +16,22 @@ $ awslocal elasticache create-cache-cluster --cache-cluster-id i1
         "CacheClusterId": "i1",
         "ConfigurationEndpoint": {
             "Address": "localhost",
-            "Port": 4530
+            "Port": 4510
         }
+
+        ...
+
     }
 }
 {{< / command >}}
 
-Then use the returned port number (`4530`) to connect to the Redis instance:
+Then use the returned port number (`4510`) to connect to the Redis instance:
 {{< command >}}
-$ redis-cli -p 4530 ping
+$ redis-cli -p 4510 ping
 PONG
-$ redis-cli -p 4530 set foo bar
+$ redis-cli -p 4510 set foo bar
 OK
-$ redis-cli -p 4530 get foo
+$ redis-cli -p 4510 get foo
 "bar"
 {{< / command >}}
 
