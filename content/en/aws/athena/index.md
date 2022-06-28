@@ -23,17 +23,54 @@ $ awslocal athena list-query-executions
 $ awslocal athena get-query-results --query-execution-id c9f453ad
 {
     "ResultSet": {
-        "Rows": [{
-            "Data": [
-                { "VarCharValue": "1" },
-                { "VarCharValue": "2" },
-                { "VarCharValue": "3" }
+        "Rows": [
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "_col0"
+                    },
+                    {
+                        "VarCharValue": "_col1"
+                    },
+                    {
+                        "VarCharValue": "_col2"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "1"
+                    },
+                    {
+                        "VarCharValue": "2"
+                    },
+                    {
+                        "VarCharValue": "3"
+                    }
+                ]
+            }
+        ],
+        "ResultSetMetadata": {
+            "ColumnInfo": [
+                {
+                    "Name": "_col0",
+                    "Type": "integer"
+                },
+                {
+                    "Name": "_col1",
+                    "Type": "integer"
+                },
+                {
+                    "Name": "_col2",
+                    "Type": "integer"
+                }
             ]
-        }],
-        "ResultSetMetadata": { "ColumnInfo": [] }
+        }
     },
     "UpdateCount": 0
 }
+
 {{< / command >}}
 
 {{< alert >}}**Note**:
