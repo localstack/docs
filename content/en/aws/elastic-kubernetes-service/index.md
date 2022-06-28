@@ -30,7 +30,7 @@ f05770ec8523   rancher/k3s:v1.21.5-k3s2       "/bin/k3s server --t…"   1 minut
 
 Once the cluster has been created and initialized, we can determine the server `endpoint`:
 {{< command >}}
-% awslocal eks describe-cluster --name cluster1
+$ awslocal eks describe-cluster --name cluster1
 {
     "cluster": {
         "name": "cluster1",
