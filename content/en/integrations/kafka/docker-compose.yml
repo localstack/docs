@@ -62,11 +62,10 @@ services:
     environment:
       - SERVICES=lambda,secretsmanager
       - DEBUG=${DEBUG- }
-      - DATA_DIR=${DATA_DIR- }
+      - PERSISTENCE=${PERSISTENCE- }
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
       - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOST_TMP_FOLDER=${TMPDIR}
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "${TMPDIR:-/tmp/localstack}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"

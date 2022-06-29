@@ -218,7 +218,7 @@ This can however lead to unexpected behavior when persisting data into OpenSearc
 
 ### Storage Layout
 
-OpenSearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack/data`), as follows:
+OpenSearch will be organized in your state directory as follows:
 
 ```
 localstack@machine /tmp/localstack/data % tree -L 4
@@ -283,11 +283,10 @@ services:
     environment:
       - OPENSEARCH_CUSTOM_BACKEND=http://opensearch:9200
       - DEBUG=${DEBUG- }
-      - DATA_DIR=${DATA_DIR- }
+      - PERSISTENCE=${PERSISTENCE- }
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOST_TMP_FOLDER=${TMPDIR}
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "${TMPDIR:-/tmp/localstack}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
     links:
       - opensearch

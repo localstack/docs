@@ -15,18 +15,13 @@ Please note that the coverage is only guaranteed for the Pro version, while the 
 
 To enable the persistence mechanism simply set the `PERSISTENCE` environment variable to `1`.
 
-When working with Docker you may want to specify a different location for temporary folders using the `HOST_TMP_FOLDER` flag.
-In this case, it is advisable to use a `$TMPDIR` variable, which you can re-use for both flags.
-For instance, you'll set `$TMPDIR=/tmp/my-tmp` then your environment configuration in your `docker-compose` file could look as follows: 
-
 ```yaml
     ...
     environment:
       - LOCALSTACK_API_KEY=...
       - PERSISTENCE=1
-      - HOST_TMP_FOLDER=${TMPDIR}
     volumes:
-      - ${TMPDIR}:/tmp/localstack
+      - ${TMPDIR:-/tmp/localstack}:/var/lib/localstack
 ```
 
 Once the application has been set and configured properly, the `/health` endpoint of LocalStack will indicate whether the persistence mechanism has been initialized successfully.

@@ -16,7 +16,7 @@ LocalStack uses following directories when running within a container.
 - `/var/lib/localstack`: the root directory
 - `/var/lib/localstack/lib`: variable packages (like lazy-loaded third-party dependencies)
 - `/var/lib/localstack/logs`: logs for recent LocalStack runs
-- `/var/lib/localstack/state`: persistence state of third-party services (or what is sometimes called 'data' or 'assets', e.g., Opensearch cluster data)
+- `/var/lib/localstack/state`: persistence state of services (or what is sometimes called 'data' or 'assets', e.g., Opensearch cluster data)
 - `/var/lib/localstack/tmp`: temporary data that is not expected to survive LocalStack runs (may be cleared when LocalStack starts)
 - `/var/lib/localstack/cache`: temporary data that is expected to survive LocalStack runs (is not cleared when LocalStack starts)
 - `/usr/lib/localstack`: static third-party packages installed into the container images
@@ -35,7 +35,7 @@ volumes:
 ```
 
 `${TMPDIR}` could be an arbitrary location on the host e.g. `/some/path/`.
-In this case the effective layout would be something like:
+In such case the effective layout would be something like:
 
 ```
 $ tree -L 4 /some/path/localstack

@@ -176,7 +176,7 @@ This can however lead to unexpected behavior when persisting data into Elasticse
 
 ### Storage Layout
 
-Elasticsearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack/data`), as follows:
+Elasticsearch will be organized in your state directory as follows:
 
 ```
 localstack@machine /tmp/localstack/data % tree -L 4
@@ -240,13 +240,12 @@ services:
     environment:
       - ES_CUSTOM_BACKEND=http://elasticsearch:9200
       - DEBUG=${DEBUG- }
-      - DATA_DIR=${DATA_DIR- }
+      - PERSISTENCE=${PERSISTENCE- }
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
       - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOST_TMP_FOLDER=${TMPDIR}
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "${TMPDIR:-/tmp/localstack}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
     links:
       - elasticsearch
