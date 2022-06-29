@@ -7,6 +7,10 @@ description: >
 
 This page describes the filesystem directory layout used internally by LocalStack.
 
+{{< alert title="Information" color="primary">}}
+This filesystem hierarchy was introduced in LocalStack v1 and can be disabled by setting `LEGACY_DIRECTORIES` to `1`.
+{{< /alert >}}
+
 LocalStack uses following directories when running within a container.
 
 - `/var/lib/localstack`: the root directory
