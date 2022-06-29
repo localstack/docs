@@ -68,7 +68,7 @@ While this approach is generic enough to cover a sizable amount of services, the
 ### Persistence Mechanism - Pro Version
 
 The persistence mechanism of the Pro version is much more sophisticated and is based on *serialized state*.
-Starting the Pro version of LocalStack will traverse the persist storage directory recursively and directly deserialize the file into the application state.
+Starting the Pro version of LocalStack will traverse the state directory recursively and directly deserialize the file into the application state.
 Typically, each service has one state file for each region.
 
 Each serialization mechanism has its own root folder.
