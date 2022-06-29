@@ -33,7 +33,7 @@ $ awslocal timestream-write write-records --database-name testDB --table-name te
 
 Finally, we can run a query to retrieve the timeseries data (or aggregate values) from the table:
 {{< command >}}
-$ awslocal timestream-query query --query-string "SELECT CREATE_TIME_SERIES(time, measure_value::double) as cpu FROM timeStreamDB.timeStreamTable WHERE measure_name='cpu'"
+$ awslocal timestream-query query --query-string "SELECT CREATE_TIME_SERIES(time, measure_value::double) as cpu FROM testDB.timeStreamTable WHERE measure_name='cpu'"
 {
   "Rows": [{
     "Data": [{
