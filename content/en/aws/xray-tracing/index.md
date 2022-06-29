@@ -26,6 +26,8 @@ def lambda_handler(event, context):
 
 Running this code in Lambda on LocalStack will result in two trace segments being created in XRay - one from the instrumented `boto3` client when running `create_bucket(..)`, and one for the custom subsegment denoted `'my_code'`. You can use the regular XRay API calls (e.g., [`GetTraceSummaries`](https://docs.aws.amazon.com/xray/latest/api/API_GetTraceSummaries.html), [`BatchGetTraces`](https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html)) to retrieve the details (timestamps, IDs, etc) of these segments.
 
+You can also checkout another of our examples with Xray and Lambda, deployed via the Serverless framework, [`here`](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray)
+
 {{< alert >}}
 **Note:** To use XRay in Lambdas, please note that you'll need to configure `LAMBDA_XRAY_INIT=1` - this will ensure that the XRay daemon process is fully initialized when spawning Lambda containers (may slightly increase startup times).
 {{< /alert >}}
