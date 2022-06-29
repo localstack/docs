@@ -42,7 +42,7 @@ $ mkdir -p /tmp/python/
 $ echo 'def util():' > /tmp/python/testlayer.py
 $ echo '  print("Output from Lambda layer util function")' >> /tmp/python/testlayer.py
 $ (cd /tmp; zip -r testlayer.zip python)
-$ awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip
+$ LAYER_ARN=$(awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip | jq -r .LayerArn)
 {{< / command >}}
 
 We can then create a simple Lambda function which references and imports the Lambda layer:
@@ -51,7 +51,7 @@ $ echo 'def handler(*args, **kwargs):' > /tmp/testlambda.py
 $ echo '  import testlayer; testlayer.util()' >> /tmp/testlambda.py
 $ echo '  print("Debug output from Lambda function")' >> /tmp/testlambda.py
 $ (cd /tmp; zip testlambda.zip testlambda.py)
-$ awslocal lambda create-function --function-name func1 --runtime python3.8 --role r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers arn:aws:lambda:$AWS_DEFAULT_REGION:000000000000:layer:layer1:1
+$ awslocal lambda create-function --function-name func1 --runtime python3.8 --role r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers $LAYER_ARN:1
 {{< / command >}}
 
 Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with `DEBUG=1` enabled), which includes the output from the layer util function:
