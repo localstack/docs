@@ -36,19 +36,19 @@ The brokernodegroupinfo.json contains the following info:
     ]
 }
 {{< / command >}}
-The output of the command looks as follows:
+The output of the command looks similar to this:
 {{< command >}}
 {
-    "ClusterArn": "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster",
+    "ClusterArn": "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25",
     "ClusterName": "EventsCluster",
     "State": "CREATING"
 }
 {{< / command >}}
 
-Describing the MSK cluster can be as simple as running the following command with the ClusterArn displayed after the creation of the cluser
+Describing the MSK cluster can be achieved by running the following command. Replace the ClusterArn with your own.
 
 {{< command >}}
-awslocal kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster"
+awslocal kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25"
 {{< / command >}}
 
 The expected output is something like the following
@@ -65,16 +65,19 @@ The expected output is something like the following
             ],
             "InstanceType": "kafka.m5.xlarge"
         },
-        "ClusterArn": "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster",
+        "ClusterArn": "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25",
         "ClusterName": "EventsCluster",
+        "CreationTime": "2022-06-29T02:45:16.848000Z",
         "CurrentBrokerSoftwareInfo": {
             "KafkaVersion": "2.5.0"
         },
+        "CurrentVersion": "K5OWSPKW0IK7LM",
         "NumberOfBrokerNodes": 3,
         "State": "ACTIVE",
-        "ZookeeperConnectString": "localhost:4513"
+        "ZookeeperConnectString": "localhost:4510"
     }
 }
+
 {{< / command >}}
 
 ## Create a kafka topic
@@ -100,7 +103,7 @@ awslocal kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:000000000
 Run the following command, replacing ```ZookeeperConnectString``` with the value that you saved after you ran the describe-cluster command.
 
 {{< command >}}
-bin/kafka-topics.sh --create --zookeeper localhost:4513 --replication-factor 1 --partitions 1 --topic LocalMSKTopic
+bin/kafka-topics.sh --create --zookeeper localhost:4510 --replication-factor 1 --partitions 1 --topic LocalMSKTopic
 {{< / command >}}
 
 Your output should be similar to this one
@@ -136,7 +139,7 @@ From the JSON result of the command, save the value associated with the string n
 
 {{< command >}}
 {
-    "BootstrapBrokerString": "localhost:4514"
+    "BootstrapBrokerString": "localhost:4511"
 }
 {{< / command >}}
 
@@ -160,19 +163,6 @@ You start seeing the messages you entered earlier when you used the console prod
 
 Enter more messages in the producer window, and watch them appear in the consumer window.
 
-## Delete the local MSK cluster
-
-Run the following command to list your MSK clusters
-
-{{< command >}}
-awslocal kafka list-clusters --region us-east-1
-{{< / command >}}
-
-From the list of clusters, pick the ```ClusterARN``` of the cluster you want deleted and run the command
-
-{{< command >}}
-awslocal kafka delete-cluster --cluster-arn ClusterArn
-{{< / command >}}
 
 ## Local MSK and Lambdas
 
@@ -209,3 +199,18 @@ The following response is to be expected
 {{< / command >}}
 
 Using this event source mapping, LocalStack will automatically spawn Lambda functions for each message that gets published to the target Kafka topic. You can use the `kafka-console-producer.sh` client script (see above) to publish messages to the topic, and then observe the LocalStack log output to see how Lambda function are executed (in Docker containers) as new messages arrive.
+
+## Delete the local MSK cluster
+
+Run the following command to list your MSK clusters
+
+{{< command >}}
+awslocal kafka list-clusters --region us-east-1
+{{< / command >}}
+
+From the list of clusters, pick the ```ClusterARN``` of the cluster you want deleted and run the command
+
+{{< command >}}
+awslocal kafka delete-cluster --cluster-arn ClusterArn
+{{< / command >}}
+
