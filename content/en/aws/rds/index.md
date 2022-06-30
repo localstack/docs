@@ -12,20 +12,19 @@ LocalStack supports a basic version of [RDS](https://aws.amazon.com/rds/) for te
 In order to use MSSQL databases, you need to explicitly accept the [Microsoft SQL Server End-User Licensing Agreement (EULA)](https://hub.docker.com/_/microsoft-mssql-server) by setting `MSSQL_ACCEPT_EULA=Y` in the LocalStack container environment.
 {{< /alert >}}
 
-The local RDS service also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS database, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple `SELECT 123` query via the RDS Data API.
+The local RDS service also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries against RDS clusters over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple `SELECT 123` query via the RDS Data API.
 {{< command >}}
-$ awslocal rds create-db-instance --db-instance-identifier db1 --db-instance-class c1 --engine postgres
+$ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test
 {
-    "DBInstance": {
+    "DBCluster": {
         ...
-        "Endpoint": {
-            "Address": "localhost",
-            "Port": 4513  # may vary
-        }
+        "Endpoint": "localhost:4510",
+        "Port": 4510,  # may vary
+        "DBClusterArn": "arn:aws:rds:us-east-1:000000000000:cluster:db1",
         ...
     }
-    ...
 }
+
 
 $ awslocal secretsmanager create-secret --name dbpass --secret-string test
 {
@@ -34,16 +33,36 @@ $ awslocal secretsmanager create-secret --name dbpass --secret-string test
     "VersionId": "fffa1f4a-2381-4a2b-a977-4869d59a16c0"
 }
 
-$ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds:eu-central-1:000000000000:db:db1 --secret-arn arn:aws:secretsmanager:eu-central-1:1234567890:secret:dbpass-cfnAX --sql 'SELECT 123'
+$ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 --secret-arn arn:aws:secretsmanager:eu-central-1:1234567890:secret:dbpass-cfnAX --include-result-metadata --sql 'SELECT 123'
 {
-    "columnMetadata": [{
-        "name": "?column?",
-        "type": 23
-    }],
-    "records": [[
-        { "doubleValue": 123 }
-    ]]
+    "columnMetadata": [
+        {
+            "arrayBaseColumnType": 0,
+            "isAutoIncrement": false,
+            "isCaseSensitive": false,
+            "isCurrency": false,
+            "isSigned": true,
+            "label": "?column?",
+            "name": "?column?",
+            "nullable": 0,
+            "precision": 10,
+            "scale": 0,
+            "schemaName": "",
+            "tableName": "",
+            "type": 4,
+            "typeName": "int4"
+        }
+    ],
+    "numberOfRecordsUpdated": 0,
+    "records": [
+        [
+            {
+                "longValue": 123
+            }
+        ]
+    ]
 }
+
 {{< / command >}}
 
 You can also use other clients like `psql` to interact with the database. The hostname and port of your created instance can be found in the output from above or by running `awslocal rds describe-db-instances`.
