@@ -21,7 +21,7 @@ To enable the persistence mechanism simply set the `PERSISTENCE` environment var
       - LOCALSTACK_API_KEY=...
       - PERSISTENCE=1
     volumes:
-      - ${TMPDIR:-/tmp/localstack}:/var/lib/localstack
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
 ```
 
 Once the application has been set and configured properly, the `/health` endpoint of LocalStack will indicate whether the persistence mechanism has been initialized successfully.
@@ -75,7 +75,7 @@ Each serialization mechanism has its own root folder.
 As of now, all supported services are serialized as pickle files, except for Kinesis (which is serialized as JSON) and DynamoDB (which is serialized as an SQLite database).
 This is illustrated with the diagram below.
 
-![Structure of the DATA_DIR](datadir_structure.png)
+![Structure of the state directory](datadir_structure.png)
 
 This approach does not suffer from the same limitations as *record-and-replay*.
 Restoring the state -- even for large projects -- usually only takes a few milliseconds.
