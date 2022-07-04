@@ -1,5 +1,5 @@
 ---
-title: "Persistence Mechanism Configuration"
+title: "Persistence Mechanism"
 weight: 5
 description: >
   How the LocalStack persistence mechanism works and how you can configure it.
@@ -11,8 +11,11 @@ Commonly, you may simply have a local development server that relies on a non-ep
 
 While the persistence mechanism covers most services, not all of them are supported yet.
 Please make sure to check the [feature coverage page]({{< ref "feature-coverage" >}}) to see whether your desired services are covered.
-While in the past we supported a version of persistence -- available in the _Community_ version -- based on a *record-and-replay* approach (basically, storing API calls and re-running them on restart), we discontinued this feature since [0.13.1](https://github.com/localstack/localstack/releases/tag/v0.13.1).
+
+In the past we supported a version of persistence -- available in the _Community_ version -- based on a *record-and-replay* approach (basically, storing API calls and re-running them on restart), we discontinued this feature with [0.13.1](https://github.com/localstack/localstack/releases/tag/v0.13.1).
 Therefore, please note that persistence in LocalStack, as currently intended, is a _Pro_ only feature (more on that in the [Technical Details]({{< ref "#technical-details" >}}) section).
+
+Please note that the coverage is only guaranteed for the Pro version, while the Community version attempts to restore the state on a best-effort basis using a *record-and-replay* approach (more on that in the [Technical Details]({{< ref "#technical-details" >}}) section).
 
 To enable the persistence mechanism simply set the `PERSISTENCE` environment variable to `1`.
  
@@ -44,6 +47,7 @@ Otherwise, the endpoint will inform you that the mechanism is disabled.
 
 The persistence mechanism in LocalStack Pro is a sophisticated approach based on *serialized state*.
 Starting the Pro version of LocalStack will traverse the state directory root folder recursively and directly deserialize the file into the application state.
+
 Typically, each service has one state file for each region.
 
 Each serialization mechanism has its root folder.
