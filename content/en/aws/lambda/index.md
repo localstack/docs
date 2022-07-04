@@ -26,6 +26,14 @@ LocalStack Pro samples contains a number of code examples that demonstrate how t
 - [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging): Simple demo application to illustrate debugging Lambdas locally.
 - [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers): Simple demo application illustrating Lambda layers using LocalStack, deployed via the Serverless framework.
 
+## Lambda Container Images
+
+LocalStack Pro supports [Lambda functions defined as container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html), so you can bundle your code and dependencies as one container image.
+
+{{< alert >}}
+Please make sure `bash` and `python 2/3` is installed inside your container image for the integration with LocalStack to work.
+{{< /alert >}}
+
 ## Lambda Layers
 
 [Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) are an AWS feature that allows to pull in additional code and content into your Lambda functions.
