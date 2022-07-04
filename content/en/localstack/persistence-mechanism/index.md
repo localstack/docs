@@ -1,5 +1,5 @@
 ---
-title: "Persistence Mechanism Configuration"
+title: "Persistence Mechanism"
 weight: 5
 description: >
   How the LocalStack persistence mechanism works and how you can configure it.
@@ -11,24 +11,17 @@ Commonly, you may simply have a local development server that relies on a non-ep
 
 While the persistence mechanism covers most services, not all of them are supported yet.
 Please make sure to check the [feature coverage page]({{< ref "feature-coverage" >}}) to see whether your desired services are covered.
-Please note that the coverage is only guaranteed for the _Pro_ version, while the _Community_ version attempts to restore the state on a best-effort basis using a *record-and-replay* approach (more on that in the [Technical Details]({{< ref "#technical-details" >}}) section).
+Please note that the coverage is only guaranteed for the Pro version, while the Community version attempts to restore the state on a best-effort basis using a *record-and-replay* approach (more on that in the [Technical Details]({{< ref "#technical-details" >}}) section).
 
-To enable the persistence mechanism simply set the `DATA_DIR` environment variable.
-For instance, `DATA_DIR=/tmp/localstack/data` will store all relevant files to the `/tmp/localstack/data` directory.
-Please note that the path is created recursively, that is you do not have to make sure that the set path exists.
-
-When working with Docker you may want to specify a different location for temporary folders using the `HOST_TMP_FOLDER` flag.
-In this case, it is advisable to use a `$TMPDIR` variable, which you can re-use for both flags.
-For instance, you'll set `$TMPDIR=/tmp/my-tmp` then your environment configuration in your `docker-compose` file could look as follows: 
+To enable the persistence mechanism simply set the `PERSISTENCE` environment variable to `1`.
 
 ```yaml
     ...
     environment:
       - LOCALSTACK_API_KEY=...
-      - DATA_DIR=${TMPDIR}/localstack/data
-      - HOST_TMP_FOLDER=${TMPDIR}
+      - PERSISTENCE=1
     volumes:
-      - ${TMPDIR}:/tmp/localstack
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
 ```
 
 Once the application has been set and configured properly, the `/health` endpoint of LocalStack will indicate whether the persistence mechanism has been initialized successfully.
@@ -75,14 +68,14 @@ While this approach is generic enough to cover a sizable amount of services, the
 ### Persistence Mechanism - Pro Version
 
 The persistence mechanism of the Pro version is much more sophisticated and is based on *serialized state*.
-Starting the Pro version of LocalStack will traverse the `DATA_DIR` root folder recursively and directly deserialize the file into the application state.
+Starting the Pro version of LocalStack will traverse the state directory recursively and directly deserialize the file into the application state.
 Typically, each service has one state file for each region.
 
 Each serialization mechanism has its own root folder.
 As of now, all supported services are serialized as pickle files, except for Kinesis (which is serialized as JSON) and DynamoDB (which is serialized as an SQLite database).
 This is illustrated with the diagram below.
 
-![Structure of the DATA_DIR](datadir_structure.png)
+![Structure of the state directory](datadir_structure.png)
 
 This approach does not suffer from the same limitations as *record-and-replay*.
 Restoring the state -- even for large projects -- usually only takes a few milliseconds.

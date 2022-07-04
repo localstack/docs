@@ -26,13 +26,11 @@ $ SERVICES=kinesis,lambda,sqs,dynamodb DEBUG=1 localstack start
 | `IMAGE_NAME`| `localstack/localstack` (default), `localstack/localstack:0.11.0` | Specific name and tag of LocalStack Docker image to use.|
 | `USE_LIGHT_IMAGE` | `1` (default) | Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
 | `TMPDIR`| `/tmp` (default)| Temporary folder on the host running the CLI and inside the LocalStack container .|
-| `HOST_TMP_FOLDER` | `/some/path` | Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
-| `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | Local directory for saving persistent data (see: TODO)|
-| `PERSISTENCE_SINGLE_FILE` | `true` (default)| Specify if persistence files should be combined (deprecated - only relevant for legacy persistence in Community version, not relevant for advanced persistence in Pro version). |
 | `PERSIST_ALL` | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, Cognito users, etc). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
-| `LEGACY_PERSISTENCE` | `true` (default) | Whether to enable legacy persistence mechanism based on API calls record&replay (deprecated). Only relevant for Community version, not relevant for advanced persistence mechanism in Pro. |
+| `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [filesystem layout]({{< ref "filesystem" >}}). |
 | `MULTI_ACCOUNTS` | `0` (default) | Enable multi-accounts (preview) |
-| `<SERVICE>_BACKEND` | | Custom endpoint URL to use for a specific service, where <SERVICE> is the uppercase service name. See (TODO) for supported services and (TODO) for examples for third-party integration |
+| `PERSISTENCE` | `0` (default) | Enable persistence. See [persistence mechanism]({{< ref "persistence-mechanism" >}}) and [filesystem layout]({{< ref "filesystem" >}}). |
+| `<SERVICE>_BACKEND` | | Custom endpoint URL to use for a specific service, where <SERVICE> is the uppercase service name.
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
 | `INIT_SCRIPTS_PATH` | `/some/path` | Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
 | `LS_LOG` | `trace`, `trace-internal`, `debug`, `info`, `warn`, `error`, `warning`| Specify the log level. Currently overrides the `DEBUG` configuration. `trace` for detailed request/response, `trace-internal` for internal calls, too. |
@@ -73,7 +71,7 @@ This section covers configuration values that are specific to certain AWS servic
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `GRAPHQL_ENDPOINT_STRATEGY` | `legacy`\|`domain`\|`path` |  Governs how AppSync endpoints are created to access a GraphQL API (see [AppSync#endpoints]({{< ref "appsync#endpoints" >}})) |
+| `GRAPHQL_ENDPOINT_STRATEGY` | `legacy`\|`domain`\|`path` |  Governs how AppSync endpoints are created to access a GraphQL API (see [AppSync Endpoints]({{< ref "appsync#endpoints" >}})) |
 
 ### Batch
 
@@ -113,9 +111,9 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | *Deprecated*. Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Elasticsearch#custom-elasticsearch-backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
+| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | *Deprecated*. Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
 | `ES_MULTI_CLUSTER` | `0`\|`1` | *Deprecated*. Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
-| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | *Deprecated*. Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch#endpoints]({{< ref "elasticsearch#endpoints" >}})) |
+| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | *Deprecated*. Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 
 ### Kinesis
 
@@ -137,7 +135,7 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the [stay-open mode]({{< ref "lambda-executors#stay-open-mode" >}}) of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Swapping]({{< ref "hot-swapping" >}}).|
 | `LAMBDA_REMOTE_DOCKER` | | determines whether Lambda code is copied or mounted into containers |
 | | `true` (default) | your Lambda function definitions will be passed to the container by copying the zip file (potentially slower). It allows for remote execution, where the host and the client are not on the same machine.|
-| | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. Also, `HOST_TMP_FOLDER` must be set properly, and a volume mount like `${HOST_TMP_FOLDER}:/tmp/localstack` needs to be configured if you're using docker-compose. |
+| | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. |
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` | Allows increasing the default char value for truncation of lambda logs.|
 | `BUCKET_MARKER_LOCAL` | | Optional bucket name for running lambdas locally.|
 | `LAMBDA_CODE_EXTRACT_TIME` | `25` | Time in seconds to wait at max while extracting Lambda code. By default it is 25 seconds for limiting the execution time to avoid client/network timeout issues.| 
@@ -156,9 +154,9 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `OPENSEARCH_CUSTOM_BACKEND` | `http://opensearch:9200` | URL to a custom OpenSearch backend cluster. If this is set to a valid URL, then LocalStack will not create OpenSearch cluster instances, but instead forward all domains to the given backend (see [OpenSearch#custom-opensearch-backends]({{< ref "opensearch#custom-opensearch-backends" >}})). |
+| `OPENSEARCH_CUSTOM_BACKEND` | `http://opensearch:9200` | URL to a custom OpenSearch backend cluster. If this is set to a valid URL, then LocalStack will not create OpenSearch cluster instances, but instead forward all domains to the given backend (see [Custom Opensearch Backends]({{< ref "opensearch#custom-opensearch-backends" >}})). |
 | `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
-| `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [OpenSearch#endpoints]({{< ref "opensearch#endpoints" >}})). |
+| `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [Opensearch Endpoints]({{< ref "opensearch#endpoints" >}})). |
 
 ### StepFunctions
 
@@ -260,7 +258,7 @@ python -m localstack.cli.main --profile=dev config show
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
 | `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
-| `REQUESTS_CA_BUNDLE` | `/tmp/localstack/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack
+| `REQUESTS_CA_BUNDLE` | `/var/lib/localstack/lib/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack
 | `DISABLE_TERM_HANDLER` | | Whether to disable signal passing to LocalStack when running in docker. Enabling this will prevent an orderly shutdown when running inside LS in docker.
 
 
@@ -307,6 +305,10 @@ More information [here]({{< ref "pro" >}}).
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `USE_SSL` | `false` (default) | Whether to use https://... URLs with SSL encryption. *Deprecated as of version 0.11.3* - each service endpoint now supports multiplexing HTTP/HTTPS traffic over the same port.
-| `DEFAULT_REGION` | | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). *Deprecated and inactive as of version 0.12.17* - LocalStack now has full multi-region support.
-| `USE_SINGLE_REGION` | | Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`.
+| `USE_SSL` | `false` (default) | Whether to use https://... URLs with SSL encryption. Deprecated as of version 0.11.3. Each service endpoint now supports multiplexing HTTP/HTTPS traffic over the same port. |
+| `DEFAULT_REGION` | | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). Deprecated and inactive as of version 0.12.17. LocalStack now has full multi-region support. |
+| `USE_SINGLE_REGION` | | Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
+| `LEGACY_PERSISTENCE` | `true` (default) | Whether to enable legacy persistence mechanism based on API calls record & replay. Only relevant for Community version, not relevant for advanced persistence mechanism in Pro. |
+| `PERSISTENCE_SINGLE_FILE` | `true` (default)| Specify if persistence files should be combined (only relevant for legacy persistence in Community version, not relevant for advanced persistence in Pro version). |
+| `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | Local directory for saving persistent data. This option is deprecated since LocalStack v1 and will be ignored. Please use `PERSISTENCE`. Using this option will set `PERSISTENCE=1` as a deprecation path. The state will be stored in your LocalStack volume in the `state/` directory |
+| `HOST_TMP_FOLDER` | `/some/path` | Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
