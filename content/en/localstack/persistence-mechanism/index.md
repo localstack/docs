@@ -11,7 +11,7 @@ Commonly, you may simply have a local development server that relies on a non-ep
 
 While the persistence mechanism covers most services, not all of them are supported yet.
 Please make sure to check the [feature coverage page]({{< ref "feature-coverage" >}}) to see whether your desired services are covered.
-While in the past we supported a version of persistence -- available in the _Community_ version -- based on a *record-and-replay* approach (basically, storing API calls and re-running them on restart), we discontinued such a feature since [0.13.1](https://github.com/localstack/localstack/releases/tag/v0.13.1).
+While in the past we supported a version of persistence -- available in the _Community_ version -- based on a *record-and-replay* approach (basically, storing API calls and re-running them on restart), we discontinued this feature since [0.13.1](https://github.com/localstack/localstack/releases/tag/v0.13.1).
 Therefore, please note that persistence in LocalStack, as currently intended, is a _Pro_ only feature (more on that in the [Technical Details]({{< ref "#technical-details" >}}) section).
 
 To enable the persistence mechanism simply set the `DATA_DIR` environment variable.
