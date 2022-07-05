@@ -299,7 +299,7 @@ $ docker-compose up -d
 
 2. Create the OpenSearch domain:
 {{< command >}}
-$ awslocal opensearch create-domain --domain-name my-cluster
+$ awslocal opensearch create-domain --domain-name my-domain
 {
     "DomainStatus": {
         "DomainId": "000000000000/my-domain",
@@ -401,7 +401,7 @@ $ curl my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/h
 
 5. Create an example index:
 {{< command >}}
-$ curl -X PUT my-domain.us-east-1.es.localhost.localstack.cloud:4566/my-index
+$ curl -X PUT my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/my-index
 {"acknowledged":true,"shards_acknowledged":true,"index":"my-index"}
 {{< /command >}}
 
