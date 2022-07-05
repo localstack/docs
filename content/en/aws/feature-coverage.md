@@ -11,12 +11,14 @@ description: >
 
 LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS, SNS, ...), but the level of support with the real system differs and is categorized using the following system:
 
-* **⭐⭐⭐⭐⭐**: Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests
-* **⭐⭐⭐⭐**: Feature partially supported by LocalStack maintainers
-* **⭐⭐⭐**: Feature supports basic functionalities (e.g., CRUD operations)
-* **⭐⭐**: Feature should be considered unstable 
-* **⭐**: Feature is experimental and regressions should be expected
-* **-**: Feature is not currently implemented
+|          |                                                         |
+|----------|------------------------------------------------------------------------------------------------------------------------|
+| ⭐⭐⭐⭐⭐ | Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests          |                 |       |
+| ⭐⭐⭐⭐  | Feature partially supported by LocalStack maintainers         |                 |       |
+| ⭐⭐⭐   | Feature supports basic functionalities (e.g., CRUD operations)          |                 |       |
+| ⭐⭐    | Feature should be considered unstable          |                 |       |
+| ⭐     | Feature is experimental and regressions should be expected         | 
+| **-**    | Feature is not currently implemented          | 
 
 
 ## Emulation Levels
@@ -82,6 +84,7 @@ In the coverage table below, the features are marked with their respective avail
 | Stages                                                             | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | VPC Links                                                          | ⭐⭐⭐         |                 |       |
+| **API Gateway Management API** (Pro)                               |                |                 |       |
 | **AppConfig** (Pro)                                                |                |                 |       |
 | Applications                                                       | ⭐⭐⭐         |                 |       |
 | Configuration Profiles                                             | ⭐⭐⭐⭐       |                 |       |
@@ -114,6 +117,7 @@ In the coverage table below, the features are marked with their respective avail
 | Table Metadata                                                     | ⭐⭐           |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Work Groups                                                        | \-             |                 |       |
+| **Autoscaling** (Pro)                                              |                |                 |       |
 | [**Backup** (Pro)]({{< ref "backup" >}})                           |                |                 |       |
 | Backup Jobs                                                        | ⭐⭐⭐         |                 |       |
 | Backup Plans                                                       | ⭐⭐⭐         |                 |       |
@@ -131,6 +135,7 @@ In the coverage table below, the features are marked with their respective avail
 | Job Definitions                                                    | ⭐⭐⭐         |                 |       |
 | Jobs                                                               | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **CE (Cost Explorer API)** (Pro)                                   |                |                 |       |
 | [**CloudFormation**]({{< ref "cloudformation" >}})                 |                |                 |       |
 | Change Sets                                                        | ⭐⭐⭐⭐       |                 |       |
 | Stacks                                                             | ⭐⭐⭐⭐       |                 |       |
@@ -173,19 +178,6 @@ In the coverage table below, the features are marked with their respective avail
 | Metric Statistics                                                  | ⭐⭐⭐         |                 |       |
 | Metric Streams                                                     | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐         |                 |       |
-| **CloudWatch Logs**                                                |                |                 |       |
-| Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
-| Export Tasks                                                       | ⭐⭐           |                 |       |
-| Log Events                                                         | ⭐⭐⭐⭐       |                 |       |
-| Log Groups                                                         | ⭐⭐⭐⭐       |                 |       |
-| Log Streams                                                        | ⭐⭐⭐⭐       |                 |       |
-| Metric Filters                                                     | ⭐⭐⭐         |                 |       |
-| Queries                                                            | ⭐⭐⭐         |                 |       |
-| Query Definitions                                                  | ⭐⭐           |                 |       |
-| Resource Policies                                                  | ⭐⭐⭐⭐       |                 |       |
-| Retention Policies                                                 | ⭐⭐⭐         |                 |       |
-| Subscription Filters                                               | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   |                |                 |       |
 | Approval Rules                                                     | \-             |                 |       |
 | Blobs / Files / Folders                                            | ⭐⭐           |                 |       |
@@ -219,6 +211,7 @@ In the coverage table below, the features are marked with their respective avail
 | User Pools                                                         | ⭐⭐⭐⭐       |                 |       |
 | Users                                                              | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **Config**                                                         |               |                 |       |
 | **DocumentDB** (Pro)                                               |               |                 |       |
 | DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
 | DB/Cluster Snapshots                                               | ⭐            |                 |       |
@@ -293,6 +286,7 @@ In the coverage table below, the features are marked with their respective avail
 | Task Definitions                                                   | ⭐⭐⭐⭐       |                 |       |
 | Task Sets                                                          | ⭐⭐⭐         |                 |       |
 | Tasks                                                              | ⭐⭐⭐⭐       |                 |       |
+| **EFS** (Pro)                                                      |               |                 |       |
 | [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          |                |                 |       |
 | AddOns                                                             | \-             |                 |       |
 | Clusters                                                           | ⭐⭐⭐         |                 |       |
@@ -311,12 +305,9 @@ In the coverage table below, the features are marked with their respective avail
 | Snapshots                                                          | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Users / User Groups                                                | \-             |                 |       |
-| [**Elasticsearch Service**]({{< ref "elasticsearch" >}})           |                |                 |       |
-| Cross-Cluster Search Connections                                   | \-             |                 |       |
-| Elasticsearch Domains                                              | ⭐⭐⭐⭐       |                 |       |
-| Packages                                                           | \-             |                 |       |
-| Reserved Instances                                                 | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **Elastic Beanstalk** (Pro)                                        |                |                 |       |
+| **ELB (Elastic Load Balancing)** (Pro)                             |                |                 |       |
+| **ELBv2 (Elastic Load Balancing v2)** (Pro)                             |                |                 |       |
 | **EMR** (Pro)                                                      |                |                 |       |
 | Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
 | Instance Fleets                                                    | ⭐⭐⭐         |                 |       |
@@ -327,7 +318,13 @@ In the coverage table below, the features are marked with their respective avail
 | Security Configurations                                            | \-             |                 |       |
 | Studios                                                            | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **EventBridge (CloudWatch Events)**                                |                |                 |       |
+| [**ES (Elasticsearch Service)**]({{< ref "elasticsearch" >}})           |                |                 |       |
+| Cross-Cluster Search Connections                                   | \-             |                 |       |
+| Elasticsearch Domains                                              | ⭐⭐⭐⭐       |                 |       |
+| Packages                                                           | \-             |                 |       |
+| Reserved Instances                                                 | \-             |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **EventBridge (Events)**                                           |                |                 |       |
 | API Destinations                                                   | ⭐⭐⭐⭐       |                 |       |
 | Archives                                                           | \-             |                 |       |
 | Connections                                                        | \-             |                 |       |
@@ -342,6 +339,7 @@ In the coverage table below, the features are marked with their respective avail
 | Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **Glacier** (Pro)                                                  |                |                 |       |
 | [**Glue** (Pro)]({{< ref "glue" >}})                               |                |                 |       |
 | Classifiers                                                        | ⭐⭐⭐         |                 |       |
 | Connections                                                        | ⭐⭐⭐         |                 |       |
@@ -375,7 +373,7 @@ In the coverage table below, the features are marked with their respective avail
 | Service Linked Roles                                               | ⭐⭐⭐         |                 |       |
 | Users                                                              | ⭐⭐⭐⭐       |                 |       |
 | Virtual MFA Devices                                                | ⭐⭐           |                 |       |
-| [**IoT (IoT Analytics, IoT Data)** (Pro)]({{< ref "iot" >}})       |                |                 |       |
+| [**IoT (Analytics, Data, Wireless)** (Pro)]({{< ref "iot" >}})     |                |                 |       |
 | Authorizers                                                        | \-             |                 |       |
 | Billing Groups                                                     | \-             |                 |       |
 | Certificates                                                       | ⭐⭐           |                 |       |
@@ -399,6 +397,12 @@ In the coverage table below, the features are marked with their respective avail
 | Thing Types                                                        | ⭐⭐⭐         |                 |       |
 | Things                                                             | ⭐⭐⭐         |                 |       |
 | Topic Rules                                                        | ⭐⭐⭐         |                 |       |
+| [**Kafka (MSK - Managed Streaming for Kafka)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro)                        |                |                 |       |
+| Brokers                                                            | ⭐⭐           |                 |       |
+| Cluster Operations                                                 | ⭐⭐           |                 |       |
+| Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
+| Configurations                                                     | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | [**Kinesis**]({{< ref "kinesis" >}})                               |                |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       |                 |       |
 | Split / Merge Shards                                               | ⭐⭐⭐⭐       |                 |       |
@@ -407,6 +411,8 @@ In the coverage table below, the features are marked with their respective avail
 | Streams                                                            | ⭐⭐⭐⭐       |                 |       |
 | Subscribe to Shard                                                 | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **Kinesis Analytics** (Pro)                                        |                |                 |       |
+| **Kinesis Analytics v2** (Pro)                             |                |                 |       |
 | **KMS**                                                            |                |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
 | Custom Key Stores                                                  | ⭐⭐⭐         |                 |       |
@@ -415,6 +421,7 @@ In the coverage table below, the features are marked with their respective avail
 | Key Policies                                                       | \-             |                 |       |
 | Keys                                                               | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **Lake Formation** (Pro)                             |                |                 |       |
 | **Lambda**                                                         |                |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
 | Code Signing Configs                                               | ⭐⭐           |                 |       |
@@ -427,11 +434,18 @@ In the coverage table below, the features are marked with their respective avail
 | [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       |                 |       |
 | Permissions                                                        | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Managed Streaming for Kafka (MSK)** (Pro)                        |                |                 |       |
-| Brokers                                                            | ⭐⭐           |                 |       |
-| Cluster Operations                                                 | ⭐⭐           |                 |       |
-| Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
-| Configurations                                                     | ⭐⭐⭐⭐       |                 |       |
+| **Logs**                                                |                |                 |       |
+| Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
+| Export Tasks                                                       | ⭐⭐           |                 |       |
+| Log Events                                                         | ⭐⭐⭐⭐       |                 |       |
+| Log Groups                                                         | ⭐⭐⭐⭐       |                 |       |
+| Log Streams                                                        | ⭐⭐⭐⭐       |                 |       |
+| Metric Filters                                                     | ⭐⭐⭐         |                 |       |
+| Queries                                                            | ⭐⭐⭐         |                 |       |
+| Query Definitions                                                  | ⭐⭐           |                 |       |
+| Resource Policies                                                  | ⭐⭐⭐⭐       |                 |       |
+| Retention Policies                                                 | ⭐⭐⭐         |                 |       |
+| Subscription Filters                                               | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **MediaStore** (Pro)                                               |                |                 |       |
 | Access Logging                                                     | \-             |                 |       |
@@ -441,7 +455,7 @@ In the coverage table below, the features are marked with their respective avail
 | Lifecycle Policies                                                 | \-             |                 |       |
 | Metric Policies                                                    | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| **Managed Workflows for Apache Airflow (MWAA)** (Pro)              |                |                 |       |
+| **MWAA (Managed Workflows for Apache Airflow)** (Pro)              |                |                 |       |
 | CLI Tokens                                                         | -              |                 |       |
 | Environments                                                       | ⭐⭐⭐          |                 |       |
 | S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          |                 |       |
@@ -462,6 +476,7 @@ In the coverage table below, the features are marked with their respective avail
 | Packages                                                           | \-             |                 |       |
 | Reserved Instances                                                 | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **Organizations** (Pro)                                            |                |                 |       |
 | [**QLDB** (Pro)]({{< ref "qldb" >}})                               |                |                 |       |
 | Blocks                                                             | ⭐⭐⭐         |                 |       |
 | Digests                                                            | ⭐⭐⭐         |                 |       |
@@ -470,6 +485,7 @@ In the coverage table below, the features are marked with their respective avail
 | Ledgers                                                            | ⭐⭐⭐⭐       |                 |       |
 | Send Commands / Run Queries                                        | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **QLDB Sessions** (Pro)                                            |                |                 |       |
 | [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             |                |                 |       |
 | DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
 | DB/Cluster Snapshots                                               | ⭐⭐⭐         |                 |       |
@@ -480,6 +496,7 @@ In the coverage table below, the features are marked with their respective avail
 | Option Groups                                                      | ⭐⭐⭐⭐       |                 |       |
 | Postgres AWS Extension Functions                                   | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **RDS Data** (Pro)                                                 |                |                 |       |
 | **Redshift**                                                       |                |                 |       |
 | Authorize/Revoke Access                                            | \-             |                 |       |
 | Cluster Parameter Groups                                           | ⭐⭐⭐         |                 |       |
@@ -491,6 +508,9 @@ In the coverage table below, the features are marked with their respective avail
 | Security/Subnet Groups                                             | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Usage Limits                                                       | ⭐⭐           |                 |       |
+| **Redshift Data** (Pro)                                            |                |                 |       |
+| **Resource Groups**                                                |                |                 |       |
+| **Resource Groups Tagging API**                                    |                |                 |       |
 | [**Route53**]({{< ref "route53" >}})                               |                |                 |       |
 | DNS Server Integration (Pro)                                       | ⭐⭐⭐⭐       |                 |       |
 | Geo Locations                                                      | \-             |                 |       |
@@ -501,6 +521,7 @@ In the coverage table below, the features are marked with their respective avail
 | Reusable Delegation Sets                                           | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Traffic Policies                                                   | ⭐⭐⭐         |                 |       |
+| **Route53 Resolver**                              |                |                 |       |
 | [**S3**]({{< ref "s3" >}})                                         |                |                 |       |
 | Bucket ACLs                                                        | ⭐⭐⭐         |                 |       |
 | Bucket CORS                                                        | ⭐⭐⭐         |                 |       |
@@ -521,6 +542,7 @@ In the coverage table below, the features are marked with their respective avail
 | Objects                                                            | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Upload/Download Files                                              | ⭐⭐⭐⭐       |                 |       |
+| **S3 Control**                                                     |                |                 |       |
 | [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     |                |                 |       |
 | Actions                                                            | ⭐⭐           |                 |       |
 | Algorithms                                                         | \-             |                 |       |
@@ -564,6 +586,8 @@ In the coverage table below, the features are marked with their respective avail
 | Secret Rotations                                                   | ⭐⭐           |                 |       |
 | Secrets                                                            | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| **Serverless Repo** (Pro)                                          |                |                 |       |
+| **Service Discovery** (Pro)                                        |                |                 |       |
 | [**SES**]({{< ref "ses" >}})                                       |                |                 |       |
 | Configuration Sets                                                 | ⭐⭐⭐         |                 |       |
 | Identities                                                         | ⭐⭐           |                 |       |
@@ -573,6 +597,7 @@ In the coverage table below, the features are marked with their respective avail
 | Receipt Rules                                                      | ⭐⭐⭐         |                 |       |
 | Sending Emails via SMTP (Pro)                                      | ⭐⭐⭐⭐       |                 |       |
 | Templates                                                          | ⭐⭐⭐⭐       |                 |       |
+| **SES v2**                                                         |                |                 |       |
 | **SNS**                                                            |                |                 |       |
 | Platform Applications                                              | ⭐⭐⭐         |                 |       |
 | Publish/Subscribe to Topics                                        | ⭐⭐⭐⭐       |                 |       |
@@ -607,7 +632,9 @@ In the coverage table below, the features are marked with their respective avail
 | Get Access Key Info                                                | ⭐⭐⭐⭐       |                 |       |
 | Get Caller Identity                                                | ⭐⭐⭐⭐       |                 |       |
 | Session Tokens                                                     | ⭐⭐⭐⭐       |                 |       |
-| **Timestream** (Pro)                                               |                |                 |       |
+| **Support**                                                        |                |                 |       |
+| **SWF**                                                            |                |                 |       |
+| **Timestream (query, write)** (Pro)                                |                |                 |       |
 | Databases                                                          | ⭐⭐⭐         |                 |       |
 | Run Query                                                          | ⭐⭐⭐         |                 |       |
 | Tables                                                             | ⭐⭐⭐         |                 |       |
