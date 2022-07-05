@@ -8,25 +8,31 @@ description: >
 
 This page summarizes the implemented APIs and features provided by LocalStack, as well as their level of parity with the real cloud (e.g., AWS) or managed service provider.
 
-## Coverage Levels / Support Tiers
+## Coverage Levels
 
-LocalStack provides a variety of different features and cloud APIs (e.g., AWS), but the level of support and parity with the real system differs for the different services:
+LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS, SNS, ...), but the level of support with the real system differs and is categorized using the following system:
 
-* **Tier 1 (⭐⭐⭐⭐)**: Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests
-* **Tier 2 (⭐⭐⭐)**: Feature supports the majority of use cases (e.g., CRUD operations), but some advanced usages may not be fully supported
-* **Tier 3 (⭐⭐)**: Feature may be lightly tested (or not), and so it should be considered unstable
-* **Tier 4 (⭐)**: Feature is experimental, only partially supported or implemented
-* **Tier 5 (-)**: Feature is not currently implemented, but on our roadmap
+* **⭐⭐⭐⭐⭐**: Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests
+* **⭐⭐⭐⭐**: Feature partially supported by LocalStack maintainers
+* **⭐⭐⭐**: Feature supports basic functionalities (e.g., CRUD operations)
+* **⭐⭐**: Feature should be considered unstable 
+* **⭐**: Feature is experimental and regressions should be expected
+* **-**: Feature is not currently implemented
+
+
+## Emulation Levels
+
+* CRUD: The service accepts requests and returns proper (potentially static) responses. No additional business logic besides storing entities.
+* EMULATED: todo
 
 In the coverage tables below, the features are marked with their respective availability across different LocalStack versions:
 
 * Community version (default, if not marked)
 * Pro version (marked with "Pro")
-* Enterprise version (marked with "Enterprise")
 
 ## AWS Feature Coverage
 
-| Service / Feature                                                  | Coverage Level | Terraform Tests | Notes |
+| Service / Feature                                                  | Coverage Level | Emulation Level | Notes |
 |--------------------------------------------------------------------|----------------|-----------------|-------|
 | **ACM**                                                            |                |                 |       |
 | Certificates                                                       | ⭐⭐⭐         |                 |       |
@@ -412,8 +418,8 @@ In the coverage tables below, the features are marked with their respective avai
 | **Lambda**                                                         |                |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
 | Code Signing Configs                                               | ⭐⭐           |                 |       |
-| Custom Images (Pro)                                                | ⭐⭐⭐⭐       |                 |       |
-| Event Invoke Configs                                               | ⭐⭐⭐⭐       |                 |       |
+| Custom Images (Pro)                                                | ⭐⭐⭐⭐       | EMULATED        |       |
+| Event Invoke Configs (Destinations)                                | ⭐⭐⭐⭐       |                 |       |
 | Event Source Mappings                                              | ⭐⭐⭐⭐       |                 |       |
 | Function Concurrencies                                             | ⭐⭐⭐         |                 |       |
 | Functions                                                          | ⭐⭐⭐⭐       |                 |       |
@@ -436,7 +442,7 @@ In the coverage tables below, the features are marked with their respective avai
 | Metric Policies                                                    | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
 | **Managed Workflows for Apache Airflow (MWAA)** (Pro)              |                |                 |       |
-| CLI Tokens                                                         | -           |                 |       |
+| CLI Tokens                                                         | -              |                 |       |
 | Environments                                                       | ⭐⭐⭐          |                 |       |
 | S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐        |                 |       |
