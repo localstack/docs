@@ -53,7 +53,6 @@ services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
     image: localstack/localstack
-    network_mode: bridge
     ports:
       - "4566:4566"
     depends_on:
@@ -62,11 +61,9 @@ services:
     environment:
       - SERVICES=lambda,secretsmanager
       - DEBUG=${DEBUG- }
-      - DATA_DIR=${DATA_DIR- }
+      - PERSISTENCE=${PERSISTENCE- }
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
-      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOST_TMP_FOLDER=${TMPDIR}
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"

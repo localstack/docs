@@ -1,5 +1,5 @@
 ---
-title: "Persistence Mechanism Configuration"
+title: "Persistence Mechanism"
 weight: 5
 description: >
   How the LocalStack persistence mechanism works and how you can configure it.
@@ -44,6 +44,7 @@ Otherwise, the endpoint will inform you that the mechanism is disabled.
 
 The persistence mechanism in LocalStack Pro is a sophisticated approach based on *serialized state*.
 Starting the Pro version of LocalStack will traverse the state directory root folder recursively and directly deserialize the file into the application state.
+
 Typically, each service has one state file for each region.
 
 Each serialization mechanism has its root folder.

@@ -59,12 +59,12 @@ $ awslocal es create-elasticsearch-domain --domain-name my-domain
 In the LocalStack log you will see something like the following, where you can see the cluster starting up in the background.
 
 ```
-2021-11-08T16:29:28:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=57705 -E http.publish_port=57705 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data="/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data" -E path.repo="/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup" -E xpack.ml.enabled=false with env {'ES_JAVA_OPTS': '-Xms200m -Xmx600m', 'ES_TMPDIR': '/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp'}
+2021-11-08T16:29:28:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=57705 -E http.publish_port=57705 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data="/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data" -E path.repo="/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup" -E xpack.ml.enabled=false with env {'ES_JAVA_OPTS': '-Xms200m -Xmx600m', 'ES_TMPDIR': '/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp'}
 2021-11-08T16:29:28:INFO:localstack.services.es.cluster: registering an endpoint proxy for http://my-domain.us-east-1.es.localhost.localstack.cloud:4566 => http://127.0.0.1:57705
 2021-11-08T16:29:30:INFO:localstack.services.es.cluster: OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
 2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,502][INFO ][o.e.n.Node               ] [noctua] version[7.10.0], pid[22403], build[default/tar/51e9d6f22758d0374a0f3f5c6e8f3a7997850f96/2020-11-09T21:30:33.964949Z], OS[Linux/5.4.0-89-generic/amd64], JVM[Ubuntu/OpenJDK 64-Bit Server VM/11.0.11/11.0.11+9-Ubuntu-0ubuntu2.20.04]
 2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,510][INFO ][o.e.n.Node               ] [noctua] JVM home [/usr/lib/jvm/java-11-openjdk-amd64], using bundled JDK [false]
-2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,511][INFO ][o.e.n.Node               ] [noctua] JVM arguments [-Xshare:auto, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -Djava.io.tmpdir=/tmp/localstack/elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms200m, -Xmx600m, -XX:MaxDirectMemorySize=314572800, -Des.path.home=/opt/code/localstack/localstack/localstack/infra/elasticsearch, -Des.path.conf=/opt/code/localstack/localstack/localstack/infra/elasticsearch/config, -Des.distribution.flavor=default, -Des.distribution.type=tar, -Des.bundled_jdk=true]
+2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,511][INFO ][o.e.n.Node               ] [noctua] JVM arguments [-Xshare:auto, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -Djava.io.tmpdir=/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms200m, -Xmx600m, -XX:MaxDirectMemorySize=314572800, -Des.path.home=/opt/code/localstack/localstack/localstack/infra/elasticsearch, -Des.path.conf=/opt/code/localstack/localstack/localstack/infra/elasticsearch/config, -Des.distribution.flavor=default, -Des.distribution.type=tar, -Des.bundled_jdk=true]
 2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,258][INFO ][o.e.p.PluginsService     ] [noctua] loaded module [aggs-matrix-stats]
 2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,259][INFO ][o.e.p.PluginsService     ] [noctua] loaded module [analysis-common]
 2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,260][INFO ][o.e.p.PluginsService     ] [noctua] loaded module [constant-keyword]
@@ -176,10 +176,10 @@ This can however lead to unexpected behavior when persisting data into Elasticse
 
 ### Storage Layout
 
-Elasticsearch will be organized in your `DATA_DIR`, or the temporary directory (e.g., `/tmp/localstack/data`), as follows:
+Elasticsearch will be organized in your state directory as follows:
 
 ```
-localstack@machine /tmp/localstack/data % tree -L 4
+localstack@machine % tree -L 4 volume/state
 .
 ├── elasticsearch
 │   └── arn:aws:es:us-east-1:000000000000:domain
@@ -213,7 +213,6 @@ services:
   elasticsearch:
     container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
-    network_mode: bridge
     environment:
       - node.name=elasticsearch
       - cluster.name=es-docker-cluster
@@ -232,7 +231,6 @@ services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
     image: localstack/localstack
-    network_mode: bridge
     ports:
       - "4566:4566"
     depends_on:
@@ -240,16 +238,12 @@ services:
     environment:
       - ES_CUSTOM_BACKEND=http://elasticsearch:9200
       - DEBUG=${DEBUG- }
-      - DATA_DIR=${DATA_DIR- }
+      - PERSISTENCE=${PERSISTENCE- }
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
-      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOST_TMP_FOLDER=${TMPDIR}
     volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    links:
-      - elasticsearch
 
 volumes:
   data01:
