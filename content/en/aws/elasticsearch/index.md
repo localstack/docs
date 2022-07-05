@@ -213,7 +213,6 @@ services:
   elasticsearch:
     container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
-    network_mode: bridge
     environment:
       - node.name=elasticsearch
       - cluster.name=es-docker-cluster
@@ -232,7 +231,6 @@ services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
     image: localstack/localstack
-    network_mode: bridge
     ports:
       - "4566:4566"
     depends_on:
@@ -246,8 +244,6 @@ services:
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    links:
-      - elasticsearch
 
 volumes:
   data01:
