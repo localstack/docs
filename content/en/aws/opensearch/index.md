@@ -255,7 +255,6 @@ services:
   opensearch:
     container_name: opensearch
     image: opensearchproject/opensearch:1.1.0
-    network_mode: bridge
     environment:
       - node.name=opensearch
       - cluster.name=opensearch-docker-cluster
@@ -275,7 +274,6 @@ services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
     image: localstack/localstack
-    network_mode: bridge
     ports:
       - "4566:4566"
     depends_on:
@@ -288,8 +286,6 @@ services:
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    links:
-      - opensearch
 
 volumes:
   data01:
