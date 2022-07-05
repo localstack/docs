@@ -49,7 +49,7 @@ Otherwise, the endpoint will inform you that the mechanism is disabled.
 
 ## Technical Details
 
-The persistence mechanism in LocalStack is a sophisticated approach based on *serialized state*.
+The persistence mechanism in LocalStack Pro is a sophisticated approach based on *serialized state*.
 Starting the Pro version of LocalStack will traverse the `DATA_DIR` root folder recursively and directly deserialize the file into the application state.
 Typically, each service has one state file for each region.
 
