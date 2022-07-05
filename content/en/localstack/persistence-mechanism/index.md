@@ -64,6 +64,6 @@ This is illustrated in the diagram below.
 Restoring the state -- even for large projects -- usually only takes a few milliseconds.
 Moreover, since the files store accurate snapshots of the application state, they can restore a state that is identical to the one before restarting the instance.
 
-The most notable limitation of this approach it's its generalizability.
+The most notable limitation of this approach is its generalizability.
 In fact, despite most of the supported AWS services serialize their state in a similar way, particular services might implement such a serialization in a completely different fashion.
 The consequence of this limitation is that, as of now, not all services have a supported persistence mechanism yet.
