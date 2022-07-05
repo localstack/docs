@@ -62,7 +62,7 @@ This is illustrated in the diagram below.
 ![Structure of the DATA_DIR](datadir_structure.png)
 
 Restoring the state -- even for large projects -- usually only takes a few milliseconds.
-Moreover, since the files store accurate snapshots of the application state they can restore a state that is identical to the before the reboot.
+Moreover, since the files store accurate snapshots of the application state, they can restore a state that is identical to the one before restarting the instance.
 
 The most notable limitation of this approach it's its generalizability.
 In fact, despite most of the supported AWS services serialize their state in a similar way, particular services might implement such a serialization in a completely different fashion.
