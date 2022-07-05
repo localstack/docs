@@ -3,10 +3,9 @@ title: "AWS Service Feature Coverage"
 linkTitle: "⭐ Feature Coverage"
 weight: 1
 description: >
-  Overview of the implemented APIs and features provided by LocalStack
+  Overview of the implemented AWS APIs and their level of parity with the AWS cloud
 ---
 
-This page summarizes the implemented APIs and features provided by LocalStack, as well as their level of parity with the real cloud (e.g., AWS) or managed service provider.
 
 ## Coverage Levels
 
@@ -25,12 +24,13 @@ LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS
 * CRUD: The service accepts requests and returns proper (potentially static) responses. No additional business logic besides storing entities.
 * EMULATED: todo
 
-In the coverage tables below, the features are marked with their respective availability across different LocalStack versions:
-
-* Community version (default, if not marked)
-* Pro version (marked with "Pro")
 
 ## AWS Feature Coverage
+
+In the coverage table below, the features are marked with their respective availability across different LocalStack versions:
+
+* Community version (default, if not marked)
+* Pro version (marked with **Pro**)
 
 | Service / Feature                                                  | Coverage Level | Emulation Level | Notes |
 |--------------------------------------------------------------------|----------------|-----------------|-------|
