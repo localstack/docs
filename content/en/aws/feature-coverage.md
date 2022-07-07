@@ -13,11 +13,11 @@ LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS
 
 |          |                                                         |
 |----------|------------------------------------------------------------------------------------------------------------------------|
-| ⭐⭐⭐⭐⭐ | Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests          |                 |       |
-| ⭐⭐⭐⭐  | Feature partially supported by LocalStack maintainers         |                 |       |
-| ⭐⭐⭐   | Feature supports basic functionalities (e.g., CRUD operations)          |                 |       |
-| ⭐⭐    | Feature should be considered unstable          |                 |       |
-| ⭐     | Feature is experimental and regressions should be expected         | 
+| ⭐⭐⭐⭐⭐ | Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests         | 
+| ⭐⭐⭐⭐   | Feature partially supported by LocalStack maintainers         |               
+| ⭐⭐⭐    | Feature supports basic functionalities (e.g., CRUD operations)          |                
+| ⭐⭐      | Feature should be considered unstable          |                 
+| ⭐       | Feature is experimental and regressions should be expected         | 
 | **-**    | Feature is not currently implemented          | 
 
 
@@ -34,81 +34,81 @@ In the coverage table below, the features are marked with their respective avail
 * Community version (default, if not marked)
 * Pro version (marked with **Pro**)
 
-| Service / Feature                                                  | Coverage Level | Emulation Level | Notes |
-|--------------------------------------------------------------------|----------------|-----------------|-------|
-| **ACM**                                                            |                |                 |       |
-| Certificates                                                       | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Account Configuration                                              | ⭐⭐           |                 |       |
-| [**Amplify** (Pro)]({{< ref "amplify" >}})                         |                |                 |       |
-| Apps                                                               | ⭐⭐⭐         |                 |       |
-| Backend Environments                                               | ⭐⭐           |                 |       |
-| Branches                                                           | ⭐⭐           |                 |       |
-| Deployments                                                        | ⭐⭐⭐         |                 |       |
-| Domain Associations                                                | \-             |                 |       |
-| Jobs                                                               | ⭐⭐           |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Webhooks                                                           | ⭐⭐           |                 |       |
-| **API Gateway**                                                    |                |                 |       |
-| API Keys                                                           | ⭐⭐⭐         |                 |       |
-| Authorizers (Pro)                                                  | ⭐⭐⭐⭐       |                 |       |
-| Base Path Mappings                                                 | ⭐⭐⭐⭐       |                 |       |
-| Deployments                                                        | ⭐⭐⭐⭐       |                 |       |
-| Documentation Parts                                                | ⭐⭐⭐         |                 |       |
-| Documentation Versions                                             | ⭐⭐⭐         |                 |       |
-| Domain Names                                                       | ⭐⭐⭐         |                 |       |
-| Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐       |                 |       |
-| Integrations                                                       | ⭐⭐⭐⭐       |                 |       |
-| Methods                                                            | ⭐⭐⭐⭐       |                 |       |
-| Models                                                             | ⭐⭐⭐         |                 |       |
-| Request Validators                                                 | ⭐⭐           |                 |       |
-| Resources                                                          | ⭐⭐⭐⭐       |                 |       |
-| REST APIs                                                          | ⭐⭐⭐⭐       |                 |       |
-| Stages                                                             | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Usage Plans                                                        | ⭐⭐⭐         |                 |       |
-| Usage Plan Keys                                                    | ⭐⭐⭐         |                 |       |
-| VPC Links                                                          | ⭐⭐⭐         |                 |       |
-| [**API Gateway v2** (Pro)]({{< ref "apigatewayv2" >}})             |                |                 |       |
-| APIs                                                               | ⭐⭐⭐⭐       |                 |       |
-| API Mappings                                                       | ⭐⭐⭐         |                 |       |
-| Authorizers                                                        | ⭐⭐⭐⭐       |                 |       |
-| Deployments                                                        | ⭐⭐⭐⭐       |                 |       |
-| Domain Names                                                       | ⭐⭐⭐         |                 |       |
-| Import APIs from OpenAPI specs                                     | ⭐⭐⭐         |                 |       |
-| Integrations                                                       | ⭐⭐⭐         |                 |       |
-| Integration Responses                                              | ⭐⭐⭐         |                 |       |
-| Models                                                             | ⭐⭐⭐         |                 |       |
-| Routes                                                             | ⭐⭐⭐⭐       |                 |       |
-| Route Responses                                                    | ⭐⭐⭐         |                 |       |
-| Stages                                                             | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| VPC Links                                                          | ⭐⭐⭐         |                 |       |
-| **API Gateway Management API** (Pro)                               |                |                 |       |
-| **AppConfig** (Pro)                                                |                |                 |       |
-| Applications                                                       | ⭐⭐⭐         |                 |       |
-| Configuration Profiles                                             | ⭐⭐⭐⭐       |                 |       |
-| Configurations                                                     | ⭐⭐⭐         |                 |       |
-| Deployment Strategies                                              | ⭐⭐⭐⭐       |                 |       |
-| Deployments                                                        | ⭐⭐⭐         |                 |       |
-| Environments                                                       | ⭐⭐⭐⭐       |                 |       |
-| Hosted Configuration Versions                                      | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Application Autoscaling** (Pro)                                  |                |                 |       |
-| Scalable Targets                                                   | ⭐⭐⭐         |                 |       |
-| Scaling Activities                                                 | ⭐⭐           |                 |       |
-| Scaling Policies                                                   | ⭐⭐           |                 |       |
-| Scheduled Actions                                                  | ⭐⭐           |                 |       |
-| [**AppSync** (Pro)]({{< ref "appsync" >}})                         |                |                 |       |
-| API Caches                                                         | ⭐⭐⭐         |                 |       |
-| API Keys                                                           | ⭐⭐⭐         |                 |       |
-| Data Sources                                                       | ⭐⭐⭐         |                 |       |
-| Functions                                                          | ⭐⭐⭐         |                 |       |
-| GraphQL APIs                                                       | ⭐⭐⭐⭐       |                 |       |
-| Resolvers                                                          | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Types                                                              | ⭐⭐⭐⭐       |                 |       |
-| [**Athena** (Pro)]({{< ref "athena" >}})                           |                |                 |       |
+| Service / Feature                                                  | Coverage Level    | Emulation Level | Notes |
+|--------------------------------------------------------------------|-------------------|-----------------|-------|
+| **ACM**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#acm" >}})      |                 |       |
+| Certificates                                                       | ⭐⭐⭐              |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐            |                 |       |
+| Account Configuration                                              | ⭐⭐                |                 |       |
+| [**Amplify** (Pro)]({{< ref "amplify" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#amplify" >}})  |                 |       |
+| Apps                                                               | ⭐⭐⭐              |                 |       |
+| Backend Environments                                               | ⭐⭐                |                 |       |
+| Branches                                                           | ⭐⭐                |                 |       |
+| Deployments                                                        | ⭐⭐⭐              |                 |       |
+| Domain Associations                                                | \-                 |                 |       |
+| Jobs                                                               | ⭐⭐                |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐             |                 |       |
+| Webhooks                                                           | ⭐⭐                |                 |       |
+| **API Gateway**                                                    | [🔍]({{< ref "../localstack/metric-coverage/#apigateway" >}}) |                 |       |
+| API Keys                                                           | ⭐⭐⭐              |                 |       |
+| Authorizers (Pro)                                                  | ⭐⭐⭐⭐             |                 |       |
+| Base Path Mappings                                                 | ⭐⭐⭐⭐             |                 |       |
+| Deployments                                                        | ⭐⭐⭐⭐            |                 |       |
+| Documentation Parts                                                | ⭐⭐⭐              |                 |       |
+| Documentation Versions                                             | ⭐⭐⭐              |                 |       |
+| Domain Names                                                       | ⭐⭐⭐              |                 |       |
+| Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐             |                 |       |
+| Integrations                                                       | ⭐⭐⭐⭐             |                 |       |
+| Methods                                                            | ⭐⭐⭐⭐             |                 |       |
+| Models                                                             | ⭐⭐⭐              |                 |       |
+| Request Validators                                                 | ⭐⭐                |                 |       |
+| Resources                                                          | ⭐⭐⭐⭐             |                 |       |
+| REST APIs                                                          | ⭐⭐⭐⭐             |                 |       |
+| Stages                                                             | ⭐⭐⭐⭐             |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐             |                 |       |
+| Usage Plans                                                        | ⭐⭐⭐               |                 |       |
+| Usage Plan Keys                                                    | ⭐⭐⭐               |                 |       |
+| VPC Links                                                          | ⭐⭐⭐               |                 |       |
+| [**API Gateway v2** (Pro)]({{< ref "apigatewayv2" >}})             | [🔍]({{< ref "../localstack/metric-coverage/#apigatewayv2" >}})     |                 |       |
+| APIs                                                               | ⭐⭐⭐⭐              |                 |       |
+| API Mappings                                                       | ⭐⭐⭐                |                 |       |
+| Authorizers                                                        | ⭐⭐⭐⭐              |                 |       |
+| Deployments                                                        | ⭐⭐⭐⭐              |                 |       |
+| Domain Names                                                       | ⭐⭐⭐               |                 |       |
+| Import APIs from OpenAPI specs                                     | ⭐⭐⭐               |                 |       |
+| Integrations                                                       | ⭐⭐⭐               |                 |       |
+| Integration Responses                                              | ⭐⭐⭐               |                 |       |
+| Models                                                             | ⭐⭐⭐               |                 |       |
+| Routes                                                             | ⭐⭐⭐⭐              |                 |       |
+| Route Responses                                                    | ⭐⭐⭐               |                 |       |
+| Stages                                                             | ⭐⭐⭐⭐              |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐              |                 |       |
+| VPC Links                                                          | ⭐⭐⭐               |                 |       |
+| **API Gateway Management API** (Pro)                               | [🔍]({{< ref "../localstack/metric-coverage/#apigatewaymanagementapi" >}}) |                 |       |
+| **AppConfig** (Pro)                                                | [🔍]({{< ref "../localstack/metric-coverage/#appconfig" >}})               |                 |       |
+| Applications                                                       | ⭐⭐⭐           |                 |       |
+| Configuration Profiles                                             | ⭐⭐⭐⭐         |                 |       |
+| Configurations                                                     | ⭐⭐⭐           |                 |       |
+| Deployment Strategies                                              | ⭐⭐⭐⭐         |                 |       |
+| Deployments                                                        | ⭐⭐⭐           |                 |       |
+| Environments                                                       | ⭐⭐⭐⭐          |                 |       |
+| Hosted Configuration Versions                                      | ⭐⭐⭐           |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐         |                 |       |
+| **Application Autoscaling** (Pro)                                  | [🔍]({{< ref "../localstack/metric-coverage/#application-autoscaling" >}})     |                 |       |
+| Scalable Targets                                                   | ⭐⭐⭐           |                 |       |
+| Scaling Activities                                                 | ⭐⭐             |                 |       |
+| Scaling Policies                                                   | ⭐⭐             |                 |       |
+| Scheduled Actions                                                  | ⭐⭐             |                 |       |
+| [**AppSync** (Pro)]({{< ref "appsync" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#appsync" >}})                |                 |       |
+| API Caches                                                         | ⭐⭐⭐          |                 |       |
+| API Keys                                                           | ⭐⭐⭐          |                 |       |
+| Data Sources                                                       | ⭐⭐⭐          |                 |       |
+| Functions                                                          | ⭐⭐⭐          |                 |       |
+| GraphQL APIs                                                       | ⭐⭐⭐⭐         |                 |       |
+| Resolvers                                                          | ⭐⭐⭐⭐         |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐         |                 |       |
+| Types                                                              | ⭐⭐⭐⭐         |                 |       |
+| [**Athena** (Pro)]({{< ref "athena" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#athena" >}}) |                 |       |
 | Data Catalogs                                                      | ⭐⭐           |                 |       |
 | Databases                                                          | ⭐⭐           |                 |       |
 | Named Queries                                                      | \-             |                 |       |
@@ -117,8 +117,8 @@ In the coverage table below, the features are marked with their respective avail
 | Table Metadata                                                     | ⭐⭐           |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Work Groups                                                        | \-             |                 |       |
-| **Autoscaling** (Pro)                                              |                |                 |       |
-| [**Backup** (Pro)]({{< ref "backup" >}})                           |                |                 |       |
+| **Autoscaling** (Pro)                                              | [🔍]({{< ref "../localstack/metric-coverage/#autoscaling" >}}) |                 |       |
+| [**Backup** (Pro)]({{< ref "backup" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#backup" >}}) |                 |       |
 | Backup Jobs                                                        | ⭐⭐⭐         |                 |       |
 | Backup Plans                                                       | ⭐⭐⭐         |                 |       |
 | Backup Selections                                                  | ⭐⭐⭐         |                 |       |
@@ -129,14 +129,14 @@ In the coverage table below, the features are marked with their respective avail
 | Protected Resources                                                | \-             |                 |       |
 | Recovery Points                                                    | ⭐⭐⭐         |                 |       |
 | Tags                                                               | \-             |                 |       |
-| **Batch** (Pro)                                                    |                |                 |       |
+| **Batch** (Pro)                                                    | [🔍]({{< ref "../localstack/metric-coverage/#batch" >}}) |                 |       |
 | Compute Environments                                               | ⭐⭐⭐         |                 |       |
 | Job Queues                                                         | ⭐⭐⭐         |                 |       |
 | Job Definitions                                                    | ⭐⭐⭐         |                 |       |
 | Jobs                                                               | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **CE (Cost Explorer API)** (Pro)                                   |                |                 |       |
-| [**CloudFormation**]({{< ref "cloudformation" >}})                 |                |                 |       |
+| **CE (Cost Explorer API)** (Pro)                                   | [🔍]({{< ref "../localstack/metric-coverage/#ce" >}}) |                 |       |
+| [**CloudFormation**]({{< ref "cloudformation" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#cloudformation" >}}) |                 |       |
 | Change Sets                                                        | ⭐⭐⭐⭐       |                 |       |
 | Stacks                                                             | ⭐⭐⭐⭐       |                 |       |
 | Stack Drifts                                                       | \-             |                 |       |
@@ -148,7 +148,7 @@ In the coverage table below, the features are marked with their respective avail
 | Publishers                                                         | \-             |                 |       |
 | Templates                                                          | ⭐⭐⭐⭐       |                 |       |
 | Type Activations                                                   | ⭐⭐           |                 |       |
-| [**CloudFront** (Pro)]({{< ref "cloudfront" >}})                   |                |                 |       |
+| [**CloudFront** (Pro)]({{< ref "cloudfront" >}})                   | [🔍]({{< ref "../localstack/metric-coverage/#cloudfront" >}}) |                 |       |
 | Cache Policies                                                     | \-             |                 |       |
 | Distributions                                                      | ⭐⭐⭐         |                 |       |
 | Field Level Encryption                                             | \-             |                 |       |
@@ -162,13 +162,13 @@ In the coverage table below, the features are marked with their respective avail
 | Realtime Log Configs                                               | \-             |                 |       |
 | Streaming Distributions                                            | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **CloudTrail** (Pro)                                               |                |                 |       |
+| **CloudTrail** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#cloudtrail" >}}) |                 |       |
 | Event Selectors                                                    | ⭐⭐⭐         |                 |       |
 | Insight Selectors                                                  | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Trails                                                             | ⭐⭐⭐         |                 |       |
 | Start/Stop Logging                                                 | ⭐⭐⭐         |                 |       |
-| [**CloudWatch**]({{< ref "cloudwatch" >}})                         |                |                 |       |
+| [**CloudWatch**]({{< ref "cloudwatch" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#cloudwatch" >}}) |                 |       |
 | Alarms                                                             | ⭐⭐           |                 |       |
 | Alarm Histories                                                    | \-             |                 |       |
 | Anomaly Detectors                                                  | \-             |                 |       |
@@ -178,7 +178,7 @@ In the coverage table below, the features are marked with their respective avail
 | Metric Statistics                                                  | ⭐⭐⭐         |                 |       |
 | Metric Streams                                                     | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐         |                 |       |
-| [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   |                |                 |       |
+| [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   | [🔍]({{< ref "../localstack/metric-coverage/#codecommit" >}})                |                 |       |
 | Approval Rules                                                     | \-             |                 |       |
 | Blobs / Files / Folders                                            | ⭐⭐           |                 |       |
 | Branches                                                           | ⭐⭐           |                 |       |
@@ -188,14 +188,14 @@ In the coverage table below, the features are marked with their respective avail
 | Pull Requests                                                      | \-             |                 |       |
 | Repositories                                                       | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**Cognito Identity** (Pro)]({{< ref "cognito" >}})                |                |                 |       |
+| [**Cognito Identity** (Pro)]({{< ref "cognito" >}})                | [🔍]({{< ref "../localstack/metric-coverage/#cognito-identity" >}}) |                 |       |
 | Developer Identities                                               | \-             |                 |       |
 | Identities                                                         | ⭐⭐⭐         |                 |       |
 | Identity Pool Roles                                                | \-             |                 |       |
 | Identity Pools                                                     | ⭐⭐⭐⭐       |                 |       |
 | OpenID Tokens                                                      | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| [**Cognito Identity Provider (IdP)** (Pro)]({{< ref "cognito" >}}) |                |                 |       |
+| [**Cognito Identity Provider (IdP)** (Pro)]({{< ref "cognito" >}}) | [🔍]({{< ref "../localstack/metric-coverage/#cognito-idp" >}}) |                 |       |
 | Admin APIs                                                         | ⭐⭐⭐         |                 |       |
 | Devices                                                            | ⭐⭐           |                 |       |
 | Auth Flows                                                         | ⭐⭐⭐         |                 |       |
@@ -211,15 +211,15 @@ In the coverage table below, the features are marked with their respective avail
 | User Pools                                                         | ⭐⭐⭐⭐       |                 |       |
 | Users                                                              | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Config**                                                         |               |                 |       |
-| **DocumentDB** (Pro)                                               |               |                 |       |
+| **Config**                                                         | [🔍]({{< ref "../localstack/metric-coverage/#config" >}}) |                 |       |
+| **DocumentDB** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#docdb" >}}) |                 |       |
 | DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
 | DB/Cluster Snapshots                                               | ⭐            |                 |       |
 | DB Clusters/Instances                                              | ⭐⭐⭐⭐       |                 |       |
 | DB Subnet Groups                                                   | ⭐⭐          |                 |       |
 | Event Subscriptions                                                | \-           |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **DynamoDB**                                                       |               |                 |       |
+| **DynamoDB**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#dynamodb" >}}) |                 |       |
 | Backups (Pro)                                                      | ⭐⭐⭐⭐       |                 |       |
 | Batch Operations                                                   | ⭐⭐⭐⭐       |                 |       |
 | Global Tables                                                      | ⭐⭐⭐⭐       |                 |       |
@@ -230,11 +230,11 @@ In the coverage table below, the features are marked with their respective avail
 | Tables                                                             | ⭐⭐⭐⭐       |                 |       |
 | Table Replica Autoscaling                                          | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **DynamoDB Streams**                                               |                |                 |       |
+| **DynamoDB Streams**                                               | [🔍]({{< ref "../localstack/metric-coverage/#dynamodbstreams" >}}) |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       |                 |       |
 | Shard Iterators                                                    | ⭐⭐⭐⭐       |                 |       |
 | Streams                                                            | ⭐⭐⭐⭐       |                 |       |
-| **EC2**                                                            |                |                 |       |
+| **EC2**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#ec2" >}})  |                 |       |
 | Classic Links                                                      | ⭐⭐⭐         |                 |       |
 | Customer Gateways                                                  | ⭐⭐⭐         |                 |       |
 | DHCP Options                                                       | ⭐⭐⭐         |                 |       |
@@ -265,7 +265,7 @@ In the coverage table below, the features are marked with their respective avail
 | VPC Peering Connections                                            | ⭐⭐⭐         |                 |       |
 | VPCs                                                               | ⭐⭐⭐⭐       |                 |       |
 | VPN Gateways / Connections                                         | ⭐⭐⭐         |                 |       |
-| [**ECR** (Pro)]({{< ref "elastic-container-registry" >}})          |                |                 |       |
+| [**ECR** (Pro)]({{< ref "elastic-container-registry" >}})          | [🔍]({{< ref "../localstack/metric-coverage/#ecr" >}}) |                 |       |
 | Images                                                             | ⭐⭐⭐         |                 |       |
 | Image Scans                                                        | \-             |                 |       |
 | Lifecycle Policies                                                 | ⭐⭐⭐⭐       |                 |       |
@@ -275,7 +275,7 @@ In the coverage table below, the features are marked with their respective avail
 | Repositories                                                       | ⭐⭐⭐⭐       |                 |       |
 | Repository Policies                                                | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**ECS** (Pro)]({{< ref "elastic-container-service" >}})           |                |                 |       |
+| [**ECS** (Pro)]({{< ref "elastic-container-service" >}})           | [🔍]({{< ref "../localstack/metric-coverage/#ecs" >}}) |                 |       |
 | Account Settings                                                   | \-             |                 |       |
 | Attributes                                                         | ⭐⭐⭐⭐       |                 |       |
 | Capacity Providers                                                 | \-             |                 |       |
@@ -286,8 +286,8 @@ In the coverage table below, the features are marked with their respective avail
 | Task Definitions                                                   | ⭐⭐⭐⭐       |                 |       |
 | Task Sets                                                          | ⭐⭐⭐         |                 |       |
 | Tasks                                                              | ⭐⭐⭐⭐       |                 |       |
-| **EFS** (Pro)                                                      |               |                 |       |
-| [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          |                |                 |       |
+| **EFS** (Pro)                                                      | [🔍]({{< ref "../localstack/metric-coverage/#efs" >}}) |                 |       |
+| [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          | [🔍]({{< ref "../localstack/metric-coverage/#eks" >}}) |                 |       |
 | AddOns                                                             | \-             |                 |       |
 | Clusters                                                           | ⭐⭐⭐         |                 |       |
 | Fargate Profiles                                                   | ⭐⭐           |                 |       |
@@ -295,7 +295,7 @@ In the coverage table below, the features are marked with their respective avail
 | Node Groups                                                        | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Updates                                                            | \-             |                 |       |
-| [**ElastiCache** (Pro)]({{< ref "elasticache" >}})                 |                |                 |       |
+| [**ElastiCache** (Pro)]({{< ref "elasticache" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#elasticache" >}}) |       |
 | Cache Clusters (Memcached)                                         | \-             |                 |       |
 | Cache Parameter Groups                                             | ⭐⭐⭐⭐       |                 |       |
 | Cache Security Groups                                              | ⭐⭐⭐⭐       |                 |       |
@@ -305,10 +305,10 @@ In the coverage table below, the features are marked with their respective avail
 | Snapshots                                                          | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Users / User Groups                                                | \-             |                 |       |
-| **Elastic Beanstalk** (Pro)                                        |                |                 |       |
-| **ELB (Elastic Load Balancing)** (Pro)                             |                |                 |       |
-| **ELBv2 (Elastic Load Balancing v2)** (Pro)                             |                |                 |       |
-| **EMR** (Pro)                                                      |                |                 |       |
+| **Elastic Beanstalk** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#elasticbeanstalk" >}}) |                 |       |
+| **ELB (Elastic Load Balancing)** (Pro)                             | [🔍]({{< ref "../localstack/metric-coverage/#elb" >}}) |                 |       |
+| **ELBv2 (Elastic Load Balancing v2)** (Pro)                        | [🔍]({{< ref "../localstack/metric-coverage/#elbv2" >}}) |                 |       |
+| **EMR** (Pro)                                                      | [🔍]({{< ref "../localstack/metric-coverage/#emr" >}}) |                 |       |
 | Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
 | Instance Fleets                                                    | ⭐⭐⭐         |                 |       |
 | Job Flow Steps                                                     | ⭐⭐⭐         |                 |       |
@@ -318,13 +318,13 @@ In the coverage table below, the features are marked with their respective avail
 | Security Configurations                                            | \-             |                 |       |
 | Studios                                                            | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**ES (Elasticsearch Service)**]({{< ref "elasticsearch" >}})           |                |                 |       |
+| [**ES (Elasticsearch Service)**]({{< ref "elasticsearch" >}})      | [🔍]({{< ref "../localstack/metric-coverage/#es" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
 | Elasticsearch Domains                                              | ⭐⭐⭐⭐       |                 |       |
 | Packages                                                           | \-             |                 |       |
 | Reserved Instances                                                 | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **EventBridge (Events)**                                           |                |                 |       |
+| **EventBridge (Events)**                                           | [🔍]({{< ref "../localstack/metric-coverage/#events" >}}) |                 |       |
 | API Destinations                                                   | ⭐⭐⭐⭐       |                 |       |
 | Archives                                                           | \-             |                 |       |
 | Connections                                                        | \-             |                 |       |
@@ -334,13 +334,13 @@ In the coverage table below, the features are marked with their respective avail
 | Replays                                                            | \-             |                 |       |
 | Rules                                                              | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Firehose**                                                       |                |                 |       |
+| **Firehose**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#firehose" >}}) |                 |       |
 | Delivery Streams                                                   | ⭐⭐⭐⭐       |                 |       |
 | Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Glacier** (Pro)                                                  |                |                 |       |
-| [**Glue** (Pro)]({{< ref "glue" >}})                               |                |                 |       |
+| **Glacier** (Pro)                                                  | [🔍]({{< ref "../localstack/metric-coverage/#glacier" >}}) |                 |       |
+| [**Glue** (Pro)]({{< ref "glue" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#glue" >}}) |                 |       |
 | Classifiers                                                        | ⭐⭐⭐         |                 |       |
 | Connections                                                        | ⭐⭐⭐         |                 |       |
 | Crawlers                                                           | ⭐⭐⭐         |                 |       |
@@ -358,7 +358,7 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐         |                 |       |
 | User Defined Functions                                             | \-             |                 |       |
 | Workflows                                                          | ⭐⭐⭐         |                 |       |
-| [**IAM**]({{< ref "iam" >}})                                       |                |                 |       |
+| [**IAM**]({{< ref "iam" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#iam" >}}) |                 |       |
 | Access Keys                                                        | ⭐⭐⭐         |                 |       |
 | Account Aliases                                                    | ⭐⭐⭐         |                 |       |
 | Credential Reports                                                 | \-             |                 |       |
@@ -373,7 +373,7 @@ In the coverage table below, the features are marked with their respective avail
 | Service Linked Roles                                               | ⭐⭐⭐         |                 |       |
 | Users                                                              | ⭐⭐⭐⭐       |                 |       |
 | Virtual MFA Devices                                                | ⭐⭐           |                 |       |
-| [**IoT (Analytics, Data, Wireless)** (Pro)]({{< ref "iot" >}})     |                |                 |       |
+| [**IoT (Analytics, Data, Wireless)** (Pro)]({{< ref "iot" >}})     | [🔍]({{< ref "../localstack/metric-coverage/#iot" >}}) |                 |       |
 | Authorizers                                                        | \-             |                 |       |
 | Billing Groups                                                     | \-             |                 |       |
 | Certificates                                                       | ⭐⭐           |                 |       |
@@ -397,13 +397,13 @@ In the coverage table below, the features are marked with their respective avail
 | Thing Types                                                        | ⭐⭐⭐         |                 |       |
 | Things                                                             | ⭐⭐⭐         |                 |       |
 | Topic Rules                                                        | ⭐⭐⭐         |                 |       |
-| [**Kafka (MSK - Managed Streaming for Kafka)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro)                        |                |                 |       |
+| [**Kafka (MSK - Managed Streaming for Kafka)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro) | [🔍]({{< ref "../localstack/metric-coverage/#kafka" >}}) |                 |       |
 | Brokers                                                            | ⭐⭐           |                 |       |
 | Cluster Operations                                                 | ⭐⭐           |                 |       |
 | Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
 | Configurations                                                     | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**Kinesis**]({{< ref "kinesis" >}})                               |                |                 |       |
+| [**Kinesis**]({{< ref "kinesis" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#kinesis" >}}) |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       |                 |       |
 | Split / Merge Shards                                               | ⭐⭐⭐⭐       |                 |       |
 | Stream Consumers                                                   | ⭐⭐⭐⭐       |                 |       |
@@ -411,9 +411,9 @@ In the coverage table below, the features are marked with their respective avail
 | Streams                                                            | ⭐⭐⭐⭐       |                 |       |
 | Subscribe to Shard                                                 | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Kinesis Analytics** (Pro)                                        |                |                 |       |
-| **Kinesis Analytics v2** (Pro)                             |                |                 |       |
-| **KMS**                                                            |                |                 |       |
+| **Kinesis Analytics** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#kinesisanalytics" >}})  |                 |       |
+| **Kinesis Analytics v2** (Pro)                                     | [🔍]({{< ref "../localstack/metric-coverage/#kinesisanalyticsv2" >}}) |                 |       |
+| **KMS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#kms" >}}) |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
 | Custom Key Stores                                                  | ⭐⭐⭐         |                 |       |
 | Encrypt / Decrypt / Sign Data                                      | ⭐⭐⭐⭐       |                 |       |
@@ -421,8 +421,8 @@ In the coverage table below, the features are marked with their respective avail
 | Key Policies                                                       | \-             |                 |       |
 | Keys                                                               | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Lake Formation** (Pro)                             |                |                 |       |
-| **Lambda**                                                         |                |                 |       |
+| **Lake Formation** (Pro)                                           | [🔍]({{< ref "../localstack/metric-coverage/#lakeformation" >}}) |                 |       |
+| **Lambda**                                                         | [🔍]({{< ref "../localstack/metric-coverage/#lambda" >}}) |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
 | Code Signing Configs                                               | ⭐⭐           |                 |       |
 | Custom Images (Pro)                                                | ⭐⭐⭐⭐       | EMULATED        |       |
@@ -434,7 +434,7 @@ In the coverage table below, the features are marked with their respective avail
 | [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       |                 |       |
 | Permissions                                                        | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Logs**                                                |                |                 |       |
+| **Logs**                                                           | [🔍]({{< ref "../localstack/metric-coverage/#logs" >}}) |                 |       |
 | Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
 | Export Tasks                                                       | ⭐⭐           |                 |       |
 | Log Events                                                         | ⭐⭐⭐⭐       |                 |       |
@@ -447,7 +447,7 @@ In the coverage table below, the features are marked with their respective avail
 | Retention Policies                                                 | ⭐⭐⭐         |                 |       |
 | Subscription Filters                                               | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **MediaStore** (Pro)                                               |                |                 |       |
+| **MediaStore** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#mediastore" >}}) |                 |       |
 | Access Logging                                                     | \-             |                 |       |
 | Container Policies                                                 | \-             |                 |       |
 | Containers                                                         | ⭐⭐⭐         |                 |       |
@@ -455,13 +455,14 @@ In the coverage table below, the features are marked with their respective avail
 | Lifecycle Policies                                                 | \-             |                 |       |
 | Metric Policies                                                    | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| **MWAA (Managed Workflows for Apache Airflow)** (Pro)              |                |                 |       |
+| **MediaStore Data** (Pro)                                          | [🔍]({{< ref "../localstack/metric-coverage/#mediastore-data" >}}) |                 |       |
+| **MWAA (Managed Workflows for Apache Airflow)** (Pro)              | [🔍]({{< ref "../localstack/metric-coverage/#mwaa" >}}) |                 |       |
 | CLI Tokens                                                         | -              |                 |       |
 | Environments                                                       | ⭐⭐⭐          |                 |       |
 | S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐        |                 |       |
 | Web Login                                                          | ⭐⭐⭐          |                 |       |
-| [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      |                |                 |       |
+| [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      | [🔍]({{< ref "../localstack/metric-coverage/#neptune" >}}) |                 |       |
 | DB Clusters                                                        | ⭐⭐⭐⭐       |                 |       |
 | DB Cluster Endpoints                                               | ⭐⭐⭐⭐       |                 |       |
 | DB Cluster Parameter Groups                                        | ⭐⭐⭐⭐       |                 |       |
@@ -470,14 +471,14 @@ In the coverage table below, the features are marked with their respective avail
 | Event Subscriptions                                                | \-             |                 |       |
 | Events                                                             | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| [**OpenSearch Service**]({{< ref "opensearch" >}})                 |                |                 |       |
+| [**OpenSearch Service**]({{< ref "opensearch" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#opensearch" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
 | OpenSearch Domains                                                 | ⭐⭐⭐⭐       |                 |       |
 | Packages                                                           | \-             |                 |       |
 | Reserved Instances                                                 | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Organizations** (Pro)                                            |                |                 |       |
-| [**QLDB** (Pro)]({{< ref "qldb" >}})                               |                |                 |       |
+| **Organizations** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#organizations" >}}) |                 |       |
+| [**QLDB** (Pro)]({{< ref "qldb" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#qldb" >}}) |                 |       |
 | Blocks                                                             | ⭐⭐⭐         |                 |       |
 | Digests                                                            | ⭐⭐⭐         |                 |       |
 | Journal Kinesis Streams                                            | ⭐⭐⭐         |                 |       |
@@ -485,8 +486,8 @@ In the coverage table below, the features are marked with their respective avail
 | Ledgers                                                            | ⭐⭐⭐⭐       |                 |       |
 | Send Commands / Run Queries                                        | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **QLDB Sessions** (Pro)                                            |                |                 |       |
-| [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             |                |                 |       |
+| **QLDB Sessions** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#qldb-session" >}}) |                 |       |
+| [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             | [🔍]({{< ref "../localstack/metric-coverage/#rds" >}}) |                 |       |
 | DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
 | DB/Cluster Snapshots                                               | ⭐⭐⭐         |                 |       |
 | DB Clusters/Instances                                              | ⭐⭐⭐⭐       |                 |       |
@@ -496,8 +497,8 @@ In the coverage table below, the features are marked with their respective avail
 | Option Groups                                                      | ⭐⭐⭐⭐       |                 |       |
 | Postgres AWS Extension Functions                                   | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **RDS Data** (Pro)                                                 |                |                 |       |
-| **Redshift**                                                       |                |                 |       |
+| **RDS Data** (Pro)                                                 | [🔍]({{< ref "../localstack/metric-coverage/#rds-data" >}}) |                 |       |
+| **Redshift**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#redshift" >}}) |                 |       |
 | Authorize/Revoke Access                                            | \-             |                 |       |
 | Cluster Parameter Groups                                           | ⭐⭐⭐         |                 |       |
 | Cluster Snapshots                                                  | ⭐⭐⭐         |                 |       |
@@ -508,10 +509,10 @@ In the coverage table below, the features are marked with their respective avail
 | Security/Subnet Groups                                             | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Usage Limits                                                       | ⭐⭐           |                 |       |
-| **Redshift Data** (Pro)                                            |                |                 |       |
-| **Resource Groups**                                                |                |                 |       |
-| **Resource Groups Tagging API**                                    |                |                 |       |
-| [**Route53**]({{< ref "route53" >}})                               |                |                 |       |
+| **Redshift Data** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#redshift-data" >}}) |                 |       |
+| **Resource Groups**                                                | [🔍]({{< ref "../localstack/metric-coverage/#resource-groups" >}}) |                 |       |
+| **Resource Groups Tagging API**                                    | [🔍]({{< ref "../localstack/metric-coverage/#resourcegroupstaggingapi" >}})  |                 |       |
+| [**Route53**]({{< ref "route53" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#route53" >}}) |                 |       |
 | DNS Server Integration (Pro)                                       | ⭐⭐⭐⭐       |                 |       |
 | Geo Locations                                                      | \-             |                 |       |
 | Health Checks                                                      | ⭐⭐           |                 |       |
@@ -521,8 +522,8 @@ In the coverage table below, the features are marked with their respective avail
 | Reusable Delegation Sets                                           | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Traffic Policies                                                   | ⭐⭐⭐         |                 |       |
-| **Route53 Resolver**                              |                |                 |       |
-| [**S3**]({{< ref "s3" >}})                                         |                |                 |       |
+| **Route53 Resolver**                                               | [🔍]({{< ref "../localstack/metric-coverage/#route53resolver" >}}) |                |       |
+| [**S3**]({{< ref "s3" >}})                                         | [🔍]({{< ref "../localstack/metric-coverage/#s3" >}}) |                 |       |
 | Bucket ACLs                                                        | ⭐⭐⭐         |                 |       |
 | Bucket CORS                                                        | ⭐⭐⭐         |                 |       |
 | Bucket Encryptions                                                 | ⭐⭐⭐         |                 |       |
@@ -542,8 +543,8 @@ In the coverage table below, the features are marked with their respective avail
 | Objects                                                            | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Upload/Download Files                                              | ⭐⭐⭐⭐       |                 |       |
-| **S3 Control**                                                     |                |                 |       |
-| [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     |                |                 |       |
+| **S3 Control**                                                     | [🔍]({{< ref "../localstack/metric-coverage/#s3control" >}}) |                 |       |
+| [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     | [🔍]({{< ref "../localstack/metric-coverage/#sagemaker" >}}) |                 |       |
 | Actions                                                            | ⭐⭐           |                 |       |
 | Algorithms                                                         | \-             |                 |       |
 | App Image Configs                                                  | ⭐⭐           |                 |       |
@@ -580,15 +581,15 @@ In the coverage table below, the features are marked with their respective avail
 | Trials                                                             | \-             |                 |       |
 | User Profiles                                                      | \-             |                 |       |
 | Workforces / Workteams                                             | \-             |                 |       |
-| **SecretsManager**                                                 |                |                 |       |
+| **SecretsManager**                                                 | [🔍]({{< ref "../localstack/metric-coverage/#secretsmanager" >}}) |                 |       |
 | Resource Policies                                                  | ⭐⭐⭐⭐       |                 |       |
 | Secret Replications                                                | ⭐⭐           |                 |       |
 | Secret Rotations                                                   | ⭐⭐           |                 |       |
 | Secrets                                                            | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Serverless Repo** (Pro)                                          |                |                 |       |
-| **Service Discovery** (Pro)                                        |                |                 |       |
-| [**SES**]({{< ref "ses" >}})                                       |                |                 |       |
+| **Serverless Repo** (Pro)                                          | [🔍]({{< ref "../localstack/metric-coverage/#serverlessrepo" >}}) |                 |       |
+| **Service Discovery** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#servicediscovery" >}}) |                 |       |
+| [**SES**]({{< ref "ses" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#ses" >}}) |                 |       |
 | Configuration Sets                                                 | ⭐⭐⭐         |                 |       |
 | Identities                                                         | ⭐⭐           |                 |       |
 | Identity Policies                                                  | ⭐⭐           |                 |       |
@@ -597,21 +598,21 @@ In the coverage table below, the features are marked with their respective avail
 | Receipt Rules                                                      | ⭐⭐⭐         |                 |       |
 | Sending Emails via SMTP (Pro)                                      | ⭐⭐⭐⭐       |                 |       |
 | Templates                                                          | ⭐⭐⭐⭐       |                 |       |
-| **SES v2**                                                         |                |                 |       |
-| **SNS**                                                            |                |                 |       |
+| **SES v2**                                                         | [🔍]({{< ref "../localstack/metric-coverage/#sesv2" >}}) |                 |       |
+| **SNS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#sns" >}}) |                 |       |
 | Platform Applications                                              | ⭐⭐⭐         |                 |       |
 | Publish/Subscribe to Topics                                        | ⭐⭐⭐⭐       |                 |       |
 | SMS Attributes / Sandbox Accounts                                  | ⭐⭐           |                 |       |
 | Subscriptions                                                      | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Topics                                                             | ⭐⭐⭐⭐       |                 |       |
-| [**SQS**]({{< ref "sqs" >}})                                       |                |                 |       |
+| [**SQS**]({{< ref "sqs" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#sqs" >}}) |                 |       |
 | Message Visibility                                                 | ⭐⭐⭐⭐       |                 |       |
 | Messages                                                           | ⭐⭐⭐⭐       |                 |       |
 | Permission                                                         | ⭐⭐⭐         |                 |       |
 | Queues                                                             | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **SSM**                                                            |                |                 |       |
+| **SSM**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#ssm" >}}) |                 |       |
 | Associations                                                       | ⭐⭐⭐         |                 |       |
 | Calendar States                                                    | ⭐⭐           |                 |       |
 | Commands / Command Invocations                                     | ⭐⭐⭐         |                 |       |
@@ -622,32 +623,32 @@ In the coverage table below, the features are marked with their respective avail
 | Parameters                                                         | ⭐⭐⭐⭐       |                 |       |
 | Resource Compliance Summaries                                      | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **StepFunctions**                                                  |                |                 |       |
+| **StepFunctions**                                                  | [🔍]({{< ref "../localstack/metric-coverage/#stepfunctions" >}}) |                 |       |
 | Activities                                                         | ⭐⭐⭐⭐       |                 |       |
 | Executions / Execution History                                     | ⭐⭐⭐⭐       |                 |       |
 | State Machines                                                     | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **STS**                                                            |                |                 |       |
+| **STS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#sts" >}})  |                 |       |
 | Assume Role (Pro)                                                  | ⭐⭐⭐⭐       |                 |       |
 | Get Access Key Info                                                | ⭐⭐⭐⭐       |                 |       |
 | Get Caller Identity                                                | ⭐⭐⭐⭐       |                 |       |
 | Session Tokens                                                     | ⭐⭐⭐⭐       |                 |       |
-| **Support**                                                        |                |                 |       |
-| **SWF**                                                            |                |                 |       |
-| **Timestream (query, write)** (Pro)                                |                |                 |       |
+| **Support**                                                        | [🔍]({{< ref "../localstack/metric-coverage/#support" >}}) |                 |       |
+| **SWF**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#swf" >}}) |                 |       |
+| **Timestream (query, write)** (Pro)                                | [🔍]({{< ref "../localstack/metric-coverage/#timestream-query" >}}) |                 |       |
 | Databases                                                          | ⭐⭐⭐         |                 |       |
 | Run Query                                                          | ⭐⭐⭐         |                 |       |
 | Tables                                                             | ⭐⭐⭐         |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | Write Records                                                      | ⭐⭐⭐⭐       |                 |       |
-| [**Transfer** (Pro)]({{< ref "transfer" >}})                       |                |                 |       |
+| [**Transfer** (Pro)]({{< ref "transfer" >}})                       | [🔍]({{< ref "../localstack/metric-coverage/#transfer" >}}) |                 |       |
 | Accesses                                                           | \-             |                 |       |
 | Security Policies                                                  | \-             |                 |       |
 | Servers                                                            | ⭐⭐⭐         |                 |       |
 | SSH Public Keys                                                    | ⭐⭐⭐         |                 |       |
 | Tags                                                               | \-             |                 |       |
 | Users                                                              | ⭐⭐⭐         |                 |       |
-| [**XRay** (Pro)]({{< ref "xray-tracing" >}})                       |                |                 |       |
+| [**XRay** (Pro)]({{< ref "xray-tracing" >}})                       | [🔍]({{< ref "../localstack/metric-coverage/#xray" >}}) |                 |       |
 | Encryption Configs                                                 | \-             |                 |       |
 | Groups                                                             | ⭐⭐           |                 |       |
 | Insights                                                           | \-             |                 |       |
