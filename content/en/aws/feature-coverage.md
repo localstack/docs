@@ -234,7 +234,7 @@ In the coverage table below, the features are marked with their respective avail
 | Records                                                            | ⭐⭐⭐⭐       |                 |       |
 | Shard Iterators                                                    | ⭐⭐⭐⭐       |                 |       |
 | Streams                                                            | ⭐⭐⭐⭐       |                 |       |
-| **EC2**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#ec2" >}})  |                 |       |
+| [**EC2**]({{< ref "elastic-compute-cloud" >}})                      | [🔍]({{< ref "../localstack/metric-coverage/#ec2" >}})  |                 |       |
 | Classic Links                                                      | ⭐⭐⭐         |                 |       |
 | Customer Gateways                                                  | ⭐⭐⭐         |                 |       |
 | DHCP Options                                                       | ⭐⭐⭐         |                 |       |
@@ -307,8 +307,8 @@ In the coverage table below, the features are marked with their respective avail
 | Users / User Groups                                                | \-             |                 |       |
 | **Elastic Beanstalk** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#elasticbeanstalk" >}}) |                 |       |
 | **ELB (Elastic Load Balancing)** (Pro)                             | [🔍]({{< ref "../localstack/metric-coverage/#elb" >}}) |                 |       |
-| **ELBv2 (Elastic Load Balancing v2)** (Pro)                        | [🔍]({{< ref "../localstack/metric-coverage/#elbv2" >}}) |                 |       |
-| **EMR** (Pro)                                                      | [🔍]({{< ref "../localstack/metric-coverage/#emr" >}}) |                 |       |
+| [**ELBv2 (Elastic Load Balancing v2)**]({{< ref "elastic-load-balancing" >}}) (Pro) | [🔍]({{< ref "../localstack/metric-coverage/#elbv2" >}}) |                 |       |
+| [**EMR**]({{< ref "elastic-mapreduce" >}}) (Pro)                   | [🔍]({{< ref "../localstack/metric-coverage/#emr" >}}) |                 |       |
 | Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
 | Instance Fleets                                                    | ⭐⭐⭐         |                 |       |
 | Job Flow Steps                                                     | ⭐⭐⭐         |                 |       |
@@ -422,7 +422,7 @@ In the coverage table below, the features are marked with their respective avail
 | Keys                                                               | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **Lake Formation** (Pro)                                           | [🔍]({{< ref "../localstack/metric-coverage/#lakeformation" >}}) |                 |       |
-| **Lambda**                                                         | [🔍]({{< ref "../localstack/metric-coverage/#lambda" >}}) |                 |       |
+| [**Lambda**]({{< ref "lambda" >}})                                 | [🔍]({{< ref "../localstack/metric-coverage/#lambda" >}}) |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
 | Code Signing Configs                                               | ⭐⭐           |                 |       |
 | Custom Images (Pro)                                                | ⭐⭐⭐⭐       | EMULATED        |       |
@@ -612,7 +612,7 @@ In the coverage table below, the features are marked with their respective avail
 | Permission                                                         | ⭐⭐⭐         |                 |       |
 | Queues                                                             | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **SSM**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#ssm" >}}) |                 |       |
+| [**SSM**]({{< ref "systems-manager" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#ssm" >}}) |                 |       |
 | Associations                                                       | ⭐⭐⭐         |                 |       |
 | Calendar States                                                    | ⭐⭐           |                 |       |
 | Commands / Command Invocations                                     | ⭐⭐⭐         |                 |       |
@@ -635,7 +635,7 @@ In the coverage table below, the features are marked with their respective avail
 | Session Tokens                                                     | ⭐⭐⭐⭐       |                 |       |
 | **Support**                                                        | [🔍]({{< ref "../localstack/metric-coverage/#support" >}}) |                 |       |
 | **SWF**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#swf" >}}) |                 |       |
-| **Timestream (query, write)** (Pro)                                | [🔍]({{< ref "../localstack/metric-coverage/#timestream-query" >}}) |                 |       |
+| [**Timestream (query, write)**]({{< ref "timestream" >}}) (Pro)    | [🔍]({{< ref "../localstack/metric-coverage/#timestream-query" >}}) |                 |       |
 | Databases                                                          | ⭐⭐⭐         |                 |       |
 | Run Query                                                          | ⭐⭐⭐         |                 |       |
 | Tables                                                             | ⭐⭐⭐         |                 |       |
