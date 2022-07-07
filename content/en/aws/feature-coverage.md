@@ -18,13 +18,13 @@ LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS
 | ⭐⭐⭐    | Feature supports basic functionalities (e.g., CRUD operations)          |                
 | ⭐⭐      | Feature should be considered unstable          |                 
 | ⭐       | Feature is experimental and regressions should be expected         | 
-| **-**    | Feature is not currently implemented          | 
+| **-**    | Feature is not implemented yet        | 
 
 
 ## Emulation Levels
 
 * CRUD: The service accepts requests and returns proper (potentially static) responses. No additional business logic besides storing entities.
-* EMULATED: todo
+* EMULATED: The service imitates the functionality, including synchronous and asynchronous business logic operating on service entities. 
 
 
 ## AWS Feature Coverage
@@ -169,15 +169,15 @@ In the coverage table below, the features are marked with their respective avail
 | Trails                                                             | ⭐⭐⭐         |                 |       |
 | Start/Stop Logging                                                 | ⭐⭐⭐         |                 |       |
 | [**CloudWatch**]({{< ref "cloudwatch" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#cloudwatch" >}}) |                 |       |
-| Alarms                                                             | ⭐⭐           |                 |       |
+| Alarms                                                             | ⭐⭐⭐⭐        | EMULATED       |       |
 | Alarm Histories                                                    | \-             |                 |       |
 | Anomaly Detectors                                                  | \-             |                 |       |
 | Dashboards                                                         | \-             |                 |       |
 | Insight Rules                                                      | \-             |                 |       |
-| Metric Data                                                        | ⭐⭐⭐⭐       |                 |       |
-| Metric Statistics                                                  | ⭐⭐⭐         |                 |       |
+| Metric Data                                                        | ⭐⭐⭐⭐         | CRUD         |       |
+| Metric Statistics                                                  | ⭐⭐⭐⭐          | CRUD             |       |
 | Metric Streams                                                     | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐         |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
 | [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   | [🔍]({{< ref "../localstack/metric-coverage/#codecommit" >}})                |                 |       |
 | Approval Rules                                                     | \-             |                 |       |
 | Blobs / Files / Folders                                            | ⭐⭐           |                 |       |
@@ -435,18 +435,17 @@ In the coverage table below, the features are marked with their respective avail
 | Permissions                                                        | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **Logs**                                                           | [🔍]({{< ref "../localstack/metric-coverage/#logs" >}}) |                 |       |
-| Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
-| Export Tasks                                                       | ⭐⭐           |                 |       |
-| Log Events                                                         | ⭐⭐⭐⭐       |                 |       |
-| Log Groups                                                         | ⭐⭐⭐⭐       |                 |       |
-| Log Streams                                                        | ⭐⭐⭐⭐       |                 |       |
-| Metric Filters                                                     | ⭐⭐⭐         |                 |       |
-| Queries                                                            | ⭐⭐⭐         |                 |       |
-| Query Definitions                                                  | ⭐⭐           |                 |       |
-| Resource Policies                                                  | ⭐⭐⭐⭐       |                 |       |
-| Retention Policies                                                 | ⭐⭐⭐         |                 |       |
-| Subscription Filters                                               | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Destinations                                                       | ⭐⭐⭐⭐       | EMULATED       |       |
+| Export Tasks                                                       | ⭐⭐          | CRUD            |       |
+| Log Events                                                         | ⭐⭐⭐⭐       | EMULATED        |       |
+| Log Groups                                                         | ⭐⭐⭐⭐       | CRUD                |       |
+| Log Streams                                                        | ⭐⭐⭐⭐       | CRUD                |       |
+| Metric Filters                                                     | ⭐⭐⭐         | CRUD                |       |
+| Queries                                                            | ⭐⭐          | CRUD                |       |
+| Resource Policies                                                  | ⭐⭐⭐        | CRUD               |       |
+| Retention Policies                                                 | ⭐⭐⭐         | CRUD                |       |
+| Subscription Filters                                               | ⭐⭐⭐         | EMULATED        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD               |       |
 | **MediaStore** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#mediastore" >}}) |                 |       |
 | Access Logging                                                     | \-             |                 |       |
 | Container Policies                                                 | \-             |                 |       |
@@ -488,16 +487,19 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **QLDB Sessions** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#qldb-session" >}}) |                 |       |
 | [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             | [🔍]({{< ref "../localstack/metric-coverage/#rds" >}}) |                 |       |
-| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
-| DB/Cluster Snapshots                                               | ⭐⭐⭐         |                 |       |
-| DB Clusters/Instances                                              | ⭐⭐⭐⭐       |                 |       |
-| DB Proxies                                                         | ⭐⭐           |                 |       |
-| DB Security/Subnet Groups                                          | ⭐⭐⭐         |                 |       |
+| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         | CRUD            |       |
+| DB/Cluster Snapshots                                               | ⭐⭐⭐         | EMULATED        |       |
+| DB Clusters/Instances                                              | ⭐⭐⭐⭐       | EMULATED        |       |
+| DB Proxies                                                         | ⭐⭐           | EMULATED       |       |
+| DB Security/Subnet Groups                                          | ⭐⭐⭐         | EMULATED        |       |
 | Event Subscriptions                                                | \-             |                 |       |
-| Option Groups                                                      | ⭐⭐⭐⭐       |                 |       |
-| Postgres AWS Extension Functions                                   | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Option Groups                                                      | ⭐⭐⭐⭐       | CRUD            |       |
+| Postgres AWS Extension Functions                                   | ⭐⭐⭐         | EMULATED        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **RDS Data** (Pro)                                                 | [🔍]({{< ref "../localstack/metric-coverage/#rds-data" >}}) |                 |       |
+| Execute sql/statements                                             | ⭐⭐⭐         | EMULATED               |       |
+| Transactions                                                       | ⭐⭐           | EMULATED                |       |
+| Batch Execution                                                    | \-             |                 |       |
 | **Redshift**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#redshift" >}}) |                 |       |
 | Authorize/Revoke Access                                            | \-             |                 |       |
 | Cluster Parameter Groups                                           | ⭐⭐⭐         |                 |       |
