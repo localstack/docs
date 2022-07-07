@@ -363,6 +363,62 @@ API returns a response for 90.0% of the operations.
 
 ## appsync ##
 
+API returns a response for 93.9% of the operations.
+
+| Operation                              | Implemented | Tested |
+|----------------------------------------|-------------|--------|
+| AssociateApi                           | ❌         | ❌    |
+| CreateApiCache                         | ✅         | ✅    |
+| CreateApiKey                           | ✅         | ✅    |
+| CreateDataSource                       | ✅         | ✅    |
+| CreateDomainName                       | ✅         | ❌    |
+| CreateFunction                         | ✅         | ✅    |
+| CreateGraphqlApi                       | ✅         | ✅    |
+| CreateResolver                         | ✅         | ✅    |
+| CreateType                             | ✅         | ❌    |
+| DeleteApiCache                         | ✅         | ❌    |
+| DeleteApiKey                           | ✅         | ❌    |
+| DeleteDataSource                       | ✅         | ❌    |
+| DeleteDomainName                       | ✅         | ❌    |
+| DeleteFunction                         | ✅         | ❌    |
+| DeleteGraphqlApi                       | ✅         | ✅    |
+| DeleteResolver                         | ✅         | ✅    |
+| DeleteType                             | ✅         | ❌    |
+| DisassociateApi                        | ❌         | ❌    |
+| FlushApiCache                          | ✅         | ❌    |
+| GetApiAssociation                      | ❌         | ❌    |
+| GetApiCache                            | ✅         | ❌    |
+| GetDataSource                          | ✅         | ❌    |
+| GetDomainName                          | ✅         | ❌    |
+| GetFunction                            | ✅         | ✅    |
+| GetGraphqlApi                          | ✅         | ✅    |
+| GetIntrospectionSchema                 | ✅         | ✅    |
+| GetResolver                            | ✅         | ✅    |
+| GetSchemaCreationStatus                | ✅         | ✅    |
+| GetType                                | ✅         | ❌    |
+| ListApiKeys                            | ✅         | ✅    |
+| ListDataSources                        | ✅         | ✅    |
+| ListDomainNames                        | ✅         | ❌    |
+| ListFunctions                          | ✅         | ✅    |
+| ListGraphqlApis                        | ✅         | ✅    |
+| ListResolvers                          | ✅         | ✅    |
+| ListResolversByFunction                | ✅         | ❌    |
+| ListTagsForResource                    | ✅         | ✅    |
+| ListTypes                              | ✅         | ❌    |
+| StartSchemaCreation                    | ✅         | ✅    |
+| TagResource                            | ✅         | ✅    |
+| UntagResource                          | ✅         | ❌    |
+| UpdateApiCache                         | ✅         | ✅    |
+| UpdateApiKey                           | ✅         | ✅    |
+| UpdateDataSource                       | ✅         | ❌    |
+| UpdateDomainName                       | ✅         | ❌    |
+| UpdateFunction                         | ✅         | ❌    |
+| UpdateGraphqlApi                       | ✅         | ❌    |
+| UpdateResolver                         | ✅         | ✅    |
+| UpdateType                             | ✅         | ❌    |
+
+
+
 ## athena ##
 
 API returns a response for 61.1% of the operations.
@@ -632,11 +688,11 @@ API returns a response for 34.3% of the operations.
 
 ## cloudformation ##
 
-API returns a response for 42.4% of the operations.
+API returns a response for 40.9% of the operations.
 
 | Operation                              | Implemented | Tested |
 |----------------------------------------|-------------|--------|
-| ActivateType                           | ✅         | ❌    |
+| ActivateType                           | ❌         | ❌    |
 | BatchDescribeTypeConfigurations        | ❌         | ❌    |
 | CancelUpdateStack                      | ❌         | ❌    |
 | ContinueUpdateRollback                 | ❌         | ❌    |
@@ -2885,11 +2941,11 @@ API returns a response for 80.4% of the operations.
 
 ## iot ##
 
-API returns a response for 40.1% of the operations.
+API returns a response for 39.7% of the operations.
 
 | Operation                              | Implemented | Tested |
 |----------------------------------------|-------------|--------|
-| AcceptCertificateTransfer              | ✅         | ❌    |
+| AcceptCertificateTransfer              | ❌         | ❌    |
 | AddThingToBillingGroup                 | ❌         | ❌    |
 | AddThingToThingGroup                   | ✅         | ✅    |
 | AssociateTargetsWithJob                | ❌         | ❌    |
@@ -3502,7 +3558,7 @@ API returns a response for 76.0% of the operations.
 
 ## lakeformation ##
 
-API returns a response for 31.8% of the operations.
+API returns a response for 20.5% of the operations.
 
 | Operation                              | Implemented | Tested |
 |----------------------------------------|-------------|--------|
@@ -3523,14 +3579,14 @@ API returns a response for 31.8% of the operations.
 | GetDataLakeSettings                    | ✅         | ❌    |
 | GetEffectivePermissionsForPath         | ❌         | ❌    |
 | GetLFTag                               | ❌         | ❌    |
-| GetQueryState                          | ✅         | ❌    |
-| GetQueryStatistics                     | ✅         | ❌    |
+| GetQueryState                          | ❌         | ❌    |
+| GetQueryStatistics                     | ❌         | ❌    |
 | GetResourceLFTags                      | ❌         | ❌    |
 | GetTableObjects                        | ❌         | ❌    |
 | GetTemporaryGluePartitionCredentials   | ❌         | ❌    |
 | GetTemporaryGlueTableCredentials       | ❌         | ❌    |
-| GetWorkUnitResults                     | ✅         | ❌    |
-| GetWorkUnits                           | ✅         | ❌    |
+| GetWorkUnitResults                     | ❌         | ❌    |
+| GetWorkUnits                           | ❌         | ❌    |
 | GrantPermissions                       | ✅         | ✅    |
 | ListDataCellsFilter                    | ❌         | ❌    |
 | ListLFTags                             | ❌         | ❌    |
@@ -3544,7 +3600,7 @@ API returns a response for 31.8% of the operations.
 | RevokePermissions                      | ✅         | ❌    |
 | SearchDatabasesByLFTags                | ❌         | ❌    |
 | SearchTablesByLFTags                   | ❌         | ❌    |
-| StartQueryPlanning                     | ✅         | ❌    |
+| StartQueryPlanning                     | ❌         | ❌    |
 | StartTransaction                       | ❌         | ❌    |
 | UpdateLFTag                            | ❌         | ❌    |
 | UpdateResource                         | ❌         | ❌    |
@@ -4957,7 +5013,7 @@ API returns a response for 57.1% of the operations.
 
 ## servicediscovery ##
 
-API returns a response for 76.9% of the operations.
+API returns a response for 73.1% of the operations.
 
 | Operation                              | Implemented | Tested |
 |----------------------------------------|-------------|--------|
@@ -4968,7 +5024,7 @@ API returns a response for 76.9% of the operations.
 | DeleteNamespace                        | ✅         | ✅    |
 | DeleteService                          | ✅         | ✅    |
 | DeregisterInstance                     | ✅         | ✅    |
-| DiscoverInstances                      | ✅         | ✅    |
+| DiscoverInstances                      | ❌         | ✅    |
 | GetInstance                            | ✅         | ✅    |
 | GetInstancesHealthStatus               | ❌         | ❌    |
 | GetNamespace                           | ✅         | ✅    |
@@ -5384,7 +5440,7 @@ API returns a response for 23.0% of the operations.
 
 ## stepfunctions ##
 
-API returns a response for 100.0% of the operations.
+API returns a response for 95.7% of the operations.
 
 | Operation                              | Implemented | Tested |
 |----------------------------------------|-------------|--------|
@@ -5406,7 +5462,7 @@ API returns a response for 100.0% of the operations.
 | SendTaskHeartbeat                      | ✅         | ❌    |
 | SendTaskSuccess                        | ✅         | ❌    |
 | StartExecution                         | ✅         | ✅    |
-| StartSyncExecution                     | ✅         | ❌    |
+| StartSyncExecution                     | ❌         | ❌    |
 | StopExecution                          | ✅         | ❌    |
 | TagResource                            | ✅         | ❌    |
 | UntagResource                          | ✅         | ❌    |
