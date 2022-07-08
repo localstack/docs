@@ -219,16 +219,16 @@ In the coverage table below, the features are marked with their respective avail
 | Event Subscriptions                                                | \-           |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **DynamoDB**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#dynamodb" >}}) |                 |       |
-| Backups (Pro)                                                      | ⭐⭐⭐⭐       |                 |       |
-| Batch Operations                                                   | ⭐⭐⭐⭐       |                 |       |
-| Global Tables                                                      | ⭐⭐⭐⭐       |                 |       |
-| Items                                                              | ⭐⭐⭐⭐       |                 |       |
-| Kinesis Streaming Destinations                                     | \-             |                 |       |
-| PartiQL Queries                                                    | ⭐⭐⭐⭐       |                 |       |
-| Query / Scan Operations                                            | ⭐⭐⭐⭐       |                 |       |
-| Tables                                                             | ⭐⭐⭐⭐       |                 |       |
+| Backups (Pro)                                                      | ⭐⭐⭐⭐       | Emulated        |       |
+| Batch Operations                                                   | ⭐⭐⭐⭐       | Emulated        |       |
+| Global Tables                                                      | ⭐⭐⭐⭐       | CRUD            | version 2019.11.21 not supported yet |
+| Items                                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Kinesis Streaming Destinations                                     | ⭐⭐⭐         | Emulated        |       |
+| PartiQL Queries                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| Query / Scan Operations                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Tables                                                             | ⭐⭐⭐⭐       | Emulated        |       |
 | Table Replica Autoscaling                                          | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **DynamoDB Streams**                                               | [🔍]({{< ref "../localstack/metric-coverage/#dynamodbstreams" >}}) |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       |                 |       |
 | Shard Iterators                                                    | ⭐⭐⭐⭐       |                 |       |
