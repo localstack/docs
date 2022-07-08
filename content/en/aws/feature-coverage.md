@@ -265,26 +265,26 @@ In the coverage table below, the features are marked with their respective avail
 | VPCs                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | VPN Gateways / Connections                                         | ⭐⭐⭐         | CRUD            |       |
 | [**ECR** (Pro)]({{< ref "elastic-container-registry" >}})          | [🔍]({{< ref "../localstack/metric-coverage/#ecr" >}}) |                 |       |
-| Images                                                             | ⭐⭐⭐         |                 |       |
+| Images                                                             | ⭐⭐⭐         |    Emulated     |       |
 | Image Scans                                                        | \-             |                 |       |
-| Lifecycle Policies                                                 | ⭐⭐⭐⭐       |                 |       |
-| Registries                                                         | ⭐⭐⭐⭐       |                 |       |
+| Lifecycle Policies                                                 | ⭐⭐⭐⭐       |      CRUD       |       |
+| Registries                                                         | ⭐⭐⭐⭐       |    Emulated     |       |
 | Registry Policies                                                  | \-             |                 |       |
 | Replication Configurations                                         | \-             |                 |       |
-| Repositories                                                       | ⭐⭐⭐⭐       |                 |       |
-| Repository Policies                                                | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Repositories                                                       | ⭐⭐⭐⭐       |    Emulated     |       |
+| Repository Policies                                                | ⭐⭐⭐⭐       |      CRUD       |       |
+| Tags                                                               | ⭐⭐⭐⭐       |      CRUD       |       |
 | [**ECS** (Pro)]({{< ref "elastic-container-service" >}})           | [🔍]({{< ref "../localstack/metric-coverage/#ecs" >}}) |                 |       |
 | Account Settings                                                   | \-             |                 |       |
-| Attributes                                                         | ⭐⭐⭐⭐       |                 |       |
+| Attributes                                                         | ⭐⭐⭐⭐       |      CRUD       |       |
 | Capacity Providers                                                 | \-             |                 |       |
-| Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
-| Container Instances                                                | ⭐⭐⭐⭐       |                 |       |
-| Services                                                           | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Task Definitions                                                   | ⭐⭐⭐⭐       |                 |       |
-| Task Sets                                                          | ⭐⭐⭐         |                 |       |
-| Tasks                                                              | ⭐⭐⭐⭐       |                 |       |
+| Clusters                                                           | ⭐⭐⭐⭐       |    Emulated     |       |
+| Container Instances                                                | ⭐⭐⭐⭐       |    Emulated     |       |
+| Services                                                           | ⭐⭐⭐⭐       |    Emulated     |       |
+| Tags                                                               | ⭐⭐⭐⭐       |      CRUD       |       |
+| Task Definitions                                                   | ⭐⭐⭐⭐       |    Emulated     |       |
+| Task Sets                                                          | ⭐⭐⭐         |      CRUD       |       |
+| Tasks                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
 | **EFS** (Pro)                                                      | [🔍]({{< ref "../localstack/metric-coverage/#efs" >}}) |                 |       |
 | [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          | [🔍]({{< ref "../localstack/metric-coverage/#eks" >}}) |                 |       |
 | AddOns                                                             | \-             |                 |       |
@@ -368,20 +368,20 @@ In the coverage table below, the features are marked with their respective avail
 | User Defined Functions                                             | \-             |                 |       |
 | Workflows                                                          | ⭐⭐⭐         |                 |       |
 | [**IAM**]({{< ref "iam" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#iam" >}}) |                 |       |
-| Access Keys                                                        | ⭐⭐⭐         |                 |       |
-| Account Aliases                                                    | ⭐⭐⭐         |                 |       |
+| Access Keys                                                        | ⭐⭐⭐         |    Emulated     |       |
+| Account Aliases                                                    | ⭐⭐⭐         |      CRUD       |       |
 | Credential Reports                                                 | \-             |                 |       |
-| Groups                                                             | ⭐⭐⭐⭐       |                 |       |
-| Instance Profiles                                                  | ⭐⭐⭐         |                 |       |
-| Login Profiles                                                     | ⭐⭐⭐         |                 |       |
+| Groups                                                             | ⭐⭐⭐⭐       |    Emulated     |       |
+| Instance Profiles                                                  | ⭐⭐⭐         |      CRUD       |       |
+| Login Profiles                                                     | ⭐⭐⭐         |      CRUD       |       |
 | OIDC Providers                                                     | \-             |                 |       |
-| Policies                                                           | ⭐⭐⭐⭐       |                 |       |
-| Roles                                                              | ⭐⭐⭐⭐       |                 |       |
+| Policies                                                           | ⭐⭐⭐⭐       |    Emulated     |       |
+| Roles                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
 | SAML Providers                                                     | \-             |                 |       |
-| Server Certificates                                                | ⭐⭐⭐         |                 |       |
-| Service Linked Roles                                               | ⭐⭐⭐         |                 |       |
-| Users                                                              | ⭐⭐⭐⭐       |                 |       |
-| Virtual MFA Devices                                                | ⭐⭐           |                 |       |
+| Server Certificates                                                | ⭐⭐⭐         |      CRUD       |       |
+| Service Linked Roles                                               | ⭐⭐⭐         |      CRUD       |       |
+| Users                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
+| Virtual MFA Devices                                                | ⭐⭐           |      CRUD       |       |
 | [**IoT (Analytics, Data, Wireless)** (Pro)]({{< ref "iot" >}})     | [🔍]({{< ref "../localstack/metric-coverage/#iot" >}}) |                 |       |
 | Authorizers                                                        | \-             |                 |       |
 | Billing Groups                                                     | \-             |                 |       |
@@ -432,17 +432,17 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **Lake Formation** (Pro)                                           | [🔍]({{< ref "../localstack/metric-coverage/#lakeformation" >}}) |                 |       |
 | [**Lambda**]({{< ref "lambda" >}})                                 | [🔍]({{< ref "../localstack/metric-coverage/#lambda" >}}) |                 |       |
-| Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
-| Code Signing Configs                                               | ⭐⭐           |                 |       |
+| Aliases                                                            | ⭐⭐⭐⭐       | CRUD            |       |
+| Code Signing Configs                                               | ⭐⭐           | CRUD            |       |
 | Custom Images (Pro)                                                | ⭐⭐⭐⭐       | Emulated        |       |
-| Event Invoke Configs (Destinations)                                | ⭐⭐⭐⭐       |                 |       |
-| Event Source Mappings                                              | ⭐⭐⭐⭐       |                 |       |
-| Function Concurrencies                                             | ⭐⭐⭐         |                 |       |
-| Functions                                                          | ⭐⭐⭐⭐       |                 |       |
-| Invoke Functions                                                   | ⭐⭐⭐⭐       |                 |       |
-| [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       |                 |       |
-| Permissions                                                        | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Event Invoke Configs (Destinations)                                | ⭐⭐⭐⭐       | Emulated        |       |
+| Event Source Mappings                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Function Concurrencies                                             | ⭐⭐⭐         | CRUD            |       |
+| Functions                                                          | ⭐⭐⭐⭐       | Emulated        |       |
+| Invoke Functions                                                   | ⭐⭐⭐⭐       | Emulated        |       |
+| [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       | Emulated        |       |
+| Permissions                                                        | ⭐⭐⭐⭐       | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Logs**                                                           | [🔍]({{< ref "../localstack/metric-coverage/#logs" >}}) |                 |       |
 | Destinations                                                       | ⭐⭐⭐⭐       | Emulated       |       |
 | Export Tasks                                                       | ⭐⭐          | CRUD            |       |
