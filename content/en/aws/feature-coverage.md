@@ -234,36 +234,36 @@ In the coverage table below, the features are marked with their respective avail
 | Shard Iterators                                                    | ⭐⭐⭐⭐       |                 |       |
 | Streams                                                            | ⭐⭐⭐⭐       |                 |       |
 | [**EC2**]({{< ref "elastic-compute-cloud" >}})                      | [🔍]({{< ref "../localstack/metric-coverage/#ec2" >}})  |                 |       |
-| Classic Links                                                      | ⭐⭐⭐         |                 |       |
-| Customer Gateways                                                  | ⭐⭐⭐         |                 |       |
-| DHCP Options                                                       | ⭐⭐⭐         |                 |       |
-| Allocate/Deallocate Elastic IPs                                    | ⭐⭐⭐         |                 |       |
-| Fleets                                                             | ⭐⭐           |                 |       |
-| Flow Logs                                                          | ⭐⭐⭐         |                 |       |
-| Images                                                             | ⭐⭐           |                 |       |
-| Internet Gateways                                                  | ⭐⭐⭐         |                 |       |
-| Local Gateway Routes                                               | ⭐⭐⭐         |                 |       |
-| Key Pairs                                                          | ⭐⭐⭐⭐       |                 |       |
-| Launch Templates                                                   | ⭐⭐⭐         |                 |       |
-| NAT Gateways                                                       | ⭐⭐⭐         |                 |       |
-| Network ACLs                                                       | ⭐⭐⭐         |                 |       |
-| Network Interfaces                                                 | ⭐⭐⭐         |                 |       |
-| Reserved Instances                                                 | ⭐⭐⭐         |                 |       |
-| Route Tables / Routes                                              | ⭐⭐⭐         |                 |       |
-| Scheduled Instances                                                | ⭐⭐⭐         |                 |       |
-| Security Groups / Egress / Ingress                                 | ⭐⭐⭐⭐       |                 |       |
-| Snapshots                                                          | ⭐⭐⭐         |                 |       |
-| Spot Instances                                                     | ⭐⭐⭐         |                 |       |
-| Start Instances as VMs (Pro)                                       | ⭐⭐           |                 |       |
-| Subnets                                                            | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Traffic Mirrors                                                    | ⭐⭐⭐         |                 |       |
-| Transit Gateways                                                   | ⭐⭐⭐         |                 |       |
-| Volumes                                                            | ⭐⭐⭐         |                 |       |
-| VPC Endpoint Connections                                           | ⭐⭐⭐         |                 |       |
-| VPC Peering Connections                                            | ⭐⭐⭐         |                 |       |
-| VPCs                                                               | ⭐⭐⭐⭐       |                 |       |
-| VPN Gateways / Connections                                         | ⭐⭐⭐         |                 |       |
+| Classic Links                                                      | \-             |                 |       |
+| Customer Gateways                                                  | ⭐             | CRUD            |       |
+| DHCP Options                                                       | ⭐⭐           | CRUD            |       |
+| Allocate/Deallocate Elastic IPs                                    | ⭐⭐⭐         | CRUD            |       |
+| Fleets                                                             | ⭐⭐           | CRUD            |       |
+| Flow Logs                                                          | ⭐⭐⭐         | CRUD            |       |
+| Images                                                             | ⭐⭐           | CRUD            | (Pro) Include Docker images |
+| Internet Gateways                                                  | ⭐⭐⭐         | CRUD            |       |
+| Local Gateway Routes                                               | ⭐⭐⭐         | CRUD            |       |
+| Key Pairs                                                          | ⭐⭐⭐⭐       | CRUD            |       |
+| Launch Templates                                                   | ⭐⭐⭐         | CRUD            |       |
+| NAT Gateways                                                       | ⭐⭐⭐         | CRUD            |       |
+| Network ACLs                                                       | ⭐⭐⭐         | CRUD            |       |
+| Network Interfaces                                                 | ⭐⭐⭐         | CRUD            |       |
+| Reserved Instances                                                 | ⭐⭐⭐         | CRUD            |       |
+| Route Tables / Routes                                              | ⭐⭐⭐         | CRUD            |       |
+| Scheduled Instances                                                | ⭐⭐⭐         | CRUD            |       |
+| Security Groups / Egress / Ingress                                 | ⭐⭐⭐⭐       | CRUD            |       |
+| Snapshots                                                          | ⭐⭐⭐         | CRUD            |       |
+| Spot Instances                                                     | ⭐⭐⭐         | CRUD            |       |
+| Instances                                                          | ⭐⭐           | Emulated        | (Pro) As Docker containers |
+| Subnets                                                            | ⭐⭐⭐         | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| Traffic Mirrors                                                    | \-             |                 |       |
+| Transit Gateways                                                   | ⭐⭐           | CRUD            |       |
+| Volumes                                                            | ⭐⭐⭐         | CRUD            |       |
+| VPC Endpoint Connections                                           | ⭐⭐⭐         | CRUD            |       |
+| VPC Peering Connections                                            | ⭐⭐⭐         | CRUD            |       |
+| VPCs                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| VPN Gateways / Connections                                         | ⭐⭐⭐         | CRUD            |       |
 | [**ECR** (Pro)]({{< ref "elastic-container-registry" >}})          | [🔍]({{< ref "../localstack/metric-coverage/#ecr" >}}) |                 |       |
 | Images                                                             | ⭐⭐⭐         |                 |       |
 | Image Scans                                                        | \-             |                 |       |
