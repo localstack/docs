@@ -195,21 +195,21 @@ In the coverage table below, the features are marked with their respective avail
 | OpenID Tokens                                                      | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
 | [**Cognito Identity Provider (IdP)** (Pro)]({{< ref "cognito" >}}) | [🔍]({{< ref "../localstack/metric-coverage/#cognito-idp" >}}) |                 |       |
-| Admin APIs                                                         | ⭐⭐⭐         |                 |       |
-| Devices                                                            | ⭐⭐           |                 |       |
-| Auth Flows                                                         | ⭐⭐⭐         |                 |       |
-| Groups                                                             | ⭐⭐⭐⭐       |                 |       |
-| Lambda Triggers                                                    | ⭐⭐⭐⭐       |                 |       |
-| MFA Configs                                                        | ⭐⭐⭐         |                 |       |
+| Admin APIs                                                         | ⭐⭐⭐         | Emulated        | Triggers can involve Lambda     |
+| Devices                                                            | ⭐⭐           | CRUD            |       |
+| Auth Flows                                                         | ⭐⭐⭐         | Emulated        |       |
+| Groups                                                             | ⭐⭐⭐⭐       | CRUD            |       |
+| Lambda Triggers                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| MFA Configs                                                        | ⭐⭐⭐         | CRUD            |       |
 | Resource Servers                                                   | \-             |                 |       |
 | Risk Configurations                                                | \-             |                 |       |
-| Identity Providers                                                 | ⭐⭐⭐         |                 |       |
+| Identity Providers                                                 | ⭐⭐⭐         | CRUD            |       |
 | User Import Jobs                                                   | \-             |                 |       |
-| User Pool Clients                                                  | ⭐⭐⭐⭐       |                 |       |
-| User Pool Domains                                                  | ⭐⭐           |                 |       |
-| User Pools                                                         | ⭐⭐⭐⭐       |                 |       |
-| Users                                                              | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| User Pool Clients                                                  | ⭐⭐⭐⭐       | CRUD            |       |
+| User Pool Domains                                                  | ⭐⭐           | CRUD            |       |
+| User Pools                                                         | ⭐⭐⭐⭐       | CRUD            |       |
+| Users                                                              | ⭐⭐⭐⭐       | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Config**                                                         | [🔍]({{< ref "../localstack/metric-coverage/#config" >}}) |                 |       |
 | **DocumentDB** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#docdb" >}}) |                 |       |
 | DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
