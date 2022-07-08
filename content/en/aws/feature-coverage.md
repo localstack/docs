@@ -602,12 +602,12 @@ In the coverage table below, the features are marked with their respective avail
 | Templates                                                          | ⭐⭐⭐⭐       |                 |       |
 | **SES v2**                                                         | [🔍]({{< ref "../localstack/metric-coverage/#sesv2" >}}) |                 |       |
 | **SNS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#sns" >}}) |                 |       |
-| Platform Applications                                              | ⭐⭐⭐         |                 |       |
-| Publish/Subscribe to Topics                                        | ⭐⭐⭐⭐       |                 |       |
-| SMS Attributes / Sandbox Accounts                                  | ⭐⭐           |                 |       |
-| Subscriptions                                                      | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Topics                                                             | ⭐⭐⭐⭐       |                 |       |
+| Platform Applications                                              | ⭐⭐⭐         |  CRUD               |       |
+| Publish/Subscribe to Topics                                        | ⭐⭐⭐⭐       |  Emulated               |       |
+| SMS Attributes / Sandbox Accounts                                  | ⭐⭐           |  CRUD               |       |
+| Subscriptions                                                      | ⭐⭐⭐⭐       |   Emulated             |       |
+| Tags                                                               | ⭐⭐⭐⭐       |   CRUD              |       |
+| Topics                                                             | ⭐⭐⭐⭐       |   CRUD              |       |
 | [**SQS**]({{< ref "sqs" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#sqs" >}}) |                 |       |
 | Message Visibility                                                 | ⭐⭐⭐⭐       |                 |       |
 | Messages                                                           | ⭐⭐⭐⭐       |                 |       |
