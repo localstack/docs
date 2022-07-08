@@ -130,11 +130,10 @@ In the coverage table below, the features are marked with their respective avail
 | Recovery Points                                                    | ⭐⭐⭐         |                 |       |
 | Tags                                                               | \-             |                 |       |
 | **Batch** (Pro)                                                    | [🔍]({{< ref "../localstack/metric-coverage/#batch" >}}) |                 |       |
-| Compute Environments                                               | ⭐⭐⭐         |                 |       |
-| Job Queues                                                         | ⭐⭐⭐         |                 |       |
-| Job Definitions                                                    | ⭐⭐⭐         |                 |       |
-| Jobs                                                               | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Compute Environments                                               | ⭐⭐⭐         | CRUD            |       |
+| Job Queues                                                         | ⭐⭐⭐         | CRUD            |       |
+| Job Definitions                                                    | ⭐⭐⭐         | CRUD            |       |
+| Jobs                                                               | ⭐⭐⭐         | Emulated        |       |
 | **CE (Cost Explorer API)** (Pro)                                   | [🔍]({{< ref "../localstack/metric-coverage/#ce" >}}) |                 |       |
 | [**CloudFormation**]({{< ref "cloudformation" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#cloudformation" >}}) |                 |       |
 | Change Sets                                                        | ⭐⭐⭐⭐       |                 |       |
@@ -307,7 +306,17 @@ In the coverage table below, the features are marked with their respective avail
 | Users / User Groups                                                | \-             |                 |       |
 | **Elastic Beanstalk** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#elasticbeanstalk" >}}) |                 |       |
 | **ELB (Elastic Load Balancing)** (Pro)                             | [🔍]({{< ref "../localstack/metric-coverage/#elb" >}}) |                 |       |
+| Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
+| Load balancers                                                     | ⭐⭐⭐         | Emulated        | Application load balancers with IP address or Lambda targets only |
+| Rules                                                              | ⭐⭐⭐         | CRUD            |       |
+| Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
+| Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
 | [**ELBv2 (Elastic Load Balancing v2)**]({{< ref "elastic-load-balancing" >}}) (Pro) | [🔍]({{< ref "../localstack/metric-coverage/#elbv2" >}}) |                 |       |
+| Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
+| Load balancers                                                     | ⭐⭐⭐         | CRUD            |       |
+| Rules                                                              | ⭐⭐⭐         | CRUD            |       |
+| Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
+| Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
 | [**EMR**]({{< ref "elastic-mapreduce" >}}) (Pro)                   | [🔍]({{< ref "../localstack/metric-coverage/#emr" >}}) |                 |       |
 | Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
 | Instance Fleets                                                    | ⭐⭐⭐         |                 |       |
@@ -376,27 +385,27 @@ In the coverage table below, the features are marked with their respective avail
 | [**IoT (Analytics, Data, Wireless)** (Pro)]({{< ref "iot" >}})     | [🔍]({{< ref "../localstack/metric-coverage/#iot" >}}) |                 |       |
 | Authorizers                                                        | \-             |                 |       |
 | Billing Groups                                                     | \-             |                 |       |
-| Certificates                                                       | ⭐⭐           |                 |       |
-| Channels                                                           | ⭐⭐           |                 |       |
+| Certificates                                                       | ⭐⭐           | CRUD            |       |
+| Channels                                                           | ⭐⭐           | CRUD            |       |
 | Custom Metrics                                                     | \-             |                 |       |
-| Datasets                                                           | ⭐⭐⭐         |                 |       |
+| Datasets                                                           | ⭐⭐⭐         | CRUD            |       |
 | Dimensions                                                         | \-             |                 |       |
 | Domain Configurations                                              | \-             |                 |       |
-| Jobs                                                               | ⭐⭐⭐         |                 |       |
-| Jobs Executions                                                    | ⭐⭐⭐         |                 |       |
+| Jobs                                                               | ⭐⭐⭐         | CRUD            |       |
+| Jobs Executions                                                    | ⭐⭐⭐         | CRUD            |       |
 | Jobs Templates                                                     | \-             |                 |       |
 | Mitigation Actions                                                 | \-             |                 |       |
-| Policies                                                           | ⭐⭐⭐         |                 |       |
-| Provisioning Claims / Templates                                    | ⭐⭐           |                 |       |
+| Policies                                                           | ⭐⭐⭐         | CRUD            |       |
+| Provisioning Claims / Templates                                    | ⭐⭐           | CRUD            |       |
 | Role Aliases                                                       | \-             |                 |       |
-| Security Profiles                                                  | \-             |                 |       |
-| Shadows                                                            | ⭐⭐           |                 |       |
+| Security Profiles                                                  | \-             | CRUD            |       |
+| Shadows                                                            | ⭐⭐           | CRUD            |       |
 | Streams                                                            | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Thing Groups                                                       | ⭐⭐⭐         |                 |       |
-| Thing Types                                                        | ⭐⭐⭐         |                 |       |
-| Things                                                             | ⭐⭐⭐         |                 |       |
-| Topic Rules                                                        | ⭐⭐⭐         |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| Thing Groups                                                       | ⭐⭐⭐         | CRUD            |       |
+| Thing Types                                                        | ⭐⭐⭐         | CRUD            |       |
+| Things                                                             | ⭐⭐⭐         | CRUD            |       |
+| Topic Rules                                                        | ⭐⭐⭐         | CRUD            |       |
 | [**Kafka (MSK - Managed Streaming for Kafka)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro) | [🔍]({{< ref "../localstack/metric-coverage/#kafka" >}}) |                 |       |
 | Brokers                                                            | ⭐⭐           |                 |       |
 | Cluster Operations                                                 | ⭐⭐           |                 |       |
@@ -547,11 +556,11 @@ In the coverage table below, the features are marked with their respective avail
 | Upload/Download Files                                              | ⭐⭐⭐⭐       |                 |       |
 | **S3 Control**                                                     | [🔍]({{< ref "../localstack/metric-coverage/#s3control" >}}) |                 |       |
 | [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     | [🔍]({{< ref "../localstack/metric-coverage/#sagemaker" >}}) |                 |       |
-| Actions                                                            | ⭐⭐           |                 |       |
+| Actions                                                            | \-             |                 |       |
 | Algorithms                                                         | \-             |                 |       |
-| App Image Configs                                                  | ⭐⭐           |                 |       |
-| Apps                                                               | ⭐⭐⭐         |                 |       |
-| Artifacts                                                          | ⭐⭐⭐         |                 |       |
+| App Image Configs                                                  | \-             |                 |       |
+| Apps                                                               | \-             |                 |       |
+| Artifacts                                                          | \-             |                 |       |
 | Associations                                                       | \-             |                 |       |
 | Auto ML Jobs                                                       | \-             |                 |       |
 | Code Repositories                                                  | \-             |                 |       |
@@ -562,7 +571,7 @@ In the coverage table below, the features are marked with their respective avail
 | Devices                                                            | \-             |                 |       |
 | Domains                                                            | \-             |                 |       |
 | Edge Packaging Jobs                                                | \-             |                 |       |
-| Endpoints / Endpoint Configs                                       | \-             |                 |       |
+| Endpoints / Endpoint Configs                                       | ⭐⭐           | CRUD            |       |
 | Experiments                                                        | \-             |                 |       |
 | Feature Groups                                                     | \-             |                 |       |
 | Flow Definitions                                                   | \-             |                 |       |
@@ -571,16 +580,16 @@ In the coverage table below, the features are marked with their respective avail
 | Labelling Jobs                                                     | \-             |                 |       |
 | Model Bias/Explainability Jobs                                     | \-             |                 |       |
 | Model Packages                                                     | \-             |                 |       |
-| Models                                                             | ⭐⭐           |                 |       |
+| Models                                                             | ⭐⭐           | CRUD            |       |
 | Monitoring Executions/Schedules                                    | \-             |                 |       |
-| Notebook Instances                                                 | \-             |                 |       |
+| Notebook Instances                                                 | ⭐⭐           | CRUD            |       |
 | Pipeline Executions                                                | \-             |                 |       |
 | Pipelines                                                          | \-             |                 |       |
 | Projects                                                           | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| Training Jobs                                                      | \-             |                 |       |
+| Training Jobs                                                      | ⭐⭐           | Emulated        |       |
 | Transform Jobs                                                     | \-             |                 |       |
-| Trials                                                             | \-             |                 |       |
+| Trials                                                             | ⭐⭐           | CRUD            |       |
 | User Profiles                                                      | \-             |                 |       |
 | Workforces / Workteams                                             | \-             |                 |       |
 | **SecretsManager**                                                 | [🔍]({{< ref "../localstack/metric-coverage/#secretsmanager" >}}) |                 |       |
@@ -592,15 +601,18 @@ In the coverage table below, the features are marked with their respective avail
 | **Serverless Repo** (Pro)                                          | [🔍]({{< ref "../localstack/metric-coverage/#serverlessrepo" >}}) |                 |       |
 | **Service Discovery** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#servicediscovery" >}}) |                 |       |
 | [**SES**]({{< ref "ses" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#ses" >}}) |                 |       |
-| Configuration Sets                                                 | ⭐⭐⭐         |                 |       |
-| Identities                                                         | ⭐⭐           |                 |       |
-| Identity Policies                                                  | ⭐⭐           |                 |       |
-| Quotas / Statistics                                                | ⭐⭐           |                 |       |
-| Receipt Filters                                                    | ⭐⭐⭐         |                 |       |
-| Receipt Rules                                                      | ⭐⭐⭐         |                 |       |
-| Sending Emails via SMTP (Pro)                                      | ⭐⭐⭐⭐       |                 |       |
-| Templates                                                          | ⭐⭐⭐⭐       |                 |       |
-| **SES v2**                                                         | [🔍]({{< ref "../localstack/metric-coverage/#sesv2" >}}) |                 |       |
+| Configuration Sets                                                 | ⭐⭐⭐         | CRUD               |       |
+| Identities                                                         | ⭐⭐           | CRUD               |       |
+| Identity Policies                                                  | ⭐⭐           | CRUD               |       |
+| Quotas / Statistics                                                | ⭐⭐           | CRUD               |       |
+| Receipt Filters                                                    | ⭐⭐⭐         | CRUD               |       |
+| Receipt Rules                                                      | ⭐⭐⭐         | CRUD               |       |
+| Sending Emails via SMTP (Pro)                                      | ⭐⭐⭐⭐       | Emulated           |       |
+| Templates                                                          | ⭐⭐⭐⭐       | CRUD               |       |
+| **SESv2 (Pro)**                                                   | [🔍]({{< ref "../localstack/metric-coverage/#sesv2" >}}) |                 |       |
+| Identities                                                         | ⭐⭐           | CRUD               |       |
+| Sending Emails via SMTP                                            | ⭐⭐⭐⭐       | Emulated           |       |
+| Templates                                                          | ⭐⭐⭐⭐       | CRUD               |       |
 | **SNS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#sns" >}}) |                 |       |
 | Platform Applications                                              | ⭐⭐⭐         |  CRUD               |       |
 | Publish/Subscribe to Topics                                        | ⭐⭐⭐⭐       |  Emulated               |       |
