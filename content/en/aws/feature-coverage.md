@@ -136,17 +136,17 @@ In the coverage table below, the features are marked with their respective avail
 | Jobs                                                               | ⭐⭐⭐         | Emulated        |       |
 | **CE (Cost Explorer API)** (Pro)                                   | [🔍]({{< ref "../localstack/metric-coverage/#ce" >}}) |                 |       |
 | [**CloudFormation**]({{< ref "cloudformation" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#cloudformation" >}}) |                 |       |
-| Change Sets                                                        | ⭐⭐⭐⭐       |                 |       |
-| Stacks                                                             | ⭐⭐⭐⭐       |                 |       |
-| Stack Drifts                                                       | \-             |                 |       |
-| Stack Events                                                       | ⭐⭐⭐⭐       |                 |       |
-| Stack Instances                                                    | ⭐⭐⭐⭐       |                 |       |
-| Stack Policies                                                     | ⭐⭐⭐         |                 |       |
-| Stack Resources                                                    | ⭐⭐⭐⭐       |                 |       |
-| Stack Sets                                                         | ⭐⭐⭐⭐       |                 |       |
-| Publishers                                                         | \-             |                 |       |
-| Templates                                                          | ⭐⭐⭐⭐       |                 |       |
-| Type Activations                                                   | ⭐⭐           |                 |       |
+| Change Sets                                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| Stacks                                                             | ⭐⭐⭐⭐       | Emulated        |       |
+| Stack Drifts                                                       | \-             | \-               |       |
+| Stack Events                                                       | ⭐⭐⭐         | Emulated        |       |
+| Stack Instances                                                    | ⭐⭐⭐⭐       | Emulated         |       |
+| Stack Policies                                                     | ⭐⭐⭐         | CRUD             |       |
+| Stack Resources                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| Stack Sets                                                         | ⭐⭐⭐         | CRUD         |       |
+| Publishers                                                         | \-             | \-                |       |
+| Templates                                                          | ⭐⭐⭐⭐       | Emulated                |       |
+| Type Activations                                                   | ⭐⭐           | \-                |       |
 | [**CloudFront** (Pro)]({{< ref "cloudfront" >}})                   | [🔍]({{< ref "../localstack/metric-coverage/#cloudfront" >}}) |                 |       |
 | Cache Policies                                                     | \-             |                 |       |
 | Distributions                                                      | ⭐⭐⭐         |                 |       |
@@ -638,10 +638,10 @@ In the coverage table below, the features are marked with their respective avail
 | Resource Compliance Summaries                                      | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **StepFunctions**                                                  | [🔍]({{< ref "../localstack/metric-coverage/#stepfunctions" >}}) |                 |       |
-| Activities                                                         | ⭐⭐⭐⭐       |                 |       |
-| Executions / Execution History                                     | ⭐⭐⭐⭐       |                 |       |
-| State Machines                                                     | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Activities                                                         | ⭐⭐⭐⭐       | Emulated                |       |
+| Executions / Execution History                                     | ⭐⭐⭐⭐       | Emulated                |       |
+| State Machines                                                     | ⭐⭐⭐⭐       | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐⭐       | Emulated                |       |
 | **STS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#sts" >}})  |                 |       |
 | Assume Role (Pro)                                                  | ⭐⭐⭐⭐       |                 |       |
 | Get Access Key Info                                                | ⭐⭐⭐⭐       |                 |       |
