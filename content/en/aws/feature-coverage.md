@@ -37,9 +37,9 @@ In the coverage table below, the features are marked with their respective avail
 | Service / Feature                                                  | Coverage Level    | Emulation Level | Notes |
 |--------------------------------------------------------------------|-------------------|-----------------|-------|
 | **ACM**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#acm" >}})      |                 |       |
-| Certificates                                                       | ⭐⭐⭐              |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐            |                 |       |
-| Account Configuration                                              | ⭐⭐                |                 |       |
+| Certificates                                                       | ⭐⭐⭐              | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐            | CRUD            |       |
+| Account Configuration                                              | ⭐⭐                | CRUD            |       |
 | [**Amplify** (Pro)]({{< ref "amplify" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#amplify" >}})  |                 |       |
 | Apps                                                               | ⭐⭐⭐              |                 |       |
 | Backend Environments                                               | ⭐⭐                |                 |       |
@@ -109,13 +109,13 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐         |                 |       |
 | Types                                                              | ⭐⭐⭐⭐         |                 |       |
 | [**Athena** (Pro)]({{< ref "athena" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#athena" >}}) |                 |       |
-| Data Catalogs                                                      | ⭐⭐           |                 |       |
-| Databases                                                          | ⭐⭐           |                 |       |
+| Data Catalogs                                                      | ⭐⭐           | CRUD            |       |
+| Databases                                                          | ⭐⭐           | Emulated        |       |
 | Named Queries                                                      | \-             |                 |       |
-| Prepared Statements                                                | ⭐⭐⭐         |                 |       |
-| Query Executions                                                   | ⭐⭐⭐         |                 |       |
-| Table Metadata                                                     | ⭐⭐           |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Prepared Statements                                                | \-             |                 |       |
+| Query Executions                                                   | ⭐⭐⭐         | Emulated        |       |
+| Table Metadata                                                     | \-             |                 |       |
+| Tags                                                               | ⭐⭐⭐         | CRUD            |       |
 | Work Groups                                                        | \-             |                 |       |
 | **Autoscaling** (Pro)                                              | [🔍]({{< ref "../localstack/metric-coverage/#autoscaling" >}}) |                 |       |
 | [**Backup** (Pro)]({{< ref "backup" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#backup" >}}) |                 |       |
@@ -288,11 +288,11 @@ In the coverage table below, the features are marked with their respective avail
 | **EFS** (Pro)                                                      | [🔍]({{< ref "../localstack/metric-coverage/#efs" >}}) |                 |       |
 | [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          | [🔍]({{< ref "../localstack/metric-coverage/#eks" >}}) |                 |       |
 | AddOns                                                             | \-             |                 |       |
-| Clusters                                                           | ⭐⭐⭐         |                 |       |
-| Fargate Profiles                                                   | ⭐⭐           |                 |       |
+| Clusters                                                           | ⭐⭐⭐         | Emulated        |       |
+| Fargate Profiles                                                   | ⭐⭐           | CRUD            |       |
 | Identity Provider Configs                                          | \-             |                 |       |
 | Node Groups                                                        | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | Updates                                                            | \-             |                 |       |
 | [**ElastiCache** (Pro)]({{< ref "elasticache" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#elasticache" >}}) |       |
 | Cache Clusters (Memcached)                                         | \-             |                 |       |
@@ -329,10 +329,10 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | [**ES (Elasticsearch Service)**]({{< ref "elasticsearch" >}})      | [🔍]({{< ref "../localstack/metric-coverage/#es" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
-| Elasticsearch Domains                                              | ⭐⭐⭐⭐       |                 |       |
+| Elasticsearch Domains                                              | ⭐⭐⭐⭐       | Emulated        |       |
 | Packages                                                           | \-             |                 |       |
 | Reserved Instances                                                 | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **EventBridge (Events)**                                           | [🔍]({{< ref "../localstack/metric-coverage/#events" >}}) |                 |       |
 | API Destinations                                                   | ⭐⭐⭐⭐       | Emulated                |       |
 | Archives                                                           | \-             |                 |       |
@@ -350,23 +350,23 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **Glacier** (Pro)                                                  | [🔍]({{< ref "../localstack/metric-coverage/#glacier" >}}) |                 |       |
 | [**Glue** (Pro)]({{< ref "glue" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#glue" >}}) |                 |       |
-| Classifiers                                                        | ⭐⭐⭐         |                 |       |
-| Connections                                                        | ⭐⭐⭐         |                 |       |
-| Crawlers                                                           | ⭐⭐⭐         |                 |       |
-| Databases                                                          | ⭐⭐⭐         |                 |       |
+| Classifiers                                                        | ⭐⭐⭐         | CRUD            |       |
+| Connections                                                        | ⭐⭐⭐         | CRUD            |       |
+| Crawlers                                                           | ⭐⭐⭐         | Emulated        |       |
+| Databases                                                          | ⭐⭐⭐         | Emulated        |       |
 | Dev Endpoints                                                      | \-             |                 |       |
-| Jobs                                                               | ⭐⭐⭐         |                 |       |
+| Jobs                                                               | ⭐⭐⭐         | Emulated        |       |
 | ML Transforms                                                      | \-             |                 |       |
-| Partitions                                                         | ⭐⭐⭐         |                 |       |
-| Registries                                                         | ⭐⭐⭐         |                 |       |
-| Schemas                                                            | ⭐⭐⭐         |                 |       |
+| Partitions                                                         | ⭐⭐⭐         | Emulated        |       |
+| Registries                                                         | ⭐⭐⭐⭐       | Emulated        |       |
+| Schemas                                                            | ⭐⭐⭐⭐       | Emulated        |       |
 | Scripts                                                            | \-             |                 |       |
-| Security Configurations                                            | ⭐⭐⭐         |                 |       |
-| Tables                                                             | ⭐⭐⭐         |                 |       |
-| Triggers                                                           | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐         |                 |       |
+| Security Configurations                                            | ⭐⭐⭐         | CRUD            |       |
+| Tables                                                             | ⭐⭐⭐         | Emulated        |       |
+| Triggers                                                           | ⭐⭐⭐         | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐         | CRUD            |       |
 | User Defined Functions                                             | \-             |                 |       |
-| Workflows                                                          | ⭐⭐⭐         |                 |       |
+| Workflows                                                          | ⭐⭐⭐         | CRUD            |       |
 | [**IAM**]({{< ref "iam" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#iam" >}}) |                 |       |
 | Access Keys                                                        | ⭐⭐⭐         |    Emulated     |       |
 | Account Aliases                                                    | ⭐⭐⭐         |      CRUD       |       |
@@ -481,10 +481,10 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | \-             |                 |       |
 | [**OpenSearch Service**]({{< ref "opensearch" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#opensearch" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
-| OpenSearch Domains                                                 | ⭐⭐⭐⭐       |                 |       |
+| OpenSearch Domains                                                 | ⭐⭐⭐⭐       | Emulated        |       |
 | Packages                                                           | \-             |                 |       |
 | Reserved Instances                                                 | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Organizations** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#organizations" >}}) |                 |       |
 | [**QLDB** (Pro)]({{< ref "qldb" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#qldb" >}}) |                 |       |
 | Blocks                                                             | ⭐⭐⭐         |                 |       |
