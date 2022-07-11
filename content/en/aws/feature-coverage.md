@@ -334,15 +334,15 @@ In the coverage table below, the features are marked with their respective avail
 | Reserved Instances                                                 | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **EventBridge (Events)**                                           | [🔍]({{< ref "../localstack/metric-coverage/#events" >}}) |                 |       |
-| API Destinations                                                   | ⭐⭐⭐⭐       |                 |       |
+| API Destinations                                                   | ⭐⭐⭐⭐       | Emulated                |       |
 | Archives                                                           | \-             |                 |       |
 | Connections                                                        | \-             |                 |       |
-| Event Buses                                                        | ⭐⭐⭐⭐       |                 |       |
-| Event Sources                                                      | ⭐⭐⭐⭐       |                 |       |
+| Event Buses                                                        | ⭐⭐⭐⭐       | Emulated                |       |
+| Event Sources                                                      | ⭐⭐⭐⭐       | Emulated                |       |
 | Partner Event Sources                                              | \-             |                 |       |
 | Replays                                                            | \-             |                 |       |
-| Rules                                                              | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Rules                                                              | ⭐⭐⭐⭐       | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
 | **Firehose**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#firehose" >}}) |                 |       |
 | Delivery Streams                                                   | ⭐⭐⭐⭐       |                 |       |
 | Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
@@ -413,13 +413,13 @@ In the coverage table below, the features are marked with their respective avail
 | Configurations                                                     | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | [**Kinesis**]({{< ref "kinesis" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#kinesis" >}}) |                 |       |
-| Records                                                            | ⭐⭐⭐⭐       |                 |       |
-| Split / Merge Shards                                               | ⭐⭐⭐⭐       |                 |       |
-| Stream Consumers                                                   | ⭐⭐⭐⭐       |                 |       |
+| Records                                                            | ⭐⭐⭐⭐       | Emulated                |       |
+| Split / Merge Shards                                               | ⭐⭐⭐⭐       | Emulated                |       |
+| Stream Consumers                                                   | ⭐⭐⭐⭐       | Emulated                |       |
 | Stream Encryption                                                  | \-             |                 |       |
-| Streams                                                            | ⭐⭐⭐⭐       |                 |       |
-| Subscribe to Shard                                                 | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Streams                                                            | ⭐⭐⭐⭐       | Emulated                |       |
+| Subscribe to Shard                                                 | ⭐⭐⭐⭐       | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Kinesis Analytics** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#kinesisanalytics" >}})  |                 |       |
 | **Kinesis Analytics v2** (Pro)                                     | [🔍]({{< ref "../localstack/metric-coverage/#kinesisanalyticsv2" >}}) |                 |       |
 | **KMS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#kms" >}}) |                 |       |
@@ -593,13 +593,14 @@ In the coverage table below, the features are marked with their respective avail
 | User Profiles                                                      | \-             |                 |       |
 | Workforces / Workteams                                             | \-             |                 |       |
 | **SecretsManager**                                                 | [🔍]({{< ref "../localstack/metric-coverage/#secretsmanager" >}}) |                 |       |
-| Resource Policies                                                  | ⭐⭐⭐⭐       |                 |       |
-| Secret Replications                                                | ⭐⭐           |                 |       |
-| Secret Rotations                                                   | ⭐⭐           |                 |       |
-| Secrets                                                            | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Resource Policies                                                  | ⭐⭐⭐⭐       | CRUD                 |       |
+| Secret Replications                                                | ⭐⭐           | CRUD                |       |
+| Secret Rotations                                                   | ⭐⭐           | CRUD                |       |
+| Secrets                                                            | ⭐⭐⭐⭐       | CRUD                |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
 | **Serverless Repo** (Pro)                                          | [🔍]({{< ref "../localstack/metric-coverage/#serverlessrepo" >}}) |                 |       |
-| **Service Discovery** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#servicediscovery" >}}) |                 |       |
+| **Service Discovery (CloudMap)** (Pro)                             | [🔍]({{< ref "../localstack/metric-coverage/#servicediscovery" >}}) |                 |       |
+| Namespaces                                                         | ⭐⭐⭐         | CRUD                |       |
 | [**SES**]({{< ref "ses" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#ses" >}}) |                 |       |
 | Configuration Sets                                                 | ⭐⭐⭐         | CRUD               |       |
 | Identities                                                         | ⭐⭐           | CRUD               |       |
@@ -627,16 +628,16 @@ In the coverage table below, the features are marked with their respective avail
 | Queues                                                             | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | [**SSM**]({{< ref "systems-manager" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#ssm" >}}) |                 |       |
-| Associations                                                       | ⭐⭐⭐         |                 |       |
-| Calendar States                                                    | ⭐⭐           |                 |       |
-| Commands / Command Invocations                                     | ⭐⭐⭐         |                 |       |
-| Compliance Items                                                   | ⭐⭐           |                 |       |
-| Documents                                                          | ⭐⭐⭐         |                 |       |
+| Associations                                                       | ⭐⭐⭐         | CRUD                |       |
+| Calendar States                                                    | ⭐⭐           | CRUD                |       |
+| Commands / Command Invocations                                     | ⭐⭐⭐         | CRUD                |       |
+| Compliance Items                                                   | ⭐⭐           | CRUD                |       |
+| Documents                                                          | ⭐⭐⭐         | CRUD                |       |
 | Inventory Entries                                                  | \-             |                 |       |
-| Ops Metadata                                                       | ⭐⭐           |                 |       |
-| Parameters                                                         | ⭐⭐⭐⭐       |                 |       |
+| Ops Metadata                                                       | ⭐⭐           | CRUD                |       |
+| Parameters                                                         | ⭐⭐⭐⭐       | CRUD                |       |
 | Resource Compliance Summaries                                      | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
 | **StepFunctions**                                                  | [🔍]({{< ref "../localstack/metric-coverage/#stepfunctions" >}}) |                 |       |
 | Activities                                                         | ⭐⭐⭐⭐       | Emulated                |       |
 | Executions / Execution History                                     | ⭐⭐⭐⭐       | Emulated                |       |
