@@ -21,7 +21,7 @@ description: >
 | ListCertificates [✨](#misc "covered by our integration test suite")                     | ✅         |
 | ListTagsForCertificate [✨](#misc "covered by our integration test suite")               | ✅         |
 | RemoveTagsFromCertificate              | ✅         |
-| RequestCertificate ✨                   | ✅         |
+| RequestCertificate [✨](#misc "covered by our integration test suite")                   | ✅         |
 | ResendValidationEmail                  | ✅         |
 
 {{< details "Coming soon" >}}
