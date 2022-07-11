@@ -6,7 +6,7 @@ description: >
   Overview of the implemented AWS APIs and integration test coverage in LocalStack
 ---
 
-
+<div class="coverage-report">
 
 ## acm ##
 
@@ -23,13 +23,12 @@ description: >
 | RemoveTagsFromCertificate              | ✅         |
 | RequestCertificate [✨](#misc "covered by our integration test suite")                   | ✅         |
 | ResendValidationEmail                  | ✅         |
-
-{{< details "Coming soon" >}}
+| {{< details "Coming soon" >}}
 * GetAccountConfiguration
 * PutAccountConfiguration
 * RenewCertificate
 * UpdateCertificateOptions
-{{< /details >}}
+{{< /details >}} | |
 
 
 <!-- {{< details "Coming soon" >}}
@@ -45,3 +44,5 @@ description: >
 ## Misc ##
 
 Endpoints marked with ✨ are covered by our integration test suite.
+
+</div>
