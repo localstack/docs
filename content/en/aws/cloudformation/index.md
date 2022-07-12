@@ -90,74 +90,82 @@ Prefer re-creating a stack rather than updating an existing one.
 
 ### Resources (Community Edition)
 
-- `AWS::ApiGateway::Account`
-- `AWS::ApiGateway::ApiKey`
-- `AWS::ApiGateway::BasePathMapping`
-- `AWS::ApiGateway::Deployment`
-- `AWS::ApiGateway::DomainName`
-- `AWS::ApiGateway::GatewayResponse`
-- `AWS::ApiGateway::Method`
-- `AWS::ApiGateway::Model`
-- `AWS::ApiGateway::RequestValidator`
-- `AWS::ApiGateway::Resource`
-- `AWS::ApiGateway::RestApi`
-- `AWS::ApiGateway::Stage`
-- `AWS::ApiGateway::UsagePlan`
-- `AWS::ApiGateway::UsagePlanKey`
-- `AWS::CertificateManager::Certificate`
-- `AWS::CloudFormation::Stack`
-- `AWS::CloudWatch::Alarm`
-- `AWS::CloudWatch::CompositeAlarm`
-- `AWS::DynamoDB::Table`
-- `AWS::EC2::Instance`
-- `AWS::EC2::InternetGateway`
-- `AWS::EC2::NatGateway`
-- `AWS::EC2::Route`
-- `AWS::EC2::RouteTable`
-- `AWS::EC2::SecurityGroup`
-- `AWS::EC2::Subnet`
-- `AWS::EC2::SubnetRouteTableAssociation`
-- `AWS::EC2::VPC`
-- `AWS::EC2::VPCGatewayAttachment`
-- `AWS::Elasticsearch::Domain`
-- `AWS::Events::Connection`
-- `AWS::Events::EventBus`
-- `AWS::Events::EventBusPolicy`
-- `AWS::Events::Rule`
-- `AWS::IAM::Group`
-- `AWS::IAM::InstanceProfile`
-- `AWS::IAM::ManagedPolicy`
-- `AWS::IAM::Policy`
-- `AWS::IAM::Role`
-- `AWS::IAM::User`
-- `AWS::KMS::Alias`
-- `AWS::KMS::Key`
-- `AWS::Kinesis::Stream`
-- `AWS::Kinesis::StreamConsumer`
-- `AWS::KinesisFirehose::DeliveryStream`
-- `AWS::Lambda::EventInvokeConfig`
-- `AWS::Lambda::EventSourceMapping`
-- `AWS::Lambda::Function`
-- `AWS::Lambda::Permission`
-- `AWS::Lambda::Version`
-- `AWS::Logs::LogGroup`
-- `AWS::Logs::SubscriptionFilter`
-- `AWS::Redshift::Cluster`
-- `AWS::ResourceGroups::Group`
-- `AWS::Route53::RecordSet`
-- `AWS::S3::Bucket`
-- `AWS::S3::BucketPolicy`
-- `AWS::SNS::Subscription`
-- `AWS::SNS::Topic`
-- `AWS::SQS::Queue`
-- `AWS::SQS::QueuePolicy`
-- `AWS::SSM::Parameter`
-- `AWS::SecretsManager::ResourcePolicy`
-- `AWS::SecretsManager::RotationSchedule`
-- `AWS::SecretsManager::Secret`
-- `AWS::SecretsManager::SecretTargetAttachment`
-- `AWS::StepFunctions::Activity`
-- `AWS::StepFunctions::StateMachine`
+|Resource|Create|Delete|Update|
+|-----|-----:|-----:|----:|
+|AWS::ApiGateway::Account|-|-|-|
+|AWS::ApiGateway::ApiKey|✅|-|-|
+|AWS::ApiGateway::BasePathMapping|✅|-|-|
+|AWS::ApiGateway::Deployment|✅|-|-|
+|AWS::ApiGateway::DomainName|✅|-|-|
+|AWS::ApiGateway::GatewayResponse|✅|-|-|
+|AWS::ApiGateway::Method|✅|-|✅|
+|AWS::ApiGateway::Model|✅|-|-|
+|AWS::ApiGateway::RequestValidator|✅|✅|-|
+|AWS::ApiGateway::Resource|✅|-|-|
+|AWS::ApiGateway::RestApi|✅|✅|-|
+|AWS::ApiGateway::Stage|✅|-|-|
+|AWS::ApiGateway::UsagePlan|✅|-|-|
+|AWS::ApiGateway::UsagePlanKey|✅|-|-|
+|AWS::CDK::Metadata|-|-|-|
+|AWS::CertificateManager::Certificate|✅|✅|-|
+|AWS::CloudFormation::Stack|✅|-|-|
+|AWS::CloudWatch::Alarm|✅|✅|-|
+|AWS::CloudWatch::CompositeAlarm|✅|✅|-|
+|AWS::DynamoDB::Table|✅|✅|-|
+|AWS::EC2::Instance|✅|✅|✅|
+|AWS::EC2::InternetGateway|✅|-|-|
+|AWS::EC2::NatGateway|✅|✅|-|
+|AWS::EC2::Route|✅|✅|-|
+|AWS::EC2::RouteTable|✅|✅|-|
+|AWS::EC2::SecurityGroup|✅|✅|-|
+|AWS::EC2::Subnet|✅|✅|-|
+|AWS::EC2::SubnetRouteTableAssociation|✅|✅|-|
+|AWS::EC2::VPC|✅|✅|-|
+|AWS::EC2::VPCGatewayAttachment|✅|-|-|
+|AWS::ECR::Repository|✅|✅|-|
+|AWS::Elasticsearch::Domain|✅|✅|-|
+|AWS::Events::Connection|✅|✅|-|
+|AWS::Events::EventBus|✅|✅|-|
+|AWS::Events::EventBusPolicy|✅|✅|-|
+|AWS::Events::Rule|✅|✅|-|
+|AWS::IAM::Group|✅|✅|-|
+|AWS::IAM::InstanceProfile|✅|✅|-|
+|AWS::IAM::ManagedPolicy|✅|-|-|
+|AWS::IAM::Policy|✅|✅|-|
+|AWS::IAM::Role|✅|✅|✅|
+|AWS::IAM::ServiceLinkedRole|✅|✅|-|
+|AWS::IAM::User|✅|✅|-|
+|AWS::KMS::Alias|✅|✅|-|
+|AWS::KMS::Key|✅|✅|-|
+|AWS::Kinesis::Stream|✅|✅|-|
+|AWS::Kinesis::StreamConsumer|✅|✅|-|
+|AWS::KinesisFirehose::DeliveryStream|✅|✅|-|
+|AWS::Lambda::EventInvokeConfig|✅|✅|-|
+|AWS::Lambda::EventSourceMapping|✅|-|-|
+|AWS::Lambda::Function|✅|✅|✅|
+|AWS::Lambda::Permission|✅|-|-|
+|AWS::Lambda::Version|✅|-|-|
+|AWS::Logs::LogGroup|✅|✅|-|
+|AWS::Logs::LogStream|✅|✅|-|
+|AWS::Logs::SubscriptionFilter|✅|✅|-|
+|AWS::OpenSearchService::Domain|✅|✅|-|
+|AWS::Redshift::Cluster|✅|-|-|
+|AWS::ResourceGroups::Group|✅|✅|-|
+|AWS::Route53::RecordSet|✅|-|-|
+|AWS::S3::Bucket|✅|✅|-|
+|AWS::S3::BucketPolicy|✅|✅|-|
+|AWS::SNS::Subscription|✅|✅|-|
+|AWS::SNS::Topic|✅|✅|-|
+|AWS::SNS::TopicPolicy|✅|✅|-|
+|AWS::SQS::Queue|✅|✅|-|
+|AWS::SQS::QueuePolicy|✅|✅|-|
+|AWS::SSM::Parameter|✅|✅|-|
+|AWS::SecretsManager::ResourcePolicy|✅|✅|-|
+|AWS::SecretsManager::RotationSchedule|-|-|-|
+|AWS::SecretsManager::Secret|✅|✅|-|
+|AWS::SecretsManager::SecretTargetAttachment|-|-|-|
+|AWS::StepFunctions::Activity|✅|✅|-|
+|AWS::StepFunctions::StateMachine|✅|✅|✅|
 
 
 ### Resources (Pro / Enterprise Edition)
@@ -165,93 +173,100 @@ Prefer re-creating a stack rather than updating an existing one.
 The resources below are only available with a valid Pro license key.
 When running the Community Edition, any unsupported resources in the stack are ignored and will not get deployed.
 
-- `AWS::Amplify::App`
-- `AWS::Amplify::Branch`
-- `AWS::ApiGateway::Authorizer`
-- `AWS::ApiGatewayV2::Api`
-- `AWS::ApiGatewayV2::Authorizer`
-- `AWS::ApiGatewayV2::Deployment`
-- `AWS::ApiGatewayV2::DomainName`
-- `AWS::ApiGatewayV2::Integration`
-- `AWS::ApiGatewayV2::IntegrationResponse`
-- `AWS::ApiGatewayV2::Route`
-- `AWS::ApiGatewayV2::RouteResponse`
-- `AWS::ApiGatewayV2::Stage`
-- `AWS::ApiGatewayV2::VpcLink`
-- `AWS::AppSync::ApiKey`
-- `AWS::AppSync::DataSource`
-- `AWS::AppSync::FunctionConfiguration`
-- `AWS::AppSync::GraphQLApi`
-- `AWS::AppSync::GraphQLSchema`
-- `AWS::AppSync::Resolver`
-- `AWS::ApplicationAutoScaling::ScalableTarget`
-- `AWS::ApplicationAutoScaling::ScalingPolicy`
-- `AWS::Backup::BackupPlan`
-- `AWS::CDK::Metadata`
-- `AWS::CloudFormation::CustomResource`
-- `AWS::CloudFront::CloudFrontOriginAccessIdentity`
-- `AWS::CloudFront::Distribution`
-- `AWS::CloudFront::Function`
-- `AWS::CloudFront::OriginRequestPolicy`
-- `AWS::CloudTrail::Trail`
-- `AWS::Cognito::IdentityPool`
-- `AWS::Cognito::IdentityPoolRoleAttachment`
-- `AWS::Cognito::UserPool`
-- `AWS::Cognito::UserPoolClient`
-- `AWS::Cognito::UserPoolDomain`
-- `AWS::Cognito::UserPoolGroup`
-- `AWS::Cognito::UserPoolIdentityProvider`
-- `AWS::EC2::EIP`
-- `AWS::EC2::SecurityGroupEgress`
-- `AWS::EC2::SecurityGroupIngress`
-- `AWS::EC2::SubnetRouteTableAssociation`
-- `AWS::EC2::VPCEndpoint`
-- `AWS::ECR::Repository`
-- `AWS::ECS::Cluster`
-- `AWS::ECS::Service`
-- `AWS::ECS::TaskDefinition`
-- `AWS::ElastiCache::CacheCluster`
-- `AWS::ElastiCache::ParameterGroup`
-- `AWS::ElastiCache::ReplicationGroup`
-- `AWS::ElastiCache::SecurityGroup`
-- `AWS::ElastiCache::SubnetGroup`
-- `AWS::ElasticLoadBalancingV2::Listener`
-- `AWS::ElasticLoadBalancingV2::ListenerRule`
-- `AWS::ElasticLoadBalancingV2::LoadBalancer`
-- `AWS::ElasticLoadBalancingV2::TargetGroup`
-- `AWS::Glue::Classifier`
-- `AWS::Glue::Crawler`
-- `AWS::Glue::Database`
-- `AWS::Glue::Job`
-- `AWS::Glue::Table`
-- `AWS::Glue::Trigger`
-- `AWS::Glue::Workflow`
-- `AWS::IoT::Certificate`
-- `AWS::IoTAnalytics::Channel`
-- `AWS::IoTAnalytics::Dataset`
-- `AWS::IoTAnalytics::Datastore`
-- `AWS::IoTAnalytics::Pipeline`
-- `AWS::KinesisAnalytics::Application`
-- `AWS::KinesisAnalytics::ApplicationOutput`
-- `AWS::Lambda::Alias`
-- `AWS::Lambda::LayerVersion`
-- `AWS::Lambda::LayerVersionPermission`
-- `AWS::QLDB::Ledger`
-- `AWS::RDS::DBCluster`
-- `AWS::RDS::DBInstance`
-- `AWS::RDS::DBParameterGroup`
-- `AWS::RDS::DBSubnetGroup`
-- `AWS::Redshift::ClusterParameterGroup`
-- `AWS::Redshift::ClusterSecurityGroup`
-- `AWS::Redshift::ClusterSubnetGroup`
-- `AWS::Route53::HostedZone`
-- `AWS::SES::Template`
-- `AWS::ServiceDiscovery::HttpNamespace`
-- `AWS::ServiceDiscovery::PrivateDnsNamespace`
-- `AWS::ServiceDiscovery::PublicDnsNamespace`
-- `AWS::ServiceDiscovery::Service`
-
-
-<!-- ## Community resources
-
-### Articles -->
+|Resource|Create|Delete|Update|
+|-----|-----:|-----:|----:|
+|AWS::Amplify::App|✅|-|-|
+|AWS::Amplify::Branch|✅|-|-|
+|AWS::ApiGateway::Authorizer|✅|✅|-|
+|AWS::ApiGatewayV2::Api|✅|✅|-|
+|AWS::ApiGatewayV2::Authorizer|✅|✅|-|
+|AWS::ApiGatewayV2::Deployment|✅|✅|-|
+|AWS::ApiGatewayV2::DomainName|✅|✅|-|
+|AWS::ApiGatewayV2::Integration|✅|✅|-|
+|AWS::ApiGatewayV2::IntegrationResponse|✅|✅|-|
+|AWS::ApiGatewayV2::Route|✅|✅|-|
+|AWS::ApiGatewayV2::RouteResponse|✅|✅|-|
+|AWS::ApiGatewayV2::Stage|✅|✅|-|
+|AWS::ApiGatewayV2::VpcLink|✅|✅|-|
+|AWS::AppSync::ApiKey|✅|-|-|
+|AWS::AppSync::DataSource|✅|-|-|
+|AWS::AppSync::FunctionConfiguration|✅|-|-|
+|AWS::AppSync::GraphQLApi|✅|-|-|
+|AWS::AppSync::GraphQLSchema|✅|-|-|
+|AWS::AppSync::Resolver|✅|✅|✅|
+|AWS::ApplicationAutoScaling::ScalableTarget|✅|✅|-|
+|AWS::ApplicationAutoScaling::ScalingPolicy|✅|✅|-|
+|AWS::Backup::BackupPlan|✅|✅|-|
+|AWS::CloudFormation::CustomResource|✅|-|-|
+|AWS::CloudFront::CloudFrontOriginAccessIdentity|✅|-|-|
+|AWS::CloudFront::Distribution|✅|-|-|
+|AWS::CloudFront::Function|✅|✅|-|
+|AWS::CloudFront::OriginRequestPolicy|✅|✅|-|
+|AWS::CloudTrail::Trail|✅|✅|-|
+|AWS::Cognito::IdentityPool|✅|✅|-|
+|AWS::Cognito::IdentityPoolRoleAttachment|✅|-|-|
+|AWS::Cognito::UserPool|✅|✅|-|
+|AWS::Cognito::UserPoolClient|✅|✅|-|
+|AWS::Cognito::UserPoolDomain|✅|✅|-|
+|AWS::Cognito::UserPoolGroup|✅|✅|-|
+|AWS::Cognito::UserPoolIdentityProvider|✅|✅|-|
+|AWS::DocDB::DBCluster|✅|✅|-|
+|AWS::DocDB::DBClusterParameterGroup|✅|✅|-|
+|AWS::DocDB::DBInstance|✅|✅|-|
+|AWS::DocDB::DBSubnetGroup|✅|✅|-|
+|AWS::EC2::EIP|✅|✅|-|
+|AWS::EC2::SecurityGroupEgress|✅|-|-|
+|AWS::EC2::SecurityGroupIngress|✅|-|-|
+|AWS::EC2::VPCEndpoint|✅|-|-|
+|AWS::ECS::Cluster|✅|✅|-|
+|AWS::ECS::Service|✅|✅|-|
+|AWS::ECS::TaskDefinition|✅|-|-|
+|AWS::ElastiCache::CacheCluster|✅|✅|-|
+|AWS::ElastiCache::ParameterGroup|✅|✅|-|
+|AWS::ElastiCache::ReplicationGroup|✅|✅|-|
+|AWS::ElastiCache::SecurityGroup|✅|✅|-|
+|AWS::ElastiCache::SubnetGroup|✅|✅|-|
+|AWS::ElasticLoadBalancingV2::Listener|✅|-|-|
+|AWS::ElasticLoadBalancingV2::ListenerRule|✅|-|-|
+|AWS::ElasticLoadBalancingV2::LoadBalancer|✅|-|-|
+|AWS::ElasticLoadBalancingV2::TargetGroup|✅|-|-|
+|AWS::Glue::Classifier|✅|-|-|
+|AWS::Glue::Crawler|✅|-|-|
+|AWS::Glue::Database|✅|-|-|
+|AWS::Glue::Job|✅|-|-|
+|AWS::Glue::Table|✅|-|-|
+|AWS::Glue::Trigger|✅|-|-|
+|AWS::Glue::Workflow|✅|-|-|
+|AWS::IoT::Certificate|✅|-|-|
+|AWS::IoT::Policy|✅|✅|-|
+|AWS::IoT::Thing|✅|✅|-|
+|AWS::IoT::TopicRule|✅|✅|-|
+|AWS::IoTAnalytics::Channel|✅|✅|-|
+|AWS::IoTAnalytics::Dataset|✅|✅|-|
+|AWS::IoTAnalytics::Datastore|✅|✅|-|
+|AWS::IoTAnalytics::Pipeline|✅|✅|-|
+|AWS::KinesisAnalytics::Application|✅|-|-|
+|AWS::KinesisAnalytics::ApplicationOutput|✅|-|-|
+|AWS::Lambda::Alias|✅|-|-|
+|AWS::Lambda::LayerVersion|✅|-|-|
+|AWS::Lambda::LayerVersionPermission|✅|-|-|
+|AWS::MSK::Cluster|✅|✅|-|
+|AWS::QLDB::Ledger|✅|✅|-|
+|AWS::RDS::DBCluster|✅|✅|-|
+|AWS::RDS::DBClusterParameterGroup|✅|✅|-|
+|AWS::RDS::DBInstance|✅|✅|-|
+|AWS::RDS::DBParameterGroup|✅|✅|-|
+|AWS::RDS::DBSubnetGroup|✅|✅|-|
+|AWS::Redshift::ClusterParameterGroup|✅|✅|-|
+|AWS::Redshift::ClusterSecurityGroup|✅|✅|-|
+|AWS::Redshift::ClusterSubnetGroup|✅|✅|-|
+|AWS::Route53::HostedZone|✅|✅|-|
+|AWS::SES::ReceiptRule|✅|✅|-|
+|AWS::SES::ReceiptRuleSet|✅|✅|-|
+|AWS::SES::Template|✅|✅|✅|
+|AWS::ServiceDiscovery::HttpNamespace|✅|✅|-|
+|AWS::ServiceDiscovery::PrivateDnsNamespace|✅|✅|-|
+|AWS::ServiceDiscovery::PublicDnsNamespace|✅|✅|-|
+|AWS::ServiceDiscovery::Service|✅|✅|-|
+|AWS::Timestream::Database|✅|✅|-|
+|AWS::Timestream::Table|✅|✅|-|
