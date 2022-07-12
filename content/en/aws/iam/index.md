@@ -70,6 +70,7 @@ $ awslocal sts get-caller-identity
 
 Since 1.0, our policy engine logs output related to failed policy evaluation to the LocalStack log.
 There, you can see which additional policies are necessary for your request to succeed.
+You need to enable `DEBUG=1` to see these log messages.
 
 For example, let us try to add a policy for creating Lambda functions, but only pass `lambda:CreateFunction` as allowed action - `iam:PassRole` (which is also required) is missing:
 
@@ -113,10 +114,10 @@ When looking in the LocalStack logs, we can now see 5 log entries specific to th
 
 ```
 INFO:localstack_ext.services.iam.policy_engine.handler: Request for service lambda for operation CreateFunction denied.
-INFO:localstack_ext.services.iam.policy_engine.handler: Necessary permissions for this action: ["Action 'lambda:CreateFunction' for 'arn:aws:lambda:us-east-1:000000000000:function:test-function'", "Action 'iam:PassRole' for 'arn:aws:iam::000000000000:role/lambda-role'"]
-INFO:localstack_ext.services.iam.policy_engine.handler: 0 permissions have been explicitly denied: []
-INFO:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been explicitly allowed: ["Action 'lambda:CreateFunction' for 'arn:aws:lambda:us-east-1:000000000000:function:test-function'"]
-INFO:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been implicitly denied: ["Action 'iam:PassRole' for 'arn:aws:iam::000000000000:role/lambda-role'"]
+DEBUG:localstack_ext.services.iam.policy_engine.handler: Necessary permissions for this action: ["Action 'lambda:CreateFunction' for 'arn:aws:lambda:us-east-1:000000000000:function:test-function'", "Action 'iam:PassRole' for 'arn:aws:iam::000000000000:role/lambda-role'"]
+DEBUG:localstack_ext.services.iam.policy_engine.handler: 0 permissions have been explicitly denied: []
+DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been explicitly allowed: ["Action 'lambda:CreateFunction' for 'arn:aws:lambda:us-east-1:000000000000:function:test-function'"]
+DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been implicitly denied: ["Action 'iam:PassRole' for 'arn:aws:iam::000000000000:role/lambda-role'"]
 ```
 
 So we can see the action `iam:PassRole` is not allowed but implicitely denied (meaning there is no explicit deny statement in the applicable policies, but now allow either) for your user for resouce `arn:aws:iam::000000000000:role/lambda-role`.
@@ -137,6 +138,11 @@ If we now add this to our policy (since it is an example let's do it very simple
 ```
 
 the call is correctly executed.
+
+#### Soft Mode
+
+If you enable `IAM_SOFT_MODE=1`, you can look at the logs whether your requests would have been denied or not, while still being able to execute your whole stack without interference.
+This is especially useful when trying to find missing permissions over a whole stack (with resources depending on each other) at a time without having to redeploy for every missing permission.
 
 {{< alert >}}
 **Note**: As of 1.0, resource based policies and conditions are not yet supported. Please try keeping to identity-based policies where possible.
