@@ -121,7 +121,7 @@ Glue crawlers allow extracting metadata from structured data sources. The exampl
 First, we create an S3 bucket with a couple of items:
 {{< command >}}
 $ awslocal s3 mb s3://test
-$ echo '1, 2, 3, 4' > /tmp/file.csv
+$ printf "1, 2, 3, 4\n5, 6, 7, 8" > /tmp/file.csv
 $ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Jan/day=1/file.csv
 $ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Jan/day=2/file.csv
 $ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=1/file.csv
