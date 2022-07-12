@@ -41,14 +41,14 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐            | CRUD            |       |
 | Account Configuration                                              | ⭐⭐                | CRUD            |       |
 | [**Amplify** (Pro)]({{< ref "amplify" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#amplify" >}})  |                 |       |
-| Apps                                                               | ⭐⭐⭐              |                 |       |
-| Backend Environments                                               | ⭐⭐                |                 |       |
-| Branches                                                           | ⭐⭐                |                 |       |
-| Deployments                                                        | ⭐⭐⭐              |                 |       |
+| Apps                                                               | ⭐⭐⭐⭐             | Emulated        |       |
+| Backend Environments                                               | ⭐⭐⭐               | CRUD            |       |
+| Branches                                                           | ⭐⭐⭐              | CRUD            |       |
+| Deployments                                                        | \-                 |                 |       |
 | Domain Associations                                                | \-                 |                 |       |
-| Jobs                                                               | ⭐⭐                |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐             |                 |       |
-| Webhooks                                                           | ⭐⭐                |                 |       |
+| Jobs                                                               | \-                 |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐             | CRUD            |       |
+| Webhooks                                                           | ⭐⭐⭐               | Emulated       |       |
 | **API Gateway**                                                    | [🔍]({{< ref "../localstack/metric-coverage/#apigateway" >}}) |                 |       |
 | API Keys                                                           | ⭐⭐⭐              |                 |       |
 | Authorizers (Pro)                                                  | ⭐⭐⭐⭐             |                 |       |
@@ -95,10 +95,10 @@ In the coverage table below, the features are marked with their respective avail
 | Hosted Configuration Versions                                      | ⭐⭐⭐           |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐         |                 |       |
 | **Application Autoscaling** (Pro)                                  | [🔍]({{< ref "../localstack/metric-coverage/#application-autoscaling" >}})     |                 |       |
-| Scalable Targets                                                   | ⭐⭐⭐           |                 |       |
-| Scaling Activities                                                 | ⭐⭐             |                 |       |
-| Scaling Policies                                                   | ⭐⭐             |                 |       |
-| Scheduled Actions                                                  | ⭐⭐             |                 |       |
+| Scalable Targets                                                   | ⭐⭐⭐           | CRUD           |       |
+| Scaling Activities                                                 | \-              |                |       |
+| Scaling Policies                                                   | ⭐⭐⭐           | CRUD            |       |
+| Scheduled Actions                                                  | ⭐⭐⭐           | CRUD             |       |
 | [**AppSync** (Pro)]({{< ref "appsync" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#appsync" >}})                |                 |       |
 | API Caches                                                         | ⭐⭐⭐          |                 |       |
 | API Keys                                                           | ⭐⭐⭐          |                 |       |
