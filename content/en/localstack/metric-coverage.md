@@ -175,78 +175,78 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".amplify-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>CreateDeployment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>CreateDomainAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>DeleteDomainAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>DeleteJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>GenerateAccessLogs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>GetArtifactUrl</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>GetDomainAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>GetJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>ListArtifacts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>ListBackendEnvironments</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>ListDomainAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>ListJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>ListWebhooks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>StartDeployment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>StartJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>StopJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>UpdateBranch</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse amplify-notimplemented">
       <td>UpdateDomainAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -689,62 +689,62 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".apigateway-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>CreateDocumentationVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>DeleteDocumentationVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>FlushStageAuthorizersCache</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>FlushStageCache</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>GetDocumentationVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>GetDocumentationVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>GetModelTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>GetSdk</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>GetSdkType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>GetSdkTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>GetUsage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>ImportDocumentationParts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>UpdateDocumentationVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigateway-notimplemented">
       <td>UpdateUsage</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1053,30 +1053,30 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".apigatewayv2-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigatewayv2-notimplemented">
       <td>DeleteAccessLogSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigatewayv2-notimplemented">
       <td>DeleteRouteRequestParameter</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigatewayv2-notimplemented">
       <td>DeleteRouteSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigatewayv2-notimplemented">
       <td>ExportApi</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigatewayv2-notimplemented">
       <td>GetModelTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse apigatewayv2-notimplemented">
       <td>ResetAuthorizersCache</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1277,10 +1277,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".application-autoscaling-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse application-autoscaling-notimplemented">
       <td>DescribeScalingActivities</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1483,18 +1483,18 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".appsync-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse appsync-notimplemented">
       <td>AssociateApi</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse appsync-notimplemented">
       <td>DisassociateApi</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse appsync-notimplemented">
       <td>GetApiAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1601,62 +1601,62 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".athena-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>BatchGetNamedQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>BatchGetQueryExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>CreatePreparedStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>DeletePreparedStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>GetPreparedStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>GetTableMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>ListEngineVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>ListPreparedStatements</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>ListTableMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>StopQueryExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>UpdateDataCatalog</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>UpdateNamedQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>UpdatePreparedStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse athena-notimplemented">
       <td>UpdateWorkGroup</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1823,102 +1823,102 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".autoscaling-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>BatchDeleteScheduledAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>BatchPutScheduledUpdateGroupAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>CancelInstanceRefresh</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>CompleteLifecycleAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DeleteNotificationConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DeleteScheduledAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DeleteWarmPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeAccountLimits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeAdjustmentTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeAutoScalingNotificationTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeInstanceRefreshes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeLifecycleHookTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeNotificationConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeScalingActivities</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeScalingProcessTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeScheduledActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeTerminationPolicyTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>DescribeWarmPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>GetPredictiveScalingForecast</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>PutNotificationConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>PutScheduledUpdateGroupAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>PutWarmPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>RecordLifecycleActionHeartbeat</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse autoscaling-notimplemented">
       <td>StartInstanceRefresh</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2021,186 +2021,186 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".backup-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>CreateFramework</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>CreateReportPlan</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DeleteBackupVaultAccessPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DeleteBackupVaultLockConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DeleteBackupVaultNotifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DeleteFramework</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DeleteRecoveryPoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DeleteReportPlan</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeBackupJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeCopyJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeFramework</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeGlobalSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeProtectedResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeRecoveryPoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeRegionSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeReportJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DescribeReportPlan</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>DisassociateRecoveryPoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>ExportBackupPlanTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>GetBackupPlanFromJSON</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>GetBackupPlanFromTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>GetBackupVaultAccessPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>GetBackupVaultNotifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>GetRecoveryPointRestoreMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>GetSupportedResourceTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>ListBackupPlanTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>ListBackupPlanVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>ListFrameworks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>ListProtectedResources</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>ListReportPlans</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>ListTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>PutBackupVaultAccessPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>PutBackupVaultLockConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>PutBackupVaultNotifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>StartBackupJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>StartCopyJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>StartReportJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>StopBackupJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>UpdateFramework</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>UpdateGlobalSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>UpdateRecoveryPointLifecycle</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>UpdateRegionSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse backup-notimplemented">
       <td>UpdateReportPlan</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2377,98 +2377,98 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".ce-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetAnomalies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetCostAndUsage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetCostAndUsageWithResources</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetCostCategories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetCostForecast</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetDimensionValues</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetReservationCoverage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetReservationPurchaseRecommendation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetReservationUtilization</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetRightsizingRecommendation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetSavingsPlansCoverage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetSavingsPlansPurchaseRecommendation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetSavingsPlansUtilization</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetSavingsPlansUtilizationDetails</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>GetUsageForecast</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>ListCostAllocationTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>ListCostCategoryDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>ProvideAnomalyFeedback</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ce-notimplemented">
       <td>UpdateCostAllocationTagsStatus</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2595,162 +2595,162 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".cloudformation-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>ActivateType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>BatchDescribeTypeConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>CancelUpdateStack</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>ContinueUpdateRollback</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DeactivateType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DeleteStackInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DeregisterType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DescribeAccountLimits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DescribeChangeSetHooks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DescribePublisher</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DescribeStackDriftDetectionStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DescribeStackInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DescribeStackResourceDrifts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DescribeType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DescribeTypeRegistration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DetectStackDrift</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DetectStackResourceDrift</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>DetectStackSetDrift</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>EstimateTemplateCost</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>GetStackPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>ImportStacksToStackSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>ListStackSetOperationResults</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>ListStackSetOperations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>ListTypeRegistrations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>ListTypeVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>ListTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>PublishType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>RecordHandlerProgress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>RegisterPublisher</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>RegisterType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>RollbackStack</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>SetStackPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>SetTypeConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>SetTypeDefaultVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>SignalResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>StopStackSetOperation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>TestType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>UpdateStackInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudformation-notimplemented">
       <td>UpdateTerminationProtection</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2873,270 +2873,270 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".cloudfront-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>AssociateAlias</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateCachePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateFieldLevelEncryptionConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateFieldLevelEncryptionProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateKeyGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateMonitoringSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreatePublicKey</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateRealtimeLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateResponseHeadersPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateStreamingDistribution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>CreateStreamingDistributionWithTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeleteCachePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeleteFieldLevelEncryptionConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeleteFieldLevelEncryptionProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeleteKeyGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeleteMonitoringSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeletePublicKey</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeleteRealtimeLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeleteResponseHeadersPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DeleteStreamingDistribution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>DescribeFunction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetCachePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetCachePolicyConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetCloudFrontOriginAccessIdentityConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetDistributionConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetFieldLevelEncryption</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetFieldLevelEncryptionConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetFieldLevelEncryptionProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetFieldLevelEncryptionProfileConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetKeyGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetKeyGroupConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetMonitoringSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetOriginRequestPolicyConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetPublicKey</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetPublicKeyConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetRealtimeLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetResponseHeadersPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetResponseHeadersPolicyConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetStreamingDistribution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>GetStreamingDistributionConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListCachePolicies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListConflictingAliases</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListDistributionsByCachePolicyId</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListDistributionsByKeyGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListDistributionsByOriginRequestPolicyId</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListDistributionsByRealtimeLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListDistributionsByResponseHeadersPolicyId</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListDistributionsByWebACLId</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListFieldLevelEncryptionConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListFieldLevelEncryptionProfiles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListKeyGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListPublicKeys</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListRealtimeLogConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListResponseHeadersPolicies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>ListStreamingDistributions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>PublishFunction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>TestFunction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdateCachePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdateCloudFrontOriginAccessIdentity</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdateFieldLevelEncryptionConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdateFieldLevelEncryptionProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdateKeyGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdatePublicKey</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdateRealtimeLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdateResponseHeadersPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudfront-notimplemented">
       <td>UpdateStreamingDistribution</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3223,54 +3223,54 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".cloudtrail-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>CancelQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>CreateEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>DeleteEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>DescribeQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>GetEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>GetQueryResults</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>ListEventDataStores</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>ListPublicKeys</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>ListQueries</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>RestoreEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>StartQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudtrail-notimplemented">
       <td>UpdateEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3357,82 +3357,82 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".cloudwatch-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>DeleteAnomalyDetector</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>DeleteInsightRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>DeleteMetricStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>DescribeAlarmHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>DescribeAnomalyDetectors</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>DescribeInsightRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>DisableAlarmActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>DisableInsightRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>EnableAlarmActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>EnableInsightRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>GetInsightRuleReport</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>GetMetricStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>GetMetricWidgetImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>ListMetricStreams</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>PutAnomalyDetector</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>PutInsightRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>PutMetricStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>StartMetricStreams</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cloudwatch-notimplemented">
       <td>StopMetricStreams</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3507,258 +3507,258 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".codecommit-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>AssociateApprovalRuleTemplateWithRepository</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>BatchAssociateApprovalRuleTemplateWithRepositories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>BatchDescribeMergeConflicts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>BatchDisassociateApprovalRuleTemplateFromRepositories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>BatchGetCommits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>BatchGetRepositories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>CreateApprovalRuleTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>CreatePullRequestApprovalRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>CreateUnreferencedMergeCommit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>DeleteApprovalRuleTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>DeleteCommentContent</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>DeleteFile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>DeletePullRequestApprovalRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>DescribeMergeConflicts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>DescribePullRequestEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>DisassociateApprovalRuleTemplateFromRepository</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>EvaluatePullRequestApprovalRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetApprovalRuleTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetBlob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetComment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetCommentReactions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetCommentsForComparedCommit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetCommentsForPullRequest</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetCommit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetDifferences</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetMergeCommit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetMergeConflicts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetMergeOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetPullRequest</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetPullRequestApprovalStates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetPullRequestOverrideState</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>GetRepositoryTriggers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>ListApprovalRuleTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>ListAssociatedApprovalRuleTemplatesForRepository</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>ListBranches</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>ListRepositoriesForApprovalRuleTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>MergeBranchesByFastForward</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>MergeBranchesBySquash</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>MergeBranchesByThreeWay</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>MergePullRequestByFastForward</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>MergePullRequestBySquash</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>MergePullRequestByThreeWay</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>OverridePullRequestApprovalRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>PostCommentForComparedCommit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>PostCommentForPullRequest</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>PostCommentReply</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>PutCommentReaction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>PutFile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>PutRepositoryTriggers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>TestRepositoryTriggers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdateApprovalRuleTemplateContent</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdateApprovalRuleTemplateDescription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdateApprovalRuleTemplateName</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdateComment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdateDefaultBranch</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdatePullRequestApprovalRuleContent</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdatePullRequestApprovalState</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdatePullRequestDescription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdatePullRequestStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdatePullRequestTitle</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdateRepositoryDescription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse codecommit-notimplemented">
       <td>UpdateRepositoryName</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3825,50 +3825,50 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".cognito-identity-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>DeleteIdentities</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>DescribeIdentity</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>GetPrincipalTagAttributeMap</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>LookupDeveloperIdentity</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>MergeDeveloperIdentities</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>SetPrincipalTagAttributeMap</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>UnlinkDeveloperIdentity</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>UnlinkIdentity</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-identity-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4143,154 +4143,154 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".cognito-idp-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminDisableProviderForUser</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminForgetDevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminGetDevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminLinkProviderForUser</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminListDevices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminListUserAuthEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminSetUserSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminUpdateAuthEventFeedback</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AdminUpdateDeviceStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>AssociateSoftwareToken</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>CreateUserImportJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>DeleteUser</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>DescribeRiskConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>DescribeUserImportJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>ForgetDevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>GetCSVHeader</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>GetDevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>GetIdentityProviderByIdentifier</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>GetUICustomization</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>GetUserAttributeVerificationCode</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>ListDevices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>ListUserImportJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>ResendConfirmationCode</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>RevokeToken</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>SetRiskConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>SetUICustomization</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>SetUserSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>StartUserImportJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>StopUserImportJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>UpdateAuthEventFeedback</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>UpdateDeviceStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>UpdateUserPoolDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>VerifySoftwareToken</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse cognito-idp-notimplemented">
       <td>VerifyUserAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4437,230 +4437,230 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".config-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeleteConformancePack</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeleteEvaluationResults</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeleteOrganizationConfigRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeletePendingAggregationRequest</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeleteRemediationConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeleteRemediationExceptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeleteResourceConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeleteRetentionConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeleteStoredQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DeliverConfigSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeAggregateComplianceByConfigRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeAggregateComplianceByConformancePacks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeComplianceByConfigRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeComplianceByResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeConfigRuleEvaluationStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeConfigurationAggregatorSourcesStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeConformancePackCompliance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeConformancePackStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeConformancePacks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeDeliveryChannelStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeOrganizationConfigRuleStatuses</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeOrganizationConfigRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribePendingAggregationRequests</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeRemediationConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeRemediationExceptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeRemediationExecutionStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>DescribeRetentionConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetAggregateComplianceDetailsByConfigRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetAggregateConfigRuleComplianceSummary</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetAggregateConformancePackComplianceSummary</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetAggregateDiscoveredResourceCounts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetAggregateResourceConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetComplianceDetailsByConfigRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetComplianceDetailsByResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetComplianceSummaryByConfigRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetComplianceSummaryByResourceType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetConformancePackComplianceDetails</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetConformancePackComplianceSummary</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetCustomRulePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetDiscoveredResourceCounts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetOrganizationConfigRuleDetailedStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetOrganizationCustomRulePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>GetStoredQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>ListStoredQueries</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>PutConformancePack</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>PutExternalEvaluation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>PutOrganizationConfigRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>PutRemediationConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>PutRemediationExceptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>PutResourceConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>PutRetentionConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>PutStoredQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>SelectAggregateResourceConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>SelectResourceConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>StartConfigRulesEvaluation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse config-notimplemented">
       <td>StartRemediationExecution</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4819,78 +4819,78 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".docdb-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>AddSourceIdentifierToSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>ApplyPendingMaintenanceAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>CopyDBClusterParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>CreateGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>DeleteGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>DescribeDBClusterSnapshotAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>DescribeEngineDefaultClusterParameters</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>DescribeEventCategories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>DescribeEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>DescribeOrderableDBInstanceOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>DescribePendingMaintenanceActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>FailoverDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>ModifyDBClusterSnapshotAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>ModifyEventSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>ModifyGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>RemoveFromGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>RemoveSourceIdentifierFromSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse docdb-notimplemented">
       <td>RestoreDBClusterToPointInTime</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -5049,66 +5049,66 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".dynamodb-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>DescribeBackup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>DescribeContinuousBackups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>DescribeContributorInsights</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>DescribeEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>DescribeExport</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>DescribeGlobalTableSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>DescribeTableReplicaAutoScaling</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>ExportTableToPointInTime</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>ListContributorInsights</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>ListExports</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>RestoreTableToPointInTime</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>UpdateContinuousBackups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>UpdateContributorInsights</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>UpdateGlobalTableSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse dynamodb-notimplemented">
       <td>UpdateTableReplicaAutoScaling</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6037,1218 +6037,1218 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".ec2-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AcceptReservedInstancesExchangeQuote</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AcceptTransitGatewayMulticastDomainAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AcceptTransitGatewayVpcAttachment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AcceptVpcEndpointConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AdvertiseByoipCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AllocateHosts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AllocateIpamPoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ApplySecurityGroupsToClientVpnTargetNetwork</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AssociateClientVpnTargetNetwork</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AssociateEnclaveCertificateIamRole</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AssociateInstanceEventWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AssociateTransitGatewayMulticastDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AssociateTrunkInterface</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AttachClassicLinkVpc</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>AuthorizeClientVpnIngress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>BundleInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CancelBundleTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CancelCapacityReservation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CancelCapacityReservationFleets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CancelConversionTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CancelImportTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CancelReservedInstancesListing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ConfirmProductInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CopyFpgaImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateCapacityReservation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateCapacityReservationFleet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateClientVpnEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateClientVpnRoute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateDefaultSubnet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateDefaultVpc</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateFleet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateFpgaImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateInstanceEventWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateInstanceExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateIpam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateIpamPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateIpamScope</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateLocalGatewayRoute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateLocalGatewayRouteTableVpcAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateNetworkInsightsAccessScope</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateNetworkInsightsPath</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateNetworkInterfacePermission</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreatePublicIpv4Pool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateReplaceRootVolumeTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateReservedInstancesListing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateRestoreImageTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateStoreImageTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateSubnetCidrReservation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateTrafficMirrorFilter</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateTrafficMirrorFilterRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateTrafficMirrorSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateTrafficMirrorTarget</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateTransitGatewayConnect</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateTransitGatewayConnectPeer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateTransitGatewayMulticastDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateTransitGatewayPrefixListReference</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateVpcEndpointConnectionNotification</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>CreateVpnConnectionRoute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteClientVpnEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteClientVpnRoute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteFleets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteFpgaImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteInstanceEventWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteIpam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteIpamPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteIpamScope</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteLaunchTemplateVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteLocalGatewayRoute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteLocalGatewayRouteTableVpcAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteNetworkInsightsAccessScope</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteNetworkInsightsAccessScopeAnalysis</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteNetworkInsightsAnalysis</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteNetworkInsightsPath</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteNetworkInterfacePermission</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeletePublicIpv4Pool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteQueuedReservedInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteSubnetCidrReservation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteTrafficMirrorFilter</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteTrafficMirrorFilterRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteTrafficMirrorSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteTrafficMirrorTarget</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteTransitGatewayConnect</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteTransitGatewayConnectPeer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteTransitGatewayMulticastDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteTransitGatewayPrefixListReference</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteVpcEndpointConnectionNotifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeleteVpnConnectionRoute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeprovisionByoipCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeprovisionIpamPoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeprovisionPublicIpv4PoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeregisterInstanceEventNotificationAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeregisterTransitGatewayMulticastGroupMembers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DeregisterTransitGatewayMulticastGroupSources</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeAddressesAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeAggregateIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeBundleTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeByoipCidrs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeCapacityReservationFleets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeCapacityReservations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeClassicLinkInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeClientVpnAuthorizationRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeClientVpnConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeClientVpnEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeClientVpnRoutes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeClientVpnTargetNetworks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeCoipPools</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeConversionTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeElasticGpus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeExportImageTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeExportTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeFastLaunchImages</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeFastSnapshotRestores</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeFleetHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeFleetInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeFleets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeFpgaImageAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeFpgaImages</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeHostReservationOfferings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeHostReservations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeHosts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeIdentityIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeImportImageTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeImportSnapshotTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeInstanceEventNotificationAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeInstanceEventWindows</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeIpamPools</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeIpamScopes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeIpams</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeIpv6Pools</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeLocalGatewayRouteTableVirtualInterfaceGroupAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeLocalGatewayRouteTableVpcAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeLocalGatewayRouteTables</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeLocalGatewayVirtualInterfaceGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeLocalGatewayVirtualInterfaces</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeLocalGateways</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeMovingAddresses</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeNetworkInsightsAccessScopeAnalyses</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeNetworkInsightsAccessScopes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeNetworkInsightsAnalyses</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeNetworkInsightsPaths</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeNetworkInterfacePermissions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribePlacementGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribePrincipalIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribePublicIpv4Pools</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeReplaceRootVolumeTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeReservedInstancesListings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeReservedInstancesModifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeScheduledInstanceAvailability</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeScheduledInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeSecurityGroupReferences</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeSecurityGroupRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeSnapshotTierStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeSpotDatafeedSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeSpotFleetRequestHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeStaleSecurityGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeStoreImageTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeTrafficMirrorFilters</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeTrafficMirrorSessions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeTrafficMirrorTargets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeTransitGatewayConnectPeers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeTransitGatewayConnects</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeTransitGatewayMulticastDomains</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeTrunkInterfaceAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeVolumeAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeVolumeStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeVolumesModifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeVpcEndpointConnectionNotifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DescribeVpcEndpointConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DetachClassicLinkVpc</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisableFastLaunch</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisableFastSnapshotRestores</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisableImageDeprecation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisableIpamOrganizationAdminAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisableSerialConsoleAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisableVgwRoutePropagation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisassociateClientVpnTargetNetwork</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisassociateEnclaveCertificateIamRole</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisassociateInstanceEventWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisassociateTransitGatewayMulticastDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>DisassociateTrunkInterface</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>EnableFastLaunch</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>EnableFastSnapshotRestores</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>EnableImageDeprecation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>EnableIpamOrganizationAdminAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>EnableSerialConsoleAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>EnableVgwRoutePropagation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ExportClientVpnClientCertificateRevocationList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ExportClientVpnClientConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ExportImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ExportTransitGatewayRoutes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetAssociatedEnclaveCertificateIamRoles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetAssociatedIpv6PoolCidrs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetCapacityReservationUsage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetCoipPoolUsage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetConsoleScreenshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetDefaultCreditSpecification</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetEbsDefaultKmsKeyId</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetFlowLogsIntegrationTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetGroupsForCapacityReservation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetHostReservationPurchasePreview</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetInstanceTypesFromInstanceRequirements</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetInstanceUefiData</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetIpamAddressHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetIpamPoolAllocations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetIpamPoolCidrs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetIpamResourceCidrs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetLaunchTemplateData</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetManagedPrefixListAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetNetworkInsightsAccessScopeAnalysisFindings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetNetworkInsightsAccessScopeContent</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetPasswordData</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetReservedInstancesExchangeQuote</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetSerialConsoleAccessStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetSpotPlacementScores</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetSubnetCidrReservations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetTransitGatewayAttachmentPropagations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetTransitGatewayMulticastDomainAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetTransitGatewayPrefixListReferences</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetVpnConnectionDeviceSampleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>GetVpnConnectionDeviceTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ImportClientVpnClientCertificateRevocationList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ImportImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ImportInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ImportSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ListImagesInRecycleBin</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ListSnapshotsInRecycleBin</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyAddressAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyAvailabilityZoneGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyCapacityReservation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyCapacityReservationFleet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyClientVpnEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyDefaultCreditSpecification</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyEbsDefaultKmsKeyId</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyFleet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyFpgaImageAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyHosts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyIdentityIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyInstanceCapacityReservationAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyInstanceCreditSpecification</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyInstanceEventStartTime</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyInstanceEventWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyInstanceMaintenanceOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyInstanceMetadataOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyInstancePlacement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyIpam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyIpamPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyIpamResourceCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyIpamScope</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyLaunchTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyPrivateDnsNameOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyReservedInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifySecurityGroupRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifySnapshotTier</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyTrafficMirrorFilterNetworkServices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyTrafficMirrorFilterRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyTrafficMirrorSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyTransitGatewayPrefixListReference</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyVolume</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyVpcEndpointConnectionNotification</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyVpcEndpointServicePayerResponsibility</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyVpnConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyVpnConnectionOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyVpnTunnelCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ModifyVpnTunnelOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>MoveAddressToVpc</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>MoveByoipCidrToIpam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ProvisionByoipCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ProvisionIpamPoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ProvisionPublicIpv4PoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>PurchaseHostReservation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>PurchaseScheduledInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RegisterInstanceEventNotificationAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RegisterTransitGatewayMulticastGroupMembers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RegisterTransitGatewayMulticastGroupSources</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RejectTransitGatewayMulticastDomainAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RejectTransitGatewayVpcAttachment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RejectVpcEndpointConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ReleaseHosts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ReleaseIpamPoolAllocation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ReplaceTransitGatewayRoute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ReportInstanceStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ResetAddressAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ResetEbsDefaultKmsKeyId</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ResetFpgaImageAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>ResetInstanceAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RestoreAddressToClassic</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RestoreImageFromRecycleBin</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RestoreManagedPrefixListVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RestoreSnapshotFromRecycleBin</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RestoreSnapshotTier</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RevokeClientVpnIngress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>RunScheduledInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>SearchLocalGatewayRoutes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>SearchTransitGatewayMulticastGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>SendDiagnosticInterrupt</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>StartNetworkInsightsAccessScopeAnalysis</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>StartNetworkInsightsAnalysis</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>StartVpcEndpointServicePrivateDnsVerification</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>TerminateClientVpnConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ec2-notimplemented">
       <td>WithdrawByoipCidr</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7383,54 +7383,54 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".ecr-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>BatchCheckLayerAvailability</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>BatchGetRepositoryScanningConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>CompleteLayerUpload</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>CreatePullThroughCacheRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>DeletePullThroughCacheRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>DescribeImageReplicationStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>DescribePullThroughCacheRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>GetDownloadUrlForLayer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>GetRegistryScanningConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>InitiateLayerUpload</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>PutRegistryScanningConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecr-notimplemented">
       <td>UploadLayerPart</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7625,38 +7625,38 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".ecs-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecs-notimplemented">
       <td>ExecuteCommand</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecs-notimplemented">
       <td>PutAccountSettingDefault</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecs-notimplemented">
       <td>SubmitAttachmentStateChanges</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecs-notimplemented">
       <td>SubmitContainerStateChange</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecs-notimplemented">
       <td>SubmitTaskStateChange</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecs-notimplemented">
       <td>UpdateCapacityProvider</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecs-notimplemented">
       <td>UpdateClusterSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ecs-notimplemented">
       <td>UpdateContainerAgent</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7687,114 +7687,114 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".efs-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>CreateAccessPoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>CreateMountTarget</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>CreateReplicationConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>CreateTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DeleteAccessPoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DeleteFileSystemPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DeleteMountTarget</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DeleteReplicationConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DeleteTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeAccessPoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeAccountPreferences</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeBackupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeFileSystemPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeLifecycleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeMountTargetSecurityGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeMountTargets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeReplicationConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>DescribeTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>ModifyMountTargetSecurityGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>PutAccountPreferences</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>PutBackupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>PutFileSystemPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>PutLifecycleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse efs-notimplemented">
       <td>UpdateFileSystem</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7873,82 +7873,82 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".eks-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>AssociateEncryptionConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>AssociateIdentityProviderConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>CreateAddon</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>DeleteAddon</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>DeregisterCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>DescribeAddon</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>DescribeAddonVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>DescribeIdentityProviderConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>DescribeUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>DisassociateIdentityProviderConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>ListAddons</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>ListIdentityProviderConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>ListUpdates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>RegisterCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>UpdateAddon</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse eks-notimplemented">
       <td>UpdateClusterVersion</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8059,174 +8059,174 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".elasticache-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>AuthorizeCacheSecurityGroupIngress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>BatchApplyUpdateAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>BatchStopUpdateAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>CompleteMigration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>CopySnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>CreateGlobalReplicationGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>CreateSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>CreateUser</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>CreateUserGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DecreaseNodeGroupsInGlobalReplicationGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DecreaseReplicaCount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DeleteGlobalReplicationGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DeleteSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DeleteUser</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DeleteUserGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeCacheEngineVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeEngineDefaultParameters</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeGlobalReplicationGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeReservedCacheNodes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeReservedCacheNodesOfferings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeServiceUpdates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeSnapshots</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeUpdateActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeUserGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DescribeUsers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>DisassociateGlobalReplicationGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>FailoverGlobalReplicationGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>IncreaseNodeGroupsInGlobalReplicationGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>IncreaseReplicaCount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>ListAllowedNodeTypeModifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>ModifyGlobalReplicationGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>ModifyReplicationGroupShardConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>ModifyUser</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>ModifyUserGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>PurchaseReservedCacheNodesOffering</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>RebalanceSlotsInGlobalReplicationGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>RebootCacheCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>ResetCacheParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>RevokeCacheSecurityGroupIngress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>StartMigration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticache-notimplemented">
       <td>TestFailover</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8293,146 +8293,146 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".elasticbeanstalk-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>AbortEnvironmentUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>ApplyEnvironmentManagedAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>AssociateEnvironmentOperationsRole</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>CheckDNSAvailability</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>ComposeEnvironments</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>CreateConfigurationTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>CreatePlatformVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>CreateStorageLocation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DeleteConfigurationTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DeletePlatformVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeAccountAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeConfigurationOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeConfigurationSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeEnvironmentHealth</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeEnvironmentManagedActionHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeEnvironmentManagedActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeEnvironmentResources</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribeInstancesHealth</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DescribePlatformVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>DisassociateEnvironmentOperationsRole</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>ListAvailableSolutionStacks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>ListPlatformBranches</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>ListPlatformVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>RebuildEnvironment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>RequestEnvironmentInfo</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>RestartAppServer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>RetrieveEnvironmentInfo</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>SwapEnvironmentCNAMEs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>TerminateEnvironment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>UpdateApplicationResourceLifecycle</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>UpdateConfigurationTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>UpdateTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elasticbeanstalk-notimplemented">
       <td>ValidateConfigurationSettings</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8559,14 +8559,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".elb-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elb-notimplemented">
       <td>DescribeAccountLimits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse elb-notimplemented">
       <td>DescribeLoadBalancerPolicyTypes</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8855,94 +8855,94 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".emr-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>CancelSteps</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>CreateStudio</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>CreateStudioSessionMapping</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>DeleteStudio</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>DeleteStudioSessionMapping</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>DescribeNotebookExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>DescribeReleaseLabel</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>DescribeStudio</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>GetManagedScalingPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>GetStudioSessionMapping</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>ListNotebookExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>ListReleaseLabels</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>ListSecurityConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>ListStudioSessionMappings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>ListStudios</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>PutBlockPublicAccessConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>PutManagedScalingPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>RemoveManagedScalingPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>StartNotebookExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>StopNotebookExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>UpdateStudio</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse emr-notimplemented">
       <td>UpdateStudioSessionMapping</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -9009,122 +9009,122 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".es-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>AcceptInboundCrossClusterSearchConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>AssociatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>CancelElasticsearchServiceSoftwareUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>CreateOutboundCrossClusterSearchConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>CreatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DeleteElasticsearchServiceRole</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DeleteInboundCrossClusterSearchConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DeleteOutboundCrossClusterSearchConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DeletePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DescribeDomainAutoTunes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DescribeDomainChangeProgress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DescribeElasticsearchInstanceTypeLimits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DescribeInboundCrossClusterSearchConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DescribeOutboundCrossClusterSearchConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DescribePackages</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DescribeReservedElasticsearchInstanceOfferings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DescribeReservedElasticsearchInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>DissociatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>GetPackageVersionHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>GetUpgradeHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>GetUpgradeStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>ListDomainsForPackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>ListElasticsearchInstanceTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>ListPackagesForDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>PurchaseReservedElasticsearchInstanceOffering</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>RejectInboundCrossClusterSearchConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>StartElasticsearchServiceSoftwareUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>UpdatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse es-notimplemented">
       <td>UpgradeElasticsearchDomain</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -9303,70 +9303,70 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".events-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>ActivateEventSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>CreateEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>CreatePartnerEventSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>DeactivateEventSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>DeauthorizeConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>DeleteEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>DeletePartnerEventSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>DescribeEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>DescribeEventSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>DescribePartnerEventSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>ListEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>ListEventSources</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>ListPartnerEventSourceAccounts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>ListPartnerEventSources</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>PutPartnerEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse events-notimplemented">
       <td>UpdateEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -9425,14 +9425,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".firehose-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse firehose-notimplemented">
       <td>StartDeliveryStreamEncryption</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse firehose-notimplemented">
       <td>StopDeliveryStreamEncryption</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -9973,366 +9973,366 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".glue-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchDeleteConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchDeleteTableVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchGetBlueprints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchGetCrawlers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchGetCustomEntityTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchGetDevEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchGetJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchGetTriggers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchGetWorkflows</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>BatchStopJobRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CancelMLTaskRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CancelStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CreateBlueprint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CreateCustomEntityType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CreateDevEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CreateMLTransform</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CreateScript</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CreateSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>CreateUserDefinedFunction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteBlueprint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteColumnStatisticsForPartition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteColumnStatisticsForTable</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteCustomEntityType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteDevEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteMLTransform</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteTableVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>DeleteUserDefinedFunction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetBlueprint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetBlueprintRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetBlueprintRuns</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetColumnStatisticsForPartition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetColumnStatisticsForTable</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetCrawlerMetrics</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetCustomEntityType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetDataCatalogEncryptionSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetDataflowGraph</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetDevEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetDevEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetJobBookmark</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetMLTaskRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetMLTaskRuns</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetMLTransform</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetMLTransforms</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetMapping</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetPlan</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetResourcePolicies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetTriggers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetUnfilteredPartitionMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetUnfilteredPartitionsMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetUnfilteredTableMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetUserDefinedFunction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetUserDefinedFunctions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetWorkflowRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetWorkflowRunProperties</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>GetWorkflowRuns</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListBlueprints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListCrawlers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListCrawls</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListCustomEntityTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListDevEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListMLTransforms</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListSessions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListStatements</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ListTriggers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>PutDataCatalogEncryptionSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>PutWorkflowRunProperties</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ResetJobBookmark</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>ResumeWorkflowRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>RunStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>SearchTables</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StartBlueprintRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StartCrawlerSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StartExportLabelsTaskRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StartImportLabelsTaskRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StartMLEvaluationTaskRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StartMLLabelingSetGenerationTaskRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StartWorkflowRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StopCrawlerSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StopSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>StopWorkflowRun</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>UpdateBlueprint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>UpdateColumnStatisticsForPartition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>UpdateColumnStatisticsForTable</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>UpdateCrawlerSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>UpdateDevEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>UpdateMLTransform</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse glue-notimplemented">
       <td>UpdateUserDefinedFunction</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10859,130 +10859,130 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".iam-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>AddClientIDToOpenIDConnectProvider</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>ChangePassword</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>CreateServiceSpecificCredential</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>DeleteServiceSpecificCredential</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>DeleteUserPermissionsBoundary</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>GenerateOrganizationsAccessReport</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>GenerateServiceLastAccessedDetails</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>GetContextKeysForCustomPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>GetContextKeysForPrincipalPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>GetOrganizationsAccessReport</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>GetServiceLastAccessedDetails</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>GetServiceLastAccessedDetailsWithEntities</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>ListMFADeviceTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>ListPoliciesGrantingServiceAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>ListSAMLProviderTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>ListServerCertificateTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>ListServiceSpecificCredentials</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>PutUserPermissionsBoundary</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>RemoveClientIDFromOpenIDConnectProvider</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>ResetServiceSpecificCredential</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>ResyncMFADevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>SetSecurityTokenServicePreferences</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>SimulateCustomPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>TagMFADevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>TagSAMLProvider</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>TagServerCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>UntagMFADevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>UntagSAMLProvider</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>UntagServerCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>UpdateServerCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iam-notimplemented">
       <td>UpdateServiceSpecificCredential</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -11377,578 +11377,578 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".iot-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>AcceptCertificateTransfer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>AddThingToBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>AssociateTargetsWithJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>AttachSecurityProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CancelAuditMitigationActionsTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CancelAuditTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CancelCertificateTransfer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CancelDetectMitigationActionsTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ClearDefaultAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ConfirmTopicRuleDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateAuditSuppression</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateCustomMetric</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateDimension</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateFleetMetric</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateJobTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateMitigationAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateOTAUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateProvisioningClaim</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateProvisioningTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateProvisioningTemplateVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateRoleAlias</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateScheduledAudit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateSecurityProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>CreateStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteAccountAuditConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteAuditSuppression</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteCustomMetric</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteDimension</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteFleetMetric</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteJobTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteMitigationAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteOTAUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteProvisioningTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteProvisioningTemplateVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteRegistrationCode</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteRoleAlias</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteScheduledAudit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteSecurityProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DeleteV2LoggingLevel</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeAccountAuditConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeAuditFinding</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeAuditMitigationActionsTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeAuditSuppression</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeAuditTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeCustomMetric</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeDefaultAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeDetectMitigationActionsTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeDimension</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeEventConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeFleetMetric</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeIndex</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeJobTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeManagedJobTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeMitigationAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeProvisioningTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeProvisioningTemplateVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeRoleAlias</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeScheduledAudit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeSecurityProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DescribeThingRegistrationTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>DetachSecurityProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetBehaviorModelTrainingSummaries</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetBucketsAggregation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetCardinality</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetEffectivePolicies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetIndexingConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetLoggingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetOTAUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetPercentiles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetStatistics</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>GetV2LoggingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListActiveViolations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListAuditFindings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListAuditMitigationActionsExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListAuditSuppressions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListAuthorizers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListBillingGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListCACertificates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListCustomMetrics</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListDimensions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListFleetMetrics</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListIndices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListJobTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListManagedJobTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListMitigationActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListOTAUpdates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListOutgoingCertificates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListProvisioningTemplateVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListProvisioningTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListRoleAliases</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListScheduledAudits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListSecurityProfiles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListSecurityProfilesForTarget</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListStreams</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListTargetsForPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListTargetsForSecurityProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListThingRegistrationTaskReports</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListThingRegistrationTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListThingsInBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListTopicRuleDestinations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ListV2LoggingLevels</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>PutVerificationStateOnViolation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>RegisterThing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>RejectCertificateTransfer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>RemoveThingFromBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>SetDefaultAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>SetLoggingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>SetV2LoggingLevel</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>SetV2LoggingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>StartAuditMitigationActionsTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>StartDetectMitigationActionsTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>StartOnDemandAuditTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>StartThingRegistrationTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>StopThingRegistrationTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>TestAuthorization</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>TestInvokeAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>TransferCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateAccountAuditConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateAuditSuppression</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateCustomMetric</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateDimension</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateEventConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateFleetMetric</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateMitigationAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateProvisioningTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateRoleAlias</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateScheduledAudit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateSecurityProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>UpdateTopicRuleDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-notimplemented">
       <td>ValidateSecurityProfileBehaviors</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -11983,18 +11983,18 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".iot-data-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-data-notimplemented">
       <td>GetRetainedMessage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-data-notimplemented">
       <td>ListNamedShadowsForThing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iot-data-notimplemented">
       <td>ListRetainedMessages</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12085,70 +12085,70 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".iotanalytics-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>BatchPutMessage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>CancelPipelineReprocessing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>CreateDatasetContent</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>DeleteDatasetContent</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>DescribeLoggingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>GetDatasetContent</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>PutLoggingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>RunPipelineActivity</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>StartPipelineReprocessing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>UpdateChannel</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>UpdateDataset</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>UpdateDatastore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotanalytics-notimplemented">
       <td>UpdatePipeline</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12223,322 +12223,322 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".iotwireless-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>AssociateAwsAccountWithPartnerAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>AssociateMulticastGroupWithFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>AssociateWirelessDeviceWithFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>AssociateWirelessDeviceWithMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>AssociateWirelessDeviceWithThing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>AssociateWirelessGatewayWithCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>AssociateWirelessGatewayWithThing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>CancelMulticastGroupSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>CreateDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>CreateFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>CreateMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>CreateNetworkAnalyzerConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>CreateServiceProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>CreateWirelessGatewayTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>CreateWirelessGatewayTaskDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DeleteDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DeleteFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DeleteMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DeleteNetworkAnalyzerConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DeleteQueuedMessages</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DeleteServiceProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DeleteWirelessGatewayTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DeleteWirelessGatewayTaskDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DisassociateAwsAccountFromPartnerAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DisassociateMulticastGroupFromFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DisassociateWirelessDeviceFromFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DisassociateWirelessDeviceFromMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DisassociateWirelessDeviceFromThing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DisassociateWirelessGatewayFromCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>DisassociateWirelessGatewayFromThing</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetEventConfigurationByResourceTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetLogLevelsByResourceTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetMulticastGroupSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetNetworkAnalyzerConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetPartnerAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetResourceEventConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetResourceLogLevel</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetServiceEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetServiceProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetWirelessDeviceStatistics</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetWirelessGatewayCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetWirelessGatewayFirmwareInformation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetWirelessGatewayStatistics</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetWirelessGatewayTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>GetWirelessGatewayTaskDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListDestinations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListEventConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListFuotaTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListMulticastGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListMulticastGroupsByFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListNetworkAnalyzerConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListPartnerAccounts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListQueuedMessages</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListServiceProfiles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ListWirelessGatewayTaskDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>PutResourceLogLevel</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ResetAllResourceLogLevels</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>ResetResourceLogLevel</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>SendDataToMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>SendDataToWirelessDevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>StartBulkAssociateWirelessDeviceWithMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>StartBulkDisassociateWirelessDeviceFromMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>StartFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>StartMulticastGroupSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>TestWirelessDevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UpdateDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UpdateEventConfigurationByResourceTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UpdateFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UpdateLogLevelsByResourceTypes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UpdateMulticastGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UpdateNetworkAnalyzerConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UpdatePartnerAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse iotwireless-notimplemented">
       <td>UpdateResourceEventConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12621,82 +12621,82 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".kafka-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>BatchAssociateScramSecret</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>BatchDisassociateScramSecret</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>CreateClusterV2</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>DescribeClusterV2</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>GetCompatibleKafkaVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>ListClusterOperations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>ListClustersV2</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>ListKafkaVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>ListScramSecrets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>RebootBroker</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>UpdateBrokerCount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>UpdateBrokerStorage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>UpdateBrokerType</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>UpdateConnectivity</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>UpdateMonitoring</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kafka-notimplemented">
       <td>UpdateSecurity</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12889,42 +12889,42 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".kinesisanalytics-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>AddApplicationCloudWatchLoggingOption</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>AddApplicationInput</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>AddApplicationReferenceDataSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>DeleteApplicationCloudWatchLoggingOption</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>DeleteApplicationOutput</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>DeleteApplicationReferenceDataSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>DiscoverInputSchema</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>StartApplication</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalytics-notimplemented">
       <td>StopApplication</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12987,86 +12987,86 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".kinesisanalyticsv2-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>AddApplicationCloudWatchLoggingOption</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>AddApplicationInput</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>AddApplicationReferenceDataSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>AddApplicationVpcConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>CreateApplicationPresignedUrl</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>CreateApplicationSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>DeleteApplicationCloudWatchLoggingOption</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>DeleteApplicationOutput</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>DeleteApplicationReferenceDataSource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>DeleteApplicationSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>DeleteApplicationVpcConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>DescribeApplicationSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>DescribeApplicationVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>DiscoverInputSchema</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>ListApplicationSnapshots</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>ListApplicationVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>RollbackApplication</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>StartApplication</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>StopApplication</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kinesisanalyticsv2-notimplemented">
       <td>UpdateApplicationMaintenanceConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13237,54 +13237,54 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".kms-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>ConnectCustomKeyStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>CreateCustomKeyStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>DeleteCustomKeyStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>DeleteImportedKeyMaterial</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>DescribeCustomKeyStores</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>DisconnectCustomKeyStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>GenerateMac</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>ReplicateKey</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>UpdateCustomKeyStore</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>UpdatePrimaryRegion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>Verify</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse kms-notimplemented">
       <td>VerifyMac</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13339,146 +13339,146 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".lakeformation-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>AddLFTagsToResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>BatchGrantPermissions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>BatchRevokePermissions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>CancelTransaction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>CommitTransaction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>CreateDataCellsFilter</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>CreateLFTag</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>DeleteDataCellsFilter</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>DeleteLFTag</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>DeleteObjectsOnCancel</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>DescribeTransaction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>ExtendTransaction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetEffectivePermissionsForPath</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetLFTag</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetQueryState</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetQueryStatistics</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetResourceLFTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetTableObjects</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetTemporaryGluePartitionCredentials</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetTemporaryGlueTableCredentials</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetWorkUnitResults</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>GetWorkUnits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>ListDataCellsFilter</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>ListLFTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>ListTableStorageOptimizers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>ListTransactions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>RemoveLFTagsFromResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>SearchDatabasesByLFTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>SearchTablesByLFTags</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>StartQueryPlanning</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>StartTransaction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>UpdateLFTag</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>UpdateResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>UpdateTableObjects</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lakeformation-notimplemented">
       <td>UpdateTableStorageOptimizer</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13693,62 +13693,62 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".lambda-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>CreateFunctionUrlConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>DeleteFunctionUrlConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>DeleteProvisionedConcurrencyConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>GetAccountSettings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>GetFunctionUrlConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>GetProvisionedConcurrencyConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>InvokeAsync</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>ListFunctionEventInvokeConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>ListFunctionUrlConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>ListFunctionsByCodeSigningConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>ListProvisionedConcurrencyConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>PutProvisionedConcurrencyConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>RemoveLayerVersionPermission</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse lambda-notimplemented">
       <td>UpdateFunctionUrlConfig</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13867,74 +13867,74 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".logs-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>AssociateKmsKey</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>DeleteDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>DeleteQueryDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>DescribeDestinations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>DescribeExportTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>DescribeQueries</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>DescribeQueryDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>DisassociateKmsKey</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>GetLogGroupFields</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>GetLogRecord</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>GetQueryResults</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>PutDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>PutDestinationPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>PutQueryDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>StopQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse logs-notimplemented">
       <td>TestMetricFilter</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13969,74 +13969,74 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".mediastore-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>DeleteContainerPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>DeleteCorsPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>DeleteLifecyclePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>DeleteMetricPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>GetContainerPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>GetCorsPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>GetLifecyclePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>GetMetricPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>PutContainerPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>PutCorsPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>PutLifecyclePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>PutMetricPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>StartAccessLogging</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>StopAccessLogging</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14071,10 +14071,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".mediastore-data-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mediastore-data-notimplemented">
       <td>ListItems</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14125,18 +14125,18 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".mwaa-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mwaa-notimplemented">
       <td>CreateCliToken</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mwaa-notimplemented">
       <td>CreateWebLoginToken</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse mwaa-notimplemented">
       <td>PublishMetrics</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14327,110 +14327,110 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".neptune-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>AddRoleToDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>AddSourceIdentifierToSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>ApplyPendingMaintenanceAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>CopyDBClusterParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>CopyDBParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>CreateGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DeleteGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DescribeDBClusterSnapshotAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DescribeEngineDefaultClusterParameters</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DescribeEngineDefaultParameters</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DescribeEventCategories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DescribeEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DescribeOrderableDBInstanceOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DescribePendingMaintenanceActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>DescribeValidDBInstanceModifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>FailoverDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>FailoverGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>ModifyDBClusterSnapshotAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>ModifyEventSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>ModifyGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>PromoteReadReplicaDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>RemoveFromGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>RemoveRoleFromDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>RemoveSourceIdentifierFromSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>ResetDBParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse neptune-notimplemented">
       <td>RestoreDBClusterToPointInTime</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14497,118 +14497,118 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".opensearch-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>AcceptInboundConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>AssociatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>CancelServiceSoftwareUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>CreateOutboundConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>CreatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DeleteInboundConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DeleteOutboundConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DeletePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DescribeDomainAutoTunes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DescribeDomainChangeProgress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DescribeInboundConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DescribeInstanceTypeLimits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DescribeOutboundConnections</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DescribePackages</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DescribeReservedInstanceOfferings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DescribeReservedInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>DissociatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>GetPackageVersionHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>GetUpgradeHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>GetUpgradeStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>ListDomainsForPackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>ListInstanceTypeDetails</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>ListPackagesForDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>PurchaseReservedInstanceOffering</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>RejectInboundConnection</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>StartServiceSoftwareUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>UpdatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse opensearch-notimplemented">
       <td>UpgradeDomain</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14787,54 +14787,54 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".organizations-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>AcceptHandshake</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>CancelHandshake</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>CreateGovCloudAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>DeclineHandshake</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>DeleteOrganizationalUnit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>DescribeEffectivePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>DescribeHandshake</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>EnableAllFeatures</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>InviteAccountToOrganization</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>LeaveOrganization</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>ListHandshakesForAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse organizations-notimplemented">
       <td>ListHandshakesForOrganization</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14901,38 +14901,38 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".qldb-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse qldb-notimplemented">
       <td>CancelJournalKinesisStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse qldb-notimplemented">
       <td>GetBlock</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse qldb-notimplemented">
       <td>GetDigest</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse qldb-notimplemented">
       <td>GetRevision</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse qldb-notimplemented">
       <td>ListJournalKinesisStreamsForLedger</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse qldb-notimplemented">
       <td>ListJournalS3Exports</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse qldb-notimplemented">
       <td>ListJournalS3ExportsForLedger</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse qldb-notimplemented">
       <td>UpdateLedgerPermissionsMode</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15257,258 +15257,258 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".rds-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>AddRoleToDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>AddRoleToDBInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>AddSourceIdentifierToSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ApplyPendingMaintenanceAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>BacktrackDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>CopyDBClusterParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>CopyDBParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>CopyOptionGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>CreateCustomDBEngineVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>CreateDBProxyEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>CreateGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DeleteCustomDBEngineVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DeleteDBInstanceAutomatedBackup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DeleteDBProxyEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DeleteGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeAccountAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeDBClusterBacktracks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeDBClusterSnapshotAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeDBInstanceAutomatedBackups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeDBLogFiles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeDBProxyEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeDBProxyTargetGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeDBSnapshotAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeEngineDefaultClusterParameters</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeEngineDefaultParameters</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeEventCategories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeOrderableDBInstanceOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribePendingMaintenanceActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeReservedDBInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeReservedDBInstancesOfferings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeSourceRegions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DescribeValidDBInstanceModifications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>DownloadDBLogFilePortion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>FailoverDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>FailoverGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyCustomDBEngineVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyDBClusterSnapshotAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyDBProxy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyDBProxyEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyDBProxyTargetGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyDBSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyDBSnapshotAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyEventSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ModifyGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>PromoteReadReplica</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>PromoteReadReplicaDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>PurchaseReservedDBInstancesOffering</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RebootDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RemoveFromGlobalCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RemoveRoleFromDBCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RemoveRoleFromDBInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RemoveSourceIdentifierFromSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>ResetDBParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RestoreDBClusterFromS3</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RestoreDBClusterToPointInTime</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RestoreDBInstanceFromS3</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RestoreDBInstanceToPointInTime</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>RevokeDBSecurityGroupIngress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>StartActivityStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>StartDBInstanceAutomatedBackupsReplication</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>StopActivityStream</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-notimplemented">
       <td>StopDBInstanceAutomatedBackupsReplication</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15543,14 +15543,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".rds-data-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-data-notimplemented">
       <td>BatchExecuteStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse rds-data-notimplemented">
       <td>RollbackTransaction</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15697,354 +15697,354 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".redshift-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>AcceptReservedNodeExchange</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>AddPartner</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>AssociateDataShareConsumer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>AuthorizeDataShare</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>AuthorizeEndpointAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>AuthorizeSnapshotAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>BatchDeleteClusterSnapshots</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>BatchModifyClusterSnapshots</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CancelResize</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CopyClusterSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CreateAuthenticationProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CreateEndpointAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CreateEventSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CreateHsmClientCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CreateHsmConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CreateScheduledAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CreateSnapshotSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>CreateUsageLimit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeauthorizeDataShare</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeleteAuthenticationProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeleteEndpointAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeleteEventSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeleteHsmClientCertificate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeleteHsmConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeletePartner</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeleteScheduledAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeleteSnapshotSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DeleteUsageLimit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeAccountAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeAuthenticationProfiles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeClusterDbRevisions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeClusterTracks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeClusterVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeDataShares</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeDataSharesForConsumer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeDataSharesForProducer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeEndpointAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeEndpointAuthorization</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeEventCategories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeEventSubscriptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeHsmClientCertificates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeHsmConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeLoggingStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeNodeConfigurationOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeOrderableClusterOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribePartners</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeReservedNodeExchangeStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeReservedNodeOfferings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeReservedNodes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeResize</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeScheduledActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeSnapshotSchedules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeStorage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeTableRestoreStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DescribeUsageLimits</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DisableLogging</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>DisassociateDataShareConsumer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>EnableLogging</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>GetClusterCredentialsWithIAM</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>GetReservedNodeExchangeConfigurationOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>GetReservedNodeExchangeOfferings</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyAquaConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyAuthenticationProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyClusterDbRevision</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyClusterIamRoles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyClusterMaintenance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyClusterParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyClusterSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyClusterSnapshotSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyClusterSubnetGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyEndpointAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyEventSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyScheduledAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifySnapshotSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ModifyUsageLimit</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>PurchaseReservedNodeOffering</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>RebootCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>RejectDataShare</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ResetClusterParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>ResizeCluster</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>RestoreTableFromClusterSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>RevokeClusterSecurityGroupIngress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>RevokeEndpointAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>RevokeSnapshotAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>RotateEncryptionKey</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-notimplemented">
       <td>UpdatePartnerStatus</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16083,26 +16083,26 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".redshift-data-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-data-notimplemented">
       <td>BatchExecuteStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-data-notimplemented">
       <td>CancelStatement</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-data-notimplemented">
       <td>ListSchemas</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-data-notimplemented">
       <td>ListStatements</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse redshift-data-notimplemented">
       <td>ListTables</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16177,14 +16177,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".resource-groups-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse resource-groups-notimplemented">
       <td>Tag</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse resource-groups-notimplemented">
       <td>Untag</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16215,26 +16215,26 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".resourcegroupstaggingapi-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse resourcegroupstaggingapi-notimplemented">
       <td>DescribeReportCreation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse resourcegroupstaggingapi-notimplemented">
       <td>GetComplianceSummary</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse resourcegroupstaggingapi-notimplemented">
       <td>StartReportCreation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse resourcegroupstaggingapi-notimplemented">
       <td>TagResources</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse resourcegroupstaggingapi-notimplemented">
       <td>UntagResources</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16615,190 +16615,190 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".route53resolver-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>AssociateFirewallRuleGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>AssociateResolverEndpointIpAddress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>AssociateResolverQueryLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>CreateFirewallDomainList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>CreateFirewallRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>CreateFirewallRuleGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>CreateResolverQueryLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>DeleteFirewallDomainList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>DeleteFirewallRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>DeleteFirewallRuleGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>DeleteResolverQueryLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>DisassociateFirewallRuleGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>DisassociateResolverEndpointIpAddress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>DisassociateResolverQueryLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetFirewallConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetFirewallDomainList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetFirewallRuleGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetFirewallRuleGroupAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetFirewallRuleGroupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetResolverConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetResolverDnssecConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetResolverQueryLogConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetResolverQueryLogConfigAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetResolverQueryLogConfigPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>GetResolverRulePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ImportFirewallDomains</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListFirewallConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListFirewallDomainLists</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListFirewallDomains</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListFirewallRuleGroupAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListFirewallRuleGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListFirewallRules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListResolverConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListResolverDnssecConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListResolverQueryLogConfigAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>ListResolverQueryLogConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>PutFirewallRuleGroupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>PutResolverQueryLogConfigPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>PutResolverRulePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>UpdateFirewallConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>UpdateFirewallDomains</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>UpdateFirewallRule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>UpdateFirewallRuleGroupAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>UpdateResolverConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>UpdateResolverDnssecConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse route53resolver-notimplemented">
       <td>UpdateResolverRule</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17637,846 +17637,846 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".sagemaker-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>AddAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>BatchDescribeModelPackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateAlgorithm</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateApp</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateAppImageConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateArtifact</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateAutoMLJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateCodeRepository</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateCompilationJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateContext</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateDataQualityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateDeviceFleet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateEdgePackagingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateFeatureGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateFlowDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateHumanTaskUi</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateHyperParameterTuningJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateImageVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateInferenceRecommendationsJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateLabelingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateModelBiasJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateModelExplainabilityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateModelPackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateModelPackageGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateModelQualityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateMonitoringSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreatePipeline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreatePresignedDomainUrl</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreatePresignedNotebookInstanceUrl</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateProject</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateStudioLifecycleConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateTransformJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateUserProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateWorkforce</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>CreateWorkteam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteAlgorithm</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteApp</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteAppImageConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteArtifact</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteCodeRepository</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteContext</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteDataQualityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteDeviceFleet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteFeatureGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteFlowDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteHumanTaskUi</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteImageVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteModelBiasJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteModelExplainabilityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteModelPackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteModelPackageGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteModelPackageGroupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteModelQualityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteMonitoringSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeletePipeline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteProject</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteStudioLifecycleConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteUserProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteWorkforce</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeleteWorkteam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DeregisterDevices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeAlgorithm</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeApp</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeAppImageConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeArtifact</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeAutoMLJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeCodeRepository</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeCompilationJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeContext</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeDataQualityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeDevice</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeDeviceFleet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeEdgePackagingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeFeatureGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeFeatureMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeFlowDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeHumanTaskUi</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeHyperParameterTuningJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeImageVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeInferenceRecommendationsJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeLabelingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeLineageGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeModelBiasJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeModelExplainabilityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeModelPackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeModelPackageGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeModelQualityJobDefinition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeMonitoringSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribePipeline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribePipelineDefinitionForExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribePipelineExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeProject</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeStudioLifecycleConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeSubscribedWorkteam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeTransformJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeUserProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeWorkforce</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DescribeWorkteam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>DisableSagemakerServicecatalogPortfolio</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>EnableSagemakerServicecatalogPortfolio</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>GetDeviceFleetReport</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>GetLineageGroupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>GetModelPackageGroupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>GetSagemakerServicecatalogPortfolioStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>GetSearchSuggestions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListActions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListAlgorithms</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListAppImageConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListApps</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListArtifacts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListAutoMLJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListCandidatesForAutoMLJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListCodeRepositories</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListCompilationJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListContexts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListDataQualityJobDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListDeviceFleets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListDevices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListDomains</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListEdgePackagingJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListEndpointConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListFeatureGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListFlowDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListHumanTaskUis</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListHyperParameterTuningJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListImageVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListImages</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListInferenceRecommendationsJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListLabelingJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListLabelingJobsForWorkteam</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListLineageGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListModelBiasJobDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListModelExplainabilityJobDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListModelMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListModelPackageGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListModelPackages</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListModelQualityJobDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListMonitoringExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListMonitoringSchedules</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListNotebookInstanceLifecycleConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListNotebookInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListPipelineExecutionSteps</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListPipelineExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListPipelineParametersForExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListPipelines</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListProjects</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListStudioLifecycleConfigs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListSubscribedWorkteams</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListTrainingJobsForHyperParameterTuningJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListTransformJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListUserProfiles</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListWorkforces</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>ListWorkteams</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>PutModelPackageGroupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>QueryLineage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>RegisterDevices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>RenderUiTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>RetryPipelineExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>SendPipelineExecutionStepFailure</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>SendPipelineExecutionStepSuccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StartMonitoringSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StartPipelineExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopAutoMLJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopCompilationJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopEdgePackagingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopHyperParameterTuningJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopInferenceRecommendationsJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopLabelingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopMonitoringSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopPipelineExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopProcessingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopTrainingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>StopTransformJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateAction</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateAppImageConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateArtifact</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateCodeRepository</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateContext</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateDeviceFleet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateDevices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateDomain</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateExperiment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateFeatureGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateFeatureMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateImage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateModelPackage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateMonitoringSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateNotebookInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateNotebookInstanceLifecycleConfig</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdatePipeline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdatePipelineExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateProject</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateTrainingJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateTrial</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateTrialComponent</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateUserProfile</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateWorkforce</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sagemaker-notimplemented">
       <td>UpdateWorkteam</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18563,26 +18563,26 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".secretsmanager-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse secretsmanager-notimplemented">
       <td>CancelRotateSecret</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse secretsmanager-notimplemented">
       <td>RemoveRegionsFromReplication</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse secretsmanager-notimplemented">
       <td>ReplicateSecretToRegions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse secretsmanager-notimplemented">
       <td>StopReplicationToReplica</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse secretsmanager-notimplemented">
       <td>ValidateResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18633,30 +18633,30 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".serverlessrepo-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse serverlessrepo-notimplemented">
       <td>GetApplication</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse serverlessrepo-notimplemented">
       <td>GetApplicationPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse serverlessrepo-notimplemented">
       <td>ListApplicationDependencies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse serverlessrepo-notimplemented">
       <td>PutApplicationPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse serverlessrepo-notimplemented">
       <td>UnshareApplication</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse serverlessrepo-notimplemented">
       <td>UpdateApplication</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18751,34 +18751,34 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".servicediscovery-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse servicediscovery-notimplemented">
       <td>DiscoverInstances</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse servicediscovery-notimplemented">
       <td>GetInstancesHealthStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse servicediscovery-notimplemented">
       <td>ListOperations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse servicediscovery-notimplemented">
       <td>UpdateHttpNamespace</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse servicediscovery-notimplemented">
       <td>UpdateInstanceCustomHealthStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse servicediscovery-notimplemented">
       <td>UpdatePrivateDnsNamespace</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse servicediscovery-notimplemented">
       <td>UpdatePublicDnsNamespace</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18945,142 +18945,142 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".ses-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>CloneReceiptRuleSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>CreateConfigurationSetTrackingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>CreateCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>CreateReceiptFilter</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>DeleteConfigurationSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>DeleteConfigurationSetEventDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>DeleteConfigurationSetTrackingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>DeleteCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>DeleteIdentityPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>DeleteReceiptFilter</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>DeleteVerifiedEmailAddress</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>DescribeConfigurationSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>GetAccountSendingEnabled</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>GetCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>GetIdentityDkimAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>GetIdentityPolicies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>ListConfigurationSets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>ListCustomVerificationEmailTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>ListIdentityPolicies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>ListReceiptFilters</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>PutConfigurationSetDeliveryOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>PutIdentityPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>ReorderReceiptRuleSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>SendBounce</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>SendCustomVerificationEmail</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>SetIdentityDkimEnabled</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>SetIdentityHeadersInNotificationsEnabled</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>SetReceiptRulePosition</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>UpdateAccountSendingEnabled</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>UpdateConfigurationSetEventDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>UpdateConfigurationSetReputationMetricsEnabled</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>UpdateConfigurationSetSendingEnabled</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>UpdateConfigurationSetTrackingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ses-notimplemented">
       <td>UpdateCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19151,278 +19151,278 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".sesv2-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateConfigurationSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateConfigurationSetEventDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateContact</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateContactList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateDedicatedIpPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateDeliverabilityTestReport</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateEmailIdentityPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>CreateImportJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>DeleteConfigurationSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>DeleteConfigurationSetEventDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>DeleteContact</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>DeleteContactList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>DeleteCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>DeleteDedicatedIpPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>DeleteEmailIdentityPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>DeleteSuppressedDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetAccount</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetBlacklistReports</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetConfigurationSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetConfigurationSetEventDestinations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetContact</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetContactList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetDedicatedIp</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetDedicatedIps</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetDeliverabilityDashboardOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetDeliverabilityTestReport</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetDomainDeliverabilityCampaign</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetEmailIdentityPolicies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetImportJob</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>GetSuppressedDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>ListConfigurationSets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>ListContactLists</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>ListContacts</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>ListCustomVerificationEmailTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>ListDedicatedIpPools</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>ListDeliverabilityTestReports</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>ListImportJobs</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutAccountDedicatedIpWarmupAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutAccountDetails</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutAccountSendingAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutAccountSuppressionAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutConfigurationSetDeliveryOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutConfigurationSetReputationOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutConfigurationSetSendingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutConfigurationSetSuppressionOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutConfigurationSetTrackingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutDedicatedIpInPool</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutDedicatedIpWarmupAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutDeliverabilityDashboardOption</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutEmailIdentityConfigurationSetAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutEmailIdentityDkimAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutEmailIdentityFeedbackAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutEmailIdentityMailFromAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>PutSuppressedDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>SendCustomVerificationEmail</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>TestRenderEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>UpdateConfigurationSetEventDestination</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>UpdateContact</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>UpdateContactList</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>UpdateCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>UpdateEmailIdentityPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sesv2-notimplemented">
       <td>UpdateEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19577,30 +19577,30 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".sns-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sns-notimplemented">
       <td>CreateSMSSandboxPhoneNumber</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sns-notimplemented">
       <td>DeleteSMSSandboxPhoneNumber</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sns-notimplemented">
       <td>GetSMSSandboxAccountStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sns-notimplemented">
       <td>ListOriginationNumbers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sns-notimplemented">
       <td>ListSMSSandboxPhoneNumbers</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sns-notimplemented">
       <td>VerifySMSSandboxPhoneNumber</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19837,422 +19837,422 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".ssm-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>AssociateOpsItemRelatedItem</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>CancelMaintenanceWindowExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>CreateActivation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>CreateAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>CreateAssociationBatch</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>CreateOpsItem</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>CreateOpsMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>CreatePatchBaseline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>CreateResourceDataSync</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeleteActivation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeleteAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeleteInventory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeleteOpsMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeletePatchBaseline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeleteResourceDataSync</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeregisterManagedInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeregisterPatchBaselineForPatchGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeregisterTargetFromMaintenanceWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DeregisterTaskFromMaintenanceWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeActivations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeAssociationExecutionTargets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeAssociationExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeAutomationExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeAutomationStepExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeAvailablePatches</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeEffectiveInstanceAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeEffectivePatchesForPatchBaseline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeInstanceAssociationsStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeInstancePatchStates</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeInstancePatchStatesForPatchGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeInstancePatches</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeInventoryDeletions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeMaintenanceWindowExecutionTaskInvocations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeMaintenanceWindowExecutionTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeMaintenanceWindowExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeMaintenanceWindowSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeMaintenanceWindowTargets</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeMaintenanceWindowTasks</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeMaintenanceWindowsForTarget</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeOpsItems</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribePatchBaselines</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribePatchGroupState</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribePatchGroups</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribePatchProperties</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DescribeSessions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>DisassociateOpsItemRelatedItem</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetAutomationExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetCalendarState</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetConnectionStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetDefaultPatchBaseline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetDeployablePatchSnapshotForInstance</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetInventory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetInventorySchema</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetMaintenanceWindowExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetMaintenanceWindowExecutionTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetMaintenanceWindowExecutionTaskInvocation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetMaintenanceWindowTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetOpsItem</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetOpsMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetOpsSummary</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetPatchBaseline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetPatchBaselineForPatchGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>GetServiceSetting</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListAssociationVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListAssociations</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListComplianceItems</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListComplianceSummaries</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListDocumentMetadataHistory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListDocumentVersions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListInventoryEntries</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListOpsItemEvents</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListOpsItemRelatedItems</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListOpsMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListResourceComplianceSummaries</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ListResourceDataSync</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>PutComplianceItems</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>PutInventory</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>RegisterDefaultPatchBaseline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>RegisterPatchBaselineForPatchGroup</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>RegisterTargetWithMaintenanceWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>RegisterTaskWithMaintenanceWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ResetServiceSetting</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>ResumeSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>SendAutomationSignal</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>StartAssociationsOnce</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>StartAutomationExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>StartChangeRequestExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>StartSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>StopAutomationExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>TerminateSession</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UnlabelParameterVersion</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateAssociationStatus</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateDocumentMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateMaintenanceWindow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateMaintenanceWindowTarget</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateMaintenanceWindowTask</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateManagedInstanceRole</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateOpsItem</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateOpsMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdatePatchBaseline</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateResourceDataSync</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse ssm-notimplemented">
       <td>UpdateServiceSetting</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20359,10 +20359,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".stepfunctions-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse stepfunctions-notimplemented">
       <td>StartSyncExecution</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20405,14 +20405,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".sts-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sts-notimplemented">
       <td>DecodeAuthorizationMessage</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse sts-notimplemented">
       <td>GetAccessKeyInfo</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20451,42 +20451,42 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".support-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>AddAttachmentsToSet</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>AddCommunicationToCase</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>DescribeAttachment</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>DescribeCommunications</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>DescribeServices</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>DescribeSeverityLevels</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>DescribeTrustedAdvisorCheckRefreshStatuses</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>DescribeTrustedAdvisorCheckResult</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse support-notimplemented">
       <td>DescribeTrustedAdvisorCheckSummaries</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20625,34 +20625,34 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".swf-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse swf-notimplemented">
       <td>CountClosedWorkflowExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse swf-notimplemented">
       <td>CountOpenWorkflowExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse swf-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse swf-notimplemented">
       <td>RequestCancelWorkflowExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse swf-notimplemented">
       <td>RespondActivityTaskCanceled</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse swf-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse swf-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20675,54 +20675,54 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".timestream-query-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>CancelQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>CreateScheduledQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>DeleteScheduledQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>DescribeEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>DescribeScheduledQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>ExecuteScheduledQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>ListScheduledQueries</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>PrepareQuery</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-query-notimplemented">
       <td>UpdateScheduledQuery</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20777,30 +20777,30 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".timestream-write-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-write-notimplemented">
       <td>DescribeEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-write-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-write-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-write-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-write-notimplemented">
       <td>UpdateDatabase</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse timestream-write-notimplemented">
       <td>UpdateTable</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20863,90 +20863,90 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td><a data-toggle="collapse" href=".acm-notimplemented">Show more</a></td>
+      <td><a data-toggle="collapse" href=".transfer-notimplemented">Show more</a></td>
       <td style="text-align:right"></td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>CreateAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>CreateWorkflow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>DeleteAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>DeleteWorkflow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>DescribeAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>DescribeExecution</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>DescribeSecurityPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>DescribeWorkflow</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>ListAccesses</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>ListExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>ListSecurityPolicies</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>ListWorkflows</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>SendWorkflowStepState</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>StartServer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>StopServer</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>TagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>TestIdentityProvider</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>UpdateAccess</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr class="collapse acm-notimplemented">
+    <tr class="collapse transfer-notimplemented">
       <td>UpdateServer</td>
        <td style="text-align:right">-</td>
     </tr>
