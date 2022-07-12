@@ -296,13 +296,14 @@ In the coverage table below, the features are marked with their respective avail
 | Updates                                                            | \-             |                 |       |
 | [**ElastiCache** (Pro)]({{< ref "elasticache" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#elasticache" >}}) |       |
 | Cache Clusters (Memcached)                                         | \-             |                 |       |
-| Cache Parameter Groups                                             | ⭐⭐⭐⭐       |                 |       |
-| Cache Security Groups                                              | ⭐⭐⭐⭐       |                 |       |
-| Cache Subnet Groups                                                | ⭐⭐⭐⭐       |                 |       |
+| Cache Clusters (Redis)                                             | ⭐⭐⭐         | Emulated       |       |
+| Cache Parameter Groups                                             | ⭐⭐⭐⭐       | Emulated       |       |
+| Cache Security Groups                                              | ⭐⭐⭐⭐       | CRUD           |       |
+| Cache Subnet Groups                                                | ⭐⭐⭐⭐       | CRUD           |       |
 | Global Replication Groups                                          | \-             |                 |       |
-| Replication Groups                                                 | ⭐⭐⭐⭐       |                 |       |
+| Replication Groups                                                 | ⭐⭐⭐⭐       | Emulated       |       |
 | Snapshots                                                          | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD           |       |
 | Users / User Groups                                                | \-             |                 |       |
 | **Elastic Beanstalk** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#elasticbeanstalk" >}}) |                 |       |
 | **ELB (Elastic Load Balancing)** (Pro)                             | [🔍]({{< ref "../localstack/metric-coverage/#elb" >}}) |                 |       |
@@ -407,11 +408,11 @@ In the coverage table below, the features are marked with their respective avail
 | Things                                                             | ⭐⭐⭐         | CRUD            |       |
 | Topic Rules                                                        | ⭐⭐⭐         | CRUD            |       |
 | [**Kafka (MSK - Managed Streaming for Kafka)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro) | [🔍]({{< ref "../localstack/metric-coverage/#kafka" >}}) |                 |       |
-| Brokers                                                            | ⭐⭐           |                 |       |
-| Cluster Operations                                                 | ⭐⭐           |                 |       |
-| Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
-| Configurations                                                     | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Brokers                                                            | ⭐⭐           | Emulated        |       |
+| Cluster Operations                                                 | ⭐⭐           | Emulated        |       |
+| Clusters                                                           | ⭐⭐⭐⭐       | Emulated        | Single node clusters |
+| Configurations                                                     | ⭐⭐⭐⭐       | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | [**Kinesis**]({{< ref "kinesis" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#kinesis" >}}) |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       | Emulated                |       |
 | Split / Merge Shards                                               | ⭐⭐⭐⭐       | Emulated                |       |
@@ -535,26 +536,34 @@ In the coverage table below, the features are marked with their respective avail
 | Traffic Policies                                                   | ⭐⭐⭐         |                 |       |
 | **Route53 Resolver**                                               | [🔍]({{< ref "../localstack/metric-coverage/#route53resolver" >}}) |                |       |
 | [**S3**]({{< ref "s3" >}})                                         | [🔍]({{< ref "../localstack/metric-coverage/#s3" >}}) |                 |       |
-| Bucket ACLs                                                        | ⭐⭐⭐         |                 |       |
-| Bucket CORS                                                        | ⭐⭐⭐         |                 |       |
-| Bucket Encryptions                                                 | ⭐⭐⭐         |                 |       |
-| Bucket Lifecycles                                                  | ⭐⭐⭐         |                 |       |
-| Bucket Loggings                                                    | ⭐⭐⭐         |                 |       |
-| Bucket Metrics Configurations                                      | ⭐⭐⭐         |                 |       |
-| Bucket Notifications                                               | ⭐⭐⭐         |                 |       |
-| Bucket Ownership Controls                                          | ⭐⭐⭐         |                 |       |
-| Bucket Policies                                                    | ⭐⭐⭐         |                 |       |
-| Bucket Replications                                                | ⭐⭐⭐         |                 |       |
-| Bucket Request Payments                                            | ⭐⭐⭐         |                 |       |
-| Bucket Versionings                                                 | ⭐⭐⭐         |                 |       |
-| Bucket Websites                                                    | ⭐⭐⭐         |                 |       |
-| Buckets                                                            | ⭐⭐⭐⭐       |                 |       |
-| Object Retentions                                                  | ⭐⭐           |                 |       |
-| Object Versions                                                    | ⭐⭐⭐⭐       |                 |       |
-| Objects                                                            | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Upload/Download Files                                              | ⭐⭐⭐⭐       |                 |       |
+| Bucket ACLs                                                        | ⭐⭐⭐         | Emulated       |       |
+| Bucket CORS                                                        | ⭐⭐⭐         | Emulated       |       |
+| Bucket Encryptions                                                 | ⭐⭐⭐         | Emulated       |       |
+| Bucket Lifecycles                                                  | ⭐⭐⭐         | Emulated       |       |
+| Bucket Loggings                                                    | ⭐⭐⭐         | Emulated       |       |
+| Bucket Metrics Configurations                                      | ⭐⭐⭐         | Emulated       |       |
+| Bucket Notifications                                               | ⭐⭐⭐         | Emulated       | Supported notification targets: SQS, SNS, Lambda; Supported notification events: ObjectCreated, ObjectRemoved, ObjectTagging     |
+| Bucket Ownership Controls                                          | ⭐⭐⭐         | Emulated       |       |
+| Bucket Policies                                                    | ⭐⭐⭐         | Emulated       |       |
+| Bucket Replications                                                | ⭐⭐⭐         | Emulated       |       |
+| Bucket Request Payments                                            | ⭐⭐⭐         | Emulated       |       |
+| Bucket Versionings                                                 | ⭐⭐⭐         | Emulated       |       |
+| Bucket Websites                                                    | ⭐⭐⭐         | Emulated       |       |
+| Buckets                                                            | ⭐⭐⭐⭐       | Emulated       |       |
+| Object Retentions                                                  | ⭐⭐           | Emulated       |       |
+| Object Versions                                                    | ⭐⭐⭐⭐       | Emulated       |       |
+| Objects                                                            | ⭐⭐⭐⭐       | Emulated       |       |
+| Presigned URLs                                                     | ⭐⭐⭐⭐       | Emulated       |       |
+| Tags                                                               | ⭐⭐⭐⭐       | Emulated       |       |
+| Upload/Download Files                                              | ⭐⭐⭐⭐       | Emulated       |       |
 | **S3 Control**                                                     | [🔍]({{< ref "../localstack/metric-coverage/#s3control" >}}) |                 |       |
+| Access Point Policies                                              | ⭐⭐           | CRUD            |       |
+| Access Points                                                      | ⭐⭐           | CRUD            |       |
+| Jobs                                                               | \-             |                 |       |
+| Lifecycle configurations                                           | \-             |                 |       |
+| Multi-region Access Points                                         | \-             |                 |       |
+| Public Access Blocks                                               | ⭐⭐           | CRUD            |       |
+| Storage Lens                                                       | \-             |                 |       |
 | [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     | [🔍]({{< ref "../localstack/metric-coverage/#sagemaker" >}}) |                 |       |
 | Actions                                                            | \-             |                 |       |
 | Algorithms                                                         | \-             |                 |       |
@@ -622,11 +631,14 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐       |   CRUD              |       |
 | Topics                                                             | ⭐⭐⭐⭐       |   CRUD              |       |
 | [**SQS**]({{< ref "sqs" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#sqs" >}}) |                 |       |
-| Message Visibility                                                 | ⭐⭐⭐⭐       |                 |       |
-| Messages                                                           | ⭐⭐⭐⭐       |                 |       |
-| Permission                                                         | ⭐⭐⭐         |                 |       |
-| Queues                                                             | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| FIFO Queues                                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| Message Deduplication                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Message Visibility                                                 | ⭐⭐⭐⭐⭐     | Emulated        |       |
+| Messages                                                           | ⭐⭐⭐⭐⭐     | Emulated        |       |
+| Permission                                                         | ⭐⭐⭐         | CRUD            |       |
+| Query API                                                          | ⭐⭐⭐⭐       | Emulated        |       |
+| Standard Queues                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | [**SSM**]({{< ref "systems-manager" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#ssm" >}}) |                 |       |
 | Associations                                                       | ⭐⭐⭐         | CRUD                |       |
 | Calendar States                                                    | ⭐⭐           | CRUD                |       |
