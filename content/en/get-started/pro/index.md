@@ -53,7 +53,7 @@ When starting LocalStack using a `docker run` command, you have to specify the A
 $ docker run \
   --rm -it \
   -p 4566:4566 \
-  -p 4571:4571 \
+  -p 4510-4559:4510-4559 \
   -e LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:- } \
   localstack/localstack
 {{< / command >}}
