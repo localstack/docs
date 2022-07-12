@@ -2,11 +2,8 @@
 {{ $cover := and (.HasShortcode "blocks/cover") (not .Site.Params.ui.navbar_translucent_over_cover_disable) }}
 <nav class="js-navbar-scroll navbar navbar-expand {{ if $cover}} td-navbar-cover {{ end }}flex-column flex-md-row td-navbar">
     <div class="navbar-brand">
-        <a class="brand-link" href="{{ .Site.Params.brand_link }}">
+        <a class="brand-link" href="{{ .Site.Home.RelPermalink }}">
             <span class="navbar-logo">{{ if .Site.Params.ui.navbar_logo }}{{ with resources.Get "icons/logo.svg" }}{{ ( . | minify).Content | safeHTML }}{{ end }}{{ end }}</span>
-        </a>
-        <a class="home-link" href="{{ .Site.Home.RelPermalink }}">
-            <span class="text-lowercase font-weight-bold">{{ .Site.Title }}</span>
         </a>
     </div>
 
