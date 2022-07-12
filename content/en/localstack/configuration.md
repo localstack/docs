@@ -9,14 +9,14 @@ LocalStack allows for many different configuration options.
 You can pass these via environment variables, e.g., like the following:
 
 {{< command >}}
-$ SERVICES=kinesis,lambda,sqs,dynamodb DEBUG=1 localstack start
+$ DEBUG=1 localstack start
 {{< / command >}}
 
 ## Core
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SERVICES` | `kinesis,lambda,sqs`,`serverless`| Comma-separated list of [AWS CLI service names][1] or shorthands to start up. |
+| `SERVICES` | `kinesis,lambda,sqs`,`serverless`| Only works with `EAGER_SERVICE_LOADING=1`. Comma-separated list of [AWS CLI service names][1] or shorthands to start. Per default, all services are loaded and started on the first request for that service. |
 | `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to.|
 | `EDGE_PORT` | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
 | `HOSTNAME`| `localhost` (default) | Name of the host to expose the services internally. For framework-internal communication, e.g., services are started in different containers using docker-compose.|

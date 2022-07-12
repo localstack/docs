@@ -41,8 +41,6 @@ $ awslocal s3api put-object --bucket sample-bucket --key index.html --body index
 }
 {{< / command >}}
 
- When working with the `SERVICES` environment variable, please make sure to include `s3` in the list of services.
-For instance, to load the S3, SQS, and Kinesis service you'd pass the variable as `SERVICES=s3,sqs,kinesis`.
 
 {{% alert title="Path-Style Requests versus Virtual Hosted-Style Requests " color="info" %}}
 Just like AWS, LocalStack differentiates between [Path-Style and Virtual Hosted-Style Requests](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) depending on your `Host` header for a request.
