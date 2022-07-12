@@ -70,7 +70,7 @@ $ awslocal sts get-caller-identity
 
 Since 1.0, our policy engine logs output related to failed policy evaluation to the LocalStack log.
 There, you can see which additional policies are necessary for your request to succeed.
-You need to enable `DEBUG=1` to see this log messages.
+You need to enable `DEBUG=1` to see these log messages.
 
 For example, let us try to add a policy for creating Lambda functions, but only pass `lambda:CreateFunction` as allowed action - `iam:PassRole` (which is also required) is missing:
 
