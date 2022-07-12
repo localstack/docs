@@ -10,39 +10,85 @@ description: >
 
 ## acm ##
 
-| Operation                              | Implemented |
-| -------------------------------------- | ----------: |
-| AddTagsToCertificate                   | ✅         |
-| DeleteCertificate [✨](#misc "covered by our integration test suite")                    | ✅         |
-| DescribeCertificate [✨](#misc "covered by our integration test suite")                  | ✅         |
-| ExportCertificate                      | ✅         |
-| GetCertificate                         | ✅         |
-| ImportCertificate [✨](#misc "covered by our integration test suite")                    | ✅         |
-| ListCertificates [✨](#misc "covered by our integration test suite")                     | ✅         |
-| ListTagsForCertificate [✨](#misc "covered by our integration test suite")               | ✅         |
-| RemoveTagsFromCertificate              | ✅         |
-| RequestCertificate [✨](#misc "covered by our integration test suite")                   | ✅         |
-| ResendValidationEmail                  | ✅         |
-| {{< details "Coming soon" >}}
-* GetAccountConfiguration
-* PutAccountConfiguration
-* RenewCertificate
-* UpdateCertificateOptions
-{{< /details >}} | |
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th style="text-align:right">Implemented</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AddTagsToCertificate</td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>DeleteCertificate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>DescribeCertificate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>ExportCertificate</td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>GetCertificate</td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>ImportCertificate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>ListCertificates <a href="#misc" title="covered by our integration test suite">✨</a></td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>ListTagsForCertificate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>RemoveTagsFromCertificate</td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>RequestCertificate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td>ResendValidationEmail</td>
+<td style="text-align:right">✅</td>
+</tr>
+<tr>
+<td><a data-toggle="collapse" href=".acm-notimplemented">Show missing</a></td>
+<td style="text-align:right"></td>
+</tr>
+<tr class="collapse acm-notimplemented">
+<td>GetAccountConfiguration</td>
+<td style="text-align:right">-</td>
+</tr>
+<tr class="collapse acm-notimplemented">
+<td>PutAccountConfiguration</td>
+<td style="text-align:right">-</td>
+</tr>
+<tr class="collapse acm-notimplemented">
+<td>RenewCertificate</td>
+<td style="text-align:right">-</td>
+</tr>
+<tr class="collapse acm-notimplemented">
+<td>UpdateCertificateOptions</td>
+<td style="text-align:right">-</td>
+</tr>
+</tbody>
+</table>
 
-
-<!-- {{< details "Coming soon" >}}
-| Operation                              | Implemented |
-| -------------------------------------- | ----------: |
-| GetAccountConfiguration                | -         |
-| PutAccountConfiguration                | -         |
-| RenewCertificate                       | -         |
-| UpdateCertificateOptions                       | -         |
-
-{{< /details >}} -->
 
 ## Misc ##
 
 Endpoints marked with ✨ are covered by our integration test suite.
+
 
 </div>
