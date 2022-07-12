@@ -86,9 +86,6 @@ $ curl localhost:4566/health | jq
 
 If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack Pro or Enterprise has started successfully.
 
-**Note**: This only works if your `SERVICES` config variable contains LocalStack Pro services.
-If in doubt, try starting LocalStack without this variable set, so all services can start.
-
 Otherwise, please check our collected most [common activation issues](#common-activation-issues).
 
 ## Common activation issues

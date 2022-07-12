@@ -38,12 +38,7 @@ $ arclocal init
 
 ### Deployment
 
-Now you need to start LocalStack. For Architect to work properly, you need to start the following services in LocalStack (using the `SERVICES` [configuration option]({{< ref "configuration.md" >}})):
- - s3 
- - ssm
- - cloudformation
-
-After LocalStack has started you can deploy your Architect setup via:
+Now you need to start LocalStack. After LocalStack has started you can deploy your Architect setup via:
 {{< command >}}
 $ arclocal deploy
 {{< / command >}}
