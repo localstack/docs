@@ -559,17 +559,23 @@ In the coverage table below, the features are marked with their respective avail
 | Usage Limits                                                       | ⭐⭐           |                 |       |
 | **Redshift Data** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#redshift-data" >}}) |                 |       |
 | **Resource Groups**                                                | [🔍]({{< ref "../localstack/metric-coverage/#resource-groups" >}}) |                 |       |
+| Resources                                                          | ⭐⭐⭐         | CRUD                |       |
+| Groups                                                             | ⭐⭐⭐         | CRUD                |       |
+| Group Configurations                                               | ⭐⭐⭐         | CRUD                |       |
+| Tags                                                               | ⭐⭐           | CRUD                |       |
 | **Resource Groups Tagging API**                                    | [🔍]({{< ref "../localstack/metric-coverage/#resourcegroupstaggingapi" >}})  |                 |       |
+| Reports                                                            | \-             |                 |       |
+| Tags                                                               | ⭐⭐           | CRUD                |       |
 | [**Route53**]({{< ref "route53" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#route53" >}}) |                 |       |
-| DNS Server Integration (Pro)                                       | ⭐⭐⭐⭐       |                 |       |
-| Geo Locations                                                      | \-             |                 |       |
-| Health Checks                                                      | ⭐⭐           |                 |       |
-| Hosted Zones                                                       | ⭐⭐⭐⭐       |                 |       |
-| Query Logging Configs                                              | \-             |                 |       |
-| Resource Record Sets                                               | ⭐⭐⭐⭐       |                 |       |
-| Reusable Delegation Sets                                           | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Traffic Policies                                                   | ⭐⭐⭐         |                 |       |
+| DNS Server Integration (Pro)                                       | ⭐⭐⭐⭐       | Emulated       |       |
+| Geo Locations                                                      | \-             |                |       |
+| Health Checks                                                      | ⭐⭐           | CRUD           |       |
+| Hosted Zones                                                       | ⭐⭐⭐⭐       | CRUD           |       |
+| Query Logging Configs                                              | \-             |                |       |
+| Resource Record Sets                                               | ⭐⭐⭐⭐       | CRUD           |       |
+| Reusable Delegation Sets                                           | ⭐⭐⭐         | CRUD           |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD           |       |
+| Traffic Policies                                                   | ⭐⭐⭐         | CRUD           |       |
 | **Route53 Resolver**                                               | [🔍]({{< ref "../localstack/metric-coverage/#route53resolver" >}}) |                |       |
 | [**S3**]({{< ref "s3" >}})                                         | [🔍]({{< ref "../localstack/metric-coverage/#s3" >}}) |                 |       |
 | Bucket ACLs                                                        | ⭐⭐⭐         | Emulated       |       |
