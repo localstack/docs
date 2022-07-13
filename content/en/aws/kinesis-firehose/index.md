@@ -21,15 +21,15 @@ We will assume LocalStack is already [started correctly]({{< ref "get-started" >
 First we will create our Elasticsearch domain:
 
 {{< command >}}
-$ awslocal es create-elasticsearch-domain --domain-name es_local
+$ awslocal es create-elasticsearch-domain --domain-name es-local
 {
   "DomainStatus": {
-    "DomainId": "000000000000/es_local",
-    "DomainName": "es_local",
-    "ARN": "arn:aws:es:us-east-1:000000000000:domain/es_local",
+    "DomainId": "000000000000/es-local",
+    "DomainName": "es-local",
+    "ARN": "arn:aws:es:us-east-1:000000000000:domain/es-local",
     "Created": true,
     "Deleted": false,
-    "Endpoint": "es_local.us-east-1.es.localhost.localstack.cloud:443",
+    "Endpoint": "es-local.us-east-1.es.localhost.localstack.cloud:443",
     "Processing": true,
     "ElasticsearchVersion": "7.10.0",
     "ElasticsearchClusterConfig": {
@@ -63,7 +63,7 @@ make_bucket: kinesis-activity-backup-local
 {{< / command >}}
 
 {{< command >}}
-$ awslocal kinesis create-stream --stream-name kinesis_es_local_stream --shard-count 2
+$ awslocal kinesis create-stream --stream-name kinesis-es-local-stream --shard-count 2
 {{< / command >}}
 
 
@@ -77,7 +77,7 @@ Since we want to backup all documents to S3, we also set `S3BackupMode` to `AllD
 {{< /alert >}}
 
 {{< command >}}
-$ awslocal firehose create-delivery-stream --delivery-stream-name activity-to-elasticsearch-local --delivery-stream-type KinesisStreamAsSource --kinesis-stream-source-configuration "KinesisStreamARN=arn:aws:kinesis:us-east-1:000000000000:stream/kinesis_es_local_stream,RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role" --elasticsearch-destination-configuration "RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,DomainARN=arn:aws:es:us-east-1:000000000000:domain/es_local,IndexName=activity,TypeName=activity,S3BackupMode=AllDocuments,S3Configuration={RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,BucketARN=arn:aws:s3:::kinesis-activity-backup-local}"
+$ awslocal firehose create-delivery-stream --delivery-stream-name activity-to-elasticsearch-local --delivery-stream-type KinesisStreamAsSource --kinesis-stream-source-configuration "KinesisStreamARN=arn:aws:kinesis:us-east-1:000000000000:stream/kinesis-es-local-stream,RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role" --elasticsearch-destination-configuration "RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,DomainARN=arn:aws:es:us-east-1:000000000000:domain/es-local,IndexName=activity,TypeName=activity,S3BackupMode=AllDocuments,S3Configuration={RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,BucketARN=arn:aws:s3:::kinesis-activity-backup-local}"
 {
     "DeliveryStreamARN": "arn:aws:firehose:us-east-1:000000000000:deliverystream/activity-to-elasticsearch-local"
 }
@@ -88,7 +88,7 @@ We can do this using the following command (for more information about this, che
 
 
 {{< command >}}
-$ awslocal es describe-elasticsearch-domain --domain-name es_local | jq ".DomainStatus.Processing"
+$ awslocal es describe-elasticsearch-domain --domain-name es-local | jq ".DomainStatus.Processing"
 false
 {{< / command >}}
 
@@ -98,13 +98,18 @@ We can input our data into our source Kinesis stream, our put it directly into t
 To put it into Kinesis, run:
 
 {{< command >}}
-$ awslocal kinesis put-record --stream-name kinesis_es_local_stream --data '{ "target": "barry" }' --partition-key partition --cli-binary-format raw-in-base64-out
+$ awslocal kinesis put-record --stream-name kinesis_es-local_stream --data '{ "target": "barry" }' --partition-key partition
 {
     "ShardId": "shardId-000000000001",
     "SequenceNumber": "49625461294598302663271645332877318906244481566013128722",
     "EncryptionType": "NONE"
 }
 {{< / command >}}
+{{< alert >}}
+**Note:** If you are using aws cli v2, you can add `--cli-binary-format raw-in-base64-out` to the above command
+{{< /alert >}}
+
+
 
 Or directly into the Firehose delivery stream:
 
@@ -118,7 +123,7 @@ $ awslocal firehose put-record --delivery-stream-name activity-to-elasticsearch-
 If we now check the entries we made in Elasticsearch (we will use curl for simplicity). Note to replace the url with the "Endpoint" field of our `create-elasticsearch-domain` operation at the beginning.
 
 {{< command >}}
-$ curl -s http://es_local.us-east-1.es.localhost.localstack.cloud:443/activity/_search | jq '.hits.hits'
+$ curl -s http://es-local.us-east-1.es.localhost.localstack.cloud:443/activity/_search | jq '.hits.hits'
 [
   {
     "_index": "activity",
