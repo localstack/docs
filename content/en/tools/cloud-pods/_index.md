@@ -32,9 +32,10 @@ $ awslocal kinesis list-streams
 {"StreamNames": ["mystream123"]}
 ```
 
-{{% alert title="LocalStack Pro feature" color="info" %}}
-Cloud Pods are a feature of LocalStack Pro.
-Please ensure that the `LOCALSTACK_API_KEY` is properly configured.
+{{% alert title="Current Limitations" color="info" %}}
+Currently, Cloud Pods CLI commands require to set a `LOCALSTACK_API_KEY`.
+Additionalky, they require to install `localstack` runtime dependencies. 
+You can install them with `pip install localstack"[runtime]"`.
 {{% /alert %}}
 
 After pulling the pod, LocalStack will automatically inject its state into your instance at runtime, without requiring a restart.
