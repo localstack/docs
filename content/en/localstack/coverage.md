@@ -101,63 +101,63 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateApp <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApp (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateBackendEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateBackendEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateBranch <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateBranch (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateWebhook <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateWebhook (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApp <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApp (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBackendEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteBackendEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBranch <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteBranch (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteWebhook <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteWebhook (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApp <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetApp (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBackendEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBackendEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBranch <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBranch (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetWebhook <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetWebhook (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBranches <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListBranches (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApp <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateApp (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateWebhook <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateWebhook (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -769,15 +769,15 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>DeleteConnection</td>
+      <td>DeleteConnection (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetConnection</td>
+      <td>GetConnection (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PostToConnection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PostToConnection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -795,247 +795,247 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApi (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateApiMapping <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApiMapping (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateAuthorizer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateAuthorizer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDeployment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDeployment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDomainName <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDomainName (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateIntegration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateIntegration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateIntegrationResponse <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateIntegrationResponse (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateModel <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateModel (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateRoute <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateRoute (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateRouteResponse <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateRouteResponse (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateStage <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateStage (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateVpcLink <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateVpcLink (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApi (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApiMapping</td>
+      <td>DeleteApiMapping (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAuthorizer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteAuthorizer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCorsConfiguration</td>
+      <td>DeleteCorsConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDeployment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDeployment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDomainName <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDomainName (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteIntegration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteIntegration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteIntegrationResponse <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteIntegrationResponse (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteModel</td>
+      <td>DeleteModel (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRoute <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteRoute (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRouteResponse <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteRouteResponse (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteStage <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteStage (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteVpcLink <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteVpcLink (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetApi (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApiMapping</td>
+      <td>GetApiMapping (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApiMappings</td>
+      <td>GetApiMappings (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApis <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetApis (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAuthorizer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetAuthorizer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAuthorizers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetAuthorizers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDeployment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDeployment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDeployments <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDeployments (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDomainName <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDomainName (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDomainNames <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDomainNames (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetIntegration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetIntegration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetIntegrationResponse <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetIntegrationResponse (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetIntegrationResponses <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetIntegrationResponses (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetIntegrations <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetIntegrations (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetModel</td>
+      <td>GetModel (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetModels <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetModels (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRoute <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetRoute (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRouteResponse <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetRouteResponse (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRouteResponses <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetRouteResponses (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRoutes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetRoutes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetStage <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetStage (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetStages</td>
+      <td>GetStages (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetVpcLink</td>
+      <td>GetVpcLink (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetVpcLinks <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetVpcLinks (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApi</td>
+      <td>UpdateApi (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApiMapping</td>
+      <td>UpdateApiMapping (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAuthorizer</td>
+      <td>UpdateAuthorizer (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDeployment</td>
+      <td>UpdateDeployment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDomainName</td>
+      <td>UpdateDomainName (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateIntegration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateIntegration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateIntegrationResponse <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateIntegrationResponse (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateModel</td>
+      <td>UpdateModel (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateRoute <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateRoute (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateRouteResponse <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateRouteResponse (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateStage <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateStage (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateVpcLink</td>
+      <td>UpdateVpcLink (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -1103,135 +1103,135 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateConfigurationProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateConfigurationProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDeploymentStrategy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDeploymentStrategy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateHostedConfigurationVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateHostedConfigurationVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteConfigurationProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteConfigurationProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDeploymentStrategy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDeploymentStrategy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteHostedConfigurationVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteHostedConfigurationVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetConfigurationProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetConfigurationProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDeployment</td>
+      <td>GetDeployment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDeploymentStrategy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDeploymentStrategy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetHostedConfigurationVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetHostedConfigurationVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListApplications <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListApplications (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListConfigurationProfiles <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListConfigurationProfiles (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDeploymentStrategies <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDeploymentStrategies (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDeployments <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDeployments (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListEnvironments <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListEnvironments (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListHostedConfigurationVersions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListHostedConfigurationVersions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartDeployment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>StartDeployment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopDeployment</td>
+      <td>StopDeployment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateConfigurationProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateConfigurationProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDeploymentStrategy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateDeploymentStrategy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ValidateConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ValidateConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -1249,39 +1249,39 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>DeleteScalingPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteScalingPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteScheduledAction</td>
+      <td>DeleteScheduledAction (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterScalableTarget <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeregisterScalableTarget (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeScalableTargets <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeScalableTargets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeScalingPolicies <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeScalingPolicies (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeScheduledActions</td>
+      <td>DescribeScheduledActions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutScalingPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutScalingPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutScheduledAction</td>
+      <td>PutScheduledAction (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterScalableTarget <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RegisterScalableTarget (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -1309,187 +1309,187 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateApiCache <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApiCache (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateApiKey <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApiKey (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDataSource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDataSource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDomainName</td>
+      <td>CreateDomainName (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateFunction <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateFunction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateGraphqlApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateGraphqlApi (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateResolver <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateResolver (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateType</td>
+      <td>CreateType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApiCache</td>
+      <td>DeleteApiCache (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApiKey</td>
+      <td>DeleteApiKey (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDataSource</td>
+      <td>DeleteDataSource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDomainName</td>
+      <td>DeleteDomainName (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteFunction</td>
+      <td>DeleteFunction (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteGraphqlApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteGraphqlApi (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteResolver <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteResolver (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteType</td>
+      <td>DeleteType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>FlushApiCache</td>
+      <td>FlushApiCache (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApiCache</td>
+      <td>GetApiCache (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDataSource</td>
+      <td>GetDataSource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDomainName</td>
+      <td>GetDomainName (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetFunction <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetFunction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetGraphqlApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetGraphqlApi (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetIntrospectionSchema <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetIntrospectionSchema (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetResolver <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetResolver (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSchemaCreationStatus <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetSchemaCreationStatus (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetType</td>
+      <td>GetType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListApiKeys <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListApiKeys (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDataSources <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDataSources (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDomainNames</td>
+      <td>ListDomainNames (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListFunctions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListFunctions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListGraphqlApis <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListGraphqlApis (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResolvers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListResolvers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResolversByFunction</td>
+      <td>ListResolversByFunction (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTypes</td>
+      <td>ListTypes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartSchemaCreation <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>StartSchemaCreation (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApiCache <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateApiCache (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApiKey <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateApiKey (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDataSource</td>
+      <td>UpdateDataSource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDomainName</td>
+      <td>UpdateDomainName (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateFunction</td>
+      <td>UpdateFunction (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateGraphqlApi</td>
+      <td>UpdateGraphqlApi (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateResolver <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateResolver (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateType</td>
+      <td>UpdateType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -1525,87 +1525,87 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateDataCatalog <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDataCatalog (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateNamedQuery <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateNamedQuery (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateWorkGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateWorkGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDataCatalog <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDataCatalog (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteNamedQuery <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteNamedQuery (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteWorkGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteWorkGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDataCatalog <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDataCatalog (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDatabase</td>
+      <td>GetDatabase (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetNamedQuery</td>
+      <td>GetNamedQuery (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetQueryExecution</td>
+      <td>GetQueryExecution (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetQueryResults</td>
+      <td>GetQueryResults (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetWorkGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetWorkGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDataCatalogs <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDataCatalogs (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDatabases</td>
+      <td>ListDatabases (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListNamedQueries <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListNamedQueries (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListQueryExecutions</td>
+      <td>ListQueryExecutions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListWorkGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListWorkGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartQueryExecution</td>
+      <td>StartQueryExecution (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -1689,67 +1689,67 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateAutoScalingGroup</td>
+      <td>CreateAutoScalingGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLaunchConfiguration</td>
+      <td>CreateLaunchConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLaunchConfiguration</td>
+      <td>DeleteLaunchConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLifecycleHook</td>
+      <td>DeleteLifecycleHook (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePolicy</td>
+      <td>DeletePolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeAutoScalingInstances</td>
+      <td>DescribeAutoScalingInstances (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLifecycleHooks</td>
+      <td>DescribeLifecycleHooks (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeMetricCollectionTypes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeMetricCollectionTypes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribePolicies</td>
+      <td>DescribePolicies (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTags</td>
+      <td>DescribeTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableMetricsCollection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DisableMetricsCollection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableMetricsCollection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>EnableMetricsCollection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutLifecycleHook</td>
+      <td>PutLifecycleHook (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutScalingPolicy</td>
+      <td>PutScalingPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TerminateInstanceInAutoScalingGroup</td>
+      <td>TerminateInstanceInAutoScalingGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAutoScalingGroup</td>
+      <td>UpdateAutoScalingGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -1953,67 +1953,67 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateBackupPlan <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateBackupPlan (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateBackupSelection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateBackupSelection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateBackupVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateBackupVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBackupPlan <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteBackupPlan (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBackupSelection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteBackupSelection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBackupVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteBackupVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeBackupVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeBackupVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeRestoreJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeRestoreJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBackupPlan <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBackupPlan (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBackupSelection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBackupSelection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBackupPlans <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListBackupPlans (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBackupSelections <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListBackupSelections (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBackupVaults <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListBackupVaults (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRecoveryPointsByResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListRecoveryPointsByResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartRestoreJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>StartRestoreJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateBackupPlan <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateBackupPlan (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -2237,75 +2237,75 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateComputeEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateComputeEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateJobQueue <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateJobQueue (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteComputeEnvironment</td>
+      <td>DeleteComputeEnvironment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteJobQueue <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteJobQueue (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterJobDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeregisterJobDefinition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeComputeEnvironments</td>
+      <td>DescribeComputeEnvironments (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJobDefinitions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeJobDefinitions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJobQueues</td>
+      <td>DescribeJobQueues (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJobs <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeJobs (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListJobs</td>
+      <td>ListJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterJobDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RegisterJobDefinition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SubmitJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SubmitJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TerminateJob</td>
+      <td>TerminateJob (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateComputeEnvironment</td>
+      <td>UpdateComputeEnvironment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateJobQueue</td>
+      <td>UpdateJobQueue (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -2353,39 +2353,39 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>DeleteAnomalyMonitor <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteAnomalyMonitor (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAnomalySubscription <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteAnomalySubscription (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCostCategoryDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCostCategoryDefinition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCostCategoryDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCostCategoryDefinition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAnomalyMonitors <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetAnomalyMonitors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAnomalySubscriptions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetAnomalySubscriptions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAnomalyMonitor <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateAnomalyMonitor (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAnomalySubscription <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateAnomalySubscription (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateCostCategoryDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateCostCategoryDefinition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -2517,6 +2517,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>BatchDescribeTypeConfigurations</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2627,10 +2631,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse cloudformation-notimplemented">     <tr>
-      <td>BatchDescribeTypeConfigurations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CancelUpdateStack</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2797,103 +2797,103 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateCloudFrontOriginAccessIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCloudFrontOriginAccessIdentity (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDistribution <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDistribution (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDistributionWithTags <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDistributionWithTags (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateFunction <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateFunction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateInvalidation <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateInvalidation (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateOriginRequestPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateOriginRequestPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCloudFrontOriginAccessIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCloudFrontOriginAccessIdentity (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDistribution <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDistribution (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteFunction <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteFunction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteOriginRequestPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteOriginRequestPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCloudFrontOriginAccessIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetCloudFrontOriginAccessIdentity (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDistribution</td>
+      <td>GetDistribution (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetFunction <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetFunction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetInvalidation <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetInvalidation (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetOriginRequestPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetOriginRequestPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCloudFrontOriginAccessIdentities <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListCloudFrontOriginAccessIdentities (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDistributions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDistributions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListFunctions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListFunctions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInvalidations <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListInvalidations (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListOriginRequestPolicies <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListOriginRequestPolicies (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDistribution</td>
+      <td>UpdateDistribution (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateFunction <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateFunction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateOriginRequestPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateOriginRequestPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -3185,71 +3185,71 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddTags</td>
+      <td>AddTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrail <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateTrail (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTrail <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteTrail (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTrails <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeTrails (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetEventSelectors</td>
+      <td>GetEventSelectors (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetInsightSelectors</td>
+      <td>GetInsightSelectors (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTrail <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetTrail (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTrailStatus <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetTrailStatus (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTags <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTags (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTrails <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTrails (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>LookupEvents <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>LookupEvents (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutEventSelectors <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutEventSelectors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutInsightSelectors</td>
+      <td>PutInsightSelectors (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTags</td>
+      <td>RemoveTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartLogging <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>StartLogging (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopLogging <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>StopLogging (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateTrail <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateTrail (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -3485,59 +3485,59 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateBranch <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateBranch (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCommit <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCommit (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePullRequest <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreatePullRequest (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateRepository <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateRepository (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBranch <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteBranch (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRepository <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteRepository (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBranch <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBranch (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetFile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetFile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetFolder <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetFolder (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRepository <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetRepository (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPullRequests <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListPullRequests (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRepositories</td>
+      <td>ListRepositories (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -3813,39 +3813,39 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateIdentityPool <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateIdentityPool (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteIdentityPool <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteIdentityPool (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeIdentityPool</td>
+      <td>DescribeIdentityPool (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCredentialsForIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetCredentialsForIdentity (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetIdentityPoolRoles <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetIdentityPoolRoles (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetOpenIdToken</td>
+      <td>GetOpenIdToken (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetOpenIdTokenForDeveloperIdentity</td>
+      <td>GetOpenIdTokenForDeveloperIdentity (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListIdentityPools <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListIdentityPools (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetIdentityPoolRoles <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SetIdentityPoolRoles (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -3925,211 +3925,211 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddCustomAttributes</td>
+      <td>AddCustomAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminDeleteUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminDeleteUser (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminDeleteUserAttributes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminDeleteUserAttributes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminDisableUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminDisableUser (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminEnableUser</td>
+      <td>AdminEnableUser (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminGetUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminGetUser (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminInitiateAuth <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminInitiateAuth (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminResetUserPassword</td>
+      <td>AdminResetUserPassword (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminSetUserMFAPreference <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminSetUserMFAPreference (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminSetUserPassword <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminSetUserPassword (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminUpdateUserAttributes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminUpdateUserAttributes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminUserGlobalSignOut <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AdminUserGlobalSignOut (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ChangePassword <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ChangePassword (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ConfirmDevice</td>
+      <td>ConfirmDevice (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ConfirmForgotPassword <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ConfirmForgotPassword (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ConfirmSignUp</td>
+      <td>ConfirmSignUp (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateIdentityProvider <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateIdentityProvider (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateResourceServer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateResourceServer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateUserPoolDomain</td>
+      <td>CreateUserPoolDomain (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteIdentityProvider <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteIdentityProvider (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteResourceServer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteResourceServer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUserAttributes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteUserAttributes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUserPool <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteUserPool (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUserPoolClient <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteUserPoolClient (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUserPoolDomain</td>
+      <td>DeleteUserPoolDomain (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeIdentityProvider <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeIdentityProvider (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeResourceServer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeResourceServer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeUserPool <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeUserPool (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeUserPoolClient <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeUserPoolClient (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeUserPoolDomain</td>
+      <td>DescribeUserPoolDomain (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ForgotPassword <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ForgotPassword (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetGroup</td>
+      <td>GetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSigningCertificate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetSigningCertificate (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetUser (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GlobalSignOut <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GlobalSignOut (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>InitiateAuth <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>InitiateAuth (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListIdentityProviders <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListIdentityProviders (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResourceServers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListResourceServers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListUserPoolClients <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListUserPoolClients (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListUserPools <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListUserPools (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListUsers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListUsers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListUsersInGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListUsersInGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RespondToAuthChallenge <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RespondToAuthChallenge (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetUserMFAPreference <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SetUserMFAPreference (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SignUp <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SignUp (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateGroup</td>
+      <td>UpdateGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateIdentityProvider <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateIdentityProvider (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateResourceServer</td>
+      <td>UpdateResourceServer (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateUserAttributes</td>
+      <td>UpdateUserAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -4721,127 +4721,127 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CopyDBClusterSnapshot</td>
+      <td>CopyDBClusterSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBCluster</td>
+      <td>CreateDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBClusterParameterGroup</td>
+      <td>CreateDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBClusterSnapshot</td>
+      <td>CreateDBClusterSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBInstance</td>
+      <td>CreateDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBSubnetGroup</td>
+      <td>CreateDBSubnetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEventSubscription</td>
+      <td>CreateEventSubscription (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBCluster</td>
+      <td>DeleteDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBClusterParameterGroup</td>
+      <td>DeleteDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBClusterSnapshot</td>
+      <td>DeleteDBClusterSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBInstance</td>
+      <td>DeleteDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBSubnetGroup</td>
+      <td>DeleteDBSubnetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEventSubscription</td>
+      <td>DeleteEventSubscription (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCertificates</td>
+      <td>DescribeCertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterParameterGroups</td>
+      <td>DescribeDBClusterParameterGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterParameters</td>
+      <td>DescribeDBClusterParameters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterSnapshots</td>
+      <td>DescribeDBClusterSnapshots (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusters</td>
+      <td>DescribeDBClusters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBEngineVersions</td>
+      <td>DescribeDBEngineVersions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBInstances</td>
+      <td>DescribeDBInstances (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBSubnetGroups</td>
+      <td>DescribeDBSubnetGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeEventSubscriptions</td>
+      <td>DescribeEventSubscriptions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeGlobalClusters</td>
+      <td>DescribeGlobalClusters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBCluster</td>
+      <td>ModifyDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBClusterParameterGroup</td>
+      <td>ModifyDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBInstance</td>
+      <td>ModifyDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBSubnetGroup</td>
+      <td>ModifyDBSubnetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RebootDBInstance</td>
+      <td>RebootDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ResetDBClusterParameterGroup</td>
+      <td>ResetDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartDBCluster</td>
+      <td>StartDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopDBCluster</td>
+      <td>StopDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -4969,7 +4969,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBackup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteBackup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5037,7 +5037,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RestoreTableFromBackup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RestoreTableFromBackup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5909,7 +5909,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ReplaceNetworkAclEntry</td>
+      <td>ReplaceNetworkAclEntry (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7321,107 +7321,107 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>BatchCheckLayerAvailability</td>
+      <td>BatchCheckLayerAvailability (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>BatchDeleteImage <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>BatchDeleteImage (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>BatchGetImage <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>BatchGetImage (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateRepository <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateRepository (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLifecyclePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteLifecyclePolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRegistryPolicy</td>
+      <td>DeleteRegistryPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRepository <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteRepository (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRepositoryPolicy</td>
+      <td>DeleteRepositoryPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeImageScanFindings</td>
+      <td>DescribeImageScanFindings (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeRegistry</td>
+      <td>DescribeRegistry (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeRepositories <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeRepositories (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAuthorizationToken <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetAuthorizationToken (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetLifecyclePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetLifecyclePolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRegistryPolicy</td>
+      <td>GetRegistryPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRepositoryPolicy</td>
+      <td>GetRepositoryPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutImage</td>
+      <td>PutImage (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutImageScanningConfiguration</td>
+      <td>PutImageScanningConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutImageTagMutability <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutImageTagMutability (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutLifecyclePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutLifecyclePolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutRegistryPolicy</td>
+      <td>PutRegistryPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutReplicationConfiguration</td>
+      <td>PutReplicationConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetRepositoryPolicy</td>
+      <td>SetRepositoryPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartImageScan</td>
+      <td>StartImageScan (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -7505,151 +7505,151 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateCapacityProvider</td>
+      <td>CreateCapacityProvider (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateService <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateService (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTaskSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateTaskSet (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAccountSetting</td>
+      <td>DeleteAccountSetting (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAttributes</td>
+      <td>DeleteAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteService <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteService (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterContainerInstance</td>
+      <td>DeregisterContainerInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterTaskDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeregisterTaskDefinition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCapacityProviders</td>
+      <td>DescribeCapacityProviders (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeClusters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeServices <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeServices (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTaskSets</td>
+      <td>DescribeTaskSets (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTasks <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeTasks (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DiscoverPollEndpoint</td>
+      <td>DiscoverPollEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAccountSettings</td>
+      <td>ListAccountSettings (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAttributes</td>
+      <td>ListAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListClusters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListContainerInstances</td>
+      <td>ListContainerInstances (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListServices</td>
+      <td>ListServices (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTaskDefinitionFamilies</td>
+      <td>ListTaskDefinitionFamilies (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTaskDefinitions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTaskDefinitions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTasks <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTasks (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutAccountSetting</td>
+      <td>PutAccountSetting (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutAttributes</td>
+      <td>PutAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutClusterCapacityProviders <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutClusterCapacityProviders (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterTaskDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RegisterTaskDefinition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartTask</td>
+      <td>StartTask (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopTask <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>StopTask (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateService</td>
+      <td>UpdateService (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateServicePrimaryTaskSet</td>
+      <td>UpdateServicePrimaryTaskSet (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateTaskSet</td>
+      <td>UpdateTaskSet (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -7733,15 +7733,15 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateFileSystem <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateFileSystem (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteFileSystem <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteFileSystem (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeFileSystems <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeFileSystems (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -7873,63 +7873,63 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateFargateProfile</td>
+      <td>CreateFargateProfile (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateNodegroup</td>
+      <td>CreateNodegroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteFargateProfile</td>
+      <td>DeleteFargateProfile (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteNodegroup</td>
+      <td>DeleteNodegroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeFargateProfile</td>
+      <td>DescribeFargateProfile (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeNodegroup</td>
+      <td>DescribeNodegroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListClusters</td>
+      <td>ListClusters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListFargateProfiles</td>
+      <td>ListFargateProfiles (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListNodegroups</td>
+      <td>ListNodegroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateClusterConfig</td>
+      <td>UpdateClusterConfig (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateNodegroupConfig</td>
+      <td>UpdateNodegroupConfig (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateNodegroupVersion</td>
+      <td>UpdateNodegroupVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -8029,87 +8029,87 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddTagsToResource</td>
+      <td>AddTagsToResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCacheCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCacheCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCacheParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCacheParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCacheSecurityGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCacheSecurityGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCacheSubnetGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCacheSubnetGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateReplicationGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateReplicationGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCacheCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCacheCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCacheParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCacheParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCacheSecurityGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCacheSecurityGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCacheSubnetGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCacheSubnetGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCacheClusters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCacheClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCacheParameterGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCacheParameterGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCacheSecurityGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCacheSecurityGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCacheSubnetGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCacheSubnetGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeReplicationGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeReplicationGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyCacheCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyCacheCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyCacheParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyCacheParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyCacheSubnetGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyCacheSubnetGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyReplicationGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyReplicationGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTagsFromResource</td>
+      <td>RemoveTagsFromResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -8309,47 +8309,47 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateApplicationVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApplicationVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApplicationVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApplicationVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEnvironmentConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteEnvironmentConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeApplicationVersions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeApplicationVersions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeApplications <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeApplications (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeEnvironments <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeEnvironments (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApplicationVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateApplicationVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -8517,47 +8517,47 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddTags</td>
+      <td>AddTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ApplySecurityGroupsToLoadBalancer</td>
+      <td>ApplySecurityGroupsToLoadBalancer (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ConfigureHealthCheck</td>
+      <td>ConfigureHealthCheck (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLoadBalancer</td>
+      <td>CreateLoadBalancer (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLoadBalancerListeners</td>
+      <td>CreateLoadBalancerListeners (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLoadBalancer</td>
+      <td>DeleteLoadBalancer (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancerPolicies</td>
+      <td>DescribeLoadBalancerPolicies (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancers</td>
+      <td>DescribeLoadBalancers (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTags</td>
+      <td>DescribeTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTags</td>
+      <td>RemoveTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetLoadBalancerListenerSSLCertificate</td>
+      <td>SetLoadBalancerListenerSSLCertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -8653,139 +8653,139 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddListenerCertificates</td>
+      <td>AddListenerCertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddTags</td>
+      <td>AddTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateListener <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateListener (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLoadBalancer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateLoadBalancer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateRule (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTargetGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateTargetGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteListener</td>
+      <td>DeleteListener (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLoadBalancer</td>
+      <td>DeleteLoadBalancer (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRule</td>
+      <td>DeleteRule (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTargetGroup</td>
+      <td>DeleteTargetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterTargets</td>
+      <td>DeregisterTargets (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeAccountLimits</td>
+      <td>DescribeAccountLimits (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeListenerCertificates</td>
+      <td>DescribeListenerCertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeListeners <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeListeners (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancerAttributes</td>
+      <td>DescribeLoadBalancerAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeLoadBalancers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeRules <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeRules (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeSSLPolicies</td>
+      <td>DescribeSSLPolicies (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTags</td>
+      <td>DescribeTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTargetGroupAttributes</td>
+      <td>DescribeTargetGroupAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTargetGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeTargetGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTargetHealth</td>
+      <td>DescribeTargetHealth (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyListener</td>
+      <td>ModifyListener (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyLoadBalancerAttributes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyLoadBalancerAttributes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyRule</td>
+      <td>ModifyRule (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyTargetGroup</td>
+      <td>ModifyTargetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyTargetGroupAttributes</td>
+      <td>ModifyTargetGroupAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterTargets <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RegisterTargets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveListenerCertificates</td>
+      <td>RemoveListenerCertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTags</td>
+      <td>RemoveTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetIpAddressType</td>
+      <td>SetIpAddressType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetRulePriorities</td>
+      <td>SetRulePriorities (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetSecurityGroups</td>
+      <td>SetSecurityGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetSubnets</td>
+      <td>SetSubnets (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -8803,63 +8803,63 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddInstanceFleet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AddInstanceFleet (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddTags</td>
+      <td>AddTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateSecurityConfiguration</td>
+      <td>CreateSecurityConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSecurityConfiguration</td>
+      <td>DeleteSecurityConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJobFlows</td>
+      <td>DescribeJobFlows (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeSecurityConfiguration</td>
+      <td>DescribeSecurityConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAutoTerminationPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetAutoTerminationPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInstanceFleets <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListInstanceFleets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyInstanceFleet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyInstanceFleet (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutAutoScalingPolicy</td>
+      <td>PutAutoScalingPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutAutoTerminationPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutAutoTerminationPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveAutoScalingPolicy</td>
+      <td>RemoveAutoScalingPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveAutoTerminationPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RemoveAutoTerminationPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTags</td>
+      <td>RemoveTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -9527,51 +9527,51 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddTagsToVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AddTagsToVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteVaultAccessPolicy</td>
+      <td>DeleteVaultAccessPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteVaultNotifications</td>
+      <td>DeleteVaultNotifications (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetVaultAccessPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetVaultAccessPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetVaultNotifications <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetVaultNotifications (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>InitiateJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>InitiateJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListVaults <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListVaults (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTagsFromVault</td>
+      <td>RemoveTagsFromVault (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetVaultAccessPolicy</td>
+      <td>SetVaultAccessPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetVaultNotifications</td>
+      <td>SetVaultNotifications (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -9679,371 +9679,371 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>BatchCreatePartition</td>
+      <td>BatchCreatePartition (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>BatchDeletePartition</td>
+      <td>BatchDeletePartition (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>BatchDeleteTable</td>
+      <td>BatchDeleteTable (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>BatchGetPartition</td>
+      <td>BatchGetPartition (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>BatchUpdatePartition</td>
+      <td>BatchUpdatePartition (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CheckSchemaVersionValidity</td>
+      <td>CheckSchemaVersionValidity (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateClassifier <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateClassifier (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateConnection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateConnection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCrawler <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCrawler (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePartition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreatePartition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePartitionIndex <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreatePartitionIndex (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateRegistry <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateRegistry (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateSchema <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateSchema (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateSecurityConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateSecurityConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrigger <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateTrigger (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateWorkflow <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateWorkflow (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteClassifier <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteClassifier (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteConnection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteConnection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCrawler <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCrawler (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDatabase <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDatabase (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePartition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeletePartition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePartitionIndex <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeletePartitionIndex (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRegistry <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteRegistry (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteResourcePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteResourcePolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSchema <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteSchema (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSchemaVersions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteSchemaVersions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSecurityConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteSecurityConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTrigger <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteTrigger (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteWorkflow <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteWorkflow (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCatalogImportStatus</td>
+      <td>GetCatalogImportStatus (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetClassifier <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetClassifier (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetClassifiers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetClassifiers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetConnection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetConnection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetConnections <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetConnections (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCrawler <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetCrawler (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCrawlers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetCrawlers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDatabase <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDatabase (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDatabases <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDatabases (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetJobRun <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetJobRun (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetJobRuns <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetJobRuns (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetJobs <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetJobs (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetPartition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetPartition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetPartitionIndexes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetPartitionIndexes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetPartitions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetPartitions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRegistry <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetRegistry (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetResourcePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetResourcePolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSchema <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetSchema (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSchemaByDefinition</td>
+      <td>GetSchemaByDefinition (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSchemaVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetSchemaVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSchemaVersionsDiff</td>
+      <td>GetSchemaVersionsDiff (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSecurityConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetSecurityConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSecurityConfigurations <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetSecurityConfigurations (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTableVersion</td>
+      <td>GetTableVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTableVersions</td>
+      <td>GetTableVersions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTables <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetTables (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTags</td>
+      <td>GetTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTrigger <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetTrigger (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetWorkflow <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetWorkflow (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ImportCatalogToGlue</td>
+      <td>ImportCatalogToGlue (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCrawlers</td>
+      <td>ListCrawlers (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListJobs <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListJobs (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRegistries <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListRegistries (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSchemaVersions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListSchemaVersions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSchemas <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListSchemas (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListWorkflows <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListWorkflows (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutSchemaVersionMetadata <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutSchemaVersionMetadata (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>QuerySchemaVersionMetadata <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>QuerySchemaVersionMetadata (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterSchemaVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RegisterSchemaVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveSchemaVersionMetadata <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RemoveSchemaVersionMetadata (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartCrawler <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>StartCrawler (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartJobRun <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>StartJobRun (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartTrigger</td>
+      <td>StartTrigger (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopCrawler</td>
+      <td>StopCrawler (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopTrigger</td>
+      <td>StopTrigger (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateConnection</td>
+      <td>UpdateConnection (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateCrawler <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateCrawler (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDatabase <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateDatabase (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdatePartition <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdatePartition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateRegistry <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateRegistry (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateSchema <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateSchema (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateTrigger <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateTrigger (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateWorkflow</td>
+      <td>UpdateWorkflow (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -10495,7 +10495,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateVirtualMFADevice</td>
+      <td>CreateUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateVirtualMFADevice (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10919,6 +10923,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>UploadServerCertificate</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>UploadSigningCertificate</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -10942,10 +10950,6 @@ description: >
     </tr>
     <tr>
       <td>CreateServiceSpecificCredential</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateUser</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -11068,10 +11072,6 @@ description: >
       <td>UpdateServiceSpecificCredential</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr>
-      <td>UploadServerCertificate</td>
-       <td style="text-align:right">-</td>
-    </tr>
   </tbody>
  </table>
 
@@ -11087,327 +11087,327 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddThingToThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AddThingToThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AttachPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AttachPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AttachPrincipalPolicy</td>
+      <td>AttachPrincipalPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AttachThingPrincipal <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AttachThingPrincipal (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCertificateFromCsr</td>
+      <td>CreateCertificateFromCsr (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDomainConfiguration</td>
+      <td>CreateDomainConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDynamicThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDynamicThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateKeysAndCertificate</td>
+      <td>CreateKeysAndCertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreatePolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePolicyVersion</td>
+      <td>CreatePolicyVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateThing <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateThing (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateThingType</td>
+      <td>CreateThingType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTopicRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateTopicRule (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTopicRuleDestination <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateTopicRuleDestination (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCACertificate</td>
+      <td>DeleteCACertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCertificate</td>
+      <td>DeleteCertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDomainConfiguration</td>
+      <td>DeleteDomainConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDynamicThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDynamicThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeletePolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePolicyVersion</td>
+      <td>DeletePolicyVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteThing <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteThing (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteThingType</td>
+      <td>DeleteThingType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTopicRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteTopicRule (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTopicRuleDestination</td>
+      <td>DeleteTopicRuleDestination (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeprecateThingType</td>
+      <td>DeprecateThingType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCACertificate</td>
+      <td>DescribeCACertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCertificate</td>
+      <td>DescribeCertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDomainConfiguration</td>
+      <td>DescribeDomainConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeEndpoint <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeEndpoint (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeJob (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJobExecution <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeJobExecution (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeThing <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeThing (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeThingType</td>
+      <td>DescribeThingType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachPolicy</td>
+      <td>DetachPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachPrincipalPolicy</td>
+      <td>DetachPrincipalPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachThingPrincipal <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DetachThingPrincipal (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableTopicRule</td>
+      <td>DisableTopicRule (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableTopicRule</td>
+      <td>EnableTopicRule (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetPolicyVersion</td>
+      <td>GetPolicyVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRegistrationCode</td>
+      <td>GetRegistrationCode (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTopicRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetTopicRule (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTopicRuleDestination</td>
+      <td>GetTopicRuleDestination (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAttachedPolicies</td>
+      <td>ListAttachedPolicies (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCertificates</td>
+      <td>ListCertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCertificatesByCA</td>
+      <td>ListCertificatesByCA (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDomainConfigurations</td>
+      <td>ListDomainConfigurations (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListJobExecutionsForThing <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListJobExecutionsForThing (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListJobs <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListJobs (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPolicies <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListPolicies (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPolicyPrincipals</td>
+      <td>ListPolicyPrincipals (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPolicyVersions</td>
+      <td>ListPolicyVersions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPrincipalPolicies</td>
+      <td>ListPrincipalPolicies (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPrincipalThings</td>
+      <td>ListPrincipalThings (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListThingGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListThingGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListThingGroupsForThing <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListThingGroupsForThing (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListThingPrincipals <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListThingPrincipals (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListThings <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListThings (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListThingsInThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListThingsInThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTopicRules <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTopicRules (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterCACertificate</td>
+      <td>RegisterCACertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterCertificate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RegisterCertificate (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterCertificateWithoutCA</td>
+      <td>RegisterCertificateWithoutCA (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveThingFromThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RemoveThingFromThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ReplaceTopicRule</td>
+      <td>ReplaceTopicRule (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SearchIndex <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SearchIndex (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetDefaultPolicyVersion</td>
+      <td>SetDefaultPolicyVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateCACertificate</td>
+      <td>UpdateCACertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateCertificate</td>
+      <td>UpdateCertificate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDomainConfiguration</td>
+      <td>UpdateDomainConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDynamicThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateDynamicThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateIndexingConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateIndexingConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateThing</td>
+      <td>UpdateThing (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateThingGroup</td>
+      <td>UpdateThingGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateThingGroupsForThing</td>
+      <td>UpdateThingGroupsForThing (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -12055,15 +12055,15 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>DeleteThingShadow</td>
+      <td>DeleteThingShadow (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetThingShadow <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetThingShadow (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>Publish <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>Publish (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -12103,63 +12103,63 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateChannel <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateChannel (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDataset <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDataset (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDatastore <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDatastore (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePipeline <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreatePipeline (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteChannel <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteChannel (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDataset <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDataset (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDatastore <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDatastore (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePipeline <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeletePipeline (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeChannel <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeChannel (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDataset <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDataset (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribePipeline <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribePipeline (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListChannels <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListChannels (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDatasets <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDatasets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDatastores <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDatastores (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPipelines <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListPipelines (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -12259,55 +12259,55 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateDeviceProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDeviceProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateWirelessDevice <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateWirelessDevice (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateWirelessGateway <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateWirelessGateway (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDeviceProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDeviceProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteWirelessDevice <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteWirelessDevice (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteWirelessGateway <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteWirelessGateway (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDeviceProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetDeviceProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetWirelessDevice <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetWirelessDevice (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetWirelessGateway <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetWirelessGateway (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDeviceProfiles <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDeviceProfiles (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListWirelessGateways <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListWirelessGateways (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateWirelessDevice</td>
+      <td>UpdateWirelessDevice (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateWirelessGateway</td>
+      <td>UpdateWirelessGateway (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -12651,67 +12651,67 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeClusterOperation</td>
+      <td>DescribeClusterOperation (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeConfigurationRevision <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeConfigurationRevision (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBootstrapBrokers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBootstrapBrokers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListClusters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListConfigurationRevisions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListConfigurationRevisions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListConfigurations <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListConfigurations (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListNodes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListNodes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateClusterConfiguration</td>
+      <td>UpdateClusterConfiguration (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateClusterKafkaVersion</td>
+      <td>UpdateClusterKafkaVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -12947,47 +12947,47 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddApplicationInputProcessingConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AddApplicationInputProcessingConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddApplicationOutput <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AddApplicationOutput (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApplicationInputProcessingConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApplicationInputProcessingConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListApplications <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListApplications (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -13047,43 +13047,43 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddApplicationInputProcessingConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AddApplicationInputProcessingConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddApplicationOutput <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>AddApplicationOutput (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListApplications <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListApplications (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -13411,39 +13411,39 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>DeregisterResource</td>
+      <td>DeregisterResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeResource</td>
+      <td>DescribeResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDataLakeSettings</td>
+      <td>GetDataLakeSettings (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GrantPermissions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GrantPermissions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPermissions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListPermissions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResources</td>
+      <td>ListResources (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutDataLakeSettings</td>
+      <td>PutDataLakeSettings (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterResource</td>
+      <td>RegisterResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RevokePermissions</td>
+      <td>RevokePermissions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -13607,7 +13607,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddLayerVersionPermission</td>
+      <td>AddLayerVersionPermission (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13659,7 +13659,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLayerVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteLayerVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13695,15 +13695,15 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetLayerVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetLayerVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetLayerVersionByArn</td>
+      <td>GetLayerVersionByArn (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetLayerVersionPolicy</td>
+      <td>GetLayerVersionPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13731,11 +13731,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListLayerVersions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListLayerVersions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListLayers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListLayers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13747,7 +13747,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PublishLayerVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PublishLayerVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14067,19 +14067,19 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateContainer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateContainer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteContainer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteContainer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeContainer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeContainer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListContainers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListContainers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -14211,35 +14211,35 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateEnvironment</td>
+      <td>CreateEnvironment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEnvironment</td>
+      <td>DeleteEnvironment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetEnvironment</td>
+      <td>GetEnvironment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListEnvironments <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListEnvironments (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateEnvironment</td>
+      <td>UpdateEnvironment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -14275,159 +14275,159 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CopyDBClusterSnapshot</td>
+      <td>CopyDBClusterSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBCluster</td>
+      <td>CreateDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBClusterEndpoint</td>
+      <td>CreateDBClusterEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBClusterParameterGroup</td>
+      <td>CreateDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBClusterSnapshot</td>
+      <td>CreateDBClusterSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBInstance</td>
+      <td>CreateDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBParameterGroup</td>
+      <td>CreateDBParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBSubnetGroup</td>
+      <td>CreateDBSubnetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEventSubscription</td>
+      <td>CreateEventSubscription (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBCluster</td>
+      <td>DeleteDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBClusterEndpoint</td>
+      <td>DeleteDBClusterEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBClusterParameterGroup</td>
+      <td>DeleteDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBClusterSnapshot</td>
+      <td>DeleteDBClusterSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBInstance</td>
+      <td>DeleteDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBParameterGroup</td>
+      <td>DeleteDBParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBSubnetGroup</td>
+      <td>DeleteDBSubnetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEventSubscription</td>
+      <td>DeleteEventSubscription (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterEndpoints</td>
+      <td>DescribeDBClusterEndpoints (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterParameterGroups</td>
+      <td>DescribeDBClusterParameterGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterParameters</td>
+      <td>DescribeDBClusterParameters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterSnapshots</td>
+      <td>DescribeDBClusterSnapshots (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusters</td>
+      <td>DescribeDBClusters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBEngineVersions</td>
+      <td>DescribeDBEngineVersions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBInstances</td>
+      <td>DescribeDBInstances (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBParameterGroups</td>
+      <td>DescribeDBParameterGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBParameters</td>
+      <td>DescribeDBParameters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBSubnetGroups</td>
+      <td>DescribeDBSubnetGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeEventSubscriptions</td>
+      <td>DescribeEventSubscriptions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeGlobalClusters</td>
+      <td>DescribeGlobalClusters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBCluster</td>
+      <td>ModifyDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBClusterEndpoint</td>
+      <td>ModifyDBClusterEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBClusterParameterGroup</td>
+      <td>ModifyDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBInstance</td>
+      <td>ModifyDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBParameterGroup</td>
+      <td>ModifyDBParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBSubnetGroup</td>
+      <td>ModifyDBSubnetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RebootDBInstance</td>
+      <td>RebootDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ResetDBClusterParameterGroup</td>
+      <td>ResetDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartDBCluster</td>
+      <td>StartDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopDBCluster</td>
+      <td>StopDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -14751,159 +14751,159 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AttachPolicy</td>
+      <td>AttachPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CloseAccount</td>
+      <td>CloseAccount (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateAccount <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateAccount (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateOrganization <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateOrganization (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateOrganizationalUnit</td>
+      <td>CreateOrganizationalUnit (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePolicy</td>
+      <td>CreatePolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteOrganization <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteOrganization (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePolicy</td>
+      <td>DeletePolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterDelegatedAdministrator</td>
+      <td>DeregisterDelegatedAdministrator (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeAccount <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeAccount (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCreateAccountStatus</td>
+      <td>DescribeCreateAccountStatus (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOrganization <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeOrganization (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOrganizationalUnit</td>
+      <td>DescribeOrganizationalUnit (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribePolicy</td>
+      <td>DescribePolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachPolicy</td>
+      <td>DetachPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableAWSServiceAccess</td>
+      <td>DisableAWSServiceAccess (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisablePolicyType</td>
+      <td>DisablePolicyType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableAWSServiceAccess</td>
+      <td>EnableAWSServiceAccess (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnablePolicyType</td>
+      <td>EnablePolicyType (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAWSServiceAccessForOrganization</td>
+      <td>ListAWSServiceAccessForOrganization (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAccounts</td>
+      <td>ListAccounts (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAccountsForParent</td>
+      <td>ListAccountsForParent (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListChildren</td>
+      <td>ListChildren (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDelegatedAdministrators</td>
+      <td>ListDelegatedAdministrators (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDelegatedServicesForAccount</td>
+      <td>ListDelegatedServicesForAccount (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListOrganizationalUnitsForParent</td>
+      <td>ListOrganizationalUnitsForParent (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListParents</td>
+      <td>ListParents (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPolicies</td>
+      <td>ListPolicies (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPoliciesForTarget</td>
+      <td>ListPoliciesForTarget (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRoots</td>
+      <td>ListRoots (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTargetsForPolicy</td>
+      <td>ListTargetsForPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>MoveAccount</td>
+      <td>MoveAccount (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterDelegatedAdministrator</td>
+      <td>RegisterDelegatedAdministrator (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveAccountFromOrganization</td>
+      <td>RemoveAccountFromOrganization (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateOrganizationalUnit</td>
+      <td>UpdateOrganizationalUnit (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdatePolicy</td>
+      <td>UpdatePolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -14979,39 +14979,39 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateLedger <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateLedger (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLedger <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteLedger (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJournalKinesisStream</td>
+      <td>DescribeJournalKinesisStream (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLedger <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeLedger (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListLedgers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListLedgers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateLedger <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateLedger (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -15079,7 +15079,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>SendCommand <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SendCommand (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -15097,267 +15097,267 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AuthorizeDBSecurityGroupIngress</td>
+      <td>AuthorizeDBSecurityGroupIngress (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CancelExportTask</td>
+      <td>CancelExportTask (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CopyDBClusterSnapshot</td>
+      <td>CopyDBClusterSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CopyDBSnapshot</td>
+      <td>CopyDBSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBClusterEndpoint <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBClusterEndpoint (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBClusterParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBClusterParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBClusterSnapshot <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBClusterSnapshot (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBInstance <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBInstance (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBInstanceReadReplica</td>
+      <td>CreateDBInstanceReadReplica (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBProxy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBProxy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBSecurityGroup</td>
+      <td>CreateDBSecurityGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBSnapshot <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBSnapshot (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBSubnetGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDBSubnetGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEventSubscription</td>
+      <td>CreateEventSubscription (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateOptionGroup</td>
+      <td>CreateOptionGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDBCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBClusterEndpoint <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDBClusterEndpoint (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBClusterParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDBClusterParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBClusterSnapshot <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDBClusterSnapshot (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBInstance <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDBInstance (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDBParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBProxy <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDBProxy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBSecurityGroup</td>
+      <td>DeleteDBSecurityGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBSnapshot</td>
+      <td>DeleteDBSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBSubnetGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDBSubnetGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEventSubscription</td>
+      <td>DeleteEventSubscription (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteOptionGroup</td>
+      <td>DeleteOptionGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterDBProxyTargets <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeregisterDBProxyTargets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCertificates</td>
+      <td>DescribeCertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterEndpoints <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBClusterEndpoints (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterParameterGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBClusterParameterGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterParameters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBClusterParameters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusterSnapshots <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBClusterSnapshots (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBClusters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBEngineVersions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBEngineVersions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBInstances <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBInstances (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBParameterGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBParameterGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBParameters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBParameters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBProxies <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBProxies (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBProxyTargets <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBProxyTargets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBSecurityGroups</td>
+      <td>DescribeDBSecurityGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBSnapshots <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBSnapshots (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBSubnetGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDBSubnetGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeEventSubscriptions</td>
+      <td>DescribeEventSubscriptions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeExportTasks</td>
+      <td>DescribeExportTasks (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeGlobalClusters</td>
+      <td>DescribeGlobalClusters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOptionGroupOptions</td>
+      <td>DescribeOptionGroupOptions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOptionGroups</td>
+      <td>DescribeOptionGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyCertificates</td>
+      <td>ModifyCertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyCurrentDBClusterCapacity</td>
+      <td>ModifyCurrentDBClusterCapacity (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyDBCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBClusterEndpoint <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyDBClusterEndpoint (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBClusterParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyDBClusterParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBInstance <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyDBInstance (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBParameterGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ModifyDBParameterGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBSubnetGroup</td>
+      <td>ModifyDBSubnetGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyOptionGroup</td>
+      <td>ModifyOptionGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RebootDBInstance</td>
+      <td>RebootDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterDBProxyTargets <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RegisterDBProxyTargets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ResetDBClusterParameterGroup</td>
+      <td>ResetDBClusterParameterGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartDBCluster</td>
+      <td>StartDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartDBInstance</td>
+      <td>StartDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopDBCluster</td>
+      <td>StopDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopDBInstance</td>
+      <td>StopDBInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -15657,19 +15657,19 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>BeginTransaction <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>BeginTransaction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CommitTransaction <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CommitTransaction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ExecuteSql <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ExecuteSql (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ExecuteStatement <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ExecuteStatement (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -15765,7 +15765,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeClusterParameters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeClusterParameters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15785,7 +15785,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDefaultClusterParameters <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDefaultClusterParameters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16197,15 +16197,15 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>DescribeStatement <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeStatement (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ExecuteStatement <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ExecuteStatement (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetStatementResult <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetStatementResult (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -17073,7 +17073,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketLifecycle</td>
+      <td>GetBucketLifecycle (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17229,6 +17233,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>PutBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>PutBucketLogging</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -17335,10 +17343,6 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>GetBucketLifecycleConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>GetBucketReplication</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17352,10 +17356,6 @@ description: >
     </tr>
     <tr>
       <td>HeadObject</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutBucketLifecycleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -17621,159 +17621,159 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AssociateTrialComponent</td>
+      <td>AssociateTrialComponent (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEndpoint</td>
+      <td>CreateEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEndpointConfig</td>
+      <td>CreateEndpointConfig (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateExperiment</td>
+      <td>CreateExperiment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateModel <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateModel (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateNotebookInstance</td>
+      <td>CreateNotebookInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateNotebookInstanceLifecycleConfig</td>
+      <td>CreateNotebookInstanceLifecycleConfig (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateProcessingJob</td>
+      <td>CreateProcessingJob (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrainingJob</td>
+      <td>CreateTrainingJob (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrial</td>
+      <td>CreateTrial (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrialComponent</td>
+      <td>CreateTrialComponent (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEndpoint</td>
+      <td>DeleteEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEndpointConfig</td>
+      <td>DeleteEndpointConfig (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteExperiment</td>
+      <td>DeleteExperiment (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteModel</td>
+      <td>DeleteModel (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteNotebookInstance</td>
+      <td>DeleteNotebookInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteNotebookInstanceLifecycleConfig</td>
+      <td>DeleteNotebookInstanceLifecycleConfig (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTrial</td>
+      <td>DeleteTrial (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTrialComponent</td>
+      <td>DeleteTrialComponent (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeEndpoint</td>
+      <td>DescribeEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeEndpointConfig</td>
+      <td>DescribeEndpointConfig (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeModel <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeModel (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeNotebookInstance</td>
+      <td>DescribeNotebookInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeNotebookInstanceLifecycleConfig</td>
+      <td>DescribeNotebookInstanceLifecycleConfig (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeProcessingJob</td>
+      <td>DescribeProcessingJob (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTrainingJob</td>
+      <td>DescribeTrainingJob (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTrial</td>
+      <td>DescribeTrial (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTrialComponent</td>
+      <td>DescribeTrialComponent (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisassociateTrialComponent</td>
+      <td>DisassociateTrialComponent (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListExperiments</td>
+      <td>ListExperiments (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListProcessingJobs</td>
+      <td>ListProcessingJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTags</td>
+      <td>ListTags (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTrainingJobs</td>
+      <td>ListTrainingJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTrialComponents</td>
+      <td>ListTrialComponents (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTrials</td>
+      <td>ListTrials (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>Search</td>
+      <td>Search (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartNotebookInstance</td>
+      <td>StartNotebookInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopNotebookInstance</td>
+      <td>StopNotebookInstance (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateEndpointWeightsAndCapacities</td>
+      <td>UpdateEndpointWeightsAndCapacities (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -18765,35 +18765,35 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateApplicationVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateApplicationVersion (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCloudFormationChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCloudFormationChangeSet (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCloudFormationTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateCloudFormationTemplate (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCloudFormationTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetCloudFormationTemplate (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListApplicationVersions <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListApplicationVersions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListApplications <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListApplications (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -18841,75 +18841,75 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateHttpNamespace <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateHttpNamespace (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePrivateDnsNamespace <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreatePrivateDnsNamespace (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePublicDnsNamespace <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreatePublicDnsNamespace (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateService <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateService (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteNamespace <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteNamespace (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteService <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteService (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterInstance <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeregisterInstance (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetInstance <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetInstance (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetNamespace <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetNamespace (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetOperation <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetOperation (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetService <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetService (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInstances <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListInstances (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListNamespaces <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListNamespaces (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListServices <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListServices (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterInstance <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>RegisterInstance (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -18985,11 +18985,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteReceiptRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteReceiptRule (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteReceiptRuleSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteReceiptRuleSet (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18997,7 +18997,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeActiveReceiptRuleSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeActiveReceiptRuleSet (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19037,7 +19037,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListReceiptRuleSets <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListReceiptRuleSets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19049,7 +19049,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetActiveReceiptRuleSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SetActiveReceiptRuleSet (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19062,6 +19062,14 @@ description: >
     </tr>
     <tr>
       <td>SetIdentityNotificationTopic</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>TestRenderTemplate</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UpdateReceiptRule</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19223,10 +19231,6 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>TestRenderTemplate</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>UpdateAccountSendingEnabled</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19250,10 +19254,6 @@ description: >
       <td>UpdateCustomVerificationEmailTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
-    <tr>
-      <td>UpdateReceiptRule</td>
-       <td style="text-align:right">-</td>
-    </tr>
   </tbody>
  </table>
 
@@ -19269,35 +19269,35 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateEmailIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateEmailIdentity (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEmailTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateEmailTemplate (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEmailIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteEmailIdentity (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEmailTemplate</td>
+      <td>DeleteEmailTemplate (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetEmailIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetEmailIdentity (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListEmailIdentities <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListEmailIdentities (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListEmailTemplates</td>
+      <td>ListEmailTemplates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SendEmail <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SendEmail (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -19891,7 +19891,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CancelCommand <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CancelCommand (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19919,7 +19919,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeInstanceInformation <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeInstanceInformation (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19955,7 +19955,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCommandInvocations</td>
+      <td>ListCommandInvocations (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20855,7 +20855,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>Query <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>Query (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -20927,39 +20927,39 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateDatabase <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateDatabase (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDatabase <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteDatabase (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDatabase <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeDatabase (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDatabases <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListDatabases (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTables <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTables (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>WriteRecords <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>WriteRecords (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -21007,43 +21007,43 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateUser (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteServer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteServer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSshPublicKey <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteSshPublicKey (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteUser (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeServer <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeServer (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeUser (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ImportSshPublicKey <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ImportSshPublicKey (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListServers</td>
+      <td>ListServers (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListUsers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListUsers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateUser (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -21155,43 +21155,43 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>BatchGetTraces</td>
+      <td>BatchGetTraces (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateSamplingRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateSamplingRule (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSamplingRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteSamplingRule (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSamplingRules <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetSamplingRules (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetServiceGraph</td>
+      <td>GetServiceGraph (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTraceGraph</td>
+      <td>GetTraceGraph (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTraceSummaries <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetTraceSummaries (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutTelemetryRecords <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutTelemetryRecords (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutTraceSegments <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutTraceSegments (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateSamplingRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>UpdateSamplingRule (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
