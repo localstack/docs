@@ -442,7 +442,11 @@ In the coverage table below, the features are marked with their respective avail
 | Subscribe to Shard                                                 | ⭐⭐⭐⭐       | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Kinesis Analytics** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#kinesisanalytics" >}})  |                 |       |
+| Applications                                                       | ⭐⭐⭐         | Emulated            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Kinesis Analytics v2** (Pro)                                     | [🔍]({{< ref "../localstack/metric-coverage/#kinesisanalyticsv2" >}}) |                 |       |
+| Applications                                                       | ⭐⭐⭐         | Emulated            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **KMS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#kms" >}}) |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
 | Custom Key Stores                                                  | ⭐⭐⭐         |                 |       |
@@ -452,6 +456,9 @@ In the coverage table below, the features are marked with their respective avail
 | Keys                                                               | ⭐⭐⭐⭐       |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **Lake Formation** (Pro)                                           | [🔍]({{< ref "../localstack/metric-coverage/#lakeformation" >}}) |                 |       |
+| Transactions                                                       | \-             |                 |       |
+| Permissions                                                        | ⭐⭐             | CRUD                |       |
+| Resources                                                          | ⭐⭐             | CRUD                |       |
 | [**Lambda**]({{< ref "lambda" >}})                                 | [🔍]({{< ref "../localstack/metric-coverage/#lambda" >}}) |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       | CRUD            |       |
 | Code Signing Configs                                               | ⭐⭐           | CRUD            |       |
@@ -485,22 +492,24 @@ In the coverage table below, the features are marked with their respective avail
 | Metric Policies                                                    | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
 | **MediaStore Data** (Pro)                                          | [🔍]({{< ref "../localstack/metric-coverage/#mediastore-data" >}}) |                 |       |
-| Objects                                                            | ⭐⭐⭐         | CRUD                |       |
+| Objects                                                            | ⭐⭐⭐         | CRUD            |       |
 | **MWAA (Managed Workflows for Apache Airflow)** (Pro)              | [🔍]({{< ref "../localstack/metric-coverage/#mwaa" >}}) |                 |       |
 | CLI Tokens                                                         | -              |                 |       |
-| Environments                                                       | ⭐⭐⭐          |                 |       |
-| S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐        |                 |       |
-| Web Login                                                          | ⭐⭐⭐          |                 |       |
+| Environments                                                       | ⭐⭐⭐          | Emulated       |       |
+| S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          | Emulated       |       |
+| Tags                                                               | ⭐⭐⭐⭐        | CRUD           |       |
+| Web Login                                                          | ⭐⭐⭐          | Emulated       |       |
 | [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      | [🔍]({{< ref "../localstack/metric-coverage/#neptune" >}}) |                 |       |
-| DB Clusters                                                        | ⭐⭐⭐⭐       |                 |       |
-| DB Cluster Endpoints                                               | ⭐⭐⭐⭐       |                 |       |
-| DB Cluster Parameter Groups                                        | ⭐⭐⭐⭐       |                 |       |
+| DB Clusters                                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| DB Cluster Endpoints                                               | ⭐⭐⭐⭐       | Emulated        |       |
+| DB Cluster Parameter Groups                                        | ⭐⭐⭐⭐       | Emulated        |       |
 | DB Cluster Snapshots                                               | \-             |                 |       |
-| Engine Default Parameters                                          | ⭐⭐           |                 |       |
+| Engine Default Parameters                                          | ⭐⭐           | CRUD            |       |
 | Event Subscriptions                                                | \-             |                 |       |
 | Events                                                             | \-             |                 |       |
-| Tags                                                               | \-             |                 |       |
+| Global Clusters                                                    | \-             |                 |       |
+| PendingMaintenanceAction                                           | \-             |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
 | [**OpenSearch Service**]({{< ref "opensearch" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#opensearch" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
 | OpenSearch Domains                                                 | ⭐⭐⭐⭐       | Emulated        |       |
