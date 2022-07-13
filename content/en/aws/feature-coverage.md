@@ -546,18 +546,21 @@ In the coverage table below, the features are marked with their respective avail
 | Execute sql/statements                                             | ⭐⭐⭐         | Emulated               |       |
 | Transactions                                                       | ⭐⭐           | Emulated                |       |
 | Batch Execution                                                    | \-             |                 |       |
-| **Redshift**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#redshift" >}}) |                 |       |
+| **Redshift**  (Pro)                                                | [🔍]({{< ref "../localstack/metric-coverage/#redshift" >}}) |                 |       |
 | Authorize/Revoke Access                                            | \-             |                 |       |
-| Cluster Parameter Groups                                           | ⭐⭐⭐         |                 |       |
-| Cluster Snapshots                                                  | ⭐⭐⭐         |                 |       |
+| Cluster Parameter Groups                                           | ⭐⭐⭐         | Emulated         |       |
+| Cluster Snapshots                                                  | ⭐⭐          | CRUD             |       |
 | Clusters/Instances                                                 | ⭐⭐⭐⭐       | Emulated                |       |
 | Event Subscriptions                                                | \-             |                 |       |
 | HSM Configurations                                                 | \-             |                 |       |
 | Partners                                                           | \-             |                 |       |
-| Security/Subnet Groups                                             | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Usage Limits                                                       | ⭐⭐           |                 |       |
+| Security/Subnet Groups                                             | ⭐⭐⭐         | CRUD             |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| Usage Limits                                                       | \-           |                 |       |
 | **Redshift Data** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#redshift-data" >}}) |                 |       |
+| Statements                                                         | ⭐⭐⭐         | Emulated          |       |
+| Describe Table                                                     | ⭐⭐⭐         | Emulated         |       |
+| Batch Execution                                                    | \-             |                 |       |
 | **Resource Groups**                                                | [🔍]({{< ref "../localstack/metric-coverage/#resource-groups" >}}) |                 |       |
 | Resources                                                          | ⭐⭐⭐         | CRUD                |       |
 | Groups                                                             | ⭐⭐⭐         | CRUD                |       |
