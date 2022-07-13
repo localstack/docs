@@ -459,12 +459,13 @@ In the coverage table below, the features are marked with their respective avail
 | **MediaStore** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#mediastore" >}}) |                 |       |
 | Access Logging                                                     | \-             |                 |       |
 | Container Policies                                                 | \-             |                 |       |
-| Containers                                                         | ⭐⭐⭐         |                 |       |
+| Containers                                                         | ⭐⭐⭐         | CRUD                |       |
 | CORS Policies                                                      | \-             |                 |       |
 | Lifecycle Policies                                                 | \-             |                 |       |
 | Metric Policies                                                    | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
 | **MediaStore Data** (Pro)                                          | [🔍]({{< ref "../localstack/metric-coverage/#mediastore-data" >}}) |                 |       |
+| Objects                                                            | ⭐⭐⭐         | CRUD                |       |
 | **MWAA (Managed Workflows for Apache Airflow)** (Pro)              | [🔍]({{< ref "../localstack/metric-coverage/#mwaa" >}}) |                 |       |
 | CLI Tokens                                                         | -              |                 |       |
 | Environments                                                       | ⭐⭐⭐          |                 |       |
@@ -487,15 +488,22 @@ In the coverage table below, the features are marked with their respective avail
 | Reserved Instances                                                 | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Organizations** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#organizations" >}}) |                 |       |
+| Accounts                                                           | ?              | CRUD            |        |
+| Handshakes                                                         | ?              | CRUD            |        |
+| Organization                                                       | ?              | CRUD            |        |
+| Organizational Units                                               | ?              | CRUD            |        |
+| Policies                                                           | ?              | CRUD            |        |
+| Tags                                                               | ⭐⭐⭐⭐      | CRUD            |        |
 | [**QLDB** (Pro)]({{< ref "qldb" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#qldb" >}}) |                 |       |
-| Blocks                                                             | ⭐⭐⭐         |                 |       |
-| Digests                                                            | ⭐⭐⭐         |                 |       |
-| Journal Kinesis Streams                                            | ⭐⭐⭐         |                 |       |
-| Journal S3 Exports                                                 | ⭐⭐⭐         |                 |       |
-| Ledgers                                                            | ⭐⭐⭐⭐       |                 |       |
-| Send Commands / Run Queries                                        | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **QLDB Sessions** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#qldb-session" >}}) |                 |       |
+| Blocks                                                             | ⭐⭐⭐         | Emulated                 |       |
+| Digests                                                            | ⭐⭐⭐         | CRUD                |       |
+| Journal Kinesis Streams                                            | ⭐⭐⭐         | CRUD                |       |
+| Journal S3 Exports                                                 | ⭐⭐⭐         | CRUD                |       |
+| Ledgers                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Send Commands / Run Queries                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **QLDB Sessions** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#qldb-session" >}}) |             |
+| Send Command                                                       | ⭐⭐⭐⭐       | Emulated
 | [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             | [🔍]({{< ref "../localstack/metric-coverage/#rds" >}}) |                 |       |
 | DB/Cluster Parameter Groups                                        | ⭐⭐⭐         | CRUD            |       |
 | DB/Cluster Snapshots                                               | ⭐⭐⭐         | Emulated        |       |
@@ -514,7 +522,7 @@ In the coverage table below, the features are marked with their respective avail
 | Authorize/Revoke Access                                            | \-             |                 |       |
 | Cluster Parameter Groups                                           | ⭐⭐⭐         |                 |       |
 | Cluster Snapshots                                                  | ⭐⭐⭐         |                 |       |
-| Clusters/Instances                                                 | ⭐⭐⭐⭐       |                 |       |
+| Clusters/Instances                                                 | ⭐⭐⭐⭐       | Emulated                |       |
 | Event Subscriptions                                                | \-             |                 |       |
 | HSM Configurations                                                 | \-             |                 |       |
 | Partners                                                           | \-             |                 |       |
@@ -608,6 +616,10 @@ In the coverage table below, the features are marked with their respective avail
 | Secrets                                                            | ⭐⭐⭐⭐       | CRUD                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
 | **Serverless Repo** (Pro)                                          | [🔍]({{< ref "../localstack/metric-coverage/#serverlessrepo" >}}) |                 |       |
+| Applications                                                       | ⭐⭐⭐         | CRUD                |       |
+| Application Policies                                               | \-             |                |       |
+| CloudFormation templates                                           | ⭐⭐⭐         | Emulated                |       |
+
 | **Service Discovery (CloudMap)** (Pro)                             | [🔍]({{< ref "../localstack/metric-coverage/#servicediscovery" >}}) |                 |       |
 | Namespaces                                                         | ⭐⭐⭐         | CRUD                |       |
 | [**SES**]({{< ref "ses" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#ses" >}}) |                 |       |
@@ -656,33 +668,40 @@ In the coverage table below, the features are marked with their respective avail
 | State Machines                                                     | ⭐⭐⭐⭐       | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | Emulated                |       |
 | **STS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#sts" >}})  |                 |       |
-| Assume Role (Pro)                                                  | ⭐⭐⭐⭐       |                 |       |
-| Get Access Key Info                                                | ⭐⭐⭐⭐       |                 |       |
-| Get Caller Identity                                                | ⭐⭐⭐⭐       |                 |       |
-| Session Tokens                                                     | ⭐⭐⭐⭐       |                 |       |
+| Assume Role (Pro)                                                  | ⭐⭐⭐⭐       | Emulated                |       |
+| Get Access Key Info                                                | \-             |                 |       |
+| Get Caller Identity                                                | ⭐⭐⭐⭐       | Emulated                |       |
+| Session Tokens                                                     | ⭐⭐⭐⭐       | CRUD                |       |
 | **Support**                                                        | [🔍]({{< ref "../localstack/metric-coverage/#support" >}}) |                 |       |
+| Cases                                                              | ⭐⭐⭐         | CRUD                |       |
+| TrustedAdvisorChecks                                               | ⭐⭐           | CRUD                |       |
+| Attachments                                                        | \-             |                 |       |
 | **SWF**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#swf" >}}) |                 |       |
+| Domain                                                             | ?           | ?                |       |
+| Activity                                                           | ?           | ?                |       |
+| Workflows                                                          | ?           | ?                |       |
+| Domains                                                            | ?           | ?                |       |
 | [**Timestream (query, write)**]({{< ref "timestream" >}}) (Pro)    | [🔍]({{< ref "../localstack/metric-coverage/#timestream-query" >}}) |                 |       |
-| Databases                                                          | ⭐⭐⭐         |                 |       |
-| Run Query                                                          | ⭐⭐⭐         |                 |       |
-| Tables                                                             | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Write Records                                                      | ⭐⭐⭐⭐       |                 |       |
+| Databases                                                          | ⭐⭐⭐         | Emulated                |       |
+| Run Query                                                          | ⭐⭐⭐         | Emulated                |       |
+| Tables                                                             | ⭐⭐⭐         | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐         | CRUD               |       |
+| Write Records                                                      | ⭐⭐⭐         | Emulated                |       |
 | [**Transfer** (Pro)]({{< ref "transfer" >}})                       | [🔍]({{< ref "../localstack/metric-coverage/#transfer" >}}) |                 |       |
 | Accesses                                                           | \-             |                 |       |
 | Security Policies                                                  | \-             |                 |       |
-| Servers                                                            | ⭐⭐⭐         |                 |       |
-| SSH Public Keys                                                    | ⭐⭐⭐         |                 |       |
+| Servers                                                            | ⭐⭐⭐         | Emulated                |       |
+| SSH Public Keys                                                    | ⭐⭐⭐         | CRUD                |       |
 | Tags                                                               | \-             |                 |       |
-| Users                                                              | ⭐⭐⭐         |                 |       |
+| Users                                                              | ⭐⭐⭐         | Emulated                |       |
 | [**XRay** (Pro)]({{< ref "xray-tracing" >}})                       | [🔍]({{< ref "../localstack/metric-coverage/#xray" >}}) |                 |       |
 | Encryption Configs                                                 | \-             |                 |       |
-| Groups                                                             | ⭐⭐           |                 |       |
+| Groups                                                             | \-           |                 |       |
 | Insights                                                           | \-             |                 |       |
-| Sampling Rules                                                     | ⭐⭐⭐         |                 |       |
+| Sampling Rules                                                     | ⭐⭐⭐         | CRUD                |       |
 | Service Graph                                                      | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| Telemetry Records                                                  | ⭐⭐⭐⭐       |                 |       |
+| Telemetry Records                                                  | ⭐⭐⭐⭐       | Emulated                |       |
 | Trace Graph                                                        | \-             |                 |       |
-| Trace Segments / Summaries                                         | ⭐⭐⭐         |                 |       |
+| Trace Segments / Summaries                                         | ⭐⭐⭐         | CRUD                |       |
 
