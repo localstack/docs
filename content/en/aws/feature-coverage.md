@@ -241,9 +241,9 @@ In the coverage table below, the features are marked with their respective avail
 | Table Replica Autoscaling                                          | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **DynamoDB Streams**                                               | [🔍]({{< ref "../localstack/metric-coverage/#dynamodbstreams" >}}) |                 |       |
-| Records                                                            | ⭐⭐⭐⭐       |                 |       |
-| Shard Iterators                                                    | ⭐⭐⭐⭐       |                 |       |
-| Streams                                                            | ⭐⭐⭐⭐       |                 |       |
+| Records                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Shard Iterators                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| Streams                                                            | ⭐⭐⭐⭐       | Emulated        |       |
 | [**EC2**]({{< ref "elastic-compute-cloud" >}})                      | [🔍]({{< ref "../localstack/metric-coverage/#ec2" >}})  |                 |       |
 | Classic Links                                                      | \-             |                 |       |
 | Customer Gateways                                                  | ⭐             | CRUD            |       |
@@ -297,6 +297,8 @@ In the coverage table below, the features are marked with their respective avail
 | Task Sets                                                          | ⭐⭐⭐         |      CRUD       |       |
 | Tasks                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
 | **EFS** (Pro)                                                      | [🔍]({{< ref "../localstack/metric-coverage/#efs" >}}) |                 |       |
+| File System                                                        | ⭐⭐⭐⭐       | Emulated        |        |
+| Backup Policy                                                      | \-             |                 |       |
 | [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          | [🔍]({{< ref "../localstack/metric-coverage/#eks" >}}) |                 |       |
 | AddOns                                                             | \-             |                 |       |
 | Clusters                                                           | ⭐⭐⭐         | Emulated        |       |
@@ -317,6 +319,8 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD           |       |
 | Users / User Groups                                                | \-             |                 |       |
 | **Elastic Beanstalk** (Pro)                                        | [🔍]({{< ref "../localstack/metric-coverage/#elasticbeanstalk" >}}) |                 |       |
+| Application Deployment                                             | ⭐⭐⭐         | CRUD            |       |
+| Environment                                                        | ⭐⭐           | CRUD            |       |
 | **ELB (Elastic Load Balancing)** (Pro)                             | [🔍]({{< ref "../localstack/metric-coverage/#elb" >}}) |                 |       |
 | Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
 | Load balancers                                                     | ⭐⭐⭐         | Emulated        | Application load balancers with IP address or Lambda targets only |
