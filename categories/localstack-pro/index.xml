@@ -2423,6 +2423,12 @@ First, we create a new repository with a chosen name:
 }
 }
 }&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>:
+When creating an ECR, a port from the &lt;a href="/localstack/external-ports/">the external service port range&lt;/a> is dynamically selected.&lt;br>
+Therefore, the port can differ from &lt;code>4510&lt;/code> used in the samples below.
+Make sure to use the correct URL / port by using the &lt;code>repositoryUrl&lt;/code> of the &lt;code>create-repository&lt;/code> request.
+&lt;/div>
 &lt;p>Now let us pull the nginx image:
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker pull nginx&lt;/code>&lt;/pre>&lt;/div>
 &amp;hellip; tag it to our repository name:
@@ -2503,7 +2509,22 @@ EOF&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;pre>&lt;code> Normal Pulled 10s kubelet Successfully pulled image &amp;quot;localhost.localstack.cloud:4510/fancier-nginx:latest&amp;quot; in 2.412775896s
 &lt;/code>&lt;/pre>&lt;h3 id="configuring-an-ingress-for-your-services">Configuring an Ingress for your services&lt;/h3>
 &lt;p>In order to make an EKS service externally accessible, we need to create an &lt;code>Ingress&lt;/code> configuration that exposes the service on a certain path to the load balancer.&lt;/p>
-&lt;p>Assuming we have created an &lt;code>nginx&lt;/code> Kubernetes service for our sample above, we can now use the following ingress configuration to expose the nginx service on path &lt;code>/test123&lt;/code>:&lt;/p>
+&lt;p>We can create an &lt;code>nginx&lt;/code> Kubernetes service for our sample deployment above by applying the following configuration:
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+name: nginx
+spec:
+selector:
+app: fancier-nginx
+ports:
+- name: http
+protocol: TCP
+port: 80
+targetPort: 80
+EOF&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Now use the following ingress configuration to expose the nginx service on path &lt;code>/test123&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
