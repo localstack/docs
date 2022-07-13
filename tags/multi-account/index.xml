@@ -1,0 +1,53 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – multi-account</title><link>/tags/multi-account/</link><description>Recent content in multi-account on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/multi-account/index.xml" rel="self" type="application/rss+xml"/><item><title>Tools: Multi-Account Setups</title><link>/tools/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/multi-account-setups/</guid><description>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Multi-account is a preview feature and is not compatible with cloud pods and persistence.
+To enable multi-accounts, refer to &lt;a href="/localstack/configuration/#core">configuration&lt;/a>.
+&lt;/div>
+&lt;p>LocalStack Community only supports a single AWS Account ID, &lt;code>000000000000&lt;/code> by default.
+By contrast, LocalStack Pro ships with multi-account support which adds namespacing based on AWS Account ID&lt;/p>
+&lt;p>Namespaced AWS resources can be accessed by using the &lt;code>AWS_ACCESS_KEY_ID&lt;/code> variable when making requests.
+No additional server-side configuration is required.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Multi-account is not supported for the &lt;code>us-east-1&lt;/code> region.
+See &lt;a href="#limitations">limitation note&lt;/a>.
+&lt;/div>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>export AWS_DEFAULT_REGION=eu-central-1
+&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 create-key-pair --key-name green-hospital
+&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 create-key-pair --key-name red-medicine
+&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 describe-key-pairs
+{
+&amp;#34;KeyPairs&amp;#34;: [
+{
+&amp;#34;KeyFingerprint&amp;#34;: &amp;#34;6b:e3:a3:41:4b:60:f3:6d:7b:84:3e:17:e3:ad:d0:15&amp;#34;,
+&amp;#34;KeyName&amp;#34;: &amp;#34;green-hospital&amp;#34;
+}
+]
+}
+&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 describe-key-pairs
+{
+&amp;#34;KeyPairs&amp;#34;: [
+{
+&amp;#34;KeyFingerprint&amp;#34;: &amp;#34;16:4c:64:13:36:41:7c:75:d0:51:f0:db:ed:d7:c8:95&amp;#34;,
+&amp;#34;KeyName&amp;#34;: &amp;#34;red-medicine&amp;#34;
+}
+]
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In absence of an explicit value for Account ID, LocalStack reverts to the default value of &lt;code>000000000000&lt;/code>.
+In the current example, not setting an explicit Account ID will return no resources.&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-key-pairs
+{
+&amp;#34;KeyPairs&amp;#34;: []
+}&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack uses the &lt;code>AWS_ACCESS_KEY_ID&lt;/code> client-side variable for Account ID.
+In future LocalStack may support proper access key IDs issued by the local IAM service, which will then internally be translated to corresponding account IDs.
+&lt;/div>
+&lt;h3 id="limitations">Limitations&lt;/h3>
+&lt;p>Multi-accounts is a preview feature and is not compatible with cloud pods and persistence.&lt;/p>
+&lt;p>In order to use multi-accounts, the region must be configured to something other than &lt;code>us-east-1&lt;/code>.
+Note that &lt;code>us-east-1&lt;/code> is the default region and must be explicitly overridden.
+For the AWS CLI, this can be done using the &lt;code>AWS_DEFAULT_REGION&lt;/code> or the &lt;code>--region&lt;/code> argument.
+More information can be found on &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">AWS CLI documentation&lt;/a>.&lt;/p></description></item></channel></rss>

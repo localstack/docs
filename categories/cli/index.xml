@@ -1,0 +1,104 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – CLI</title><link>/categories/cli/</link><description>Recent content in CLI on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/categories/cli/index.xml" rel="self" type="application/rss+xml"/><item><title>Tools: Cloud Pods CLI</title><link>/tools/cloud-pods/pods-cli/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/cloud-pods/pods-cli/</guid><description>
+&lt;h2 id="syntax">Syntax&lt;/h2>
+&lt;p>Use the following syntax to run &lt;code>localstack pod&lt;/code> commands from your terminal window:&lt;/p>
+&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">localstack pod &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>command&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>where &lt;code>command&lt;/code> specifies the operation you want to perform with your Cloud Pods, e.g., &lt;code>pull&lt;/code> or &lt;code>push&lt;/code>, and &lt;code>options&lt;/code> specifies the optional flag.
+For example, you can attach a specific message to a snapshot using the &lt;code>-m&lt;/code> option while doing a &lt;code>commit&lt;/code> operation.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The CRUD commands exposed with the Cloud Pods CLI expect a &lt;code>--name &amp;lt;pod_name&amp;gt;&lt;/code> option to specify the pod&amp;rsquo;s name.
+Users can avoid specifying a pod name at every command by setting a global config with the &lt;code>config&lt;/code> command.&lt;/p>
+&lt;p>For instance, the following command&lt;/p>
+&lt;pre>&lt;code>localstack config --name my_pod
+&lt;/code>&lt;/pre>&lt;p>will implicitly pass a pod name to all subsequent CLI commands.
+Such a configuration will be saved locally on the host machine in a JSON file (e.g., in &lt;code>~/.localstack/cloudpods/pods-config.json&lt;/code>).&lt;/p>
+&lt;h2 id="commands">Commands&lt;/h2>
+&lt;h3 id="commit">commit&lt;/h3>
+&lt;p>The &lt;code>commit&lt;/code> command creates a snapshot of your LocalStack running instance and locally saves it on the host machine.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>Commit a snapshot of the LocalStack running instance.
+Options:
+-m, --message TEXT Add a comment describing the snapshot.
+-n, --name TEXT Name of the Cloud Pod.
+-s, --services TEXT Comma-delimited list of services to push in the pods (all, by default).
+&lt;/code>&lt;/pre>&lt;h3 id="config">config&lt;/h3>
+&lt;p>The &lt;code>config&lt;/code> command saves some configuration values that apply to all the subsequent CLI commands.
+For instance with &lt;code>localstack pod config --name &amp;lt;my_name&amp;gt;&lt;/code> users can avoid specifying a pod name for other commands like &lt;code>pull&lt;/code> or &lt;code>push&lt;/code>.
+Users can specify a list of services with the following command:&lt;/p>
+&lt;pre>&lt;code>localstack pod config --services sqs,sns
+&lt;/code>&lt;/pre>&lt;p>The following CRUD operation will only take into account the selected service and not the entire LocalStack application state.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>Configure a set of parameters for all Cloud Pods commands.
+Options:
+-n, --name TEXT Name of the Cloud Pod.
+-s, --services TEXT Comma-delimited list of services or `all` to enable all (default).
+&lt;/code>&lt;/pre>&lt;h3 id="delete">delete&lt;/h3>
+&lt;p>The &lt;code>delete&lt;/code> command let users delete their remote or local Cloud Pods.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>Delete a Cloud Pod.
+Options:
+-n, --name TEXT Name of the Cloud Pod.
+-l, --local Delete only the local Cloud Pod, leaving the remote copy intact
+&lt;/code>&lt;/pre>&lt;h3 id="inject">inject&lt;/h3>
+&lt;p>The &lt;code>inject&lt;/code> command let users inject a specific application state, previously saved, into the application runtime.
+Please note that this is a local-only operation, i.e., the injecting state must be located on the host machine (usually under &lt;code>~/.localstack/cloudpods/&amp;lt;pod_name&amp;gt;&lt;/code>).&lt;/p>
+&lt;p>By default, the injecting state will replace the application runtime.
+The &lt;code>--merge&lt;/code> option, instead, will first merge the injecting state with the current runtime and then inject the result.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>Inject the state from a locally available Cloud Pod version into the application runtime.
+Options:
+--merge Merge the injecting state with the current application runtime.
+-v, --version INTEGER Version to inject (most recent one by default).
+-n, --name TEXT Name of the cloud pod.
+&lt;/code>&lt;/pre>&lt;h3 id="inspect">inspect&lt;/h3>
+&lt;p>The &lt;code>inspect&lt;/code> command simply lets the user inspect the content of a Cloud Pod.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>Inspect the contents of a Cloud Pod.
+Options:
+-n, --name TEXT Name of the Cloud Pod.
+-f, --format TEXT Format (curses, rich, json).
+&lt;/code>&lt;/pre>&lt;h3 id="list">list&lt;/h3>
+&lt;p>The &lt;code>list&lt;/code> command displays all the available Cloud Pods.
+By default, it only shows the pods that have been uploaded to the platform.
+The &lt;code>-l&lt;/code> option will also show the locally available pods.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;p>List all available Cloud Pods.&lt;/p>
+&lt;pre>&lt;code>Options:
+-l, --local List also locally available Cloud Pods
+&lt;/code>&lt;/pre>&lt;h3 id="pull">pull&lt;/h3>
+&lt;p>The &lt;code>pull&lt;/code> command retrieves the content of a Cloud Pod previously created and uploaded to the LocalStack platform and injects it into the application runtime.
+By default, the fetched pod will always be injected.
+The &lt;code>--fetch&lt;/code> option will instead only trigger the download of the desired Cloud Pods to the host machine, without performing any additional operation.
+Users could then, for instance, use the &lt;code>--inject&lt;/code> command to inject the retrieved pods.
+Similar to the &lt;code>--inject&lt;/code> command, users can specify the &lt;code>--merge&lt;/code> flag (off by default) if they wish to merge the current application state with the injecting one.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>Incorporate the state of a Cloud Pod into the application runtime.
+Options:
+-n, --name TEXT Name of the cloud pod
+--merge Merge the injecting state with the current application runtime.
+--fetch Only fetch the Cloud Pod from the remote platform.
+&lt;/code>&lt;/pre>&lt;h3 id="push">push&lt;/h3>
+&lt;p>The &lt;code>push&lt;/code> command is used to create a new version of a Cloud Pods and upload it to the LocalStack platform.
+A new version is created from the latest snapshot, e.g., taken with a previous &lt;code>commit&lt;/code>.
+A snapshot will be created at the moment of the push if no previous snapshot has been taken.
+By default, a &lt;code>push&lt;/code> operation will always retrieve the application state, create a Cloud Pod, and upload a version to the platform.
+Users can use the &lt;code>--local&lt;/code> flag if they wish to avoid the last step and keep the newly created pod on the host machine.
+Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the &lt;code>--services&lt;/code> option.
+Pushing an already existing pod results in creating a new version of it and, eventually, uploading it to the platform.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>Create a new version of a Cloud Pod from the latest snapshot. A snapshot is created if it does not
+exists yet.
+Options:
+-l, --local Create the Cloud Pod version only locally, without pushing to remote
+-m, --message TEXT Add a comment describing the version.
+-n, --name TEXT Name of the Cloud Pod.
+-s, --services TEXT Comma-delimited list of services to push in the pods (all by default).
+--overwrite BOOLEAN Overwrite a version with the content from the latest snapshot of the selected
+version.
+-v, --version INTEGER Version to overwrite. Works with `--overwrite`
+&lt;/code>&lt;/pre>&lt;h3 id="versions">versions&lt;/h3>
+&lt;p>The &lt;code>versions&lt;/code> command simply lists all the available versions of a Cloud Pod.&lt;/p>
+&lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>List all available versions for a Cloud Pod.
+Options:
+-n, --name TEXT Name of the Cloud Pod.
+&lt;/code>&lt;/pre></description></item></channel></rss>
