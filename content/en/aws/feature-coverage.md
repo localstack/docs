@@ -334,15 +334,15 @@ In the coverage table below, the features are marked with their respective avail
 | Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
 | Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
 | [**EMR**]({{< ref "elastic-mapreduce" >}}) (Pro)                   | [🔍]({{< ref "../localstack/metric-coverage/#emr" >}}) |                 |       |
-| Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
-| Instance Fleets                                                    | ⭐⭐⭐         |                 |       |
-| Job Flow Steps                                                     | ⭐⭐⭐         |                 |       |
+| Clusters                                                           | ⭐⭐⭐⭐       | Emulated        |       |
+| Instance Fleets                                                    | ⭐⭐⭐         | CRUD            |       |
+| Job Flow Steps                                                     | ⭐⭐⭐         | Emulated        |       |
 | Managed Scaling Policies                                           | \-             |                 |       |
 | Notebook Executions                                                | \-             |                 |       |
-| Run Job Flows (Queries)                                            | ⭐⭐⭐         |                 |       |
+| Run Job Flows (Queries)                                            | ⭐⭐⭐         | Emulated         |       |
 | Security Configurations                                            | \-             |                 |       |
 | Studios                                                            | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
 | [**ES (Elasticsearch Service)**]({{< ref "elasticsearch" >}})      | [🔍]({{< ref "../localstack/metric-coverage/#es" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
 | Elasticsearch Domains                                              | ⭐⭐⭐⭐       | Emulated        |       |
@@ -360,11 +360,16 @@ In the coverage table below, the features are marked with their respective avail
 | Rules                                                              | ⭐⭐⭐⭐       | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
 | **Firehose**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#firehose" >}}) |                 |       |
-| Delivery Streams                                                   | ⭐⭐⭐⭐       |                 |       |
-| Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
-| Records                                                            | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Delivery Streams                                                   | ⭐⭐⭐⭐       | Emulated        |       |
+| Destinations                                                       | ⭐⭐⭐⭐       | Emulated        |       |
+| Records                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| Stream Encryption                                                  | \-           |                  |       |
 | **Glacier** (Pro)                                                  | [🔍]({{< ref "../localstack/metric-coverage/#glacier" >}}) |                 |       |
+| Archive                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Vault                                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Job                                                                | ⭐⭐⭐⭐       | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | [**Glue** (Pro)]({{< ref "glue" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#glue" >}}) |                 |       |
 | Classifiers                                                        | ⭐⭐⭐         | CRUD            |       |
 | Connections                                                        | ⭐⭐⭐         | CRUD            |       |
