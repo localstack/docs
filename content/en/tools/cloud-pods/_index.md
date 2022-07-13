@@ -1,6 +1,6 @@
 ---
 title: "Cloud Pods"
-weight: 5
+weight: 10
 categories: ["LocalStack Pro", "Tools", "Persistence"]
 description: >
   Cloud Pods provides a new way of collaborating in cloud application development workflows.
