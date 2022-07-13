@@ -170,11 +170,11 @@ In the coverage table below, the features are marked with their respective avail
 | Streaming Distributions                                            | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |                 |       |
 | **CloudTrail** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#cloudtrail" >}}) |                 |       |
-| Event Selectors                                                    | ⭐⭐⭐         |                 |       |
+| Event Selectors                                                    | ⭐⭐⭐⭐        | Emulated          |       |
 | Insight Selectors                                                  | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Trails                                                             | ⭐⭐⭐         |                 |       |
-| Start/Stop Logging                                                 | ⭐⭐⭐         |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
+| Trails                                                             | ⭐⭐⭐⭐        | Emulated         |       |
+| Start/Stop Logging                                                 | ⭐⭐⭐⭐        | Emulated         |       |
 | [**CloudWatch**]({{< ref "cloudwatch" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#cloudwatch" >}}) |                 |       |
 | Alarms                                                             | ⭐⭐⭐⭐        | Emulated       |       |
 | Alarm Histories                                                    | \-             |                 |       |
@@ -219,13 +219,16 @@ In the coverage table below, the features are marked with their respective avail
 | Users                                                              | ⭐⭐⭐⭐       | CRUD            |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Config**                                                         | [🔍]({{< ref "../localstack/metric-coverage/#config" >}}) |                 |       |
+| Config Rules                                                       | ⭐⭐⭐         | CRUD            |       |
+| Conformance                                                        | ⭐⭐         | CRUD            |       |
+| Remediation                                                        | \-             |                 |       |
 | **DocumentDB** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#docdb" >}}) |                 |       |
-| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
-| DB/Cluster Snapshots                                               | ⭐            |                 |       |
-| DB Clusters/Instances                                              | ⭐⭐⭐⭐       |                 |       |
-| DB Subnet Groups                                                   | ⭐⭐          |                 |       |
+| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         | CRUD            |       |
+| DB/Cluster Snapshots                                               | ⭐⭐           | Emulated        |       |
+| DB Clusters/Instances                                              | ⭐⭐⭐⭐       | Emulated         |       |
+| DB Subnet Groups                                                   | ⭐⭐⭐         | Emulated         |       |
 | Event Subscriptions                                                | \-           |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **DynamoDB**                                                       | [🔍]({{< ref "../localstack/metric-coverage/#dynamodb" >}}) |                 |       |
 | Backups (Pro)                                                      | ⭐⭐⭐⭐       | Emulated        |       |
 | Batch Operations                                                   | ⭐⭐⭐⭐       | Emulated        |       |
