@@ -15,6 +15,8 @@ In addition, we provide a remote storage backend that can be used to store the s
 
 You can interact with Cloud Pods via the Web UI, and to load and store the persistent state of pods, you can use the `localstack` command-line interface (CLI).
 
+![Cloud Pods Web UI](pods-ui.png)
+
 Below is a simple example of how you can `push` and `pull` Cloud Pods to/from the remote platform using the `localstack` CLI:
 
 ```bash
