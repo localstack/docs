@@ -6,7 +6,7 @@ description: >
   Cloud Pods provides a new way of collaborating in cloud application development workflows.
 ---
 
-Cloud Pods are a mechanism that allows you to take a snapshot of your local instance, persist it to a storage backend, and easily share it with your team members.
+Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.
 
 While the [Persistence]({{< ref "persistence-mechanism" >}}) feature ensures that the service state survives container restarts, Cloud Pods go beyond and allow more fine-grained control over your state.
 Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow you to take snapshots of your local instance (with the `commit` command) and inject such snapshots into a running instance (with the `inject` command) without requiring a restart.
