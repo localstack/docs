@@ -149,23 +149,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListApps <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListBranches <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -215,6 +199,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListApps</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListArtifacts</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -231,6 +219,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListTagsForResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListWebhooks</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -244,6 +236,14 @@ description: >
     </tr>
     <tr>
       <td>StopJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TagResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -305,10 +305,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateRestApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateStage <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -325,10 +321,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApiKey <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteAuthorizer <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -342,10 +334,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteDeployment</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteDocumentationPart</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -390,14 +378,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteStage <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteUsagePlan</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteUsagePlanKey</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -469,10 +449,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetExport <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetGatewayResponse</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -525,10 +501,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRestApis <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetStage <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -565,14 +537,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ImportApiKeys</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ImportRestApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PutGatewayResponse</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -601,23 +565,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TestInvokeAuthorizer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>TestInvokeMethod <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UntagResource</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>UpdateAccount <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateApiKey</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -633,10 +585,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDeployment</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UpdateDocumentationPart</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -645,15 +593,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateGatewayResponse</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UpdateIntegration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateIntegrationResponse</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -703,7 +643,27 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateRestApi</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteApiKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteDocumentationPart</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteDocumentationVersion</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteUsagePlan</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteUsagePlanKey</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -723,7 +683,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetExport</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetModelTemplate</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetRestApis</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -743,11 +711,43 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ImportApiKeys</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ImportDocumentationParts</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ImportRestApi</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TestInvokeAuthorizer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TestInvokeMethod</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateApiKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateDeployment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>UpdateDocumentationVersion</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateGatewayResponse</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateIntegrationResponse</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -983,31 +983,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTags</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetVpcLink</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>GetVpcLinks <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ImportApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ReimportApi <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>TagResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UntagResource</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1085,7 +1065,27 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetTags</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ImportApi</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ReimportApi</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ResetAuthorizersCache</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TagResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -1525,10 +1525,6 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>BatchGetPreparedStatement</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateDataCatalog <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -1623,6 +1619,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>BatchGetPreparedStatement</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>BatchGetQueryExecution</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1689,31 +1689,11 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AttachInstances</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AttachLoadBalancerTargetGroups</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AttachLoadBalancers</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateAutoScalingGroup</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>CreateLaunchConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateOrUpdateTags</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteAutoScalingGroup</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1729,31 +1709,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTags</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeAutoScalingGroups</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeAutoScalingInstances</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLaunchConfigurations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeLifecycleHooks</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeLoadBalancerTargetGroups</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeLoadBalancers</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1769,18 +1729,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachInstances</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DetachLoadBalancerTargetGroups</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DetachLoadBalancers</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DisableMetricsCollection <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -1789,43 +1737,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnterStandby</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ExecutePolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ExitStandby</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PutLifecycleHook</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>PutScalingPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ResumeProcesses</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SetDesiredCapacity</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SetInstanceHealth</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SetInstanceProtection</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SuspendProcesses</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1843,6 +1759,18 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse autoscaling-notimplemented">     <tr>
+      <td>AttachInstances</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AttachLoadBalancerTargetGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AttachLoadBalancers</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>BatchDeleteScheduledAction</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1859,11 +1787,23 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateOrUpdateTags</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteAutoScalingGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteNotificationConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>DeleteScheduledAction</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteTags</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -1879,6 +1819,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeAutoScalingGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeAutoScalingNotificationTypes</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1887,7 +1831,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeLaunchConfigurations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeLifecycleHookTypes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeLoadBalancerTargetGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeLoadBalancers</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -1915,6 +1871,30 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DetachInstances</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DetachLoadBalancerTargetGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DetachLoadBalancers</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>EnterStandby</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ExecutePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ExitStandby</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetPredictiveScalingForecast</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1935,7 +1915,27 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ResumeProcesses</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SetDesiredCapacity</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SetInstanceHealth</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SetInstanceProtection</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>StartInstanceRefresh</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SuspendProcesses</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -1993,10 +1993,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBackupJobs</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListBackupPlans <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2009,23 +2005,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCopyJobs</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListRecoveryPointsByBackupVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListRecoveryPointsByResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListReportJobs</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListRestoreJobs</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2143,11 +2123,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListBackupJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListBackupPlanTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ListBackupPlanVersions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCopyJobs</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2159,7 +2147,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListRecoveryPointsByBackupVault</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListReportJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListReportPlans</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListRestoreJobs</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2237,10 +2237,6 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CancelJob</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateComputeEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2249,19 +2245,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateSchedulingPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteComputeEnvironment</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>DeleteJobQueue <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteSchedulingPolicy</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2285,15 +2273,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeSchedulingPolicies</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListJobs</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListSchedulingPolicies</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2328,9 +2308,35 @@ description: >
       <td>UpdateJobQueue</td>
        <td style="text-align:right">✅</td>
     </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".batch-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse batch-notimplemented">     <tr>
+      <td>CancelJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateSchedulingPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteSchedulingPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeSchedulingPolicies</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListSchedulingPolicies</td>
+       <td style="text-align:right">-</td>
+    </tr>
     <tr>
       <td>UpdateSchedulingPolicy</td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -2346,18 +2352,6 @@ description: >
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>CreateAnomalyMonitor <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateAnomalySubscription <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateCostCategoryDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
     <tr>
       <td>DeleteAnomalyMonitor <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
@@ -2401,6 +2395,18 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse ce-notimplemented">     <tr>
+      <td>CreateAnomalyMonitor</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateAnomalySubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateCostCategoryDefinition</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetAnomalies</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2507,11 +2513,11 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ActivateType</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateStack <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2621,10 +2627,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse cloudformation-notimplemented">     <tr>
-      <td>ActivateType</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>BatchDescribeTypeConfigurations</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2634,6 +2636,10 @@ description: >
     </tr>
     <tr>
       <td>ContinueUpdateRollback</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateStack</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2876,10 +2882,6 @@ description: >
     </tr>
     <tr>
       <td>TagResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3126,6 +3128,10 @@ description: >
     </tr>
     <tr>
       <td>TestFunction</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3823,10 +3829,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetId <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetIdentityPoolRoles <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -3839,19 +3841,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListIdentities</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListIdentityPools <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>SetIdentityPoolRoles <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateIdentityPool</td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -3869,7 +3863,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetId</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetPrincipalTagAttributeMap</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListIdentities</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3904,6 +3906,10 @@ description: >
       <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
+    <tr>
+      <td>UpdateIdentityPool</td>
+       <td style="text-align:right">-</td>
+    </tr>
   </tbody>
  </table>
 
@@ -3920,18 +3926,6 @@ description: >
   <tbody>
     <tr>
       <td>AddCustomAttributes</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AdminAddUserToGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AdminConfirmSignUp <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AdminCreateUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3959,19 +3953,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminListGroupsForUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AdminRemoveUserFromGroup</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AdminResetUserPassword</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AdminRespondToAuthChallenge <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4016,14 +3998,6 @@ description: >
     </tr>
     <tr>
       <td>CreateResourceServer <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateUserPool <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateUserPoolClient <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4095,10 +4069,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetUserPoolMfaConfig <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GlobalSignOut <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4143,10 +4113,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetUserPoolMfaConfig <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>SignUp <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4166,14 +4132,6 @@ description: >
       <td>UpdateUserAttributes</td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>UpdateUserPool <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateUserPoolClient</td>
-       <td style="text-align:right">✅</td>
-    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".cognito-idp-notimplemented">Show missing</a></td>
@@ -4181,6 +4139,18 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse cognito-idp-notimplemented">     <tr>
+      <td>AdminAddUserToGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AdminConfirmSignUp</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AdminCreateUser</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AdminDisableProviderForUser</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4201,7 +4171,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AdminListGroupsForUser</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AdminListUserAuthEvents</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AdminRemoveUserFromGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AdminRespondToAuthChallenge</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4222,6 +4204,14 @@ description: >
     </tr>
     <tr>
       <td>CreateUserImportJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateUserPool</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateUserPoolClient</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4261,6 +4251,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetUserPoolMfaConfig</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListDevices</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4289,6 +4283,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>SetUserPoolMfaConfig</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>SetUserSettings</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4314,6 +4312,14 @@ description: >
     </tr>
     <tr>
       <td>UpdateDeviceStatus</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateUserPool</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateUserPoolClient</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4715,10 +4721,6 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddTagsToResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CopyDBClusterSnapshot</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4811,10 +4813,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ModifyDBCluster</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4835,15 +4833,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTagsFromResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ResetDBClusterParameterGroup</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RestoreDBClusterFromSnapshot</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4862,6 +4852,10 @@ description: >
   </tbody>
   <tbody class="collapse docdb-notimplemented">     <tr>
       <td>AddSourceIdentifierToSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AddTagsToResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4909,6 +4903,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListTagsForResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ModifyDBClusterSnapshotAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4926,6 +4924,14 @@ description: >
     </tr>
     <tr>
       <td>RemoveSourceIdentifierFromSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RemoveTagsFromResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RestoreDBClusterFromSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4952,14 +4958,6 @@ description: >
     </tr>
     <tr>
       <td>BatchGetItem <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>BatchWriteItem <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateBackup <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5023,10 +5021,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBackups</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListGlobalTables</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5043,10 +5037,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>Query <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>RestoreTableFromBackup <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5060,10 +5050,6 @@ description: >
     </tr>
     <tr>
       <td>TransactGetItems <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>TransactWriteItems <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5093,6 +5079,14 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse dynamodb-notimplemented">     <tr>
+      <td>BatchWriteItem</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateBackup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeBackup</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -5125,6 +5119,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListBackups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListContributorInsights</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -5133,7 +5131,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>Query</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RestoreTableToPointInTime</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TransactWriteItems</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -5171,16 +5177,22 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRecords <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetShardIterator <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListStreams <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
+    </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".dynamodbstreams-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse dynamodbstreams-notimplemented">     <tr>
+      <td>GetRecords</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetShardIterator</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -5196,10 +5208,6 @@ description: >
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>AcceptTransitGatewayPeeringAttachment</td>
-       <td style="text-align:right">✅</td>
-    </tr>
     <tr>
       <td>AcceptVpcPeeringConnection <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
@@ -5237,10 +5245,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AssociateTransitGatewayRouteTable</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AssociateVpcCidrBlock</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5266,10 +5270,6 @@ description: >
     </tr>
     <tr>
       <td>AuthorizeSecurityGroupIngress <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CancelSpotFleetRequests</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5318,10 +5318,6 @@ description: >
     </tr>
     <tr>
       <td>CreateLaunchTemplate</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateLaunchTemplateVersion</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5389,10 +5385,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTransitGatewayRoute</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateTransitGatewayRouteTable</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5414,10 +5406,6 @@ description: >
     </tr>
     <tr>
       <td>CreateVpcEndpointServiceConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateVpcPeeringConnection <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5458,14 +5446,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteLaunchTemplate</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteManagedPrefixList</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteNatGateway <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5510,26 +5490,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteTags</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteTransitGateway</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteTransitGatewayPeeringAttachment</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteTransitGatewayRoute</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteTransitGatewayRouteTable</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteTransitGatewayVpcAttachment</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5597,10 +5557,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeIamInstanceProfileAssociations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeImageAttribute</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5638,10 +5594,6 @@ description: >
     </tr>
     <tr>
       <td>DescribeKeyPairs</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeLaunchTemplateVersions</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5698,10 +5650,6 @@ description: >
     </tr>
     <tr>
       <td>DescribeSnapshots</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeSpotFleetInstances</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5813,10 +5761,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableTransitGatewayRouteTablePropagation</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DisableVpcClassicLink</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5841,19 +5785,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisassociateTransitGatewayRouteTable</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DisassociateVpcCidrBlock</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>EnableEbsEncryptionByDefault</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>EnableTransitGatewayRouteTablePropagation</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5905,10 +5841,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyManagedPrefixList</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ModifyNetworkInterfaceAttribute</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5917,19 +5849,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifySpotFleetRequest</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ModifySubnetAttribute <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ModifyTransitGateway</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ModifyTransitGatewayVpcAttachment</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5938,10 +5858,6 @@ description: >
     </tr>
     <tr>
       <td>ModifyVpcAttribute</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ModifyVpcEndpoint</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5974,10 +5890,6 @@ description: >
     </tr>
     <tr>
       <td>RegisterImage</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RejectTransitGatewayPeeringAttachment</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6091,6 +6003,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AcceptTransitGatewayPeeringAttachment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AcceptTransitGatewayVpcAttachment</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6128,6 +6044,10 @@ description: >
     </tr>
     <tr>
       <td>AssociateTransitGatewayMulticastDomain</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AssociateTransitGatewayRouteTable</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6172,6 +6092,10 @@ description: >
     </tr>
     <tr>
       <td>CancelReservedInstancesListing</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CancelSpotFleetRequests</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6232,6 +6156,10 @@ description: >
     </tr>
     <tr>
       <td>CreateIpamScope</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateLaunchTemplateVersion</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6311,7 +6239,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateTransitGatewayRoute</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateVpcEndpointConnectionNotification</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateVpcPeeringConnection</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6363,6 +6299,14 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteManagedPrefixList</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteNatGateway</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteNetworkInsightsAccessScope</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6411,6 +6355,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteTransitGateway</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteTransitGatewayConnect</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6423,7 +6371,23 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteTransitGatewayPeeringAttachment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteTransitGatewayPrefixListReference</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteTransitGatewayRoute</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteTransitGatewayRouteTable</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteTransitGatewayVpcAttachment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6567,6 +6531,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeIamInstanceProfileAssociations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6604,6 +6572,10 @@ description: >
     </tr>
     <tr>
       <td>DescribeIpv6Pools</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeLaunchTemplateVersions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6703,6 +6675,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeSpotFleetInstances</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeSpotFleetRequestHistory</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6787,6 +6763,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DisableTransitGatewayRouteTablePropagation</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DisableVgwRoutePropagation</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6804,6 +6784,10 @@ description: >
     </tr>
     <tr>
       <td>DisassociateTransitGatewayMulticastDomain</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DisassociateTransitGatewayRouteTable</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6828,6 +6812,10 @@ description: >
     </tr>
     <tr>
       <td>EnableSerialConsoleAccess</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>EnableTransitGatewayRouteTablePropagation</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7091,6 +7079,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ModifyManagedPrefixList</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ModifyPrivateDnsNameOptions</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7107,6 +7099,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ModifySpotFleetRequest</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ModifyTrafficMirrorFilterNetworkServices</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7119,11 +7115,23 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ModifyTransitGateway</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ModifyTransitGatewayPrefixListReference</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ModifyTransitGatewayVpcAttachment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ModifyVolume</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyVpcEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7192,6 +7200,10 @@ description: >
     </tr>
     <tr>
       <td>RejectTransitGatewayMulticastDomainAssociations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RejectTransitGatewayPeeringAttachment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7309,6 +7321,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>BatchCheckLayerAvailability</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>BatchDeleteImage <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -7341,10 +7357,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeImages <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeRegistry</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -7361,19 +7373,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetLifecyclePolicyPreview</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetRegistryPolicy</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>GetRepositoryPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListImages <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7413,10 +7417,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartLifecyclePolicyPreview</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -7431,10 +7431,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse ecr-notimplemented">     <tr>
-      <td>BatchCheckLayerAvailability</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>BatchGetRepositoryScanningConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7455,11 +7451,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeImages</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribePullThroughCacheRules</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>GetDownloadUrlForLayer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetLifecyclePolicyPreview</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7471,7 +7475,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListImages</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>PutRegistryScanningConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StartLifecyclePolicyPreview</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7517,19 +7529,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCapacityProvider</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteCluster <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>DeleteService <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteTaskSet</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7549,15 +7553,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeContainerInstances</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeServices <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeTaskDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7621,15 +7617,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterContainerInstance</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>RegisterTaskDefinition <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RunTask <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7653,10 +7641,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateContainerInstancesState</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UpdateService</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -7675,11 +7659,35 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse ecs-notimplemented">     <tr>
+      <td>DeleteCapacityProvider</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteTaskSet</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeContainerInstances</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeTaskDefinition</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ExecuteCommand</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>PutAccountSettingDefault</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RegisterContainerInstance</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RunTask</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7704,6 +7712,10 @@ description: >
     </tr>
     <tr>
       <td>UpdateContainerAgent</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateContainerInstancesState</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -8057,19 +8069,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteReplicationGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeCacheClusters <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>DescribeCacheParameterGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeCacheParameters <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8163,6 +8167,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteReplicationGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8176,6 +8184,10 @@ description: >
     </tr>
     <tr>
       <td>DescribeCacheEngineVersions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeCacheParameters</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8305,10 +8317,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEnvironment <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -8372,6 +8380,10 @@ description: >
     </tr>
     <tr>
       <td>CreateConfigurationTemplate</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateEnvironment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8513,19 +8525,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AttachLoadBalancerToSubnets</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ConfigureHealthCheck</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateAppCookieStickinessPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateLBCookieStickinessPolicy</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8537,31 +8537,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLoadBalancerPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteLoadBalancer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteLoadBalancerListeners</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteLoadBalancerPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeregisterInstancesFromLoadBalancer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeInstanceHealth</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeLoadBalancerAttributes</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8577,39 +8553,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachLoadBalancerFromSubnets</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DisableAvailabilityZonesForLoadBalancer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>EnableAvailabilityZonesForLoadBalancer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ModifyLoadBalancerAttributes</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RegisterInstancesWithLoadBalancer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>RemoveTags</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>SetLoadBalancerListenerSSLCertificate</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SetLoadBalancerPoliciesForBackendServer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SetLoadBalancerPoliciesOfListener</td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -8619,11 +8567,75 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse elb-notimplemented">     <tr>
+      <td>AttachLoadBalancerToSubnets</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateAppCookieStickinessPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateLBCookieStickinessPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateLoadBalancerPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteLoadBalancerListeners</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteLoadBalancerPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeregisterInstancesFromLoadBalancer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeAccountLimits</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeInstanceHealth</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeLoadBalancerAttributes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeLoadBalancerPolicyTypes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DetachLoadBalancerFromSubnets</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DisableAvailabilityZonesForLoadBalancer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>EnableAvailabilityZonesForLoadBalancer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyLoadBalancerAttributes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RegisterInstancesWithLoadBalancer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SetLoadBalancerPoliciesForBackendServer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SetLoadBalancerPoliciesOfListener</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -8795,14 +8807,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddInstanceGroups</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AddJobFlowSteps</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AddTags</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -8827,23 +8831,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeStep</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetAutoTerminationPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBlockPublicAccessConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListBootstrapActions <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListClusters <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8851,27 +8839,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInstanceGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListInstances</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListSteps <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ModifyCluster</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ModifyInstanceFleet <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ModifyInstanceGroups</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8894,22 +8862,6 @@ description: >
       <td>RemoveTags</td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>RunJobFlow <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SetTerminationProtection</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SetVisibleToAllUsers</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>TerminateJobFlows <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".emr-notimplemented">Show missing</a></td>
@@ -8917,6 +8869,14 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse emr-notimplemented">     <tr>
+      <td>AddInstanceGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AddJobFlowSteps</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelSteps</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8945,7 +8905,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeStep</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeStudio</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBlockPublicAccessConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8954,6 +8922,22 @@ description: >
     </tr>
     <tr>
       <td>GetStudioSessionMapping</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListBootstrapActions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListClusters</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListInstanceGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListInstances</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8969,11 +8953,23 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListSteps</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListStudioSessionMappings</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ListStudios</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyCluster</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyInstanceGroups</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8989,11 +8985,27 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RunJobFlow</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SetTerminationProtection</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SetVisibleToAllUsers</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>StartNotebookExecution</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>StopNotebookExecution</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TerminateJobFlows</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9239,10 +9251,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeApiDestination <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -9397,6 +9405,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteRule</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -9515,35 +9527,11 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AbortMultipartUpload</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AbortVaultLock</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AddTagsToVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CompleteMultipartUpload</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CompleteVaultLock</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteArchive</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9555,27 +9543,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJob</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetDataRetrievalPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetJobOutput <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetVaultAccessPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetVaultLock</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9587,30 +9555,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>InitiateMultipartUpload</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>InitiateVaultLock</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListJobs</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListMultipartUploads</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListParts</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListProvisionedCapacity</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListTagsForVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -9619,15 +9563,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PurchaseProvisionedCapacity</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>RemoveTagsFromVault</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SetDataRetrievalPolicy</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9638,13 +9574,95 @@ description: >
       <td>SetVaultNotifications</td>
        <td style="text-align:right">✅</td>
     </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".glacier-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse glacier-notimplemented">     <tr>
+      <td>AbortMultipartUpload</td>
+       <td style="text-align:right">-</td>
+    </tr>
     <tr>
-      <td>UploadArchive <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
+      <td>AbortVaultLock</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CompleteMultipartUpload</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CompleteVaultLock</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteArchive</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteVault</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeVault</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetDataRetrievalPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetJobOutput</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetVaultLock</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>InitiateMultipartUpload</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>InitiateVaultLock</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListMultipartUploads</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListParts</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListProvisionedCapacity</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PurchaseProvisionedCapacity</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SetDataRetrievalPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UploadArchive</td>
+       <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UploadMultipartPart</td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -9694,10 +9712,6 @@ description: >
     </tr>
     <tr>
       <td>CreateCrawler <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateDatabase <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9925,6 +9939,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListCrawlers</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListJobs <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -9942,10 +9960,6 @@ description: >
     </tr>
     <tr>
       <td>ListWorkflows <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutResourcePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9990,10 +10004,6 @@ description: >
     </tr>
     <tr>
       <td>UntagResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateClassifier</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10096,6 +10106,10 @@ description: >
     </tr>
     <tr>
       <td>CreateCustomEntityType</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateDatabase</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10279,10 +10293,6 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListCrawlers</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ListCrawls</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10312,6 +10322,10 @@ description: >
     </tr>
     <tr>
       <td>PutDataCatalogEncryptionSettings</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10379,6 +10393,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>UpdateClassifier</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>UpdateColumnStatisticsForPartition</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10429,10 +10447,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AttachRolePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AttachUserPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -10478,10 +10492,6 @@ description: >
     </tr>
     <tr>
       <td>CreateServiceLinkedRole <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10737,10 +10747,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPolicies <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListPolicyTags</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -10786,10 +10792,6 @@ description: >
     </tr>
     <tr>
       <td>ListUsers</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListVirtualMFADevices</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10917,10 +10919,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UploadServerCertificate</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UploadSigningCertificate</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -10935,11 +10933,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AttachRolePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ChangePassword</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>CreateServiceSpecificCredential</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateUser</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10983,6 +10989,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListPolicies</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListPoliciesGrantingServiceAccess</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10996,6 +11006,10 @@ description: >
     </tr>
     <tr>
       <td>ListServiceSpecificCredentials</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListVirtualMFADevices</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -11054,6 +11068,10 @@ description: >
       <td>UpdateServiceSpecificCredential</td>
        <td style="text-align:right">-</td>
     </tr>
+    <tr>
+      <td>UploadServerCertificate</td>
+       <td style="text-align:right">-</td>
+    </tr>
   </tbody>
  </table>
 
@@ -11082,14 +11100,6 @@ description: >
     </tr>
     <tr>
       <td>AttachThingPrincipal <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CancelJob</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CancelJobExecution</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11154,14 +11164,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteDynamicThingGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteJobExecution</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11253,10 +11255,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetJobDocument</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetPolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11281,14 +11279,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAuditMitigationActionsTasks</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListAuditTasks</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListCertificates</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11297,19 +11287,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDetectMitigationActionsExecutions</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListDetectMitigationActionsTasks</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListDomainConfigurations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListJobExecutionsForJob</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11318,10 +11296,6 @@ description: >
     </tr>
     <tr>
       <td>ListJobs <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListMetricValues</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11361,10 +11335,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListThingTypes</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListThings <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11374,10 +11344,6 @@ description: >
     </tr>
     <tr>
       <td>ListTopicRules <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListViolationEvents</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11483,6 +11449,14 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CancelJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CancelJobExecution</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ClearDefaultAuthorizer</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -11580,6 +11554,14 @@ description: >
     </tr>
     <tr>
       <td>DeleteFleetMetric</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteJobExecution</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -11747,6 +11729,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetJobDocument</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetLoggingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -11779,7 +11765,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListAuditMitigationActionsTasks</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListAuditSuppressions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListAuditTasks</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -11799,6 +11793,14 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListDetectMitigationActionsExecutions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDetectMitigationActionsTasks</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListDimensions</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -11811,11 +11813,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListJobExecutionsForJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListJobTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ListManagedJobTemplates</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListMetricValues</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -11875,6 +11885,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListThingTypes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListThingsInBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -11884,6 +11898,10 @@ description: >
     </tr>
     <tr>
       <td>ListV2LoggingLevels</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListViolationEvents</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12048,10 +12066,6 @@ description: >
       <td>Publish <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>UpdateThingShadow <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".iot-data-notimplemented">Show missing</a></td>
@@ -12068,6 +12082,10 @@ description: >
     </tr>
     <tr>
       <td>ListRetainedMessages</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateThingShadow</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -12125,19 +12143,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDatastore <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribePipeline <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>ListChannels <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListDatasetContents</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12150,10 +12160,6 @@ description: >
     </tr>
     <tr>
       <td>ListPipelines <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SampleChannelData</td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -12179,11 +12185,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeDatastore</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeLoggingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>GetDatasetContent</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDatasetContents</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12196,6 +12210,10 @@ description: >
     </tr>
     <tr>
       <td>RunPipelineActivity</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SampleChannelData</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12278,10 +12296,6 @@ description: >
     </tr>
     <tr>
       <td>ListDeviceProfiles <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListWirelessDevices <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12532,6 +12546,10 @@ description: >
     </tr>
     <tr>
       <td>ListTagsForResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListWirelessDevices</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12897,16 +12915,22 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SubscribeToShard <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UpdateShardCount</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>UpdateStreamMode</td>
        <td style="text-align:right">✅</td>
+    </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".kinesis-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse kinesis-notimplemented">     <tr>
+      <td>SubscribeToShard</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -13039,10 +13063,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApplicationInputProcessingConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13098,6 +13118,10 @@ description: >
     </tr>
     <tr>
       <td>DeleteApplicationCloudWatchLoggingOption</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteApplicationInputProcessingConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -13219,14 +13243,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GenerateDataKeyPair <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GenerateDataKeyPairWithoutPlaintext <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GenerateDataKeyWithoutPlaintext</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13287,14 +13303,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RetireGrant <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RevokeGrant <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ScheduleKeyDeletion <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13349,11 +13357,27 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GenerateDataKeyPair</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GenerateDataKeyPairWithoutPlaintext</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GenerateMac</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ReplicateKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RetireGrant</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RevokeGrant</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14147,19 +14171,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>DeleteObject <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeObject <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetObject <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutObject <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -14169,7 +14181,19 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse mediastore-data-notimplemented">     <tr>
+      <td>DeleteObject</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetObject</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListItems</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutObject</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -14250,10 +14274,6 @@ description: >
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>AddTagsToResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
     <tr>
       <td>CopyDBClusterSnapshot</td>
        <td style="text-align:right">✅</td>
@@ -14371,10 +14391,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ModifyDBCluster</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14403,15 +14419,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTagsFromResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ResetDBClusterParameterGroup</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RestoreDBClusterFromSnapshot</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14434,6 +14442,10 @@ description: >
     </tr>
     <tr>
       <td>AddSourceIdentifierToSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AddTagsToResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14497,6 +14509,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListTagsForResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ModifyDBClusterSnapshotAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14525,7 +14541,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RemoveTagsFromResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ResetDBParameterGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RestoreDBClusterFromSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14546,10 +14570,6 @@ description: >
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>AddTags <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
     <tr>
       <td>CreateDomain <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
@@ -14579,15 +14599,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTags <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListVersions <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RemoveTags</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14602,6 +14614,10 @@ description: >
   </tbody>
   <tbody class="collapse opensearch-notimplemented">     <tr>
       <td>AcceptInboundConnection</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AddTags</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14693,11 +14709,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListTags</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>PurchaseReservedInstanceOffering</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>RejectInboundConnection</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RemoveTags</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14819,10 +14843,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCreateAccountStatus</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListDelegatedAdministrators</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14933,6 +14953,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListCreateAccountStatus</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListHandshakesForAccount</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14967,15 +14991,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJournalS3Export</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeLedger <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ExportJournalToS3</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14984,10 +15000,6 @@ description: >
     </tr>
     <tr>
       <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>StreamJournalToKinesis <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15013,6 +15025,14 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeJournalS3Export</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ExportJournalToS3</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetBlock</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15034,6 +15054,10 @@ description: >
     </tr>
     <tr>
       <td>ListJournalS3ExportsForLedger</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StreamJournalToKinesis</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15072,10 +15096,6 @@ description: >
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>AddTagsToResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
     <tr>
       <td>AuthorizeDBSecurityGroupIngress</td>
        <td style="text-align:right">✅</td>
@@ -15277,10 +15297,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ModifyCertificates</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -15325,19 +15341,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTagsFromResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ResetDBClusterParameterGroup</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RestoreDBClusterFromSnapshot <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RestoreDBInstanceFromDBSnapshot <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15346,10 +15350,6 @@ description: >
     </tr>
     <tr>
       <td>StartDBInstance</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>StartExportTask</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15376,6 +15376,10 @@ description: >
     </tr>
     <tr>
       <td>AddSourceIdentifierToSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AddTagsToResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15511,6 +15515,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListTagsForResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ModifyCustomDBEngineVersion</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15579,6 +15587,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RemoveTagsFromResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ResetDBParameterGroup</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15587,7 +15599,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RestoreDBClusterFromSnapshot</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RestoreDBClusterToPointInTime</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RestoreDBInstanceFromDBSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15608,6 +15628,10 @@ description: >
     </tr>
     <tr>
       <td>StartDBInstanceAutomatedBackupsReplication</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StartExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15773,23 +15797,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableSnapshotCopy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>EnableSnapshotCopy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetClusterCredentials</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>ModifyCluster</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ModifySnapshotCopyRetentionPeriod</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16039,11 +16051,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DisableSnapshotCopy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DisassociateDataShareConsumer</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>EnableLogging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>EnableSnapshotCopy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16104,6 +16124,10 @@ description: >
     </tr>
     <tr>
       <td>ModifyScheduledAction</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifySnapshotCopyRetentionPeriod</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16177,19 +16201,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ExecuteStatement <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>GetStatementResult <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListDatabases <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -16204,6 +16220,14 @@ description: >
     </tr>
     <tr>
       <td>CancelStatement</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeTable</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDatabases</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16233,59 +16257,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetGroupConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetGroupQuery</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetTags</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GroupResources</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListGroupResources</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutGroupConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SearchResources</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UngroupResources</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateGroup</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateGroupQuery</td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -16295,11 +16267,63 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse resource-groups-notimplemented">     <tr>
+      <td>CreateGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetGroupConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetGroupQuery</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetTags</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GroupResources</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListGroupResources</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutGroupConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SearchResources</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>Tag</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>UngroupResources</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>Untag</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateGroupQuery</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -16369,15 +16393,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>ActivateKeySigningKey</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AssociateVPCWithHostedZone <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ChangeCidrCollection</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16389,19 +16405,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCidrCollection</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateHealthCheck <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>CreateHostedZone <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateKeySigningKey</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16413,39 +16421,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrafficPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateTrafficPolicyInstance</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateTrafficPolicyVersion</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateVPCAssociationAuthorization</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeactivateKeySigningKey</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteCidrCollection</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteHealthCheck <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>DeleteHostedZone <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteKeySigningKey</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16457,31 +16437,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTrafficPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteTrafficPolicyInstance</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteVPCAssociationAuthorization</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DisableHostedZoneDNSSEC</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DisassociateVPCFromHostedZone <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>EnableHostedZoneDNSSEC</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetAccountLimit</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16489,31 +16445,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCheckerIpRanges</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetDNSSEC</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetGeoLocation</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetHealthCheck <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetHealthCheckCount</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetHealthCheckLastFailureReason</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetHealthCheckStatus</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16525,47 +16461,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetHostedZoneLimit</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetQueryLoggingConfig</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>GetReusableDelegationSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetReusableDelegationSetLimit</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetTrafficPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetTrafficPolicyInstance</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetTrafficPolicyInstanceCount</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListCidrBlocks</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListCidrCollections</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListCidrLocations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListGeoLocations</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16601,38 +16501,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResources</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListTrafficPolicies</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListTrafficPolicyInstances</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListTrafficPolicyInstancesByHostedZone</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListTrafficPolicyInstancesByPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListTrafficPolicyVersions</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListVPCAssociationAuthorizations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>TestDNSAnswer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UpdateHealthCheck</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -16640,13 +16508,175 @@ description: >
       <td>UpdateHostedZoneComment</td>
        <td style="text-align:right">✅</td>
     </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".route53-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse route53-notimplemented">     <tr>
+      <td>ActivateKeySigningKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ChangeCidrCollection</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateCidrCollection</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateKeySigningKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateTrafficPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateTrafficPolicyInstance</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateTrafficPolicyVersion</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateVPCAssociationAuthorization</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeactivateKeySigningKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteCidrCollection</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteKeySigningKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteTrafficPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteTrafficPolicyInstance</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteVPCAssociationAuthorization</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DisableHostedZoneDNSSEC</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>EnableHostedZoneDNSSEC</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetAccountLimit</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetCheckerIpRanges</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetGeoLocation</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetHealthCheckCount</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetHealthCheckLastFailureReason</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetHealthCheckStatus</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetHostedZoneLimit</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetReusableDelegationSetLimit</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetTrafficPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetTrafficPolicyInstance</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetTrafficPolicyInstanceCount</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCidrBlocks</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCidrCollections</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCidrLocations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListGeoLocations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTagsForResources</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTrafficPolicies</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTrafficPolicyInstances</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTrafficPolicyInstancesByHostedZone</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTrafficPolicyInstancesByPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTrafficPolicyVersions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListVPCAssociationAuthorizations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TestDNSAnswer</td>
+       <td style="text-align:right">-</td>
+    </tr>
     <tr>
       <td>UpdateTrafficPolicyComment</td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UpdateTrafficPolicyInstance</td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -16667,11 +16697,35 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateFirewallDomainList</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateFirewallRule</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateFirewallRuleGroup</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateResolverEndpoint <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>CreateResolverRule</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteFirewallDomainList</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteFirewallRule</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteFirewallRuleGroup</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16687,6 +16741,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>GetFirewallDomainList</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetFirewallRuleGroup</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>GetResolverEndpoint</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -16696,6 +16758,18 @@ description: >
     </tr>
     <tr>
       <td>GetResolverRuleAssociation</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListFirewallDomains</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListFirewallRuleGroups</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListFirewallRules</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16727,6 +16801,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>UpdateFirewallDomains</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UpdateFirewallRule</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>UpdateResolverEndpoint</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -16749,31 +16831,7 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>CreateFirewallDomainList</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateFirewallRule</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateFirewallRuleGroup</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CreateResolverQueryLogConfig</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteFirewallDomainList</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteFirewallRule</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteFirewallRuleGroup</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16794,14 +16852,6 @@ description: >
     </tr>
     <tr>
       <td>GetFirewallConfig</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetFirewallDomainList</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetFirewallRuleGroup</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16849,19 +16899,7 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListFirewallDomains</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ListFirewallRuleGroupAssociations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListFirewallRuleGroups</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListFirewallRules</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16894,14 +16932,6 @@ description: >
     </tr>
     <tr>
       <td>UpdateFirewallConfig</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateFirewallDomains</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateFirewallRule</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16960,10 +16990,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteBucketAnalyticsConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteBucketCors</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17035,10 +17061,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketCors <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetBucketEncryption <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -17052,10 +17074,6 @@ description: >
     </tr>
     <tr>
       <td>GetBucketLifecycle</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17088,14 +17106,6 @@ description: >
     </tr>
     <tr>
       <td>GetBucketPolicyStatus</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketReplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketRequestPayment <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17144,14 +17154,6 @@ description: >
     </tr>
     <tr>
       <td>GetPublicAccessBlock <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>HeadBucket <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>HeadObject <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17224,10 +17226,6 @@ description: >
     </tr>
     <tr>
       <td>PutBucketLifecycle</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17323,6 +17321,44 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".s3-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse s3-notimplemented">     <tr>
+      <td>DeleteBucketCors</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketCors</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketLifecycleConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketReplication</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketRequestPayment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>HeadBucket</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>HeadObject</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutBucketLifecycleConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+  </tbody>
  </table>
 
 
@@ -17341,10 +17377,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateAccessPointForObjectLambda</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateBucket</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -17353,15 +17385,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateMultiRegionAccessPoint</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteAccessPoint</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteAccessPointForObjectLambda</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17369,51 +17393,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAccessPointPolicyForObjectLambda</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteBucket</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteBucketLifecycleConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteBucketPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteBucketTagging</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteJobTagging</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteMultiRegionAccessPoint</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeletePublicAccessBlock <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteStorageLensConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteStorageLensConfigurationTagging</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeJob</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeMultiRegionAccessPointOperation</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17421,19 +17401,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccessPointConfigurationForObjectLambda</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetAccessPointForObjectLambda</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetAccessPointPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetAccessPointPolicyForObjectLambda</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17441,67 +17409,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccessPointPolicyStatusForObjectLambda</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucket</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketLifecycleConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketTagging</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetJobTagging</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetMultiRegionAccessPoint</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetMultiRegionAccessPointPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetMultiRegionAccessPointPolicyStatus</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetPublicAccessBlock <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetStorageLensConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetStorageLensConfigurationTagging</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListAccessPoints</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListAccessPointsForObjectLambda</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListJobs</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListMultiRegionAccessPoints</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17509,39 +17417,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListStorageLensConfigurations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutAccessPointConfigurationForObjectLambda</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PutAccessPointPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutAccessPointPolicyForObjectLambda</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutBucketLifecycleConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutBucketPolicy</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutBucketTagging</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutJobTagging</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutMultiRegionAccessPointPolicy</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17552,17 +17428,183 @@ description: >
       <td>PutStorageLensConfiguration</td>
        <td style="text-align:right">✅</td>
     </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".s3control-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse s3control-notimplemented">     <tr>
+      <td>CreateAccessPointForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateMultiRegionAccessPoint</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteAccessPointForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteAccessPointPolicyForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteBucket</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteBucketLifecycleConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteBucketPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteBucketTagging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteJobTagging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteMultiRegionAccessPoint</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteStorageLensConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteStorageLensConfigurationTagging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeMultiRegionAccessPointOperation</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetAccessPointConfigurationForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetAccessPointForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetAccessPointPolicyForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetAccessPointPolicyStatusForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucket</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketLifecycleConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketTagging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetJobTagging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetMultiRegionAccessPoint</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetMultiRegionAccessPointPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetMultiRegionAccessPointPolicyStatus</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetStorageLensConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetStorageLensConfigurationTagging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListAccessPoints</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListAccessPointsForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListMultiRegionAccessPoints</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListStorageLensConfigurations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutAccessPointConfigurationForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutAccessPointPolicyForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutBucketLifecycleConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutBucketPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutBucketTagging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutJobTagging</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutMultiRegionAccessPointPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
     <tr>
       <td>PutStorageLensConfigurationTagging</td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UpdateJobPriority</td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UpdateJobStatus</td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -17578,10 +17620,6 @@ description: >
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>AddTags</td>
-       <td style="text-align:right">✅</td>
-    </tr>
     <tr>
       <td>AssociateTrialComponent</td>
        <td style="text-align:right">✅</td>
@@ -17651,10 +17689,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTags</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteTrial</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -17668,10 +17702,6 @@ description: >
     </tr>
     <tr>
       <td>DescribeEndpointConfig</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeExperiment</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17707,15 +17737,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAssociations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListExperiments</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListModels</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17762,6 +17784,10 @@ description: >
   </tbody>
   <tbody class="collapse sagemaker-notimplemented">     <tr>
       <td>AddAssociation</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AddTags</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18017,6 +18043,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteTags</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteUserProfile</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18086,6 +18116,10 @@ description: >
     </tr>
     <tr>
       <td>DescribeEdgePackagingJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeExperiment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18241,6 +18275,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListAssociations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListAutoMLJobs</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18350,6 +18388,10 @@ description: >
     </tr>
     <tr>
       <td>ListModelQualityJobDefinitions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListModels</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18619,10 +18661,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteResourcePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteSecret <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18635,23 +18673,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetResourcePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetSecretValue <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListSecretVersionIds <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListSecrets <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutResourcePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18660,10 +18682,6 @@ description: >
     </tr>
     <tr>
       <td>RestoreSecret</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RotateSecret <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18693,11 +18711,35 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListSecretVersionIds</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListSecrets</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RemoveRegionsFromReplication</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ReplicateSecretToRegions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RotateSecret</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18870,10 +18912,6 @@ description: >
       <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>UpdateService <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".servicediscovery-notimplemented">Show missing</a></td>
@@ -18908,6 +18946,10 @@ description: >
       <td>UpdatePublicDnsNamespace</td>
        <td style="text-align:right">-</td>
     </tr>
+    <tr>
+      <td>UpdateService</td>
+       <td style="text-align:right">-</td>
+    </tr>
   </tbody>
  </table>
 
@@ -18940,10 +18982,6 @@ description: >
     </tr>
     <tr>
       <td>CreateTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteIdentity</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19011,22 +19049,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SendBulkTemplatedEmail <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SendEmail <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SendRawEmail <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SendTemplatedEmail <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>SetActiveReceiptRuleSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -19040,14 +19062,6 @@ description: >
     </tr>
     <tr>
       <td>SetIdentityNotificationTopic</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>TestRenderTemplate</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateReceiptRule</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19106,6 +19120,10 @@ description: >
     </tr>
     <tr>
       <td>DeleteCustomVerificationEmailTemplate</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteIdentity</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19173,7 +19191,23 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>SendBulkTemplatedEmail</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>SendCustomVerificationEmail</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SendEmail</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SendRawEmail</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SendTemplatedEmail</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19186,6 +19220,10 @@ description: >
     </tr>
     <tr>
       <td>SetReceiptRulePosition</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TestRenderTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19210,6 +19248,10 @@ description: >
     </tr>
     <tr>
       <td>UpdateCustomVerificationEmailTemplate</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateReceiptRule</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -19243,15 +19285,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDomainStatisticsReport</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetEmailIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListDomainDeliverabilityCampaigns</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19260,18 +19294,6 @@ description: >
     </tr>
     <tr>
       <td>ListEmailTemplates</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListSuppressedDestinations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutEmailIdentityDkimSigningAttributes</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SendBulkEmail <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19401,6 +19423,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetDomainStatisticsReport</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetEmailIdentityPolicies</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19441,7 +19467,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListDomainDeliverabilityCampaigns</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListImportJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListSuppressedDestinations</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19505,6 +19539,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>PutEmailIdentityDkimSigningAttributes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>PutEmailIdentityFeedbackAttributes</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19514,6 +19552,10 @@ description: >
     </tr>
     <tr>
       <td>PutSuppressedDestination</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SendBulkEmail</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19599,10 +19641,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePlatformApplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteTopic <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -19639,19 +19677,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSubscriptions</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListSubscriptionsByTopic <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListTopics <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19717,6 +19747,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeletePlatformApplication</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteSMSSandboxPhoneNumber</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19730,6 +19764,14 @@ description: >
     </tr>
     <tr>
       <td>ListSMSSandboxPhoneNumbers</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListSubscriptions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTopics</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19853,19 +19895,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDocument</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateMaintenanceWindow</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>DeleteDocument</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteMaintenanceWindow</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19893,19 +19927,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeParameters <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetCommandInvocation <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>GetDocument</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetMaintenanceWindow</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19995,6 +20021,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateDocument</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateOpsItem</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20020,6 +20050,10 @@ description: >
     </tr>
     <tr>
       <td>DeleteInventory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteMaintenanceWindow</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -20139,6 +20173,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeParameters</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribePatchBaselines</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20188,6 +20226,10 @@ description: >
     </tr>
     <tr>
       <td>GetInventorySchema</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetMaintenanceWindow</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -20521,10 +20563,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AssumeRoleWithSAML <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AssumeRoleWithWebIdentity <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -20547,6 +20585,10 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse sts-notimplemented">     <tr>
+      <td>AssumeRoleWithSAML</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DecodeAuthorizationMessage</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20582,10 +20624,6 @@ description: >
     </tr>
     <tr>
       <td>RefreshTrustedAdvisorCheck</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ResolveCase <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -20628,6 +20666,10 @@ description: >
     </tr>
     <tr>
       <td>DescribeTrustedAdvisorCheckSummaries</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ResolveCase</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -20965,10 +21007,6 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>CreateServer <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateUser <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -21016,6 +21054,10 @@ description: >
   </tbody>
   <tbody class="collapse transfer-notimplemented">     <tr>
       <td>CreateAccess</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateServer</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -21117,15 +21159,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateGroup</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateSamplingRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteGroup</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21133,51 +21167,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetEncryptionConfig</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetGroup</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetGroups</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetInsight</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetInsightEvents</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetInsightImpactGraph</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetInsightSummaries</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetSamplingRules <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSamplingStatisticSummaries</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetSamplingTargets</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetServiceGraph</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetTimeSeriesServiceStatistics</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21189,14 +21183,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutEncryptionConfig</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PutTelemetryRecords <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -21205,20 +21191,82 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>UpdateSamplingRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
+    </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".xray-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse xray-notimplemented">     <tr>
+      <td>CreateGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetEncryptionConfig</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetInsight</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetInsightEvents</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetInsightImpactGraph</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetInsightSummaries</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetSamplingStatisticSummaries</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetSamplingTargets</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetTimeSeriesServiceStatistics</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTagsForResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutEncryptionConfig</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TagResource</td>
+       <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UntagResource</td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UpdateGroup</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateSamplingRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
