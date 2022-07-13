@@ -95,6 +95,12 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
 }
 {{< / command >}}
 
+{{< alert >}}**Note**:
+When creating an ECR, a port from the [the external service port range]({{< ref "external-ports" >}}) is dynamically selected. \
+Therefore, the port can differ from `4510` used in the samples below.
+Make sure to use the correct URL / port by using the `repositoryUrl` of the `create-repository` request.
+{{< /alert >}}
+
 Now let us pull the nginx image:
 {{< command >}}
 $ docker pull nginx
@@ -201,7 +207,25 @@ kubectl describe pod fancier-nginx
 
 In order to make an EKS service externally accessible, we need to create an `Ingress` configuration that exposes the service on a certain path to the load balancer.
 
-Assuming we have created an `nginx` Kubernetes service for our sample above, we can now use the following ingress configuration to expose the nginx service on path `/test123`:
+We can create an `nginx` Kubernetes service for our sample deployment above by applying the following configuration:
+{{< command >}}
+$ cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  selector:
+    app: fancier-nginx
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+EOF
+{{< /command >}}
+
+Now use the following ingress configuration to expose the nginx service on path `/test123`:
 
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
