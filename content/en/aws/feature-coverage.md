@@ -86,28 +86,28 @@ In the coverage table below, the features are marked with their respective avail
 | VPC Links                                                          | ⭐⭐⭐               |                 |       |
 | **API Gateway Management API** (Pro)                               | [🔍]({{< ref "../localstack/metric-coverage/#apigatewaymanagementapi" >}}) |                 |       |
 | **AppConfig** (Pro)                                                | [🔍]({{< ref "../localstack/metric-coverage/#appconfig" >}})               |                 |       |
-| Applications                                                       | ⭐⭐⭐           |                 |       |
-| Configuration Profiles                                             | ⭐⭐⭐⭐         |                 |       |
-| Configurations                                                     | ⭐⭐⭐           |                 |       |
-| Deployment Strategies                                              | ⭐⭐⭐⭐         |                 |       |
-| Deployments                                                        | ⭐⭐⭐           |                 |       |
-| Environments                                                       | ⭐⭐⭐⭐          |                 |       |
-| Hosted Configuration Versions                                      | ⭐⭐⭐           |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐         |                 |       |
+| Applications                                                       | ⭐⭐⭐           | CRUD            |       |
+| Configuration Profiles                                             | ⭐⭐⭐⭐         | CRUD            |       |
+| Configurations                                                     | ⭐⭐⭐           | CRUD            |       |
+| Deployment Strategies                                              | ⭐⭐⭐⭐         | CRUD            |       |
+| Deployments                                                        | ⭐⭐⭐           | Emulated        |       |
+| Environments                                                       | ⭐⭐⭐⭐          | CRUD           |       |
+| Hosted Configuration Versions                                      | ⭐⭐⭐           | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐         | CRUD             |       |
 | **Application Autoscaling** (Pro)                                  | [🔍]({{< ref "../localstack/metric-coverage/#application-autoscaling" >}})     |                 |       |
 | Scalable Targets                                                   | ⭐⭐⭐           | CRUD           |       |
 | Scaling Activities                                                 | \-              |                |       |
 | Scaling Policies                                                   | ⭐⭐⭐           | CRUD            |       |
 | Scheduled Actions                                                  | ⭐⭐⭐           | CRUD             |       |
 | [**AppSync** (Pro)]({{< ref "appsync" >}})                         | [🔍]({{< ref "../localstack/metric-coverage/#appsync" >}})                |                 |       |
-| API Caches                                                         | ⭐⭐⭐          |                 |       |
-| API Keys                                                           | ⭐⭐⭐          |                 |       |
-| Data Sources                                                       | ⭐⭐⭐          |                 |       |
-| Functions                                                          | ⭐⭐⭐          |                 |       |
-| GraphQL APIs                                                       | ⭐⭐⭐⭐         |                 |       |
-| Resolvers                                                          | ⭐⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐         |                 |       |
-| Types                                                              | ⭐⭐⭐⭐         |                 |       |
+| API Caches                                                         | ⭐⭐⭐⭐         | Emulated        |       |
+| API Keys                                                           | ⭐⭐⭐⭐         | Emulated         |       |
+| Data Sources                                                       | ⭐⭐⭐          | Emulated         |       |
+| Functions                                                          | ⭐⭐⭐          | Emulated         |       |
+| GraphQL APIs                                                       | ⭐⭐⭐⭐         | Emulated        |       |
+| Resolvers                                                          | ⭐⭐⭐⭐         | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
+| Types                                                              | ⭐⭐⭐⭐         | Emulated        |       |
 | [**Athena** (Pro)]({{< ref "athena" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#athena" >}}) |                 |       |
 | Data Catalogs                                                      | ⭐⭐           | CRUD            |       |
 | Databases                                                          | ⭐⭐           | Emulated        |       |
@@ -187,19 +187,19 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
 | [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   | [🔍]({{< ref "../localstack/metric-coverage/#codecommit" >}})                |                 |       |
 | Approval Rules                                                     | \-             |                 |       |
-| Blobs / Files / Folders                                            | ⭐⭐           |                 |       |
-| Branches                                                           | ⭐⭐           |                 |       |
+| Blobs / Files / Folders                                            | ⭐⭐⭐           | Emulated       |       |
+| Branches                                                           | ⭐⭐⭐           | Emulated        |       |
 | Comments                                                           | \-             |                 |       |
-| Commits                                                            | ⭐⭐           |                 |       |
+| Commits                                                            | ⭐⭐⭐           | Emulated       |       |
 | Merge Commits / Conflicts                                          | \-             |                 |       |
 | Pull Requests                                                      | \-             |                 |       |
-| Repositories                                                       | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Repositories                                                       | ⭐⭐⭐⭐         | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
 | [**Cognito Identity** (Pro)]({{< ref "cognito" >}})                | [🔍]({{< ref "../localstack/metric-coverage/#cognito-identity" >}}) |                 |       |
 | Developer Identities                                               | \-             |                 |       |
-| Identities                                                         | ⭐⭐⭐         |                 |       |
+| Identities                                                         | ⭐⭐⭐         | Emulated         |       |
 | Identity Pool Roles                                                | \-             |                 |       |
-| Identity Pools                                                     | ⭐⭐⭐⭐       |                 |       |
+| Identity Pools                                                     | ⭐⭐⭐⭐       | Emulated         |       |
 | OpenID Tokens                                                      | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
 | [**Cognito Identity Provider (IdP)** (Pro)]({{< ref "cognito" >}}) | [🔍]({{< ref "../localstack/metric-coverage/#cognito-idp" >}}) |                 |       |
@@ -448,13 +448,13 @@ In the coverage table below, the features are marked with their respective avail
 | Applications                                                       | ⭐⭐⭐         | Emulated            |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **KMS**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#kms" >}}) |                 |       |
-| Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
-| Custom Key Stores                                                  | ⭐⭐⭐         |                 |       |
-| Encrypt / Decrypt / Sign Data                                      | ⭐⭐⭐⭐       |                 |       |
+| Aliases                                                            | ⭐⭐⭐⭐       | CRUD             |       |
+| Custom Key Stores                                                  | ⭐⭐⭐         | Emulated         |       |
+| Encrypt / Decrypt / Sign Data                                      | ⭐⭐⭐⭐       | Emulated         |       |
 | Grants                                                             | \-             |                 |       |
 | Key Policies                                                       | \-             |                 |       |
-| Keys                                                               | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Keys                                                               | ⭐⭐⭐⭐       | Emulated         |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
 | **Lake Formation** (Pro)                                           | [🔍]({{< ref "../localstack/metric-coverage/#lakeformation" >}}) |                 |       |
 | Transactions                                                       | \-             |                 |       |
 | Permissions                                                        | ⭐⭐             | CRUD                |       |
@@ -502,10 +502,9 @@ In the coverage table below, the features are marked with their respective avail
 | [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      | [🔍]({{< ref "../localstack/metric-coverage/#neptune" >}}) |                 |       |
 | DB Clusters                                                        | ⭐⭐⭐⭐       | Emulated        |       |
 | DB Cluster Endpoints                                               | ⭐⭐⭐⭐       | Emulated        |       |
-| DB Cluster Parameter Groups                                        | ⭐⭐⭐⭐       | Emulated        |       |
-| DB Cluster Snapshots                                               | \-             |                 |       |
-| Engine Default Parameters                                          | ⭐⭐           | CRUD            |       |
-| Event Subscriptions                                                | \-             |                 |       |
+| DB Cluster Parameter Groups                                        | ⭐⭐⭐        | CRUD             |       |
+| DB Cluster Snapshots                                               | ⭐⭐          | Emulated         |       |
+| Event Subscriptions                                                | ⭐⭐          | CRUD             |       |
 | Events                                                             | \-             |                 |       |
 | Global Clusters                                                    | \-             |                 |       |
 | PendingMaintenanceAction                                           | \-             |                 |       |
@@ -539,7 +538,7 @@ In the coverage table below, the features are marked with their respective avail
 | DB Clusters/Instances                                              | ⭐⭐⭐⭐       | Emulated        |       |
 | DB Proxies                                                         | ⭐⭐           | Emulated       |       |
 | DB Security/Subnet Groups                                          | ⭐⭐⭐         | Emulated        |       |
-| Event Subscriptions                                                | \-             |                 |       |
+| Event Subscriptions                                                | ⭐⭐           | CRUD            |       |
 | Option Groups                                                      | ⭐⭐⭐⭐       | CRUD            |       |
 | Postgres AWS Extension Functions                                   | ⭐⭐⭐         | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
