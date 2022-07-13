@@ -13,7 +13,7 @@ Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow
 
 In addition, we provide a remote storage backend that can be used to store the state of your running application and share it with your team members.
 
-You can interact with Cloud Pods via the Web UI, and to load and store the persistent state of pods, you can use the `localstack` command-line interface (CLI).
+You can interact with Cloud Pods via the Web UI, and to load and store the persistent state of pods, you can use the `localstack` [command-line interface (CLI)]({{< ref "pods-cli" >}}).
 
 ![Cloud Pods Web UI](pods-ui.png)
 
