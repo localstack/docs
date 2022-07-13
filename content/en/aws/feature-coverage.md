@@ -157,18 +157,18 @@ In the coverage table below, the features are marked with their respective avail
 | Type Activations                                                   | ⭐⭐           | \-                |       |
 | [**CloudFront** (Pro)]({{< ref "cloudfront" >}})                   | [🔍]({{< ref "../localstack/metric-coverage/#cloudfront" >}}) |                 |       |
 | Cache Policies                                                     | \-             |                 |       |
-| Distributions                                                      | ⭐⭐⭐         |                 |       |
+| Distributions                                                      | ⭐⭐⭐⭐        | Emulated        |       |
 | Field Level Encryption                                             | \-             |                 |       |
-| Functions                                                          | ⭐⭐⭐         |                 |       |
-| Invalidations                                                      | ⭐⭐⭐         |                 |       |
+| Functions                                                          | ⭐⭐⭐         | CRUD             |       |
+| Invalidations                                                      | ⭐⭐⭐         | CRUD             |       |
 | Key Groups                                                         | \-             |                 |       |
 | Monitoring Subscriptions                                           | \-             |                 |       |
-| Origin Access Identities                                           | ⭐⭐           |                 |       |
-| Origin Request Policies                                            | ⭐⭐⭐         |                 |       |
+| Origin Access Identities                                           | ⭐⭐⭐          | CRUD            |       |
+| Origin Request Policies                                            | ⭐⭐⭐          | CRUD            |       |
 | Public Keys                                                        | \-             |                 |       |
 | Realtime Log Configs                                               | \-             |                 |       |
 | Streaming Distributions                                            | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       |  CRUD            |       |
 | **CloudTrail** (Pro)                                               | [🔍]({{< ref "../localstack/metric-coverage/#cloudtrail" >}}) |                 |       |
 | Event Selectors                                                    | ⭐⭐⭐⭐        | Emulated          |       |
 | Insight Selectors                                                  | \-             |                 |       |
