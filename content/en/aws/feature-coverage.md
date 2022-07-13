@@ -3,524 +3,619 @@ title: "AWS Service Feature Coverage"
 linkTitle: "⭐ Feature Coverage"
 weight: 1
 description: >
-  Overview of the implemented APIs and features provided by LocalStack
+  Overview of the implemented AWS APIs and their level of parity with the AWS cloud
 ---
 
-This page summarizes the implemented APIs and features provided by LocalStack, as well as their level of parity with the real cloud (e.g., AWS) or managed service provider.
 
-## Coverage Levels / Support Tiers
+## Coverage Levels
 
-LocalStack provides a variety of different features and cloud APIs (e.g., AWS), but the level of support and parity with the real system differs for the different services:
+LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS, SNS, ...), but the level of support with the real system differs and is categorized using the following system:
 
-* **Tier 1 (⭐⭐⭐⭐)**: Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests
-* **Tier 2 (⭐⭐⭐)**: Feature supports the majority of use cases (e.g., CRUD operations), but some advanced usages may not be fully supported
-* **Tier 3 (⭐⭐)**: Feature may be lightly tested (or not), and so it should be considered unstable
-* **Tier 4 (⭐)**: Feature is experimental, only partially supported or implemented
-* **Tier 5 (-)**: Feature is not currently implemented, but on our roadmap
+|          |                                                         |
+|----------|------------------------------------------------------------------------------------------------------------------------|
+| ⭐⭐⭐⭐⭐ | Feature fully supported by LocalStack maintainers; feature is guaranteed to pass all or the majority of tests         | 
+| ⭐⭐⭐⭐   | Feature partially supported by LocalStack maintainers         |               
+| ⭐⭐⭐    | Feature supports basic functionalities (e.g., CRUD operations)          |                
+| ⭐⭐      | Feature should be considered unstable          |                 
+| ⭐       | Feature is experimental and regressions should be expected         | 
+| **-**    | Feature is not yet implemented        | 
 
-In the coverage tables below, the features are marked with their respective availability across different LocalStack versions:
 
-* Community version (default, if not marked)
-* Pro version (marked with "Pro")
-* Enterprise version (marked with "Enterprise")
+## Emulation Levels
+
+* CRUD: The service accepts requests and returns proper (potentially static) responses. No additional business logic besides storing entities.
+* Emulated: The service imitates the functionality, including synchronous and asynchronous business logic operating on service entities. 
+
 
 ## AWS Feature Coverage
 
-| Service / Feature                                                  | Coverage Level | Terraform Tests | Notes |
-|--------------------------------------------------------------------|----------------|-----------------|-------|
-| **ACM**                                                            |                |                 |       |
-| Certificates                                                       | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Account Configuration                                              | ⭐⭐           |                 |       |
-| [**Amplify** (Pro)]({{< ref "amplify" >}})                         |                |                 |       |
-| Apps                                                               | ⭐⭐⭐         |                 |       |
-| Backend Environments                                               | ⭐⭐           |                 |       |
-| Branches                                                           | ⭐⭐           |                 |       |
-| Deployments                                                        | ⭐⭐⭐         |                 |       |
-| Domain Associations                                                | \-             |                 |       |
-| Jobs                                                               | ⭐⭐           |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Webhooks                                                           | ⭐⭐           |                 |       |
-| **API Gateway**                                                    |                |                 |       |
-| API Keys                                                           | ⭐⭐⭐         |                 |       |
-| Authorizers (Pro)                                                  | ⭐⭐⭐⭐       |                 |       |
-| Base Path Mappings                                                 | ⭐⭐⭐⭐       |                 |       |
-| Deployments                                                        | ⭐⭐⭐⭐       |                 |       |
-| Documentation Parts                                                | ⭐⭐⭐         |                 |       |
-| Documentation Versions                                             | ⭐⭐⭐         |                 |       |
-| Domain Names                                                       | ⭐⭐⭐         |                 |       |
-| Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐       |                 |       |
-| Integrations                                                       | ⭐⭐⭐⭐       |                 |       |
-| Methods                                                            | ⭐⭐⭐⭐       |                 |       |
-| Models                                                             | ⭐⭐⭐         |                 |       |
-| Request Validators                                                 | ⭐⭐           |                 |       |
-| Resources                                                          | ⭐⭐⭐⭐       |                 |       |
-| REST APIs                                                          | ⭐⭐⭐⭐       |                 |       |
-| Stages                                                             | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Usage Plans                                                        | ⭐⭐⭐         |                 |       |
-| Usage Plan Keys                                                    | ⭐⭐⭐         |                 |       |
-| VPC Links                                                          | ⭐⭐⭐         |                 |       |
-| [**API Gateway v2** (Pro)]({{< ref "apigatewayv2" >}})             |                |                 |       |
-| APIs                                                               | ⭐⭐⭐⭐       |                 |       |
-| API Mappings                                                       | ⭐⭐⭐         |                 |       |
-| Authorizers                                                        | ⭐⭐⭐⭐       |                 |       |
-| Deployments                                                        | ⭐⭐⭐⭐       |                 |       |
-| Domain Names                                                       | ⭐⭐⭐         |                 |       |
-| Import APIs from OpenAPI specs                                     | ⭐⭐⭐         |                 |       |
-| Integrations                                                       | ⭐⭐⭐         |                 |       |
-| Integration Responses                                              | ⭐⭐⭐         |                 |       |
-| Models                                                             | ⭐⭐⭐         |                 |       |
-| Routes                                                             | ⭐⭐⭐⭐       |                 |       |
-| Route Responses                                                    | ⭐⭐⭐         |                 |       |
-| Stages                                                             | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| VPC Links                                                          | ⭐⭐⭐         |                 |       |
-| **AppConfig** (Pro)                                                |                |                 |       |
-| Applications                                                       | ⭐⭐⭐         |                 |       |
-| Configuration Profiles                                             | ⭐⭐⭐⭐       |                 |       |
-| Configurations                                                     | ⭐⭐⭐         |                 |       |
-| Deployment Strategies                                              | ⭐⭐⭐⭐       |                 |       |
-| Deployments                                                        | ⭐⭐⭐         |                 |       |
-| Environments                                                       | ⭐⭐⭐⭐       |                 |       |
-| Hosted Configuration Versions                                      | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Application Autoscaling** (Pro)                                  |                |                 |       |
-| Scalable Targets                                                   | ⭐⭐⭐         |                 |       |
-| Scaling Activities                                                 | ⭐⭐           |                 |       |
-| Scaling Policies                                                   | ⭐⭐           |                 |       |
-| Scheduled Actions                                                  | ⭐⭐           |                 |       |
-| [**AppSync** (Pro)]({{< ref "appsync" >}})                         |                |                 |       |
-| API Caches                                                         | ⭐⭐⭐         |                 |       |
-| API Keys                                                           | ⭐⭐⭐         |                 |       |
-| Data Sources                                                       | ⭐⭐⭐         |                 |       |
-| Functions                                                          | ⭐⭐⭐         |                 |       |
-| GraphQL APIs                                                       | ⭐⭐⭐⭐       |                 |       |
-| Resolvers                                                          | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Types                                                              | ⭐⭐⭐⭐       |                 |       |
-| [**Athena** (Pro)]({{< ref "athena" >}})                           |                |                 |       |
-| Data Catalogs                                                      | ⭐⭐           |                 |       |
-| Databases                                                          | ⭐⭐           |                 |       |
+In the coverage table below, the features are marked with their respective availability across different LocalStack versions:
+
+* Community version (default, if not marked)
+* Pro version (marked with **Pro**)
+
+| Service / Feature                                                  | Coverage Level    | Emulation Level | Notes |
+|--------------------------------------------------------------------|-------------------|-----------------|-------|
+| **ACM**                                                            | [🔍]({{< ref "../localstack/coverage/#acm" >}})      |                 |       |
+| Certificates                                                       | ⭐⭐⭐              | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐            | CRUD            |       |
+| Account Configuration                                              | ⭐⭐                | CRUD            |       |
+| [**Amplify** (Pro)]({{< ref "amplify" >}})                         | [🔍]({{< ref "../localstack/coverage/#amplify" >}})  |                 |       |
+| Apps                                                               | ⭐⭐⭐⭐             | Emulated        |       |
+| Backend Environments                                               | ⭐⭐⭐               | CRUD            |       |
+| Branches                                                           | ⭐⭐⭐              | CRUD            |       |
+| Deployments                                                        | \-                 |                 |       |
+| Domain Associations                                                | \-                 |                 |       |
+| Jobs                                                               | \-                 |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐             | CRUD            |       |
+| Webhooks                                                           | ⭐⭐⭐               | Emulated       |       |
+| **API Gateway**                                                    | [🔍]({{< ref "../localstack/coverage/#apigateway" >}}) |                 |       |
+| API Keys                                                           | ⭐⭐⭐              | CRUD                |       |
+| Authorizers (Pro)                                                  | ⭐⭐⭐⭐            | Emulated                |       |
+| Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |       |
+| Deployments                                                        | ⭐⭐⭐⭐            | CRUD                |       |
+| Documentation Parts                                                | ⭐⭐⭐              | CRUD                |       |
+| Documentation Versions                                             | ⭐⭐⭐              | CRUD                |       |
+| Domain Names                                                       | ⭐⭐⭐              | CRUD                |       |
+| Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐            | Emulated                |       |
+| Integrations                                                       | ⭐⭐⭐⭐            | Emulated                |       |
+| Methods                                                            | ⭐⭐⭐⭐            | Emulated                |       |
+| Models                                                             | ⭐⭐⭐              | CRUD                |       |
+| Request Validators                                                 | ⭐⭐                | Emulated                |       |
+| Resources                                                          | ⭐⭐⭐⭐            | Emulated                |       |
+| REST APIs                                                          | ⭐⭐⭐⭐            | Emulated                |       |
+| Stages                                                             | ⭐⭐⭐⭐            | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐⭐            | CRUD                |       |
+| Usage Plans                                                        | ⭐⭐⭐              | CRUD                |       |
+| Usage Plan Keys                                                    | ⭐⭐⭐              | CRUD                |       |
+| VPC Links                                                          | ⭐⭐⭐              | CRUD                |       |
+| [**API Gateway v2** (Pro)]({{< ref "apigatewayv2" >}})             | [🔍]({{< ref "../localstack/coverage/#apigatewayv2" >}})     |                 |       |
+| APIs                                                               | ⭐⭐⭐⭐            | Emulated                |       |
+| API Mappings                                                       | ⭐⭐⭐              | Emulated                |       |
+| Authorizers                                                        | ⭐⭐⭐⭐            | Emulated                |       |
+| Deployments                                                        | ⭐⭐⭐⭐            | CRUD                |       |
+| Domain Names                                                       | ⭐⭐⭐              | CRUD                |       |
+| Import APIs from OpenAPI specs                                     | ⭐⭐⭐              | Emulated                |       |
+| Integrations                                                       | ⭐⭐⭐              | Emulated                |       |
+| Integration Responses                                              | ⭐⭐⭐              | Emulated                |       |
+| Models                                                             | ⭐⭐⭐              | CRUD                |       |
+| Routes                                                             | ⭐⭐⭐⭐            | Emulated                |       |
+| Route Responses                                                    | ⭐⭐⭐              | Emulated                |       |
+| Stages                                                             | ⭐⭐⭐⭐            | CRUD                |       |
+| Tags                                                               | ⭐⭐⭐⭐            | CRUD                |       |
+| VPC Links                                                          | ⭐⭐⭐              | CRUD                |       |
+| **API Gateway Management API** (Pro)                               | [🔍]({{< ref "../localstack/coverage/#apigatewaymanagementapi" >}}) |                 |       |
+| Connections                                                         | ⭐⭐⭐            | Emulated                |       |
+| **AppConfig** (Pro)                                                | [🔍]({{< ref "../localstack/coverage/#appconfig" >}})               |                 |       |
+| Applications                                                       | ⭐⭐⭐           | CRUD            |       |
+| Configuration Profiles                                             | ⭐⭐⭐⭐         | CRUD            |       |
+| Configurations                                                     | ⭐⭐⭐           | CRUD            |       |
+| Deployment Strategies                                              | ⭐⭐⭐⭐         | CRUD            |       |
+| Deployments                                                        | ⭐⭐⭐           | Emulated        |       |
+| Environments                                                       | ⭐⭐⭐⭐          | CRUD           |       |
+| Hosted Configuration Versions                                      | ⭐⭐⭐           | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐         | CRUD             |       |
+| **Application Autoscaling** (Pro)                                  | [🔍]({{< ref "../localstack/coverage/#application-autoscaling" >}})     |                 |       |
+| Scalable Targets                                                   | ⭐⭐⭐           | CRUD           |       |
+| Scaling Activities                                                 | \-              |                |       |
+| Scaling Policies                                                   | ⭐⭐⭐           | CRUD            |       |
+| Scheduled Actions                                                  | ⭐⭐⭐           | CRUD             |       |
+| [**AppSync** (Pro)]({{< ref "appsync" >}})                         | [🔍]({{< ref "../localstack/coverage/#appsync" >}})                |                 |       |
+| API Caches                                                         | ⭐⭐⭐⭐         | Emulated        |       |
+| API Keys                                                           | ⭐⭐⭐⭐         | Emulated         |       |
+| Data Sources                                                       | ⭐⭐⭐          | Emulated         |       |
+| Functions                                                          | ⭐⭐⭐          | Emulated         |       |
+| GraphQL APIs                                                       | ⭐⭐⭐⭐         | Emulated        |       |
+| Resolvers                                                          | ⭐⭐⭐⭐         | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
+| Types                                                              | ⭐⭐⭐⭐         | Emulated        |       |
+| [**Athena** (Pro)]({{< ref "athena" >}})                           | [🔍]({{< ref "../localstack/coverage/#athena" >}}) |                 |       |
+| Data Catalogs                                                      | ⭐⭐           | CRUD            |       |
+| Databases                                                          | ⭐⭐           | Emulated        |       |
 | Named Queries                                                      | \-             |                 |       |
-| Prepared Statements                                                | ⭐⭐⭐         |                 |       |
-| Query Executions                                                   | ⭐⭐⭐         |                 |       |
-| Table Metadata                                                     | ⭐⭐           |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Prepared Statements                                                | \-             |                 |       |
+| Query Executions                                                   | ⭐⭐⭐         | Emulated        |       |
+| Table Metadata                                                     | \-             |                 |       |
+| Tags                                                               | ⭐⭐⭐         | CRUD            |       |
 | Work Groups                                                        | \-             |                 |       |
-| [**Backup** (Pro)]({{< ref "backup" >}})                           |                |                 |       |
-| Backup Jobs                                                        | ⭐⭐⭐         |                 |       |
-| Backup Plans                                                       | ⭐⭐⭐         |                 |       |
-| Backup Selections                                                  | ⭐⭐⭐         |                 |       |
-| Backup Vaults                                                      | ⭐⭐⭐         |                 |       |
+| **Autoscaling** (Pro)                                              | [🔍]({{< ref "../localstack/coverage/#autoscaling" >}}) |                 |       |
+| Metric Collection                                                  | ⭐⭐⭐         | CRUD            |       |
+| Autoscaling Groups                                                 | ⭐⭐           | CRUD            |       |
+| Loadbalancer                                                       | ⭐⭐⭐         | CRUD            |       |
+| [**Backup** (Pro)]({{< ref "backup" >}})                           | [🔍]({{< ref "../localstack/coverage/#backup" >}}) |                 |       |
+| Backup Jobs                                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| Backup Plans                                                       | ⭐⭐⭐         | Emulated        |       |
+| Backup Selections                                                  | ⭐⭐⭐         | Emulated        |       |
+| Backup Vaults                                                      | ⭐⭐⭐         | Emulated        |       |
 | Backup Vault Access Policies                                       | \-             |                 |       |
 | Backup Vault Notifications                                         | \-             |                 |       |
 | Global Settings                                                    | \-             |                 |       |
 | Protected Resources                                                | \-             |                 |       |
-| Recovery Points                                                    | ⭐⭐⭐         |                 |       |
+| Recovery Points                                                    | ⭐⭐⭐          | Emulated        |       |
 | Tags                                                               | \-             |                 |       |
-| **Batch** (Pro)                                                    |                |                 |       |
-| Compute Environments                                               | ⭐⭐⭐         |                 |       |
-| Job Queues                                                         | ⭐⭐⭐         |                 |       |
-| Job Definitions                                                    | ⭐⭐⭐         |                 |       |
-| Jobs                                                               | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**CloudFormation**]({{< ref "cloudformation" >}})                 |                |                 |       |
-| Change Sets                                                        | ⭐⭐⭐⭐       |                 |       |
-| Stacks                                                             | ⭐⭐⭐⭐       |                 |       |
-| Stack Drifts                                                       | \-             |                 |       |
-| Stack Events                                                       | ⭐⭐⭐⭐       |                 |       |
-| Stack Instances                                                    | ⭐⭐⭐⭐       |                 |       |
-| Stack Policies                                                     | ⭐⭐⭐         |                 |       |
-| Stack Resources                                                    | ⭐⭐⭐⭐       |                 |       |
-| Stack Sets                                                         | ⭐⭐⭐⭐       |                 |       |
-| Publishers                                                         | \-             |                 |       |
-| Templates                                                          | ⭐⭐⭐⭐       |                 |       |
-| Type Activations                                                   | ⭐⭐           |                 |       |
-| [**CloudFront** (Pro)]({{< ref "cloudfront" >}})                   |                |                 |       |
+| **Batch** (Pro)                                                    | [🔍]({{< ref "../localstack/coverage/#batch" >}}) |                 |       |
+| Compute Environments                                               | ⭐⭐⭐         | CRUD            |       |
+| Job Queues                                                         | ⭐⭐⭐         | CRUD            |       |
+| Job Definitions                                                    | ⭐⭐⭐         | CRUD            |       |
+| Jobs                                                               | ⭐⭐⭐         | Emulated        |       |
+| **CE (Cost Explorer API)** (Pro)                                   | [🔍]({{< ref "../localstack/coverage/#ce" >}}) |                 |       |
+| Anomaly Monitoring                                                 | ⭐⭐⭐         | CRUD            |       |
+| Anomaly Subscription                                               | ⭐⭐⭐         | CRUD            |       |
+| Cost Category                                                      | ⭐⭐           | CRUD            |       |
+| Cost Usage/Forecast                                                | \-             |                 |       |
+| Savings Plan                                                       | \-             |                 |       |
+| [**CloudFormation**]({{< ref "cloudformation" >}})                 | [🔍]({{< ref "../localstack/coverage/#cloudformation" >}}) |                 |       |
+| Change Sets                                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| Stacks                                                             | ⭐⭐⭐⭐       | Emulated        |       |
+| Stack Drifts                                                       | \-             | \-               |       |
+| Stack Events                                                       | ⭐⭐⭐         | Emulated        |       |
+| Stack Instances                                                    | ⭐⭐⭐⭐       | Emulated         |       |
+| Stack Policies                                                     | ⭐⭐⭐         | CRUD             |       |
+| Stack Resources                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| Stack Sets                                                         | ⭐⭐⭐         | CRUD         |       |
+| Publishers                                                         | \-             | \-                |       |
+| Templates                                                          | ⭐⭐⭐⭐       | Emulated                |       |
+| Type Activations                                                   | ⭐⭐           | \-                |       |
+| [**CloudFront** (Pro)]({{< ref "cloudfront" >}})                   | [🔍]({{< ref "../localstack/coverage/#cloudfront" >}}) |                 |       |
 | Cache Policies                                                     | \-             |                 |       |
-| Distributions                                                      | ⭐⭐⭐         |                 |       |
+| Distributions                                                      | ⭐⭐⭐⭐        | Emulated        |       |
 | Field Level Encryption                                             | \-             |                 |       |
-| Functions                                                          | ⭐⭐⭐         |                 |       |
-| Invalidations                                                      | ⭐⭐⭐         |                 |       |
+| Functions                                                          | ⭐⭐⭐         | CRUD             |       |
+| Invalidations                                                      | ⭐⭐⭐         | CRUD             |       |
 | Key Groups                                                         | \-             |                 |       |
 | Monitoring Subscriptions                                           | \-             |                 |       |
-| Origin Access Identities                                           | ⭐⭐           |                 |       |
-| Origin Request Policies                                            | ⭐⭐⭐         |                 |       |
+| Origin Access Identities                                           | ⭐⭐⭐          | CRUD            |       |
+| Origin Request Policies                                            | ⭐⭐⭐          | CRUD            |       |
 | Public Keys                                                        | \-             |                 |       |
 | Realtime Log Configs                                               | \-             |                 |       |
 | Streaming Distributions                                            | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **CloudTrail** (Pro)                                               |                |                 |       |
-| Event Selectors                                                    | ⭐⭐⭐         |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       |  CRUD            |       |
+| **CloudTrail** (Pro)                                               | [🔍]({{< ref "../localstack/coverage/#cloudtrail" >}}) |                 |       |
+| Event Selectors                                                    | ⭐⭐⭐⭐        | Emulated          |       |
 | Insight Selectors                                                  | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Trails                                                             | ⭐⭐⭐         |                 |       |
-| Start/Stop Logging                                                 | ⭐⭐⭐         |                 |       |
-| [**CloudWatch**]({{< ref "cloudwatch" >}})                         |                |                 |       |
-| Alarms                                                             | ⭐⭐           |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
+| Trails                                                             | ⭐⭐⭐⭐        | Emulated         |       |
+| Start/Stop Logging                                                 | ⭐⭐⭐⭐        | Emulated         |       |
+| [**CloudWatch**]({{< ref "cloudwatch" >}})                         | [🔍]({{< ref "../localstack/coverage/#cloudwatch" >}}) |                 |       |
+| Alarms                                                             | ⭐⭐⭐⭐        | Emulated       |       |
 | Alarm Histories                                                    | \-             |                 |       |
 | Anomaly Detectors                                                  | \-             |                 |       |
 | Dashboards                                                         | \-             |                 |       |
 | Insight Rules                                                      | \-             |                 |       |
-| Metric Data                                                        | ⭐⭐⭐⭐       |                 |       |
-| Metric Statistics                                                  | ⭐⭐⭐         |                 |       |
+| Metric Data                                                        | ⭐⭐⭐⭐         | CRUD         |       |
+| Metric Statistics                                                  | ⭐⭐⭐⭐          | CRUD             |       |
 | Metric Streams                                                     | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐         |                 |       |
-| **CloudWatch Logs**                                                |                |                 |       |
-| Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
-| Export Tasks                                                       | ⭐⭐           |                 |       |
-| Log Events                                                         | ⭐⭐⭐⭐       |                 |       |
-| Log Groups                                                         | ⭐⭐⭐⭐       |                 |       |
-| Log Streams                                                        | ⭐⭐⭐⭐       |                 |       |
-| Metric Filters                                                     | ⭐⭐⭐         |                 |       |
-| Queries                                                            | ⭐⭐⭐         |                 |       |
-| Query Definitions                                                  | ⭐⭐           |                 |       |
-| Resource Policies                                                  | ⭐⭐⭐⭐       |                 |       |
-| Retention Policies                                                 | ⭐⭐⭐         |                 |       |
-| Subscription Filters                                               | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   |                |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
+| [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   | [🔍]({{< ref "../localstack/coverage/#codecommit" >}})                |                 |       |
 | Approval Rules                                                     | \-             |                 |       |
-| Blobs / Files / Folders                                            | ⭐⭐           |                 |       |
-| Branches                                                           | ⭐⭐           |                 |       |
+| Blobs / Files / Folders                                            | ⭐⭐⭐           | Emulated       |       |
+| Branches                                                           | ⭐⭐⭐           | Emulated        |       |
 | Comments                                                           | \-             |                 |       |
-| Commits                                                            | ⭐⭐           |                 |       |
+| Commits                                                            | ⭐⭐⭐           | Emulated       |       |
 | Merge Commits / Conflicts                                          | \-             |                 |       |
 | Pull Requests                                                      | \-             |                 |       |
-| Repositories                                                       | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**Cognito Identity** (Pro)]({{< ref "cognito" >}})                |                |                 |       |
+| Repositories                                                       | ⭐⭐⭐⭐         | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
+| [**Cognito Identity** (Pro)]({{< ref "cognito" >}})                | [🔍]({{< ref "../localstack/coverage/#cognito-identity" >}}) |                 |       |
 | Developer Identities                                               | \-             |                 |       |
-| Identities                                                         | ⭐⭐⭐         |                 |       |
+| Identities                                                         | ⭐⭐⭐         | Emulated         |       |
 | Identity Pool Roles                                                | \-             |                 |       |
-| Identity Pools                                                     | ⭐⭐⭐⭐       |                 |       |
+| Identity Pools                                                     | ⭐⭐⭐⭐       | Emulated         |       |
 | OpenID Tokens                                                      | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| [**Cognito Identity Provider (IdP)** (Pro)]({{< ref "cognito" >}}) |                |                 |       |
-| Admin APIs                                                         | ⭐⭐⭐         |                 |       |
-| Devices                                                            | ⭐⭐           |                 |       |
-| Auth Flows                                                         | ⭐⭐⭐         |                 |       |
-| Groups                                                             | ⭐⭐⭐⭐       |                 |       |
-| Lambda Triggers                                                    | ⭐⭐⭐⭐       |                 |       |
-| MFA Configs                                                        | ⭐⭐⭐         |                 |       |
+| [**Cognito Identity Provider (IdP)** (Pro)]({{< ref "cognito" >}}) | [🔍]({{< ref "../localstack/coverage/#cognito-idp" >}}) |                 |       |
+| Admin APIs                                                         | ⭐⭐⭐         | Emulated        | Triggers can involve Lambda     |
+| Devices                                                            | ⭐⭐           | CRUD            |       |
+| Auth Flows                                                         | ⭐⭐⭐         | Emulated        |       |
+| Groups                                                             | ⭐⭐⭐⭐       | CRUD            |       |
+| Lambda Triggers                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| MFA Configs                                                        | ⭐⭐⭐         | CRUD            |       |
 | Resource Servers                                                   | \-             |                 |       |
 | Risk Configurations                                                | \-             |                 |       |
-| Identity Providers                                                 | ⭐⭐⭐         |                 |       |
+| Identity Providers                                                 | ⭐⭐⭐         | CRUD            |       |
 | User Import Jobs                                                   | \-             |                 |       |
-| User Pool Clients                                                  | ⭐⭐⭐⭐       |                 |       |
-| User Pool Domains                                                  | ⭐⭐           |                 |       |
-| User Pools                                                         | ⭐⭐⭐⭐       |                 |       |
-| Users                                                              | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **DocumentDB** (Pro)                                               |               |                 |       |
-| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
-| DB/Cluster Snapshots                                               | ⭐            |                 |       |
-| DB Clusters/Instances                                              | ⭐⭐⭐⭐       |                 |       |
-| DB Subnet Groups                                                   | ⭐⭐          |                 |       |
+| User Pool Clients                                                  | ⭐⭐⭐⭐       | CRUD            |       |
+| User Pool Domains                                                  | ⭐⭐           | CRUD            |       |
+| User Pools                                                         | ⭐⭐⭐⭐       | CRUD            |       |
+| Users                                                              | ⭐⭐⭐⭐       | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **Config**                                                         | [🔍]({{< ref "../localstack/coverage/#config" >}}) |                 |       |
+| Config Rules                                                       | ⭐⭐⭐         | CRUD            |       |
+| Conformance                                                        | ⭐⭐         | CRUD            |       |
+| Remediation                                                        | \-             |                 |       |
+| **DocumentDB** (Pro)                                               | [🔍]({{< ref "../localstack/coverage/#docdb" >}}) |                 |       |
+| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         | CRUD            |       |
+| DB/Cluster Snapshots                                               | ⭐⭐           | Emulated        |       |
+| DB Clusters/Instances                                              | ⭐⭐⭐⭐       | Emulated         |       |
+| DB Subnet Groups                                                   | ⭐⭐⭐         | Emulated         |       |
 | Event Subscriptions                                                | \-           |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **DynamoDB**                                                       |               |                 |       |
-| Backups (Pro)                                                      | ⭐⭐⭐⭐       |                 |       |
-| Batch Operations                                                   | ⭐⭐⭐⭐       |                 |       |
-| Global Tables                                                      | ⭐⭐⭐⭐       |                 |       |
-| Items                                                              | ⭐⭐⭐⭐       |                 |       |
-| Kinesis Streaming Destinations                                     | \-             |                 |       |
-| PartiQL Queries                                                    | ⭐⭐⭐⭐       |                 |       |
-| Query / Scan Operations                                            | ⭐⭐⭐⭐       |                 |       |
-| Tables                                                             | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **DynamoDB**                                                       | [🔍]({{< ref "../localstack/coverage/#dynamodb" >}}) |                 |       |
+| Backups (Pro)                                                      | ⭐⭐⭐⭐       | Emulated        |       |
+| Batch Operations                                                   | ⭐⭐⭐⭐       | Emulated        |       |
+| Global Tables                                                      | ⭐⭐⭐⭐       | CRUD            | version 2019.11.21 not supported yet |
+| Items                                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Kinesis Streaming Destinations                                     | ⭐⭐⭐         | Emulated        |       |
+| PartiQL Queries                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| Query / Scan Operations                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Tables                                                             | ⭐⭐⭐⭐       | Emulated        |       |
 | Table Replica Autoscaling                                          | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **DynamoDB Streams**                                               |                |                 |       |
-| Records                                                            | ⭐⭐⭐⭐       |                 |       |
-| Shard Iterators                                                    | ⭐⭐⭐⭐       |                 |       |
-| Streams                                                            | ⭐⭐⭐⭐       |                 |       |
-| **EC2**                                                            |                |                 |       |
-| Classic Links                                                      | ⭐⭐⭐         |                 |       |
-| Customer Gateways                                                  | ⭐⭐⭐         |                 |       |
-| DHCP Options                                                       | ⭐⭐⭐         |                 |       |
-| Allocate/Deallocate Elastic IPs                                    | ⭐⭐⭐         |                 |       |
-| Fleets                                                             | ⭐⭐           |                 |       |
-| Flow Logs                                                          | ⭐⭐⭐         |                 |       |
-| Images                                                             | ⭐⭐           |                 |       |
-| Internet Gateways                                                  | ⭐⭐⭐         |                 |       |
-| Local Gateway Routes                                               | ⭐⭐⭐         |                 |       |
-| Key Pairs                                                          | ⭐⭐⭐⭐       |                 |       |
-| Launch Templates                                                   | ⭐⭐⭐         |                 |       |
-| NAT Gateways                                                       | ⭐⭐⭐         |                 |       |
-| Network ACLs                                                       | ⭐⭐⭐         |                 |       |
-| Network Interfaces                                                 | ⭐⭐⭐         |                 |       |
-| Reserved Instances                                                 | ⭐⭐⭐         |                 |       |
-| Route Tables / Routes                                              | ⭐⭐⭐         |                 |       |
-| Scheduled Instances                                                | ⭐⭐⭐         |                 |       |
-| Security Groups / Egress / Ingress                                 | ⭐⭐⭐⭐       |                 |       |
-| Snapshots                                                          | ⭐⭐⭐         |                 |       |
-| Spot Instances                                                     | ⭐⭐⭐         |                 |       |
-| Start Instances as VMs (Pro)                                       | ⭐⭐           |                 |       |
-| Subnets                                                            | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Traffic Mirrors                                                    | ⭐⭐⭐         |                 |       |
-| Transit Gateways                                                   | ⭐⭐⭐         |                 |       |
-| Volumes                                                            | ⭐⭐⭐         |                 |       |
-| VPC Endpoint Connections                                           | ⭐⭐⭐         |                 |       |
-| VPC Peering Connections                                            | ⭐⭐⭐         |                 |       |
-| VPCs                                                               | ⭐⭐⭐⭐       |                 |       |
-| VPN Gateways / Connections                                         | ⭐⭐⭐         |                 |       |
-| [**ECR** (Pro)]({{< ref "elastic-container-registry" >}})          |                |                 |       |
-| Images                                                             | ⭐⭐⭐         |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **DynamoDB Streams**                                               | [🔍]({{< ref "../localstack/coverage/#dynamodbstreams" >}}) |                 |       |
+| Records                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Shard Iterators                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| Streams                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| [**EC2**]({{< ref "elastic-compute-cloud" >}})                      | [🔍]({{< ref "../localstack/coverage/#ec2" >}})  |                 |       |
+| Classic Links                                                      | \-             |                 |       |
+| Customer Gateways                                                  | ⭐             | CRUD            |       |
+| DHCP Options                                                       | ⭐⭐           | CRUD            |       |
+| Allocate/Deallocate Elastic IPs                                    | ⭐⭐⭐         | CRUD            |       |
+| Fleets                                                             | ⭐⭐           | CRUD            |       |
+| Flow Logs                                                          | ⭐⭐⭐         | CRUD            |       |
+| Images                                                             | ⭐⭐           | CRUD            | (Pro) Include Docker images |
+| Internet Gateways                                                  | ⭐⭐⭐         | CRUD            |       |
+| Local Gateway Routes                                               | ⭐⭐⭐         | CRUD            |       |
+| Key Pairs                                                          | ⭐⭐⭐⭐       | CRUD            |       |
+| Launch Templates                                                   | ⭐⭐⭐         | CRUD            |       |
+| NAT Gateways                                                       | ⭐⭐⭐         | CRUD            |       |
+| Network ACLs                                                       | ⭐⭐⭐         | CRUD            |       |
+| Network Interfaces                                                 | ⭐⭐⭐         | CRUD            |       |
+| Reserved Instances                                                 | ⭐⭐⭐         | CRUD            |       |
+| Route Tables / Routes                                              | ⭐⭐⭐         | CRUD            |       |
+| Scheduled Instances                                                | ⭐⭐⭐         | CRUD            |       |
+| Security Groups / Egress / Ingress                                 | ⭐⭐⭐⭐       | CRUD            |       |
+| Snapshots                                                          | ⭐⭐⭐         | CRUD            |       |
+| Spot Instances                                                     | ⭐⭐⭐         | CRUD            |       |
+| Instances                                                          | ⭐⭐           | Emulated        | (Pro) As Docker containers |
+| Subnets                                                            | ⭐⭐⭐         | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| Traffic Mirrors                                                    | \-             |                 |       |
+| Transit Gateways                                                   | ⭐⭐           | CRUD            |       |
+| Volumes                                                            | ⭐⭐⭐         | CRUD            |       |
+| VPC Endpoint Connections                                           | ⭐⭐⭐         | CRUD            |       |
+| VPC Peering Connections                                            | ⭐⭐⭐         | CRUD            |       |
+| VPCs                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| VPN Gateways / Connections                                         | ⭐⭐⭐         | CRUD            |       |
+| [**ECR** (Pro)]({{< ref "elastic-container-registry" >}})          | [🔍]({{< ref "../localstack/coverage/#ecr" >}}) |                 |       |
+| Images                                                             | ⭐⭐⭐         |    Emulated     |       |
 | Image Scans                                                        | \-             |                 |       |
-| Lifecycle Policies                                                 | ⭐⭐⭐⭐       |                 |       |
-| Registries                                                         | ⭐⭐⭐⭐       |                 |       |
+| Lifecycle Policies                                                 | ⭐⭐⭐⭐       |      CRUD       |       |
+| Registries                                                         | ⭐⭐⭐⭐       |    Emulated     |       |
 | Registry Policies                                                  | \-             |                 |       |
 | Replication Configurations                                         | \-             |                 |       |
-| Repositories                                                       | ⭐⭐⭐⭐       |                 |       |
-| Repository Policies                                                | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**ECS** (Pro)]({{< ref "elastic-container-service" >}})           |                |                 |       |
+| Repositories                                                       | ⭐⭐⭐⭐       |    Emulated     |       |
+| Repository Policies                                                | ⭐⭐⭐⭐       |      CRUD       |       |
+| Tags                                                               | ⭐⭐⭐⭐       |      CRUD       |       |
+| [**ECS** (Pro)]({{< ref "elastic-container-service" >}})           | [🔍]({{< ref "../localstack/coverage/#ecs" >}}) |                 |       |
 | Account Settings                                                   | \-             |                 |       |
-| Attributes                                                         | ⭐⭐⭐⭐       |                 |       |
+| Attributes                                                         | ⭐⭐⭐⭐       |      CRUD       |       |
 | Capacity Providers                                                 | \-             |                 |       |
-| Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
-| Container Instances                                                | ⭐⭐⭐⭐       |                 |       |
-| Services                                                           | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Task Definitions                                                   | ⭐⭐⭐⭐       |                 |       |
-| Task Sets                                                          | ⭐⭐⭐         |                 |       |
-| Tasks                                                              | ⭐⭐⭐⭐       |                 |       |
-| [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          |                |                 |       |
+| Clusters                                                           | ⭐⭐⭐⭐       |    Emulated     |       |
+| Container Instances                                                | ⭐⭐⭐⭐       |    Emulated     |       |
+| Services                                                           | ⭐⭐⭐⭐       |    Emulated     |       |
+| Tags                                                               | ⭐⭐⭐⭐       |      CRUD       |       |
+| Task Definitions                                                   | ⭐⭐⭐⭐       |    Emulated     |       |
+| Task Sets                                                          | ⭐⭐⭐         |      CRUD       |       |
+| Tasks                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
+| **EFS** (Pro)                                                      | [🔍]({{< ref "../localstack/coverage/#efs" >}}) |                 |       |
+| File System                                                        | ⭐⭐⭐⭐       | Emulated        |        |
+| Backup Policy                                                      | \-             |                 |       |
+| [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          | [🔍]({{< ref "../localstack/coverage/#eks" >}}) |                 |       |
 | AddOns                                                             | \-             |                 |       |
-| Clusters                                                           | ⭐⭐⭐         |                 |       |
-| Fargate Profiles                                                   | ⭐⭐           |                 |       |
+| Clusters                                                           | ⭐⭐⭐         | Emulated        |       |
+| Fargate Profiles                                                   | ⭐⭐           | CRUD            |       |
 | Identity Provider Configs                                          | \-             |                 |       |
 | Node Groups                                                        | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | Updates                                                            | \-             |                 |       |
-| [**ElastiCache** (Pro)]({{< ref "elasticache" >}})                 |                |                 |       |
+| [**ElastiCache** (Pro)]({{< ref "elasticache" >}})                 | [🔍]({{< ref "../localstack/coverage/#elasticache" >}}) |       |
 | Cache Clusters (Memcached)                                         | \-             |                 |       |
-| Cache Parameter Groups                                             | ⭐⭐⭐⭐       |                 |       |
-| Cache Security Groups                                              | ⭐⭐⭐⭐       |                 |       |
-| Cache Subnet Groups                                                | ⭐⭐⭐⭐       |                 |       |
+| Cache Clusters (Redis)                                             | ⭐⭐⭐         | Emulated       |       |
+| Cache Parameter Groups                                             | ⭐⭐⭐⭐       | Emulated       |       |
+| Cache Security Groups                                              | ⭐⭐⭐⭐       | CRUD           |       |
+| Cache Subnet Groups                                                | ⭐⭐⭐⭐       | CRUD           |       |
 | Global Replication Groups                                          | \-             |                 |       |
-| Replication Groups                                                 | ⭐⭐⭐⭐       |                 |       |
+| Replication Groups                                                 | ⭐⭐⭐⭐       | Emulated       |       |
 | Snapshots                                                          | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD           |       |
 | Users / User Groups                                                | \-             |                 |       |
-| [**Elasticsearch Service**]({{< ref "elasticsearch" >}})           |                |                 |       |
-| Cross-Cluster Search Connections                                   | \-             |                 |       |
-| Elasticsearch Domains                                              | ⭐⭐⭐⭐       |                 |       |
-| Packages                                                           | \-             |                 |       |
-| Reserved Instances                                                 | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **EMR** (Pro)                                                      |                |                 |       |
-| Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
-| Instance Fleets                                                    | ⭐⭐⭐         |                 |       |
-| Job Flow Steps                                                     | ⭐⭐⭐         |                 |       |
+| **Elastic Beanstalk** (Pro)                                        | [🔍]({{< ref "../localstack/coverage/#elasticbeanstalk" >}}) |                 |       |
+| Application Deployment                                             | ⭐⭐⭐         | CRUD            |       |
+| Environment                                                        | ⭐⭐           | CRUD            |       |
+| **ELB (Elastic Load Balancing)** (Pro)                             | [🔍]({{< ref "../localstack/coverage/#elb" >}}) |                 |       |
+| Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
+| Load balancers                                                     | ⭐⭐⭐         | Emulated        | Application load balancers with IP address or Lambda targets only |
+| Rules                                                              | ⭐⭐⭐         | CRUD            |       |
+| Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
+| Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
+| [**ELBv2 (Elastic Load Balancing v2)**]({{< ref "elastic-load-balancing" >}}) (Pro) | [🔍]({{< ref "../localstack/coverage/#elbv2" >}}) |                 |       |
+| Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
+| Load balancers                                                     | ⭐⭐⭐         | CRUD            |       |
+| Rules                                                              | ⭐⭐⭐         | CRUD            |       |
+| Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
+| Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
+| [**EMR**]({{< ref "elastic-mapreduce" >}}) (Pro)                   | [🔍]({{< ref "../localstack/coverage/#emr" >}}) |                 |       |
+| Clusters                                                           | ⭐⭐⭐⭐       | Emulated        |       |
+| Instance Fleets                                                    | ⭐⭐⭐         | CRUD            |       |
+| Job Flow Steps                                                     | ⭐⭐⭐         | Emulated        |       |
 | Managed Scaling Policies                                           | \-             |                 |       |
 | Notebook Executions                                                | \-             |                 |       |
-| Run Job Flows (Queries)                                            | ⭐⭐⭐         |                 |       |
+| Run Job Flows (Queries)                                            | ⭐⭐⭐         | Emulated         |       |
 | Security Configurations                                            | \-             |                 |       |
 | Studios                                                            | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **EventBridge (CloudWatch Events)**                                |                |                 |       |
-| API Destinations                                                   | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
+| [**ES (Elasticsearch Service)**]({{< ref "elasticsearch" >}})      | [🔍]({{< ref "../localstack/coverage/#es" >}}) |                 |       |
+| Cross-Cluster Search Connections                                   | \-             |                 |       |
+| Elasticsearch Domains                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Packages                                                           | \-             |                 |       |
+| Reserved Instances                                                 | \-             |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **EventBridge (Events)**                                           | [🔍]({{< ref "../localstack/coverage/#events" >}}) |                 |       |
+| API Destinations                                                   | ⭐⭐⭐⭐       | Emulated                |       |
 | Archives                                                           | \-             |                 |       |
 | Connections                                                        | \-             |                 |       |
-| Event Buses                                                        | ⭐⭐⭐⭐       |                 |       |
-| Event Sources                                                      | ⭐⭐⭐⭐       |                 |       |
+| Event Buses                                                        | ⭐⭐⭐⭐       | Emulated                |       |
+| Event Sources                                                      | ⭐⭐⭐⭐       | Emulated                |       |
 | Partner Event Sources                                              | \-             |                 |       |
 | Replays                                                            | \-             |                 |       |
-| Rules                                                              | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Firehose**                                                       |                |                 |       |
-| Delivery Streams                                                   | ⭐⭐⭐⭐       |                 |       |
-| Destinations                                                       | ⭐⭐⭐⭐       |                 |       |
-| Records                                                            | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**Glue** (Pro)]({{< ref "glue" >}})                               |                |                 |       |
-| Classifiers                                                        | ⭐⭐⭐         |                 |       |
-| Connections                                                        | ⭐⭐⭐         |                 |       |
-| Crawlers                                                           | ⭐⭐⭐         |                 |       |
-| Databases                                                          | ⭐⭐⭐         |                 |       |
+| Rules                                                              | ⭐⭐⭐⭐       | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
+| **Firehose**                                                       | [🔍]({{< ref "../localstack/coverage/#firehose" >}}) |                 |       |
+| Delivery Streams                                                   | ⭐⭐⭐⭐       | Emulated        |       |
+| Destinations                                                       | ⭐⭐⭐⭐       | Emulated        |       |
+| Records                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| Stream Encryption                                                  | \-           |                  |       |
+| **Glacier** (Pro)                                                  | [🔍]({{< ref "../localstack/coverage/#glacier" >}}) |                 |       |
+| Archive                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Vault                                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Job                                                                | ⭐⭐⭐⭐       | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| [**Glue** (Pro)]({{< ref "glue" >}})                               | [🔍]({{< ref "../localstack/coverage/#glue" >}}) |                 |       |
+| Classifiers                                                        | ⭐⭐⭐         | CRUD            |       |
+| Connections                                                        | ⭐⭐⭐         | CRUD            |       |
+| Crawlers                                                           | ⭐⭐⭐         | Emulated        |       |
+| Databases                                                          | ⭐⭐⭐         | Emulated        |       |
 | Dev Endpoints                                                      | \-             |                 |       |
-| Jobs                                                               | ⭐⭐⭐         |                 |       |
+| Jobs                                                               | ⭐⭐⭐         | Emulated        |       |
 | ML Transforms                                                      | \-             |                 |       |
-| Partitions                                                         | ⭐⭐⭐         |                 |       |
-| Registries                                                         | ⭐⭐⭐         |                 |       |
-| Schemas                                                            | ⭐⭐⭐         |                 |       |
+| Partitions                                                         | ⭐⭐⭐         | Emulated        |       |
+| Registries                                                         | ⭐⭐⭐⭐       | Emulated        |       |
+| Schemas                                                            | ⭐⭐⭐⭐       | Emulated        |       |
 | Scripts                                                            | \-             |                 |       |
-| Security Configurations                                            | ⭐⭐⭐         |                 |       |
-| Tables                                                             | ⭐⭐⭐         |                 |       |
-| Triggers                                                           | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐         |                 |       |
+| Security Configurations                                            | ⭐⭐⭐         | CRUD            |       |
+| Tables                                                             | ⭐⭐⭐         | Emulated        |       |
+| Triggers                                                           | ⭐⭐⭐         | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐         | CRUD            |       |
 | User Defined Functions                                             | \-             |                 |       |
-| Workflows                                                          | ⭐⭐⭐         |                 |       |
-| [**IAM**]({{< ref "iam" >}})                                       |                |                 |       |
-| Access Keys                                                        | ⭐⭐⭐         |                 |       |
-| Account Aliases                                                    | ⭐⭐⭐         |                 |       |
+| Workflows                                                          | ⭐⭐⭐         | CRUD            |       |
+| [**IAM**]({{< ref "iam" >}})                                       | [🔍]({{< ref "../localstack/coverage/#iam" >}}) |                 |       |
+| Access Keys                                                        | ⭐⭐⭐         |    Emulated     |       |
+| Account Aliases                                                    | ⭐⭐⭐         |      CRUD       |       |
 | Credential Reports                                                 | \-             |                 |       |
-| Groups                                                             | ⭐⭐⭐⭐       |                 |       |
-| Instance Profiles                                                  | ⭐⭐⭐         |                 |       |
-| Login Profiles                                                     | ⭐⭐⭐         |                 |       |
+| Groups                                                             | ⭐⭐⭐⭐       |    Emulated     |       |
+| Instance Profiles                                                  | ⭐⭐⭐         |      CRUD       |       |
+| Login Profiles                                                     | ⭐⭐⭐         |      CRUD       |       |
 | OIDC Providers                                                     | \-             |                 |       |
-| Policies                                                           | ⭐⭐⭐⭐       |                 |       |
-| Roles                                                              | ⭐⭐⭐⭐       |                 |       |
+| Policies                                                           | ⭐⭐⭐⭐       |    Emulated     |       |
+| Roles                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
 | SAML Providers                                                     | \-             |                 |       |
-| Server Certificates                                                | ⭐⭐⭐         |                 |       |
-| Service Linked Roles                                               | ⭐⭐⭐         |                 |       |
-| Users                                                              | ⭐⭐⭐⭐       |                 |       |
-| Virtual MFA Devices                                                | ⭐⭐           |                 |       |
-| [**IoT (IoT Analytics, IoT Data)** (Pro)]({{< ref "iot" >}})       |                |                 |       |
+| Server Certificates                                                | ⭐⭐⭐         |      CRUD       |       |
+| Service Linked Roles                                               | ⭐⭐⭐         |      CRUD       |       |
+| Users                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
+| Virtual MFA Devices                                                | ⭐⭐           |      CRUD       |       |
+| [**IoT (Analytics, Data, Wireless)** (Pro)]({{< ref "iot" >}})     | [🔍]({{< ref "../localstack/coverage/#iot" >}}) |                 |       |
 | Authorizers                                                        | \-             |                 |       |
 | Billing Groups                                                     | \-             |                 |       |
-| Certificates                                                       | ⭐⭐           |                 |       |
-| Channels                                                           | ⭐⭐           |                 |       |
+| Certificates                                                       | ⭐⭐           | CRUD            |       |
+| Channels                                                           | ⭐⭐           | CRUD            |       |
 | Custom Metrics                                                     | \-             |                 |       |
-| Datasets                                                           | ⭐⭐⭐         |                 |       |
+| Datasets                                                           | ⭐⭐⭐         | CRUD            |       |
 | Dimensions                                                         | \-             |                 |       |
 | Domain Configurations                                              | \-             |                 |       |
-| Jobs                                                               | ⭐⭐⭐         |                 |       |
-| Jobs Executions                                                    | ⭐⭐⭐         |                 |       |
+| Jobs                                                               | ⭐⭐⭐         | CRUD            |       |
+| Jobs Executions                                                    | ⭐⭐⭐         | CRUD            |       |
 | Jobs Templates                                                     | \-             |                 |       |
 | Mitigation Actions                                                 | \-             |                 |       |
-| Policies                                                           | ⭐⭐⭐         |                 |       |
-| Provisioning Claims / Templates                                    | ⭐⭐           |                 |       |
+| Policies                                                           | ⭐⭐⭐         | CRUD            |       |
+| Provisioning Claims / Templates                                    | ⭐⭐           | CRUD            |       |
 | Role Aliases                                                       | \-             |                 |       |
-| Security Profiles                                                  | \-             |                 |       |
-| Shadows                                                            | ⭐⭐           |                 |       |
+| Security Profiles                                                  | \-             | CRUD            |       |
+| Shadows                                                            | ⭐⭐           | CRUD            |       |
 | Streams                                                            | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Thing Groups                                                       | ⭐⭐⭐         |                 |       |
-| Thing Types                                                        | ⭐⭐⭐         |                 |       |
-| Things                                                             | ⭐⭐⭐         |                 |       |
-| Topic Rules                                                        | ⭐⭐⭐         |                 |       |
-| [**Kinesis**]({{< ref "kinesis" >}})                               |                |                 |       |
-| Records                                                            | ⭐⭐⭐⭐       |                 |       |
-| Split / Merge Shards                                               | ⭐⭐⭐⭐       |                 |       |
-| Stream Consumers                                                   | ⭐⭐⭐⭐       |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| Thing Groups                                                       | ⭐⭐⭐         | CRUD            |       |
+| Thing Types                                                        | ⭐⭐⭐         | CRUD            |       |
+| Things                                                             | ⭐⭐⭐         | CRUD            |       |
+| Topic Rules                                                        | ⭐⭐⭐         | CRUD            |       |
+| [**Kafka (MSK - Managed Streaming for Kafka)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro) | [🔍]({{< ref "../localstack/coverage/#kafka" >}}) |                 |       |
+| Brokers                                                            | ⭐⭐           | Emulated        |       |
+| Cluster Operations                                                 | ⭐⭐           | Emulated        |       |
+| Clusters                                                           | ⭐⭐⭐⭐       | Emulated        | Single node clusters |
+| Configurations                                                     | ⭐⭐⭐⭐       | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| [**Kinesis**]({{< ref "kinesis" >}})                               | [🔍]({{< ref "../localstack/coverage/#kinesis" >}}) |                 |       |
+| Records                                                            | ⭐⭐⭐⭐       | Emulated                |       |
+| Split / Merge Shards                                               | ⭐⭐⭐⭐       | Emulated                |       |
+| Stream Consumers                                                   | ⭐⭐⭐⭐       | Emulated                |       |
 | Stream Encryption                                                  | \-             |                 |       |
-| Streams                                                            | ⭐⭐⭐⭐       |                 |       |
-| Subscribe to Shard                                                 | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **KMS**                                                            |                |                 |       |
-| Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
-| Custom Key Stores                                                  | ⭐⭐⭐         |                 |       |
-| Encrypt / Decrypt / Sign Data                                      | ⭐⭐⭐⭐       |                 |       |
+| Streams                                                            | ⭐⭐⭐⭐       | Emulated                |       |
+| Subscribe to Shard                                                 | ⭐⭐⭐⭐       | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **Kinesis Analytics** (Pro)                                        | [🔍]({{< ref "../localstack/coverage/#kinesisanalytics" >}})  |                 |       |
+| Applications                                                       | ⭐⭐⭐         | Emulated            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **Kinesis Analytics v2** (Pro)                                     | [🔍]({{< ref "../localstack/coverage/#kinesisanalyticsv2" >}}) |                 |       |
+| Applications                                                       | ⭐⭐⭐         | Emulated            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **KMS**                                                            | [🔍]({{< ref "../localstack/coverage/#kms" >}}) |                 |       |
+| Aliases                                                            | ⭐⭐⭐⭐       | CRUD             |       |
+| Custom Key Stores                                                  | ⭐⭐⭐         | Emulated         |       |
+| Encrypt / Decrypt / Sign Data                                      | ⭐⭐⭐⭐       | Emulated         |       |
 | Grants                                                             | \-             |                 |       |
 | Key Policies                                                       | \-             |                 |       |
-| Keys                                                               | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Lambda**                                                         |                |                 |       |
-| Aliases                                                            | ⭐⭐⭐⭐       |                 |       |
-| Code Signing Configs                                               | ⭐⭐           |                 |       |
-| Custom Images (Pro)                                                | ⭐⭐⭐⭐       |                 |       |
-| Event Invoke Configs                                               | ⭐⭐⭐⭐       |                 |       |
-| Event Source Mappings                                              | ⭐⭐⭐⭐       |                 |       |
-| Function Concurrencies                                             | ⭐⭐⭐         |                 |       |
-| Functions                                                          | ⭐⭐⭐⭐       |                 |       |
-| Invoke Functions                                                   | ⭐⭐⭐⭐       |                 |       |
-| [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       |                 |       |
-| Permissions                                                        | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Managed Streaming for Kafka (MSK)** (Pro)                        |                |                 |       |
-| Brokers                                                            | ⭐⭐           |                 |       |
-| Cluster Operations                                                 | ⭐⭐           |                 |       |
-| Clusters                                                           | ⭐⭐⭐⭐       |                 |       |
-| Configurations                                                     | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **MediaStore** (Pro)                                               |                |                 |       |
+| Keys                                                               | ⭐⭐⭐⭐       | Emulated         |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
+| **Lake Formation** (Pro)                                           | [🔍]({{< ref "../localstack/coverage/#lakeformation" >}}) |                 |       |
+| Transactions                                                       | \-             |                 |       |
+| Permissions                                                        | ⭐⭐             | CRUD                |       |
+| Resources                                                          | ⭐⭐             | CRUD                |       |
+| [**Lambda**]({{< ref "lambda" >}})                                 | [🔍]({{< ref "../localstack/coverage/#lambda" >}}) |                 |       |
+| Aliases                                                            | ⭐⭐⭐⭐       | CRUD            |       |
+| Code Signing Configs                                               | ⭐⭐           | CRUD            |       |
+| Custom Images (Pro)                                                | ⭐⭐⭐⭐       | Emulated        |       |
+| Event Invoke Configs (Destinations)                                | ⭐⭐⭐⭐       | Emulated        |       |
+| Event Source Mappings                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Function Concurrencies                                             | ⭐⭐⭐         | CRUD            |       |
+| Functions                                                          | ⭐⭐⭐⭐       | Emulated        |       |
+| Invoke Functions                                                   | ⭐⭐⭐⭐       | Emulated        |       |
+| [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       | Emulated        |       |
+| Permissions                                                        | ⭐⭐⭐⭐       | CRUD            |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **Logs**                                                           | [🔍]({{< ref "../localstack/coverage/#logs" >}}) |                 |       |
+| Destinations                                                       | ⭐⭐⭐⭐       | Emulated       |       |
+| Export Tasks                                                       | ⭐⭐          | CRUD            |       |
+| Log Events                                                         | ⭐⭐⭐⭐       | Emulated        |       |
+| Log Groups                                                         | ⭐⭐⭐⭐       | CRUD                |       |
+| Log Streams                                                        | ⭐⭐⭐⭐       | CRUD                |       |
+| Metric Filters                                                     | ⭐⭐⭐         | CRUD                |       |
+| Queries                                                            | ⭐⭐          | CRUD                |       |
+| Resource Policies                                                  | ⭐⭐⭐        | CRUD               |       |
+| Retention Policies                                                 | ⭐⭐⭐         | CRUD                |       |
+| Subscription Filters                                               | ⭐⭐⭐         | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD               |       |
+| **MediaStore** (Pro)                                               | [🔍]({{< ref "../localstack/coverage/#mediastore" >}}) |                 |       |
 | Access Logging                                                     | \-             |                 |       |
 | Container Policies                                                 | \-             |                 |       |
-| Containers                                                         | ⭐⭐⭐         |                 |       |
+| Containers                                                         | ⭐⭐⭐         | CRUD                |       |
 | CORS Policies                                                      | \-             |                 |       |
 | Lifecycle Policies                                                 | \-             |                 |       |
 | Metric Policies                                                    | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| **Managed Workflows for Apache Airflow (MWAA)** (Pro)              |                |                 |       |
-| CLI Tokens                                                         | -           |                 |       |
-| Environments                                                       | ⭐⭐⭐          |                 |       |
-| S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐        |                 |       |
-| Web Login                                                          | ⭐⭐⭐          |                 |       |
-| [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      |                |                 |       |
-| DB Clusters                                                        | ⭐⭐⭐⭐       |                 |       |
-| DB Cluster Endpoints                                               | ⭐⭐⭐⭐       |                 |       |
-| DB Cluster Parameter Groups                                        | ⭐⭐⭐⭐       |                 |       |
-| DB Cluster Snapshots                                               | \-             |                 |       |
-| Engine Default Parameters                                          | ⭐⭐           |                 |       |
-| Event Subscriptions                                                | \-             |                 |       |
+| **MediaStore Data** (Pro)                                          | [🔍]({{< ref "../localstack/coverage/#mediastore-data" >}}) |                 |       |
+| Objects                                                            | ⭐⭐⭐         | CRUD            |       |
+| **MWAA (Managed Workflows for Apache Airflow)** (Pro)              | [🔍]({{< ref "../localstack/coverage/#mwaa" >}}) |                 |       |
+| CLI Tokens                                                         | -              |                 |       |
+| Environments                                                       | ⭐⭐⭐          | Emulated       |       |
+| S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          | Emulated       |       |
+| Tags                                                               | ⭐⭐⭐⭐        | CRUD           |       |
+| Web Login                                                          | ⭐⭐⭐          | Emulated       |       |
+| [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      | [🔍]({{< ref "../localstack/coverage/#neptune" >}}) |                 |       |
+| DB Clusters                                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| DB Cluster Endpoints                                               | ⭐⭐⭐⭐       | Emulated        |       |
+| DB Cluster Parameter Groups                                        | ⭐⭐⭐        | CRUD             |       |
+| DB Cluster Snapshots                                               | ⭐⭐          | Emulated         |       |
+| Event Subscriptions                                                | ⭐⭐          | CRUD             |       |
 | Events                                                             | \-             |                 |       |
-| Tags                                                               | \-             |                 |       |
-| [**OpenSearch Service**]({{< ref "opensearch" >}})                 |                |                 |       |
+| Global Clusters                                                    | \-             |                 |       |
+| PendingMaintenanceAction                                           | \-             |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
+| [**OpenSearch Service**]({{< ref "opensearch" >}})                 | [🔍]({{< ref "../localstack/coverage/#opensearch" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
-| OpenSearch Domains                                                 | ⭐⭐⭐⭐       |                 |       |
+| OpenSearch Domains                                                 | ⭐⭐⭐⭐       | Emulated        |       |
 | Packages                                                           | \-             |                 |       |
 | Reserved Instances                                                 | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**QLDB** (Pro)]({{< ref "qldb" >}})                               |                |                 |       |
-| Blocks                                                             | ⭐⭐⭐         |                 |       |
-| Digests                                                            | ⭐⭐⭐         |                 |       |
-| Journal Kinesis Streams                                            | ⭐⭐⭐         |                 |       |
-| Journal S3 Exports                                                 | ⭐⭐⭐         |                 |       |
-| Ledgers                                                            | ⭐⭐⭐⭐       |                 |       |
-| Send Commands / Run Queries                                        | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             |                |                 |       |
-| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         |                 |       |
-| DB/Cluster Snapshots                                               | ⭐⭐⭐         |                 |       |
-| DB Clusters/Instances                                              | ⭐⭐⭐⭐       |                 |       |
-| DB Proxies                                                         | ⭐⭐           |                 |       |
-| DB Security/Subnet Groups                                          | ⭐⭐⭐         |                 |       |
-| Event Subscriptions                                                | \-             |                 |       |
-| Option Groups                                                      | ⭐⭐⭐⭐       |                 |       |
-| Postgres AWS Extension Functions                                   | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **Redshift**                                                       |                |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **Organizations** (Pro)                                            | [🔍]({{< ref "../localstack/coverage/#organizations" >}}) |                 |       |
+| Accounts                                                           | ⭐⭐⭐          | CRUD            |        |
+| Handshakes                                                         |  \-            |                 |        |
+| Organization                                                       | ⭐⭐           | CRUD            |        |
+| Organizational Units                                               | ⭐⭐           | CRUD            |        |
+| Policies                                                           | ⭐⭐⭐         | CRUD            |        |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |        |
+| [**QLDB** (Pro)]({{< ref "qldb" >}})                               | [🔍]({{< ref "../localstack/coverage/#qldb" >}}) |                 |       |
+| Blocks                                                             | ⭐⭐⭐         | Emulated                 |       |
+| Digests                                                            | ⭐⭐⭐         | CRUD                |       |
+| Journal Kinesis Streams                                            | ⭐⭐⭐         | CRUD                |       |
+| Journal S3 Exports                                                 | ⭐⭐⭐         | CRUD                |       |
+| Ledgers                                                            | ⭐⭐⭐⭐       | Emulated        |       |
+| Send Commands / Run Queries                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **QLDB Sessions** (Pro)                                            | [🔍]({{< ref "../localstack/coverage/#qldb-session" >}}) |             |
+| Send Command                                                       | ⭐⭐⭐⭐       | Emulated
+| [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             | [🔍]({{< ref "../localstack/coverage/#rds" >}}) |                 |       |
+| DB/Cluster Parameter Groups                                        | ⭐⭐⭐         | CRUD            |       |
+| DB/Cluster Snapshots                                               | ⭐⭐⭐         | Emulated        |       |
+| DB Clusters/Instances                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| DB Proxies                                                         | ⭐⭐           | Emulated       |       |
+| DB Security/Subnet Groups                                          | ⭐⭐⭐         | Emulated        |       |
+| Event Subscriptions                                                | ⭐⭐           | CRUD            |       |
+| Option Groups                                                      | ⭐⭐⭐⭐       | CRUD            |       |
+| Postgres AWS Extension Functions                                   | ⭐⭐⭐         | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| **RDS Data** (Pro)                                                 | [🔍]({{< ref "../localstack/coverage/#rds-data" >}}) |                 |       |
+| Execute sql/statements                                             | ⭐⭐⭐         | Emulated               |       |
+| Transactions                                                       | ⭐⭐           | Emulated                |       |
+| Batch Execution                                                    | \-             |                 |       |
+| **Redshift**  (Pro)                                                | [🔍]({{< ref "../localstack/coverage/#redshift" >}}) |                 |       |
 | Authorize/Revoke Access                                            | \-             |                 |       |
-| Cluster Parameter Groups                                           | ⭐⭐⭐         |                 |       |
-| Cluster Snapshots                                                  | ⭐⭐⭐         |                 |       |
-| Clusters/Instances                                                 | ⭐⭐⭐⭐       |                 |       |
+| Cluster Parameter Groups                                           | ⭐⭐⭐         | Emulated         |       |
+| Cluster Snapshots                                                  | ⭐⭐          | CRUD             |       |
+| Clusters/Instances                                                 | ⭐⭐⭐⭐       | Emulated                |       |
 | Event Subscriptions                                                | \-             |                 |       |
 | HSM Configurations                                                 | \-             |                 |       |
 | Partners                                                           | \-             |                 |       |
-| Security/Subnet Groups                                             | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Usage Limits                                                       | ⭐⭐           |                 |       |
-| [**Route53**]({{< ref "route53" >}})                               |                |                 |       |
-| DNS Server Integration (Pro)                                       | ⭐⭐⭐⭐       |                 |       |
-| Geo Locations                                                      | \-             |                 |       |
-| Health Checks                                                      | ⭐⭐           |                 |       |
-| Hosted Zones                                                       | ⭐⭐⭐⭐       |                 |       |
-| Query Logging Configs                                              | \-             |                 |       |
-| Resource Record Sets                                               | ⭐⭐⭐⭐       |                 |       |
-| Reusable Delegation Sets                                           | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Traffic Policies                                                   | ⭐⭐⭐         |                 |       |
-| [**S3**]({{< ref "s3" >}})                                         |                |                 |       |
-| Bucket ACLs                                                        | ⭐⭐⭐         |                 |       |
-| Bucket CORS                                                        | ⭐⭐⭐         |                 |       |
-| Bucket Encryptions                                                 | ⭐⭐⭐         |                 |       |
-| Bucket Lifecycles                                                  | ⭐⭐⭐         |                 |       |
-| Bucket Loggings                                                    | ⭐⭐⭐         |                 |       |
-| Bucket Metrics Configurations                                      | ⭐⭐⭐         |                 |       |
-| Bucket Notifications                                               | ⭐⭐⭐         |                 |       |
-| Bucket Ownership Controls                                          | ⭐⭐⭐         |                 |       |
-| Bucket Policies                                                    | ⭐⭐⭐         |                 |       |
-| Bucket Replications                                                | ⭐⭐⭐         |                 |       |
-| Bucket Request Payments                                            | ⭐⭐⭐         |                 |       |
-| Bucket Versionings                                                 | ⭐⭐⭐         |                 |       |
-| Bucket Websites                                                    | ⭐⭐⭐         |                 |       |
-| Buckets                                                            | ⭐⭐⭐⭐       |                 |       |
-| Object Retentions                                                  | ⭐⭐           |                 |       |
-| Object Versions                                                    | ⭐⭐⭐⭐       |                 |       |
-| Objects                                                            | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Upload/Download Files                                              | ⭐⭐⭐⭐       |                 |       |
-| [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     |                |                 |       |
-| Actions                                                            | ⭐⭐           |                 |       |
+| Security/Subnet Groups                                             | ⭐⭐⭐         | CRUD             |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| Usage Limits                                                       | \-           |                 |       |
+| **Redshift Data** (Pro)                                            | [🔍]({{< ref "../localstack/coverage/#redshift-data" >}}) |                 |       |
+| Statements                                                         | ⭐⭐⭐         | Emulated          |       |
+| Describe Table                                                     | ⭐⭐⭐         | Emulated         |       |
+| Batch Execution                                                    | \-             |                 |       |
+| **Resource Groups**                                                | [🔍]({{< ref "../localstack/coverage/#resource-groups" >}}) |                 |       |
+| Resources                                                          | ⭐⭐⭐         | CRUD                |       |
+| Groups                                                             | ⭐⭐⭐         | CRUD                |       |
+| Group Configurations                                               | ⭐⭐⭐         | CRUD                |       |
+| Tags                                                               | ⭐⭐           | CRUD                |       |
+| **Resource Groups Tagging API**                                    | [🔍]({{< ref "../localstack/coverage/#resourcegroupstaggingapi" >}})  |                 |       |
+| Reports                                                            | \-             |                 |       |
+| Tags                                                               | ⭐⭐           | CRUD                |       |
+| [**Route53**]({{< ref "route53" >}})                               | [🔍]({{< ref "../localstack/coverage/#route53" >}}) |                 |       |
+| DNS Server Integration (Pro)                                       | ⭐⭐⭐⭐       | Emulated       |       |
+| Geo Locations                                                      | \-             |                |       |
+| Health Checks                                                      | ⭐⭐           | CRUD           |       |
+| Hosted Zones                                                       | ⭐⭐⭐⭐       | CRUD           |       |
+| Query Logging Configs                                              | \-             |                |       |
+| Resource Record Sets                                               | ⭐⭐⭐⭐       | CRUD           |       |
+| Reusable Delegation Sets                                           | ⭐⭐⭐         | CRUD           |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD           |       |
+| Traffic Policies                                                   | ⭐⭐⭐         | CRUD           |       |
+| **Route53 Resolver**                                               | [🔍]({{< ref "../localstack/coverage/#route53resolver" >}}) |                |       |
+| [**S3**]({{< ref "s3" >}})                                         | [🔍]({{< ref "../localstack/coverage/#s3" >}}) |                 |       |
+| Bucket ACLs                                                        | ⭐⭐⭐         | Emulated       |       |
+| Bucket CORS                                                        | ⭐⭐⭐         | Emulated       |       |
+| Bucket Encryptions                                                 | ⭐⭐⭐         | Emulated       |       |
+| Bucket Lifecycles                                                  | ⭐⭐⭐         | Emulated       |       |
+| Bucket Loggings                                                    | ⭐⭐⭐         | Emulated       |       |
+| Bucket Metrics Configurations                                      | ⭐⭐⭐         | Emulated       |       |
+| Bucket Notifications                                               | ⭐⭐⭐         | Emulated       | Supported notification targets: SQS, SNS, Lambda; Supported notification events: ObjectCreated, ObjectRemoved, ObjectTagging     |
+| Bucket Ownership Controls                                          | ⭐⭐⭐         | Emulated       |       |
+| Bucket Policies                                                    | ⭐⭐⭐         | Emulated       |       |
+| Bucket Replications                                                | ⭐⭐⭐         | Emulated       |       |
+| Bucket Request Payments                                            | ⭐⭐⭐         | Emulated       |       |
+| Bucket Versionings                                                 | ⭐⭐⭐         | Emulated       |       |
+| Bucket Websites                                                    | ⭐⭐⭐         | Emulated       |       |
+| Buckets                                                            | ⭐⭐⭐⭐       | Emulated       |       |
+| Object Retentions                                                  | ⭐⭐           | Emulated       |       |
+| Object Versions                                                    | ⭐⭐⭐⭐       | Emulated       |       |
+| Objects                                                            | ⭐⭐⭐⭐       | Emulated       |       |
+| Presigned URLs                                                     | ⭐⭐⭐⭐       | Emulated       |       |
+| Tags                                                               | ⭐⭐⭐⭐       | Emulated       |       |
+| Upload/Download Files                                              | ⭐⭐⭐⭐       | Emulated       |       |
+| **S3 Control**                                                     | [🔍]({{< ref "../localstack/coverage/#s3control" >}}) |                 |       |
+| Access Point Policies                                              | ⭐⭐           | CRUD            |       |
+| Access Points                                                      | ⭐⭐           | CRUD            |       |
+| Jobs                                                               | \-             |                 |       |
+| Lifecycle configurations                                           | \-             |                 |       |
+| Multi-region Access Points                                         | \-             |                 |       |
+| Public Access Blocks                                               | ⭐⭐           | CRUD            |       |
+| Storage Lens                                                       | \-             |                 |       |
+| [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     | [🔍]({{< ref "../localstack/coverage/#sagemaker" >}}) |                 |       |
+| Actions                                                            | \-             |                 |       |
 | Algorithms                                                         | \-             |                 |       |
-| App Image Configs                                                  | ⭐⭐           |                 |       |
-| Apps                                                               | ⭐⭐⭐         |                 |       |
-| Artifacts                                                          | ⭐⭐⭐         |                 |       |
+| App Image Configs                                                  | \-             |                 |       |
+| Apps                                                               | \-             |                 |       |
+| Artifacts                                                          | \-             |                 |       |
 | Associations                                                       | \-             |                 |       |
 | Auto ML Jobs                                                       | \-             |                 |       |
 | Code Repositories                                                  | \-             |                 |       |
@@ -531,7 +626,7 @@ In the coverage tables below, the features are marked with their respective avai
 | Devices                                                            | \-             |                 |       |
 | Domains                                                            | \-             |                 |       |
 | Edge Packaging Jobs                                                | \-             |                 |       |
-| Endpoints / Endpoint Configs                                       | \-             |                 |       |
+| Endpoints / Endpoint Configs                                       | ⭐⭐           | CRUD            |       |
 | Experiments                                                        | \-             |                 |       |
 | Feature Groups                                                     | \-             |                 |       |
 | Flow Definitions                                                   | \-             |                 |       |
@@ -540,123 +635,110 @@ In the coverage tables below, the features are marked with their respective avai
 | Labelling Jobs                                                     | \-             |                 |       |
 | Model Bias/Explainability Jobs                                     | \-             |                 |       |
 | Model Packages                                                     | \-             |                 |       |
-| Models                                                             | ⭐⭐           |                 |       |
+| Models                                                             | ⭐⭐           | CRUD            |       |
 | Monitoring Executions/Schedules                                    | \-             |                 |       |
-| Notebook Instances                                                 | \-             |                 |       |
+| Notebook Instances                                                 | ⭐⭐           | CRUD            |       |
 | Pipeline Executions                                                | \-             |                 |       |
 | Pipelines                                                          | \-             |                 |       |
 | Projects                                                           | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| Training Jobs                                                      | \-             |                 |       |
+| Training Jobs                                                      | ⭐⭐           | Emulated        |       |
 | Transform Jobs                                                     | \-             |                 |       |
-| Trials                                                             | \-             |                 |       |
+| Trials                                                             | ⭐⭐           | CRUD            |       |
 | User Profiles                                                      | \-             |                 |       |
 | Workforces / Workteams                                             | \-             |                 |       |
-| **SecretsManager**                                                 |                |                 |       |
-| Resource Policies                                                  | ⭐⭐⭐⭐       |                 |       |
-| Secret Replications                                                | ⭐⭐           |                 |       |
-| Secret Rotations                                                   | ⭐⭐           |                 |       |
-| Secrets                                                            | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| [**SES**]({{< ref "ses" >}})                                       |                |                 |       |
-| Configuration Sets                                                 | ⭐⭐⭐         |                 |       |
-| Identities                                                         | ⭐⭐           |                 |       |
-| Identity Policies                                                  | ⭐⭐           |                 |       |
-| Quotas / Statistics                                                | ⭐⭐           |                 |       |
-| Receipt Filters                                                    | ⭐⭐⭐         |                 |       |
-| Receipt Rules                                                      | ⭐⭐⭐         |                 |       |
-| Sending Emails via SMTP (Pro)                                      | ⭐⭐⭐⭐       |                 |       |
-| Templates                                                          | ⭐⭐⭐⭐       |                 |       |
-| **SNS**                                                            |                |                 |       |
-| Platform Applications                                              | ⭐⭐⭐         |                 |       |
-| Publish/Subscribe to Topics                                        | ⭐⭐⭐⭐       |                 |       |
-| SMS Attributes / Sandbox Accounts                                  | ⭐⭐           |                 |       |
-| Subscriptions                                                      | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Topics                                                             | ⭐⭐⭐⭐       |                 |       |
-| [**SQS**]({{< ref "sqs" >}})                                       |                |                 |       |
-| Message Visibility                                                 | ⭐⭐⭐⭐       |                 |       |
-| Messages                                                           | ⭐⭐⭐⭐       |                 |       |
-| Permission                                                         | ⭐⭐⭐         |                 |       |
-| Queues                                                             | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **SSM**                                                            |                |                 |       |
-| Associations                                                       | ⭐⭐⭐         |                 |       |
-| Calendar States                                                    | ⭐⭐           |                 |       |
-| Commands / Command Invocations                                     | ⭐⭐⭐         |                 |       |
-| Compliance Items                                                   | ⭐⭐           |                 |       |
-| Documents                                                          | ⭐⭐⭐         |                 |       |
+| **SecretsManager**                                                 | [🔍]({{< ref "../localstack/coverage/#secretsmanager" >}}) |                 |       |
+| Resource Policies                                                  | ⭐⭐⭐⭐       | CRUD                 |       |
+| Secret Replications                                                | ⭐⭐           | CRUD                |       |
+| Secret Rotations                                                   | ⭐⭐           | CRUD                |       |
+| Secrets                                                            | ⭐⭐⭐⭐       | CRUD                |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
+| **Serverless Repo** (Pro)                                          | [🔍]({{< ref "../localstack/coverage/#serverlessrepo" >}}) |                 |       |
+| Applications                                                       | ⭐⭐⭐         | CRUD                |       |
+| Application Policies                                               | \-             |                |       |
+| CloudFormation templates                                           | ⭐⭐⭐         | Emulated                |       |
+| **Service Discovery (CloudMap)** (Pro)                             | [🔍]({{< ref "../localstack/coverage/#servicediscovery" >}}) |                 |       |
+| Namespaces                                                         | ⭐⭐⭐         | CRUD                |       |
+| [**SES**]({{< ref "ses" >}})                                       | [🔍]({{< ref "../localstack/coverage/#ses" >}}) |                 |       |
+| Configuration Sets                                                 | ⭐⭐⭐         | CRUD               |       |
+| Identities                                                         | ⭐⭐           | CRUD               |       |
+| Identity Policies                                                  | ⭐⭐           | CRUD               |       |
+| Quotas / Statistics                                                | ⭐⭐           | CRUD               |       |
+| Receipt Filters                                                    | ⭐⭐⭐         | CRUD               |       |
+| Receipt Rules                                                      | ⭐⭐⭐         | CRUD               |       |
+| Sending Emails via SMTP (Pro)                                      | ⭐⭐⭐⭐       | Emulated           |       |
+| Templates                                                          | ⭐⭐⭐⭐       | CRUD               |       |
+| **SESv2 (Pro)**                                                   | [🔍]({{< ref "../localstack/coverage/#sesv2" >}}) |                 |       |
+| Identities                                                         | ⭐⭐           | CRUD               |       |
+| Sending Emails via SMTP                                            | ⭐⭐⭐⭐       | Emulated           |       |
+| Templates                                                          | ⭐⭐⭐⭐       | CRUD               |       |
+| **SNS**                                                            | [🔍]({{< ref "../localstack/coverage/#sns" >}}) |                 |       |
+| Platform Applications                                              | ⭐⭐⭐         |  CRUD               |       |
+| Publish/Subscribe to Topics                                        | ⭐⭐⭐⭐       |  Emulated               |       |
+| SMS Attributes / Sandbox Accounts                                  | ⭐⭐           |  CRUD               |       |
+| Subscriptions                                                      | ⭐⭐⭐⭐       |   Emulated             |       |
+| Tags                                                               | ⭐⭐⭐⭐       |   CRUD              |       |
+| Topics                                                             | ⭐⭐⭐⭐       |   CRUD              |       |
+| [**SQS**]({{< ref "sqs" >}})                                       | [🔍]({{< ref "../localstack/coverage/#sqs" >}}) |                 |       |
+| FIFO Queues                                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| Message Deduplication                                              | ⭐⭐⭐⭐       | Emulated        |       |
+| Message Visibility                                                 | ⭐⭐⭐⭐⭐     | Emulated        |       |
+| Messages                                                           | ⭐⭐⭐⭐⭐     | Emulated        |       |
+| Permission                                                         | ⭐⭐⭐         | CRUD            |       |
+| Query API                                                          | ⭐⭐⭐⭐       | Emulated        |       |
+| Standard Queues                                                    | ⭐⭐⭐⭐       | Emulated        |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
+| [**SSM**]({{< ref "systems-manager" >}})                           | [🔍]({{< ref "../localstack/coverage/#ssm" >}}) |                 |       |
+| Associations                                                       | ⭐⭐⭐         | CRUD                |       |
+| Calendar States                                                    | ⭐⭐           | CRUD                |       |
+| Commands / Command Invocations                                     | ⭐⭐⭐         | CRUD                |       |
+| Compliance Items                                                   | ⭐⭐           | CRUD                |       |
+| Documents                                                          | ⭐⭐⭐         | CRUD                |       |
 | Inventory Entries                                                  | \-             |                 |       |
-| Ops Metadata                                                       | ⭐⭐           |                 |       |
-| Parameters                                                         | ⭐⭐⭐⭐       |                 |       |
+| Ops Metadata                                                       | ⭐⭐           | CRUD                |       |
+| Parameters                                                         | ⭐⭐⭐⭐       | CRUD                |       |
 | Resource Compliance Summaries                                      | \-             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **StepFunctions**                                                  |                |                 |       |
-| Activities                                                         | ⭐⭐⭐⭐       |                 |       |
-| Executions / Execution History                                     | ⭐⭐⭐⭐       |                 |       |
-| State Machines                                                     | ⭐⭐⭐⭐       |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| **STS**                                                            |                |                 |       |
-| Assume Role (Pro)                                                  | ⭐⭐⭐⭐       |                 |       |
-| Get Access Key Info                                                | ⭐⭐⭐⭐       |                 |       |
-| Get Caller Identity                                                | ⭐⭐⭐⭐       |                 |       |
-| Session Tokens                                                     | ⭐⭐⭐⭐       |                 |       |
-| **Timestream** (Pro)                                               |                |                 |       |
-| Databases                                                          | ⭐⭐⭐         |                 |       |
-| Run Query                                                          | ⭐⭐⭐         |                 |       |
-| Tables                                                             | ⭐⭐⭐         |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐       |                 |       |
-| Write Records                                                      | ⭐⭐⭐⭐       |                 |       |
-| [**Transfer** (Pro)]({{< ref "transfer" >}})                       |                |                 |       |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
+| **StepFunctions**                                                  | [🔍]({{< ref "../localstack/coverage/#stepfunctions" >}}) |                 |       |
+| Activities                                                         | ⭐⭐⭐⭐       | Emulated                |       |
+| Executions / Execution History                                     | ⭐⭐⭐⭐       | Emulated                |       |
+| State Machines                                                     | ⭐⭐⭐⭐       | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐⭐       | Emulated                |       |
+| **STS**                                                            | [🔍]({{< ref "../localstack/coverage/#sts" >}})  |                 |       |
+| Assume Role (Pro)                                                  | ⭐⭐⭐⭐       | Emulated                |       |
+| Get Access Key Info                                                | \-             |                 |       |
+| Get Caller Identity                                                | ⭐⭐⭐⭐       | Emulated                |       |
+| Session Tokens                                                     | ⭐⭐⭐⭐       | CRUD                |       |
+| **Support**                                                        | [🔍]({{< ref "../localstack/coverage/#support" >}}) |                 |       |
+| Cases                                                              | ⭐⭐⭐         | CRUD                |       |
+| TrustedAdvisorChecks                                               | ⭐⭐           | CRUD                |       |
+| Attachments                                                        | \-             |                 |       |
+| **SWF**                                                            | [🔍]({{< ref "../localstack/coverage/#swf" >}}) |                 |       |
+| Domain                                                             | ⭐⭐⭐         | CRUD                |       |
+| Activity                                                           | ⭐⭐⭐         | CRUD                |       |
+| Workflows                                                          | ⭐⭐⭐         | CRUD                |       |
+| Domains                                                            | ⭐⭐⭐         | CRUD                |       |
+| [**Timestream (query, write)**]({{< ref "timestream" >}}) (Pro)    | [🔍]({{< ref "../localstack/coverage/#timestream-query" >}}) |                 |       |
+| Databases                                                          | ⭐⭐⭐         | Emulated                |       |
+| Run Query                                                          | ⭐⭐⭐         | Emulated                |       |
+| Tables                                                             | ⭐⭐⭐         | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐         | CRUD               |       |
+| Write Records                                                      | ⭐⭐⭐         | Emulated                |       |
+| [**Transfer** (Pro)]({{< ref "transfer" >}})                       | [🔍]({{< ref "../localstack/coverage/#transfer" >}}) |                 |       |
 | Accesses                                                           | \-             |                 |       |
 | Security Policies                                                  | \-             |                 |       |
-| Servers                                                            | ⭐⭐⭐         |                 |       |
-| SSH Public Keys                                                    | ⭐⭐⭐         |                 |       |
+| Servers                                                            | ⭐⭐⭐         | Emulated                |       |
+| SSH Public Keys                                                    | ⭐⭐⭐         | CRUD                |       |
 | Tags                                                               | \-             |                 |       |
-| Users                                                              | ⭐⭐⭐         |                 |       |
-| [**XRay** (Pro)]({{< ref "xray-tracing" >}})                       |                |                 |       |
+| Users                                                              | ⭐⭐⭐         | Emulated                |       |
+| [**XRay** (Pro)]({{< ref "xray-tracing" >}})                       | [🔍]({{< ref "../localstack/coverage/#xray" >}}) |                 |       |
 | Encryption Configs                                                 | \-             |                 |       |
-| Groups                                                             | ⭐⭐           |                 |       |
+| Groups                                                             | \-           |                 |       |
 | Insights                                                           | \-             |                 |       |
-| Sampling Rules                                                     | ⭐⭐⭐         |                 |       |
+| Sampling Rules                                                     | ⭐⭐⭐         | CRUD                |       |
 | Service Graph                                                      | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| Telemetry Records                                                  | ⭐⭐⭐⭐       |                 |       |
+| Telemetry Records                                                  | ⭐⭐⭐⭐       | Emulated                |       |
 | Trace Graph                                                        | \-             |                 |       |
-| Trace Segments / Summaries                                         | ⭐⭐⭐         |                 |       |
+| Trace Segments / Summaries                                         | ⭐⭐⭐         | CRUD                |       |
 
-## API Persistence Coverage (Pro)
-
-The list below summarizes the APIs for which persistence has been implemented and (ideally) tested in the Pro version (list may not be exhaustive/complete). More details following soon.
-
-- Amplify
-- Appconfig
-- Appsync
-- Athena
-- Backup
-- Cognito Identity
-- Cognito Identity Provider
-- CloudFormation
-- CloudFront
-- CodeCommit
-- Cost Explorer
-- DynamoDB
-- EC2
-- Elastic File System
-- Glue
-- IoT
-- Kinesis
-- Lake Formation
-- Lambda
-- KMS
-- QLDB
-- Route53
-- RDS
-- S3
-- Secrets Manager
-- Serverless Repo
-- SES
-- SNS
-- SQS
-- Stepfunctions
-- STS
