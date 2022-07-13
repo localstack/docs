@@ -33,7 +33,7 @@ Such a configuration will be saved locally on the host machine in a JSON file (e
 
 The `commit` command creates a snapshot of your LocalStack running instance and locally saves it on the host machine. 
 
-**Synopsys**
+**Synopsis**
 ```
 Commit a snapshot of the LocalStack running instance.
 
@@ -53,7 +53,7 @@ localstack pod config --services sqs,sns
 ``` 
 The following CRUD operation will only take into account the selected service and not the entire LocalStack application state.
 
-**Synopsys**
+**Synopsis**
 
 ```
 Configure a set of parameters for all Cloud Pods commands.
@@ -67,7 +67,7 @@ Options:
 
 The `delete` command let users delete their remote or local Cloud Pods.
 
-**Synopsys**
+**Synopsis**
 ```
 Delete a Cloud Pod.
 
@@ -83,7 +83,7 @@ Please note that this is a local-only operation, i.e., the injecting state must 
 By default, the injecting state will replace the application runtime. 
 The `--merge` option, instead, will first merge the injecting state with the current runtime and then inject the result. 
 
-**Synopsys**
+**Synopsis**
 ```
 Inject the state from a locally available Cloud Pod version into the application runtime.
 
@@ -96,7 +96,7 @@ Options:
 
 The `inspect` command simply lets the user inspect the content of a Cloud Pod.
 
-**Synopsys**
+**Synopsis**
 ```
 Inspect the contents of a Cloud Pod.
 
@@ -110,7 +110,7 @@ The `list` command displays all the available Cloud Pods.
 By default, it only shows the pods that have been uploaded to the platform. 
 The `-l` option will also show the locally available pods.
 
-**Synopsys**
+**Synopsis**
 
 List all available Cloud Pods.
 ```
@@ -125,7 +125,7 @@ The `--fetch` option will instead only trigger the download of the desired Cloud
 Users could then, for instance, use the `--inject` command to inject the retrieved pods.
 Similar to the `--inject` command, users can specify the `--merge` flag (off by default) if they wish to merge the current application state with the injecting one.
 
-**Synopsys**
+**Synopsis**
 ```
 Incorporate the state of a Cloud Pod into the application runtime.
 
@@ -144,7 +144,7 @@ Users can use the `--local` flag if they wish to avoid the last step and keep th
 Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the `--services` option.
 Pushing an already existing pod results in creating a new version of it and, eventually, uploading it to the platform.
 
-**Synopsys**
+**Synopsis**
 ```
 Create a new version of a Cloud Pod from the latest snapshot. A snapshot is created if it does not 
 exists yet.
@@ -162,7 +162,7 @@ Options:
 
 The `versions` command simply lists all the available versions of a Cloud Pod.
 
-**Synopsys**
+**Synopsis**
 ```
 List all available versions for a Cloud Pod.
 
