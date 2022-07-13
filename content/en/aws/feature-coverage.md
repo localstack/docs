@@ -634,7 +634,6 @@ In the coverage table below, the features are marked with their respective avail
 | Applications                                                       | ⭐⭐⭐         | CRUD                |       |
 | Application Policies                                               | \-             |                |       |
 | CloudFormation templates                                           | ⭐⭐⭐         | Emulated                |       |
-
 | **Service Discovery (CloudMap)** (Pro)                             | [🔍]({{< ref "../localstack/metric-coverage/#servicediscovery" >}}) |                 |       |
 | Namespaces                                                         | ⭐⭐⭐         | CRUD                |       |
 | [**SES**]({{< ref "ses" >}})                                       | [🔍]({{< ref "../localstack/metric-coverage/#ses" >}}) |                 |       |
