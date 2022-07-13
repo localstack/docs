@@ -118,16 +118,19 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐         | CRUD            |       |
 | Work Groups                                                        | \-             |                 |       |
 | **Autoscaling** (Pro)                                              | [🔍]({{< ref "../localstack/metric-coverage/#autoscaling" >}}) |                 |       |
+| Metric Collection                                                  | ⭐⭐⭐         | CRUD            |       |
+| Autoscaling Groups                                                 | ⭐⭐           | CRUD            |       |
+| Loadbalancer                                                       | ⭐⭐⭐         | CRUD            |       |
 | [**Backup** (Pro)]({{< ref "backup" >}})                           | [🔍]({{< ref "../localstack/metric-coverage/#backup" >}}) |                 |       |
-| Backup Jobs                                                        | ⭐⭐⭐         |                 |       |
-| Backup Plans                                                       | ⭐⭐⭐         |                 |       |
-| Backup Selections                                                  | ⭐⭐⭐         |                 |       |
-| Backup Vaults                                                      | ⭐⭐⭐         |                 |       |
+| Backup Jobs                                                        | ⭐⭐⭐⭐       | Emulated        |       |
+| Backup Plans                                                       | ⭐⭐⭐         | Emulated        |       |
+| Backup Selections                                                  | ⭐⭐⭐         | Emulated        |       |
+| Backup Vaults                                                      | ⭐⭐⭐         | Emulated        |       |
 | Backup Vault Access Policies                                       | \-             |                 |       |
 | Backup Vault Notifications                                         | \-             |                 |       |
 | Global Settings                                                    | \-             |                 |       |
 | Protected Resources                                                | \-             |                 |       |
-| Recovery Points                                                    | ⭐⭐⭐         |                 |       |
+| Recovery Points                                                    | ⭐⭐⭐          | Emulated        |       |
 | Tags                                                               | \-             |                 |       |
 | **Batch** (Pro)                                                    | [🔍]({{< ref "../localstack/metric-coverage/#batch" >}}) |                 |       |
 | Compute Environments                                               | ⭐⭐⭐         | CRUD            |       |
@@ -135,6 +138,11 @@ In the coverage table below, the features are marked with their respective avail
 | Job Definitions                                                    | ⭐⭐⭐         | CRUD            |       |
 | Jobs                                                               | ⭐⭐⭐         | Emulated        |       |
 | **CE (Cost Explorer API)** (Pro)                                   | [🔍]({{< ref "../localstack/metric-coverage/#ce" >}}) |                 |       |
+| Anomaly Monitoring                                                 | ⭐⭐⭐         | CRUD            |       |
+| Anomaly Subscription                                               | ⭐⭐⭐         | CRUD            |       |
+| Cost Category                                                      | ⭐⭐           | CRUD            |       |
+| Cost Usage/Forecast                                                | \-             |                 |       |
+| Savings Plan                                                       | \-             |                 |       |
 | [**CloudFormation**]({{< ref "cloudformation" >}})                 | [🔍]({{< ref "../localstack/metric-coverage/#cloudformation" >}}) |                 |       |
 | Change Sets                                                        | ⭐⭐⭐⭐       | Emulated        |       |
 | Stacks                                                             | ⭐⭐⭐⭐       | Emulated        |       |
