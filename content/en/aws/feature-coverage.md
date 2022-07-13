@@ -50,41 +50,42 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐⭐             | CRUD            |       |
 | Webhooks                                                           | ⭐⭐⭐               | Emulated       |       |
 | **API Gateway**                                                    | [🔍]({{< ref "../localstack/metric-coverage/#apigateway" >}}) |                 |       |
-| API Keys                                                           | ⭐⭐⭐              |                 |       |
-| Authorizers (Pro)                                                  | ⭐⭐⭐⭐             |                 |       |
-| Base Path Mappings                                                 | ⭐⭐⭐⭐             |                 |       |
-| Deployments                                                        | ⭐⭐⭐⭐            |                 |       |
-| Documentation Parts                                                | ⭐⭐⭐              |                 |       |
-| Documentation Versions                                             | ⭐⭐⭐              |                 |       |
-| Domain Names                                                       | ⭐⭐⭐              |                 |       |
-| Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐             |                 |       |
-| Integrations                                                       | ⭐⭐⭐⭐             |                 |       |
-| Methods                                                            | ⭐⭐⭐⭐             |                 |       |
-| Models                                                             | ⭐⭐⭐              |                 |       |
-| Request Validators                                                 | ⭐⭐                |                 |       |
-| Resources                                                          | ⭐⭐⭐⭐             |                 |       |
-| REST APIs                                                          | ⭐⭐⭐⭐             |                 |       |
-| Stages                                                             | ⭐⭐⭐⭐             |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐             |                 |       |
-| Usage Plans                                                        | ⭐⭐⭐               |                 |       |
-| Usage Plan Keys                                                    | ⭐⭐⭐               |                 |       |
-| VPC Links                                                          | ⭐⭐⭐               |                 |       |
+| API Keys                                                           | ⭐⭐⭐              | CRUD                |       |
+| Authorizers (Pro)                                                  | ⭐⭐⭐⭐            | Emulated                |       |
+| Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |       |
+| Deployments                                                        | ⭐⭐⭐⭐            | CRUD                |       |
+| Documentation Parts                                                | ⭐⭐⭐              | CRUD                |       |
+| Documentation Versions                                             | ⭐⭐⭐              | CRUD                |       |
+| Domain Names                                                       | ⭐⭐⭐              | CRUD                |       |
+| Gateway / Integration / Method Responses                           | ⭐⭐⭐⭐            | Emulated                |       |
+| Integrations                                                       | ⭐⭐⭐⭐            | Emulated                |       |
+| Methods                                                            | ⭐⭐⭐⭐            | Emulated                |       |
+| Models                                                             | ⭐⭐⭐              | CRUD                |       |
+| Request Validators                                                 | ⭐⭐                | Emulated                |       |
+| Resources                                                          | ⭐⭐⭐⭐            | Emulated                |       |
+| REST APIs                                                          | ⭐⭐⭐⭐            | Emulated                |       |
+| Stages                                                             | ⭐⭐⭐⭐            | Emulated                |       |
+| Tags                                                               | ⭐⭐⭐⭐            | CRUD                |       |
+| Usage Plans                                                        | ⭐⭐⭐              | CRUD                |       |
+| Usage Plan Keys                                                    | ⭐⭐⭐              | CRUD                |       |
+| VPC Links                                                          | ⭐⭐⭐              | CRUD                |       |
 | [**API Gateway v2** (Pro)]({{< ref "apigatewayv2" >}})             | [🔍]({{< ref "../localstack/metric-coverage/#apigatewayv2" >}})     |                 |       |
-| APIs                                                               | ⭐⭐⭐⭐              |                 |       |
-| API Mappings                                                       | ⭐⭐⭐                |                 |       |
-| Authorizers                                                        | ⭐⭐⭐⭐              |                 |       |
-| Deployments                                                        | ⭐⭐⭐⭐              |                 |       |
-| Domain Names                                                       | ⭐⭐⭐               |                 |       |
-| Import APIs from OpenAPI specs                                     | ⭐⭐⭐               |                 |       |
-| Integrations                                                       | ⭐⭐⭐               |                 |       |
-| Integration Responses                                              | ⭐⭐⭐               |                 |       |
-| Models                                                             | ⭐⭐⭐               |                 |       |
-| Routes                                                             | ⭐⭐⭐⭐              |                 |       |
-| Route Responses                                                    | ⭐⭐⭐               |                 |       |
-| Stages                                                             | ⭐⭐⭐⭐              |                 |       |
-| Tags                                                               | ⭐⭐⭐⭐              |                 |       |
-| VPC Links                                                          | ⭐⭐⭐               |                 |       |
+| APIs                                                               | ⭐⭐⭐⭐            | Emulated                |       |
+| API Mappings                                                       | ⭐⭐⭐              | Emulated                |       |
+| Authorizers                                                        | ⭐⭐⭐⭐            | Emulated                |       |
+| Deployments                                                        | ⭐⭐⭐⭐            | CRUD                |       |
+| Domain Names                                                       | ⭐⭐⭐              | CRUD                |       |
+| Import APIs from OpenAPI specs                                     | ⭐⭐⭐              | Emulated                |       |
+| Integrations                                                       | ⭐⭐⭐              | Emulated                |       |
+| Integration Responses                                              | ⭐⭐⭐              | Emulated                |       |
+| Models                                                             | ⭐⭐⭐              | CRUD                |       |
+| Routes                                                             | ⭐⭐⭐⭐            | Emulated                |       |
+| Route Responses                                                    | ⭐⭐⭐              | Emulated                |       |
+| Stages                                                             | ⭐⭐⭐⭐            | CRUD                |       |
+| Tags                                                               | ⭐⭐⭐⭐            | CRUD                |       |
+| VPC Links                                                          | ⭐⭐⭐              | CRUD                |       |
 | **API Gateway Management API** (Pro)                               | [🔍]({{< ref "../localstack/metric-coverage/#apigatewaymanagementapi" >}}) |                 |       |
+| Connections                                                         | ⭐⭐⭐            | Emulated                |       |
 | **AppConfig** (Pro)                                                | [🔍]({{< ref "../localstack/metric-coverage/#appconfig" >}})               |                 |       |
 | Applications                                                       | ⭐⭐⭐           | CRUD            |       |
 | Configuration Profiles                                             | ⭐⭐⭐⭐         | CRUD            |       |
