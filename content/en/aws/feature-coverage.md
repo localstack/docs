@@ -516,12 +516,12 @@ In the coverage table below, the features are marked with their respective avail
 | Reserved Instances                                                 | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | **Organizations** (Pro)                                            | [🔍]({{< ref "../localstack/metric-coverage/#organizations" >}}) |                 |       |
-| Accounts                                                           | ?              | CRUD            |        |
-| Handshakes                                                         | ?              | CRUD            |        |
-| Organization                                                       | ?              | CRUD            |        |
-| Organizational Units                                               | ?              | CRUD            |        |
-| Policies                                                           | ?              | CRUD            |        |
-| Tags                                                               | ⭐⭐⭐⭐      | CRUD            |        |
+| Accounts                                                           | ⭐⭐⭐          | CRUD            |        |
+| Handshakes                                                         |  \-            |                 |        |
+| Organization                                                       | ⭐⭐           | CRUD            |        |
+| Organizational Units                                               | ⭐⭐           | CRUD            |        |
+| Policies                                                           | ⭐⭐⭐         | CRUD            |        |
+| Tags                                                               | ⭐⭐⭐⭐       | CRUD            |        |
 | [**QLDB** (Pro)]({{< ref "qldb" >}})                               | [🔍]({{< ref "../localstack/metric-coverage/#qldb" >}}) |                 |       |
 | Blocks                                                             | ⭐⭐⭐         | Emulated                 |       |
 | Digests                                                            | ⭐⭐⭐         | CRUD                |       |
@@ -710,10 +710,10 @@ In the coverage table below, the features are marked with their respective avail
 | TrustedAdvisorChecks                                               | ⭐⭐           | CRUD                |       |
 | Attachments                                                        | \-             |                 |       |
 | **SWF**                                                            | [🔍]({{< ref "../localstack/metric-coverage/#swf" >}}) |                 |       |
-| Domain                                                             | ?           | ?                |       |
-| Activity                                                           | ?           | ?                |       |
-| Workflows                                                          | ?           | ?                |       |
-| Domains                                                            | ?           | ?                |       |
+| Domain                                                             | ⭐⭐⭐         | CRUD                |       |
+| Activity                                                           | ⭐⭐⭐         | CRUD                |       |
+| Workflows                                                          | ⭐⭐⭐         | CRUD                |       |
+| Domains                                                            | ⭐⭐⭐         | CRUD                |       |
 | [**Timestream (query, write)**]({{< ref "timestream" >}}) (Pro)    | [🔍]({{< ref "../localstack/metric-coverage/#timestream-query" >}}) |                 |       |
 | Databases                                                          | ⭐⭐⭐         | Emulated                |       |
 | Run Query                                                          | ⭐⭐⭐         | Emulated                |       |
