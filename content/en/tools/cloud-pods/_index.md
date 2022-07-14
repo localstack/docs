@@ -36,7 +36,7 @@ $ awslocal kinesis list-streams
 
 {{% alert title="Current Limitations" color="info" %}}
 Currently, Cloud Pods CLI commands require to set a `LOCALSTACK_API_KEY`.
-Additionalky, they require to install `localstack` runtime dependencies. 
+Additionally, they require to install `localstack` runtime dependencies. 
 You can install them with `pip install localstack"[runtime]"`.
 {{% /alert %}}
 
