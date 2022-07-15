@@ -13,7 +13,7 @@ With LocalStack, you can run your AWS applications or Lambdas entirely on your l
 Whether you are testing complex CDK applications or Terraform configurations, or just beginning to learn about AWS services,
 LocalStack helps speed up and simplify your testing and development workflow.
 
-LocalStack supports a growing number of [AWS services]({{< ref "aws" >}}), like AWS Lambda, [S3]({{< ref "s3" >}}), DynamoDB, [Kinesis]({{< ref "kinesis" >}}), [SQS]({{< ref "sqs" >}}), SNS, and **many** more!
+LocalStack supports a growing number of [AWS services]({{< ref "aws" >}}), like AWS [Lambda]({{< ref "lambda" >}}), [S3]({{< ref "s3" >}}), DynamoDB, [Kinesis]({{< ref "kinesis" >}}), [SQS]({{< ref "sqs" >}}), SNS, and **many** more!
 The [**Pro version** of LocalStack](https://localstack.cloud/pricing) supports additional APIs and advanced features.
 You can find a comprehensive list of supported APIs on our [⭐ Feature Coverage]({{< ref "feature-coverage" >}}) page.
 
@@ -46,7 +46,7 @@ In addition you can easily check the status or open a shell in your LocalStack i
 
 #### Prerequisites
 Please make sure to install the following tools on your machine before moving on:
-- [`python`](https://docs.python.org/3/using/index.html) (Python 3.6 up to 3.10 is supported)
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.10 is supported)
 - [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
 - [`docker`](https://docs.docker.com/get-docker/)
 
@@ -74,6 +74,19 @@ Options:
 ...
 {{< / command >}}
 
+#### Updates
+The LocalStack CLI also allows you to easily update the different components of LocalStack. You can decide to update the CLI itself, the LocalStack Docker images, or all at once:
+{{< command >}}
+$ # Print the available commands
+$ localstack update
+$ # Update all components
+$ localstack update all
+$ # Only update the LocalStack docker images
+$ localstack update docker-images
+$ # Only update the LocalStack CLI
+$ localstack update localstack-cli
+{{< / command >}}
+
 #### Troubleshooting
 
 ##### The installation is successful, but I cannot execute `localstack` on my terminal.
@@ -86,28 +99,6 @@ As a workaround you can call the LocalStack CLI python module directly:
 $ python3 -m localstack.cli.main
 {{< / command >}}
 
-##### Updating LocalStack using pip does not work
-
-If you get a error message containing:
-
-```sh
-ImportError: module 'plugin.setuptools' has no attribute 'load_plux_entrypoints'
-```
-
-You might need to execute additional steps to upgrade the LocalStack CLI. Push the following command on your terminal:
-
-{{< command >}}
-$ pip uninstall localstack-plugin-loader
-{{< / command >}}
-
-Reinstall LocalStack afterwards using the following command:
-
-{{< command >}}
-$ pip install --force-reinstall localstack plux
-{{< / command >}}
-
-It will fix the dependency conflict. After this, LocalStack should be updateable in the future. As an alternative, if you are using a virtual environment, please delete it and create a new one, for a clean installation.
-
 #### Starting LocalStack with the LocalStack CLI
 By default, LocalStack is started inside a Docker container by running:
 
@@ -119,8 +110,6 @@ $ localstack start
 - This command loads all services provided by LocalStack, they will however be started on the first request reaching this service.
 
 - By default, LocalStack uses the image tagged `latest` that is cached on your machine, and will **not** pull the latest image automatically from Docker Hub (i.e., the image needs to be pulled manually if needed).
-
-- On MacOS you may have to run `TMPDIR=/private$TMPDIR localstack start --docker` if `$TMPDIR` contains a symbolic link that cannot be mounted by Docker.
 
 - From 2020-07-11 onwards, the default image `localstack/localstack` in Docker Hub refers to the "light version", which has some large dependency files like Elasticsearch removed (and lazily downloads them, if required). (Note that the `localstack/localstack-light` image alias may get removed in the future). In case you need the full set of dependencies, the `localstack/localstack-full` image can be used instead. Please also refer to the [`USE_LIGHT_IMAGE` environment variable]({{< ref "configuration#core" >}}).
 
@@ -146,7 +135,7 @@ $ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
 
 {{< alert title="Notes" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
-  If you want to use a specific version, use the appropriate tag (for example `localstack/localstack:0.12.18`).
+  If you want to use a specific version, use the appropriate tag (for example `localstack/localstack:1.0.0`).
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
 
@@ -174,11 +163,9 @@ $ docker-compose up
 
 {{< alert title="Notes" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
-  If you want to use a specific version, use the appropriate tag (for example `localstack/localstack:0.12.18`).
+  If you want to use a specific version, use the appropriate tag (for example `localstack/localstack:1.0.0`).
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
-
-- On MacOS you may have to run `TMPDIR=/private$TMPDIR docker-compose up` if `$TMPDIR` contains a symbolic link that cannot be mounted by Docker.
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
