@@ -63,7 +63,7 @@ Below are some basic installation instructions for the dependencies you will nee
   ```
   For Fedora
   ```bash
-    sudo dnf install java-11-openjdk
+    sudo dnf install java-11-openjdk-devel
   ```
 
 * Node
