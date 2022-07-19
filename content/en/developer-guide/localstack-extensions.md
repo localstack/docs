@@ -50,7 +50,7 @@ $ localstack extensions install "git+https://github.com/localstack/localstack-ex
 
 ### The extensions API
 
-LocalStack exposes a Python API for building extensions that can be found in the core codebase in [`localstack.extensions.api`](https://github.com/localstack/localstack/tree/v1/localstack/extensions/api).
+LocalStack exposes a Python API for building extensions that can be found in the core codebase in [`localstack.extensions.api`](https://github.com/localstack/localstack/tree/master/localstack/extensions/api).
 
 The basic interface to implement is as follows:
 
