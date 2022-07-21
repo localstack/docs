@@ -3349,11 +3349,18 @@ Creating two test tables in ledger - &amp;quot;Vehicle&amp;quot; and &amp;quot;V
 Running a query that joins data from the two tables
 Query result: [{'Vehicle': {'id': 'v1'}}, {'Vehicle': {'id': 'v2'}}, {'Vehicle': {'id': 'v3'}}]
 &lt;/code>&lt;/pre></description></item><item><title>Aws: Relational Database Service (RDS)</title><link>/aws/rds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/rds/</guid><description>
-&lt;p>LocalStack supports a basic version of &lt;a href="https://aws.amazon.com/rds/">RDS&lt;/a> for testing. Currently, it is possible to spin up PostgreSQL, MySQL, and MSSQL (SQL Server) databases on the local machine.&lt;/p>
+&lt;p>LocalStack supports a basic version of the &lt;a href="https://aws.amazon.com/rds/">Relational Database Service (RDS)&lt;/a> for testing.&lt;/p>
+&lt;h2 id="supported-db-engines">Supported DB engines&lt;/h2>
+&lt;p>Currently, it is possible to spin up PostgreSQL, MySQL, and MSSQL (SQL Server) databases on the local machine.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 In order to use MSSQL databases, you need to explicitly accept the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by setting &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> in the LocalStack container environment.
 &lt;/div>
+&lt;h3 id="postgres-versions">Postgres versions&lt;/h3>
+&lt;p>When creating an RDS DB cluster or instance with &lt;code>postgres&lt;/code>/&lt;code>aurora-postgresql&lt;/code> DB engine, by default Postgres version 11 is used.
+In order to use custom versions, make sure to configure the environment variable &lt;code>RDS_PG_CUSTOM_VERSIONS=1&lt;/code>, which then causes LocalStack to install and start up the respective Postgres version on demand.
+Currently, versions 11/12/13 can be installed - when selecting a major version outside of this range, the default version 11 is used as fallback.&lt;/p>
+&lt;h2 id="end-to-end-example-postgres">End-to-end example (Postgres)&lt;/h2>
 &lt;p>The local RDS service also supports the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">RDS Data API&lt;/a>, which allows executing data queries against RDS clusters over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple &lt;code>SELECT 123&lt;/code> query via the RDS Data API.
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test
 {
@@ -3403,15 +3410,14 @@ In order to use MSSQL databases, you need to explicitly accept the &lt;a href="h
 &lt;p>You can also use other clients like &lt;code>psql&lt;/code> to interact with the database. The hostname and port of your created instance can be found in the output from above or by running &lt;code>awslocal rds describe-db-instances&lt;/code>.&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>psql -d test -U test -p 4513 -h localhost -W
 Password: &amp;lt;enter &amp;#34;test&amp;#34;&amp;gt;&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Notes&lt;/h4>
+&lt;h2 id="default-usernames-and-passwords">Default usernames and passwords&lt;/h2>
+&lt;p>Please consider the following notes regarding default usernames/passwords and database names:&lt;/p>
 &lt;ul>
 &lt;li>The default for &lt;code>master-username&lt;/code> and &lt;code>db-name&lt;/code> is &amp;ldquo;test&amp;rdquo;. The default &lt;code>master-user-password&lt;/code> is &amp;ldquo;test&amp;rdquo; - except for MSSQL DBs, which uses &amp;ldquo;Test123!&amp;rdquo; as the default master password.&lt;/li>
 &lt;li>You can use any &lt;code>master-username&lt;/code>, except &amp;ldquo;postgres&amp;rdquo;, for creating a new RDS instance. The user will automatically be created.&lt;/li>
 &lt;li>The user &amp;ldquo;postgres&amp;rdquo; is special, and it is not possible to create a new RDS instance with this user name.&lt;/li>
 &lt;li>Do not use &lt;code>db-name&lt;/code> &amp;ldquo;postgres&amp;rdquo; as it is already in use by LocalStack.&lt;/li>
-&lt;/ul>
-&lt;/div></description></item><item><title>Aws: Route 53</title><link>/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/route53/</guid><description>
+&lt;/ul></description></item><item><title>Aws: Route 53</title><link>/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/route53/</guid><description>
 &lt;p>The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.&lt;/p>
 &lt;p>The example below illustrates the creation of a hosted zone &lt;code>example.com&lt;/code>, registration of an A record named &lt;code>test.example.com&lt;/code> that points to &lt;code>1.2.3.4&lt;/code>, and finally querying the DNS record by using the &lt;code>dig&lt;/code> command against the DNS server running on &lt;code>localhost&lt;/code> (inside the LocalStack container, on port &lt;code>53&lt;/code>):
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name example.com --caller-reference r1 | jq -r &amp;#39;.HostedZone.Id&amp;#39;)
