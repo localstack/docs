@@ -170,12 +170,17 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
 | `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [Opensearch Endpoints]({{< ref "opensearch#endpoints" >}})). |
 
+### RDS
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `RDS_PG_CUSTOM_VERSIONS` | `1` / `0` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
+
 ### StepFunctions
 
 | Variable | Example Values | Description |
 | - | - | - |
 | `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
-
 
 ### SQS
 
