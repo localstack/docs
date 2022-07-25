@@ -16,7 +16,7 @@ $ awslocal emr create-cluster --release-label emr-5.9.0 --instance-groups Instan
 }
 {{< / command >}}
 
-The commmand above will spin up one more more Docker containers on your local machine that can be used to run analytics workloads using Spark, Hadoop, Pig, and other tools.
+The command above will spin up one more more Docker containers on your local machine that can be used to run analytics workloads using Spark, Hadoop, Pig, and other tools.
 
 Note that you can also specify startup commands using the `--steps=...` command line argument to the `create-cluster` command. A simple demo project with more details can be found in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/emr-hadoop-spark-jobs).
 

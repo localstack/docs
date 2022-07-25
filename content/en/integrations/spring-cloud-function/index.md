@@ -284,7 +284,7 @@ fun main(args: Array<String>) {
 
 ### Configure Jackson
 
-In our sample project we are using a JSON format for reqeusts and responses.
+In our sample project we are using a JSON format for requests and responses.
 The easiest way to get started with JSON is to use the Jackson library.
 Let's configure it by creating a new configuration class `JacksonConfiguration.kt` under
 `src/main/kotlin/org/localstack/sampleproject/config`:

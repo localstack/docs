@@ -65,7 +65,7 @@ Please follow these best practices when writing documentation in this repository
 - For snippets, define the correct syntax highlighting.
   Here's a list of the supported languages:
   https://gohugo.io/content-management/syntax-highlighting/
-- If you want to hightlight a specific line, there's a feature for that: https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences
+- If you want to highlight a specific line, there's a feature for that: https://gohugo.io/content-management/syntax-highlighting/#highlighting-in-code-fences
   - This is also supported by the `command` shortcode!
 - Handling images can be a bit tedious with Hugo.
   If you want to use images in your post, create a new [leaf bundle directory](https://github.com/gohugoio/hugo/issues/1240) and put the image and the post (named `index.md`) in there (you can find examples in the docs already, f.e. the cognito service docs).

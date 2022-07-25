@@ -24,7 +24,7 @@ $ awslocal cloudwatch put-metric-alarm \
   --treat-missing notBreaching
 {{< / command >}}
 
-You can now in seperate terminal, watch the status of the alarm:
+You can now in separate terminal, watch the status of the alarm:
 {{< command >}}
 $ watch "awslocal cloudwatch describe-alarms --alarm-names my-alarm | jq '.MetricAlarms[0].StateValue'"
 {{< / command >}}
