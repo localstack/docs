@@ -589,7 +589,7 @@ The `Lambda-Events` package comes with a set of predefined wrappers that you can
 
 ## Setting up Deployment
 
-Check our [sample project](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice)
+Check our [sample project](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice)
 for usage examples.
 
 {{< tabpane >}}
@@ -876,4 +876,4 @@ for JVM Lambda functions.
 
 ## Useful Links
 
-* [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice)
+* [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice)
