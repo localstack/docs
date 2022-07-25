@@ -118,6 +118,20 @@ The Makefile contains a start command to conveniently start:
 make start
 ```
 
+### Host mode
+
+Although we strongly recommend to use Docker, the infrastructure can also be spun up directly on the host machine using the `--host` startup flag. Note that this will require additional dependencies, and is not supported on some operating systems, including Windows.
+
+```shell
+localstack start --host
+```
+
+LocalStack will attempt to automatically fetch the missing dependencies when you first start it up in `host` mode; Alternatively, you can use the full profile to install all dependencies at `pip` installation time:
+
+```shell
+pip install "localstack[full]"
+```
+
 ### Building the Docker image for Development
 
 Please note that there are a few commands we need to run on the host to prepare the local environment for the Docker build - specifically, downloading some dependencies like the StepFunctions local binary. Therefore, simply running `docker build .` in a fresh clone of the repo may not work.

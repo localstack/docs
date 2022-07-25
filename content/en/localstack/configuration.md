@@ -250,7 +250,7 @@ DEVELOP=1
 You can load a profile by either setting the `env` variable `CONFIG_PROFILE=<profile>` or the `--profile=<profile>` CLI flag when using the CLI. Let's take an example to load the `dev.env` profile file if it exists:
 
 {{< command >}}
-python -m localstack.cli.main --profile=dev start --host
+python -m localstack.cli.main --profile=dev start
 {{< / command >}}
 
 If no profile is specified, the `default.env` profile will be loaded. While explicitly specified, the environment variables will always overwrite the profile. 
