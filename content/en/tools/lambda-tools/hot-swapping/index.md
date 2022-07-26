@@ -46,7 +46,7 @@ We assume you already have:
 * configured JVM project capable of building FatJars using your preferred build tool
 
 First, create a watchman wrapper by using
-[one of our examples](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice/bin/watchman.sh)
+[one of our examples](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice/bin/watchman.sh)
 
 Don't forget to adjust permissions:
 {{< command >}}
@@ -197,7 +197,7 @@ Another alternative is to implement a watchman script that will be preparing a s
 In our example, we are using `build/hot` folder as a mounting point for our Lambdas.
 
 First, create a watchman wrapper by using
-[one of our examples](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice/bin/watchman.sh)
+[one of our examples](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice/bin/watchman.sh)
 
 After that, you can use the following `Makefile` snippet, or implement another shell script to prepare the codebase for hot swapping:
 
@@ -397,4 +397,4 @@ $ terraform init && \
 ## Useful Links
 
 * [Lambda Code Mounting and Debugging (Python)](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging)
-* [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice)
+* [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice)

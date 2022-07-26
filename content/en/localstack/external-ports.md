@@ -12,7 +12,7 @@ For example, if OpenSearch is configured to use the [`OPENSEARCH_ENDPOINT_STRATE
 Messages coming to those domains are then relayed to the servers running on ports which do not have to be accessible from outside the Docker container.
 
 Another option is using the *external service port range*, which - e.g. in OpenSearch - is enabled by using the [`OPENSEARCH_ENDPOINT_STRATEGY=port`]({{< ref "opensearch#endpoints" >}})).  
-The external service port range is a set of pre-defined ports (by default `4510-4559`). LocalStack will chose a free port withing this range when starting an external service.
+The external service port range is a set of pre-defined ports (by default `4510-4559`). LocalStack will chose a free port within this range when starting an external service.
 These ports need to be accessible from outside the Docker container and in turn allows to directly access an external service (as opposed to using LocalStack as a proxy).
 
 The port range is configurable by using the environment variables `EXTERNAL_SERVICE_PORTS_START` and `EXTERNAL_SERVICE_PORTS_END`. This results in the external service port range `(EXTERNAL_SERVICE_PORTS_START, EXTERNAL_SERVICE_PORTS_END]` (i.e. the `EXTERNAL_SERVICE_PORTS_END` is _not_ included in the range).

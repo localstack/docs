@@ -3,7 +3,7 @@
 {{ $inner := trim .Inner "\n " }}
 {{/* We encapsulate, for each line, the prefix (if present) in custom prefix tags so we find it after highlighting */}}
 {{ $inner = replaceRE `(?m)^ *((?:\$|#) )` "###CUSTOM_PREFIX###$1###CUSTOM_PREFIX_END###" $inner}}
-{{/* We need to set a default for the hightlighting options here */}}
+{{/* We need to set a default for the highlighting options here */}}
 {{ $options := "" }}
 {{ with .Get 0 }}
 {{ $options = . }}

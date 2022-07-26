@@ -284,7 +284,7 @@ fun main(args: Array<String>) {
 
 ### Configure Jackson
 
-In our sample project we are using a JSON format for reqeusts and responses.
+In our sample project we are using a JSON format for requests and responses.
 The easiest way to get started with JSON is to use the Jackson library.
 Let's configure it by creating a new configuration class `JacksonConfiguration.kt` under
 `src/main/kotlin/org/localstack/sampleproject/config`:
@@ -589,7 +589,7 @@ The `Lambda-Events` package comes with a set of predefined wrappers that you can
 
 ## Setting up Deployment
 
-Check our [sample project](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice)
+Check our [sample project](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice)
 for usage examples.
 
 {{< tabpane >}}
@@ -876,4 +876,4 @@ for JVM Lambda functions.
 
 ## Useful Links
 
-* [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/spring-cloud-function-microservice)
+* [Spring Cloud Function on LocalStack (Kotlin JVM)](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice)

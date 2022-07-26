@@ -120,7 +120,7 @@ DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been
 DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been implicitly denied: ["Action 'iam:PassRole' for 'arn:aws:iam::000000000000:role/lambda-role'"]
 ```
 
-So we can see the action `iam:PassRole` is not allowed but implicitely denied (meaning there is no explicit deny statement in the applicable policies, but now allow either) for your user for resouce `arn:aws:iam::000000000000:role/lambda-role`.
+So we can see the action `iam:PassRole` is not allowed but implicitly denied (meaning there is no explicit deny statement in the applicable policies, but now allow either) for your user for resource `arn:aws:iam::000000000000:role/lambda-role`.
 If we now add this to our policy (since it is an example let's do it very simple with the same wildcard resource):
 
 ```json
@@ -146,7 +146,7 @@ This is especially useful when trying to find missing permissions over a whole s
 
 {{< alert >}}
 **Note**: As of 1.0, resource based policies and conditions are not yet supported. Please try keeping to identity-based policies where possible.
-Inter-service communcation evaluation (for example for sts:AssumeRole) also is not supported, which currently reduces the impact of those missing features.
+Inter-service communication evaluation (for example for sts:AssumeRole) also is not supported, which currently reduces the impact of those missing features.
 {{< /alert >}}
 
 ### Supported APIs

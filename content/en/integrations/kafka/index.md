@@ -104,4 +104,4 @@ $ awslocal lambda create-event-source-mapping \
 }
 {{< / command >}}
 
-6. Aditionally visit `http://localhost:8080` for Kowl's UI.
+6. Additionally visit `http://localhost:8080` for Kowl's UI.
