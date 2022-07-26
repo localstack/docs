@@ -46,6 +46,12 @@ $ aws configure --profile default
 Our pre-signed URL signature verification algorithm validates the pre-signed URL and its expiration.
 {{< /alert >}}
 
+Verify the current configuration:
+
+{{< command >}}
+aws configure list
+{{< / command >}}
+
 ## LocalStack AWS CLI (awslocal)
 
 `awslocal` is a thin wrapper and a drop-in replacement for the `aws` command that runs commands directly against LocalStack (no need to specify `--endpoint-url` anymore).
@@ -157,10 +163,4 @@ $ laws lambda list-functions
 {
     "Functions": []
 }
-{{< / command >}}
-
-Verify the current configuration:
-
-{{< command >}}
-aws configure list
 {{< / command >}}
