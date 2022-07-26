@@ -10,21 +10,10 @@ description: >
 The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) is a unified tool to manage AWS services from the command line.
 All CLI commands that access [services that are implemented in LocalStack]({{< ref "feature-coverage" >}}) can be run against LocalStack.
 
-There are two ways to use the CLI:
+There are two CLI alternatives:
 
-* Use our `awslocal` drop-in replacement:
-  {{< command >}}
-  $ awslocal kinesis list-streams
-  {{< / command >}}
-* Configure AWS test environment variables and add the `--endpoint-url=<localstack-url>` flag to your `aws` CLI invocations.
-  For example:
-  {{< command >}}
-  $ export AWS_ACCESS_KEY_ID="test"
-  $ export AWS_SECRET_ACCESS_KEY="test"
-  $ export AWS_DEFAULT_REGION="us-east-1"
-
-  $ aws --endpoint-url=http://localhost:4566 kinesis list-streams
-  {{< / command >}}
+* [AWS CLI]({{<ref "#aws-cli" >}})
+* [LocalStack AWS CLI]({{<ref "#localstack-aws-cli-awslocal">}})
 
 ## AWS CLI
 
@@ -36,10 +25,17 @@ $ pip install awscli
 
 ### Setting up local region and credentials to run LocalStack
 
-aws requires the region and the credentials to be set in order to run the aws commands.
-Create the default configuration and the credentials.
-Below key will ask for the Access key id, secret Access Key, region & output format.
-Config & credential file will be created under ~/.aws folder
+Configure AWS test environment variables and add the `--endpoint-url=<localstack-url>` flag to your `aws` CLI invocations.
+For example:
+{{< command >}}
+$ export AWS_ACCESS_KEY_ID="test"
+$ export AWS_SECRET_ACCESS_KEY="test"
+$ export AWS_DEFAULT_REGION="us-east-1"
+
+$ aws --endpoint-url=http://localhost:4566 kinesis list-streams
+{{< / command >}}
+
+Create a configuration profile. The configuration file will be created under `~/.aws` directory and in the example below, using the `default` profile:
 
 {{< command >}}
 $ aws configure --profile default
@@ -48,13 +44,6 @@ $ aws configure --profile default
 {{< alert >}}
 **Note** Please use `test` as value for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to make pre-signed URLs for S3 buckets work.
 Our pre-signed URL signature verification algorithm validates the pre-signed URL and its expiration.
-You can configure credentials into the system environment using `export` command on Linux/Mac systems.
-You also can add credentials in `~/.aws/credentials` file directly.
-
-```bash
-export AWS_ACCESS_KEY_ID=test
-export AWS_SECRET_ACCESS_KEY=test
-```
 {{< /alert >}}
 
 ## LocalStack AWS CLI (awslocal)
@@ -85,6 +74,9 @@ $ pip install awscli-local
 The `awslocal` command has the same usage as the `aws` command.
 For detailed usage, please refer to the man pages of `aws help`.
 
+{{< command >}}
+awslocal kinesis list-streams
+{{< / command >}}
 
 ### Configurations
 
@@ -95,6 +87,13 @@ You can use the following environment variables for configuration:
 | `LOCALSTACK_HOST` | Set the hostname for the localstack instance. Useful when you have localstack is bound to another interface (i.e. docker-machine). |
 | `USE_SSL` | Whether to use `https` endpoint URLs (required if LocalStack has been started with `USE_SSL=true` enabled). Defaults to `false`. |
 | `DEFAULT_REGION` | Set the default region. Overrides `AWS_DEFAULT_REGION` environment variable. |
+
+Verify the current configuration:
+
+{{< command >}}
+awslocal configure list
+{{< / command >}}
+
 
 ### Limitations
 
@@ -158,4 +157,10 @@ $ laws lambda list-functions
 {
     "Functions": []
 }
+{{< / command >}}
+
+Verify the current configuration:
+
+{{< command >}}
+aws configure list
 {{< / command >}}
