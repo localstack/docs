@@ -292,7 +292,11 @@ class ApplicationStack(parent: Construct, name: String) : Stack(parent, name) {
      */
     private fun buildCodeSource(): Code  {
         if (STAGE == "local") {
-            val bucket = Bucket.fromBucketName(this, "HotReloadingBucket", "__local__")
+            /**
+             * For CDK you have to use a valid S3 bucket name instead of '__local__'
+             * because of client-side validation
+             */
+            val bucket = Bucket.fromBucketName(this, "HotReloadingBucket", "hot-code")
             return Code.fromBucket(bucket, LAMBDA_MOUNT_CWD)
         }
 
@@ -300,6 +304,13 @@ class ApplicationStack(parent: Construct, name: String) : Stack(parent, name) {
     }
 }
 {{< / highlight >}}
+
+{{% alert %}}
+
+**Note**: As mentioned in the code, you will have to use an alternative local bucket marker to `__local__` as this is not a valid S3 bucket name.
+To change it (to, e.g., `hot-code`) you can use the environment variable `BUCKET_MARKER_LOCAL`.
+
+{{% /alert %}}
 
 Then to bootstrap and deploy the stack run the following shell script
 
