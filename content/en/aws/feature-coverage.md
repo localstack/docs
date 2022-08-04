@@ -472,7 +472,7 @@ In the coverage table below, the features are marked with their respective avail
 | [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       | Emulated        |       |
 | Permissions                                                        | ⭐⭐⭐⭐       | CRUD            |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **Logs**                                                           | [🔍]({{< ref "../localstack/coverage/#logs" >}}) |                 |       |
+| [**Logs**]({{< ref "logs" >}})                                     | [🔍]({{< ref "../localstack/coverage/#logs" >}}) |                 |       |
 | Destinations                                                       | ⭐⭐⭐⭐       | Emulated       |       |
 | Export Tasks                                                       | ⭐⭐          | CRUD            |       |
 | Log Events                                                         | ⭐⭐⭐⭐       | Emulated        |       |
