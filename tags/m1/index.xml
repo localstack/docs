@@ -9,10 +9,10 @@ Help us getting aware of current issues with the ARM64 image by &lt;a href="http
 &lt;/div>
 &lt;h2 id="pulling-the-image">Pulling the image&lt;/h2>
 &lt;p>With the multi-arch Docker manifest, your Docker client (and therefore the &lt;a href="/get-started/#localstack-cli">LocalStack CLI&lt;/a>) now automatically selects the image according to your platform:
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker pull localstack/localstack&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker pull localstack/localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>You can check the architecture of the pulled image by using &lt;code>docker inspect&lt;/code>:
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker inspect localstack/localstack | jq &amp;#39;.[0].Architecture&amp;#39;
-&amp;#34;arm64&amp;#34;&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker inspect localstack/localstack | jq &amp;#39;.[0].Architecture&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;arm64&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;h2 id="using-amd64-lambda-functions-and-binaries-on-arm64">Using AMD64 Lambda functions and binaries on ARM64&lt;/h2>
 &lt;p>If you want to execute Docker Lambda functions or binaries which have not been built for your architecture, you need to configure cross-platform emulation on your system.&lt;/p>
 &lt;p>You can do so by installing a AMD64 &lt;code>bin_fmt&lt;/code> emulator on your ARM64 host system with the following command:&lt;/p>
@@ -20,23 +20,23 @@ Help us getting aware of current issues with the ARM64 image by &lt;a href="http
 &lt;h4 class="alert-heading">Affects host system&lt;/h4>
 The following command installs additionals emulators on your &lt;em>host system&lt;/em>.
 &lt;/div>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt --install amd64&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt --install amd64&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can check the current status with:
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt
-{
-&lt;span style="display:block;width:100%;background-color:#dfdfdf"> &amp;#34;supported&amp;#34;: [
-&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> &amp;#34;linux/amd64&amp;#34;,
-&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> &amp;#34;linux/arm64&amp;#34;,
-&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> &amp;#34;linux/386&amp;#34;
-&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> ],
-&lt;/span> &amp;#34;emulators&amp;#34;: [
-&amp;#34;jar&amp;#34;,
-&amp;#34;llvm-12-runtime.binfmt&amp;#34;,
-&amp;#34;python3.10&amp;#34;,
-&amp;#34;python3.9&amp;#34;,
-&amp;#34;qemu-aarch64&amp;#34;
-]
-}&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> &amp;#34;supported&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> &amp;#34;linux/amd64&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> &amp;#34;linux/arm64&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> &amp;#34;linux/386&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;emulators&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;jar&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;llvm-12-runtime.binfmt&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;python3.10&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;python3.9&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;qemu-aarch64&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
 &lt;h3 id="pulling-images-for-other-architectures">Pulling images for other architectures&lt;/h3>
 &lt;p>
@@ -45,7 +45,7 @@ The following command installs additionals emulators on your &lt;em>host system&
 Please be aware that this workaround is not supported by LocalStack at all.
 &lt;/div>
 If you want to use a LocalStack image which has been built for another architecture than yours, you can instruct Docker to use another platform by setting the &lt;code>DOCKER_DEFAULT_PLATFORM&lt;/code> environment variable:
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>export DOCKER_DEFAULT_PLATFORM=linux/amd64&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export DOCKER_DEFAULT_PLATFORM=linux/amd64&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 When using Docker Compose, you can use the &lt;code>platform&lt;/code> element &lt;a href="https://github.com/compose-spec/compose-spec/blob/master/spec.md#platform">as described in the specification&lt;/a>.&lt;/p>
 &lt;h3 id="apple-silicon--apple-m1">Apple Silicon / Apple M1&lt;/h3>
 &lt;p>If you are experiencing issues with the ARM64 image (and after you created an issue to make us aware of the problem 😉), you can try to use the AMD64 packages on your Apple Silicon device and use Apple Rosetta to emulate the AMD64 / x86_64 CPU architecture.&lt;/p>
@@ -57,21 +57,26 @@ Please be aware that this workaround is not supported by LocalStack at all.
 This way you&amp;rsquo;ll be installing packages for &lt;code>x86_64&lt;/code> platform.&lt;/p>
 &lt;p>&lt;img src="m1-trouble-1.png" alt="Rosetta">&lt;/p>
 &lt;p>What we will be doing now is installing Java and Python executables using Homebrew, it should automatically resolve packages to proper architecture versions.&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># Install Homebrew&lt;/span>
-/bin/bash -c &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
-&lt;span style="color:#8f5902;font-style:italic"># Install java11 and follow instructions&lt;/span>
-brew install java11
-&lt;span style="color:#8f5902;font-style:italic"># Install jenv and follow instructions&lt;/span>
-brew install jenv
-&lt;span style="color:#8f5902;font-style:italic"># Add Java11 to jenv and use it globally&lt;/span>
-jenv add /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home/
-jenv global &lt;span style="color:#0000cf;font-weight:bold">11&lt;/span>
-&lt;span style="color:#8f5902;font-style:italic"># Install pyenv and follow instructions&lt;/span>
-brew install pyenv
-&lt;span style="color:#8f5902;font-style:italic"># Install python 3.8.10 and enable it globally&lt;/span>
-pyenv install 3.8.10
-pyenv global 3.8.10
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then clone LocalStack to your machine, run &lt;code>make install&lt;/code> and then &lt;code>make start&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Install Homebrew&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/bin/bash -c &lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Install java11 and follow instructions&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install java11
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Install jenv and follow instructions&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install jenv
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Add Java11 to jenv and use it globally&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jenv add /Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>jenv global &lt;span style="color:#0000cf;font-weight:bold">11&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Install pyenv and follow instructions&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install pyenv
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Install python 3.8.10 and enable it globally&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pyenv install 3.8.10
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pyenv global 3.8.10
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then clone LocalStack to your machine, run &lt;code>make install&lt;/code> and then &lt;code>make start&lt;/code>.&lt;/p>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Note on JVM Lambda&lt;/h4>
 You need to use the &lt;code>local&lt;/code> lambda executor for JVM Lambda functions.
@@ -80,12 +85,13 @@ You need to use the &lt;code>local&lt;/code> lambda executor for JVM Lambda func
 &lt;p>If you want to run LocalStack on your Raspberry Pi, make sure to use a 64bit operating system.
 In our experience, it works best on a Raspberry Pi 4 8GB with &lt;a href="https://ubuntu.com/download/raspberry-pi">Ubuntu Server 20.04 64Bit for Raspberry Pi&lt;/a>.&lt;/p>
 &lt;p>You can check if Docker is running and your architecture is ARM64 / aarch64 by using &lt;code>docker info&lt;/code>:
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-text" data-lang="text">&lt;span class="command-prefix">$ &lt;/span>docker info
-Client:
-...
-Server:
-...
-&lt;span style="display:block;width:100%;background-color:#dfdfdf"> Operating System: Ubuntu 20.04
-&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> OSType: linux
-&lt;/span>&lt;span style="display:block;width:100%;background-color:#dfdfdf"> Architecture: aarch64
-&lt;/span> ...&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item></channel></rss>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker info
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Client:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Server:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> Operating System: Ubuntu 20.04
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> OSType: linux
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> Architecture: aarch64
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item></channel></rss>

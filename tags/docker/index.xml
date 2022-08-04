@@ -28,26 +28,29 @@ Podman support is still experimental, and the following docs give you an overvie
 &lt;/ul>
 &lt;h3 id="rootfull-podman-with-podman-docker">Rootfull Podman with podman-docker&lt;/h3>
 &lt;p>The simplest option is to run &lt;code>localstack&lt;/code> using &lt;code>podman&lt;/code> by having &lt;code>podman-docker&lt;/code> and running &lt;code>localstack start&lt;/code> as root&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#8f5902;font-style:italic"># you have to start the podman socket first&lt;/span>
-sudo systemctl start podman
-&lt;span style="color:#8f5902;font-style:italic"># then&lt;/span>
-sudo sh -c &lt;span style="color:#4e9a06">&amp;#39;DEBUG=1 localstack start&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="rootfull-podman-without-podman-docker">Rootfull Podman without podman-docker&lt;/h3>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#8f5902;font-style:italic"># you still have to start the podman socket first&lt;/span>
-sudo systemctl start podman
-&lt;span style="color:#8f5902;font-style:italic"># you have to pass a bunch of env variables&lt;/span>
-sudo sh -c &lt;span style="color:#4e9a06">&amp;#39;DEBUG=1 DOCKER_CMD=podman DOCKER_HOST=unix://run/podman/podman.sock DOCKER_SOCK=/run/podman/podman.sock localstack start&amp;#39;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="rootless-podman">Rootless Podman&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># you have to start the podman socket first&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo systemctl start podman
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># then&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo sh -c &lt;span style="color:#4e9a06">&amp;#39;DEBUG=1 localstack start&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="rootfull-podman-without-podman-docker">Rootfull Podman without podman-docker&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># you still have to start the podman socket first&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo systemctl start podman
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># you have to pass a bunch of env variables&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo sh -c &lt;span style="color:#4e9a06">&amp;#39;DEBUG=1 DOCKER_CMD=podman DOCKER_HOST=unix://run/podman/podman.sock DOCKER_SOCK=/run/podman/podman.sock localstack start&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="rootless-podman">Rootless Podman&lt;/h3>
 &lt;p>You have to prepare your environment first:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://wiki.archlinux.org/title/Podman#Rootless_Podman">https://wiki.archlinux.org/title/Podman#Rootless_Podman&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md">https://github.com/containers/podman/blob/main/docs/tutorials/rootless_tutorial.md&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.redhat.com/sysadmin/rootless-podman">https://www.redhat.com/sysadmin/rootless-podman&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#8f5902;font-style:italic"># again, you have to start the podman socket first&lt;/span>
-systemctl --user start podman.service
-&lt;span style="color:#8f5902;font-style:italic"># and then localstack&lt;/span>
-&lt;span style="color:#000">DEBUG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> &lt;span style="color:#000">DOCKER_CMD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;podman&amp;#34;&lt;/span> &lt;span style="color:#000">DOCKER_SOCK&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$XDG_RUNTIME_DIR&lt;/span>/podman/podman.sock &lt;span style="color:#000">DOCKER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>unix://&lt;span style="color:#000">$XDG_RUNTIME_DIR&lt;/span>/podman/podman.sock localstack start
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you have problems with &lt;a href="https://wiki.archlinux.org/title/Podman#Set_subuid_and_subgid">subuid and subgid&lt;/a>, you could try to use &lt;a href="https://www.redhat.com/sysadmin/controlling-access-rootless-podman-users">overlay.ignore_chown_errors option&lt;/a>&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-sh" data-lang="sh">&lt;span style="color:#000">DEBUG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> &lt;span style="color:#000">DOCKER_CMD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;podman --storage-opt overlay.ignore_chown_errors=true&amp;#34;&lt;/span> &lt;span style="color:#000">DOCKER_SOCK&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$XDG_RUNTIME_DIR&lt;/span>/podman/podman.sock &lt;span style="color:#000">DOCKER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>unix://&lt;span style="color:#000">$XDG_RUNTIME_DIR&lt;/span>/podman/podman.sock localstack start
-&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># again, you have to start the podman socket first&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>systemctl --user start podman.service
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># and then localstack&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DEBUG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> &lt;span style="color:#000">DOCKER_CMD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;podman&amp;#34;&lt;/span> &lt;span style="color:#000">DOCKER_SOCK&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$XDG_RUNTIME_DIR&lt;/span>/podman/podman.sock &lt;span style="color:#000">DOCKER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>unix://&lt;span style="color:#000">$XDG_RUNTIME_DIR&lt;/span>/podman/podman.sock localstack start
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you have problems with &lt;a href="https://wiki.archlinux.org/title/Podman#Set_subuid_and_subgid">subuid and subgid&lt;/a>, you could try to use &lt;a href="https://www.redhat.com/sysadmin/controlling-access-rootless-podman-users">overlay.ignore_chown_errors option&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DEBUG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> &lt;span style="color:#000">DOCKER_CMD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;podman --storage-opt overlay.ignore_chown_errors=true&amp;#34;&lt;/span> &lt;span style="color:#000">DOCKER_SOCK&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">$XDG_RUNTIME_DIR&lt;/span>/podman/podman.sock &lt;span style="color:#000">DOCKER_HOST&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>unix://&lt;span style="color:#000">$XDG_RUNTIME_DIR&lt;/span>/podman/podman.sock localstack start
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

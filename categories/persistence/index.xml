@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Persistence</title><link>/categories/persistence/</link><description>Recent content in Persistence on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/categories/persistence/index.xml" rel="self" type="application/rss+xml"/><item><title>Tools: Cloud Pods CLI</title><link>/tools/cloud-pods/pods-cli/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/cloud-pods/pods-cli/</guid><description>
 &lt;h2 id="syntax">Syntax&lt;/h2>
 &lt;p>Use the following syntax to run &lt;code>localstack pod&lt;/code> commands from your terminal window:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">localstack pod &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>command&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>where &lt;code>command&lt;/code> specifies the operation you want to perform with your Cloud Pods, e.g., &lt;code>pull&lt;/code> or &lt;code>push&lt;/code>, and &lt;code>options&lt;/code> specifies the optional flag.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>localstack pod &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>command&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>options&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where &lt;code>command&lt;/code> specifies the operation you want to perform with your Cloud Pods, e.g., &lt;code>pull&lt;/code> or &lt;code>push&lt;/code>, and &lt;code>options&lt;/code> specifies the optional flag.
 For example, you can attach a specific message to a snapshot using the &lt;code>-m&lt;/code> option while doing a &lt;code>commit&lt;/code> operation.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>The CRUD commands exposed with the Cloud Pods CLI expect a &lt;code>--name &amp;lt;pod_name&amp;gt;&lt;/code> option to specify the pod&amp;rsquo;s name.
 Users can avoid specifying a pod name at every command by setting a global config with the &lt;code>config&lt;/code> command.&lt;/p>
 &lt;p>For instance, the following command&lt;/p>
-&lt;pre>&lt;code>localstack config --name my_pod
+&lt;pre tabindex="0">&lt;code>localstack config --name my_pod
 &lt;/code>&lt;/pre>&lt;p>will implicitly pass a pod name to all subsequent CLI commands.
 Such a configuration will be saved locally on the host machine in a JSON file (e.g., in &lt;code>~/.localstack/cloudpods/pods-config.json&lt;/code>).&lt;/p>
 &lt;h2 id="commands">Commands&lt;/h2>
 &lt;h3 id="commit">commit&lt;/h3>
 &lt;p>The &lt;code>commit&lt;/code> command creates a snapshot of your LocalStack running instance and locally saves it on the host machine.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>Commit a snapshot of the LocalStack running instance.
+&lt;pre tabindex="0">&lt;code>Commit a snapshot of the LocalStack running instance.
 Options:
 -m, --message TEXT Add a comment describing the snapshot.
 -n, --name TEXT Name of the Cloud Pod.
@@ -24,17 +24,17 @@ Options:
 &lt;p>The &lt;code>config&lt;/code> command saves some configuration values that apply to all the subsequent CLI commands.
 For instance with &lt;code>localstack pod config --name &amp;lt;my_name&amp;gt;&lt;/code> users can avoid specifying a pod name for other commands like &lt;code>pull&lt;/code> or &lt;code>push&lt;/code>.
 Users can specify a list of services with the following command:&lt;/p>
-&lt;pre>&lt;code>localstack pod config --services sqs,sns
+&lt;pre tabindex="0">&lt;code>localstack pod config --services sqs,sns
 &lt;/code>&lt;/pre>&lt;p>The following CRUD operation will only take into account the selected service and not the entire LocalStack application state.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>Configure a set of parameters for all Cloud Pods commands.
+&lt;pre tabindex="0">&lt;code>Configure a set of parameters for all Cloud Pods commands.
 Options:
 -n, --name TEXT Name of the Cloud Pod.
 -s, --services TEXT Comma-delimited list of services or `all` to enable all (default).
 &lt;/code>&lt;/pre>&lt;h3 id="delete">delete&lt;/h3>
 &lt;p>The &lt;code>delete&lt;/code> command let users delete their remote or local Cloud Pods.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>Delete a Cloud Pod.
+&lt;pre tabindex="0">&lt;code>Delete a Cloud Pod.
 Options:
 -n, --name TEXT Name of the Cloud Pod.
 -l, --local Delete only the local Cloud Pod, leaving the remote copy intact
@@ -44,7 +44,7 @@ Please note that this is a local-only operation, i.e., the injecting state must 
 &lt;p>By default, the injecting state will replace the application runtime.
 The &lt;code>--merge&lt;/code> option, instead, will first merge the injecting state with the current runtime and then inject the result.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>Inject the state from a locally available Cloud Pod version into the application runtime.
+&lt;pre tabindex="0">&lt;code>Inject the state from a locally available Cloud Pod version into the application runtime.
 Options:
 --merge Merge the injecting state with the current application runtime.
 -v, --version INTEGER Version to inject (most recent one by default).
@@ -52,7 +52,7 @@ Options:
 &lt;/code>&lt;/pre>&lt;h3 id="inspect">inspect&lt;/h3>
 &lt;p>The &lt;code>inspect&lt;/code> command simply lets the user inspect the content of a Cloud Pod.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>Inspect the contents of a Cloud Pod.
+&lt;pre tabindex="0">&lt;code>Inspect the contents of a Cloud Pod.
 Options:
 -n, --name TEXT Name of the Cloud Pod.
 -f, --format TEXT Format (curses, rich, json).
@@ -62,7 +62,7 @@ By default, it only shows the pods that have been uploaded to the platform.
 The &lt;code>-l&lt;/code> option will also show the locally available pods.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
 &lt;p>List all available Cloud Pods.&lt;/p>
-&lt;pre>&lt;code>Options:
+&lt;pre tabindex="0">&lt;code>Options:
 -l, --local List also locally available Cloud Pods
 &lt;/code>&lt;/pre>&lt;h3 id="pull">pull&lt;/h3>
 &lt;p>The &lt;code>pull&lt;/code> command retrieves the content of a Cloud Pod previously created and uploaded to the LocalStack platform and injects it into the application runtime.
@@ -71,7 +71,7 @@ The &lt;code>--fetch&lt;/code> option will instead only trigger the download of 
 Users could then, for instance, use the &lt;code>--inject&lt;/code> command to inject the retrieved pods.
 Similar to the &lt;code>--inject&lt;/code> command, users can specify the &lt;code>--merge&lt;/code> flag (off by default) if they wish to merge the current application state with the injecting one.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>Incorporate the state of a Cloud Pod into the application runtime.
+&lt;pre tabindex="0">&lt;code>Incorporate the state of a Cloud Pod into the application runtime.
 Options:
 -n, --name TEXT Name of the cloud pod
 --merge Merge the injecting state with the current application runtime.
@@ -85,7 +85,7 @@ Users can use the &lt;code>--local&lt;/code> flag if they wish to avoid the last
 Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the &lt;code>--services&lt;/code> option.
 Pushing an already existing pod results in creating a new version of it and, eventually, uploading it to the platform.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>Create a new version of a Cloud Pod from the latest snapshot. A snapshot is created if it does not
+&lt;pre tabindex="0">&lt;code>Create a new version of a Cloud Pod from the latest snapshot. A snapshot is created if it does not
 exists yet.
 Options:
 -l, --local Create the Cloud Pod version only locally, without pushing to remote
@@ -98,7 +98,7 @@ version.
 &lt;/code>&lt;/pre>&lt;h3 id="versions">versions&lt;/h3>
 &lt;p>The &lt;code>versions&lt;/code> command simply lists all the available versions of a Cloud Pod.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>List all available versions for a Cloud Pod.
+&lt;pre tabindex="0">&lt;code>List all available versions for a Cloud Pod.
 Options:
 -n, --name TEXT Name of the Cloud Pod.
 &lt;/code>&lt;/pre></description></item><item><title>Tools: Cloud Pods</title><link>/tools/cloud-pods/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/cloud-pods/</guid><description>
@@ -110,16 +110,17 @@ Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow
 &lt;p>You can interact with Cloud Pods via the Web UI, and to load and store the persistent state of pods, you can use the &lt;code>localstack&lt;/code> &lt;a href="/tools/cloud-pods/pods-cli/">command-line interface (CLI)&lt;/a>.&lt;/p>
 &lt;p>&lt;img src="pods-ui.png" alt="Cloud Pods Web UI">&lt;/p>
 &lt;p>Below is a simple example of how you can &lt;code>push&lt;/code> and &lt;code>pull&lt;/code> Cloud Pods to/from the remote platform using the &lt;code>localstack&lt;/code> CLI:&lt;/p>
-&lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8f5902;font-style:italic"># User 1 pushes state of Cloud Pod to persistent server&lt;/span>
-$ awslocal kinesis list-streams
-&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;StreamNames&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;mystream123&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]}&lt;/span>
-$ localstack pod push --name mypod1
-...
-&lt;span style="color:#8f5902;font-style:italic"># User 2 pulls state from the server to local instance&lt;/span>
-$ localstack pod pull --name mypod1
-$ awslocal kinesis list-streams
-&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;StreamNames&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;mystream123&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># User 1 pushes state of Cloud Pod to persistent server&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ awslocal kinesis list-streams
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;StreamNames&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;mystream123&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ localstack pod push --name mypod1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># User 2 pulls state from the server to local instance&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ localstack pod pull --name mypod1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ awslocal kinesis list-streams
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;StreamNames&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;mystream123&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Current Limitations&lt;/h4>
 Currently, Cloud Pods CLI commands require to set a &lt;code>LOCALSTACK_API_KEY&lt;/code>.
