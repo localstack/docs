@@ -91,3 +91,8 @@ The two providers are no longer tested or supported.
 {{% alert title="Persistence Support" color="info" %}}
 As of now the [LocalStack Pro persistence mechanism]({{< ref "persistence-mechanism#persistence-mechanism---pro-version" >}}) is only supported for the default SQS provider.
 {{% /alert %}}
+
+
+## Known limitations and differences to AWS
+
+* The `ApproximateReceiveCount` attribute of a message will be reset to 0 when the message moves to a DLQ.
