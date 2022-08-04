@@ -161,7 +161,7 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `LAMBDA_JAVA_OPTS` | `-Xmx512M` | Allow passing custom JVM options to Java Lambdas executed in Docker. Use `_debug_port_` placeholder to configure the debug port, e.g., `-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=_debug_port_`. |
 | `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`. |
 | `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times) |
-| `SYNCHRONOUS_KINESIS_EVENTS` | `1` (default) / `0` | Whether or not to handle lambda event sources as synchronous invocations. |
+| `SYNCHRONOUS_KINESIS_EVENTS` | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations. |
 
 ### OpenSearch
 
