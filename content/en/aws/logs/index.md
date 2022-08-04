@@ -11,6 +11,7 @@ Subscription filters can be used to forward logs to certain services, e.g. Kines
 
 ### Subscription Filters with Kinesis Example
 In the following we setup a little example on how to use subscription filters with kinesis.
+
 First, we setup the required resources. Therefore, we create a kinesis stream, a log group and log stream. Then we can configure the subscription filter. 
 {{< command >}}
 $ awslocal kinesis create-stream --stream-name "logtest" --shard-count 1
@@ -35,7 +36,7 @@ $ timestamp=$(($(date +'%s * 1000 + %-N / 1000000')))
 $ awslocal logs put-log-events --log-group-name test --log-stream-name test --log-events "[{\"timestamp\": ${timestamp} , \"message\": \"hello from cloudwatch\"}]"
 {{< / command >}}
 
-Now we can retrieve the data. In our example, there will only be one record.The data record is base64 encoded and compressed in gzip format:
+Now we can retrieve the data. In our example, there will only be one record. The data record is base64 encoded and compressed in gzip format:
 {{< command >}}
 $ shard_iterator=$(awslocal kinesis get-shard-iterator --stream-name logtest --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON | jq -r .ShardIterator)
 $ record=$(awslocal kinesis get-records --limit 10 --shard-iterator $shard_iterator | jq -r '.Records[0].Data')
