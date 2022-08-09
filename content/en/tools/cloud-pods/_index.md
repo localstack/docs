@@ -34,12 +34,6 @@ $ awslocal kinesis list-streams
 {"StreamNames": ["mystream123"]}
 ```
 
-{{% alert title="Current Limitations" color="info" %}}
-Currently, Cloud Pods CLI commands require to set a `LOCALSTACK_API_KEY`.
-Additionally, they require to install `localstack` runtime dependencies. 
-You can install them with `pip install localstack"[runtime]"`.
-{{% /alert %}}
-
 After pulling the pod, LocalStack will automatically inject its state into your instance at runtime, without requiring a restart.
 By default, the injecting state will replace the one in current the application state.
 The application and the injecting state can be merged with the `--merge` flag.
