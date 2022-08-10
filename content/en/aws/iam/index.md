@@ -118,7 +118,7 @@ DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been
 DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been implicitly denied: ["Action 'iam:PassRole' for 'arn:aws:iam::000000000000:role/lambda-role'"]
 ```
 
-So we can see the action `iam:PassRole` is not allowed but implicitly denied (meaning there is no explicit deny statement in the applicable policies, but now allow either) for your user for resource `arn:aws:iam::000000000000:role/lambda-role`.
+So we can see the action `iam:PassRole` is not allowed but implicitly denied (meaning there is no explicit deny statement in the applicable policies, but no allow either) for your user for resource `arn:aws:iam::000000000000:role/lambda-role`.
 If we now add this to our policy (since it is an example let's do it very simple with the same wildcard resource):
 
 ```json
