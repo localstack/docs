@@ -13,10 +13,8 @@ By default, LocalStack uses not enforce security policies for client requests. I
 The environment configuration `ENFORCE_IAM=1` is required to enable this feature. (By default, IAM enforcement is disabled, and all APIs can be accessed without authentication.)
 {{< /alert >}}
 
-Below is a simple example that illustrates the use of IAM policy enforcement. It first attempts to create an S3 bucket with the default user (which fails), then create a user and attempts to create a bucket with that user (which fails again), and then finally attaches a policy to the user to allow `s3:CreateBucket`, which allows the bucket to be created.
+Below is a simple example that illustrates the use of IAM policy enforcement. It first creates a user and obtains access/secret keys, then attempts to create a bucket with that user (which fails), and then finally attaches a policy to the user to allow `s3:CreateBucket`, which allows the bucket to be created.
 {{< command >}}
-$ awslocal s3 mb s3://test
-make_bucket failed: s3://test An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied
 $ awslocal iam create-user --user-name test
 ...
 $ awslocal iam create-access-key --user-name test
@@ -145,10 +143,10 @@ If you enable `IAM_SOFT_MODE=1`, you can look at the logs whether your requests 
 This is especially useful when trying to find missing permissions over a whole stack (with resources depending on each other) at a time without having to redeploy for every missing permission.
 
 {{< alert >}}
-**Note**: As of 1.0, resource based policies and conditions are not yet supported. Please try keeping to identity-based policies where possible.
+**Note**: As of 1.0, resource based policies and conditions are not yet supported. Please try sticking to identity-based policies where possible.
 Inter-service communication evaluation (for example for sts:AssumeRole) also is not supported, which currently reduces the impact of those missing features.
 {{< /alert >}}
 
 ### Supported APIs
 
-IAM security enforcement is available for all the AWS APIs of LocalStack - it has been tested, among others, for the following services: ACM, API Gateway, CloudFormation, CloudWatch (metrics/events/logs), DynamoDB, DynamoDB Streams, Elasticsearch Service, EventBus, Kinesis, KMS, Lambda, Redshift, S3, SecretsManager, SNS, SQS.
+IAM security enforcement is available for all AWS APIs in LocalStack - it has been thoroughly tested, among others, for the following services: ACM, API Gateway, CloudFormation, CloudWatch (metrics/events/logs), DynamoDB, DynamoDB Streams, Elasticsearch Service, EventBus, Kinesis, KMS, Lambda, Redshift, S3, SecretsManager, SNS, SQS.
