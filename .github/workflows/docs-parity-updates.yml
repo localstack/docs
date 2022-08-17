@@ -39,13 +39,17 @@ jobs:
           mkdir -p target/metrics-raw
           cd target/metrics-raw
           gh run download --repo localstack/localstack-ext -n parity-metric-ext-raw
+          # TODO Get the latest successful build on master
+          # TODO the runs on master often do NOT run the parity tests!
+          #   RUN_ID=$(gh run list --limit 1 --branch master --repo localstack/localstack-ext --workflow "Integration Tests" --json databaseId,conclusion --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
+          #   gh run download $RUN_ID --repo localstack/localstack-ext -n parity-metric-ext-raw
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
 
       - name: Download metrics data from latest Community test run (CircleCI)
         working-directory: docs
         # TODO remove branch param here (use metrics data from master branch builds)
-        run: ./scripts/get_latest_circleci_metrics.sh target feature_metric_coverage_collection
+        run: ./scripts/get_latest_circleci_metrics.sh ../localstack/target feature_metric_coverage_collection
 
       - name: Cache LocalStack community dependencies (venv)
         uses: actions/cache@v2

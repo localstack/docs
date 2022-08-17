@@ -8,9 +8,7 @@ METRICS_ARTIFACTS_BRANCH=${2:-master}
 # parameterization
 PROJECT_SLUG="github/localstack/localstack"
 METRICS_RAW="$PARENT_FOLDER/metrics-raw/"
-METRICS_IMPL="$PARENT_FOLDER/metrics-implementation-details"
-METRICS_IMPL_COMMUNITY="$METRICS_IMPL/community/"
-METRICS_IMPL_PRO="$METRICS_IMPL/pro/"
+METRICS_IMPL="$PARENT_FOLDER/metrics-implementation-details/"
 
 echo "Project: $PROJECT_SLUG."
 
@@ -25,7 +23,7 @@ echo "Raw metrics data URLs:"
 echo "$ARTIFACT_URLS"
 
 echo "Downloading metrics data..."
-wget $ARTIFACT_URLS
+wget -m --cut-dirs 5 --no-host-directories $ARTIFACT_URLS
 
 # Create the following directory structure for the coverage_docs_utility.py
 # - resources/metrics-raw
@@ -39,15 +37,14 @@ wget $ARTIFACT_URLS
 
 echo "Moving raw community metrics data to $METRICS_RAW"
 mkdir -p $METRICS_RAW
-mv metrics-report-*.csv $METRICS_RAW
+mv parity_metrics/metric-report-*.csv $METRICS_RAW
 
-echo "Moving community metrics implementation details to $METRICS_IMPL_COMMUNITY..."
-# TODO check if this file name is correct
-mv community_implementation_coverage_full.csv $METRICS_IMPL_COMMUNITY
+echo "Moving community metrics implementation details to $METRICS_IMPL..."
+mkdir -p $METRICS_IMPL
+mv community $METRICS_IMPL
 
-echo "Moving pro metrics implementation details to $METRICS_IMPL_PRO..."
-# TODO check if this file name is correct
-mv pro_implementation_coverage_full.csv $METRICS_IMPL_PRO
+echo "Moving pro metrics implementation details to $METRICS_IMPL..."
+mv pro $METRICS_IMPL
 
 echo "Resulting file structure:"
 tree $PARENT_FOLDER
