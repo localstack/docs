@@ -6,7 +6,7 @@ description: >
   Fault Injection Simulator (FIS)
 ---
 
-Basic support for FIS is included in LocalStack Pro. The local AppSync API allows you to introduce faults to other services - in order to check how your setup behaves when parts of it stop working.
+Basic support for the Fault Injection Simulator (FIS) service is included in LocalStack Pro. The local FIS API allows you to introduce faults to other services - in order to check how your setup behaves when parts of it stop working.
 The full list of such possible fault introductions - called "actions" - available in AWS is [here](https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html).
 
 In general, calls to FIS contain the following information:
