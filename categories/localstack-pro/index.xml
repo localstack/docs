@@ -2994,7 +2994,27 @@ In order to use the EMR API, some additional dependencies have to be fetched fro
 &lt;div class="alert alert-primary" role="alert">
 &lt;strong>Note&lt;/strong>:
 Redis requires at least 3+ nodes to form a Redis replication group with cluster mode enabled. Hence, if the user requests only 2 node groups, we transparently upgrade to 3 nodes behind the scenes, to avoid raising an error.
-&lt;/div></description></item><item><title>Aws: Glue</title><link>/aws/glue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/glue/</guid><description>
+&lt;/div></description></item><item><title>Aws: FIS</title><link>/aws/fis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/fis/</guid><description>
+&lt;p>Basic support for the Fault Injection Simulator (FIS) service is included in LocalStack Pro. The local FIS API allows you to introduce faults to other services - in order to check how your setup behaves when parts of it stop working.
+The full list of such possible fault injections - called &amp;ldquo;actions&amp;rdquo; - is available in the &lt;a href="https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html">AWS docs&lt;/a>.&lt;/p>
+&lt;p>In general, calls to FIS contain the following information:&lt;/p>
+&lt;ol>
+&lt;li>What kind of fault to introduce - &amp;ldquo;action&amp;rdquo;.&lt;/li>
+&lt;li>What kind of resources to affect - &amp;ldquo;target&amp;rdquo;.&lt;/li>
+&lt;li>(sometimes) Duration of the interruption. After the specified amount of time FIS is supposed to revert systems to their original state or to stop introducing faults.&lt;/li>
+&lt;/ol>
+&lt;p>FIS actions come in roughly two types:&lt;/p>
+&lt;ol>
+&lt;li>A single-time event, e.g., &lt;code>aws:ec2:stop-instances&lt;/code> FIS action is a &lt;code>stop-instances&lt;/code> command sent to target EC2 instances. Results of some of these single-time events can be automatically reverted after a specified period of time, e.g., by sending &lt;code>start-instances&lt;/code> command to the affected instances.&lt;/li>
+&lt;li>Generation of API errors in response to a specified percentage of API calls, e.g., &lt;code>aws:fis:inject-api-unavailable-error&lt;/code> to inject an HTTP 503 error. Currently AWS only supports this for EC2 API calls.&lt;/li>
+&lt;/ol>
+&lt;h1 id="most-notable-current-fis-limitations-in-localstack">Most notable current FIS limitations in LocalStack&lt;/h1>
+&lt;ol>
+&lt;li>Only a subset of FIS actions available in AWS are currently supported in LocalStack (unsupported actions generate an error). The set of supported actions is extended on an ongoing basis, and new actions can easily be added on demand.&lt;/li>
+&lt;li>Only single-time events are supported. The continuous generation of API errors in reponse to some API calls is in the works.&lt;/li>
+&lt;li>LocalStack doesn&amp;rsquo;t support target selection mechanism used by AWS. See &lt;a href="https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-selection-mode">selection mode documentation for more info&lt;/a>&lt;/li>
+&lt;li>LocalStack currently ignores &lt;a href="https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn">&lt;code>roleArn&lt;/code>s&lt;/a>. In AWS FIS performs actions under permissions granted to given &lt;code>roleArn&lt;/code>s.&lt;/li>
+&lt;/ol></description></item><item><title>Aws: Glue</title><link>/aws/glue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/glue/</guid><description>
 &lt;p>The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;strong>Note&lt;/strong>:
