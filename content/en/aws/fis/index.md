@@ -17,7 +17,7 @@ In general, calls to FIS contain the following information:
 
 FIS actions come in roughly two types:
 
-1. A single-time event, e.g. aws:ec2:stop-instances FIS action is a stop-instances command sent to target EC2 instances. Results of some of these single-time events can be automatically reverted after a specified period of time, e.g. by sending start-instances command to the affected instances.
+1. A single-time event, e.g., `aws:ec2:stop-instances` FIS action is a `stop-instances` command sent to target EC2 instances. Results of some of these single-time events can be automatically reverted after a specified period of time, e.g., by sending `start-instances` command to the affected instances.
 2. Generation of API errors in response to a specified percentage of API calls. E.g. aws:fis:inject-api-unavailable-error. Currently AWS only supports this for EC2 API calls.
 
 # Most notable current FIS limitations in LocalStack
