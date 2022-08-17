@@ -80,15 +80,14 @@ jobs:
         if: ${{ success() && steps.check-for-changes.outputs.diff-count != '0' && steps.check-for-changes.outputs.diff-count != '' }}
         id: template
         uses: juliangruber/read-file-action@v1
-        working-directory: docs
         with:
-          path: .github/bot_templates/PARITY_COVERAGE_DOCS_PR.md
+          path: docs/.github/bot_templates/PARITY_COVERAGE_DOCS_PR.md
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         if: ${{ success() && steps.check-for-changes.outputs.diff-count != '0' && steps.check-for-changes.outputs.diff-count != '' }}
-        working-directory: docs
         with:
+          path: docs
           title: "Update Parity Coverage Docs"
           body: "${{ steps.markdown.outputs.value }}"
           branch: "parity-coverage-auto-updates"
