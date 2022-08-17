@@ -24,4 +24,4 @@ FIS actions come in roughly two types:
 1. Only a subset of FIS actions available in AWS are currently supported in LocalStack (unsupported actions generate an error). The set of supported actions is extended on an ongoing basis, and new actions can easily be added on demand.
 2. Only single-time events are supported. The continuous generation of API errors in reponse to some API calls is in the works.
 3. LocalStack doesn't support target selection mechanism used by AWS. See [selection mode documentation for more info](https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-selection-mode)
-4. LocalStack ignores [roleArns](https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn). In AWS FIS performs actions under permissions granted to given roleArns.
+4. LocalStack currently ignores [`roleArn`s](https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn). In AWS FIS performs actions under permissions granted to given `roleArn`s.
