@@ -39,6 +39,8 @@ jobs:
           mkdir -p target/metrics-raw
           cd target/metrics-raw
           gh run download --repo localstack/localstack-ext -n parity-metric-ext-raw
+          cd ../../
+          tree target
           # TODO Get the latest successful build on master
           # TODO the runs on master often do NOT run the parity tests!
           #   RUN_ID=$(gh run list --limit 1 --branch master --repo localstack/localstack-ext --workflow "Integration Tests" --json databaseId,conclusion --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
