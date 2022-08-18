@@ -42,7 +42,7 @@ jobs:
           cd ../../
           tree target
           # TODO Get the latest successful build on master
-          # TODO the runs on master often do NOT run the parity tests!
+          # TODO the runs on master often do NOT run the parity tests! we need to take the PR build which caused the master build to be skipped?
           #   RUN_ID=$(gh run list --limit 1 --branch master --repo localstack/localstack-ext --workflow "Integration Tests" --json databaseId,conclusion --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
           #   gh run download $RUN_ID --repo localstack/localstack-ext -n parity-metric-ext-raw
         env:
