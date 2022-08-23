@@ -78,6 +78,12 @@ You can control the format of the generated Queue URLs by setting the environmen
 
 ### Enabling QueueDeletedRecently errors
 
+AWS only allows one call to `PurgeQueue` every 60 seconds.
+See the [DeleteQueue API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html).
+LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with `SQS_DELAY_PURGE_RETRY=1`.
+
+### Enabling QueueDeletedRecently errors
+
 AWS does not allow creating a queue with the same name for 60 seconds after it was deleted.
 See the [DeleteQueue API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
 LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with `SQS_DELAY_RECENTLY_DELETED=1`.
