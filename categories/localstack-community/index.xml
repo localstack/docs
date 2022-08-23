@@ -2783,6 +2783,10 @@ To run a &lt;code>GetQueueUrl&lt;/code> request, add the &lt;code>?Action=GetQue
 &lt;/tbody>
 &lt;/table>
 &lt;h3 id="enabling-queuedeletedrecently-errors">Enabling QueueDeletedRecently errors&lt;/h3>
+&lt;p>AWS only allows one call to &lt;code>PurgeQueue&lt;/code> every 60 seconds.
+See the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html">DeleteQueue API Reference&lt;/a>.
+LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with &lt;code>SQS_DELAY_PURGE_RETRY=1&lt;/code>.&lt;/p>
+&lt;h3 id="enabling-queuedeletedrecently-errors-1">Enabling QueueDeletedRecently errors&lt;/h3>
 &lt;p>AWS does not allow creating a queue with the same name for 60 seconds after it was deleted.
 See the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html">DeleteQueue API Reference&lt;/a>.
 LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with &lt;code>SQS_DELAY_RECENTLY_DELETED=1&lt;/code>.&lt;/p>
