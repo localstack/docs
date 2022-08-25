@@ -467,6 +467,7 @@ In the coverage table below, the features are marked with their respective avail
 | Event Invoke Configs (Destinations)                                | ⭐⭐⭐⭐       | Emulated        |       |
 | Event Source Mappings                                              | ⭐⭐⭐⭐       | Emulated        |       |
 | Function Concurrencies                                             | ⭐⭐⭐         | CRUD            |       |
+| Function URLs                                                      | ⭐⭐⭐⭐       | Emulated        |       |
 | Functions                                                          | ⭐⭐⭐⭐       | Emulated        |       |
 | Invoke Functions                                                   | ⭐⭐⭐⭐       | Emulated        |       |
 | [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       | Emulated        |       |
