@@ -13,20 +13,49 @@ This page describes the filesystem directory layout used internally by LocalStac
 This filesystem layout was introduced in LocalStack v1 and can be disabled by setting `LEGACY_DIRECTORIES` to `1`.
 {{< /alert >}}
 
-LocalStack uses following directories when running within a container.
+LocalStack uses following directory layout when running within a container.
 
-- `/var/lib/localstack`: the LocalStack volume directory root
+```
+/
+├── etc
+│   └── localstack
+│       └── init
+├── usr
+│   └── lib
+│       └── localstack
+└── var
+    └── lib
+        └── localstack  <- the LocalStack volume directory root
+            ├── cache
+            ├── lib
+            ├── logs
+            ├── state
+            └── tmp
+
+```
+
+### Directory contents
+
+#### LocalStack volume directory
+
+- `/var/lib/localstack`: the [LocalStack volume](#localstack-volume) directory root
 - `/var/lib/localstack/lib`: variable packages (like extensions or lazy-loaded third-party dependencies)
 - `/var/lib/localstack/logs`: logs for recent LocalStack runs
 - `/var/lib/localstack/state`: contains the state of services if persistence is enabled (such as OpenSearch cluster data)
 - `/var/lib/localstack/tmp`: temporary data that is not expected to survive LocalStack runs (may be cleared when LocalStack starts or stops)
 - `/var/lib/localstack/cache`: temporary data that is expected to survive LocalStack runs (is not cleared when LocalStack starts or stops)
-- `/usr/lib/localstack`: static third-party packages installed into the container images
-<!-- For future use, not currently in use
+
+
+#### Configuration
 - `/etc/localstack`: configuration directory
+- `/etc/localstack/init`: root directory for [initialization hooks]({{< ref `init-hooks` >}})
+<!-- For future use, not currently in use
 - `/etc/localstack/conf.d`: configuration overrides
-- `/etc/localstack/init`: initialisation hooks
 -->
+
+#### Static libraries
+
+- `/usr/lib/localstack`: static third-party packages installed into the container images
 
 
 {{< alert title="Warning" color="warning">}}
