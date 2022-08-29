@@ -21,6 +21,7 @@ FIS actions come in roughly two types:
 2. Generation of API errors in response to a specified percentage of API calls, e.g., `aws:fis:inject-api-unavailable-error` to inject an HTTP 503 error. Currently AWS only supports this for EC2 API calls.
 
 # Most notable current FIS limitations in LocalStack
+
 1. Only a subset of FIS actions available in AWS are currently supported in LocalStack (unsupported actions generate an error). The set of supported actions is extended on an ongoing basis, and new actions can easily be added on demand.
 2. LocalStack doesn't support target selection mechanism used by AWS. See [selection mode documentation for more info](https://docs.aws.amazon.com/fis/latest/userguide/targets.html#target-selection-mode)
 3. LocalStack currently ignores [`roleArn`s](https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn). In AWS FIS performs actions under permissions granted to given `roleArn`s.
@@ -28,16 +29,19 @@ FIS actions come in roughly two types:
 # What FIS in LocalStack offers in addition to what FIS in AWS does
 
 Localstack offers `localstack:generic:api-error` action. The action is similar to actions like `aws:fis:inject-api-unavailable-error` that are supported in AWS - it allows a user to introduce errors to API calls. The difference with AWS is that AWS FIS currently supports this only for EC2 API calls and then is only able to generate a few errors there, while `localstack:generic:api-error` in LocalStack FIS allows a user to configure any desired faults for any API calls. In its `parameters` section it is possible to set the following:
-- "region" - a name of a region to introduce faults to, e.g. "us-west-1". Default: the region you are starting your experiment in.
-- "service" - a name of a service to limit the faults to, e.g. "kms". Default: all services.
-- "apiCall" - a name of an API call for the specified service to limit the faults to, e.g. "ListKeys". Default: all API calls.
-- "percentage" - a percentage of all calls to matching API calls to fail. Default: "100".
-- "exception" - a name of an exception to raise for API calls affected by FIS. Default: "InternalError".
-- "errorCode" - an HTTP error code to return for an API call affected by FIS. Default: "500".
+
+- `region` - A name of a region to introduce faults to, e.g. "us-west-1". Default: the region you are starting your experiment in.
+- `service` - A name of a service to limit the faults to, e.g. "kms". Default: all services.
+- `apiCall` - A name of an API call for the specified service to limit the faults to, e.g. "ListKeys". Default: all API calls.
+- `percentage` - A percentage of all calls to matching API calls to fail. Default: "100".
+- `exception` - A name of an exception to raise for API calls affected by FIS. Default: "InternalError".
+- `errorCode` - An HTTP error code to return for an API call affected by FIS. Default: "500".
 
 # Tutorial
-First, let's create a file (named `create-experiment.json` in this case) with the following JSON configuration for a later call to FIS CreateExperimentTemplate.
-```
+
+First, let's create a file (named `create-experiment.json` in this case) with the following JSON configuration for a later call to FIS `CreateExperimentTemplate`.
+
+```json
 {
 	"actions": {
 		"Some test action": {
@@ -61,11 +65,14 @@ First, let's create a file (named `create-experiment.json` in this case) with th
 This config is going to make 100% of KMS ListKeys API calls fail with a 400 HTTP code. Settings for `stopConditions` and `roleArn` here do not matter, as LocalStack doesn't currently act on them in any way. But they have to be present, as these are required fields by the AWS specifications.
 
 The next step is to create a FIS experiment template using our file. Keep in mind that `file://` here is required, without it you are going to get an error.
-```
+
+```sh
 awslocal fis create-experiment-template --cli-input-json file://create-experiment.json
 ```
-The output is going to be something like
-```
+
+The output is going to be something like:
+
+```sh 
 {
     "experimentTemplate": {
         "id": "7b9ec603-1d20-4a8f-8eda-b1c3e7b28540",
@@ -92,32 +99,43 @@ The output is going to be something like
         "roleArn": "arn:aws:iam:123456789012:role/ExperimentRole"
     }
 }
+```
 
-```
 You are going to need the ID (`7b9ec603-1d20-4a8f-8eda-b1c3e7b28540` in this case) to start an actual experiment. And if you lose the ID, you can always list all available experiment templates with
-```
+
+```sh 
 awslocal fis list-experiment-templates
 ```
-You also can check all the details for the template later using
-```
+
+You also can check all the details for the template later using:
+
+```sh 
 awslocal fis get-experiment-template --id 7b9ec603-1d20-4a8f-8eda-b1c3e7b28540
 ```
+
 Now let's check that KMS ListKeys actually works before we introduce our API disruprions:
-```
+
+```sh 
 awslocal kms list-keys
 ```
+
 Your output might differ, but for a fresh start of LocalStack the output should just be an empty list:
-```
+
+```sh 
 {
     "Keys": []
 }
 ```
+
 Time to start our experiment:
-```
+
+```sh 
 awslocal fis start-experiment --experiment-template-id 7b9ec603-1d20-4a8f-8eda-b1c3e7b28540
 ```
+
 Keep in mind the ID of the experiment in the output (`8b98db02-1c46-49fd-8075-8ff3368fb0a3` in this example), as you would need it to stop the experiment:
-```
+
+```sh 
 {
     "experiment": {
         "id": "8b98db02-1c46-49fd-8075-8ff3368fb0a3",
@@ -148,33 +166,44 @@ Keep in mind the ID of the experiment in the output (`8b98db02-1c46-49fd-8075-8f
     }
 }
 ```
-As with the templates, you can always use 
-```
+
+As with the templates, you can use the following command to list all experiments:
+
+```sh 
 awslocal fis list-experiments
 ```
-to list all experiments and then
-```
+
+Use the following command to get the details about the experiment again.
+
+```sh 
 awslocal fis get-experiment --id 8b98db02-1c46-49fd-8075-8ff3368fb0a3
 ```
-to get the details about the experiment again.
 
-Time to check if this has affected our KMS:
-```
+Let's check if this has affected our KMS:
+
+```sh 
 awslocal kms list-keys
 ```
+
 If everything worked (or rather failed) as expected, you should see the following:
-```
+
+```sh 
 An error occurred (SomeTerribleException) when calling the ListKeys operation: Failing as per Fault Injection Simulator configuration
 ```
+
 Let's check just in case if other API calls to KMS or other services are affected. For example, can use
-```
+
+```sh 
 awslocal kms list-aliases
 awslocal sqs list-queues
 ```
+
 Both should succeed.
 
-To stop the experiment and to let everything get back to normal we can run
-```
+To stop the experiment and to let everything get back to normal we can run:
+
+```sh 
 awslocal fis stop-experiment --id 8b98db02-1c46-49fd-8075-8ff3368fb0a3
 ```
+
 After that `awslocal kms list-keys` is supposed to succeed again.
