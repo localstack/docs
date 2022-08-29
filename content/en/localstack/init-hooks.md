@@ -77,7 +77,7 @@ curl -s localhost:4566/_localstack/init | jq .
 
 ### Query individual stages
 
-You can also query a specific stage:
+You can also query a specific stage at `localhost:4566/_localstack/init/<stage>`:
 ```bash
 curl -s localhost:4566/_localstack/init/ready | jq .
 ```
