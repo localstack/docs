@@ -8,10 +8,10 @@ description: >
 ## Lifecycle stages and hooks
 
 LocalStack has four well-known lifecycle phases or stages:
-* `BOOT`: the container is running but localstack runtime has not been started
-* `START`: the Python process is running and the localstack runtime is starting
-* `READY`: localstack is ready to serve requests
-* `SHUTDOWN`: localstack is shutting down
+* `BOOT`: the container is running but the LocalStack runtime has not been started
+* `START`: the Python process is running and the LocalStack runtime is starting
+* `READY`: LocalStack is ready to serve requests
+* `SHUTDOWN`: LocalStack is shutting down
 
 You can hook into each of these lifecycle phases using custom shell or python scripts.
 Each lifecycle phase has it's own directory in `/etc/localstack/init`.
