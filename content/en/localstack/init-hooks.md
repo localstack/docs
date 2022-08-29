@@ -46,7 +46,7 @@ A script is considered in `ERROR` state if it is a shell script and returns with
 
 ## Status endpoint
 
-There is an additional endpoint in `localhost:4566/_localstack/init` which returns the state of the initialization procedure.
+There is an additional endpoint at `localhost:4566/_localstack/init` which returns the state of the initialization procedure.
 Boot scripts are currently always in the unknown state, since they are executed outside the localstack process and we don't know whether they have been successfully executed or not.
 
 ```bash
