@@ -4511,6 +4511,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>PutConformancePack</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>PutDeliveryChannel <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4722,10 +4726,6 @@ description: >
     </tr>
     <tr>
       <td>ListStoredQueries</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutConformancePack</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10663,7 +10663,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateInstanceProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>CreateInstanceProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11095,7 +11095,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAssumeRolePolicy</td>
+      <td>UpdateAssumeRolePolicy <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11339,10 +11339,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateProvisioningTemplate (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateThing (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11508,10 +11504,6 @@ description: >
     </tr>
     <tr>
       <td>ListAuditTasks</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListCACertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11754,6 +11746,10 @@ description: >
     </tr>
     <tr>
       <td>CreateProvisioningClaim</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateProvisioningTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12010,6 +12006,10 @@ description: >
     </tr>
     <tr>
       <td>ListBillingGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCACertificates</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12503,14 +12503,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateEventConfigurationByResourceTypes (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateResourceEventConfiguration (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UpdateWirelessDevice (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -12829,6 +12821,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>UpdateEventConfigurationByResourceTypes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>UpdateFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12850,6 +12846,10 @@ description: >
     </tr>
     <tr>
       <td>UpdatePosition</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateResourceEventConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -13027,7 +13027,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddTagsToStream</td>
+      <td>AddTagsToStream <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13095,7 +13095,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForStream</td>
+      <td>ListTagsForStream <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15579,15 +15579,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RestoreDBClusterFromS3 (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>RestoreDBClusterFromSnapshot (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RestoreDBClusterToPointInTime (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15612,10 +15604,6 @@ description: >
     </tr>
     <tr>
       <td>StopDBInstance (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SwitchoverReadReplica</td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -15837,6 +15825,14 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RestoreDBClusterFromS3</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RestoreDBClusterToPointInTime</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RestoreDBInstanceFromS3</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15862,6 +15858,10 @@ description: >
     </tr>
     <tr>
       <td>StopDBInstanceAutomatedBackupsReplication</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SwitchoverReadReplica</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -15923,7 +15923,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AuthorizeClusterSecurityGroupIngress</td>
+      <td>AuthorizeClusterSecurityGroupIngress <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15935,7 +15935,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateClusterSecurityGroup</td>
+      <td>CreateClusterSecurityGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15991,7 +15991,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeClusterSecurityGroups</td>
+      <td>DescribeClusterSecurityGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17215,7 +17215,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBucketCors</td>
+      <td>DeleteBucketCors (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17307,7 +17307,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17507,11 +17507,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketReplication</td>
+      <td>PutBucketReplication (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketRequestPayment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketRequestPayment <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17634,6 +17634,10 @@ description: >
     </tr>
     <tr>
       <td>PutAccessPointPolicy</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PutBucketLifecycleConfiguration</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17788,10 +17792,6 @@ description: >
     </tr>
     <tr>
       <td>PutAccessPointPolicyForObjectLambda</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutBucketLifecycleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
