@@ -176,7 +176,7 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `RDS_PG_CUSTOM_VERSIONS` | `1` / `0` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
+| `RDS_PG_CUSTOM_VERSIONS` | `0` / `1` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
 
 ### StepFunctions
 
