@@ -3424,7 +3424,20 @@ Inter-service communication evaluation (for example for sts:AssumeRole) also is 
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image">Lambda Container Images&lt;/a>: Simple demo application illustrating Lambda container images in LocalStack. The Lambda image is built using Docker and pushed to a local ECR registry.&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging&lt;/a>: Simple demo application to illustrate debugging Lambdas locally.&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers">Lambda Layers&lt;/a>: Simple demo application illustrating Lambda layers using LocalStack, deployed via the Serverless framework.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls">Lambda Function URL&lt;/a>: Simple demo application illustrating Lambda Function URLs using LocalStack, to call a Lambda Function via HTTP.&lt;/li>
 &lt;/ul>
+&lt;h2 id="lambda-function-url">Lambda Function URL&lt;/h2>
+&lt;p>LocalStack supports &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html">Lambda Function URLs&lt;/a> for calling Lambda Functions via HTTP. Below is a simple example to deploy a Lamda function via a ZIP file before creating a Function URL:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name &amp;lt;function-name&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime &amp;lt;lambda-runtime&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb://&amp;lt;path/to/zip/file&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler index.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role cool-stacklifter&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After the Lambda function is created, you can create a Function URL to call the Lambda function:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal lambda create-function-url-config \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name &amp;lt;function-name&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --auth-type NONE&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="lambda-container-images">Lambda Container Images&lt;/h2>
 &lt;p>LocalStack Pro supports &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html">Lambda functions defined as container images&lt;/a>, so you can bundle your code and dependencies as one container image.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
