@@ -110,7 +110,7 @@ Options:
 The `status` command compiles a report of LocalStack current in-memory application runtime, or state, listing what CloudPod and CloudPod Version have contributed to each AWS Service.
 The set of active, or loaded, AWS Services is also given in this report so to distinguish which are not derivatives of CloudPod operations.
 
-The `-v` option extends the default report to also include the sequence of state changing CloudPod operations, listing for each the type and affected AWS Services.
+The `-v` option extends the default report to also include the sequence of state changing Cloud Pod operations, listing for each the type and affected AWS Services.
 
 **Synopsis**
 ```
