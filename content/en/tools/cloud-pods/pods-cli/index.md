@@ -114,7 +114,7 @@ The `-v` option extends the default report to also include the sequence of state
 
 **Synopsis**
 ```
-Lists what CloudPods have contributed to each service's current in-memory state.
+Lists what Cloud Pods have contributed to each service's current in-memory state.
 
 Options:
   -v, --verbose      Include in the output the sequence of state changing CloudPod operations.
