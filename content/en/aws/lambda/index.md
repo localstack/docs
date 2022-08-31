@@ -25,7 +25,7 @@ LocalStack Pro samples contains a number of code examples that demonstrate how t
 - [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image): Simple demo application illustrating Lambda container images in LocalStack. The Lambda image is built using Docker and pushed to a local ECR registry.
 - [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging): Simple demo application to illustrate debugging Lambdas locally.
 - [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers): Simple demo application illustrating Lambda layers using LocalStack, deployed via the Serverless framework.
-- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls): Simple demo application illustrating Lambda Function URLs using LocalStack, to call a Lambda Function via HTTP API call.
+- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls): Simple demo application illustrating Lambda Function URLs using LocalStack, to call a Lambda Function via HTTP.
 
 ## Lambda Function URL
 
