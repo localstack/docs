@@ -18,9 +18,10 @@ In order to use MSSQL databases, you need to explicitly accept the [Microsoft SQ
 
 ### Postgres versions
 
-When creating an RDS DB cluster or instance with `postgres`/`aurora-postgresql` DB engine, by default Postgres version 11 is used. 
-In order to use custom versions, make sure to configure the environment variable `RDS_PG_CUSTOM_VERSIONS=1`, which then causes LocalStack to install and start up the respective Postgres version on demand.
+When creating an RDS DB cluster or instance with `postgres`/`aurora-postgresql` DB engine and a specific `EngineVersion`, LocalStack will install and provision the respective Postgres version on demand.
 Currently, versions 11/12/13 can be installed - when selecting a major version outside of this range, the default version 11 is used as fallback.
+
+In order to disable installation of custom versions, you may configure the environment variable `RDS_PG_CUSTOM_VERSIONS=0`, in which case always the default Postgres version 11 will be used.
 
 ## End-to-end example (Postgres)
 
