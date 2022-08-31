@@ -29,7 +29,7 @@ LocalStack Pro samples contains a number of code examples that demonstrate how t
 
 ## Lambda Function URL
 
-LocalStack supports [Lambda Function URLs](https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html) for calling Lambda Functions via HTTP API calls. Below is a simple example to deploy a Lamdda function via a ZIP file before creating a Function URL:
+LocalStack supports [Lambda Function URLs](https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html) for calling Lambda Functions via HTTP. Below is a simple example to deploy a Lamda function via a ZIP file before creating a Function URL:
 
 {{< command >}}
 $ awslocal lambda create-function \
