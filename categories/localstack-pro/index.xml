@@ -3631,9 +3631,9 @@ Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&am
 In order to use MSSQL databases, you need to explicitly accept the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by setting &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> in the LocalStack container environment.
 &lt;/div>
 &lt;h3 id="postgres-versions">Postgres versions&lt;/h3>
-&lt;p>When creating an RDS DB cluster or instance with &lt;code>postgres&lt;/code>/&lt;code>aurora-postgresql&lt;/code> DB engine, by default Postgres version 11 is used.
-In order to use custom versions, make sure to configure the environment variable &lt;code>RDS_PG_CUSTOM_VERSIONS=1&lt;/code>, which then causes LocalStack to install and start up the respective Postgres version on demand.
+&lt;p>When creating an RDS DB cluster or instance with &lt;code>postgres&lt;/code>/&lt;code>aurora-postgresql&lt;/code> DB engine and a specific &lt;code>EngineVersion&lt;/code>, LocalStack will install and provision the respective Postgres version on demand.
 Currently, versions 11/12/13 can be installed - when selecting a major version outside of this range, the default version 11 is used as fallback.&lt;/p>
+&lt;p>In order to disable installation of custom versions, you may configure the environment variable &lt;code>RDS_PG_CUSTOM_VERSIONS=0&lt;/code>, in which case always the default Postgres version 11 will be used.&lt;/p>
 &lt;h2 id="end-to-end-example-postgres">End-to-end example (Postgres)&lt;/h2>
 &lt;p>The local RDS service also supports the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">RDS Data API&lt;/a>, which allows executing data queries against RDS clusters over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple &lt;code>SELECT 123&lt;/code> query via the RDS Data API.
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test
