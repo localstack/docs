@@ -32,7 +32,7 @@ Localstack offers `localstack:generic:api-error` action. The action is similar t
 
 - `region` - A name of a region to introduce faults to, e.g. "us-west-1". Default: the region you are starting your experiment in.
 - `service` - A name of a service to limit the faults to, e.g. "kms". Default: all services.
-- `apiCall` - A name of an API call for the specified service to limit the faults to, e.g. "ListKeys". Default: all API calls.
+- `operation` - A name of an operation for the specified service to limit the faults to, e.g. "ListKeys". Default: all operations.
 - `percentage` - A percentage of all calls to matching API calls to fail. Default: "100".
 - `exception` - A name of an exception to raise for API calls affected by FIS. Default: "InternalError".
 - `errorCode` - An HTTP error code to return for an API call affected by FIS. Default: "500".
@@ -48,7 +48,7 @@ First, let's create a file (named `create-experiment.json` in this case) with th
 			"actionId": "localstack:generic:api-error",
 			"parameters": {
 				"service": "kms",
-				"apiCall": "ListKeys",
+				"operation": "ListKeys",
 				"percentage": "100",
 				"exception": "SomeTerribleException",
 				"errorCode": "400"
@@ -82,7 +82,7 @@ The output is going to be something like:
                 "actionId": "localstack:generic:api-error",
                 "parameters": {
                     "service": "kms",
-                    "apiCall": "ListKeys",
+                    "operation": "ListKeys",
                     "percentage": "100",
                     "exception": "SomeTerribleException",
                     "errorCode": "400"
@@ -149,7 +149,7 @@ Keep in mind the ID of the experiment in the output (`8b98db02-1c46-49fd-8075-8f
                 "actionId": "localstack:generic:api-error",
                 "parameters": {
                     "service": "kms",
-                    "apiCall": "ListKeys",
+                    "operation": "ListKeys",
                     "percentage": "100",
                     "exception": "SomeTerribleException",
                     "errorCode": "400"
