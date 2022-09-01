@@ -11,7 +11,7 @@ description: >
 ---
 
 {{< alert title="Warning" color="warning">}}
-Multi-account is a preview feature and is not compatible with cloud pods and persistence.
+Multi-account is a preview feature and has limited compatibility with cloud pods and persistence.
 To enable multi-accounts, refer to [configuration]({{< ref "configuration#core" >}}).
 {{< /alert >}}
 
@@ -22,14 +22,7 @@ By contrast, LocalStack Pro ships with multi-account support which adds namespac
 Namespaced AWS resources can be accessed by using the `AWS_ACCESS_KEY_ID` variable when making requests.
 No additional server-side configuration is required.
 
-{{< alert title="Note" color="primary">}}
-Multi-account is not supported for the `us-east-1` region.
-See [limitation note](#limitations).
-{{< /alert >}}
-
 {{< command >}}
-$ export AWS_DEFAULT_REGION=eu-central-1
-
 $ AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 create-key-pair --key-name green-hospital
 
 $ AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 create-key-pair --key-name red-medicine
@@ -55,7 +48,7 @@ $ AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 describe-key-pairs
 }
 {{< / command >}}
 
-In absence of an explicit value for Account ID, LocalStack reverts to the default value of `000000000000`.
+If an explicit value for Account ID is not set, LocalStack uses the default value of `000000000000`.
 In the current example, not setting an explicit Account ID will return no resources.
 
 {{< command >}}
@@ -72,10 +65,37 @@ In future LocalStack may support proper access key IDs issued by the local IAM s
 
 ### Limitations
 
-Multi-accounts is a preview feature and is not compatible with cloud pods and persistence.
+Multi-accounts is a preview feature and has limited compatibility with cloud pods and persistence.
+The services are listed below:
 
-In order to use multi-accounts, the region must be configured to something other than `us-east-1`.
-Note that `us-east-1` is the default region and must be explicitly overridden.
-For the AWS CLI, this can be done using the `AWS_DEFAULT_REGION` or the `--region` argument.
-More information can be found on [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
-
+- API Gateway
+- Athena
+- Backup
+- CloudFormation
+- CloudFront
+- CloudTrail
+- CloudWatch
+- CodeCommit
+- DynamoDB
+- EventBridge
+- Firehose
+- Glacier
+- Glue
+- IoT Analytics
+- IoT Wireless
+- Kafka
+- LakeFormation
+- Lambda
+- MediaStore
+- MWAA
+- OpenSearch
+- QLDB
+- Route53
+- SageMaker
+- SecretsManager
+- ServerlessRepo
+- Service Discovery
+- SNS
+- SQS
+- Timestream
+- Transfer
