@@ -14,6 +14,10 @@ Language models are around 50 MiB each and saved to the cache directory (see [Fi
 
 The input audio file must of single-channel PCM WAV format.
 
+{{< alert title="Warning" color="warning">}}
+This service has limited support for aarch64/Apple Silicon.
+{{< /alert >}}
+
 ### Supported Languages
 
 Currently the following langauges and dialects are supported:
