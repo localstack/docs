@@ -2985,6 +2985,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateOriginAccessControl</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreatePublicKey</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3022,6 +3026,10 @@ description: >
     </tr>
     <tr>
       <td>DeleteMonitoringSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteOriginAccessControl</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3086,6 +3094,14 @@ description: >
     </tr>
     <tr>
       <td>GetMonitoringSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetOriginAccessControl</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetOriginAccessControlConfig</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3165,6 +3181,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListOriginAccessControls</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListPublicKeys</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3206,6 +3226,10 @@ description: >
     </tr>
     <tr>
       <td>UpdateKeyGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateOriginAccessControl</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3987,7 +4011,7 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddCustomAttributes (Pro) </td>
+      <td>AddCustomAttributes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4511,10 +4535,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutConformancePack</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PutDeliveryChannel <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4726,6 +4746,10 @@ description: >
     </tr>
     <tr>
       <td>ListStoredQueries</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutConformancePack</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -5401,6 +5425,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateFleet</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateFlowLogs</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5542,6 +5570,10 @@ description: >
     </tr>
     <tr>
       <td>DeleteEgressOnlyInternetGateway</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteFleets</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5690,6 +5722,14 @@ description: >
     </tr>
     <tr>
       <td>DescribeEgressOnlyInternetGateways</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeFleetInstances</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeFleets</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5846,6 +5886,10 @@ description: >
     </tr>
     <tr>
       <td>DescribeVolumes</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeVolumesModifications</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6030,6 +6074,10 @@ description: >
     </tr>
     <tr>
       <td>ModifyTransitGatewayVpcAttachment</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ModifyVolume</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6295,10 +6343,6 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>CreateFleet</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CreateFpgaImage</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6420,10 +6464,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteClientVpnRoute</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteFleets</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6643,14 +6683,6 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribeFleetInstances</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeFleets</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DescribeFpgaImageAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6860,10 +6892,6 @@ description: >
     </tr>
     <tr>
       <td>DescribeVolumeStatus</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeVolumesModifications</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7244,10 +7272,6 @@ description: >
     </tr>
     <tr>
       <td>ModifyTransitGatewayPrefixListReference</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ModifyVolume</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -13977,7 +14001,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PublishVersion</td>
+      <td>PublishVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17307,7 +17331,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBucketLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17475,11 +17499,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketLifecycle (Pro) </td>
+      <td>PutBucketLifecycle</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17507,11 +17531,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketReplication (Pro) </td>
+      <td>PutBucketReplication</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketRequestPayment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketRequestPayment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17638,6 +17662,10 @@ description: >
     </tr>
     <tr>
       <td>PutBucketLifecycleConfiguration</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PutBucketTagging (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17796,10 +17824,6 @@ description: >
     </tr>
     <tr>
       <td>PutBucketPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutBucketTagging</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19257,6 +19281,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeConfigurationSet</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeReceiptRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -19305,7 +19333,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SendBulkTemplatedEmail (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>SendBulkTemplatedEmail <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19412,10 +19440,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteVerifiedEmailAddress</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeConfigurationSet</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -21238,6 +21262,20 @@ description: >
       <td>UpdateTable</td>
        <td style="text-align:right">-</td>
     </tr>
+  </tbody>
+ </table>
+
+
+## transcribe ##
+
+<table>
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th style="text-align:right">Implemented</th>
+    </tr>
+  </thead>
+  <tbody>
   </tbody>
  </table>
 
