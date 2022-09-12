@@ -161,7 +161,7 @@ As an example, it will use awslocal to create bucket and list it afterwards.&lt;
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> awslocal s3 mb s3://test
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> awslocal s3 ls
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"> echo &amp;#34;Test Execution complete!&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you want to add further configuration for LocalStack, you can use the &lt;code>env&lt;/code> section of your build step to set the configuration variables as described &lt;a href="https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv" title="GitHub Action Steps - Environment variables">here&lt;/a>.&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you want to add further configuration for LocalStack, you can use the &lt;code>env&lt;/code> section of your build step to set the configuration variables as described &lt;a href="https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv" title="GitHub Action Steps - Environment variables">here&lt;/a>.&lt;/p>
 &lt;h2 id="activating-localstack-pro">Activating LocalStack Pro&lt;/h2>
 &lt;p>If you want to use LocalStack Pro in your GitHub Actions job, you should use a &lt;a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets" title="GitHub Encrypted Secrets">Github Encrypted Secret&lt;/a> to store your API key securely.
 In the above example, you can see us setting the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable to the value of the secret &lt;code>LOCALSTACK_API_KEY&lt;/code>.&lt;/p>
@@ -169,7 +169,12 @@ In the above example, you can see us setting the &lt;code>LOCALSTACK_API_KEY&lt;
 In the simplest case, you just set it at the repository level.
 For this, you go, in your repository, to Settings =&amp;gt; Secrets and press &amp;ldquo;New Repository Secret&amp;rdquo;.&lt;/p>
 &lt;p>There, you create the secret for your API key like in the following image, replacing &lt;code>foobar&lt;/code> with your API key.&lt;/p>
-&lt;p>&lt;img src="github-create-secret.png" alt="Adding the LocalStack API key as secret in GitHub">&lt;/p></description></item><item><title>Ci: Travis CI</title><link>/ci/travis-ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/ci/travis-ci/</guid><description>
+&lt;p>&lt;img src="github-create-secret.png" alt="Adding the LocalStack API key as secret in GitHub">&lt;/p>
+&lt;h2 id="troubleshooting--faq">Troubleshooting / FAQ&lt;/h2>
+&lt;h3 id="installations-fails-with-attributeerror-module-lib-has-no-attribute-x509_v_flag_cb_issuer_check">Installations fails with &lt;code>AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'&lt;/code>&lt;/h3>
+&lt;p>The issue is caused by a conflict of the pre-installed version of &lt;code>pyOpenSSL&lt;/code> with newer versions of &lt;code>cryptography&lt;/code>.
+Please manually upgrade by running &lt;code>pip install --upgrade pyopenssl&lt;/code> before installing localstack to solve this issue.&lt;/p>
+&lt;p>&lt;a href="https://github.com/localstack/localstack/pull/6831#issuecomment-1241974114">See here for more information&lt;/a>&lt;/p></description></item><item><title>Ci: Travis CI</title><link>/ci/travis-ci/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/ci/travis-ci/</guid><description>
 &lt;p>This guide shows how to start and use LocalStack in your Travis CI jobs.&lt;/p>
 &lt;h2 id="setting-up-the-travis-ci-job">Setting up the Travis CI job&lt;/h2>
 &lt;p>When you want to integrate LocalStack into your job configuration, you just have to execute the following steps:&lt;/p>
