@@ -66,6 +66,15 @@ There, you create the secret for your API key like in the following image, repla
 
 ![Adding the LocalStack API key as secret in GitHub](github-create-secret.png)
 
+## Troubleshooting / FAQ
+
+### Installations fails with `AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'`
+
+The issue is caused by a conflict of the pre-installed version of `pyOpenSSL` with newer versions of `cryptography`.
+Please manually upgrade by running `pip install --upgrade pyopenssl` before installing localstack to solve this issue.
+
+[See here for more information](https://github.com/localstack/localstack/pull/6831#issuecomment-1241974114)
+
 [1]: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#steps "GitHub Action Build Steps"
 [2]: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv "GitHub Action Steps - Environment variables"
 [3]: https://docs.github.com/en/actions/security-guides/encrypted-secrets "GitHub Encrypted Secrets"
