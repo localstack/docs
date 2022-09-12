@@ -1399,7 +1399,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDataSource (Pro) </td>
+      <td>DeleteDataSource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1755,11 +1755,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateAutoScalingGroup (Pro) </td>
+      <td>CreateAutoScalingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLaunchConfiguration (Pro) </td>
+      <td>CreateLaunchConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1767,11 +1767,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAutoScalingGroup (Pro) </td>
+      <td>DeleteAutoScalingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLaunchConfiguration (Pro) </td>
+      <td>DeleteLaunchConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2047,7 +2047,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBackupJobs</td>
+      <td>ListBackupJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2063,11 +2063,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCopyJobs</td>
+      <td>ListCopyJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRecoveryPointsByBackupVault <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListRecoveryPointsByBackupVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2075,11 +2075,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListReportJobs</td>
+      <td>ListReportJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRestoreJobs</td>
+      <td>ListRestoreJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2571,6 +2571,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>BatchDescribeTypeConfigurations (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2685,10 +2689,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse cloudformation-notimplemented">     <tr>
-      <td>BatchDescribeTypeConfigurations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CancelUpdateStack</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3353,11 +3353,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetChannel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>GetQueryResults</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListChannels</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4163,7 +4171,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeUserPoolClient (Pro) </td>
+      <td>DescribeUserPoolClient (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4263,7 +4271,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateUserPoolClient (Pro) </td>
+      <td>UpdateUserPoolClient (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -5321,11 +5329,23 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>AcceptVpcEndpointConnections (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AcceptVpcPeeringConnection <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>AdvertiseByoipCidr (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AllocateAddress <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>AllocateHosts (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6231,18 +6251,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse ec2-notimplemented">     <tr>
-      <td>AcceptVpcEndpointConnections</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>AdvertiseByoipCidr</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>AllocateHosts</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>AllocateIpamPoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8845,7 +8853,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancerAttributes (Pro) </td>
+      <td>DescribeLoadBalancerAttributes (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8909,7 +8917,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetIpAddressType (Pro) </td>
+      <td>SetIpAddressType (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10731,7 +10739,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAccessKey</td>
+      <td>DeleteAccessKey <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10919,7 +10927,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAccessKeys</td>
+      <td>ListAccessKeys <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11523,11 +11531,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAuditMitigationActionsTasks</td>
+      <td>ListAuditMitigationActionsTasks (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAuditTasks</td>
+      <td>ListAuditTasks (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11539,11 +11547,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDetectMitigationActionsExecutions</td>
+      <td>ListDetectMitigationActionsExecutions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDetectMitigationActionsTasks</td>
+      <td>ListDetectMitigationActionsTasks (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11563,7 +11571,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListMetricValues</td>
+      <td>ListMetricValues (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11623,7 +11631,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListViolationEvents</td>
+      <td>ListViolationEvents (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12375,7 +12383,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDatasetContents</td>
+      <td>ListDatasetContents (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12391,7 +12399,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SampleChannelData</td>
+      <td>SampleChannelData (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -14117,6 +14125,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>AssociateKmsKey (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateExportTask</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14223,10 +14235,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse logs-notimplemented">     <tr>
-      <td>AssociateKmsKey</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17391,7 +17399,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetObjectAcl <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetObjectAcl</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17483,7 +17491,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketCors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketCors <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17503,7 +17511,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17661,19 +17669,15 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketLifecycleConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutBucketTagging (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PutPublicAccessBlock <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>PutStorageLensConfiguration</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PutStorageLensConfigurationTagging (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -17823,7 +17827,15 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>PutBucketLifecycleConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>PutBucketPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutBucketTagging</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -17832,10 +17844,6 @@ description: >
     </tr>
     <tr>
       <td>PutMultiRegionAccessPointPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutStorageLensConfigurationTagging</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19561,7 +19569,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDomainStatisticsReport</td>
+      <td>GetDomainStatisticsReport (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19569,7 +19577,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDomainDeliverabilityCampaigns</td>
+      <td>ListDomainDeliverabilityCampaigns (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19581,11 +19589,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSuppressedDestinations</td>
+      <td>ListSuppressedDestinations (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutEmailIdentityDkimSigningAttributes</td>
+      <td>PutEmailIdentityDkimSigningAttributes (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20039,6 +20047,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetDataProtectionPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetSMSSandboxAccountStatus</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20048,6 +20060,10 @@ description: >
     </tr>
     <tr>
       <td>ListSMSSandboxPhoneNumbers</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutDataProtectionPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -20168,6 +20184,10 @@ description: >
     </tr>
     <tr>
       <td>CancelCommand (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateAssociation</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20302,10 +20322,6 @@ description: >
     </tr>
     <tr>
       <td>CreateActivation</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -21276,6 +21292,168 @@ description: >
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>CreateMedicalVocabulary</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateVocabulary</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteMedicalTranscriptionJob</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteMedicalVocabulary</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteTranscriptionJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteVocabulary</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetMedicalTranscriptionJob</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetMedicalVocabulary</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetTranscriptionJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetVocabulary</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListMedicalTranscriptionJobs</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListMedicalVocabularies</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListTranscriptionJobs <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListVocabularies</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>StartMedicalTranscriptionJob</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>StartTranscriptionJob <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".transcribe-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse transcribe-notimplemented">     <tr>
+      <td>CreateCallAnalyticsCategory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateLanguageModel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateVocabularyFilter</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteCallAnalyticsCategory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteCallAnalyticsJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteLanguageModel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteVocabularyFilter</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeLanguageModel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetCallAnalyticsCategory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetCallAnalyticsJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetVocabularyFilter</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCallAnalyticsCategories</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCallAnalyticsJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListLanguageModels</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListTagsForResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListVocabularyFilters</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StartCallAnalyticsJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TagResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UntagResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateCallAnalyticsCategory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateMedicalVocabulary</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateVocabulary</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateVocabularyFilter</td>
+       <td style="text-align:right">-</td>
+    </tr>
   </tbody>
  </table>
 
