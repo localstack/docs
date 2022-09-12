@@ -75,10 +75,28 @@ Options:
 {{< / command >}}
 
 #### Updates
-The LocalStack CLI also allows you to easily update the different components of LocalStack. You can decide to update the CLI itself, the LocalStack Docker images, or all at once:
+
+The LocalStack CLI also allows you to easily update the different components of LocalStack. To check the various options available for updating, run:
+
 {{< command >}}
-$ # Print the available commands
-$ localstack update
+$ localstack update --help
+
+Usage: localstack update [OPTIONS] COMMAND [ARGS]...
+
+  Update LocalStack components
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  all             Update all LocalStack components
+  docker-images   Update container images LocalStack depends on
+  localstack-cli  Update LocalStack CLI tools
+{{< / command >}}
+
+You can decide to update the CLI itself, the LocalStack Docker images, or all at once:
+
+{{< command >}}
 $ # Update all components
 $ localstack update all
 $ # Only update the LocalStack docker images
@@ -89,15 +107,42 @@ $ localstack update localstack-cli
 
 #### Troubleshooting
 
-##### The installation is successful, but I cannot execute `localstack` on my terminal.
-If you can successfully install LocalStack using `pip` but you cannot use it in your terminal, you most likely haven't set up your operating system's / terminal's `PATH` variable (in order to tell them where to find programs installed via `pip`).
-- If you are using Windows, you can enable the `PATH` configuration when installing Python, [as described in the official docs of Python](https://docs.python.org/3/using/windows.html#finding-the-python-executable).
-- If you are using a MacOS or Linux operating system, please make sure that the `PATH` is correctly set up - either system wide, or in your terminal.
+- The installation is successful, but I cannot execute `localstack` on my terminal.
+  If you can successfully install LocalStack using `pip` but you cannot use it in your terminal, you most likely haven't set up your operating system's / terminal's `PATH` variable (in order to tell them where to find programs installed via `pip`).
+  - If you are using Windows, you can enable the `PATH` configuration when installing Python, [as described in the official docs of Python](https://docs.python.org/3/using/windows.html#finding-the-python-executable).
+  - If you are using a MacOS or Linux operating system, please make sure that the `PATH` is correctly set up - either system wide, or in your terminal.
 
-As a workaround you can call the LocalStack CLI python module directly:
-{{< command >}}
-$ python3 -m localstack.cli.main
-{{< / command >}}
+  As a workaround you can call the LocalStack CLI python module directly:
+  {{< command >}}
+  $ python3 -m localstack.cli.main
+  {{< / command >}}
+
+- How should I access the LocalStack logs on my local machine?
+
+  You can now avail logging output and error reporting using LocalStack logs. To access the logs, run the following command:
+
+  {{< command >}}
+  $ localstack logs 
+  {{< / command >}}
+  
+  AWS requests are now logged uniformly in the INFO log level (set by default or when `DEBUG=0`). The shape is `AWS <service>.<operation> => <http-status> (<error type>)`. Requests to HTTP endpoints are logged in a similar way:
+  
+  ```sh
+  2022-09-12T10:39:21.165  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS s3.ListBuckets => 200
+  2022-09-12T10:39:41.315  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS s3.CreateBucket => 200
+  2022-09-12T10:40:04.662  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS s3.PutObject => 200
+  2022-09-12T11:01:55.799  INFO --- [   asgi_gw_0] localstack.request.http    : GET / => 200
+  ```
+
+- How should I share the LocalStack logs to discover issues?
+
+  You can now share the LocalStack logs with us to help us discover issues. To share the logs, run our diagnostic endpoint:
+
+  {{< command >}}
+  $ curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz
+  {{< / command >}}
+
+  Ensure that the diagnostic endpoint is run after you have tried reproducing the affected task. After running the task, run the diagnostic endpoint and share the archive file with your team members or LocalStack Support.
 
 #### Starting LocalStack with the LocalStack CLI
 By default, LocalStack is started inside a Docker container by running:
@@ -122,10 +167,12 @@ See [LocalStack Cockpit]({{< ref "cockpit" >}}).
 If you do not want to use the [LocalStack CLI]({{< ref "#localstack-cli" >}}), you can also decide to manually start the LocalStack Docker container.
 
 #### Prerequisites
+
 Please make sure that you have a working [`docker` environment](https://docs.docker.com/get-docker/) on your machine before moving on.
 You can check if `docker` is correctly configured on your machine by executing `docker info` in your terminal. If it does not report an error (but shows information on your Docker system), you're good to go.
 
 #### Starting LocalStack with Docker
+
 You can start the Docker container simply by executing the following `docker run` command:
 {{< command >}}
 $ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
@@ -146,13 +193,16 @@ $ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
 {{< /alert >}}
 
 ### Docker-Compose
+
 If you want to manually manage your Docker container, it's usually a good idea to use [`docker-compose`](https://docs.docker.com/compose/reference/) in order to simplify your container configuration.
 
 #### Prerequisites
+
 - [`docker`](https://docs.docker.com/get-docker/)
 - [`docker-compose`](https://docs.docker.com/compose/install/) (version 1.9.0+)
 
 #### Starting LocalStack with Docker-Compose
+
 You can use the [`docker-compose.yml` file from the official LocalStack repository](https://github.com/localstack/localstack/blob/master/docker-compose.yml) and use this command (currently requires `docker-compose` version 1.9.0+):
 
 {{< command >}}
@@ -180,13 +230,16 @@ $ localstack config validate
 {{< / command >}}
 
 ### Helm
+
 If you want to deploy LocalStack in your [Kubernetes](https://kubernetes.io) cluster, you can use [Helm](https://helm.sh).
 
 #### Prerequisites
+
 - [Kubernetes](https://kubernetes.io)
 - [Helm](https://helm.sh/docs/intro/install/)
 
 #### Deploy LocalStack using Helm
+
 You can deploy LocalStack in a Kubernetes cluster by running these commands:
 {{< command >}}
 $ helm repo add localstack-repo https://helm.localstack.cloud
@@ -196,10 +249,12 @@ $ helm upgrade --install localstack localstack-repo/localstack
 The Helm charts are not maintained in the main repository, but in a [separate one](https://github.com/localstack/helm-charts).
 
 ## Ran into trouble?
+
 We strive to make it as easy as possible for you to use LocalStack, and we are very grateful for any feedback.
 If you run into any issues or problems with this guide, please [submit an issue](https://github.com/localstack/docs/issues). 
 
 ## What's next?
+
 Now that you have LocalStack up and running, the following resources might be useful for your next steps:
 - [Use the LocalStack integrations]({{< ref "integrations" >}}) to interact with LocalStack and other integrated tools, for example:
   - Use `awslocal` to use the AWS CLI against your local cloud!
