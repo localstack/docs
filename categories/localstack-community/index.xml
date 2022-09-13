@@ -2304,7 +2304,86 @@ Assuming you&amp;rsquo;ve created a layer named &lt;code>test-layer&lt;/code> wi
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statement-id layerAccessFromLocalStack
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --principal 886468871268
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --action lambda:GetLayerVersion&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Next time you reference this layer (with the real AWS Lambda layer ARN) in one of your local Lambda functions, it will get automatically pulled down and integrated into your local dev environment.&lt;/p></description></item><item><title>Aws: OpenSearch Service</title><link>/aws/opensearch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/opensearch/</guid><description>
+&lt;p>Next time you reference this layer (with the real AWS Lambda layer ARN) in one of your local Lambda functions, it will get automatically pulled down and integrated into your local dev environment.&lt;/p>
+&lt;h2 id="lambda-event-filtering">Lambda Event Filtering&lt;/h2>
+&lt;p>Lambda Functions with the event-filtering enables ease of integration and developing cloud-native applications. LocalStack enables Lambda Event Filtering for DynamoDB Streams, and SQS. The filtering implements following filtering syntax:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Comparison operator&lt;/th>
+&lt;th>Example&lt;/th>
+&lt;th>Rule syntax&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Null&lt;/td>
+&lt;td>UserID is null&lt;/td>
+&lt;td>&amp;ldquo;UserID&amp;rdquo;: [ null ]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Empty&lt;/td>
+&lt;td>LastName is empty&lt;/td>
+&lt;td>&amp;ldquo;LastName&amp;rdquo;: [&amp;quot;&amp;quot;]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Equals&lt;/td>
+&lt;td>Name is &amp;ldquo;Alice&amp;rdquo;&lt;/td>
+&lt;td>&amp;ldquo;Name&amp;rdquo;: [ &amp;ldquo;Alice&amp;rdquo; ]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>And&lt;/td>
+&lt;td>Location is &amp;ldquo;New York&amp;rdquo; and Day is &amp;ldquo;Monday&amp;rdquo;&lt;/td>
+&lt;td>&amp;ldquo;Location&amp;rdquo;: [ &amp;ldquo;New York&amp;rdquo; ], &amp;ldquo;Day&amp;rdquo;: [&amp;ldquo;Monday&amp;rdquo;]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Or&lt;/td>
+&lt;td>PaymentType is &amp;ldquo;Credit&amp;rdquo; or &amp;ldquo;Debit&amp;rdquo;&lt;/td>
+&lt;td>&amp;ldquo;PaymentType&amp;rdquo;: [ &amp;ldquo;Credit&amp;rdquo;, &amp;ldquo;Debit&amp;rdquo;]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Not&lt;/td>
+&lt;td>Weather is anything but &amp;ldquo;Raining&amp;rdquo;&lt;/td>
+&lt;td>&amp;ldquo;Weather&amp;rdquo;: [ { &amp;ldquo;anything-but&amp;rdquo;: [ &amp;ldquo;Raining&amp;rdquo; ] } ]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Numeric (equals)&lt;/td>
+&lt;td>Price is 100&lt;/td>
+&lt;td>&amp;ldquo;Price&amp;rdquo;: [ { &amp;ldquo;numeric&amp;rdquo;: [ &amp;ldquo;=&amp;rdquo;, 100 ] } ]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Numeric (range)&lt;/td>
+&lt;td>Price is more than 10, and less than or equal to 20&lt;/td>
+&lt;td>&amp;ldquo;Price&amp;rdquo;: [ { &amp;ldquo;numeric&amp;rdquo;: [ &amp;ldquo;&amp;gt;&amp;rdquo;, 10, &amp;ldquo;&amp;lt;=&amp;rdquo;, 20 ] } ]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Exists&lt;/td>
+&lt;td>ProductName exists&lt;/td>
+&lt;td>&amp;ldquo;ProductName&amp;rdquo;: [ { &amp;ldquo;exists&amp;rdquo;: true } ]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Does not exist&lt;/td>
+&lt;td>ProductName does not exist&lt;/td>
+&lt;td>&amp;ldquo;ProductName&amp;rdquo;: [ { &amp;ldquo;exists&amp;rdquo;: false } ]&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Begins with&lt;/td>
+&lt;td>Region is in the US&lt;/td>
+&lt;td>&amp;ldquo;Region&amp;rdquo;: [ {&amp;ldquo;prefix&amp;rdquo;: &amp;ldquo;us-&amp;rdquo; } ]&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>The filter expression uses a strict JSON format to match the filtering criteria. For example, in a DynamoDB Stream, JSON is validated against the key &lt;code>dynamodb&lt;/code> which is part of the event JSON. An example of a filter expression is:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Records&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;dynamodb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">official AWS documentation&lt;/a>.&lt;/p></description></item><item><title>Aws: OpenSearch Service</title><link>/aws/opensearch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/opensearch/</guid><description>
 &lt;p>The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the &lt;a href="https://aws.amazon.com/opensearch-service/">Amazon OpenSearch Service&lt;/a>.
 This service is, like its AWS counterpart, heavily linked with the &lt;a href="../elasticsearch">Elasticsearch Service&lt;/a>.
 Any cluster created with the OpenSearch Service will show up in the Elasticsearch Service and vice versa.&lt;/p>
