@@ -109,3 +109,37 @@ $ aws lambda add-layer-version-permission
 {{< / command >}}
 
 Next time you reference this layer (with the real AWS Lambda layer ARN) in one of your local Lambda functions, it will get automatically pulled down and integrated into your local dev environment.
+
+## Lambda Event Filtering
+
+Lambda Functions with the event-filtering enables ease of integration and developing cloud-native applications. LocalStack enables Lambda Event Filtering for DynamoDB Streams, and SQS. The filtering implements following filtering syntax:
+
+| Comparison operator | Example                                             | Rule syntax                                       |
+| ------------------- | --------------------------------------------------- | ------------------------------------------------- |
+| Null                | UserID is null                                      | "UserID": [ null ]                                |
+| Empty               | LastName is empty                                   | "LastName": [""]                                  |
+| Equals              | Name is "Alice"                                     | "Name": [ "Alice" ]                               |
+| And                 | Location is "New York" and Day is "Monday"          | "Location": [ "New York" ], "Day": ["Monday"]     |
+| Or                  | PaymentType is "Credit" or "Debit"                  | "PaymentType": [ "Credit", "Debit"]               |
+| Not                 | Weather is anything but "Raining"                   | "Weather": [ { "anything-but": [ "Raining" ] } ]  |
+| Numeric (equals)    | Price is 100                                        | "Price": [ { "numeric": [ "=", 100 ] } ]          |
+| Numeric (range)     | Price is more than 10, and less than or equal to 20 | "Price": [ { "numeric": [ ">", 10, "<=", 20 ] } ] |
+| Exists              | ProductName exists                                  | "ProductName": [ { "exists": true } ]             |
+| Does not exist      | ProductName does not exist                          | "ProductName": [ { "exists": false } ]            |
+| Begins with         | Region is in the US                                 | "Region": [ {"prefix": "us-" } ]                  |
+
+The filter expression uses a strict JSON format to match the filtering criteria. For example, in a DynamoDB Stream, JSON is validated against the key `dynamodb` which is part of the event JSON. An example of a filter expression is:
+
+```json
+{
+    "Records": [
+        {
+            ...
+            "dynamodb": { }
+            ...
+        }
+    ]
+}
+```
+
+If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the [official AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
