@@ -62,6 +62,22 @@ awslocal cloudformation delete-stack --stack-name cfn-quickstart-stack
 
 Check out the official [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) for a general introduction to CloudFormation concepts and a more comprehensive introduction on how to write CloudFormation templates.
 
+## CloudFormation User-Interface
+
+You can also use LocalStack's CloudFormation user-interface to deploy and manage your CloudFormation stacks by using public templates. The user-interface is available at `http://localhost:4566/_localstack/cloudformation/deploy`.
+
+<img src="cloudformation-ui.png" alt="CloudFormation UI in LocalStack" title="CloudFormation UI in LocalStack" width="450" />
+
+You can use the CloudFormation user-interface to point to an existing CloudFormation template URL, fill out the required parameters, and trigger the deployment from the browser. Let us use the following example template to deploy a CloudFormation stack:
+
+- Use the public CloudFormation template URL: `https://s3.eu-central-1.amazonaws.com/cloudformation-templates-eu-central-1/DynamoDB_Secondary_Indexes.template`.
+- Next we download the template URL and extract the stack parameters (default values automatically applied):
+  <img src="localstack-cloudformation-stack.png" alt="Extract Stack Parameters via CloudFormation UI in LocalStack" title="Extract Stack Parameters via CloudFormation UI in LocalStack" width="450" />
+- Upon submission, the stack deployment is triggered, and we display a result message:
+  <img src="localstack-cloudformation-stack-deployment.png" alt="Deploy CloudFormation Stack in LocalStack" title="Deploy CloudFormation Stack in LocalStack" width="450" />
+
+To interactively browse the state of the locally deployed resources, you may want to check out our [Web application](https://app.localstack.cloud).
+
 ## Support
 
 We are constantly improving our feature coverage for CloudFormation, with new resource types getting added on an ongoing basis.
