@@ -178,6 +178,12 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | - | - | - |
 | `RDS_PG_CUSTOM_VERSIONS` | `0` / `1` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
 
+### S3
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `S3_MOUNT` | | Configure a global parent directory that contains all buckets as sub-directories (`S3_MOUNT=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_MOUNT=/path/to/root/bucket1:bucket1`) |
+
 ### StepFunctions
 
 | Variable | Example Values | Description |
