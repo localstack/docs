@@ -1467,7 +1467,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetType (Pro) </td>
+      <td>GetType (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2575,6 +2575,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CancelUpdateStack (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2689,10 +2693,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse cloudformation-notimplemented">     <tr>
-      <td>CancelUpdateStack</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ContinueUpdateRollback</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4127,7 +4127,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateUserPoolDomain (Pro) </td>
+      <td>CreateUserPoolDomain (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4155,7 +4155,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUserPoolDomain (Pro) </td>
+      <td>DeleteUserPoolDomain (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4175,7 +4175,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeUserPoolDomain (Pro) </td>
+      <td>DescribeUserPoolDomain (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4219,6 +4219,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListUserPoolClients (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4251,6 +4255,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>UpdateGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4272,6 +4284,10 @@ description: >
     </tr>
     <tr>
       <td>UpdateUserPoolClient (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UpdateUserPoolDomain (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -4365,10 +4381,6 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ListUserImportJobs</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4401,23 +4413,11 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>TagResource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UntagResource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>UpdateAuthEventFeedback</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UpdateDeviceStatus</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateUserPoolDomain</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -5473,6 +5473,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateLocalGatewayRoute</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateManagedPrefixList</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5993,6 +5997,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DisassociateEnclaveCertificateIamRole (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DisassociateIamInstanceProfile</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6014,6 +6022,10 @@ description: >
     </tr>
     <tr>
       <td>EnableEbsEncryptionByDefault</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>EnableImageDeprecation (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6372,10 +6384,6 @@ description: >
     </tr>
     <tr>
       <td>CreateIpamScope</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateLocalGatewayRoute</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6943,10 +6951,6 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DisassociateEnclaveCertificateIamRole</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DisassociateInstanceEventWindow</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6968,10 +6972,6 @@ description: >
     </tr>
     <tr>
       <td>EnableFastSnapshotRestores</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>EnableImageDeprecation</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7749,7 +7749,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource (Pro) </td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7797,7 +7797,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource (Pro) </td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8453,6 +8453,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>ComposeEnvironments (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -8520,10 +8524,6 @@ description: >
     </tr>
     <tr>
       <td>CheckDNSAvailability</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ComposeEnvironments</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9943,7 +9943,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDatabase (Pro) </td>
+      <td>CreateDatabase (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9971,7 +9971,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTable (Pro) </td>
+      <td>CreateTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10071,7 +10071,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDatabase (Pro) </td>
+      <td>GetDatabase (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10139,7 +10139,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTable (Pro) </td>
+      <td>GetTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17247,10 +17247,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBucketCors (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteBucketEncryption</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -17319,7 +17315,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketCors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBucketCors <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17332,14 +17328,6 @@ description: >
     </tr>
     <tr>
       <td>GetBucketInventoryConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketLifecycle (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17372,10 +17360,6 @@ description: >
     </tr>
     <tr>
       <td>GetBucketPolicyStatus</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketReplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17431,11 +17415,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>HeadBucket (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>HeadObject (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>HeadBucket <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17504,10 +17484,6 @@ description: >
     </tr>
     <tr>
       <td>PutBucketInventoryConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutBucketLifecycle</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17607,6 +17583,36 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".s3-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse s3-notimplemented">     <tr>
+      <td>DeleteBucketCors</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketLifecycle</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketLifecycleConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetBucketReplication</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>HeadObject</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutBucketLifecycle</td>
+       <td style="text-align:right">-</td>
+    </tr>
+  </tbody>
  </table>
 
 
@@ -17674,10 +17680,6 @@ description: >
     </tr>
     <tr>
       <td>PutStorageLensConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>PutStorageLensConfigurationTagging (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -17844,6 +17846,10 @@ description: >
     </tr>
     <tr>
       <td>PutMultiRegionAccessPointPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutStorageLensConfigurationTagging</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -20187,10 +20193,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateAssociation</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateDocument</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -20322,6 +20324,10 @@ description: >
     </tr>
     <tr>
       <td>CreateActivation</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateAssociation</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
