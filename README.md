@@ -80,6 +80,7 @@ PS.: Feel free to add more best practices here.
 
 ## Troubleshooting
 This section covers common issues when working with LocalStack Docs:
+
 ### Missing shortcodes
 Example error:
 ```
