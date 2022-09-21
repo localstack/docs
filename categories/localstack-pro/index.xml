@@ -2901,10 +2901,55 @@ You can customize the load balancer port by configuring &lt;code>EKS_LOADBALANCE
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Simply configure your Kubernetes client (e.g., &lt;code>kubectl&lt;/code> or other SDK) to point to the &lt;code>endpoint&lt;/code> specified in the &lt;code>create-cluster&lt;/code> output above. Depending on whether you&amp;rsquo;re calling the Kubernetes API from the local machine or from within a Lambda, you may have to use different endpoint URLs (&lt;code>https://localhost:6443&lt;/code> vs &lt;code>https://172.17.0.1:6443&lt;/code>).&lt;/p>
+&lt;h2 id="exposing-the-kubernetes-load-balancer-on-custom-ports">Exposing the Kubernetes Load Balancer on custom ports&lt;/h2>
+&lt;p>By default, the load balancer (LB) is exposed on port &lt;code>8081&lt;/code>. In order to customize the port, or expose the LB on multiple ports, you can use the special tag name &lt;code>_lb_ports_&lt;/code> when creating the cluster.&lt;/p>
+&lt;p>For example, if we want to expose the LB on ports &lt;code>8085&lt;/code> and &lt;code>8086&lt;/code>, the following tag definition can be used on cluster creation:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config &amp;#39;{}&amp;#39; --tags &amp;#39;{&amp;#34;_lb_ports_&amp;#34;:&amp;#34;8085,8086&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="routing-traffic-to-services-on-different-endpoints">Routing traffic to services on different endpoints&lt;/h2>
+&lt;p>A frequent use case when working with EKS is to access multiple kube services behind different endpoints.&lt;/p>
+&lt;p>For example, you may have multiple microservices that all use a common path versioning scheme, say, with API request paths starting with &lt;code>/v1/...&lt;/code>. In that case, path-based routing cannot easily be used if the services should be accessible in a uniform way.&lt;/p>
+&lt;p>In order to accommodate such a setup, we recommend using host-based routing rules, as illustrated in the example below:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: networking.k8s.io/v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kind: Ingress
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>metadata:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: multi-services
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> annotations:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ingress.kubernetes.io/ssl-redirect: &amp;#34;false&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>spec:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> rules:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - host: eks-service-1.localhost.localstack.cloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> paths:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - path: /v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pathType: Prefix
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> backend:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: service-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> port:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> number: 80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - host: eks-service-2.localhost.localstack.cloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> http:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> paths:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - path: /v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pathType: Prefix
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> backend:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> service:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: service-2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> port:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> number: 80
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The example defines routing rules for two local endpoints - the first rule points to a service &lt;code>service-1&lt;/code> accessible under &lt;code>/v1&lt;/code>, and the second rule points to a service &lt;code>service-2&lt;/code> accessible under the same path &lt;code>/v1&lt;/code>.&lt;/p>
+&lt;p>We can then access the two different services under the same path and port number, but using different host names:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl http://eks-service-1.localhost.localstack.cloud:8081/v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>... [output of service 1]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl http://eks-service-2.localhost.localstack.cloud:8081/v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>... [output of service 2]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Note that the host names &lt;code>eks-service-1.localhost.localstack.cloud&lt;/code> and &lt;code>eks-service-2.localhost.localstack.cloud&lt;/code> both resolve to &lt;code>127.0.0.1&lt;/code> (localhost), and can hence be used to talk to your service endpoints, and are used inside the Kubernetes load balancer to distinguish between different services.&lt;/p>
 &lt;h2 id="mounting-directories-from-host-to-pod">Mounting directories from host to pod&lt;/h2>
 &lt;p>If you have specific directories which you want to mount from your local dev machine into one of your pods you can do this with two simple steps:&lt;/p>
-&lt;p>First, make sure to create your cluster with the special tag &lt;code>__k3d_volume_mount__&lt;/code>, specifying how you want to mount a volume from your dev machine to the cluster nodes:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config &amp;#39;{}&amp;#39; --tags &amp;#39;{&amp;#34;__k3d_volume_mount__&amp;#34;:&amp;#34;/path/on/host:/path/on/node&amp;#34;}&amp;#39;
+&lt;p>First, make sure to create your cluster with the special tag &lt;code>_volume_mount_&lt;/code>, specifying how you want to mount a volume from your dev machine to the cluster nodes:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config &amp;#39;{}&amp;#39; --tags &amp;#39;{&amp;#34;_volume_mount_&amp;#34;:&amp;#34;/path/on/host:/path/on/node&amp;#34;}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;cluster1&amp;#34;,
@@ -2913,11 +2958,15 @@ You can customize the load balancer port by configuring &lt;code>EKS_LOADBALANCE
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpoint&amp;#34;: &amp;#34;https://172.17.0.1:6443&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;status&amp;#34;: &amp;#34;ACTIVE&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;tags&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;__k3d_volume_mount__&amp;#34; : &amp;#34;/path/on/host:/path/on/node&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_volume_mount_&amp;#34; : &amp;#34;/path/on/host:/path/on/node&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Notes&lt;/h4>
+Please note that the tag was previously named &lt;code>__k3d_volume_mount__&lt;/code>, and has been renamed to &lt;code>_volume_mount_&lt;/code>. The tag name &lt;code>__k3d_volume_mount__&lt;/code> is now deprecated and will be removed in an upcoming release.
+&lt;/div>
 &lt;p>Then, you can create your path with volume mounts as usual, with a configuration similar to this:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">apiVersion&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">v1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">kind&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Pod&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
