@@ -297,14 +297,76 @@ $ awslocal eks list-clusters
 
 Simply configure your Kubernetes client (e.g., `kubectl` or other SDK) to point to the `endpoint` specified in the `create-cluster` output above. Depending on whether you're calling the Kubernetes API from the local machine or from within a Lambda, you may have to use different endpoint URLs (`https://localhost:6443` vs `https://172.17.0.1:6443`).
 
+## Exposing the Kubernetes Load Balancer on custom ports
+
+By default, the load balancer (LB) is exposed on port `8081`. In order to customize the port, or expose the LB on multiple ports, you can use the special tag name `_lb_ports_` when creating the cluster.
+
+For example, if we want to expose the LB on ports `8085` and `8086`, the following tag definition can be used on cluster creation:
+{{< command >}}
+$ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}' --tags '{"_lb_ports_":"8085,8086"}'
+{{< /command >}}
+
+## Routing traffic to services on different endpoints
+
+A frequent use case when working with EKS is to access multiple kube services behind different endpoints. 
+
+For example, you may have multiple microservices that all use a common path versioning scheme, say, with API request paths starting with `/v1/...`. In that case, path-based routing cannot easily be used if the services should be accessible in a uniform way.
+
+In order to accommodate such a setup, we recommend using host-based routing rules, as illustrated in the example below:
+
+{{< command >}}
+$ cat <<EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: multi-services
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: eks-service-1.localhost.localstack.cloud
+    http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service:
+            name: service-1
+            port:
+              number: 80
+  - host: eks-service-2.localhost.localstack.cloud
+    http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service:
+            name: service-2
+            port:
+              number: 80
+EOF
+{{< /command >}}
+
+The example defines routing rules for two local endpoints - the first rule points to a service `service-1` accessible under `/v1`, and the second rule points to a service `service-2` accessible under the same path `/v1`.
+
+We can then access the two different services under the same path and port number, but using different host names:
+{{< command >}}
+$ curl http://eks-service-1.localhost.localstack.cloud:8081/v1
+... [output of service 1]
+$ curl http://eks-service-2.localhost.localstack.cloud:8081/v1
+... [output of service 2]
+{{< /command >}}
+
+Note that the host names `eks-service-1.localhost.localstack.cloud` and `eks-service-2.localhost.localstack.cloud` both resolve to `127.0.0.1` (localhost), and can hence be used to talk to your service endpoints, and are used inside the Kubernetes load balancer to distinguish between different services.
+
 ## Mounting directories from host to pod
 
 If you have specific directories which you want to mount from your local dev machine into one of your pods you can do this with two simple steps:
 
-First, make sure to create your cluster with the special tag `__k3d_volume_mount__`, specifying how you want to mount a volume from your dev machine to the cluster nodes:
+First, make sure to create your cluster with the special tag `_volume_mount_`, specifying how you want to mount a volume from your dev machine to the cluster nodes:
 
 {{< command >}}
-$ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}' --tags '{"__k3d_volume_mount__":"/path/on/host:/path/on/node"}'
+$ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}' --tags '{"_volume_mount_":"/path/on/host:/path/on/node"}'
 {
     "cluster": {
         "name": "cluster1",
@@ -313,12 +375,16 @@ $ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-conf
         "endpoint": "https://172.17.0.1:6443",
         "status": "ACTIVE",
         "tags": {
-            "__k3d_volume_mount__" : "/path/on/host:/path/on/node"
+            "_volume_mount_" : "/path/on/host:/path/on/node"
         }
         ...
     }
 }
 {{< / command >}}
+
+{{< alert title="Notes" >}}
+Please note that the tag was previously named `__k3d_volume_mount__`, and has been renamed to `_volume_mount_`. The tag name `__k3d_volume_mount__` is now deprecated and will be removed in an upcoming release. 
+{{< /alert >}}
 
 Then, you can create your path with volume mounts as usual, with a configuration similar to this:
 
