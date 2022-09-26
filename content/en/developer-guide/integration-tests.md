@@ -1,6 +1,6 @@
 ---
 title: "Integration tests"
-weight: 5
+weight: 7
 description: >
   How to run and write integration tests.
 ---
