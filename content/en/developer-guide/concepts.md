@@ -123,3 +123,91 @@ The gateway creates a `RequestContext` object for each request, which is passed 
 All components of our HTTP framework build heavily on the Werkzeug HTTP server library [Werkzeug](https://github.com/pallets/werkzeug/), which makes our app WSGI compatible.
 
 <img src="gateway-overview.png" width="600px" alt="LocalStack Gateway overview" />
+
+### Handler Chain
+
+The handler chain implements a variant of the [chain-of-responsibility pattern](https://en.wikipedia.org/wiki/Chain-of-responsibility_pattern), not unlike [the javax.servlet API](https://docs.oracle.com/javaee/7/api/javax/servlet/package-summary.html). The handler chain knows about three different handlers: Request Handlers, Response Handlers, and Exception Handlers. Request and response handlers have the same interface, they only differ in how they are invoked by the handler chain.
+
+A handler chain can be _running_, _stopped_ or _terminated_. If a request handler stops the chain using `chain.stop()`, the chain stops invoking the remaining request handlers, and jumps straight to the response handlers. If the chain is _terminated_, then even response handlers are skipped.
+
+If an exception occurs during the execution of a request handler, no other request handlers are executed, and instead the chain calls the exception handlers, and then all response handlers. Exceptions during response handlers are logged, but they do not interrupt the handler chain flow.
+
+### LocalStack AWS Gateway
+
+Here is a figure of the handler chain underlying the `LocalstackAwsGateway`, which every HTTP request to `:4566` goes through.
+
+Some handlers are designed to be extended dynamically at runtime by other services. For example, a service can add HTTP routes to the edge router, which can then process the request differently. OpenSearch, for example, uses this to register HTTP routes to [cluster endpoints](https://docs.localstack.cloud/aws/opensearch/#interact-with-the-cluster), that are proxied through `:4566` to the cluster backend.
+
+<img src="localstack-handler-chain.png" width="600px" alt="LocalStack Handler chain" />
+
+## Plugins
+
+Plugins provided by [https://github.com/localstack/plux](https://github.com/localstack/plux) are how we load:
+
+-   Service providers
+-   Hooks
+-   Extensions
+
+Key points to understand are that plugins use [Python entry points, which are part of the PyPA specification](https://packaging.python.org/en/latest/specifications/entry-points/). Entry points are discovered from the code during a build step rather than defined manually (this is the main differentiator of Plux to other code loading tools). In LocalStack, the `make entrypoints` make target does that, which is also part of `make install`.
+
+When you add new hooks or service providers, or any other plugin, make sure to run `make entrypoints`.
+
+When writing plugins, it is important to understand that any code that sits in the same module as the plugin, will be imported when the plugin is _resolved_. That is, _before_ it is loaded. Resolving a plugin simply means discovering the entry points and loading the code the underlying entry point points to. This is why many times you will see imports deferred to the actual loading of the plugin.
+
+## Config
+
+The LocalStack configuration is currently simply a set of well-known environment variables that we parse into python values in `localstack/config.py`. When LocalStack is started via the CLI, we also need to pass those environment variables to the container, which is why we keep [a list of the environment variables we consider to be LocalStack configuration](https://github.com/localstack/localstack/blob/7e3045dcdca255e01c0fbd5dbf0228e500e8f42e/localstack/config.py#L693-L700).
+
+## Hooks
+
+Hooks are functions exposed as plugins that are collected and executed at specific points during the LocalStack lifecycle. This can be both in the runtime (executed in the container) and the CLI (executed on the host).
+
+### **Host/CLI hooks**
+
+These hooks are relevant only to invocations of the CLI. If you use, for example, a docker-compose file to start LocalStack, these are not used.
+
+-   `@hooks.prepare_host` Hooks to prepare the host that's starting LocalStack. Executed on the host when invoking the CLI.
+-   `@hooks.onfigure_localstack_container` Hooks to configure the LocalStack container before it starts. Executed on the host when invoking the CLI. This hook receives the `LocalstackContainer` object, which can be used to instrument the `docker run` command that starts LocalStack.
+
+### **Runtime hooks**
+
+-   `@hooks.on_infra_start` Executed when LocalStack runtime components (previously known as _infrastructure_) are started.
+-   `@hooks.on_infra_ready` Executed when LocalStack is ready to server HTTP requests.
+
+## Runtime
+
+The components necessary to run the LocalStack server application are collectively referred to as the _runtime_. This includes the Gateway, scheduled worker threads, etc. The runtime is distinct from the CLI, which runs on the host. Currently, there is no clear separation between the two, you will notice this, for example, in the configuration, where some config variables are used for both the CLI and the runtime. Similarly, there is code used by both. Separating the two is an ongoing process.
+
+## Installer
+
+Installers are used to install _packages_. A package is an external component which is used by one of our services. For example, for DynamoDB, we use [dynamodb-local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) which implements the actual features of AWS DynamoDB. The service provider of LocalStack basically only performs some “glue” to other services as well as some request- and response patching.
+
+Most of the installers are located in:
+
+-   `localstack.services.install` for community
+-   `localstack_ext.services.install` and `localstack_ext.services.installer` for pro
+
+## LocalStack Package Manager (LPM)
+
+The `lpm` is a module located in `localstack.cli` it provides a [Click](https://click.palletsprojects.com/)-powered CLI interface to trigger installers.
+
+It uses the Plugins mechanism to discover installers of community and ext. _LPM_ can be used directly as a module and - called without a specific command - print an extensive description of its available commands:
+
+```python
+source .venv/bin/activate
+python -m localstack.cli.lpm
+```
+
+## Utilities
+
+The codebase contains a wealth of utility functions for various common tasks like handling strings, JSON/XML, threads/processes, collections, date/time conversions, and much more.
+
+The utilities are grouped into multiple util modules inside the `[localstack.utils](<https://github.com/localstack/localstack/tree/master/localstack/utils>)` package. Some of the most commonly used utils modules include:
+
+-   `.files` - file handling utilities (e.g., `load_file`, `save_file`, or `mkdir`)
+-   `.json` - handle JSON content (e.g., `json_safe`, or `canonical_json`)
+-   `.net` - network ports (e.g., `wait_for_port_open`, or `is_ip_address`)
+-   `.run` - run external commands (e.g., `run`, or `ShellCommandThread`)
+-   `.strings` - string/bytes manipulation (e.g., `to_str`, `to_bytes`, or `short_uid`)
+-   `.sync` - concurrency synchronization (e.g., `poll_condition`, or `retry`)
+-   `.threads` - manage threads and processes (e.g., `FuncThread`)
