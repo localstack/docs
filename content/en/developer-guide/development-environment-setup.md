@@ -15,17 +15,17 @@ Before you get started with contributing to LocalStack, make sure you’ve famil
 
 You will need the following tools for the local development of LocalStack.
 
-* Python 3.10+
-* Sasl
-* Pip
-* Virtualenv
-* OpenJDK
-* Node & npm
-* Maven
-* Gradle
-* Terraform
-* Docker
-* Docker-Compose
+* [Python 3.10+](https://www.python.org/downloads/)
+* [Sasl](https://packages.debian.org/buster/libsasl2-2)
+* `pip`
+* [`virtualenv`](https://pypi.org/project/virtualenv/)
+* [OpenJDK](https://openjdk.org/install/)
+* [NodeJS & npm](https://nodejs.org/en/download/)
+* [Maven](https://maven.apache.org/download.cgi)
+* [Gradle](https://gradle.org/install/)
+* [Terraform](https://www.terraform.io/downloads)
+* [Docker](https://docs.docker.com/desktop/)
+* [Docker-Compose](https://docs.docker.com/compose/install/)
 
 We recommend you to individually install the above tools using your favorite package manager. For example, on macOS, you can use [Homebrew](https://brew.sh/) to install the above tools.
 
