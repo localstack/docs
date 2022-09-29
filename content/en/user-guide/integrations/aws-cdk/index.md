@@ -84,7 +84,7 @@ $ awslocal sns list-topics
 {{< /command >}}
 
 ## Other resources
-- [Hot-swapping Lambda functions with CDK]({{< ref "tools/lambda-tools/hot-swapping#aws-cloud-development-kit-cdk-configuration" >}})
+- [Hot-swapping Lambda functions with CDK]({{< ref "user-guide/tools/lambda-tools/hot-swapping#aws-cloud-development-kit-cdk-configuration" >}})
 
 ## External resources
 

@@ -1,7 +1,7 @@
 ---
 title: "LocalStack in CI"
 linkTitle: "LocalStack in CI"
-weight: 20
+weight: 3
 description: >
   Using LocalStack in your Continuous Integration workflow
 cascade:

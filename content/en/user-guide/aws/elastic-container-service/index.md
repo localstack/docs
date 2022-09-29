@@ -18,6 +18,6 @@ Task instances are started in a local Docker engine, which needs to be accessibl
 
 You can use the configuration option `LAMBDA_DOCKER_NETWORK` to specify the network the ECS containers are started in.
 If your ECS containers depend on LocalStack services, this should be the network the LocalStack container is located in.
-For more information regarding the configuration of LocalStack, please check the [LocalStack configuration]({{< ref "../../localstack/configuration.md" >}}) section.
+For more information regarding the configuration of LocalStack, please check the [LocalStack configuration]({{< ref "configuration" >}}) section.
 
 If you are running LocalStack through a `docker run` command, do not forget to enable the communication from the container to the Docker Engine API. You can provide the access by adding the following option `-v /var/run/docker.sock:/var/run/docker.sock`.

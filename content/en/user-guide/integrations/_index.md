@@ -1,7 +1,7 @@
 ---
 title: "Integrations"
 linkTitle: "Integrations"
-weight: 10
+weight: 2
 description: >
   How to use your favorite cloud development tools with LocalStack.
 cascade:
