@@ -1,6 +1,6 @@
 ---
 title: "Basics"
-weight: 4
+weight: 2
 description: >
   This document contains a few essential instructions for developing new features and bug fixes for *LocalStack*.
 ---
