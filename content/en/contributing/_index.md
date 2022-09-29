@@ -1,5 +1,5 @@
 ---
-title: "Developer Guide"
+title: "Contributing"
 weight: 60
 type: docs
 description: >
