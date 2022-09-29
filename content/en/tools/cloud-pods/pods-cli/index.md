@@ -80,17 +80,20 @@ Options:
 The `inject` command let users inject a specific application state, previously saved, into the application runtime.
 Please note that this is a local-only operation, i.e., the injecting state must be located on the host machine (usually under `~/.localstack/cloudpods/<pod_name>`).
 
-By default, the injecting state will replace the application runtime.
-The `--merge` option, instead, will first merge the injecting state with the current runtime and then inject the result.
+By default, the injecting state updates the application runtime at a service level.
+Formally known as the `merge` injection strategy, the state of all services specified in the injecting state are reflected exactly in the application runtime, whilst all other active services remain unchanged.
+
+The `--strategy` option can be used to change such default injection behaviour.
+More specifically, the `overwrite` strategy will ensure the application runtime is an exact instance of the injecting state, and the `deep-merge` strategy will perform a fine-grain merge of the injecting state into the application runtime.
 
 **Synopsis**
 ```
 Inject the state from a locally available Cloud Pod version into the application runtime.
 
 Options:
-  --merge                Merge the injecting state with the current application runtime.
   -v, --version INTEGER  Version to inject (most recent one by default).
   -n, --name TEXT        Name of the cloud pod.
+  -s, --strategy TEXT    Inject strategy (merge, overwrite, deep-merge).
 ```
 ### inspect
 
@@ -138,19 +141,17 @@ Options:
 ### pull
 
 The `pull` command retrieves the content of a Cloud Pod previously created and uploaded to the LocalStack platform and injects it into the application runtime.
-By default, the fetched pod will always be injected.
-The `--fetch` option will instead only trigger the download of the desired Cloud Pods to the host machine, without performing any additional operation.
-Users could then, for instance, use the `--inject` command to inject the retrieved pods.
-Similar to the `--inject` command, users can specify the `--merge` flag (off by default) if they wish to merge the current application state with the injecting one.
+
+By default, the fetched pod updates the application runtime at a service level, utilising a `merge` injection strategy.
+Like the `inject` command, the `--strategy` option can change such default injection behaviour.
 
 **Synopsis**
 ```
 Incorporate the state of a Cloud Pod into the application runtime.
 
 Options:
-  -n, --name TEXT  Name of the cloud pod
-  --merge          Merge the injecting state with the current application runtime.
-  --fetch          Only fetch the Cloud Pod from the remote platform.
+  -n, --name TEXT      Name of the cloud pod
+  -s, --strategy TEXT  Inject strategy (merge, overwrite, deep-merge).
 ```
 ### push
 
