@@ -16,7 +16,7 @@ We will provide some examples to illustrate the possibilities of Firehose in Loc
 ### Using Firehose to load Kinesis data into Elasticsearch with S3 Backup
 
 As example, we want to deliver data sent to a Kinesis stream into Elasticsearch via Firehose, while making a full backup into a S3 bucket.
-We will assume LocalStack is already [started correctly]({{< ref "get-started" >}}) and we have `awslocal` [installed]({{< ref "aws-cli" >}}).
+We will assume LocalStack is already [started correctly]({{< ref "getting-started" >}}) and we have `awslocal` [installed]({{< ref "aws-cli" >}}).
 
 First we will create our Elasticsearch domain:
 

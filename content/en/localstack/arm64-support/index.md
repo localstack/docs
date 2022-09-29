@@ -17,7 +17,7 @@ Currently known limitations are collected in the GitHub issue [localstack/locals
 {{% /alert %}}
 
 ## Pulling the image
-With the multi-arch Docker manifest, your Docker client (and therefore the [LocalStack CLI]({{< ref "get-started/#localstack-cli" >}})) now automatically selects the image according to your platform:
+With the multi-arch Docker manifest, your Docker client (and therefore the [LocalStack CLI]({{< ref "getting-started/#localstack-cli" >}})) now automatically selects the image according to your platform:
 {{< command >}}
 $ docker pull localstack/localstack
 {{< / command >}}
