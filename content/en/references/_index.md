@@ -1,8 +1,8 @@
 ---
-title: "Understanding LocalStack"
+title: "References"
 weight: 50
 description: >
-  Learn how LocalStack emulates services and runs your serverless applications.
+  Learn about the references in this section for more technical descriptions about LocalStack and the related tools.
 cascade:
   type: docs
 ---
