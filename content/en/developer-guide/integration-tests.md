@@ -162,4 +162,4 @@ def test_something_on_multiple_buckets(s3_create_bucket):
   # both buckets will be deleted after the test returns
 ```
 
-You can find the list of available fixtures in the [fixtures.py](https://github.com/localstack/localstack/blob/master/tests/integration/fixtures.py).
+You can find the list of available fixtures in the [fixtures.py](https://github.com/localstack/localstack/blob/master/localstack/testing/pytest/fixtures.py).

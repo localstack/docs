@@ -29,7 +29,7 @@ When you submit changes, your submissions are understood to be under the same [A
 
 ## Contribution flow
 
-We assume that you have already set up the project on your local machine by [following up on the official documentation](../development-environment-setup). If you are stuck, do reach out to one of the maintainers to help you out in the process.
+We assume that you have already set up the project on your local machine by following up on the official development environment setup guide. If you are stuck, do reach out to one of the maintainers to help you out in the process.
 
 Our contribution flow is very straightforward and follows an issue-pull request workflow. The contributors need to fork the repository for having their contributions landed on the project. If you are looking to contribute, we have laid down a series of steps that we would like you to follow.
 
@@ -62,7 +62,7 @@ We would recommend:
 
 Atomic commits correspond to the smallest, most meaningful change you can make to the code. You can keep your pull request as a draft if you are still working on it. Upon completion, you can mark the pull request is ready to review for further comments and feedback.
 
-Every PR should demonstrate that the change works. Tests play an especially important role when we develop AWS service emulators. To get started with writing LocalStack tests, have a look at our [testing guide](../integration-tests). We would also like if tests are using [snapshot testing](https://localstack.cloud/blog/2022-08-04-parity-explained/#parity-tests-with-snapshot-testing). Additonally, 
+Every PR should demonstrate that the change works. Tests play an especially important role when we develop AWS service emulators. To get started with writing LocalStack tests, have a look at our testing guide. We would also like if tests are using [snapshot testing](https://localstack.cloud/blog/2022-08-04-parity-explained/#parity-tests-with-snapshot-testing). Additonally, 
 run formatting and linting locally: `make format` and `make lint` on your changes to ensure that the linting checks don't fail.
 
 ### Reviewing pull requests
