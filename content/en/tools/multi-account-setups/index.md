@@ -10,14 +10,8 @@ description: >
   Using LocalStack in multi-tenant setups
 ---
 
-{{< alert title="Warning" color="warning">}}
-Multi-account is a preview feature and has limited compatibility with cloud pods and persistence.
-To enable multi-accounts, refer to [configuration]({{< ref "configuration#core" >}}).
-{{< /alert >}}
-
-
-LocalStack Community only supports a single AWS Account ID, `000000000000` by default.
-By contrast, LocalStack Pro ships with multi-account support which adds namespacing based on AWS Account ID
+LocalStack Pro ships with multi-account support which allows namespacing based on AWS Account ID.
+By contrast, LocalStack Community only supports a single AWS Account ID: `000000000000`.
 
 Namespaced AWS resources can be accessed by using the `AWS_ACCESS_KEY_ID` variable when making requests.
 No additional server-side configuration is required.
@@ -62,40 +56,3 @@ $ awslocal ec2 describe-key-pairs
 LocalStack uses the `AWS_ACCESS_KEY_ID` client-side variable for Account ID.
 In future LocalStack may support proper access key IDs issued by the local IAM service, which will then internally be translated to corresponding account IDs.
 {{< /alert >}}
-
-### Limitations
-
-Multi-accounts is a preview feature and has limited compatibility with cloud pods and persistence.
-The services are listed below:
-
-- API Gateway
-- Athena
-- Backup
-- CloudFormation
-- CloudFront
-- CloudTrail
-- CloudWatch
-- CodeCommit
-- DynamoDB
-- EventBridge
-- Firehose
-- Glacier
-- Glue
-- IoT Analytics
-- IoT Wireless
-- Kafka
-- LakeFormation
-- Lambda
-- MediaStore
-- MWAA
-- OpenSearch
-- QLDB
-- Route53
-- SageMaker
-- SecretsManager
-- ServerlessRepo
-- Service Discovery
-- SNS
-- SQS
-- Timestream
-- Transfer
