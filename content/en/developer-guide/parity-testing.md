@@ -21,7 +21,7 @@ During a “normal” test execution, the test runs against LocalStack and compa
     
 	    The **identifier** can be freely selected, but ideally should give a hint on what is recorded - so typically the name of the function. The **result** is expected to be a `dict`.
 
-	2. Run the test against AWS: use the parameter `--snapshot-update` (_**update**_: we now also support the ENV `SNAPSHOT_UPDATE=1`) and set the environment variable as `TEST_TARGET=AWS_CLOUD`.
+	2. Run the test against AWS: use the parameter `--snapshot-update` (or the environment variable `SNAPSHOT_UPDATE=1`) and set the environment variable as `TEST_TARGET=AWS_CLOUD`.
 
 	3. Check the recorded result in `<testfile-name>.snapshot.json` and consider [using transformers](#using-transformers) to make the result comparable.
     
