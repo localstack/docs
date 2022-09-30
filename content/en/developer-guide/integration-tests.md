@@ -98,7 +98,6 @@ Here is how a useful environment configuration for testing against AWS could loo
 EDGE_BIND_HOST=0.0.0.0;
 DEBUG=1;
 DNS_ADDRESS=0;
-HOST_TMP_FOLDER=/tmp/localstack;
 TEST_DISABLE_RETRIES_AND_TIMEOUTS=1;
 EAGER_SERVICE_LOADING=0;
 LAMBDA_EXECUTOR=docker;
