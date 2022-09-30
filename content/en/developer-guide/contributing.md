@@ -69,4 +69,5 @@ run formatting and linting locally: `make format` and `make lint` on your change
 
 After landing your pull request, the codeowners will be automatically assigned who will review it and provide actionable feedback. Don't hesitate to contact the maintainers on the Slack community if you are awaiting your first review or you have made all the required changes.
 
-Maintainers expect the comments to be resolved once a review has been completed. You can provide updates if you are still working on it, to help us understand the areas where we can help. After the pull request is reviewed and approved, we would squash all the commits before we officially merge it.
+Maintainers expect the comments to be resolved once a review has been completed. You can provide updates if you are still working on it, to help us understand the areas where we can help.
+LocalStack uses a squash-merge workflow. After the pull request is reviewed and approved, we squash all commits in the PR to a single commit before we officially merge it.
