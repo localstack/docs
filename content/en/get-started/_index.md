@@ -57,12 +57,10 @@ The easiest way to install the LocalStack CLI is via `pip`:
 $ python3 -m pip install localstack
 {{< / command >}}
 
-Note: To download specific version of localstack, provide version to the above command.
-For example, to install localstack version v1.1.0 use,
-
-{{< command >}}
-$ python3 -m pip install localstack==v1.1.0
-{{< / command >}}
+{{< alert title="Notes" >}}
+- To download specific version of Localstack, provide version in the above command.
+  For example, to install Localstack version v1.1.0 use, `python3 -m pip install localstack==v1.1.0`.
+{{< /alert >}}
 
 {{< alert >}}
 **Note**: Please do **not** use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
