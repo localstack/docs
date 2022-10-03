@@ -43,5 +43,3 @@ The figure below illustrates the proxy mechanism and ports for the API Gateway s
 ```
 
 The proxy follows a simple protocol by implementing 2 methods: `forward_request` which is called *before* a request is forwarded to the backend, and `return_response` which is called *after* a response has been received from the backend: https://github.com/localstack/localstack/blob/master/localstack/services/generic_proxy.py
-
-The proxy implementation for API Gateway can be found here: https://github.com/localstack/localstack/blob/master/localstack/services/apigateway/apigateway_listener.py#L81
