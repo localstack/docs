@@ -5,9 +5,9 @@ description: >
   Get a condensed overview of the most important architectural concepts of LocalStack.
 ---
 
-When you first start working on LocalStack, you will most likely start working on AWS providers, either fixing bugs or adding features. In that case, you probably care mostly about Services, and, depending on the service and how it interacts with the Gateway, also **custom request handlers** and edge **routes**.
+When you first start working on LocalStack, you will most likely start working on AWS providers, either fixing bugs or adding features. In that case, you probably care mostly about [Services](#service), and, depending on the service and how it interacts with the [Gateway](#gateway), also **custom request handlers** and edge **routes**.
 
-If you are adding new service providers, then you’ll want to know how Plugins work, and how to expose a service provider as a service plugin. This guide will give you a comprehensive overview about various core architectural concepts of LocalStack.
+If you are adding new service providers, then you’ll want to know how [Plugins](#plugins) work, and how to expose a service provider as a [service plugin](#service-plugin). This guide will give you a comprehensive overview about various core architectural concepts of LocalStack.
 
 ## AWS Server Framework (ASF)
 
