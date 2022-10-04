@@ -6,7 +6,7 @@ description: >
   Overview of the configurable custom local endpoint for LocalStack Pro
 ---
 
-You can configure the local endpoint URL under which LocalStack is accessible via LocalStack Pro. To configure your local endpoint URL, navigate to your [Account settings](app.localstack.cloud/account/settings), to configure the local endpoint URL. Additionally, you can configure the local endpoint URL to view your resources if you are running LocalStack on a different machine.
+You can configure the local endpoint URL under which LocalStack is accessible from the LocalStack Web UI. To configure your local endpoint URL, navigate to your [Account settings](https://app.localstack.cloud/account/settings), to configure the local endpoint URL (defaults to https://localhost.localstack.cloud). Additionally, you can configure the local endpoint URL to view your resources if you are running LocalStack on a different machine (see instructions below).
 
 To ensure that the Web user interface can connect with your running LocalStck instance, you would need to configure the endpoint URL so that the server's SSL certificate matches the hostname/IP address of the endpoint URL. This situation arises when users configure the endpoint URL to be something like `https://myhost:4566` or use an IP address like `https://1.2.3.4:4566`. Websites with an `https://...` URL can only request other endpoints using HTTPS (i.e., not on `http://`). Additionally, while requesting an HTTPS page, the SSL certificate must match the hostname (i.e., `localhost.localstack.cloud` in our case).
 
