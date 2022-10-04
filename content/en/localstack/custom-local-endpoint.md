@@ -14,4 +14,4 @@ To ensure that the Web user interface can connect with your running LocalStck in
 
 To navigate this, we recommend you create a local TCP proxy server. The proxy server could listen on `127.0.0.1:4566` and forward all requests to your target endpoint where the LocalStack instance is running. You could leave the configuration in the Web user interface to use the default value, `https://localhost.localstack.cloud:4566`. We recommend [simpleproxy](https://manpages.ubuntu.com/manpages/trusty/man1/simpleproxy.1.html) or [proxy.py](https://github.com/abhinavsingh/proxy.py) as a way to implement this.
 
-An alternate walk-around would be to re-point `localhost.localstack.cloud` to the IP address of your target machine by adding an entry to `/etc/hosts`. It is especially useful if you run your LocalStack instance on a macOS/Linux-based machine.
+An alternate workaround would be to re-point `localhost.localstack.cloud` to the IP address of your target machine by adding an entry to `/etc/hosts`. This is especially useful if you're accessing the LocalStack Web UI on a macOS/Linux-based machine.
