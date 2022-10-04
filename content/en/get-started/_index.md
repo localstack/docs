@@ -58,8 +58,13 @@ $ python3 -m pip install localstack
 {{< / command >}}
 
 {{< alert title="Notes" >}}
-- To download specific version of Localstack, provide version in the above command.
-  For example, to install Localstack version v1.1.0 use, `python3 -m pip install localstack==v1.1.0`.
+To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
+
+{{< command >}} 
+$ python3 -m pip install localstack==<version>
+{{< / command >}}
+
+Here `<version>` depicts the particular LocalStack version that you would like to download and use.
 {{< /alert >}}
 
 {{< alert >}}
