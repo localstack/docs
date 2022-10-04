@@ -361,7 +361,7 @@ Note that the host names `eks-service-1.localhost.localstack.cloud` and `eks-ser
 
 In a situation, where you are looking to run your Load Balancer on the standard ports such as 80/443, it would not be able to work. Some of these ports may already be occupied on your local machine. For example, by default LocalStack allocates port 443 to expose the APIs via the HTTPS endpoint (`https://localhost.localstack.cloud`).
 
-We are also using Traefik as an ingress controller here.
+Note: Internally, LocalStack EKS is using [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress) as the Kubernetes ingress controller.
 
 ## Mounting directories from host to pod
 
