@@ -81,7 +81,7 @@ The `inject` command let users inject a specific application state, previously s
 Please note that this is a local-only operation, i.e., the injecting state must be located on the host machine (usually under `~/.localstack/cloudpods/<pod_name>`).
 
 By default, the injecting state updates the application runtime at a service level.
-Formally known as the `merge` injection strategy, the state of all services specified in the injecting state are reflected exactly in the application runtime, whilst all other active services remain unchanged.
+By using the `merge` injection strategy, the state of all services specified in the injecting state are reflected exactly in the application runtime, whilst all other active services remain unchanged.
 
 The `--strategy` option can be used to change such default injection behaviour.
 More specifically, the `overwrite` strategy will ensure the application runtime is an exact instance of the injecting state, and the `deep-merge` strategy will perform a fine-grain merge of the injecting state into the application runtime.
