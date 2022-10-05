@@ -359,6 +359,10 @@ $ curl http://eks-service-2.localhost.localstack.cloud:8081/v1
 
 Note that the host names `eks-service-1.localhost.localstack.cloud` and `eks-service-2.localhost.localstack.cloud` both resolve to `127.0.0.1` (localhost), and can hence be used to talk to your service endpoints, and are used inside the Kubernetes load balancer to distinguish between different services.
 
+In a situation, where you are looking to run your Load Balancer (LB) on the standard ports such as 80/443, it would not be able to work. Some of these ports may already be occupied on your local machine. For example, by default LocalStack allocates port 443 to expose the APIs via the HTTPS endpoint (`https://localhost.localstack.cloud`). Please make sure to expose your LB on a custom, non-standard port.
+
+Note: Internally, LocalStack EKS is using [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress) as the Kubernetes ingress controller.
+
 ## Mounting directories from host to pod
 
 If you have specific directories which you want to mount from your local dev machine into one of your pods you can do this with two simple steps:

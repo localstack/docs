@@ -1,6 +1,6 @@
 ---
 title: "LocalStack Extensions"
-weight: 7
+weight: 8
 description: >
   LocalStack Extensions allows developers to extend and customize LocalStack.
 ---
