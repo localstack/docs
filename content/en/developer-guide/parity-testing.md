@@ -25,7 +25,7 @@ During a “normal” test execution, the test runs against LocalStack and compa
 
 	3. Check the recorded result in `<testfile-name>.snapshot.json` and consider [using transformers](#using-transformers) to make the result comparable.
     
-3.  Run the test against AWS. Ensure that the `AWS_CLOUD` is not set as test target, and the parameter `--snapshot-update` is removed.
+3.  Run the test against AWS. Ensure that the `AWS_CLOUD` is not set as a test target and that the parameter `--snapshot-update` is removed.
 
 Here is an example of a parity test:
 
@@ -45,7 +45,7 @@ def test_invocation(self, lambda_client, snapshot):
 
 Transformers should bring AWS response in a comparable form by replacing any request-specific parameters.
 
-Replacements require thoughtful handling, so important information is not lost in translation.
+Replacements require thoughtful handling so that important information is not lost in translation.
 
 The `snapshot` fixture uses some basic transformations by default, including:
 
@@ -60,7 +60,7 @@ The `snapshot` fixture uses some basic transformations by default, including:
 
 ## API Transformer
 
-For each API we will collect “general” transformations, that ideally handle all transformation that is necessary. We havbe already added a few utility functions, which collect common transformations collected by the API: `snapshot.add_transformer(snapshot.transform.lambda_api()`.
+For each API we will collect “general” transformations, that ideally handle all transformation that is necessary. We have already added a few utility functions, which collect common transformations collected by the API: `snapshot.add_transformer(snapshot.transform.lambda_api()`.
 
 
 ## Transformer Types
@@ -69,7 +69,7 @@ The Parity testing framework currently includes some basic transformer types:
 
 -   `KeyValueBasedTransformer` replaces a value directly, or by reference; based on key-value evaluation.
 -   `JsonPathTransformer` replaces the JSON path value directly, or by reference. [jsonpath-ng](https://pypi.org/project/jsonpath-ng/) is used for the JSON path evaluation.
--   `RegexTransformer` replaces the regex pattern globally. Please be aware that this will be applied on the json-string. The JSON will be transformed to a string, and the replacement happens globally - use it with care.
+-   `RegexTransformer` replaces the regex pattern globally. Please be aware that this will be applied on the json-string. The JSON will be transformed into a string, and the replacement happens globally - use it with care.
 
 ## Reference Replacement
 
@@ -163,9 +163,9 @@ Using reference replacement, this information is preserved in the `snapshot.json
 
 Sometimes different transformers might interfere, especially regex transformers and reference transformations can be tricky.
 
-We added debug logs so that each replacement step should be visible in the output, to help locating any unexpected behavior.
+We added debug logs so that each replacement step should be visible in the output to help locate any unexpected behavior.
 
-You can enable the debug logs, by setting the env `DEBUG_SNAPSHOT=1`.
+You can enable the debug logs by setting the env `DEBUG_SNAPSHOT=1`.
 
 ```json 
 localstack.testing.snapshots.transformer: Registering regex pattern '000000000000' in snapshot with '111111111111'
@@ -182,7 +182,7 @@ localstack.testing.snapshots.transformer: Replacing '1ad533b5-ac54-4354-a273-3ea
 
 Snapshot verification is enabled by default. If for some reason you want to skip any snapshot verification, you can set the parameter `--snapshot-skip-all`.
 
-If you want to skip verification for or a single test case, you can set the pytest marker `skip_snapshot_verify`. If you set the marker without parameter, the verification will be skipped entirely for this test case.
+If you want to skip verification for or a single test case, you can set the pytest marker `skip_snapshot_verify`. If you set the marker without a parameter, the verification will be skipped entirely for this test case.
 
 However, you can exclude certain paths from the verification only. Simply include a list of json-paths. Those paths will then be excluded from the comparison:
 
