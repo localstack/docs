@@ -62,3 +62,16 @@ In this getting started guide, you'll learn how to make a basic usage of SNS ove
    {{< command >}}
    $ awslocal sns delete-topic --topic-arn "arn:aws:sns:us-east-1:000000000000:test-topic"
    {{< /command >}}
+
+## Using LocalStack Pro
+
+LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cloud) web user-interface to work with SNS and other AWS services. It is a convenient way to work with SNS, and allows you to create and manage SNS topics, subscriptions, and messages, in a fashion similar to the AWS console. While using the LocalStack App, ensure you have the LocalStack instance running.
+
+1. Login to the [web user-interface](https://app.localstack.cloud) and select the `SNS` service from the `Resources` drop-down.
+2. Click on the `Create Topic` button to create a new SNS topic.
+3. Enter the `Name`, `Attribute`, and `Tags` to create the SNS topic and click `Create`.
+4. You will be able to see the SNS topic in the `SNS Topics` page. Run the following command locally to test the SNS topic:
+   {{< command >}}
+   $ awslocal sns list-topics
+   {{< /command >}}
+5. Use the web user-interface to perform further operations on the SNS topic, such as deleting the topic, visualizing the topic attributes, and creating a new subscription.
