@@ -1,26 +1,31 @@
 ---
-title: "Cloud Pods CLI"
+title: "Cloud Pods CLI command reference"
 weight: 5
 categories: ["LocalStack Pro", "Tools", "Persistence", "CLI"]
 description: >
-  LocalStack provides a command line tool to manage the state of your instance via Cloud Pods.
+  The reference guide for LocalStack Cloud Pods CLI commands and how to get started on using them!
 ---
 
+This reference provides descriptions and example commands for LocalStack Cloud Pods CLI (`pod`) commands.
+
 ## Syntax
+
 Use the following syntax to run `localstack pod` commands from your terminal window:
 
-```bash
-localstack pod [command] [options]
-```
+{{< command >}}
+$ localstack pod [command] [options]
+{{< / command >}}
 
 where `command` specifies the operation you want to perform with your Cloud Pods, e.g., `pull` or `push`, and `options` specifies the optional flag.
 For example, you can attach a specific message to a snapshot using the `-m` option while doing a `commit` operation.
 
 ## Configuration
+
 The CRUD commands exposed with the Cloud Pods CLI expect a `--name <pod_name>` option to specify the pod's name.
 Users can avoid specifying a pod name at every command by setting a global config with the `config` command.
 
-For instance, the following command
+For instance, the following command:
+
 ```
 localstack config --name my_pod
 ```
