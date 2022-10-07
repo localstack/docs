@@ -78,22 +78,22 @@ LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cl
 
 ## Localstack Specifics
 
-### Accessing sent Platform Messages
+### Accessing published Platform Messages
 
-For testing purposes, Localstack keeps in memory all messages sent to a platform endpoint ([see the documentation about SNS mobile push notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html)), to allow easy retrieval.
+For testing purposes, Localstack keeps in memory all messages published to a platform endpoint ([see the documentation about SNS mobile push notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html)), to allow easy retrieval.
 
-These messages can be accessed in JSON format at `GET /_aws/sns/platform-endpoint-messages`. You can specify query parameters to select and filter specific `accountId`, AWS `region` and `endpointArn`.
+These messages can be accessed in JSON format at `GET /_aws/sns/platform-endpoint-messages`. You can specify query parameters to select and filter specific `accountId`, `region` and `endpointArn`.
 
 Query parameters:
 - `accountId` (not required)
 
-   The AWS account ID from which the messages have been sent. If not specified, it will use the default `000000000000`
+   The AWS account ID from which the messages have been published. If not specified, it will use the default `000000000000`
 - `region` (not required)
 
-   The AWS region from which the messages have been sent. If not specified, it will use the default `us-east-1`
+   The AWS region from which the messages have been published. If not specified, it will use the default `us-east-1`
 - `endpointArn` (not required)
 
-   The target EndpointArn to which the messages have been sent. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages.
+   The target EndpointArn to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages.
 
 Response format and attributes:
 - `platform_endpoint_messages`: 
@@ -103,7 +103,7 @@ Response format and attributes:
 
    The region of the endpoints and messages.
 
-We will create a platform endpoint in SNS and send a message to show how to retrieve the message. 
+We will create a platform endpoint in SNS and publish a message to show how to retrieve the message from the internal endpoint. 
 {{< command >}}
 $ awslocal sns create-platform-application --name app-test --platform APNS --attributes {}
 {
