@@ -3844,7 +3844,42 @@ Scenario 2: create ledger tables and run join query
 Creating two test tables in ledger - &amp;#34;Vehicle&amp;#34; and &amp;#34;VehicleRegistration&amp;#34;
 Running a query that joins data from the two tables
 Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v2&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v3&amp;#39;}}]
-&lt;/code>&lt;/pre></description></item><item><title>Aws: Relational Database Service (RDS)</title><link>/aws/rds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/rds/</guid><description>
+&lt;/code>&lt;/pre></description></item><item><title>Aws: Redshift</title><link>/aws/redshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/redshift/</guid><description>
+&lt;p>Redshift is a cloud-based data warehouse solution which allows end users to aggregate huge volumes of data &amp;amp; parallel processing of data. Redshift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data. The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.&lt;/p>
+&lt;p>A basic version of Redshift is available in LocalStack Pro - see the supported APIs are available over our &lt;a href="/localstack/configuration/">configuration page&lt;/a>.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to make a basic usage of Redshift over LocalStack. This guide is intended for users who wish to get more acquainted with SNS, and assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Create a cluster named &lt;code>mysamplecluster&lt;/code> using the &lt;code>awslocal&lt;/code> CLI:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift create-cluster --cluster-identifier mysamplecluster --master-username masteruser --master-user-password secret1 --node-type ds2.xlarge --cluster-type single-node&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>: Redshift is essentially mocked in LocalStack alongside the node type. Hence while developing and testing locally, you can use any node type.
+&lt;/div>
+&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Check the Redshift cluster creation progress by running the following command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift describe-clusters --cluster-identifier mysamplecluster&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Get all the information about all cluster security groups in the account:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift describe-cluster-security-groups&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Get all the general cluster properties:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift describe-clusters&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Associate a cluster with a cluster security group:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift modify-cluster --cluster-identifier mysamplecluster --cluster-security-groups mysamplesecuritygroup&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Delete a cluster without specifying a final snapshot:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift delete-cluster --cluster-identifier mysamplecluster --skip-final-cluster-snapshot&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>To get started with a more extensive example, please refer to the &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-redshift-crawler">Glue Crawler Redshift Integration (JDBC)&lt;/a> sample project.&lt;/p></description></item><item><title>Aws: Relational Database Service (RDS)</title><link>/aws/rds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/rds/</guid><description>
 &lt;p>LocalStack supports a basic version of the &lt;a href="https://aws.amazon.com/rds/">Relational Database Service (RDS)&lt;/a> for testing.&lt;/p>
 &lt;h2 id="supported-db-engines">Supported DB engines&lt;/h2>
 &lt;p>Currently, it is possible to spin up PostgreSQL, MySQL, and MSSQL (SQL Server) databases on the local machine.&lt;/p>
