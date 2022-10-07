@@ -75,3 +75,74 @@ LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cl
    $ awslocal sns list-topics
    {{< /command >}}
 5. Use the web user-interface to perform further operations on the SNS topic, such as deleting the topic, visualizing the topic attributes, and creating a new subscription.
+
+## LocalStack Specifics
+We provide additional features to help you develop, debug and test your SNS applications. They are exposed as internal endpoints that you can access to have more informations about specific internal data.  
+
+### Accessing published Platform Messages
+
+For testing purposes, LocalStack keeps in memory all messages published to a platform endpoint to allow easy retrieval. Check out the [AWS docs about SNS mobile push notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html) to know more about this.
+
+These messages can be accessed in JSON format at `GET /_aws/sns/platform-endpoint-messages`. You can specify query parameters to select and filter specific `accountId`, `region` and `endpointArn`.
+
+__Query parameters__
+
+| Parameter | Required | Description |
+| - | - | - |
+| `accountId` | No | The AWS account ID from which the messages have been published. If not specified, it will use the default `000000000000` |
+| `region` | No | The AWS region from which the messages have been published. If not specified, it will use the default `us-east-1` |
+| `endpointArn` | No | The target EndpointArn to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages. |
+
+__Response format and attributes__
+
+| Attribute | Description |
+| - | - |
+| `platform_endpoint_messages` | Contains endpoints ARN as field names. Each endpoint will have its messages in an Array. |
+| `region` | The region of the endpoints and messages. | 
+
+<br>
+
+We will create a platform endpoint in SNS and publish a message to show how to retrieve the message from the internal endpoint. 
+{{< command >}}
+$ awslocal sns create-platform-application --name app-test --platform APNS --attributes {}
+{
+    "PlatformApplicationArn": "arn:aws:sns:us-east-1:000000000000:app/APNS/app-test"
+}
+
+$ awslocal sns create-platform-endpoint --platform-application-arn "arn:aws:sns:us-east-1:000000000000:app/APNS/app-test" --token my-fake-token
+{
+    "EndpointArn": "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944"
+}
+
+$ awslocal sns publish --target-arn "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944" --message '{"APNS_PLATFORM": "{\"aps\": {\"content-available\": 1}}"}' --message-structure json
+{
+    "MessageId": "ed501a7a-caab-45aa-a941-2fcc64b5c227"
+}
+
+$ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
+{
+  "platform_endpoint_messages": {
+    "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944": [
+      {
+        "TargetArn": "arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944",
+        "Message": "{\"APNS_PLATFORM\": \"{\\\"aps\\\": {\\\"content-available\\\": 1}}\"}",
+        "MessageAttributes": null,
+        "MessageStructure": "json",
+        "Subject": null
+      }
+    ]
+  },
+  "region": "us-east-1"
+}
+{{< /command >}}
+
+You can also reset the saved messages at `DELETE /_aws/sns/platform-endpoint-messages`, with those same filters.
+
+{{< command >}}
+$ curl -X "DELETE" "http://localhost:4566/_aws/sns/platform-endpoint-messages"
+$ curl "http://localhost:4566/_aws/sns/platform-endpoint-messages" | jq .
+{
+  "platform_endpoint_messages": {},
+  "region": "us-east-1"
+}
+{{< /command >}}
