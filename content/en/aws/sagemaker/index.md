@@ -10,7 +10,7 @@ LocalStack Pro provides a local version of the SageMaker API, which allows runni
 
 ## Model Training
 
-A basic training example using the `sagemaker.tensorflow.TensorFlow` class is provided in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/sagemaker-ml-jobs). Essentially, the code boils down to these core lines:
+A basic training example using the `sagemaker.tensorflow.TensorFlow` class is provided in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/sagemaker-ml-jobs). Essentially, the code boils down to these core lines:
 ```
 inputs = ...  # load training data files
 mnist_estimator = TensorFlow(entry_point='mnist.py', role='arn:aws:...',
@@ -23,7 +23,7 @@ The code snippet above uploads the model training code to local S3, submits a ne
 
 ## Model Deployment and Inference
 
-SageMaker supports the deployment and real-time inference of singular local ML models. An example for that is provided in our [PRO samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/sagemaker-ml-jobs). As explained in the ReadMe of the sample, you will need to retrieve the image with your AWS account by connecting with [the provided ECR repository](https://github.com/aws/deep-learning-containers/blob/master/available_images.md):
+SageMaker supports the deployment and real-time inference of singular local ML models. An example for that is provided in our [PRO samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/sagemaker-inference). As explained in the ReadMe of the sample, you will need to retrieve the image with your AWS account by connecting with [the provided ECR repository](https://github.com/aws/deep-learning-containers/blob/master/available_images.md):
 
 ```
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 763104351884.dkr.ecr.us-east-1.amazonaws.com
