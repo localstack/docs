@@ -2285,6 +2285,7 @@ In other words, for v2 the URL &lt;code>http://0v1p6q6.execute-api.localhost.loc
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal apigatewaymanagementapi post-to-connection --connection-id &amp;#39;&amp;lt;connectionId&amp;gt;&amp;#39; --data &amp;#39;{&amp;#34;msg&amp;#34;: &amp;#34;Hi&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>For a simple, self-contained example please refer to &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets">this Github repository&lt;/a>.&lt;/p></description></item><item><title>Aws: AppSync</title><link>/aws/appsync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/appsync/</guid><description>
 &lt;p>Basic support for AppSync is included in LocalStack Pro. The local AppSync API allows you to spin up local GraphQL APIs and directly expose your data sources (e.g., DynamoDB tables) to external clients.&lt;/p>
+&lt;h2 id="example-appsync-api-with-dynamodb-data-source">Example AppSync API with DynamoDB data source&lt;/h2>
 &lt;p>For example, you can create a DynamoDB table &lt;code>&amp;quot;posts&amp;quot;&lt;/code> with a key attribute &lt;code>id&lt;/code>, and define a GraphQL schema in a file &lt;code>schema.graphql&lt;/code> like this:&lt;/p>
 &lt;pre tabindex="0">&lt;code>schema {
 query: Query
@@ -2315,7 +2316,7 @@ S: String!
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once things have been wired up properly, and assuming the ID of your GraphQL API is &lt;code>&amp;quot;api123&amp;quot;&lt;/code>, you should be able to run the following GraphQL query to retrieve all items from the &lt;code>&amp;quot;posts&amp;quot;&lt;/code> DynamoDB table:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -d &amp;#39;{&amp;#34;query&amp;#34;:&amp;#34;query {getPosts{id{S}}}&amp;#34;}&amp;#39; http://localhost:4605/graphql/api123&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>For more details, please refer to the self-contained sample published in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/appsync-graphql-api">this Github repository&lt;/a>.&lt;/p>
-&lt;h3 id="custom-graphql-api-ids">Custom GraphQL API IDs&lt;/h3>
+&lt;h2 id="custom-graphql-api-ids">Custom GraphQL API IDs&lt;/h2>
 &lt;p>It is possible to use a predefined ID when creating GraphQL APIs by setting the tag &lt;code>_custom_id_&lt;/code>.
 For example:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync create-graphql-api --name my-api --authentication-type API_KEY --tags _custom_id_=faceb00c
@@ -2334,7 +2335,16 @@ For example:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="graphql-endpoints">GraphQL Endpoints&lt;/h3>
+&lt;h2 id="graphql-resolvers">GraphQL Resolvers&lt;/h2>
+&lt;p>LocalStack currently provides support for the following &lt;a href="https://docs.aws.amazon.com/appsync/latest/devguide/tutorials.html">AppSync resolver types&lt;/a>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>AMAZON_DYNAMODB&lt;/code> - for accessing DynamoDB tables&lt;/li>
+&lt;li>&lt;code>RELATIONAL_DATABASE&lt;/code> - for accessing RDS database tables&lt;/li>
+&lt;li>&lt;code>AWS_LAMBDA&lt;/code> - for retrieving data from Lambda function invocations&lt;/li>
+&lt;li>&lt;code>HTTP&lt;/code> - for calling HTTP endpoints to fetch data&lt;/li>
+&lt;li>&lt;code>NONE&lt;/code> - for pass-through resolver mapping templates that return the incoming payload&lt;/li>
+&lt;/ul>
+&lt;h2 id="graphql-endpoints">GraphQL Endpoints&lt;/h2>
 &lt;p>There are three configurable strategies that govern how GraphQL API endpoints are created. The strategy can be configured via the &lt;code>GRAPHQL_ENDPOINT_STRATEGY&lt;/code> environment variable.&lt;/p>
 &lt;table>
 &lt;thead>
