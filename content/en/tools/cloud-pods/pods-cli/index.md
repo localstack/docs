@@ -142,7 +142,7 @@ The `-p` option will list all the available public Cloud Pods.
 List all available Cloud Pods.
 ```
 Options:
-  -l, --local  List also locally available Cloud Pods
+  -l, --local   List also locally available Cloud Pods
   -p, --public  List all public Cloud Pods.
 ```
 ### pull
