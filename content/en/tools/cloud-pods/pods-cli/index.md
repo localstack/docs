@@ -135,7 +135,7 @@ Options:
 The `list` command displays all the available Cloud Pods.
 By default, it only shows the pods that have been uploaded to the platform.
 The `-l` option will also show the locally available pods. 
-The `p` option will list all the available public Cloud Pods.
+The `-p` option will list all the available public Cloud Pods.
 
 **Synopsis**
 
