@@ -116,7 +116,13 @@ $ awslocal glue get-tables --database-name db2
 
 ## Crawlers
 
-Glue crawlers allow extracting metadata from structured data sources. The example below illustrates crawling tables and partition metadata from S3 buckets.
+Glue crawlers allow extracting metadata from structured data sources. 
+
+LocalStack Glue currently supports S3 targets (configurable via `S3Targets`), as well as JDBC targets (configurable via `JdbcTargets`). Support for other target types is in our pipeline and will be added soon. 
+
+### S3 Crawler Example
+
+The example below illustrates crawling tables and partition metadata from S3 buckets.
 
 First, we create an S3 bucket with a couple of items:
 {{< command >}}
@@ -152,6 +158,43 @@ $ awslocal glue get-partitions --database-name db1 --table-name table1
         "TableName": "table1",
 ...
 {{< / command >}}
+
+### JDBC Crawler Example
+
+When using JDBC crawlers, you can point your crawler towards a Redshift database created in LocalStack.
+
+Below is a rough outline of the steps required to get the integration for the JDBC crawler working. We can first create the local Redshift cluster via:
+{{< command >}}
+$ awslocal redshift create-cluster --cluster-identifier c1 --node-type dc1.large --master-username test --master-user-password test --db-name db1
+...
+    "Endpoint": {
+        "Address": "localhost.localstack.cloud",
+        "Port": 4510
+    },
+...
+{{< / command >}}
+
+Then we can use any JDBC or Postgres client to create a table `mytable1` in the Redshift database, and fill the table with some data.
+
+Next, we're creating the Glue database, the JDBC connection, as well as the crawler:
+{{< command >}}
+$ awslocal glue create-database --database-input '{"Name":"gluedb1"}'
+$ awslocal glue create-connection --connection-input \
+    {"Name":"conn1","ConnectionType":"JDBC","ConnectionProperties":{"USERNAME":"test","PASSWORD":"test","JDBC_CONNECTION_URL":"jdbc:redshift://localhost.localstack.cloud:4510/db1"}}'
+$ awslocal glue create-crawler --name c1 --database-name gluedb1 --role r1 --targets '{"JdbcTargets":[{"ConnectionName":"conn1","Path":"db1/%/mytable1"}]}'
+$ awslocal glue start-crawler --name c1
+...
+$ awslocal glue get-crawler --name c1
+...
+    "State": "RUNNING",
+...
+$ awslocal glue get-crawler --name c1
+...
+    "State": "READY",
+...
+{{< / command >}}
+
+Once the crawler has finished running and is back in `READY` state, the Glue table within the `gluedb1` DB should have been populated and can be queried via the API.
 
 ## Schema Registry
 
