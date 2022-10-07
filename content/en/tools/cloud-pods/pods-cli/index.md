@@ -169,7 +169,8 @@ By default, a `push` operation will always retrieve the application state, creat
 Users can use the `--local` flag if they wish to avoid the last step and keep the newly created pod on the host machine.
 Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the `--services` option.
 Pushing an already existing pod results in creating a new version of it and, eventually, uploading it to the platform.
-Users that want to make a Cloud Pod accessible outside their organization can mark it as *public* with the command `localstack pod push --name <pod_name> --visibility public`.
+
+Users who want to make a Cloud Pod accessible outside their organization can mark it as *public* with the command `localstack pod push --name <pod_name> --visibility public`.
 Please note that this command does not create a new version and requires a version to be already registered with the platform.
 
 **Synopsis**
