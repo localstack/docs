@@ -3335,7 +3335,10 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;h2 id="crawlers">Crawlers&lt;/h2>
-&lt;p>Glue crawlers allow extracting metadata from structured data sources. The example below illustrates crawling tables and partition metadata from S3 buckets.&lt;/p>
+&lt;p>Glue crawlers allow extracting metadata from structured data sources.&lt;/p>
+&lt;p>LocalStack Glue currently supports S3 targets (configurable via &lt;code>S3Targets&lt;/code>), as well as JDBC targets (configurable via &lt;code>JdbcTargets&lt;/code>). Support for other target types is in our pipeline and will be added soon.&lt;/p>
+&lt;h3 id="s3-crawler-example">S3 Crawler Example&lt;/h3>
+&lt;p>The example below illustrates crawling tables and partition metadata from S3 buckets.&lt;/p>
 &lt;p>First, we create an S3 bucket with a couple of items:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://test
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>printf &amp;#34;1, 2, 3, 4\n5, 6, 7, 8&amp;#34; &amp;gt; /tmp/file.csv
@@ -3362,6 +3365,33 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db1&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TableName&amp;#34;: &amp;#34;table1&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h3 id="jdbc-crawler-example">JDBC Crawler Example&lt;/h3>
+&lt;p>When using JDBC crawlers, you can point your crawler towards a Redshift database created in LocalStack.&lt;/p>
+&lt;p>Below is a rough outline of the steps required to get the integration for the JDBC crawler working. We can first create the local Redshift cluster via:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift create-cluster --cluster-identifier c1 --node-type dc1.large --master-username test --master-user-password test --db-name db1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Endpoint&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Address&amp;#34;: &amp;#34;localhost.localstack.cloud&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Port&amp;#34;: 4510
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Then we can use any JDBC or Postgres client to create a table &lt;code>mytable1&lt;/code> in the Redshift database, and fill the table with some data.&lt;/p>
+&lt;p>Next, we&amp;rsquo;re creating the Glue database, the JDBC connection, as well as the crawler:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-database --database-input &amp;#39;{&amp;#34;Name&amp;#34;:&amp;#34;gluedb1&amp;#34;}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-connection --connection-input \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {&amp;#34;Name&amp;#34;:&amp;#34;conn1&amp;#34;,&amp;#34;ConnectionType&amp;#34;:&amp;#34;JDBC&amp;#34;,&amp;#34;ConnectionProperties&amp;#34;:{&amp;#34;USERNAME&amp;#34;:&amp;#34;test&amp;#34;,&amp;#34;PASSWORD&amp;#34;:&amp;#34;test&amp;#34;,&amp;#34;JDBC_CONNECTION_URL&amp;#34;:&amp;#34;jdbc:redshift://localhost.localstack.cloud:4510/db1&amp;#34;}}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler --name c1 --database-name gluedb1 --role r1 --targets &amp;#39;{&amp;#34;JdbcTargets&amp;#34;:[{&amp;#34;ConnectionName&amp;#34;:&amp;#34;conn1&amp;#34;,&amp;#34;Path&amp;#34;:&amp;#34;db1/%/mytable1&amp;#34;}]}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler --name c1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-crawler --name c1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;RUNNING&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-crawler --name c1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;READY&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Once the crawler has finished running and is back in &lt;code>READY&lt;/code> state, the Glue table within the &lt;code>gluedb1&lt;/code> DB should have been populated and can be queried via the API.&lt;/p>
 &lt;h2 id="schema-registry">Schema Registry&lt;/h2>
 &lt;p>The Glue Schema Registry allows you to centrally discover, control, and evolve data stream schemas.
 With the Schema Registry, you can manage and enforce schemas and schema compatibilities in your streaming applications.
