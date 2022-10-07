@@ -155,11 +155,13 @@ Options:
 &lt;/code>&lt;/pre>&lt;h3 id="list">list&lt;/h3>
 &lt;p>The &lt;code>list&lt;/code> command displays all the available Cloud Pods.
 By default, it only shows the pods that have been uploaded to the platform.
-The &lt;code>-l&lt;/code> option will also show the locally available pods.&lt;/p>
+The &lt;code>-l&lt;/code> option will also show the locally available pods.
+The &lt;code>-p&lt;/code> option will list all the available public Cloud Pods.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
 &lt;p>List all available Cloud Pods.&lt;/p>
 &lt;pre tabindex="0">&lt;code>Options:
 -l, --local List also locally available Cloud Pods
+-p, --public List all public Cloud Pods.
 &lt;/code>&lt;/pre>&lt;h3 id="pull">pull&lt;/h3>
 &lt;p>The &lt;code>pull&lt;/code> command retrieves the content of a Cloud Pod previously created and uploaded to the LocalStack platform and injects it into the application runtime.&lt;/p>
 &lt;p>By default, the fetched pod updates the application runtime at a service level, utilising a &lt;code>merge&lt;/code> injection strategy.
@@ -177,6 +179,8 @@ By default, a &lt;code>push&lt;/code> operation will always retrieve the applica
 Users can use the &lt;code>--local&lt;/code> flag if they wish to avoid the last step and keep the newly created pod on the host machine.
 Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the &lt;code>--services&lt;/code> option.
 Pushing an already existing pod results in creating a new version of it and, eventually, uploading it to the platform.&lt;/p>
+&lt;p>Users who want to make a Cloud Pod accessible outside their organization can mark it as &lt;em>public&lt;/em> with the command &lt;code>localstack pod push --name &amp;lt;pod_name&amp;gt; --visibility public&lt;/code>.
+Please note that this command does not create a new version and requires a version to be already registered with the platform.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
 &lt;pre tabindex="0">&lt;code>Create a new version of a Cloud Pod from the latest snapshot. A snapshot is created if it does not
 exists yet.
@@ -185,9 +189,9 @@ Options:
 -m, --message TEXT Add a comment describing the version.
 -n, --name TEXT Name of the Cloud Pod.
 -s, --services TEXT Comma-delimited list of services to push in the pods (all by default).
---overwrite BOOLEAN Overwrite a version with the content from the latest snapshot of the selected
-version.
--v, --version INTEGER Version to overwrite. Works with `--overwrite`
+--overwrite BOOLEAN Overwrite a version with the content from the latest snapshot of the selected version.
+-v, --version INTEGER Version to overwrite. Works with `--overwrite`.
+--visibility TEXT Set the visibility of the Cloud Pod [`public` or `private`]. Does not create a new version.
 &lt;/code>&lt;/pre>&lt;h3 id="versions">versions&lt;/h3>
 &lt;p>The &lt;code>versions&lt;/code> command simply lists all the available versions of a Cloud Pod.&lt;/p>
 &lt;p>&lt;strong>Synopsis&lt;/strong>&lt;/p>
