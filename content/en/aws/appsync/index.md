@@ -8,6 +8,8 @@ description: >
 
 Basic support for AppSync is included in LocalStack Pro. The local AppSync API allows you to spin up local GraphQL APIs and directly expose your data sources (e.g., DynamoDB tables) to external clients.
 
+## Example AppSync API with DynamoDB data source
+
 For example, you can create a DynamoDB table `"posts"` with a key attribute `id`, and define a GraphQL schema in a file `schema.graphql` like this:
 ```
 schema {
@@ -46,7 +48,7 @@ $ curl -d '{"query":"query {getPosts{id{S}}}"}' http://localhost:4605/graphql/ap
 
 For more details, please refer to the self-contained sample published in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/appsync-graphql-api).
 
-### Custom GraphQL API IDs
+## Custom GraphQL API IDs
 
 It is possible to use a predefined ID when creating GraphQL APIs by setting the tag `_custom_id_`.
 For example:
@@ -70,7 +72,17 @@ $ awslocal appsync create-graphql-api --name my-api --authentication-type API_KE
 }
 {{< /command >}}
 
-### GraphQL Endpoints 
+## GraphQL Resolvers
+
+LocalStack currently provides support for the following [AppSync resolver types](https://docs.aws.amazon.com/appsync/latest/devguide/tutorials.html):
+
+* `AMAZON_DYNAMODB` - for accessing DynamoDB tables
+* `RELATIONAL_DATABASE` - for accessing RDS database tables
+* `AWS_LAMBDA` - for retrieving data from Lambda function invocations
+* `HTTP` - for calling HTTP endpoints to fetch data
+* `NONE` - for pass-through resolver mapping templates that return the incoming payload
+
+## GraphQL Endpoints 
 
 There are three configurable strategies that govern how GraphQL API endpoints are created. The strategy can be configured via the `GRAPHQL_ENDPOINT_STRATEGY` environment variable.
 
