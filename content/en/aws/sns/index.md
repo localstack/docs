@@ -76,32 +76,30 @@ LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cl
    {{< /command >}}
 5. Use the web user-interface to perform further operations on the SNS topic, such as deleting the topic, visualizing the topic attributes, and creating a new subscription.
 
-## Localstack Specifics
+## LocalStack Specifics
 
 ### Accessing published Platform Messages
 
-For testing purposes, Localstack keeps in memory all messages published to a platform endpoint ([see the documentation about SNS mobile push notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html)), to allow easy retrieval.
+For testing purposes, LocalStack keeps in memory all messages published to a platform endpoint to allow easy retrieval. Check out the [AWS docs about SNS mobile push notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html) to know more about this.
 
 These messages can be accessed in JSON format at `GET /_aws/sns/platform-endpoint-messages`. You can specify query parameters to select and filter specific `accountId`, `region` and `endpointArn`.
 
-Query parameters:
-- `accountId` (not required)
+__Query parameters__
 
-   The AWS account ID from which the messages have been published. If not specified, it will use the default `000000000000`
-- `region` (not required)
+| Parameter | Required | Description |
+| - | - | - |
+| `accountId` | No | The AWS account ID from which the messages have been published. If not specified, it will use the default `000000000000` |
+| `region` | No | The AWS region from which the messages have been published. If not specified, it will use the default `us-east-1` |
+| `endpointArn` | No | The target EndpointArn to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages. |
 
-   The AWS region from which the messages have been published. If not specified, it will use the default `us-east-1`
-- `endpointArn` (not required)
+__Response format and attributes__
 
-   The target EndpointArn to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages.
+| Attribute | Description |
+| - | - |
+| `platform_endpoint_messages` | Contains endpoints ARN as field names. Each endpoint will have its messages in an Array. |
+| `region` | The region of the endpoints and messages. | 
 
-Response format and attributes:
-- `platform_endpoint_messages`: 
-
-   Contains endpoints ARN as field names. Each endpoint will have its messages in an Array.
-- `region`
-
-   The region of the endpoints and messages.
+<br>
 
 We will create a platform endpoint in SNS and publish a message to show how to retrieve the message from the internal endpoint. 
 {{< command >}}
