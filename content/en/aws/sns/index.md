@@ -78,6 +78,8 @@ LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cl
 
 ## Localstack Specifics
 
+### Accessing sent Platform Messages
+
 For testing purposes, Localstack keeps in memory all messages sent to a platform endpoint ([see the documentation about SNS mobile push notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html)), to allow easy retrieval.
 
 These messages can be accessed in JSON format at `GET /_aws/sns/platform-endpoint-messages`. You can specify query parameters to select and filter specific `accountId`, AWS `region` and `endpointArn`.
