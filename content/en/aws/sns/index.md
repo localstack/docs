@@ -77,6 +77,7 @@ LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cl
 5. Use the web user-interface to perform further operations on the SNS topic, such as deleting the topic, visualizing the topic attributes, and creating a new subscription.
 
 ## LocalStack Specifics
+We provide additional features to help you develop, debug and test your SNS applications. They are exposed as internal endpoints that you can access to have more informations about specific internal data.  
 
 ### Accessing published Platform Messages
 
