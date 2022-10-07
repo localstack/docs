@@ -11,7 +11,7 @@ A basic version of Redshift is available in LocalStack Pro - see the supported A
 
 ## Getting started
 
-In this getting started guide, you'll learn how to make a basic usage of Redshift over LocalStack. This guide is intended for users who wish to get more acquainted with SNS, and assumes you have basic knowledge of the AWS CLI (and our `awslocal` wrapper script). To get started, start your LocalStack instance using your preferred method:
+In this getting started guide, you'll learn how to make a basic usage of Redshift over LocalStack. This guide is intended for users who wish to get more acquainted with SNS, and assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:
 
 1. Create a cluster named `mysamplecluster` using the `awslocal` CLI:
    {{< command >}}
