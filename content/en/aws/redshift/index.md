@@ -46,4 +46,4 @@ In this getting started guide, you'll learn how to make a basic usage of Redshif
    $ awslocal redshift delete-cluster --cluster-identifier mysamplecluster --skip-final-cluster-snapshot
    {{< /command >}}
 
-To get started with a more extensive example, refer the [Glue Crawler RedShift Integration (JDBC)](https://github.com/localstack/localstack-pro-samples/tree/master/glue-redshift-crawler) sample project.
+To get started with a more extensive example, please refer to the [Glue Crawler Redshift Integration (JDBC)](https://github.com/localstack/localstack-pro-samples/tree/master/glue-redshift-crawler) sample project.
