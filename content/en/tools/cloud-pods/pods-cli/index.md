@@ -134,7 +134,8 @@ Options:
 
 The `list` command displays all the available Cloud Pods.
 By default, it only shows the pods that have been uploaded to the platform.
-The `-l` option will also show the locally available pods.
+The `-l` option will also show the locally available pods. 
+The `p` option will list all the available public Cloud Pods.
 
 **Synopsis**
 
@@ -142,6 +143,7 @@ List all available Cloud Pods.
 ```
 Options:
   -l, --local  List also locally available Cloud Pods
+  -p, --public  List all public Cloud Pods.
 ```
 ### pull
 
@@ -167,6 +169,8 @@ By default, a `push` operation will always retrieve the application state, creat
 Users can use the `--local` flag if they wish to avoid the last step and keep the newly created pod on the host machine.
 Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the `--services` option.
 Pushing an already existing pod results in creating a new version of it and, eventually, uploading it to the platform.
+Users that want to make a Cloud Pod accessible outside their organization can mark it as *public* with the command `localstack pod push --name <pod_name> --visibility public`.
+Please note that this command does not create a new version and requires a version to be already registered with the platform.
 
 **Synopsis**
 ```
@@ -178,9 +182,9 @@ Options:
   -m, --message TEXT     Add a comment describing the version.
   -n, --name TEXT        Name of the Cloud Pod.
   -s, --services TEXT    Comma-delimited list of services to push in the pods (all by default).
-  --overwrite BOOLEAN    Overwrite a version with the content from the latest snapshot of the selected
-                         version.
-  -v, --version INTEGER  Version to overwrite. Works with `--overwrite`
+  --overwrite BOOLEAN    Overwrite a version with the content from the latest snapshot of the selected version.
+  -v, --version INTEGER  Version to overwrite. Works with `--overwrite`.
+  --visibility TEXT      Set the visibility of the Cloud Pod [`public` or `private`]. Does not create a new version.
 ```
 ### versions
 
