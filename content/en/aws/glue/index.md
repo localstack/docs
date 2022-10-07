@@ -163,7 +163,7 @@ $ awslocal glue get-partitions --database-name db1 --table-name table1
 
 When using JDBC crawlers, you can point your crawler towards a Redshift database created in LocalStack.
 
-Below is a rough outline of the steps required to get the integration for the JDBC crawler working. We can first create the Redshift table via:
+Below is a rough outline of the steps required to get the integration for the JDBC crawler working. We can first create the local Redshift cluster via:
 {{< command >}}
 $ awslocal redshift create-cluster --cluster-identifier c1 --node-type dc1.large --master-username test --master-user-password test --db-name db1
 ...
@@ -185,10 +185,13 @@ $ awslocal glue create-crawler --name c1 --database-name gluedb1 --role r1 --tar
 $ awslocal glue start-crawler --name c1
 ...
 $ awslocal glue get-crawler --name c1
+...
     "State": "RUNNING",
 ...
 $ awslocal glue get-crawler --name c1
+...
     "State": "READY",
+...
 {{< / command >}}
 
 Once the crawler has finished running and is back in `READY` state, the Glue table within the `gluedb1` DB should have been populated and can be queried via the API.
