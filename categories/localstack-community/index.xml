@@ -2860,7 +2860,97 @@ Note: If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;,
 &lt;li>You will be able to see the SNS topic in the &lt;code>SNS Topics&lt;/code> page. Run the following command locally to test the SNS topic:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-topics&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;li>Use the web user-interface to perform further operations on the SNS topic, such as deleting the topic, visualizing the topic attributes, and creating a new subscription.&lt;/li>
-&lt;/ol></description></item><item><title>Aws: Simple Queue Service (SQS)</title><link>/aws/sqs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/sqs/</guid><description>
+&lt;/ol>
+&lt;h2 id="localstack-specifics">LocalStack Specifics&lt;/h2>
+&lt;p>We provide additional features to help you develop, debug and test your SNS applications. They are exposed as internal endpoints that you can access to have more informations about specific internal data.&lt;/p>
+&lt;h3 id="accessing-published-platform-messages">Accessing published Platform Messages&lt;/h3>
+&lt;p>For testing purposes, LocalStack keeps in memory all messages published to a platform endpoint to allow easy retrieval. Check out the &lt;a href="https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html">AWS docs about SNS mobile push notifications&lt;/a> to know more about this.&lt;/p>
+&lt;p>These messages can be accessed in JSON format at &lt;code>GET /_aws/sns/platform-endpoint-messages&lt;/code>. You can specify query parameters to select and filter specific &lt;code>accountId&lt;/code>, &lt;code>region&lt;/code> and &lt;code>endpointArn&lt;/code>.&lt;/p>
+&lt;p>&lt;strong>Query parameters&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Parameter&lt;/th>
+&lt;th>Required&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>accountId&lt;/code>&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>The AWS account ID from which the messages have been published. If not specified, it will use the default &lt;code>000000000000&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>region&lt;/code>&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>The AWS region from which the messages have been published. If not specified, it will use the default &lt;code>us-east-1&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>endpointArn&lt;/code>&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>The target EndpointArn to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>Response format and attributes&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Attribute&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>platform_endpoint_messages&lt;/code>&lt;/td>
+&lt;td>Contains endpoints ARN as field names. Each endpoint will have its messages in an Array.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>region&lt;/code>&lt;/td>
+&lt;td>The region of the endpoints and messages.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;br>
+&lt;p>We will create a platform endpoint in SNS and publish a message to show how to retrieve the message from the internal endpoint.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-platform-application --name app-test --platform APNS --attributes {}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;PlatformApplicationArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:app/APNS/app-test&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-platform-endpoint --platform-application-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:app/APNS/app-test&amp;#34; --token my-fake-token
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EndpointArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns publish --target-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34; --message &amp;#39;{&amp;#34;APNS_PLATFORM&amp;#34;: &amp;#34;{\&amp;#34;aps\&amp;#34;: {\&amp;#34;content-available\&amp;#34;: 1}}&amp;#34;}&amp;#39; --message-structure json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MessageId&amp;#34;: &amp;#34;ed501a7a-caab-45aa-a941-2fcc64b5c227&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34; | jq .
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;platform_endpoint_messages&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TargetArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Message&amp;#34;: &amp;#34;{\&amp;#34;APNS_PLATFORM\&amp;#34;: \&amp;#34;{\\\&amp;#34;aps\\\&amp;#34;: {\\\&amp;#34;content-available\\\&amp;#34;: 1}}\&amp;#34;}&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MessageAttributes&amp;#34;: null,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MessageStructure&amp;#34;: &amp;#34;json&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Subject&amp;#34;: null
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;region&amp;#34;: &amp;#34;us-east-1&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>You can also reset the saved messages at &lt;code>DELETE /_aws/sns/platform-endpoint-messages&lt;/code>, with those same filters.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -X &amp;#34;DELETE&amp;#34; &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34; | jq .
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;platform_endpoint_messages&amp;#34;: {},
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;region&amp;#34;: &amp;#34;us-east-1&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Aws: Simple Queue Service (SQS)</title><link>/aws/sqs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/sqs/</guid><description>
 &lt;p>AWS SQS is a fully managed distributed message queuing service.
 SQS is shipped with the LocalStack Community version and is &lt;a href="/aws/feature-coverage/">extensively supported and tested&lt;/a>.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
