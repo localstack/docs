@@ -76,3 +76,16 @@ In this getting started guide, you'll learn how to make a basic usage of SNS ove
    {{< command >}}
    $ awslocal kms cancel-key-deletion --key-id 70047aca-9645-4148-a1ed-1ba7fbdd7de0
    {{< /command >}}
+
+## Using LocalStack Pro
+
+LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cloud) web user-interface to work with KMS and other AWS services. It is a convenient way to work with KMS, and allows you to create and manage keys, their usage, specification, and much more, in a fashion similar to the AWS console. While using the LocalStack App, ensure you have the LocalStack instance running.
+
+1. Login to the [web user-interface](https://app.localstack.cloud) and select the `KMS` service from the `Resources` drop-down.
+2. Click on the `Create Key` button to create a new key.
+3. Enter the `Policy`, `Description`, `Key Usage`, `Key Spec`, `Tags` and other details for the key.
+4. You will be able to see the Key ID in the `KMS Keys` page. Run the following command locally to test the SNS topic:
+   {{< command >}}
+   $ awslocal kms list-keys
+   {{< /command >}}
+5. Use the web user-interface to perform further operations on the KMS key, by using the edit option, or scheduling a key deletion.
