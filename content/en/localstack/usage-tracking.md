@@ -49,7 +49,7 @@ The AWS API call metadata includes:
 - The service being called (like `s3` or `lambda`).
 - The operation being called (like `PutObject`, `CreateQueue`, `DeleteQueue`).
 - The HTTP status code of the response.
-- If it is a 400 error, we collect the error type and message. If it is a 500 error (internal LocalStack error), and `DEBUG=1` is enabled, we may also collect the stack trace to help us identify localstack bugs.
+- If it is a 400 error, we collect the error type and message. If it is a 500 error (internal LocalStack error), and `DEBUG=1` is enabled, we may also collect the stack trace to help us identify LocalStack bugs.
 - Whether the call originated from inside LocalStack.
 - The region user made the call to.
 - The dummy account ID user made the request.
