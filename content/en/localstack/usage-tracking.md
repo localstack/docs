@@ -110,7 +110,7 @@ We collect the usage of particular features in an anonymized and aggregated way.
 
 ## What we are not collecting? 
 
-- IP addresses or any information revealing the identity or location of the user.
+- Any personally identifiable information (PII) or information revealing the identity of the user.
 - Specific LocalStack configuration values.
 - Content or file names of files being uploaded to S3.
 - More generally, we don't collect any parameters of AWS API Calls. We do not track S3 bucket names, Lambda function names, EC2 configurations, or anything similar.
