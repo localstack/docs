@@ -7,7 +7,7 @@ description: Get started with Amazon Redshift
 
 Redshift is a cloud-based data warehouse solution which allows end users to aggregate huge volumes of data & parallel processing of data. Redshift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data. The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.
 
-A basic version of Redshift is available in LocalStack Pro - see the supported APIs are available over our [configuration page]({{< ref "configuration" >}}).
+A basic version of Redshift is available in LocalStack Pro - see the supported APIs are available over our [feature coverage page]({{< ref "feature-coverage" >}}).
 
 ## Getting started
 
