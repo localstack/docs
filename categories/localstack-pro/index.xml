@@ -2437,7 +2437,65 @@ For example:&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;strong>Note&lt;/strong>:
 In order to use the Athena API, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when pulling the dependencies for the first time.
-&lt;/div></description></item><item><title>Aws: Backup</title><link>/aws/backup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/backup/</guid><description>
+&lt;/div></description></item><item><title>Aws: Organizations</title><link>/aws/organization/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/organization/</guid><description>
+&lt;p>Amazon Web Services Organizations is an account management service that allows you to consolidate multiple different AWS accounts into an organization. It allows you to manage different accounts in a single organization and consolidate billing. With Organizations, you can also attach different policies to your organizational units (OUs) or individual accounts in your organization.&lt;/p>
+&lt;p>Organizations is available over LocalStack Pro and the supported APIs are available over our &lt;a href="/localstack/configuration/">configuration page&lt;/a>.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to create your local AWS Organization and configure it with member accounts. This guide is intended for users who wish to get more acquainted with Organizations, and assumes you have basic knowledge of the AWS CLI (and our &lt;code>awslocal&lt;/code> wrapper script). To get started, start your LocalStack instance using your preferred method:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Create a new local AWS Organization with the feature set flag set to &lt;code>ALL&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organization --feature-set ALL&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>You can now run the &lt;code>describe-organization&lt;/code> command to see the details of your organization:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations describe-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>You can now create an AWS account that would be a member of your organization:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-account \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --email example@example.com \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --account-name &amp;#34;Test Account&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+Since LocalStack essentially mocks AWS, the account creation is instantaneous. You can now run the &lt;code>list-accounts&lt;/code> command to see the details of your organization:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-accounts&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>You can also remove a member account from your organization:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations remove-account-from-organization --account-id &amp;lt;ACCOUNT_ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>To close an account in your organization, you can run the &lt;code>close-account&lt;/code> command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations close-account --account-id 000000000000&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>You can use organizational units (OUs) to group accounts together to administer as a single unit. To create an OU, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-roots
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-children \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --parent-id &amp;lt;PARENT-ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --child-type ORGANIZATIONAL_UNIT
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organizational-unit \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --parent-id &amp;lt;PARENT-ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name New-Child-OU&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Before you can create and attach a policy to your organization, you must enable a policy type. To enable a policy type, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations enable-policy-type \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --root-id &amp;lt;ROOT-ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-type BACKUP_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+To disable a policy type, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations disable-policy-type \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --root-id &amp;lt;ROOT-ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-type BACKUP_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>To view the policies that are attached to your organization, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-policies --filter SERVICE_CONTROL_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>To delete an organization, you can run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations delete-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>Aws: Backup</title><link>/aws/backup/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/backup/</guid><description>
 &lt;p>The &lt;a href="https://docs.aws.amazon.com/aws-backup/">Backup API&lt;/a> allows to manage backup plans, to create scheduled or on-demand backups of certain resource types like DynamoDB tables or RDS databases. Details following soon&amp;hellip;&lt;/p></description></item><item><title>Aws: CloudFront</title><link>/aws/cloudfront/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/cloudfront/</guid><description>
 &lt;p>LocalStack Pro supports creation of local CloudFront distributions, which allows you to transparently access your applications and file artifacts via CloudFront URLs like &lt;code>https://abc123.cloudfront.net&lt;/code>.&lt;/p>
 &lt;p>For example, take the following simple example which creates an S3 bucket, puts a small text file &lt;code>hello.txt&lt;/code> to the bucket, and then creates a CloudFront distribution which makes the file accessible via a &lt;code>https://abc123.cloudfront.net/hello.txt&lt;/code> proxy URL (where &lt;code>abc123&lt;/code> is a placeholder for the real distribution ID):&lt;/p>
