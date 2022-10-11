@@ -53,7 +53,7 @@ The AWS API call metadata includes:
 - Whether the call originated from inside LocalStack.
 - The region user made the call to.
 - The dummy account ID user made the request.
-- The user agent the request was made with (`aws-cli`, `terraform`).
+- The user agent the request was made with (e.g., `aws-cli`, `terraform`).
 
 Here is an example of AWS API call metadata:
 
