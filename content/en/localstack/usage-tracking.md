@@ -6,6 +6,7 @@ description: >
 ---
 
 ## Overview
+LocalStack is tracking a small amount of anonymized usage events, in order to optimize the user experience of our services. Please note that we always follow the _principle of least data_ - collecting only the essential information to provide the service, and only for the least amount of time possible or feasible. In general, only anonymized information is used, and we **never** collect any personal data or specific data about your application, unless you explicitly instruct the system to do so (in order for you to get additional application insights).
 
 For API Key activations, we track the timestamp and the API key. We need to do this to make CI credits work. It is tracked regardless of whether the user disables event tracking since we collect this in the backend, not the client.
 
