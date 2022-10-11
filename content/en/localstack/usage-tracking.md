@@ -11,7 +11,7 @@ For API Key activations, we track the timestamp and the API key. We need to do t
 
 ## LocalStack usage statistics
 
-For pro users, most of the information is collected to populate the "stack insights" dashboard. Collecting basic anonymized usage of AWS services helps us better direct engineering efforts to services that are used the most or cause the most issues.
+For Pro users, most of the information is collected to populate the "stack insights" dashboard. Collecting basic anonymized usage of AWS services helps us better direct engineering efforts to services that are used the most or cause the most issues.
 
 ### Session information
 
