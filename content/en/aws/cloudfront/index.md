@@ -11,11 +11,11 @@ LocalStack Pro supports creation of local CloudFront distributions, which allows
 For example, take the following simple example which creates an S3 bucket, puts a small text file `hello.txt` to the bucket, and then creates a CloudFront distribution which makes the file accessible via a `https://abc123.cloudfront.net/hello.txt` proxy URL (where `abc123` is a placeholder for the real distribution ID):
 
 {{< command >}}
-$ awslocal s3 mb s3://bucket1
+$ awslocal s3 mb s3://abc123
 $ echo 'Hello World' > /tmp/hello.txt
-$ awslocal s3 cp /tmp/hello.txt s3://bucket1/hello.txt --acl public-read
+$ awslocal s3 cp /tmp/hello.txt s3://abc123/hello.txt --acl public-read
 $ domain=$(awslocal cloudfront create-distribution \
-   --origin-domain-name bucket1.s3.amazonaws.com | jq -r '.Distribution.DomainName')
+   --origin-domain-name abc123.s3.amazonaws.com | jq -r '.Distribution.DomainName')
 $ curl -k https://$domain/hello.txt
 {{< / command >}}
 
