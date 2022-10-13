@@ -25,9 +25,9 @@ Let's create a simple symmetric encryption key and use it to encrypt / decrypt s
 
 A new key can be created in KMS with
 
-```sh
-awslocal kms create-key
-```
+{{< command >}}
+$ awslocal kms create-key
+{{</ command >}}
 
 By default, this command creates a symmetric encryption key, so we do not even have to supply any additional arguments. In the output we want to pay attention to the ID of the newly created key, `010a4301-4205-4df8-ae52-4c2895d47326` in this case:
 
@@ -56,34 +56,34 @@ By default, this command creates a symmetric encryption key, so we do not even h
 
 If we lose the ID, we can always use
 
-```sh
-awslocal kms list-keys
-```
+{{< command >}}
+$ awslocal kms list-keys
+{{</ command >}}
 
 to list IDs and [Amazon Resource Identifiers](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) (ARNs) of all the available keys. Then, if necessary, we can also check all the details about a key with a given key ID or ARN like this:
 
-```sh
-awslocal kms describe-key --key-id 010a4301-4205-4df8-ae52-4c2895d47326
-```
+{{< command >}}
+$ awslocal kms describe-key --key-id 010a4301-4205-4df8-ae52-4c2895d47326
+{{</ command >}}
 
 We can use the key now to encrypt something. Let's say, `some important stuff`:
 
-```sh
-awslocal kms encrypt \
+{{< command >}}
+$ awslocal kms encrypt \
       --key-id 010a4301-4205-4df8-ae52-4c2895d47326 \
       --plaintext "some important stuff" \
       --output text \
       --query CiphertextBlob \
   | base64 --decode > my_encrypted_data
-```
+{{</ command >}}
 
 Why do we require such a complicated command? The `Encrypt` Operation itself looks like this:
 
-```sh
-awslocal kms encrypt \
+{{< command >}}
+$ awslocal kms encrypt \
       --key-id 010a4301-4205-4df8-ae52-4c2895d47326 \
       --plaintext "some important stuff"
-```
+{{</ command >}}
 
 And its output might be something like
 
@@ -99,13 +99,13 @@ The value of the `CiphertextBlob` field is a Base64-encoded result of encryption
 
 When we want to, we can decrypt our file using the same KMS key:
 
-```sh
-awslocal kms decrypt \
+{{< command >}}
+$ awslocal kms decrypt \
       --ciphertext-blob fileb://my_encrypted_data \
       --output text \
       --query Plaintext
   | base64 --decode
-```
+{{</ command >}}
 
 Here we ask KMS to decrypt contents of the binary file created during our previous `Encrypt` call. We do not have to specify the `key-id` while decrypting our file - when encrypting something with a symmetric key, AWS includes the key ID into the encrypted data, so can figure out itself which key to use for decryption. With asymmetric keys the `key-id` has to be specified, though.
 
