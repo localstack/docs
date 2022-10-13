@@ -80,7 +80,7 @@ $ client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_
 
 With these steps already taken, we can now sign up a user:
 {{< command >}}
-$ awslocal cognito-idp sign-up --client-id $client_id --username example_user --password 12345678 --user-attributes Name=email,Value=<your.email@address.com>
+$ awslocal cognito-idp sign-up --client-id $client_id --username example_user --password 12345678Aa! --user-attributes Name=email,Value=<your.email@address.com>
 {{< /command >}}
 
 The response should look similar to this:
@@ -174,7 +174,7 @@ More details on Cognito Lambda triggers can be found in the [AWS documentation](
 
 You can also access the local [Cognito login form](https://docs.aws.amazon.com/cognito/latest/developerguide/login-endpoint.html) by entering the following URL in your browser:
 ```
-http://localhost:4566/login?response_type=code&client_id=<client_id>&redirect_uri=<redirect_uri>
+https://localhost.localstack.cloud/login?response_type=code&client_id=<client_id>&redirect_uri=<redirect_uri>
 ```
 Please replace `<client_id>` with the ID of an existing user pool client ID (in this case, `example_user`), and `<redirect_uri>` with the redirect URI of your application (e.g., `http://example.com`).
 
