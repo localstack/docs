@@ -98,7 +98,7 @@ We can input our data into our source Kinesis stream, our put it directly into t
 To put it into Kinesis, run:
 
 {{< command >}}
-$ awslocal kinesis put-record --stream-name kinesis_es-local_stream --data '{ "target": "barry" }' --partition-key partition
+$ awslocal kinesis put-record --stream-name kinesis-es-local-stream --data '{ "target": "barry" }' --partition-key partition
 {
     "ShardId": "shardId-000000000001",
     "SequenceNumber": "49625461294598302663271645332877318906244481566013128722",
