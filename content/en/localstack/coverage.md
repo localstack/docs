@@ -2943,7 +2943,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDistribution (Pro) </td>
+      <td>UpdateDistribution (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4839,10 +4839,6 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AddSourceIdentifierToSubscription (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AddTagsToResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4989,6 +4985,10 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse docdb-notimplemented">     <tr>
+      <td>AddSourceIdentifierToSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ApplyPendingMaintenanceAction</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -5993,10 +5993,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableFastSnapshotRestores (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DisableTransitGatewayRouteTablePropagation</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6972,6 +6968,10 @@ description: >
     </tr>
     <tr>
       <td>DisableFastLaunch</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DisableFastSnapshotRestores</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9027,7 +9027,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9051,7 +9051,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBootstrapActions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListBootstrapActions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9063,7 +9063,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInstanceGroups (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListInstanceGroups (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9071,7 +9071,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSteps (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListSteps (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9119,7 +9119,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TerminateJobFlows (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>TerminateJobFlows (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -9823,7 +9823,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DeleteVault (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9839,7 +9839,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>DescribeVault (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9847,7 +9847,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetVaultAccessPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetVaultAccessPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9863,11 +9863,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListTagsForVault (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListVaults (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListVaults (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10915,7 +10915,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccountAuthorizationDetails <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetAccountAuthorizationDetails</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14189,6 +14189,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>AssociateKmsKey (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateExportTask</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14295,10 +14299,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse logs-notimplemented">     <tr>
-      <td>AssociateKmsKey</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17507,11 +17507,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketLifecycle</td>
+      <td>GetBucketLifecycle (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17603,7 +17603,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>HeadBucket <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>HeadBucket (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17647,7 +17647,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListParts</td>
+      <td>ListParts <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17667,7 +17667,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketCors <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketCors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17715,11 +17715,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketReplication (Pro) </td>
+      <td>PutBucketReplication</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketRequestPayment <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketRequestPayment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19455,6 +19455,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>CloneReceiptRuleSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateConfigurationSet</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -19613,10 +19617,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse ses-notimplemented">     <tr>
-      <td>CloneReceiptRuleSet</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CreateConfigurationSetTrackingOptions</td>
        <td style="text-align:right">-</td>
     </tr>
