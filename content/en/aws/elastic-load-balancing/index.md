@@ -70,3 +70,8 @@ In the above example, these parameter are filtered using `jq`.
 $ curl example-lb.elb.localhost.localstack.cloud:4566
 hello from the IP target
 {{< /command >}}
+
+### Limitations
+
+Please, bear in mind there is a know limitation with the Aplication Load 
+Balancer which currently only supports the `forward` and `redirect` action types.
