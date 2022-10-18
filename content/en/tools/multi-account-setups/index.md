@@ -10,6 +10,12 @@ description: >
   Using LocalStack in multi-tenant setups
 ---
 
+{{% alert title="Known issues" color="warning" %}}
+Multi-account support is currently only working as long as no inter-service communication is involved.
+
+See https://github.com/localstack/localstack/issues/7041 for more information
+{{% /alert %}}
+
 LocalStack Pro ships with multi-account support which allows namespacing based on AWS Account ID.
 By contrast, LocalStack Community only supports a single AWS Account ID: `000000000000`.
 
