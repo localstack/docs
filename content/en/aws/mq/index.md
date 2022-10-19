@@ -9,7 +9,7 @@ AWS MQ is a fully managed service for open-source message brokers.
 Basic support is included in LocalStack Pro, please refer to the [feature-coverage]({{< ref "feature-coverage" >}}) for more information.
 
 ## Getting started
-In the following we outline basic MQ usage. Please also refer to the sample here: [Localstack Pro Samples](https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker).
+In the following, we outline basic MQ usage. Please also refer to the sample here: [Localstack Pro Samples](https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker).
 Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed, you can try the following commands:
 
 {{< command >}}
