@@ -54,5 +54,5 @@ Only basic functionality is supported right now, main limitations are the follow
 * Only ActiveMQ (version 5.16.5) is supported
 * Users are not actively enforced (but needed to make proper calls)
 * While it is possible to create configurations, they are not actively enforced in a broker
-* Persistence is not supported
+* Persistence and Cloud Pods are not supported
 * Limited API coverage
