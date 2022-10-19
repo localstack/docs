@@ -26,3 +26,27 @@ $ curl -k https://$domain/hello.txt
 {{< alert >}}
 **Note:** In the code example above, the last command (`curl https://$domain/hello.txt`) may temporarily fail with a warning message `Could not resolve host`. This is due to the fact that operating systems use different DNS caching strategies, and it may take some time for the CloudFront distribution's DNS name (e.g., `abc123.cloudfront.net`) to become available in the system. Usually after a few retries the command should work, though. Note that a similar behavior can also be observed in the real AWS - CloudFront DNS names can also take up to 10-15 minutes to propagate across the network.
 {{< /alert >}}
+
+## Using custom URLs
+LocalStack Pro supports the use of an alternate domain name, also known as a CNAME or as
+a custom domain name, to access your applications and file artifacts instead of using
+the domain name that CloudFront generates for your distribution.
+
+To do so, the custom domain name must be set up in your local DNS server first.
+Then, you can add the desired doman name as an alias for the target distribution.
+For this, you will provide the field `Aliases` in the `--distribution-config` option when
+creating or updating a distribution. The format of this structure is the same used in
+[AWS CloudFront](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options)
+
+The following example shows two domains being specified as `Aliases` for a distribution.
+Please consider that a full configuration would require other values relevant to the
+distribution beside these shown in this example. They were omited here for brevity.
+
+```
+--distribution-config {...'Aliases':'{'Quantity':2, 'Items': ['custom.domain.one', 'customDomain.two']}'...}
+```
+
+{{< alert >}}
+**Note:** In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "tools/local-endpoint-injection/dns-server" >}}) for details.
+{{< /alert >}}
+ 
