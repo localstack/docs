@@ -117,9 +117,11 @@ $ . .venv/bin/activate
 $ pip install https://github.com/boto/botocore/archive/v2.zip https://github.com/aws/aws-cli/archive/v2.zip
 {{< / command >}}
 
-Please also note there is a known limitation for using `--no-sign-request` in
-your requests using the AWS CLI which causes localstack to not be able to route
-your request to the correct service.
+Please also note there is a known limitation for issuing requests using
+`--no-sign-request` with the AWS CLI. LocalStack's routing mechanism depends on
+the signature of each request to identify the correct service for the request.
+Thus, adding the flag `--no-sign-requests` provokes your request to reach the
+wrong service.
 
 ## AWS CLI v2
 
