@@ -121,7 +121,8 @@ Please also note there is a known limitation for issuing requests using
 `--no-sign-request` with the AWS CLI. LocalStack's routing mechanism depends on
 the signature of each request to identify the correct service for the request.
 Thus, adding the flag `--no-sign-requests` provokes your request to reach the
-wrong service.
+wrong service. One possible way to address this is to use the `awslocal` CLI
+instead of AWS CLI.
 
 ## AWS CLI v2
 
