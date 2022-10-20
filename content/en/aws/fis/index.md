@@ -1,6 +1,6 @@
 ---
-title: "FIS"
-linkTitle: "FIS"
+title: "Fault Injection Simulator (FIS)"
+linkTitle: "Fault Injection Simulator (FIS)"
 categories: ["LocalStack Pro"]
 description: >
   Fault Injection Simulator (FIS)
