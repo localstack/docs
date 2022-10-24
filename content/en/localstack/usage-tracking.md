@@ -6,26 +6,25 @@ description: >
 ---
 
 ## Overview
-LocalStack is tracking a small amount of anonymized usage events, in order to optimize the user experience of our services. Please note that we always follow the _principle of least data_ - collecting only the essential information to provide the service, and only for the least amount of time possible or feasible. In general, only anonymized information is used, and we **never** collect any personal data or specific data about your application, unless you explicitly instruct the system to do so (in order for you to get additional application insights).
 
 For API Key activations, we track the timestamp and the API key. We need to do this to make CI credits work. It is tracked regardless of whether the user disables event tracking since we collect this in the backend, not the client.
 
 ## LocalStack usage statistics
 
-For Pro users, most of the information is collected to populate the "stack insights" dashboard. Collecting basic anonymized usage of AWS services helps us better direct engineering efforts to services that are used the most or cause the most issues.
+For pro users, most of the information is collected to populate the "stack insights" dashboard. Collecting basic anonymized usage of AWS services helps us better direct engineering efforts to services that are used the most or cause the most issues.
 
 ### Session information
 
 The current usage event collection on the client side includes:
 
-- A randomly generated ID pertaining to the session.
+- A randomly generated ID pertaining to the session
 - The API Key (if any)
-- A randomly generated machine ID is kept throughout the session but deleted once the LocalStack cache directory is removed.
-- The operating system (mostly Linux since LocalStack typically runs in our Debian container).
-- The LocalStack version being used.
-- Whether LocalStack is running in a CI environment.
-- Whether LocalStack is running in docker
-- Whether this is an internal test run (LocalStack development flag).
+- A randomly generated machine ID is kept throughout the session but deleted once the LocalStack cache directory is removed
+- The operating system (mostly Linux since LocalStack typically runs in our Debian container)
+- The LocalStack version being used
+- Whether LocalStack is running in a CI environment
+- Whether LocalStack is running in Docker
+- Whether this is an internal test run (LocalStack development flag)
 
 Here is an example of a usage event:
 
@@ -46,14 +45,14 @@ Here is an example of a usage event:
 
 The AWS API call metadata includes:
 
-- The service being called (like `s3` or `lambda`).
-- The operation being called (like `PutObject`, `CreateQueue`, `DeleteQueue`).
-- The HTTP status code of the response.
-- If it is a 400 error, we collect the error type and message. If it is a 500 error (internal LocalStack error), and `DEBUG=1` is enabled, we may also collect the stack trace to help us identify LocalStack bugs.
-- Whether the call originated from inside LocalStack.
-- The region user made the call to.
-- The dummy account ID user made the request.
-- The user agent the request was made with (e.g., `aws-cli`, `terraform`).
+- The service being called (like `s3` or `lambda`)
+- The operation being called (like `PutObject`, `CreateQueue`, `DeleteQueue`)
+- The HTTP status code of the response
+- If it is a 400 error, we collect the error type and message. If it is a 500 error (internal LocalStack error), and `DEBUG=1` is enabled, we may also collect the stack trace to help us identify LocalStack bugs
+- Whether the call originated from inside LocalStack
+- The region user made the call to
+- The dummy account ID user made the request
+- The user agent the request was made with (`aws-cli`, `terraform`)
 
 Here is an example of AWS API call metadata:
 
@@ -78,7 +77,7 @@ Here is an example of AWS API call metadata:
 }
 ```
 
-For the Community version, we only track service, operation, status code, and how often the combination of those occurred.
+For the community version, we only track service, operation, status code, and how often the combination of those occured.
 
 ### CLI invocations
 
@@ -105,14 +104,12 @@ Here is an example of a CLI invocation event:
 
 We collect the usage of particular features in an anonymized and aggregated way.
 
-- If you use init scripts, we collect the stage, how many scripts are being executed, and how long they took.
-- Nothing else at the moment, but we may track additional features.
+- If you use init scripts, we collect the stage, how many scripts are being executed, and how long they took
+- Nothing else at the moment, but we may track additional features
 
 ## What we are not collecting? 
 
-- Any personally identifiable information (PII) or information revealing the identity of the user.
-- Specific LocalStack configuration values.
-- Content or file names of files being uploaded to S3.
-- More generally, we don't collect any parameters of AWS API Calls. We do not track S3 bucket names, Lambda function names, EC2 configurations, or anything similar.
-- Any sensitive information about the request (like credentials and URL parameters).
-
+- Specific LocalStack configuration values
+- Content or file names of files being uploaded to S3
+- More generally, we don't collect any parameters of AWS API Calls. We do not track S3 bucket names, Lambda function names, EC2 configurations, or anything similar
+- Any sensitive information about the request (like credentials and URL parameters)
