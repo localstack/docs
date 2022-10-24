@@ -117,6 +117,13 @@ $ . .venv/bin/activate
 $ pip install https://github.com/boto/botocore/archive/v2.zip https://github.com/aws/aws-cli/archive/v2.zip
 {{< / command >}}
 
+Please also note there is a known limitation for issuing requests using
+`--no-sign-request` with the AWS CLI. LocalStack's routing mechanism depends on
+the signature of each request to identify the correct service for the request.
+Thus, adding the flag `--no-sign-requests` provokes your request to reach the
+wrong service. One possible way to address this is to use the `awslocal` CLI
+instead of AWS CLI.
+
 ## AWS CLI v2
 
 Automatic installation of AWS CLI version 2 is currently not supported (at the time of writing there is no official pypi package for v2 available), but the awslocal technically also works with AWS CLI v2 (see this section for more details).
