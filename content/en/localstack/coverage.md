@@ -2571,6 +2571,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>BatchDescribeTypeConfigurations (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2685,10 +2689,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse cloudformation-notimplemented">     <tr>
-      <td>BatchDescribeTypeConfigurations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CancelUpdateStack</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -4839,6 +4839,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>AddSourceIdentifierToSubscription (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AddTagsToResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4985,10 +4989,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse docdb-notimplemented">     <tr>
-      <td>AddSourceIdentifierToSubscription</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ApplyPendingMaintenanceAction</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14189,10 +14189,6 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AssociateKmsKey (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateExportTask</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14299,6 +14295,10 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse logs-notimplemented">     <tr>
+      <td>AssociateKmsKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17667,7 +17667,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketCors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketCors <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17715,7 +17715,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketReplication</td>
+      <td>PutBucketReplication (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19772,6 +19772,10 @@ description: >
     </tr>
     <tr>
       <td>DeleteEmailTemplate (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetDedicatedIpPool (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
