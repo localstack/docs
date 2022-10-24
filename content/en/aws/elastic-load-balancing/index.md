@@ -73,5 +73,4 @@ hello from the IP target
 
 ### Limitations
 
-Please, bear in mind there is a know limitation with the Aplication Load 
-Balancer which currently only supports the `forward` and `redirect` action types.
+The Aplication Load Balancer currently supports only the `forward` and `redirect` action types.
