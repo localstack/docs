@@ -1,11 +1,11 @@
 ---
-title: "Amazon MQ (MQ)"
+title: "Amazon MQ"
 categories: ["LocalStack Pro"]
 description: >
-  Amazon MQ
+  Amazon MQ (MQ)
 ---
 
-AWS MQ is a fully managed service for open-source message brokers.
+Amazon MQ is a fully managed service for open-source message brokers.
 Basic support is included in LocalStack Pro, please refer to the [feature-coverage]({{< ref "feature-coverage" >}}) for more information.
 
 ## Getting started
@@ -20,6 +20,7 @@ $ awslocal mq create-broker --broker-name test-broker --deployment-mode SINGLE_I
 }
 {{< / command >}}
 
+Using the Describe-Broker endpoint, it is possible to get more detailed information about an instance. The ConsoleURL is especially handy, because it provides the address to the web console (accessible via the user "admin" and password "admin").
 {{< command >}}
 $ awslocal mq describe-broker --broker-id b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545
 {
@@ -44,6 +45,7 @@ $ awslocal mq describe-broker --broker-id b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545
 }
 {{< / command >}}
 
+Since the broker is now actively listening, we can send a message to a sample queue using curl.
 {{< command >}}
 $ curl -XPOST -d "body=message" http://admin:admin@localhost:4513/api/message\?destination\=queue://orders.input
 {{< / command >}}
