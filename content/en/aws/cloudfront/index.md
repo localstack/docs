@@ -45,4 +45,3 @@ distribution beside these shown in this example. They were omited here for brevi
 {{< alert >}}
 **Note:** In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "tools/local-endpoint-injection/dns-server" >}}) for details.
 {{< /alert >}}
- 
