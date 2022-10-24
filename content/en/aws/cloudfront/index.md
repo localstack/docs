@@ -28,9 +28,8 @@ $ curl -k https://$domain/hello.txt
 {{< /alert >}}
 
 ## Using custom URLs
-LocalStack Pro supports the use of an alternate domain name, also known as a CNAME or as
-a custom domain name, to access your applications and file artifacts instead of using
-the domain name that CloudFront generates for your distribution.
+
+LocalStack Pro supports the use of an alternate domain name, also known as a CNAME or as a custom domain name, to access your applications and file artifacts instead of using the domain name that CloudFront generates for your distribution.
 
 To do so, the custom domain name must be set up in your local DNS server first. You can further add the desired domain name as an alias for the target distribution. To achieve this, you will need to provide the `Aliases` field in the `--distribution-config` option while creating or updating a distribution. The format of this structure is similar to what is used in [AWS CloudFront options](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options).
 
