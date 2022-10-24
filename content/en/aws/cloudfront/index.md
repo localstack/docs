@@ -38,9 +38,9 @@ The following example shows two domains being specified as `Aliases` for a distr
 Please consider that a full configuration would require other values relevant to the
 distribution beside these shown in this example. They were omited here for brevity.
 
-```
+{{< command >}}
 --distribution-config {...'Aliases':'{'Quantity':2, 'Items': ['custom.domain.one', 'customDomain.two']}'...}
-```
+{{< / command >}}
 
 {{< alert >}}
 **Note:** In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "tools/local-endpoint-injection/dns-server" >}}) for details.
