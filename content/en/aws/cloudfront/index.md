@@ -32,11 +32,7 @@ LocalStack Pro supports the use of an alternate domain name, also known as a CNA
 a custom domain name, to access your applications and file artifacts instead of using
 the domain name that CloudFront generates for your distribution.
 
-To do so, the custom domain name must be set up in your local DNS server first.
-Then, you can add the desired doman name as an alias for the target distribution.
-For this, you will provide the field `Aliases` in the `--distribution-config` option when
-creating or updating a distribution. The format of this structure is the same used in
-[AWS CloudFront](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options)
+To do so, the custom domain name must be set up in your local DNS server first. You can further add the desired domain name as an alias for the target distribution. To achieve this, you will need to provide the `Aliases` field in the `--distribution-config` option while creating or updating a distribution. The format of this structure is similar to what is used in [AWS CloudFront options](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options).
 
 The following example shows two domains being specified as `Aliases` for a distribution.
 Please consider that a full configuration would require other values relevant to the
