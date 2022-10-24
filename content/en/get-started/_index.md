@@ -180,8 +180,8 @@ $ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
 
 {{< alert title="Notes" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
-  If you want to use a specific version, use the appropriate tag. For example to install localstack v1.1.0 in docker use -
-  `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:1.0.0`
+  If you want to use a specific version of LocalStack, use the appropriate tag:
+  `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
 
@@ -212,7 +212,7 @@ $ docker-compose up
 
 {{< alert title="Notes" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
-  If you want to use a specific version, set the appropriate localstack image tag at services.localstack.image in docker-compose.yml file (for example `localstack/localstack:1.0.0`).
+  If you want to use a specific version, set the appropriate localstack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
 
