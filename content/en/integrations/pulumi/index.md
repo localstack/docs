@@ -273,7 +273,6 @@ config:
       migrationhub: http://localhost:4566
       migrationhubconfig: http://localhost:4566
       mobile: http://localhost:4566
-      mobileanalytics: http://localhost:4566
       mq: http://localhost:4566
       mturk: http://localhost:4566
       mwaa: http://localhost:4566
