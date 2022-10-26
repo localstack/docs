@@ -1,0 +1,83 @@
+<!-- Title Tags -->
+<meta
+  property="og:title"
+  content="{{ .Site.Params.og_title }} | {{ .Site.Params.Title }}"
+/>
+<meta
+  name="twitter:title"
+  content="{{ .Site.Params.og_title }} | {{ .Site.Params.Title }}"
+/>
+<meta itemprop="name" content="{{ .Title }} | {{ .Site.Params.Title }}" />
+<meta
+  name="application-name"
+  content="{{ .Title }} | {{ .Site.Params.Title }}"
+/>
+<meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
+
+<!-- Desciption Tags -->
+<meta name="description" content="{{ .Site.Params.description }}" />
+<meta itemprop="description" content="{{ .Site.Params.description }}" />
+<meta property="og:description" content="{{ .Site.Params.og_description }}" />
+<meta name="twitter:description" content="{{ .Site.Params.og_description }}" />
+
+<!-- Link Tags -->
+<base href="{{ .Permalink }}" />
+<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+<meta name="url" content="{{ .Permalink }}" />
+<meta name="twitter:url" content="{{ .Permalink }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+
+<!-- Language Tags -->
+<meta property="og:locale" content="{{ .Language.Lang }}" />
+<meta name="language" content="{{ .Language.LanguageName }}" />
+{{ range .AllTranslations }}
+<link
+  rel="alternate"
+  hreflang="{{ .Language.Lang }}"
+  href="{{ .Permalink }}"
+  title="{{ .Language.LanguageName }}"
+/>
+{{ end }}
+
+<!-- Image Tags -->
+{{ with .Params.image }}
+<meta itemprop="image" content="{{ . | absURL }}" />
+<meta property="og:image" content="{{ . | absURL }}" />
+<meta name="twitter:image" content="{{ . | absURL }}" />
+<meta name="twitter:image:src" content="{{ . | absURL }}" />
+{{ else }}
+<meta itemprop="image" content="{{ .Site.Params.og_image | absURL }}" />
+<meta property="og:image" content="{{ .Site.Params.og_image | absURL }}" />
+<meta
+  name="twitter:image"
+  content="{{ .Site.Params.twitter_image | absURL }}"
+/>
+<meta name="twitter:image:src" content="{{ .Site.Params.og_image | absURL }}" />
+{{ end }}
+
+<!-- Date Tags -->
+<meta property="og:updated_time" content={{ .Lastmod.Format
+"2006-01-02T15:04:05Z0700" | safeHTML }} /> Sitemap & RSS Feed Tags
+<link
+  rel="sitemap"
+  type="application/xml"
+  title="Sitemap"
+  href="{{ .Site.BaseURL }}sitemap.xml"
+/>
+
+{{ with .OutputFormats.Get "RSS" }}
+<link
+  href="{{ .Permalink }}"
+  rel="alternate"
+  type="application/rss+xml"
+  title="{{ $.Site.Title }}"
+/>
+<link
+  href="{{ .Permalink }}"
+  rel="feed"
+  type="application/rss+xml"
+  title="{{ $.Site.Title }}"
+/>
+{{ end }}
+
+<meta name="twitter:card" content="summary_large_image" />
