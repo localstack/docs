@@ -181,7 +181,7 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `S3_DIR` | | Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`) |
+| `S3_DIR` | | Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro. |
 
 ### StepFunctions
 
