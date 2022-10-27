@@ -105,7 +105,6 @@ A backend service can push data to the connection using the [Amazon API Gateway 
 $ awslocal apigatewaymanagementapi post-to-connection --connection-id '<connectionId>' --data '{"msg": "Hi"}'
 {{< / command >}}
 
-
 For a simple, self-contained example please refer to [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets).
 
 ### AWS ApiGateway Custom ID via tags
@@ -124,4 +123,16 @@ $ awslocal apigateway create-rest-api --name my-api --tags '{"_custom_id_":"myid
     "id": "myid123",
     ....
 }
+```
+```shell
+{{< command >}}
+$ awslocal apigatewayv2 get-apis
+{
+    "Items": [{
+        "ApiEndpoint": "ws://localhost:4510",
+        "ApiId": "129ca37e",
+        ...
+    }]
+}
+{{< / command >}}
 ```
