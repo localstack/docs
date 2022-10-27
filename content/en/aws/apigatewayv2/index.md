@@ -107,3 +107,21 @@ $ awslocal apigatewaymanagementapi post-to-connection --connection-id '<connecti
 
 
 For a simple, self-contained example please refer to [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets).
+
+### AWS ApiGateway Custom ID via tags
+
+To provide custom IDs for API Gateway REST API, you can specify `tags={"_custom_id_":"myid123"}` on creation of an API Gateway REST API, to assign it the custom ID `"myid123"` (can be useful to have a static API GW endpoint URL for testing).
+  
+Pre-define the IDs of newly created RestAPIs by specifying a `_custom_id_` tag on it:
+
+```shell
+$ awslocal apigateway create-rest-api --name my-api --tags '{"_custom_id_":"myid123"}'
+```
+
+```shell
+#output
+{
+    "id": "myid123",
+    ....
+}
+```
