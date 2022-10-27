@@ -65,7 +65,7 @@ Localstack Pro can be configured to store S3 files in specific locations on the 
 
 Paths may be specified in two different configurations. Specifying only a path will store all S3 buckets in that path:
 
-```
+```bash
 S3_DIR=/tmp/s3-buckets
 ```
 
@@ -73,66 +73,8 @@ New S3 buckets will be created as directories with the same name as the S3 Bucke
 
 Specifying in the following format: `<path>:<name>` will create an S3 bucket named `<name>` and utilize `<path>` for that S3 bucket's files. Multiple S3 buckets may be created at one time by using a comma to separate each path and name mapping (i.e. `<path>:<name>,<path>:<name>`).
 
-```
+```bash
 S3_DIRS=/tmp/s3-buckets/first-bucket:my-first-bucket,/tmp/s3-buckets/second-bucket:my-second-bucket
 ```
 
 In both configurations of `S3_DIRS`, if Localstack is started and the path(s) specified in `S3_DIRS` are not empty, the S3 buckets will be pre-populated with files.
-
-### Examples
-
-#### First Configuration
-
-```yaml
-version: "3"
-
-services:
-  localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
-    image: localstack/localstack
-    ports:
-      - "127.0.0.1:4566:4566"            # LocalStack Gateway
-      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-      - "127.0.0.1:53:53"                # DNS config (only required for Pro)
-      - "127.0.0.1:53:53/udp"            # DNS config (only required for Pro)
-      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (only required for Pro)
-    environment:
-      - DEBUG=${DEBUG-}
-      - PERSISTENCE=${PERSISTENCE-}
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # only required for Pro
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - S3_DIR=/tmp/s3-mounts
-    volumes:
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
-      - "./mounts:/tmp/s3-mounts"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-```
-
-#### Second Configuration
-
-```yaml
-version: "3"
-
-services:
-  localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
-    image: localstack/localstack
-    ports:
-      - "127.0.0.1:4566:4566"            # LocalStack Gateway
-      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-      - "127.0.0.1:53:53"                # DNS config (only required for Pro)
-      - "127.0.0.1:53:53/udp"            # DNS config (only required for Pro)
-      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (only required for Pro)
-    environment:
-      - DEBUG=${DEBUG-}
-      - PERSISTENCE=${PERSISTENCE-}
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # only required for Pro
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - S3_DIR=/tmp/buckets/test-bucket:my-test-bucket,/tmp/buckets/other-bucket:my-other-bucket
-    volumes:
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
-      - "./buckets:/tmp/buckets"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-```
