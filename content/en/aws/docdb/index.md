@@ -1,17 +1,17 @@
 ---
-title: "Document DB (DocDB)"
-linkTitle: "Document DB (DocDB)"
+title: "DocumentDB (DocDB)"
+linkTitle: "DocumentDB (DocDB)"
 categories: ["LocalStack Pro"]
 description: >
-  Document DB (DocDB)
+  DocumentDB (DocDB)
 ---
 
 LocalStack supports a basic version of [Amazon DocumentDB](https://aws.amazon.com/documentdb/) for testing.
 
-When loading the DocumentDB service, LocalStack will create a MongoDB container to handle DocumentDB interactions. If not specified explicitly, this instance will listen on a port in the 33000-34000 port range and will instantiate a master user named 'test' without a password. The `mongosh` client may be used to log in to and interact with the instance.
+When loading the DocumentDB service, LocalStack will create a MongoDB container to handle DocumentDB storage. By default, this instance will listen on a port in the 33000-34000 port range and will instantiate a master user named 'test' without a password. The `mongosh` client may be used to log in to and interact with the instance.
 
 {{< alert title="Note" >}}
-Because LocalStack utilizes a MongoDB container to provide a DocumentDB simulation, the database engine may support additional features that Amazon DocumentDB does not.
+Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not have feature parity with Amazon DocumentDB. The database engine may support additional features that Amazon DocumentDB does not and vice versa.
 {{< /alert >}}
 
 ## Example
@@ -62,29 +62,6 @@ $ awslocal docdb create-db-instance --db-instance-identifier 'test-docdb-instanc
         "DBInstanceArn": "arn:aws:rds:us-east-1:000000000000:db:test-docdb-instance",
         "EnabledCloudwatchLogsExports": []
     }
-}
-
-{{< / command >}}
-
-Using the `describe-db-clusters` command, it's possible to create a connection string to use with `mongosh` to connect to the LocalStack DocumentDB cluster.
-
-{{< command >}}
-$ awslocal docdb describe-db-clusters --db-cluster-identifier 'test-docdb-cluster'
-{
-    "DBClusters": [
-        {
-            "DBClusterIdentifier": "test-docdb-cluster",
-            "DBClusterParameterGroup": "default.docdb",
-            "Status": "error",
-            "Endpoint": "localhost:33101",
-            "MultiAZ": false,
-            "Engine": "docdb",
-            "Port": 33101,
-            "MasterUsername": "test",
-            "StorageEncrypted": false,
-            "DBClusterArn": "arn:aws:rds:us-east-1:000000000000:cluster:test-docdb-cluster"
-        }
-    ]
 }
 
 
