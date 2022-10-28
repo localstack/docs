@@ -2331,7 +2331,25 @@ In other words, for v2 the URL &lt;code>http://0v1p6q6.execute-api.localhost.loc
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&amp;hellip; then sending a message to the WebSocket at &lt;code>ws://localhost:4510&lt;/code> will result in the same message getting returned as a response on the same WebSocket.&lt;/p>
 &lt;p>A backend service can push data to the connection using the &lt;a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/apigatewaymanagementapi/index.html">Amazon API Gateway Management API&lt;/a>. In LocalStack, it looks like this (make sure to replace &lt;code>&amp;lt;connectionId&amp;gt;&lt;/code> with your WebSocket connection ID):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal apigatewaymanagementapi post-to-connection --connection-id &amp;#39;&amp;lt;connectionId&amp;gt;&amp;#39; --data &amp;#39;{&amp;#34;msg&amp;#34;: &amp;#34;Hi&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>For a simple, self-contained example please refer to &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets">this Github repository&lt;/a>.&lt;/p></description></item><item><title>Aws: AppSync</title><link>/aws/appsync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/appsync/</guid><description>
+&lt;p>For a simple, self-contained example please refer to &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets">this Github repository&lt;/a>.&lt;/p>
+&lt;h3 id="aws-apigateway-custom-id-via-tags">AWS ApiGateway Custom ID via tags&lt;/h3>
+&lt;p>To provide custom IDs for API Gateway REST API, you can specify &lt;code>tags={&amp;quot;_custom_id_&amp;quot;:&amp;quot;myid123&amp;quot;}&lt;/code> on creation of an API Gateway REST API, to assign it the custom ID &lt;code>&amp;quot;myid123&amp;quot;&lt;/code> (can be useful to have a static API GW endpoint URL for testing).&lt;/p>
+&lt;p>Pre-define the IDs of newly created RestAPIs by specifying a &lt;code>_custom_id_&lt;/code> tag on it:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal apigateway create-rest-api --name my-api --tags &amp;#39;{&amp;#34;_custom_id_&amp;#34;:&amp;#34;myid123&amp;#34;}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;id&amp;#34;: &amp;#34;myid123&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ....
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal apigatewayv2 get-apis
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Items&amp;#34;: [{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ApiEndpoint&amp;#34;: &amp;#34;ws://localhost:4510&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ApiId&amp;#34;: &amp;#34;129ca37e&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Aws: AppSync</title><link>/aws/appsync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/aws/appsync/</guid><description>
 &lt;p>Basic support for AppSync is included in LocalStack Pro. The local AppSync API allows you to spin up local GraphQL APIs and directly expose your data sources (e.g., DynamoDB tables) to external clients.&lt;/p>
 &lt;h2 id="example-appsync-api-with-dynamodb-data-source">Example AppSync API with DynamoDB data source&lt;/h2>
 &lt;p>For example, you can create a DynamoDB table &lt;code>&amp;quot;posts&amp;quot;&lt;/code> with a key attribute &lt;code>id&lt;/code>, and define a GraphQL schema in a file &lt;code>schema.graphql&lt;/code> like this:&lt;/p>
