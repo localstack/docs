@@ -113,19 +113,14 @@ To provide custom IDs for API Gateway REST API, you can specify `tags={"_custom_
   
 Pre-define the IDs of newly created RestAPIs by specifying a `_custom_id_` tag on it:
 
-```shell
+{{< command >}}
 $ awslocal apigateway create-rest-api --name my-api --tags '{"_custom_id_":"myid123"}'
-```
 
-```shell
-#output
 {
     "id": "myid123",
     ....
 }
-```
-```shell
-{{< command >}}
+
 $ awslocal apigatewayv2 get-apis
 {
     "Items": [{
@@ -135,4 +130,3 @@ $ awslocal apigatewayv2 get-apis
     }]
 }
 {{< / command >}}
-```
