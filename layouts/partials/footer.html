@@ -2,6 +2,18 @@
 <footer class="footer-localstack d-print-none">
 
   <div class="container-fluid">
+    <div class="row prev-next-nav">
+      <div class="col text-left">
+        {{ with .NextInSection }}
+          <small><a href="{{.Permalink}}">≪ {{.Title}}</a></small>
+        {{ end }}
+      </div>
+      <div class="col text-right">
+        {{ with .PrevInSection }}
+          <small><a href="{{.Permalink}}">{{.Title}} ≫</a></small>
+        {{ end }}
+      </div>
+    </div>
     <div class="row">
       <div class="col">
         <div class="mb-3">
