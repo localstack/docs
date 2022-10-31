@@ -130,3 +130,14 @@ $ awslocal apigatewayv2 get-apis
     }]
 }
 {{< / command >}}
+
+$ awslocal apigatewayv2 create-api --name=my-api --protocol-type=HTTP --tags="_custom_id_=my-api"                                                                                                                               
+{
+    "ApiEndpoint": "my-api.execute-api.localhost.localstack.cloud:4566",
+    "ApiId": "my-api",
+    "Name": "my-api",
+    "ProtocolType": "HTTP",
+    "Tags": {
+        "_custom_id_": "my-api"
+    }
+}
