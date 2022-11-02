@@ -53,7 +53,7 @@ awslocal lambda create-function-url-config \
 LocalStack Pro supports [Lambda functions defined as container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html), so you can bundle your code and dependencies as one container image.
 
 {{< alert >}}
-Please make sure `bash` and `python 2/3` is installed inside your container image for the integration with LocalStack to work.
+If your Lambda custom image fails with the error `exec /tmp/xxx.sh: no such file or directory`, ensure `bash` and `python 2/3` is installed inside your container image for the integration with LocalStack to work.
 {{< /alert >}}
 
 ## Lambda Layers
