@@ -178,14 +178,6 @@ These hooks are relevant only to invocations of the CLI. If you use, for example
 
 The components necessary to run the LocalStack server application are collectively referred to as the _runtime_. This includes the Gateway, scheduled worker threads, etc. The runtime is distinct from the CLI, which runs on the host. Currently, there is no clear separation between the two, you will notice this, for example, in the configuration, where some config variables are used for both the CLI and the runtime. Similarly, there is code used by both. Separating the two is an ongoing process.
 
-## Installer
-
-Installers are used to install _packages_. A package is an external component which is used by one of our services. For example, for DynamoDB, we use [dynamodb-local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html) which implements the actual features of AWS DynamoDB. The service provider of LocalStack basically only performs some “glue” to other services as well as some request- and response patching.
-
-Most of the installers are located in:
-
--   `localstack.services.install` for community
--   `localstack_ext.services.install` and `localstack_ext.services.installer` for pro
 
 ## LocalStack Package Manager (LPM)
 
@@ -201,60 +193,64 @@ python -m localstack.cli.lpm
 ### LPM concepts
 
 #### Packages and installers
-LPM manages the dependencies via packages and installers. A package defines a specific kind of software we need for certain services, for example PostgreSql. It also encapsulates general information like name, available versions, etc., and manages the access to the actual installer that is used. The installer manages all installation-related information: the destination, the actual installation routine, etc. There are various types of installers available, depending on what we need to install (OS-level packages, executables, jar files, github assets,...), so before you start reinventing the wheel, please check if there is a suitable installer available. For example, if you need to download a jar file, you can use the `DownloadInstaller` base class. You then overwrite it in a manner like `<MyDownloadName>Installer(DownloadInstaller)` and all you need to provide is the download link (more in the example below). Most of the base installers work in a similar fashion.
-Regarding installed versions, it is important to note that lpm will not install arbitrary versions it does not "know" about, even if those versions exist for the provided package. For example, if you attempt to install the latest version for a dependency (e.g. stepfunctions-local) but the lpm package only supports a certain, pinned version, the installation will fail. Resources that do not use versions (e.g. because there is only a link to the newest one) generally use `latest` as version name. 
-
+LPM manages the downloaded dependencies via packages and installers. A package defines a specific kind of software we need for certain services, for example [dynamodb-local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html). It also encapsulates general information like name, available versions, etc., and manages the access to the actual installer that is used. The installer manages all installation-related information: the destination, the actual installation routine, etc. There are various types of installers available, depending on what we need to install (OS-level packages, executables, jar files, GitHub assets,...), so before you start reinventing the wheel, please check if there is a suitable installer available. For example, if you need to download a jar file, you can use the `DownloadInstaller` base class. You then overwrite it in a manner like `<MyDownloadName>Installer(DownloadInstaller)` and all you need to provide is the download link (more in the example below). Most of the base installers work in a similar fashion.
+Packages and installers can usually be found in `packages.py` in the `localstack/services/<service>` folder of the service that requires the dependency. Dependencies that are required by multiple services are saved under `localstack/packages`.
+Regarding installed versions, it is important to note that lpm will not install arbitrary versions it does not "know" about, even if those versions exist for the provided package. For example, if you attempt to install the latest version for a dependency (e.g. stepfunctions-local) but the lpm package only supports a certain, pinned version, the installation will fail. Resources that do not use versions (e.g. because there is only a link to the newest one) generally use `latest` as version name. Different versions of a package use would use different installer objects.
 
 #### Installation targets
 To keep things nice and clean, LPM installs packages in two locations, `static_libs` and `var_libs`.
 `static_libs` is `.filesystem/usr/lib/localstack`. It is used for packages installed at build time. Regarding the docker container, they are installed in a non-host-mounted volume, and the directory is re-created whenever a container is recreated. This is the default target if a package is installed if it is installed in the aforementioned way via `python -m localstack.cli.lpm install`.
 `var_libs` is `.filesystem/var/lib/localstack`. It is used for packages installed at runtime. Regarding the docker container, they are installed in a host-mounted volume, and the content of the directory will persist across multiple containers. This is the default target if a package is installed at runtime directly in the code.
 
+#### Installation life-cycle
+The installer base class provides two methods to manage potentially necessary side tasks for the installation: `_prepare_installation` and `_post_process`. These methods simply `pass` by default and need to be overwritten should they be needed. Most notably, they are used for the OS-level packages to add repositories to the OS-package-manager like `apt`.
+
 #### Plugins mechanism
 For lpm to be able to discover a package, we expose it via the package plugins mechanism. This means usually to write a function that returns the current package instance and mark it with the `@package` decorator (check the example below). It can be passed additional conditions to determine whether this should actually be loaded or not. 
 
 #### Special mention: OSPackageInstaller
-Package installers that install packages on operating system level (like postgresql) work a bit differently since they need to use the underlying package manager of the OS. At the time of writing and its forseeable future, the supported operating systems are:
- - Debian (standard docker image)
- - RedHat
+Package installers that install packages on operating system level (like PostgreSQL) work a bit differently since they need to use the underlying package manager of the OS. At the time of writing and its foreseeable future, the supported operating systems for these installers are:
+- Debian (standard docker image)
+- Red Hat
 
-Since this is intended for the docker image, when run outside of docker in host mode it will only work on Debian-like systems that use `apt`. Also the installation target is ignored for these packages, since they are installed and managed at system level.
+Since this is intended for the docker image, it will fail with an exception when run outside of docker in host mode. This can be bypassed on Debian-like systems that use `apt` by installing the necessary dependency manually on the host. 
+Also the installation target has no effect for these packages, since they are installed and managed at system level.
 
 ### Example
-We will now install \<MyEssentialGithubResource\> to showcase how installing some dependency usually looks like.
+We will now install \<MyEssentialGitHubResource\> to showcase how installing some dependency usually looks like.
 1. Create `packages.py` under `localstack/services/\<my-service\> if not already present.
 2. Add the following content to `packages.py`
 ```python
 # This defines the package
 
 class MyGitHubPackage(Package):
-    def __init__(self, default_version: str = "<my-default-version>"):
-        super().__init__(name="My essential GitHub package", default_version=default_version)
+def __init__(self, default_version: str = "<my-default-version>"):
+super().__init__(name="My essential GitHub package", default_version=default_version)
 
-    @lru_cache
-    def _get_installer(self, version: str) -> PackageInstaller:
-        return MyGitHubPackageInstaller(version)
+@lru_cache
+def _get_installer(self, version: str) -> PackageInstaller:
+return MyGitHubPackageInstaller(version)
 
-    def get_versions(self) -> List[str]:
-        return ["<my-default-version>", "<alt-version-1>", "<alt-version-2>"]
+def get_versions(self) -> List[str]:
+return ["<my-default-version>", "<alt-version-1>", "<alt-version-2>"]
 
 # This defines the installer. Depending on the type, different urls, names, etc. need to be provided
 
 class MyGitHubPackageInstaller(GitHubReleaseInstaller):
-    def __init__(self, version: str):
-        super().__init__("<my-github-package>", version, "<github-username>/<github-repository>")
+def __init__(self, version: str):
+super().__init__("<my-github-package>", version, "<github-username>/<github-repository>")
 
-    def _get_github_asset_name(self):
-        arch = get_arch()
-        operating_system = get_os()
-        if arch == "amd64":
-            if operating_system == "windows":
-                bin_file = "<my-github-package>.exe"
-            else:
-                bin_file = "<my-github-package>"
-        else:
-            bin_file = "<my-github-package>.jar"
-        return bin_file
+def _get_github_asset_name(self):
+arch = get_arch()
+operating_system = get_os()
+if arch == "amd64":
+if operating_system == "windows":
+bin_file = "<my-github-package>.exe"
+else:
+bin_file = "<my-github-package>"
+else:
+bin_file = "<my-github-package>.jar"
+return bin_file
 ```
 3. Add the package reference at the bottom of `packages.py`.
 ```python
@@ -265,12 +261,12 @@ my_github_package = MyGitHubPackage()
 ```python
 @package(name="<my-github-package>")
 def my_github_package() -> Package:
-    from localstack.services.<my-service>.packages import my_github_package
+from localstack.services.<my-service>.packages import my_github_package
 
-    return my_github_package
+return my_github_package
 ```
-That's it, we just implemented a installation routine for a github asset including path lookup, cleanup, etc. Now we need to recreate our entrypoints, and then we can install it via `python -m localstack.cli.lpm install <my-github-package>`.
-For a concrete implementation , you can compare the example code e.g. against the files under localstack/services/kinesis.
+That's it, we just implemented a installation routine for a github asset including path lookup, cleanup of temp-files, etc. Now we need to recreate our entrypoints, and then we can install it via `python -m localstack.cli.lpm install <my-github-package>`.
+For a concrete implementation and more details, you can compare the example code e.g. against the files under localstack/services/kinesis.
 
 ### `lpm` in more detail
 Now that we covered the basic concepts, we can look into the different lpm commands more closely, however the gist is covered by the already mentioned described overview.
@@ -285,11 +281,17 @@ Now that we covered the basic concepts, we can look into the different lpm comma
 - `--target`
 
 As mentioned, the default target for lpm is `static_libs`, but should the need arise, lpm can also install under `var_libs`.
-- `version`
+- `--version`
 
-The version to be installed. Remember that the version needs to be supported by lpm or it will fail, even if the version exists.
+The version to be installed. Remember that the version needs to be supported by lpm or it will fail, even if the version theoretically exists.
 
 An important thing to note here is that at the time of writing, the provided options will be applied for all given packages. This makes the combination of the `--version` parameter with multiple packages rather error prone, since version numbers, names, and formats differ across packages. This use is therefore discouraged. 
+
+### LPM and LocalStack pro
+LPM works largely the same for pro as it does for community. The most important differences are:
+- packages for pro use the `@pro_package` decorator instead of the `package` one.
+- At the time of writing, only pro uses OS-level packages.
+- The lpm-related code is unencrypted, but the rest of the pro code is not. Therefore it is important to not import any code that will be encrypted in the deployed version. This should not be an issue most of the time, since the services naturally depend on their packages, and not the other way around.
 
 ## Utilities
 
