@@ -179,18 +179,23 @@ These hooks are relevant only to invocations of the CLI. If you use, for example
 The components necessary to run the LocalStack server application are collectively referred to as the _runtime_. This includes the Gateway, scheduled worker threads, etc. The runtime is distinct from the CLI, which runs on the host. Currently, there is no clear separation between the two, you will notice this, for example, in the configuration, where some config variables are used for both the CLI and the runtime. Similarly, there is code used by both. Separating the two is an ongoing process.
 
 
-## Packages, installers, and the LocalStack Package Manager (LPM)
+## Packages and installers
 Whenever we rely on certain third party software, we install it using our installation hierarchy, which consists of packages and installers.
 
-A package defines a specific kind of software we need for certain services, for example [dynamodb-local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html). It also encapsulates general information like name, available versions, etc., and manages the access to the actual installer that is used.
+A package defines a specific kind of software we need for certain services, for example [dynamodb-local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
+It also encapsulates general information like name, available versions, etc., and manages the access to the actual installer that is used.
 
-The installer manages all installation-related information: the destination, the actual installation routine, etc. There are various types of installers available, depending on what we need to install (executables, jar files, GitHub assets,...), so before you start reinventing the wheel, please check if there is a suitable installer available. For example, if you need to download a jar file, you can use the `DownloadInstaller` base class. You then overwrite it in a manner like `<MyDownloadName>Installer(DownloadInstaller)` and all you need to provide is the download link (more in the example below). Most of the base installers work in a similar fashion.
+The installer manages all installation-related information: the destination, the actual installation routine, etc.
+There are various types of installers available as base classes that try to minimize the required effort to install software, depending on what we need to install (executables, jar files, GitHub assets,...).
+So before you start reinventing the wheel, please check if there is a suitable class available that you can overwrite.
 
-Packages and installers can usually be found in `packages.py` in the `localstack/services/<service>` folder of the service that requires the dependency. Dependencies that are required by multiple services are saved under `localstack/packages`.
+Packages and installers can usually be found in `packages.py` in the `localstack/services/<service>` folder of the service that requires the dependency.
+Dependencies that are required by multiple services are saved under `localstack/packages`.
 
-`lpm` is a module located in `localstack.cli`. It provides a [Click](https://click.palletsprojects.com/)-powered CLI interface to trigger installations.
-
-It uses the Plugins mechanism to discover packages. _LPM_ can be used directly as a module, and if called without a specific command it prints an extensive description of its available commands:
+Additionally, there is the LocalStack Package Manager (LPM).
+`lpm` is a module located in `localstack.cli` that provides a [Click](https://click.palletsprojects.com/)-powered CLI interface to trigger installations.
+It uses the Plugins mechanism to discover packages.
+_LPM_ can be used directly as a module, and if called without a specific command it prints an extensive description of its available commands:
 
 ```python
 source .venv/bin/activate
@@ -200,91 +205,38 @@ python -m localstack.cli.lpm
 ### Further concepts
 
 #### Versions
-As dependencies exist in different versions, we need to reflect this in our process. It is important to note that we cannot not install arbitrary versions the package does not "know" about, even if those versions exist "in the real world" for the provided package. Any version that is supposed to be supported needs to be explicitly mentioned in the package. For example, if you attempt to install the latest version for a dependency (e.g. stepfunctions-local) but the package only supports a certain, pinned version, the installation will fail. Resources that do not use versions (e.g. because there is only a link to the newest one) generally use `latest` as version name. Different versions of a package would use different installer objects.
+As dependencies exist in different versions, we need to reflect this in our process.
+It is important to note that we cannot not install arbitrary versions the package does not "know" about, even if those versions exist "in the real world" for the provided package.
+Any version that is supposed to be supported needs to be explicitly mentioned in the package.
+For example, if you attempt to install the latest version for a dependency (e.g. stepfunctions-local) but the package only supports a certain, pinned version, the installation will fail.
+Resources that do not use versions (e.g. because there is only a link to the newest one) generally use `latest` as version name.
+Different versions of a package would use different installer objects.
 
 #### Installation targets
-To keep things nice and clean, LPM installs packages in two locations, `static_libs` and `var_libs`.
+To keep things nice and clean, LPM installs packages in two locations, `static_libs` and `var_libs`. \
+`static_libs` is used for packages installed at build time.
+Regarding the docker container, the packages are installed in a non-host-mounted volume, and the directory is re-created whenever a container is recreated.
+This is the default target if a package is installed in the aforementioned way via `python -m localstack.cli.lpm install`.
 
-`static_libs` is `.filesystem/usr/lib/localstack`. It is used for packages installed at build time. Regarding the docker container, the packages are installed in a non-host-mounted volume, and the directory is re-created whenever a container is recreated. This is the default target if a package is installed in the aforementioned way via `python -m localstack.cli.lpm install`.
-
-`var_libs` is `.filesystem/var/lib/localstack`. It is the main and default location used for packages installed at runtime. Regarding the docker container, the packages are installed in a host-mounted volume, and the content of the directory will persist across multiple containers.
+`var_libs` is the main and default location used for packages installed at runtime.
+Regarding the docker container, the packages are installed in a host-mounted volume, and the content of the directory will persist across multiple containers.
 
 #### Installation life-cycle
-The installer base class provides two methods to manage potentially necessary side tasks for the installation: `_prepare_installation` and `_post_process`. These methods simply `pass` by default and need to be overwritten should they be needed.
+The installer base class provides two methods to manage potentially necessary side tasks for the installation: `_prepare_installation` and `_post_process`.
+These methods simply `pass` by default and need to be overwritten should they be needed.
 
 #### Plugins mechanism
-For LPM to be able to discover a package, we expose it via the package plugins mechanism. This is usually done by writing a function in `plugins.py` that returns the current package instance and marking it with the `@package` decorator (check the example below). It can be passed additional conditions to determine whether this should actually be loaded or not. 
+For LPM to be able to discover a package, we expose it via the package plugins mechanism.
+This is usually done by writing a function in `plugins.py` that returns the current package instance and marking it with the appropriate decorator.
 
-### Example
-We will now install \<MyEssentialGitHubResource\> to showcase how installing some dependency usually looks like.
-1. Create `packages.py` under `localstack/services/\<my-service\> if not already present.
-2. Add the following content to `packages.py`
-```python
-# This defines the package
-
-class MyGitHubPackage(Package):
-  def __init__(self, default_version: str = "<my-default-version>"):
-    super().__init__(name="My essential GitHub package", default_version=default_version)
-
-  @lru_cache
-  def _get_installer(self, version: str) -> PackageInstaller:
-    return MyGitHubPackageInstaller(version)
-
-  def get_versions(self) -> List[str]:
-    return ["<my-default-version>", "<alt-version-1>", "<alt-version-2>"]
-
-# This defines the installer. Depending on the type, different urls, names, etc. need to be provided
-
-class MyGitHubPackageInstaller(GitHubReleaseInstaller):
-  def __init__(self, version: str):
-    super().__init__("<my-github-package>", version, "<github-username>/<github-repository>")
-
-  def _get_github_asset_name(self):
-    arch = get_arch()
-    operating_system = get_os()
-    if arch == "amd64":
-      if operating_system == "windows":
-        bin_file = "<my-github-package>.exe"
-      else:
-        bin_file = "<my-github-package>"
-    else:
-      bin_file = "<my-github-package>.jar"
-    return bin_file
-```
-3. Add the package reference at the bottom of `packages.py`.
-```python
-my_github_package = MyGitHubPackage()
-```
-4. Create `plugins.py` in the same directory as before if not already present.
-5. Add the following content to `plugins.py`.
-```python
-@package(name="<my-github-package>")
-def my_github_package() -> Package:
-  from localstack.services.<my-service>.packages import my_github_package
-
-  return my_github_package
-```
-That's it, we just implemented an installation routine for a github asset including path lookup, cleanup of temp-files, etc. Now we need to recreate our entrypoints, and then we can install it via `python -m localstack.cli.lpm install <my-github-package>`.
-For a concrete implementation and more details, you can compare the example code e.g. against the files under localstack/services/kinesis.
-
-### `lpm` in more detail
-Now that we covered the basic concepts, we can look into the different lpm-commands more closely, however the gist is covered by the already mentioned overview.
+### `lpm` commands
+Now that we covered the basic concepts, we can look into the lpm-commands. The available commands are:
 
 - `python -m localstack.cli.lpm list`
-
-`lpm list` is straightforward, it lists all available packages in alphabetic order and adds whether this is a community or pro dependency. `-v`/`--verbose` will print additional information, which at the moment is limited to the package versions that are available.
-
 - `python -m localstack.cli.lpm install [OPTIONS] PACKAGE...`
 
-`lpm install` installs one or more packages with the given options. The available options are `--target` and `--version`.
-- `--target`
-
-As mentioned, the default target for LPM is `static_libs`, but should the need arise, LPM can also install under `var_libs`.
-- `--version`
-
-The version to be installed. Remember that the version needs to be supported by the package or it will fail, even if the version theoretically exists.
-
-An important thing to note here is that at the time of writing, the provided options will be applied for all given packages. This makes the combination of the `--version` parameter with multiple packages a bit brittle, since version numbers, names, and formats differ across packages. Use with caution.
+For help with the specific commands, use `python -m localstack.cli.lpm <command> --help`
+One important thing to note about `install` is that the provided options will be applied for all given packages. Use with caution.
 
 ## Utilities
 
