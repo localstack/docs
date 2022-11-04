@@ -272,7 +272,7 @@ Now that we covered the basic concepts, we can look into the different lpm-comma
 
 - `python -m localstack.cli.lpm list`
 
-`lpm list` is straightforward, it lists all available packages in alphabetic order and adds whether this is a community or pro dependency. `-v`/`--verbose` will print additional info, such as the package versions that are available.
+`lpm list` is straightforward, it lists all available packages in alphabetic order and adds whether this is a community or pro dependency. `-v`/`--verbose` will print additional information, which at the moment is limited to the package versions that are available.
 
 - `python -m localstack.cli.lpm install [OPTIONS] PACKAGE...`
 
