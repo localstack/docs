@@ -206,14 +206,15 @@ python -m localstack.cli.lpm
 
 #### Versions
 As dependencies exist in different versions, we need to reflect this in our process.
-It is important to note that we cannot not install arbitrary versions the package does not "know" about, even if those versions exist "in the real world" for the provided package.
+It is important to note that we cannot install arbitrary versions the package does not "know" about, even if those versions exist "in the real world" for the provided package.
 Any version that is supposed to be supported needs to be explicitly mentioned in the package.
 For example, if you attempt to install the latest version for a dependency (e.g. stepfunctions-local) but the package only supports a certain, pinned version, the installation will fail.
 Resources that do not use versions (e.g. because there is only a link to the newest one) generally use `latest` as version name.
 Different versions of a package would use different installer objects.
 
 #### Installation targets
-To keep things nice and clean, LPM installs packages in two locations, `static_libs` and `var_libs`. \
+To keep things nice and clean, LPM installs packages in two locations, `static_libs` and `var_libs`.
+
 `static_libs` is used for packages installed at build time.
 Regarding the docker container, the packages are installed in a non-host-mounted volume, and the directory is re-created whenever a container is recreated.
 This is the default target if a package is installed in the aforementioned way via `python -m localstack.cli.lpm install`.
@@ -227,16 +228,17 @@ These methods simply `pass` by default and need to be overwritten should they be
 
 #### Plugins mechanism
 For LPM to be able to discover a package, we expose it via the package plugins mechanism.
-This is usually done by writing a function in `plugins.py` that returns the current package instance and marking it with the appropriate decorator.
+This is usually done by writing a function in `plugins.py` that returns the current package instance and marking it with the `@package` decorator.
 
 ### `lpm` commands
-Now that we covered the basic concepts, we can look into the lpm-commands. The available commands are:
+The available `lpm` commands are:
 
 - `python -m localstack.cli.lpm list`
 - `python -m localstack.cli.lpm install [OPTIONS] PACKAGE...`
 
-For help with the specific commands, use `python -m localstack.cli.lpm <command> --help`
-One important thing to note about `install` is that the provided options will be applied for all given packages. Use with caution.
+For help with the specific commands, use `python -m localstack.cli.lpm <command> --help`.
+One important thing to note about `install` is that the provided options will be applied for all given packages.
+Use with caution.
 
 ## Utilities
 
