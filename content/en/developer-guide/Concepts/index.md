@@ -179,27 +179,28 @@ These hooks are relevant only to invocations of the CLI. If you use, for example
 The components necessary to run the LocalStack server application are collectively referred to as the _runtime_. This includes the Gateway, scheduled worker threads, etc. The runtime is distinct from the CLI, which runs on the host. Currently, there is no clear separation between the two, you will notice this, for example, in the configuration, where some config variables are used for both the CLI and the runtime. Similarly, there is code used by both. Separating the two is an ongoing process.
 
 
-## LocalStack Package Manager (LPM)
+## Packages, installers, and the LocalStack Package Manager (LPM)
+Whenever we rely on certain third party software, we install it using our installation hierarchy, which consists of packages and installers.
 
-The `lpm` is a module located in `localstack.cli`. It provides a [Click](https://click.palletsprojects.com/)-powered CLI interface to trigger installers.
+A package defines a specific kind of software we need for certain services, for example [dynamodb-local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html). It also encapsulates general information like name, available versions, etc., and manages the access to the actual installer that is used.
 
-It uses the Plugins mechanism to discover installers of community and ext. _LPM_ can be used directly as a module, and if called without a specific command it prints an extensive description of its available commands:
+The installer manages all installation-related information: the destination, the actual installation routine, etc. There are various types of installers available, depending on what we need to install (executables, jar files, GitHub assets,...), so before you start reinventing the wheel, please check if there is a suitable installer available. For example, if you need to download a jar file, you can use the `DownloadInstaller` base class. You then overwrite it in a manner like `<MyDownloadName>Installer(DownloadInstaller)` and all you need to provide is the download link (more in the example below). Most of the base installers work in a similar fashion.
+
+Packages and installers can usually be found in `packages.py` in the `localstack/services/<service>` folder of the service that requires the dependency. Dependencies that are required by multiple services are saved under `localstack/packages`.
+
+`lpm` is a module located in `localstack.cli`. It provides a [Click](https://click.palletsprojects.com/)-powered CLI interface to trigger installations.
+
+It uses the Plugins mechanism to discover packages. _LPM_ can be used directly as a module, and if called without a specific command it prints an extensive description of its available commands:
 
 ```python
 source .venv/bin/activate
 python -m localstack.cli.lpm
 ```
 
-### LPM concepts
+### Further concepts
 
-#### Packages and installers
-LPM manages the downloaded dependencies via packages and installers. A package defines a specific kind of software we need for certain services, for example [dynamodb-local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html). It also encapsulates general information like name, available versions, etc., and manages the access to the actual installer that is used. The installer manages all installation-related information: the destination, the actual installation routine, etc. There are various types of installers available, depending on what we need to install (OS-level packages, executables, jar files, GitHub assets,...), so before you start reinventing the wheel, please check if there is a suitable installer available.
-
-For example, if you need to download a jar file, you can use the `DownloadInstaller` base class. You then overwrite it in a manner like `<MyDownloadName>Installer(DownloadInstaller)` and all you need to provide is the download link (more in the example below). Most of the base installers work in a similar fashion.
-
-Packages and installers can usually be found in `packages.py` in the `localstack/services/<service>` folder of the service that requires the dependency. Dependencies that are required by multiple services are saved under `localstack/packages`.
-
-Regarding installed versions, it is important to note that LPM will not install arbitrary versions it does not "know" about, even if those versions exist for the provided package. For example, if you attempt to install the latest version for a dependency (e.g. stepfunctions-local) but the lpm-package only supports a certain, pinned version, the installation will fail. Resources that do not use versions (e.g. because there is only a link to the newest one) generally use `latest` as version name. Different versions of a package would use different installer objects.
+#### Versions
+As dependencies exist in different versions, we need to reflect this in our process. It is important to note that we cannot not install arbitrary versions the package does not "know" about, even if those versions exist "in the real world" for the provided package. Any version that is supposed to be supported needs to be explicitly mentioned in the package. For example, if you attempt to install the latest version for a dependency (e.g. stepfunctions-local) but the package only supports a certain, pinned version, the installation will fail. Resources that do not use versions (e.g. because there is only a link to the newest one) generally use `latest` as version name. Different versions of a package would use different installer objects.
 
 #### Installation targets
 To keep things nice and clean, LPM installs packages in two locations, `static_libs` and `var_libs`.
@@ -209,18 +210,10 @@ To keep things nice and clean, LPM installs packages in two locations, `static_l
 `var_libs` is `.filesystem/var/lib/localstack`. It is the main and default location used for packages installed at runtime. Regarding the docker container, the packages are installed in a host-mounted volume, and the content of the directory will persist across multiple containers.
 
 #### Installation life-cycle
-The installer base class provides two methods to manage potentially necessary side tasks for the installation: `_prepare_installation` and `_post_process`. These methods simply `pass` by default and need to be overwritten should they be needed. Most notably, they are used for the OS-level packages to add repositories to the OS-package-manager like `apt`.
+The installer base class provides two methods to manage potentially necessary side tasks for the installation: `_prepare_installation` and `_post_process`. These methods simply `pass` by default and need to be overwritten should they be needed.
 
 #### Plugins mechanism
 For LPM to be able to discover a package, we expose it via the package plugins mechanism. This is usually done by writing a function in `plugins.py` that returns the current package instance and marking it with the `@package` decorator (check the example below). It can be passed additional conditions to determine whether this should actually be loaded or not. 
-
-#### Special mention: OSPackageInstaller
-Package installers that install packages on operating system level (like PostgreSQL) work a bit differently since they need to use the underlying package manager of the OS. At the time of writing and its foreseeable future, the supported operating systems for these installers are:
-- Debian (standard docker image)
-- Red Hat
-
-Since this is intended for the docker image, it will fail with an exception when run outside of docker in host mode. This can be bypassed on Debian-like systems that use `apt` by installing the necessary dependency manually on the host. 
-Also the installation target has no effect for these installers, since they are installed and managed at system level.
 
 ### Example
 We will now install \<MyEssentialGitHubResource\> to showcase how installing some dependency usually looks like.
@@ -254,8 +247,8 @@ class MyGitHubPackageInstaller(GitHubReleaseInstaller):
         bin_file = "<my-github-package>.exe"
       else:
         bin_file = "<my-github-package>"
-      else:
-        bin_file = "<my-github-package>.jar"
+    else:
+      bin_file = "<my-github-package>.jar"
     return bin_file
 ```
 3. Add the package reference at the bottom of `packages.py`.
@@ -279,7 +272,7 @@ Now that we covered the basic concepts, we can look into the different lpm-comma
 
 - `python -m localstack.cli.lpm list`
 
-`lpm list` is straightforward, it lists all available packages in alphabetic order and adds whether this is a community or pro dependency. `-v`/`--verbose` will print additional info if any, such as the package versions that are available.
+`lpm list` is straightforward, it lists all available packages in alphabetic order and adds whether this is a community or pro dependency. `-v`/`--verbose` will print additional info, such as the package versions that are available.
 
 - `python -m localstack.cli.lpm install [OPTIONS] PACKAGE...`
 
@@ -292,12 +285,6 @@ As mentioned, the default target for LPM is `static_libs`, but should the need a
 The version to be installed. Remember that the version needs to be supported by LPM or it will fail, even if the version theoretically exists.
 
 An important thing to note here is that at the time of writing, the provided options will be applied for all given packages. This makes the combination of the `--version` parameter with multiple packages a bit brittle, since version numbers, names, and formats differ across packages. Use with caution.
-
-### LPM and LocalStack pro
-LPM works largely the same for pro as it does for community. The most important differences are:
-- packages for pro use the `@pro_package` decorator instead of the `@package` one.
-- At the time of writing, only pro uses OS-level packages.
-- The lpm-related code is unencrypted, but the rest of the pro code is not. Therefore it is important to not import any code that will be encrypted in the deployed version. This should not be an issue most of the time, since the services naturally depend on their packages, and not the other way around.
 
 ## Utilities
 
