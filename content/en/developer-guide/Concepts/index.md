@@ -220,7 +220,7 @@ Package installers that install packages on operating system level (like Postgre
 - Red Hat
 
 Since this is intended for the docker image, it will fail with an exception when run outside of docker in host mode. This can be bypassed on Debian-like systems that use `apt` by installing the necessary dependency manually on the host. 
-Also the installation target has no effect for these packages, since they are installed and managed at system level.
+Also the installation target has no effect for these installers, since they are installed and managed at system level.
 
 ### Example
 We will now install \<MyEssentialGitHubResource\> to showcase how installing some dependency usually looks like.
