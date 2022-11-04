@@ -291,7 +291,7 @@ As mentioned, the default target for LPM is `static_libs`, but should the need a
 
 The version to be installed. Remember that the version needs to be supported by LPM or it will fail, even if the version theoretically exists.
 
-An important thing to note here is that at the time of writing, the provided options will be applied for all given packages. This makes the combination of the `--version` parameter with multiple packages rather error prone, since version numbers, names, and formats differ across packages. This use is therefore discouraged. 
+An important thing to note here is that at the time of writing, the provided options will be applied for all given packages. This makes the combination of the `--version` parameter with multiple packages a bit brittle, since version numbers, names, and formats differ across packages. Use with caution.
 
 ### LPM and LocalStack pro
 LPM works largely the same for pro as it does for community. The most important differences are:
