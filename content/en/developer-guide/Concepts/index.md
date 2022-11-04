@@ -183,7 +183,7 @@ The components necessary to run the LocalStack server application are collective
 
 The `lpm` is a module located in `localstack.cli`. It provides a [Click](https://click.palletsprojects.com/)-powered CLI interface to trigger installers.
 
-It uses the Plugins mechanism to discover installers of community and ext. _LPM_ can be used directly as a module and - called without a specific command - prints an extensive description of its available commands:
+It uses the Plugins mechanism to discover installers of community and ext. _LPM_ can be used directly as a module, and if called without a specific command it prints an extensive description of its available commands:
 
 ```python
 source .venv/bin/activate
