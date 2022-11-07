@@ -11379,6 +11379,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>AcceptCertificateTransfer (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AddThingToThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11765,10 +11769,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse iot-notimplemented">     <tr>
-      <td>AcceptCertificateTransfer</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>AddThingToBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13261,10 +13261,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddApplicationReferenceDataSource (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13315,6 +13311,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AddApplicationReferenceDataSource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteApplicationCloudWatchLoggingOption</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13362,6 +13362,14 @@ description: >
     </tr>
     <tr>
       <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateApplicationPresignedUrl (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateApplicationSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13416,14 +13424,6 @@ description: >
     </tr>
     <tr>
       <td>AddApplicationVpcConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateApplicationPresignedUrl</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateApplicationSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15169,10 +15169,6 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AcceptHandshake (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AttachPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -15339,6 +15335,10 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse organizations-notimplemented">     <tr>
+      <td>AcceptHandshake</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelHandshake</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17487,10 +17487,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketCors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetBucketEncryption <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -17532,10 +17528,6 @@ description: >
     </tr>
     <tr>
       <td>GetBucketPolicyStatus</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>GetBucketReplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17584,10 +17576,6 @@ description: >
     </tr>
     <tr>
       <td>GetPublicAccessBlock <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>HeadObject (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17647,7 +17635,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketCors <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>PutBucketCors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17769,6 +17757,10 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetBucketCors</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetBucketLifecycle</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17777,11 +17769,19 @@ description: >
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetBucketReplication</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetBucketRequestPayment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>HeadBucket</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>HeadObject</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
