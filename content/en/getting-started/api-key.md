@@ -82,48 +82,4 @@ If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing"
 
 ## Common activation issues
 
-### Invalid API key
-
-If your API key is invalid, you will see an error message in the logs of LocalStack:
-
-```shell
-Activation key "abc..."(10) is invalid or expired! Reason: ...
-```
-
-Something is wrong with your API key or license if this error occurs. Please ensure your API key is set correctly (check for typos!) and your license is valid. If the API key still does not work, [contact us](https://localstack.cloud/contact/).
-
-### No connection to the LocalStack API
-
-If your log output contains lines like:
-
-```shell
-WARNING:localstack_ext.bootstrap.licensing: Error activating API key "abc..."(10):
-...
-ConnectionRefusedError: [Errno 111] Connection refused
-```
-
-LocalStack cannot contact our API to perform the license activation. Confirm with your network administrator that no policies block the connection to our backend.
-
-### Cannot resolve api.localstack.cloud
-
-Log output like the following indicates that your machine cannot resolve the domain of the LocalStack API.
-
-```shell
-WARNING:localstack_ext.bootstrap.licensing: Error activating API key "abc..."(10):
-...
-socket.gaierror: [Errno -3] Temporary failure in name resolution
-```
-
-Confirm this by using a tool like `dig`:
-
-{{< command >}}
-$ dig api.localstack.cloud
-{{< / command >}}
-
-If the result has some other status than `status: NOERROR,` your machine cannot resolve this domain.
-
-Some corporate DNS servers might filter requests to certain domains. Contact your network administrator to safelist` localstack.cloud` domains.
-
-### Further issues
-
-If you have any problems concerning your API key activation not mentioned here, or if these steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).
+Navigate to our [FAQ page]({{< ref "faq" >}}) if your are having troubles with the LocalStack API key activation If you have any further problems concerning your API key activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).
