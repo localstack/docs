@@ -3,30 +3,32 @@ title: "LocalStack in CI"
 linkTitle: "LocalStack in CI"
 weight: 3
 description: >
-  Using LocalStack in your Continuous Integration workflow
+  Using LocalStack in your Continuous Integration (CI) workflows
 cascade:
   type: docs
 slug: ci
 ---
 
-LocalStack is key component of testing and delivering cloud-native applications in Continuous Integration/Delivery pipelines without complicated AWS testing and staging environments.
+LocalStack enables organizations to automate their application testing and integration process through DevOps practices, such as continuous integration (CI). To meet your organizational needs, LocalStack lets you move away from complicated AWS testing and staging environments by enabling a key component of testing and delivering cloud-native applications. 
 
-## Example workflow
+You can easily integrate LocalStack with your existing CI platform. We provide native plugins for CircleCI and a generic driver for any other CI platform you might use. This enables you to incorporate LocalStack's local AWS cloud emulation in your CI pipelines, use advanced features like Cloud Pods and CI analytics, and run your test & integration suite before pushing to production. 
 
-The following image shows an example workflow.
-The CI build is triggered through pushing code to the version control repository.
-The CI runner starts LocalStack and executes the test suite.
-The same Infrastructure-as-Code (IaC) configuration that sets up AWS in your production environment can be used to set up LocalStack in the CI environment.
-LocalStack [Cloud Pods]({{< ref "cloud-pods" >}}) can be used to pre-seed state into the services (e.g., DynamoDB entries, or S3 files).
-The tests then execute the application in the cloud environment emulated by LocalStack.
-After a successful test run, the more expensive AWS CodeBuild pipeline for deploying your application can be executed.
-The test reports created by your testing framework can be enriched with traces and analytics generated inside LocalStack.
+## Hypothetical CI workflow
 
-{{< figure src="localstack-in-ci.svg" alt="An example CI/CD workflow using LocalStack" width="70%">}}
+Let's assume that your team has an automated CI workflow into which you want to integrate end-to-end cloud testing with LocalStack. As an example, consider the following pipeline, which represents part of a simple CI workflow:
 
+{{< figure src="localstack-in-ci.svg" alt="An example CI/CD workflow using LocalStack" width="90%">}}
 
-## Running LocalStack in CI environments
+The CI build is triggered by pushing code to a version control repository, like GitHub. The CI runner starts LocalStack and executes the test suite. You can also use the same Infrastructure-as-Code (IaC) configuration that you use to set up AWS in your production environment to set up LocalStack in the CI environment. You can also pre-seed state into the local AWS services (e.g., DynamoDB entries or S3 files) provided by LocalStack in your CI environment via Cloud Pods. 
 
-It is easy to run LocalStack in your CI runners.
-For some CI environments, for example Circle CI, we provide plugins that allow seamless integration of LocalStack in your workflow.
-But LocalStack can work in any CI environment, and we have several examples in the sections below.
+After a successful test run, you can execute the more expensive AWS CodeBuild pipeline for deploying your application. You can enrich the test reports created by your testing framework with traces and analytics generated inside LocalStack.
+
+## CI Credits
+
+A CI key allows you to use LocalStack in your CI environment. Every activation of a CI key consumes one build credit. LocalStack Pro offers a CI key with a limited number of CI credits to help you can start experimenting with larger CI settings. LocalStack Team is focused on using LocalStack on individual user machines, across teams, and in larger CI settings to help teams collaborate and use LocalStack extensively in CI.
+
+The Pro subscription is mainly intended for use on individual user machines. We recommend our Team plan if you plan to use LocalStack extensively, including your CI environments. For the CI environment, each subscription (both Pro and Team) comes with one extra CI key (free of charge), which allows you to use LocalStack in your CI environment. The CI key has a certain number of credits, depending on the number of individual user seats and the plan you have purchased.
+
+## CI integrations
+
+The steps required for the integration differ slightly depending on your preferred CI platform. However, all the different options need you to retrieve your CI key from your Account settings on LocalStack App. Please refer to the relevant sections below for detailed instructions on the integration process.
