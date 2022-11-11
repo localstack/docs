@@ -289,8 +289,8 @@ After deploying your service with the ingress above, the service should be acces
 
 Please note that the ingress controller doesn't support HTTP/HTTPS multiplexing over the same `Ingress`, hence we need to create two `Ingress` definitions if the service should be accessible via both HTTP and HTTPS.
 
-{{< alert title="Notes" >}}
-Please note that `ls-secret-tls` is created in the `default` namespace - if your ingress/services are living in a custom namespace, the secret needs to be copied there.
+{{< alert title="Note" >}}
+The `ls-secret-tls` is created in the `default` namespace - if your ingress/services are living in a custom namespace, the secret needs to be copied there in order to use it.
 {{< /alert >}}
 
 ## Using an existing Kubernetes installation
