@@ -262,6 +262,37 @@ $ curl http://localhost:8081/test123
 You can customize the load balancer port by configuring `EKS_LOADBALANCER_PORT` in your environment.
 {{< /alert >}}
 
+### Enabling HTTPS with local SSL/TLS certificate for the Ingress
+
+In order to enable HTTPS for your endpoints, we can instruct Kubernetes to use SSL/TLS with our [certificate for local domain names](https://github.com/localstack/localstack-artifacts/blob/master/local-certs/server.key) `*.localhost.localstack.cloud`.
+
+The local EKS cluster is pre-configured with a secret named `ls-secret-tls` which can be used to define the ingress `tls` section:
+
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: test-ingress
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  tls:
+  - secretName: ls-secret-tls
+    hosts:
+    - myservice.localhost.localstack.cloud
+  ...
+```
+
+After deploying your service with the ingress above, the service should be accessible via the HTTPS endpoint `https://myservice.localhost.localstack.cloud`.
+
+Please note that the ingress controller doesn't support HTTP/HTTPS multiplexing over the same `Ingress`, hence we need to create two `Ingress` definitions if the service should be accessible via both HTTP and HTTPS.
+
+{{< alert title="Notes" >}}
+Please note that `ls-secret-tls` is created in the `default` namespace - if your ingress/services are living in a custom namespace, the secret needs to be copied there.
+{{< /alert >}}
+
 ## Using an existing Kubernetes installation
 
 You can also use the EKS API using an existing local Kubernetes installation. This works by mounting the `$HOME/.kube/config` file into the LocalStack container - e.g., when using docker-compose.yml:
