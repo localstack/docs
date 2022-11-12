@@ -24,7 +24,7 @@ To get started, you need to have a LocalStack license. If you don't have one, yo
 
 ## Using your API key
 
-LocalStack expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`. Before starting LocalStack, define the environment variable:
+LocalStack expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`. Before starting LocalStack, define the environment variable - for example, using the following command in a MacOS or Linux environment:
 
 {{< command >}}
 $ export LOCALSTACK_API_KEY=<your-api-key>
