@@ -72,7 +72,7 @@ If you want to make sure that LocalStack is only started if you can activate Loc
 
 ## Checking license activation
 
-The easiest way to check if LocalStack is activated is to check the health endpoint of LocalStack for a list of the running services:
+The easiest way to check if LocalStack is activated is to query the health endpoint for a list of the running services:
 
 {{< command >}}
 $ curl localhost:4566/health | jq
