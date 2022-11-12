@@ -17,7 +17,7 @@ To get started, you need to have a LocalStack license. If you don't have one, yo
 
 - If you push an API key to a public repository, it has potentially been exposed and might remain in the history (even if you try to rewrite it).
 
-- If you accidentally publish your API key, [contact us](https://localstack.cloud/contact/) to get your API key rotated!
+- If you accidentally publish your API key, please [contact us](https://localstack.cloud/contact/) immediately to get your API key rotated!
 
 - If you want to use your API key in your CI environment, check out our [CI documentation]({{< ref "user-guide/ci" >}}) to see the proper way to handle secrets in your CI environment to store your API key securely.
 {{< /alert >}}
