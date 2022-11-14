@@ -312,8 +312,6 @@ More information [here]({{< ref "dns-server" >}}).
 
 ## LocalStack Pro
 
-More information [here]({{< ref "pro" >}}).
-
 | Variable | Example Values | Description |
 | - | - | - |
 | `LOCALSTACK_API_KEY` | | API key to activate LocalStack Pro.
