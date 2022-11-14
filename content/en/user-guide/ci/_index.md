@@ -27,7 +27,7 @@ After a successful test run, you can execute the more expensive AWS CodeBuild pi
 
 A CI key allows you to use LocalStack in your CI environment. Every activation of a CI key consumes one build credit. LocalStack Pro offers a CI key with a limited number of CI credits to help you can start experimenting with larger CI settings. LocalStack Team is focused on using LocalStack on individual user machines, across teams, and in larger CI settings to help teams collaborate and use LocalStack extensively in CI.
 
-The Pro subscription is mainly intended for use on individual user machines. We recommend our Team plan if you plan to use LocalStack extensively, including your CI environments. For the CI environment, each subscription (both Pro and Team) comes with one extra CI key (free of charge), which allows you to use LocalStack in your CI environment. The CI key has a certain number of credits, depending on the number of individual user seats and the plan you have purchased.
+The Pro subscription is mainly intended for use on individual user machines. We recommend our Team plan if you intend to use LocalStack extensively for team collaboration and in CI environments. For the CI environment, each subscription (both Pro and Team) comes with one extra CI key (included in the subscription at no extra charge), which allows you to use LocalStack in your CI environment. The CI key has a certain number of credits, depending on the number of individual user seats and the plan you have purchased.
 
 ## CI integrations
 
