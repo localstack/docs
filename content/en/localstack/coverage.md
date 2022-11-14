@@ -5365,6 +5365,14 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>AllocateHosts (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>AllocateIpamPoolCidr (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AssignIpv6Addresses</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6267,14 +6275,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse ec2-notimplemented">     <tr>
-      <td>AllocateHosts</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>AllocateIpamPoolCidr</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ApplySecurityGroupsToClientVpnTargetNetwork</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -11379,6 +11379,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>AcceptCertificateTransfer (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AddThingToThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11765,10 +11769,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse iot-notimplemented">     <tr>
-      <td>AcceptCertificateTransfer</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>AddThingToBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13261,10 +13261,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddApplicationReferenceDataSource (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13312,6 +13308,10 @@ description: >
     </tr>
     <tr>
       <td>AddApplicationInput</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AddApplicationReferenceDataSource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15169,10 +15169,6 @@ description: >
   </thead>
   <tbody>
     <tr>
-      <td>AcceptHandshake (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AttachPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -15339,6 +15335,10 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse organizations-notimplemented">     <tr>
+      <td>AcceptHandshake</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelHandshake</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17131,7 +17131,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AssociateResolverRule</td>
+      <td>AssociateResolverRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17151,11 +17151,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateResolverQueryLogConfig</td>
+      <td>CreateResolverQueryLogConfig <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateResolverRule</td>
+      <td>CreateResolverRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17171,15 +17171,15 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteResolverEndpoint</td>
+      <td>DeleteResolverEndpoint <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteResolverQueryLogConfig</td>
+      <td>DeleteResolverQueryLogConfig <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteResolverRule</td>
+      <td>DeleteResolverRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17195,7 +17195,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisassociateResolverRule</td>
+      <td>DisassociateResolverRule <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17259,7 +17259,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResolverEndpoints</td>
+      <td>ListResolverEndpoints <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17267,11 +17267,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResolverQueryLogConfigs</td>
+      <td>ListResolverQueryLogConfigs <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResolverRuleAssociations</td>
+      <td>ListResolverRuleAssociations <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17307,7 +17307,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateResolverEndpoint</td>
+      <td>UpdateResolverEndpoint <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -17419,6 +17419,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DeleteBucketCors</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteBucketEncryption</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -17487,7 +17491,7 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketCors (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBucketCors <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17500,6 +17504,14 @@ description: >
     </tr>
     <tr>
       <td>GetBucketInventoryConfiguration</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetBucketLifecycle</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetBucketLifecycleConfiguration <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17535,7 +17547,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketReplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetBucketReplication <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetBucketRequestPayment <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17587,7 +17603,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>HeadObject (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>HeadBucket <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>HeadObject <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17660,6 +17680,10 @@ description: >
     </tr>
     <tr>
       <td>PutBucketInventoryConfiguration</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PutBucketLifecycle</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17757,36 +17781,6 @@ description: >
     <tr>
       <td>WriteGetObjectResponse</td>
        <td style="text-align:right">✅</td>
-    </tr>
-  </tbody>
-  <tbody>    <tr>
-      <td><a data-toggle="collapse" href=".s3-notimplemented">Show missing</a></td>
-      <td style="text-align:right"></td>
-    </tr>
-  </tbody>
-  <tbody class="collapse s3-notimplemented">     <tr>
-      <td>DeleteBucketCors</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetBucketLifecycle</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetBucketLifecycleConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetBucketRequestPayment</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>HeadBucket</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutBucketLifecycle</td>
-       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -21357,6 +21351,10 @@ description: >
   </thead>
   <tbody>
     <tr>
+      <td>DescribeEndpoints (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>Query (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -21376,10 +21374,6 @@ description: >
     </tr>
     <tr>
       <td>DeleteScheduledQuery</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -21449,6 +21443,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeEndpoints (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeTable (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -21471,10 +21469,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse timestream-write-notimplemented">     <tr>
-      <td>DescribeEndpoints</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
