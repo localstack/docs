@@ -3059,6 +3059,29 @@ Make sure to use the correct URL / port by using the &lt;code>repositoryUrl&lt;/
 &lt;h4 class="alert-heading">Note&lt;/h4>
 You can customize the load balancer port by configuring &lt;code>EKS_LOADBALANCER_PORT&lt;/code> in your environment.
 &lt;/div>
+&lt;h3 id="enabling-https-with-local-ssltls-certificate-for-the-ingress">Enabling HTTPS with local SSL/TLS certificate for the Ingress&lt;/h3>
+&lt;p>In order to enable HTTPS for your endpoints, we can instruct Kubernetes to use SSL/TLS with our &lt;a href="https://github.com/localstack/localstack-artifacts/blob/master/local-certs/server.key">certificate for local domain names&lt;/a> &lt;code>*.localhost.localstack.cloud&lt;/code>.&lt;/p>
+&lt;p>The local EKS cluster is pre-configured with a secret named &lt;code>ls-secret-tls&lt;/code> which can be used to define the ingress &lt;code>tls&lt;/code> section:&lt;/p>
+&lt;pre tabindex="0">&lt;code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+name: test-ingress
+annotations:
+ingress.kubernetes.io/ssl-redirect: &amp;#34;false&amp;#34;
+traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+traefik.ingress.kubernetes.io/router.tls: &amp;#34;true&amp;#34;
+spec:
+tls:
+- secretName: ls-secret-tls
+hosts:
+- myservice.localhost.localstack.cloud
+...
+&lt;/code>&lt;/pre>&lt;p>After deploying your service with the ingress above, the service should be accessible via the HTTPS endpoint &lt;code>https://myservice.localhost.localstack.cloud&lt;/code>.&lt;/p>
+&lt;p>Please note that the ingress controller doesn&amp;rsquo;t support HTTP/HTTPS multiplexing over the same &lt;code>Ingress&lt;/code>, hence we need to create two &lt;code>Ingress&lt;/code> definitions if the service should be accessible via both HTTP and HTTPS.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The &lt;code>ls-secret-tls&lt;/code> is created in the &lt;code>default&lt;/code> namespace - if your ingress/services are living in a custom namespace, the secret needs to be copied there in order to use it.
+&lt;/div>
 &lt;h2 id="using-an-existing-kubernetes-installation">Using an existing Kubernetes installation&lt;/h2>
 &lt;p>You can also use the EKS API using an existing local Kubernetes installation. This works by mounting the &lt;code>$HOME/.kube/config&lt;/code> file into the LocalStack container - e.g., when using docker-compose.yml:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
