@@ -31,4 +31,4 @@ The Pro subscription is mainly intended for use on individual user machines. We 
 
 ## CI integrations
 
-The steps required for the integration differ slightly depending on your preferred CI platform. However, all the different options need you to retrieve your CI key from your Account settings on LocalStack App. Please refer to the relevant sections below for detailed instructions on the integration process.
+The steps required for the integration differ slightly depending on your preferred CI platform. Please refer to the relevant sections below for detailed instructions on the integration process. To follow the instructions, you can first retrieve the CI key from the Account settings page in the [LocalStack Web app](https://app.localstack.cloud).
