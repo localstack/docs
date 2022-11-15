@@ -11,7 +11,7 @@ LocalStack provides AppConfig support via our Pro offering. You can use the AppC
 
 ## Getting started
 
-In this getting started guide, you'll learn how to make a basic usage of AppConfig over LocalStack. This guide is intended for users who wish to get more acquainted with AppConfig, and assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:
+In this getting started guide, you'll learn how to make basic usage of AppConfig over LocalStack. This guide is intended for users who wish to get more acquainted with AppConfig, and assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:
 
 1. Create an AWS AppConfig application via the `awslocal` CLI:
    {{< command >}}
