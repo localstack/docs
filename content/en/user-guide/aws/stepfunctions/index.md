@@ -55,17 +55,13 @@ In this getting started guide, you'll learn how to make basic usage of Step Func
    }
    ```
 
-3. You can retrieve the State Machine ARN and query them using the State Machine name via the `list-state-machines` command:
+3. You can retrieve the state machine using the ARN returned in the first step, via the `list-state-machines` command:
    {{< command >}}
-   $ awslocal stepfunctions list-state-machines \
-        --query 'stateMachines[?name==`WaitExecution`].stateMachineArn'
+   $ awslocal stepfunctions describe-state-machine --state-machine-arn "arn:aws:states:<AWS_REGION>:000000000000:stateMachine:WaitExecution"
    {{< /command >}}
    The output of the above command is the state machine definition:
    ```json
-   [
-        "arn:aws:states:<REGION>:000000000000:stateMachine:WaitExecution"
-   ]
-   ```
+   { TODO  }
 
 4. You can next execute the state machine using the `start-execution` command:
    {{< command >}}
