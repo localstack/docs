@@ -94,4 +94,4 @@ In this getting started guide, you'll learn how to make a basic usage of AppConf
         --description <DEPLOYMENT_DESCRIPTION>
    {{< /command >}}
 
-Navigate to the [AppConfig extensions](https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html) and [services that integrate with AppConfig](https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-integration.html) over the official documentation to learn more about how to inject logic in your configuration, and use AppConfig with other AWS services respectively.
+Navigate to the [AppConfig extensions](https://docs.aws.amazon.com/appconfig/latest/userguide/working-with-appconfig-extensions.html) and [services that integrate with AppConfig](https://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-integration.html) in the official documentation to learn more about how to inject logic in your configuration, and use AppConfig with other AWS services respectively.
