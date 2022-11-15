@@ -2,7 +2,7 @@
 title: "Step Functions"
 linkTitle: "Step Functions"
 categories: ["LocalStack Community"]
-description: Get started with Amazon Web Services Step Functions
+description: Get started with AWS Step Functions
 ---
 
 Amazon Web Services (AWS) Step Functions is a serverless workflow engine that integrates with AWS Lambda and other AWS services. It allows us to define workflows using Amazon States Language, a JSON-based structured language, to provide the necessary configurations and run the workflow. Step Functions allow you to define standard workflows and express workflows for long-running workflows and high-volume event processing, respectively.
