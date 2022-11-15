@@ -16,7 +16,7 @@ In this getting started guide, you'll learn how to make basic usage of Step Func
 1. Create a state machine using the `create-state-machine` command and specify the name of the state machine, the state machine definition, and the role ARN that the state machine will assume to call AWS services:
    {{< command >}}
    $ awslocal stepfunctions create-state-machine \
-        --name "WaitExecution" \
+        --name "WaitMachine" \
         --definition '{
         "StartAt": "WaitExecution",
         "States": {
@@ -29,10 +29,10 @@ In this getting started guide, you'll learn how to make basic usage of Step Func
         }' \
         --role-arn "arn:aws:iam::000000000000:role/stepfunctions-role"
    {{< /command >}}
-   In the above example, we have created a state machine named `WaitExecution`, with a single state, `WaitExecution`, which waits for 10 seconds before completing the execution. The role ARN is used to grant the state machine access to other AWS services, and you can create an IAM role within LocalStack as well. The output of the above command is the ARN of the state machine:
+   In the above example, we have created a state machine named `WaitMachine`, with a single state, `WaitExecution`, which waits for 10 seconds before completing the execution. The role ARN is used to grant the state machine access to other AWS services, and you can create an IAM role within LocalStack as well. The output of the above command is the ARN of the state machine:
    ```json
    {
-    "stateMachineArn": "arn:aws:states:<AWS_REGION>:000000000000:stateMachine:WaitExecution",
+    "stateMachineArn": "arn:aws:states:<AWS_REGION>:000000000000:stateMachine:WaitMachine",
     "creationDate": "<DATE>"
    }
    ```
@@ -46,8 +46,8 @@ In this getting started guide, you'll learn how to make basic usage of Step Func
    {
     "stateMachines": [
         {
-        "stateMachineArn": "arn:aws:states:<AWS_REGION>:000000000000:stateMachine:WaitExecution",
-        "name": "WaitExecution",
+        "stateMachineArn": "arn:aws:states:<AWS_REGION>:000000000000:stateMachine:WaitMachine",
+        "name": "WaitMachine",
         "type": "STANDARD",
         "creationDate": "<DATE>"
         }
@@ -61,17 +61,30 @@ In this getting started guide, you'll learn how to make basic usage of Step Func
    {{< /command >}}
    The output of the above command is the state machine definition:
    ```json
-   { TODO  }
+   {
+        "stateMachineArn": "arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine",
+        "name": "WaitMachine",
+        "status": "ACTIVE",
+        "definition": "{\n        \"StartAt\": \"WaitExecution\",\n        \"States\": {\n            \"WaitExecution\": {\n            \"Type\": \"Wait\",\n            \"Seconds\": 10,\n            \"End\": true\n            }\n        }\n        }",
+        "roleArn": "arn:aws:iam::000000000000:role/stepfunctions-role",
+        "type": "STANDARD",
+        "creationDate": "<DATE>"
+        "loggingConfiguration": {
+            "level": "OFF",
+            "includeExecutionData": false
+        }
+   }
+   ```
 
 4. You can next execute the state machine using the `start-execution` command:
    {{< command >}}
    $ awslocal stepfunctions start-execution \
-        --state-machine-arn "arn:aws:states:<REGION>:000000000000:stateMachine:WaitExecution"
+        --state-machine-arn "arn:aws:states:<REGION>:000000000000:stateMachine:WaitMachine"
    {{< /command >}}
    The output of the above command is the execution ARN:
    ```json
    {
-        "executionArn": "arn:aws:states:us-east-1:000000000000:execution:WaitExecution:32174130-4587-4314-ad63-86c6242523b2",
+        "executionArn": "arn:aws:states:us-east-1:000000000000:execution:WaitMachine:<ID>",
         "startDate": "<DATE>"
    }
    ```
@@ -79,13 +92,13 @@ In this getting started guide, you'll learn how to make basic usage of Step Func
 5. To check the status of the execution, you can use the `describe-execution` command:
    {{< command >}}
    $ awslocal stepfunctions describe-execution \
-        --execution-arn "arn:aws:states:us-east-1:000000000000:execution:WaitExecution:32174130-4587-4314-ad63-86c6242523b2"
+        --execution-arn "arn:aws:states:us-east-1:000000000000:execution:WaitMachine:<ID>"
    {{< /command >}}
    The output of the above command is the execution status:
    ```json
    {
-        "executionArn": "arn:aws:states:us-east-1:000000000000:execution:WaitExecution:32174130-4587-4314-ad63-86c6242523b2",
-        "stateMachineArn": "arn:aws:states:us-east-1:000000000000:stateMachine:WaitExecution",
+        "executionArn": "arn:aws:states:us-east-1:000000000000:execution:WaitMachine:32174130-4587-4314-ad63-86c6242523b2",
+        "stateMachineArn": "arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine",
         "name": "<NAME>",
         "status": "SUCCEEDED",
         "startDate": "<START_DATE>",
@@ -104,7 +117,7 @@ In this getting started guide, you'll learn how to make basic usage of Step Func
 6. To update the state machine definition, you can use the `update-state-machine` command:
    {{< command >}}
    $ awslocal stepfunctions update-state-machine \
-        --state-machine-arn "arn:aws:states:<REGION>:000000000000:stateMachine:WaitExecution" \
+        --state-machine-arn "arn:aws:states:<REGION>:000000000000:stateMachine:WaitMachine" \
         --definition file://path/to/your/statemachine.json
         --role-arn "arn:aws:iam::000000000000:role/stepfunctions-role"
    {{< /command >}}
@@ -112,7 +125,7 @@ In this getting started guide, you'll learn how to make basic usage of Step Func
 7. To delete the state machine, you can use the `delete-state-machine` command:
    {{< command >}}
    $ awslocal stepfunctions delete-state-machine \
-        --state-machine-arn "arn:aws:states:<REGION>:000000000000:stateMachine:WaitExecution"
+        --state-machine-arn "arn:aws:states:<REGION>:000000000000:stateMachine:WaitMachine"
    {{< /command >}}
 
 For an extensive list of supported Step Functions APIs, please refer to the [official AWS documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html), and the [CLI reference](https://docs.aws.amazon.com/cli/latest/reference/stepfunctions/index.html).
@@ -120,4 +133,3 @@ For an extensive list of supported Step Functions APIs, please refer to the [off
 ## Using LocalStack Pro
 
 LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cloud) web user interface to work with Step Functions and other AWS services. It is a convenient way to work with Step Functions and allows you to check the executions and flowcharts in a fashion similar to the AWS console. While using the LocalStack App, ensure you have the LocalStack instance running. You can also navigate across previous events and executions and view the state machine statuses.
-
