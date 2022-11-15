@@ -11,7 +11,7 @@ LocalStack provides Step Functions support via the Community offering. You can u
 
 ## Getting started
 
-In this getting started guide, you'll learn how to make a basic usage of Step Functions over LocalStack. This guide is intended for users who wish to get more acquainted with Step Functions, and assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:
+In this getting started guide, you'll learn how to make basic usage of Step Functions in LocalStack. This guide is intended for users who wish to get more acquainted with Step Functions, and assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:
 
 1. Create a State Machine using the `create-state-machine` command and specify the name of the state machine, the Amazon States Language definition, and the role ARN to use for the state machine:
    {{< command >}}
