@@ -8,7 +8,21 @@ cascade:
   type: docs
 ---
 
-## LocalStack Cloud Emulation FAQs
+## LocalStack Core FAQs
+
+### How to update my LocalStack CLI?
+
+If the LocalStack CLI version is heavily outdated, it might lead to issues with container startup and debug commands. If you are using an older version of LocalStack, you can update it by running the following command:
+
+{{< command >}}
+pip install --upgrade localstack localstack-ext
+{{< / command >}}
+
+If you are running a newer version of LocalStack, you can check the version by running the following command:
+
+{{< command >}}
+localstack update localstack-cli
+{{< / command >}}
 
 ### Is using `localhost.localstack.cloud:4566` to set as the endpoint for AWS services recommended?
 
@@ -16,13 +30,98 @@ cascade:
 
 Across our docs, we use `localhost:4566` instead of `localhost.localstack.cloud`, to provide a fallback option to users. The primary reason being that some users are behind a corporate firewall or an internet service provider that does not allow resolving `localhost.localstack.cloud` properly.
 
-## LocalStack in CI FAQs
+### How should I use the latest LocalStack Docker images?
 
-### How are CI credits in LocalStack calculated?
+To use the latest LocalStack Docker images, you either run `docker pull localstack/localstack:latest` or use the `docker-compose pull` if the image is set to `localstack/localstack:latest`. You can also specify a particular digest to make sure you are using the correct image, like this: `localstack/localstack:latest@sha256:f803cc657843c6c7acf2631d15600783c3593e496fba418415afc87680d9d5bc`.
 
-A CI key allows you to use LocalStack in your CI environment. Every activation of a CI key consumes one build credit. This means that with every build triggered through the LocalStack container you will consume one credit. To understand the CI pricing across our product tiers, follow up with our [LocalStack in CI]({{<ref "user-guide/ci">}}) documentation.
+You can also use the our diagnose endpoint (`http://localhost:4566/_localstack/diagnose`) to get the specific image hashes and compare them with the current (latest) images on [Docker Hub](https://hub.docker.com/r/localstack/).
 
-## LocalStack API key FAQs
+### How can I access LocalStack from an alternative computer?
+
+You can access LocalStack from an alternative computer, by exposing port `4566` to the public network interface (`0.0.0.0` instead of `127.0.0.1`) in your `docker-compose.yml` configuration. However, we do not recommend using this setup - for security reasons, as it exposes your local computer to potential attacks from the outside world.
+
+### How do I resolve connection issues with proxy blocking access to LocalStack's BigData image?
+
+A company proxy can lead to connection issues. To allow access to the `localstack/bigdata` image, use the following Docker configuration in your `docker-compose.yml` file:
+
+```yaml
+...
+environment: 
+- HTTP_PROXY = 
+- NO_PROXY = .s3.localhost.localstack.cloud,127.0.0.1,*.localhost
+...
+```
+
+### How to troubleshoot the DNS issue for LocalStack's BigData image?
+
+Occasionally, users have wrong configuration of their `docker-compose.yml` or `ENV` variables. ´Some Glue scripts depend on the local DNS setup. To resolve DNS issues, set TCP port `53` in LocalStack's `docker-compose.yml` file:
+
+```yaml
+ports:
+       - "53:53"
+       …
+```
+
+Furthermore, use either the default name `localstack_main` for the container, or alternatively configure the environment variable `MAIN_CONTAINER_NAME` to point to the correct name.
+
+```yaml
+container_name: localstack_main
+```
+
+Ensure that `127.0.0.1` is configured as the target DNS server for the `bigdata` container:
+
+```yaml
+docker inspect localstack_bigdata --format '{{ .HostConfig.Dns }}'
+
+Output: [127.0.0.1]
+```
+
+You can test it by attempting to resolve an S3 hostname, which should then internally get routed to the LocalStack API endpoints.
+
+```bash
+docker exec -it localstack_bigdata curl -vk https://test.s3.amazonaws.com
+```
+
+### Why LocalStack cannot be reached from some Docker containers?
+
+Using LocalStack inside a Docker network with multiple other containers can lead to connectivity issues from/to those containers. For example, a container which attempts to deploy a stack and interact with the services directly, from within the same Docker network.
+
+To resolve this, set `HOSTNAME_EXTERNAL` for correct response values for endpoints. Use network aliases to ensure resolution of `localhost.localstack.cloud` to the correct container:
+
+```yaml
+...
+    networks:
+      default:
+        aliases:
+          - localhost.localstack.cloud
+  sdkstack:
+    image: ubuntu
+    command: ["bash", "-c", "apt update && apt install -y curl && sleep 5 && curl -v http://localhost.localstack.cloud:4566/health"]
+...
+```
+
+Note the missing `network: bridge` here! The default bridge network does not support DNS name resolution.
+
+### How to resolve the pull rate limit issue for LocalStack's Docker image?
+
+If you receive `ERROR: toomanyrequests: Too Many Requests.` when pulling the LocalStack Docker image, you have reached your pull rate limit. You may increase the limit by [authenticating and upgrading](https://www.docker.com/increase-rate-limits). Set your DockerHub credentials:
+
+```bash
+(sudo) docker login --username=yourUsername
+```
+
+You can add in the volume `~/.docker/config.json:/config.json` where the `config.json` is saved and point the `DOCKER_CONFIG=/config.json` variable to the JSON file in the Docker image.
+
+```yaml
+...
+    environment:
+      - DOCKER_CONFIG=/config.json
+    volumes:
+      - ~/.docker/config.json:/config.json
+...
+```
+
+## LocalStack Platform FAQs
 
 ### How do I check if my API key is valid and activated?
 
@@ -40,7 +139,9 @@ Activation key "abc..."(10) is invalid or expired! Reason: ...
 
 If this error occurs, something is wrong with your API key or license. Make sure your API key is set correctly (check for typos!) and your license is valid. If the API key still does not work, please [contact us](https://localstack.cloud/contact/).
 
-## LocalStack Platform FAQs
+### How are CI credits in LocalStack calculated?
+
+A CI key allows you to use LocalStack in your CI environment. Every activation of a CI key consumes one build credit. This means that with every build triggered through the LocalStack container you will consume one credit. To understand the CI pricing across our product tiers, follow up with our [LocalStack in CI]({{<ref "user-guide/ci">}}) documentation.
 
 ### What should I do if I cannot connect to LocalStack API?
 
