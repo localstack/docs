@@ -22,3 +22,17 @@ For this tutorial you will need:
   - Don't worry, if you don't have a subscription yet, you can just get a trial license for free.
 - [awslocal](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - [Docker](https://docker.io/)
+
+## Creating a Lambda function
+
+To package & deploy a Lambda as a container image, we must need to create a Lambda function containing our code and a Dockerfile. Create a new directory and initialize create two files: `handler.py`, to save our Python-based Lambda function, and `Dockerfile`, to package our code and dependencies into a container image.
+
+{{< command >}}
+$ mkdir -p lambda-container-image
+$ cd lambda-container-image
+$ touch handler.py Dockerfile
+{{< / command >}}
+
+Let us use the following Python code to create a Lambda function that returns a simple `'Hello from LocalStack Lambda container image!'` message.
+
+{{< github repo="localstack/localstack-pro-samples" file="lambda-container-image/handler.py" lang="python" ref="7ec74393f450c7c1c1c3ef335b31eab598ea9e4e" >}}
