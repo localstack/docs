@@ -141,7 +141,7 @@ $ awslocal lambda create-function \
     --package-type Image \
     --code ImageUri="localstack-lambda-container-image" \
     --role arn:aws:iam::000000000:role/lambda-r1 \
-		--handler handler.handler
+    --handler handler.handler
 {
     "FunctionName": "localstack-lambda-container-image",
     "FunctionArn": "arn:aws:lambda:<REGION>:000000000000:function:localstack-lambda-container-image",
@@ -187,3 +187,9 @@ Starting DNS server loop on UDP port 53
 -----
 Hello from LocalStack Lambda container image!
 {{< / command >}}
+
+## Conclusion
+
+With the Lambda container image support, you can use Docker to package your custom code and dependencies for Lambda functions. LocalStack allows you to package, deploy, and invoke Lambda functions locally. Using LocalStack, you can develop, debug, and test your Lambda functions in conjunction with a wide range of AWS services. Check out [Lambda Hot Swapping]({{< ref "hot-swapping" >}}) and [Lambda Hot Reloading]({{< ref "debugging" >}})
+
+The code for this tutorial (including a `Makefile` to execute it step-by-step) can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image).
