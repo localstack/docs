@@ -82,7 +82,7 @@ You can test it by attempting to resolve an S3 hostname, which should then inter
 docker exec -it localstack_bigdata curl -vk https://test.s3.amazonaws.com
 ```
 
-### Why LocalStack cannot be reached from some Docker containers?
+### Why can't my other Docker containers reach LocalStack?
 
 Using LocalStack inside a Docker network with multiple other containers can lead to connectivity issues from/to those containers. For example, a container which attempts to deploy a stack and interact with the services directly, from within the same Docker network.
 
