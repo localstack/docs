@@ -35,6 +35,7 @@ Across our docs, we use `localhost:4566` instead of `localhost.localstack.cloud`
 To use the latest LocalStack Docker images, you either run `docker pull localstack/localstack:latest` or use the `docker-compose pull` if the image is set to `localstack/localstack:latest`. You can also specify a particular digest to make sure you are using the correct image, like this: `localstack/localstack:latest@sha256:f803cc657843c6c7acf2631d15600783c3593e496fba418415afc87680d9d5bc`.
 
 You can also use the our diagnose endpoint (`http://localhost:4566/_localstack/diagnose`) to get the specific image hashes and compare them with the current (latest) images on [Docker Hub](https://hub.docker.com/r/localstack/).
+The diagnose endpoint is only available if you run LocalStack with `DEBUG=1`.
 
 ### How can I access LocalStack from an alternative computer?
 
