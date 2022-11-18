@@ -190,6 +190,6 @@ Hello from LocalStack Lambda container image!
 
 ## Conclusion
 
-With the Lambda container image support, you can use Docker to package your custom code and dependencies for Lambda functions. LocalStack allows you to package, deploy, and invoke Lambda functions locally. Using LocalStack, you can develop, debug, and test your Lambda functions in conjunction with a wide range of AWS services. Check out [Lambda Hot Swapping]({{< ref "hot-swapping" >}}) and [Lambda Hot Reloading]({{< ref "debugging" >}})
+With the Lambda container image support, you can use Docker to package your custom code and dependencies for Lambda functions. LocalStack allows you to package, deploy, and invoke Lambda functions locally. Using LocalStack, you can develop, debug, and test your Lambda functions in conjunction with a wide range of AWS services. Check out [Lambda Hot Swapping]({{< ref "hot-swapping" >}}) and [Lambda Hot Reloading]({{< ref "debugging" >}}) for advanced usage patterns.
 
 The code for this tutorial (including a `Makefile` to execute it step-by-step) can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image).
