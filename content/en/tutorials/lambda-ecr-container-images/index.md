@@ -33,7 +33,7 @@ $ cd lambda-container-image
 $ touch handler.py Dockerfile
 {{< / command >}}
 
-Let us use the following Python code to create a Lambda function that returns a simple `'Hello from LocalStack Lambda container image!'` message.
+Let us use the following Python code, in `handler.py`, to create a Lambda function that returns a simple `'Hello from LocalStack Lambda container image!'` message.
 
 ```python
 def handler(event, context):
