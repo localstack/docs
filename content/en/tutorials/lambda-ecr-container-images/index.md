@@ -166,7 +166,7 @@ $ awslocal lambda create-function \
 }
 {{< / command >}}
 
-The above command has taken various flags to create the Lambda function. We have specified the `ImageUri` flag to specify the image URI of the container image that we have pushed to the ECR repository. We have also specified the `package-type` flag to specify the package type as `Image`. For the role, we have specified a mock role ARN. To create an actual role, refer to the [IAM documentation]({{< ref "iam" >}}).
+The above command has taken various flags to create the Lambda function. We have specified the `ImageUri` flag to specify the image URI of the container image that we have pushed to the ECR repository. We have also specified the `package-type` flag to specify the package type as `Image`. For the role, we have specified a mock role ARN. To create an actual role, please refer to the [IAM documentation]({{< ref "iam" >}}).
 
 Let us now invoke the Lambda function using the `invoke` command:
 
