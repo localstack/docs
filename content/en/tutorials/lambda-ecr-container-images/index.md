@@ -68,7 +68,7 @@ $ docker build -t localstack-lambda-container-image .
 
 ## Publishing the image to ECR
 
-Now that the initial setup is done, we can give LocalStack's AWS emulation a try to push our image to ECR and deploy the Lambda container image. Let's start LocalStack:
+Now that the initial setup is done, we can give LocalStack's AWS emulation a try by pushing our image to ECR and deploying the Lambda container image. Let's start LocalStack:
 
 {{< command >}}
 $ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
