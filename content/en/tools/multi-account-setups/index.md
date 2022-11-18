@@ -11,8 +11,11 @@ description: >
 ---
 
 {{< alert title="Warning" color="warning" >}}
-Multi-account support is currently only working as long as no inter-service communication is involved.
-See https://github.com/localstack/localstack/issues/7041 for more information.
+Known limitations of multi-accounts:
+- Not supported for setups that use cross-account and cross-service access.
+- Not supported in Kinesis.
+
+Please see <https://github.com/localstack/localstack/issues/7041> for more information.
 {{< /alert >}}
 
 LocalStack ships with multi-account support which allows namespacing based on AWS Account ID.
