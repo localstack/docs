@@ -23,90 +23,6 @@ The following guiding principles apply to writing integration tests:
 -   Create factory fixtures only for top-level resources (like Queues, Topics, Lambdas, Tables).
 -   Avoid sleeps! Use `poll_condition`, `retry`, or `threading.Event` internally to control concurrent flows.
 
-## Running the test suite
-
-To run the tests you can use the make target and set the `TEST_PATH` variable.
-
-```bash
-TEST_PATH="tests/integration" make test
-```
-
-or run it manually within the virtual environment:
-
-```bash
-python -m pytest --log-cli-level=INFO tests/integration
-```
-
-### Running individual tests
-
-You can further specify the file and test class you want to run in the test path:
-
-```bash
-TEST_PATH="tests/integration/docker/test_docker.py::TestDockerClient" make test
-```
-
-### Test against a running LocalStack instance
-
-When you run the integration tests, LocalStack is automatically started (via the pytest conftest mechanism in [tests/integration/conftest.py](https://github.com/localstack/localstack/blob/master/tests/integration/conftest.py)).
-You can disable this behavior by setting the environment variable `TEST_SKIP_LOCALSTACK_START=1`.
-
-### Test against Amazon Web Services
-
-It can be useful to run an integration test against the real AWS cloud using your credentials. To run the integration tests, we prefer you to use an AWS sandbox account, so that you don't accidentally run tests against your production account.
-
-#### Creating an AWS sandbox account
-
-1.  Login with your credentials into your AWS Sandbox Account with `AWSAdministratorAccess`.
-2.  Type in **IAM** in the top bar and navigate to the **IAM** service
-3.  Navigate to `Users` and create a new user (**Add Users**)
-    1.  Add the username as `localstack-testing`.
-    2.  Check the “**Access key - Programmatic access**” box (don’t check the password box below)
-4.  Attach existing policies directly.
-5.  Check **AdministratorAccess** and click **Next** before **Next/Create User** until done. Copy the **Access Key ID** and the **Secret access key** immediately.
-6.  Run `aws configure —profile ls-sandbox` and enter the Access Key ID, and the Secret access key when prompted.
-7.  Verify that the profile is set up correctly by running: `aws sts get-caller-identity --profile ls-sandbox`.
-
-Here is how `~/.aws/credentials` should look like:
-
-```bash
-[ls-sandbox]
-aws_access_key_id = <your-key-id>
-aws_secret_access_key = <your-secret-key>
-```
-
-The `~/.aws/config` file should look like:
-
-```bash
-[ls-sandbox]
-region=eu-central-1
-# .... you can add additional configuration options for AWS clients here
-```
-
-#### Running integration tests against AWS
-
--   Set the environment variable: `TEST_TARGET=AWS_CLOUD`.
--   Use the client `fixtures` and other fixtures for resource creation instead of methods from `aws_stack.py`
-    -   While using the environment variable `TEST_TARGET=AWS_CLOUD`, the boto client will be automatically configured to target AWS instead of LocalStack.
--   Configure your AWS profile/credentials:
-    -   When running the test, set the environment variable `AWS_PROFILE` to the profile name you chose in the previous step. Eexample: `AWS_PROFILE=ls-sandbox`
--   Ensure that all resources are cleaned up even when the test fails and even when other fixture cleanup operations fail!
--   Testing against AWS might require additional roles and policies.
-
-Here is how a useful environment configuration for testing against AWS could look like:
-
-```bash
-EDGE_BIND_HOST=0.0.0.0;
-DEBUG=1;
-DNS_ADDRESS=0;
-TEST_DISABLE_RETRIES_AND_TIMEOUTS=1;
-LAMBDA_EXECUTOR=docker;
-TEST_TARGET=AWS_CLOUD;
-AWS_DEFAULT_REGION=us-east-1;
-AWS_PROFILE=ls-sandbox
-```
-
-## Writing a test
-
 We use [pytest](https://docs.pytest.org) for our testing framework.
 Older tests were written using the unittest framework, but its use is discouraged.
 
@@ -161,3 +77,94 @@ def test_something_on_multiple_buckets(s3_create_bucket):
 ```
 
 You can find the list of available fixtures in the [fixtures.py](https://github.com/localstack/localstack/blob/master/localstack/testing/pytest/fixtures.py).
+
+
+## Running the test suite
+
+To run the tests you can use the make target and set the `TEST_PATH` variable.
+
+```bash
+TEST_PATH="tests/integration" make test
+```
+
+or run it manually within the virtual environment:
+
+```bash
+python -m pytest --log-cli-level=INFO tests/integration
+```
+
+### Running individual tests
+
+You can further specify the file and test class you want to run in the test path:
+
+```bash
+TEST_PATH="tests/integration/docker/test_docker.py::TestDockerClient" make test
+```
+
+### Test against a running LocalStack instance
+
+When you run the integration tests, LocalStack is automatically started (via the pytest conftest mechanism in [tests/integration/conftest.py](https://github.com/localstack/localstack/blob/master/tests/integration/conftest.py)).
+You can disable this behavior by setting the environment variable `TEST_SKIP_LOCALSTACK_START=1`.
+
+### Test against Amazon Web Services
+
+Ideally every integration is tested against real AWS. To run the integration tests, we prefer you to use an AWS sandbox account, so that you don't accidentally run tests against your production account.
+
+#### Creating an AWS sandbox account
+
+1.  Login with your credentials into your AWS Sandbox Account with `AWSAdministratorAccess`.
+2.  Type in **IAM** in the top bar and navigate to the **IAM** service
+3.  Navigate to `Users` and create a new user (**Add Users**)
+    1.  Add the username as `localstack-testing`.
+    2.  Check the “**Access key - Programmatic access**” box (don’t check the password box below)
+4.  Attach existing policies directly.
+5.  Check **AdministratorAccess** and click **Next** before **Next/Create User** until done. Copy the **Access Key ID** and the **Secret access key** immediately.
+6.  Run `aws configure —profile ls-sandbox` and enter the Access Key ID, and the Secret access key when prompted.
+7.  Verify that the profile is set up correctly by running: `aws sts get-caller-identity --profile ls-sandbox`.
+
+Here is how `~/.aws/credentials` should look like:
+
+```bash
+[ls-sandbox]
+aws_access_key_id = <your-key-id>
+aws_secret_access_key = <your-secret-key>
+```
+
+The `~/.aws/config` file should look like:
+
+```bash
+[ls-sandbox]
+region=eu-central-1
+# .... you can add additional configuration options for AWS clients here
+```
+
+#### Running integration tests against AWS
+
+-   Set the environment variable: `TEST_TARGET=AWS_CLOUD`.
+-   Use the client `fixtures` and other fixtures for resource creation instead of methods from `aws_stack.py`
+    -   While using the environment variable `TEST_TARGET=AWS_CLOUD`, the boto client will be automatically configured to target AWS instead of LocalStack.
+-   Configure your AWS profile/credentials:
+    -   When running the test, set the environment variable `AWS_PROFILE` to the profile name you chose in the previous step. Eexample: `AWS_PROFILE=ls-sandbox`
+-   Ensure that all resources are cleaned up even when the test fails and even when other fixture cleanup operations fail!
+-   Testing against AWS might require additional roles and policies.
+
+Here is how a useful environment configuration for testing against AWS could look like:
+
+```bash
+EDGE_BIND_HOST=0.0.0.0;
+DEBUG=1;
+DNS_ADDRESS=0;
+TEST_DISABLE_RETRIES_AND_TIMEOUTS=1;
+LAMBDA_EXECUTOR=docker;
+TEST_TARGET=AWS_CLOUD;
+AWS_DEFAULT_REGION=us-east-1;
+AWS_PROFILE=ls-sandbox
+```
+
+#### Create a snapshot test
+
+Once you verified that your test is running against AWS, you can record snapshots for the test run. A snapshot records the response from AWS and can be later on used to compare the response of LocalStack. 
+
+Snapshot tests helps to increase the parity with AWS and to raise the confidence in the service implementations. Therefore, snapshot tests are prefered over normal integrations tests. 
+
+Please check our subsequent guide on [Parity Testing]({{< ref "parity-testing" >}}) for a detailed explanation on how to write AWS validated snapshot tests.
