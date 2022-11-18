@@ -44,7 +44,7 @@ In the above example, the `handler` function is executed by the Lambda service e
 
 ## Building the image
 
-To package our Lambda function as a container image, we need to create a Dockerfile that contains the instructions to build our image. The image should be able to execute a read-only file system with access to a `/tmp` directory. We would be using [AWS base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html#runtimes-images-lp) to preload the runtimes and dependencies that are required to create Lambda images.
+To package our Lambda function as a container image, we need to create a `Dockerfile` that contains the instructions to build our image. The image should be able to execute a read-only file system with access to a `/tmp` directory. We would be using [AWS base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html#runtimes-images-lp) to preload the runtimes and dependencies that are required to create Lambda images.
 
 To build the container image for Python, we would use a `python:3.8 base image`. Open the `Dockerfile` and specify the function handler to ensure that the Lambda runtime can locate it where the Lambda handler is available:
 
