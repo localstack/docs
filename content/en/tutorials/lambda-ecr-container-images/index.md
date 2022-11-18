@@ -12,7 +12,7 @@ AWS Lambda is a serverless compute system that allows you to break down your app
 
 ECR allows users to push their software packaged inside containers into an AWS-managed registry. Using ECR, you can version, tag, and manage your image lifecycles independently of your application. ECR is tightly integrated with other AWS services, such as ECS, EKS, and Lambda, and allows you to deploy your container image to these services. You can create container images using Docker and your Lambda functions by implementing the Lambda Runtime API and following the Open Container Initiative (OCI) specifications.
 
-[LocalStack Pro](https://localstack.cloud) supports the creation of Lambda functions using container images via Elastic Container Registry and allows you to deploy your Lambda functions locally using LocalStack. In this tutorial, we will learn how to create a Lambda function using a container image and deploy it locally using LocalStack.
+[LocalStack Pro](https://localstack.cloud) supports the creation of Lambda functions using container images via ECR and allows you to deploy your Lambda functions locally using LocalStack. In this tutorial, we will learn how to create a Lambda function using a container image and deploy it locally using LocalStack.
 
 ## Prerequisites
 
