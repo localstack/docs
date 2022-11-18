@@ -25,7 +25,7 @@ For this tutorial you will need:
 
 ## Creating a Lambda function
 
-To package & deploy a Lambda as a container image, we must need to create a Lambda function containing our code and a Dockerfile. Create a new directory and initialize create two files: `handler.py`, to save our Python-based Lambda function, and `Dockerfile`, to package our code and dependencies into a container image.
+To package & deploy a Lambda as a container image, we'll first create a Lambda function containing our code and a Dockerfile. Create a new directory and initialize it with two files: `handler.py`, to save our Python-based Lambda function, and `Dockerfile`, to package our code and dependencies into a container image.
 
 {{< command >}}
 $ mkdir -p lambda-container-image
