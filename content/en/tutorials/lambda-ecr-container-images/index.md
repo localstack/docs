@@ -3,7 +3,7 @@ title: "Deploying Lambda container image locally with Elastic Container Registry
 linkTitle: "Deploying Lambda container image locally with Elastic Container Registry (ECR) using LocalStack"
 weight: 2
 description: >
-  You can create & deploy your Lambda functions using Lambda container image by packaging your code and dependencies in a Docker Image! Learn how you can create a Lambda container image using a local Elastic Container Registry (ECS) in LocalStack.
+  You can create & deploy your Lambda functions using Lambda container image by packaging your code and dependencies in a Docker image! Learn how you can create a Lambda container image using a local Elastic Container Registry (ECR) in LocalStack.
 cascade:
   type: docs
 ---
