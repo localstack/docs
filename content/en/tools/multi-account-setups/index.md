@@ -10,17 +10,33 @@ description: >
   Using LocalStack in multi-tenant setups
 ---
 
-{{% alert title="Known issues" color="warning" %}}
-Multi-account support is currently only working as long as no inter-service communication is involved.
+{{< alert title="Warning" color="warning" >}}
+Known limitations of multi-accounts:
+- Not supported for setups that use cross-account and cross-service access.
+- Not supported in Kinesis.
 
-See https://github.com/localstack/localstack/issues/7041 for more information
-{{% /alert %}}
+Please see <https://github.com/localstack/localstack/issues/7041> for more information.
+{{< /alert >}}
 
-LocalStack Pro ships with multi-account support which allows namespacing based on AWS Account ID.
-By contrast, LocalStack Community only supports a single AWS Account ID: `000000000000`.
+LocalStack ships with multi-account support which allows namespacing based on AWS Account ID.
 
-Namespaced AWS resources can be accessed by using the `AWS_ACCESS_KEY_ID` variable when making requests.
+The AWS account ID to be used must be sent as part of the request.
+LocalStack uses the value in the AWS Access Key ID field in the request for the account ID.
+This field can be configured in the AWS CLI in multiple ways: please refer to AWS CLI documentation [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence).
+
+If this field does not contain a valid 12-digit number, the default account ID `000000000000` is used.
 No additional server-side configuration is required.
+
+LocalStack will ignore possible production AWS Access Key IDs (starting with `ASIA...` or `AKIA...`) and fallback to default.
+
+In the future LocalStack shall support proper access key IDs issued by the local IAM service, which will then be internally translated to corresponding account IDs.
+
+{{< alert title="Warning" color="warning">}}
+Older releases of LocalStack allowed account IDs to be overridden via the `TEST_AWS_ACCOUNT_ID` environment variable.
+This functionality has been removed.
+{{< /alert >}}
+
+In following examples, we configure the AWS CLI account ID via environment variable.
 
 {{< command >}}
 $ AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 create-key-pair --key-name green-hospital
@@ -48,8 +64,7 @@ $ AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 describe-key-pairs
 }
 {{< / command >}}
 
-If an explicit value for Account ID is not set, LocalStack uses the default value of `000000000000`.
-In the current example, not setting an explicit Account ID will return no resources.
+If no explicit Account ID is set, LocalStack falls back to default. In this example, no resources are returned.
 
 {{< command >}}
 $ awslocal ec2 describe-key-pairs
@@ -57,8 +72,3 @@ $ awslocal ec2 describe-key-pairs
     "KeyPairs": []
 }
 {{< /command >}}
-
-{{< alert title="Note" color="primary">}}
-LocalStack uses the `AWS_ACCESS_KEY_ID` client-side variable for Account ID.
-In future LocalStack may support proper access key IDs issued by the local IAM service, which will then internally be translated to corresponding account IDs.
-{{< /alert >}}
