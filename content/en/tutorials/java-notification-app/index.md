@@ -19,7 +19,7 @@ In this tutorial, we will build a Java Spring Boot application that uses locally
 
 For this tutorial, you will need:
 
-- [LocalStack Pro](https://localstack.cloud/pricing/) to emulate Amazon ECS and AWS Lambda locally
+- [LocalStack Pro](https://localstack.cloud/pricing/) to emulate the AWS services (SNS, SQS, SES, etc) locally
   - Don't worry, if you don't have a subscription yet, you can just get a trial license for free.
 - [awslocal](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - [Docker](https://docker.io/)
