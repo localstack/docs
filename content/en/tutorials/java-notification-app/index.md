@@ -8,7 +8,8 @@ cascade:
   type: docs
 ---
 
-AWS Java SDK provides a set of libraries that enables Java developers to work with Amazon Web Services and build applications that work with various AWS services, like Simple Email Service (SES), Simple Queue Service (SQS), Simple Notification Service (SNS), and more. Simple Email Service (SES) is a cloud-based email-sending service that enables developers to integrate email functionality into their applications running on AWS. SES allows developers to work without an on-prem Simple Mail Transfer Protocol (SMTP) system and send bulk emails to many recipients.
+Java is a popular platform for cloud applications that use Amazon Web Services.
+With the AWS Java SDK, Java developers can build applications that work with various AWS services, like Simple Email Service (SES), Simple Queue Service (SQS), Simple Notification Service (SNS), and more. Simple Email Service (SES) is a cloud-based email-sending service that enables developers to integrate email functionality into their applications running on AWS. SES allows developers to work without an on-prem Simple Mail Transfer Protocol (SMTP) system and send bulk emails to many recipients.
 
 [LocalStack Pro](https://app.localstack.cloud/) supports SES along with a simple user interface to inspect email accounts and sent messages. LocalStack also supports sending SES messages through an actual SMTP email server. We will use Simple Queue Service (SQS) and Simple Notification Service (SNS) to process the emails. We would further employ a CloudFormation stack to configure the infrastructure and configure SNS & SQS subscriptions. AWS Java SDK would be employed to receive these SQS messages and to send these messages through SES further.
 
