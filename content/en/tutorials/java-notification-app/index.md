@@ -518,7 +518,7 @@ The above `docker-compose` file will start LocalStack and pull the MailHog image
 $ LOCALSTACK_API_KEY=<your-api-key> docker-compose up -d
 {{< / command >}}
 
-Once LocalStack is started, we can deploy the CloudFormation stack (which might take a few minutes):
+Once LocalStack is started, we can deploy the CloudFormation stack (which might take a few moments):
 
 {{< command >}}
 $ awslocal cloudformation deploy \
