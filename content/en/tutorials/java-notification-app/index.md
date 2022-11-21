@@ -185,6 +185,10 @@ public class AwsConfiguration {
 
 In the above code, we have used the `@Autowired` annotation to autowrire the dependencies that are required for the application (`SqsClient` `SesClient`, and `notificationQueueUrl` in this case). Now that we have got the URL of the queue created in the previous step, we can move on to the next step.
 
+{{< alert title="Notes" >}}
+You can also use the pre-defined clients from the [localstack-utils](https://mvnrepository.com/artifact/cloud.localstack/localstack-utils) Maven project, as an alternative to creating the AWS SDK clients with endpoint overrides manually.
+{{< /alert >}}
+
 ## Creating a Notification Service
 
 To get started with creating a Notification Service, we would need to create a `Notification` class to define the structure of the notification that we would be sending to the SQS queue. We will create a `Notification` class in the `Notification.java` file:
@@ -622,3 +626,10 @@ You can also navigate to the MailHog via the user-interface: [`localhost:8025`](
 ## Conclusion
 
 With this simple Spring Boot application, we have demonstrated how you can provision CloudFormation infrastructure for SNS & SQS subscriptionson LocalStack, receive SQS messages, and SES messages with the AWS Java SDK. Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the sent email messages via your LocalStack container. The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).
+
+In this tutorial, we have demonstrated, how you can:
+
+- Use CloudFormation to provision infrastructure for SNS & SQS subscriptionson on LocalStack
+- Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages. 
+
+Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the email messages sent by SES. The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).
