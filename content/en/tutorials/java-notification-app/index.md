@@ -13,7 +13,7 @@ With the AWS Java SDK, Java developers can build applications that work with var
 
 [LocalStack Pro](https://app.localstack.cloud/) supports SES along with a simple user interface to inspect email accounts and sent messages. LocalStack also supports sending SES messages through an actual SMTP email server. We will use Simple Queue Service (SQS) and Simple Notification Service (SNS) to process the emails. We would further employ a CloudFormation stack to configure the infrastructure and configure SNS & SQS subscriptions. AWS Java SDK would be employed to receive these SQS messages and to send these messages through SES further.
 
-In this tutorial, we will build a Java Spring Boot application to provision a locally emulated infrastructure over LocalStack using CloudFormation, and configure SES, SQS, and SNS to send notifications through Java AWS SDK. We will further use [MailHog](https://github.com/mailhog/MailHog), a local SMTP server, to inspect the emails sent through SES via an intuitive user interface.
+In this tutorial, we will build a Java Spring Boot application that uses locally emulated AWS infrastructure on LocalStack provisioned by CloudFormation, and that uses the Java AWS SDK to send SES, SQS, and SNS messages. We will further use [MailHog](https://github.com/mailhog/MailHog), a local SMTP server, to inspect the emails sent through SES via an intuitive user interface.
 
 ## Prerequisites
 
