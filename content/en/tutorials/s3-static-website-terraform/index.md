@@ -27,9 +27,9 @@ For this tutorial, you will need:
 
 ## Creating a static website
 
-To get started, we will create a simple static website using plain HTML. To create a static website to be deployed over S3, we need to create an index document, and a custom error document. We will name our index document `index.html` and our error document `error.html`. Optionally, you can create a folder called `assets` to store images and other assets.
+We will create a simple static website using plain HTML to get started. To create a static website deployed over S3, we need to create an index document and a custom error document. We will name our index document `index.html` and our error document `error.html`. Optionally, you can create a folder called `assets` to store images and other assets.
 
-Let us create a directory named `s3-static-website-localstack` and create a sub-directory named `www` to store our static website files. If you don't have an `index.html` file, you can use the following code to create one inside the `www` directory:
+Let us create a directory named `s3-static-website-localstack` and a sub-directory named `www` to store our static website files. If you don't have an `index.html` file, you can use the following code to create one inside the `www` directory:
 
 ```html
 <!DOCTYPE html>
@@ -60,7 +60,7 @@ S3 will serve this file when a user visits the root URL of your static website, 
 </html>
 ```
 
-S3 will return the above file content, only for HTTP 4XX error codes. Some browsers might choose to display their custom error message if a user tries to access a resource that does not exist. In this case, the above error document will be ignored. With the initial setup complete, we can now move on to the next step to create a static website using S3 via `awslocal`, LocalStack's wrapper for the AWS CLI.
+S3 will return the above file content only for HTTP 4XX error codes. Some browsers might choose to display their custom error message if a user tries to access a resource that does not exist. In this case, browsers might ignore the above error document. With the initial setup complete, we can now move on to creating a static website using S3 via `awslocal`, LocalStack's wrapper for the AWS CLI.
 
 ## Creating a static website using S3
 
@@ -70,7 +70,7 @@ To create a static website using S3, we need to create a bucket, enable static w
 $ awslocal s3api create-bucket --bucket testwebsite
 {{< / command >}}
 
-With the bucket created, we can now attach a policy to the bucket to allow public access to the bucket and its contents. Let us create a file named `bucket_policy.json` in the root directory and add the following code:
+With the bucket created, we can now attach a policy to it to allow public access and its contents. Let us create a file named `bucket_policy.json` in the root directory and add the following code:
 
 ```json
 {
@@ -105,7 +105,7 @@ Let us now enable static website hosting on the bucket and configure the index a
 $ awslocal s3 website s3://testwebsite/ --index-document www/index.html --error-document www/error.html
 {{< / command >}}
 
-If you are deploying a static website using S3 on real AWS cloud, your S3 website endpoint would follow one of these two formats:
+If you are deploying a static website using S3 on real AWS cloud, your S3 website endpoint will follow one of these two formats:
 
 - `http://<BUCKET_NAME>.s3-website-<REGION>.amazonaws.com`
 - `http://<BUCKET_NAME>.s3-website.<REGION>.amazonaws.com`
@@ -116,7 +116,7 @@ In LocalStack, the S3 website endpoint follows the following format: `http://<BU
 
 You can automate the above process by orchestrating your AWS infrastructure using Terraform. Terraform is an infrastructure as code (IaC) tool that allows you to create, manage, and version your infrastructure. Terraform uses a declarative configuration language called HashiCorp Configuration Language (HCL) to describe your infrastructure.
 
-Before that, we would need to manually configure the local service endpoints and credentials for Terraform to integrate with LocalStack. We will be using the [AWS Provider for Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) to interact with the many resources supported by AWS in LocalStack. Create a new file named `provider.tf` and specify mock credentials for the AWS provider:
+Before that, we would need to manually configure the local service endpoints and credentials for Terraform to integrate with LocalStack. We will use the [AWS Provider for Terraform](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) to interact with the many resources supported by AWS in LocalStack. Create a new file named `provider.tf` and specify mock credentials for the AWS provider:
 
 ```hcl
 provider "aws" {
@@ -162,7 +162,7 @@ provider "aws" {
 ```
 
 {{< alert title="Notes" >}}
-We use `localhost.localstack.cloud` as the recommended endpoint for the S3, in order to enable host-based bucket endpoints. Users can rely on the `localhost.localstack.cloud` domain to be publicly resolvable, and we also publish an SSL certificate that is automatically used inside LocalStack, in order to enable HTTPS endpoints with valid certificates. For most of the other services, it is fine to use `localhost:4566`.
+We use `localhost.localstack.cloud` as the recommended endpoint for the S3 to enable host-based bucket endpoints. Users can rely on the `localhost.localstack.cloud` domain to be publicly resolvable. We also publish an SSL certificate which is automatically used inside LocalStack to enable HTTPS endpoints with valid certificates. For most of the other services, it is fine to use `localhost:4566`.
 {{< /alert >}}
 
 With the provider configured, we can now configure the variables for our S3 bucket. Create a new file named `variables.tf` and add the following code:
@@ -273,7 +273,7 @@ resource "aws_s3_object" "object_www" {
 }
 ```
 
-In the above code, we are uploading the files from the `www` directory to the bucket. We are also setting the ACL of the files to `public-read`. Optionally, if you have static assets like images, CSS, and JavaScript files, you can upload them to the bucket using the same `aws_s3_bucket_object` resource by adding the following code to the `main.tf` file:
+The above code uploads the files from the `www` directory to the bucket. We are also setting the ACL of the files to `public-read`. Optionally, if you have static assets like images, CSS, and JavaScript files, you can upload them to the bucket using the same `aws_s3_bucket_object` resource by adding the following code to the `main.tf` file:
 
 ```hcl
 resource "aws_s3_object" "object_assets" {
@@ -297,7 +297,7 @@ Terraform has been successfully initialized!
 ...
 {{< / command >}}
 
-We can further create an execution plan based on our Terraform configuration for the AWS resources. Run the following command to create an execution plan:
+We can create an execution plan based on our Terraform configuration for the AWS resources. Run the following command to create an execution plan:
 
 {{< command >}}
 $ terraform plan
@@ -319,9 +319,9 @@ name = "testbucket"
 website_endpoint = "testbucket.s3-website-us-east-1.amazonaws.com"
 {{< / command >}}
 
-In the above command, we specified `testbucket` as the bucket name. You can specify any bucket name since LocalStack is ephemeral and stopping your LocalStack container will delete all the created resources. The output of the above command, include the ARN, name, domain name, and website endpoint of the bucket. You can see the `website_endpoint` configured to use AWS S3 Website Endpoint. You can now access the website by using the bucket name in the following format: `http://<BUCKET_NAME>.s3-website.localhost.localstack.cloud:4566`. Since the endpoint is configured to use `localhost.localstack.cloud`, no real AWS resources have been created.
+In the above command, we specified `testbucket` as the bucket name. You can specify any bucket name since LocalStack is ephemeral, and stopping your LocalStack container will delete all the created resources. The above command output includes the ARN, name, domain name, and website endpoint of the bucket. You can see the `website_endpoint` configured to use AWS S3 Website Endpoint. You can now access the website using the bucket name in the following format: `http://<BUCKET_NAME>.s3-website.localhost.localstack.cloud:4566`. Since the endpoint is configured to use `localhost.localstack.cloud`, no real AWS resources have been created.
 
-You can optionally use the `tflocal` CLI as a drop-in replacement for the official Terraform CLI. `tflocal` uses the Terraform Override mechanism to create a temporary `localstack_providers_override.tf` file which is deleted after the infrastructure is created. It mitigates the need to manually create the `provider.tf` file. You can use `tflocal` to create the infrastructure by running the following commands:
+You can optionally use the `tflocal` CLI as a drop-in replacement for the official Terraform CLI. `tflocal` uses the Terraform Override mechanism to create a temporary `localstack_providers_override.tf` file, which is deleted after the infrastructure is created. It mitigates the need to create the `provider.tf` file manually. You can use `tflocal` to create the infrastructure by running the following commands:
 
 {{< command >}}
 $ tflocal init
@@ -331,6 +331,6 @@ $ tflocal apply
 
 ## Conclusion
 
-In this article, we have seen how to use LocalStack to create an S3 bucket and configure it to serve a static website. We have also seen how you can use Terraform to provision AWS infrastructure in an emulated local environment using LocalStack. You can use [LocalStack Pro](https://app.localstack.cloud), to view the created buckets and files on the LocalStack Resource dashboard for S3, and upload more files or perform other operations on the bucket. Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without having to create any real AWS resources.
+In this tutorial, we have seen how to use LocalStack to create an S3 bucket and configure it to serve a static website. We have also seen how you can use Terraform to provision AWS infrastructure in an emulated local environment using LocalStack. You can use [LocalStack Pro](https://app.localstack.cloud) to view the created buckets and files on the LocalStack Resource dashboard for S3 and upload more files or perform other operations on the bucket. Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without creating any real AWS resources.
 
 The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](). Further documentation for S3 is available on our [S3 documentation]({{<ref "s3" >}}).
