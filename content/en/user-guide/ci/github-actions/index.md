@@ -4,6 +4,8 @@ tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 5
 description: >
   Use LocalStack in [GitHub Actions](https://github.com/features/actions)
+aliases:
+  - /ci/github-actions/
 ---
 
 This guide shows you how to start LocalStack in a Github Actions job.
