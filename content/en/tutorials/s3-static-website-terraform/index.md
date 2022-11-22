@@ -62,7 +62,7 @@ S3 will serve this file when a user visits the root URL of your static website, 
 
 S3 will return the above file content only for HTTP 4XX error codes. Some browsers might choose to display their custom error message if a user tries to access a resource that does not exist. In this case, browsers might ignore the above error document. With the initial setup complete, we can now move on to creating a static website using S3 via `awslocal`, LocalStack's wrapper for the AWS CLI.
 
-## Creating a static website using S3
+## Hosting a static website using S3
 
 To create a static website using S3, we need to create a bucket, enable static website hosting, and upload the files to the bucket. We will use the `awslocal` CLI for these operations. Let us navigate to the root directory of our project and create a bucket named `testwebsite` using LocalStack's S3 API:
 
