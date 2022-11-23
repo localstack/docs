@@ -121,3 +121,205 @@ $ awslocal lambda list-functions
 We can now move ahead, and create our target Lambda functions to work with Node.js runtime and configure ELB Application Load Balancers via our `serverless.yml` configuration.
 
 ## Create Lambda functions & ELB Application Load Balancers
+
+Let us now create two Lambda functions, named `hello1` and `hello2`, which can run over Node.js 12.x runtime. Open `handler.js` and replace the existing code with the following:
+
+```js
+'use strict';
+
+module.exports.hello1 = async (event) => {
+  console.log(event);
+  return {
+    "isBase64Encoded": false,
+    "statusCode": 200,
+    "statusDescription": "200 OK",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "Hello 1"
+  };
+};
+
+module.exports.hello2 = async (event) => {
+  console.log(event);
+    return {
+    "isBase64Encoded": false,
+    "statusCode": 200,
+    "statusDescription": "200 OK",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "Hello 2"
+  };
+};
+```
+
+In the above code, we have created `hello1` and `hello2` Lambda functions, and created a response body for them which includes the Base64 encoding status, status code, and headers. If you wish to include a binary content in the response body, set the `isBase64Encoded` property to `true`. The load balancer requires to retrieve the binary content to send it in the body of an HTTP response.
+
+Let us now move to `serverless.yml` file and specify our deployment bucket, and the functions that we want to deploy. Our initial configuration in the `serverless.yml` file should look like this:
+
+```yaml
+service: serverless-elb
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  deploymentBucket:
+    name: testbucket
+
+functions:
+  hello1:
+    handler: handler.hello1
+    events:
+    - alb:
+        listenerArn: !Ref HTTPListener
+        priority: 1
+        conditions:
+          path: /hello1
+  hello2:
+    handler: handler.hello2
+    events:
+    - alb:
+        listenerArn: !Ref HTTPListener
+        priority: 2
+        conditions:
+          path: /hello2
+```
+
+In the above configuration, we specify our Lambda functions `hello1` and `hello2`, and specify an HTTP listener that forwards requests to the target group. We have also specified a `deploymentBucket` property, which is used to store the deployment artifacts. Before deploying our Serverless project, we would need to create an S3 bucket named `testbucket` in LocalStack. 
+
+Let us now create a VPC, a subnet, an Application Load Balancer, and an an HTTP listener on the load balancer, which redirects the traffic to the target group. We can do this by adding the following resources to our `serverless.yml` file:
+
+```yaml
+resources:
+  Resources:
+    LoadBalancer:
+      Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+      Properties:
+        Name: lb-test-1
+        Subnets:
+          - !Ref Subnet
+    HTTPListener:
+      Type: AWS::ElasticLoadBalancingV2::Listener
+      Properties:
+        DefaultActions:
+          - Type: redirect
+            RedirectConfig:
+              Protocol: HTTPS
+              Port: 443
+              Host: "#{host}"
+        LoadBalancerArn: !Ref LoadBalancer
+        Protocol: HTTP
+    Subnet:
+      Type: AWS::EC2::Subnet
+      Properties:
+        VpcId: !Ref VPC
+        CidrBlock: 12.2.1.0/24
+        AvailabilityZone: !Select
+          - 0
+          - Fn::GetAZs: !Ref "AWS::Region"
+    VPC:
+      Type: AWS::EC2::VPC
+      Properties:
+        EnableDnsSupport: "true"
+        EnableDnsHostnames: "true"
+        CidrBlock: 12.2.1.0/24
+```
+
+With this, we have now completed our Serverless project's configuration. We can now create our local AWS infrastructure on LocalStack and deploy our Application Load Balancers with two Lambda functions as targets.
+
+## Creating the infrastructure on LocalStack
+
+Now that the initial setup is done, we can give LocalStack's AWS emulation a run on our local machine. Let's start LocalStack:
+
+{{< command >}}
+$ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
+{{< / command >}}
+
+Let us first create an S3 bucket named `testbucket` in LocalStack to store our deployment artifacts. We can do this by running the following command:
+
+{{< command >}}
+$ awslocal s3api create-bucket --bucket testbucket
+{
+    "Location": "/testbucket"
+}
+{{< / command >}}
+
+We can now deploy our Serverless project and check the created resources in LocalStack. We can do this by running the following command:
+
+{{< command >}}
+$ npm run deploy
+
+> serverless-elb@1.0.0 deploy
+> sls deploy --stage local
+
+Using serverless-localstack
+
+Deploying test-elb-load-balancing to stage local (us-east-1)
+Creating deployment bucket 'testbucket'...
+Using deployment bucket 'testbucket'
+Skipping template validation: Unsupported in Localstack
+
+✔ Service deployed to stack test-elb-load-balancing-local (15s)
+
+functions:
+  hello1: test-elb-load-balancing-local-hello1 (157 kB)
+  hello2: test-elb-load-balancing-local-hello2 (157 kB)
+{{< / command >}}
+
+You can check the Lambda functions and the Application Load Balancer created in LocalStack by running the following commands:
+
+{{< command >}}
+$ awslocal lambda list-functions
+
+{
+    "Functions": [
+        {
+            "FunctionName": "test-elb-load-balancing-local-hello1",
+            "FunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:test-elb-load-balancing-local-hello1",
+            "Runtime": "nodejs12.x",
+            "Role": "arn:aws:iam::000000000000:role/test-elb-load-balancing-local-us-east-1-lambdaRole",
+            "Handler": "handler.hello1",
+            ...
+        },
+        {
+            "FunctionName": "test-elb-load-balancing-local-hello2",
+            "FunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:test-elb-load-balancing-local-hello2",
+            "Runtime": "nodejs12.x",
+            "Role": "arn:aws:iam::000000000000:role/test-elb-load-balancing-local-us-east-1-lambdaRole",
+            "Handler": "handler.hello2",
+            ...
+        }
+    ]
+}
+
+$ awslocal elbv2 describe-load-balancers
+{
+    "LoadBalancers": [
+        {
+            "LoadBalancerArn": "arn:aws:elasticloadbalancing:us-east-1:000000000000:loadbalancer/app/lb-test-1/<ID>",
+            "DNSName": "lb-test-1.elb.localhost.localstack.cloud",
+            "CanonicalHostedZoneId": "<ID>",
+            "CreatedTime": "<TIMESTAMP>",
+            "LoadBalancerName": "lb-test-1",
+            "Scheme": "None",
+            ...
+        }
+    ]
+}
+{{< / command >}}
+
+The ALB endpoints for the two Lambda functions that we created are accessible at `http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1` and `http://lb-test-1.elb.localhost.localstack.cloud:4566/hello2`. We can test this by running the following commands:
+
+{{< command >}}
+$ curl http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1 | jq
+"Hello from hello1"
+$ curl http://lb-test-1.elb.localhost.localstack.cloud:4566/hello2 | jq
+"Hello from hello2"
+{{< / command >}}
+
+## Conclusion
+
+In this post, we have seen how to create an Application Load Balancer with two Lambda functions as targets using LocalStack. We have also seen how to create, configure, and deploy a Serverless project with LocalStack serving as an emulated local AWS environment that allows you to develop and test your Cloud & Serverless applications with AWS locally. 
+
+LocalStack also offers integrations with other popular tools such as Terraform, Pulumi, Severless Application Model (SAM), and more. You can find more information about LocalStack integrations on our [Integration documentation]({{< ref "integration" >}}). The code for this tutorial (including a `Makefile` to execute it step-by-step) can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/elb-load-balancing).
