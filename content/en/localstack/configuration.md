@@ -163,6 +163,20 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times) |
 | `SYNCHRONOUS_KINESIS_EVENTS` | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations. |
 
+###  New Lambda
+
+| Variable| Example Values | Description |
+| - | - | - |
+| `LAMBDA_IMAGE_PREFIX` | TODO | TODO |
+| `LAMBDA_TRUNCATE_STDOUT` | `2000` | Allows increasing the default char value for truncation of lambda logs.|
+| `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
+| `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function. |
+| `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`. |
+| `LAMBDA_PREBUILD_IMAGES` | False | prebuild images before execution? Increased cold start time on the tradeoff of increased time until lambda is ACTIVE |
+| `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | TODO | TODO |
+| `LAMBDA_K8S_IMAGE_PREFIX` (PRO only) | TODO | TODO |
+
+
 ### OpenSearch
 
 | Variable | Example Values | Description |
