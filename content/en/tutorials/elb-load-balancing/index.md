@@ -19,6 +19,7 @@ ELB supports, Application Load Balancer, Network Load Balancer, and Classic Load
 - [LocalStack Pro](https://localstack.cloud/pricing/)
 - [Serverless framework](https://www.serverless.com/framework/docs/getting-started/)
 - [Node.js & `npm`](https://nodejs.org/en/download/)
+- [`awslocal`](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
 
 If you don't have LocalStack Pro, you can [sign up for a free trial](https://localstack.cloud/pricing/).
 
@@ -77,7 +78,7 @@ This sets up Serverless to use the LocalStack plugin but only for the stage **lo
 
 You can also configure `serverless deploy --stage local` as a `deploy` script in your `package.json`, to allow you to run the `serverless deploy` command directly over your local infrastructure. The `package.json` file should look like this:
 
-{{< command >}}
+```json
 {
   "name": "serverless-elb",
   "version": "1.0.0",
@@ -95,8 +96,28 @@ You can also configure `serverless deploy --stage local` as a `deploy` script in
     "serverless-localstack": "^1.0.1"
   }
 }
+```
+
+You can give the above setup a run, by deploying your Serverless project and checking the Lambda function that has been created via our existing Serverless project:
+
+{{< command >}}
+$ npm run deploy
+$ awslocal lambda list-functions
+
+{
+    "Functions": [
+        {
+            "FunctionName": "serverless-elb-local-hello",
+            "FunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:serverless-elb-local-hello",
+            "Runtime": "nodejs12.x",
+            "Role": "arn:aws:iam::000000000000:role/serverless-elb-local-us-east-1-lambdaRole",
+            "Handler": "handler.hello",
+            ...
+        }
+    ]
+}
 {{< / command >}}
 
-We can now move ahead, and create Lambda functions to work with a Node.js runtime and configure ELB Application Load Balancers via our `serverless.yml` configuration.
+We can now move ahead, and create our target Lambda functions to work with Node.js runtime and configure ELB Application Load Balancers via our `serverless.yml` configuration.
 
 ## Create Lambda functions & ELB Application Load Balancers
