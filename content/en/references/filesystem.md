@@ -4,7 +4,7 @@ weight: 5
 description: >
   Overview of runtime directory structure
 aliases:
-  - /references/filesystem/
+  - /localstack/filesystem/
 ---
 
 This page describes the filesystem directory layout used internally by LocalStack.

@@ -6,7 +6,7 @@ description: >
 cascade:
   type: docs
 aliases:
-  - /references/
+  - /localstack/
 ---
 
 The documents in this section are dedicated to the internals, the configuration options, and the limitations of LocalStack.\

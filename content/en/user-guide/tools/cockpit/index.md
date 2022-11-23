@@ -5,7 +5,7 @@ categories: ["LocalStack Cockpit"]
 description: >
   Manage your local LocalStack instance via the Cockpit Desktop UI.
 aliases:
-  - /tools/cockpit/
+  - /get-started/cockpit/
 ---
 
 Getting started with LocalStack via the Cockpit is easy:

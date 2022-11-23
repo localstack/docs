@@ -4,7 +4,7 @@ weight: 5
 description: >
   Environment variables which affect LocalStack.
 aliases:
-  - /references/configuration/
+  - /localstack/configuration/
 ---
 
 LocalStack allows for many different configuration options.

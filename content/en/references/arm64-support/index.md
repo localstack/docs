@@ -5,7 +5,7 @@ description: >
   Describes the support for the ARM64 CPU architecture in LocalStack.
 tags: ["apple", "silicon", "m1", "raspberry pi"]
 aliases:
-  - /references/arm64-support/
+  - /localstack/arm64-support/
 ---
 
 With [version 0.13](https://github.com/localstack/localstack/releases/tag/v0.13.0), LocalStack officially publishes a [multi-architecture Docker manifest](https://hub.docker.com/r/localstack/localstack).

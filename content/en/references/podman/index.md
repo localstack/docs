@@ -5,7 +5,7 @@ description: >
   Describes how to run LocalStack inside Podman.
 tags: ["podman", "docker"]
 aliases:
-  - /references/podman/
+  - /localstack/podman/
 ---
 
 ## Overview

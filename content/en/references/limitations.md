@@ -4,7 +4,7 @@ weight: 50
 description: >
   Known limitations of LocalStack and its services
 aliases:
-  - /references/limitations/
+  - /localstack/limitations/
 ---
 
 This page describes known limitations of LocalStack and its services, either due to missing implementations or due to third-party integrations.

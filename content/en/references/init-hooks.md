@@ -4,7 +4,7 @@ weight: 5
 description: >
   Write shell or Python scripts to customize or initialize your LocalStack instance.
 aliases:
-  - /references/init-hooks/
+  - /localstack/init-hooks/
 ---
 
 ## Lifecycle stages and hooks

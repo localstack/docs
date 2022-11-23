@@ -4,7 +4,7 @@ weight: 75
 description: >
   Understand what data LocalStack collects and how you can opt out of usage tracking.
 aliases:
-  - /references/usage-tracking/
+  - /localstack/usage-tracking/
 ---
 
 ## Overview

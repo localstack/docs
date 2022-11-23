@@ -4,7 +4,7 @@ weight: 5
 description: >
   Configuration and internals of LocalStack persistence mechanism
 aliases:
-  - /developer-guide/persistence-mechanism/
+  - /localstack/persistence-mechanism/
 ---
 
 ## Overview
