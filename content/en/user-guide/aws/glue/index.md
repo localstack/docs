@@ -4,6 +4,8 @@ linkTitle: "Glue"
 categories: ["LocalStack Pro"]
 description: >
   Glue
+aliases:
+  - /aws/glue/
 ---
 
 The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.

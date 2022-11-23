@@ -3,6 +3,8 @@ title: "Organizations"
 linkTitle: "AWS Organizations"
 categories: ["LocalStack Pro"]
 description: Get started with AWS Organizations
+aliases:
+  - /aws/organization/
 ---
 
 Amazon Web Services Organizations is an account management service that allows you to consolidate multiple different AWS accounts into an organization. It allows you to manage different accounts in a single organization and consolidate billing. With Organizations, you can also attach different policies to your organizational units (OUs) or individual accounts in your organization.

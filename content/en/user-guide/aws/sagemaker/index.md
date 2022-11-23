@@ -4,6 +4,8 @@ linkTitle: "SageMaker"
 categories: ["LocalStack Pro"]
 description: >
   SageMaker
+aliases:
+  - /aws/sagemaker/
 ---
 
 LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them.

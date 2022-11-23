@@ -3,6 +3,8 @@ title: "Simple Notification Service (SNS)"
 linkTitle: "Simple Notification Service (SNS)"
 categories: ["LocalStack Community"]
 description: Get started with Amazon Simple Notification Service (Amazon SNS)
+aliases:
+  - /aws/sns/
 ---
 
 AWS Simple Notification Service (SNS) is a central service used to coordinate the delivery of messages to subscribing endpoints or clients. SNS is a serverless messaging services that can distribute massive number of messages to multiple subscribers, and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints.

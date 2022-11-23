@@ -4,6 +4,8 @@ linkTitle: "OpenSearch Service"
 categories: ["LocalStack Community"]
 description: >
   Amazon OpenSearch Service (successor to Amazon Elasticsearch Service)
+aliases:
+  - /aws/opensearch/
 ---
 
 The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/).

@@ -4,6 +4,8 @@ linkTitle: "XRay Tracing"
 categories: ["LocalStack Pro"]
 description: >
   XRay Tracing
+aliases:
+  - /aws/xray-tracing/
 ---
 
 LocalStack Pro allows to instrument your applications using [XRay](https://aws.amazon.com/xray/) tracing. This helps in optimizing the interactions between service calls, and facilitates debugging of performance bottlenecks.

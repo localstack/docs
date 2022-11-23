@@ -4,6 +4,8 @@ linkTitle: "Timestream"
 categories: ["LocalStack Pro"]
 description: >
   Timestream
+aliases:
+  - /aws/timestream/
 ---
 
 LocalStack Pro contains basic support for Timestream time series databases, including these operations:

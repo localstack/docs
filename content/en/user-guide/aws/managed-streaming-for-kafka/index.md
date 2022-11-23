@@ -4,6 +4,8 @@ linkTitle: "Managed Streaming for Kafka (MSK)"
 categories: ["LocalStack Pro"]
 description: >
   Managed Streaming for Kafka (MSK)
+aliases:
+  - /aws/managed-streaming-for-kafka/
 ---
 
 LocalStack supports a basic version of [Managed Streaming for Kafka (MSK)](https://aws.amazon.com/msk/) for testing. This allows you to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic.

@@ -4,6 +4,8 @@ linkTitle: "CodeCommit"
 categories: ["LocalStack Pro"]
 description: >
   CodeCommit
+aliases:
+  - /aws/codecommit/
 ---
 
 LocalStack Pro contains basic support for CodeCommit code repositories. The CodeCommit API can be used to create Git repositories, clone these repos to local folders, push commits with changes, etc.

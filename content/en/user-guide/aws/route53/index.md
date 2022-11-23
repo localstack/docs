@@ -4,6 +4,8 @@ linkTitle: Route53
 categories: ["LocalStack Pro", "DNS"]
 description: >
   Route 53
+aliases:
+  - /aws/route53/
 ---
 
 The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.

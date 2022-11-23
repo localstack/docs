@@ -3,6 +3,8 @@ title: "Kinesis"
 categories: ["LocalStack Community"]
 description: >
   Explaining the different Kinesis providers and how to configure the service.
+aliases:
+  - /aws/kinesis/
 ---
 
 AWS Kinesis is a fully managed data streaming service, which enables your application to ingest, buffer, and process data in real-time. 

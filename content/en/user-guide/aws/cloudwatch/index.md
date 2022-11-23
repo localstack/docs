@@ -1,6 +1,8 @@
 ---
 title: "CloudWatch"
 linkTitle: "CloudWatch"
+aliases:
+  - /aws/cloudwatch/
 ---
 
 The [CloudWatch API](https://docs.aws.amazon.com/cloudwatch/) allows monitoring of AWS resources. 

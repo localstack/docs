@@ -4,6 +4,8 @@ linkTitle: "AWS Certificate Manager"
 categories: ["LocalStack Community"]
 description: >
   Get started with AWS Certificate Manager (ACM)
+aliases:
+  - /aws/acm/
 ---
 
 AWS Certificate Manager (ACM) allows you to provision, manage, and deploy public and private SSL/TLS certificates to be used with other AWS services and internally connected resources. ACM allows you to secure multiple domain names and multiple names within a domain, create wildcard SSL certificates to protect an entire domain and its subdomains, and install public ACM certificates via services integrated with ACM.
