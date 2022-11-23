@@ -3,6 +3,8 @@ title: "LocalStack Extensions"
 weight: 8
 description: >
   LocalStack Extensions allows developers to extend and customize LocalStack.
+aliases:
+  - /developer-guide/localstack-extensions/
 ---
 
 With LocalStack 1.0 we have introduced LocalStack Extensions that allow developers to extend and customize LocalStack. Both the feature and the API are currently experimental and may be subject to change.

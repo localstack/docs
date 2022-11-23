@@ -4,6 +4,8 @@ weight: 30
 description: >
   Describes how to run LocalStack inside Podman.
 tags: ["podman", "docker"]
+aliases:
+  - /references/podman/
 ---
 
 ## Overview

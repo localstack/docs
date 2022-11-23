@@ -3,6 +3,8 @@ title: "External Service Port Range"
 weight: 5
 description: >
     The range of ports used by services not directly provided by LocalStack
+aliases:
+  - /localstack/external-ports/
 ---
 
 Services like [OpenSearch]({{< ref "opensearch" >}}) or [Elasticsearch]({{< ref "elasticsearch" >}}) use external software which binds to separate ports.

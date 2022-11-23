@@ -6,6 +6,8 @@ description: >
   A guide to the LocalStack system, its code base on how to contribute to the project.
 cascade:
   type: docs
+aliases:
+  - /developer-guide/
 ---
 
 We welcome contributions to LocalStack, under the [Contributor LicenseAgreement (CLA)][1].
