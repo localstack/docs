@@ -5,6 +5,8 @@ weight: 5
 categories: ["LocalStack Pro"]
 description: >
   An Introduction to the LocalStack Pro Analytics Dashboard
+aliases:
+  - /tools/analytics-dashboard/
 ---
 
 ## LocalStack Event Analytics

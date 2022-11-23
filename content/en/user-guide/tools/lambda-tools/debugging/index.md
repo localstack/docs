@@ -4,6 +4,8 @@ weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Attach a debugger to your Lambda functions from your IDE.
+aliases:
+  - /tools/lambda-tools/debugging/
 ---
 
 ## Overview

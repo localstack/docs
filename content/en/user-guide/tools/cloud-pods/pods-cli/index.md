@@ -4,6 +4,8 @@ weight: 5
 categories: ["LocalStack Pro", "Tools", "Persistence", "CLI"]
 description: >
   The reference guide for LocalStack Cloud Pods CLI commands and how to get started on using them!
+aliases:
+  - /tools/cloud-pods/pods-cli/
 ---
 
 This reference provides descriptions and example commands for LocalStack Cloud Pods CLI (`pod`) commands.

@@ -4,6 +4,8 @@ weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Tools to simplify application testing
+aliases:
+  - /tools/testing-tools/
 ---
 
 ## Covered Topics

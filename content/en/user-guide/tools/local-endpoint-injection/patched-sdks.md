@@ -4,6 +4,8 @@ categories: ["LocalStack Pro", "Tools"]
 weight: 6
 description: >
   Using patched SDKs in Lambdas to transparently redirect AWS API calls to LocalStack
+aliases:
+  - /tools/local-endpoint-injection/patched-sdks/
 ---
 
 ## Overview
