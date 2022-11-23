@@ -13,6 +13,8 @@ date: 2021-09-28
 weight: 5
 description: >
   Use Spring Cloud Function framework with LocalStack
+aliases:
+  - /integrations/sping-cloud-function/
 ---
 
 <img src="spring-logo.svg" width="600px" alt="Spring logo"><br />
