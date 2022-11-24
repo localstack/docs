@@ -134,7 +134,7 @@ module.exports.hello1 = async (event) => {
     "statusCode": 200,
     "statusDescription": "200 OK",
     "headers": {
-        "Content-Type": "application/json"
+        "Content-Type": "text/plain"
     },
     "body": "Hello 1"
   };
@@ -147,7 +147,7 @@ module.exports.hello2 = async (event) => {
     "statusCode": 200,
     "statusDescription": "200 OK",
     "headers": {
-        "Content-Type": "application/json"
+        "Content-Type": "text/plain"
     },
     "body": "Hello 2"
   };
@@ -184,13 +184,24 @@ functions:
         priority: 2
         conditions:
           path: /hello2
+
+plugins:
+  - serverless-deployment-bucket
+  - serverless-localstack
+
+custom:
+  localstack:
+    stages:
+      - local
+...
 ```
 
-In the above configuration, we specify our Lambda functions `hello1` and `hello2`, and specify an HTTP listener that forwards requests to the target group. We have also specified a `deploymentBucket` property, which stores the deployment artifacts. Before deploying our Serverless project, we would need to create an S3 bucket named `testbucket` in LocalStack. 
+In the above configuration, we specify our Lambda functions `hello1` and `hello2`, and specify an HTTP listener that forwards requests to the target group. We have also specified a `deploymentBucket` property, which stores the deployment artifacts. 
 
 Let us now create a VPC, a subnet, an Application Load Balancer, and an HTTP listener on the load balancer, which redirects the traffic to the target group. We can do this by adding the following resources to our `serverless.yml` file:
 
 ```yaml
+...
 resources:
   Resources:
     LoadBalancer:
@@ -234,15 +245,6 @@ Now that the initial setup is done, we can give LocalStack's AWS emulation a run
 
 {{< command >}}
 $ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
-{{< / command >}}
-
-First, we create an S3 bucket named `testbucket` in LocalStack to store our deployment artifacts. We can do this by running the following command:
-
-{{< command >}}
-$ awslocal s3api create-bucket --bucket testbucket
-{
-    "Location": "/testbucket"
-}
 {{< / command >}}
 
 We can now deploy our Serverless project and check the created resources in LocalStack. We can do this by running the following command:
@@ -313,9 +315,9 @@ The ALB endpoints for the two Lambda functions we created are accessible at `htt
 
 {{< command >}}
 $ curl http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1 | jq
-"Hello from hello1"
+"Hello 1"
 $ curl http://lb-test-1.elb.localhost.localstack.cloud:4566/hello2 | jq
-"Hello from hello2"
+"Hello 2"
 {{< / command >}}
 
 ## Conclusion
