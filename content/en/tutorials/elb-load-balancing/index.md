@@ -3,7 +3,7 @@ title: "Setting up Elastic Load Balancing (ELB) Application Load Balancers using
 linkTitle: "Setting up Elastic Load Balancing (ELB) Application Load Balancers using LocalStack, deployed via the Serverless framework"
 weight: 3
 description: >
-  Set up Elastic Loading Balance (ELB) Application Load Balancers to configure Node.js Lambda functions as targets to forward requests to the target group for your Lambda function using LocalStack. Learn how you can use Serverless framework to setup and deploy your infrastructure locally with LocalStack using Serverless-LocalStack plugin.
+  Set up Elastic Loading Balance (ELB) Application Load Balancers to configure Node.js Lambda functions as targets, to forward requests to the target group for your Lambda function using LocalStack. Learn how you can use Serverless framework to setup and deploy your infrastructure locally with LocalStack using the `serverless-localstack` plugin.
 cascade:
   type: docs
 ---
@@ -12,7 +12,7 @@ AWS Elastic Load Balancer (ELB) distributes incoming application traffic across 
 
 ELB supports Application Load Balancer, Network Load Balancer, and Classic Load Balancer. Application Load Balancer (ALB) operates at the Application layer of the OSI model and supports load balancing of applications using HTTP and HTTPS requests. ALB operates at the request level and is used in web applications for advanced load balancing of HTTP and HTTPS traffic. Using ALB, you can register your Lambda functions as targets. A listener rule takes care of forwarding requests to the target group for your Lambda function, which is then invoked to process the request.
 
-[LocalStack Pro](https://localstack.cloud) supports the creation of ELB Application Load Balancers and configuring target groups, such as Lambda functions. In this tutorial, we will set up an ELB Application Load Balancer to configure Node.js Lambda functions as targets using the Serverless framework via our `Serverless-LocalStack plugin` and setup ELB endpoints to forward requests to the target group for your Lambda functions.
+[LocalStack Pro](https://localstack.cloud) supports the creation of ELB Application Load Balancers and configuring target groups, such as Lambda functions. In this tutorial, we will set up an ELB Application Load Balancer to configure Node.js Lambda functions as targets using the Serverless framework via our `serverless-localstack` plugin and setup ELB endpoints to forward requests to the target group for your Lambda functions.
 
 ## Prerequisites
 
