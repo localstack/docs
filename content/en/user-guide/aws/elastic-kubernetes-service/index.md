@@ -4,6 +4,8 @@ linkTitle: "Elastic Kubernetes Service (EKS)"
 categories: ["LocalStack Pro"]
 description: >
   Elastic Kubernetes Service (EKS)
+aliases:
+  - /aws/elastic-kubernetes-service/
 ---
 LocalStack Pro allows you to use the [EKS](https://docs.aws.amazon.com/eks/) API to create Kubernetes clusters and easily deploy containerized apps locally.
 

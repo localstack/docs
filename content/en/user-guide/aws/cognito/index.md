@@ -4,6 +4,8 @@ linkTitle: "Cognito"
 categories: ["LocalStack Pro"]
 description: >
   Cognito
+aliases:
+  - /aws/cognito/
 ---
 
 The [AWS Cognito](https://aws.amazon.com/cognito/) service enables you to manage authentication and access control for AWS-backed apps and resources.

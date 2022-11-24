@@ -4,6 +4,8 @@ linkTitle: "Fault Injection Simulator (FIS)"
 categories: ["LocalStack Pro"]
 description: >
   Fault Injection Simulator (FIS)
+aliases:
+  - /aws/fis/
 ---
 
 Basic support for the Fault Injection Simulator (FIS) service is included in LocalStack Pro. The local FIS API allows you to introduce faults to other services - in order to check how your setup behaves when parts of it stop working.

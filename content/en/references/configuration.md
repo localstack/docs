@@ -3,6 +3,8 @@ title: "Configuration"
 weight: 5
 description: >
   Environment variables which affect LocalStack.
+aliases:
+  - /localstack/configuration/
 ---
 
 LocalStack allows for many different configuration options.

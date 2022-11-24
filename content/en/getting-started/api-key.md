@@ -4,6 +4,8 @@ weight: 5
 categories: ["LocalStack Pro & Enterprise"]
 description: >
   Configure your API key to start LocalStack
+aliases:
+  - /get-started/pro/
 ---
 
 The LocalStack API key is a unique identifier to authenticate your LocalStack instance. You can find your API key in the [LocalStack Web app](https://app.localstack.cloud/account/apikeys). This guide demonstrates how you can use your new LocalStack licenses and go over some best practices regarding the usage, activation, and safety of your LocalStack API key.

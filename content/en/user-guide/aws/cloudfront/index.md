@@ -4,6 +4,8 @@ linkTitle: "CloudFront"
 categories: ["LocalStack Pro"]
 description: >
   CloudFront
+aliases:
+  - /aws/cloudfront/
 ---
 
 LocalStack Pro supports creation of local CloudFront distributions, which allows you to transparently access your applications and file artifacts via CloudFront URLs like `https://abc123.cloudfront.net`.

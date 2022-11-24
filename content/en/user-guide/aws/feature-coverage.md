@@ -4,6 +4,8 @@ linkTitle: "⭐ Feature Coverage"
 weight: 1
 description: >
   Overview of the implemented AWS APIs and their level of parity with the AWS cloud
+aliases:
+  - /aws/feature-coverage/
 ---
 
 

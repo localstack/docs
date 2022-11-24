@@ -4,6 +4,8 @@ linkTitle: "Identity and Access Management (IAM)"
 categories: ["LocalStack Pro"]
 description: >
   Identity and Access Management (IAM)
+aliases:
+  - /aws/iam/
 ---
 
 By default, LocalStack uses not enforce security policies for client requests. In LocalStack Pro, the IAM security enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.

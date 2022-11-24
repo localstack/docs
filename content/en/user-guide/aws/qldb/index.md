@@ -4,6 +4,8 @@ linkTitle: "Quantum Ledger Database (QLDB)"
 categories: ["LocalStack Pro"]
 description: >
   Quantum Ledger Database (QLDB)
+aliases:
+  - /aws/qldb/
 ---
 
 The Quantum Ledger Database (QLDB) API supports queries over cryptographically verifiable data, stored in a journal of immutable transaction events. LocalStack allows to create local ledgers and journals, to perform `CREATE TABLE` statements, to insert data via `INSERT` statements, and to query data via `SELECT` statements.

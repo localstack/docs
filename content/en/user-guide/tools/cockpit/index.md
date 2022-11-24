@@ -4,6 +4,8 @@ weight: 6
 categories: ["LocalStack Cockpit"]
 description: >
   Manage your local LocalStack instance via the Cockpit Desktop UI.
+aliases:
+  - /get-started/cockpit/
 ---
 
 Getting started with LocalStack via the Cockpit is easy:

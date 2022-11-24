@@ -4,6 +4,8 @@ tags: ["terraform", "infrastructure-as-code"]
 weight: 5
 description: >
   Use the Terraform Infrastructure as Code framework with LocalStack
+aliases:
+  - /integrations/terraform/
 ---
 
 <img src="logo-terraform-main.svg" width="600px" alt="terraform logo">

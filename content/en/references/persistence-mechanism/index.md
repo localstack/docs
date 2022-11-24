@@ -3,6 +3,8 @@ title: "Persistence Mechanism"
 weight: 5
 description: >
   Configuration and internals of LocalStack persistence mechanism
+aliases:
+  - /localstack/persistence-mechanism/
 ---
 
 ## Overview

@@ -3,6 +3,8 @@ title: "Simple Email Service (SES)"
 linkTitle: "Simple Email Service (SES)"
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: Amazon Simple Email Service (Amazon SES)
+aliases:
+  - /aws/ses/
 ---
 
 ## Community

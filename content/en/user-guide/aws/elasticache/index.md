@@ -4,6 +4,8 @@ linkTitle: "ElastiCache"
 categories: ["LocalStack Pro"]
 description: >
   ElastiCache
+aliases:
+  - /aws/elasticache/
 ---
 
 A basic version of [ElastiCache](https://aws.amazon.com/elasticache/) is provided. By default, the API is started on http://localhost:4598 and supports running a local Redis instance (Memcached support coming soon).

@@ -4,6 +4,8 @@ weight: 10
 categories: ["LocalStack Pro", "Tools", "Persistence"]
 description: >
   Cloud Pods provides a new way of collaborating in cloud application development workflows.
+aliases:
+  - /tools/cloud-pods/
 ---
 
 Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.

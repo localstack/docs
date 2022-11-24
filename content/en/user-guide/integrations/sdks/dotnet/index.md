@@ -4,6 +4,8 @@ categories: []
 tags: ["sdk"]
 description: >
   How to use the .NET AWS SDK with LocalStack.
+aliases:
+  - /integrations/sdks/dotnet/
 ---
 
 ## Overview

@@ -4,6 +4,8 @@ linkTitle: "Lambda"
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Supporting local development and testing of AWS Lambdas on LocalStack
+aliases:
+  - /aws/lambda/
 ---
 
 AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem. Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units. With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.

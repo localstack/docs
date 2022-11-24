@@ -5,6 +5,8 @@ categories: []
 weight: 10
 description: >
   Use the Pulumi Infrastructure as Code framework with LocalStack
+aliases:
+  - /integrations/pulumi/
 ---
 
 <img src="pulumi-logo.svg" width="600px" alt="Pulumi logo">

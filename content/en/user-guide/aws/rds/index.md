@@ -4,6 +4,8 @@ linkTitle: "Relational Database Service (RDS)"
 categories: ["LocalStack Pro"]
 description: >
   Relational Database Service (RDS)
+aliases:
+  - /aws/rds/
 ---
 
 LocalStack supports a basic version of the [Relational Database Service (RDS)](https://aws.amazon.com/rds/) for testing.

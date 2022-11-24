@@ -3,6 +3,8 @@ title: "Systems Manager (SSM)"
 linkTitle: "Systems Manager (SSM)"
 categories: ["LocalStack Pro"]
 description: AWS Systems Manager (SSM)
+aliases:
+  - /aws/systems-manager/
 ---
 
 Systems Manager can be used in conjunction with the [EC2 Docker backend]({{< ref "../elastic-compute-cloud/index.md" >}}) to run operational tasks on the Dockerised instances.

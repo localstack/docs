@@ -4,6 +4,8 @@ weight: 10
 description: >
   How to run the Terraform test suite.
 categories: ["Stub"]
+aliases:
+  - /developer-guide/terraform-tests/
 ---
 
 We regularly run the test suite of the Terraform AWS provider against LocalStack to test the compatibility of LocalStack to Terraform.

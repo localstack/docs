@@ -6,6 +6,8 @@ description: >
   Increase your development efficiency with LocalStack Cloud Developer Tools.
 cascade:
   type: docs
+aliases:
+  - /tools/
 ---
 
 The core of LocalStack is the [cloud service emulation]({{< ref "aws" >}}).

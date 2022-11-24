@@ -5,6 +5,8 @@ categories: []
 weight: 11
 description: >
   Using LocalStack lambda with self-managed Kafka cluster
+aliases:
+  - /integrations/kafka/
 ---
 
 LocalStack does not currently support AWS MSK out of the box, but you can run your own self-managed Kafka cluster and integrate it with your own applications.

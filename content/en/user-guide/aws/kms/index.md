@@ -4,6 +4,8 @@ linkTitle: "Key Management Service (KMS)"
 categories: ["LocalStack Community"]
 description: >
   Key Management Service (KMS)
+aliases:
+  - /aws/kms/
 ---
 
 Key Management Service (KMS) is mainly about
