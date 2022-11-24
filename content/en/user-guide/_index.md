@@ -8,5 +8,3 @@ cascade:
   type: docs
 slug: user-guide
 ---
-
-User Guide
