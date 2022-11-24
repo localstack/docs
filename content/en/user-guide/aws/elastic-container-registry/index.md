@@ -4,6 +4,8 @@ linkTitle: "Elastic Container Registry (ECR)"
 categories: ["LocalStack Pro"]
 description: >
   Elastic Container Registry (ECR)
+aliases:
+  - /aws/elastic-container-registry/
 ---
 
 A basic version of Elastic Container Registry (ECR) is available to store application images. ECR is often used in combination with other APIs that deploy containerized apps, like ECS or EKS.

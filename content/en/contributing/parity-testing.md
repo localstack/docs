@@ -3,6 +3,8 @@ title: "Parity Testing"
 weight: 7
 description: >
   How to run and write Parity tests to verify and improve the correctness of LocalStack compared to AWS.
+aliases:
+  - /developer-guide/parity-testing/
 ---
 
 Parity tests are a special form of integration tests that should verify and improve the correctness of LocalStack compared to AWS.

@@ -3,6 +3,8 @@ title: "AWS Command Line Interface"
 weight: 2
 description: >
   How to use the AWS Command Line Interface (CLI) with LocalStack.
+aliases:
+  - /integrations/aws-cli/
 ---
 
 ## Overview

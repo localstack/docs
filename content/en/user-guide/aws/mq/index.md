@@ -3,6 +3,8 @@ title: "Amazon MQ"
 categories: ["LocalStack Pro"]
 description: >
   Amazon MQ (MQ)
+aliases:
+  - /aws/mq/
 ---
 
 Amazon MQ is a fully managed service for open-source message brokers.

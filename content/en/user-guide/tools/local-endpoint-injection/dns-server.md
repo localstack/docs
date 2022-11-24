@@ -4,6 +4,8 @@ categories: ["LocalStack Pro", "Tools", "DNS"]
 weight: 6
 description: >
   Use LocalStack as DNS server to redirect AWS queries to LocalStack
+aliases:
+  - /tools/local-endpoint-injection/dns-server/
 ---
 
 ## Overview

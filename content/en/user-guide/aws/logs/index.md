@@ -1,6 +1,8 @@
 ---
 title: "CloudWatch Logs"
 linkTitle: "Logs"
+aliases:
+  - /aws/logs/
 ---
 
 [CloudWatch Logs](https://docs.aws.amazon.com/cloudwatch/index.html) allows to store and retrieve logs. While some services automatically create and write logs (e.g. Lambda), logs can also be added manually. 

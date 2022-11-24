@@ -4,6 +4,8 @@ linkTitle: "Glacier"
 categories: ["LocalStack Pro"]
 description: >
   Getting started with Amazon S3 Glacier
+aliases:
+  - /aws/glacier/
 ---
 
 Glacier is a data storage service provided by Amazon Web Services to suit the long-term storage of archives and backup of infrequently accessed data. It offers various retrieval options, different levels of retrieval speed, and more. Glacier uses a Vault container to store your data, similar to how S3 stores data in Buckets. A Vault further holds the data in an Archive, which can contain text, images, video, and audio files. Glacier uses Jobs to retrieve, update, or delete the data in an Archive.

@@ -3,6 +3,8 @@ title: "Simple Queue Service (SQS)"
 categories: ["LocalStack Community"]
 description: >
   Explaining the different SQS providers and how to configure the service.
+aliases:
+  - /aws/sqs/
 ---
 
 AWS SQS is a fully managed distributed message queuing service.

@@ -4,6 +4,8 @@ linkTitle: "Elastic Container Service (ECS)"
 categories: ["LocalStack Pro"]
 description: >
   Elastic Container Service (ECS)
+aliases:
+  - /aws/elastic-container-service/
 ---
 
 LocalStack Pro version provides a basic support for creating and deploying containerized apps using [Amazon ECS](https://aws.amazon.com/ecs). LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.

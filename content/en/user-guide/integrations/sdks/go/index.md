@@ -4,6 +4,8 @@ categories: []
 tags: ["sdk"]
 description: >
   How to use the Go AWS SDK with LocalStack.
+aliases:
+  - /integrations/sdks/go/
 ---
 
 ## Overview

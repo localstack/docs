@@ -3,6 +3,8 @@ title: "AppConfig"
 linkTitle: "AppConfig"
 categories: ["LocalStack Pro"]
 description: Get started with AWS AppConfig
+aliases:
+  - /aws/appconfig/
 ---
 
 AWS AppConfig offers centralized management of configuration data and the ability to create, manage, and deploy configuration changes separately. It allows you to avoid deploying the service repeatedly for smaller changes, enables controlled deployments to applications and includes built-in validation checks & monitoring. With AppConfig, the configuration management is safe and secure, with automated monitoring and validation alongside roll-back capabilities. 

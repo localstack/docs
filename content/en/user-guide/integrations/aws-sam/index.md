@@ -5,6 +5,8 @@ categories: []
 weight: 7
 description: >
   Use the AWS SAM (Serverless Application Model) with LocalStack
+aliases:
+  - /integrations/aws-sam/
 ---
 
 ![AWS SAM](aws-sam-logo.jpg)

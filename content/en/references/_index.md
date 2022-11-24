@@ -5,6 +5,8 @@ description: >
   Learn about the references in this section for more technical descriptions about LocalStack and the related tools.
 cascade:
   type: docs
+aliases:
+  - /localstack/
 ---
 
 The documents in this section are dedicated to the internals, the configuration options, and the limitations of LocalStack.\

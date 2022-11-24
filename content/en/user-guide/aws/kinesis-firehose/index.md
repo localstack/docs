@@ -4,6 +4,8 @@ linkTitle: "Kinesis Data Firehose"
 categories: ["LocalStack Community"]
 description: >
   Kinesis Data Firehose
+aliases:
+  - /aws/kinesis-firehose/
 ---
 
 Kinesis Data Firehose is a service to extract, transform and load (ETL service) data to multiple destinations.

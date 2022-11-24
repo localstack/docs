@@ -4,6 +4,8 @@ tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 6
 description: >
   Use LocalStack in [Travis CI](https://www.travis-ci.com/)
+aliases:
+  - /ci/travis-ci/
 ---
 
 This guide shows how to start and use LocalStack in your Travis CI jobs.

@@ -3,6 +3,8 @@ title: "CloudFormation"
 tags: ["cloudformation", "infrastructure-as-code"]
 description: >
   Use AWS CloudFormation with LocalStack
+aliases:
+  - /aws/cloudformation/
 ---
 
 ![CloudFormation logo](cloudformation-logo.svg)

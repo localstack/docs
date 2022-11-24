@@ -3,6 +3,8 @@ title: "Development Environment Setup"
 weight: 4
 description: >
   Set up your development environment for developing LocalStack.
+aliases:
+  - /developer-guide/development-environment-setup/
 ---
 
 {{% alert %}}

@@ -3,6 +3,8 @@ title: "Lambda Executor Modes"
 weight: 5
 description: >
   Overview of the different Lambda execution modes
+aliases:
+  - /localstack/lambda-executors/
 ---
 
 ## Overview
