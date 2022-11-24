@@ -3,7 +3,7 @@ title: "Setting up Elastic Load Balancing (ELB) Application Load Balancers using
 linkTitle: "Setting up Elastic Load Balancing (ELB) Application Load Balancers using LocalStack, deployed via the Serverless framework"
 weight: 3
 description: >
-  Set up Elastic Loading Balance (ELB) Application Load Balancers to configure Node.js Lambda functions as targets to forward requests to the target group for your Lambda function using LocalStack. Learn how you can use Serverless framework to setup and deploy your infrastructure locally with LocalStack using Serverless-LocalStack plugin.
+  Set up Elastic Loading Balance (ELB) Application Load Balancers to configure Node.js Lambda functions as targets, to forward requests to the target group for your Lambda function using LocalStack. Learn how you can use Serverless framework to setup and deploy your infrastructure locally with LocalStack using the `serverless-localstack` plugin.
 cascade:
   type: docs
 ---
