@@ -3,30 +3,26 @@ title: "Quickstart"
 linkTitle: "Quickstart"
 weight: 4
 description: >
-  This quickstart gives an overview of how you can get LocalStack up and running on your local machine with a simple AWS application to understand local cloud development with LocalStack!
+  This quickstart gives an overview of how you can get a simple AWS application up and running on your local machine to understand local cloud development with LocalStack!
 cascade:
   type: docs
 ---
 
-This quickstart guide will instruct you through starting LocalStack on your local machine to deploying a sample AWS application locally using LocalStack's cloud emulation. This guide assumes that you have [installed LocalStack on your local machine]({{< ref "installation" >}}) and configured your [API key]({{< ref "api-key" >}}) to authenticate your LocalStack container with LocalStack Web application. If you do not have a LocalStack account yet, [sign up](https://app.localstack.cloud) before continuing!
+This quickstart guide will walk you through starting LocalStack on your local machine to deploying a sample AWS application locally using LocalStack's cloud emulation. This guide assumes that you have [installed LocalStack on your local machine]({{< ref "installation" >}}), [signed up](https://app.localstack.cloud) for a LocalStack account and configured your [API key]({{< ref "api-key" >}}) to authenticate your LocalStack container on startup.
 
 {{< alert >}}
-The quickest way to experiment with LocalStack is to use a [LocalStack quickstart](https://app.localstack.cloud/quickstart) to deploy a Request worker or an Asynchronous microservice with tracing/debugging. The quickstart sample will automatically connect to your running LocalStack container on your local machine and run the application.
+The quickest way to experiment with LocalStack is to use one of our [LocalStack quickstart samples](https://app.localstack.cloud/quickstart) to deploy a thumbnail creator, request worker, or an asynchronous microservice with tracing/debugging. The quickstart samples will automatically connect to your running LocalStack container on your local machine and run the applications.
 {{< /alert >}}
 
 ## Start your LocalStack container
 
-After installing LocalStack and configuring your API key, let us start LocalStack. You can start LocalStack via `localstack` CLI, Docker, or a Docker Compose setup. To run our sample AWS application, we will start LocalStack with `EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000` configuration setup. In this guide, we will use the `localstack` CLI to start LocalStack.
+After installing LocalStack and configuring your API key, let us start LocalStack. You can start LocalStack via the `localstack` CLI, Docker, or a Docker Compose setup. In this guide, we will use the `localstack` CLI to start LocalStack.
 
 {{< command >}}
-$ EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000 localstack start 
+$ localstack start 
 {{< / command >}}
 
 You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
-
-{{< alert >}}
-LocalStack supports setting environment variables as Configuration options to alter the behavior of LocalStack. The `EXTRA_CORS_ALLOWED_ORIGINS` configuration allows other services to communicate with LocalStack. Refer to our [comprehensive documentation on LocalStack Configuration options]({{< ref "references/configuration" >}}).
-{{< /alert >}}
 
 ## Setup the sample AWS application
 
@@ -36,7 +32,7 @@ With LocalStack ready, you are ready to run your first AWS application locally. 
 $ git clone git@github.com:localstack/localstack-demo.git
 {{< / command >}}
 
-The sample app illustrates a typical Web application scenario with asynchronous request processing happening in the background, all running locally inside LocalStack.
+The sample app illustrates a typical web application scenario with asynchronous request processing happening in the background, all running locally inside LocalStack.
 
 <img src="sample-app-architecture.png" alt="Application architecture for the sample application, with the different components and services involved in processing the requests." title="Application architecture for the sample application, with the different components and services involved in processing the requests." width="600" />
 
@@ -71,9 +67,9 @@ Let us now serve the web application locally which can be accessed through your 
 $ npm run web
 {{< / command >}}
 
-Navigate to [`localhost:3000/`](http://localhost:3000/) to access the web application. You can check on **Auto-Refresh** and click on **Create new request**. You will see the request being processed in the table below after an alert that your request has been sent and queued. After the processing is complete, you will see an option in the table to download result from S3. Click on it to download a text file with the message: `Archive result for request XXXXXXX`.
+Navigate to [`localhost:3000/`](http://localhost:3000/) to access the web application. You can enable the **Auto-Refresh** and click on **Create new request**. You will see the request being processed in the table below after an alert that your request has been sent and queued. After the processing is complete, you will see an option in the table to download the result from S3. Click on it to download a text file with the message: `Archive result for request XXXXXXX`.
 
-If you have `awslocal` CLI installed, you can run the following command to see the archive results in the local S3 bucket:
+If you have the `awslocal` CLI installed, you can run the following command to see the archive results in the local S3 bucket:
 
 {{< command >}}
 $ awslocal s3 ls s3://archive-bucket/
@@ -97,7 +93,7 @@ Congratulations! You’ve successfully provisioned local AWS resources using Loc
 
 - Started LocalStack on your local machine.
 - Provisioned a local AWS infrastructure using LocalStack.
-- Installed and locally deployed an AWS request processing application.
+- Installed and locally deployed a request processing application.
 - Tested the application by sending requests across an API Gateway.
 - Destroyed the local resources you have provisioned.
 
