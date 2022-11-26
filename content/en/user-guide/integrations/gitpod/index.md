@@ -10,7 +10,7 @@ description: >
 
 ## Overview
 
-Gitpod is an open-source remote development platform for remote development. It provides an automated setup with cloud-based, remote developer environments connected with a developer’s [editing experience of choice](https://www.gitpod.io/docs/references/ides-and-editors). Gitpod allow users to codify their developer environment as code. With project's codified, you can spin up a new workspace, start coding and throw away the workspace when they are done!
+Gitpod is an open-source platform that enables remote software development via ephemeral workspaces. It provides an automated setup with cloud-based, remote developer environments connected with a developer’s [editing experience of choice](https://www.gitpod.io/docs/references/ides-and-editors). Gitpod allow users to codify their developer environment as code. With projects codified, you can spin up a new workspace, start coding and throw away the workspace when they are done!
 
 ## LocalStack on GitPod
 
