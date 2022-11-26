@@ -75,4 +75,4 @@ github:
 
 After adding the configuration, you can start your development & testing by creating [your workspace in GitPod](https://www.gitpod.io/docs/getting-started/#start-your-first-workspace). Upon creation, you will be able to see the LocalStack container running in the background (you can use `localstack status` to check the status of the container).
 
-For a simple demonstration, check out the [LocalStack GitPod demo](https://github.com/whummer/localstack-gitpod-demo) repository. Check out our [in-depth walkthrough over the demo](https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/) on our blog!
+For a simple demonstration, check out the [LocalStack GitPod demo](https://github.com/Gitpod-Samples/localstack-gitpod-demo) repository. Check out our [in-depth walkthrough over the demo](https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/) on our blog!
