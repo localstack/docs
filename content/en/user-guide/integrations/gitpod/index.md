@@ -44,7 +44,9 @@ tasks:
       cd $THEIA_WORKSPACE_ROOT
       python -m pip install awscli-local
 ports:
-  - port: 4526-4559
+  - port: 4510-4559
+    onOpen: ignore
+  - port: 4566
     onOpen: ignore      
   - port: 53
     onOpen: ignore      
