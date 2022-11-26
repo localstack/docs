@@ -16,7 +16,7 @@ Gitpod is an open-source platform that enables remote software development via e
 
 LocalStack allows you to setup a development environment with a cloud sandbox that can be used to test and develop cloud applications. Using GitPod's environment you can run a LocalStack container inside the runtime that allows you to instantiate their application on a code editor of their choice. You can then conveniently deploy their cloud application assets into LocalStack's cloud sandbox, to then preview the results.
 
-To configure LocalStack on GitPod, you would need to setup a `.gitpod.yml` on the root of your repository. The file configures your workspace and the environment that you would like to use. You can find more information on the [GitPod documentation](https://www.gitpod.io/docs/config-gitpod-file/).
+To configure LocalStack on GitPod, you would need to set up a `.gitpod.yml` on the root of your repository. The file configures your workspace and the environment that you would like to use. You can find more information on the [GitPod documentation](https://www.gitpod.io/docs/config-gitpod-file/).
 
 ```yaml
 tasks:
