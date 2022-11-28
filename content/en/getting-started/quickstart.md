@@ -38,7 +38,7 @@ $ git clone git@github.com:localstack/localstack-demo.git
 
 The sample app illustrates a typical web application scenario with asynchronous request processing happening in the background, all running locally inside LocalStack.
 
-<img src="sample-app-architecture.png" alt="Application architecture for the sample application, with the different components and services involved in processing the requests." title="Application architecture for the sample application, with the different components and services involved in processing the requests." width="600" />
+<img src="../sample-app-architecture.png" alt="Application architecture for the sample application, with the different components and services involved in processing the requests." title="Application architecture for the sample application, with the different components and services involved in processing the requests." width="600px" />
 
 In this sample application:
 
