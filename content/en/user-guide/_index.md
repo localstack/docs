@@ -7,4 +7,5 @@ description: >
 cascade:
   type: docs
 slug: user-guide
+hide_readingtime: true
 ---
