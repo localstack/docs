@@ -5365,14 +5365,6 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AllocateHosts (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AllocateIpamPoolCidr (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AssignIpv6Addresses</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6275,6 +6267,14 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse ec2-notimplemented">     <tr>
+      <td>AllocateHosts</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AllocateIpamPoolCidr</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ApplySecurityGroupsToClientVpnTargetNetwork</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -11383,6 +11383,10 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>AddThingToBillingGroup (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AddThingToThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11769,10 +11773,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse iot-notimplemented">     <tr>
-      <td>AddThingToBillingGroup</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>AssociateTargetsWithJob</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13501,7 +13501,15 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ConnectCustomKeyStore (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateAlias <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateCustomKeyStore (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13659,14 +13667,6 @@ description: >
     </tr>
   </tbody>
   <tbody class="collapse kms-notimplemented">     <tr>
-      <td>ConnectCustomKeyStore</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateCustomKeyStore</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DeleteCustomKeyStore</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19459,11 +19459,11 @@ description: >
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateConfigurationSet</td>
+      <td>CreateConfigurationSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateConfigurationSetEventDestination</td>
+      <td>CreateConfigurationSetEventDestination <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
