@@ -4,8 +4,7 @@ linkTitle: "Deploying an ECS Image to EKS with LocalStack"
 weight: 7
 description: >
   This tutorial showcases how to deploy an ECS image to EKS locally with LocalStack.
-cascade:
-  type: docs
+type: tutorials
 ---
 
 In this tutorial we will, by the use of an example, explore the usage of ECR images inside EKS.
