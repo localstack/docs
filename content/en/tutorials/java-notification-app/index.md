@@ -4,8 +4,7 @@ linkTitle: "Building a Java Notification app using AWS Java SDK, Simple Email Se
 weight: 3
 description: >
   Build a Java Spring Boot application to configure Simple Email Service (SES) to send messages using AWS Java SDK in LocalStack. Learn how to configure Simple Queue Service (SQS) & Simple Notification Service (SNS) using CloudFormation templates deployed locally.
-cascade:
-  type: docs
+type: tutorials
 ---
 
 Java is a popular platform for cloud applications that use Amazon Web Services.

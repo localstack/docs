@@ -6,6 +6,7 @@ description: >
   This page defines terms that you will encounter throughout the LocalStack documentation.
 cascade:
   type: docs
+hide_readingtime: true
 ---
 
 Glossary

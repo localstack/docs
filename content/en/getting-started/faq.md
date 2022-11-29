@@ -6,6 +6,7 @@ description: >
   This page answers the frequently asked questions about LocalStack Pro, Enterprise, and Community Editions. 
 cascade:
   type: docs
+hide_readingtime: true
 ---
 
 ## LocalStack Core FAQs

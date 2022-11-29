@@ -4,8 +4,7 @@ linkTitle: "Setting up Elastic Load Balancing (ELB) Application Load Balancers u
 weight: 3
 description: >
   Set up Elastic Loading Balance (ELB) Application Load Balancers to configure Node.js Lambda functions as targets, to forward requests to the target group for your Lambda function using LocalStack. Learn how you can use Serverless framework to setup and deploy your infrastructure locally with LocalStack using the `serverless-localstack` plugin.
-cascade:
-  type: docs
+type: tutorials
 ---
 
 AWS Elastic Load Balancer (ELB) distributes incoming application traffic across multiple targets, such as EC2 instances, containers, IP addresses, and Lambda functions. ELBs are either physical hardware or virtual software which accepts incoming traffic and distributes it across multiple targets in one or more Availability Zones. Using ELB, you can scale your load balancer per the traffic changes over time to scale to the needs of your application and the majority of workloads running on the AWS infrastructure.
