@@ -90,11 +90,9 @@ AWS does not allow creating a queue with the same name for 60 seconds after it w
 See the [DeleteQueue API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
 LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with `SQS_DELAY_RECENTLY_DELETED=1`.
 
-
 ## Deprecated providers
 
-LocalStack has two other third-party providers for SQS that have since been deprecated: [moto](https://github.com/spulec/moto) and [elasticmq](https://github.com/softwaremill/elasticmq). To activate the moto provider, start localstack with `PROVIDER_OVERRIDE_SQS=legacy`. If you want to activate elasticmq, you need to set both `PROVIDER_OVERRIDE_SQS=legacy SQS_PROVIDER=elasticmq`.
-The two providers are no longer tested or supported.
+LocalStack has two other third-party providers for SQS that have since been deprecated: [moto](https://github.com/spulec/moto) and [elasticmq](https://github.com/softwaremill/elasticmq). To activate the moto provider, start LocalStack with `PROVIDER_OVERRIDE_SQS=legacy`. If you want to activate ElasticMQ, you need to set both `PROVIDER_OVERRIDE_SQS=legacy SQS_PROVIDER=elasticmq`. The two providers have been deprecated and are no longer tested or supported.
 
 {{% alert title="Persistence Support" color="info" %}}
 As of now the [LocalStack Pro persistence mechanism]({{< ref "persistence-mechanism#persistence-mechanism---pro-version" >}}) is only supported for the default SQS provider.
