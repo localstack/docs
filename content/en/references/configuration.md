@@ -235,7 +235,7 @@ Some of the services can be configured to switch to a particular provider:
 
 | Variable| Valid options | Notes |
 | - | - | - |
-| `KINESIS_PROVIDER` |  `kinesis-mock` (default) and `kinesalite` | |
+| `KINESIS_PROVIDER` |  *Deprecated*. `kinesis-mock` (default) and `kinesalite` | |
 | `KMS_PROVIDER` |  `moto` (default) and `local-kms` | |
 
 ## Profiles
