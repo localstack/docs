@@ -125,7 +125,7 @@ In case of S3, this looks like the following snippet, in this case we opted to u
 ```
 
 {{< alert >}}
-**Note**: In case of issues resolving this DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `s3_force_path_style = true`. The S3 service endpoint is slightly
+**Note**: In case of issues resolving this DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `s3_use_path_style = true`. The S3 service endpoint is slightly
 different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
 {{< /alert >}}
 
@@ -139,7 +139,7 @@ provider "aws" {
   secret_key                  = "mock_secret_key"
   region                      = "us-east-1"
 
-  s3_force_path_style         = true
+  s3_use_path_style         = true
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
@@ -164,7 +164,7 @@ provider "aws" {
   access_key                  = "test"
   secret_key                  = "test"
   region                      = "us-east-1"
-  s3_force_path_style         = false
+  s3_use_path_style         = false
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
