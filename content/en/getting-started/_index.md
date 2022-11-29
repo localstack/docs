@@ -3,7 +3,7 @@ title: "Getting Started"
 linkTitle: "Getting Started"
 weight: 2
 description: >
-  This quick start gives an overview of how to get LocalStack up and running on your local machine and understand the ecosystem
+  This section describes how to install LocalStack using a variety of options, and provides details on how LocalStack can be configured to fit the needs of a local cloud sandbox for development, testing, and experimentation!
 cascade:
   type: docs
 aliases:
