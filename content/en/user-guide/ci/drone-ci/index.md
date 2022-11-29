@@ -37,7 +37,7 @@ steps:
 - name: localstack wait
   image: alpine/curl:3.14
   commands:
-  - until curl -s http://localstack:4566/health; do echo -n . && sleep 1; done
+  - until curl -s http://localstack:4566/_localstack/health; do echo -n . && sleep 1; done
 ```
 
 ## Using LocalStack Pro

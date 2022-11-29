@@ -3,8 +3,6 @@ title: "Configuration"
 weight: 5
 description: >
   Environment variables which affect LocalStack.
-aliases:
-  - /localstack/configuration/
 ---
 
 LocalStack allows for many different configuration options.
@@ -24,12 +22,12 @@ $ DEBUG=1 localstack start
 | `HOSTNAME_EXTERNAL` | `localhost` (default) | Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client.|
 | `DEBUG` | `0`\|`1`| Flag to increase log level and print more verbose logs (useful for troubleshooting issues)|
 | `IMAGE_NAME`| `localstack/localstack` (default), `localstack/localstack:0.11.0` | Specific name and tag of LocalStack Docker image to use.|
-| `USE_LIGHT_IMAGE` | `1` (default) | Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
+| `USE_LIGHT_IMAGE` | `1` (default) | *Deprecated*. Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
 | `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [filesystem layout]({{< ref "filesystem" >}}). |
 | `PERSISTENCE` | `0` (default) | Enable persistence. See [persistence mechanism]({{< ref "persistence-mechanism" >}}) and [filesystem layout]({{< ref "filesystem" >}}). |
 | `PERSIST_ALL` | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
-| `INIT_SCRIPTS_PATH` | `/some/path` | Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
+| `INIT_SCRIPTS_PATH` | `/some/path` | *Deprecated*. Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
 | `LS_LOG` | `trace`, `trace-internal`, `debug`, `info`, `warn`, `error`, `warning`| Specify the log level. Currently overrides the `DEBUG` configuration. `trace` for detailed request/response, `trace-internal` for internal calls, too. |
 | `EXTERNAL_SERVICE_PORTS_START` | `4510` (default) | Start of [the external service port range]({{< ref "external-ports" >}}) (included). |
 | `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of [the external service port range]({{< ref "external-ports" >}}) (excluded). |
@@ -85,7 +83,7 @@ This section covers configuration values that are specific to certain AWS servic
 | - | - | - |
 | `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Only flags for volumes, ports, environment variables and add-hosts are allowed. |
 
-### Bigdata (EMR, Athena, Glue,...)
+### BigData (EMR, Athena, Glue)
 
 | Variable | Example Values | Description |
 | - | - | - |
@@ -233,7 +231,7 @@ Some of the services can be configured to switch to a particular provider:
 
 | Variable| Valid options | Notes |
 | - | - | - |
-| `KINESIS_PROVIDER` |  `kinesis-mock` (default) and `kinesalite` | |
+| `KINESIS_PROVIDER` |  *Deprecated*. `kinesis-mock` (default) and `kinesalite` | |
 | `KMS_PROVIDER` |  `moto` (default) and `local-kms` | |
 
 ## Profiles
@@ -275,13 +273,13 @@ python -m localstack.cli.main --profile=dev config show
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SKIP_INFRA_DOWNLOADS` | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
+| `SKIP_INFRA_DOWNLOADS` | | *Deprecated*. Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
 | `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments)
-| `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
+| `MOCK_UNIMPLEMENTED` | | *Deprecated*. Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
 | `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
@@ -331,8 +329,8 @@ More information [here]({{< ref "dns-server" >}}).
 | Variable | Example Values | Description |
 | - | - | - |
 | `USE_SSL` | `false` (default) | Whether to use https://... URLs with SSL encryption. Deprecated as of version 0.11.3. Each service endpoint now supports multiplexing HTTP/HTTPS traffic over the same port. |
-| `DEFAULT_REGION` | | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). Deprecated and inactive as of version 0.12.17. LocalStack now has full multi-region support. |
-| `USE_SINGLE_REGION` | | Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
+| `DEFAULT_REGION` | | *Deprecated*. AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
+| `USE_SINGLE_REGION` | | *Deprecated*. Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
 | `PERSISTENCE_SINGLE_FILE` | `true` (default)| Specify if persistence files should be combined (only relevant for legacy persistence in Community version, not relevant for advanced persistence in Pro version). |
 | `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | Local directory for saving persistent data. This option is deprecated since LocalStack v1 and will be ignored. Please use `PERSISTENCE`. Using this option will set `PERSISTENCE=1` as a deprecation path. The state will be stored in your LocalStack volume in the `state/` directory |
 | `HOST_TMP_FOLDER` | `/some/path` | Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
