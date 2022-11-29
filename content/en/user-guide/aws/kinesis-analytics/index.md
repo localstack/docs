@@ -1,7 +1,7 @@
 ---
 title: "Kinesis Data Analytics"
 linkTitle: "Kinesis Data Analytics"
-categories: ["LocalStack Pro", "Stub"]
+categories: ["LocalStack Pro"]
 description: >
   Kinesis Data Analytics
 aliases:

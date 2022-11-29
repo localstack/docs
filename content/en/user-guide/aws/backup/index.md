@@ -1,7 +1,7 @@
 ---
 title: "Backup"
 linkTitle: "Backup"
-categories: ["LocalStack Pro", "Stub"]
+categories: ["LocalStack Pro"]
 description: >
   Backup
 aliases:
