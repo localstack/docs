@@ -5,7 +5,7 @@ weight: 1
 description: >
   Overview of the implemented AWS APIs and their level of parity with the AWS cloud
 aliases:
-  - /aws/feature-coverage/
+  - /localstack/coverage/
 ---
 
 
@@ -26,8 +26,7 @@ LocalStack provides emulation services for different AWS APIs (e.g., Lambda, SQS
 ## Emulation Levels
 
 * CRUD: The service accepts requests and returns proper (potentially static) responses. No additional business logic besides storing entities.
-* Emulated: The service imitates the functionality, including synchronous and asynchronous business logic operating on service entities. 
-
+* Emulated: The service imitates the functionality, including synchronous and asynchronous business logic operating on service entities.
 
 ## AWS Feature Coverage
 
@@ -38,11 +37,11 @@ In the coverage table below, the features are marked with their respective avail
 
 | Service / Feature                                                  | Coverage Level    | Emulation Level | Notes |
 |--------------------------------------------------------------------|-------------------|-----------------|-------|
-| **ACM**                                                            | [🔍]({{< ref "./coverage/#acm" >}})      |                 |       |
+| **ACM**                                                            | [🔍]({{< ref "references/coverage#acm" >}})      |                 |       |
 | Certificates                                                       | ⭐⭐⭐              | CRUD            |       |
 | Tags                                                               | ⭐⭐⭐⭐            | CRUD            |       |
 | Account Configuration                                              | ⭐⭐                | CRUD            |       |
-| [**Amplify** (Pro)]({{< ref "amplify" >}})                         | [🔍]({{< ref "./coverage/#amplify" >}})  |                 |       |
+| [**Amplify** (Pro)]({{< ref "amplify" >}})                         | [🔍]({{< ref "references/coverage#amplify" >}})  |                 |       |
 | Apps                                                               | ⭐⭐⭐⭐             | Emulated        |       |
 | Backend Environments                                               | ⭐⭐⭐               | CRUD            |       |
 | Branches                                                           | ⭐⭐⭐              | CRUD            |       |
@@ -51,7 +50,7 @@ In the coverage table below, the features are marked with their respective avail
 | Jobs                                                               | \-                 |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐             | CRUD            |       |
 | Webhooks                                                           | ⭐⭐⭐               | Emulated       |       |
-| **API Gateway**                                                    | [🔍]({{< ref "./coverage/#apigateway" >}}) |                 |       |
+| **API Gateway**                                                    | [🔍]({{< ref "references/coverage#apigateway" >}}) |                 |       |
 | API Keys                                                           | ⭐⭐⭐              | CRUD                |       |
 | Authorizers (Pro)                                                  | ⭐⭐⭐⭐            | Emulated                |       |
 | Base Path Mappings                                                 | ⭐⭐⭐⭐            | Emulated                |       |
@@ -71,7 +70,7 @@ In the coverage table below, the features are marked with their respective avail
 | Usage Plans                                                        | ⭐⭐⭐              | CRUD                |       |
 | Usage Plan Keys                                                    | ⭐⭐⭐              | CRUD                |       |
 | VPC Links                                                          | ⭐⭐⭐              | CRUD                |       |
-| [**API Gateway v2** (Pro)]({{< ref "apigatewayv2" >}})             | [🔍]({{< ref "./coverage/#apigatewayv2" >}})     |                 |       |
+| [**API Gateway v2** (Pro)]({{< ref "apigatewayv2" >}})             | [🔍]({{< ref "references/coverage#apigatewayv2" >}})     |                 |       |
 | APIs                                                               | ⭐⭐⭐⭐            | Emulated                |       |
 | API Mappings                                                       | ⭐⭐⭐              | Emulated                |       |
 | Authorizers                                                        | ⭐⭐⭐⭐            | Emulated                |       |
@@ -86,9 +85,9 @@ In the coverage table below, the features are marked with their respective avail
 | Stages                                                             | ⭐⭐⭐⭐            | CRUD                |       |
 | Tags                                                               | ⭐⭐⭐⭐            | CRUD                |       |
 | VPC Links                                                          | ⭐⭐⭐              | CRUD                |       |
-| **API Gateway Management API** (Pro)                               | [🔍]({{< ref "./coverage/#apigatewaymanagementapi" >}}) |                 |       |
+| **API Gateway Management API** (Pro)                               | [🔍]({{< ref "references/coverage#apigatewaymanagementapi" >}}) |                 |       |
 | Connections                                                         | ⭐⭐⭐            | Emulated                |       |
-| **AppConfig** (Pro)                                                | [🔍]({{< ref "./coverage/#appconfig" >}})               |                 |       |
+| **AppConfig** (Pro)                                                | [🔍]({{< ref "references/coverage#appconfig" >}})               |                 |       |
 | Applications                                                       | ⭐⭐⭐           | CRUD            |       |
 | Configuration Profiles                                             | ⭐⭐⭐⭐         | CRUD            |       |
 | Configurations                                                     | ⭐⭐⭐           | CRUD            |       |
@@ -97,12 +96,12 @@ In the coverage table below, the features are marked with their respective avail
 | Environments                                                       | ⭐⭐⭐⭐          | CRUD           |       |
 | Hosted Configuration Versions                                      | ⭐⭐⭐           | CRUD            |       |
 | Tags                                                               | ⭐⭐⭐⭐         | CRUD             |       |
-| **Application Autoscaling** (Pro)                                  | [🔍]({{< ref "./coverage/#application-autoscaling" >}})     |                 |       |
+| **Application Autoscaling** (Pro)                                  | [🔍]({{< ref "references/coverage#application-autoscaling" >}})     |                 |       |
 | Scalable Targets                                                   | ⭐⭐⭐           | CRUD           |       |
 | Scaling Activities                                                 | \-              |                |       |
 | Scaling Policies                                                   | ⭐⭐⭐           | CRUD            |       |
 | Scheduled Actions                                                  | ⭐⭐⭐           | CRUD             |       |
-| [**AppSync** (Pro)]({{< ref "appsync" >}})                         | [🔍]({{< ref "./coverage/#appsync" >}})                |                 |       |
+| [**AppSync** (Pro)]({{< ref "appsync" >}})                         | [🔍]({{< ref "references/coverage#appsync" >}})                |                 |       |
 | API Caches                                                         | ⭐⭐⭐⭐         | Emulated        |       |
 | API Keys                                                           | ⭐⭐⭐⭐         | Emulated         |       |
 | Data Sources                                                       | ⭐⭐⭐          | Emulated         |       |
@@ -111,7 +110,7 @@ In the coverage table below, the features are marked with their respective avail
 | Resolvers                                                          | ⭐⭐⭐⭐         | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
 | Types                                                              | ⭐⭐⭐⭐         | Emulated        |       |
-| [**Athena** (Pro)]({{< ref "athena" >}})                           | [🔍]({{< ref "./coverage/#athena" >}}) |                 |       |
+| [**Athena** (Pro)]({{< ref "athena" >}})                           | [🔍]({{< ref "references/coverage#athena" >}}) |                 |       |
 | Data Catalogs                                                      | ⭐⭐           | CRUD            |       |
 | Databases                                                          | ⭐⭐           | Emulated        |       |
 | Named Queries                                                      | \-             |                 |       |
@@ -120,11 +119,11 @@ In the coverage table below, the features are marked with their respective avail
 | Table Metadata                                                     | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐         | CRUD            |       |
 | Work Groups                                                        | \-             |                 |       |
-| **Autoscaling** (Pro)                                              | [🔍]({{< ref "./coverage/#autoscaling" >}}) |                 |       |
+| **Autoscaling** (Pro)                                              | [🔍]({{< ref "references/coverage#autoscaling" >}}) |                 |       |
 | Metric Collection                                                  | ⭐⭐⭐         | CRUD            |       |
 | Autoscaling Groups                                                 | ⭐⭐           | CRUD            |       |
 | Loadbalancer                                                       | ⭐⭐⭐         | CRUD            |       |
-| [**Backup** (Pro)]({{< ref "backup" >}})                           | [🔍]({{< ref "./coverage/#backup" >}}) |                 |       |
+| [**Backup** (Pro)]({{< ref "backup" >}})                           | [🔍]({{< ref "references/coverage#backup" >}}) |                 |       |
 | Backup Jobs                                                        | ⭐⭐⭐⭐       | Emulated        |       |
 | Backup Plans                                                       | ⭐⭐⭐         | Emulated        |       |
 | Backup Selections                                                  | ⭐⭐⭐         | Emulated        |       |
@@ -135,18 +134,18 @@ In the coverage table below, the features are marked with their respective avail
 | Protected Resources                                                | \-             |                 |       |
 | Recovery Points                                                    | ⭐⭐⭐          | Emulated        |       |
 | Tags                                                               | \-             |                 |       |
-| **Batch** (Pro)                                                    | [🔍]({{< ref "./coverage/#batch" >}}) |                 |       |
+| **Batch** (Pro)                                                    | [🔍]({{< ref "references/coverage#batch" >}}) |                 |       |
 | Compute Environments                                               | ⭐⭐⭐         | CRUD            |       |
 | Job Queues                                                         | ⭐⭐⭐         | CRUD            |       |
 | Job Definitions                                                    | ⭐⭐⭐         | CRUD            |       |
 | Jobs                                                               | ⭐⭐⭐         | Emulated        |       |
-| **CE (Cost Explorer API)** (Pro)                                   | [🔍]({{< ref "./coverage/#ce" >}}) |                 |       |
+| **CE (Cost Explorer API)** (Pro)                                   | [🔍]({{< ref "references/coverage#ce" >}}) |                 |       |
 | Anomaly Monitoring                                                 | ⭐⭐⭐         | CRUD            |       |
 | Anomaly Subscription                                               | ⭐⭐⭐         | CRUD            |       |
 | Cost Category                                                      | ⭐⭐           | CRUD            |       |
 | Cost Usage/Forecast                                                | \-             |                 |       |
 | Savings Plan                                                       | \-             |                 |       |
-| [**CloudFormation**]({{< ref "cloudformation" >}})                 | [🔍]({{< ref "./coverage/#cloudformation" >}}) |                 |       |
+| [**CloudFormation**]({{< ref "cloudformation" >}})                 | [🔍]({{< ref "references/coverage#cloudformation" >}}) |                 |       |
 | Change Sets                                                        | ⭐⭐⭐⭐       | Emulated        |       |
 | Stacks                                                             | ⭐⭐⭐⭐       | Emulated        |       |
 | Stack Drifts                                                       | \-             | \-               |       |
@@ -158,7 +157,7 @@ In the coverage table below, the features are marked with their respective avail
 | Publishers                                                         | \-             | \-                |       |
 | Templates                                                          | ⭐⭐⭐⭐       | Emulated                |       |
 | Type Activations                                                   | ⭐⭐           | \-                |       |
-| [**CloudFront** (Pro)]({{< ref "cloudfront" >}})                   | [🔍]({{< ref "./coverage/#cloudfront" >}}) |                 |       |
+| [**CloudFront** (Pro)]({{< ref "cloudfront" >}})                   | [🔍]({{< ref "references/coverage#cloudfront" >}}) |                 |       |
 | Cache Policies                                                     | \-             |                 |       |
 | Distributions                                                      | ⭐⭐⭐⭐        | Emulated        |       |
 | Field Level Encryption                                             | \-             |                 |       |
@@ -172,13 +171,13 @@ In the coverage table below, the features are marked with their respective avail
 | Realtime Log Configs                                               | \-             |                 |       |
 | Streaming Distributions                                            | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       |  CRUD            |       |
-| **CloudTrail** (Pro)                                               | [🔍]({{< ref "./coverage/#cloudtrail" >}}) |                 |       |
+| **CloudTrail** (Pro)                                               | [🔍]({{< ref "references/coverage#cloudtrail" >}}) |                 |       |
 | Event Selectors                                                    | ⭐⭐⭐⭐        | Emulated          |       |
 | Insight Selectors                                                  | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
 | Trails                                                             | ⭐⭐⭐⭐        | Emulated         |       |
 | Start/Stop Logging                                                 | ⭐⭐⭐⭐        | Emulated         |       |
-| [**CloudWatch**]({{< ref "cloudwatch" >}})                         | [🔍]({{< ref "./coverage/#cloudwatch" >}}) |                 |       |
+| [**CloudWatch**]({{< ref "cloudwatch" >}})                         | [🔍]({{< ref "references/coverage#cloudwatch" >}}) |                 |       |
 | Alarms                                                             | ⭐⭐⭐⭐        | Emulated       |       |
 | Alarm Histories                                                    | \-             |                 |       |
 | Anomaly Detectors                                                  | \-             |                 |       |
@@ -188,7 +187,7 @@ In the coverage table below, the features are marked with their respective avail
 | Metric Statistics                                                  | ⭐⭐⭐⭐          | CRUD             |       |
 | Metric Streams                                                     | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
-| [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   | [🔍]({{< ref "./coverage/#codecommit" >}})                |                 |       |
+| [**CodeCommit** (Pro)]({{< ref "codecommit" >}})                   | [🔍]({{< ref "references/coverage#codecommit" >}})                |                 |       |
 | Approval Rules                                                     | \-             |                 |       |
 | Blobs / Files / Folders                                            | ⭐⭐⭐           | Emulated       |       |
 | Branches                                                           | ⭐⭐⭐           | Emulated        |       |
@@ -198,14 +197,14 @@ In the coverage table below, the features are marked with their respective avail
 | Pull Requests                                                      | \-             |                 |       |
 | Repositories                                                       | ⭐⭐⭐⭐         | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐         | CRUD            |       |
-| [**Cognito Identity** (Pro)]({{< ref "cognito" >}})                | [🔍]({{< ref "./coverage/#cognito-identity" >}}) |                 |       |
+| [**Cognito Identity** (Pro)]({{< ref "cognito" >}})                | [🔍]({{< ref "references/coverage#cognito-identity" >}}) |                 |       |
 | Developer Identities                                               | \-             |                 |       |
 | Identities                                                         | ⭐⭐⭐         | Emulated         |       |
 | Identity Pool Roles                                                | \-             |                 |       |
 | Identity Pools                                                     | ⭐⭐⭐⭐       | Emulated         |       |
 | OpenID Tokens                                                      | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| [**Cognito Identity Provider (IdP)** (Pro)]({{< ref "cognito" >}}) | [🔍]({{< ref "./coverage/#cognito-idp" >}}) |                 |       |
+| [**Cognito Identity Provider (IdP)** (Pro)]({{< ref "cognito" >}}) | [🔍]({{< ref "references/coverage#cognito-idp" >}}) |                 |       |
 | Admin APIs                                                         | ⭐⭐⭐         | Emulated        | Triggers can involve Lambda     |
 | Devices                                                            | ⭐⭐           | CRUD            |       |
 | Auth Flows                                                         | ⭐⭐⭐         | Emulated        |       |
@@ -221,18 +220,18 @@ In the coverage table below, the features are marked with their respective avail
 | User Pools                                                         | ⭐⭐⭐⭐       | CRUD            |       |
 | Users                                                              | ⭐⭐⭐⭐       | CRUD            |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **Config**                                                         | [🔍]({{< ref "./coverage/#config" >}}) |                 |       |
+| **Config**                                                         | [🔍]({{< ref "references/coverage#config" >}}) |                 |       |
 | Config Rules                                                       | ⭐⭐⭐         | CRUD            |       |
 | Conformance                                                        | ⭐⭐         | CRUD            |       |
 | Remediation                                                        | \-             |                 |       |
-| **DocumentDB** (Pro)                                               | [🔍]({{< ref "./coverage/#docdb" >}}) |                 |       |
+| **DocumentDB** (Pro)                                               | [🔍]({{< ref "references/coverage#docdb" >}}) |                 |       |
 | DB/Cluster Parameter Groups                                        | ⭐⭐⭐         | CRUD            |       |
 | DB/Cluster Snapshots                                               | ⭐⭐           | Emulated        |       |
 | DB Clusters/Instances                                              | ⭐⭐⭐⭐       | Emulated         |       |
 | DB Subnet Groups                                                   | ⭐⭐⭐         | Emulated         |       |
 | Event Subscriptions                                                | \-           |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **DynamoDB**                                                       | [🔍]({{< ref "./coverage/#dynamodb" >}}) |                 |       |
+| **DynamoDB**                                                       | [🔍]({{< ref "references/coverage#dynamodb" >}}) |                 |       |
 | Backups (Pro)                                                      | ⭐⭐⭐⭐       | Emulated        |       |
 | Batch Operations                                                   | ⭐⭐⭐⭐       | Emulated        |       |
 | Global Tables                                                      | ⭐⭐⭐⭐       | CRUD            | version 2019.11.21 not supported yet |
@@ -243,11 +242,11 @@ In the coverage table below, the features are marked with their respective avail
 | Tables                                                             | ⭐⭐⭐⭐       | Emulated        |       |
 | Table Replica Autoscaling                                          | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **DynamoDB Streams**                                               | [🔍]({{< ref "./coverage/#dynamodbstreams" >}}) |                 |       |
+| **DynamoDB Streams**                                               | [🔍]({{< ref "references/coverage#dynamodbstreams" >}}) |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       | Emulated        |       |
 | Shard Iterators                                                    | ⭐⭐⭐⭐       | Emulated        |       |
 | Streams                                                            | ⭐⭐⭐⭐       | Emulated        |       |
-| [**EC2**]({{< ref "elastic-compute-cloud" >}})                      | [🔍]({{< ref "./coverage/#ec2" >}})  |                 |       |
+| [**EC2**]({{< ref "elastic-compute-cloud" >}})                      | [🔍]({{< ref "references/coverage#ec2" >}})  |                 |       |
 | Classic Links                                                      | \-             |                 |       |
 | Customer Gateways                                                  | ⭐             | CRUD            |       |
 | DHCP Options                                                       | ⭐⭐           | CRUD            |       |
@@ -278,7 +277,7 @@ In the coverage table below, the features are marked with their respective avail
 | VPC Peering Connections                                            | ⭐⭐⭐         | CRUD            |       |
 | VPCs                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | VPN Gateways / Connections                                         | ⭐⭐⭐         | CRUD            |       |
-| [**ECR** (Pro)]({{< ref "elastic-container-registry" >}})          | [🔍]({{< ref "./coverage/#ecr" >}}) |                 |       |
+| [**ECR** (Pro)]({{< ref "elastic-container-registry" >}})          | [🔍]({{< ref "references/coverage#ecr" >}}) |                 |       |
 | Images                                                             | ⭐⭐⭐         |    Emulated     |       |
 | Image Scans                                                        | \-             |                 |       |
 | Lifecycle Policies                                                 | ⭐⭐⭐⭐       |      CRUD       |       |
@@ -288,7 +287,7 @@ In the coverage table below, the features are marked with their respective avail
 | Repositories                                                       | ⭐⭐⭐⭐       |    Emulated     |       |
 | Repository Policies                                                | ⭐⭐⭐⭐       |      CRUD       |       |
 | Tags                                                               | ⭐⭐⭐⭐       |      CRUD       |       |
-| [**ECS** (Pro)]({{< ref "elastic-container-service" >}})           | [🔍]({{< ref "./coverage/#ecs" >}}) |                 |       |
+| [**ECS** (Pro)]({{< ref "elastic-container-service" >}})           | [🔍]({{< ref "references/coverage#ecs" >}}) |                 |       |
 | Account Settings                                                   | \-             |                 |       |
 | Attributes                                                         | ⭐⭐⭐⭐       |      CRUD       |       |
 | Capacity Providers                                                 | \-             |                 |       |
@@ -299,10 +298,10 @@ In the coverage table below, the features are marked with their respective avail
 | Task Definitions                                                   | ⭐⭐⭐⭐       |    Emulated     |       |
 | Task Sets                                                          | ⭐⭐⭐         |      CRUD       |       |
 | Tasks                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
-| **EFS** (Pro)                                                      | [🔍]({{< ref "./coverage/#efs" >}}) |                 |       |
+| **EFS** (Pro)                                                      | [🔍]({{< ref "references/coverage#efs" >}}) |                 |       |
 | File System                                                        | ⭐⭐⭐⭐       | Emulated        |        |
 | Backup Policy                                                      | \-             |                 |       |
-| [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          | [🔍]({{< ref "./coverage/#eks" >}}) |                 |       |
+| [**EKS** (Pro)]({{< ref "elastic-kubernetes-service" >}})          | [🔍]({{< ref "references/coverage#eks" >}}) |                 |       |
 | AddOns                                                             | \-             |                 |       |
 | Clusters                                                           | ⭐⭐⭐         | Emulated        |       |
 | Fargate Profiles                                                   | ⭐⭐           | CRUD            |       |
@@ -310,7 +309,7 @@ In the coverage table below, the features are marked with their respective avail
 | Node Groups                                                        | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | Updates                                                            | \-             |                 |       |
-| [**ElastiCache** (Pro)]({{< ref "elasticache" >}})                 | [🔍]({{< ref "./coverage/#elasticache" >}}) |       |
+| [**ElastiCache** (Pro)]({{< ref "elasticache" >}})                 | [🔍]({{< ref "references/coverage#elasticache" >}}) |       |
 | Cache Clusters (Memcached)                                         | \-             |                 |       |
 | Cache Clusters (Redis)                                             | ⭐⭐⭐         | Emulated       |       |
 | Cache Parameter Groups                                             | ⭐⭐⭐⭐       | Emulated       |       |
@@ -321,22 +320,22 @@ In the coverage table below, the features are marked with their respective avail
 | Snapshots                                                          | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD           |       |
 | Users / User Groups                                                | \-             |                 |       |
-| **Elastic Beanstalk** (Pro)                                        | [🔍]({{< ref "./coverage/#elasticbeanstalk" >}}) |                 |       |
+| **Elastic Beanstalk** (Pro)                                        | [🔍]({{< ref "references/coverage#elasticbeanstalk" >}}) |                 |       |
 | Application Deployment                                             | ⭐⭐⭐         | CRUD            |       |
 | Environment                                                        | ⭐⭐           | CRUD            |       |
-| **ELB (Elastic Load Balancing)** (Pro)                             | [🔍]({{< ref "./coverage/#elb" >}}) |                 |       |
+| **ELB (Elastic Load Balancing)** (Pro)                             | [🔍]({{< ref "references/coverage#elb" >}}) |                 |       |
 | Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
 | Load balancers                                                     | ⭐⭐⭐         | Emulated        | Application load balancers with IP address or Lambda targets only |
 | Rules                                                              | ⭐⭐⭐         | CRUD            |       |
 | Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
 | Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
-| [**ELBv2 (Elastic Load Balancing v2)**]({{< ref "elastic-load-balancing" >}}) (Pro) | [🔍]({{< ref "./coverage/#elbv2" >}}) |                 |       |
+| [**ELBv2 (Elastic Load Balancing v2)**]({{< ref "elastic-load-balancing" >}}) (Pro) | [🔍]({{< ref "references/coverage#elbv2" >}}) |                 |       |
 | Listeners                                                          | ⭐⭐⭐         | CRUD            |       |
 | Load balancers                                                     | ⭐⭐⭐         | CRUD            |       |
 | Rules                                                              | ⭐⭐⭐         | CRUD            |       |
 | Target groups                                                      | ⭐⭐⭐         | CRUD            |       |
 | Listener certificates                                              | ⭐⭐⭐         | CRUD            |       |
-| [**EMR**]({{< ref "elastic-mapreduce" >}}) (Pro)                   | [🔍]({{< ref "./coverage/#emr" >}}) |                 |       |
+| [**EMR**]({{< ref "elastic-mapreduce" >}}) (Pro)                   | [🔍]({{< ref "references/coverage#emr" >}}) |                 |       |
 | Clusters                                                           | ⭐⭐⭐⭐       | Emulated        |       |
 | Instance Fleets                                                    | ⭐⭐⭐         | CRUD            |       |
 | Job Flow Steps                                                     | ⭐⭐⭐         | Emulated        |       |
@@ -346,13 +345,13 @@ In the coverage table below, the features are marked with their respective avail
 | Security Configurations                                            | \-             |                 |       |
 | Studios                                                            | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
-| [**ES (Elasticsearch Service)**]({{< ref "elasticsearch" >}})      | [🔍]({{< ref "./coverage/#es" >}}) |                 |       |
+| [**ES (Elasticsearch Service)**]({{< ref "elasticsearch" >}})      | [🔍]({{< ref "references/coverage#es" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
 | Elasticsearch Domains                                              | ⭐⭐⭐⭐       | Emulated        |       |
 | Packages                                                           | \-             |                 |       |
 | Reserved Instances                                                 | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **EventBridge (Events)**                                           | [🔍]({{< ref "./coverage/#events" >}}) |                 |       |
+| **EventBridge (Events)**                                           | [🔍]({{< ref "references/coverage#events" >}}) |                 |       |
 | API Destinations                                                   | ⭐⭐⭐⭐       | Emulated                |       |
 | Archives                                                           | \-             |                 |       |
 | Connections                                                        | \-             |                 |       |
@@ -362,18 +361,18 @@ In the coverage table below, the features are marked with their respective avail
 | Replays                                                            | \-             |                 |       |
 | Rules                                                              | ⭐⭐⭐⭐       | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
-| **Firehose**                                                       | [🔍]({{< ref "./coverage/#firehose" >}}) |                 |       |
+| **Firehose**                                                       | [🔍]({{< ref "references/coverage#firehose" >}}) |                 |       |
 | Delivery Streams                                                   | ⭐⭐⭐⭐       | Emulated        |       |
 | Destinations                                                       | ⭐⭐⭐⭐       | Emulated        |       |
 | Records                                                            | ⭐⭐⭐⭐       | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | Stream Encryption                                                  | \-           |                  |       |
-| **Glacier** (Pro)                                                  | [🔍]({{< ref "./coverage/#glacier" >}}) |                 |       |
+| **Glacier** (Pro)                                                  | [🔍]({{< ref "references/coverage#glacier" >}}) |                 |       |
 | Archive                                                            | ⭐⭐⭐⭐       | Emulated        |       |
 | Vault                                                              | ⭐⭐⭐⭐       | Emulated        |       |
 | Job                                                                | ⭐⭐⭐⭐       | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| [**Glue** (Pro)]({{< ref "glue" >}})                               | [🔍]({{< ref "./coverage/#glue" >}}) |                 |       |
+| [**Glue** (Pro)]({{< ref "glue" >}})                               | [🔍]({{< ref "references/coverage#glue" >}}) |                 |       |
 | Classifiers                                                        | ⭐⭐⭐         | CRUD            |       |
 | Connections                                                        | ⭐⭐⭐         | CRUD            |       |
 | Crawlers                                                           | ⭐⭐⭐         | Emulated        |       |
@@ -391,7 +390,7 @@ In the coverage table below, the features are marked with their respective avail
 | Tags                                                               | ⭐⭐⭐         | CRUD            |       |
 | User Defined Functions                                             | \-             |                 |       |
 | Workflows                                                          | ⭐⭐⭐         | CRUD            |       |
-| [**IAM**]({{< ref "iam" >}})                                       | [🔍]({{< ref "./coverage/#iam" >}}) |                 |       |
+| [**IAM**]({{< ref "iam" >}})                                       | [🔍]({{< ref "references/coverage#iam" >}}) |                 |       |
 | Access Keys                                                        | ⭐⭐⭐         |    Emulated     |       |
 | Account Aliases                                                    | ⭐⭐⭐         |      CRUD       |       |
 | Credential Reports                                                 | \-             |                 |       |
@@ -406,7 +405,7 @@ In the coverage table below, the features are marked with their respective avail
 | Service Linked Roles                                               | ⭐⭐⭐         |      CRUD       |       |
 | Users                                                              | ⭐⭐⭐⭐       |    Emulated     |       |
 | Virtual MFA Devices                                                | ⭐⭐           |      CRUD       |       |
-| [**IoT (Analytics, Data, Wireless)** (Pro)]({{< ref "iot" >}})     | [🔍]({{< ref "./coverage/#iot" >}}) |                 |       |
+| [**IoT (Analytics, Data, Wireless)** (Pro)]({{< ref "iot" >}})     | [🔍]({{< ref "references/coverage#iot" >}}) |                 |       |
 | Authorizers                                                        | \-             |                 |       |
 | Billing Groups                                                     | \-             |                 |       |
 | Certificates                                                       | ⭐⭐           | CRUD            |       |
@@ -430,13 +429,13 @@ In the coverage table below, the features are marked with their respective avail
 | Thing Types                                                        | ⭐⭐⭐         | CRUD            |       |
 | Things                                                             | ⭐⭐⭐         | CRUD            |       |
 | Topic Rules                                                        | ⭐⭐⭐         | CRUD            |       |
-| [**Kafka (MSK - Managed Streaming for Kafka)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro) | [🔍]({{< ref "./coverage/#kafka" >}}) |                 |       |
+| [**Kafka (MSK - Managed Streaming for Kafka)**]({{< ref "managed-streaming-for-kafka" >}}) (Pro) | [🔍]({{< ref "references/coverage#kafka" >}}) |                 |       |
 | Brokers                                                            | ⭐⭐           | Emulated        |       |
 | Cluster Operations                                                 | ⭐⭐           | Emulated        |       |
 | Clusters                                                           | ⭐⭐⭐⭐       | Emulated        | Single node clusters |
 | Configurations                                                     | ⭐⭐⭐⭐       | CRUD            |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| [**Kinesis**]({{< ref "kinesis" >}})                               | [🔍]({{< ref "./coverage/#kinesis" >}}) |                 |       |
+| [**Kinesis**]({{< ref "kinesis" >}})                               | [🔍]({{< ref "references/coverage#kinesis" >}}) |                 |       |
 | Records                                                            | ⭐⭐⭐⭐       | Emulated                |       |
 | Split / Merge Shards                                               | ⭐⭐⭐⭐       | Emulated                |       |
 | Stream Consumers                                                   | ⭐⭐⭐⭐       | Emulated                |       |
@@ -444,13 +443,13 @@ In the coverage table below, the features are marked with their respective avail
 | Streams                                                            | ⭐⭐⭐⭐       | Emulated                |       |
 | Subscribe to Shard                                                 | ⭐⭐⭐⭐       | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **Kinesis Analytics** (Pro)                                        | [🔍]({{< ref "./coverage/#kinesisanalytics" >}})  |                 |       |
+| **Kinesis Analytics** (Pro)                                        | [🔍]({{< ref "references/coverage#kinesisanalytics" >}})  |                 |       |
 | Applications                                                       | ⭐⭐⭐         | Emulated            |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **Kinesis Analytics v2** (Pro)                                     | [🔍]({{< ref "./coverage/#kinesisanalyticsv2" >}}) |                 |       |
+| **Kinesis Analytics v2** (Pro)                                     | [🔍]({{< ref "references/coverage#kinesisanalyticsv2" >}}) |                 |       |
 | Applications                                                       | ⭐⭐⭐         | Emulated            |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **KMS**                                                            | [🔍]({{< ref "./coverage/#kms" >}}) |                 |       |
+| **KMS**                                                            | [🔍]({{< ref "references/coverage#kms" >}}) |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       | CRUD             |       |
 | Custom Key Stores                                                  | ⭐⭐⭐         | Emulated         |       |
 | Encrypt / Decrypt / Sign Data                                      | ⭐⭐⭐⭐       | Emulated         |       |
@@ -458,11 +457,11 @@ In the coverage table below, the features are marked with their respective avail
 | Key Policies                                                       | \-             |                 |       |
 | Keys                                                               | ⭐⭐⭐⭐       | Emulated         |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD             |       |
-| **Lake Formation** (Pro)                                           | [🔍]({{< ref "./coverage/#lakeformation" >}}) |                 |       |
+| **Lake Formation** (Pro)                                           | [🔍]({{< ref "references/coverage#lakeformation" >}}) |                 |       |
 | Transactions                                                       | \-             |                 |       |
 | Permissions                                                        | ⭐⭐             | CRUD                |       |
 | Resources                                                          | ⭐⭐             | CRUD                |       |
-| [**Lambda**]({{< ref "lambda" >}})                                 | [🔍]({{< ref "./coverage/#lambda" >}}) |                 |       |
+| [**Lambda**]({{< ref "lambda" >}})                                 | [🔍]({{< ref "references/coverage#lambda" >}}) |                 |       |
 | Aliases                                                            | ⭐⭐⭐⭐       | CRUD            |       |
 | Code Signing Configs                                               | ⭐⭐           | CRUD            |       |
 | Custom Images (Pro)                                                | ⭐⭐⭐⭐       | Emulated        |       |
@@ -475,7 +474,7 @@ In the coverage table below, the features are marked with their respective avail
 | [Layers (Pro)]({{< ref "lambda#lambda-layers" >}})                 | ⭐⭐⭐⭐       | Emulated        |       |
 | Permissions                                                        | ⭐⭐⭐⭐       | CRUD            |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| [**Logs**]({{< ref "logs" >}})                                     | [🔍]({{< ref "./coverage/#logs" >}}) |                 |       |
+| [**Logs**]({{< ref "logs" >}})                                     | [🔍]({{< ref "references/coverage#logs" >}}) |                 |       |
 | Destinations                                                       | ⭐⭐⭐⭐       | Emulated       |       |
 | Export Tasks                                                       | ⭐⭐          | CRUD            |       |
 | Log Events                                                         | ⭐⭐⭐⭐       | Emulated        |       |
@@ -487,7 +486,7 @@ In the coverage table below, the features are marked with their respective avail
 | Retention Policies                                                 | ⭐⭐⭐         | CRUD                |       |
 | Subscription Filters                                               | ⭐⭐⭐         | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD               |       |
-| **MediaStore** (Pro)                                               | [🔍]({{< ref "./coverage/#mediastore" >}}) |                 |       |
+| **MediaStore** (Pro)                                               | [🔍]({{< ref "references/coverage#mediastore" >}}) |                 |       |
 | Access Logging                                                     | \-             |                 |       |
 | Container Policies                                                 | \-             |                 |       |
 | Containers                                                         | ⭐⭐⭐         | CRUD                |       |
@@ -495,15 +494,15 @@ In the coverage table below, the features are marked with their respective avail
 | Lifecycle Policies                                                 | \-             |                 |       |
 | Metric Policies                                                    | \-             |                 |       |
 | Tags                                                               | \-             |                 |       |
-| **MediaStore Data** (Pro)                                          | [🔍]({{< ref "./coverage/#mediastore-data" >}}) |                 |       |
+| **MediaStore Data** (Pro)                                          | [🔍]({{< ref "references/coverage#mediastore-data" >}}) |                 |       |
 | Objects                                                            | ⭐⭐⭐         | CRUD            |       |
-| **MWAA (Managed Workflows for Apache Airflow)** (Pro)              | [🔍]({{< ref "./coverage/#mwaa" >}}) |                 |       |
+| **MWAA (Managed Workflows for Apache Airflow)** (Pro)              | [🔍]({{< ref "references/coverage#mwaa" >}}) |                 |       |
 | CLI Tokens                                                         | -              |                 |       |
 | Environments                                                       | ⭐⭐⭐          | Emulated       |       |
 | S3 integration (DAG bucket/paths)                                  | ⭐⭐⭐          | Emulated       |       |
 | Tags                                                               | ⭐⭐⭐⭐        | CRUD           |       |
 | Web Login                                                          | ⭐⭐⭐          | Emulated       |       |
-| [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      | [🔍]({{< ref "./coverage/#neptune" >}}) |                 |       |
+| [**Neptune DB** (Pro)]({{< ref "neptune" >}})                      | [🔍]({{< ref "references/coverage#neptune" >}}) |                 |       |
 | DB Clusters                                                        | ⭐⭐⭐⭐       | Emulated        |       |
 | DB Cluster Endpoints                                               | ⭐⭐⭐⭐       | Emulated        |       |
 | DB Cluster Parameter Groups                                        | ⭐⭐⭐        | CRUD             |       |
@@ -513,20 +512,20 @@ In the coverage table below, the features are marked with their respective avail
 | Global Clusters                                                    | \-             |                 |       |
 | PendingMaintenanceAction                                           | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
-| [**OpenSearch Service**]({{< ref "opensearch" >}})                 | [🔍]({{< ref "./coverage/#opensearch" >}}) |                 |       |
+| [**OpenSearch Service**]({{< ref "opensearch" >}})                 | [🔍]({{< ref "references/coverage#opensearch" >}}) |                 |       |
 | Cross-Cluster Search Connections                                   | \-             |                 |       |
 | OpenSearch Domains                                                 | ⭐⭐⭐⭐       | Emulated        |       |
 | Packages                                                           | \-             |                 |       |
 | Reserved Instances                                                 | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **Organizations** (Pro)                                            | [🔍]({{< ref "./coverage/#organizations" >}}) |                 |       |
+| **Organizations** (Pro)                                            | [🔍]({{< ref "references/coverage#organizations" >}}) |                 |       |
 | Accounts                                                           | ⭐⭐⭐          | CRUD            |        |
 | Handshakes                                                         |  \-            |                 |        |
 | Organization                                                       | ⭐⭐           | CRUD            |        |
 | Organizational Units                                               | ⭐⭐           | CRUD            |        |
 | Policies                                                           | ⭐⭐⭐         | CRUD            |        |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |        |
-| [**QLDB** (Pro)]({{< ref "qldb" >}})                               | [🔍]({{< ref "./coverage/#qldb" >}}) |                 |       |
+| [**QLDB** (Pro)]({{< ref "qldb" >}})                               | [🔍]({{< ref "references/coverage#qldb" >}}) |                 |       |
 | Blocks                                                             | ⭐⭐⭐         | Emulated                 |       |
 | Digests                                                            | ⭐⭐⭐         | CRUD                |       |
 | Journal Kinesis Streams                                            | ⭐⭐⭐         | CRUD                |       |
@@ -534,9 +533,9 @@ In the coverage table below, the features are marked with their respective avail
 | Ledgers                                                            | ⭐⭐⭐⭐       | Emulated        |       |
 | Send Commands / Run Queries                                        | ⭐⭐⭐⭐       | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **QLDB Sessions** (Pro)                                            | [🔍]({{< ref "./coverage/#qldb-session" >}}) |             |
+| **QLDB Sessions** (Pro)                                            | [🔍]({{< ref "references/coverage#qldb-session" >}}) |             |
 | Send Command                                                       | ⭐⭐⭐⭐       | Emulated
-| [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             | [🔍]({{< ref "./coverage/#rds" >}}) |                 |       |
+| [**RDS / Aurora Serverless** (Pro)]({{< ref "rds" >}})             | [🔍]({{< ref "references/coverage#rds" >}}) |                 |       |
 | DB/Cluster Parameter Groups                                        | ⭐⭐⭐         | CRUD            |       |
 | DB/Cluster Snapshots                                               | ⭐⭐⭐         | Emulated        |       |
 | DB Clusters/Instances                                              | ⭐⭐⭐⭐       | Emulated        |       |
@@ -546,11 +545,11 @@ In the coverage table below, the features are marked with their respective avail
 | Option Groups                                                      | ⭐⭐⭐⭐       | CRUD            |       |
 | Postgres AWS Extension Functions                                   | ⭐⭐⭐         | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| **RDS Data** (Pro)                                                 | [🔍]({{< ref "./coverage/#rds-data" >}}) |                 |       |
+| **RDS Data** (Pro)                                                 | [🔍]({{< ref "references/coverage#rds-data" >}}) |                 |       |
 | Execute sql/statements                                             | ⭐⭐⭐         | Emulated               |       |
 | Transactions                                                       | ⭐⭐           | Emulated                |       |
 | Batch Execution                                                    | \-             |                 |       |
-| **Redshift**  (Pro)                                                | [🔍]({{< ref "./coverage/#redshift" >}}) |                 |       |
+| **Redshift**  (Pro)                                                | [🔍]({{< ref "references/coverage#redshift" >}}) |                 |       |
 | Authorize/Revoke Access                                            | \-             |                 |       |
 | Cluster Parameter Groups                                           | ⭐⭐⭐         | Emulated         |       |
 | Cluster Snapshots                                                  | ⭐⭐          | CRUD             |       |
@@ -561,19 +560,19 @@ In the coverage table below, the features are marked with their respective avail
 | Security/Subnet Groups                                             | ⭐⭐⭐         | CRUD             |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
 | Usage Limits                                                       | \-           |                 |       |
-| **Redshift Data** (Pro)                                            | [🔍]({{< ref "./coverage/#redshift-data" >}}) |                 |       |
+| **Redshift Data** (Pro)                                            | [🔍]({{< ref "references/coverage#redshift-data" >}}) |                 |       |
 | Statements                                                         | ⭐⭐⭐         | Emulated          |       |
 | Describe Table                                                     | ⭐⭐⭐         | Emulated         |       |
 | Batch Execution                                                    | \-             |                 |       |
-| **Resource Groups**                                                | [🔍]({{< ref "./coverage/#resource-groups" >}}) |                 |       |
+| **Resource Groups**                                                | [🔍]({{< ref "references/coverage#resource-groups" >}}) |                 |       |
 | Resources                                                          | ⭐⭐⭐         | CRUD                |       |
 | Groups                                                             | ⭐⭐⭐         | CRUD                |       |
 | Group Configurations                                               | ⭐⭐⭐         | CRUD                |       |
 | Tags                                                               | ⭐⭐           | CRUD                |       |
-| **Resource Groups Tagging API**                                    | [🔍]({{< ref "./coverage/#resourcegroupstaggingapi" >}})  |                 |       |
+| **Resource Groups Tagging API**                                    | [🔍]({{< ref "references/coverage#resourcegroupstaggingapi" >}})  |                 |       |
 | Reports                                                            | \-             |                 |       |
 | Tags                                                               | ⭐⭐           | CRUD                |       |
-| [**Route53**]({{< ref "route53" >}})                               | [🔍]({{< ref "./coverage/#route53" >}}) |                 |       |
+| [**Route53**]({{< ref "route53" >}})                               | [🔍]({{< ref "references/coverage#route53" >}}) |                 |       |
 | DNS Server Integration (Pro)                                       | ⭐⭐⭐⭐       | Emulated       |       |
 | Geo Locations                                                      | \-             |                |       |
 | Health Checks                                                      | ⭐⭐           | CRUD           |       |
@@ -583,8 +582,8 @@ In the coverage table below, the features are marked with their respective avail
 | Reusable Delegation Sets                                           | ⭐⭐⭐         | CRUD           |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD           |       |
 | Traffic Policies                                                   | ⭐⭐⭐         | CRUD           |       |
-| **Route53 Resolver**                                               | [🔍]({{< ref "./coverage/#route53resolver" >}}) |                |       |
-| [**S3**]({{< ref "s3" >}})                                         | [🔍]({{< ref "./coverage/#s3" >}}) |                 |       |
+| **Route53 Resolver**                                               | [🔍]({{< ref "references/coverage#route53resolver" >}}) |                |       |
+| [**S3**]({{< ref "s3" >}})                                         | [🔍]({{< ref "references/coverage#s3" >}}) |                 |       |
 | Bucket ACLs                                                        | ⭐⭐⭐         | Emulated       |       |
 | Bucket CORS                                                        | ⭐⭐⭐         | Emulated       |       |
 | Bucket Encryptions                                                 | ⭐⭐⭐         | Emulated       |       |
@@ -605,7 +604,7 @@ In the coverage table below, the features are marked with their respective avail
 | Presigned URLs                                                     | ⭐⭐⭐⭐       | Emulated       |       |
 | Tags                                                               | ⭐⭐⭐⭐       | Emulated       |       |
 | Upload/Download Files                                              | ⭐⭐⭐⭐       | Emulated       |       |
-| **S3 Control**                                                     | [🔍]({{< ref "./coverage/#s3control" >}}) |                 |       |
+| **S3 Control**                                                     | [🔍]({{< ref "references/coverage#s3control" >}}) |                 |       |
 | Access Point Policies                                              | ⭐⭐           | CRUD            |       |
 | Access Points                                                      | ⭐⭐           | CRUD            |       |
 | Jobs                                                               | \-             |                 |       |
@@ -613,7 +612,7 @@ In the coverage table below, the features are marked with their respective avail
 | Multi-region Access Points                                         | \-             |                 |       |
 | Public Access Blocks                                               | ⭐⭐           | CRUD            |       |
 | Storage Lens                                                       | \-             |                 |       |
-| [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     | [🔍]({{< ref "./coverage/#sagemaker" >}}) |                 |       |
+| [**SageMaker** (Pro)]({{< ref "sagemaker" >}})                     | [🔍]({{< ref "references/coverage#sagemaker" >}}) |                 |       |
 | Actions                                                            | \-             |                 |       |
 | Algorithms                                                         | \-             |                 |       |
 | App Image Configs                                                  | \-             |                 |       |
@@ -650,19 +649,19 @@ In the coverage table below, the features are marked with their respective avail
 | Trials                                                             | ⭐⭐           | CRUD            |       |
 | User Profiles                                                      | \-             |                 |       |
 | Workforces / Workteams                                             | \-             |                 |       |
-| **SecretsManager**                                                 | [🔍]({{< ref "./coverage/#secretsmanager" >}}) |                 |       |
+| **SecretsManager**                                                 | [🔍]({{< ref "references/coverage#secretsmanager" >}}) |                 |       |
 | Resource Policies                                                  | ⭐⭐⭐⭐       | CRUD                 |       |
 | Secret Replications                                                | ⭐⭐           | CRUD                |       |
 | Secret Rotations                                                   | ⭐⭐           | CRUD                |       |
 | Secrets                                                            | ⭐⭐⭐⭐       | CRUD                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
-| **Serverless Repo** (Pro)                                          | [🔍]({{< ref "./coverage/#serverlessrepo" >}}) |                 |       |
+| **Serverless Repo** (Pro)                                          | [🔍]({{< ref "references/coverage#serverlessrepo" >}}) |                 |       |
 | Applications                                                       | ⭐⭐⭐         | CRUD                |       |
 | Application Policies                                               | \-             |                |       |
 | CloudFormation templates                                           | ⭐⭐⭐         | Emulated                |       |
-| **Service Discovery (CloudMap)** (Pro)                             | [🔍]({{< ref "./coverage/#servicediscovery" >}}) |                 |       |
+| **Service Discovery (CloudMap)** (Pro)                             | [🔍]({{< ref "references/coverage#servicediscovery" >}}) |                 |       |
 | Namespaces                                                         | ⭐⭐⭐         | CRUD                |       |
-| [**SES**]({{< ref "ses" >}})                                       | [🔍]({{< ref "./coverage/#ses" >}}) |                 |       |
+| [**SES**]({{< ref "ses" >}})                                       | [🔍]({{< ref "references/coverage#ses" >}}) |                 |       |
 | Configuration Sets                                                 | ⭐⭐⭐         | CRUD               |       |
 | Identities                                                         | ⭐⭐           | CRUD               |       |
 | Identity Policies                                                  | ⭐⭐           | CRUD               |       |
@@ -671,18 +670,18 @@ In the coverage table below, the features are marked with their respective avail
 | Receipt Rules                                                      | ⭐⭐⭐         | CRUD               |       |
 | Sending Emails via SMTP (Pro)                                      | ⭐⭐⭐⭐       | Emulated           |       |
 | Templates                                                          | ⭐⭐⭐⭐       | CRUD               |       |
-| **SESv2 (Pro)**                                                   | [🔍]({{< ref "./coverage/#sesv2" >}}) |                 |       |
+| **SESv2 (Pro)**                                                   | [🔍]({{< ref "references/coverage#sesv2" >}}) |                 |       |
 | Identities                                                         | ⭐⭐           | CRUD               |       |
 | Sending Emails via SMTP                                            | ⭐⭐⭐⭐       | Emulated           |       |
 | Templates                                                          | ⭐⭐⭐⭐       | CRUD               |       |
-| **SNS**                                                            | [🔍]({{< ref "./coverage/#sns" >}}) |                 |       |
+| **SNS**                                                            | [🔍]({{< ref "references/coverage#sns" >}}) |                 |       |
 | Platform Applications                                              | ⭐⭐⭐         |  CRUD               |       |
 | Publish/Subscribe to Topics                                        | ⭐⭐⭐⭐       |  Emulated               |       |
 | SMS Attributes / Sandbox Accounts                                  | ⭐⭐           |  CRUD               |       |
 | Subscriptions                                                      | ⭐⭐⭐⭐       |   Emulated             |       |
 | Tags                                                               | ⭐⭐⭐⭐       |   CRUD              |       |
 | Topics                                                             | ⭐⭐⭐⭐       |   CRUD              |       |
-| [**SQS**]({{< ref "sqs" >}})                                       | [🔍]({{< ref "./coverage/#sqs" >}}) |                 |       |
+| [**SQS**]({{< ref "sqs" >}})                                       | [🔍]({{< ref "references/coverage#sqs" >}}) |                 |       |
 | FIFO Queues                                                        | ⭐⭐⭐⭐       | Emulated        |       |
 | Message Deduplication                                              | ⭐⭐⭐⭐       | Emulated        |       |
 | Message Visibility                                                 | ⭐⭐⭐⭐⭐     | Emulated        |       |
@@ -691,7 +690,7 @@ In the coverage table below, the features are marked with their respective avail
 | Query API                                                          | ⭐⭐⭐⭐       | Emulated        |       |
 | Standard Queues                                                    | ⭐⭐⭐⭐       | Emulated        |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD            |       |
-| [**SSM**]({{< ref "systems-manager" >}})                           | [🔍]({{< ref "./coverage/#ssm" >}}) |                 |       |
+| [**SSM**]({{< ref "systems-manager" >}})                           | [🔍]({{< ref "references/coverage#ssm" >}}) |                 |       |
 | Associations                                                       | ⭐⭐⭐         | CRUD                |       |
 | Calendar States                                                    | ⭐⭐           | CRUD                |       |
 | Commands / Command Invocations                                     | ⭐⭐⭐         | CRUD                |       |
@@ -702,39 +701,39 @@ In the coverage table below, the features are marked with their respective avail
 | Parameters                                                         | ⭐⭐⭐⭐       | CRUD                |       |
 | Resource Compliance Summaries                                      | \-             |                 |       |
 | Tags                                                               | ⭐⭐⭐⭐       | CRUD                |       |
-| **StepFunctions**                                                  | [🔍]({{< ref "./coverage/#stepfunctions" >}}) |                 |       |
+| **StepFunctions**                                                  | [🔍]({{< ref "references/coverage#stepfunctions" >}}) |                 |       |
 | Activities                                                         | ⭐⭐⭐⭐       | Emulated                |       |
 | Executions / Execution History                                     | ⭐⭐⭐⭐       | Emulated                |       |
 | State Machines                                                     | ⭐⭐⭐⭐       | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐⭐       | Emulated                |       |
-| **STS**                                                            | [🔍]({{< ref "./coverage/#sts" >}})  |                 |       |
+| **STS**                                                            | [🔍]({{< ref "references/coverage#sts" >}})  |                 |       |
 | Assume Role (Pro)                                                  | ⭐⭐⭐⭐       | Emulated                |       |
 | Get Access Key Info                                                | \-             |                 |       |
 | Get Caller Identity                                                | ⭐⭐⭐⭐       | Emulated                |       |
 | Session Tokens                                                     | ⭐⭐⭐⭐       | CRUD                |       |
-| **Support**                                                        | [🔍]({{< ref "./coverage/#support" >}}) |                 |       |
+| **Support**                                                        | [🔍]({{< ref "references/coverage#support" >}}) |                 |       |
 | Cases                                                              | ⭐⭐⭐         | CRUD                |       |
 | TrustedAdvisorChecks                                               | ⭐⭐           | CRUD                |       |
 | Attachments                                                        | \-             |                 |       |
-| **SWF**                                                            | [🔍]({{< ref "./coverage/#swf" >}}) |                 |       |
+| **SWF**                                                            | [🔍]({{< ref "references/coverage#swf" >}}) |                 |       |
 | Domain                                                             | ⭐⭐⭐         | CRUD                |       |
 | Activity                                                           | ⭐⭐⭐         | CRUD                |       |
 | Workflows                                                          | ⭐⭐⭐         | CRUD                |       |
 | Domains                                                            | ⭐⭐⭐         | CRUD                |       |
-| [**Timestream (query, write)**]({{< ref "timestream" >}}) (Pro)    | [🔍]({{< ref "./coverage/#timestream-query" >}}) |                 |       |
+| [**Timestream (query, write)**]({{< ref "timestream" >}}) (Pro)    | [🔍]({{< ref "references/coverage#timestream-query" >}}) |                 |       |
 | Databases                                                          | ⭐⭐⭐         | Emulated                |       |
 | Run Query                                                          | ⭐⭐⭐         | Emulated                |       |
 | Tables                                                             | ⭐⭐⭐         | Emulated                |       |
 | Tags                                                               | ⭐⭐⭐         | CRUD               |       |
 | Write Records                                                      | ⭐⭐⭐         | Emulated                |       |
-| [**Transfer** (Pro)]({{< ref "transfer" >}})                       | [🔍]({{< ref "./coverage/#transfer" >}}) |                 |       |
+| [**Transfer** (Pro)]({{< ref "transfer" >}})                       | [🔍]({{< ref "references/coverage#transfer" >}}) |                 |       |
 | Accesses                                                           | \-             |                 |       |
 | Security Policies                                                  | \-             |                 |       |
 | Servers                                                            | ⭐⭐⭐         | Emulated                |       |
 | SSH Public Keys                                                    | ⭐⭐⭐         | CRUD                |       |
 | Tags                                                               | \-             |                 |       |
 | Users                                                              | ⭐⭐⭐         | Emulated                |       |
-| [**XRay** (Pro)]({{< ref "xray-tracing" >}})                       | [🔍]({{< ref "./coverage/#xray" >}}) |                 |       |
+| [**XRay** (Pro)]({{< ref "xray-tracing" >}})                       | [🔍]({{< ref "references/coverage#xray" >}}) |                 |       |
 | Encryption Configs                                                 | \-             |                 |       |
 | Groups                                                             | \-           |                 |       |
 | Insights                                                           | \-             |                 |       |
