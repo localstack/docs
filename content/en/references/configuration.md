@@ -277,7 +277,7 @@ python -m localstack.cli.main --profile=dev config show
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SKIP_INFRA_DOWNLOADS` | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
+| `SKIP_INFRA_DOWNLOADS` | | *Deprecated*. Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
