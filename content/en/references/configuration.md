@@ -3,8 +3,6 @@ title: "Configuration"
 weight: 5
 description: >
   Environment variables which affect LocalStack.
-aliases:
-  - /localstack/configuration/
 ---
 
 LocalStack allows for many different configuration options.
@@ -85,12 +83,16 @@ This section covers configuration values that are specific to certain AWS servic
 | - | - | - |
 | `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Only flags for volumes, ports, environment variables and add-hosts are allowed. |
 
-### Bigdata (EMR, Athena, Glue,...)
+### BigData (EMR, Athena, Glue,...)
+
+{{% alert title="Deprecated" color="warning" %}}
+The BigData image has been deprecated alongside its configuration variables. We recommend you to use the BigData Mono Container instead. The BigData image will be removed in LocalStack 2.0.
+{{% /alert %}}
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
-| `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
+| `BIGDATA_DOCKER_NETWORK` | | *Deprecated*. Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
+| `BIGDATA_DOCKER_FLAGS` | | *Deprecated*. Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
 ### DynamoDB
 
