@@ -2,7 +2,7 @@
 title: "Redshift"
 linkTitle: "Redshift"
 categories: ["LocalStack Pro"]
-description: Get started with Amazon Redshift
+description: Get started with Amazon Redshift on LocalStack
 aliases:
   - /aws/redshift/
 ---

@@ -3,7 +3,7 @@ title: "SageMaker"
 linkTitle: "SageMaker"
 categories: ["LocalStack Pro"]
 description: >
-  SageMaker
+  Get started with AWS SageMaker on LocalStack
 aliases:
   - /aws/sagemaker/
 ---

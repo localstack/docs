@@ -2,7 +2,7 @@
 title: "Kinesis"
 categories: ["LocalStack Community"]
 description: >
-  Explaining the different Kinesis providers and how to configure the service.
+  Get started with AWS Kinesis on LocalStack
 aliases:
   - /aws/kinesis/
 ---

@@ -3,7 +3,7 @@ title: "CodeCommit"
 linkTitle: "CodeCommit"
 categories: ["LocalStack Pro"]
 description: >
-  CodeCommit
+  Get started with AWS CodeCommit on LocalStack
 aliases:
   - /aws/codecommit/
 ---

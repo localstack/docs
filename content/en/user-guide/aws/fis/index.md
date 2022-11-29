@@ -3,7 +3,7 @@ title: "Fault Injection Simulator (FIS)"
 linkTitle: "Fault Injection Simulator (FIS)"
 categories: ["LocalStack Pro"]
 description: >
-  Fault Injection Simulator (FIS)
+  Get started with Fault Injection Simulator (FIS) on LocalStack
 aliases:
   - /aws/fis/
 ---

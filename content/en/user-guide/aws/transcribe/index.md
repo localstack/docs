@@ -2,7 +2,7 @@
 title: "Transcribe"
 linkTitle: "Transcribe"
 categories: []
-description: Amazon Transcribe
+description: Get started with Amazon Transcribe on LocalStack
 aliases:
   - /aws/transcribe/
 ---

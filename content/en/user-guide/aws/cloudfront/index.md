@@ -3,7 +3,7 @@ title: "CloudFront"
 linkTitle: "CloudFront"
 categories: ["LocalStack Pro"]
 description: >
-  CloudFront
+  Get started with AWS CloudFront on LocalStack
 aliases:
   - /aws/cloudfront/
 ---

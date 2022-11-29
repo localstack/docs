@@ -2,7 +2,7 @@
 title: "CloudFormation"
 tags: ["cloudformation", "infrastructure-as-code"]
 description: >
-  Use AWS CloudFormation with LocalStack
+  Get started with AWS Cloudformation on LocalStack
 aliases:
   - /aws/cloudformation/
 ---

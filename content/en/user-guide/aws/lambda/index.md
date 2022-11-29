@@ -3,7 +3,7 @@ title: "Lambda"
 linkTitle: "Lambda"
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
-  Supporting local development and testing of AWS Lambdas on LocalStack
+  Get started with local development and testing of AWS Lambdas on LocalStack
 aliases:
   - /aws/lambda/
 ---

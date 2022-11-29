@@ -3,7 +3,7 @@ title: "Amplify"
 linkTitle: "Amplify"
 categories: ["LocalStack Pro"]
 description: >
-  Amplify
+  Get started with AWS Amplify on LocalStack
 aliases:
   - /aws/amplify/
 ---

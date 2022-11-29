@@ -3,7 +3,7 @@ title: "Elastic Container Registry (ECR)"
 linkTitle: "Elastic Container Registry (ECR)"
 categories: ["LocalStack Pro"]
 description: >
-  Elastic Container Registry (ECR)
+  Get started with Elastic Container Registry (ECR) on LocalStack
 aliases:
   - /aws/elastic-container-registry/
 ---

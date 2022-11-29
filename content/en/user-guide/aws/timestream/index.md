@@ -3,7 +3,7 @@ title: "Timestream"
 linkTitle: "Timestream"
 categories: ["LocalStack Pro"]
 description: >
-  Timestream
+  Get started with Amazon Timestream on LocalStack
 aliases:
   - /aws/timestream/
 ---

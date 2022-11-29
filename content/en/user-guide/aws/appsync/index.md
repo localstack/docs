@@ -3,7 +3,7 @@ title: "AppSync"
 linkTitle: "AppSync"
 categories: ["LocalStack Pro"]
 description: >
-  AppSync
+  Get started with AppSync on LocalStack
 aliases:
   - /aws/appsync/
 ---

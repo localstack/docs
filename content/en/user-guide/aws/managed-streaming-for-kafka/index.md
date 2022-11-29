@@ -3,7 +3,7 @@ title: "Managed Streaming for Kafka (MSK)"
 linkTitle: "Managed Streaming for Kafka (MSK)"
 categories: ["LocalStack Pro"]
 description: >
-  Managed Streaming for Kafka (MSK)
+  Get started with AWS Managed Streaming for Kafka (MSK) on LocalStack
 aliases:
   - /aws/managed-streaming-for-kafka/
 ---

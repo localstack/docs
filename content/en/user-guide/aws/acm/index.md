@@ -3,7 +3,7 @@ title: "AWS Certificate Manager (ACM)"
 linkTitle: "AWS Certificate Manager"
 categories: ["LocalStack Community"]
 description: >
-  Get started with AWS Certificate Manager (ACM)
+  Get started with AWS Certificate Manager (ACM) on LocalStack
 aliases:
   - /aws/acm/
 ---

@@ -3,7 +3,7 @@ title: "Route 53"
 linkTitle: Route53
 categories: ["LocalStack Pro", "DNS"]
 description: >
-  Route 53
+  Get started with Amazon Route 53 on LocalStack
 aliases:
   - /aws/route53/
 ---

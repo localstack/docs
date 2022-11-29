@@ -3,7 +3,7 @@ title: "API Gateway V2"
 linkTitle: "API Gateway V2"
 categories: ["LocalStack Pro"]
 description: >
-  API Gateway V2
+  Get started with Amazon API Gateway V2 on LocalStack
 aliases:
   - /aws/apigatewayv2/
 ---

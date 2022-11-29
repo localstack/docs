@@ -2,7 +2,7 @@
 title: "AppConfig"
 linkTitle: "AppConfig"
 categories: ["LocalStack Pro"]
-description: Get started with AWS AppConfig
+description: Get started with AWS AppConfig on LocalStack
 aliases:
   - /aws/appconfig/
 ---

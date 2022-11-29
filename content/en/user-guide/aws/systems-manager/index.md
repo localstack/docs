@@ -2,7 +2,7 @@
 title: "Systems Manager (SSM)"
 linkTitle: "Systems Manager (SSM)"
 categories: ["LocalStack Pro"]
-description: AWS Systems Manager (SSM)
+description: Get started with AWS Systems Manager (SSM) on LocalStack
 aliases:
   - /aws/systems-manager/
 ---

@@ -2,7 +2,7 @@
 title: "Amazon MQ"
 categories: ["LocalStack Pro"]
 description: >
-  Amazon MQ (MQ)
+  Get started with Amazon MQ on LocalStack
 aliases:
   - /aws/mq/
 ---

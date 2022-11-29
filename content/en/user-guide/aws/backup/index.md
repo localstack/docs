@@ -3,7 +3,7 @@ title: "Backup"
 linkTitle: "Backup"
 categories: ["LocalStack Pro"]
 description: >
-  Backup
+  Get started with AWS Backup on LocalStack
 aliases:
   - /aws/backup/
 ---

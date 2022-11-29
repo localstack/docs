@@ -3,7 +3,7 @@ title: "Elastic MapReduce (EMR)"
 linkTitle: "Elastic MapReduce (EMR)"
 categories: ["LocalStack Pro"]
 description: >
-  Elastic MapReduce (EMR)
+  Get started with Elastic MapReduce (EMR) on LocalStack
 aliases:
   - /aws/elastic-mapreduce/
 ---

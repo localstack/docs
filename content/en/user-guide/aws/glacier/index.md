@@ -3,7 +3,7 @@ title: "Glacier"
 linkTitle: "Glacier"
 categories: ["LocalStack Pro"]
 description: >
-  Getting started with Amazon S3 Glacier
+  Get started with with Amazon S3 Glacier on LocalStack
 aliases:
   - /aws/glacier/
 ---
