@@ -25,6 +25,61 @@ The following guiding principles apply to writing integration tests:
 -   Create factory fixtures only for top-level resources (like Queues, Topics, Lambdas, Tables).
 -   Avoid sleeps! Use `poll_condition`, `retry`, or `threading.Event` internally to control concurrent flows.
 
+We use [pytest](https://docs.pytest.org) for our testing framework.
+Older tests were written using the unittest framework, but its use is discouraged.
+
+If your test matches the pattern `tests/integration/**/test_*.py` it will be picked up by the integration test suite.
+
+### Functional-style tests
+
+You can write functional style tests by defining a function with the prefix `test_` with basic asserts:
+
+```python
+def test_something():
+  assert True is not False
+```
+
+### Class-style tests
+
+Or you can write class-style tests by grouping tests that logically belong together in a class:
+
+```python
+class TestMyThing:
+  def test_something(self):
+    assert True is not False
+```
+
+### Fixtures
+
+We use the pytest fixture concept, and provide several fixtures you can use when writing AWS tests. For example, to inject a Boto client for SQS, you can specify the `sqs_client` in your test method:
+
+```python
+class TestMyThing:
+  def test_something(self, sqs_client):
+    assert len(sqs_client.list_queues()["QueueUrls"]) == 0
+```
+
+We also provide fixtures for certain disposable resources, like buckets:
+
+```bash
+def test_something_on_a_bucket(s3_bucket):
+  s3_bucket
+  # s3_bucket is a boto s3 bucket object that is created before
+  # the test runs, and removed after it returns.
+```
+
+Another pattern we use is the [factory as fixture](https://docs.pytest.org/en/6.2.x/fixture.html#factories-as-fixtures) pattern.
+
+```bash
+def test_something_on_multiple_buckets(s3_create_bucket):
+  bucket1 = s3_create_bucket()
+  bucket2 = s3_create_bucket()
+  # both buckets will be deleted after the test returns
+```
+
+You can find the list of available fixtures in the [fixtures.py](https://github.com/localstack/localstack/blob/master/localstack/testing/pytest/fixtures.py).
+
+
 ## Running the test suite
 
 To run the tests you can use the make target and set the `TEST_PATH` variable.
@@ -54,7 +109,7 @@ You can disable this behavior by setting the environment variable `TEST_SKIP_LOC
 
 ### Test against Amazon Web Services
 
-It can be useful to run an integration test against the real AWS cloud using your credentials. To run the integration tests, we prefer you to use an AWS sandbox account, so that you don't accidentally run tests against your production account.
+Ideally every integration is tested against real AWS. To run the integration tests, we prefer you to use an AWS sandbox account, so that you don't accidentally run tests against your production account.
 
 #### Creating an AWS sandbox account
 
@@ -107,59 +162,10 @@ AWS_DEFAULT_REGION=us-east-1;
 AWS_PROFILE=ls-sandbox
 ```
 
-## Writing a test
+#### Create a snapshot test
 
-We use [pytest](https://docs.pytest.org) for our testing framework.
-Older tests were written using the unittest framework, but its use is discouraged.
+Once you verified that your test is running against AWS, you can record snapshots for the test run. A snapshot records the response from AWS and can be later on used to compare the response of LocalStack. 
 
-If your test matches the pattern `tests/integration/**/test_*.py` it will be picked up by the integration test suite.
+Snapshot tests helps to increase the parity with AWS and to raise the confidence in the service implementations. Therefore, snapshot tests are prefered over normal integrations tests. 
 
-### Functional-style tests
-
-You can write functional style tests by defining a function with the prefix `test_` with basic asserts:
-
-```python
-def test_something():
-  assert True is not False
-```
-
-### Class-style tests
-
-Or you can write class-style tests by grouping tests that logically belong together in a class:
-
-```python
-class TestMyThing:
-  def test_something(self):
-    assert True is not False
-```
-
-### Fixtures
-
-We use the pytest fixture concept, and provide several fixtures you can use when writing AWS tests.
-For example, to inject a Boto client for SQS, you can specify the `sqs_client` in your test method:
-
-```python
-class TestMyThing:
-  def test_something(self, sqs_client):
-    assert len(sqs_client.list_queues()["QueueUrls"]) == 0
-```
-
-We also provide fixtures for certain disposable resources, like buckets:
-
-```bash
-def test_something_on_a_bucket(s3_bucket):
-  s3_bucket
-  # s3_bucket is a boto s3 bucket object that is created before
-  # the test runs, and removed after it returns.
-```
-
-Another pattern we use is the [factory as fixture](https://docs.pytest.org/en/6.2.x/fixture.html#factories-as-fixtures) pattern.
-
-```bash
-def test_something_on_multiple_buckets(s3_create_bucket):
-  bucket1 = s3_create_bucket()
-  bucket2 = s3_create_bucket()
-  # both buckets will be deleted after the test returns
-```
-
-You can find the list of available fixtures in the [fixtures.py](https://github.com/localstack/localstack/blob/master/localstack/testing/pytest/fixtures.py).
+Please check our subsequent guide on [Parity Testing]({{< ref "parity-testing" >}}) for a detailed explanation on how to write AWS validated snapshot tests.
