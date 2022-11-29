@@ -43,10 +43,6 @@ You can access LocalStack from an alternative computer, by exposing port `4566`
 
 ### How do I resolve connection issues with proxy blocking access to LocalStack's BigData image?
 
-{{% alert title="Deprecated" color="warning" %}}
-The BigData image has been deprecated. We recommend you to use the BigData Mono Container instead. The BigData image will be removed in LocalStack 2.0.
-{{% /alert %}}
-
 A company proxy can lead to connection issues. To allow access to the `localstack/bigdata` image, use the following Docker configuration in your `docker-compose.yml` file:
 
 ```yaml

@@ -27,7 +27,7 @@ $ DEBUG=1 localstack start
 | `PERSISTENCE` | `0` (default) | Enable persistence. See [persistence mechanism]({{< ref "persistence-mechanism" >}}) and [filesystem layout]({{< ref "filesystem" >}}). |
 | `PERSIST_ALL` | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
-| `INIT_SCRIPTS_PATH` | `/some/path` | Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d` (Deprecated). |
+| `INIT_SCRIPTS_PATH` | `/some/path` | *Deprecated*. Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
 | `LS_LOG` | `trace`, `trace-internal`, `debug`, `info`, `warn`, `error`, `warning`| Specify the log level. Currently overrides the `DEBUG` configuration. `trace` for detailed request/response, `trace-internal` for internal calls, too. |
 | `EXTERNAL_SERVICE_PORTS_START` | `4510` (default) | Start of [the external service port range]({{< ref "external-ports" >}}) (included). |
 | `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of [the external service port range]({{< ref "external-ports" >}}) (excluded). |
@@ -83,16 +83,12 @@ This section covers configuration values that are specific to certain AWS servic
 | - | - | - |
 | `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Only flags for volumes, ports, environment variables and add-hosts are allowed. |
 
-### BigData (EMR, Athena, Glue,...)
-
-{{% alert title="Deprecated" color="warning" %}}
-The BigData image has been deprecated alongside its configuration variables. We recommend you to use the BigData Mono Container instead. The BigData image will be removed in LocalStack 2.0.
-{{% /alert %}}
+### BigData (EMR, Athena, Glue)
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `BIGDATA_DOCKER_NETWORK` | | *Deprecated*. Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
-| `BIGDATA_DOCKER_FLAGS` | | *Deprecated*. Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
+| `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
+| `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
 ### DynamoDB
 
