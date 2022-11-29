@@ -12,7 +12,7 @@ cascade:
 
 With S3, you have unlimited storage with your data stored in buckets. A bucket refers to a directory, while an object is just another term for a file. Every object (file) stores the name of the file (key), the contents (value), a version ID and the associated metadata. You can also use S3 to host a static website, to serve static content. It might include HTML, CSS, JavaScript, images, and other assets that make up your website.
 
-LocalStack Community supports the S3 API, which means you can use the same API calls to interact with S3 in LocalStack as you would with AWS. Using LocalStack, you can create and manage S3 buckets and objects locally, use AWS SDKs and third-party integrations to work with S3, and test your applications without making any significant alterations. LocalStack also supports the creation of S3 buckets with static website hosting enabled.
+LocalStack supports the S3 API, which means you can use the same API calls to interact with S3 in LocalStack as you would with AWS. Using LocalStack, you can create and manage S3 buckets and objects locally, use AWS SDKs and third-party integrations to work with S3, and test your applications without making any significant alterations. LocalStack also supports the creation of S3 buckets with static website hosting enabled.
 
 In this tutorial, we will deploy a static website using an S3 bucket over a locally emulated AWS infrastructure on LocalStack. We will use Terraform to automate the creation & management of AWS resources by declaring them in the HashiCorp Configuration Language (HCL). We will also learn about `tflocal`, a CLI wrapper created by LocalStack, that allows you to run Terraform locally against LocalStack.
 
@@ -23,7 +23,6 @@ For this tutorial, you will need:
 - [LocalStack Community](https://github.com/localstack/localstack)
 - [Terraform](https://www.terraform.io/downloads.html)
 - [awslocal](https://github.com/localstack/awscli-local)
-- [tflocal](https://pypi.org/project/terraform-local/)
 
 ## Creating a static website
 
@@ -126,31 +125,17 @@ provider "aws" {
 }
 ```
 
-We would also need to avoid issues with routing and authentication (as we do not need it). Therefore we need to supply some general parameters:
-
-```hcl 
-provider "aws" {
-  region                      = "us-east-1"
-  access_key                  = "fake"
-  secret_key                  = "fake"
-  
-  # only required for non virtual hosted-style endpoint use case.
-  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs#s3_force_path_style
-  skip_credentials_validation = true
-  skip_metadata_api_check     = true
-  skip_requesting_account_id  = true
-  s3_force_path_style         = true
-}
-```
-
-Additionally, we have to point the individual services to LocalStack. We can do this by specifying the `endpoints` parameter for each service, that we intend to use. Our final `provider.tf` file should look like this:
+We would also need to avoid issues with routing and authentication (as we do not need it). Therefore we need to supply some general parameters. Additionally, we have to point the individual services to LocalStack. We can do this by specifying the `endpoints` parameter for each service, that we intend to use. Our `provider.tf` file should look like this:
 
 ```hcl
 provider "aws" {
   access_key                  = "test"
   secret_key                  = "test"
   region                      = "us-east-1"
-  s3_force_path_style         = false
+
+  # only required for non virtual hosted-style endpoint use case.
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs#s3_force_path_style
+  s3_use_path_style           = false
   skip_credentials_validation = true
   skip_metadata_api_check     = true
   skip_requesting_account_id  = true
@@ -331,6 +316,6 @@ $ tflocal apply
 
 ## Conclusion
 
-In this tutorial, we have seen how to use LocalStack to create an S3 bucket and configure it to serve a static website. We have also seen how you can use Terraform to provision AWS infrastructure in an emulated local environment using LocalStack. You can use [LocalStack Pro](https://app.localstack.cloud) to view the created buckets and files on the LocalStack Resource dashboard for S3 and upload more files or perform other operations on the bucket. Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without creating any real AWS resources.
+In this tutorial, we have seen how to use LocalStack to create an S3 bucket and configure it to serve a static website. We have also seen how you can use Terraform to provision AWS infrastructure in an emulated local environment using LocalStack. You can use the [LocalStack App](https://app.localstack.cloud) to view the created buckets and files on the LocalStack Resource dashboard for S3 and upload more files or perform other operations on the bucket. Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without creating any real AWS resources.
 
 The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website). Further documentation for S3 is available on our [S3 documentation]({{<ref "s3" >}}).
