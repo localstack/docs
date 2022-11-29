@@ -57,7 +57,7 @@ The following environment variables can be configured:
 Make sure that LocalStack is installed and successfully started with the required services before running the example
 
 {{< command >}}
-$ curl http://localhost:4566/health
+$ curl http://localhost:4566/_localstack/health
 {{< /command >}}
 
 The CDK command line ships with a sample app generator to run a quick test for getting started.

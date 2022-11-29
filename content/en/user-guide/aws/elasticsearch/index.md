@@ -111,7 +111,7 @@ $ curl http://my-domain.us-east-1.es.localhost.localstack.cloud:4566
 Or the health endpoint:
 
 {{< command >}}
-$ curl -s http://my-domain.us-east-1.es.localhost.localstack.cloud:4566/_cluster/health | jq .
+$ curl -s http://my-domain.us-east-1.es.localhost.localstack.cloud:4566/_cluster/_localstack/health | jq .
 {
   "cluster_name": "elasticsearch",
   "status": "green",
@@ -163,7 +163,7 @@ $ awslocal es create-elasticsearch-domain --domain-name my-domain \
 Once the domain processing is complete, you can access the cluster:
 
 {{< command >}}
-$ curl http://localhost:4566/my-custom-endpoint/_cluster/health
+$ curl http://localhost:4566/my-custom-endpoint/_cluster/_localstack/health
 {{< / command >}}
 
 
@@ -301,7 +301,7 @@ $ awslocal es describe-elasticsearch-domain --domain-name mylogs-2
 
 4. Check the cluster health endpoint and create indices:
 {{< command >}}
-$ curl mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/_cluster/health
+$ curl mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/_cluster/_localstack/health
 {"cluster_name":"es-docker-cluster","status":"green","timed_out":false,"number_of_nodes":1,"number_of_data_nodes":1,"active_primary_shards":0,"active_shards":0,"relocating_shards":0,"initializing_shards":0,"unassigned_shards":0,"delayed_unassigned_shards":0,"number_of_pending_tasks":0,"number_of_in_flight_fetch":0,"task_max_waiting_in_queue_millis":0,"active_shards_percent_as_number":100.0}[~]
 {{< /command >}}
 

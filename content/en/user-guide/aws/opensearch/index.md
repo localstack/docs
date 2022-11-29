@@ -154,7 +154,7 @@ $ curl http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566
 Or the health endpoint:
 
 {{< command >}}
-$ curl -s http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health | jq .
+$ curl -s http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/_localstack/health | jq .
 {
   "cluster_name": "opensearch",
   "status": "green",
@@ -206,7 +206,7 @@ $ awslocal opensearch create-domain --domain-name my-domain \
 Once the domain processing is complete, you can access the cluster:
 
 {{< command >}}
-$ curl http://localhost:4566/my-custom-endpoint/_cluster/health
+$ curl http://localhost:4566/my-custom-endpoint/_cluster/_localstack/health
 {{< / command >}}
 
 
@@ -381,7 +381,7 @@ $ awslocal opensearch describe-domain --domain-name my-domain
 
 4. Check the cluster health endpoint and create indices:
 {{< command >}}
-$ curl my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health | jq
+$ curl my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/_localstack/health | jq
 {
   "name": "host-pc",
   "cluster_name": "opensearch",
