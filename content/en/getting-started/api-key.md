@@ -32,6 +32,10 @@ LocalStack expects your API key to be present in the environment variable `LOCAL
 $ export LOCALSTACK_API_KEY=<your-api-key>
 {{< / command >}}
 
+{{< alert >}}
+If you are using LocalStack with an API Key, you need to pull `localstack/localstack-pro` image as part of your LocalStack setup. Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
+{{< /alert >}}
+
 ### Starting LocalStack via CLI
 
 To start LocalStack using the LocalStack CLI, you don't have to perform any further steps (after exporting the environment variable).
@@ -52,7 +56,7 @@ $ docker run \
   -p 4566:4566 \
   -p 4510-4559:4510-4559 \
   -e LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:- } \
-  localstack/localstack
+  localstack/localstack-pro
 {{< / command >}}
 
 For more information about starting LocalStack, take a look at our general [Getting Started]({{< ref "getting-started" >}}) guide.

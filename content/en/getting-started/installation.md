@@ -145,9 +145,9 @@ $ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
 {{< / command >}}
 
 {{< alert title="Notes" >}}
-- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
-  If you want to use a specific version of LocalStack, use the appropriate tag:
-  `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
+- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version. If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
+
+- If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup. Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
 
@@ -177,8 +177,9 @@ $ docker-compose up
 {{< / command >}}
 
 {{< alert title="Notes" >}}
-- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
-  If you want to use a specific version, set the appropriate localstack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
+- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version. If you want to use a specific version, set the appropriate localstack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
+
+- If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in the `docker-compose.yml` file. Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
 
