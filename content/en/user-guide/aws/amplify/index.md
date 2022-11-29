@@ -1,7 +1,7 @@
 ---
 title: "Amplify"
 linkTitle: "Amplify"
-categories: ["LocalStack Pro", "Stub"]
+categories: ["LocalStack Pro"]
 description: >
   Amplify
 aliases:
