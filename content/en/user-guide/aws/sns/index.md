@@ -2,7 +2,7 @@
 title: "Simple Notification Service (SNS)"
 linkTitle: "Simple Notification Service (SNS)"
 categories: ["LocalStack Community"]
-description: Get started with Amazon Simple Notification Service (Amazon SNS)
+description: Get started with Amazon Simple Notification Service (SNS) on LocalStack
 aliases:
   - /aws/sns/
 ---

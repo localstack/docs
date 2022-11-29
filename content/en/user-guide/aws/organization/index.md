@@ -2,7 +2,7 @@
 title: "Organizations"
 linkTitle: "AWS Organizations"
 categories: ["LocalStack Pro"]
-description: Get started with AWS Organizations
+description: Get started with AWS Organizations on LocalStack
 aliases:
   - /aws/organization/
 ---

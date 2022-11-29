@@ -3,7 +3,7 @@ title: "Quantum Ledger Database (QLDB)"
 linkTitle: "Quantum Ledger Database (QLDB)"
 categories: ["LocalStack Pro"]
 description: >
-  Quantum Ledger Database (QLDB)
+  Get started with Quantum Ledger Database (QLDB) on LocalStack
 aliases:
   - /aws/qldb/
 ---

@@ -3,7 +3,7 @@ title: "Athena"
 linkTitle: "Athena"
 categories: ["LocalStack Pro"]
 description: >
-  Athena
+  Get started with AWS Athena on LocalStack
 aliases:
   - /aws/athena/
 ---

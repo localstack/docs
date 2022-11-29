@@ -3,7 +3,7 @@ title: "Neptune"
 linkTitle: "Neptune"
 categories: ["LocalStack Pro"]
 description: >
-  Amazon Neptune
+  Get started with Amazon Neptune on LocalStack
 aliases:
   - /aws/neptune/
 ---

@@ -3,7 +3,7 @@ title: "XRay Tracing"
 linkTitle: "XRay Tracing"
 categories: ["LocalStack Pro"]
 description: >
-  XRay Tracing
+  Get started with XRay Tracing on LocalStack
 aliases:
   - /aws/xray-tracing/
 ---

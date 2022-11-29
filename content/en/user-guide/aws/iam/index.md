@@ -3,7 +3,7 @@ title: "Identity and Access Management (IAM)"
 linkTitle: "Identity and Access Management (IAM)"
 categories: ["LocalStack Pro"]
 description: >
-  Identity and Access Management (IAM)
+  Get started with AWS Identity and Access Management (IAM) on LocalStack
 aliases:
   - /aws/iam/
 ---

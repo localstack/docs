@@ -3,7 +3,7 @@ title: "IoT"
 linkTitle: "IoT"
 categories: ["LocalStack Pro"]
 description: >
-  AWS IoT
+  Get started with AWS IoT on LocalStack
 aliases:
   - /aws/iot/
 ---

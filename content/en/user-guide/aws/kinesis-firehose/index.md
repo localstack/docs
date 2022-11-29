@@ -3,7 +3,7 @@ title: "Kinesis Data Firehose"
 linkTitle: "Kinesis Data Firehose"
 categories: ["LocalStack Community"]
 description: >
-  Kinesis Data Firehose
+  Get started with AWS Kinesis Data Firehose on LocalStack
 aliases:
   - /aws/kinesis-firehose/
 ---

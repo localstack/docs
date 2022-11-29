@@ -2,7 +2,7 @@
 title: "Elastic Compute Cloud (EC2)"
 linkTitle: "Elastic Compute Cloud (EC2)"
 categories: ["LocalStack Pro"]
-description: Amazon Elastic Compute Cloud (Amazon EC2)
+description: Get started with Amazon Elastic Compute Cloud (Amazon EC2) on LocalStack
 aliases:
   - /aws/elastic-compute-cloud/
 ---

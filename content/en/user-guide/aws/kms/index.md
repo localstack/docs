@@ -3,7 +3,7 @@ title: "Key Management Service (KMS)"
 linkTitle: "Key Management Service (KMS)"
 categories: ["LocalStack Community"]
 description: >
-  Key Management Service (KMS)
+  Get started with Amazon Key Management Service (KMS) on LocalStack
 aliases:
   - /aws/kms/
 ---

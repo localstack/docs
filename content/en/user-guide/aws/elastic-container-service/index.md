@@ -3,7 +3,7 @@ title: "Elastic Container Service (ECS)"
 linkTitle: "Elastic Container Service (ECS)"
 categories: ["LocalStack Pro"]
 description: >
-  Elastic Container Service (ECS)
+  Get started with Elastic Container Service (ECS) on LocalStack
 aliases:
   - /aws/elastic-container-service/
 ---

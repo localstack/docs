@@ -3,7 +3,7 @@ title: "Kinesis Data Analytics"
 linkTitle: "Kinesis Data Analytics"
 categories: ["LocalStack Pro"]
 description: >
-  Kinesis Data Analytics
+  Get started with AWS Kinesis Data Analytics on LocalStack
 aliases:
   - /aws/kinesis-analytics/
 ---

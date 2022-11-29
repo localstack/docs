@@ -3,7 +3,7 @@ title: "OpenSearch Service"
 linkTitle: "OpenSearch Service"
 categories: ["LocalStack Community"]
 description: >
-  Amazon OpenSearch Service (successor to Amazon Elasticsearch Service)
+  Get started with Amazon OpenSearch Service on LocalStack
 aliases:
   - /aws/opensearch/
 ---

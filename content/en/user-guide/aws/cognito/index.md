@@ -3,7 +3,7 @@ title: "Cognito"
 linkTitle: "Cognito"
 categories: ["LocalStack Pro"]
 description: >
-  Cognito
+  Get started with AWS Cognito on LocalStack
 aliases:
   - /aws/cognito/
 ---

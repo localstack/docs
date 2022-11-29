@@ -2,7 +2,7 @@
 title: "Step Functions"
 linkTitle: "Step Functions"
 categories: ["LocalStack Community"]
-description: Get started with AWS Step Functions
+description: Get started with AWS Step Functions on LocalStack
 aliases:
   - /aws/stepfunctions/
 ---

@@ -3,7 +3,7 @@ title: "S3"
 linkTitle: "S3"
 categories: ["LocalStack Community"]
 description: >
-  S3
+  Get started with Amazon S3 on LocalStack
 aliases:
   - /aws/s3/
 ---

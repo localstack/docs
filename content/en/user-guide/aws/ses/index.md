@@ -2,7 +2,7 @@
 title: "Simple Email Service (SES)"
 linkTitle: "Simple Email Service (SES)"
 categories: ["LocalStack Community", "LocalStack Pro"]
-description: Amazon Simple Email Service (Amazon SES)
+description: Get started with Amazon Simple Email Service (SES) on LocalStack
 aliases:
   - /aws/ses/
 ---

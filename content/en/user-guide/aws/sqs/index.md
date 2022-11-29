@@ -2,7 +2,7 @@
 title: "Simple Queue Service (SQS)"
 categories: ["LocalStack Community"]
 description: >
-  Explaining the different SQS providers and how to configure the service.
+  Get started with Amazon Simple Queue Service (SQS) on LocalStack
 aliases:
   - /aws/sqs/
 ---

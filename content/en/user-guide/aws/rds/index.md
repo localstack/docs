@@ -3,7 +3,7 @@ title: "Relational Database Service (RDS)"
 linkTitle: "Relational Database Service (RDS)"
 categories: ["LocalStack Pro"]
 description: >
-  Relational Database Service (RDS)
+  Get started with Relational Database Service (RDS) on LocalStack
 aliases:
   - /aws/rds/
 ---

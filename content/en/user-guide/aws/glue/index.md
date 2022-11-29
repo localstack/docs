@@ -3,7 +3,7 @@ title: "Glue"
 linkTitle: "Glue"
 categories: ["LocalStack Pro"]
 description: >
-  Glue
+  Get started with Amazon Glue on LocalStack
 aliases:
   - /aws/glue/
 ---

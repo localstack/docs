@@ -3,7 +3,7 @@ title: "Elastic Kubernetes Service (EKS)"
 linkTitle: "Elastic Kubernetes Service (EKS)"
 categories: ["LocalStack Pro"]
 description: >
-  Elastic Kubernetes Service (EKS)
+  Get started with Elastic Kubernetes Service (EKS) on LocalStack
 aliases:
   - /aws/elastic-kubernetes-service/
 ---
