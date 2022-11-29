@@ -49,8 +49,7 @@ class TestMyThing:
 
 ### Fixtures
 
-We use the pytest fixture concept, and provide several fixtures you can use when writing AWS tests.
-For example, to inject a Boto client for SQS, you can specify the `sqs_client` in your test method:
+We use the pytest fixture concept, and provide several fixtures you can use when writing AWS tests. For example, to inject a Boto client for SQS, you can specify the `sqs_client` in your test method:
 
 ```python
 class TestMyThing:
