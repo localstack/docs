@@ -283,7 +283,7 @@ python -m localstack.cli.main --profile=dev config show
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
 | `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments)
-| `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
+| `MOCK_UNIMPLEMENTED` | | *Deprecated*. Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
 | `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
