@@ -4,6 +4,8 @@ linkTitle: "Transfer"
 categories: ["LocalStack Pro"]
 description: >
   Transfer
+aliases:
+  - /aws/transfer/
 ---
 
 The AWS Transfer API provides the ability to create FTP(S) servers to make files in S3 buckets accessible directly via FTP.

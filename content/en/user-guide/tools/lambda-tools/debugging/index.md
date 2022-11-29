@@ -4,6 +4,8 @@ weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Attach a debugger to your Lambda functions from your IDE.
+aliases:
+  - /tools/lambda-tools/debugging/
 ---
 
 ## Overview
@@ -23,6 +25,7 @@ More examples and tooling support for local Lambda debugging (including support 
 
 * [Debugging Python lambdas](#debugging-python-lambdas)
 * [Debugging JVM lambdas](#debugging-jvm-lambdas)
+* [Debugging Node.js lambdas](#debugging-nodejs-lambdas)
 * [Useful Links](#useful-links)
 
 ## Debugging Python lambdas
@@ -228,6 +231,93 @@ then add the following configuration:
 Now to debug your lambda function, click on the `Debug` icon with
 `Remote JVM on LS Debug` configuration selected, and then invoke your
 lambda function.
+
+## Debugging Node.js lambdas
+
+### Configure LocalStack for remote Node.js debugging
+
+`LAMBDA_REMOTE_DOCKER` has to be disabled, and `LAMBDA_DOCKER_FLAGS` needs to enable the debugger using `NODE_OPTIONS`:
+
+```yaml
+#docker-compose.yml
+
+services:
+  localstack:
+    ...
+    environment:
+      ...
+      - LAMBDA_REMOTE_DOCKER=0
+      - LAMBDA_DOCKER_FLAGS=-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229
+```
+
+
+### Configuring Visual Studio Code for remote Node.js debugging
+
+Add a new task by creating/modifying the `.vscode/tasks.json` file:
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+          "label": "Wait Remote Debugger Server",
+          "type": "shell",
+          "command": "while [[ -z $(docker ps | grep :9229) ]]; do sleep 1; done; sleep 1;"
+        }
+    ]
+}
+```
+
+Create a new `launch.json` file or edit an existing one from the `Run and Debug` tab,
+then add the following configuration:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "address": "127.0.0.1",
+            "localRoot": "${workspaceFolder}",
+            "name": "Attach to Remote Node.js",
+            "port": 9229,
+            "remoteRoot": "/var/task/",
+            "request": "attach",
+            "type": "node",
+            "preLaunchTask": "Wait Remote Debugger Server"
+        },
+    ]
+}
+```
+
+A simple example of a Node.js lambda, `myindex.js` could look like this:
+```js
+exports.handler = async (event) => {
+    console.log(event);
+    const response = {
+        statusCode: 200,
+        body: "ok",
+    };
+    return response;
+};
+```
+
+Create the lambda function using:
+{{< command >}}
+$ awslocal lambda create-function --function-name func1 \
+    --code S3Bucket="__local__",S3Key="$(pwd)/" \
+    --handler myindex.handler \
+    --runtime nodejs14.x \
+    --role cool-stacklifter
+{{< /command >}}
+
+Now to debug your lambda function, click on the `Debug` icon with
+`Attach to Remote Node.js` configuration selected, and then invoke your
+lambda function:
+
+{{< command >}}
+$ awslocal lambda invoke --function-name func1 test.lambda.log --payload '{"hello":"world"}'
+{{< /command >}}
+
 
 ## Resources
 

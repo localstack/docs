@@ -4,6 +4,8 @@ linkTitle: "Athena"
 categories: ["LocalStack Pro"]
 description: >
   Athena
+aliases:
+  - /aws/athena/
 ---
 LocalStack Pro ships with built-in support for [Athena](https://aws.amazon.com/athena), Amazon's serverless data warehouse and analytics platform. Athena uses [Presto](https://prestodb.github.io/) under the covers, and your Athena instance will be automatically configured with a Hive metastore that connects seamlessly to the LocalStack S3 API. That is, you can easily connect your local S3 buckets and query data directly from S3 via the powerful Athena query API.
 

@@ -3,6 +3,8 @@ title: "Integration tests"
 weight: 7
 description: >
   How to run and write integration tests.
+aliases:
+  - /developer-guide/integration-tests/
 ---
 
 LocalStack has an extensive set of [integration tests](https://github.com/localstack/localstack/tree/master/tests/integration). This document describes how to run and write integration tests.

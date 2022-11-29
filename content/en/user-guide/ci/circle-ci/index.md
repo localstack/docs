@@ -4,6 +4,8 @@ tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 4
 description: >
   Use LocalStack in [Circle CI](https://circleci.com/)
+aliases:
+  - /ci/circle-ci/
 ---
 
 This guide describes how to start and use LocalStack in your CircleCI pipelines.

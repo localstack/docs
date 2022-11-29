@@ -4,6 +4,8 @@ linkTitle: "AppSync"
 categories: ["LocalStack Pro"]
 description: >
   AppSync
+aliases:
+  - /aws/appsync/
 ---
 
 Basic support for AppSync is included in LocalStack Pro. The local AppSync API allows you to spin up local GraphQL APIs and directly expose your data sources (e.g., DynamoDB tables) to external clients.

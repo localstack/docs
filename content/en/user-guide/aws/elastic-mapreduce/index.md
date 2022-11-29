@@ -4,6 +4,8 @@ linkTitle: "Elastic MapReduce (EMR)"
 categories: ["LocalStack Pro"]
 description: >
   Elastic MapReduce (EMR)
+aliases:
+  - /aws/elastic-mapreduce/
 ---
 
 LocalStack Pro allows running data analytics workloads locally via the [EMR](https://aws.amazon.com/emr) API. EMR utilizes various tools in the [Hadoop](https://hadoop.apache.org/) and [Spark](https://spark.apache.org) ecosystem, and your EMR instance is automatically configured to connect seamlessly to the LocalStack S3 API.

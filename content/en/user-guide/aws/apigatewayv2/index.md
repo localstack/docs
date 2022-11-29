@@ -4,6 +4,8 @@ linkTitle: "API Gateway V2"
 categories: ["LocalStack Pro"]
 description: >
   API Gateway V2
+aliases:
+  - /aws/apigatewayv2/
 ---
 
 The Pro version has support for API Gateway V2 (in addition to V1), which allows for creation of local HTTP as well as WebSocket APIs - for long-lived connections and bi-directional communication between the API and your clients.

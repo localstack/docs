@@ -1,9 +1,11 @@
 ---
 title: "Amplify"
 linkTitle: "Amplify"
-categories: ["LocalStack Pro", "Stub"]
+categories: ["LocalStack Pro"]
 description: >
   Amplify
+aliases:
+  - /aws/amplify/
 ---
 
 AWS Amplify is a JavaScript-based development framework that comprises libraries, UI components, and a standard CLI interface to build and deploy Web and Mobile applications. Amplify allows developers to build, deploy, and host static websites, single-page applications, and full-stack serverless web applications. Amplify is an abstraction over some popular AWS Services like DyanmoDB, Cognito, AppSync, Lambda, S3, and more.

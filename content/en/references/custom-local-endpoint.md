@@ -4,6 +4,8 @@ linkTitle: "Custom endpoint for LocalStack Web UI"
 weight: 95
 description: >
   Overview of the configurable custom local endpoint for the LocalStack Web UI
+aliases:
+  - /localstack/custom-local-endpoint/
 ---
 
 You can configure the local endpoint URL under which LocalStack is accessible from the LocalStack Web UI. To configure your local endpoint URL, navigate to your [Account settings](https://app.localstack.cloud/account/settings), to configure the local endpoint URL (defaults to https://localhost.localstack.cloud). Additionally, you can configure the local endpoint URL to view your resources if you are running LocalStack on a different machine (see instructions below).

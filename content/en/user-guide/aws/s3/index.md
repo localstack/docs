@@ -4,6 +4,8 @@ linkTitle: "S3"
 categories: ["LocalStack Community"]
 description: >
   S3
+aliases:
+  - /aws/s3/
 ---
 
 AWS S3 is a managed scalable object storage service that can be used to store any amount of data for a wide range of use cases. 

@@ -3,6 +3,8 @@ title: "Transcribe"
 linkTitle: "Transcribe"
 categories: []
 description: Amazon Transcribe
+aliases:
+  - /aws/transcribe/
 ---
 
 LocalStack Community ships with an offline speech-to-text service powered by [Vosk](https://alphacephei.com/vosk/).

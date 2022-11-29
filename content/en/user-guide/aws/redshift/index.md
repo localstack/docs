@@ -3,6 +3,8 @@ title: "Redshift"
 linkTitle: "Redshift"
 categories: ["LocalStack Pro"]
 description: Get started with Amazon Redshift
+aliases:
+  - /aws/redshift/
 ---
 
 Redshift is a cloud-based data warehouse solution which allows end users to aggregate huge volumes of data & parallel processing of data. Redshift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data. The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.

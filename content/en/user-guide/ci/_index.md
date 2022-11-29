@@ -7,6 +7,8 @@ description: >
 cascade:
   type: docs
 slug: ci
+aliases:
+  - /ci/
 ---
 
 LocalStack enables organizations to automate their application testing and integration process through DevOps practices, such as continuous integration (CI). To meet your organizational needs, LocalStack lets you move away from complicated AWS testing and staging environments by enabling a key component of testing and delivering cloud-native applications. 

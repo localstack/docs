@@ -4,6 +4,8 @@ linkTitle: "Neptune"
 categories: ["LocalStack Pro"]
 description: >
   Amazon Neptune
+aliases:
+  - /aws/neptune/
 ---
 
 The Neptune API provides a graph database to store nodes and edges that can be accessed via Apache TinkerPop and Gremlin queries.

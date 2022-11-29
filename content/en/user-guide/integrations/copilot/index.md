@@ -4,6 +4,8 @@ tags: ["continuous-delivery"]
 weight: 5
 description: >
   Build, Release and Operate Containerized Applications on AWS with AWS Copilot CLI
+aliases:
+  - /integrations/copilot/
 ---
 
 ## Overview

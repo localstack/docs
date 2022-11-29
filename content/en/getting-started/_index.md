@@ -6,6 +6,8 @@ description: >
   This quick start gives an overview of how to get LocalStack up and running on your local machine and understand the ecosystem
 cascade:
   type: docs
+aliases:
+  - /get-started/
 ---
 
 [LocalStack](https://localstack.cloud) is a cloud service emulator that runs in a single container on your laptop or in your CI environment. With LocalStack, you can run your AWS applications or Lambdas entirely on your local machine without connecting to a remote cloud provider!

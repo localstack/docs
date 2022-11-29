@@ -4,6 +4,8 @@ weight: 8
 description: >
   Getting started with LocalStack Extension for Docker Desktop
 tags: ["docker-desktop", "docker"]
+aliases:
+  - /tools/docker-desktop-extension/
 ---
 
 The LocalStack Extension for Docker Desktop enables developers working with LocalStack to operate their LocalStack instance via Docker Desktop, including checking service status, instance logs, and configure profiles. To install the LocalStack Extension for Docker Desktop, you just need to have [Docker Desktop installed on your machine](https://www.docker.com/products/docker-desktop).

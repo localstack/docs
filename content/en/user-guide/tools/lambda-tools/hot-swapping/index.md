@@ -5,6 +5,8 @@ weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Hot code swapping for Lambda functions using LocalStack's code mounting
+aliases:
+  - /tools/lambda-tools/hot-swapping/
 ---
 
 | Complexity   | ★☆☆☆☆             |

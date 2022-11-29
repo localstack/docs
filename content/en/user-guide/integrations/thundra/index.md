@@ -4,6 +4,8 @@ tags: ["thundra", "tracing", "observability"]
 weight: 6
 description: >
   Monitor and debug your AWS Lambda functions with LocalStack and [Thundra](https://thundra.io).
+aliases:
+  - /integrations/thundra/
 ---
 
 <img src="thundra-logo.svg" width="600px" alt="Thundra logo">
