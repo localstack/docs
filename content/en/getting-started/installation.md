@@ -122,7 +122,7 @@ $ localstack start
 
 - By default, LocalStack uses the image tagged `latest` that is cached on your machine, and will **not** pull the latest image automatically from Docker Hub (i.e., the image needs to be pulled manually if needed).
 
-- From 2020-07-11 onwards, the default image `localstack/localstack` in Docker Hub refers to the "light version", which has some large dependency files like Elasticsearch removed (and lazily downloads them, if required). (Note that the `localstack/localstack-light` image alias may get removed in the future). In case you need the full set of dependencies, the `localstack/localstack-full` image can be used instead. Please also refer to the [`USE_LIGHT_IMAGE` environment variable]({{< ref "configuration#core" >}}).
+- The default image `localstack/localstack` in DockerHub refers to the community version of LocalStack. The `localstack/localstack-pro` image refers to the Pro version of LocalStack. Previously we maintained `localstack-light` and `localstack-full` images which has been deprecated and will be removed with the LocalStack 2.0 release.
 {{< /alert >}}
 
 ### LocalStack Cockpit

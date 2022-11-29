@@ -37,18 +37,6 @@ $ awslocal kinesis put-record --stream-name samplestream --data '{"symbol":"TEST
 }
 {{< / command >}}
 
-## Kinesis backend providers
-
-LocalStack supports two third-party providers for Kinesis:
-* [kinesis-mock](https://github.com/etspaceman/kinesis-mock)
-* [kinesalite](https://github.com/mhart/kinesalite)
-
-By default `kinesis-mock` is used.
-Your desired provider can be set with the environment variable `KINESIS_PROVIDER`.
-For instance, if you wish to use `kinesalite` you'd pass the environment variable as `KINESIS_PROVIDER=kinesalite`.
-While both providers are supported, we recommend working with `kinesis-mock`, as it is more actively maintained.
-Moreover, the [Cloud Pods]({{< ref "cloud-pods" >}}) feature provides support **only** for `kinesis-mock`. 
-
 ## Configuration
 
 

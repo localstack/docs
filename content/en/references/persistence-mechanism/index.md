@@ -28,7 +28,7 @@ Note that persistence is a Pro feature, therefore the `LOCALSTACK_API_KEY` must 
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
 ```
 
-Once the application has been set and configured properly, the `/health` endpoint of LocalStack will indicate whether the persistence mechanism has been initialized successfully.
+Once the application has been set and configured properly, the `/_localstack/health` endpoint of LocalStack will indicate whether the persistence mechanism has been initialized successfully.
 ```json
 "features": {
     "persistence": "initialized"

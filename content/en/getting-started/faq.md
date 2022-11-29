@@ -98,7 +98,7 @@ To resolve this, set `HOSTNAME_EXTERNAL` for correct response values for endpoin
           - localhost.localstack.cloud
   sdkstack:
     image: ubuntu
-    command: ["bash", "-c", "apt update && apt install -y curl && sleep 5 && curl -v http://localhost.localstack.cloud:4566/health"]
+    command: ["bash", "-c", "apt update && apt install -y curl && sleep 5 && curl -v http://localhost.localstack.cloud:4566/_localstack/health"]
 ...
 ```
 
@@ -130,7 +130,7 @@ You can add in the volume `~/.docker/config.json:/config.json` where the `con
 The easiest way to check if LocalStack Pro or Enterprise is activated is to check the health endpoint of LocalStack for a list of the running services:
 
 {{< command >}}
-$ curl localhost:4566/health | jq
+$ curl localhost:4566/_localstack/health | jq
 {{< / command >}}
 
 If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack Pro or Enterprise has started successfully. If your API key is invalid, you will see an error message like this in the logs of LocalStack:
