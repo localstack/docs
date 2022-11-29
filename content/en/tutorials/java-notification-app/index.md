@@ -624,11 +624,9 @@ You can also navigate to the MailHog via the user-interface: [`localhost:8025`](
 
 ## Conclusion
 
-With this simple Spring Boot application, we have demonstrated how you can provision CloudFormation infrastructure for SNS & SQS subscriptionson LocalStack, receive SQS messages, and SES messages with the AWS Java SDK. Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the sent email messages via your LocalStack container. The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).
-
 In this tutorial, we have demonstrated, how you can:
 
-- Use CloudFormation to provision infrastructure for SNS & SQS subscriptionson on LocalStack
+- Use CloudFormation to provision infrastructure for SNS & SQS subscriptions on LocalStack
 - Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages. 
 
 Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the email messages sent by SES. The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).
