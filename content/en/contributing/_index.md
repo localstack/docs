@@ -8,6 +8,7 @@ cascade:
   type: docs
 aliases:
   - /developer-guide/
+hide_readingtime: true
 ---
 
 We welcome contributions to LocalStack, under the [Contributor LicenseAgreement (CLA)][1].

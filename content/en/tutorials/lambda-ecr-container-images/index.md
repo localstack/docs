@@ -4,8 +4,7 @@ linkTitle: "Deploying Lambda container image locally with Elastic Container Regi
 weight: 2
 description: >
   You can create & deploy your Lambda functions using Lambda container image by packaging your code and dependencies in a Docker image! Learn how you can create a Lambda container image using a local Elastic Container Registry (ECR) in LocalStack.
-cascade:
-  type: docs
+type: tutorials
 ---
 
 AWS Lambda is a serverless compute system that allows you to break down your application into many independent functions and deploy them as singular units that can run on the AWS ecosystem. Lambda is tightly integrated with other AWS services and allows you to write your serverless functions in different programming languages suited for various supported runtimes. You can deploy Lambda functions programmatically by uploading a ZIP file containing your code and dependencies or packaging your code in a container image and deploying it via Elastic Container Registry (ECR).

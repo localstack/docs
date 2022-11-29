@@ -7,6 +7,7 @@ cascade:
   type: docs
 aliases:
   - /localstack/
+hide_readingtime: true
 ---
 
 The documents in this section are dedicated to the internals, the configuration options, and the limitations of LocalStack.\
