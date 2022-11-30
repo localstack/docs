@@ -151,15 +151,9 @@ Options:
 
 ### list
 
-The `list` command displays all the available Cloud Pods.
-By default, it only shows the pods that have been uploaded to the platform.
-The `-l` option will also show the locally available pods. 
-The `-p` option will list all the available public Cloud Pods.
-
-**Synopsis**
-
 List all available Cloud Pods. It shows by default all the pods that are available for a single user and its organization. If the `--public` option is passed to the commands, it shows only the Cloud Pods that have been marked as public, and therefore, available to all licensed users.
 
+**Synopsis**
 ```
 Usage: python -m localstack.cli.main pod list [OPTIONS]
 
