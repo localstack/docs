@@ -8,4 +8,5 @@ cascade:
   type: docs
 slug: user-guide
 hide_readingtime: true
+hide_feedback: true
 ---
