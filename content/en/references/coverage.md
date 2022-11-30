@@ -1157,7 +1157,7 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDeployment (Pro) </td>
+      <td>GetDeployment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1825,6 +1825,10 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeScalingActivities (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeScheduledActions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -1956,10 +1960,6 @@ aliases:
     </tr>
     <tr>
       <td>DescribeNotificationConfigurations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeScalingActivities</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -5367,14 +5367,6 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AllocateHosts (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AllocateIpamPoolCidr (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AssignIpv6Addresses</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6003,6 +5995,10 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DisableImageDeprecation (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DisableTransitGatewayRouteTablePropagation</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6277,6 +6273,14 @@ aliases:
     </tr>
   </tbody>
   <tbody class="collapse ec2-notimplemented">     <tr>
+      <td>AllocateHosts</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AllocateIpamPoolCidr</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ApplySecurityGroupsToClientVpnTargetNetwork</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6974,10 +6978,6 @@ aliases:
     </tr>
     <tr>
       <td>DisableFastSnapshotRestores</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DisableImageDeprecation</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8275,6 +8275,10 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DeleteUser (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeCacheClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -8378,10 +8382,6 @@ aliases:
     </tr>
     <tr>
       <td>DeleteSnapshot</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteUser</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -11021,7 +11021,7 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListGroups</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11101,7 +11101,7 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListUsers <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListUsers</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13367,6 +13367,14 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateApplicationPresignedUrl (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateApplicationSnapshot (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13418,14 +13426,6 @@ aliases:
     </tr>
     <tr>
       <td>AddApplicationVpcConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateApplicationPresignedUrl</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateApplicationSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15199,6 +15199,10 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DeleteOrganizationalUnit (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeletePolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -15350,10 +15354,6 @@ aliases:
     </tr>
     <tr>
       <td>DeclineHandshake</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteOrganizationalUnit</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19461,11 +19461,11 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateConfigurationSet</td>
+      <td>CreateConfigurationSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateConfigurationSetEventDestination</td>
+      <td>CreateConfigurationSetEventDestination <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19478,6 +19478,14 @@ aliases:
     </tr>
     <tr>
       <td>CreateTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteConfigurationSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteConfigurationSetEventDestination <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19628,14 +19636,6 @@ aliases:
     </tr>
     <tr>
       <td>CreateReceiptFilter</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteConfigurationSet</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteConfigurationSetEventDestination</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
