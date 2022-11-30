@@ -15,59 +15,92 @@ This reference provides descriptions and example commands for LocalStack Cloud P
 Use the following syntax to run `localstack pod` commands from your terminal window:
 
 {{< command >}}
-$ localstack pod [command] [options]
+$ localstack pod [OPTIONS] COMMAND [ARGS]
 {{< / command >}}
 
-where `command` specifies the operation you want to perform with your Cloud Pods, e.g., `pull` or `push`, and `options` specifies the optional flag.
-For example, you can attach a specific message to a snapshot using the `-m` option while doing a `commit` operation.
-
-## Configuration
-
-The CRUD commands exposed with the Cloud Pods CLI expect a `--name <pod_name>` option to specify the pod's name.
-Users can avoid specifying a pod name at every command by setting a global config with the `config` command.
-
-For instance, the following command:
-
-```
-localstack config --name my_pod
-```
-will implicitly pass a pod name to all subsequent CLI commands.
-Such a configuration will be saved locally on the host machine in a JSON file (e.g., in `~/.localstack/cloudpods/pods-config.json`).
+where `COMMAND` specifies the operation you want to perform with your Cloud Pods, e.g., `save` or `load`, `OPTIONS` specify the optional flags, and `ARGS` specifies the command arguments. Examples will follow.
 
 ## Commands
 
-### commit
+### save
+The `save` command is used to create a new version of a Cloud Pod. Pro users have the option to dump the Cloud Pod locally or upload it to the LocalStack platform.
+To dump the state locally, simply pass a local file URI as an argument to the `save` command. For instance, the following command:
+```
+localstack pod save file://<path_to_disk>/my-pod
+```
+will create a zip file named _my-pod_ to the specified location on the disk.
+To use the Cloud Pods platform, simply specify the Cloud Pod's name as an argument, e.g.:
+```
+localstack pod save my-pod
+```
+This command creates a version of _my-pod_ and registers it to our platform.
+Pushing already existing pod results in creating a new version of it and, eventually, uploading it to the platform.
+Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the `--services` option.
 
-The `commit` command creates a snapshot of your LocalStack running instance and locally saves it on the host machine.
+Users who want to make a Cloud Pod accessible outside their organization can mark it as *public* with the command `localstack pod push --name <pod_name> --visibility public`.
+Please note that this command does not create a new version and requires a version to be already registered with the platform.
 
 **Synopsis**
 ```
-Commit a snapshot of the LocalStack running instance.
+Usage: python -m localstack.cli.main pod save [OPTIONS] URL_OR_NAME
+
+  Save the current state of the LocalStack container in a Cloud Pod. A Cloud Pod can be exported
+  locally or registered within the LocalStack Pod's platform (with a Pro license). An optional
+  message can be attached to any Cloud Pod. Furthermore, one could decide to export only a subset
+  of services with the optional --service option.
+
+  To export on a local path run the following command:
+  localstack pod save file://<path_on_disk>/<pod_name>
+
+  The output will be a <pod_name> zip file in the specified directory. This Cloud Pod instance can
+  be restored at any point in time with the load command.
+
+  To use the LocalStack Pod's platform, the desired Pod's name only will suffice, e,g.:
+
+  localstack pod save <pod_name>
+
+  Please be aware that each following save invocation with the same name will result in a new
+  version being created.
 
 Options:
-  -m, --message TEXT   Add a comment describing the snapshot.
-  -n, --name TEXT      Name of the Cloud Pod.
-  -s, --services TEXT  Comma-delimited list of services to push in the pods (all, by default).
+  -m, --message TEXT   Add a comment describing this Cloud Pod's version
+  -s, --services TEXT  Comma-delimited list of services to push in the Cloud Pod (all by default)
+  --visibility TEXT    Set the visibility of the Cloud Pod [`public` or `private`]. Does not
+                       create a new version
+  --help               Show this message and exit.
 ```
 
-### config
+**Community Usage**
+Community users have access to a restricted version of the `save` command. 
+In particular, they can simply invoke the `save` command with a file URI as an argument.
 
-The `config` command saves some configuration values that apply to all the subsequent CLI commands.
-For instance with `localstack pod config --name <my_name>` users can avoid specifying a pod name for other commands like `pull` or `push`.
-Users can specify a list of services with the following command:
-```
-localstack pod config --services sqs,sns
-```
-The following CRUD operation will only take into account the selected service and not the entire LocalStack application state.
+### load
 
 **Synopsis**
-
 ```
-Configure a set of parameters for all Cloud Pods commands.
+Usage: python -m localstack.cli.main pod load [OPTIONS] URL_OR_NAME
+
+  Load a Cloud Pod into the running LocalStack container. Users can import Pods different sources:
+  community users can store and retrieve Pods from local storage or any provided HTTP URL;
+  licensed users can take advantage of the LocalStack Pod's platform to ease the storage,
+  versioning, and retrieval of Pods.
+
+  The --source option specifies a URI scheme that point to the Cloud Pod's resources to import.
+
+  We support the following protocols:
+  localstack pod load file://<path_to_disk>
+  localstack pod load https://<some_url>
+  localstack pod load git://<user>/<repo>/<local_repo_path>
+
+  The latter option is merely a shortcut for --source
+  https://raw.githubusercontent.com/<user>/<repo>/<branch>/<path>
+
+  Importing via a provided --source is available for all users. Licensed users can omit this
+  option and simply provide a name for their Cloud Pods.
 
 Options:
-  -n, --name TEXT      Name of the Cloud Pod.
-  -s, --services TEXT  Comma-delimited list of services or `all` to enable all (default).
+  -s, --strategy TEXT  Inject strategy (merge, overwrite, deep-merge).
+  --help               Show this message and exit.
 ```
 
 ### delete
