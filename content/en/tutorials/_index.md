@@ -7,7 +7,7 @@ description: >
 cascade:
   type: docs
 slug: tutorials
-hide_readingtime: true
+hide_feedback: true
 ---
 
 <!-- this div is used as a reference point of where to apply custom style to the list of subcontent -->
