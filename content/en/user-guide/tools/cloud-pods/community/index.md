@@ -1,6 +1,6 @@
 ---
 title: "Community Cloud Pods"
-weight: 3
+weight: 4
 categories: ["LocalStack", "Tools", "Persistence", "CLI"]
 description: >
   Get started with LocalStack Community Cloud Pods to to save and load your container state at will

@@ -18,7 +18,7 @@ With the LocalStack Cloud Pods command-line interface (CLI), the `pod` command, 
 
 LocalStack Cloud Pods CLI is directly available with the LocalStack installation, and no further installation is required to get started. If you are a Pro user, we recommend you to export the `LOCALSTACK_API_KEY` as an environment variable to allow you to use the full spectrum of LocalStack Cloud Pods feature. 
 
-This tutorial is intended for licensed users. Community users can replicate a similar workflow by leveraging the `save` and `load` commands available to them. For more details, look at our [Community Cloud Pods guide]({{< ref "community" >}}).
+This tutorial is intended for licensed users. The Community users can replicate a similar workflow by leveraging the `save` and `load` commands available to them. For more details, look at our [Community Cloud Pods guide]({{< ref "community" >}}).
 
 ## Basic example
 
