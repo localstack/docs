@@ -10,7 +10,7 @@ Harness CI allows you to create software pipelines that will enable you to check
 
 ## Harness CI Pipelines
 
-Harness CI pipelines implements [Service Dependency](https://docs.harness.io/article/vo4sjbd09g-configure-service-dependency-step-settings) to make a detached service accessible to all steps in a stage. Service dependencies can run workflows for integration testing or Docker-in-Docker (`dind`) services. LocalStack can be run as a Service Dependency in a Harness CI pipeline.
+Harness CI pipelines implements [Service Dependency](https://docs.harness.io/article/vo4sjbd09g-configure-service-dependency-step-settings) to make a detached service accessible to all steps in a stage. Service dependencies can run workflows for integration testing or Docker-in-Docker (`dind`) services. LocalStack can be run as a Service Dependency in a Harness CI pipeline. The pipeline can be either setup in the user-interface, or [configured using YAML](#yaml-configuration).
 
 To get started, create a new pipeline in Harness CI:
 
@@ -20,7 +20,7 @@ To get started, create a new pipeline in Harness CI:
 - Select **Cloud** in the **Infrastructure** tab.
 - Click **Add Service Dependency** in the **Execution** tab.
 - In the **Configure Service Dependency** dialogue box, enter `localstack` as the name of the service dependency.
-- Click **Container Registry** fild and select **Docker Hub** connector. 
+- Click **Container Registry** field and select **Docker Hub** connector. 
 - Enter the desired LocalStack Docker image in the **Image** field.
 - Select **Optional Configuration** to add an environment variable named **LOCALSTACK_API_KEY** to have an API key configured.
 - Click on **Apply Changes**.
@@ -57,4 +57,4 @@ stages:
                     command: until curl --fail --silent --max-time 1 http://localstack:4566/health; do sleep 2; done
 ```
 
-To run the pipeline, click **Save** and click **Run Pipeline**. You will be able to see LocalStack Service Dependency logs that verify that the LocalStack Container is healthy and running.
+To run the pipeline, click **Save** and then **Run Pipeline**. You will be able to see LocalStack Service Dependency logs that verify that the LocalStack Container is healthy and running.
