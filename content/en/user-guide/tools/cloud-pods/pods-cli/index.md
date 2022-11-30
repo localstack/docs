@@ -75,7 +75,7 @@ Options:
 Community users have access to a restricted version of the `save` command. 
 In particular, they can simply invoke the `save` command with a file URI as an argument.
 
-### pull
+### load
 
 The `load` command is the inverse operation of `save`: it retrieves the content of a previously stored Cloud Pod either from the local file system or from the Cloud Pod's platform, and injects it into the application runtime.
 
@@ -119,15 +119,18 @@ Community users can load a Cloud Pod from a local file URI, from an URL or from 
 
 ### delete
 
-The `delete` command let users delete their remote or local Cloud Pods.
+The `delete` command let users delete a Cloud Pod stored in the remote platform.
 
 **Synopsis**
 ```
-Delete a Cloud Pod.
+Usage: python -m localstack.cli.main pod delete [OPTIONS]
+
+  Delete a Cloud Pod register on the remove LocalStack Pod's platform. This command will cancel
+  all the versions of a created Pod and won't be reversible.
 
 Options:
-  -n, --name TEXT  Name of the Cloud Pod.
-  -l, --local      Delete only the local Cloud Pod, leaving the remote copy intact
+  -n, --name TEXT  Name of the Cloud Pod  [required]
+  --help           Show this message and exit.
 ```
 
 ### inspect
@@ -136,11 +139,14 @@ The `inspect` command simply lets the user inspect the content of a Cloud Pod.
 
 **Synopsis**
 ```
-Inspect the contents of a Cloud Pod.
+Usage: python -m localstack.cli.main pod inspect [OPTIONS]
+
+  Inspect the contents of a Cloud Pod
 
 Options:
-  -n, --name TEXT    Name of the Cloud Pod.
+  -n, --name TEXT    Name of the Cloud Pod  [required]
   -f, --format TEXT  Format (curses, rich, json).
+  --help             Show this message and exit.
 ```
 
 ### list
@@ -152,11 +158,21 @@ The `-p` option will list all the available public Cloud Pods.
 
 **Synopsis**
 
-List all available Cloud Pods.
+List all available Cloud Pods. It shows by default all the pods that are available for a single user and its organization. If the `--public` option is passed to the commands, it shows only the Cloud Pods that have been marked as public, and therefore, available to all licensed users.
+
 ```
+Usage: python -m localstack.cli.main pod list [OPTIONS]
+
+  List all the Cloud Pods available for a single user, or for an entire organization, if the user
+  is part of one.
+
+  With the --public flag, it lists the all the available public Cloud Pods. A public Cloud Pod is
+  available across the boundary of a user ond/or organization. In other words, any public Cloud
+  Pod can be injected by any other user holding a LocalStack Pro (or above) license.
+
 Options:
-  -l, --local   List also locally available Cloud Pods
-  -p, --public  List all public Cloud Pods.
+  -p, --public  List all the available public Cloud Pods
+  --help        Show this message and exit.
 ```
 
 ### versions
@@ -165,8 +181,13 @@ The `versions` command simply lists all the available versions of a Cloud Pod.
 
 **Synopsis**
 ```
-List all available versions for a Cloud Pod.
+Usage: python -m localstack.cli.main pod versions [OPTIONS]
+
+  List the versions available for a Cloud Pod. Each invocation of the save command is going to
+  create a new version for a named Cloud Pod, is a Pod with such name already does exist in the
+  LocalStack Pods platform.
 
 Options:
-  -n, --name TEXT  Name of the Cloud Pod.
+  -n, --name TEXT  Name of the Cloud Pod  [required]
+  --help           Show this message and exit.
 ```
