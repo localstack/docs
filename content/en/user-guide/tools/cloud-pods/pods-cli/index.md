@@ -18,30 +18,40 @@ Use the following syntax to run `localstack pod` commands from your terminal win
 $ localstack pod [OPTIONS] COMMAND [ARGS]
 {{< / command >}}
 
-where `COMMAND` specifies the operation you want to perform with your Cloud Pods, e.g., `save` or `load`, `OPTIONS` specify the optional flags, and `ARGS` specifies the command arguments. Examples will follow.
+In the above syntax:
+- `COMMAND` specifies the operation you want to perform with your Cloud Pods (`save` or `load`).
+- `OPTIONS` specifies the optional flags.
+- `ARGS` specifies the command arguments.
 
 ## Commands
 
-### save
-The `save` command is used to create a new version of a Cloud Pod. Pro users have the option to dump the Cloud Pod locally or upload it to the LocalStack platform.
-To dump the state locally, simply pass a local file URI as an argument to the `save` command. For instance, the following command:
-```
-localstack pod save file://<path_to_disk>/my-pod
-```
-will create a zip file named _my-pod_ to the specified location on the disk.
-To use the Cloud Pods platform, simply specify the Cloud Pod's name as an argument, e.g.:
-```
-localstack pod save my-pod
-```
-This command creates a version of _my-pod_ and registers it to our platform.
-Pushing already existing pod results in creating a new version of it and, eventually, uploading it to the platform.
-Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the `--services` option.
+The following section lists the available commands for the Cloud Pods CLI.
 
-Users who want to make a Cloud Pod accessible outside their organization can mark it as *public* with the command `localstack pod push --name <pod_name> --visibility public`.
-Please note that this command does not create a new version and requires a version to be already registered with the platform.
+### `save`
 
-**Synopsis**
-```
+The `save` command creates a new version of a Cloud Pod. Pro users can dump the Cloud Pod locally or upload it to the LocalStack platform. To dump the state locally, pass a local file URI as an argument to the `save` command. For instance, the following command:
+
+{{< command >}}
+$ localstack pod save file://<path_to_disk>/my-pod
+{{< / command >}}
+
+The above command will create a zip file named `my-pod` to the specified location on the disk. To use the Cloud Pods platform, specify the Cloud Pod's name as an argument, for example:
+
+{{< command >}}
+$ localstack pod save my-pod
+{{< / command >}}
+
+The above command creates a version of `my-pod` and registers it to our platform. Pushing already existing pod results in creating a new version and, eventually, uploading it to the platform. Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the `--services` option.
+
+Users who want to make a Cloud Pod accessible outside their organization can mark it as **public** with the following command:
+
+{{< command >}}
+$ localstack pod push --name <pod_name> --visibility public
+{{< / command >}}
+
+The above command does not create a new version and requires a version already registered with the platform. The CLI manual for the `save` command is as follows:
+
+```bash
 Usage: python -m localstack.cli.main pod save [OPTIONS] URL_OR_NAME
 
   Save the current state of the LocalStack container in a Cloud Pod. A Cloud Pod can be exported
@@ -70,23 +80,23 @@ Options:
   --help               Show this message and exit.
 ```
 
-**Community Usage**
+{{% alert %}}
+Community users have access to a restricted version of the `save` command.  In particular, they can simply invoke the `save` command with a file URI as an argument.
+{{% /alert %}}
 
-Community users have access to a restricted version of the `save` command. 
-In particular, they can simply invoke the `save` command with a file URI as an argument.
+### `load`
 
-### load
+The `load` command is the inverse operation of `save`. It retrieves the content of a previously stored Cloud Pod from the local file system or the Cloud Pod's platform and injects it into the application runtime.
 
-The `load` command is the inverse operation of `save`: it retrieves the content of a previously stored Cloud Pod either from the local file system or from the Cloud Pod's platform, and injects it into the application runtime.
+The `load` command takes an argument that can either be a URI or a Cloud Pods name. While the first option is available to all users, the second is valid only for licensed ones.
 
-The `load` command takes an argument that can either be a URI or a Cloud Pods name. Only the first option is available to all users, while the second one is valid only for licensed ones.
+By default, the injecting state updates the application runtime at a service level. Using the merge injection strategy, the state of all services specified in the injecting state is reflected precisely in the application runtime, while all other active services remain unchanged.
 
-By default, the injecting state updates the application runtime at a service level. By using the merge injection strategy, the state of all services specified in the injecting state is reflected exactly in the application runtime, whilst all other active services remain unchanged.
+The `--strategy` option can be used to change such default injection behavior. More specifically, the overwrite strategy will ensure the application runtime is an exact instance of the injecting state. The deep-merge strategy will perform a fine-grain merge of the injecting state into the application runtime.
 
-The --strategy option can be used to change such default injection behavior. More specifically, the overwrite strategy will ensure the application runtime is an exact instance of the injecting state, and the deep-merge strategy will perform a fine-grain merge of the injecting state into the application runtime.
+The CLI manual for the `load` command is as follows:
 
-**Synopsis**
-```
+```shell
 Usage: python -m localstack.cli.main pod load [OPTIONS] URL_OR_NAME
 
   Load a Cloud Pod into the running LocalStack container. Users can import Pods different sources:
@@ -112,17 +122,15 @@ Options:
   --help               Show this message and exit.
 ```
 
-**Community Usage**
+{{% alert %}}
+Similar to the `save` command, the usage of the Cloud Pod's platform is restricted to licensed users. Community users can load a Cloud Pod from a local URI file, URL, or public GitHub repository. However, they have no access to Cloud Pods versioning.
+{{% /alert %}}
 
-Similar to the `save` command, the usage of the Cloud Pod's platform is restricted to licensed users.
-Community users can load a Cloud Pod from a local file URI, from an URL or from a public GitHub repository. However, they have no access to Cloud Pods versioning.
+### `delete`
 
-### delete
+The `delete` command let users delete a Cloud Pod stored in the remote platform. The CLI manual for the `delete` command is as follows:
 
-The `delete` command let users delete a Cloud Pod stored in the remote platform.
-
-**Synopsis**
-```
+```shell
 Usage: python -m localstack.cli.main pod delete [OPTIONS]
 
   Delete a Cloud Pod register on the remove LocalStack Pod's platform. This command will cancel
@@ -133,12 +141,11 @@ Options:
   --help           Show this message and exit.
 ```
 
-### inspect
+### `inspect`
 
-The `inspect` command simply lets the user inspect the content of a Cloud Pod.
+The `inspect` command simply lets the user inspect the content of a Cloud Pod. The CLI manual for the `inspect` command is as follows:
 
-**Synopsis**
-```
+```shell
 Usage: python -m localstack.cli.main pod inspect [OPTIONS]
 
   Inspect the contents of a Cloud Pod
@@ -151,10 +158,9 @@ Options:
 
 ### list
 
-List all available Cloud Pods. It shows by default all the pods that are available for a single user and its organization. If the `--public` option is passed to the commands, it shows only the Cloud Pods that have been marked as public, and therefore, available to all licensed users.
+The `list` command lists all of the available Cloud Pods. It shows all the pods available for a single user and its organization by default. If the `--public option is passed to the commands, it shows only the Cloud Pods marked as public and are, therefore, available to all licensed users. The CLI manual for the `list` command is as follows:
 
-**Synopsis**
-```
+```shell
 Usage: python -m localstack.cli.main pod list [OPTIONS]
 
   List all the Cloud Pods available for a single user, or for an entire organization, if the user
@@ -171,10 +177,9 @@ Options:
 
 ### versions
 
-The `versions` command simply lists all the available versions of a Cloud Pod.
+The `versions` command simply lists all the available versions of a Cloud Pod. The CLI manual for the `version` command is as follows:
 
-**Synopsis**
-```
+```shell
 Usage: python -m localstack.cli.main pod versions [OPTIONS]
 
   List the versions available for a Cloud Pod. Each invocation of the save command is going to
