@@ -8,4 +8,4 @@ cascade:
   type: docs
 ---
 
-LocalStack Web Application is a web-based user interface that allows you to manage your LocalStack account and all aspects of the LocalStack platform, which includes your API & CI keys, Stack Insights, Cloud Pods, and CI analytics.
+[LocalStack Web Application](https://app.localstack.cloud/) is a web-based user interface that allows you to manage your LocalStack account and all aspects of the LocalStack platform, which includes your API & CI keys, Stack Insights, Cloud Pods, and CI analytics.
