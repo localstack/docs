@@ -18,7 +18,7 @@ With the LocalStack Cloud Pods command-line interface (CLI), the `pod` command, 
 
 LocalStack Cloud Pods CLI is directly available with the LocalStack installation, and no further installation is required to get started. If you are a Pro user, we recommend you to export the `LOCALSTACK_API_KEY` as an environment variable to allow you to use the full spectrum of LocalStack Cloud Pods feature. 
 
-For Community users, we recommend you to use a different remote, with public GitHub repositories being the recommended way to store your Cloud Pods data. The creation of pods (with the `export` command) would require a Pro account, but the pulling and injection of public community pods (read-only) would work with Community as well.
+This tutorial is intended for licensed users. The Community users can replicate a similar workflow by leveraging the `save` and `load` commands available to them. For more details, look at our [Community Cloud Pods guide]({{< ref "community" >}}).
 
 ## Basic example
 
@@ -45,36 +45,24 @@ To get started, start your LocalStack instance with your `LOCALSTACK_API_KEY` co
    $ awslocal s3 ls s3://test/
    {{< / command >}}
 
-2. Create a Cloud Pod using the `--name` flag to specify the Pod name:
-
-   {{< command >}}
-   $ localstack pod config --name <pod-name>
-   {{< / command >}}
-
-3. Optional: You can also specify a list of services for your Cloud Pod with the following command:
-
-   {{< command >}}
-   $ localstack pod config --services <comma-seperated-services-names>
-   {{< / command >}}
-
-4. Commit your Pod state using the `commit` command by specifying the `--name` and `--message` flag to specify the Pod name your created previously and the commit message associated with the change:
+2. Save your Pod state using the `save` command by specifying the desired name as the first argument. This command will save the pod and register it to the remote platform. Optionally you can attach a message to the saved Cloud Pod with the `--message` flag:
    
    {{< command >}}
-   $ localstack pod commit --name <pod-name> --message "<commit-message>"
+   $ localstack pod save <pod-name> --message "<description-message>"
    {{< / command >}}
 
-5. Check the list of Cloud Pods on your machine using the `list` command:
+3. Check the list of Cloud Pods available to you and your organization using the `list` command:
 
    {{< command >}}
    $ localstack pod list
     ┏━━━━━━━━━━━━━━┳━━━━━━━━━━━┓
     ┃ local/remote ┃ Name      ┃
     ┡━━━━━━━━━━━━━━╇━━━━━━━━━━━┩
-    │ local        │ pod-name  │
+    │ local+remote │ pod-name  │
     └──────────────┴───────────┘
    {{< / command >}}
 
-6. Optional: You can inspect the contents of a Cloud Pod using the `inspect` command: 
+4. Optional: You can inspect the contents of a Cloud Pod using the `inspect` command: 
 
    {{< command >}}
    $ localstack pod inspect --name <pod-name>
@@ -91,21 +79,10 @@ To get started, start your LocalStack instance with your `LOCALSTACK_API_KEY` co
                 - ID = bcaf1ffd86f41161ca5fb16fd081034f
    {{< / command >}}
 
-7. Push the Cloud Pod to LocalStack's remote storage using `push` command with the `--name` flag and the `--message` flag:
+5. On an alternate machine, start LocalStack with the API key configured, and pull the Cloud Pod we created previously using `load` command with the Cloud Pod name as the first argument:
 
    {{< command >}}
-   $ localstack pod push --name <pod-name> --message "<message>"
-
-   Successfully pushed the current state
-   Successfully registered <pod-name> with remote!
-   {{< / command >}}
-
-   To publish your Cloud Pod locally, prefer using the `--local` flag to publish it.
-
-8. On an alternate machine, start LocalStack with the API key configured, and pull the Cloud Pod we created previously using `pull` command with the `--name` flag:
-
-   {{< command >}}
-   $ localstack pod pull --name <pod-name>
+   $ localstack pod load <pod-name>
 
    Done.
    {{< / command >}}
@@ -117,4 +94,10 @@ To get started, start your LocalStack instance with your `LOCALSTACK_API_KEY` co
    2022-10-04 22:33:54         12 hello-world
    {{< / command >}}
 
-For a more detailed manual, refer to our [command-line interface (CLI) guide]({{< ref "pods-cli" >}}). To check your Pods on the LocalStack Web user-interface, navigate to [Cloud Pods page](https://app.localstack.cloud/pods).
+6. Optional: You can make the Cloud Pod available to users outside your organization by making it public:
+
+   {{< command >}}
+   $ localstack pod save <pod-name> --visibility public
+   {{< / command >}}
+
+For a more detailed manual, refer to our [command-line interface (CLI) guide]({{< ref "pods-cli" >}}). To check your Pods on the LocalStack Web user interface, navigate to [Cloud Pods page](https://app.localstack.cloud/pods).
