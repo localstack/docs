@@ -1,79 +1,72 @@
 ---
-title: "Cloud Pods for Community users"
+title: "Community Cloud Pods"
 weight: 3
 categories: ["LocalStack", "Tools", "Persistence", "CLI"]
 description: >
-  LocalStack provides to community users a way to save and load your container state at will.
+  Get started with LocalStack Community Cloud Pods to to save and load your container state at will
 ---
 
-With the 1.3. release, we opened the Cloud Pods experience to our community users.
-We introduced two new commands, `localstack pod save` and `localstack pod load`. 
-With these two simple commands, community users are now able to dump their LocalStack container state, at any given moment in time, into a Cloud Pod. 
+LocalStack supports Community Cloud Pods to give our community users a limited Cloud Pods experience. Using Community Cloud Pods, you get two commands: `save` and `load` to save the container state in a Cloud Pod and dump it into their running LocalStack container at any given time, respectively.
 
-## Example
-In this short tutorial, we will demonstrate how community users can leverage Cloud Pods to save permanently save their state.
+## Getting started
 
-To get started, you would only need `awscli` installed. No `LOCALSTACK_API_KEY` is required.
+In this getting started guide, we will demonstrate how community users can leverage Community Cloud Pods to save the state of their running LocalStack instance permanently. To get started, you would only need `awscli` installed. We intend this feature to be open to community users; hence no `LOCALSTACK_API_KEY` is required.
 
 Let us start by creating some AWS resources in LocalStack. Just a mere example, let us create a S3 bucket and a SQS queue:
 
-```bash
+{{< command >}}
 $ awslocal s3 mb s3://test
 $ awslocal sqs create-queue --queue-name test-queue
-```
+{{< /command >}}
 
-Let us now dump such a simple state into a Cloud Pod, with the usage of the `localstack pod save` command. This command takes a file URI as an argument and creates a zip file in the specified directory.
-Assume we want to create a pod named _awesome-pod_ in our Desktop folder (this example assumes you are on MacOS).
-The following command will save a _awesome-pod_ zip file in your Desktop directory.
+Let us dump such a simple state into a Cloud Pod using the `save` command. This command takes a file URI as an argument and creates a ZIP file in the specified directory. Assuming we want to create a pod named `awesome-pod` in our Desktop folder, we will run the below commands to save an `awesome-pod` in your Desktop directory:
 
-```bash
+{{< command >}}
 $ localstack pod save file:///Users/<my_username>/Desktop/awesome-pod
-$ Cloud Pods file:///Users/<my_username>/Desktop/awesome-pod successfully exported
-```
+Cloud Pods file:///Users/<my_username>/Desktop/awesome-pod successfully exported
+{{< /command >}}
 
-This exported zip file contains now the state we previously created and it can be restored at any time with the inverse command, i.e., `localstack pod load`.
+This exported ZIP file now contains the state we previously created, and we can restore it at any time with the inverse command, i.e., `load`. For instance, the following command will restore the same state of a fresh instance of LocalStack:
 
-For instance, the following command will restore the same state of a fresh instance of LocalStack:
-
-```bash
+{{< command >}}
 $ localstack pod load file:///Users/<my_username>/Desktop/awesome-pod
-$ Cloud Pods file:///Users/<my_username>/Desktop/awesome-pod successfully loaded
-```
+Cloud Pods file:///Users/<my_username>/Desktop/awesome-pod successfully loaded
+{{< /command >}}
 
-It is worth noting that the `load` command also offers the possibility to load a Cloud Pod stored at a given URL. We also provide a short-hand option to load Cloud Pods saved in a public GitHub repository.
-To showcase this possibility, we opened a new public repository at [localstack/cloud-pods](https://github.com/localstack/cloud-pods) where we started storing several Cloud Pods for demonstration purposes.
-As an example, we uploaded a Cloud Pod named _s3-trigger-thumbnail_ based on a [tutorial](https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html) from the official AWS documentation.
-This Cloud Pods stores a simple application consisting of two S3 buckets and a lambda function. For each _jpg_ image uploaded in one of the buckets, the lambda function will create a thumbnail of it and store it in the other bucket.
+It is worth noting that the `load` command also allows loading a Cloud Pod stored at a given URL. We also provide a short-hand option to load Cloud Pods saved in a public GitHub repository. To showcase this possibility, we opened a new public repository at [localstack/cloud-pods](https://github.com/localstack/cloud-pods), where we started storing several Cloud Pods for demonstration purposes.
+
+For example, we uploaded a Cloud Pod named `s3-trigger-thumbnail` based on an [official AWS documentation tutorial](https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html). This Cloud Pod stores a simple application consisting of two S3 buckets and a Lambda function. For each `jpg` image uploaded in one of the buckets, the Lamda function will create a thumbnail of it and store it in the other bucket.
 
 To load this Cloud Pod, you can run the following command:
 
-```bash
+{{< command >}}
 $ localstack pod load git://localstack/cloud-pods/s3-trigger-thumbnail
-```
+{{< /command >}}
 
-Please not that the command above is equivalent to:
+{{% alert %}}
+The above command is equivalent to:
 
-```bash
+{{< command >}}
 $ localstack pod load https://raw.githubusercontent.com/localstack/cloud-pods/main/s3-trigger-thumbnail
-```
+{{< /command >}}
+{{% /alert %}}
 
-To test the loaded pod, you can just run
+To test the loaded pod, you can run the following command:
 
-```bash
+{{< command >}}
 $ awslocal s3 cp <path_to_file>.jpg s3://img-bucket
-```
+{{< /command >}}
 
-and then check the content of the destination bucket
+To check the content of the destination bucket run the following command:
 
-```bash
+{{< command >}}
 $ awslocal s3 ls s3://img-bucket-resized
-```
+{{< /command >}}
 
 ## Limitations
-Cloud Pods for community users have some limitations:
-- only community-available services can be saved and loaded;
-- users are responsible for storing their saved states; Pro users can take advantage of our Cloud Pods platform to make this task easier;
-- Cloud Pods for community users do not support versioning out of the box;
 
+Community Cloud Pods have some limitations:
 
-
+- Only Community-available AWS services can be saved and loaded in a Community Cloud Pod.
+- Users are responsible for storing their saved states. Pro users can use our Cloud Pods platform to make storing and sharing their saved states easier.
+- Cloud Pods for Community users do not support versioning out of the box. 
