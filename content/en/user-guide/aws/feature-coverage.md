@@ -6,6 +6,7 @@ description: >
   Overview of the implemented AWS APIs and their level of parity with the AWS cloud
 aliases:
   - /localstack/coverage/
+  - /aws/feature-coverage/
 ---
 
 
