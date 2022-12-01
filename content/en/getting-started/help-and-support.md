@@ -16,22 +16,22 @@ Our LocalStack repository is open source and hosted on GitHub. You can request f
 
 ## Create a Discussion
 
-We have a [Discussions Page](https://discuss.localstack.cloud/) where you can ask questions, share ideas, and discuss about LocalStack. Discussion Pages are used for general feature requests, best practice and usage related questions, and should serve as a comprehensive archive useful to the growing community over time. We also use Discussion Pages for [product-related announcements](https://discuss.localstack.cloud/c/announcement/5).
+[LocalStack Discuss](https://discuss.localstack.cloud/) is a place where you can ask questions, share ideas, and discuss topics related to LocalStack. The Discussion pages are used to ask questions about best practices and how to use the LocalStack, general [feature requests](https://discuss.localstack.cloud/c/feature-requests/6), as well as keeping a record of these questions and answers for the larger community to use over time. You can find the latest product announcements on the [Announcements page](https://discuss.localstack.cloud/c/announcement/5).
 
 ## Community support
 
-We have a [Slack Community](https://slack.localstack.cloud) where you can get community support. Our Slack community comprises of LocalStack users, contributors, and maintainers. Please use `#community-support` channel to get help and support with LocalStack community version.
+We have a [Slack Community](https://join.slack.com/t/localstack-community/shared_invite/zt-1d6ehd69s-g80yLgfrXNKsQU_nmgNafg) where you can get help from other members of the community. The LocalStack Slack community includes LocalStack users, contributors, and maintainers. If you need help with the community version of LocalStack, please use the `#community-support` [channel](https://localstack-community.slack.com/archives/CMAFN2KSP).
 
 ## Pro support
 
-Our support engineers provide Pro support to LocalStack Pro users. Pro support entails service issues, LocalStack-specific configurations, and other technical issues that might concern with how LocalStack is expected to behave. Pro support does not include support for AWS services, or general troubleshooting of your application. For any inquiries regarding billing, account related or other non-technical questions please reach out to us on [info@localstack.cloud](mailto:info@localstack.cloud).
+The LocalStack Support Team provides comprehensive support on the best effort basis, for all technical issues that may arise, including product issues, LocalStack-specific configurations, and other technical issues that might concern with how LocalStack is expected to behave. Pro support does not include support for AWS services, or general troubleshooting of your application. If you have questions about billing, account issues, or other questions that are not technical, please contact us at [info@localstack.cloud](mailto:info@localstack.cloud) or through our [contact form](https://localstack.cloud/pricing/).
 
-To avail Pro support, please search **LocalStack Pro Support** application on our Slack community. Navigate to `Messages` and type your message to LocalStack Pro Support. To ensure we get back to you as soon as possible, please provide as much information as possible, including your LocalStack setup, a reproducible example, the steps we need to follow and any other relevant information to help us replicate the scenario. All the communication through the application is a private channel, and only visible to the support team and the customer.
+To take advantage of Pro support, please search for the LocalStack Pro Support application on our Slack community. Navigate to 'Messages' and type your message to LocalStack Pro Support. We will do our best to respond to your request as quickly as possible if you could provide us with the information we require. This includes your LocalStack setup, a step-by-step example, and any other information you can provide to help us reproduce the issue. Kindly note that the communication between the support team and the customer is private and only visible to the support team and the customer.
 
 In many scenarios, we ask our customers to use Diagnosis endpoint to help us retrieve additional information. To use LocalStack's Diagnosis endpoint:
 
 - Set the environment variable `LS_LOG=trace`
 - Start LocalStack
 - Run the affected task(s)
-- Call the diagnostic endpoint `curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz`
+- Call the diagnostic endpoint  `curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz`  (Endpoint URL depends on your configuration)
 - Send the output file to our Slack chat
