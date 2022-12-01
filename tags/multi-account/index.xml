@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – multi-account</title><link>/tags/multi-account/</link><description>Recent content in multi-account on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/multi-account/index.xml" rel="self" type="application/rss+xml"/><item><title>Tools: Multi-Account Setups</title><link>/tools/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/tools/multi-account-setups/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – multi-account</title><link>/tags/multi-account/</link><description>Recent content in multi-account on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/multi-account/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Multi-Account Setups</title><link>/user-guide/tools/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/multi-account-setups/</guid><description>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 &lt;p>Known limitations of multi-accounts:&lt;/p>
@@ -8,13 +8,15 @@
 &lt;/ul>
 &lt;p>Please see &lt;a href="https://github.com/localstack/localstack/issues/7041">https://github.com/localstack/localstack/issues/7041&lt;/a> for more information.&lt;/p>
 &lt;/div>
-&lt;p>LocalStack ships with multi-account support which allows namespacing based on AWS Account ID.&lt;/p>
+&lt;p>LocalStack ships with multi-account support which allows namespacing based on AWS account ID and region name.&lt;/p>
 &lt;p>The AWS account ID to be used must be sent as part of the request.
-LocalStack uses the value in the AWS Access Key ID field in the request for the account ID.
-This field can be configured in the AWS CLI in multiple ways: please refer to AWS CLI documentation &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence">here&lt;/a>.&lt;/p>
-&lt;p>If this field does not contain a valid 12-digit number, the default account ID &lt;code>000000000000&lt;/code> is used.
-No additional server-side configuration is required.&lt;/p>
-&lt;p>LocalStack will ignore possible production AWS Access Key IDs (starting with &lt;code>ASIA...&lt;/code> or &lt;code>AKIA...&lt;/code>) and fallback to default.&lt;/p>
+There is no server-side configuration required.&lt;/p>
+&lt;p>LocalStack uses the value in the AWS Access Key ID field for the purpose of namespacing over account ID.
+This field can be configured in the AWS CLI in multiple ways: please refer to AWS CLI documentation &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence">here&lt;/a>.
+This field must either contain a valid 12-digit or an alpha-numeric string.
+In the first case, the value is assumed to be the account ID.
+In the second case, the default account ID &lt;code>000000000000&lt;/code> is used as fallback.&lt;/p>
+&lt;p>LocalStack will also ignore possible production AWS Access Key IDs (starting with &lt;code>ASIA...&lt;/code> or &lt;code>AKIA...&lt;/code>) and fallback to default.&lt;/p>
 &lt;p>In the future LocalStack shall support proper access key IDs issued by the local IAM service, which will then be internally translated to corresponding account IDs.&lt;/p>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>

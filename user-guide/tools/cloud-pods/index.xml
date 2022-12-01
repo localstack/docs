@@ -1,0 +1,234 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Cloud Pods</title><link>/user-guide/tools/cloud-pods/</link><description>Recent content in Cloud Pods on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/user-guide/tools/cloud-pods/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Getting started with the Cloud Pods CLI</title><link>/user-guide/tools/cloud-pods/getting-started/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/getting-started/</guid><description>
+&lt;p>With the LocalStack Cloud Pods command-line interface (CLI), the &lt;code>pod&lt;/code> command, you can create cloud pods and manage them from a terminal. The Cloud Pods CLI is ideal in the following situations:&lt;/p>
+&lt;ul>
+&lt;li>Taking a snapshot of your running LocalStack instance.&lt;/li>
+&lt;li>Sharing your snapshot across teams with LocalStack Team features.&lt;/li>
+&lt;li>Injecting snapshots into a running instance without a restart.&lt;/li>
+&lt;/ul>
+&lt;h2 id="installation">Installation&lt;/h2>
+&lt;p>LocalStack Cloud Pods CLI is directly available with the LocalStack installation, and no further installation is required to get started. If you are a Pro user, we recommend you to export the &lt;code>LOCALSTACK_API_KEY&lt;/code> as an environment variable to allow you to use the full spectrum of LocalStack Cloud Pods feature.&lt;/p>
+&lt;p>This tutorial is intended for licensed users. The Community users can replicate a similar workflow by leveraging the &lt;code>save&lt;/code> and &lt;code>load&lt;/code> commands available to them. For more details, look at our &lt;a href="/user-guide/tools/cloud-pods/community/">Community Cloud Pods guide&lt;/a>.&lt;/p>
+&lt;h2 id="basic-example">Basic example&lt;/h2>
+&lt;p>In this tutorial, you&amp;rsquo;ll learn how to make a basic usage of LocalStack Cloud Pods CLI. This tutorial is intended for Pro users who wish to get more acquainted with Cloud Pods CLI. It assumes you have basic knowledge of:&lt;/p>
+&lt;ul>
+&lt;li>LocalStack&lt;/li>
+&lt;li>&lt;code>awscli&lt;/code> commands&lt;/li>
+&lt;li>Understanding of Cloud Pods workflow&lt;/li>
+&lt;/ul>
+&lt;p>By the end of this tutorial, you would be able to create a snapshot of your running LocalStack instance, commit it and would be able to push this to your LocalStack account.&lt;/p>
+&lt;h3 id="procedure">Procedure&lt;/h3>
+&lt;p>To get started, start your LocalStack instance with your &lt;code>LOCALSTACK_API_KEY&lt;/code> configured as an environment variable:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Use the &lt;code>awslocal&lt;/code> CLI to create AWS resources inside your running LocalStack instance.&lt;/p>
+&lt;p>As an example, we will create a S3 bucket using the &lt;code>awslocal&lt;/code> CLI and enter some data inside it:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#34;hello world&amp;#34; &amp;gt; /tmp/hello-world
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/hello-world s3://test/hello-world
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls s3://test/&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>Save your Pod state using the &lt;code>save&lt;/code> command by specifying the desired name as the first argument. This command will save the pod and register it to the remote platform. Optionally you can attach a message to the saved Cloud Pod with the &lt;code>--message&lt;/code> flag:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save &amp;lt;pod-name&amp;gt; --message &amp;#34;&amp;lt;description-message&amp;gt;&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>Check the list of Cloud Pods available to you and your organization using the &lt;code>list&lt;/code> command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod list
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ┏━━━━━━━━━━━━━━┳━━━━━━━━━━━┓
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ┃ local/remote ┃ Name ┃
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ┡━━━━━━━━━━━━━━╇━━━━━━━━━━━┩
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> │ local+remote │ pod-name │
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> └──────────────┴───────────┘&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>Optional: You can inspect the contents of a Cloud Pod using the &lt;code>inspect&lt;/code> command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod inspect --name &amp;lt;pod-name&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - 000000000000
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - S3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - global
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - listBuckets
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - Buckets
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - 0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - Name = test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - CreationDate = 2022-10-04T17:03:47.000Z
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - Owner
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - DisplayName = webfile
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> - ID = bcaf1ffd86f41161ca5fb16fd081034f&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;li>
+&lt;p>On an alternate machine, start LocalStack with the API key configured, and pull the Cloud Pod we created previously using &lt;code>load&lt;/code> command with the Cloud Pod name as the first argument:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load &amp;lt;pod-name&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Done.&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Let&amp;rsquo;s check the S3 buckets in our Cloud Pod:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls s3://test/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 2022-10-04 22:33:54 12 hello-world&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Optional: You can make the Cloud Pod available to users outside your organization by making it public:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save &amp;lt;pod-name&amp;gt; --visibility public&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/li>
+&lt;/ol>
+&lt;p>For a more detailed manual, refer to our &lt;a href="/user-guide/tools/cloud-pods/pods-cli/">command-line interface (CLI) guide&lt;/a>. To check your Pods on the LocalStack Web user interface, navigate to &lt;a href="https://app.localstack.cloud/pods">Cloud Pods page&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Community Cloud Pods</title><link>/user-guide/tools/cloud-pods/community/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/community/</guid><description>
+&lt;p>LocalStack supports Community Cloud Pods to give our community users a limited Cloud Pods experience. Using Community Cloud Pods, you get two commands: &lt;code>save&lt;/code> and &lt;code>load&lt;/code> to save the container state in a Cloud Pod and dump it into their running LocalStack container at any given time, respectively.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>In this getting started guide, we will demonstrate how community users can leverage Community Cloud Pods to save the state of their running LocalStack instance permanently. To get started, you would only need &lt;code>awscli&lt;/code> installed. We intend this feature to be open to community users; hence no &lt;code>LOCALSTACK_API_KEY&lt;/code> is required.&lt;/p>
+&lt;p>Let us start by creating some AWS resources in LocalStack. Just a mere example, let us create a S3 bucket and a SQS queue:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs create-queue --queue-name test-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Let us dump such a simple state into a Cloud Pod using the &lt;code>save&lt;/code> command. This command takes a file URI as an argument and creates a ZIP file in the specified directory. Assuming we want to create a pod named &lt;code>awesome-pod&lt;/code> in our Desktop folder, we will run the below commands to save an &lt;code>awesome-pod&lt;/code> in your Desktop directory:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save file:///Users/&amp;lt;my_username&amp;gt;/Desktop/awesome-pod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cloud Pods file:///Users/&amp;lt;my_username&amp;gt;/Desktop/awesome-pod successfully exported&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This exported ZIP file now contains the state we previously created, and we can restore it at any time with the inverse command, i.e., &lt;code>load&lt;/code>. For instance, the following command will restore the same state of a fresh instance of LocalStack:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load file:///Users/&amp;lt;my_username&amp;gt;/Desktop/awesome-pod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Cloud Pods file:///Users/&amp;lt;my_username&amp;gt;/Desktop/awesome-pod successfully loaded&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>It is worth noting that the &lt;code>load&lt;/code> command also allows loading a Cloud Pod stored at a given URL. We also provide a short-hand option to load Cloud Pods saved in a public GitHub repository. To showcase this possibility, we opened a new public repository at &lt;a href="https://github.com/localstack/cloud-pods">localstack/cloud-pods&lt;/a>, where we started storing several Cloud Pods for demonstration purposes.&lt;/p>
+&lt;p>For example, we uploaded a Cloud Pod named &lt;code>s3-trigger-thumbnail&lt;/code> based on an &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/with-s3-tutorial.html">official AWS documentation tutorial&lt;/a>. This Cloud Pod stores a simple application consisting of two S3 buckets and a Lambda function. For each &lt;code>jpg&lt;/code> image uploaded in one of the buckets, the Lamda function will create a thumbnail of it and store it in the other bucket.&lt;/p>
+&lt;p>To load this Cloud Pod, you can run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load git://localstack/cloud-pods/s3-trigger-thumbnail&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;p>The above command is equivalent to:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load https://raw.githubusercontent.com/localstack/cloud-pods/main/s3-trigger-thumbnail&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;p>To test the loaded pod, you can run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp &amp;lt;path_to_file&amp;gt;.jpg s3://img-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To check the content of the destination bucket run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls s3://img-bucket-resized&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>Community Cloud Pods have some limitations:&lt;/p>
+&lt;ul>
+&lt;li>Only Community-available AWS services can be saved and loaded in a Community Cloud Pod.&lt;/li>
+&lt;li>Users are responsible for storing their saved states. Pro users can use our Cloud Pods platform to make storing and sharing their saved states easier.&lt;/li>
+&lt;li>Cloud Pods for Community users do not support versioning out of the box.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Cloud Pods CLI command reference</title><link>/user-guide/tools/cloud-pods/pods-cli/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/pods-cli/</guid><description>
+&lt;p>This reference provides descriptions and example commands for LocalStack Cloud Pods CLI (&lt;code>pod&lt;/code>) commands.&lt;/p>
+&lt;h2 id="syntax">Syntax&lt;/h2>
+&lt;p>Use the following syntax to run &lt;code>localstack pod&lt;/code> commands from your terminal window:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod [OPTIONS] COMMAND [ARGS]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In the above syntax:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>COMMAND&lt;/code> specifies the operation you want to perform with your Cloud Pods (&lt;code>save&lt;/code> or &lt;code>load&lt;/code>).&lt;/li>
+&lt;li>&lt;code>OPTIONS&lt;/code> specifies the optional flags.&lt;/li>
+&lt;li>&lt;code>ARGS&lt;/code> specifies the command arguments.&lt;/li>
+&lt;/ul>
+&lt;h2 id="commands">Commands&lt;/h2>
+&lt;p>The following section lists the available commands for the Cloud Pods CLI.&lt;/p>
+&lt;h3 id="save">&lt;code>save&lt;/code>&lt;/h3>
+&lt;p>The &lt;code>save&lt;/code> command creates a new version of a Cloud Pod. Pro users can dump the Cloud Pod locally or upload it to the LocalStack platform. To dump the state locally, pass a local file URI as an argument to the &lt;code>save&lt;/code> command. For instance, the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save file://&amp;lt;path_to_disk&amp;gt;/my-pod&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The above command will create a zip file named &lt;code>my-pod&lt;/code> to the specified location on the disk. To use the Cloud Pods platform, specify the Cloud Pod&amp;rsquo;s name as an argument, for example:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save my-pod&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The above command creates a version of &lt;code>my-pod&lt;/code> and registers it to our platform. Pushing already existing pod results in creating a new version and, eventually, uploading it to the platform. Users can also select a subset of AWS services they wish to incorporate in a new Cloud Pod version with the &lt;code>--services&lt;/code> option.&lt;/p>
+&lt;p>Users who want to make a Cloud Pod accessible outside their organization can mark it as &lt;strong>public&lt;/strong> with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod push --name &amp;lt;pod_name&amp;gt; --visibility public&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The above command does not create a new version and requires a version already registered with the platform. The CLI manual for the &lt;code>save&lt;/code> command is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>Usage: python -m localstack.cli.main pod save &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>OPTIONS&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> URL_OR_NAME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Save the current state of the LocalStack container in a Cloud Pod. A Cloud Pod can be exported
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> locally or registered within the LocalStack Pod&lt;span style="color:#4e9a06">&amp;#39;s platform (with a Pro license). An optional
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> message can be attached to any Cloud Pod. Furthermore, one could decide to export only a subset
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> of services with the optional --service option.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> To export on a local path run the following command:
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> localstack pod save file://&amp;lt;path_on_disk&amp;gt;/&amp;lt;pod_name&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> The output will be a &amp;lt;pod_name&amp;gt; zip file in the specified directory. This Cloud Pod instance can
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> be restored at any point in time with the load command.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> To use the LocalStack Pod&amp;#39;&lt;/span>s platform, the desired Pod&lt;span style="color:#4e9a06">&amp;#39;s name only will suffice, e,g.:
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> localstack pod save &amp;lt;pod_name&amp;gt;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> Please be aware that each following save invocation with the same name will result in a new
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> version being created.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">Options:
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> -m, --message TEXT Add a comment describing this Cloud Pod&amp;#39;&lt;/span>s version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -s, --services TEXT Comma-delimited list of services to push in the Cloud Pod &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>all by default&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --visibility TEXT Set the visibility of the Cloud Pod &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">`&lt;/span>public&lt;span style="color:#4e9a06">`&lt;/span> or &lt;span style="color:#4e9a06">`&lt;/span>private&lt;span style="color:#4e9a06">`&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>. Does not
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> create a new version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+Community users have access to a restricted version of the &lt;code>save&lt;/code> command. In particular, they can simply invoke the &lt;code>save&lt;/code> command with a file URI as an argument.
+&lt;/div>
+&lt;h3 id="load">&lt;code>load&lt;/code>&lt;/h3>
+&lt;p>The &lt;code>load&lt;/code> command is the inverse operation of &lt;code>save&lt;/code>. It retrieves the content of a previously stored Cloud Pod from the local file system or the Cloud Pod&amp;rsquo;s platform and injects it into the application runtime.&lt;/p>
+&lt;p>The &lt;code>load&lt;/code> command takes an argument that can either be a URI or a Cloud Pods name. While the first option is available to all users, the second is valid only for licensed ones.&lt;/p>
+&lt;p>By default, the injecting state updates the application runtime at a service level. Using the merge injection strategy, the state of all services specified in the injecting state is reflected precisely in the application runtime, while all other active services remain unchanged.&lt;/p>
+&lt;p>The &lt;code>--strategy&lt;/code> option can be used to change such default injection behavior. More specifically, the overwrite strategy will ensure the application runtime is an exact instance of the injecting state. The deep-merge strategy will perform a fine-grain merge of the injecting state into the application runtime.&lt;/p>
+&lt;p>The CLI manual for the &lt;code>load&lt;/code> command is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Usage: python -m localstack.cli.main pod load &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>OPTIONS&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> URL_OR_NAME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Load a Cloud Pod into the running LocalStack container. Users can import Pods different sources:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> community users can store and retrieve Pods from &lt;span style="color:#204a87">local&lt;/span> storage or any provided HTTP URL&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> licensed users can take advantage of the LocalStack Pod&lt;span style="color:#4e9a06">&amp;#39;s platform to ease the storage,
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> versioning, and retrieval of Pods.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> The --source option specifies a URI scheme that point to the Cloud Pod&amp;#39;&lt;/span>s resources to import.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> We support the following protocols:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack pod load file://&amp;lt;path_to_disk&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack pod load https://&amp;lt;some_url&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack pod load git://&amp;lt;user&amp;gt;/&amp;lt;repo&amp;gt;/&amp;lt;local_repo_path&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> The latter option is merely a shortcut &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> --source
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> https://raw.githubusercontent.com/&amp;lt;user&amp;gt;/&amp;lt;repo&amp;gt;/&amp;lt;branch&amp;gt;/&amp;lt;path&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Importing via a provided --source is available &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> all users. Licensed users can omit this
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> option and simply provide a name &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> their Cloud Pods.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -s, --strategy TEXT Inject strategy &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>merge, overwrite, deep-merge&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+Similar to the &lt;code>save&lt;/code> command, the usage of the Cloud Pod&amp;rsquo;s platform is restricted to licensed users. Community users can load a Cloud Pod from a local URI file, URL, or public GitHub repository. However, they have no access to Cloud Pods versioning.
+&lt;/div>
+&lt;h3 id="delete">&lt;code>delete&lt;/code>&lt;/h3>
+&lt;p>The &lt;code>delete&lt;/code> command let users delete a Cloud Pod stored in the remote platform. The CLI manual for the &lt;code>delete&lt;/code> command is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Usage: python -m localstack.cli.main pod delete &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>OPTIONS&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Delete a Cloud Pod register on the remove LocalStack Pod&lt;span style="color:#4e9a06">&amp;#39;s platform. This command will cancel
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> all the versions of a created Pod and won&amp;#39;&lt;/span>t be reversible.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -n, --name TEXT Name of the Cloud Pod &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>required&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="inspect">&lt;code>inspect&lt;/code>&lt;/h3>
+&lt;p>The &lt;code>inspect&lt;/code> command simply lets the user inspect the content of a Cloud Pod. The CLI manual for the &lt;code>inspect&lt;/code> command is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Usage: python -m localstack.cli.main pod inspect &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>OPTIONS&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Inspect the contents of a Cloud Pod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -n, --name TEXT Name of the Cloud Pod &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>required&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format TEXT Format &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>curses, rich, json&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="list">list&lt;/h3>
+&lt;p>The &lt;code>list&lt;/code> command lists all of the available Cloud Pods. It shows all the pods available for a single user and its organization by default. If the &lt;code>--public option is passed to the commands, it shows only the Cloud Pods marked as public and are, therefore, available to all licensed users. The CLI manual for the &lt;/code>list` command is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Usage: python -m localstack.cli.main pod list &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>OPTIONS&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> List all the Cloud Pods available &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> a single user, or &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> an entire organization, &lt;span style="color:#204a87;font-weight:bold">if&lt;/span> the user
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> is part of one.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> With the --public flag, it lists the all the available public Cloud Pods. A public Cloud Pod is
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> available across the boundary of a user ond/or organization. In other words, any public Cloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Pod can be injected by any other user holding a LocalStack Pro &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>or above&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> license.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -p, --public List all the available public Cloud Pods
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="versions">versions&lt;/h3>
+&lt;p>The &lt;code>versions&lt;/code> command simply lists all the available versions of a Cloud Pod. The CLI manual for the &lt;code>version&lt;/code> command is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Usage: python -m localstack.cli.main pod versions &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>OPTIONS&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> List the versions available &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> a Cloud Pod. Each invocation of the save &lt;span style="color:#204a87">command&lt;/span> is going to
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> create a new version &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> a named Cloud Pod, is a Pod with such name already does exist in the
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> LocalStack Pods platform.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -n, --name TEXT Name of the Cloud Pod &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>required&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

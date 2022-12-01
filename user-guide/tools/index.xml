@@ -1,0 +1,288 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Tools</title><link>/user-guide/tools/</link><description>Recent content in LocalStack Tools on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/user-guide/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Analytics Dashboard</title><link>/user-guide/tools/analytics-dashboard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/analytics-dashboard/</guid><description>
+&lt;h2 id="localstack-event-analytics">LocalStack Event Analytics&lt;/h2>
+&lt;p>LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall.&lt;/p>
+&lt;p>Simply configure your system with the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable, and the system will start making your events accessible on the LocalStack dashboard at &lt;a href="https://app.localstack.cloud/dashboard">https://app.localstack.cloud/dashboard&lt;/a>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Data Privacy&lt;/h4>
+Please note that data privacy is one of our key concerns; data is only collected in an anonymized way, and never exposes any sensitive information about your application.
+&lt;/div>
+&lt;p>The following screenshot shows an the Analytics Dashboard in action:&lt;/p>
+&lt;p>&lt;img src="analytics-dashboard.png" alt="Analytics Dashboard">&lt;/p>
+&lt;p>The top row shows a summary of your LocalStack usage.
+A test process or Process ID refers to a single run of LocalStack.
+The table shows the detailed list of events sorted by date.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>You can disable event reporting on your LocalStack client by setting the environment variable &lt;code>DISABLE_EVENTS=1&lt;/code>.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Additional Info&lt;/h4>
+Brave blocks &lt;code>localhost&lt;/code> requests due to security by default via shields, some sites need access to &lt;code>localhost/127.0.0.1&lt;/code> to work correctly. Easy option to allow a user to enable this is manually enabling via the site &lt;code>brave://settings/content/insecureContent&lt;/code>.
+&lt;/div></description></item><item><title>User-Guide: LocalStack Testing Tools</title><link>/user-guide/tools/testing-tools/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/testing-tools/</guid><description>
+&lt;h2 id="covered-topics">Covered Topics&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="#jvm-testing-utils">JVM Testing Utils&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="jvm-testing-utils">JVM Testing Utils&lt;/h2>
+&lt;p>LocalStack provides &lt;a href="https://github.com/localstack/localstack-java-utils">Java Utils library&lt;/a>
+that integrates with JUnit and provides LocalStack-targeted AWS Clients.&lt;/p>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active persistLang-xml"
+id="tabs-0-0-tab" data-toggle="tab" href="#tabs-0-0" role="tab"
+onclick="persistLang(&amp;#34;xml&amp;#34;);"
+aria-controls="tabs-0-0" aria-selected="false">Maven&lt;/a>
+&lt;/li>
+&lt;li class="nav-item">
+&lt;a class="nav-link persistLang-gradle"
+id="tabs-0-1-tab" data-toggle="tab" href="#tabs-0-1" role="tab"
+onclick="persistLang(&amp;#34;gradle&amp;#34;);"
+aria-controls="tabs-0-1" aria-selected="false">Gradle&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-0-content">&lt;div class="tab-pane fade show active"
+id="tabs-0-0" role="tabpanel" aria-labelled-by="tabs-0-0-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;groupId&amp;gt;&lt;/span>cloud.localstack&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;artifactId&amp;gt;&lt;/span>localstack-utils&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;version&amp;gt;&lt;/span>0.2.15&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;scope&amp;gt;&lt;/span>test&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/scope&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/dependency&amp;gt;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-0-1" role="tabpanel" aria-labelled-by="tabs-0-1-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-gradle" data-lang="gradle">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">testImplementation&lt;/span> &lt;span style="color:#f57900">group:&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;cloud.localstack&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#f57900">name:&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;localstack-utils&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#f57900">version:&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;0.2.15&amp;#39;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h3 id="usage">Usage&lt;/h3>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">&lt;li class="nav-item">
+&lt;a class="nav-link active persistLang-java"
+id="tabs-1-0-tab" data-toggle="tab" href="#tabs-1-0" role="tab"
+onclick="persistLang(&amp;#34;java&amp;#34;);"
+aria-controls="tabs-1-0" aria-selected="false">Java&lt;/a>
+&lt;/li>
+&lt;li class="nav-item">
+&lt;a class="nav-link persistLang-kotlin"
+id="tabs-1-1-tab" data-toggle="tab" href="#tabs-1-1" role="tab"
+onclick="persistLang(&amp;#34;kotlin&amp;#34;);"
+aria-controls="tabs-1-1" aria-selected="false">Kotlin&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">&lt;div class="tab-pane fade show active"
+id="tabs-1-0" role="tabpanel" aria-labelled-by="tabs-1-0-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.LocalstackTestRunner&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.ServiceName&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.TestUtils&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.docker.annotation.LocalstackDockerProperties&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@RunWith&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">LocalstackTestRunner&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@LocalstackDockerProperties&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">services&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span> &lt;span style="color:#000">ServiceName&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">S3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;sqs&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;kinesis&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">MyCloudAppTest&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#5c35cc;font-weight:bold">@Test&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">testLocalS3API&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">AmazonS3&lt;/span> &lt;span style="color:#000">s3&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">TestUtils&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">getClientS3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">List&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">Bucket&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">&amp;gt;&lt;/span> &lt;span style="color:#000">buckets&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">s3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">listBuckets&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-1-1" role="tabpanel" aria-labelled-by="tabs-1-1-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">..&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.LocalstackTestRunner&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.ServiceName&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.TestUtils&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.docker.annotation.LocalstackDockerProperties&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@RunWith&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">LocalstackTestRunner&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">::&lt;/span>&lt;span style="color:#204a87;font-weight:bold">class&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@LocalstackDockerProperties&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">services&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#000">ServiceName&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">S3&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;sqs&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;kinesis&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">MyCloudAppTest&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#5c35cc;font-weight:bold">@Test&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">fun&lt;/span> &lt;span style="color:#000">testLocalS3API&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">s3&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">TestUtils&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getClientS3&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">val&lt;/span> &lt;span style="color:#000">buckets&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">s3&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">listBuckets&lt;/span>&lt;span style="color:#000;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">..&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+&lt;/div>
+&lt;h4 id="powermock">Powermock&lt;/h4>
+&lt;p>You can use the PowerMock Library to call the builders default method and still get LocalStack version of the AWS clients.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@RunWith&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">PowerMockRunner&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@PowerMockRunnerDelegate&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">LocalstackTestRunner&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@LocalstackDockerProperties&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">services&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ses&amp;#34;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@PrepareForTest&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">({&lt;/span> &lt;span style="color:#000">AmazonSimpleEmailServiceClientBuilder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">AmazonSimpleEmailServiceAsyncClientBuilder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">class&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#5c35cc;font-weight:bold">@PowerMockIgnore&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">({&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;javax.crypto.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.hamcrest.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;javax.net.ssl.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;com.sun.org.apache.xerces.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;javax.xml.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.xml.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;javax.management.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;javax.security.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;org.w3c.*&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">SESMessagingTest&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">....&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#5c35cc;font-weight:bold">@Before&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">mockSES&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">AmazonSimpleEmailService&lt;/span> &lt;span style="color:#000">mockSes&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">TestUtils&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">getClientSES&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">PowerMockito&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">mockStatic&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">AmazonSimpleEmailServiceClientBuilder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">class&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">when&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">AmazonSimpleEmailServiceClientBuilder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">defaultClient&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()).&lt;/span>&lt;span style="color:#c4a000">thenReturn&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#000">mockSes&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#5c35cc;font-weight:bold">@Test&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">testSendEmail&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#204a87;font-weight:bold">throws&lt;/span> &lt;span style="color:#000">Exception&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">AmazonSimpleEmailService&lt;/span> &lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">amazonSimpleEmailServiceClientBuilder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">defaultClient&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">....&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="powermocklocalstack-utility">PowerMockLocalStack Utility&lt;/h4>
+&lt;p>This utility makes easier to use PowerMock with LocalStack.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">PowerMockLocalStackExampleTest&lt;/span> &lt;span style="color:#204a87;font-weight:bold">extends&lt;/span> &lt;span style="color:#000">PowerMockLocalStack&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">private&lt;/span> &lt;span style="color:#204a87;font-weight:bold">static&lt;/span> &lt;span style="color:#204a87;font-weight:bold">final&lt;/span> &lt;span style="color:#000">String&lt;/span> &lt;span style="color:#000">TOPIC&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;topic&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#5c35cc;font-weight:bold">@Before&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">mock&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">PowerMockLocalStack&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">mockSNS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#5c35cc;font-weight:bold">@Test&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">testSendMessage&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">()&lt;/span> &lt;span style="color:#204a87;font-weight:bold">throws&lt;/span> &lt;span style="color:#000">JMSException&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">final&lt;/span> &lt;span style="color:#000">AmazonSNS&lt;/span> &lt;span style="color:#000">clientSNS&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">AmazonSNSClientBuilder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#c4a000">defaultClient&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Multi-Account Setups</title><link>/user-guide/tools/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/multi-account-setups/</guid><description>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+&lt;p>Known limitations of multi-accounts:&lt;/p>
+&lt;ul>
+&lt;li>Not supported for setups that use cross-account and cross-service access.&lt;/li>
+&lt;li>Not supported in Kinesis.&lt;/li>
+&lt;/ul>
+&lt;p>Please see &lt;a href="https://github.com/localstack/localstack/issues/7041">https://github.com/localstack/localstack/issues/7041&lt;/a> for more information.&lt;/p>
+&lt;/div>
+&lt;p>LocalStack ships with multi-account support which allows namespacing based on AWS account ID and region name.&lt;/p>
+&lt;p>The AWS account ID to be used must be sent as part of the request.
+There is no server-side configuration required.&lt;/p>
+&lt;p>LocalStack uses the value in the AWS Access Key ID field for the purpose of namespacing over account ID.
+This field can be configured in the AWS CLI in multiple ways: please refer to AWS CLI documentation &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence">here&lt;/a>.
+This field must either contain a valid 12-digit or an alpha-numeric string.
+In the first case, the value is assumed to be the account ID.
+In the second case, the default account ID &lt;code>000000000000&lt;/code> is used as fallback.&lt;/p>
+&lt;p>LocalStack will also ignore possible production AWS Access Key IDs (starting with &lt;code>ASIA...&lt;/code> or &lt;code>AKIA...&lt;/code>) and fallback to default.&lt;/p>
+&lt;p>In the future LocalStack shall support proper access key IDs issued by the local IAM service, which will then be internally translated to corresponding account IDs.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Older releases of LocalStack allowed account IDs to be overridden via the &lt;code>TEST_AWS_ACCOUNT_ID&lt;/code> environment variable.
+This functionality has been removed.
+&lt;/div>
+&lt;p>In following examples, we configure the AWS CLI account ID via environment variable.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 create-key-pair --key-name green-hospital
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 create-key-pair --key-name red-medicine
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 describe-key-pairs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyPairs&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyFingerprint&amp;#34;: &amp;#34;6b:e3:a3:41:4b:60:f3:6d:7b:84:3e:17:e3:ad:d0:15&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyName&amp;#34;: &amp;#34;green-hospital&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 describe-key-pairs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyPairs&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyFingerprint&amp;#34;: &amp;#34;16:4c:64:13:36:41:7c:75:d0:51:f0:db:ed:d7:c8:95&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyName&amp;#34;: &amp;#34;red-medicine&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If no explicit Account ID is set, LocalStack falls back to default. In this example, no resources are returned.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-key-pairs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyPairs&amp;#34;: []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Cockpit</title><link>/user-guide/tools/cockpit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cockpit/</guid><description>
+&lt;p>Getting started with LocalStack via the Cockpit is easy:
+just download the Cockpit App for your operating system at
+&lt;a href="https://localstack.cloud/products/cockpit">https://localstack.cloud/products/cockpit&lt;/a>
+make sure you have Docker installed, and you&amp;rsquo;re ready to go!&lt;/p>
+&lt;p>&lt;img src="cockpit-screenshot.png" alt="Cockpit">&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;p>To run LocalStack using the Cockpit you only need Docker and the Cockpit app.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;em>Note&lt;/em>: The Cockpit beta version is not yet verified on Windows and Mac app stores.
+On &lt;a href="https://www.windowscentral.com/how-disable-smartscreen-trusted-app-windows-10">Windows&lt;/a> and &lt;a href="https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac">Mac&lt;/a> you need to allow your OS to run untrusted code.
+&lt;/div>
+&lt;h2 id="features">Features&lt;/h2>
+&lt;p>The LocalStack Cockpit makes it easy for you to manage your LocalStack instance.
+Here are some of the Cockpit&amp;rsquo;s features:&lt;/p>
+&lt;h3 id="automatic-environment-check">Automatic environment check&lt;/h3>
+&lt;p>When the Cockpit starts it will automatically check your system environment whether everything is ready to start LocalStack.
+It will also download the LocalStack Docker image for you, should it not be on your system.&lt;/p>
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/cockpit/cockpit-init-check.png"/>
+&lt;/p>
+&lt;h3 id="run-configurations">Run configurations&lt;/h3>
+&lt;p>Manage and select LocalStack run configurations to start LocalStack with a particular configuration.
+Save your LocalStack Pro API key, or a particular set of environment variables into a run configuration.&lt;/p>
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/cockpit/cockpit-runconfig-select.png"/>
+&lt;/p>
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/cockpit/cockpit-runconfig-edit.png"/>
+&lt;/p>
+&lt;h3 id="manage-your-localstack-instance">Manage your LocalStack instance&lt;/h3>
+&lt;p>Start and stop LocalStack by simply clicking a button.
+No mucking about in the CLI or a docker-compose file.
+The environment and Services screen give you instant insights into your running instance.&lt;/p>
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/cockpit/cockpit-localstack-start.gif"/>
+&lt;/p>
+&lt;h3 id="quick-log-access">Quick log access&lt;/h3>
+&lt;p>Get quick access to your LocalStack logs for instant insights.&lt;/p>
+&lt;p>&lt;em>Note&lt;/em>: The beta version does not yet have auto-followcockpit, so you need to click &amp;ldquo;Refresh&amp;rdquo; and &amp;ldquo;Scroll to end&amp;rdquo;.&lt;/p>
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/cockpit/cockpit-logs.png"/>
+&lt;/p>
+&lt;h2 id="known-issues">Known issues&lt;/h2>
+&lt;ul>
+&lt;li>MacOS ≤ v10 not supported yet.&lt;/li>
+&lt;li>There may be glibc issues on older Linux versions.&lt;/li>
+&lt;/ul>
+&lt;h2 id="report-issues">Report issues&lt;/h2>
+&lt;p>Please help us make LocalStack Cockpit better!
+If you experience a problem, have feedback or a feature request for us, please &lt;a href="https://github.com/localstack/cockpit/issues">submit an issue&lt;/a>.
+Ideally add your log files, so that we can investigate into your problem more easily.&lt;/p>
+&lt;p>Logs folder:&lt;/p>
+&lt;ul>
+&lt;li>Linux: &lt;code>~/.config/localstack-cockpit/logs/&lt;/code>&lt;/li>
+&lt;li>macOS: &lt;code>~/Library/Logs/localstack-cockpit/&lt;/code>&lt;/li>
+&lt;li>Windows: &lt;code>%USERPROFILE%\AppData\Roaming\localstack-cockpit\logs\&lt;/code>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Docker Desktop Extension</title><link>/user-guide/tools/docker-desktop-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/docker-desktop-extension/</guid><description>
+&lt;p>The LocalStack Extension for Docker Desktop enables developers working with LocalStack to operate their LocalStack instance via Docker Desktop, including checking service status, instance logs, and configure profiles. To install the LocalStack Extension for Docker Desktop, you just need to have &lt;a href="https://www.docker.com/products/docker-desktop">Docker Desktop installed on your machine&lt;/a>.&lt;/p>
+&lt;img src="localstack-docker-extension.png" alt="LocalStack Extension for Docker Desktop" title="LocalStack Extension for Docker Desktop" width="800" />
+&lt;h2 id="installation">Installation&lt;/h2>
+&lt;p>You can install the LocalStack Extension for Docker Desktop via pulling our public Docker image from Docker Hub:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker extension install localstack/localstack-docker-desktop:0.1.0&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To setup the Docker Extension by building the image locally, you can clone our &lt;a href="https://github.com/localstack/localstack-docker-extension">Docker Desktop extension&lt;/a> repository, and run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>make install-extension&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>It will build the Docker image and install the extension on your Docker Desktop application.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;em>Note&lt;/em>: The LocalStack Extension for Docker Desktop is not yet verified and available on Docker Desktop marketplace. The current features are experimental in nature, and are subject to change in future iterations.
+&lt;/div>
+&lt;h2 id="features">Features&lt;/h2>
+&lt;p>Currently, the LocalStack Extension for Docker Desktop supports the following features:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Control LocalStack&lt;/strong>: Start, stop, and restart LocalStack from the Docker Desktop. You can also see the current status of your LocalStack instance and navigate to LocalStack Web Application.&lt;/li>
+&lt;li>&lt;strong>LocalStack insights&lt;/strong>: You can see the log information of the LocalStack instance and all the available services and their status on the service page.&lt;/li>
+&lt;li>&lt;strong>LocalStack configurations&lt;/strong>: You can manage and use your profiles via configurations and create new configurations for your LocalStack instance.&lt;/li>
+&lt;/ul>
+&lt;p>We also recommend you to add add &lt;code>/tmp&lt;/code> to your shared files on Docker Desktop under &lt;strong>Settings&lt;/strong> &amp;gt; &lt;strong>Resources&lt;/strong> &amp;gt; &lt;strong>File sharing&lt;/strong>. It is a temporary solution since it&amp;rsquo;s where the LocalStack volume directory mounts.&lt;/p></description></item><item><title>User-Guide: Cloud Pods</title><link>/user-guide/tools/cloud-pods/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/</guid><description>
+&lt;p>Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.&lt;/p>
+&lt;p>&lt;img src="pods-persistence.png" alt="Persistence versus Cloud Pods">&lt;/p>
+&lt;p>While the &lt;a href="/references/persistence-mechanism/">Persistence&lt;/a> feature ensures that the service state survives container restarts, Cloud Pods go beyond and allow more fine-grained control over your state.&lt;/p>
+&lt;p>Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow you to take snapshots of your local instance (with the &lt;code>commit&lt;/code> command) and inject such snapshots into a running instance (with the &lt;code>inject&lt;/code> command) without requiring a restart.&lt;/p>
+&lt;p>In addition, we provide a remote storage backend that can be used to store the state of your running application and share it with your team members.&lt;/p>
+&lt;p>You can interact with Cloud Pods via the Web UI, and to load and store the persistent state of pods, you can use the &lt;code>localstack&lt;/code> &lt;a href="/user-guide/tools/cloud-pods/pods-cli/">command-line interface (CLI)&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="pods-ui.png" alt="Cloud Pods Web UI">&lt;/p></description></item><item><title>User-Guide: Lambda Tools</title><link>/user-guide/tools/lambda-tools/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/lambda-tools/</guid><description>
+&lt;p>Lambdas are awesome!&lt;/p></description></item><item><title>User-Guide: Local Endpoint Injection</title><link>/user-guide/tools/local-endpoint-injection/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/local-endpoint-injection/</guid><description>
+&lt;p>In the community (open source) edition, the application code needs to configure each AWS SDK client instance with the target &lt;code>endpoint URL&lt;/code> to point to the APIs on &lt;code>localhost&lt;/code> or, in the case of Lambdas running in the context of LocalStack, the &lt;code>endpoint URL&lt;/code> should point to &lt;code>http://${LOCALSTACK_HOSTNAME}:${EDGE_PORT}&lt;/code>.&lt;/p>
+&lt;p>The Pro version provides two options for transparently making your application logic speak to the local APIs instead of real AWS (without having to change your production code):&lt;/p>
+&lt;ol>
+&lt;li>integrated DNS server&lt;/li>
+&lt;li>patched AWS SDKs&lt;/li>
+&lt;/ol>
+&lt;p>More details can be found in the subsections below.&lt;/p></description></item></channel></rss>
