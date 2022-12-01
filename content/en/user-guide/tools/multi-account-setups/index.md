@@ -19,16 +19,18 @@ Known limitations of multi-accounts:
 Please see <https://github.com/localstack/localstack/issues/7041> for more information.
 {{< /alert >}}
 
-LocalStack ships with multi-account support which allows namespacing based on AWS Account ID.
+LocalStack ships with multi-account support which allows namespacing based on AWS account ID and region name.
 
 The AWS account ID to be used must be sent as part of the request.
-LocalStack uses the value in the AWS Access Key ID field in the request for the account ID.
+There is no server-side configuration required.
+
+LocalStack uses the value in the AWS Access Key ID field for the purpose of namespacing over account ID.
 This field can be configured in the AWS CLI in multiple ways: please refer to AWS CLI documentation [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence).
+This field must either contain a valid 12-digit or an alpha-numeric string.
+In the first case, the value is assumed to be the account ID.
+In the second case, the default account ID `000000000000` is used as fallback.
 
-If this field does not contain a valid 12-digit number, the default account ID `000000000000` is used.
-No additional server-side configuration is required.
-
-LocalStack will ignore possible production AWS Access Key IDs (starting with `ASIA...` or `AKIA...`) and fallback to default.
+LocalStack will also ignore possible production AWS Access Key IDs (starting with `ASIA...` or `AKIA...`) and fallback to default.
 
 In the future LocalStack shall support proper access key IDs issued by the local IAM service, which will then be internally translated to corresponding account IDs.
 

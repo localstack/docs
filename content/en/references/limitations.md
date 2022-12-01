@@ -13,9 +13,10 @@ This page describes known limitations of LocalStack and its services, either due
 
 Limitations that exist due to missing features in LocalStack.
 
-### DynamoDB
-
-At the moment only a locally launched LocalStack instance can properly run the DynamoDB service.
+<!--
+TODO:
+Move these limitations into the appropriate service page
+-->
 
 ### Lambda Functions
 
