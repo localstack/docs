@@ -1,0 +1,14 @@
+{{ $ref := "" }}
+{{ if (.Get "ref") }}
+{{ $ref = printf "?ref=%s" (.Get "ref") }}
+{{ end }}
+{{ $dataJ := getJSON "https://api.github.com/repos/"  (.Get "repo")  "/contents/"  (.Get "file") $ref  }}
+{{ $con := base64Decode $dataJ.content }}
+{{ $content := "" }}
+{{ $lines := split $con "\n" }}
+{{ $startIndex := (sub ((.Get "start") | default 1 | int) 1)}}
+{{ $endIndex := (.Get "end" | default "999999" | int )}}
+{{ range $line := (last (sub $endIndex $startIndex) (first $endIndex $lines)) }}
+  {{ $content = printf "%s\n%s" $content $line }}
+{{ end }}
+{{ highlight $content (.Get "lang") (.Get "options") }}

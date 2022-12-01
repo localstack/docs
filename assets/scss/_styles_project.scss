@@ -30,6 +30,23 @@ body > header {
     & .td-navbar {
         background: linear-gradient(77.63deg, #12123E 23.04%, #12123E 23.05%, #3E3174 122.36%);
 
+        .td-navbar-nav-scroll {
+            margin-top: 0 !important;
+            height: auto;
+            @media (max-width: 991.98px) {
+                .navbar-nav { 
+                    padding-bottom: 0 !important;
+                }
+            }
+        }
+
+        #docsearch {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+
         & .navbar-brand {
             color: $black;
         }
@@ -58,7 +75,7 @@ body > header {
 
         & .nav-link {
             color: #1d2d35;
-            tranisition: color 0.15s ease-in-out;
+            transition: color 0.15s ease-in-out;
         }
         & .nav-link:hover {
             color: $primary;
@@ -85,10 +102,6 @@ body > header {
 
 // doc overview grid (TODO: move to separate scss file)
 .doc-overview-grid {
-
-    & > p.lead {
-
-    }
 
     & .card {
         max-width: 100%;
@@ -212,7 +225,6 @@ footer.footer-localstack {
     border-radius: 0.5rem;
     display: block;
     padding: 8px 20px;
-    margin-left: 1rem;
     font-size: 90%;
     text-transform: uppercase;
     font-weight: 600;
@@ -267,4 +279,33 @@ table {
     a:hover {
         text-decoration: underline
     }
+}
+
+.td-breadcrumbs__single { 
+    visibility: hidden !important
+}
+
+#m-tutorials-li {
+    .ul-2 {
+        display: none !important
+    }
+    label:before {
+        display: none !important
+    }
+}
+
+#tutorial-page + .section-index {
+    > .entry {
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        > h5 {
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+.feedback--title {
+    margin-top: 20px;
 }
