@@ -78,3 +78,14 @@ $ awslocal s3 cp requirements.txt s3://my-mwaa-bucket/requirements.txt
 {{< /command >}}
 
 The environment will be updated and will be ready for use with new dependencies.
+
+[Unlike production AWS](https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html), LocalStack does not install any provider packages.
+These must be installed using the above steps.
+
+## Connections
+
+When using connections to other AWS services within DAGs, please specify either the internal Docker IP address of the LocalStack container or `host.docker.internal`.
+It is currently not possible to connect by using the Docker Compose hostname of the LocalStack container.
+
+LocalStack currently does not use the credentials and region from `aws_conn_id`.
+This information must be explicitly passed in operators, hooks and sensors.
