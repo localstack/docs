@@ -65,9 +65,9 @@ All other requests will be considered path-style requests.
 
 ## S3 Providers
 
-LocalStack's S3 support is currently available via two providers: `old` and `asf`. For users, switching between the two providers has a lot of impacts. Using the `PROVIDER_OVERRIDE_S3`, you can switch between the two providers. The `old` provider is the default provider, and the `asf` provider is ASF, our new and more stable provider. The `old` provider is loaded by default, and you need to set `PROVIDER_OVERRIDE_S3=asf` to use the ASF provider.
+LocalStack's S3 support is currently available via two providers: `old` and `asf`. For users, switching between the two providers has a lot of impacts. Using the `PROVIDER_OVERRIDE_S3`, you can switch between the two providers. The `old` provider is the default provider, and the `asf` provider is ASF, our new and more stable provider. The `old` provider is loaded by default, and you need to set `PROVIDER_OVERRIDE_S3=asf` to use the ASF provider. Licensed users can use `asf_pro` to use the ASF provider with the [Pro features]({{< ref "references/coverage#s3" >}}).
 
-With v2.0, the default will be changed to ASF, but the old provider will still be available (using the feature flag with the value `legacy`), though it will be removed in further releases. Licensed users can use `asf_pro` to use the ASF provider with the [Pro features]({{< ref "references/coverage#s3" >}}).
+With v2.0, the default will be changed to ASF, but the old provider will still be available (using the feature flag with the value `legacy`), though it will be removed in further releases.
 
 ## Storage Configuration
 
