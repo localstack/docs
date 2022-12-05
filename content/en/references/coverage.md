@@ -4841,6 +4841,10 @@ aliases:
   </thead>
   <tbody>
     <tr>
+      <td>AddSourceIdentifierToSubscription (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AddTagsToResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4987,10 +4991,6 @@ aliases:
     </tr>
   </tbody>
   <tbody class="collapse docdb-notimplemented">     <tr>
-      <td>AddSourceIdentifierToSubscription</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ApplyPendingMaintenanceAction</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -5995,10 +5995,6 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableImageDeprecation (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DisableTransitGatewayRouteTablePropagation</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6978,6 +6974,10 @@ aliases:
     </tr>
     <tr>
       <td>DisableFastSnapshotRestores</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DisableImageDeprecation</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8275,10 +8275,6 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUser (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeCacheClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -8382,6 +8378,10 @@ aliases:
     </tr>
     <tr>
       <td>DeleteSnapshot</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteUser</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -13355,6 +13355,10 @@ aliases:
   </thead>
   <tbody>
     <tr>
+      <td>AddApplicationCloudWatchLoggingOption (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AddApplicationInputProcessingConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13364,14 +13368,6 @@ aliases:
     </tr>
     <tr>
       <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateApplicationPresignedUrl (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateApplicationSnapshot (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13413,10 +13409,6 @@ aliases:
     </tr>
   </tbody>
   <tbody class="collapse kinesisanalyticsv2-notimplemented">     <tr>
-      <td>AddApplicationCloudWatchLoggingOption</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>AddApplicationInput</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13426,6 +13418,14 @@ aliases:
     </tr>
     <tr>
       <td>AddApplicationVpcConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateApplicationPresignedUrl</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateApplicationSnapshot</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
