@@ -12,6 +12,8 @@ AWS S3 is a managed scalable object storage service that can be used to store an
 
 S3 is shipped with the LocalStack Community version and is [extensively supported]({{< ref "feature-coverage" >}}). Trying to run the examples in the [official AWS developer](https://docs.aws.amazon.com/s3/index.html) guide against LocalStack is a great place to start.
 
+## Getting started
+
 Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed you can also try the following commands. Make sure the file you put into the bucket exists:
 
 {{< command >}}
@@ -60,6 +62,12 @@ As a special case in LocalStack, leaving out `.s3.<region>` also works for the `
 
 All other requests will be considered path-style requests.
 {{% /alert %}}
+
+## S3 Providers
+
+LocalStack's S3 support is currently available via two providers: `old` and `asf`. For users, switching between the two providers has a lot of impacts. Using the `PROVIDER_OVERRIDE_S3`, you can switch between the two providers. The `old` provider is the default provider, and the `asf` provider is ASF, our new and more stable provider. The `old` provider is loaded by default, and you need to set `PROVIDER_OVERRIDE_S3=asf` to use the ASF provider. Licensed users can use `asf_pro` to use the ASF provider with the [Pro features]({{< ref "references/coverage#s3" >}}).
+
+With v2.0, the default will be changed to ASF, but the old provider will still be available (using the feature flag with the value `legacy`), though it will be removed in further releases.
 
 ## Storage Configuration
 
