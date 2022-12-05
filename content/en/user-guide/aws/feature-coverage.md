@@ -717,7 +717,7 @@ In the coverage table below, the features are marked with their respective avail
 | Cases                                                              | ⭐⭐⭐         | CRUD                |       |
 | TrustedAdvisorChecks                                               | ⭐⭐           | CRUD                |       |
 | Attachments                                                        | \-             |                 |       |
-| **imple Workflow Service (SWF)**                                                            | [🔍]({{< ref "references/coverage#swf" >}}) |                 |       |
+| **Simple Workflow Service (SWF)**                                                            | [🔍]({{< ref "references/coverage#swf" >}}) |                 |       |
 | Domain                                                             | ⭐⭐⭐         | CRUD                |       |
 | Activity                                                           | ⭐⭐⭐         | CRUD                |       |
 | Workflows                                                          | ⭐⭐⭐         | CRUD                |       |
