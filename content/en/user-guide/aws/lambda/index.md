@@ -12,11 +12,11 @@ AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you t
 
 LocalStack allows you to execute your Lambda functions locally, without the need to deploy them to AWS. This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS. LocalStack allows you to execute your Lambda functions, in various execution modes, which is detailed on our [Lambda execution modes]({{< ref "lambda-executors" >}}) page.
 
-## Providers
+## Lambda Providers
 
-LocalStack's Lambda support is currently available via two providers: `old` and `asf`. For users, switching between the two providers has a lot of impact. Using the `PROVIDER_OVERRIDE_lambda`, you can switch between the two providers. The `old` provider is the default provider, and the `asf` provider is ASF, our new and more stable provider. The `old` provider is loaded by default, and you need to set `PROVIDER_OVERRIDE_lambda=asf` to use the ASF provider.
+LocalStack's Lambda support is available via two providers: `old` and `asf`. For users, switching between the two providers has a lot of impacts. Using the `PROVIDER_OVERRIDE_lambda`, you can switch between the two providers. The `old` provider is the default provider, and the `asf` provider is ASF, our new and more stable provider. The `old` provider is loaded by default, and you need to set `PROVIDER_OVERRIDE_lambda=asf` to use the ASF provider.
 
-With v2.0 the default will be changed to ASF, but the old provider will still be available (by using the feature flag with value `legacy`), though it would be removed in further releases. Currently `asf_pro`, meant for licensed users for LocalStack, isn't available.
+With v2.0, the default will be changed to ASF, but the old provider will still be available (using the feature flag with the value `legacy`), though it will be removed in further releases. Currently, `asf_pro`, meant for licensed users for LocalStack, isn't available.
 
 ## Special tooling for Lambdas
 
