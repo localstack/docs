@@ -85,7 +85,6 @@ These must be installed using the above steps.
 ## Connections
 
 When using connections to other AWS services within DAGs, please specify either the internal Docker IP address of the LocalStack container or `host.docker.internal`.
-It is currently not possible to connect by using the Docker Compose hostname of the LocalStack container.
 
 LocalStack currently does not use the credentials and region from `aws_conn_id`.
 This information must be explicitly passed in operators, hooks and sensors.
