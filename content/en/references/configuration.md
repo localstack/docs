@@ -221,7 +221,7 @@ Please check with your SMTP email service provider for the following settings.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SMTP_HOST` | `localhost` | Hostname of the SMTP server. The port defaults to 25. |
+| `SMTP_HOST` | `localhost:1025` | Hostname (and optionally the port) of the SMTP server. The port defaults to 25. |
 | `SMTP_USER` |  | Login username for the SMTP server if required. |
 | `SMTP_PASS` |  | Login password for the SMTP server if required. |
 | `SMTP_EMAIL` | `sender@example.com` | Origin email address. Required for Cognito only. |
