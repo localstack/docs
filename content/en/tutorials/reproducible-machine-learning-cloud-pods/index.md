@@ -13,6 +13,8 @@ Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) 
 
 In this tutorial, we will use [LocalStack Pro]() to train a simple machine-learning model that recognizes handwritten digits on an image. We will use Cloud Pods to create a reproducible sample by using an S3 bucket to host our training data, a Lambda function to train the model and a Lambda layer that contains the dependencies for our training code. We will then create a Cloud Pod to save the state of our LocalStack instance and restore it from the Cloud Pod to share it with our team.
 
+{{< figure src="reproducible_ml_application.png" width="100%" alt="Reproducible machine-learning applications with LocalStack Cloud Pods">}}
+
 ## Prerequisites
 
 For this tutorial, you will need the following:
