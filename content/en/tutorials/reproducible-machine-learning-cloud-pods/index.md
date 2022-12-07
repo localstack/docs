@@ -13,7 +13,7 @@ Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) 
 
 In this tutorial, we will use [LocalStack Pro]() to train a simple machine-learning model that recognizes handwritten digits on an image. We will use Cloud Pods to create a reproducible sample by using an S3 bucket to host our training data, a Lambda function to train the model and a Lambda layer that contains the dependencies for our training code. We will then create a Cloud Pod to save the state of our LocalStack instance and restore it from the Cloud Pod to share it with our team.
 
-{{< figure src="reproducible_ml_application.png" width="100%" alt="Reproducible machine-learning applications with LocalStack Cloud Pods">}}
+{{< figure src="reproducible_ml_application.png" width="60%" alt="Reproducible machine-learning applications with LocalStack Cloud Pods">}}
 
 ## Prerequisites
 
@@ -212,7 +212,7 @@ $ localstack pod push --name <pod_name> --visibility public
 The above command does not create a new version and requires a version already registered with the platform.
 {{< /alert >}}
 
-You can also attach an optional message and a list of services to a Cloud Pod using the `--message` and `--services` flags. Now that we have created a Cloud Pod, we can ask one of our team members to start LocalStack and load the Cloud Pod using the `load` command:
+You can also attach an optional message and a list of services to a Cloud Pod using the `--message` and `--services` flags. You can check all the Cloud Pods in your organization over the [LocalStack Web Application](https://app.localstack.cloud/cloudpods). Now that we have created a Cloud Pod, we can ask one of our team members to start LocalStack and load the Cloud Pod using the `load` command.
 
 {{< command >}}
 $ localstack pod load reproducible-ml
@@ -225,6 +225,8 @@ LocalStack Cloud Pods also feature different merge strategies to merge the state
 - **Inject with overwrite**: This is the default merge strategy. It will inject the state of the Cloud Pod into the current LocalStack instance and overwrite the existing state.
 - **Inject with basic merge**: This merge strategy will inject the state of the Cloud Pod into the current LocalStack instance and merge the existing state with the state of the Cloud Pod.
 - **Inject with deep merge**: This merge strategy will inject the state of the Cloud Pod into the current LocalStack instance and merge the existing state with the state of the Cloud Pod. It will also merge the existing state with the state of the Cloud Pod recursively.
+
+{{< figure src="cloud-pods-state-merge-mechanisms.png" width="60%" alt="State Merge mechanisms with LocalStack Cloud Pods">}}
 
 ## Conclusion
 
