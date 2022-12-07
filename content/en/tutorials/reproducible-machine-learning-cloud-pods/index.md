@@ -226,7 +226,7 @@ LocalStack Cloud Pods also feature different merge strategies to merge the state
 - **Inject with basic merge**: This merge strategy will inject the state of the Cloud Pod into the current LocalStack instance and merge the existing state with the state of the Cloud Pod.
 - **Inject with deep merge**: This merge strategy will inject the state of the Cloud Pod into the current LocalStack instance and merge the existing state with the state of the Cloud Pod. It will also merge the existing state with the state of the Cloud Pod recursively.
 
-{{< figure src="cloud-pods-state-merge-mechanisms.png" width="60%" alt="State Merge mechanisms with LocalStack Cloud Pods">}}
+{{< figure src="cloud-pods-state-merge-mechanisms.png" width="80%" alt="State Merge mechanisms with LocalStack Cloud Pods">}}
 
 ## Conclusion
 
