@@ -11,7 +11,7 @@ LocalStack Cloud Pods enable you to create persistent state snapshots of your Lo
 
 Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using Community Cloud Pods, you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags similar to `git`, and push them to LocalStack Pod's platform.
 
-In this tutorial, we will use [LocalStack Pro]() to train a simple machine-learning model that recognizes handwritten digits on an image. We will use Cloud Pods to create a reproducible sample by using an S3 bucket to host our training data, a Lambda function to train the model and a Lambda layer that contains the dependencies for our training code. We will then create a Cloud Pod to save the state of our LocalStack instance and restore it from the Cloud Pod to share it with our team.
+In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. We will use Cloud Pods to create a reproducible sample by using an S3 bucket to host our training data, a Lambda function to train the model and a Lambda layer that contains the dependencies for our training code. We will then create a Cloud Pod to save the state of our LocalStack instance and restore it from the Cloud Pod to share it with our team.
 
 {{< figure src="reproducible_ml_application.png" width="60%" alt="Reproducible machine-learning applications with LocalStack Cloud Pods">}}
 
@@ -122,11 +122,10 @@ $ DEBUG=1 LOCALSTACK_API_KEY=<your-api-key> localstack start -d
 We have specified `DEBUG=1` to get the printed LocalStack logs from our Lambda invocation in the console. We can now create an S3 bucket to upload our Lambda function and the dataset:
 
 {{< command >}}
-zip lambda.zip train.py
-
-awslocal s3 mb s3://reproducible-ml
-awslocal s3 cp lambda.zip s3://reproducible-ml/lambda.zip
-awslocal s3 cp digits.csv.gz s3://reproducible-ml/digits.csv.gz
+$ zip lambda.zip train.py
+$ awslocal s3 mb s3://reproducible-ml
+$ awslocal s3 cp lambda.zip s3://reproducible-ml/lambda.zip
+$ awslocal s3 cp digits.csv.gz s3://reproducible-ml/digits.csv.gz
 {{< / command >}}
 
 We first zip our Lambda function into a `lambda.zip` file in the above commands. Next, we created an S3 bucket named `reproducible-ml` and uploaded the zip file and the dataset. We can now create a Lambda function using `awslocal` CLI by specifying the Lambda handler function and the S3 bucket where the `zip` file is located:
@@ -157,10 +156,6 @@ null
 ...
 >  9 5 4 8 8 4 9 0 8 9 8]
 > END RequestId: 6...
-2022-12-07T11:41:40.985 DEBUG --- [   asgi_gw_1] l.services.plugins         : checking service health logs:4566
-2022-12-07T11:41:41.044 DEBUG --- [   asgi_gw_1] l.services.plugins         : checking service health cloudwatch:4566
-2022-12-07T11:41:41.066 DEBUG --- [uest_thread)] l.s.awslambda.lambda_api   : Lambda invocation duration: 39121.19ms
-2022-12-07T11:41:41.070  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS lambda.Invoke => 200
 ```
 
 ## Creating a Cloud Pod
