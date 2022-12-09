@@ -69,7 +69,8 @@ For instance, Kinesis persists some data in form of JSON while DynamoDB serializ
 │   ├── 000000000000_eu-central-1.db
 │   └── 886002141588_us-east-1.db
 └── kinesis
-    └── kinesis-data.json
+    ├── 000000000000.json
+    └── 886002141588.json
 ```
 
 Restoring the persisted state usually only takes a few milliseconds, even for large projects.
