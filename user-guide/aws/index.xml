@@ -7610,8 +7610,8 @@ Inter-service communication evaluation (for example for sts:AssumeRole) also is 
 &lt;li>LocalStack KMS supports &lt;a href="https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html">multi-region keys&lt;/a>, but, unlike in AWS KMS, multi-region key replicas are not synchronized with their primary key. So if you create a replica of a multi-regional key and then update some settings for the primary key, the replica won&amp;rsquo;t get automatically updated.&lt;/li>
 &lt;li>AWS KMS has &lt;a href="https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html">aliases&lt;/a>, that are created automatically for KMS keys used by services like, for example, S3. While LocalStack supports those pre-created aliases, they are getting created on the first attempt to access such an alias and are not visible before such an attempt.&lt;/li>
 &lt;/ol></description></item><item><title>User-Guide: Kinesis</title><link>/user-guide/aws/kinesis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis/</guid><description>
-&lt;p>AWS Kinesis is a fully managed data streaming service, which enables your application to ingest, buffer, and process data in real-time.
-Kinesis is shipped with the LocalStack Community version and is &lt;a href="/user-guide/aws/feature-coverage/">extensively supported&lt;/a>.&lt;/p>
+&lt;p>AWS Kinesis is a data streaming service, which enables your application to ingest, buffer, and process data in real-time.
+Kinesis in LocalStack Community is powered by &lt;a href="https://github.com/etspaceman/kinesis-mock">Kinesis Mock&lt;/a> and has an &lt;a href="/user-guide/aws/feature-coverage/">extensively supported API&lt;/a>.&lt;/p>
 &lt;h2 id="quickstart">Quickstart&lt;/h2>
 &lt;p>Trying to run the example applications from the &lt;a href="https://docs.aws.amazon.com/streams/latest/dev/examples.html">official AWS developer guide&lt;/a> against LocalStack is a great place to start.
 Assuming you have &lt;code>awslocal&lt;/code> installed you can also try out the following commands:&lt;/p>
@@ -7652,10 +7652,15 @@ Assuming you have &lt;code>awslocal&lt;/code> installed you can also try out the
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>KINESIS_INITIALIZE_STREAMS&lt;/code>&lt;/td>
-&lt;td>A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. For instance, &lt;code>KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1&lt;/code> &lt;strong>Important&lt;/strong>: Only supported by &lt;code>kinesis-mock&lt;/code>&lt;/td>
+&lt;td>&lt;strong>Deprecated.&lt;/strong> A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. For instance, &lt;code>KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1&lt;/code>. In multi-account setups, the streams will be created for all accounts.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>User-Guide: Kinesis Data Analytics</title><link>/user-guide/aws/kinesis-analytics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-analytics/</guid><description>
+&lt;/table>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>In multi-account setups, each AWS account launches a separate instance of Kinesis Mock.
+This is very resource intensive when a large number of AWS accounts are used.&lt;/p>
+&lt;p>This will be addressed in a future update.
+Follow up with &lt;a href="https://github.com/etspaceman/kinesis-mock/issues/377">this Kinesis Mock issue&lt;/a> to keep track of this feature.&lt;/p></description></item><item><title>User-Guide: Kinesis Data Analytics</title><link>/user-guide/aws/kinesis-analytics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-analytics/</guid><description>
 &lt;p>The Kinesis Data Analytics API allows you to run continuous SQL queries directly over your Kinesis data streams. A basic support is included in LocalStack Pro which allows you to create Kinesis Analytics applications, define input and output streams and schema types, and run continuous queries locally.&lt;/p></description></item><item><title>User-Guide: Kinesis Data Firehose</title><link>/user-guide/aws/kinesis-firehose/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-firehose/</guid><description>
 &lt;p>Kinesis Data Firehose is a service to extract, transform and load (ETL service) data to multiple destinations.
 LocalStack supports Firehose with Kinesis as source, and S3, Elasticsearch or HttpEndpoints as targets.&lt;/p>
@@ -8123,7 +8128,13 @@ By default, &lt;code>2.2.2&lt;/code> is used.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>botocore==1.20.54
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Next, upload the file to the S3 bucket configured for use by the MWAA environment. The file must be uploaded to &lt;code>/requirements.txt&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp requirements.txt s3://my-mwaa-bucket/requirements.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The environment will be updated and will be ready for use with new dependencies.&lt;/p></description></item><item><title>User-Guide: Neptune</title><link>/user-guide/aws/neptune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/neptune/</guid><description>
+&lt;p>The environment will be updated and will be ready for use with new dependencies.&lt;/p>
+&lt;p>&lt;a href="https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html">Unlike production AWS&lt;/a>, LocalStack does not install any provider packages.
+These must be installed using the above steps.&lt;/p>
+&lt;h2 id="connections">Connections&lt;/h2>
+&lt;p>When using connections to other AWS services within DAGs, please specify either the internal Docker IP address of the LocalStack container or &lt;code>host.docker.internal&lt;/code>.&lt;/p>
+&lt;p>LocalStack currently does not use the credentials and region from &lt;code>aws_conn_id&lt;/code>.
+This information must be explicitly passed in operators, hooks and sensors.&lt;/p></description></item><item><title>User-Guide: Neptune</title><link>/user-guide/aws/neptune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/neptune/</guid><description>
 &lt;p>The Neptune API provides a graph database to store nodes and edges that can be accessed via Apache TinkerPop and Gremlin queries.&lt;/p>
 &lt;p>For example, you can create a Neptune cluster like this:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>

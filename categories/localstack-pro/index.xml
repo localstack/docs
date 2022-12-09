@@ -1850,7 +1850,6 @@ id="tabs-1-1" role="tabpanel" aria-labelled-by="tabs-1-1-tab">
 &lt;p>Known limitations of multi-accounts:&lt;/p>
 &lt;ul>
 &lt;li>Not supported for setups that use cross-account and cross-service access.&lt;/li>
-&lt;li>Not supported in Kinesis.&lt;/li>
 &lt;/ul>
 &lt;p>Please see &lt;a href="https://github.com/localstack/localstack/issues/7041">https://github.com/localstack/localstack/issues/7041&lt;/a> for more information.&lt;/p>
 &lt;/div>
@@ -4313,7 +4312,13 @@ By default, &lt;code>2.2.2&lt;/code> is used.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>botocore==1.20.54
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Next, upload the file to the S3 bucket configured for use by the MWAA environment. The file must be uploaded to &lt;code>/requirements.txt&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp requirements.txt s3://my-mwaa-bucket/requirements.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The environment will be updated and will be ready for use with new dependencies.&lt;/p></description></item><item><title>User-Guide: Neptune</title><link>/user-guide/aws/neptune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/neptune/</guid><description>
+&lt;p>The environment will be updated and will be ready for use with new dependencies.&lt;/p>
+&lt;p>&lt;a href="https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html">Unlike production AWS&lt;/a>, LocalStack does not install any provider packages.
+These must be installed using the above steps.&lt;/p>
+&lt;h2 id="connections">Connections&lt;/h2>
+&lt;p>When using connections to other AWS services within DAGs, please specify either the internal Docker IP address of the LocalStack container or &lt;code>host.docker.internal&lt;/code>.&lt;/p>
+&lt;p>LocalStack currently does not use the credentials and region from &lt;code>aws_conn_id&lt;/code>.
+This information must be explicitly passed in operators, hooks and sensors.&lt;/p></description></item><item><title>User-Guide: Neptune</title><link>/user-guide/aws/neptune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/neptune/</guid><description>
 &lt;p>The Neptune API provides a graph database to store nodes and edges that can be accessed via Apache TinkerPop and Gremlin queries.&lt;/p>
 &lt;p>For example, you can create a Neptune cluster like this:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>

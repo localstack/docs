@@ -2295,8 +2295,8 @@ LocalStack will return the endpoint immediately, but keep &lt;code>Processing = 
 &lt;li>LocalStack KMS supports &lt;a href="https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html">multi-region keys&lt;/a>, but, unlike in AWS KMS, multi-region key replicas are not synchronized with their primary key. So if you create a replica of a multi-regional key and then update some settings for the primary key, the replica won&amp;rsquo;t get automatically updated.&lt;/li>
 &lt;li>AWS KMS has &lt;a href="https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html">aliases&lt;/a>, that are created automatically for KMS keys used by services like, for example, S3. While LocalStack supports those pre-created aliases, they are getting created on the first attempt to access such an alias and are not visible before such an attempt.&lt;/li>
 &lt;/ol></description></item><item><title>User-Guide: Kinesis</title><link>/user-guide/aws/kinesis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis/</guid><description>
-&lt;p>AWS Kinesis is a fully managed data streaming service, which enables your application to ingest, buffer, and process data in real-time.
-Kinesis is shipped with the LocalStack Community version and is &lt;a href="/user-guide/aws/feature-coverage/">extensively supported&lt;/a>.&lt;/p>
+&lt;p>AWS Kinesis is a data streaming service, which enables your application to ingest, buffer, and process data in real-time.
+Kinesis in LocalStack Community is powered by &lt;a href="https://github.com/etspaceman/kinesis-mock">Kinesis Mock&lt;/a> and has an &lt;a href="/user-guide/aws/feature-coverage/">extensively supported API&lt;/a>.&lt;/p>
 &lt;h2 id="quickstart">Quickstart&lt;/h2>
 &lt;p>Trying to run the example applications from the &lt;a href="https://docs.aws.amazon.com/streams/latest/dev/examples.html">official AWS developer guide&lt;/a> against LocalStack is a great place to start.
 Assuming you have &lt;code>awslocal&lt;/code> installed you can also try out the following commands:&lt;/p>
@@ -2337,10 +2337,15 @@ Assuming you have &lt;code>awslocal&lt;/code> installed you can also try out the
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>KINESIS_INITIALIZE_STREAMS&lt;/code>&lt;/td>
-&lt;td>A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. For instance, &lt;code>KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1&lt;/code> &lt;strong>Important&lt;/strong>: Only supported by &lt;code>kinesis-mock&lt;/code>&lt;/td>
+&lt;td>&lt;strong>Deprecated.&lt;/strong> A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. For instance, &lt;code>KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1&lt;/code>. In multi-account setups, the streams will be created for all accounts.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>User-Guide: Kinesis Data Firehose</title><link>/user-guide/aws/kinesis-firehose/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-firehose/</guid><description>
+&lt;/table>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>In multi-account setups, each AWS account launches a separate instance of Kinesis Mock.
+This is very resource intensive when a large number of AWS accounts are used.&lt;/p>
+&lt;p>This will be addressed in a future update.
+Follow up with &lt;a href="https://github.com/etspaceman/kinesis-mock/issues/377">this Kinesis Mock issue&lt;/a> to keep track of this feature.&lt;/p></description></item><item><title>User-Guide: Kinesis Data Firehose</title><link>/user-guide/aws/kinesis-firehose/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-firehose/</guid><description>
 &lt;p>Kinesis Data Firehose is a service to extract, transform and load (ETL service) data to multiple destinations.
 LocalStack supports Firehose with Kinesis as source, and S3, Elasticsearch or HttpEndpoints as targets.&lt;/p>
 &lt;h2 id="examples">Examples&lt;/h2>
