@@ -6,7 +6,6 @@ description: >
   Overview of the implemented AWS APIs in LocalStack
 aliases:
   - /localstack/coverage/
-hide_readingtime: true
 ---
 
 
@@ -544,7 +543,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetUsagePlan</td>
+      <td>GetUsagePlan <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -684,11 +683,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateStage</td>
+      <td>UpdateStage <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateUsagePlan</td>
+      <td>UpdateUsagePlan <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4842,10 +4841,6 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddSourceIdentifierToSubscription (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AddTagsToResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4992,6 +4987,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse docdb-notimplemented">     <tr>
+      <td>AddSourceIdentifierToSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ApplyPendingMaintenanceAction</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6012,6 +6011,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DisassociateEnclaveCertificateIamRole (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DisassociateIamInstanceProfile</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6995,10 +6998,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DisassociateClientVpnTargetNetwork</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DisassociateEnclaveCertificateIamRole</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -13264,6 +13263,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>AddApplicationReferenceDataSource (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13314,10 +13317,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>AddApplicationReferenceDataSource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DeleteApplicationCloudWatchLoggingOption</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13355,10 +13354,6 @@ hide_readingtime: true
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>AddApplicationCloudWatchLoggingOption (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
     <tr>
       <td>AddApplicationInputProcessingConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
@@ -13410,6 +13405,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse kinesisanalyticsv2-notimplemented">     <tr>
+      <td>AddApplicationCloudWatchLoggingOption</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AddApplicationInput</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16218,6 +16217,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeLoggingStatus (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeSnapshotCopyGrants</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -16433,10 +16436,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeHsmConfigurations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeLoggingStatus</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
