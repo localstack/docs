@@ -13,6 +13,8 @@ $ localstack [OPTIONS] COMMAND [ARGS]...
 
 ## Options
 
+The following options are available for the `localstack` CLI.
+
 ### `--version`
 
 The `--version` option is used to display the version of the LocalStack CLI.
@@ -65,7 +67,7 @@ The options available for the `login` command are:
 | `--username`, `-u`       |         | Username                     |
 | `--password-stdin`, `-s` |         | Take the password from stdin |
 
-## `logout`
+### `logout`
 
 The `logout` command is used to log out of the LocalStack Platform.
 
