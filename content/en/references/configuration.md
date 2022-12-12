@@ -1,6 +1,6 @@
 ---
 title: "Configuration"
-weight: 5
+weight: 1
 description: >
   Environment variables which affect LocalStack.
 aliases:
