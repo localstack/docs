@@ -245,7 +245,7 @@ The options available for the `reset` command are:
 
 ### `ssh`
 
-The `ssh` command is used to connect to the obtain a shell in the running LocalStack container.
+The `ssh` command is used to obtain a shell in the running LocalStack container.
 
 {{< command >}}
 $ localstack ssh [OPTIONS]
