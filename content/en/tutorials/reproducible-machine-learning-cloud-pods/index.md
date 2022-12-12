@@ -3,13 +3,13 @@ title: "Creating reproducible machine learning applications using Cloud Pods for
 linkTitle: "Creating reproducible machine learning applications using Cloud Pods for persistent state snapshots"
 weight: 5
 description: >
-  With LocalStack Cloud Pods, you can create persistent state snapshots to enable next-generation state management and team collaboration features for your local development environment. Learn how you can create reproducible machine learning applications & samples using Cloud Pods to take a snapshot of your LocalStack state at any point in time.
+  With LocalStack Cloud Pods, you can create persistent state snapshots to enable next-generation state management and team collaboration features for your local development environment. Learn how you can create reproducible machine learning applications & samples using Cloud Pods in LocalStack.
 type: tutorials
 ---
 
 LocalStack Cloud Pods enable you to create persistent state snapshots of your LocalStack instance, which can then be versioned, shared, and restored. It allows next-generation state management and team collaboration for your local cloud development environment, which you can utilize to create persistent shareable cloud sandboxes. Cloud Pods works directly with the LocalStack CLI to save, merge, and restore snapshots of your LocalStack state. You can always tear down your LocalStack instance and restore it from a snapshot at any point in time.
 
-Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using Community Cloud Pods, you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags, and save them on LocalStack Pod's platform.
+Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using Community Cloud Pods, you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags similar to `git`, and push them to the LocalStack platform for storage and collaboration.
 
 In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. We will use Cloud Pods to create a reproducible sample by using an S3 bucket to host our training data, a Lambda function to train the model and a Lambda layer that contains the dependencies for our training code. We will then create a Cloud Pod to save the state of our LocalStack instance and restore it from the Cloud Pod to share it with our team.
 
@@ -109,7 +109,7 @@ def handler(event, context):
     print("--> prediction result:", predicted)
 ```
 
-After loading the images, they are flattened into 1-dimensional arrays and split into a training set and a test set using the `train_test_split` function from the `sklearn.model_selection` module. An SVM classifier is trained on the training set using the fit method. Finally, the trained model makes predictions on the test set using the prediction method, and the predicted values are printed to the console.
+After loading the images, they are flattened into 1-dimensional arrays and split into a training set and a test set using the `train_test_split` function from the `sklearn.model_selection` module. An SVM classifier is trained on the training set using the `fit` method. Finally, the trained model makes predictions on the test set using the `predict` method, and the predicted values are printed to the console.
 
 ## Deploying the Lambda function
 
@@ -128,7 +128,7 @@ $ awslocal s3 cp lambda.zip s3://reproducible-ml/lambda.zip
 $ awslocal s3 cp digits.csv.gz s3://reproducible-ml/digits.csv.gz
 {{< / command >}}
 
-We first zip our Lambda function into a `lambda.zip` file in the above commands. Next, we created an S3 bucket named `reproducible-ml` and uploaded the zip file and the dataset. We can now create a Lambda function using `awslocal` CLI by specifying the Lambda handler function and the S3 bucket where the `zip` file is located:
+We first zip our Lambda function into a `lambda.zip` file in the above commands. Next, we create an S3 bucket named `reproducible-ml` and upload the zip file and the dataset. We can now create a Lambda function using `awslocal` CLI by specifying the Lambda handler function and the S3 bucket where the `zip` file is located:
 
 {{< command >}}
 $ awslocal lambda create-function --function-name reproducible-ml-sample \
@@ -197,7 +197,7 @@ You can inspect the contents of a Cloud Pod using the `inspect` command:
 $ localstack pod inspect reproducible-ml
 {{< / command >}}
 
-While you save a Cloud Pod, it is automatically published on the LocalStack Pod's platform and can be shared with other users in your organization. While saving an already existing Cloud Pod, we would create a new version, which is eventually uploaded to the LocalStack Pod's platform.
+While you save a Cloud Pod, it is automatically published on the LocalStack platform and can be shared with other users in your organization. While saving an already existing Cloud Pod, we would create a new version, which is eventually uploaded to the LocalStack platform.
 
 {{< alert title="Setting visibility of a Cloud Pod" >}}
 You can optionally set the visibility of a Cloud Pod to `private` or `public` using the `--visibility` flag. By default, the visibility of a Cloud Pod is set to `private`. To set a Cloud Pod to `public`, you can use the following command:
@@ -213,7 +213,7 @@ You can also attach an optional message and a list of services to a Cloud Pod us
 $ localstack pod load reproducible-ml
 {{< / command >}}
 
-The `load` command will retrieve the content of our Cloud Pod named `reproducible-ml` from the LocalStack Pod's platform and load it into our running LocalStack instance. Upon successfully loading the Cloud Pod, the Lambda function can be invoked again, and the log output should be the same as before.
+The `load` command will retrieve the content of our Cloud Pod named `reproducible-ml` from the LocalStack platform and inject it into our running LocalStack instance. Upon successfully loading the Cloud Pod, the Lambda function can be invoked again, and the log output should be the same as before.
 
 LocalStack Cloud Pods also feature different merge strategies to merge the state of a Cloud Pod with the current LocalStack instance. You can use the `--merge` flag to specify the merge strategy. The available merge strategies are:
 
