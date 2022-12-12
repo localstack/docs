@@ -162,7 +162,7 @@ The commands available for the `status` command are:
 
 ### `daemons`
 
-The `daemons` command is used to manage LocalStack daemon processes.
+The `daemons` command is used to manage LocalStack daemon processes (e.g., required to start up EC2 virtual machines on the host).
 
 {{< command >}}
 $ localstack daemons [OPTIONS] COMMAND [ARGS]...
