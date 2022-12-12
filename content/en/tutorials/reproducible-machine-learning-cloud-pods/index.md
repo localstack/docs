@@ -7,9 +7,9 @@ description: >
 type: tutorials
 ---
 
-LocalStack Cloud Pods enable you to create persistent state snapshots of your LocalStack instance, which can then be versioned, shared, and restored. It allows next-generation state management and team collaboration for your local cloud development environment, which you can utilize to create persistent shareable cloud sandboxes. Cloud Pods works similarly to the `git` version control system and uses the same concepts and commands to save, merge, and restore snapshots of your LocalStack state. You can always tear down your LocalStack instance and restore it from a snapshot at any point in time.
+LocalStack Cloud Pods enable you to create persistent state snapshots of your LocalStack instance, which can then be versioned, shared, and restored. It allows next-generation state management and team collaboration for your local cloud development environment, which you can utilize to create persistent shareable cloud sandboxes. Cloud Pods works directly with the LocalStack CLI to save, merge, and restore snapshots of your LocalStack state. You can always tear down your LocalStack instance and restore it from a snapshot at any point in time.
 
-Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using Community Cloud Pods, you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags similar to `git`, and push them to LocalStack Pod's platform.
+Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using Community Cloud Pods, you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags, and save them on LocalStack Pod's platform.
 
 In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. We will use Cloud Pods to create a reproducible sample by using an S3 bucket to host our training data, a Lambda function to train the model and a Lambda layer that contains the dependencies for our training code. We will then create a Cloud Pod to save the state of our LocalStack instance and restore it from the Cloud Pod to share it with our team.
 
@@ -202,7 +202,7 @@ While you save a Cloud Pod, it is automatically published on the LocalStack Pod'
 {{< alert title="Setting visibility of a Cloud Pod" >}}
 You can optionally set the visibility of a Cloud Pod to `private` or `public` using the `--visibility` flag. By default, the visibility of a Cloud Pod is set to `private`. To set a Cloud Pod to `public`, you can use the following command:
 {{< command >}}
-$ localstack pod push --name <pod_name> --visibility public
+$ localstack pod save --name <pod_name> --visibility public
 {{< / command >}}
 The above command does not create a new version and requires a version already registered with the platform.
 {{< /alert >}}
@@ -213,13 +213,13 @@ You can also attach an optional message and a list of services to a Cloud Pod us
 $ localstack pod load reproducible-ml
 {{< / command >}}
 
-The `load` command will retrieve the content of our Cloud Pod named `reproducible-ml` from the LocalStack Pod's platform and inject it into our running LocalStack instance. Upon successfully loading the Cloud Pod, the Lambda function can be invoked again, and the log output should be the same as before.
+The `load` command will retrieve the content of our Cloud Pod named `reproducible-ml` from the LocalStack Pod's platform and load it into our running LocalStack instance. Upon successfully loading the Cloud Pod, the Lambda function can be invoked again, and the log output should be the same as before.
 
 LocalStack Cloud Pods also feature different merge strategies to merge the state of a Cloud Pod with the current LocalStack instance. You can use the `--merge` flag to specify the merge strategy. The available merge strategies are:
 
-- **Inject with overwrite**: This is the default merge strategy. It will inject the state of the Cloud Pod into the current LocalStack instance and overwrite the existing state.
-- **Inject with basic merge**: This merge strategy will inject the state of the Cloud Pod into the current LocalStack instance and merge the existing state with the state of the Cloud Pod.
-- **Inject with deep merge**: This merge strategy will inject the state of the Cloud Pod into the current LocalStack instance and merge the existing state with the state of the Cloud Pod. It will also merge the existing state with the state of the Cloud Pod recursively.
+- **Load with overwrite**: This is the default merge strategy. It will load the state of the Cloud Pod into the current LocalStack instance and overwrite the existing state.
+- **Load with basic merge**: This merge strategy will load the state of the Cloud Pod into the current LocalStack instance and merge the existing state with the state of the Cloud Pod.
+- **Load with deep merge**: This merge strategy will load the state of the Cloud Pod into the current LocalStack instance and merge the existing state with the state of the Cloud Pod. It will also merge the existing state with the state of the Cloud Pod recursively.
 
 {{< figure src="cloud-pods-state-merge-mechanisms.png" width="80%" alt="State Merge mechanisms with LocalStack Cloud Pods">}}
 
