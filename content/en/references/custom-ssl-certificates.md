@@ -1,0 +1,98 @@
+---
+title: Custom SSL certificates
+weight: 99
+description: >
+  How to use custom SSL certificates with LocalStack
+---
+
+# Background
+
+LocalStack sometimes performs on-demand fetching of resources from the public internet.
+This requires that LocalStack is able to access public URLs.
+If there is a proxy server in your network that uses a non-standard SSL certificate, LocalStack will not be able to download any files on demand.
+You may see errors in the logs relating to SSL such as "unable to get local issuer certificate".
+
+# Solution
+
+If you run LocalStack in a docker container (which includes using [the CLI]({{< ref "/getting-started#localstack-cli" >}}), [docker]({{< ref "/getting-started/#docker" >}}), [docker-compose]({{< ref "/getting-started/#docker-compose" >}}), [cockpit]({{< ref "/getting-started/#localstack-cockpit" >}}) or [helm]({{< ref "/getting-started/#helm" >}})), to include a custom SSL root certificate a new docker image should be created.
+If you run LocalStack in [host mode]({{< ref "/contributing/setup#host-mode" >}}) the setup may be more complex, and will be dependent on your system.
+
+## Creating a custom docker image
+
+Create a `Dockerfile` containing the following commands:
+
+```docker
+FROM localstack/localstack:latest
+# or if using the pro image:
+FROM localstack/localstack-pro:latest
+
+COPY <your custom certificate.crt> /usr/local/share/ca-certificates/cert-bundle.crt
+RUN update-ca-certificates
+ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+```
+
+and build the image:
+
+{{< command >}}
+$ docker build -t <image name> .
+{{< / command >}}
+
+*Note: if your certificate file ends with `.pem`, you can rename it to `.crt`*
+
+## Starting LocalStack with the custom image
+
+LocalStack now needs to be configured to use this custom image. The workflow is different depending on how you start localstack.
+
+### Via the CLI
+
+You can use the `IMAGE_NAME` environment variable to specify the name of this new image:
+
+{{< command >}}
+$ IMAGE_NAME=<image name> localstack start
+{{< / command >}}
+
+### Via docker
+
+Use `<image name>` in place of your normal LocalStack container image:
+
+{{< command >}}
+$ docker run <docker arguments> <image name>
+{{< / command >}}
+
+### Via docker-compose
+
+Update your compose file to use the newly built image:
+
+```yaml
+services:
+  localstack:
+    image: <image name>
+    # the rest of your configuration
+```
+
+## Custom SSL certificates with host mode
+
+### Linux
+
+On linux the custom certificate should be added to your `ca-certificates` bundle. For example on Debian based systems (as root):
+
+{{< command >}}
+# cp <your custom certificate.crt> /usr/local/share/ca-certificates
+# update-ca-certificates
+{{< / command >}}
+
+Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE`:
+
+{{< command >}}
+$ REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
+{{< / command >}}
+
+### macos
+
+On macos the custom certificate should be added to your keychain. See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
+
+Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE`:
+
+{{< command >}}
+$ REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
+{{< / command >}}
