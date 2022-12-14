@@ -1,6 +1,8 @@
 ---
 title: Custom SSL certificates
 weight: 99
+tags:
+- ssl
 description: >
   How to use custom SSL certificates with LocalStack
 ---
@@ -28,7 +30,6 @@ They all can be summarised as:
 ## Creating a custom docker image
 
 If you run LocalStack in a docker container (which includes using [the CLI]({{< ref "/getting-started#localstack-cli" >}}), [docker]({{< ref "/getting-started/#docker" >}}), [docker-compose]({{< ref "/getting-started/#docker-compose" >}}), [cockpit]({{< ref "/getting-started/#localstack-cockpit" >}}) or [helm]({{< ref "/getting-started/#helm" >}})), to include a custom SSL root certificate a new docker image should be created.
-If you run LocalStack in [host mode]({{< ref "/contributing/setup#host-mode" >}}) the setup may be more complex, and will be dependent on your system.
 
 Create a `Dockerfile` containing the following commands:
 
@@ -39,6 +40,7 @@ FROM localstack/localstack-pro:latest
 
 COPY <your custom certificate.crt> /usr/local/share/ca-certificates/cert-bundle.crt
 RUN update-ca-certificates
+ENV CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 ```
 
@@ -48,7 +50,10 @@ and build the image:
 $ docker build -t <image name> .
 {{< / command >}}
 
-*Note: if your certificate file ends with `.pem`, you can rename it to `.crt`*
+{{< alert title="Information" color="primary">}}
+**Note**: Certificate files **must** end in `.crt` to be included in the system certificate store.
+If your certificate file ends with `.pem`, you can rename it to end in `.crt`. 
+{{< / alert>}}
 
 ### Starting LocalStack with the custom image
 
@@ -97,7 +102,12 @@ cp /etc/localstack/init/boot.d/<your certificate file>.crt /usr/local/share/ca-c
 update-ca-certificates
 ```
 
-Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`, and follow the instructions fn the [init hooks documentation]({{< ref "init-hooks" >}}) for configuring LocalStack to use the hook directory as a `boot` hook.
+Then run LocalStack with the environment variables
+
+* `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`, and
+* `CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`, and
+
+and follow the instructions fn the [init hooks documentation]({{< ref "init-hooks" >}}) for configuring LocalStack to use the hook directory as a `boot` hook.
 
 ## Custom SSL certificates with host mode
 
@@ -110,20 +120,20 @@ On linux the custom certificate should be added to your `ca-certificates` bundle
 # update-ca-certificates
 {{< / command >}}
 
-Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE`:
+Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE` and `CURL_CA_BUNDLE`:
 
 {{< command >}}
-$ REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
+$ CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
 {{< / command >}}
 
 ### macos
 
 On macos the custom certificate should be added to your keychain. See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
 
-Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE`:
+Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE` and `CURL_CA_BUNDLE`:
 
 {{< command >}}
-$ REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
+$ CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
 {{< / command >}}
 
 ### Windows
