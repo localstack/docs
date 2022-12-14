@@ -147,4 +147,4 @@ DOCKER_FLAGS='-v /path/to/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh' 
 {{< /tab >}}
 {{< /tabpane >}}
 
-Another use for init hooks can be seen when [adding custom SSL certificates to LocalStack]({{< ref "custom-ssl-certificates#custom-ssl-certificates-with-init-hooks" >}}).
+Another use for init hooks can be seen when [adding custom TLS certificates to LocalStack]({{< ref "custom-tls-certificates#custom-tls-certificates-with-init-hooks" >}}).

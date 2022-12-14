@@ -1,18 +1,18 @@
 ---
-title: Custom SSL certificates
+title: Custom TLS certificates
 weight: 99
 tags:
 - ssl
 description: >
-  How to use custom SSL certificates with LocalStack
+  How to use custom TLS certificates with LocalStack
 ---
 
 # Background
 
 LocalStack sometimes performs on-demand fetching of resources from the public internet.
 This requires that LocalStack is able to access public URLs.
-If there is a proxy server in your network that uses a non-standard SSL certificate, LocalStack will not be able to download any files on demand.
-You may see errors in the logs relating to SSL such as "unable to get local issuer certificate".
+If there is a proxy server in your network that uses a non-standard TLS certificate, LocalStack will not be able to download any files on demand.
+You may see errors in the logs relating to TLS such as "unable to get local issuer certificate".
 
 # Solution
 
@@ -29,7 +29,7 @@ They all can be summarised as:
 
 ## Creating a custom docker image
 
-If you run LocalStack in a docker container (which includes using [the CLI]({{< ref "/getting-started#localstack-cli" >}}), [docker]({{< ref "/getting-started/#docker" >}}), [docker-compose]({{< ref "/getting-started/#docker-compose" >}}), [cockpit]({{< ref "/getting-started/#localstack-cockpit" >}}) or [helm]({{< ref "/getting-started/#helm" >}})), to include a custom SSL root certificate a new docker image should be created.
+If you run LocalStack in a docker container (which includes using [the CLI]({{< ref "/getting-started#localstack-cli" >}}), [docker]({{< ref "/getting-started/#docker" >}}), [docker-compose]({{< ref "/getting-started/#docker-compose" >}}), [cockpit]({{< ref "/getting-started/#localstack-cockpit" >}}) or [helm]({{< ref "/getting-started/#helm" >}})), to include a custom TLS root certificate a new docker image should be created.
 
 Create a `Dockerfile` containing the following commands:
 
@@ -74,7 +74,7 @@ services:
 {{< /tab >}}
 {{< / tabpane >}}
 
-## Custom SSL certificates with init hooks
+## Custom TLS certificates with init hooks
 
 It is recommended to create a `boot` init hook. Create a directory on your local system that includes
 
@@ -97,7 +97,7 @@ Then run LocalStack with the environment variables
 
 and follow the instructions fn the [init hooks documentation]({{< ref "init-hooks" >}}) for configuring LocalStack to use the hook directory as a `boot` hook.
 
-## Custom SSL certificates with host mode
+## Custom TLS certificates with host mode
 
 ### Linux
 
