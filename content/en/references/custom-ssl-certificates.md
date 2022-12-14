@@ -39,7 +39,7 @@ FROM localstack/localstack-pro:latest
 
 COPY <your custom certificate.crt> /usr/local/share/ca-certificates/cert-bundle.crt
 RUN update-ca-certificates
-ENV CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 ```
 
 and build the image:
@@ -97,7 +97,7 @@ cp /etc/localstack/init/boot.d/<your certificate file>.crt /usr/local/share/ca-c
 update-ca-certificates
 ```
 
-Then run LocalStack with the environment variable `CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`, and follow the instructions fn the [init hooks documentation]({{< ref "init-hooks" >}}) for configuring LocalStack to use the hook directory as a `boot` hook.
+Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`, and follow the instructions fn the [init hooks documentation]({{< ref "init-hooks" >}}) for configuring LocalStack to use the hook directory as a `boot` hook.
 
 ## Custom SSL certificates with host mode
 
@@ -110,18 +110,18 @@ On linux the custom certificate should be added to your `ca-certificates` bundle
 # update-ca-certificates
 {{< / command >}}
 
-Then run LocalStack with the environment variable `CURL_CA_BUNDLE`:
+Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE`:
 
 {{< command >}}
-$ CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
+$ REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
 {{< / command >}}
 
 ### macos
 
 On macos the custom certificate should be added to your keychain. See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
 
-Then run LocalStack with the environment variable `CURL_CA_BUNDLE`:
+Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE`:
 
 {{< command >}}
-$ CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
+$ REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
 {{< / command >}}
