@@ -25,7 +25,8 @@ There are three options when running LocalStack:
 They all can be summarised as:
 
 1. get your proxy's custom certificate into the system certificate store, and
-2. configure [`requests`](https://pypi.python.org/pypi/requests) to use the custom certificate.
+2. configure [`requests`](https://pypi.python.org/pypi/requests) to use the custom certificate, and
+3. configure [`curl`](https://curl.se/) to use the custom certificate.
 
 ## Creating a custom docker image
 
