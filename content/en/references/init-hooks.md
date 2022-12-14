@@ -139,7 +139,7 @@ services:
     volumes:
       - "/path/to/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"  # ready hook
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
-      - "/vr/run/docker.sock:/var/run/docker.sock"
+      - "/var/run/docker.sock:/var/run/docker.sock"
 {{< /tab >}}
 {{< tab header="CLI" lang="bash" >}}
 # DOCKER_FLAGS are additional parameters to the `docker run` command of localstack start
