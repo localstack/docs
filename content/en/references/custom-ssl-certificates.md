@@ -125,3 +125,7 @@ Then run LocalStack with the environment variable `REQUESTS_CA_BUNDLE`:
 {{< command >}}
 $ REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
 {{< / command >}}
+
+### Windows
+
+Currently host mode does not work with Windows. If you are using WSL2 you should follow the [Linux]({{< ref "#linux" >}}) steps above.
