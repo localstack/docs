@@ -59,32 +59,20 @@ If your certificate file ends with `.pem`, you can rename it to end in `.crt`.
 
 LocalStack now needs to be configured to use this custom image. The workflow is different depending on how you start localstack.
 
-#### Via the CLI
-
-You can use the `IMAGE_NAME` environment variable to specify the name of this new image:
-
-{{< command >}}
-$ IMAGE_NAME=<image name> localstack start
-{{< / command >}}
-
-#### Via docker
-
-Use `<image name>` in place of your normal LocalStack container image:
-
-{{< command >}}
-$ docker run <docker arguments> <image name>
-{{< / command >}}
-
-#### Via docker-compose
-
-Update your compose file to use the newly built image:
-
-```yaml
+{{< tabpane >}}
+{{< tab header="CLI" lang="bash" >}}
+IMAGE_NAME=<image name> localstack start
+{{< /tab >}}
+{{< tab header="Docker" lang="bash" >}}
+docker run <docker arguments> <image name>
+{{< /tab >}}
+{{< tab header="docker-compose.yml" lang="yml" >}}
 services:
   localstack:
     image: <image name>
     # the rest of your configuration
-```
+{{< /tab >}}
+{{< / tabpane >}}
 
 ## Custom SSL certificates with init hooks
 
