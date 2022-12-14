@@ -12,9 +12,9 @@ When signing up for an account, you can either do so by providing an e-mail, or 
 
 
 ### Individual Account / Company Account
-After successfully signing up for a LocalStack, you will end up with an individual account.
+After successfully signing up for a LocalStack, you will end up with an <b>individual account</b>.
 These accounts are intended for non company entities, such as sole developers.<br>
-Within the [profile](https://app.localstack.cloud/account) section of your account, you will find a toggle to switch to a company account instead.
+Within the [profile](https://app.localstack.cloud/account) section of your account, you will find a toggle to switch to a <b>company account</b> instead.
 This will allow you to add more information about your company, such as `Company Name`, `Country` and `Tax ID`, which should be set if you are acting on behalf of a company.
 
 ### Organizations
