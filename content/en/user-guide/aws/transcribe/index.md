@@ -20,14 +20,15 @@ This service has limited support for aarch64/Apple Silicon.
 
 ### Supported Formats
 
-Following input media formats are supported:
-- AMR
-- FLAC
-- MP3
-- MP4
+The following input media formats are supported:
+
+- Adaptive Multi-Rate (AMR)
+- Free Lossless Audio Codec (FLAC)
+- MPEG-1 Audio Layer-3 (MP3)
+- MPEG-4 Part 14 (MP4)
 - OGG
-- MKV
-- WAV
+- Matroska Video files (MKV)
+- Waveform Audio File Format (WAV)
 
 ### Supported Languages
 
