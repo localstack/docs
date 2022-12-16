@@ -6,7 +6,7 @@ description: >
   LocalStack accounts are the entry point to our web application, the pro CLI, and more!
 ---
 
-A LocalStack account is a requirement to get your LocalStack licenses, which allow you to use advanced features of LocalStack, such as LocalStack Pro services, [Stack Insights](/user-guide/web-application/stack-insights/), [Cloud Pods](/user-guide/tools/cloud-pods/) and more!<br><br>
+A LocalStack account is a requirement to get your LocalStack licenses, which allow you to use advanced features of LocalStack, such as LocalStack Pro services, [Stack Insights]({{< ref "stack-insights" >}}), [Cloud Pods]({{< ref "cloud-pods" >}}) and more!<br><br>
 To create an account for LocalStack, please visit our [web application](https://app.localstack.cloud/sign-up).<br>
 When signing up for an account, you can either do so by providing an email address, or by signing up with one of our social identity providers (such as GitHub).
 
