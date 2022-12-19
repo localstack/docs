@@ -6,6 +6,7 @@ description: >
   Overview of the implemented AWS APIs in LocalStack
 aliases:
   - /localstack/coverage/
+hide_readingtime: true
 ---
 
 
@@ -6011,10 +6012,6 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisassociateEnclaveCertificateIamRole (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DisassociateIamInstanceProfile</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6998,6 +6995,10 @@ aliases:
     </tr>
     <tr>
       <td>DisassociateClientVpnTargetNetwork</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DisassociateEnclaveCertificateIamRole</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15769,6 +15770,10 @@ aliases:
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>PromoteReadReplica (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>RebootDBInstance (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -15992,10 +15997,6 @@ aliases:
     </tr>
     <tr>
       <td>ModifyGlobalCluster</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PromoteReadReplica</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -21505,6 +21506,14 @@ aliases:
   </thead>
   <tbody>
     <tr>
+      <td>CreateCallAnalyticsCategory</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreateLanguageModel</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateMedicalVocabulary</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -21575,14 +21584,6 @@ aliases:
     </tr>
   </tbody>
   <tbody class="collapse transcribe-notimplemented">     <tr>
-      <td>CreateCallAnalyticsCategory</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateLanguageModel</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CreateVocabularyFilter</td>
        <td style="text-align:right">-</td>
     </tr>
