@@ -80,6 +80,30 @@ The port mapping is printed in the logs as when the instance is intialised.
 ```
 
 
+### Key pairs
+
+You can specify a key pair at startup and LocalStack will copy it into the container and enable it for SSH authentication.
+
+{{< command >}}
+$ awslocal ec2 create-key-pair --key-name alice
+$ awslocal ec2 run-instances --image-id ami-df5de72bdb3b --key-name alice
+{{< /command >}}
+
+
+### User data
+
+It is possible to run commands on a instance at startup using [user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html).
+The script can be passed to the `UserData` argument of `RunInstances` operation.
+
+{{< command >}}
+$ awslocal ec2 run-instances --image-id ami-df5de72bdb3b --user-data '#!/bin/bash
+    whoami | tee /myname && echo localstack; echo "not printed">/dev/null;'
+{{< /command >}}
+
+Like production AWS, the contents of user data is saved at `/var/lib/cloud/instances/<instance_id>/user-data.txt` on the instance.
+Its execution is logged at `/var/log/cloud-init-output.log`.
+
+
 ### Operations
 
 The Docker backend supports following operations:
@@ -89,7 +113,7 @@ The Docker backend supports following operations:
 | CreateImage | Uses Docker commit to take a snapshot of a running instance into a new AMI |
 | DescribeImages | Retrieve a list of Docker images available for use within LocalStack |
 | DescribeInstances | Describe 'mock' instances as well as Docker-backed instances. Docker-backed instances have the resource tag `ec2_vm_manager:docker` |
-| RunInstances | Launch an instance. Supports `ImageId`, `MaxCount`, `KeyPair` and `UserData` parameters |
+| RunInstances | Corresponds to starting a container |
 | StopInstances | Corresponds to pausing a container |
 | StartInstances | Corresponds to unpausing a container |
 | TerminateInstances | Corresponds to stopping a container |
