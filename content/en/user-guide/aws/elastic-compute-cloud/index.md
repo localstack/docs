@@ -54,15 +54,27 @@ $ localstack daemons start
 The address for SSH access to the instance is printed in the logs when the instance is initialised.
 
 ```
-2022-03-21T14:46:49.540:INFO:localstack_ext.services.ec2.vmmanager.docker: Instance i-f6a80f48 will be accessible via SSH at: 192.168.123.25:22, 127.0.0.1:48805
+2022-03-21T14:46:49.540  INFO  Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705, 172.17.0.4:22
 ```
-
-If the LocalStack daemon is not running, the instance will be only accessible over SSH at `127.0.0.1` and the specified port.
 
 The LocalStack daemon is supported on Linux and MacOS.
 
-Security Groups are not applied to Dockerised instances.
-Ports other than 22 (SSH) are currently not exposed.
+If the LocalStack daemon is not running, the instance will be only accessible at `127.0.0.1` and an available port on the host.
+
+To expose additional ports to the host system, update the default security group and add the required ingress ports.
+Security group ingress rules are only applied to the Dockerised instance at the time of creating.
+Updating a security group will not open any ports of a running instance.
+
+{{< command >}}
+$ awslocal ec2 authorize-security-group-ingress --group-id default --protocol tcp --port 8080
+$ awslocal ec2 describe-security-groups --group-names default
+{{< /command >}}
+
+The port mapping is printed in the logs as when the instance is intialised.
+
+```
+2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
+```
 
 
 ### Operations
