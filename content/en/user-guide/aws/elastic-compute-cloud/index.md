@@ -65,6 +65,9 @@ To expose additional ports to the host system, update the default security group
 Security group ingress rules are only applied to the Dockerised instance at the time of creating.
 Updating a security group will not open any ports of a running instance.
 
+Up to 32 ingress ports are supported.
+This limitation exists to prevent the host from running out of free ports.
+
 {{< command >}}
 $ awslocal ec2 authorize-security-group-ingress --group-id default --protocol tcp --port 8080
 $ awslocal ec2 describe-security-groups --group-names default
