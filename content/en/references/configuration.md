@@ -311,7 +311,7 @@ More information [here]({{< ref "dns-server" >}}).
 | - | - | - |
 | `DNS_ADDRESS` | 0.0.0.0 (default) | Address the LocalStack should bind the DNS server on (port 53 tcp/udp). Value `0` to disable.
 | `DNS_SERVER` | 8.8.8.8 (default) | Fallback DNS server for non-modified queries.
-| `DNS_RESOLVE_IP` | 127.0.0.1 (default) | IP address the DNS integration should return as A record for modified queries.
+| `DNS_RESOLVE_IP` | 127.0.0.1 | IP address the DNS integration should return as A record for modified queries. This will override any automatic detection of the proper response IP.
 | `DNS_LOCAL_NAME_PATTERNS` | | Names which should be resolved to the LocalStack IP, as python-compatible regex.
 
 ## LocalStack Pro
