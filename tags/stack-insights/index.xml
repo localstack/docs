@@ -1,5 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Stack Insights</title><link>/tags/stack-insights/</link><description>Recent content in Stack Insights on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/stack-insights/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Stack Insights</title><link>/user-guide/web-application/stack-insights/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/stack-insights/</guid><description>
-&lt;p>Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account. You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.&lt;/p>
+&lt;p>LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall. Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.&lt;/p>
+&lt;p>You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.&lt;/p>
+&lt;p>To get started, the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable needs to be configured. The system will start making your events accessible on the LocalStack &lt;a href="https://app.localstack.cloud/dashboard">Web Application dashboard&lt;/a>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Data Privacy&lt;/h4>
+Data privacy is one of our key concerns, hence data is collected only in an anonymized way. No sensitive information about your application is ever exposed. The data is only used to provide you with insights into the usage of LocalStack and to improve the product.
+&lt;/div>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;img src="stack-insights-getting-started.png" width="600px" alt="Stack Insights">
 &lt;p>To get started with this feature, log in to your &lt;a href="https://app.localstack.cloud/">LocalStack account&lt;/a> and start a &lt;a href="/getting-started/api-key/">LocalStack instance on your local machine&lt;/a>. The LocalStack Dashboard will show the Stacks widget, which holds most of the vital information of recent and currently running stacks.&lt;/p>
@@ -9,4 +15,10 @@
 &lt;p>You can click on the individual stack to display detailed information. This includes the number of API calls, service invocations, the user agent (&lt;code>aws-cli&lt;/code>, &lt;code>terraform&lt;/code> etc.) and the particular service called in the specific spin-up. You can also use the slide toggle to pick up a particular time duration during which the user made specific API calls.&lt;/p>
 &lt;h2 id="list-of-events-during-stack-lifetime">List of events during Stack lifetime&lt;/h2>
 &lt;img src="stack-lifetime-events.png" width="600px" alt="Stack Lifetime Events">
-&lt;p>You can also check the list of events during the entire Stack life-time, which includes the Service, operation, Status Code, Server time and the User-agent.&lt;/p></description></item></channel></rss>
+&lt;p>You can also check the list of events during the entire Stack life-time, which includes the Service, operation, Status Code, Server time and the User-agent.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>You can disable event reporting on your LocalStack client by setting the environment variable &lt;code>DISABLE_EVENTS=1&lt;/code>.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Additional Info&lt;/h4>
+Brave blocks &lt;code>localhost&lt;/code> requests due to security by default via shields. While some sites need access to &lt;code>localhost&lt;/code> / &lt;code>127.0.0.1&lt;/code> to work correctly, an easy option to allow a user to enable this is manually enabling via the site via &lt;code>brave://settings/content/insecureContent&lt;/code>.
+&lt;/div></description></item></channel></rss>
