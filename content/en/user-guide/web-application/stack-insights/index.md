@@ -15,7 +15,7 @@ You can see which APIs are being used, which clients of integrations use particu
 To get started, the `LOCALSTACK_API_KEY` environment variable needs to be configured. The system will start making your events accessible on the LocalStack [Web Application dashboard](https://app.localstack.cloud/dashboard).
 
 {{< alert title="Data Privacy" >}}
-Data privacy is one of our key concerns and is collected only in an anonymized way. No sensitive information about your application is ever exposed. The data is only used to provide insights into the usage of LocalStack and to improve the product.
+Data privacy is one of our key concerns, hence data is collected only in an anonymized way. No sensitive information about your application is ever exposed. The data is only used to provide you with insights into the usage of LocalStack and to improve the product.
 {{< /alert >}}
 
 ## Getting started
