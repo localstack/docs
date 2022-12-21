@@ -4,9 +4,19 @@ tags: ["LocalStack Pro", "Stack Insights"]
 weight: 3
 description: >
   Stack Insights enable users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.
+aliases:
+ - /user-guide/tools/analytics-dashboard/
 ---
 
-Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account. You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.
+LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall. Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account. 
+
+You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.
+
+To get started, the `LOCALSTACK_API_KEY` environment variable needs to be configured. The system will start making your events accessible on the LocalStack dashboard on [Web Application dashboard](https://app.localstack.cloud/dashboard).
+
+{{< alert title="Data Privacy" >}}
+Data privacy is one of our key concerns and is collected only in an anonymized way. No sensitive information about your application is ever exposed. The data is only used to provide insights into the usage of LocalStack and to improve the product.
+{{< /alert >}}
 
 ## Getting started
 
@@ -27,3 +37,11 @@ You can click on the individual stack to display detailed information. This incl
 <img src="stack-lifetime-events.png" width="600px" alt="Stack Lifetime Events">
 
 You can also check the list of events during the entire Stack life-time, which includes the Service, operation, Status Code, Server time and the User-agent.
+
+## Configuration
+
+You can disable event reporting on your LocalStack client by setting the environment variable `DISABLE_EVENTS=1`.
+
+{{% alert title="Additional Info" color="info" %}}
+Brave blocks `localhost` requests due to security by default via shields. While some sites need access to `localhost` / `127.0.0.1` to work correctly, an easy option to allow a user to enable this is manually enabling via the site via `brave://settings/content/insecureContent`.
+{{% /alert %}}
