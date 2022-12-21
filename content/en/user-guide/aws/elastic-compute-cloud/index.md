@@ -7,8 +7,6 @@ aliases:
   - /aws/elastic-compute-cloud/
 ---
 
-## Pro
-
 LocalStack Pro supports the Docker backend for running instances.
 
 The Docker backend uses the [Docker Engine](https://docs.docker.com/engine/) to emulate EC2 instances.
@@ -18,7 +16,7 @@ Access to the Docker socket is required which can be made available to LocalStac
 Instances have the Docker socket (`/var/run/docker.sock`) mounted inside them, making Docker-in-Docker use cases possible.
 
 
-### Base Images
+## Base Images
 
 LocalStack uses a naming scheme to recognise and manage the containers and images associated with it.
 Containers are named `localstack-ec2.<InstanceId>`, while images are tagged `localstack-ec2/<AmiName>:<AmiId>`.
@@ -40,7 +38,7 @@ All other AMIs are 'mocked' and are based off the community edition of LocalStac
 Attempting to launch Dockerised instances with these AMIs will return `InvalidAMIID.NotFound` error.
 
 
-### Networking
+## Networking
 
 LocalStack supports assignment of unique private IP addresses for Dockerised instances.
 To leverage this feature, it is necessary to run the LocalStack daemon process on the host which takes care of creating and managing networking on the host system.
@@ -80,7 +78,7 @@ The port mapping is printed in the logs as when the instance is intialised.
 ```
 
 
-### Key pairs
+## Key pairs
 
 You can specify a key pair at startup and LocalStack will copy it into the container and enable it for SSH authentication.
 
@@ -90,7 +88,7 @@ $ awslocal ec2 run-instances --image-id ami-df5de72bdb3b --key-name alice
 {{< /command >}}
 
 
-### User data
+## User data
 
 It is possible to run commands on a instance at startup using [user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html).
 The script can be passed to the `UserData` argument of `RunInstances` operation.
@@ -104,7 +102,7 @@ Like production AWS, the contents of user data is saved at `/var/lib/cloud/insta
 Its execution is logged at `/var/log/cloud-init-output.log`.
 
 
-### Operations
+## Operations
 
 The Docker backend supports following operations:
 
