@@ -2981,13 +2981,12 @@ You can then register users against that local pool, using the same API calls as
 &lt;pre tabindex="0">&lt;code>Authentication: AWS4-HMAC-SHA256 Credential=test-1234567/20190821/us-east-1/cognito-idp/aws4_request ...
 &lt;/code>&lt;/pre>&lt;h2 id="further-reading">Further reading&lt;/h2>
 &lt;p>For a more detailed example, please check out our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt">sample repository&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Elastic Compute Cloud (EC2)</title><link>/user-guide/aws/elastic-compute-cloud/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-compute-cloud/</guid><description>
-&lt;h2 id="pro">Pro&lt;/h2>
 &lt;p>LocalStack Pro supports the Docker backend for running instances.&lt;/p>
 &lt;p>The Docker backend uses the &lt;a href="https://docs.docker.com/engine/">Docker Engine&lt;/a> to emulate EC2 instances.
 All limitations that apply to containers apply to EC2 instances backed by the Docker manager, including root access and networking.
 Access to the Docker socket is required which can be made available to LocalStack by mounting the socket file during launch.&lt;/p>
 &lt;p>Instances have the Docker socket (&lt;code>/var/run/docker.sock&lt;/code>) mounted inside them, making Docker-in-Docker use cases possible.&lt;/p>
-&lt;h3 id="base-images">Base Images&lt;/h3>
+&lt;h2 id="base-images">Base Images&lt;/h2>
 &lt;p>LocalStack uses a naming scheme to recognise and manage the containers and images associated with it.
 Containers are named &lt;code>localstack-ec2.&amp;lt;InstanceId&amp;gt;&lt;/code>, while images are tagged &lt;code>localstack-ec2/&amp;lt;AmiName&amp;gt;:&amp;lt;AmiId&amp;gt;&lt;/code>.&lt;/p>
 &lt;p>The Docker backend treats Docker images with the above naming scheme as AMIs.
@@ -2997,19 +2996,37 @@ For example, the following command can be used to associate the Ubuntu Focal ima
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>All other AMIs are &amp;lsquo;mocked&amp;rsquo; and are based off the community edition of LocalStack.
 Attempting to launch Dockerised instances with these AMIs will return &lt;code>InvalidAMIID.NotFound&lt;/code> error.&lt;/p>
-&lt;h3 id="networking">Networking&lt;/h3>
+&lt;h2 id="networking">Networking&lt;/h2>
 &lt;p>LocalStack supports assignment of unique private IP addresses for Dockerised instances.
 To leverage this feature, it is necessary to run the LocalStack daemon process on the host which takes care of creating and managing networking on the host system.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install localstack[runtime]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export LOCALSTACK_API_KEY=...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack daemons start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The address for SSH access to the instance is printed in the logs when the instance is initialised.&lt;/p>
-&lt;pre tabindex="0">&lt;code>2022-03-21T14:46:49.540:INFO:localstack_ext.services.ec2.vmmanager.docker: Instance i-f6a80f48 will be accessible via SSH at: 192.168.123.25:22, 127.0.0.1:48805
-&lt;/code>&lt;/pre>&lt;p>If the LocalStack daemon is not running, the instance will be only accessible over SSH at &lt;code>127.0.0.1&lt;/code> and the specified port.&lt;/p>
-&lt;p>The LocalStack daemon is supported on Linux and MacOS.&lt;/p>
-&lt;p>Security Groups are not applied to Dockerised instances.
-Ports other than 22 (SSH) are currently not exposed.&lt;/p>
-&lt;h3 id="operations">Operations&lt;/h3>
+&lt;pre tabindex="0">&lt;code>2022-03-21T14:46:49.540 INFO Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705, 172.17.0.4:22
+&lt;/code>&lt;/pre>&lt;p>The LocalStack daemon is supported on Linux and MacOS.&lt;/p>
+&lt;p>If the LocalStack daemon is not running, the instance will be only accessible at &lt;code>127.0.0.1&lt;/code> and an available port on the host.&lt;/p>
+&lt;p>To expose additional ports to the host system, update the default security group and add the required ingress ports.
+Security group ingress rules are only applied to the Dockerised instance at the time of creating.
+Updating a security group will not open any ports of a running instance.&lt;/p>
+&lt;p>Up to 32 ingress ports are supported.
+This limitation exists to prevent the host from running out of free ports.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 authorize-security-group-ingress --group-id default --protocol tcp --port 8080
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-security-groups --group-names default&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The port mapping is printed in the logs as when the instance is intialised.&lt;/p>
+&lt;pre tabindex="0">&lt;code>2022-12-20T19:43:44.544 INFO Instance i-1d6327abf04e31be6 port mappings (container -&amp;gt; host): {&amp;#39;8080/tcp&amp;#39;: 51747, &amp;#39;22/tcp&amp;#39;: 55705}
+&lt;/code>&lt;/pre>&lt;h2 id="key-pairs">Key pairs&lt;/h2>
+&lt;p>You can specify a key pair at startup and LocalStack will copy it into the container and enable it for SSH authentication.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 create-key-pair --key-name alice
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --image-id ami-df5de72bdb3b --key-name alice&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="user-data">User data&lt;/h2>
+&lt;p>It is possible to run commands on a instance at startup using &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">user data&lt;/a>.
+The script can be passed to the &lt;code>UserData&lt;/code> argument of &lt;code>RunInstances&lt;/code> operation.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --image-id ami-df5de72bdb3b --user-data &amp;#39;#!/bin/bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> whoami | tee /myname &amp;amp;&amp;amp; echo localstack; echo &amp;#34;not printed&amp;#34;&amp;gt;/dev/null;&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Like production AWS, the contents of user data is saved at &lt;code>/var/lib/cloud/instances/&amp;lt;instance_id&amp;gt;/user-data.txt&lt;/code> on the instance.
+Its execution is logged at &lt;code>/var/log/cloud-init-output.log&lt;/code>.&lt;/p>
+&lt;h2 id="operations">Operations&lt;/h2>
 &lt;p>The Docker backend supports following operations:&lt;/p>
 &lt;table>
 &lt;thead>
@@ -3033,7 +3050,7 @@ Ports other than 22 (SSH) are currently not exposed.&lt;/p>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">RunInstances&lt;/td>
-&lt;td style="text-align:left">Launch an instance. Supports &lt;code>ImageId&lt;/code>, &lt;code>MaxCount&lt;/code>, &lt;code>KeyPair&lt;/code> and &lt;code>UserData&lt;/code> parameters&lt;/td>
+&lt;td style="text-align:left">Corresponds to starting a container&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">StopInstances&lt;/td>
