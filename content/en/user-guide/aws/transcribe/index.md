@@ -14,11 +14,21 @@ This is to download and cache the language model.
 Subsequent transcriptions for the same language can be done offline.
 Language models are around 50 MiB each and saved to the cache directory (see [Filesystem Layout]({{< ref "filesystem" >}})).
 
-The input audio file must of single-channel PCM WAV format.
-
 {{< alert title="Warning" color="warning">}}
 This service has limited support for aarch64/Apple Silicon.
 {{< /alert >}}
+
+### Supported Formats
+
+The following input media formats are supported:
+
+- Adaptive Multi-Rate (AMR)
+- Free Lossless Audio Codec (FLAC)
+- MPEG-1 Audio Layer-3 (MP3)
+- MPEG-4 Part 14 (MP4)
+- OGG
+- Matroska Video files (MKV)
+- Waveform Audio File Format (WAV)
 
 ### Supported Languages
 
@@ -74,7 +84,6 @@ $ awslocal transcribe list-transcription-jobs
 {{< / command >}}
 
 Once job is complete, the transcript can be retrieved from the S3 bucket:
-
 
 {{< command >}}
 $ awslocal transcribe get-transcription-job --transcription-job example

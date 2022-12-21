@@ -45,11 +45,16 @@ Please make sure to install the following tools on your machine before moving ah
 
 #### Installation
 
-The easiest way to install the LocalStack CLI is via `pip`:
+You can download the latest version of LocalStack via `pip` or `brew`:
 
-{{< command >}}
-$ python3 -m pip install localstack
-{{< / command >}}
+{{< tabpane >}}
+{{< tab header="PyPI" lang="bash" >}}
+python3 -m pip install localstack
+{{< /tab >}}
+{{< tab header="Homebrew" lang="bash" >}}
+brew install localstack
+{{< /tab >}}
+{{< / tabpane >}}
 
 {{< alert title="Notes" >}}
 To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
