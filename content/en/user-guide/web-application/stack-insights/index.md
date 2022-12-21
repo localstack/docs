@@ -12,7 +12,7 @@ LocalStack allows for transparent collection of execution events, in order to pr
 
 You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.
 
-To get started, the `LOCALSTACK_API_KEY` environment variable needs to be configured. The system will start making your events accessible on the LocalStack dashboard on [Web Application dashboard](https://app.localstack.cloud/dashboard).
+To get started, the `LOCALSTACK_API_KEY` environment variable needs to be configured. The system will start making your events accessible on the LocalStack [Web Application dashboard](https://app.localstack.cloud/dashboard).
 
 {{< alert title="Data Privacy" >}}
 Data privacy is one of our key concerns and is collected only in an anonymized way. No sensitive information about your application is ever exposed. The data is only used to provide insights into the usage of LocalStack and to improve the product.
