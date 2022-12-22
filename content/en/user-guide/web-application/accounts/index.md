@@ -1,22 +1,29 @@
 ---
 title: "Accounts"
-tags: [] 
+tags: ["LocalStack Pro", "Accounts"]
 weight: 2
 description: >
-  LocalStack accounts are the entry point to our web application, the Pro CLI, and more!
+  LocalStack Accounts allows you to manage your resources & configurations, and serves as an entry point to our Web Application, the Pro CLI, and more!
 ---
 
-A LocalStack account is a requirement to get your LocalStack licenses and API keys, which allow you to use advanced features of LocalStack, such as LocalStack Pro services, [Stack Insights]({{< ref "stack-insights" >}}), [Cloud Pods]({{< ref "cloud-pods" >}}), and more!<br><br>
-To create an account for LocalStack, please visit our [web application](https://app.localstack.cloud/sign-up).<br>
-When signing up for an account, you can either do so by providing an email address, or by signing up with one of our social identity providers (such as GitHub).
+To start using LocalStack's Web Application, you must create an account. With a LocalStack account, you can sign-up for a license and use your API keys to access our advanced features. These include [AWS services]({{< ref "references/coverage" >}}) marked under **Pro**, [Stack Insights]({{< ref "stack-insights" >}}), [Cloud Pods]({{< ref "cloud-pods" >}}), and more!
+
+## Creating an account
+
+To create an account for LocalStack, visit [**app.localstack.cloud/sign-up**](https://app.localstack.cloud/sign-up). You can sign up with your email address or one of our supported social identity providers (such as GitHub).
 
 <img src="signup.PNG" width="550px" alt="Sign Up Form">
 
-### Individual Account / Company Account
-After successfully signing up for a LocalStack, you will end up with an <b>individual account</b>.
-These accounts are intended for non-company entities, such as sole developers.<br>
-Within the [profile](https://app.localstack.cloud/account) section of your account, you will find a toggle to switch to a <b>company account</b> instead.
-This will allow you to add more information about your organization, such as `Company Name`, `Country` and `Tax ID`, which should be set if you are acting on behalf of a company.
+## Account Types
+
+You can choose between an **individual account** or a **company account**. When you sign up for LocalStack, you will automatically sign up for an individual account. These accounts are intended for non-company entities, such as individual developers.
+
+To switch to a company account, you can do so from your [**app.localstack.cloud/account**](https://app.localstack.cloud/account) section. Click on the toggle to switch to a company account. You will be prompted to add the following information about your organization:
+
+- Company Name
+- Country
+- Tax ID
+
+The above information is required if you are acting on behalf of a company.
 
 <img src="indcomp.PNG" width="800px" alt="Switch for Individual and Company Account">
-
