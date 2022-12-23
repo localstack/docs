@@ -151,7 +151,7 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed |
 | | `kubernetes` | PRO-only. Execute lambdas in a Kubernetes cluster |
 | `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `10` (default) | How many seconds Lambda will wait for the runtime environment to start up |
-| `LAMBDA_RUNTIME_IMAGE_MAPPING` | | Allows two options to customize the resolution of Lambda runtime: <br> 1. pattern with <runtime> placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> 2. json dict mapping the <runtime> to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
+| `LAMBDA_RUNTIME_IMAGE_MAPPING` | | Allows two options to customize the resolution of Lambda runtime: <br> 1. pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> 2. json dict mapping the <runtime> to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
 | `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default) | Prefix for images that will be used to execute Lambda functions. |
 
 
