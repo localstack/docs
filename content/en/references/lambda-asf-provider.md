@@ -1,12 +1,13 @@
 ---
-title: "Lambda new Provider"
+title: "Lambda Provider Behavioral Changes"
 weight: 5
 description: >
   Behavioral changes to become default with the new lambda provider
 ---
 
-# Lambda Provider Behavioral Changes
+## Overview
 The new lambda provider has some significant changes in its behavior.
+This includes both its API parity, the execution and the container environments themselves.
 
 ## API
 Parity with AWS has been increased across all Lambda API methods.
@@ -14,6 +15,10 @@ Another improvement is the stricter input validation, so expect more invalid inp
 One example of this, are Lambda roles. While don't have to actually exist, now have to be at least in a valid ARN format. Using arbitrary strings like `r1` is no longer supported.
 
 ## Execution
+Lambda will now use the official AWS provided lambda images, instead of lambci images.
+This leads to an increased parity with the AWS Lambda environments.
+Another effect is that lambda now supports ARM containers, which will be executed depending on your host machine architecture (only available for runtimes based on amazon linux 2).
+
 Lambda will now, by default, reuse containers for each lambda version.
 This leads to significantly decreased execution times (from ~800 - 1000ms from the old `docker` executor to around 10ms for a simple echo lambda).
 Initialization / global state of your lambdas will stay the same between invocations, as long as it is executed in the same environment.

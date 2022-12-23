@@ -13,6 +13,7 @@ A new implementation of the Lambda service is available since LocalStack 1.3.
 Set `PROVIDER_OVERRIDE_LAMBDA=asf` when starting LocalStack and let us know if you experience any issues!
 
 Starting with LocalStack 2.0 the current Lambda implementation will be deprecated in favor of this new provider.
+For more information about behavioral changes, please consult the [Lambda Behavioral Changes]({{< ref "references/lambda-asf-provider" >}}) page.
 {{< /alert >}}
 
 
@@ -24,7 +25,7 @@ LocalStack allows you to execute your Lambda functions locally, without the need
 
 LocalStack's Lambda support is available via two providers, the old one and our new and more stable provider (labeled `asf` after our new internal service framework). Set the `PROVIDER_OVERRIDE_LAMBDA` variable to switch between the two providers, e.g. `PROVIDER_OVERRIDE_LAMBDA=asf`. 
 
-By default LocalStack sill uses the old provider.
+By default LocalStack still uses the old provider.
 With LocalStack v2.0, this will be changed to ASF, but the old provider will still be available, in case you need some additional time to migrate.
 This fallback option will then be removed in further releases. 
 
