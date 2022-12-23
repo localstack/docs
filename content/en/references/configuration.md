@@ -139,7 +139,23 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | `KINESIS_LATENCY` | `500` (default), `0` (to disable)| Integer value of milliseconds, causing the Kinesis API to delay returning a response in order to mimic latency from a live AWS call. |
 | `KINESIS_INITIALIZE_STREAMS` | `"my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1"` | A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. Only works with the `kinesis-mock` `KINESIS_PROVIDER`. |
 
-### Lambda
+### Lambda (New / `asf`)
+
+| Variable| Example Values | Description |
+| - | - | - |
+| `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char value for truncation of lambda logs.|
+| `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Optional bucket name for running lambdas locally.|
+| `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
+| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Lambda Docker `run`\|`create` commands (e.g., useful for specifying custom volume mounts). Does only support environment, volume, port and add-host flags |
+| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. Only applicable when using docker-reuse executor. |
+| `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed |
+| | `kubernetes` | PRO-only. Execute lambdas in a Kubernetes cluster |
+| `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. Only applicable when using docker-reuse executor. |
+| `LAMBDA_RUNTIME_IMAGE_MAPPING` | | Allows two options to customize the resolution of Lambda runtime:\n1. pattern with <runtime> placeholder, e.g. "custom-repo/lambda-<runtime>:2022"\n2. json dict mapping the <runtime> to an image, e.g. '{"python3.9": "custom-repo/lambda-py:thon3.9"}' |
+| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default) | Prefix for images that will be used to execute Lambda functions. |
+
+
+### Lambda (Legacy)
 
 | Variable| Example Values | Description |
 | - | - | - |
