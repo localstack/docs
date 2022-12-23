@@ -143,7 +143,7 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char value for truncation of lambda logs.|
+| `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console.|
 | `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Optional bucket name for running lambdas locally.|
 | `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Lambda Docker `run`\|`create` commands (e.g., useful for specifying custom volume mounts). Does only support environment, volume, port and add-host flags |
