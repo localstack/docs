@@ -25,7 +25,8 @@
 With LocalStack you can avoid this hurdle by mounting your code directly from the source folder.
 This way, any saved change inside your source file directly affects the already deployed Lambda function &amp;ndash; without any redeployment!&lt;/p>
 &lt;h2 id="covered-topics">Covered Topics&lt;/h2>
-&lt;p>&lt;a href="#application-configuration-examples">Application Configuration Examples&lt;/a>:&lt;/p>
+&lt;p>&lt;a href="#using-the-new-lambda-provider">Using the new Lambda provider&lt;/a>:
+&lt;a href="#application-configuration-examples">Application Configuration Examples&lt;/a>:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="#code-hot-swapping-for-jvm-lambdas">Code hot-swapping for JVM Lambdas&lt;/a>&lt;/li>
 &lt;li>&lt;a href="#code-hot-swapping-for-python-lambdas">Code hot-swapping for Python Lambdas&lt;/a>&lt;/li>
@@ -38,6 +39,10 @@ This way, any saved change inside your source file directly affects the already 
 &lt;li>&lt;a href="#terraform-configuration">Terraform Configuration&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>&lt;a href="#useful-links">Useful Links&lt;/a>&lt;/p>
+&lt;h2 id="using-the-new-lambda-provider">Using the new Lambda provider&lt;/h2>
+&lt;p>When using the new Lambda provider, hot-reloading does not conflict with fast execution times, and it is not needed to spawn a new container for every invocation.
+Also, hot reloading for Lambda layers (Pro) is now supported, it works identical to functions, but only 1 layer is allowed per function if hot-reloading is active in the layer.&lt;/p>
+&lt;p>For more information about behavioral changes, please consult the &lt;a href="/references/lambda-asf-provider/">Lambda Behavioral Changes&lt;/a> page.&lt;/p>
 &lt;h2 id="application-configuration-examples">Application Configuration Examples&lt;/h2>
 &lt;h3 id="code-hot-swapping-for-jvm-lambdas">Code hot-swapping for JVM Lambdas&lt;/h3>
 &lt;p>Since lambda containers lifetime is usually limited, regular hot code swapping

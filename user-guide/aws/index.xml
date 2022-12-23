@@ -7780,11 +7780,20 @@ We can input our data into our source Kinesis stream, our put it directly into t
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>If you get a similar output, you have correctly set up a Firehose delivery stream!
 Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Switching to the new implementation&lt;/h4>
+&lt;p>A new implementation of the Lambda service is available since LocalStack 1.3.
+Set &lt;code>PROVIDER_OVERRIDE_LAMBDA=asf&lt;/code> when starting LocalStack and let us know if you experience any issues!&lt;/p>
+&lt;p>Starting with LocalStack 2.0 the current Lambda implementation will be deprecated in favor of this new provider.
+For more information about behavioral changes, please consult the &lt;a href="/references/lambda-asf-provider/">Lambda Behavioral Changes&lt;/a> page.&lt;/p>
+&lt;/div>
 &lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem. Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units. With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.&lt;/p>
 &lt;p>LocalStack allows you to execute your Lambda functions locally, without the need to deploy them to AWS. This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS. LocalStack allows you to execute your Lambda functions, in various execution modes, which is detailed on our &lt;a href="/references/lambda-executors/">Lambda execution modes&lt;/a> page.&lt;/p>
 &lt;h2 id="lambda-providers">Lambda Providers&lt;/h2>
-&lt;p>LocalStack&amp;rsquo;s Lambda support is available via two providers: &lt;code>old&lt;/code> and &lt;code>asf&lt;/code>. For users, switching between the two providers has a lot of impacts. Using the &lt;code>PROVIDER_OVERRIDE_lambda&lt;/code>, you can switch between the two providers. The &lt;code>old&lt;/code> provider is the default provider, and the &lt;code>asf&lt;/code> provider is ASF, our new and more stable provider. The &lt;code>old&lt;/code> provider is loaded by default, and you need to set &lt;code>PROVIDER_OVERRIDE_lambda=asf&lt;/code> to use the ASF provider.&lt;/p>
-&lt;p>With v2.0, the default will be changed to ASF, but the old provider will still be available (using the feature flag with the value &lt;code>legacy&lt;/code>), though it will be removed in further releases. Currently, &lt;code>asf_pro&lt;/code>, meant for licensed users for LocalStack, isn&amp;rsquo;t available.&lt;/p>
+&lt;p>LocalStack&amp;rsquo;s Lambda support is available via two providers, the old one and our new and more stable provider (labeled &lt;code>asf&lt;/code> after our new internal service framework). Set the &lt;code>PROVIDER_OVERRIDE_LAMBDA&lt;/code> variable to switch between the two providers, e.g. &lt;code>PROVIDER_OVERRIDE_LAMBDA=asf&lt;/code>.&lt;/p>
+&lt;p>By default LocalStack still uses the old provider.
+With LocalStack v2.0, this will be changed to ASF, but the old provider will still be available, in case you need some additional time to migrate.
+This fallback option will then be removed in further releases.&lt;/p>
 &lt;h2 id="special-tooling-for-lambdas">Special tooling for Lambdas&lt;/h2>
 &lt;p>We also provide tools to help you develop, debug and test your Lambda functions more efficiently:&lt;/p>
 &lt;ul>
