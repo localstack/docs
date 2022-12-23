@@ -8,15 +8,26 @@ aliases:
   - /aws/lambda/
 ---
 
+{{< alert title="Switching to the new implementation" color="warning" >}}
+A new implementation of the Lambda service is available since LocalStack 1.3.
+Set `PROVIDER_OVERRIDE_LAMBDA=asf` when starting LocalStack and let us know if you experience any issues!
+
+Starting with LocalStack 2.0 the current Lambda implementation will be deprecated in favor of this new provider.
+For more information about behavioral changes, please consult the [Lambda Behavioral Changes]({{< ref "references/lambda-asf-provider" >}}) page.
+{{< /alert >}}
+
+
 AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem. Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units. With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.
 
 LocalStack allows you to execute your Lambda functions locally, without the need to deploy them to AWS. This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS. LocalStack allows you to execute your Lambda functions, in various execution modes, which is detailed on our [Lambda execution modes]({{< ref "lambda-executors" >}}) page.
 
 ## Lambda Providers
 
-LocalStack's Lambda support is available via two providers: `old` and `asf`. For users, switching between the two providers has a lot of impacts. Using the `PROVIDER_OVERRIDE_lambda`, you can switch between the two providers. The `old` provider is the default provider, and the `asf` provider is ASF, our new and more stable provider. The `old` provider is loaded by default, and you need to set `PROVIDER_OVERRIDE_lambda=asf` to use the ASF provider.
+LocalStack's Lambda support is available via two providers, the old one and our new and more stable provider (labeled `asf` after our new internal service framework). Set the `PROVIDER_OVERRIDE_LAMBDA` variable to switch between the two providers, e.g. `PROVIDER_OVERRIDE_LAMBDA=asf`. 
 
-With v2.0, the default will be changed to ASF, but the old provider will still be available (using the feature flag with the value `legacy`), though it will be removed in further releases. Currently, `asf_pro`, meant for licensed users for LocalStack, isn't available.
+By default LocalStack still uses the old provider.
+With LocalStack v2.0, this will be changed to ASF, but the old provider will still be available, in case you need some additional time to migrate.
+This fallback option will then be removed in further releases. 
 
 ## Special tooling for Lambdas
 
