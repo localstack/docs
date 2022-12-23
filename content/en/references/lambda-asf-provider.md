@@ -19,5 +19,6 @@ Please keep in mind that any changes to the filesystem (for example in /tmp) wil
 
 {{< alert title="Keep in mind" color="warning">}}
 It can take up to 700ms for the lambda to represent the changes you did in the code folder. Until that time has passed, any invocations will still be executed on the former code.
+
 If using Docker Desktop, you might need to allow file sharing for your target folders: [https://docs.docker.com/desktop/settings/mac/#file-sharing](https://docs.docker.com/desktop/settings/mac/#file-sharing)
 {{< /alert >}}
