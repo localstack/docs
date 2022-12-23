@@ -6,6 +6,22 @@ description: >
 ---
 
 # Lambda Provider Behavioral Changes
+The new lambda provider has some significant changes in its behavior.
+
+## API
+Increased parity across all Lambda API methods.
+Another improvement is the better input validation, so expect more invalid input to fail.
+This includes, but is not limited to Lambda roles, which, while not having to be existent, now have to be a correct IAM role arn. (Using arbitrary strings like "r1" is no longer supported).
+
+## Execution
+Lambda will now, by default, reuse containers for each lambda version.
+This leads to significantly increased execution times (from ~800 - 1000ms from the old `docker` executor to around 10ms for a simple echo lambda).
+This reuse leads to initialization / global state of your lambdas will stay the same between, as long as it is executed on the same environment.
+
+Multiple concurrent executions will cause LocalStack to scale up to multiple environments, which leads to real parallel execution being available.
+
+Timeouts are now properly supported, and will, as in AWS, not kill the environment itself (filesystem stays the same) but only restart the internal infrastructure (your code), as do function errors.
+
 
 ## Changes in Hot Swapping
 The magic key for hot reloading (or swapping) buckets has changed from `__local__` to `hot-reload`.
