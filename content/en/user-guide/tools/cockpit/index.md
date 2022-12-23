@@ -13,7 +13,9 @@ just download the Cockpit App for your operating system at
 https://localstack.cloud/products/cockpit
 make sure you have Docker installed, and you're ready to go!
 
-![Cockpit](cockpit-screenshot.png)
+<p>
+{{< img src="cockpit-screenshot.png" class="img-fluid shadow rounded" >}}
+</p>
 
 ## Prerequisites
 
@@ -44,10 +46,6 @@ Manage and select LocalStack run configurations to start LocalStack with a parti
 Save your LocalStack Pro API key, or a particular set of environment variables into a run configuration. 
 
 <p>
-{{< img src="cockpit-runconfig-select.png" class="img-fluid shadow rounded" >}}
-</p>
-
-<p>
 {{< img src="cockpit-runconfig-edit.png" class="img-fluid shadow rounded" >}}
 </p>
 
@@ -56,10 +54,6 @@ Save your LocalStack Pro API key, or a particular set of environment variables i
 Start and stop LocalStack by simply clicking a button.
 No mucking about in the CLI or a docker-compose file.
 The environment and Services screen give you instant insights into your running instance.
-
-<p>
-{{< img src="cockpit-localstack-start.gif" class="img-fluid shadow rounded" >}}
-</p>
 
 ### Quick log access
 
