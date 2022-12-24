@@ -134,7 +134,7 @@ Finally, we upload such a trained model ---together with the test set--- to an S
 
 ## Evaluate the performance of the model
 
-Now, we define a second `handler` function that is used to estimate the performance of the model we trained above.
+Now, we create another file, i.e., `infer.py` to define a second `handler` function that is used to estimate the performance of the model we trained above.
 
 ```python
 def handler(event, context):
@@ -152,7 +152,7 @@ def handler(event, context):
     print("--> prediction result:", predicted)
 ```
 
-We simply download both the SVN model and the test set we previously uploaded on the S3 bucket and predict the value of the digit for the test set.
+We simply download both the SVN model and the test set we previously uploaded to the S3 bucket and predict the value of the digits for the test set.
 
 ## Deploying the Lambda functions
 
