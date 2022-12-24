@@ -20,7 +20,7 @@ To invite team members, navigate to the [**app.localstack.cloud/account/members*
 
 #### Member Roles & API Keys
 
-After a team member has been invited, you can assign them different roles and permissions. You can also assign them an API key, which will allow them to access the LocalStack Web Application and the Pro CLI.
+After a team member has been invited, you can assign them different roles and permissions. You can also assign them an API key, which will allow them to access the LocalStack Web Application and the Pro CLI (command line interface).
 
 <img src="memberroles.PNG" width="900px" alt="Editing team member settings">
 
