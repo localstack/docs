@@ -45,4 +45,3 @@ You can disable event reporting on your LocalStack client by setting the environ
 {{% alert title="Additional Info" color="info" %}}
 Brave blocks `localhost` requests due to security by default via shields. While some sites need access to `localhost` / `127.0.0.1` to work correctly, an easy option to allow a user to enable this is manually enabling via the site via `brave://settings/content/insecureContent`.
 {{% /alert %}}
-
