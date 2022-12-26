@@ -1560,6 +1560,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse appsync-notimplemented">     <tr>
+      <td>EvaluateCode</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>EvaluateMappingTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1586,6 +1590,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreatePreparedStatement (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateWorkGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -1595,6 +1603,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeleteNamedQuery (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeletePreparedStatement (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1611,6 +1623,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetNamedQuery (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetPreparedStatement (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1638,6 +1654,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListPreparedStatements (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListQueryExecutions (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -1661,6 +1681,10 @@ hide_readingtime: true
       <td>UntagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
+    <tr>
+      <td>UpdatePreparedStatement (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".athena-notimplemented">Show missing</a></td>
@@ -1680,15 +1704,35 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>CreatePreparedStatement</td>
+      <td>CreateNotebook</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DeletePreparedStatement</td>
+      <td>CreatePresignedNotebookUrl</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>GetPreparedStatement</td>
+      <td>DeleteNotebook</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ExportNotebook</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetCalculationExecution</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetCalculationExecutionCode</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetCalculationExecutionStatus</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetNotebookMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -1696,7 +1740,27 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetSession</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetSessionStatus</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetTableMetadata</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ImportNotebook</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListApplicationDPUSizes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCalculationExecutions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -1704,7 +1768,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListPreparedStatements</td>
+      <td>ListExecutors</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListNotebookMetadata</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListNotebookSessions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListSessions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -1712,7 +1788,23 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>StartCalculationExecution</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StartSession</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StopCalculationExecution</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>StopQueryExecution</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>TerminateSession</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -1724,7 +1816,11 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>UpdatePreparedStatement</td>
+      <td>UpdateNotebook</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateNotebookMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -1916,6 +2012,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse autoscaling-notimplemented">     <tr>
+      <td>AttachTrafficSources</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>BatchDeleteScheduledAction</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -1972,7 +2072,15 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeTrafficSources</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeWarmPool</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DetachTrafficSources</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2100,7 +2208,15 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse backup-notimplemented">     <tr>
+      <td>CancelLegalHold</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateFramework</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateLegalHold</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2172,6 +2288,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DisassociateRecoveryPointFromParent</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ExportBackupPlanTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2189,6 +2309,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetBackupVaultNotifications</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetLegalHold</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2212,7 +2336,15 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListLegalHolds</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListProtectedResources</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListRecoveryPointsByLegalHold</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2536,11 +2668,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListSavingsPlansPurchaseRecommendationGeneration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ProvideAnomalyFeedback</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StartSavingsPlansPurchaseRecommendationGeneration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2968,7 +3108,15 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CopyDistribution</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateCachePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateContinuousDeploymentPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3013,6 +3161,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeleteCachePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteContinuousDeploymentPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3065,6 +3217,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetCloudFrontOriginAccessIdentityConfig</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetContinuousDeploymentPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetContinuousDeploymentPolicyConfig</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3148,6 +3308,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListContinuousDeploymentPolicies</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListDistributionsByCachePolicyId</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3217,6 +3381,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateCloudFrontOriginAccessIdentity</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateContinuousDeploymentPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateDistributionWithStagingConfig</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3352,6 +3524,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeregisterOrganizationDelegatedAdmin</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeQuery</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3393,6 +3569,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListQueries</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RegisterOrganizationDelegatedAdmin</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3443,6 +3623,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeAlarmsForMetric</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeInsightRules (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3529,10 +3713,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeAnomalyDetectors</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeInsightRules</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4086,6 +4266,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>AdminListUserAuthEvents (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AdminRemoveUserFromGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4337,10 +4521,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AdminListDevices</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>AdminListUserAuthEvents</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4768,11 +4948,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetResourceEvaluationSummary</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetStoredQuery</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ListConformancePackComplianceScores</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListResourceEvaluations</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4825,6 +5013,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StartRemediationExecution</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StartResourceEvaluation</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -5336,6 +5528,10 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
+      <td>AcceptAddressTransfer (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AcceptReservedInstancesExchangeQuote (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5357,10 +5553,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AcceptVpcPeeringConnection <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AdvertiseByoipCidr (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5624,7 +5816,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteKeyPair</td>
+      <td>DeleteKeyPair <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6270,6 +6462,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse ec2-notimplemented">     <tr>
+      <td>AdvertiseByoipCidr</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AllocateHosts</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6310,6 +6506,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AttachVerifiedAccessTrustProvider</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AuthorizeClientVpnIngress</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6335,6 +6535,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CancelExportTask</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CancelImageLaunchPermission</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6498,6 +6702,22 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateVerifiedAccessEndpoint</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateVerifiedAccessGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateVerifiedAccessInstance</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateVerifiedAccessTrustProvider</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateVpcEndpointConnectionNotification</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6634,6 +6854,22 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteVerifiedAccessEndpoint</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteVerifiedAccessGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteVerifiedAccessInstance</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteVerifiedAccessTrustProvider</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteVpcEndpointConnectionNotifications</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6666,11 +6902,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeAddressTransfers</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeAddressesAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>DescribeAggregateIdFormat</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeAwsNetworkPerformanceMetricSubscriptions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6950,6 +7194,26 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeVerifiedAccessEndpoints</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeVerifiedAccessGroups</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeVerifiedAccessInstanceLoggingConfigurations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeVerifiedAccessInstances</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeVerifiedAccessTrustProviders</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeVolumeAttribute</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6967,6 +7231,18 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DetachClassicLinkVpc</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DetachVerifiedAccessTrustProvider</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DisableAddressTransfer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DisableAwsNetworkPerformanceMetricSubscription</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7018,6 +7294,14 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>EnableAddressTransfer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>EnableAwsNetworkPerformanceMetricSubscription</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>EnableFastLaunch</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7031,6 +7315,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>EnableIpamOrganizationAdminAccount</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>EnableReachabilityAnalyzerOrganizationSharing</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7063,6 +7351,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetAssociatedIpv6PoolCidrs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetAwsNetworkPerformanceData</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7175,6 +7467,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetTransitGatewayPrefixListReferences</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetVerifiedAccessEndpointPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetVerifiedAccessGroupPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7339,6 +7639,34 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ModifyTransitGatewayPrefixListReference</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyVerifiedAccessEndpoint</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyVerifiedAccessEndpointPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyVerifiedAccessGroup</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyVerifiedAccessGroupPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyVerifiedAccessInstance</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyVerifiedAccessInstanceLoggingConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ModifyVerifiedAccessTrustProvider</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7894,6 +8222,14 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetTaskProtection</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListServicesByNamespace</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>PutAccountSettingDefault</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7919,6 +8255,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateContainerAgent</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateTaskProtection</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -8163,6 +8503,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeAddon</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeAddonConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9296,6 +9640,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AuthorizeVpcEndpointAccess</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelElasticsearchServiceSoftwareUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -9305,6 +9653,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreatePackage</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateVpcEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9321,6 +9673,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeletePackage</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteVpcEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9356,6 +9712,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeVpcEndpoints</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DissociatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -9384,6 +9744,18 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListVpcEndpointAccess</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListVpcEndpoints</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListVpcEndpointsForDomain</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>PurchaseReservedElasticsearchInstanceOffering</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -9392,11 +9764,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RevokeVpcEndpointAccess</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>StartElasticsearchServiceSoftwareUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UpdatePackage</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateVpcEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10222,6 +10602,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>GetTriggers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>GetWorkflow (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -10372,6 +10756,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>BatchGetDataQualityResult</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>BatchGetDevEndpoints</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10392,6 +10780,14 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CancelDataQualityRuleRecommendationRun</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CancelDataQualityRulesetEvaluationRun</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelMLTaskRun</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10405,6 +10801,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateCustomEntityType</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateDataQualityRuleset</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10441,6 +10841,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeleteCustomEntityType</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteDataQualityRuleset</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10496,6 +10900,22 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetDataQualityResult</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetDataQualityRuleRecommendationRun</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetDataQualityRuleset</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetDataQualityRulesetEvaluationRun</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetDataflowGraph</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10548,10 +10968,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>GetTriggers</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>GetUnfilteredPartitionMetadata</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10593,6 +11009,22 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListCustomEntityTypes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDataQualityResults</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDataQualityRuleRecommendationRuns</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDataQualityRulesetEvaluationRuns</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDataQualityRulesets</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10648,6 +11080,14 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>StartDataQualityRuleRecommendationRun</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StartDataQualityRulesetEvaluationRun</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>StartExportLabelsTaskRun</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -10693,6 +11133,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateCrawlerSchedule</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateDataQualityRuleset</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12156,6 +12600,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListRelatedResourcesForAuditFinding</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListRoleAliases</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12554,6 +13002,10 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
+      <td>AssociateAwsAccountWithPartnerAccount (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateDeviceProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -12616,10 +13068,6 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse iotwireless-notimplemented">     <tr>
-      <td>AssociateAwsAccountWithPartnerAccount</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>AssociateMulticastGroupWithFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12776,11 +13224,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetPositionEstimate</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetResourceEventConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>GetResourceLogLevel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetResourcePosition</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12951,6 +13407,10 @@ hide_readingtime: true
       <td>UpdateResourceEventConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
+    <tr>
+      <td>UpdateResourcePosition</td>
+       <td style="text-align:right">-</td>
+    </tr>
   </tbody>
  </table>
 
@@ -13111,6 +13571,10 @@ hide_readingtime: true
       <td>UpdateSecurity</td>
        <td style="text-align:right">-</td>
     </tr>
+    <tr>
+      <td>UpdateStorage</td>
+       <td style="text-align:right">-</td>
+    </tr>
   </tbody>
  </table>
 
@@ -13264,10 +13728,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddApplicationReferenceDataSource (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateApplication (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13315,6 +13775,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AddApplicationInput</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AddApplicationReferenceDataSource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14256,6 +14720,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListTagsLogGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14284,11 +14752,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagLogGroup</td>
+      <td>TagLogGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagLogGroup</td>
+      <td>TagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UntagLogGroup <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UntagResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -14303,6 +14779,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CancelExportTask</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteDataProtectionPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14334,6 +14814,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetDataProtectionPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetLogGroupFields</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14343,6 +14827,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetQueryResults</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutDataProtectionPolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15054,6 +15542,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AuthorizeVpcEndpointAccess</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelServiceSoftwareUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15066,6 +15558,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateVpcEndpoint</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteInboundConnection</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15075,6 +15571,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeletePackage</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteVpcEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15110,6 +15610,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeVpcEndpoints</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DissociatePackage</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15138,6 +15642,18 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListVpcEndpointAccess</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListVpcEndpoints</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListVpcEndpointsForDomain</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>PurchaseReservedInstanceOffering</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15146,11 +15662,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RevokeVpcEndpointAccess</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>StartServiceSoftwareUpdate</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>UpdatePackage</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateVpcEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15358,11 +15882,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeEffectivePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>DescribeHandshake</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15383,6 +15915,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListHandshakesForOrganization</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -15790,11 +16326,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>RestoreDBClusterFromS3 (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>RestoreDBClusterFromSnapshot (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>RestoreDBInstanceFromDBSnapshot (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>RestoreDBInstanceFromS3 (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15856,6 +16400,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateBlueGreenDeployment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateCustomDBEngineVersion</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15865,6 +16413,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateGlobalCluster</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteBlueGreenDeployment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -15885,6 +16437,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeAccountAttributes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeBlueGreenDeployments</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16032,15 +16588,7 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>RestoreDBClusterFromS3</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>RestoreDBClusterToPointInTime</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>RestoreDBInstanceFromS3</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16065,6 +16613,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StopDBInstanceAutomatedBackupsReplication</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SwitchoverBlueGreenDeployment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -17970,6 +18522,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetMultiRegionAccessPointRoutes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetStorageLensConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18034,6 +18590,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>SubmitMultiRegionAccessPointRoutes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>UpdateJobPriority</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18076,6 +18636,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateImageVersion (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateModel (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18085,6 +18649,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateNotebookInstanceLifecycleConfig (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CreatePipeline (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18116,6 +18684,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DeleteImageVersion (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteModel (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18125,6 +18697,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeleteNotebookInstanceLifecycleConfig (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeletePipeline (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18149,6 +18725,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeExperiment (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeImageVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18204,6 +18784,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListPipelines (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListProcessingJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18233,6 +18817,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StopNotebookInstance (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UpdateDomain (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18322,6 +18910,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateHub</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateHumanTaskUi</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18334,7 +18926,7 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>CreateImageVersion</td>
+      <td>CreateInferenceExperiment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18347,6 +18939,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateModelBiasJobDefinition</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateModelCard</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateModelCardExportJob</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18370,10 +18970,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>CreatePipeline</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CreatePresignedDomainUrl</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18383,6 +18979,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateProject</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateSpace</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18466,6 +19066,14 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteHub</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteHubContent</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteHumanTaskUi</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18474,11 +19082,15 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DeleteImageVersion</td>
+      <td>DeleteInferenceExperiment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>DeleteModelBiasJobDefinition</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteModelCard</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18506,11 +19118,11 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DeletePipeline</td>
+      <td>DeleteProject</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DeleteProject</td>
+      <td>DeleteSpace</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18606,6 +19218,14 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeHub</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeHubContent</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeHumanTaskUi</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18618,7 +19238,7 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribeImageVersion</td>
+      <td>DescribeInferenceExperiment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18635,6 +19255,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeModelBiasJobDefinition</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeModelCard</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeModelCardExportJob</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18671,6 +19299,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeProject</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeSpace</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18726,11 +19358,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ImportHubContent</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListActions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ListAlgorithms</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListAliases</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18798,6 +19438,18 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListHubContentVersions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListHubContents</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListHubs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListHumanTaskUis</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18811,6 +19463,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListImages</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListInferenceExperiments</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListInferenceRecommendationsJobSteps</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18834,6 +19494,18 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListModelCardExportJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListModelCardVersions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListModelCards</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListModelExplainabilityJobDefinitions</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18851,6 +19523,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListModelQualityJobDefinitions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListMonitoringAlertHistory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListMonitoringAlerts</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18882,11 +19562,11 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListPipelines</td>
+      <td>ListProjects</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListProjects</td>
+      <td>ListSpaces</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18954,6 +19634,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>StartInferenceExperiment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>StartMonitoringSchedule</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18979,6 +19663,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StopHyperParameterTuningJob</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>StopInferenceExperiment</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19038,10 +19726,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>UpdateDomain</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>UpdateEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19058,11 +19742,31 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>UpdateHub</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>UpdateImage</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>UpdateImageVersion</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateInferenceExperiment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateModelCard</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>UpdateModelPackage</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateMonitoringAlert</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19087,6 +19791,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateProject</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateSpace</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19820,6 +20528,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse sesv2-notimplemented">     <tr>
+      <td>BatchGetMetricData</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateConfigurationSet</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19984,6 +20696,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListRecommendations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20004,6 +20720,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>PutAccountVdmAttributes</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>PutConfigurationSetDeliveryOptions</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20021,6 +20741,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>PutConfigurationSetTrackingOptions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutConfigurationSetVdmOptions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -20582,6 +21306,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeregisterManagedInstance</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20774,6 +21502,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetResourcePolicies</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetServiceSetting</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20831,6 +21563,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>PutInventory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -20976,6 +21712,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeMapRun</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeStateMachine <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -21000,11 +21740,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListMapRuns</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListStateMachines <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21037,6 +21781,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UntagResource</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UpdateMapRun</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21988,6 +22736,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetEncryptionConfig</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -22028,11 +22780,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListResourcePolicies</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>PutEncryptionConfig</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
