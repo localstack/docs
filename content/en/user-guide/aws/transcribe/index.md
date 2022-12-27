@@ -18,7 +18,7 @@ Language models are around 50 MiB each and saved to the cache directory (see [Fi
 This service has limited support for aarch64/Apple Silicon.
 {{< /alert >}}
 
-### Supported Formats
+## Supported Formats
 
 The following input media formats are supported:
 
@@ -30,24 +30,30 @@ The following input media formats are supported:
 - Matroska Video files (MKV)
 - Waveform Audio File Format (WAV)
 
-### Supported Languages
+## Supported Languages
 
-Currently the following langauges and dialects are supported:
-- `de-DE`
-- `en-GB`, `en-IN`, `en-US`
-- `es-ES`
-- `fa-IR`
-- `fr-FR`
-- `hi-IN`
-- `it-IT`
-- `ja-JP`
-- `nl-NL`
-- `pt-BR`
-- `ru-RU`
-- `tr-TR`
-- `zh-CN`
+The following langauges and dialects are supported:
 
-### Examples
+| Language | Language Code |
+|----------|---------------|
+| German | `de-DE` |
+| English, British | `en-GB` |
+| English, Indian  | `en-IN` |
+| English, US | `en-US` |
+| Spanish | `es-ES` |
+| Farsi | `fa-IR` |
+| French | `fr-FR` |
+| Hindi | `hi-IN` |
+| Italian | `it-IT` |
+| Japan | `ja-JP` |
+| Dutch | `nl-NL` |
+| Portuguese | `pt-BR` |
+| Russian | `ru-RU` |
+| Turkish | `tr-TR` |
+| Vietnamese | `vi-VN` |
+| Chinese | `zh-CN` |
+
+## Transcribing Audio
 
 Create an S3 bucket and upload the audio file:
 
