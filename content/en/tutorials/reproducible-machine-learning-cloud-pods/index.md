@@ -16,7 +16,7 @@ In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key"
 - S3 to create a bucket to host our training data
 - Lambda to create a function to train and save the model to an S3 bucket
 - Lambda layer to host the dependencies for our training code
-- Lambda to create a secondary function function to download and evaluate the saved model
+- Lambda to create a secondary function to download and run some predictions with the saved model
 
 We will then create a Cloud Pod to save the state of our LocalStack instance and restore it from the Cloud Pod to share it with our team.
 
@@ -130,9 +130,9 @@ First, we loaded the images and flattened them into 1-dimensional arrays. Then, 
 
 We trained an SVM classifier on the training set using the `fit` method. Finally, we uploaded the trained model, together with the test set, to an S3 bucket for later usage.
 
-## Evaluate the performance of the model
+## Perform predictions with the model
 
-Now, we will create a new file called `infer.py` which will contain a second handler function. This function will be used to evaluate the performance of the model we trained previously.
+Now, we will create a new file called `infer.py` which will contain a second handler function. This function will be used to perform predictions on new data with the model we trained previously.
 
 ```python
 def handler(event, context):
@@ -170,7 +170,7 @@ $ awslocal s3 cp lambda.zip s3://reproducible-ml/lambda.zip
 $ awslocal s3 cp digits.csv.gz s3://reproducible-ml/digits.csv.gz
 {{< / command >}}
 
-In the above commands, we first create two zip files for our Lambda functions: lambda.zip and infer.zip. These zip files contain the code for training and evaluating the machine learning model, respectively. Next, we create an S3 bucket called `reproducible-ml` and upload the zip files and the dataset to it. Finally, we use the `awslocal` CLI to create the two Lambda functions
+In the above commands, we first create two zip files for our Lambda functions: lambda.zip and infer.zip. These zip files contain the code for training the machine learning model and do predictions with it, respectively. Next, we create an S3 bucket called `reproducible-ml` and upload the zip files and the dataset to it. Finally, we use the `awslocal` CLI to create the two Lambda functions
 
 {{< command >}}
 $ awslocal lambda create-function --function-name ml-train \
@@ -198,7 +198,7 @@ We can now invoke the first Lambda function using the `awslocal` CLI:
 $ awslocal lambda invoke --function-name ml-train /tmp/test.tmp
 {{< / command >}}
 
-The first Lambda function will train the model and upload it to the S3 bucket. Finally, we can invoke the second Lambda function to evaluate the model's performance.
+The first Lambda function will train the model and upload it to the S3 bucket. Finally, we can invoke the second Lambda function to do predictions with the model.
 
 {{< command >}}
 $ awslocal lambda invoke --function-name ml-predict /tmp/test.tmp
