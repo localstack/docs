@@ -3,10 +3,10 @@ title: "Teams"
 tags: [] 
 weight: 2
 description: >
-  LocalStack Organizations/Teams offers a flexible way of managing access roles and permissions for your team members.
+  LocalStack Organizations/Teams offer a flexible way of managing access roles, permissions, and API keys for your team members.
 ---
 
-Teams on LocalStack allow you to collaborate with members of your organization. You can invite other users to your team and assign them different roles and permissions. It includes advanced role settings such as purchasing subscriptions, managing payment methods, and more by the team administrator. You can purchase a plan with multiple seats for your team, which allows you to distribute the API keys among your team members.
+Teams on LocalStack allow you to collaborate with members of your organization. You can invite other users to your team and assign them different roles and permissions. It includes advanced role settings such as purchasing subscriptions, managing payment methods, and more, which can be adjusted by the team administrator. You can purchase a plan with multiple seats for your team, which allows you to distribute the API keys among your team members.
 
 {{% alert title="Additional Info" color="info" %}}
 Organizations/Teams are used interchangeably within our Web Application.
