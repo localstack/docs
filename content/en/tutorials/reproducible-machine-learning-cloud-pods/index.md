@@ -7,17 +7,16 @@ description: >
 type: tutorials
 ---
 
-LocalStack Cloud Pods enable you to create persistent state snapshots of your LocalStack instance, which can then be versioned, shared, and restored. It allows next-generation state management and team collaboration for your local cloud development environment, which you can utilize to create persistent shareable cloud sandboxes. Cloud Pods works directly with the LocalStack CLI to save, merge, and restore snapshots of your LocalStack state. You can always tear down your LocalStack instance and restore it from a snapshot at any point in time.
+[LocalStack Cloud Pods]({{< ref "user-guide/tools/cloud-pods" >}}) enable you to create persistent state snapshots of your LocalStack instance, which can then be versioned, shared, and restored. It allows next-generation state management and team collaboration for your local cloud development environment, which you can utilize to create persistent shareable cloud sandboxes. Cloud Pods works directly with the [LocalStack CLI]({{< ref "references/localstack-cli-manual" >}}) to save, merge, and restore snapshots of your LocalStack state. You can always tear down your LocalStack instance and restore it from a snapshot at any point in time.
 
-Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using Community Cloud Pods, you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags similar to `git`, and push them to the LocalStack platform for storage and collaboration.
+Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using [Community Cloud Pods]({{< ref "user-guide/tools/cloud-pods/community" >}}), you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags, and push them to the LocalStack platform for storage and collaboration.
 
-In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. 
-We will rely on Cloud Pods to create a reproducible sample by using: 
+In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. We will rely on Cloud Pods to create a reproducible sample by using: 
 
-- an S3 bucket to host our training data;
-- a Lambda function to train and save the model to an S3 bucket;
-- a Lambda layer that contains the dependencies for our training code;
-- a second Lambda function to download and evaluate the saved model.
+- S3 to create a bucket to host our training data
+- Lambda to create a function to train and save the model to an S3 bucket
+- Lambda layer to host the dependencies for our training code
+- Lambda to create a secondary function function to download and evaluate the saved model
 
 We will then create a Cloud Pod to save the state of our LocalStack instance and restore it from the Cloud Pod to share it with our team.
 
@@ -35,7 +34,7 @@ If you don't have a subscription to LocalStack Pro, you can request a trial lice
 
 ## Training the machine learning model
 
-We will use the Optical Recognition of Handwritten Digits Data Set to train a simple machine-learning model to recognise handwritten texts. It contains images of individual digits, represented as arrays of pixel values, along with their corresponding labels, indicating the correct digit that each image represents. You can download the dataset from UCI's Machine Learning Repository (linked above) or from our [samples repository](https://github.com/localstack/localstack-pro-samples). To train our model, we will upload our dataset on a local S3 bucket and use a Lambda function to train the model.
+We will use the [Optical Recognition of Handwritten Digits Data Set](https://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits) to train a simple machine-learning model to recognise handwritten texts. It contains images of individual digits, represented as arrays of pixel values, along with their corresponding labels, indicating the correct digit that each image represents. You can download the dataset from UCI's Machine Learning Repository (linked above) or from our [samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/reproducible-ml). To train our model, we will upload our dataset on a local S3 bucket and use a Lambda function to train the model.
 
 Create a new file named `train.py` and import the required libraries:
 
@@ -127,14 +126,13 @@ def handler(event, context):
         s3_client.put_object(Body=f, Bucket="pods-test", Key="test-set.npy")
 ```
 
-First, we load the images that are flattened into 1-dimensional arrays. 
-Then, we create a training and a test set using the `train_test_split` function from the `sklearn.model_selection` module. 
-An SVM classifier is trained on the training set using the `fit` method.
-Finally, we upload such a trained model ---together with the test set--- to an S3 bucket for later usage.
+First, we loaded the images and flattened them into 1-dimensional arrays. Then, we created a training and a test set using the `train_test_split` function from the `sklearn.model_selection` module. 
+
+We trained an SVM classifier on the training set using the `fit` method. Finally, we uploaded the trained model, together with the test set, to an S3 bucket for later usage.
 
 ## Evaluate the performance of the model
 
-Now, we create another file, i.e., `infer.py` to define a second `handler` function that is used to estimate the performance of the model we trained above.
+Now, we will create a new file called `infer.py` which will contain a second handler function. This function will be used to evaluate the performance of the model we trained previously.
 
 ```python
 def handler(event, context):
@@ -152,7 +150,7 @@ def handler(event, context):
     print("--> prediction result:", predicted)
 ```
 
-We simply download both the SVN model and the test set we previously uploaded to the S3 bucket and predict the value of the digits for the test set.
+To perform inference on the test set, we will download both the trained SVN model and the test set that we previously uploaded to the S3 bucket. Using these resources, we will predict the values of the digits in the test set.
 
 ## Deploying the Lambda functions
 
@@ -172,9 +170,7 @@ $ awslocal s3 cp lambda.zip s3://reproducible-ml/lambda.zip
 $ awslocal s3 cp digits.csv.gz s3://reproducible-ml/digits.csv.gz
 {{< / command >}}
 
-In the commands above, we first create two zips for our Lambda functions: `lambda.zip` and `infer.zip`, respectively with the code for training and for evaluating the machine learning model.
-Next, we create an S3 bucket named `reproducible-ml` and upload the zip files and the dataset. 
-We can now create the two Lambda functions using `awslocal` CLI.
+In the above commands, we first create two zip files for our Lambda functions: lambda.zip and infer.zip. These zip files contain the code for training and evaluating the machine learning model, respectively. Next, we create an S3 bucket called `reproducible-ml` and upload the zip files and the dataset to it. Finally, we use the `awslocal` CLI to create the two Lambda functions
 
 {{< command >}}
 $ awslocal lambda create-function --function-name ml-train \
@@ -194,9 +190,7 @@ $ awslocal lambda create-function --function-name ml-predict \
   --layers arn:aws:lambda:us-east-1:446751924810:layer:python-3-8-scikit-learn-0-23-1:2
 {{< / command >}}
 
-For each function, we specify the name, the runtime as `python3.8`, the handler function (`train.handler` and `infer.handler`, respectively), and the S3 bucket and key where the `zip` files are located. 
-We have also specified the `python-3-8-scikit-learn-0-23-1` layer to be used by the Lambda function. 
-This layer contains the `scikit-learn` library and its dependencies. 
+For each function, we provide the function name, runtime (`python3.8`), handler function (`train.handler` and `infer.handler`, respectively), and the location of the `zip` files in the S3 bucket. We have also specified the `python-3-8-scikit-learn-0-23-1` layer to be used by the Lambda function. This layer includes the scikit-learn library and its dependencies.
 
 We can now invoke the first Lambda function using the `awslocal` CLI:
 
@@ -204,8 +198,7 @@ We can now invoke the first Lambda function using the `awslocal` CLI:
 $ awslocal lambda invoke --function-name ml-train /tmp/test.tmp
 {{< / command >}}
 
-This function will train and upload the model to the S3 bucket.
-Finally, we can invoke the second Lambda function that will evaluate the model:
+The first Lambda function will train the model and upload it to the S3 bucket. Finally, we can invoke the second Lambda function to evaluate the model's performance.
 
 {{< command >}}
 $ awslocal lambda invoke --function-name ml-predict /tmp/test.tmp
@@ -225,8 +218,7 @@ null
 
 ## Creating a Cloud Pod
 
-After deploying the Lambda functions, we can now create a Cloud Pod to share our local infrastructure and instance state with other LocalStack users in your organization. 
-To save the state of our LocalStack instance, we will use the `save` command:
+After deploying the Lambda functions, we can create a Cloud Pod to share our local infrastructure and instance state with other LocalStack users in the organization. To save the current state of our LocalStack instance, we can use the `save` command:
 
 {{< command >}}
 $ localstack pod save reproducible-ml
@@ -291,6 +283,6 @@ LocalStack Cloud Pods also feature different merge strategies to merge the state
 
 ## Conclusion
 
-LocalStack Cloud Pods fosters team collaboration & debugging by enabling the sharing of local cloud infrastructure & instance state. Furthermore, it allows us to create reproducible environments for various use cases, not just limited to machine learning. Using Cloud Pods, you can collaborate with your team members to create a reproducible environment for your application and share it with other team members. You can also use Cloud Pods to pre-seed your continuous integration (CI) pipelines with the required instance state to bootstrap your testing environment or debug failures in your CI pipeline. 
+In conclusion, LocalStack Cloud Pods facilitate collaboration and debugging among team members by allowing the sharing of local cloud infrastructure and instance state. These Cloud Pods can be used to create reproducible environments for various purposes, including machine learning. By using Cloud Pods, teams can work together to create a reproducible environment for their application and share it with other team members. Additionally, Cloud Pods can be used to pre-seed continuous integration (CI) pipelines with the necessary instance state to bootstrap testing environments or to troubleshoot failures in the CI pipeline. 
 
-Check out the [LocalStack Cloud Pods documentation]({{< ref "user-guide/tools/cloud-pods" >}}) to learn more about Cloud Pods. To use Cloud Pods with LocalStack Community, refer to our [Community Cloud Pods documentation]({{< ref "user-guide/tools/cloud-pods/community" >}}) to get started with saving and loading Cloud Pods locally. You can find the code for this tutorial (including a `Makefile` to execute it step-by-step) in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples).
+For more information about LocalStack Cloud Pods, refer to the documentation provided. The code for this tutorial, including a Makefile to execute it step-by-step, is available in the [LocalStack Pro samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/reproducible-ml) on GitHub.
