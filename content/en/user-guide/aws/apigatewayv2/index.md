@@ -146,3 +146,17 @@ $ awslocal apigatewayv2 create-api --name=my-api --protocol-type=HTTP --tags="_c
     }
 }
 {{< / command >}}
+
+### AWS API Gateway Custom Domain Name
+
+Custom domain names can be created for API Gateway REST APIs and API Gateway V2 APIs. The following example shows 
+how to call a custom domain name for an API Gateway (v2), but the same applies to API Gateway REST APIs, using the `Host` header with the 
+custom domain to route 
+the 
+request to the mapping target.
+
+{{< command >}}
+curl -H 'Host: test.example.com' http://localhost:4566/test
+{{< / command >}}
+
+For a simple, self-contained example please refer to [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/apigw-custom-domain).
