@@ -243,7 +243,7 @@ For help with the specific commands, use `python -m localstack.cli.lpm <command>
 
 The codebase contains a wealth of utility functions for various common tasks like handling strings, JSON/XML, threads/processes, collections, date/time conversions, and much more.
 
-The utilities are grouped into multiple util modules inside the `[localstack.utils](<https://github.com/localstack/localstack/tree/master/localstack/utils>)` package. Some of the most commonly used utils modules include:
+The utilities are grouped into multiple util modules inside the [localstack.utils](<https://github.com/localstack/localstack/tree/master/localstack/utils>) package. Some of the most commonly used utils modules include:
 
 -   `.files` - file handling utilities (e.g., `load_file`, `save_file`, or `mkdir`)
 -   `.json` - handle JSON content (e.g., `json_safe`, or `canonical_json`)
