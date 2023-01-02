@@ -1,6 +1,6 @@
 ---
 title: "Configuration"
-weight: 5
+weight: 1
 description: >
   Environment variables which affect LocalStack.
 aliases:
@@ -135,10 +135,27 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | - | - | - |
 | `KINESIS_ERROR_PROBABILITY` | Decimal value between `0.0`(default) and `1.0` | Randomly inject `ProvisionedThroughputExceededException` errors into Kinesis API responses. |
 | `KINESIS_SHARD_LIMIT` | `100` (default), `Infinity` (to disable) | Integer value , causing the Kinesis API to start throwing exceptions to mimic the default shard limit. |
+| `KINESIS_ON_DEMAND_STREAM_COUNT_LIMIT` | `10` (default), `Infinity` (to disable) | Integer value , causing the Kinesis API to start throwing exceptions to mimic the default on demand stream count limit. |
 | `KINESIS_LATENCY` | `500` (default), `0` (to disable)| Integer value of milliseconds, causing the Kinesis API to delay returning a response in order to mimic latency from a live AWS call. |
 | `KINESIS_INITIALIZE_STREAMS` | `"my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1"` | A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. Only works with the `kinesis-mock` `KINESIS_PROVIDER`. |
 
-### Lambda
+### Lambda (New / `asf`)
+
+| Variable| Example Values | Description |
+| - | - | - |
+| `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console.|
+| `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Optional bucket name for running lambdas locally.|
+| `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
+| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Lambda Docker `run`\|`create` commands (e.g., useful for specifying custom volume mounts). Does only support environment, volume, port and add-host flags |
+| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. Only applicable when using docker-reuse executor. |
+| `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed |
+| | `kubernetes` | PRO-only. Execute lambdas in a Kubernetes cluster |
+| `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `10` (default) | How many seconds Lambda will wait for the runtime environment to start up |
+| `LAMBDA_RUNTIME_IMAGE_MAPPING` | | Allows two options to customize the resolution of Lambda runtime: <br> 1. pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> 2. json dict mapping the <runtime> to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
+| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default) | Prefix for images that will be used to execute Lambda functions in kubernetes. |
+
+
+### Lambda (Legacy)
 
 | Variable| Example Values | Description |
 | - | - | - |
@@ -310,6 +327,7 @@ More information [here]({{< ref "dns-server" >}}).
 | - | - | - |
 | `DNS_ADDRESS` | 0.0.0.0 (default) | Address the LocalStack should bind the DNS server on (port 53 tcp/udp). Value `0` to disable.
 | `DNS_SERVER` | 8.8.8.8 (default) | Fallback DNS server for non-modified queries.
+| `DNS_RESOLVE_IP` | 127.0.0.1 | IP address the DNS integration should return as A record for modified queries. This will override any automatic detection of the proper response IP.
 | `DNS_LOCAL_NAME_PATTERNS` | | Names which should be resolved to the LocalStack IP, as python-compatible regex.
 
 ## LocalStack Pro

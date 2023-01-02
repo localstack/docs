@@ -8,16 +8,13 @@ aliases:
   - /get-started/cockpit/
 ---
 
-Getting started with LocalStack via the Cockpit is easy:
-just download the Cockpit App for your operating system at
-https://localstack.cloud/products/cockpit
-make sure you have Docker installed, and you're ready to go!
+LocalStack Cockpit is a desktop client that allows users to easily control and manage their LocalStack instance. With LocalStack Cockpit, users can start and stop their LocalStack instance with a single click, view the current status of their instance, and access quick links to LocalStack documentation and other resources. 
 
-![Cockpit](cockpit-screenshot.png)
+Cockpit also provides instant insights into the runtime and environment information, as well as the status of available services and log information. In addition, users can directly manage and use their LocalStack profiles through the app. To get started with Cockpit, you can download the app for your operating system through [**localstack.cloud/products/cockpit**](https://localstack.cloud/products/cockpit). To install LocalStack Cockpit, **Docker** is the only prerequisite.
 
-## Prerequisites
-
-To run LocalStack using the Cockpit you only need Docker and the Cockpit app.
+<p>
+{{< img src="cockpit-screenshot.png" class="img-fluid shadow rounded" >}}
+</p>
 
 {{< alert >}}
 *Note*: The Cockpit beta version is not yet verified on Windows and Mac app stores.
@@ -26,13 +23,11 @@ On [Windows](https://www.windowscentral.com/how-disable-smartscreen-trusted-app-
 
 ## Features
 
-The LocalStack Cockpit makes it easy for you to manage your LocalStack instance.
-Here are some of the Cockpit's features:
+LocalStack Cockpit helps users to manage their LocalStack instance with a simple and intuitive UI. Some of the features of LocalStack Cockpit, include automated environment checks, profile configurations, instance management and quick log access.
 
-### Automatic environment check
+### Automated environment checks
 
-When the Cockpit starts it will automatically check your system environment whether everything is ready to start LocalStack.
-It will also download the LocalStack Docker image for you, should it not be on your system.
+While starting Cockpit, it will automatically check your system environment to ensure that everything is ready to start LocalStack. It includes checking Docker version, pulling the official LocalStack Docker image, and checking for the presence of the LocalStack CLI and runtime status. In the absence of a Docker image, Cockpit will automatically pull the latest version of the LocalStack Docker image.
 
 <p>
 {{< img src="cockpit-init-check.png" class="img-fluid shadow rounded" >}}
@@ -40,12 +35,7 @@ It will also download the LocalStack Docker image for you, should it not be on y
 
 ### Run configurations
 
-Manage and select LocalStack run configurations to start LocalStack with a particular configuration.
-Save your LocalStack Pro API key, or a particular set of environment variables into a run configuration. 
-
-<p>
-{{< img src="cockpit-runconfig-select.png" class="img-fluid shadow rounded" >}}
-</p>
+Using Cockpit, you can manage and select LocalStack run configurations to start LocalStack with a particular configuration. Configurations allow you to save your LocalStack Pro API key, or a particular set of environment variables into a run configuration.
 
 <p>
 {{< img src="cockpit-runconfig-edit.png" class="img-fluid shadow rounded" >}}
@@ -53,19 +43,11 @@ Save your LocalStack Pro API key, or a particular set of environment variables i
 
 ### Manage your LocalStack instance
 
-Start and stop LocalStack by simply clicking a button.
-No mucking about in the CLI or a docker-compose file.
-The environment and Services screen give you instant insights into your running instance.
-
-<p>
-{{< img src="cockpit-localstack-start.gif" class="img-fluid shadow rounded" >}}
-</p>
+You can easily start and stop your LocalStack instance with a single click. Cockpit also provides you with the status of your LocalStack instance, including the number of running services and the runtime information.
 
 ### Quick log access
 
-Get quick access to your LocalStack logs for instant insights.
-
-*Note*: The beta version does not yet have auto-followcockpit, so you need to click "Refresh" and "Scroll to end".
+Cockpit provides quick access to your LocalStack logs for instant insights. Currently, the beta version of Cockpit does not have auto-follow cockpit, so you need to click "Refresh" and "Scroll to end" to view the latest logs.
 
 <p>
 {{< img src="cockpit-logs.png" class="img-fluid shadow rounded" >}}
@@ -73,16 +55,14 @@ Get quick access to your LocalStack logs for instant insights.
 
 ## Known issues
 
-- MacOS ≤ v10 not supported yet.
-- There may be glibc issues on older Linux versions.
+- Mac OS X 10.0 and lower are not supported yet.
+- There may be `glibc` issues on older Linux versions.
+
+While installing Cockpit on Mac M1, macOS may prevent the software from running because of issues with code signing. To fix it, you can run `xattr -rc` in the terminal on the binary file and then run the application again. You can visit the [Apple Developer Forum thread](https://developer.apple.com/forums/thread/692774) for more information.
 
 ## Report issues
 
-Please help us make LocalStack Cockpit better!
-If you experience a problem, have feedback or a feature request for us, please [submit an issue](https://github.com/localstack/cockpit/issues).
-Ideally add your log files, so that we can investigate into your problem more easily.
-
-Logs folder:
+Support for LocalStack Cockpit is provided on a best-effort basis. To help us improve the product, please report any issues you encounter on [GitHub](https://github.com/localstack/cockpit/issues) and share your log files, so that we can investigate into your problem more easily. The logs are available in the following locations, depending on your operating system.:
 
 - Linux: `~/.config/localstack-cockpit/logs/`
 - macOS: `~/Library/Logs/localstack-cockpit/`

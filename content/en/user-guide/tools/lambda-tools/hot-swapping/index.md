@@ -21,6 +21,7 @@ This way, any saved change inside your source file directly affects the already 
 
 ## Covered Topics
 
+[Using the new Lambda provider](#using-the-new-lambda-provider):
 [Application Configuration Examples](#application-configuration-examples):
 * [Code hot-swapping for JVM Lambdas](#code-hot-swapping-for-jvm-lambdas)
 * [Code hot-swapping for Python Lambdas](#code-hot-swapping-for-python-lambdas)
@@ -32,6 +33,12 @@ This way, any saved change inside your source file directly affects the already 
 * [Terraform Configuration](#terraform-configuration)
 
 [Useful Links](#useful-links)
+
+## Using the new Lambda provider
+When using the new Lambda provider, hot-reloading does not conflict with fast execution times, and it is not needed to spawn a new container for every invocation.
+Also, hot reloading for Lambda layers (Pro) is now supported, it works identical to functions, but only 1 layer is allowed per function if hot-reloading is active in the layer.
+
+For more information about behavioral changes, please consult the [Lambda Behavioral Changes]({{< ref "references/lambda-asf-provider" >}}) page.
 
 ## Application Configuration Examples
 

@@ -14,30 +14,46 @@ This is to download and cache the language model.
 Subsequent transcriptions for the same language can be done offline.
 Language models are around 50 MiB each and saved to the cache directory (see [Filesystem Layout]({{< ref "filesystem" >}})).
 
-The input audio file must of single-channel PCM WAV format.
-
 {{< alert title="Warning" color="warning">}}
 This service has limited support for aarch64/Apple Silicon.
 {{< /alert >}}
 
-### Supported Languages
+## Supported Formats
 
-Currently the following langauges and dialects are supported:
-- `de-DE`
-- `en-GB`, `en-IN`, `en-US`
-- `es-ES`
-- `fa-IR`
-- `fr-FR`
-- `hi-IN`
-- `it-IT`
-- `ja-JP`
-- `nl-NL`
-- `pt-BR`
-- `ru-RU`
-- `tr-TR`
-- `zh-CN`
+The following input media formats are supported:
 
-### Examples
+- Adaptive Multi-Rate (AMR)
+- Free Lossless Audio Codec (FLAC)
+- MPEG-1 Audio Layer-3 (MP3)
+- MPEG-4 Part 14 (MP4)
+- OGG
+- Matroska Video files (MKV)
+- Waveform Audio File Format (WAV)
+
+## Supported Languages
+
+The following langauges and dialects are supported:
+
+| Language | Language Code |
+|----------|---------------|
+| German | `de-DE` |
+| English, British | `en-GB` |
+| English, Indian  | `en-IN` |
+| English, US | `en-US` |
+| Spanish | `es-ES` |
+| Farsi | `fa-IR` |
+| French | `fr-FR` |
+| Hindi | `hi-IN` |
+| Italian | `it-IT` |
+| Japan | `ja-JP` |
+| Dutch | `nl-NL` |
+| Portuguese | `pt-BR` |
+| Russian | `ru-RU` |
+| Turkish | `tr-TR` |
+| Vietnamese | `vi-VN` |
+| Chinese | `zh-CN` |
+
+## Transcribing Audio
 
 Create an S3 bucket and upload the audio file:
 
@@ -74,7 +90,6 @@ $ awslocal transcribe list-transcription-jobs
 {{< / command >}}
 
 Once job is complete, the transcript can be retrieved from the S3 bucket:
-
 
 {{< command >}}
 $ awslocal transcribe get-transcription-job --transcription-job example

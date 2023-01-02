@@ -4,8 +4,7 @@ linkTitle: "Host a static website locally using Simple Storage Service (S3) and 
 weight: 4
 description: >
   Host a static website using a Simple Storage Service (S3) bucket to serve static content by provisioning the infrastructure using Terraform in LocalStack. Learn how to configure S3 buckets locally for testing and integration, and make use of LocalStack's S3 API & `tflocal` CLI to provision infrastructure locally.
-cascade:
-  type: docs
+type: tutorials
 ---
 
 [AWS Simple Storage Service (S3)](https://aws.amazon.com/s3/) is a proprietary object storage solution that can store an unlimited number of objects for many use cases. S3 is a highly scalable, durable and reliable service that we can use for various use cases: hosting a static site, handling big data analytics, managing application logs, storing web assets and much more!

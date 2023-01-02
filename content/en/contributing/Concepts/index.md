@@ -96,7 +96,7 @@ Sometimes we also use `moto` code directly, for example importing and accessing 
 
 ### Server
 
-`[Server](<https://github.com/localstack/localstack/blob/master/localstack/utils/serving.py>)` is an abstract class that provides a basis for serving other backends that run in a separate process. For example, our Kinesis implementation uses [kinesis-mock](https://github.com/etspaceman/kinesis-mock/) as a backend that implements the Kinesis AWS API and also emulates its behavior. 
+[Server](<https://github.com/localstack/localstack/blob/master/localstack/utils/serving.py>) is an abstract class that provides a basis for serving other backends that run in a separate process. For example, our Kinesis implementation uses [kinesis-mock](https://github.com/etspaceman/kinesis-mock/) as a backend that implements the Kinesis AWS API and also emulates its behavior. 
 
 The provider [starts the kinesis-mock binary in a `Server`](https://github.com/localstack/localstack/blob/2e1e8b4e3e98965a7e99cd58ccdeaa6350a2a414/localstack/services/kinesis/kinesis_mock_server.py), and then forwards all incoming requests to it using `forward_request`. This is a similar construct to `call_moto`, only generalized to arbitrary HTTP AWS backends. 
 
@@ -243,7 +243,7 @@ For help with the specific commands, use `python -m localstack.cli.lpm <command>
 
 The codebase contains a wealth of utility functions for various common tasks like handling strings, JSON/XML, threads/processes, collections, date/time conversions, and much more.
 
-The utilities are grouped into multiple util modules inside the `[localstack.utils](<https://github.com/localstack/localstack/tree/master/localstack/utils>)` package. Some of the most commonly used utils modules include:
+The utilities are grouped into multiple util modules inside the [localstack.utils](<https://github.com/localstack/localstack/tree/master/localstack/utils>) package. Some of the most commonly used utils modules include:
 
 -   `.files` - file handling utilities (e.g., `load_file`, `save_file`, or `mkdir`)
 -   `.json` - handle JSON content (e.g., `json_safe`, or `canonical_json`)
