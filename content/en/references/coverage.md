@@ -2714,10 +2714,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>BatchDescribeTypeConfigurations (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2832,6 +2828,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse cloudformation-notimplemented">     <tr>
+      <td>BatchDescribeTypeConfigurations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelUpdateStack</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3626,10 +3626,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeInsightRules (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DisableAlarmActions <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -3713,6 +3709,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeAnomalyDetectors</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeInsightRules</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -4266,10 +4266,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminListUserAuthEvents (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AdminRemoveUserFromGroup (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -4521,6 +4517,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AdminListDevices</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AdminListUserAuthEvents</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6256,6 +6256,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>GetPasswordData</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>GetTransitGatewayRouteTableAssociations</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -7427,10 +7431,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetNetworkInsightsAccessScopeContent</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetPasswordData</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9505,6 +9505,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeStudio</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetClusterSessionCredentials</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -13002,10 +13006,6 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AssociateAwsAccountWithPartnerAccount (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateDeviceProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13068,6 +13068,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse iotwireless-notimplemented">     <tr>
+      <td>AssociateAwsAccountWithPartnerAccount</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AssociateMulticastGroupWithFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14656,6 +14660,10 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
+      <td>AssociateKmsKey (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateExportTask</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14774,10 +14782,6 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse logs-notimplemented">     <tr>
-      <td>AssociateKmsKey</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16074,6 +16078,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateCustomDBEngineVersion (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateDBCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -16401,10 +16409,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateBlueGreenDeployment</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateCustomDBEngineVersion</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18827,6 +18831,10 @@ hide_readingtime: true
       <td>UpdateEndpointWeightsAndCapacities (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
+    <tr>
+      <td>UpdatePipeline (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".sagemaker-notimplemented">Show missing</a></td>
@@ -19782,10 +19790,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>UpdatePipeline</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>UpdatePipelineExecution</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19839,9 +19843,15 @@ hide_readingtime: true
       <td>InvokeEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>InvokeEndpointAsync (Pro) </td>
-       <td style="text-align:right">✅</td>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".sagemaker-runtime-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse sagemaker-runtime-notimplemented">     <tr>
+      <td>InvokeEndpointAsync</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -22270,6 +22280,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateVocabularyFilter (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteMedicalTranscriptionJob</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -22332,10 +22346,6 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse transcribe-notimplemented">     <tr>
-      <td>CreateVocabularyFilter</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DeleteCallAnalyticsCategory</td>
        <td style="text-align:right">-</td>
     </tr>
