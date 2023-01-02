@@ -8,7 +8,7 @@ DynamoDB on LocalStack is powered by [DynamoDB Local](https://docs.aws.amazon.co
 
 ## Global tables
 
-LocalStack has limited support for global tables (version 2019).
+LocalStack has support for global tables (version 2019).
 These are tables belonging to the same account and replicated across different regions.
 
 Following example illustrates the use of global tables:
@@ -47,7 +47,8 @@ $ awslocal dynamodb describe-table --table-name global01 --query 'Table.ItemCoun
 {{< /command >}}
 
 {{< alert title="Warning" color="warning">}}
-When describing global tables, all replica regions including the currently queried one will be returned.
+When describing global tables, the current table is treated as a replica.
+Consequently, replicas will include the currently queried region also.
 {{< /alert >}}
 
 {{< command >}}
@@ -69,12 +70,17 @@ $ awslocal dynamodb describe-table --table-name global01 --query 'Table.Replicas
 {{< /command >}}
 
 {{< alert title="Warning" color="warning">}}
-It is currently not possible to remove the original table region from the replication set. Furthermore, deleting the original table will also remove all the replicas.
+It is currently not possible to remove the original table region from the replication set.
+Deleting the original table will also remove all the replicas.
 {{< /alert >}}
 
 {{< alert title="Warning" color="warning">}}
 DynamoDB Streams are only supported for original tables and not for replicated tables.
 Please see <https://github.com/localstack/localstack/issues/7405> for more information.
+{{< /alert >}}
+
+{{< alert title="Warning" color="warning">}}
+Batch operations (`BatchWriteItem`, `BatchGetItem`, etc.) are currently not supported on replicated tables.
 {{< /alert >}}
 
 <!--
