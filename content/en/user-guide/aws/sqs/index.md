@@ -90,6 +90,30 @@ AWS does not allow creating a queue with the same name for 60 seconds after it w
 See the [DeleteQueue API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
 LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with `SQS_DELAY_RECENTLY_DELETED=1`.
 
+### Accessing developer endpoint
+
+You can access the developer endpoint for SQS at the `/_aws/sqs` endpoint. The developed endpoint allows you to list all messages in a queue without limitations. The endpoint is compatible with the `ReceiveMessage` API, which developers can use to retrieve all messages of a queue. The endpoint returns all message attributes and system attributes by default and ignores any other parameters from the `ReceiveMessage` operation, except the `QueueUrl`.
+
+To get started with the developer endpoint, we can use `/_aws/sqs/messages` as the endpoint URL, hence demonstrating the compatibility with the AWS clients:
+
+{{< command >}}
+$ aws --endpoint-url=http://localhost:4566/_aws/sqs/messages \
+    sqs receive-message \
+    --queue-url http://queue.localhost.localstack.cloud:4566/000000000000/test-queue-01
+{{< / command >}}
+
+You can alternatively use a `cURL` call but as a `GET` request:
+
+{{< command >}}
+curl "http://localhost:4566/_aws/sqs/messages?QueueUrl=http://queue.localhost.localstack.cloud:4566/000000000000/test-queue-01"
+{{< / command >}}
+
+You can also use the following endpoint where the queue information is encoded into the path directly:
+
+{{< command >}}
+curl -H 'Accept: application/json' "http://localhost:4566/_aws/sqs/messages/us-east-1/000000000000/test-queue-01"
+{{< / command >}}
+
 ## Known limitations and differences to AWS
 
 * The `ApproximateReceiveCount` attribute of a message will be reset to 0 when the message moves to a DLQ.
