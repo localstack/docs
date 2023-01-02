@@ -12,10 +12,7 @@ description: >
 ---
 
 {{< alert title="Warning" color="warning" >}}
-Known limitations of multi-accounts:
-- Not supported for setups that use cross-account and cross-service access.
-- Not supported in Kinesis.
-
+Multi-accounts has limited support for setups that use cross-account and cross-service access.
 Please see <https://github.com/localstack/localstack/issues/7041> for more information.
 {{< /alert >}}
 

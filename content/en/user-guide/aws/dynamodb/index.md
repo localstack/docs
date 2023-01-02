@@ -69,14 +69,16 @@ $ awslocal dynamodb describe-table --table-name global01 --query 'Table.Replicas
 {{< /command >}}
 
 {{< alert title="Warning" color="warning">}}
-It is currently not possible to remove the original table region from the replication set.
+It is currently not possible to remove the original table region from the replication set. Furthermore, deleting the original table will also remove all the replicas.
 {{< /alert >}}
 
 {{< alert title="Warning" color="warning">}}
 DynamoDB Streams are only supported for original tables and not for replicated tables.
-Please see <https://github.com/localstack/localstack/issues/7405>.
+Please see <https://github.com/localstack/localstack/issues/7405> for more information.
 {{< /alert >}}
 
+<!--
 ## SSE specifications
 
 ## Kinesis streams
+-->
