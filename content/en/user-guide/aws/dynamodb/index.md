@@ -48,7 +48,7 @@ $ awslocal dynamodb describe-table --table-name global01 --query 'Table.ItemCoun
 
 {{< alert title="Warning" color="warning">}}
 When describing global tables, the current table is treated as a replica.
-Consequently, replicas will include the currently queried region also.
+This is a known bug <https://github.com/localstack/localstack/issues/7426>.
 {{< /alert >}}
 
 {{< command >}}
