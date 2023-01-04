@@ -14,7 +14,7 @@ Cloud Pods are a mechanism that allows you to take a snapshot of the state in yo
 
 While the [Persistence]({{< ref "persistence-mechanism" >}}) feature ensures that the service state survives container restarts, Cloud Pods go beyond and allow more fine-grained control over your state.
 
-Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow you to take snapshots of your local instance (with the `commit` command) and inject such snapshots into a running instance (with the `inject` command) without requiring a restart.
+Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow you to take snapshots of your local instance (with the `save` command) and inject such snapshots into a running instance (with the `load` command) without requiring a restart.
 
 In addition, we provide a remote storage backend that can be used to store the state of your running application and share it with your team members.
 
