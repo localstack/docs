@@ -84,6 +84,18 @@ You can test it by attempting to resolve an S3 hostname, which should then inter
 docker exec -it localstack_bigdata curl -vk https://test.s3.amazonaws.com
 ```
 
+### Why is it that LocalStack is unable to connect to internet?
+
+You might be able to connect to the internet, but your Docker container can't connect. This can affect start of LocalStack.
+
+More details can be found on [official docker documentation](https://docs.docker.com/network/bridge/#enable-forwarding-from-docker-containers-to-the-outside-world).
+
+Solution for this is enabling the IP forwarding: 
+
+```bash
+sudo sysctl -w net.ipv4.ip_forward=1
+```
+
 ### Why can't my other Docker containers reach LocalStack?
 
 Using LocalStack inside a Docker network with multiple other containers can lead to connectivity issues from/to those containers. For example, a container which attempts to deploy a stack and interact with the services directly, from within the same Docker network.
