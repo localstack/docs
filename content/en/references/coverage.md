@@ -1314,6 +1314,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeScalingActivities (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeScalingPolicies (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -1332,16 +1336,6 @@ hide_readingtime: true
     <tr>
       <td>RegisterScalableTarget (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
-    </tr>
-  </tbody>
-  <tbody>    <tr>
-      <td><a data-toggle="collapse" href=".application-autoscaling-notimplemented">Show missing</a></td>
-      <td style="text-align:right"></td>
-    </tr>
-  </tbody>
-  <tbody class="collapse application-autoscaling-notimplemented">     <tr>
-      <td>DescribeScalingActivities</td>
-       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -2714,6 +2708,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>BatchDescribeTypeConfigurations</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2818,6 +2816,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>UpdateTerminationProtection <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ValidateTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2828,10 +2830,6 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse cloudformation-notimplemented">     <tr>
-      <td>BatchDescribeTypeConfigurations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CancelUpdateStack</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2973,10 +2971,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateStackInstances</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateTerminationProtection</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -4386,7 +4380,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetGroup (Pro) </td>
+      <td>GetGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11390,7 +11384,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetInstanceProfile <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetInstanceProfile</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11482,7 +11476,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInstanceProfiles <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListInstanceProfiles</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11886,6 +11880,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateRoleAlias (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateThing (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11938,6 +11936,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DeleteRoleAlias (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteThing (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11983,6 +11985,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeJobExecution (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeRoleAlias (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12110,6 +12116,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListRoleAliases (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -12199,6 +12209,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateIndexingConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UpdateRoleAlias (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12304,10 +12318,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>CreateRoleAlias</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CreateScheduledAudit</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12369,10 +12379,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeleteRegistrationCode</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteRoleAlias</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12465,10 +12471,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeProvisioningTemplateVersion</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeRoleAlias</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12605,10 +12607,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListRelatedResourcesForAuditFinding</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListRoleAliases</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12761,10 +12759,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateProvisioningTemplate</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateRoleAlias</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14660,10 +14654,6 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AssociateKmsKey (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateExportTask</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14782,6 +14772,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse logs-notimplemented">     <tr>
+      <td>AssociateKmsKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16078,10 +16072,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCustomDBEngineVersion (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateDBCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -16334,19 +16324,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RestoreDBClusterFromS3 (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>RestoreDBClusterFromSnapshot (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>RestoreDBInstanceFromDBSnapshot (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RestoreDBInstanceFromS3 (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16409,6 +16391,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateBlueGreenDeployment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateCustomDBEngineVersion</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -16592,7 +16578,15 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RestoreDBClusterFromS3</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RestoreDBClusterToPointInTime</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RestoreDBInstanceFromS3</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18640,10 +18634,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateImageVersion (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateModel (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18688,10 +18678,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteImageVersion (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteModel (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18729,10 +18715,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeExperiment (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeImageVersion (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18821,10 +18803,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StopNotebookInstance (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateDomain (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18931,6 +18909,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateImage</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateImageVersion</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19090,6 +19072,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteImageVersion</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteInferenceExperiment</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19243,6 +19229,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeImage</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeImageVersion</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19734,6 +19724,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>UpdateDomain</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>UpdateEndpoint</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19843,15 +19837,9 @@ hide_readingtime: true
       <td>InvokeEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
-  </tbody>
-  <tbody>    <tr>
-      <td><a data-toggle="collapse" href=".sagemaker-runtime-notimplemented">Show missing</a></td>
-      <td style="text-align:right"></td>
-    </tr>
-  </tbody>
-  <tbody class="collapse sagemaker-runtime-notimplemented">     <tr>
-      <td>InvokeEndpointAsync</td>
-       <td style="text-align:right">-</td>
+    <tr>
+      <td>InvokeEndpointAsync (Pro) </td>
+       <td style="text-align:right">✅</td>
     </tr>
   </tbody>
  </table>
@@ -20880,7 +20868,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetEndpointAttributes <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>GetEndpointAttributes</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20908,7 +20896,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPlatformApplications <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListPlatformApplications</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22280,10 +22268,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateVocabularyFilter (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteMedicalTranscriptionJob</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -22346,6 +22330,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse transcribe-notimplemented">     <tr>
+      <td>CreateVocabularyFilter</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteCallAnalyticsCategory</td>
        <td style="text-align:right">-</td>
     </tr>
