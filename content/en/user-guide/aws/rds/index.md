@@ -54,7 +54,7 @@ DB Snapshots are currently not supported for MySQL.
 In order to use MSSQL databases, you need to explicitly accept the [Microsoft SQL Server End-User Licensing Agreement (EULA)](https://hub.docker.com/_/microsoft-mssql-server) by setting `MSSQL_ACCEPT_EULA=Y` in the LocalStack container environment.
 {{< /alert >}}
 
-For MSSQL engine, the database server started in a new docker container using the `latest` image.
+For the MSSQL engine, the database server is started in a new docker container using the `latest` image.
 
 DB Snapshots are currently not supported for MSSQL.
 
