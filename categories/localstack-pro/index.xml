@@ -4402,12 +4402,8 @@ Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&am
 &lt;p>To get started with a more extensive example, please refer to the &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-redshift-crawler">Glue Crawler Redshift Integration (JDBC)&lt;/a> sample project.&lt;/p></description></item><item><title>User-Guide: Relational Database Service (RDS)</title><link>/user-guide/aws/rds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/rds/</guid><description>
 &lt;p>LocalStack supports a basic version of the &lt;a href="https://aws.amazon.com/rds/">Relational Database Service (RDS)&lt;/a> for testing.&lt;/p>
 &lt;h2 id="supported-db-engines">Supported DB engines&lt;/h2>
-&lt;p>Currently, it is possible to spin up PostgreSQL, MySQL, and MSSQL (SQL Server) databases on the local machine.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-In order to use MSSQL databases, you need to explicitly accept the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by setting &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> in the LocalStack container environment.
-&lt;/div>
-&lt;h3 id="postgres-versions">Postgres versions&lt;/h3>
+&lt;p>Currently, it is possible to spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases on the local machine.&lt;/p>
+&lt;h3 id="postgres-engine">Postgres Engine&lt;/h3>
 &lt;p>When creating an RDS DB cluster or instance with &lt;code>postgres&lt;/code>/&lt;code>aurora-postgresql&lt;/code> DB engine and a specific &lt;code>EngineVersion&lt;/code>, LocalStack will install and provision the respective Postgres version on demand.&lt;/p>
 &lt;p>Currently, versions 11, 12, and 13 can be chosen - when selecting a major version outside of this range, the default version 11 is used as fallback.&lt;/p>
 &lt;p>Please be aware that the minor version cannot be freely selected - the latest available version will be installed in the docker environment.&lt;/p>
@@ -4416,6 +4412,22 @@ In order to use MSSQL databases, you need to explicitly accept the &lt;a href="h
 &lt;h4 class="alert-heading">Note&lt;/h4>
 The &lt;code>describe-db-cluster&lt;/code> and &lt;code>describe-db-instances&lt;/code> calls will still return the &lt;code>engine-version&lt;/code> as it was defined for the creation, but the actual installed postgres engine could be different. This is important, e.g., when using a terraform configuration, as it should not detect changes in that case.
 &lt;/div>
+&lt;h3 id="mariadb-engine">MariaDB Engine&lt;/h3>
+&lt;p>MariaDB will be installed as OS package in LocalStack. Currently, it is not possible to freely select a specific version.&lt;/p>
+&lt;p>Snapshots are currently not supported for MariaDB.&lt;/p>
+&lt;h3 id="mysql-engine">MySQL Engine&lt;/h3>
+&lt;p>By default, a MariaDB installation is used when requesting a MySQL engine type.&lt;/p>
+&lt;p>If you wish to use a real MySQL version, you can do so by setting the environment variable &lt;code>RDS_MYSQL_DOCKER=Y&lt;/code>. With this feature enabled, MySQL community server will be started in a new docker container when requesting the MySQL engine. The &lt;code>engine-version&lt;/code> will be used as the tag for the image, meaning you can freely select the desired MySQL version.&lt;/p>
+&lt;p>In case you want to use a special image, you can also set the environment variable &lt;code>MYSQL_IMAGE=&amp;lt;my-image:tag&amp;gt;&lt;/code>.&lt;/p>
+&lt;p>Please note that the &lt;code>MasterUserPassword&lt;/code> defined for the database cluster/instance will be used as the &lt;code>MYSQL_ROOT_PASSWORD&lt;/code> environment for user &lt;code>root&lt;/code> in the MySQL container. The user for &lt;code>MasterUserName&lt;/code> will use the same password, and will have full access to the defined database.&lt;/p>
+&lt;p>DB Snapshots are currently not supported for MySQL.&lt;/p>
+&lt;h3 id="mssql-engine">MSSQL Engine&lt;/h3>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+In order to use MSSQL databases, you need to explicitly accept the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by setting &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> in the LocalStack container environment.
+&lt;/div>
+&lt;p>For the MSSQL engine, the database server is started in a new docker container using the &lt;code>latest&lt;/code> image.&lt;/p>
+&lt;p>DB Snapshots are currently not supported for MSSQL.&lt;/p>
 &lt;h2 id="end-to-end-example-postgres">End-to-end example (Postgres)&lt;/h2>
 &lt;p>The local RDS service also supports the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">RDS Data API&lt;/a>, which allows executing data queries against RDS clusters over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple &lt;code>SELECT 123&lt;/code> query via the RDS Data API.
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test
