@@ -56,7 +56,7 @@ In order to use MSSQL databases, you need to explicitly accept the [Microsoft SQ
 
 For MSSQL engine, the database server started in a new docker container using the `latest` image.
 
-Snapshots are currently not supported for MSSQL.
+DB Snapshots are currently not supported for MSSQL.
 
 ## End-to-end example (Postgres)
 
