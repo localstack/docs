@@ -12,13 +12,10 @@ LocalStack supports a basic version of the [Relational Database Service (RDS)](h
 
 ## Supported DB engines
 
-Currently, it is possible to spin up PostgreSQL, MySQL, and MSSQL (SQL Server) databases on the local machine.
+Currently, it is possible to spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases on the local machine.
 
-{{< alert title="Note" >}}
-In order to use MSSQL databases, you need to explicitly accept the [Microsoft SQL Server End-User Licensing Agreement (EULA)](https://hub.docker.com/_/microsoft-mssql-server) by setting `MSSQL_ACCEPT_EULA=Y` in the LocalStack container environment.
-{{< /alert >}}
 
-### Postgres versions
+### Postgres Engine
 
 When creating an RDS DB cluster or instance with `postgres`/`aurora-postgresql` DB engine and a specific `EngineVersion`, LocalStack will install and provision the respective Postgres version on demand.
 
@@ -32,6 +29,34 @@ In order to disable installation of custom versions, you may configure the envir
 {{< alert title="Note" >}}
 The `describe-db-cluster` and `describe-db-instances` calls will still return the `engine-version` as it was defined for the creation, but the actual installed postgres engine could be different. This is important, e.g., when using a terraform configuration, as it should not detect changes in that case.
 {{< /alert >}}
+
+### MariaDB Engine
+
+MariaDB will be installed as OS package in LocalStack. Currently, it is not possible to freely select a specific version. 
+
+Snapshots are currently not supported for MariaDB.
+
+### MySQL Engine
+
+By default, a MariaDB installation is used when requesting a MySQL engine type. 
+
+If you wish to use a real MySQL version, you can do so by setting the environment variable `RDS_MYSQL_DOCKER=Y`. With this feature enabled, MySQL community server will be started in a new docker container when requesting the MySQL engine. The `engine-version` will be used as the tag for the image, meaning you can freely select the desired MySQL version.
+
+In case you want to use a special image, you can also set the environment variable `MYSQL_IMAGE=<my-image:tag>`.
+
+Please note that the `MasterUserPassword` defined for the database cluster/instance will be used as the `MYSQL_ROOT_PASSWORD` environment for user `root` in the MySQL container. The user for `MasterUserName` will use the same password, and will have full access to the defined database.
+
+DB Snapshots are currently not supported for MySQL.
+
+### MSSQL Engine
+
+{{< alert title="Note" >}}
+In order to use MSSQL databases, you need to explicitly accept the [Microsoft SQL Server End-User Licensing Agreement (EULA)](https://hub.docker.com/_/microsoft-mssql-server) by setting `MSSQL_ACCEPT_EULA=Y` in the LocalStack container environment.
+{{< /alert >}}
+
+For the MSSQL engine, the database server is started in a new docker container using the `latest` image.
+
+DB Snapshots are currently not supported for MSSQL.
 
 ## End-to-end example (Postgres)
 
