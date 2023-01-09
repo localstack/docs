@@ -44,7 +44,7 @@ If you wish to use a real MySQL version, you can do so by setting the environmen
 
 In case you want to use a special image, you can also set the environment variable `MYSQL_IMAGE=<my-image:tag>`.
 
-Please not that the `MYSQL_ROOT_PASSWORD` for user `root` in the MySQL container will be the same as you set as `MasterUserPassword`. The user for `MasterUserName` will use the same password, and will have full access to the defined database.
+Please note that the `MasterUserPassword` defined for the database cluster/instance will be used as the `MYSQL_ROOT_PASSWORD` environment for user `root` in the MySQL container. The user for `MasterUserName` will use the same password, and will have full access to the defined database.
 
 Snapshots are currently not supported for MySQL.
 
