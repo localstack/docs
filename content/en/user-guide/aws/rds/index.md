@@ -46,7 +46,7 @@ In case you want to use a special image, you can also set the environment variab
 
 Please note that the `MasterUserPassword` defined for the database cluster/instance will be used as the `MYSQL_ROOT_PASSWORD` environment for user `root` in the MySQL container. The user for `MasterUserName` will use the same password, and will have full access to the defined database.
 
-Snapshots are currently not supported for MySQL.
+DB Snapshots are currently not supported for MySQL.
 
 ### MSSQL Engine
 
