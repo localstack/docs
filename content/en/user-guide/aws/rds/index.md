@@ -40,7 +40,7 @@ Snapshots are currently not supported for MariaDB.
 
 By default, a MariaDB installation is used when requesting a MySQL engine type. 
 
-If you wish to use a real MySQL version, you can do so by setting the environment variable `RDS_MYSQL_DOCKER=Y`. With this feature enabled, MySQL community server will be started in a new docker container when requesting the MySQL engine. The `engine-version` will be used as the tag for the image, meaning you can freely select the desired MySQL version.
+If you wish to use a real MySQL version, you can do so by setting the environment variable `RDS_MYSQL_DOCKER=1`. With this feature enabled, MySQL community server will be started in a new docker container when requesting the MySQL engine. The `engine-version` will be used as the tag for the image, meaning you can freely select the desired MySQL version.
 
 In case you want to use a special image, you can also set the environment variable `MYSQL_IMAGE=<my-image:tag>`.
 
