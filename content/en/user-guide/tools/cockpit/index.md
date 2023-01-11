@@ -12,6 +12,7 @@ LocalStack Cockpit is a desktop client that allows users to easily control and m
 Cockpit also provides instant insights into the runtime and environment information, as well as the status of available services and log information. In addition, users can directly manage and use their LocalStack profiles through the app.
 
 To get started with Cockpit, you can download the app for your operating system through [**localstack.cloud/products/cockpit**](https://localstack.cloud/products/cockpit).
+
 To install LocalStack Cockpit, [**Docker**](https://www.docker.com) is the only prerequisite.
 
 <p>
@@ -32,7 +33,7 @@ LocalStack Cockpit helps users to manage their LocalStack instance with a simple
 While starting Cockpit, it will automatically check your system environment to ensure that everything is ready to start LocalStack. It includes checking Docker version, pulling the official LocalStack Docker image, and checking for the presence of the LocalStack CLI and runtime status. In the absence of a Docker image, Cockpit will automatically pull the latest version of the LocalStack Docker image.
 
 {{< alert >}}
-*Note*: Before starting LocalStack Cockpit, **Docker Desktop** should be already running.
+*Note*: Before starting LocalStack Cockpit, **Docker** should be already running.
 {{< /alert >}}
 
 <p>
