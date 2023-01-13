@@ -1,5 +1,5 @@
 ---
-title: "Docker Extension"
+title: "LocalStack Docker Extension"
 weight: 8
 description: >
   Getting started with LocalStack Extension for Docker Desktop
