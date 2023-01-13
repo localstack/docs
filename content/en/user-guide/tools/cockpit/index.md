@@ -9,8 +9,11 @@ aliases:
 ---
 
 LocalStack Cockpit is a desktop client that allows users to easily control and manage their LocalStack instance. With LocalStack Cockpit, users can start and stop their LocalStack instance with a single click, view the current status of their instance, and access quick links to LocalStack documentation and other resources. 
+Cockpit also provides instant insights into the runtime and environment information, as well as the status of available services and log information. In addition, users can directly manage and use their LocalStack profiles through the app.
 
-Cockpit also provides instant insights into the runtime and environment information, as well as the status of available services and log information. In addition, users can directly manage and use their LocalStack profiles through the app. To get started with Cockpit, you can download the app for your operating system through [**localstack.cloud/products/cockpit**](https://localstack.cloud/products/cockpit). To install LocalStack Cockpit, **Docker** is the only prerequisite.
+To get started with Cockpit, you can download the app for your operating system through [**localstack.cloud/products/cockpit**](https://localstack.cloud/products/cockpit).
+
+To install LocalStack Cockpit, [**Docker**](https://www.docker.com) is the only prerequisite.
 
 <p>
 {{< img src="cockpit-screenshot.png" class="img-fluid shadow rounded" >}}
@@ -28,6 +31,10 @@ LocalStack Cockpit helps users to manage their LocalStack instance with a simple
 ### Automated environment checks
 
 While starting Cockpit, it will automatically check your system environment to ensure that everything is ready to start LocalStack. It includes checking Docker version, pulling the official LocalStack Docker image, and checking for the presence of the LocalStack CLI and runtime status. In the absence of a Docker image, Cockpit will automatically pull the latest version of the LocalStack Docker image.
+
+{{< alert >}}
+*Note*: Before starting LocalStack Cockpit, **Docker** should be already running.
+{{< /alert >}}
 
 <p>
 {{< img src="cockpit-init-check.png" class="img-fluid shadow rounded" >}}
