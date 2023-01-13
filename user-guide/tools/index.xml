@@ -216,26 +216,31 @@ On &lt;a href="https://www.windowscentral.com/how-disable-smartscreen-trusted-ap
 &lt;li>Linux: &lt;code>~/.config/localstack-cockpit/logs/&lt;/code>&lt;/li>
 &lt;li>macOS: &lt;code>~/Library/Logs/localstack-cockpit/&lt;/code>&lt;/li>
 &lt;li>Windows: &lt;code>%USERPROFILE%\AppData\Roaming\localstack-cockpit\logs\&lt;/code>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Docker Desktop Extension</title><link>/user-guide/tools/docker-desktop-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/docker-desktop-extension/</guid><description>
-&lt;p>The LocalStack Extension for Docker Desktop enables developers working with LocalStack to operate their LocalStack instance via Docker Desktop, including checking service status, instance logs, and configure profiles. To install the LocalStack Extension for Docker Desktop, you just need to have &lt;a href="https://www.docker.com/products/docker-desktop">Docker Desktop installed on your machine&lt;/a>.&lt;/p>
-&lt;img src="localstack-docker-extension.png" alt="LocalStack Extension for Docker Desktop" title="LocalStack Extension for Docker Desktop" width="800" />
+&lt;/ul></description></item><item><title>User-Guide: LocalStack Docker Extension</title><link>/user-guide/tools/localstack-docker-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localstack-docker-extension/</guid><description>
+&lt;p>The LocalStack Extension for Docker Desktop enables developers working with LocalStack to operate their LocalStack container via Docker Desktop, including checking service status, container logs, and configuring profiles. To install the LocalStack Extension for Docker Desktop, you need to have &lt;a href="https://www.docker.com/products/docker-desktop">Docker Desktop installed on your machine&lt;/a>.&lt;/p>
+&lt;img src="localstack-docker-extension.png" alt="LocalStack Extension for Docker Desktop" title="LocalStack Extension for Docker Desktop" width="900" />
 &lt;h2 id="installation">Installation&lt;/h2>
-&lt;p>You can install the LocalStack Extension for Docker Desktop via pulling our public Docker image from Docker Hub:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker extension install localstack/localstack-docker-desktop:0.1.0&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>To setup the Docker Extension by building the image locally, you can clone our &lt;a href="https://github.com/localstack/localstack-docker-extension">Docker Desktop extension&lt;/a> repository, and run the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>make install-extension&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>It will build the Docker image and install the extension on your Docker Desktop application.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;em>Note&lt;/em>: The LocalStack Extension for Docker Desktop is not yet verified and available on Docker Desktop marketplace. The current features are experimental in nature, and are subject to change in future iterations.
-&lt;/div>
+&lt;p>To utilize LocalStack&amp;rsquo;s Docker Extension, it is necessary to have a recent version of Docker Desktop (v4.8 or higher) installed on the local machine. To enable the extension, access the &lt;strong>Preferences&lt;/strong> tab and select the &lt;strong>Enable Docker Extensions&lt;/strong> option within the &lt;strong>Extensions&lt;/strong> tab.&lt;/p>
+&lt;img src="localstack-docker-extension-preferences.png" title="Enable Docker Extensions in the Preferences within the Extensions tab" width="900" />
+&lt;br>&lt;/br>
+&lt;p>The LocalStack Extension for Docker Desktop has been validated and can be accessed on the Extensions Marketplace. To begin using it, navigate to the &lt;strong>Extensions Marketplace&lt;/strong>, search for &lt;strong>LocalStack&lt;/strong>, and click the &lt;strong>Install&lt;/strong> button to proceed with the installation.&lt;/p>
+&lt;img src="localstack-docker-extension-marketplace.png" title="Discover the LocalStack Extension on the Docker Desktop Marketplace and install it!" width="900" />
+&lt;br>&lt;/br>
+&lt;p>An alternative method for installing the LocalStack&amp;rsquo;s Extension for Docker Desktop is pulling the &lt;a href="https://hub.docker.com/r/localstack/localstack-docker-desktop">public Docker image&lt;/a> from Docker Hub and installing it!&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker extension install localstack/localstack-docker-desktop:0.3.1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After installation, you can access the LocalStack Extension for Docker Desktop from the &lt;strong>Extensions&lt;/strong> tab. Upon the initial launch of the extension, a prompt to select a mount point for the LocalStack container will appear. Select your username from the drop-down menu. Furthermore, you can modify this setting later by navigating to the &lt;strong>Configurations&lt;/strong> tab and choosing a different mount point.&lt;/p>
+&lt;img src="localstack-docker-extension-mount-point.png" title="Select the mount point upon the launch of LocalStack's Docker extension" width="900" />
 &lt;h2 id="features">Features&lt;/h2>
-&lt;p>Currently, the LocalStack Extension for Docker Desktop supports the following features:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Control LocalStack&lt;/strong>: Start, stop, and restart LocalStack from the Docker Desktop. You can also see the current status of your LocalStack instance and navigate to LocalStack Web Application.&lt;/li>
-&lt;li>&lt;strong>LocalStack insights&lt;/strong>: You can see the log information of the LocalStack instance and all the available services and their status on the service page.&lt;/li>
-&lt;li>&lt;strong>LocalStack configurations&lt;/strong>: You can manage and use your profiles via configurations and create new configurations for your LocalStack instance.&lt;/li>
-&lt;/ul>
-&lt;p>We also recommend you to add add &lt;code>/tmp&lt;/code> to your shared files on Docker Desktop under &lt;strong>Settings&lt;/strong> &amp;gt; &lt;strong>Resources&lt;/strong> &amp;gt; &lt;strong>File sharing&lt;/strong>. It is a temporary solution since it&amp;rsquo;s where the LocalStack volume directory mounts.&lt;/p></description></item><item><title>User-Guide: Cloud Pods</title><link>/user-guide/tools/cloud-pods/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/</guid><description>
+&lt;p>LocalStack&amp;rsquo;s Docker Extension helps users to manage their LocalStack container with a simple and intuitive user interface through Docker Desktop. The extension includes container management, configuration profile management, service status, and container logs!&lt;/p>
+&lt;h3 id="control-localstack">Control LocalStack&lt;/h3>
+&lt;p>You can start, stop, and restart LocalStack from the Docker Desktop. You can also see the current status of your LocalStack container and navigate to LocalStack Web Application.&lt;/p>
+&lt;img src="localstack-docker-extension-start.png" title="Start and Stop your LocalStack container with a single click of a button with LocalStack's extension" width="900" />
+&lt;h3 id="localstack-insights">LocalStack insights&lt;/h3>
+&lt;p>You can see the log information of the LocalStack container and all the available services and their status on the service page.&lt;/p>
+&lt;img src="localstack-docker-extension-logs.png" title="Check the logs of your running LocalStack container through LocalStack's Docker extension" width="900" />
+&lt;h3 id="localstack-configurations">LocalStack configurations&lt;/h3>
+&lt;p>You can manage and use your profiles via configurations and create new configurations for your LocalStack container.&lt;/p>
+&lt;img src="localstack-docker-extension-configuration-profile.png" title="Create your configuration profiles within LocalStack's Extension to affect the state of LocalStack" width="900" /></description></item><item><title>User-Guide: Cloud Pods</title><link>/user-guide/tools/cloud-pods/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/</guid><description>
 &lt;p>Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.&lt;/p>
 &lt;p>&lt;img src="pods-persistence.png" alt="Persistence versus Cloud Pods">&lt;/p>
 &lt;p>While the &lt;a href="/references/persistence-mechanism/">Persistence&lt;/a> feature ensures that the service state survives container restarts, Cloud Pods go beyond and allow more fine-grained control over your state.&lt;/p>
