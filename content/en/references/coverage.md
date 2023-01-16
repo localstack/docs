@@ -1314,10 +1314,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeScalingActivities (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DescribeScalingPolicies (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -1336,6 +1332,16 @@ hide_readingtime: true
     <tr>
       <td>RegisterScalableTarget (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
+    </tr>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".application-autoscaling-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse application-autoscaling-notimplemented">     <tr>
+      <td>DescribeScalingActivities</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -2152,10 +2158,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBackupJobs (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListBackupPlans (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2168,23 +2170,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCopyJobs (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListRecoveryPointsByBackupVault (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>ListRecoveryPointsByResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListReportJobs (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListRestoreJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2318,11 +2308,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListBackupJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListBackupPlanTemplates</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ListBackupPlanVersions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListCopyJobs</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2342,7 +2340,15 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListReportJobs</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListReportPlans</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListRestoreJobs</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -11628,7 +11634,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAccessKey</td>
+      <td>UpdateAccessKey <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12052,27 +12058,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAuditMitigationActionsTasks (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListAuditTasks (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListCertificates (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>ListCertificatesByCA (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListDetectMitigationActionsExecutions (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListDetectMitigationActionsTasks (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12088,11 +12078,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListJobs (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListMetricValues (Pro) </td>
+      <td>ListJobs (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12153,10 +12139,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListTopicRules (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListViolationEvents (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12546,7 +12528,15 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListAuditMitigationActionsTasks</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListAuditSuppressions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListAuditTasks</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12563,6 +12553,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListCustomMetrics</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDetectMitigationActionsExecutions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListDetectMitigationActionsTasks</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12583,6 +12581,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListManagedJobTemplates</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListMetricValues</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12647,6 +12649,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListV2LoggingLevels</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListViolationEvents</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12896,10 +12902,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDatasetContents (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListDatasets (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -12909,10 +12911,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListPipelines (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>SampleChannelData (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -12946,6 +12944,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListDatasetContents</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListTagsForResource</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -12955,6 +12957,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>RunPipelineActivity</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>SampleChannelData</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -12999,6 +13005,10 @@ hide_readingtime: true
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>AssociateAwsAccountWithPartnerAccount (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
     <tr>
       <td>CreateDeviceProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
@@ -13062,10 +13072,6 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse iotwireless-notimplemented">     <tr>
-      <td>AssociateAwsAccountWithPartnerAccount</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>AssociateMulticastGroupWithFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16332,6 +16338,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>RestoreDBInstanceToPointInTime (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>StartDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -16587,10 +16597,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>RestoreDBInstanceFromS3</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>RestoreDBInstanceToPointInTime</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -17278,6 +17284,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse resource-groups-notimplemented">     <tr>
+      <td>GetAccountSettings</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetTags</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -17303,6 +17313,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>Untag</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateAccountSettings</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -20484,15 +20498,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDomainStatisticsReport (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>GetEmailIdentity (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListDomainDeliverabilityCampaigns (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20501,10 +20507,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListEmailTemplates (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>ListSuppressedDestinations (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20650,6 +20652,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetDomainStatisticsReport</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>GetEmailIdentityPolicies</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -20690,11 +20696,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ListDomainDeliverabilityCampaigns</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListImportJobs</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ListRecommendations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListSuppressedDestinations</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
