@@ -122,6 +122,7 @@ The screenshot below shows the triggered breakpoint with our `'Hello from LocalS
 Please be aware that [remote debugging in PyCharm](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html) is only available in the Professional version. 
 
 #### Configuring PyCharm for remote Python debugging
+
 You can [follow the steps in the offical docs](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config), which will come down to:
 
 * Create a debug configuration with the IDE host name `localhost` and the debug port `19891`. 
@@ -130,8 +131,8 @@ You can [follow the steps in the offical docs](https://www.jetbrains.com/help/py
 
 ![PyCharm Professional Remote Debugging Configuration](pycharm_remote_debugging.png)
 
-
 #### Preparing your code
+
 PyCharm provides a its own debugging package, called `pydevd-pycharm`. Essentially, you will add the following code to your lambda:
 
 ```python
@@ -162,7 +163,6 @@ In the next step we create our function. In order to debug the function in PyCha
 
 ![PyCharm Professional debugging](pycharm_lambda_debugging.png)
 
-
 ### Creating the Lambda function
 
 To create the Lambda function, you just need to take care of two things:
@@ -187,12 +187,9 @@ We can quickly verify that it works by invoking it with a simple payload:
 $ awslocal lambda invoke --function-name my-cool-local-function --payload '{"message": "Hello from LocalStack!"}' output.txt
 {{< /command >}}
 
-
-
 ### Limitations
 
-Due to the ports used by the debugger, you can currently only debug one Lambda at a time.
-Multiple concurrent invocations will not work.
+Due to the ports used by the debugger, you can currently only debug one Lambda at a time. This would lead multiple concurrent invocations to not work.
 
 ## Debugging JVM lambdas
 
