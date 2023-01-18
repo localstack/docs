@@ -1884,7 +1884,7 @@ This functionality has been removed.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyPairs&amp;#34;: []
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Remote Debugging</title><link>/user-guide/tools/lambda-tools/debugging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/lambda-tools/debugging/</guid><description>
-&lt;h2 id="overview">Overview&lt;/h2>
+&lt;h1 id="overview">Overview&lt;/h1>
 &lt;p>This guide covers the remote debugging of Lambda functions with &lt;a href="https://code.visualstudio.com/">Visual Studio Code&lt;/a> or IntelliJ IDEA as an IDE.
 For a simple working example of this feature, check out &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">our samples repository&lt;/a>.&lt;/p>
 &lt;table>
@@ -1910,7 +1910,7 @@ For a simple working example of this feature, check out &lt;a href="https://gith
 &lt;/tbody>
 &lt;/table>
 &lt;p>More examples and tooling support for local Lambda debugging (including support for other IDEs like PyCharm) is coming soon - stay tuned!&lt;/p>
-&lt;h3 id="covered-topics">Covered Topics&lt;/h3>
+&lt;h1 id="covered-topics">Covered Topics&lt;/h1>
 &lt;ul>
 &lt;li>&lt;a href="#debugging-python-lambdas">Debugging Python lambdas&lt;/a>&lt;/li>
 &lt;li>&lt;a href="#debugging-jvm-lambdas">Debugging JVM lambdas&lt;/a>&lt;/li>
@@ -1924,12 +1924,13 @@ to &lt;a href="/user-guide/tools/lambda-tools/hot-swapping/">iterate quickly ove
 &lt;p>For a simple working example of this feature, you can refer to
 &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">our samples&lt;/a>.
 There, the necessary code fragments for enabling debugging are already present.&lt;/p>
-&lt;h3 id="configure-localstack-for-remote-python-debugging">Configure LocalStack for remote Python debugging&lt;/h3>
+&lt;h2 id="configure-localstack-for-remote-python-debugging">Configure LocalStack for remote Python debugging&lt;/h2>
 &lt;p>First, make sure that LocalStack is started with the following configuration (see the &lt;a href="/references/configuration/#lambda">Configuration docs&lt;/a> for more information):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LAMBDA_REMOTE_DOCKER=0 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> LAMBDA_DOCKER_FLAGS=&amp;#39;-p 19891:19891&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> DEBUG=1 localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;h3 id="preparing-your-code">Preparing your code&lt;/h3>
+&lt;h3 id="debugging-python-lambda-in-visual-studio-code">Debugging Python Lambda in Visual Studio Code&lt;/h3>
+&lt;h4 id="preparing-your-code">Preparing your code&lt;/h4>
 &lt;p>For providing the debug server, we use &lt;a href="https://github.com/microsoft/debugpy">&lt;code>debugpy&lt;/code>&lt;/a>
 inside the Lambda function code. In general, all you need is the following code
 fragment placed inside your handler code:&lt;/p>
@@ -1955,22 +1956,7 @@ It implements the above-mentioned start of the debug server and also adds an aut
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">T&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">start&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Waiting for client to attach debugger ...&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">debugpy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">wait_for_client&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="creating-the-lambda-function">Creating the Lambda function&lt;/h3>
-&lt;p>To create the Lambda function, you just need to take care of two things:&lt;/p>
-&lt;ol>
-&lt;li>Deploy the function via an S3 Bucket. You need to use the magic variable &lt;code>__local__&lt;/code> as the bucket name.&lt;/li>
-&lt;li>Set the S3 key to the path of the directory your lambda function resides in.
-The handler is then referenced by the filename of your lambda code and the function in that code that should be invoked.&lt;/li>
-&lt;/ol>
-&lt;p>So, in our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">example&lt;/a>, this would be:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name my-cool-local-function \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;__local__&amp;#34;,S3Key=&amp;#34;$(pwd)/&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler handler.handler \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime python3.8 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role cool-stacklifter&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>We can quickly verify that it works by invoking it with a simple payload:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function --payload &amp;#39;{&amp;#34;message&amp;#34;: &amp;#34;Hello from LocalStack!&amp;#34;}&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="configuring-visual-studio-code-for-remote-python-debugging">Configuring Visual Studio Code for remote Python debugging&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="configuring-visual-studio-code-for-remote-python-debugging">Configuring Visual Studio Code for remote Python debugging&lt;/h4>
 &lt;p>For attaching the debug server from Visual Studio Code, you need to add a run configuration.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0.2.0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
@@ -1992,13 +1978,58 @@ The handler is then referenced by the filename of your lambda code and the funct
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>With our function from above you have about 15 seconds (the timeout is configurable) to switch to Visual Studio Code and run the preconfigured remote debugger.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the next step we create our function. In order to debug the function in Visual Studio Code, run the preconfigured remote debugger, which will wait about 15 seconds as defined above, and then invoke the function.
 Make sure to set a breakpoint in the Lambda handler code first, which can then later be inspected.&lt;/p>
 &lt;p>The screenshot below shows the triggered breakpoint with our &lt;code>'Hello from LocalStack!'&lt;/code> in the variable inspection view:&lt;/p>
 &lt;p>&lt;img src="vscode-debugging-py-1.png" alt="Visual Studio Code debugging">&lt;/p>
+&lt;h3 id="debugging-python-lambda-in-pycharm-professional">Debugging Python Lambda in PyCharm Professional&lt;/h3>
+&lt;p>Please be aware that &lt;a href="https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html">remote debugging in PyCharm&lt;/a> is only available in the Professional version.&lt;/p>
+&lt;h4 id="configuring-pycharm-for-remote-python-debugging">Configuring PyCharm for remote Python debugging&lt;/h4>
+&lt;p>You can &lt;a href="https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config">follow the steps in the offical docs&lt;/a>, which will come down to:&lt;/p>
+&lt;ul>
+&lt;li>Create a debug configuration with the IDE host name &lt;code>localhost&lt;/code> and the debug port &lt;code>19891&lt;/code>.&lt;/li>
+&lt;li>Add path mapping with your project files on the host and map it to the remote directory &lt;code>/var/task&lt;/code>.&lt;/li>
+&lt;li>Copy the &lt;code>pip install&lt;/code> command, and make sure to install the correct &lt;code>pydevd-pycharm&lt;/code> version for your PyCharm IDE.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="pycharm_remote_debugging.png" alt="PyCharm Professional Remote Debugging Configuration">&lt;/p>
+&lt;h4 id="preparing-your-code-1">Preparing your code&lt;/h4>
+&lt;p>PyCharm provides a its own debugging package, called &lt;code>pydevd-pycharm&lt;/code>. Essentially, you will add the following code to your lambda:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">pydevd_pycharm&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">pydevd_pycharm&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">settrace&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;host.docker.internal&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">port&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">19891&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">stdoutToServer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">stderrToServer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;code>host.docker.internal&lt;/code> is a &lt;a href="https://docs.docker.com/desktop/networking/#use-cases-and-workarounds-for-all-platforms">special DNS name by Docker&lt;/a> and will make sure that the lambda running in the docker can connect to PyCharm running on your Localhost.&lt;/p>
+&lt;p>You can use the &lt;code>wait_for_debug_client&lt;/code> and add it to your lambda (please adapt the path to your &lt;code>venv&lt;/code> directory if necessary):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">wait_for_debug_client&lt;/span>&lt;span style="color:#000;font-weight:bold">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&amp;#34;Utility function to enable debugging with PyCharm&amp;#34;&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">sys&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#000">glob&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#8f5902;font-style:italic"># enter the correct path here to your venv (where pydev_pycharm is installed&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">my_venv&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;venv/lib/python*/site-packages&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">sys&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">path&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">insert&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">glob&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">glob&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">my_venv&lt;/span>&lt;span style="color:#000;font-weight:bold">)[&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">pydevd_pycharm&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#8f5902;font-style:italic"># host.docker.internal should resolve to the host&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#8f5902;font-style:italic"># see also: https://docs.docker.com/desktop/networking#use-cases-and-workarounds-for-all-platforms&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">pydevd_pycharm&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">settrace&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;host.docker.internal&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">port&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">19891&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">stdoutToServer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">stderrToServer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the next step we create our function. In order to debug the function in PyCharm set a breakpoint in your function, run the Remote Debug configuration and then invoke the function.&lt;/p>
+&lt;p>&lt;img src="pycharm_lambda_debugging.png" alt="PyCharm Professional debugging">&lt;/p>
+&lt;h3 id="creating-the-lambda-function">Creating the Lambda function&lt;/h3>
+&lt;p>To create the Lambda function, you just need to take care of two things:&lt;/p>
+&lt;ol>
+&lt;li>Deploy the function via an S3 Bucket. You need to use the magic variable &lt;code>__local__&lt;/code> as the bucket name.&lt;/li>
+&lt;li>Set the S3 key to the path of the directory your lambda function resides in.
+The handler is then referenced by the filename of your lambda code and the function in that code that should be invoked.&lt;/li>
+&lt;/ol>
+&lt;p>So, in our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">example&lt;/a>, this would be:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name my-cool-local-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;__local__&amp;#34;,S3Key=&amp;#34;$(pwd)/&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler handler.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime python3.8 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 150 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role cool-stacklifter&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can quickly verify that it works by invoking it with a simple payload:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function --payload &amp;#39;{&amp;#34;message&amp;#34;: &amp;#34;Hello from LocalStack!&amp;#34;}&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="limitations">Limitations&lt;/h3>
-&lt;p>Due to the ports used by the debugger, you can currently only debug one Lambda at a time.
-Multiple concurrent invocations will not work.&lt;/p>
+&lt;p>Due to the ports used by the debugger, you can currently only debug one Lambda at a time. This would lead multiple concurrent invocations to not work.&lt;/p>
 &lt;h2 id="debugging-jvm-lambdas">Debugging JVM lambdas&lt;/h2>
 &lt;h3 id="configure-localstack-for-remote-jvm-debugging">Configure LocalStack for remote JVM debugging&lt;/h3>
 &lt;p>Set &lt;code>LAMBDA_JAVA_OPTS&lt;/code> with &lt;code>jdwp&lt;/code> settings and expose the debug port
@@ -2118,6 +2149,7 @@ then add the following configuration:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;__local__&amp;#34;,S3Key=&amp;#34;$(pwd)/&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler myindex.handler \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs14.x \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 150 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role cool-stacklifter&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Now to debug your lambda function, click on the &lt;code>Debug&lt;/code> icon with
 &lt;code>Attach to Remote Node.js&lt;/code> configuration selected, and then invoke your
