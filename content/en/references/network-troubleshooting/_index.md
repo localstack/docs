@@ -18,12 +18,12 @@ If you are having difficulties connecting your application code to localstack, p
 
 ## You are trying to access LocalStack directly using HTTP
 
-[{{< figure src="./images/overview-1.svg" >}}]({{< ref "endpoint-url" >}})
+[{{< figure src="./images/overview-1.png" >}}]({{< ref "endpoint-url" >}})
 
 ## You are trying to access LocalStack using a language SDK
 
-[{{< figure src="./images/overview-2.svg" >}}]({{< ref "sdk" >}})
+[{{< figure src="./images/overview-2.png" >}}]({{< ref "sdk" >}})
 
 ## You are trying to access a resource that LocalStack has created by URL
 
-[{{< figure src="./images/overview-3.svg" >}}]({{< ref "created-resources" >}})
+[{{< figure src="./images/overview-3.png" >}}]({{< ref "created-resources" >}})
