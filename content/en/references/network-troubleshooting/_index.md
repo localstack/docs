@@ -6,7 +6,6 @@ tags:
 - networking
 description: >
   How to troubleshoot common network problems
-draft: true
 ---
 
 # Network troubleshooting
