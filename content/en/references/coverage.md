@@ -664,10 +664,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateMethodResponse</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UpdateModel</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -751,6 +747,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateDocumentationVersion</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateMethodResponse</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3014,6 +3014,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateOriginAccessControl (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateOriginRequestPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -3027,6 +3031,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeleteFunction (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteOriginAccessControl (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3047,6 +3055,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetInvalidation (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetOriginAccessControl (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetOriginAccessControlConfig (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3094,6 +3110,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>UpdateOriginAccessControl (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>UpdateOriginRequestPolicy (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -3133,10 +3153,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateMonitoringSubscription</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CreateOriginAccessControl</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3181,10 +3197,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeleteMonitoringSubscription</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteOriginAccessControl</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3257,14 +3269,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetMonitoringSubscription</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetOriginAccessControl</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetOriginAccessControlConfig</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3401,10 +3405,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>UpdateKeyGroup</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateOriginAccessControl</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3674,6 +3674,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>PutMetricStream</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>SetAlarmState <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -3756,10 +3760,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>PutMetricStream</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>StartMetricStreams</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3830,11 +3830,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource (Pro) </td>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource (Pro) </td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -4041,10 +4045,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>TestRepositoryTriggers</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6060,6 +6060,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeSecurityGroupRules</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeSecurityGroups <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -7135,10 +7139,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeSecurityGroupReferences</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeSecurityGroupRules</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -13006,10 +13006,6 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AssociateAwsAccountWithPartnerAccount (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateDeviceProfile (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13072,6 +13068,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse iotwireless-notimplemented">     <tr>
+      <td>AssociateAwsAccountWithPartnerAccount</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AssociateMulticastGroupWithFuotaTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -13434,6 +13434,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateClusterV2 (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13454,6 +13458,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeClusterV2 (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -13467,6 +13475,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListClustersV2 (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13508,23 +13520,11 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>CreateClusterV2</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeClusterV2</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>GetCompatibleKafkaVersions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ListClusterOperations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListClustersV2</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -14660,6 +14660,10 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
+      <td>AssociateKmsKey (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateExportTask</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -14778,10 +14782,6 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse logs-notimplemented">     <tr>
-      <td>AssociateKmsKey</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -15590,6 +15590,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeDryRunProgress</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeInboundConnections</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -16338,10 +16342,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RestoreDBInstanceToPointInTime (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>StartDBCluster (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -16597,6 +16597,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>RestoreDBInstanceFromS3</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RestoreDBInstanceToPointInTime</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -17702,7 +17706,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateFirewallDomainList</td>
+      <td>CreateFirewallDomainList <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17726,7 +17730,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteFirewallDomainList</td>
+      <td>DeleteFirewallDomainList <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17806,7 +17810,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListFirewallDomainLists</td>
+      <td>ListFirewallDomainLists <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17846,7 +17850,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18138,7 +18142,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetObjectAcl</td>
+      <td>GetObjectAcl <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18744,6 +18748,18 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribePipeline (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribePipelineDefinitionForExecution (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribePipelineExecution (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeProcessingJob (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18784,6 +18800,14 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListPipelineExecutions (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListPipelineParametersForExecution (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListPipelines (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18813,6 +18837,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StartNotebookInstance (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>StartPipelineExecution (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19298,18 +19326,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribePipeline</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribePipelineDefinitionForExecution</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribePipelineExecution</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DescribeProject</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19566,14 +19582,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListPipelineExecutions</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListPipelineParametersForExecution</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ListProjects</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -19651,10 +19659,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StartMonitoringSchedule</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>StartPipelineExecution</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19870,6 +19874,10 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
+      <td>CancelRotateSecret</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateSecret <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -19944,10 +19952,6 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse secretsmanager-notimplemented">     <tr>
-      <td>CancelRotateSecret</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>RemoveRegionsFromReplication</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -21188,7 +21192,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetMaintenanceWindow</td>
+      <td>GetMaintenanceWindow <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22282,6 +22286,14 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateVocabularyFilter (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteCallAnalyticsCategory (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteMedicalTranscriptionJob</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -22344,14 +22356,6 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse transcribe-notimplemented">     <tr>
-      <td>CreateVocabularyFilter</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteCallAnalyticsCategory</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DeleteCallAnalyticsJob</td>
        <td style="text-align:right">-</td>
     </tr>
