@@ -3953,39 +3953,21 @@ Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry.
 &lt;p>The AWS Glue API is a fairly comprehensive service - more details can be found in the official &lt;a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html">AWS Glue Developer Guide&lt;/a>.&lt;/p>
 &lt;h2 id="current-limitations">Current Limitations&lt;/h2>
 &lt;p>Support for triggers is currently limited - the basic API endpoints are implemented, but triggers are currently still under development (more details coming soon).&lt;/p></description></item><item><title>User-Guide: Identity and Access Management (IAM)</title><link>/user-guide/aws/iam/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iam/</guid><description>
-&lt;p>By default, LocalStack uses not enforce security policies for client requests. In LocalStack Pro, the IAM security enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.&lt;/p>
+&lt;p>By default, LocalStack does not enforce security policies for client requests. In LocalStack Pro, the IAM security enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;strong>Note&lt;/strong>:
 The environment configuration &lt;code>ENFORCE_IAM=1&lt;/code> is required to enable this feature. (By default, IAM enforcement is disabled, and all APIs can be accessed without authentication.)
 &lt;/div>
-&lt;p>Below is a simple example that illustrates the use of IAM policy enforcement. It first creates a user and obtains access/secret keys, then attempts to create a bucket with that user (which fails), and then finally attaches a policy to the user to allow &lt;code>s3:CreateBucket&lt;/code>, which allows the bucket to be created.
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-user --user-name test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-access-key --user-name test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;AccessKeyId&amp;#34;: &amp;#34;AKIA4HPFP0TZHP3Z5VI6&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SecretAccessKey&amp;#34;: &amp;#34;mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_ACCESS_KEY_ID=AKIA4HPFP0TZHP3Z5VI6 AWS_SECRET_ACCESS_KEY=mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket failed: s3://test An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-policy --policy-name p1 --policy-document &amp;#39;{&amp;#34;Version&amp;#34;:&amp;#34;2012-10-17&amp;#34;,&amp;#34;Statement&amp;#34;:[{&amp;#34;Effect&amp;#34;:&amp;#34;Allow&amp;#34;,&amp;#34;Action&amp;#34;:&amp;#34;s3:CreateBucket&amp;#34;,&amp;#34;Resource&amp;#34;:&amp;#34;*&amp;#34;}]}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam attach-user-policy --user-name test --policy-arn arn:aws:iam::000000000000:policy/p1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket: test&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>Please notice that by default if you do not have valid credentials representing a user or assumed role, LocalStack will identify requests as coming from the root user.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Credentials are currently extracted in the request but signature is not validated - exceptions apply for s3 presigned URLs, for example.
-&lt;/div>
-&lt;p>For example:&lt;/p>
+&lt;h2 id="creating-iam-users-and-access-keys">Creating IAM Users and Access Keys&lt;/h2>
+&lt;p>By default, if no custom credentials are configured, requests made to LocalStack are running under the administrative root user:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sts get-caller-identity
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UserId&amp;#34;: &amp;#34;AKIAIOSFODNN7EXAMPLE&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Account&amp;#34;: &amp;#34;000000000000&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Arn&amp;#34;: &amp;#34;arn:aws:iam::000000000000:root&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-user --user-name test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following example illustrates how we can create a new user named &lt;code>test&lt;/code>, then create an access key pair for the user, and assert that the user is recognized via &lt;code>get-caller-identity&lt;/code> after the access keys are configured in the environment.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-user --user-name test
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-access-key --user-name test
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
@@ -3999,7 +3981,37 @@ The environment configuration &lt;code>ENFORCE_IAM=1&lt;/code> is required to en
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Account&amp;#34;: &amp;#34;000000000000&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Arn&amp;#34;: &amp;#34;arn:aws:iam::000000000000:user/test&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="explainable-iam">Explainable IAM&lt;/h3>
+&lt;h2 id="enforcing-iam-policies">Enforcing IAM Policies&lt;/h2>
+&lt;p>Below is a simple example that illustrates the use of IAM policy enforcement. It first creates a user and obtains access/secret keys, then attempts to create a bucket with that user (which fails), and then finally attaches a policy to the user to allow &lt;code>s3:CreateBucket&lt;/code>, which allows the bucket to be created.&lt;/p>
+&lt;p>For the following example we&amp;rsquo;ll need two separate terminal sessions: terminal 1 for the administrative IAM commands (using the default root IAM user), and terminal 2 for the commands running under the test IAM user we&amp;rsquo;re going to create.&lt;/p>
+&lt;p>Run these commands in &lt;strong>terminal 1&lt;/strong>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-user --user-name test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-access-key --user-name test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;AccessKeyId&amp;#34;: &amp;#34;AKIA4HPFP0TZHP3Z5VI6&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SecretAccessKey&amp;#34;: &amp;#34;mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Then we switch to &lt;strong>terminal 2&lt;/strong>, configure the access keys of user &lt;code>test&lt;/code> in the environment, and then attempt to create an S3 bucket:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_ACCESS_KEY_ID=AKIA4HPFP0TZHP3Z5VI6 AWS_SECRET_ACCESS_KEY=mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://mybucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket failed: s3://mybucket An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>As expected, the bucket creation fails with &lt;code>AccessDeniedException&lt;/code>, as user &lt;code>test&lt;/code> lacks the required permissions. Now switch back to &lt;strong>terminal 1&lt;/strong> and run these commands:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-policy --policy-name p1 --policy-document &amp;#39;{&amp;#34;Version&amp;#34;:&amp;#34;2012-10-17&amp;#34;,&amp;#34;Statement&amp;#34;:[{&amp;#34;Effect&amp;#34;:&amp;#34;Allow&amp;#34;,&amp;#34;Action&amp;#34;:&amp;#34;s3:CreateBucket&amp;#34;,&amp;#34;Resource&amp;#34;:&amp;#34;*&amp;#34;}]}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam attach-user-policy --user-name test --policy-arn arn:aws:iam::000000000000:policy/p1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Now switch back to &lt;strong>terminal 2&lt;/strong> and see how the bucket creation now succeeds with the &lt;code>test&lt;/code> IAM user:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>confirm that we&amp;#39;re using the credentials of the `test` user
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sts get-caller-identity
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Arn&amp;#34;: &amp;#34;arn:aws:iam::000000000000:user/test&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://mybucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket: mybucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;strong>Note&lt;/strong>: Credentials are currently extracted from the request (usually from the &lt;code>Authorization&lt;/code> HTTP header), but the request signature itself is not validated - except for some cases, including S3 presigned URLs.
+&lt;/div>
+&lt;h2 id="explainable-iam">Explainable IAM&lt;/h2>
 &lt;p>Since 1.0, our policy engine logs output related to failed policy evaluation to the LocalStack log.
 There, you can see which additional policies are necessary for your request to succeed.
 You need to enable &lt;code>DEBUG=1&lt;/code> to see these log messages.&lt;/p>
@@ -4053,14 +4065,14 @@ If we now add this to our policy (since it is an example let&amp;rsquo;s do it v
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>the call is correctly executed.&lt;/p>
-&lt;h4 id="soft-mode">Soft Mode&lt;/h4>
+&lt;h3 id="soft-mode">Soft Mode&lt;/h3>
 &lt;p>If you enable &lt;code>IAM_SOFT_MODE=1&lt;/code>, you can look at the logs whether your requests would have been denied or not, while still being able to execute your whole stack without interference.
 This is especially useful when trying to find missing permissions over a whole stack (with resources depending on each other) at a time without having to redeploy for every missing permission.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;strong>Note&lt;/strong>: As of 1.0, resource based policies and conditions are not yet supported. Please try sticking to identity-based policies where possible.
 Inter-service communication evaluation (for example for sts:AssumeRole) also is not supported, which currently reduces the impact of those missing features.
 &lt;/div>
-&lt;h3 id="supported-apis">Supported APIs&lt;/h3>
+&lt;h2 id="supported-apis">Supported APIs&lt;/h2>
 &lt;p>IAM security enforcement is available for all AWS APIs in LocalStack - it has been thoroughly tested, among others, for the following services: ACM, API Gateway, CloudFormation, CloudWatch (metrics/events/logs), DynamoDB, DynamoDB Streams, Elasticsearch Service, EventBus, Kinesis, KMS, Lambda, Redshift, S3, SecretsManager, SNS, SQS.&lt;/p></description></item><item><title>User-Guide: IoT</title><link>/user-guide/aws/iot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iot/</guid><description>
 &lt;p>Basic support for &lt;a href="https://aws.amazon.com/iot/">IoT&lt;/a> (including IoT Analytics, IoT Data, and related APIs) is provided in the Pro version. The main endpoints for creating and updating entities are currently implemented, as well as the CloudFormation integrations for creating them.&lt;/p>
 &lt;p>The IoT API ships with a built-in MQTT message broker. In order to get the MQTT endpoint, the &lt;code>describe-endpoint&lt;/code> API can be used; for example, using &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a>:
