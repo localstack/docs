@@ -16,6 +16,8 @@ The environment configuration `ENFORCE_IAM=1` is required to enable this feature
 {{< /alert >}}
 
 Below is a simple example that illustrates the use of IAM policy enforcement. It first creates a user and obtains access/secret keys, then attempts to create a bucket with that user (which fails), and then finally attaches a policy to the user to allow `s3:CreateBucket`, which allows the bucket to be created.
+
+Run these commands in **terminal 1**:
 {{< command >}}
 $ awslocal iam create-user --user-name test
 ...
@@ -25,13 +27,23 @@ $ awslocal iam create-access-key --user-name test
   "SecretAccessKey": "mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua",
 ...
 $ export AWS_ACCESS_KEY_ID=AKIA4HPFP0TZHP3Z5VI6 AWS_SECRET_ACCESS_KEY=mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua
-$ awslocal s3 mb s3://test
-make_bucket failed: s3://test An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied
+$ awslocal s3 mb s3://mybucket
+make_bucket failed: s3://mybucket An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied
+{{< / command >}}
+
+Now switch to a **new terminal** (as IAM commands require admin access via the default user) and run these commands:
+{{< command >}}
 $ awslocal iam create-policy --policy-name p1 --policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":"s3:CreateBucket","Resource":"*"}]}'
 ...
 $ awslocal iam attach-user-policy --user-name test --policy-arn arn:aws:iam::000000000000:policy/p1
-$ awslocal s3 mb s3://test
-make_bucket: test
+{{< / command >}}
+
+Now switch back to **terminal 1** and see how the bucket creation now succeeds with the `test` IAM user we've created:
+{{< command >}}
+$ awslocal sts get-caller-identity | grep Arn
+    "Arn": "arn:aws:iam::000000000000:user/test"
+$ awslocal s3 mb s3://mybucket
+make_bucket: mybucket
 {{< / command >}}
 
 Please notice that by default if you do not have valid credentials representing a user or assumed role, LocalStack will identify requests as coming from the root user.
