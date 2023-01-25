@@ -8,39 +8,15 @@ aliases:
   - /aws/iam/
 ---
 
-By default, LocalStack uses not enforce security policies for client requests. In LocalStack Pro, the IAM security enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.
-
+By default, LocalStack does not enforce security policies for client requests. In LocalStack Pro, the IAM security enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.
 
 {{< alert >}}**Note**:
 The environment configuration `ENFORCE_IAM=1` is required to enable this feature. (By default, IAM enforcement is disabled, and all APIs can be accessed without authentication.)
 {{< /alert >}}
 
-Below is a simple example that illustrates the use of IAM policy enforcement. It first creates a user and obtains access/secret keys, then attempts to create a bucket with that user (which fails), and then finally attaches a policy to the user to allow `s3:CreateBucket`, which allows the bucket to be created.
-{{< command >}}
-$ awslocal iam create-user --user-name test
-...
-$ awslocal iam create-access-key --user-name test
-...
-  "AccessKeyId": "AKIA4HPFP0TZHP3Z5VI6",
-  "SecretAccessKey": "mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua",
-...
-$ export AWS_ACCESS_KEY_ID=AKIA4HPFP0TZHP3Z5VI6 AWS_SECRET_ACCESS_KEY=mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua
-$ awslocal s3 mb s3://test
-make_bucket failed: s3://test An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied
-$ awslocal iam create-policy --policy-name p1 --policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":"s3:CreateBucket","Resource":"*"}]}'
-...
-$ awslocal iam attach-user-policy --user-name test --policy-arn arn:aws:iam::000000000000:policy/p1
-$ awslocal s3 mb s3://test
-make_bucket: test
-{{< / command >}}
+## Creating IAM Users and Access Keys
 
-Please notice that by default if you do not have valid credentials representing a user or assumed role, LocalStack will identify requests as coming from the root user.
-
-{{< alert >}}
-**Note**: Credentials are currently extracted in the request but signature is not validated - exceptions apply for s3 presigned URLs, for example.
-{{< /alert >}}
-
-For example:
+By default, if no custom credentials are configured, requests made to LocalStack are running under the administrative root user:
 
 {{< command >}}
 $ awslocal sts get-caller-identity
@@ -49,6 +25,11 @@ $ awslocal sts get-caller-identity
     "Account": "000000000000",
     "Arn": "arn:aws:iam::000000000000:root"
 }
+{{< / command >}}
+
+The following example illustrates how we can create a new user named `test`, then create an access key pair for the user, and assert that the user is recognized via `get-caller-identity` after the access keys are configured in the environment.
+
+{{< command >}}
 $ awslocal iam create-user --user-name test
 ...
 $ awslocal iam create-access-key --user-name test
@@ -65,8 +46,53 @@ $ awslocal sts get-caller-identity
 }
 {{< / command >}}
 
+## Enforcing IAM Policies
 
-### Explainable IAM
+Below is a simple example that illustrates the use of IAM policy enforcement. It first creates a user and obtains access/secret keys, then attempts to create a bucket with that user (which fails), and then finally attaches a policy to the user to allow `s3:CreateBucket`, which allows the bucket to be created.
+
+For the following example we'll need two separate terminal sessions: terminal 1 for the administrative IAM commands (using the default root IAM user), and terminal 2 for the commands running under the test IAM user we're going to create.
+
+Run these commands in **terminal 1**:
+{{< command >}}
+$ awslocal iam create-user --user-name test
+...
+$ awslocal iam create-access-key --user-name test
+...
+  "AccessKeyId": "AKIA4HPFP0TZHP3Z5VI6",
+  "SecretAccessKey": "mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua",
+...
+{{< / command >}}
+
+Then we switch to **terminal 2**, configure the access keys of user `test` in the environment, and then attempt to create an S3 bucket:
+{{< command >}}
+$ export AWS_ACCESS_KEY_ID=AKIA4HPFP0TZHP3Z5VI6 AWS_SECRET_ACCESS_KEY=mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua
+$ awslocal s3 mb s3://mybucket
+make_bucket failed: s3://mybucket An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied
+{{< / command >}}
+
+As expected, the bucket creation fails with `AccessDeniedException`, as user `test` lacks the required permissions. Now switch back to **terminal 1** and run these commands:
+{{< command >}}
+$ awslocal iam create-policy --policy-name p1 --policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":"s3:CreateBucket","Resource":"*"}]}'
+...
+$ awslocal iam attach-user-policy --user-name test --policy-arn arn:aws:iam::000000000000:policy/p1
+{{< / command >}}
+
+Now switch back to **terminal 2** and see how the bucket creation now succeeds with the `test` IAM user:
+{{< command >}}
+# confirm that we're using the credentials of the `test` user
+$ awslocal sts get-caller-identity
+...
+    "Arn": "arn:aws:iam::000000000000:user/test"
+...
+$ awslocal s3 mb s3://mybucket
+make_bucket: mybucket
+{{< / command >}}
+
+{{< alert >}}
+**Note**: Credentials are currently extracted from the request (usually from the `Authorization` HTTP header), but the request signature itself is not validated - except for some cases, including S3 presigned URLs.
+{{< /alert >}}
+
+## Explainable IAM
 
 Since 1.0, our policy engine logs output related to failed policy evaluation to the LocalStack log.
 There, you can see which additional policies are necessary for your request to succeed.
@@ -139,7 +165,7 @@ If we now add this to our policy (since it is an example let's do it very simple
 
 the call is correctly executed.
 
-#### Soft Mode
+### Soft Mode
 
 If you enable `IAM_SOFT_MODE=1`, you can look at the logs whether your requests would have been denied or not, while still being able to execute your whole stack without interference.
 This is especially useful when trying to find missing permissions over a whole stack (with resources depending on each other) at a time without having to redeploy for every missing permission.
@@ -149,6 +175,6 @@ This is especially useful when trying to find missing permissions over a whole s
 Inter-service communication evaluation (for example for sts:AssumeRole) also is not supported, which currently reduces the impact of those missing features.
 {{< /alert >}}
 
-### Supported APIs
+## Supported APIs
 
 IAM security enforcement is available for all AWS APIs in LocalStack - it has been thoroughly tested, among others, for the following services: ACM, API Gateway, CloudFormation, CloudWatch (metrics/events/logs), DynamoDB, DynamoDB Streams, Elasticsearch Service, EventBus, Kinesis, KMS, Lambda, Redshift, S3, SecretsManager, SNS, SQS.
