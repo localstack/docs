@@ -31,7 +31,7 @@ $ awslocal s3 mb s3://mybucket
 make_bucket failed: s3://mybucket An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied
 {{< / command >}}
 
-Now switch to a **new terminal** (as IAM commands require admin access via the default user) and run these commands:
+As expected, the bucket creation fails with `AccessDeniedException`, as user `test` lacks the required permissions. Now switch to a **new terminal** (as IAM commands require admin access via the default user) and run these commands:
 {{< command >}}
 $ awslocal iam create-policy --policy-name p1 --policy-document '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Action":"s3:CreateBucket","Resource":"*"}]}'
 ...
@@ -40,8 +40,11 @@ $ awslocal iam attach-user-policy --user-name test --policy-arn arn:aws:iam::000
 
 Now switch back to **terminal 1** and see how the bucket creation now succeeds with the `test` IAM user we've created:
 {{< command >}}
-$ awslocal sts get-caller-identity | grep Arn
+# confirm that we're using the credentials of the `test` user
+$ awslocal sts get-caller-identity
+...
     "Arn": "arn:aws:iam::000000000000:user/test"
+...
 $ awslocal s3 mb s3://mybucket
 make_bucket: mybucket
 {{< / command >}}
