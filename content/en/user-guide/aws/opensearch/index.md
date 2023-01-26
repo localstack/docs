@@ -20,6 +20,14 @@ Following versions of OpenSearch are supported:
 - 1.3
 - 2.3 (default)
 
+{{< alert title="Warning" color="warning">}}
+LocalStack uses the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py) internally.
+
+Features that were deprecated in OpenSearch 1.x and removed in OpenSearch 2.x are not guaranteed to work when using OpenSearch 1.x clusters with LocalStack.
+[More details here](https://github.com/opensearch-project/opensearch-py/blob/main/COMPATIBILITY.md).
+{{< /alert >}}
+
+
 ## Creating an OpenSearch cluster
 
 You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new OpenSearch domain via the `aws opensearch create-domain` command.
