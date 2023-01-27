@@ -7,9 +7,9 @@ aliases:
   - /developer-guide/development-environment-setup/
 ---
 
-{{% alert %}}
-**Note:** We have recently added a couple of refactorings and enhancements in the core framework and application architecture, hence this page is no longer fully up to date. We're planning to publish an updated version soon.
-{{% /alert %}}
+{{< alert title="Note" color="warning" >}}
+We have recently added a couple of refactorings and enhancements in the core framework and application architecture, hence this page is no longer fully up to date. We're planning to publish an updated version soon.
+{{< /alert >}}
 
 Before you get started with contributing to LocalStack, make sure you’ve familiarized yourself with LocalStack from the perspective of a user. You can follow our [getting started guide](https://docs.localstack.cloud/get-started/). Once LocalStack runs in your Docker environment and you’ve played around with the LocalStack and `awslocal` CLI, you can move forward to set up your developer environment.
 

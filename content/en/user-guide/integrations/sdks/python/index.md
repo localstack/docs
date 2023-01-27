@@ -28,7 +28,10 @@ if __name__ == "__main__":
     main()
 ```
 
-**Note:** If you're connecting from within a Python **Lambda function** handler in LocalStack, you can create a default client without configuring the `endpoint_url` - LocalStack will automatically forward the invocations to the local API endpoints (available in Pro, see [here]({{< ref "local-endpoint-injection" >}}) for more details).
+{{< alert title="Note">}}
+If you're connecting from within a Python **Lambda function** handler in LocalStack, you can create a default client without configuring the `endpoint_url` - LocalStack will automatically forward the invocations to the local API endpoints (available in Pro, see [here]({{< ref "local-endpoint-injection" >}}) for more details).
+{{< /alert >}}
+
 ```
 client = boto3.client("lambda")
 ...

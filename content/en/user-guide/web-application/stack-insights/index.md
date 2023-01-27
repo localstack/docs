@@ -14,8 +14,10 @@ You can see which APIs are being used, which clients of integrations use particu
 
 To get started, the `LOCALSTACK_API_KEY` environment variable needs to be configured. The system will start making your events accessible on the LocalStack [Web Application dashboard](https://app.localstack.cloud/dashboard).
 
-{{< alert title="Data Privacy" >}}
-Data privacy is one of our key concerns, hence data is collected only in an anonymized way. No sensitive information about your application is ever exposed. The data is only used to provide you with insights into the usage of LocalStack and to improve the product.
+{{< alert title="Information" color="success" >}}
+Data privacy is one of our key concerns, hence data is collected only in an anonymized way.
+No sensitive information about your application is ever exposed.
+The data is only used to provide you with insights into the usage of LocalStack and to improve the product.
 {{< /alert >}}
 
 ## Getting started
@@ -42,6 +44,7 @@ The Stack widget will also display the number of API calls, services employed an
 
 You can disable event reporting on your LocalStack client by setting the environment variable `DISABLE_EVENTS=1`.
 
-{{% alert title="Additional Info" color="info" %}}
-Brave blocks `localhost` requests due to security by default via shields. While some sites need access to `localhost` / `127.0.0.1` to work correctly, an easy option to allow a user to enable this is manually enabling via the site via `brave://settings/content/insecureContent`.
-{{% /alert %}}
+{{< alert title="Note" >}}
+Brave blocks `localhost` requests due to security by default via shields.
+While some sites need access to `localhost` / `127.0.0.1` to work correctly, an easy option to allow a user to enable this is manually enabling via the site via `brave://settings/content/insecureContent`.
+{{< /alert >}}

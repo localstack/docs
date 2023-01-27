@@ -10,7 +10,7 @@ aliases:
 
 By default, LocalStack does not enforce security policies for client requests. In LocalStack Pro, the IAM security enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.
 
-{{< alert >}}**Note**:
+{{< alert title="Note" >}}
 The environment configuration `ENFORCE_IAM=1` is required to enable this feature. (By default, IAM enforcement is disabled, and all APIs can be accessed without authentication.)
 {{< /alert >}}
 
@@ -88,8 +88,8 @@ $ awslocal s3 mb s3://mybucket
 make_bucket: mybucket
 {{< / command >}}
 
-{{< alert >}}
-**Note**: Credentials are currently extracted from the request (usually from the `Authorization` HTTP header), but the request signature itself is not validated - except for some cases, including S3 presigned URLs.
+{{< alert title="Note">}}
+Credentials are currently extracted from the request (usually from the `Authorization` HTTP header), but the request signature itself is not validated - except for some cases, including S3 presigned URLs.
 {{< /alert >}}
 
 ## Explainable IAM
@@ -170,8 +170,8 @@ the call is correctly executed.
 If you enable `IAM_SOFT_MODE=1`, you can look at the logs whether your requests would have been denied or not, while still being able to execute your whole stack without interference.
 This is especially useful when trying to find missing permissions over a whole stack (with resources depending on each other) at a time without having to redeploy for every missing permission.
 
-{{< alert >}}
-**Note**: As of 1.0, resource based policies and conditions are not yet supported. Please try sticking to identity-based policies where possible.
+{{< alert title="Note" >}}
+As of 1.0, resource based policies and conditions are not yet supported. Please try sticking to identity-based policies where possible.
 Inter-service communication evaluation (for example for sts:AssumeRole) also is not supported, which currently reduces the impact of those missing features.
 {{< /alert >}}
 

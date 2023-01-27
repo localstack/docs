@@ -51,8 +51,8 @@ and build the image:
 $ docker build -t <image name> .
 {{< / command >}}
 
-{{< alert title="Information" color="primary">}}
-**Note**: Certificate files **must** end in `.crt` to be included in the system certificate store.
+{{< alert title="Important" color="danger" >}}
+Certificate files **must** end in `.crt` to be included in the system certificate store.
 If your certificate file ends with `.pem`, you can rename it to end in `.crt`. 
 {{< / alert>}}
 

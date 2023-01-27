@@ -19,8 +19,8 @@ In this getting started guide, you'll learn how to make a basic usage of Redshif
    {{< command >}}
    $ awslocal redshift create-cluster --cluster-identifier mysamplecluster --master-username masteruser --master-user-password secret1 --node-type ds2.xlarge --cluster-type single-node
    {{< /command >}}
-   {{< alert >}}
-   **Note**: Redshift is essentially mocked in LocalStack alongside the node type. Hence while developing and testing locally, you can use any node type.
+   {{< alert title="Note">}}
+   Redshift is essentially mocked in LocalStack alongside the node type. Hence while developing and testing locally, you can use any node type.
    {{< /alert >}}
 
 2. Check the Redshift cluster creation progress by running the following command:

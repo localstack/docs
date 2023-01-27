@@ -14,7 +14,7 @@ The LocalStack API key is a unique identifier to authenticate your LocalStack in
 
 To get started, you need to have a LocalStack license. If you don't have one, you can [sign up for a free trial](https://localstack.cloud/pricing/) without any credit card required. The free trial will last 14 days, and you can use it to test all the features of LocalStack. After a free trial, you can find your API key in the [LocalStack Web app](https://app.localstack.cloud) in the **Account** → **Subscriptions** section.
 
-{{< alert title="API Key Security" >}}
+{{< alert title="Important" color="danger" >}}
 - Avoid sharing your API key with anyone. Ensure that you do not commit it to any source code management systems (like Git repositories).
 
 - If you push an API key to a public repository, it has potentially been exposed and might remain in the history (even if you try to rewrite it).
@@ -32,7 +32,7 @@ LocalStack expects your API key to be present in the environment variable `LOCAL
 $ export LOCALSTACK_API_KEY=<your-api-key>
 {{< / command >}}
 
-{{< alert >}}
+{{< alert title="Note" >}}
 If you are using LocalStack with an API Key, you need to pull `localstack/localstack-pro` image as part of your LocalStack setup. Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 {{< /alert >}}
 

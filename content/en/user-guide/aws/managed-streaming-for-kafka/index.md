@@ -118,7 +118,9 @@ Created topic LocalMSKTopic.
 
 In this example we use the JVM truststore to talk to the MSK cluster. To do this, first create a folder named `/tmp` on the client machine. Then, go to the bin folder of the Apache Kafka installation and run the following command, replacing ```java_home``` with the path of your ```java_home```. In this instance, the ```java_home``` is ``` /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home```.
 
-> **Note**: The following step is optional and may not be required, depending on the operating system environment being used.
+{{< alert title="Note">}}
+The following step is optional and may not be required, depending on the operating system environment being used.
+{{< /alert >}}
 
 {{< command >}}
 cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks

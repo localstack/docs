@@ -28,8 +28,8 @@ def handler(event, context):
     print(client.list_buckets())
 ```
 
-{{< alert >}}
-**Note:** This functionality only works when using the SDKs provided by the Lambda execution environment itself.
+{{< alert title="Note" color="success">}}
+This functionality only works when using the SDKs provided by the Lambda execution environment itself.
 If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the [DNS based transparent execution]({{< ref "dns-server" >}}) if enabled, since those SDK versions will not be patched.
 {{< /alert >}}
 

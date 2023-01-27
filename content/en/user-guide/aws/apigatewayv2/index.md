@@ -57,7 +57,7 @@ http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
 ```
 
 
-{{< alert >}}
+{{< alert title="Note" >}}
 Please note that the URLs above include the name of the API Gateway stage (`local`) - adding the stage is required for API Gateway v1 APIs, but optional for API Gateway v2 APIs (in case they include the wildcard `$default` stage).
 In other words, for v2 the URL `http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/my/path1` should also work.
 {{</ alert >}}

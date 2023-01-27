@@ -56,6 +56,6 @@ def inference_model_boto3(run_id: str = "0"):
     _show_predictions(json.loads(response["Body"].read()))
 ```
 
-{{< alert >}}
-**Note:** SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
+{{< alert title="Note" >}}
+SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
 {{< /alert >}}

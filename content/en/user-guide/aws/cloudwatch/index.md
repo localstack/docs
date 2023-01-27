@@ -63,8 +63,8 @@ $ awslocal cloudwatch put-metric-alarm \
 {{< / command >}}
 
 
-{{< alert >}}
-**Known Limitations:** 
+{{< alert title="Warning" color="warning" >}}
+Known limitations:
 * Anamoly detection, and extended-statics are not supported
 * `unit` values are ignored
 * composite-alarms are not evaluated

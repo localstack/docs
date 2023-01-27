@@ -12,9 +12,11 @@ The [AWS Cognito](https://aws.amazon.com/cognito/) service enables you to manage
 
 LocalStack Pro contains basic support for authentication via Cognito. You can create Cognito user pools, sign up and confirm users, set up Lambda triggers, and use the `COGNITO_USER_POOLS` authorizer integration with API Gateway.
 
-**Note:** By default, local Cognito does not send actual email messages.
+{{< alert title="Note">}}
+By default, local Cognito does not send actual email messages.
 To enable this feature, you will require an email address and the corresponding SMTP settings.
 Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server.
+{{< /alert >}}
 
 ## User pools and basic authentication flows
 

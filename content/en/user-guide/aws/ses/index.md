@@ -30,8 +30,8 @@ $ awslocal ses send-email \
     --message 'Body={Text={Data="Lorem ipsum dolor sit amet, consectetur adipiscing elit, ..."}},Subject={Data=Test Email}' \
     --destination 'ToAddresses=recipient1@example.com'
 {{< / command >}}
-{{< alert >}}
-Note: If you receive a "Email address not verified message", simply call `awslocal ses verify-email-identity --email-address user1@yourdomain.com`
+{{< alert title="Note">}}
+If you receive a "Email address not verified message", simply call `awslocal ses verify-email-identity --email-address user1@yourdomain.com`
 {{</ alert >}}
 
 The [Web user interface](https://app.localstack.cloud) can be used to view the sent email messages, as illustrated in the screenshot below:

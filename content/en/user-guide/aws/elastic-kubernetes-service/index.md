@@ -97,7 +97,7 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
 }
 {{< / command >}}
 
-{{< alert >}}**Note**:
+{{< alert title="Note">}}
 When creating an ECR, a port from the [the external service port range]({{< ref "external-ports" >}}) is dynamically selected. \
 Therefore, the port can differ from `4510` used in the samples below.
 Make sure to use the correct URL / port by using the `repositoryUrl` of the `create-repository` request.

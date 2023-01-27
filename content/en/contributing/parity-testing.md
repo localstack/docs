@@ -248,7 +248,7 @@ Simply include a list of json-paths. Those paths will then be excluded from the 
         snapshot.match("invoke-result", result)
 ```
 
-{{< alert title="Important" >}}
+{{< alert title="Important" color="warning" >}}
 Generally, [transformers](#using-transformers) should be used wherever possible to make responses comparable. 
 If specific paths are skipped from the verification, it means LocalStack does not have parity yet.
 {{< /alert >}}

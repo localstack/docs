@@ -8,7 +8,7 @@ aliases:
   - /aws/lambda/
 ---
 
-{{< alert title="Switching to the new implementation" color="warning" >}}
+{{< alert title="Warning" color="warning" >}}
 A new implementation of the Lambda service is available since LocalStack 1.3.
 Set `PROVIDER_OVERRIDE_LAMBDA=asf` when starting LocalStack and let us know if you experience any issues!
 
@@ -162,3 +162,7 @@ The filter expression uses a strict JSON format to match the filtering criteria.
 ```
 
 If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the [official AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
+
+## Limitations
+
+Only the local executor with locally launched LocalStack can be used together with JVM Lambda Functions.

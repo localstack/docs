@@ -17,12 +17,12 @@ Any cluster created with the OpenSearch Service will show up in the Elasticsearc
 
 You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new OpenSearch domain via the `aws opensearch create-domain` command.
 
-{{< alert >}}
-**Note**: Every time when you create a cluster with a version of OpenSearch you haven't used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
+{{< alert title="Note">}}
+Every time when you create a cluster with a version of OpenSearch you haven't used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
 {{< /alert >}}
 
-{{< alert >}}
-**Note**: The default OpenSearch version used is 1.1.0.
+{{< alert title="Note">}}
+The default OpenSearch version used is 1.1.0.
 {{< /alert >}}
 
 {{< command >}}
