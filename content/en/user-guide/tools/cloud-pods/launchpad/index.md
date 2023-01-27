@@ -11,7 +11,7 @@ description: >
 If you want to add a badge to your README that links to the Cloud Pod Launchpad, you can use the following markdown snippet:
 
 ```markdown
-[![LocalStack Pods Launchpad](https://localstack.cloud/gh/pod_badge.svg)](https://app.localstack.cloud/launchpad?url=url_of_your_pod)
+[![Launch LocalStack Cloudpod](https://localstack.cloud/gh/launch-pod-badge.svg)](https://app.localstack.cloud/launchpad?url=url_of_your_pod)
 ```
 
 Please note that you have to add your `url_of_your_pod` as the `url` query parameter to the URL.
