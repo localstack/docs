@@ -417,4 +417,4 @@ $ curl -X PUT my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/my-
 
 ## Troubleshooting
 
-If you are using the `OPENSEARCH_ENDPOINT_STRATEGY=domain` (which is the default) and are having issues with resolving the subdomains, [please check if your DNS blocks rebind queries]({{< ref "limitations#dns-rebind-protection" >}}).
+If you are using the `OPENSEARCH_ENDPOINT_STRATEGY=domain` (which is the default) and are having issues with resolving the subdomains, [please check if your DNS blocks rebind queries]({{< ref "dns-server#dns-rebind-protection" >}}).

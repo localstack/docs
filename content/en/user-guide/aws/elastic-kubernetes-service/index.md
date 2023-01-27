@@ -65,7 +65,7 @@ By default, ECR will return a `repositoryUri` starting with `localhost`, like: `
 If we set the `HOSTNAME_EXTERNAL` to `localhost.localstack.cloud`, ECR will return a `repositoryUri` like `localhost.localstack.cloud:<port>/<repository_name>`.
 
 {{< alert title="Notes" >}}
-In this section, we will assume `localhost.localstack.cloud` resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about [DNS rebind protection]({{< ref "limitations#dns-rebind-protection" >}}) to learn more.
+In this section, we will assume `localhost.localstack.cloud` resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}) to learn more.
 If this domain does not resolve on your host it is also possible not to set `HOSTNAME_EXTERNAL`, please nevertheless use `localhost.localstack.cloud` as registry in your pod configuration.
 LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` within ECR itself, and you can use the `localhost:<port>/<repository_name>` Uri for tagging and pushing the image on your host.
 {{< / alert >}}
