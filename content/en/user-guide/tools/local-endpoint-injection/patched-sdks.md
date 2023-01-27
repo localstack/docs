@@ -8,7 +8,6 @@ aliases:
   - /tools/local-endpoint-injection/patched-sdks/
 ---
 
-## Overview
 The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
 This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.
 
@@ -28,7 +27,7 @@ def handler(event, context):
     print(client.list_buckets())
 ```
 
-{{< alert title="Note" color="success">}}
+{{< alert title="Note">}}
 This functionality only works when using the SDKs provided by the Lambda execution environment itself.
 If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the [DNS based transparent execution]({{< ref "dns-server" >}}) if enabled, since those SDK versions will not be patched.
 {{< /alert >}}

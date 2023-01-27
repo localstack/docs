@@ -9,9 +9,7 @@ aliases:
 
 This page describes the filesystem directory layout used internally by LocalStack.
 
-## Filesystem layout
-
-{{< alert title="Information" color="primary">}}
+{{< alert title="Note">}}
 This filesystem layout was introduced in LocalStack v1 and can be disabled by setting `LEGACY_DIRECTORIES` to `1`.
 {{< /alert >}}
 
@@ -36,9 +34,9 @@ LocalStack uses following directory layout when running within a container.
 
 ```
 
-### Directory contents
+## Directory contents
 
-#### LocalStack volume directory
+### LocalStack volume directory
 
 - `/var/lib/localstack`: the [LocalStack volume](#localstack-volume) directory root
 - `/var/lib/localstack/lib`: variable packages (like extensions or lazy-loaded third-party dependencies)
@@ -48,19 +46,19 @@ LocalStack uses following directory layout when running within a container.
 - `/var/lib/localstack/cache`: temporary data that is expected to survive LocalStack runs (is not cleared when LocalStack starts or stops)
 
 
-#### Configuration
+### Configuration
 - `/etc/localstack`: configuration directory
 - `/etc/localstack/init`: root directory for [initialization hooks]({{< ref `init-hooks` >}})
 <!-- For future use, not currently in use
 - `/etc/localstack/conf.d`: configuration overrides
 -->
 
-#### Static libraries
+### Static libraries
 
 - `/usr/lib/localstack`: static third-party packages installed into the container images
 
 
-{{< alert title="Warning" color="warning">}}
+{{< alert title="Note">}}
 Previously, directories were individually configurable, e.g., via `DATA_DIR` or `HOST_TMP_DIR`.
 These have been deprecated since LocalStack v1, since we now follow a directory convention.
 

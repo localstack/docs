@@ -7,14 +7,12 @@ description: >
   How to use custom TLS certificates with LocalStack
 ---
 
-# Background
+## Background
 
 LocalStack sometimes performs on-demand fetching of resources from the public internet.
 This requires that LocalStack is able to access public URLs.
 If there is a proxy server in your network that uses a non-standard TLS certificate, LocalStack will not be able to download any files on demand.
 You may see errors in the logs relating to TLS such as "unable to get local issuer certificate".
-
-# Solution
 
 There are three options when running LocalStack:
 
@@ -51,8 +49,8 @@ and build the image:
 $ docker build -t <image name> .
 {{< / command >}}
 
-{{< alert title="Important" color="danger" >}}
-Certificate files **must** end in `.crt` to be included in the system certificate store.
+{{< alert title="Note">}}
+Certificate files must end in `.crt` to be included in the system certificate store.
 If your certificate file ends with `.pem`, you can rename it to end in `.crt`. 
 {{< / alert>}}
 
@@ -115,9 +113,9 @@ Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE` and `CUR
 $ CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
 {{< / command >}}
 
-### macos
+### macOS
 
-On macos the custom certificate should be added to your keychain. See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
+On macOS the custom certificate should be added to your keychain. See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
 
 Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE` and `CURL_CA_BUNDLE`:
 

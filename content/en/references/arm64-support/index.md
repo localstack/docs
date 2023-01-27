@@ -11,7 +11,7 @@ aliases:
 With [version 0.13](https://github.com/localstack/localstack/releases/tag/v0.13.0), LocalStack officially publishes a [multi-architecture Docker manifest](https://hub.docker.com/r/localstack/localstack).
 This manifest contains links to a Linux AMD64 as well as a Linux ARM64 image.
 
-{{< alert title="Warning" color="warning" >}}
+{{< alert title="Note">}}
 The ARM64 image of LocalStack is still experimental.
 Help us getting aware of current issues with the ARM64 image by [filing an issue](https://github.com/localstack/localstack/issues/new?assignees=&labels=bug,ARM64%2Cneeds-triaging&template=bug-report.yml&title=bug%3A+%3Ctitle%3E) if you experience any problems.
 
@@ -36,7 +36,7 @@ If you want to execute Docker Lambda functions or binaries which have not been b
 You can do so by installing a AMD64 `bin_fmt` emulator on your ARM64 host system with the following command:
 
 {{< alert title="Warning" color="warning" >}}
-The following command installs additionals emulators on your _host system_.
+The following command installs additionals emulators on your host system.
 {{< /alert >}}
 
 {{< command >}}
@@ -116,7 +116,7 @@ pyenv global 3.8.10
 
 Then clone LocalStack to your machine, run `make install` and then `make start`.
 
-{{< alert title="Warning" color="warning" >}}
+{{< alert title="Note">}}
 You need to use the `local` lambda executor for JVM Lambda functions.
 {{< /alert >}}
 

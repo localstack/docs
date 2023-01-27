@@ -39,7 +39,7 @@ This leads to faster invocation times if no changes have occurred.
 
 Please keep in mind that any changes to the filesystem (for example in /tmp) will not be deleted if the function code changed.
 
-{{< alert title="Warning" color="warning">}}
+{{< alert title="Note">}}
 It can take up to 700ms for the lambda to detect the changes you did in the code folder. Until that time has passed, any invocations will still be executed on the former code.
 
 If using Docker Desktop, you might need to allow file sharing for your target folders: [https://docs.docker.com/desktop/settings/mac/#file-sharing](https://docs.docker.com/desktop/settings/mac/#file-sharing)

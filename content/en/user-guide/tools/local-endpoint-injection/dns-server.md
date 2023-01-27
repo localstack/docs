@@ -8,8 +8,6 @@ aliases:
   - /tools/local-endpoint-injection/dns-server/
 ---
 
-## Overview
-
 LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.
 
 When the system starts up, the log output contains the IP address of the local DNS server. Typically, this address by default is either `0.0.0.0` (see example below) or `127.0.0.1` if LocalStack cannot bind to `0.0.0.0` due to a conflicting service.
@@ -131,7 +129,7 @@ To revert, please run:
 $ localstack dns systemd-resolved --revert
 {{< / command >}}
 
-{{< alert title="Note" color="success">}}
+{{< alert title="Note">}}
 You need sudo privileges to execute this command.
 {{< /alert >}}
 
@@ -176,7 +174,7 @@ In some systems, directly editing `/etc/resolv.conf` is possible, like described
 If your `/etc/resolv.conf` is overwritten by some service, it might be possible to install and enable/start `resolvconf` and specify the nameserver in `/etc/resolvconf/resolv.conf.d/head` with `nameserver 127.0.0.1`.
 This will prepend this line in the resolv.conf file even after changes.
 
-{{< alert title="Note" color="success">}}
+{{< alert title="Note">}}
 Using these options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain aws domains).
 LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions/in debug mode.
 {{< /alert >}}

@@ -39,8 +39,9 @@ Once deployed, the API Gateway endpoints above can be accessed via the LocalStac
 
 There are two alternative URL formats for accessing the APIs (for both, v1 and v2 APIs). The recommended format is to use the following URL syntax with an `execute-api` hostname:
 
-<pre><code>http://<b>&lt;apiId></b>.execute-api.localhost.localstack.cloud:4566/<b>&lt;stageId></b>/<b>&lt;path></b>
-</code></pre>
+```plaintext
+http://<apiId>.execute-api.localhost.localstack.cloud:4566/<stageId>/<path>
+```
 
 Assuming the ID of the deployed HTTP/REST API is `0v1p6q6`, the invocation URL would be:
 ```plaintext
@@ -48,10 +49,11 @@ http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/local/my/path2
 ```
 The alternative format (sometimes used, e.g., in case of local DNS issues) is an endpoint with the predefined path marker `_user_request_`:
 
-<pre><code>http://localhost:4566/restapis/<b>&lt;apiId></b>/<b>&lt;stageId></b>/_user_request_/<b>&lt;path></b>
-</code></pre>
+```plaintext
+http://localhost:4566/restapis/<apiId>/<stageId>/_user_request_/<path>
+```
 
-... which for the example above would result in:
+which for the example above would result in:
 ```plaintext
 http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
 ```
@@ -98,8 +100,7 @@ module.exports.handler = function(event, context, callback) {
 };
 ```
 
-... then sending a message to the WebSocket at `ws://localhost:4510` will result in the same message getting returned as a response on the same WebSocket.
-
+then sending a message to the WebSocket at `ws://localhost:4510` will result in the same message getting returned as a response on the same WebSocket.
 
 A backend service can push data to the connection using the [Amazon API Gateway Management API](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/apigatewaymanagementapi/index.html). In LocalStack, it looks like this (make sure to replace `<connectionId>` with your WebSocket connection ID):
 

@@ -32,7 +32,7 @@ LocalStack Cockpit helps users to manage their LocalStack instance with a simple
 
 While starting Cockpit, it will automatically check your system environment to ensure that everything is ready to start LocalStack. It includes checking Docker version, pulling the official LocalStack Docker image, and checking for the presence of the LocalStack CLI and runtime status. In the absence of a Docker image, Cockpit will automatically pull the latest version of the LocalStack Docker image.
 
-{{< alert title="Important" color="warning" >}}
+{{< alert title="Note">}}
 Before starting LocalStack Cockpit, Docker should be already running.
 {{< /alert >}}
 
