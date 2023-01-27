@@ -7,7 +7,7 @@ aliases:
   - /developer-guide/basics/
 ---
 
-{{< alert title="Note" color="warning" >}}
+{{< alert title="Note" >}}
 We have recently added a couple of refactorings and enhancements in the core framework and application architecture, hence this page is no longer fully up to date. We're planning to publish an updated version soon.
 {{< /alert >}}
 
