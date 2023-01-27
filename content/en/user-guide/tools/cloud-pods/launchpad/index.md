@@ -19,10 +19,12 @@ For example if you are hosting the pod in the same repository, just use the URL 
 
 Check out a proper example <a href="https://github.com/localstack/cloud-pod-badge" target="_blank">on this GitHub repository</a>.
 
-## Security concerns regarding the launchpad
+#### Security implications of the launchpad
 
+{{< alert title="Warning" color="warning" >}}
 Please consider that the launchpad takes an arbitrary URL as input and passes it onto your LocalStack instance to inject the pod. 
 This may lead to unintended side effects, as the URL that is passed to the launchpad is not validated in any way. 
 
 We also display the URL on the UI, so we recommend to only use the launchpad with trusted URLs.
+{{< /alert >}}
 
