@@ -7,6 +7,7 @@ description: >
 ---
 
 ## Adding a badge to your repository
+<img src="badge-demo.png" style="margin-bottom: 2rem" width="80%" alt="Cloud Pods Badge Demonstration" />
 
 If you want to add a badge to your README that links to the Cloud Pod Launchpad, you can use the following markdown snippet:
 
