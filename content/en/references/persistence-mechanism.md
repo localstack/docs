@@ -7,9 +7,9 @@ aliases:
   - /localstack/persistence-mechanism/
 ---
 
-{{< alert title="Warning" color="warning">}}
-Persisted states are only compatible with the specific version of LocalStack that was used to create them.
-The LocalStack team are actively working on addressing this limitation.
+{{< alert title="Note">}}
+Please note that persisted states may not be compatibile across different versions of LocalStack.
+We are actively working on addressing this limitation in the upcoming releases.
 {{< /alert >}}
 
 The persistence mechanism is essentially a "pause and resume" feature for your LocalStack application state.
