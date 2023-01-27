@@ -51,7 +51,7 @@ Just like AWS, LocalStack differentiates between [Path-Style and Virtual Hosted-
 
 Example:
 
-```
+```plaintext
 <bucket-name>.s3.<region>.localhost.localstack.cloud # host-style request
 <bucket-name>.s3.<region>.amazonaws.com # host-style request
 ```

@@ -43,7 +43,7 @@ There are two alternative URL formats for accessing the APIs (for both, v1 and v
 </code></pre>
 
 Assuming the ID of the deployed HTTP/REST API is `0v1p6q6`, the invocation URL would be:
-```
+```plaintext
 http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/local/my/path2
 ```
 The alternative format (sometimes used, e.g., in case of local DNS issues) is an endpoint with the predefined path marker `_user_request_`:
@@ -52,7 +52,7 @@ The alternative format (sometimes used, e.g., in case of local DNS issues) is an
 </code></pre>
 
 ... which for the example above would result in:
-```
+```plaintext
 http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
 ```
 

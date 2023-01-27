@@ -138,7 +138,7 @@ An error occurred (AccessDeniedException) when calling the CreateFunction operat
 
 When looking in the LocalStack logs, we can now see 5 log entries specific to that (denied) request:
 
-```
+```plaintext
 INFO:localstack_ext.services.iam.policy_engine.handler: Request for service lambda for operation CreateFunction denied.
 DEBUG:localstack_ext.services.iam.policy_engine.handler: Necessary permissions for this action: ["Action 'lambda:CreateFunction' for 'arn:aws:lambda:us-east-1:000000000000:function:test-function'", "Action 'iam:PassRole' for 'arn:aws:iam::000000000000:role/lambda-role'"]
 DEBUG:localstack_ext.services.iam.policy_engine.handler: 0 permissions have been explicitly denied: []

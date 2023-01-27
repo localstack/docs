@@ -102,7 +102,7 @@ The cluster creation can take a few minutes. To find out whether the cluster you
 awslocal kafka describe-cluster --cluster-arn "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster"
 {{< / command >}}
 
-Run the following command, replacing ```ZookeeperConnectString``` with the value that you saved after you ran the describe-cluster command.
+Run the following command, replacing `ZookeeperConnectString` with the value that you saved after you ran the describe-cluster command.
 
 {{< command >}}
 bin/kafka-topics.sh --create --zookeeper localhost:4510 --replication-factor 1 --partitions 1 --topic LocalMSKTopic
@@ -116,7 +116,7 @@ Created topic LocalMSKTopic.
 
 ## Interacting with the topic
 
-In this example we use the JVM truststore to talk to the MSK cluster. To do this, first create a folder named `/tmp` on the client machine. Then, go to the bin folder of the Apache Kafka installation and run the following command, replacing ```java_home``` with the path of your ```java_home```. In this instance, the ```java_home``` is ``` /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home```.
+In this example we use the JVM truststore to talk to the MSK cluster. To do this, first create a folder named `/tmp` on the client machine. Then, go to the bin folder of the Apache Kafka installation and run the following command, replacing `java_home` with the path of your `java_home`. In this instance, the `java_home` is ` /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home`.
 
 {{< alert title="Note">}}
 The following step is optional and may not be required, depending on the operating system environment being used.
@@ -132,7 +132,7 @@ While still in the bin folder of the Apache Kafka installation on the client mac
 ssl.truststore.location=/tmp/kafka.client.truststore.jks
 {{< / command >}}
 
-Run the following command, replacing ```ClusterArn``` with the Amazon Resource Name (ARN).
+Run the following command, replacing `ClusterArn` with the Amazon Resource Name (ARN).
 
 
 {{< command >}}
@@ -157,7 +157,7 @@ Enter any message that you want, and press Enter. Repeat this step two or three 
 
 Keep the connection to the client machine open, and then open a second, separate connection to that machine in a new window.
 
-In the following command, replace ```BootstrapBrokerStringTls``` with the value that you saved earlier. Then, go to the bin folder and run the command using your second connection to the client machine.
+In the following command, replace `BootstrapBrokerStringTls` with the value that you saved earlier. Then, go to the bin folder and run the command using your second connection to the client machine.
 
 {{< command >}}
 ./kafka-console-consumer.sh --bootstrap-server BootstrapBrokerStringTls --consumer.config client.properties --topic LocalMSKTopic --from-beginning
@@ -212,7 +212,7 @@ Run the following command to list your MSK clusters
 awslocal kafka list-clusters --region us-east-1
 {{< / command >}}
 
-From the list of clusters, pick the ```ClusterARN``` of the cluster you want deleted and run the command
+From the list of clusters, pick the `ClusterARN` of the cluster you want deleted and run the command
 
 {{< command >}}
 awslocal kafka delete-cluster --cluster-arn ClusterArn

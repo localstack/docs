@@ -37,7 +37,7 @@ For the basic "CRUD" functionality of most services we're using a mock implement
 
 The figure below illustrates the proxy mechanism and ports for the API Gateway service. (The default ports can be found in https://github.com/localstack/localstack/blob/master/localstack/constants.py )
 
-```
+```plaintext
  --------      -------------      -------------
 | Client | -> |    Proxy    | -> |   Backend   |
 |        |    | (port 4567) |    | (port 4566) |

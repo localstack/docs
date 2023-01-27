@@ -201,7 +201,7 @@ Now, if we describe the pod:
 kubectl describe pod fancier-nginx
 {{< / command >}}
 ... we can see, in the events, that the pull from ECR was successful:
-```
+```plaintext
   Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
 ```
 
@@ -270,7 +270,7 @@ In order to enable HTTPS for your endpoints, we can instruct Kubernetes to use S
 
 The local EKS cluster is pre-configured with a secret named `ls-secret-tls` which can be used to define the ingress `tls` section:
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:

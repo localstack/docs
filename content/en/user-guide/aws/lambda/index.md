@@ -104,7 +104,7 @@ $ awslocal lambda create-function --function-name func1 --runtime python3.8 --ro
 {{< / command >}}
 
 Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with `DEBUG=1` enabled), which includes the output from the layer util function:
-```
+```plaintext
 > START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
 > Output from Lambda layer util function
 > Debug output from Lambda function

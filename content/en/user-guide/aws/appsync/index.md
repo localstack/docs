@@ -13,7 +13,7 @@ Basic support for AppSync is included in LocalStack Pro. The local AppSync API a
 ## Example AppSync API with DynamoDB data source
 
 For example, you can create a DynamoDB table `"posts"` with a key attribute `id`, and define a GraphQL schema in a file `schema.graphql` like this:
-```
+```plaintext
 schema {
     query: Query
 }

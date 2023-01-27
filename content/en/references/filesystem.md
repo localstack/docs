@@ -17,7 +17,7 @@ This filesystem layout was introduced in LocalStack v1 and can be disabled by se
 
 LocalStack uses following directory layout when running within a container.
 
-```
+```plaintext
 /
 ├── etc
 │   └── localstack
@@ -87,7 +87,7 @@ volumes:
 `${LOCALSTACK_VOLUME_DIR}` could be an arbitrary location on the host, e.g., `./volume`.
 In this case, the effective layout would be something like:
 
-```
+```plaintext
 $ tree -L 4 ./volume
 .
 └── localstack
