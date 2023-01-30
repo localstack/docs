@@ -8,6 +8,11 @@ aliases:
   - /tools/cloud-pods/
 ---
 
+{{< alert title="Note">}}
+Please note that cloud pods may not be compatibile across different versions of LocalStack.
+We are actively working on addressing this limitation in the upcoming releases.
+{{< /alert >}}
+
 Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.
 
 ![Persistence versus Cloud Pods](pods-persistence.png)

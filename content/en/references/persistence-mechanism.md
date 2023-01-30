@@ -7,6 +7,11 @@ aliases:
   - /localstack/persistence-mechanism/
 ---
 
+{{< alert title="Note">}}
+Please note that persisted states may not be compatibile across different versions of LocalStack.
+We are actively working on addressing this limitation in the upcoming releases.
+{{< /alert >}}
+
 The persistence mechanism is essentially a "pause and resume" feature for your LocalStack application state.
 For instance, you may want to run consecutive integration tests where each test loads in a different context but depends on the state produced by a previous test.
 Commonly, you may simply have a local development server that relies on a non-ephemeral application state.
