@@ -604,10 +604,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TestInvokeAuthorizer</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>TestInvokeMethod <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -648,15 +644,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateGatewayResponse</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>UpdateIntegration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateIntegrationResponse</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -746,7 +734,19 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>TestInvokeAuthorizer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>UpdateDocumentationVersion</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateGatewayResponse</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateIntegrationResponse</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2710,14 +2710,6 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>ActivateType</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>BatchDescribeTypeConfigurations</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2836,6 +2828,14 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse cloudformation-notimplemented">     <tr>
+      <td>ActivateType</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>BatchDescribeTypeConfigurations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelUpdateStack</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3674,10 +3674,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutMetricStream</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>SetAlarmState <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -3757,6 +3753,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>PutManagedInsightRules</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutMetricStream</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -5528,27 +5528,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AcceptAddressTransfer (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AcceptReservedInstancesExchangeQuote (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AcceptTransitGatewayMulticastDomainAssociations (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AcceptTransitGatewayPeeringAttachment</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AcceptTransitGatewayVpcAttachment (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>AcceptVpcEndpointConnections (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6352,6 +6332,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ProvisionIpamPoolCidr</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>PurchaseReservedInstancesOffering <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6470,6 +6454,26 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse ec2-notimplemented">     <tr>
+      <td>AcceptAddressTransfer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AcceptReservedInstancesExchangeQuote</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AcceptTransitGatewayMulticastDomainAssociations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AcceptTransitGatewayVpcAttachment</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AcceptVpcEndpointConnections</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AdvertiseByoipCidr</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6495,6 +6499,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AssociateInstanceEventWindow</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AssociateIpamResourceDiscovery</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6611,6 +6619,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>CreateIpamPool</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateIpamResourceDiscovery</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6763,6 +6775,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DeleteIpamPool</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteIpamResourceDiscovery</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7046,6 +7062,14 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeIpamResourceDiscoveries</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeIpamResourceDiscoveryAssociations</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeIpamScopes</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7286,6 +7310,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DisassociateIpamResourceDiscovery</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DisassociateTransitGatewayMulticastDomain</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7403,6 +7431,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetIpamAddressHistory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetIpamDiscoveredAccounts</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>GetIpamDiscoveredResourceCidrs</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7598,6 +7634,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ModifyIpamResourceDiscovery</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ModifyIpamScope</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7703,10 +7743,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ProvisionByoipCidr</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ProvisionIpamPoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10622,6 +10658,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListCrawls (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListJobs (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -11005,10 +11045,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ListBlueprints</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListCrawls</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -11830,10 +11866,6 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AcceptCertificateTransfer (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>AddThingToThingGroup (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -12216,6 +12248,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse iot-notimplemented">     <tr>
+      <td>AcceptCertificateTransfer</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AddThingToBillingGroup</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14618,6 +14654,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetRuntimeManagementConfig</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>InvokeAsync</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14642,6 +14682,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>PutRuntimeManagementConfig</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RemoveLayerVersionPermission</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -14659,10 +14703,6 @@ hide_readingtime: true
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>AssociateKmsKey (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
     <tr>
       <td>CreateExportTask</td>
        <td style="text-align:right">✅</td>
@@ -14782,6 +14822,10 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse logs-notimplemented">     <tr>
+      <td>AssociateKmsKey</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CancelExportTask</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -18222,10 +18266,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PostObject <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PutBucketAccelerateConfiguration</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18376,10 +18416,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateJob</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteAccessPoint</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -18419,10 +18455,6 @@ hide_readingtime: true
       <td>PutPublicAccessBlock <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>PutStorageLensConfiguration</td>
-       <td style="text-align:right">✅</td>
-    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".s3control-notimplemented">Show missing</a></td>
@@ -18431,6 +18463,10 @@ hide_readingtime: true
   </tbody>
   <tbody class="collapse s3control-notimplemented">     <tr>
       <td>CreateAccessPointForObjectLambda</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateJob</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18599,6 +18635,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>PutMultiRegionAccessPointPolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>PutStorageLensConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -19855,9 +19895,15 @@ hide_readingtime: true
       <td>InvokeEndpoint (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>InvokeEndpointAsync (Pro) </td>
-       <td style="text-align:right">✅</td>
+  </tbody>
+  <tbody>    <tr>
+      <td><a data-toggle="collapse" href=".sagemaker-runtime-notimplemented">Show missing</a></td>
+      <td style="text-align:right"></td>
+    </tr>
+  </tbody>
+  <tbody class="collapse sagemaker-runtime-notimplemented">     <tr>
+      <td>InvokeEndpointAsync</td>
+       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -22270,27 +22316,11 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>CreateCallAnalyticsCategory</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateLanguageModel</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>CreateMedicalVocabulary</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>CreateVocabulary</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>CreateVocabularyFilter (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteCallAnalyticsCategory (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22356,6 +22386,22 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse transcribe-notimplemented">     <tr>
+      <td>CreateCallAnalyticsCategory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateLanguageModel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>CreateVocabularyFilter</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteCallAnalyticsCategory</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteCallAnalyticsJob</td>
        <td style="text-align:right">-</td>
     </tr>
