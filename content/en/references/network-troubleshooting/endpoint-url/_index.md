@@ -8,13 +8,14 @@ tags:
 
 Use this page to find the scenario that best matches your use case
 
-# Accessing LocalStack from your host
+# Accessing LocalStack from the same computer
 
 {{< figure src="../images/1.png" width="400" >}}
 
-The hostname `localhost.localstack.cloud` maps to 127.0.0.1 i.e. your computer, and if you expose port 4566 from LocalStack then you should be able to connect.
+For example, you have run `localstack start`, or you are accessing LocalStack started in Docker (or docker-compose).
 
-If not:
+The hostname `localhost.localstack.cloud` maps to 127.0.0.1, i.e. your computer, and if you expose port 4566 from LocalStack then you should be able to connect.
+If not, you can use `localhost` or any domain name that refers to `localhost`.
 
 * TODO
 
