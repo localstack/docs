@@ -19,7 +19,7 @@ If you are having difficulties connecting your application code to LocalStack, p
 
 {{< figure src="./images/overview-1.png" width="400" >}}
 
-You are trying to reach LocalStack directly via endpoint directly, for example with the [AWS CLI]({{< ref "user-guide/integrations/aws-cli" >}}), and need to specify the URL of LocalStack yourself, such as:
+You are trying to reach LocalStack directly via endpoint directly, for example with the [AWS CLI]({{< ref "user-guide/integrations/aws-cli" >}}) or [CDK]({{< ref "user-guide/integrations/aws-cdk" >}}), and need to specify the URL of LocalStack yourself, such as:
 
 {{< command >}}
 aws --endpoint-url http://localhost.localstack.cloud:4566 <command>
