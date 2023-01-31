@@ -8,10 +8,10 @@ description: >
   How to troubleshoot common network problems
 ---
 
-# Network troubleshooting
+## Overview
 
 Below are several scenarios in which you may be trying to use LocalStack.
-If you are having difficulties connecting your application code to localstack, please click on the image that most closely represents your use case, and you will be taken to some tips that may help.
+If you are having difficulties connecting your application code to LocalStack, please visit the links below each section which go into further details.
 
 ---
 
