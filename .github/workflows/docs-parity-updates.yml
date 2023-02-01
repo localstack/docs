@@ -20,13 +20,6 @@ jobs:
           path: docs
           ref: ${{ github.event.inputs.targetBranch || 'main' }}
 
-      - name: Checkout localstack (community)
-        uses: actions/checkout@v2
-        with:
-          repository: localstack/localstack
-          fetch-depth: 0
-          path: localstack
-
       - name: Set up system wide dependencies
         run: |
           sudo apt-get install libsasl2-dev jq wget
@@ -38,41 +31,35 @@ jobs:
           python-version: "3.10"
 
       - name: Download metrics data from Pro test pipeline (GitHub)
-        working-directory: localstack
-        run: |
-          mkdir -p target/metrics-raw
-          cd target/metrics-raw
-          gh run download --repo localstack/localstack-ext -n parity-metric-ext-raw
-          cd ../../
-          tree target
-          # TODO Get the latest successful build on master
-          # TODO the runs on master often do NOT run the parity tests! we need to take the PR build which caused the master build to be skipped?
-          #   RUN_ID=$(gh run list --limit 1 --branch master --repo localstack/localstack-ext --workflow "Integration Tests" --json databaseId,conclusion --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
-          #   gh run download $RUN_ID --repo localstack/localstack-ext -n parity-metric-ext-raw
+        working-directory: docs
+        run: ./scripts/get_latest_github_metrics.sh ./target master
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack-ext
+          ARTIFACT_ID: parity-metric-ext-raw
+          WORKFLOW: Integration Tests
+          RENAME_ARTIFACT: pro-integration-test.csv
 
       - name: Download metrics data from latest Community test run (CircleCI)
         working-directory: docs
-        run: ./scripts/get_latest_circleci_metrics.sh ../localstack/target
+        run: ./scripts/get_latest_circleci_metrics.sh ./target
 
-      - name: Cache LocalStack community dependencies (venv)
-        uses: actions/cache@v2
-        with:
-          path: localstack/.venv
-          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-venv-${{ hashFiles('localstack/setup.cfg') }}
-
-      - name: Install dependencies
-        working-directory: localstack
-        run: make install-dev entrypoints
+      - name: Download metrics data from Moto Integration test pipeline (GitHub)
+        working-directory: docs
+        run: ./scripts/get_latest_github_metrics.sh ../localstack/target run_moto_tests # TODO change the branch once we merge :)
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack-moto-test-coverage 
+          ARTIFACT_ID: test-metrics
+          WORKFLOW: moto-integration-tests
+          RENAME_ARTIFACT: moto-integration-test.csv
 
       - name: Create Parity Coverage Docs
-        working-directory: localstack
+        working-directory: docs
         run: |
-          source .venv/bin/activate
           python3 -m scripts.coverage_docs_utility target/metrics-implementation-details target/metrics-raw
           # Move the resulting markdown file to the docs repo
-          mv -f target/metrics-raw/coverage.md ../docs/content/en/references/
+          mv -f target/metrics-raw/coverage.md content/en/references/
 
       - name: Check for changes
         id: check-for-changes
