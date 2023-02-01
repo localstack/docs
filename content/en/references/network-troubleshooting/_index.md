@@ -29,13 +29,13 @@ awslocal <command>
 
 [Click here to learn more...]({{< ref "endpoint-url" >}})
 
-## Accessing LocalStack using a language SDK
+## Accessing LocalStack using transparent endpoint injection
 
 {{< figure src="./images/overview-2.png" width="400" >}}
 
-You are using a [language SDK]({{< ref "/user-guide/integrations/sdks" >}}) to access LocalStack, for example [`boto3`](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) or the [`go`](https://github.com/aws/aws-sdk-go-v2) SDK.
+You are using a [language SDK]({{< ref "/user-guide/integrations/sdks" >}}) to access LocalStack, for example [`boto3`](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) or the [`go`](https://github.com/aws/aws-sdk-go-v2) SDK, and are making requests to `amazonaws.com` and expecting them to reach LocalStack.
 
-[Click here to learn more...]({{< ref "sdk" >}})
+[Click here to learn more...]({{< ref "transparent-endpoint-injection" >}})
 
 ## Accessing a resource that LocalStack has created by URL
 
