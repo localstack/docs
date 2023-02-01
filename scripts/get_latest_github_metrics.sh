@@ -18,7 +18,7 @@ mkdir -p $TMP_FOLDER
 echo "Searching for Artifact: $ARTIFACT_ID on branch $METRICS_ARTIFACTS_BRANCH in repo $REPOSITORY_OWNER/$REPOSITORY_NAME."
 
 # Get the latest successful build
-RUN_ID=$(gh run list --limit 1 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow $WORKFLOW --json databaseId,conclusion --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
+RUN_ID=$(gh run list --limit 1 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
 echo "Trying to download file with runid $RUN_ID..."
 
 # we do not want to exit if this command fails -> using or true
