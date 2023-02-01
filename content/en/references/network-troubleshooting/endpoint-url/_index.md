@@ -8,7 +8,7 @@ tags:
 
 Use this page to find the scenario that best matches your use case
 
-# Accessing LocalStack from the same computer
+# From the same computer
 
 {{< figure src="../images/1.png" width="400" >}}
 
@@ -17,7 +17,7 @@ Use this page to find the scenario that best matches your use case
 The hostname `localhost.localstack.cloud` maps to 127.0.0.1, i.e. your computer, and if you expose port 4566 from LocalStack then you should be able to connect.
 If not, you can use `localhost` or any domain name that refers to `localhost`.
 
-# Accessing LocalStack from a container LocalStack created
+# From a container LocalStack created
 
 {{< figure src="../images/4.png" width="400" >}}
 
@@ -26,23 +26,84 @@ If not, you can use `localhost` or any domain name that refers to `localhost`.
 It may be useful to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and set the `LAMBDA_DOCKER_NETWORK` environment variable to this value.
 Then code running in ECS can access the LocalStack instance by its hostname. For example:
 
-{{< command >}}
+{{<tabpane>}}
+{{<tab header="CLI" lang="bash">}}
+# create the network
 docker network create my-network
-docker run --rm -it -e LAMBDA_DOCKER_NETWORK=my-network --network my-network --name localstack localstack/localstack-pro
+# launch localstack
+LAMBDA_DOCKER_NETWORK=my-network DOCKER_FLAGS="--network my-network" localstack start
+# then your code can access localstack at its container name (default localstack_main)
+aws --endpoint-url http://localstack_main:4566 s3api list-buckets
+{{</tab>}}
+{{<tab header="Docker" lang="bash">}}
+# create the network
+docker network create my-network
+# launch localstack
+docker run --rm -it --network my-network -e LAMBDA_DOCKER_NETWORK=my-network <other flags> localstack/localstack[-pro]
+# then your code can access localstack at its container name (default localstack_main)
+aws --endpoint-url http://localstack_main:4566 s3api list-buckets
+{{</tab>}}
+{{<tab header="docker-compose.yml" lang="yml">}}
+services:
+  localstack:
+    # ... configuration here
+    environment:
+      LAMBDA_DOCKER_NETWORK=ls
+    networks:
+    - ls
+networks:
+  ls:
+    name: ls
+{{</tab>}}
+{{</tabpane>}}
 
-# Then inside ECS container
-
-aws --endpoint-url http://localstack:4566 s3api list-buckets
-{{< / command >}}
-
-# Accessing LocalStack from your container
+# From your container
 
 {{< figure src="../images/7.png" width="400" >}}
 
-* TODO
+**Example**: you are running your application code in a container and accessing AWS resources such as S3 through LocalStack.
 
-# Accessing LocalStack from a separate host
+Similar to the example above, consider configuring docker networking when launching your container.
+
+{{<tabpane>}}
+{{<tab header="CLI" lang="bash">}}
+# create the network
+docker network create my-network
+# launch localstack
+DOCKER_FLAGS="--network my-network" localstack start
+# launch your container
+docker run --rm it --network my-network <image name>
+# then your code can access localstack at its container name (default localstack_main)
+{{</tab>}}
+{{<tab header="Docker" lang="bash">}}
+# create the network
+docker network create my-network
+# launch localstack
+docker run --rm -it --network my-network <other flags> localstack/localstack[-pro]
+# launch your container
+docker run --rm it --network my-network <image name>
+# then your code can access localstack at its container name (default localstack_main)
+{{</tab>}}
+{{<tab header="docker-compose.yml" lang="yml">}}
+services:
+  localstack:
+    # ... configuration here
+    networks:
+    - ls
+  your_container:
+    # ... configuration here
+    networks:
+    - ls
+networks:
+  ls:
+    name: ls
+{{</tab>}}
+{{</tabpane>}}
+
+# From a separate host
 
 {{< figure src="../images/10.png" width="400" >}}
 
-* TODO
+**Example**:
+
+TODO
