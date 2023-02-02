@@ -17,7 +17,7 @@ If you are having difficulties connecting your application code to LocalStack, p
 
 ## Accessing LocalStack directly using HTTP
 
-{{< figure src="./images/overview-1.png" width="400" >}}
+{{< figure src="./images/overview-1.svg" width="500" >}}
 
 You are trying to reach LocalStack directly via endpoint directly, for example with the [AWS CLI]({{< ref "user-guide/integrations/aws-cli" >}}) or [CDK]({{< ref "user-guide/integrations/aws-cdk" >}}), and need to specify the URL of LocalStack yourself, such as:
 
@@ -31,7 +31,7 @@ awslocal <command>
 
 ## Accessing LocalStack using transparent endpoint injection
 
-{{< figure src="./images/overview-2.png" width="400" >}}
+{{< figure src="./images/overview-2.svg" width="500" >}}
 
 You are using a [language SDK]({{< ref "/user-guide/integrations/sdks" >}}) to access LocalStack, for example [`boto3`](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) or the [`go`](https://github.com/aws/aws-sdk-go-v2) SDK, and are making requests to `amazonaws.com` and expecting them to reach LocalStack.
 
@@ -39,7 +39,7 @@ You are using a [language SDK]({{< ref "/user-guide/integrations/sdks" >}}) to a
 
 ## Accessing a resource that LocalStack has created by URL
 
-{{< figure src="./images/overview-3.png" width="400" >}}
+{{< figure src="./images/overview-3.svg" width="500" >}}
 
 You have created a resource in LocalStack such as an RDS or OpenSearch instance.
 
