@@ -3516,11 +3516,23 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateChannel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteChannel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteEventDataStore</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3548,6 +3560,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListChannels</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3572,6 +3588,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>PutResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RegisterOrganizationDelegatedAdmin</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3589,6 +3609,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StopImport</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateChannel</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6332,10 +6356,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ProvisionIpamPoolCidr</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PurchaseReservedInstancesOffering <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6490,6 +6510,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AssignPrivateNatGatewayAddress</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AssociateClientVpnTargetNetwork</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6503,6 +6527,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AssociateIpamResourceDiscovery</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AssociateNatGatewayAddress</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7314,6 +7342,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DisassociateNatGatewayAddress</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DisassociateTransitGatewayMulticastDomain</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7746,6 +7778,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ProvisionIpamPoolCidr</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ProvisionPublicIpv4PoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7867,6 +7903,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>TerminateClientVpnConnections</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UnassignPrivateNatGatewayAddress</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8323,6 +8363,14 @@ hide_readingtime: true
       <td>DescribeFileSystems (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
+    <tr>
+      <td>DescribeLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PutLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".efs-notimplemented">Show missing</a></td>
@@ -8382,10 +8430,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribeLifecycleConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DescribeMountTargetSecurityGroups</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8419,10 +8463,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>PutFileSystemPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutLifecycleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -10734,7 +10774,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateConnection (Pro) </td>
+      <td>UpdateConnection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21084,7 +21124,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddPermission</td>
+      <td>AddPermission <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22877,5 +22917,6 @@ hide_readingtime: true
 ## Misc ##
 
 Endpoints marked with ✨ are covered by our integration test suite.
+The 💫 indicates that moto integration tests cover the endpoint, and run succesfully against LocalStack.
 
 </div>
