@@ -13,6 +13,10 @@ description: >
 Below are several scenarios in which you may be trying to use LocalStack.
 If you are having difficulties connecting your application code to LocalStack, please visit the links below each section which go into further details.
 
+{{<alert title="Note">}}
+LocalStack only binds to ipv4 addresses (e.g. `127.0.0.1`). Check you are not trying to access LocalStack over IPv6.
+{{</alert>}}
+
 ---
 
 ## Accessing LocalStack directly using HTTP
