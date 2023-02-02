@@ -26,7 +26,7 @@ if [ "$FILTER_SUCCESS" == "1" ]; then
     RUN_ID=$(gh run list --limit 20 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.conclusion=="success")' | jq -rs '.[0].databaseId')
 else
     echo "searching last workflow with 'status=completed'"
-    RUN_ID=$(gh run list --limit 20 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.status=="completed")' | jq -rs '.[0].databaseId')
+    RUN_ID=$(gh run list --limit 20 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.status=="completed" and (.conclusion=="failure" or .conclusion=="success"))' | jq -rs '.[0].databaseId')
 fi
 
 echo "Trying to download file with runid $RUN_ID..."
