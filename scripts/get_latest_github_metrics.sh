@@ -22,9 +22,12 @@ echo "Searching for Artifact: $ARTIFACT_ID on branch $METRICS_ARTIFACTS_BRANCH i
 # Get the latest successful build
 # check filter criteria - some workflows might be expected to fail, but still have the artifact we are interested in
 if [ "$FILTER_SUCCESS" == "1" ]; then
-    RUN_ID=$(gh run list --limit 1 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
+    echo "searching last workflow with 'conclusion=success'"
+    RUN_ID=$(gh run list --limit 20 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.conclusion=="success")' | jq -rs '.[0].databaseId')
 else
-    RUN_ID=$(gh run list --limit 1 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.status=="completed")' | jq -r .databaseId)
+    echo "searching last workflow with 'status=completed'"
+    RUN_ID=$(gh run list --limit 20 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.status=="completed")' | jq -rs '.[0].databaseId')
+fi
 
 echo "Trying to download file with runid $RUN_ID..."
 
