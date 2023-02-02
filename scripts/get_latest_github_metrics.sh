@@ -60,17 +60,9 @@ else
     RELATED_ID=$(echo $RELATED_BUILD_DETAILS | jq -rs '.[0].id')
     echo "Extracted ID $RELATED_ID, trying to download artefacts now..."
 
-    # download the artifact for the realted build
-    gh run download $RELATED_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -n $ARTIFACT_ID -D $TMP_FOLDER || true
-    
-    # count the files with the pattern (we do not know the exact name) to check if we downloaded something
-    if [ 0 -lt $(ls $TMP_FOLDER 2>/dev/null | wc -w) ]; then
-        echo "...downloaded $ARTIFACT_ID successfully."
-    else 
-        # in case this failed as well, fallback to download latest artifact from that repo
-        echo "Download failed again, falling back to downloading the latest artifact.."
-        gh run download --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -n $ARTIFACT_ID
-    fi
+    # download the artifact for the realted build -> this time we fail if the download was not successful
+    gh run download $RELATED_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -n $ARTIFACT_ID -D $TMP_FOLDER
+    echo "...dowloaded $ARTIFACT_ID successfully"
 fi
 
 

@@ -45,12 +45,17 @@ def create_metric_coverage_docs(file_name: str, metrics: dict):
             if operation[1]["implemented"]
         }
 
-        tested_indicator = ' <a href="#misc" title="covered by our integration test suite">✨</a>'
+        tested_internal_indicator = ' <a href="#misc" title="covered by our integration test suite">✨</a>'
+        tested_external_indicator = ' <a href="#misc" title="covered by moto test suite">💫</a>'
         for operation in sorted(implemented_ops.keys()):
             tested = ""
             pro_info = ""
             if implemented_ops.get(operation).get("invoked", 0) > 0:
-                tested = tested_indicator
+                source = implemented_ops.get(operation).get("source",[])
+                if "community-integration-test" in source or "pro-integration-test" in source:
+                    tested = tested_internal_indicator
+                elif "moto-integration-test" in source:
+                    tested = tested_external_indicator
             if implemented_ops.get(operation).get("pro"):
                 pro_info = " (Pro) "
             output += (
@@ -95,6 +100,7 @@ def create_metric_coverage_docs(file_name: str, metrics: dict):
         fd.write(
             "## Misc ##\n\n" "Endpoints marked with ✨ are covered by our integration test suite."
         )
+        fd.write("The 💫 indicates that moto integration tests cover the endpoint, and run succesfully against LocalStack.")
         fd.write("\n\n</div>")
 
 
@@ -102,6 +108,13 @@ def create_metric_coverage_docs(file_name: str, metrics: dict):
 
 def main(path_to_implementation_details: str, path_to_raw_metrics: str):
     impl_details = {}
+    # read the implementation-details for pro + community first and generate a dict
+    # with information about all services and operation, and indicator if those are implemented, and avaiable only in pro:
+    # {"service_name": 
+    #   {
+    #       "operation_name": {"implemented": True, "pro": False}
+    #   }
+    # }
     with open(
         f"{path_to_implementation_details}/pro/implementation_coverage_full.csv", mode="r"
     ) as file:
@@ -123,16 +136,22 @@ def main(path_to_implementation_details: str, path_to_raw_metrics: str):
             if row["is_implemented"] == "True":
                 service[row["operation"]]["pro"] = False 
 
+    # now check the actual recorded test data and map the information
     recorded_metrics = aggregate_recorded_raw_data(
         base_dir=path_to_raw_metrics, service_dict=impl_details
     )
 
+    # create the coverage-docs
     create_metric_coverage_docs(
         file_name=path_to_raw_metrics + "/coverage.md", metrics=recorded_metrics
     )
 
 
 def _init_metric_recorder(service_dict: dict):
+    """
+    creates the base structure to collect raw data from the service_dict
+    :param service_dict: 
+    """
     recorder = {}
     for service, ops in service_dict.items():
         operations = {}
@@ -161,17 +180,22 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
                 "snapshot": False,
                 "parameters": {"param1": 0},
                 "errors": {"InvokeException": 0},
-                "tests": [] },
+                "tests": [],
+                "source": [] },
             ....
             },
             ...
         }
+    :param base_dir: directory where the raw-metrics csv-files are stored
+    :param service_dict: dict 
+
+    :returns: dict with details about invoked operations
     """
     # TODO contains internal + external
-    # TODO add information about the source e.g. community/pro/moto/terraform etc
     recorded_data = _init_metric_recorder(service_dict)
     pathlist = Path(base_dir).rglob("*.csv")
     for path in pathlist:
+        test_source = path.stem
         print(f"checking {str(path)}")
         with open(path, "r") as csv_obj:
             csv_dict_reader = csv.DictReader(csv_obj)
@@ -221,9 +245,15 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
                     for p in metric.get("parameters").split(","):
                         ops["parameters"][p] = ops["parameters"].setdefault(p, 0) + 1
 
+                source_list = ops.setdefault("source", [])
+                if test_source not in source_list:
+                    source_list.append(test_source)
+
                 test_list = ops.setdefault("tests", [])
-                if node_id not in test_list:
-                    test_list.append(node_id)
+
+                test_node_id = f"{test_source}_{node_id}"
+                if test_node_id not in test_list:
+                    test_list.append(test_node_id)
 
     return recorded_data
 
