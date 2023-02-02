@@ -10,7 +10,7 @@ Use this page to find the scenario that best matches your use case
 
 # From the same computer
 
-{{< figure src="../images/1.png" width="400" >}}
+{{< figure src="../images/1.svg" width="500" >}}
 
 **Example**: you have run `localstack start`, or you are accessing LocalStack started in Docker (or docker-compose).
 
@@ -19,7 +19,7 @@ If not, you can use `localhost` or any domain name that refers to `localhost`.
 
 # From a container LocalStack created
 
-{{< figure src="../images/4.png" width="400" >}}
+{{< figure src="../images/4.svg" width="500" >}}
 
 **Example**: your code is running in an ECS container that LocalStack has created.
 
@@ -59,7 +59,7 @@ networks:
 
 # From your container
 
-{{< figure src="../images/7.png" width="400" >}}
+{{< figure src="../images/7.svg" width="500" >}}
 
 **Example**: you are running your application code in a container and accessing AWS resources such as S3 through LocalStack.
 
@@ -102,7 +102,7 @@ networks:
 
 # From a separate host
 
-{{< figure src="../images/10.png" width="400" >}}
+{{< figure src="../images/10.svg" width="500" >}}
 
 **Example**:
 
