@@ -7,7 +7,7 @@ description: >
 ---
 
 ## Overview
-For more general information about cloud pods, please visit the [Cloud Pods Overview]({{< ref "cloud-pods" >}}). <br>
+For more general information about Cloud Pods, please visit the [Cloud Pods Overview]({{< ref "cloud-pods" >}}). <br>
 The LocalStack Cloud Pods Launchpad allows you to quickly share and inject cloud pods into a LocalStack instance.
 
 ## Creating your sharable link
