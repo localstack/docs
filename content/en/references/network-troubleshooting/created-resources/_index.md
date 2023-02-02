@@ -37,6 +37,6 @@ See the [advice given when using the endpoint url]({{<ref "endpoint-url#from-you
 
 {{< figure src="../images/12.svg" width="400" >}}
 
-**Example**:
+LocalStack must listen to the address of the host, or `0.0.0.0`.
 
-* TODO
+See our [FAQ article on accessing LocalStack from another computer]({{<ref "getting-started/faq#how-can-i-access-localstack-from-an-alternative-computer">}}).

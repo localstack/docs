@@ -104,6 +104,6 @@ networks:
 
 {{< figure src="../images/10.svg" width="400" >}}
 
-**Example**:
+LocalStack must listen to the address of the host, or `0.0.0.0`.
 
-TODO
+See our [FAQ article on accessing LocalStack from another computer]({{<ref "getting-started/faq#how-can-i-access-localstack-from-an-alternative-computer">}}).
