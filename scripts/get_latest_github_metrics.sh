@@ -8,6 +8,7 @@ REPOSITORY_NAME=${REPOSITORY_NAME:-localstack-ext}
 ARTIFACT_ID=${ARTIFACT_ID:-parity-metric-ext-raw}
 WORKFLOW=${WORKFLOW:-"Integration Tests"}
 RENAME_ARTIFACT=${RENAME_ARTIFACT:-pro-integration-test.csv}
+FILTER_SUCCESS=${FILTER_SUCCESS:-1}
 
 REPOSITORY_OWNER=localstack
 METRICS_RAW="$PARENT_FOLDER/metrics-raw"
@@ -15,10 +16,16 @@ METRICS_RAW="$PARENT_FOLDER/metrics-raw"
 TMP_FOLDER=$PARENT_FOLDER/tmp_download
 mkdir -p $TMP_FOLDER
 
+
 echo "Searching for Artifact: $ARTIFACT_ID on branch $METRICS_ARTIFACTS_BRANCH in repo $REPOSITORY_OWNER/$REPOSITORY_NAME."
 
 # Get the latest successful build
-RUN_ID=$(gh run list --limit 1 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
+# check filter criteria - some workflows might be expected to fail, but still have the artifact we are interested in
+if [ "$FILTER_SUCCESS" == "1" ]; then
+    RUN_ID=$(gh run list --limit 1 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.conclusion=="success")' | jq -r .databaseId)
+else
+    RUN_ID=$(gh run list --limit 1 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.status=="completed")' | jq -r .databaseId)
+
 echo "Trying to download file with runid $RUN_ID..."
 
 # we do not want to exit if this command fails -> using or true
