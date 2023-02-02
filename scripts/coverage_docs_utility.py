@@ -98,7 +98,7 @@ def create_metric_coverage_docs(file_name: str, metrics: dict):
     with open(file_name, "a") as fd:
         fd.write(f"{output}\n")
         fd.write(
-            "## Misc ##\n\n" "Endpoints marked with ✨ are covered by our integration test suite."
+            "## Misc ##\n\n" "Endpoints marked with ✨ are covered by our integration test suite.\n"
         )
         fd.write("The 💫 indicates that moto integration tests cover the endpoint, and run succesfully against LocalStack.")
         fd.write("\n\n</div>")

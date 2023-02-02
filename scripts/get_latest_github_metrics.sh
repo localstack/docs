@@ -37,6 +37,7 @@ gh run download $RUN_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -n $ARTIFACT_I
 # count the files with the pattern (we do not know the exact name) to check if we downloaded something
 if [ 0 -lt $(ls $TMP_FOLDER 2>/dev/null | wc -w) ]; then
     echo "...downloaded $ARTIFACT_ID successfully."
+    tree $TMP_FOLDER
 else 
     # runs on master often do NOT run the parity tests! we need to take the PR build which caused the master build to be skipped
     # this one will have the same tree_id hash
@@ -63,6 +64,7 @@ else
     # download the artifact for the realted build -> this time we fail if the download was not successful
     gh run download $RELATED_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -n $ARTIFACT_ID -D $TMP_FOLDER
     echo "...dowloaded $ARTIFACT_ID successfully"
+    tree $TMP_FOLDER
 fi
 
 
@@ -70,4 +72,6 @@ echo "Moving raw metrics data to $METRICS_RAW"
 mkdir -p $METRICS_RAW
 mv $TMP_FOLDER/*.csv $METRICS_RAW/$RENAME_ARTIFACT
 rm -rf $TMP_FOLDER
+echo "content of $METRICS_RAW:"
+tree $TMP_FOLDER
 echo "Done."
