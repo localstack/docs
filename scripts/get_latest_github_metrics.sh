@@ -73,5 +73,5 @@ mkdir -p $METRICS_RAW
 mv $TMP_FOLDER/*.csv $METRICS_RAW/$RENAME_ARTIFACT
 rm -rf $TMP_FOLDER
 echo "content of $METRICS_RAW:"
-tree $TMP_FOLDER
+tree $METRICS_RAW
 echo "Done."
