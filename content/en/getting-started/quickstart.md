@@ -65,13 +65,7 @@ With the initial setup now completed, you can deploy the application via `server
 $ serverless deploy --stage local
 {{< / command >}}
 
-Let us now serve the web application locally which can be accessed through your browser:
-
-{{< command >}}
-$ npm run web
-{{< / command >}}
-
-Navigate to [`localhost:3000/`](http://localhost:3000/) to access the web application. You can enable the **Auto-Refresh** and click on **Create new request**. You will see the request being processed in the table below after an alert that your request has been sent and queued. After the processing is complete, you will see an option in the table to download the result from S3. Click on it to download a text file with the message: `Archive result for request XXXXXXX`.
+Navigate to [`localhost:4566/archive-bucket/index.html`](http://localhost:4566/archive-bucket/index.html) to access the web application. You can enable the **Auto-Refresh** and click on **Create new request**. You will see the request being processed in the table below after an alert that your request has been sent and queued. After the processing is complete, you will see an option in the table to download the result from S3. Click on it to download a text file with the message: `Archive result for request XXXXXXX`.
 
 If you have the `awslocal` CLI installed, you can run the following command to see the archive results in the local S3 bucket:
 
