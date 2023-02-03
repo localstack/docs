@@ -14,7 +14,7 @@ This is to download and cache the language model.
 Subsequent transcriptions for the same language can be done offline.
 Language models are around 50 MiB each and saved to the cache directory (see [Filesystem Layout]({{< ref "filesystem" >}})).
 
-{{< alert title="Warning" color="warning">}}
+{{< alert title="Note" >}}
 This service has limited support for aarch64/Apple Silicon.
 {{< /alert >}}
 
