@@ -17,7 +17,7 @@ hide_readingtime: true
     <div class="card-header" id="header_addtagstocertificate">
       <h2 class="mb-0">
         <button class="btn btn-link" data-toggle="collapse" data-target="#addtagstocertificate" aria-expanded="true" aria-controls="addtagstocertificate">
-          AddTagsToCertificate <a title="only available in Pro">⭐</a>
+          AddTagsToCertificate <a title="aws validated and snapshot tested">📸</a>
         </button>
       </h2>
     </div>
@@ -39,7 +39,7 @@ hide_readingtime: true
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
+          DeleteCertificate
         </button>
       </h5>
     </div>
@@ -53,7 +53,7 @@ hide_readingtime: true
     <div class="card-header" id="headingThree">
       <h5 class="mb-0">
         <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
+          DescribeCertificate
         </button>
       </h5>
     </div>
@@ -64,115 +64,6 @@ hide_readingtime: true
     </div>
   </div>
 </div>
-<table id="service-table">
-  <thead>
-    <tr>
-      <th>Operation</th>
-      <th style="text-align:right">Pro only</th>
-      <th style="text-align:right">aws-validated</th>
-    </tr>
-  </thead>
-  <tbody>
-  <tr>
-      <td><a role="button" data-toggle="collapse" data-target="#acm-addtagstocertificate" aria-expanded="false" aria-controls="acm-addtagstocertificate">AddTagsToCertificate</a></td>
-      <td style="text-align:right">⭐</td>
-      <td style="text-align:right">✅</td>
-    </tr>
-      <tbody class="collapse" id="acm-addtagstocertificate" aria-labelledby="acm-addtagstocertificate" data-parent="#service-table">
-      <tr >
-      <td style="text-align:right">-</td>
-      <td>CertificateArn</td>
-       <td style="text-align:right">-</td>
-       </tr>
-             <tr >
-      <td style="text-align:right">-</td>
-      <td>TagList</td>
-       <td style="text-align:right">-</td>
-       </tr>
-       </tbody>
-    <tr>
-      <td><a role="button" data-toggle="collapse" data-target="#acm-deletecertificate" aria-expanded="false" aria-controls="acm-deletecertificate">DeleteCertificate</a></td>
-      <td style="text-align:right"></td>
-      <td style="text-align:right">✅</td>
-    </tr>
-    <tbody class="collapse" id="acm-deletecertificate" aria-labelledby="acm-deletecertificate" data-parent="#service-table">
-      <tr >
-      <td style="text-align:right">-</td>
-      <td>CertificateArn</td>
-       <td style="text-align:right">-</td>
-       </tr>
-             <tr >
-      <td style="text-align:right">-</td>
-      <td>TagList</td>
-       <td style="text-align:right">-</td>
-       </tr>
-       </tbody>
-    <tr>
-      <td><a href="#describecertificate">DescribeCertificate</a></td>
-      <td style="text-align:right"></td>
-      <td style="text-align:right"></td>
-    </tr>
-    <tr>
-      <td><a href="#exportcertificate">ExportCertificate</a></td>
-       <td style="text-align:right">⭐</td>
-       <td style="text-align:right"></td>
-    </tr>
-    <tr>
-      <td><a href="#getcertificate">GetCertificate</a></td>
-       <td style="text-align:right"></td>
-       <td style="text-align:right"></td>
-    </tr>
-    <tr>
-      <td><a href="#importcertificate">ImportCertificate</a></td>
-       <td style="text-align:right"></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td><a href="#listcertificates">ListCertificates</a></td>
-       <td style="text-align:right"></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td><a href="#listtagsforcertificate">ListTagsForCertificate</a></td>
-       <td style="text-align:right"></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td><a href="#removetagsfromcertificate">RemoveTagsFromCertificate</a></td>
-       <td style="text-align:right"></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td><a href="#requestcertificate">RequestCertificate</a></td>
-       <td style="text-align:right"></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td><a href="#resendvalidationemail">ResendValidationEmail</a></td>
-       <td style="text-align:right"></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-  </tbody>
- </table>
-
-
-### AddTagsToCertificate ###
-
-**Tested without parameters only**
-
-**Exceptions tested**
-* ResourceNotFoundException
-
-### DeleteCertificate ###
-
-**Parameters tested:**
-* CertificateArn
-
-**Exceptions tested:**
-* ResourceNotFoundException
-
-
-### DescribeCertificate ###
 
 
 
