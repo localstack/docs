@@ -1,10 +1,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – ssl</title><link>/tags/ssl/</link><description>Recent content in ssl on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/ssl/index.xml" rel="self" type="application/rss+xml"/><item><title>References: Custom TLS certificates</title><link>/references/custom-tls-certificates/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/custom-tls-certificates/</guid><description>
-&lt;h1 id="background">Background&lt;/h1>
+&lt;h2 id="background">Background&lt;/h2>
 &lt;p>LocalStack sometimes performs on-demand fetching of resources from the public internet.
 This requires that LocalStack is able to access public URLs.
 If there is a proxy server in your network that uses a non-standard TLS certificate, LocalStack will not be able to download any files on demand.
 You may see errors in the logs relating to TLS such as &amp;ldquo;unable to get local issuer certificate&amp;rdquo;.&lt;/p>
-&lt;h1 id="solution">Solution&lt;/h1>
 &lt;p>There are three options when running LocalStack:&lt;/p>
 &lt;ol>
 &lt;li>&lt;a href="#creating-a-custom-docker-image">creating a custom Docker image&lt;/a>,&lt;/li>
@@ -31,8 +30,8 @@ You may see errors in the logs relating to TLS such as &amp;ldquo;unable to get 
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and build the image:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker build -t &amp;lt;image name&amp;gt; .&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Information&lt;/h4>
-&lt;strong>Note&lt;/strong>: Certificate files &lt;strong>must&lt;/strong> end in &lt;code>.crt&lt;/code> to be included in the system certificate store.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Certificate files must end in &lt;code>.crt&lt;/code> to be included in the system certificate store.
 If your certificate file ends with &lt;code>.pem&lt;/code>, you can rename it to end in &lt;code>.crt&lt;/code>.
 &lt;/div>
 &lt;h3 id="starting-localstack-with-the-custom-image">Starting LocalStack with the custom image&lt;/h3>
@@ -94,8 +93,8 @@ id="tabs-10-2" role="tabpanel" aria-labelled-by="tabs-10-2-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>update-ca-certificates&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Then run LocalStack with the environment variables &lt;code>REQUESTS_CA_BUNDLE&lt;/code> and &lt;code>CURL_CA_BUNDLE&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="macos">macos&lt;/h3>
-&lt;p>On macos the custom certificate should be added to your keychain. See &lt;a href="https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac">this Apple support article&lt;/a> for more information.&lt;/p>
+&lt;h3 id="macos">macOS&lt;/h3>
+&lt;p>On macOS the custom certificate should be added to your keychain. See &lt;a href="https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac">this Apple support article&lt;/a> for more information.&lt;/p>
 &lt;p>Then run LocalStack with the environment variables &lt;code>REQUESTS_CA_BUNDLE&lt;/code> and &lt;code>CURL_CA_BUNDLE&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="windows">Windows&lt;/h3>

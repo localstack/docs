@@ -16,7 +16,9 @@ which is the preferred way of integrating the .NET SDK with LocalStack.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">});&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-Make sure you are setting the &lt;code>AuthenticationRegion&lt;/code> and not the &lt;code>RegionEndpoint&lt;/code>. Setting the &lt;code>RegionEndpoint&lt;/code> to a constant like &lt;code>RegionEndpoint.EUWest1&lt;/code> will override the ServiceURL, and your request will end up against AWS.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Make sure you are setting the &lt;code>AuthenticationRegion&lt;/code> and not the &lt;code>RegionEndpoint&lt;/code>.
+Setting the &lt;code>RegionEndpoint&lt;/code> to a constant like &lt;code>RegionEndpoint.EUWest1&lt;/code> will override the ServiceURL, and your request will end up against AWS.
 &lt;/div>
 &lt;h2 id="resources">Resources&lt;/h2>
 &lt;ul>
@@ -162,15 +164,19 @@ which is the preferred way of integrating the PHP SDK with LocalStack.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">if&lt;/span> &lt;span style="color:#000">__name__&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;__main__&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">main&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Note:&lt;/strong> If you&amp;rsquo;re connecting from within a Python &lt;strong>Lambda function&lt;/strong> handler in LocalStack, you can create a default client without configuring the &lt;code>endpoint_url&lt;/code> - LocalStack will automatically forward the invocations to the local API endpoints (available in Pro, see &lt;a href="/user-guide/tools/local-endpoint-injection/">here&lt;/a> for more details).&lt;/p>
-&lt;pre tabindex="0">&lt;code>client = boto3.client(&amp;#34;lambda&amp;#34;)
-...
-&lt;/code>&lt;/pre>&lt;p>Alternatively, if you prefer to (or need to) set the endpoints directly, you can use the &lt;code>$LOCALSTACK_HOSTNAME&lt;/code> environment variable which is available when executing user code (e.g., Lambda functions, ECS containers) in LocalStack:&lt;/p>
-&lt;pre tabindex="0">&lt;code>import os
-endpoint_url = f&amp;#34;http://{os.getenv(&amp;#34;LOCALSTACK_HOSTNAME&amp;#34;)}:{os.getenv(&amp;#34;EDGE_PORT&amp;#34;)}&amp;#34;
-client = boto3.client(&amp;#34;lambda&amp;#34;, endpoint_url=endpoint_url)
-...
-&lt;/code>&lt;/pre>&lt;h3 id="further-material">Further Material:&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+If you&amp;rsquo;re connecting from within a Python &lt;strong>Lambda function&lt;/strong> handler in LocalStack, you can create a default client without configuring the &lt;code>endpoint_url&lt;/code> - LocalStack will automatically forward the invocations to the local API endpoints (available in Pro, see &lt;a href="/user-guide/tools/local-endpoint-injection/">here&lt;/a> for more details).
+&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python3" data-lang="python3">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lambda&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Alternatively, if you prefer to (or need to) set the endpoints directly, you can use the &lt;code>$LOCALSTACK_HOSTNAME&lt;/code> environment variable which is available when executing user code (e.g., Lambda functions, ECS containers) in LocalStack:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python3" data-lang="python3">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">os&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">endpoint_url&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">f&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://&lt;/span>&lt;span style="color:#4e9a06">{&lt;/span>&lt;span style="color:#000">os&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getenv&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;LOCALSTACK_HOSTNAME&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">:&lt;/span>&lt;span style="color:#4e9a06">{&lt;/span>&lt;span style="color:#000">os&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getenv&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;EDGE_PORT&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lambda&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="further-material">Further Material:&lt;/h3>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-python-client">localstack-python-client&lt;/a>: small Python library with additional utils for interacting with LocalStack&lt;/li>
 &lt;/ul></description></item></channel></rss>

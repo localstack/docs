@@ -43,7 +43,8 @@ Apart from some information Terraform expects there are basically only two thing
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: terraform [global options] &amp;lt;subcommand&amp;gt; [args]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Alternatively, you can also manually configure the local endpoints in the &lt;code>provider&lt;/code> section of your Terraform script - see further below.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Alternatively, you can also manually configure the local endpoints in the &lt;code>provider&lt;/code> section of your Terraform script - see further below.
 &lt;/div>
 &lt;h3 id="deployment">Deployment&lt;/h3>
 &lt;p>After starting LocalStack you can now deploy the S3 bucket via &lt;code>tflocal&lt;/code> and interact with the (still empty) S3 bucket via &lt;code>awslocal&lt;/code>!&lt;/p>
@@ -86,7 +87,8 @@ In case of S3, this looks like the following snippet, in this case we opted to u
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: In case of issues resolving this DNS record, we can fallback to &lt;code>http://localhost:4566&lt;/code> in combination with the provider setting &lt;code>s3_use_path_style = true&lt;/code>. The S3 service endpoint is slightly
+&lt;h4 class="alert-heading">Note&lt;/h4>
+In case of issues resolving this DNS record, we can fallback to &lt;code>http://localhost:4566&lt;/code> in combination with the provider setting &lt;code>s3_use_path_style = true&lt;/code>. The S3 service endpoint is slightly
 different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
 &lt;/div>
 &lt;h3 id="final-configuration">Final Configuration&lt;/h3>
@@ -174,7 +176,7 @@ Please make sure to replace all &lt;code>sam&lt;/code> calls with &lt;code>samlo
 &lt;/ul></description></item><item><title>User-Guide: AWS CDK</title><link>/user-guide/integrations/aws-cdk/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/aws-cdk/</guid><description>
 &lt;p>&lt;img src="aws-cdk-logo.svg" alt="AWS CDK">&lt;/p>
 &lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The AWS Cloud Development Kit (CDK) is an IaC (Infrastructure-as-Code) tool using general-purpose programming languages such as TypeScript/JavaScript, Python, Java, and .NET to programmatically define your cloud architecture on AWS.&lt;/p>
+&lt;p>The AWS Cloud Development Kit (CDK) is an Infrastructure-as-Code (IaC) tool using general-purpose programming languages such as TypeScript/JavaScript, Python, Java, and .NET to programmatically define your cloud architecture on AWS.&lt;/p>
 &lt;h2 id="aws-cdk-cli-for-localstack">AWS CDK CLI for LocalStack&lt;/h2>
 &lt;p>&lt;code>cdklocal&lt;/code> is a thin wrapper script for using the &lt;a href="https://github.com/aws/aws-cdk">AWS CDK&lt;/a> library against local APIs provided by &lt;a href="https://github.com/localstack/localstack">LocalStack&lt;/a>.&lt;/p>
 &lt;h3 id="installation">Installation&lt;/h3>
@@ -186,8 +188,8 @@ Please make sure to replace all &lt;code>sam&lt;/code> calls with &lt;code>samlo
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cdklocal --version
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># e.g. 1.65.5&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Local node_modules&lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 Using &lt;code>cdklocal&lt;/code> locally (e.g. within the &lt;code>node_modules&lt;/code> of your repo instead of globally installed) does not work at the moment for some setups, so make sure you install both &lt;code>aws-cdk&lt;/code> and &lt;code>aws-cdk-local&lt;/code> with the &lt;code>-G&lt;/code> flag.
 &lt;/div>
 &lt;h3 id="usage">Usage&lt;/h3>
@@ -208,7 +210,7 @@ Using &lt;code>cdklocal&lt;/code> locally (e.g. within the &lt;code>node_modules
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir /tmp/test&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87">cd&lt;/span> /tmp/test
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cdklocal init sample-app --language&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>javascript
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># deploy the sample app &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># deploy the sample app&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cdklocal deploy
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; Do you wish to deploy these changes &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>y/n&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>? y
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once the deployment is done, you can inspect the created resources via the &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> command line&lt;/p>
@@ -220,6 +222,11 @@ Using &lt;code>cdklocal&lt;/code> locally (e.g. within the &lt;code>node_modules
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;h3 id="stacks-with-validated-certificates">Stacks with validated certificates&lt;/h3>
+&lt;p>By default, stacks with validated certificates may not be deployed using the &lt;code>local&lt;/code> lambda executor.
+This originates from the way how CDK ensures the certificate is ready - it creates a single-file lambda function with a single dependency on &lt;code>aws-sdk&lt;/code> which is usually preinstalled and available globally in lambda runtime.
+When this lambda is executed locally from the &lt;code>/tmp&lt;/code> folder, the package can not be discovered by Node due to the way how Node package resolution works.&lt;/p>
 &lt;h2 id="other-resources">Other resources&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="/user-guide/tools/lambda-tools/hot-swapping/#aws-cloud-development-kit-cdk-configuration">Hot-swapping Lambda functions with CDK&lt;/a>&lt;/li>
@@ -246,20 +253,25 @@ This guide follows the instructions from Pulumi&amp;rsquo;s &lt;a href="https://
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir quickstart &amp;amp;&amp;amp; cd quickstart
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pulumi new aws-typescript&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>We use the default configuration values:&lt;/p>
-&lt;pre tabindex="0">&lt;code>This command will walk you through creating a new Pulumi project.
-Enter a value or leave blank to accept the (default), and press &amp;lt;ENTER&amp;gt;.
-Press ^C at any time to quit.
-project name: (quickstart)
-project description: (A minimal AWS TypeScript Pulumi program)
-Created project &amp;#39;quickstart&amp;#39;
-Please enter your desired stack name.
-To create a stack in an organization, use the format &amp;lt;org-name&amp;gt;/&amp;lt;stack-name&amp;gt; (e.g. `acmecorp/dev`).
-stack name: (dev)
-Created stack &amp;#39;dev&amp;#39;
-aws:region: The AWS region to deploy into: (us-east-1)
-Saved config
-Installing dependencies...
-&lt;/code>&lt;/pre>&lt;p>This will create the following directory structure.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>This command will walk you through creating a new Pulumi project.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Enter a value or leave blank to accept the (default), and press &amp;lt;ENTER&amp;gt;.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Press ^C at any time to quit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>project name: (quickstart)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>project description: (A minimal AWS TypeScript Pulumi program)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Created project &amp;#39;quickstart&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Please enter your desired stack name.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>To create a stack in an organization, use the format &amp;lt;org-name&amp;gt;/&amp;lt;stack-name&amp;gt; (e.g. `acmecorp/dev`).
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stack name: (dev)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Created stack &amp;#39;dev&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>aws:region: The AWS region to deploy into: (us-east-1)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Saved config
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Installing dependencies...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This will create the following directory structure.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>tree -L 1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── index.ts
@@ -585,8 +597,8 @@ After updating the stack configuration, and starting localstack, you can run:&lt
 &lt;p>once the stack update was performed, you can run:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Where you should see something like&lt;/p>
-&lt;pre tabindex="0">&lt;code>2021-09-30 11:50:59 my-bucket-6c21027
-&lt;/code>&lt;/pre>&lt;h2 id="pulumilocal">Pulumilocal&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>2021-09-30 11:50:59 my-bucket-6c21027
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="pulumilocal">Pulumilocal&lt;/h2>
 &lt;p>&lt;code>pulumilocal&lt;/code> is a wrapper script and drop-in replacement for the &lt;code>pulumi&lt;/code> CLI, that also provides commands to better interface Pulumi with LocalStack.
 You can find the source code repository here: &lt;a href="https://github.com/localstack/pulumi-local">https://github.com/localstack/pulumi-local&lt;/a>&lt;/p>
 &lt;h3 id="install">Install&lt;/h3>

@@ -98,9 +98,8 @@ your serverless applications powered by Spring Cloud Function framework.&lt;/p>
 &lt;/tbody>
 &lt;/table>
 &lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">aarch64 warning&lt;/h4>
-Some features and services described in this document may not work properly on
-aarch64, including Apple&amp;rsquo;s M1 silicon
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Some features and services described in this document may not work properly on aarch64, including Apple&amp;rsquo;s M1 silicon.
 &lt;/div>
 &lt;h2 id="covered-topics">Covered Topics&lt;/h2>
 &lt;p>We will create a new Rest API application that will route requests
@@ -745,10 +744,9 @@ defined &lt;code>SampleModel&lt;/code>:&lt;/p>
 &lt;p>Note how we used Spring&amp;rsquo;s dependency injection to inject &lt;code>ObjectMapper&lt;/code> Bean we
 configured earlier.&lt;/p>
 &lt;h4 id="cold-start-and-warmup-pro">Cold Start and Warmup (PRO)&lt;/h4>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Pro Features&lt;/h4>
-Please note that &lt;em>EVENTS&lt;/em> is a LocalStack PRO feature and is not supported
-in Community version
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Please note that &lt;em>EVENTS&lt;/em> is a LocalStack PRO feature and is not supported in Community version.
 &lt;/div>
 &lt;p>We know Java&amp;rsquo;s cold start is always a pain.
 To minimize this pain, we will try to define a pre-warming endpoint within the Rest API.
@@ -1486,7 +1484,8 @@ LocalStack&amp;rsquo;s Lambda container.&lt;/p>
 &lt;/div>
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: As mentioned in the code, you will have to use an alternative local bucket marker to &lt;code>__local__&lt;/code> as this is not a valid S3 bucket name.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+As mentioned in the code, you will have to use an alternative local bucket marker to &lt;code>__local__&lt;/code> as this is not a valid S3 bucket name.
 To change it (to, e.g., &lt;code>hot-code&lt;/code>) you can use the environment variable &lt;code>BUCKET_MARKER_LOCAL&lt;/code>.
 &lt;/div>
 &lt;p>Then to bootstrap and deploy the stack run the following shell script&lt;/p>
@@ -1626,7 +1625,9 @@ To change it (to, e.g., &lt;code>hot-code&lt;/code>) you can use the environment
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-Community users have access to a restricted version of the &lt;code>save&lt;/code> command. In particular, they can simply invoke the &lt;code>save&lt;/code> command with a file URI as an argument.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Community users have access to a restricted version of the &lt;code>save&lt;/code> command.
+In particular, they can simply invoke the &lt;code>save&lt;/code> command with a file URI as an argument.
 &lt;/div>
 &lt;h3 id="load">&lt;code>load&lt;/code>&lt;/h3>
 &lt;p>The &lt;code>load&lt;/code> command is the inverse operation of &lt;code>save&lt;/code>. It retrieves the content of a previously stored Cloud Pod from the local file system or the Cloud Pod&amp;rsquo;s platform and injects it into the application runtime.&lt;/p>
@@ -1659,6 +1660,7 @@ Community users have access to a restricted version of the &lt;code>save&lt;/cod
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 Similar to the &lt;code>save&lt;/code> command, the usage of the Cloud Pod&amp;rsquo;s platform is restricted to licensed users. Community users can load a Cloud Pod from a local URI file, URL, or public GitHub repository. However, they have no access to Cloud Pods versioning.
 &lt;/div>
 &lt;h3 id="delete">&lt;code>delete&lt;/code>&lt;/h3>
@@ -2160,87 +2162,81 @@ lambda function:&lt;/p>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice">Spring Cloud Function on LocalStack (Kotlin JVM)&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: DNS Server</title><link>/user-guide/tools/local-endpoint-injection/dns-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/local-endpoint-injection/dns-server/</guid><description>
-&lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.&lt;/p>
 &lt;p>When the system starts up, the log output contains the IP address of the local DNS server. Typically, this address by default is either &lt;code>0.0.0.0&lt;/code> (see example below) or &lt;code>127.0.0.1&lt;/code> if LocalStack cannot bind to &lt;code>0.0.0.0&lt;/code> due to a conflicting service.&lt;/p>
-&lt;pre tabindex="0">&lt;code>Starting DNS servers (tcp/udp port 53 on 0.0.0.0)...
-&lt;/code>&lt;/pre>&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>The DNS server can be configured to match your usecase.&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>The DNS server can be configured using the &lt;code>DNS_ADDRESS&lt;/code> environment variable.
-To bind the server to &lt;code>127.0.0.1&lt;/code>, you can set:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Starting DNS servers (tcp/udp port 53 on 0.0.0.0)...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The DNS server can be configured to match your usecase using the &lt;code>DNS_ADDRESS&lt;/code> environment variable.&lt;/p>
+&lt;p>To bind the server to &lt;code>127.0.0.1&lt;/code>, you can set:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_ADDRESS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>127.0.0.1
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>You can disable the DNS server (which will prevent LocalStack from binding port 53) using:&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can disable the DNS server (which will prevent LocalStack from binding port 53) using:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_ADDRESS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>You can also specify which exact URLs should be redirected to LocalStack by defining a hostname regex like:&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can also specify which exact URLs should be redirected to LocalStack by defining a hostname regex like:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_LOCAL_NAME_PATTERNS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;.*(ecr|lambda).*.amazonaws.com&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Using this configuration, the LocalStack DNS server only redirects ECR and Lambda domains to LocalStack, and the rest will be resolved via &lt;code>$DNS_SERVER&lt;/code>. This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target LocalStack, whereas other services will target real AWS.&lt;/p>
-&lt;p>&lt;strong>Note:&lt;/strong> We generally do not recommend connecting to real AWS from within LocalStack, in fact you should avoid using real AWS credentials anywhere in your LocalStack apps. Use this configuration with caution.&lt;/p>
-&lt;/li>
-&lt;li>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+We generally do not recommend connecting to real AWS from within LocalStack, in fact you should avoid using real AWS credentials anywhere in your LocalStack apps. Use this configuration with caution.
+&lt;/div>
 &lt;p>There is the possibility to manually set the DNS server all not-redirected queries will be forwarded to:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_SERVER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>1.1.1.1
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Per default, LocalStack uses the Google DNS resolver at &lt;code>8.8.8.8&lt;/code>.&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;p>When you configure transparent execution mode using DNS, you may still have to configure your application&amp;rsquo;s AWS SDK to &lt;strong>accept self-signed certificates&lt;/strong>. This is a technical limitation caused by the SSL certificate validation mechanism, due to the fact that we are repointing AWS domain names (e.g., &lt;code>*.amazonaws.com&lt;/code>) to &lt;code>localhost&lt;/code>. For example, the following command will fail with an SSL error:
+&lt;h2 id="self-signed-certificates">Self-signed certificates&lt;/h2>
+&lt;p>When you configure transparent execution mode using DNS, you may still have to configure your application&amp;rsquo;s AWS SDK to accept self-signed certificates.
+This is a technical limitation caused by the SSL certificate validation mechanism, due to the fact that we are repointing AWS domain names (e.g., &lt;code>*.amazonaws.com&lt;/code>) to &lt;code>localhost&lt;/code>. For example, the following command will fail with an SSL error:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws kinesis list-streams
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>SSL validation failed for https://kinesis.us-east-1.amazonaws.com/ [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1076)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&amp;hellip; whereas the following command works:
+&lt;p>whereas the following command works:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PYTHONWARNINGS=ignore aws --no-verify-ssl kinesis list-streams
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StreamNames&amp;#34;: []
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Disabling SSL validation depends on the programming language and version of the AWS SDK used. For example, the &lt;a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client">&lt;code>boto3&lt;/code> AWS SDK for Python&lt;/a> provides a parameter &lt;code>verify=False&lt;/code> to disable SSL verification. Similar parameters are available for most other AWS SDKs.&lt;/p>
 &lt;p>For Node.js, you can set this environment variable in your application, to allow the AWS SDK to talk to the local APIs via SSL:&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-nodejs" data-lang="nodejs">process.env.NODE_TLS_REJECT_UNAUTHORIZED = &amp;#34;0&amp;#34;
-&lt;/code>&lt;/pre>
-&lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> Disabling SSL validation may have undesired side effects and security implications. Make sure to use this only for local testing, and never in production.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-node.js" data-lang="node.js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">process&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">env&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">NODE_TLS_REJECT_UNAUTHORIZED&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Disabling SSL validation may have undesired side effects and security implications.
+Make sure to use this only for local testing, and never in production.
 &lt;/div>
 &lt;h2 id="system-dns-configuration">System DNS configuration&lt;/h2>
 &lt;p>In order to use transparent execution mode, the system needs to be configured to use the predefined DNS server.
 This is necessary if you want to test code running directly on your system against LocalStack, instead of AWS.
 The configuration depends on the operating system.&lt;/p>
-&lt;p>&lt;strong>Note&lt;/strong>: Please be careful when changing the network configuration on your system, as this may have undesired side effects.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Please be careful when changing the network configuration on your system, as this may have undesired side effects.
+&lt;/div>
 &lt;h3 id="mac-os">Mac OS&lt;/h3>
 &lt;p>In Mac OS it can be configured in the Network System Settings, under Linux this is usually achieved by configuring &lt;code>/etc/resolv.conf&lt;/code> as follows:&lt;/p>
-&lt;pre tabindex="0">&lt;code>nameserver 0.0.0.0
-&lt;/code>&lt;/pre>&lt;p>The example above needs to be adjusted to the actual IP address of the DNS server. You can also configure a custom IP address by setting the &lt;code>DNS_ADDRESS&lt;/code> environment variable (e.g., &lt;code>DNS_ADDRESS=127.0.0.1&lt;/code>).&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>nameserver 0.0.0.0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The example above needs to be adjusted to the actual IP address of the DNS server. You can also configure a custom IP address by setting the &lt;code>DNS_ADDRESS&lt;/code> environment variable (e.g., &lt;code>DNS_ADDRESS=127.0.0.1&lt;/code>).&lt;/p>
 &lt;h3 id="linux">Linux&lt;/h3>
-&lt;p>In Linux, the configuration depends on your network manager / DNS configuration.&lt;/p>
+&lt;p>In Linux, the configuration depends on your network manager/DNS configuration.&lt;/p>
 &lt;h4 id="systemd-resolved">systemd-resolved&lt;/h4>
 &lt;p>On many modern systemd-based distributions, like Ubuntu, systemd-resolved is used for name resolution.
 LocalStack provides a CLI command for exactly this scenario.
 To use systemd-resolved and the LocalStack domain resolution, try the following steps.&lt;/p>
-&lt;ul>
-&lt;li>
 &lt;p>Start LocalStack Pro with &lt;code>DNS_ADDRESS=127.0.0.1&lt;/code> as environment variable.
 This makes LocalStack bind port 53 on 127.0.0.1, whereas systemd-resolved binds its stub resolver to 127.0.0.53:53, which prevents a conflict.
 Once LocalStack is started, you can test the DNS server using &lt;code>dig @127.0.0.1 s3.amazonaws.com&lt;/code> versus &lt;code>dig @127.0.0.53 s3.amazonaws.com&lt;/code>, the former should return an A record &lt;code>127.0.0.1&lt;/code>, the latter the real AWS DNS result.&lt;/p>
-&lt;/li>
-&lt;li>
 &lt;p>Run:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>To revert, please run:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved --revert&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>&lt;strong>Note&lt;/strong>: You need sudo privileges to execute this command.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+You need sudo privileges to execute this command.
+&lt;/div>
 &lt;p>This command sets the DNS server of the bridge interface of the docker network LocalStack currently runs in to the LocalStack container&amp;rsquo;s IP address.
 (The command does not work with host networking or without LocalStack running for this reason.)
 Also, it configures the DNS route to exclusively (and only) route the following DNS names (and its subdomains) to the LocalStack DNS:&lt;/p>
-&lt;pre tabindex="0">&lt;code>~amazonaws.com
-~aws.amazon.com
-~cloudfront.net
-~localhost.localstack.cloud
-&lt;/code>&lt;/pre>&lt;/li>
-&lt;/ul>
-&lt;p>If you want to perform this action manually, please do the following steps:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>~amazonaws.com
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>~aws.amazon.com
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>~cloudfront.net
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>~localhost.localstack.cloud
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you want to perform this action manually, please do the following steps:&lt;/p>
 &lt;ol>
 &lt;li>
 &lt;p>Find out the bridge interface and container IP of your LocalStack container.
@@ -2249,12 +2245,12 @@ If the interface name is not mentioned, it is usually the first 12 characters of
 If you use the default bridge network, it is usually &lt;code>docker0&lt;/code>.&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Configure the DNS resolver for the bridge network:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>resolvectl dns &amp;lt;network_name&amp;gt; &amp;lt;container_ip&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Configure the DNS resolver for the bridge network:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>resolvectl dns &amp;lt;network_name&amp;gt; &amp;lt;container_ip&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/li>
 &lt;li>
-&lt;p>Set the DNS route to route only the above mentioned domain names (and subdomains) to LocalStack:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>resolvectl domain &amp;lt;network_name&amp;gt; ~amazonaws.com ~aws.amazon.com ~cloudfront.net ~localhost.localstack.cloud&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Set the DNS route to route only the above mentioned domain names (and subdomains) to LocalStack:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>resolvectl domain &amp;lt;network_name&amp;gt; ~amazonaws.com ~aws.amazon.com ~cloudfront.net ~localhost.localstack.cloud&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/li>
 &lt;/ol>
 &lt;p>In both cases, you can use &lt;code>resolvectl query s3.amazonaws.com&lt;/code> or &lt;code>resolvectl query example.com&lt;/code> to check which interface your DNS request is routed through, to confirm only the above mentioned domains (and its subdomains) are routed to LocalStack.&lt;/p>
@@ -2264,12 +2260,42 @@ If you use the default bridge network, it is usually &lt;code>docker0&lt;/code>.
 In some systems, directly editing &lt;code>/etc/resolv.conf&lt;/code> is possible, like described in &lt;a href="#mac-os">Mac OS&lt;/a>.
 If your &lt;code>/etc/resolv.conf&lt;/code> is overwritten by some service, it might be possible to install and enable/start &lt;code>resolvconf&lt;/code> and specify the nameserver in &lt;code>/etc/resolvconf/resolv.conf.d/head&lt;/code> with &lt;code>nameserver 127.0.0.1&lt;/code>.
 This will prepend this line in the resolv.conf file even after changes.&lt;/p>
-&lt;p>&lt;strong>Note&lt;/strong>: Using this options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain aws domains).
-LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions / in debug mode.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Using these options, every DNS request is forwarded to LocalStack, which will forward queries it does not need to modify (in essence all but certain aws domains).
+LocalStack will not store or share any forwarded DNS requests, except maybe in the local logs on exceptions/in debug mode.
+&lt;/div>
+&lt;h2 id="dns-rebind-protection">DNS Rebind Protection&lt;/h2>
+&lt;p>If you rely on your local network&amp;rsquo;s DNS, your router/DNS server might block requests due to the DNS Rebind Protection.
+This feature is enabled by default in pfSense, OPNSense, OpenWRT, AVM FritzBox, and potentially also other devices.
+Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (like OpenWRT).&lt;/p>
+&lt;p>You can check if your DNS setup works correctly by resolving a subdomain of &lt;code>localhost.localstack.cloud&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig test.localhost.localstack.cloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.16.8-Ubuntu &amp;lt;&amp;lt;&amp;gt;&amp;gt; test.localhost.localstack.cloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; global options: +cmd
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; Got answer:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 45150
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; OPT PSEUDOSECTION:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>; EDNS: version: 0, flags:; udp: 65494
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; QUESTION SECTION:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;test.localhost.localstack.cloud. IN A
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test.localhost.localstack.cloud. 10786 IN CNAME localhost.localstack.cloud.
+&lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span>localhost.localstack.cloud. 389 IN A 127.0.0.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; Query time: 16 msec
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; SERVER: 127.0.0.53#53(127.0.0.53)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; WHEN: Fr Jän 14 11:23:12 CET 2022
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; MSG SIZE rcvd: 90&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>If the the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
+If not, please check the configuration of your router / DNS if the Rebind Protection is active or &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/#system-dns-configuration">enable the LocalStack DNS on your system&lt;/a>.&lt;/p>
 &lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
 &lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
 &lt;p>Please refer to the steps in the &lt;a href="/user-guide/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item><item><title>User-Guide: Patched AWS SDKs for Lambdas</title><link>/user-guide/tools/local-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/local-endpoint-injection/patched-sdks/</guid><description>
-&lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
 This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.&lt;/p>
 &lt;p>Assuming you had a Python Lambda handler that attempts to list all S3 buckets. In the past, you had to manually configure the &lt;code>endpoint_url&lt;/code> parameter on the boto3 client (and potentially use environment switches for dev/prod in your test code):&lt;/p>
@@ -2284,7 +2310,8 @@ This behavior is enabled by default for most Lambda runtimes when using LocalSta
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_buckets&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> This functionality only works when using the SDKs provided by the Lambda execution environment itself.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+This functionality only works when using the SDKs provided by the Lambda execution environment itself.
 If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/">DNS based transparent execution&lt;/a> if enabled, since those SDK versions will not be patched.
 &lt;/div>
 &lt;p>This feature works by patching the AWS SDKs in the docker images, which provide the execution environment for Lambdas within LocalStack.&lt;/p>
@@ -2482,17 +2509,16 @@ The dependency &lt;code>@aws-amplify/cli&lt;/code> needs to be installed manuall
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">path&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">/my/path2&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once deployed, the API Gateway endpoints above can be accessed via the LocalStack edge port (&lt;code>4566&lt;/code> by default).&lt;/p>
 &lt;p>There are two alternative URL formats for accessing the APIs (for both, v1 and v2 APIs). The recommended format is to use the following URL syntax with an &lt;code>execute-api&lt;/code> hostname:&lt;/p>
-&lt;pre>&lt;code>http://&lt;b>&amp;lt;apiId>&lt;/b>.execute-api.localhost.localstack.cloud:4566/&lt;b>&amp;lt;stageId>&lt;/b>/&lt;b>&amp;lt;path>&lt;/b>
-&lt;/code>&lt;/pre>
-&lt;p>Assuming the ID of the deployed HTTP/REST API is &lt;code>0v1p6q6&lt;/code>, the invocation URL would be:&lt;/p>
-&lt;pre tabindex="0">&lt;code>http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/local/my/path2
-&lt;/code>&lt;/pre>&lt;p>The alternative format (sometimes used, e.g., in case of local DNS issues) is an endpoint with the predefined path marker &lt;code>_user_request_&lt;/code>:&lt;/p>
-&lt;pre>&lt;code>http://localhost:4566/restapis/&lt;b>&amp;lt;apiId>&lt;/b>/&lt;b>&amp;lt;stageId>&lt;/b>/_user_request_/&lt;b>&amp;lt;path>&lt;/b>
-&lt;/code>&lt;/pre>
-&lt;p>&amp;hellip; which for the example above would result in:&lt;/p>
-&lt;pre tabindex="0">&lt;code>http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
-&lt;/code>&lt;/pre>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>http://&amp;lt;apiId&amp;gt;.execute-api.localhost.localstack.cloud:4566/&amp;lt;stageId&amp;gt;/&amp;lt;path&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Assuming the ID of the deployed HTTP/REST API is &lt;code>0v1p6q6&lt;/code>, the invocation URL would be:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/local/my/path2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The alternative format (sometimes used, e.g., in case of local DNS issues) is an endpoint with the predefined path marker &lt;code>_user_request_&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>http://localhost:4566/restapis/&amp;lt;apiId&amp;gt;/&amp;lt;stageId&amp;gt;/_user_request_/&amp;lt;path&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>which for the example above would result in:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>http://localhost:4566/restapis/0v1p6q6/local/_user_request_/my/path1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 Please note that the URLs above include the name of the API Gateway stage (&lt;code>local&lt;/code>) - adding the stage is required for API Gateway v1 APIs, but optional for API Gateway v2 APIs (in case they include the wildcard &lt;code>$default&lt;/code> stage).
 In other words, for v2 the URL &lt;code>http://0v1p6q6.execute-api.localhost.localstack.cloud:4566/my/path1&lt;/code> should also work.
 &lt;/div>
@@ -2520,7 +2546,7 @@ In other words, for v2 the URL &lt;code>http://0v1p6q6.execute-api.localhost.loc
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">module&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">exports&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">handler&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">function&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">callback&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">callback&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">null&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">};&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&amp;hellip; then sending a message to the WebSocket at &lt;code>ws://localhost:4510&lt;/code> will result in the same message getting returned as a response on the same WebSocket.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>then sending a message to the WebSocket at &lt;code>ws://localhost:4510&lt;/code> will result in the same message getting returned as a response on the same WebSocket.&lt;/p>
 &lt;p>A backend service can push data to the connection using the &lt;a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/apigatewaymanagementapi/index.html">Amazon API Gateway Management API&lt;/a>. In LocalStack, it looks like this (make sure to replace &lt;code>&amp;lt;connectionId&amp;gt;&lt;/code> with your WebSocket connection ID):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal apigatewaymanagementapi post-to-connection --connection-id &amp;#39;&amp;lt;connectionId&amp;gt;&amp;#39; --data &amp;#39;{&amp;#34;msg&amp;#34;: &amp;#34;Hi&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>For a simple, self-contained example please refer to &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets">this Github repository&lt;/a>.&lt;/p>
@@ -2633,19 +2659,19 @@ You can further create your feature flag configuration data in JSON format by co
 &lt;p>Basic support for AppSync is included in LocalStack Pro. The local AppSync API allows you to spin up local GraphQL APIs and directly expose your data sources (e.g., DynamoDB tables) to external clients.&lt;/p>
 &lt;h2 id="example-appsync-api-with-dynamodb-data-source">Example AppSync API with DynamoDB data source&lt;/h2>
 &lt;p>For example, you can create a DynamoDB table &lt;code>&amp;quot;posts&amp;quot;&lt;/code> with a key attribute &lt;code>id&lt;/code>, and define a GraphQL schema in a file &lt;code>schema.graphql&lt;/code> like this:&lt;/p>
-&lt;pre tabindex="0">&lt;code>schema {
-query: Query
-}
-type Query {
-getPosts: [Post!]!
-}
-type Post {
-id: DDBString!
-}
-type DDBString {
-S: String!
-}
-&lt;/code>&lt;/pre>&lt;p>&amp;hellip; and then use the AppSync API (or CloudFormation) to create the following entities:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>schema {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> query: Query
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>type Query {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> getPosts: [Post!]!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>type Post {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> id: DDBString!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>type DDBString {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> S: String!
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&amp;hellip; and then use the AppSync API (or CloudFormation) to create the following entities:&lt;/p>
 &lt;ol>
 &lt;li>a GraphQL API&lt;/li>
 &lt;li>a data source of type &lt;code>AMAZON_DYNAMODB&lt;/code> that references the &lt;code>&amp;quot;posts&amp;quot;&lt;/code> DynamoDB table&lt;/li>
@@ -2781,7 +2807,7 @@ For example:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UpdateCount&amp;#34;: 0
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
+&lt;h4 class="alert-heading">Note&lt;/h4>
 In order to use the Athena API, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when pulling the dependencies for the first time.
 &lt;/div></description></item><item><title>User-Guide: Organizations</title><link>/user-guide/aws/organization/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/organization/</guid><description>
 &lt;p>Amazon Web Services Organizations is an account management service that allows you to consolidate multiple different AWS accounts into an organization. It allows you to manage different accounts in a single organization and consolidate billing. With Organizations, you can also attach different policies to your organizational units (OUs) or individual accounts in your organization.&lt;/p>
@@ -2852,10 +2878,12 @@ To disable a policy type, you can run:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --origin-domain-name abc123.s3.amazonaws.com | jq -r &amp;#39;.Distribution.DomainName&amp;#39;)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -k https://$domain/hello.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> In the code example above, the last command (&lt;code>curl https://$domain/hello.txt&lt;/code>) may temporarily fail with a warning message &lt;code>Could not resolve host&lt;/code>. This is due to the fact that operating systems use different DNS caching strategies, and it may take some time for the CloudFront distribution&amp;rsquo;s DNS name (e.g., &lt;code>abc123.cloudfront.net&lt;/code>) to become available in the system. Usually after a few retries the command should work, though. Note that a similar behavior can also be observed in the real AWS - CloudFront DNS names can also take up to 10-15 minutes to propagate across the network.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+In the code example above, the last command (&lt;code>curl https://$domain/hello.txt&lt;/code>) may temporarily fail with a warning message &lt;code>Could not resolve host&lt;/code>. This is due to the fact that operating systems use different DNS caching strategies, and it may take some time for the CloudFront distribution&amp;rsquo;s DNS name (e.g., &lt;code>abc123.cloudfront.net&lt;/code>) to become available in the system. Usually after a few retries the command should work, though. Note that a similar behavior can also be observed in the real AWS - CloudFront DNS names can also take up to 10-15 minutes to propagate across the network.
 &lt;/div>
 &lt;h2 id="using-custom-urls">Using custom URLs&lt;/h2>
 &lt;p>LocalStack Pro supports the use of an alternate domain name, also known as a CNAME or as a custom domain name, to access your applications and file artifacts instead of using the domain name that CloudFront generates for your distribution.&lt;/p>
@@ -2865,16 +2893,20 @@ Please consider that a full configuration would require other values relevant to
 distribution beside these shown in this example. They were omited here for brevity.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>--distribution-config {...&amp;#39;Aliases&amp;#39;:&amp;#39;{&amp;#39;Quantity&amp;#39;:2, &amp;#39;Items&amp;#39;: [&amp;#39;custom.domain.one&amp;#39;, &amp;#39;customDomain.two&amp;#39;]}&amp;#39;...}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
 &lt;/div></description></item><item><title>User-Guide: CodeCommit</title><link>/user-guide/aws/codecommit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/codecommit/</guid><description>
 &lt;p>LocalStack Pro contains basic support for CodeCommit code repositories. The CodeCommit API can be used to create Git repositories, clone these repos to local folders, push commits with changes, etc.&lt;/p>
 &lt;p>A simple example has been added in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/codecommit-git-repo">this Github repository&lt;/a>. The sample creates an Git repository via the AWS CodeCommit API locally, commits and pushes a test file to the repository, and then checks out the file in a fresh clone of the repository.&lt;/p>
 &lt;p>Please note that CodeCommit is a fairly large API and currently not all methods are supported yet, but we are actively extending the implementation on an ongoing basis.&lt;/p></description></item><item><title>User-Guide: Cognito</title><link>/user-guide/aws/cognito/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cognito/</guid><description>
 &lt;p>The &lt;a href="https://aws.amazon.com/cognito/">AWS Cognito&lt;/a> service enables you to manage authentication and access control for AWS-backed apps and resources.&lt;/p>
 &lt;p>LocalStack Pro contains basic support for authentication via Cognito. You can create Cognito user pools, sign up and confirm users, set up Lambda triggers, and use the &lt;code>COGNITO_USER_POOLS&lt;/code> authorizer integration with API Gateway.&lt;/p>
-&lt;p>&lt;strong>Note:&lt;/strong> By default, local Cognito does not send actual email messages.
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+By default, local Cognito does not send actual email messages.
 To enable this feature, you will require an email address and the corresponding SMTP settings.
-Please refer to the &lt;a href="/references/configuration/#emails">Configuration&lt;/a> guide for instructions on how to configure the connection parameters of your SMTP server.&lt;/p>
+Please refer to the &lt;a href="/references/configuration/#emails">Configuration&lt;/a> guide for instructions on how to configure the connection parameters of your SMTP server.
+&lt;/div>
 &lt;h2 id="user-pools-and-basic-authentication-flows">User pools and basic authentication flows&lt;/h2>
 &lt;p>The following subsections illustrate how you can create a user pool and client, and then sign up and authenticate a new user in the pool.&lt;/p>
 &lt;h3 id="creating-a-user-pool">Creating a User Pool&lt;/h3>
@@ -2924,9 +2956,9 @@ Please refer to the &lt;a href="/references/configuration/#emails">Configuration
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;UserSub&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;5fdbe1d5-7901-4fee-9d1d-518103789c94&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>After the user is created, a confirmation code is generated. The code is printed in the LocalStack container logs (see below), and can optionally also be sent via email if you have &lt;a href="#smtp-integration">SMTP configured&lt;/a>.&lt;/p>
-&lt;pre tabindex="0">&lt;code>INFO:localstack_ext.services.cognito.cognito_idp_api: Confirmation code for Cognito user example_user: 125796
-DEBUG:localstack_ext.bootstrap.email_utils: Sending confirmation code via email to &amp;#34;your.email@address.com&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>We can confirm the user with the activation code, using the following command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>INFO:localstack_ext.services.cognito.cognito_idp_api: Confirmation code for Cognito user example_user: 125796
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEBUG:localstack_ext.bootstrap.email_utils: Sending confirmation code via email to &amp;#34;your.email@address.com&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can confirm the user with the activation code, using the following command:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp confirm-sign-up --client-id $client_id --username example_user --confirmation-code &amp;lt;received-confirmation-code&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>As the above command doesn&amp;rsquo;t return an answer, we check the pool to see that the request was successful:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp list-users --user-pool-id $pool_id
@@ -2956,10 +2988,10 @@ DEBUG:localstack_ext.bootstrap.email_utils: Sending confirmation code via email 
 &lt;h3 id="jwt-token-issuer-and-json-web-key-sets-jwks-endpoints">JWT token issuer and JSON Web Key Sets (JWKS) endpoints&lt;/h3>
 &lt;p>The JWT tokens created by Cognito contain an issuer (&lt;code>iss&lt;/code>) attribute that represents the endpoint of the corresponding user pool.
 The issuer endpoint generally follows this pattern, where &lt;code>&amp;lt;pool_id&amp;gt;&lt;/code> is the ID of the Cognito user pool:&lt;/p>
-&lt;pre tabindex="0">&lt;code>http://localhost:4566/&amp;lt;pool_id&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>Under certain circumstances (depending on your configurations), there may be slight nuances of the issuer URL, like:&lt;/p>
-&lt;pre tabindex="0">&lt;code>https://cognito-idp.localhost.localstack.cloud/&amp;lt;pool_id&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>You can access the JSON Web Key Sets (JWKS) configuration under the following standardized well-known URL for each user pool:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>http://localhost:4566/&amp;lt;pool_id&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Under certain circumstances (depending on your configurations), there may be slight nuances of the issuer URL, like:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>https://cognito-idp.localhost.localstack.cloud/&amp;lt;pool_id&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can access the JSON Web Key Sets (JWKS) configuration under the following standardized well-known URL for each user pool:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#39;http://localhost:4566/&amp;lt;pool_id&amp;gt;/.well-known/jwks.json&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;keys&amp;#34;: [{&amp;#34;kty&amp;#34;: &amp;#34;RSA&amp;#34;, &amp;#34;alg&amp;#34;: &amp;#34;RS256&amp;#34;, &amp;#34;use&amp;#34;: &amp;#34;sig&amp;#34;, &amp;#34;kid&amp;#34;: &amp;#34;test-key&amp;#34;, &amp;#34;n&amp;#34;: &amp;#34;k6lrbEH...&amp;#34;]}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Additionally, the global region-specific public keys for Cognito Identity Pools can be retrieved under this endpoint:
@@ -2973,8 +3005,8 @@ The issuer endpoint generally follows this pattern, where &lt;code>&amp;lt;pool_
 &lt;p>More details on Cognito Lambda triggers can be found in the &lt;a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html">AWS documentation&lt;/a>.&lt;/p>
 &lt;h2 id="oauth-flows-via-cognito-login-form">OAuth Flows via Cognito Login Form&lt;/h2>
 &lt;p>You can also access the local &lt;a href="https://docs.aws.amazon.com/cognito/latest/developerguide/login-endpoint.html">Cognito login form&lt;/a> by entering the following URL in your browser:&lt;/p>
-&lt;pre tabindex="0">&lt;code>https://localhost.localstack.cloud/login?response_type=code&amp;amp;client_id=&amp;lt;client_id&amp;gt;&amp;amp;redirect_uri=&amp;lt;redirect_uri&amp;gt;
-&lt;/code>&lt;/pre>&lt;p>Please replace &lt;code>&amp;lt;client_id&amp;gt;&lt;/code> with the ID of an existing user pool client ID (in this case, &lt;code>example_user&lt;/code>), and &lt;code>&amp;lt;redirect_uri&amp;gt;&lt;/code> with the redirect URI of your application (e.g., &lt;code>http://example.com&lt;/code>).&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>https://localhost.localstack.cloud/login?response_type=code&amp;amp;client_id=&amp;lt;client_id&amp;gt;&amp;amp;redirect_uri=&amp;lt;redirect_uri&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Please replace &lt;code>&amp;lt;client_id&amp;gt;&lt;/code> with the ID of an existing user pool client ID (in this case, &lt;code>example_user&lt;/code>), and &lt;code>&amp;lt;redirect_uri&amp;gt;&lt;/code> with the redirect URI of your application (e.g., &lt;code>http://example.com&lt;/code>).&lt;/p>
 &lt;p>The login form should look similar to the screenshot below:
 &lt;figure>
 &lt;img src="/user-guide/aws/cognito/cognitoLogin.png" width="320"/>
@@ -3024,8 +3056,8 @@ The example contains a Lambda function &lt;code>http_request&lt;/code> which is 
 Once deployed, the &lt;code>v1/request&lt;/code> API Gateway endpoint will be secured against the Cognito user pool &amp;ldquo;&lt;code>ExampleUserPool&lt;/code>&amp;rdquo;.
 You can then register users against that local pool, using the same API calls as for AWS.&lt;/p>
 &lt;p>In order to make requests against the secured API Gateway endpoint, use the local Cognito API to retrieve identity credentials which can be sent along as &lt;code>Authentication&lt;/code> HTTP headers (where &lt;code>test-1234567&lt;/code> is the name of the access key ID generated by Cognito):&lt;/p>
-&lt;pre tabindex="0">&lt;code>Authentication: AWS4-HMAC-SHA256 Credential=test-1234567/20190821/us-east-1/cognito-idp/aws4_request ...
-&lt;/code>&lt;/pre>&lt;h2 id="further-reading">Further reading&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>Authentication: AWS4-HMAC-SHA256 Credential=test-1234567/20190821/us-east-1/cognito-idp/aws4_request ...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="further-reading">Further reading&lt;/h2>
 &lt;p>For a more detailed example, please check out our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt">sample repository&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Elastic Compute Cloud (EC2)</title><link>/user-guide/aws/elastic-compute-cloud/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-compute-cloud/</guid><description>
 &lt;p>LocalStack Pro supports the Docker backend for running instances.&lt;/p>
 &lt;p>The Docker backend uses the &lt;a href="https://docs.docker.com/engine/">Docker Engine&lt;/a> to emulate EC2 instances.
@@ -3049,8 +3081,8 @@ To leverage this feature, it is necessary to run the LocalStack daemon process o
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export LOCALSTACK_API_KEY=...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack daemons start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The address for SSH access to the instance is printed in the logs when the instance is initialised.&lt;/p>
-&lt;pre tabindex="0">&lt;code>2022-03-21T14:46:49.540 INFO Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705, 172.17.0.4:22
-&lt;/code>&lt;/pre>&lt;p>The LocalStack daemon is supported on Linux and MacOS.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>2022-03-21T14:46:49.540 INFO Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705, 172.17.0.4:22
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The LocalStack daemon is supported on Linux and MacOS.&lt;/p>
 &lt;p>If the LocalStack daemon is not running, the instance will be only accessible at &lt;code>127.0.0.1&lt;/code> and an available port on the host.&lt;/p>
 &lt;p>To expose additional ports to the host system, update the default security group and add the required ingress ports.
 Security group ingress rules are only applied to the Dockerised instance at the time of creating.
@@ -3060,8 +3092,8 @@ This limitation exists to prevent the host from running out of free ports.&lt;/p
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 authorize-security-group-ingress --group-id default --protocol tcp --port 8080
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-security-groups --group-names default&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The port mapping is printed in the logs as when the instance is intialised.&lt;/p>
-&lt;pre tabindex="0">&lt;code>2022-12-20T19:43:44.544 INFO Instance i-1d6327abf04e31be6 port mappings (container -&amp;gt; host): {&amp;#39;8080/tcp&amp;#39;: 51747, &amp;#39;22/tcp&amp;#39;: 55705}
-&lt;/code>&lt;/pre>&lt;h2 id="key-pairs">Key pairs&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>2022-12-20T19:43:44.544 INFO Instance i-1d6327abf04e31be6 port mappings (container -&amp;gt; host): {&amp;#39;8080/tcp&amp;#39;: 51747, &amp;#39;22/tcp&amp;#39;: 55705}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="key-pairs">Key pairs&lt;/h2>
 &lt;p>You can specify a key pair at startup and LocalStack will copy it into the container and enable it for SSH authentication.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 create-key-pair --key-name alice
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --image-id ami-df5de72bdb3b --key-name alice&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -3140,7 +3172,7 @@ Its execution is logged at &lt;code>/var/log/cloud-init-output.log&lt;/code>.&lt
 &lt;p>LocalStack Pro version provides a basic support for creating and deploying containerized apps using &lt;a href="https://aws.amazon.com/ecs">Amazon ECS&lt;/a>. LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.&lt;/p>
 &lt;p>By default, the &lt;strong>ECS Fargate&lt;/strong> launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
+&lt;h4 class="alert-heading">Note&lt;/h4>
 More complex features like integration of application load balancers (ALBs) are currently not available. Nonetheless, they are being developed and will be available in the near future.
 &lt;/div>
 &lt;h2 id="executing-ecs-tasks-in-docker">Executing ECS tasks in Docker&lt;/h2>
@@ -3211,7 +3243,7 @@ By default, ECR will return a &lt;code>repositoryUri&lt;/code> starting with &lt
 If we set the &lt;code>HOSTNAME_EXTERNAL&lt;/code> to &lt;code>localhost.localstack.cloud&lt;/code>, ECR will return a &lt;code>repositoryUri&lt;/code> like &lt;code>localhost.localstack.cloud:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Notes&lt;/h4>
-In this section, we will assume &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about &lt;a href="/references/limitations/#dns-rebind-protection">DNS rebind protection&lt;/a> to learn more.
+In this section, we will assume &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a> to learn more.
 If this domain does not resolve on your host it is also possible not to set &lt;code>HOSTNAME_EXTERNAL&lt;/code>, please nevertheless use &lt;code>localhost.localstack.cloud&lt;/code> as registry in your pod configuration.
 LocalStack will take care of the DNS resolution of &lt;code>localhost.localstack.cloud&lt;/code> within ECR itself, and you can use the &lt;code>localhost:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code> Uri for tagging and pushing the image on your host.
 &lt;/div>
@@ -3238,7 +3270,7 @@ First, we create a new repository with a chosen name:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
+&lt;h4 class="alert-heading">Note&lt;/h4>
 When creating an ECR, a port from the &lt;a href="/references/external-ports/">the external service port range&lt;/a> is dynamically selected. &lt;br>
 Therefore, the port can differ from &lt;code>4510&lt;/code> used in the samples below.
 Make sure to use the correct URL / port by using the &lt;code>repositoryUrl&lt;/code> of the &lt;code>create-repository&lt;/code> request.
@@ -3320,8 +3352,8 @@ Make sure to use the correct URL / port by using the &lt;code>repositoryUrl&lt;/
 &lt;p>Now, if we describe the pod:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>kubectl describe pod fancier-nginx&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &amp;hellip; we can see, in the events, that the pull from ECR was successful:&lt;/p>
-&lt;pre tabindex="0">&lt;code> Normal Pulled 10s kubelet Successfully pulled image &amp;#34;localhost.localstack.cloud:4510/fancier-nginx:latest&amp;#34; in 2.412775896s
-&lt;/code>&lt;/pre>&lt;h3 id="configuring-an-ingress-for-your-services">Configuring an Ingress for your services&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span> Normal Pulled 10s kubelet Successfully pulled image &amp;#34;localhost.localstack.cloud:4510/fancier-nginx:latest&amp;#34; in 2.412775896s
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="configuring-an-ingress-for-your-services">Configuring an Ingress for your services&lt;/h3>
 &lt;p>In order to make an EKS service externally accessible, we need to create an &lt;code>Ingress&lt;/code> configuration that exposes the service on a certain path to the load balancer.&lt;/p>
 &lt;p>We can create an &lt;code>nginx&lt;/code> Kubernetes service for our sample deployment above by applying the following configuration:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
@@ -3371,21 +3403,21 @@ You can customize the load balancer port by configuring &lt;code>EKS_LOADBALANCE
 &lt;h3 id="enabling-https-with-local-ssltls-certificate-for-the-ingress">Enabling HTTPS with local SSL/TLS certificate for the Ingress&lt;/h3>
 &lt;p>In order to enable HTTPS for your endpoints, we can instruct Kubernetes to use SSL/TLS with our &lt;a href="https://github.com/localstack/localstack-artifacts/blob/master/local-certs/server.key">certificate for local domain names&lt;/a> &lt;code>*.localhost.localstack.cloud&lt;/code>.&lt;/p>
 &lt;p>The local EKS cluster is pre-configured with a secret named &lt;code>ls-secret-tls&lt;/code> which can be used to define the ingress &lt;code>tls&lt;/code> section:&lt;/p>
-&lt;pre tabindex="0">&lt;code>apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-name: test-ingress
-annotations:
-ingress.kubernetes.io/ssl-redirect: &amp;#34;false&amp;#34;
-traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
-traefik.ingress.kubernetes.io/router.tls: &amp;#34;true&amp;#34;
-spec:
-tls:
-- secretName: ls-secret-tls
-hosts:
-- myservice.localhost.localstack.cloud
-...
-&lt;/code>&lt;/pre>&lt;p>After deploying your service with the ingress above, the service should be accessible via the HTTPS endpoint &lt;code>https://myservice.localhost.localstack.cloud&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">apiVersion&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">networking.k8s.io/v1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">kind&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Ingress&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">metadata&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">test-ingress&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">annotations&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ingress.kubernetes.io/ssl-redirect&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;false&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">traefik.ingress.kubernetes.io/router.entrypoints&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">web,websecure&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">traefik.ingress.kubernetes.io/router.tls&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;true&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">spec&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">tls&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#204a87;font-weight:bold">secretName&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">ls-secret-tls&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">hosts&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">myservice.localhost.localstack.cloud&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>After deploying your service with the ingress above, the service should be accessible via the HTTPS endpoint &lt;code>https://myservice.localhost.localstack.cloud&lt;/code>.&lt;/p>
 &lt;p>Please note that the ingress controller doesn&amp;rsquo;t support HTTP/HTTPS multiplexing over the same &lt;code>Ingress&lt;/code>, hence we need to create two &lt;code>Ingress&lt;/code> definitions if the service should be accessible via both HTTP and HTTPS.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -3565,7 +3597,7 @@ In the above example, these parameter are filtered using &lt;code>jq&lt;/code>.&
 &lt;p>The command above will spin up one more more Docker containers on your local machine that can be used to run analytics workloads using Spark, Hadoop, Pig, and other tools.&lt;/p>
 &lt;p>Note that you can also specify startup commands using the &lt;code>--steps=...&lt;/code> command line argument to the &lt;code>create-cluster&lt;/code> command. A simple demo project with more details can be found in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/emr-hadoop-spark-jobs">this Github repository&lt;/a>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
+&lt;h4 class="alert-heading">Note&lt;/h4>
 In order to use the EMR API, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when pulling the dependencies for the first time.
 &lt;/div></description></item><item><title>User-Guide: ElastiCache</title><link>/user-guide/aws/elasticache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elasticache/</guid><description>
 &lt;p>A basic version of &lt;a href="https://aws.amazon.com/elasticache/">ElastiCache&lt;/a> is provided. By default, the API is started on http://localhost:4598 and supports running a local Redis instance (Memcached support coming soon).&lt;/p>
@@ -3592,7 +3624,7 @@ In order to use the EMR API, some additional dependencies have to be fetched fro
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;bar&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>We also support the &lt;code>create-replication-group&lt;/code> API which supports the replication groups in ElastiCache clusters. With the API, you can now have a Redis cluster, a Redis replication group with cluster mode disabled, and a Redis replication group with cluster mode enabled.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
+&lt;h4 class="alert-heading">Note&lt;/h4>
 Redis requires at least 3+ nodes to form a Redis replication group with cluster mode enabled. Hence, if the user requests only 2 node groups, we transparently upgrade to 3 nodes behind the scenes, to avoid raising an error.
 &lt;/div></description></item><item><title>User-Guide: Fault Injection Simulator (FIS)</title><link>/user-guide/aws/fis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/fis/</guid><description>
 &lt;p>Basic support for the Fault Injection Simulator (FIS) service is included in LocalStack Pro. The local FIS API allows you to introduce faults to other services - in order to check how your setup behaves when parts of it stop working.
@@ -3753,7 +3785,8 @@ The full list of such possible fault injections - called &amp;ldquo;actions&amp;
 &lt;p>Initiate a job of the specified type to get the details of the individual inventory items inside a Vault using the &lt;code>initiate-job&lt;/code> command:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-parameters &amp;lt;JSON-CONFIGURATION-FILE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html">on the official AWS documentation&lt;/a>. The following setting can be used in case of Inventory retrieval: &lt;code>{ &amp;quot;Type&amp;quot;: &amp;quot;inventory-retrieval&amp;quot;, &amp;quot;ArchiveId&amp;quot;: &amp;lt;ARCHIVE-ID&amp;gt; }&lt;/code>. Archive ID can be got as an output of the Data Upload/List Jobs request.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html">on the official AWS documentation&lt;/a>. The following setting can be used in case of Inventory retrieval: &lt;code>{ &amp;quot;Type&amp;quot;: &amp;quot;inventory-retrieval&amp;quot;, &amp;quot;ArchiveId&amp;quot;: &amp;lt;ARCHIVE-ID&amp;gt; }&lt;/code>. Archive ID can be got as an output of the Data Upload/List Jobs request.
 &lt;/div>
 &lt;/p>
 &lt;/li>
@@ -3766,7 +3799,8 @@ Data upload to Glacier can accept only Individual files or Archives.&lt;/p>
 &lt;p>Download the required archive based on the Archive ID using the &lt;code>initiate-job&lt;/code> command:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-parameters &amp;lt;JSON-CONFIGURATION-FILE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html">on the official AWS documentation&lt;/a>. The following setting can be used in case of Inventory retrieval: &lt;code>{ &amp;quot;Type&amp;quot;: &amp;quot;archive-retrieval&amp;quot;, &amp;quot;ArchiveId&amp;quot;: &amp;lt;ARCHIVE-ID&amp;gt; }&lt;/code>. Archive ID can be got as an output of the Data Upload/List Jobs request.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html">on the official AWS documentation&lt;/a>. The following setting can be used in case of Inventory retrieval: &lt;code>{ &amp;quot;Type&amp;quot;: &amp;quot;archive-retrieval&amp;quot;, &amp;quot;ArchiveId&amp;quot;: &amp;lt;ARCHIVE-ID&amp;gt; }&lt;/code>. Archive ID can be got as an output of the Data Upload/List Jobs request.
 &lt;/div>
 &lt;/p>
 &lt;/li>
@@ -3781,7 +3815,7 @@ Data upload to Glacier can accept only Individual files or Archives.&lt;/p>
 &lt;/ol></description></item><item><title>User-Guide: Glue</title><link>/user-guide/aws/glue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/glue/</guid><description>
 &lt;p>The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
+&lt;h4 class="alert-heading">Note&lt;/h4>
 In order to run Glue jobs, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Spark, Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when pulling the dependencies for the first time.
 &lt;/div>
 &lt;h2 id="creating-databases-and-table-metadata">Creating Databases and Table Metadata&lt;/h2>
@@ -3922,7 +3956,7 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 With the Schema Registry, you can manage and enforce schemas and schema compatibilities in your streaming applications.
 It integrates nicely with &lt;a href="../managed-streaming-for-kafka">Managed Streaming for Kafka (MSK)&lt;/a>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
+&lt;h4 class="alert-heading">Note&lt;/h4>
 Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry. Support for other dataformats will be added in the future.
 &lt;/div>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-registry --registry-name demo-registry
@@ -3960,7 +3994,7 @@ Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry.
 &lt;p>Support for triggers is currently limited - the basic API endpoints are implemented, but triggers are currently still under development (more details coming soon).&lt;/p></description></item><item><title>User-Guide: Identity and Access Management (IAM)</title><link>/user-guide/aws/iam/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iam/</guid><description>
 &lt;p>By default, LocalStack does not enforce security policies for client requests. In LocalStack Pro, the IAM security enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>:
+&lt;h4 class="alert-heading">Note&lt;/h4>
 The environment configuration &lt;code>ENFORCE_IAM=1&lt;/code> is required to enable this feature. (By default, IAM enforcement is disabled, and all APIs can be accessed without authentication.)
 &lt;/div>
 &lt;h2 id="creating-iam-users-and-access-keys">Creating IAM Users and Access Keys&lt;/h2>
@@ -4014,7 +4048,8 @@ The environment configuration &lt;code>ENFORCE_IAM=1&lt;/code> is required to en
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://mybucket
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket: mybucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Credentials are currently extracted from the request (usually from the &lt;code>Authorization&lt;/code> HTTP header), but the request signature itself is not validated - except for some cases, including S3 presigned URLs.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Credentials are currently extracted from the request (usually from the &lt;code>Authorization&lt;/code> HTTP header), but the request signature itself is not validated - except for some cases, including S3 presigned URLs.
 &lt;/div>
 &lt;h2 id="explainable-iam">Explainable IAM&lt;/h2>
 &lt;p>Since 1.0, our policy engine logs output related to failed policy evaluation to the LocalStack log.
@@ -4051,12 +4086,12 @@ You need to enable &lt;code>DEBUG=1&lt;/code> to see these log messages.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name test-function --role arn:aws:iam::000000000000:role/lambda-role --runtime python3.8 --handler handler.handler --zip-file fileb://function.zip
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>An error occurred (AccessDeniedException) when calling the CreateFunction operation: Access to the specified resource is denied&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>When looking in the LocalStack logs, we can now see 5 log entries specific to that (denied) request:&lt;/p>
-&lt;pre tabindex="0">&lt;code>INFO:localstack_ext.services.iam.policy_engine.handler: Request for service lambda for operation CreateFunction denied.
-DEBUG:localstack_ext.services.iam.policy_engine.handler: Necessary permissions for this action: [&amp;#34;Action &amp;#39;lambda:CreateFunction&amp;#39; for &amp;#39;arn:aws:lambda:us-east-1:000000000000:function:test-function&amp;#39;&amp;#34;, &amp;#34;Action &amp;#39;iam:PassRole&amp;#39; for &amp;#39;arn:aws:iam::000000000000:role/lambda-role&amp;#39;&amp;#34;]
-DEBUG:localstack_ext.services.iam.policy_engine.handler: 0 permissions have been explicitly denied: []
-DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been explicitly allowed: [&amp;#34;Action &amp;#39;lambda:CreateFunction&amp;#39; for &amp;#39;arn:aws:lambda:us-east-1:000000000000:function:test-function&amp;#39;&amp;#34;]
-DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been implicitly denied: [&amp;#34;Action &amp;#39;iam:PassRole&amp;#39; for &amp;#39;arn:aws:iam::000000000000:role/lambda-role&amp;#39;&amp;#34;]
-&lt;/code>&lt;/pre>&lt;p>So we can see the action &lt;code>iam:PassRole&lt;/code> is not allowed but implicitly denied (meaning there is no explicit deny statement in the applicable policies, but no allow either) for your user for resource &lt;code>arn:aws:iam::000000000000:role/lambda-role&lt;/code>.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>INFO:localstack_ext.services.iam.policy_engine.handler: Request for service lambda for operation CreateFunction denied.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEBUG:localstack_ext.services.iam.policy_engine.handler: Necessary permissions for this action: [&amp;#34;Action &amp;#39;lambda:CreateFunction&amp;#39; for &amp;#39;arn:aws:lambda:us-east-1:000000000000:function:test-function&amp;#39;&amp;#34;, &amp;#34;Action &amp;#39;iam:PassRole&amp;#39; for &amp;#39;arn:aws:iam::000000000000:role/lambda-role&amp;#39;&amp;#34;]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEBUG:localstack_ext.services.iam.policy_engine.handler: 0 permissions have been explicitly denied: []
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been explicitly allowed: [&amp;#34;Action &amp;#39;lambda:CreateFunction&amp;#39; for &amp;#39;arn:aws:lambda:us-east-1:000000000000:function:test-function&amp;#39;&amp;#34;]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>DEBUG:localstack_ext.services.iam.policy_engine.handler: 1 permissions have been implicitly denied: [&amp;#34;Action &amp;#39;iam:PassRole&amp;#39; for &amp;#39;arn:aws:iam::000000000000:role/lambda-role&amp;#39;&amp;#34;]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>So we can see the action &lt;code>iam:PassRole&lt;/code> is not allowed but implicitly denied (meaning there is no explicit deny statement in the applicable policies, but no allow either) for your user for resource &lt;code>arn:aws:iam::000000000000:role/lambda-role&lt;/code>.
 If we now add this to our policy (since it is an example let&amp;rsquo;s do it very simple with the same wildcard resource):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2012-10-17&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
@@ -4074,7 +4109,8 @@ If we now add this to our policy (since it is an example let&amp;rsquo;s do it v
 &lt;p>If you enable &lt;code>IAM_SOFT_MODE=1&lt;/code>, you can look at the logs whether your requests would have been denied or not, while still being able to execute your whole stack without interference.
 This is especially useful when trying to find missing permissions over a whole stack (with resources depending on each other) at a time without having to redeploy for every missing permission.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: As of 1.0, resource based policies and conditions are not yet supported. Please try sticking to identity-based policies where possible.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+As of 1.0, resource based policies and conditions are not yet supported. Please try sticking to identity-based policies where possible.
 Inter-service communication evaluation (for example for sts:AssumeRole) also is not supported, which currently reduces the impact of those missing features.
 &lt;/div>
 &lt;h2 id="supported-apis">Supported APIs&lt;/h2>
@@ -4089,7 +4125,7 @@ Inter-service communication evaluation (for example for sts:AssumeRole) also is 
 &lt;p>LocalStack Pro also supports advanced features like SQL queries for IoT topic rules. For example, you can use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html">&lt;code>CreateTopicRule&lt;/code> API&lt;/a> to define a topic rule with a SQL query &lt;code>SELECT * FROM 'my/topic' where attr=123&lt;/code> which will trigger a Lambda function whenever a message with attribute &lt;code>attr=123&lt;/code> is received on the MQTT topic &lt;code>my/topic&lt;/code>.&lt;/p></description></item><item><title>User-Guide: Kinesis Data Analytics</title><link>/user-guide/aws/kinesis-analytics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-analytics/</guid><description>
 &lt;p>The Kinesis Data Analytics API allows you to run continuous SQL queries directly over your Kinesis data streams. A basic support is included in LocalStack Pro which allows you to create Kinesis Analytics applications, define input and output streams and schema types, and run continuous queries locally.&lt;/p></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
 &lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Switching to the new implementation&lt;/h4>
+&lt;h4 class="alert-heading">Warning&lt;/h4>
 &lt;p>A new implementation of the Lambda service is available since LocalStack 1.3.
 Set &lt;code>PROVIDER_OVERRIDE_LAMBDA=asf&lt;/code> when starting LocalStack and let us know if you experience any issues!&lt;/p>
 &lt;p>Starting with LocalStack 2.0 the current Lambda implementation will be deprecated in favor of this new provider.
@@ -4152,11 +4188,11 @@ Below is a simple example for creating a Lambda layer in Python with a &lt;code>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>(cd /tmp; zip testlambda.zip testlambda.py)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name func1 --runtime python3.8 --role r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers $LAYER_ARN:1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with &lt;code>DEBUG=1&lt;/code> enabled), which includes the output from the layer util function:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;gt; START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
-&amp;gt; Output from Lambda layer util function
-&amp;gt; Debug output from Lambda function
-&amp;gt; END RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23
-&lt;/code>&lt;/pre>&lt;h3 id="referencing-lambda-layers-from-real-aws">Referencing Lambda layers from real AWS&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>&amp;gt; START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; Output from Lambda layer util function
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; Debug output from Lambda function
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; END RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="referencing-lambda-layers-from-real-aws">Referencing Lambda layers from real AWS&lt;/h3>
 &lt;p>Alternatively, if your Lambda function references a layer in real AWS, there is also a mechanism to integrate such a remote layer into your local dev environment.&lt;/p>
 &lt;p>In order to achieve that, you&amp;rsquo;ll need to make your Lambda layer accessible from the &lt;code>886468871268&lt;/code> AWS account ID (this is an account managed by LocalStack on AWS).
 Assuming you&amp;rsquo;ve created a layer named &lt;code>test-layer&lt;/code> with version &lt;code>1&lt;/code>, you can use the following command to grant access to your layer:&lt;/p>
@@ -4245,7 +4281,9 @@ Assuming you&amp;rsquo;ve created a layer named &lt;code>test-layer&lt;/code> wi
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">official AWS documentation&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Managed Streaming for Kafka (MSK)</title><link>/user-guide/aws/managed-streaming-for-kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/managed-streaming-for-kafka/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">official AWS documentation&lt;/a>.&lt;/p>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>Only the local executor with locally launched LocalStack can be used together with JVM Lambda Functions.&lt;/p></description></item><item><title>User-Guide: Managed Streaming for Kafka (MSK)</title><link>/user-guide/aws/managed-streaming-for-kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/managed-streaming-for-kafka/</guid><description>
 &lt;p>LocalStack supports a basic version of &lt;a href="https://aws.amazon.com/msk/">Managed Streaming for Kafka (MSK)&lt;/a> for testing. This allows you to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic.&lt;/p>
 &lt;h2 id="create-a-local-msk-cluster">Create a local MSK Cluster&lt;/h2>
 &lt;h3 id="prerequisites">Prerequisites&lt;/h3>
@@ -4314,9 +4352,10 @@ The output of the command looks similar to this:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Created topic LocalMSKTopic.&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="interacting-with-the-topic">Interacting with the topic&lt;/h2>
 &lt;p>In this example we use the JVM truststore to talk to the MSK cluster. To do this, first create a folder named &lt;code>/tmp&lt;/code> on the client machine. Then, go to the bin folder of the Apache Kafka installation and run the following command, replacing &lt;code>java_home&lt;/code> with the path of your &lt;code>java_home&lt;/code>. In this instance, the &lt;code>java_home&lt;/code> is &lt;code> /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home&lt;/code>.&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;strong>Note&lt;/strong>: The following step is optional and may not be required, depending on the operating system environment being used.&lt;/p>
-&lt;/blockquote>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The following step is optional and may not be required, depending on the operating system environment being used.
+&lt;/div>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>While still in the bin folder of the Apache Kafka installation on the client machine, create a text file named &lt;code>client.properties&lt;/code> with the following contents.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>ssl.truststore.location=/tmp/kafka.client.truststore.jks&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -4433,18 +4472,18 @@ This information must be explicitly passed in operators, hooks and sensors.&lt;/
 &lt;p>The Quantum Ledger Database (QLDB) API supports queries over cryptographically verifiable data, stored in a journal of immutable transaction events. LocalStack allows to create local ledgers and journals, to perform &lt;code>CREATE TABLE&lt;/code> statements, to insert data via &lt;code>INSERT&lt;/code> statements, and to query data via &lt;code>SELECT&lt;/code> statements.&lt;/p>
 &lt;p>QLDB uses the &lt;a href="https://amzn.github.io/ion-docs">Amazon ION data format&lt;/a>, a data serialization format that represents a superset of JSON, with a number of additional features.&lt;/p>
 &lt;p>A simple QLDB example running on LocalStack is provided in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/qldb-ledger-queries">this Github repository&lt;/a>. The sample consists of two simple scenarios: (1) to create and list tables via the &lt;code>pyqldb&lt;/code> Python library, and (2) to insert data into two tables and perform a &lt;code>JOIN&lt;/code> query that combines data from the two tables. The sample output is posted below:&lt;/p>
-&lt;pre tabindex="0">&lt;code>Scenario 1: create and list tables in ledger
------------
-Creating new test ledger in QLDB API: ledger-test-1
-Creating two test tables in ledger
-Retrieved list of tables in ledger ledger-test-1: [&amp;#39;foobar1&amp;#39;, &amp;#39;foobar2&amp;#39;]
------------
-Scenario 2: create ledger tables and run join query
------------
-Creating two test tables in ledger - &amp;#34;Vehicle&amp;#34; and &amp;#34;VehicleRegistration&amp;#34;
-Running a query that joins data from the two tables
-Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v2&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v3&amp;#39;}}]
-&lt;/code>&lt;/pre></description></item><item><title>User-Guide: Redshift</title><link>/user-guide/aws/redshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/redshift/</guid><description>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>Scenario 1: create and list tables in ledger
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-----------
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating new test ledger in QLDB API: ledger-test-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating two test tables in ledger
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Retrieved list of tables in ledger ledger-test-1: [&amp;#39;foobar1&amp;#39;, &amp;#39;foobar2&amp;#39;]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-----------
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Scenario 2: create ledger tables and run join query
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-----------
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating two test tables in ledger - &amp;#34;Vehicle&amp;#34; and &amp;#34;VehicleRegistration&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Running a query that joins data from the two tables
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v2&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v3&amp;#39;}}]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Redshift</title><link>/user-guide/aws/redshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/redshift/</guid><description>
 &lt;p>Redshift is a cloud-based data warehouse solution which allows end users to aggregate huge volumes of data &amp;amp; parallel processing of data. Redshift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data. The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.&lt;/p>
 &lt;p>A basic version of Redshift is available in LocalStack Pro - see the supported APIs are available over our &lt;a href="/user-guide/aws/feature-coverage/">feature coverage page&lt;/a>.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
@@ -4454,7 +4493,8 @@ Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&am
 &lt;p>Create a cluster named &lt;code>mysamplecluster&lt;/code> using the &lt;code>awslocal&lt;/code> CLI:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift create-cluster --cluster-identifier mysamplecluster --master-username masteruser --master-user-password secret1 --node-type ds2.xlarge --cluster-type single-node&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Redshift is essentially mocked in LocalStack alongside the node type. Hence while developing and testing locally, you can use any node type.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Redshift is essentially mocked in LocalStack alongside the node type. Hence while developing and testing locally, you can use any node type.
 &lt;/div>
 &lt;/p>
 &lt;/li>
@@ -4578,7 +4618,8 @@ In order to use MSSQL databases, you need to explicitly accept the &lt;a href="h
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test.example.com. 300 IN A 1.2.3.4&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the &lt;code>DNS_ADDRESS&lt;/code> configuration variable).
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the &lt;code>DNS_ADDRESS&lt;/code> configuration variable).
 &lt;/div>
 &lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
 &lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
@@ -4597,16 +4638,16 @@ In order to use MSSQL databases, you need to explicitly accept the &lt;a href="h
 &lt;p>LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them.&lt;/p>
 &lt;h2 id="model-training">Model Training&lt;/h2>
 &lt;p>A basic training example using the &lt;code>sagemaker.tensorflow.TensorFlow&lt;/code> class is provided in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/sagemaker-ml-jobs">this Github repository&lt;/a>. Essentially, the code boils down to these core lines:&lt;/p>
-&lt;pre tabindex="0">&lt;code>inputs = ... # load training data files
-mnist_estimator = TensorFlow(entry_point=&amp;#39;mnist.py&amp;#39;, role=&amp;#39;arn:aws:...&amp;#39;,
-framework_version=&amp;#39;1.12.0&amp;#39;, sagemaker_session=sagemaker_session,
-train_instance_count=1, training_steps=10, evaluation_steps=10)
-mnist_estimator.fit(inputs, logs=False)
-&lt;/code>&lt;/pre>&lt;p>The code snippet above uploads the model training code to local S3, submits a new training job to the local SageMaker API, and finally puts the trained model back to an output S3 bucket. Please refer to the sample repo for more details.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python3" data-lang="python3">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">inputs&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span> &lt;span style="color:#8f5902;font-style:italic"># load training data files&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">mnist_estimator&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">TensorFlow&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">entry_point&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;mnist.py&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">role&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;arn:aws:...&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">framework_version&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;1.12.0&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">sagemaker_session&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">sagemaker_session&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">train_instance_count&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">training_steps&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">evaluation_steps&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">mnist_estimator&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">fit&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">inputs&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">logs&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">False&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The code snippet above uploads the model training code to local S3, submits a new training job to the local SageMaker API, and finally puts the trained model back to an output S3 bucket. Please refer to the sample repo for more details.&lt;/p>
 &lt;h2 id="model-deployment-and-inference">Model Deployment and Inference&lt;/h2>
 &lt;p>SageMaker supports the deployment and real-time inference of singular local ML models. An example for that is provided in our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sagemaker-inference">PRO samples repository&lt;/a>. As explained in the ReadMe of the sample, you will need to retrieve the image with your AWS account by connecting with &lt;a href="https://github.com/aws/deep-learning-containers/blob/master/available_images.md">the provided ECR repository&lt;/a>:&lt;/p>
-&lt;pre tabindex="0">&lt;code>aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 763104351884.dkr.ecr.us-east-1.amazonaws.com
-&lt;/code>&lt;/pre>&lt;p>The example also shows the two currently supported options of inference - on the container itself or through the &lt;code>sagemaker-runtime&lt;/code> invocation endpoint:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 763104351884.dkr.ecr.us-east-1.amazonaws.com&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The example also shows the two currently supported options of inference - on the container itself or through the &lt;code>sagemaker-runtime&lt;/code> invocation endpoint:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">inference_model_container&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">run_id&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87">str&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">ep&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">sagemaker&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">describe_endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">EndpointName&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">f&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#4e9a06">{&lt;/span>&lt;span style="color:#000">ENDPOINT_NAME&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">-&lt;/span>&lt;span style="color:#4e9a06">{&lt;/span>&lt;span style="color:#000">run_id&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">arn&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">ep&lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;EndpointArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
@@ -4629,7 +4670,8 @@ mnist_estimator.fit(inputs, logs=False)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">_show_predictions&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">json&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">loads&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">response&lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Body&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">read&lt;/span>&lt;span style="color:#000;font-weight:bold">()))&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
 &lt;/div></description></item><item><title>User-Guide: Simple Email Service (SES)</title><link>/user-guide/aws/ses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ses/</guid><description>
 &lt;h2 id="community">Community&lt;/h2>
 &lt;p>LocalStack keeps track of all sent emails for retrospection.&lt;/p>
@@ -4644,11 +4686,13 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ses send-email \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-Note: If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call &lt;code>awslocal ses verify-email-identity --email-address user1@yourdomain.com&lt;/code>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Hint&lt;/h4>
+&lt;p>If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>awslocal ses verify-email-identity --email-address user1@yourdomain.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
-&lt;/p>
 &lt;p>The &lt;a href="https://app.localstack.cloud">Web user interface&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
 &lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item><item><title>User-Guide: Systems Manager (SSM)</title><link>/user-guide/aws/systems-manager/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/systems-manager/</guid><description>
 &lt;p>Systems Manager can be used in conjunction with the &lt;a href="/user-guide/aws/elastic-compute-cloud/">EC2 Docker backend&lt;/a> to run operational tasks on the Dockerised instances.&lt;/p>
@@ -4806,7 +4850,8 @@ Note: If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;,
 &lt;p>The AWS Transfer API provides the ability to create FTP(S) servers to make files in S3 buckets accessible directly via FTP.&lt;/p>
 &lt;p>A simple example using AWS Transfer is included in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/transfer-ftp-s3">this Github repository&lt;/a>. The sample creates an FTP server via the Transfer API locally, uploads two files via FTP to S3, and then finally downloads the files from the target S3 bucket.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;p>&lt;strong>Note:&lt;/strong> The Transfer API does not provide a way to return the endpoint URL of created FTP servers. Hence, in order to determine the server endpoint, the local port is encoded as a suffix in the &lt;code>ServerId&lt;/code> attribute, using the pattern &lt;code>s-&amp;lt;id&amp;gt;:&amp;lt;port&amp;gt;&lt;/code>. For example, assume the following is the response from the &lt;code>CreateServer&lt;/code> API call, then the FTP server is accessible on port &lt;code>4511&lt;/code> (i.e., &lt;code>ftp://localhost:4511&lt;/code>):&lt;/p>
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>The Transfer API does not provide a way to return the endpoint URL of created FTP servers. Hence, in order to determine the server endpoint, the local port is encoded as a suffix in the &lt;code>ServerId&lt;/code> attribute, using the pattern &lt;code>s-&amp;lt;id&amp;gt;:&amp;lt;port&amp;gt;&lt;/code>. For example, assume the following is the response from the &lt;code>CreateServer&lt;/code> API call, then the FTP server is accessible on port &lt;code>4511&lt;/code> (i.e., &lt;code>ftp://localhost:4511&lt;/code>):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ServerId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;s-73c53daf86da4:4511&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
@@ -4828,5 +4873,6 @@ Note: If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;,
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Running this code in Lambda on LocalStack will result in two trace segments being created in XRay - one from the instrumented &lt;code>boto3&lt;/code> client when running &lt;code>create_bucket(..)&lt;/code>, and one for the custom subsegment denoted &lt;code>'my_code'&lt;/code>. You can use the regular XRay API calls (e.g., &lt;a href="https://docs.aws.amazon.com/xray/latest/api/API_GetTraceSummaries.html">&lt;code>GetTraceSummaries&lt;/code>&lt;/a>, &lt;a href="https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html">&lt;code>BatchGetTraces&lt;/code>&lt;/a>) to retrieve the details (timestamps, IDs, etc) of these segments.&lt;/p>
 &lt;p>You can also checkout another of our examples with Xray and Lambda, deployed via the Serverless framework, &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray">&lt;code>here&lt;/code>&lt;/a>&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> To use XRay in Lambdas, please note that you&amp;rsquo;ll need to configure &lt;code>LAMBDA_XRAY_INIT=1&lt;/code> - this will ensure that the XRay daemon process is fully initialized when spawning Lambda containers (may slightly increase startup times).
+&lt;h4 class="alert-heading">Note&lt;/h4>
+To use XRay in Lambdas, please note that you&amp;rsquo;ll need to configure &lt;code>LAMBDA_XRAY_INIT=1&lt;/code> - this will ensure that the XRay daemon process is fully initialized when spawning Lambda containers (may slightly increase startup times).
 &lt;/div></description></item></channel></rss>

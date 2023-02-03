@@ -26,9 +26,8 @@ your serverless applications powered by Spring Cloud Function framework.&lt;/p>
 &lt;/tbody>
 &lt;/table>
 &lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">aarch64 warning&lt;/h4>
-Some features and services described in this document may not work properly on
-aarch64, including Apple&amp;rsquo;s M1 silicon
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Some features and services described in this document may not work properly on aarch64, including Apple&amp;rsquo;s M1 silicon.
 &lt;/div>
 &lt;h2 id="covered-topics">Covered Topics&lt;/h2>
 &lt;p>We will create a new Rest API application that will route requests
@@ -673,10 +672,9 @@ defined &lt;code>SampleModel&lt;/code>:&lt;/p>
 &lt;p>Note how we used Spring&amp;rsquo;s dependency injection to inject &lt;code>ObjectMapper&lt;/code> Bean we
 configured earlier.&lt;/p>
 &lt;h4 id="cold-start-and-warmup-pro">Cold Start and Warmup (PRO)&lt;/h4>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Pro Features&lt;/h4>
-Please note that &lt;em>EVENTS&lt;/em> is a LocalStack PRO feature and is not supported
-in Community version
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Please note that &lt;em>EVENTS&lt;/em> is a LocalStack PRO feature and is not supported in Community version.
 &lt;/div>
 &lt;p>We know Java&amp;rsquo;s cold start is always a pain.
 To minimize this pain, we will try to define a pre-warming endpoint within the Rest API.
@@ -1414,7 +1412,8 @@ LocalStack&amp;rsquo;s Lambda container.&lt;/p>
 &lt;/div>
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: As mentioned in the code, you will have to use an alternative local bucket marker to &lt;code>__local__&lt;/code> as this is not a valid S3 bucket name.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+As mentioned in the code, you will have to use an alternative local bucket marker to &lt;code>__local__&lt;/code> as this is not a valid S3 bucket name.
 To change it (to, e.g., &lt;code>hot-code&lt;/code>) you can use the environment variable &lt;code>BUCKET_MARKER_LOCAL&lt;/code>.
 &lt;/div>
 &lt;p>Then to bootstrap and deploy the stack run the following shell script&lt;/p>
@@ -1975,8 +1974,9 @@ Note that the &lt;code>alarm-actions&lt;/code> requires a valid ARN of an existi
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statistic Maximum \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --treat-missing notBreaching \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --alarm-actions &amp;lt;topic-arn&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;p>&lt;strong>Known Limitations:&lt;/strong>&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+&lt;p>Known limitations:&lt;/p>
 &lt;ul>
 &lt;li>Anamoly detection, and extended-statics are not supported&lt;/li>
 &lt;li>&lt;code>unit&lt;/code> values are ignored&lt;/li>
@@ -1990,10 +1990,12 @@ Any cluster created with the Elasticsearch Service will show up in the OpenSearc
 &lt;h2 id="creating-an-elasticsearch-cluster">Creating an Elasticsearch cluster&lt;/h2>
 &lt;p>You can go ahead and use &lt;a href="/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a> to create a new elasticsearch domain via the &lt;code>aws es create-elasticsearch-domain&lt;/code> command.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Unless you use the Elasticsearch default version, the first time you create a cluster with a specific version, the Elasticsearch binary is downloaded, which may take a while to download.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Unless you use the Elasticsearch default version, the first time you create a cluster with a specific version, the Elasticsearch binary is downloaded, which may take a while to download.
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.
 &lt;/div>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name my-domain
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -2026,17 +2028,17 @@ Any cluster created with the Elasticsearch Service will show up in the OpenSearc
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>In the LocalStack log you will see something like the following, where you can see the cluster starting up in the background.&lt;/p>
-&lt;pre tabindex="0">&lt;code>2021-11-08T16:29:28:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=57705 -E http.publish_port=57705 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data=&amp;#34;/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data&amp;#34; -E path.repo=&amp;#34;/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup&amp;#34; -E xpack.ml.enabled=false with env {&amp;#39;ES_JAVA_OPTS&amp;#39;: &amp;#39;-Xms200m -Xmx600m&amp;#39;, &amp;#39;ES_TMPDIR&amp;#39;: &amp;#39;/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp&amp;#39;}
-2021-11-08T16:29:28:INFO:localstack.services.es.cluster: registering an endpoint proxy for http://my-domain.us-east-1.es.localhost.localstack.cloud:4566 =&amp;gt; http://127.0.0.1:57705
-2021-11-08T16:29:30:INFO:localstack.services.es.cluster: OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
-2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,502][INFO ][o.e.n.Node ] [noctua] version[7.10.0], pid[22403], build[default/tar/51e9d6f22758d0374a0f3f5c6e8f3a7997850f96/2020-11-09T21:30:33.964949Z], OS[Linux/5.4.0-89-generic/amd64], JVM[Ubuntu/OpenJDK 64-Bit Server VM/11.0.11/11.0.11+9-Ubuntu-0ubuntu2.20.04]
-2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,510][INFO ][o.e.n.Node ] [noctua] JVM home [/usr/lib/jvm/java-11-openjdk-amd64], using bundled JDK [false]
-2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,511][INFO ][o.e.n.Node ] [noctua] JVM arguments [-Xshare:auto, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -Djava.io.tmpdir=/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms200m, -Xmx600m, -XX:MaxDirectMemorySize=314572800, -Des.path.home=/opt/code/localstack/localstack/localstack/infra/elasticsearch, -Des.path.conf=/opt/code/localstack/localstack/localstack/infra/elasticsearch/config, -Des.distribution.flavor=default, -Des.distribution.type=tar, -Des.bundled_jdk=true]
-2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,258][INFO ][o.e.p.PluginsService ] [noctua] loaded module [aggs-matrix-stats]
-2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,259][INFO ][o.e.p.PluginsService ] [noctua] loaded module [analysis-common]
-2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,260][INFO ][o.e.p.PluginsService ] [noctua] loaded module [constant-keyword]
-...
-&lt;/code>&lt;/pre>&lt;p>and after some time, you should see that the &lt;code>Processing&lt;/code> state of the domain is set to &lt;code>false&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:28:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=57705 -E http.publish_port=57705 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data=&amp;#34;/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data&amp;#34; -E path.repo=&amp;#34;/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup&amp;#34; -E xpack.ml.enabled=false with env {&amp;#39;ES_JAVA_OPTS&amp;#39;: &amp;#39;-Xms200m -Xmx600m&amp;#39;, &amp;#39;ES_TMPDIR&amp;#39;: &amp;#39;/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp&amp;#39;}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:28:INFO:localstack.services.es.cluster: registering an endpoint proxy for http://my-domain.us-east-1.es.localhost.localstack.cloud:4566 =&amp;gt; http://127.0.0.1:57705
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:30:INFO:localstack.services.es.cluster: OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,502][INFO ][o.e.n.Node ] [noctua] version[7.10.0], pid[22403], build[default/tar/51e9d6f22758d0374a0f3f5c6e8f3a7997850f96/2020-11-09T21:30:33.964949Z], OS[Linux/5.4.0-89-generic/amd64], JVM[Ubuntu/OpenJDK 64-Bit Server VM/11.0.11/11.0.11+9-Ubuntu-0ubuntu2.20.04]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,510][INFO ][o.e.n.Node ] [noctua] JVM home [/usr/lib/jvm/java-11-openjdk-amd64], using bundled JDK [false]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:32:INFO:localstack.services.es.cluster: [2021-11-08T16:29:32,511][INFO ][o.e.n.Node ] [noctua] JVM arguments [-Xshare:auto, -Des.networkaddress.cache.ttl=60, -Des.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -Djava.io.tmpdir=/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms200m, -Xmx600m, -XX:MaxDirectMemorySize=314572800, -Des.path.home=/opt/code/localstack/localstack/localstack/infra/elasticsearch, -Des.path.conf=/opt/code/localstack/localstack/localstack/infra/elasticsearch/config, -Des.distribution.flavor=default, -Des.distribution.type=tar, -Des.bundled_jdk=true]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,258][INFO ][o.e.p.PluginsService ] [noctua] loaded module [aggs-matrix-stats]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,259][INFO ][o.e.p.PluginsService ] [noctua] loaded module [analysis-common]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2021-11-08T16:29:36:INFO:localstack.services.es.cluster: [2021-11-08T16:29:36,260][INFO ][o.e.p.PluginsService ] [noctua] loaded module [constant-keyword]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and after some time, you should see that the &lt;code>Processing&lt;/code> state of the domain is set to &lt;code>false&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain --domain-name my-domain | jq &amp;#34;.DomainStatus.Processing&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>false&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="interact-with-the-cluster">Interact with the cluster&lt;/h2>
@@ -2133,19 +2135,19 @@ This will multiplex all domains to the same cluster, or return the same port eve
 This can however lead to unexpected behavior when persisting data into Elasticsearch, or creating clusters with different versions, so we do not recommend it.&lt;/p>
 &lt;h3 id="storage-layout">Storage Layout&lt;/h3>
 &lt;p>Elasticsearch will be organized in your state directory as follows:&lt;/p>
-&lt;pre tabindex="0">&lt;code>localstack@machine % tree -L 4 volume/state
-.
-├── elasticsearch
-│ └── arn:aws:es:us-east-1:000000000000:domain
-│ ├── my-cluster-1
-│ │ ├── backup
-│ │ ├── data
-│ │ └── tmp
-│ ├── my-cluster-2
-│ │ ├── backup
-│ │ ├── data
-│ │ └── tmp
-&lt;/code>&lt;/pre>&lt;h2 id="custom-elasticsearch-backends">Custom Elasticsearch backends&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>localstack@machine % tree -L 4 volume/state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── elasticsearch
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ └── arn:aws:es:us-east-1:000000000000:domain
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ ├── my-cluster-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── backup
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ └── tmp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ ├── my-cluster-2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── backup
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ └── tmp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="custom-elasticsearch-backends">Custom Elasticsearch backends&lt;/h2>
 &lt;p>LocalStack downloads elasticsearch asynchronously the first time you run the &lt;code>aws es create-elasticsearch-domain&lt;/code>, so you will get the response from localstack first and then (after download/install) you will have your elasticsearch cluster running locally.
 You may not want this, and instead use your already running elasticsearch cluster.
 This can also be useful when you want to run a cluster with a custom configuration that localstack does not support.&lt;/p>
@@ -2315,7 +2317,11 @@ LocalStack will return the endpoint immediately, but keep &lt;code>Processing = 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;KeyId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:kms:us-east-1:000000000000:key/010a4301-4205-4df8-ae52-4c2895d47326&amp;#34;&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;EncryptionAlgorithm&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;SYMMETRIC_DEFAULT&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The value of the &lt;code>CiphertextBlob&lt;/code> field is a Base64-encoded result of the encryption of our plaintext. To decrypt this with KMS, we must first get rid of this Base64-encoding. So to our &lt;code>Encrypt&lt;/code> operation we add the &lt;code>output&lt;/code> parameter, requesting the output to be in the text form instead of the default JSON. We also supply the &lt;code>query&lt;/code> parameter, so the output only contains the value of the specified &lt;code>CiphertextBlob&lt;/code> field. Then we feed the result to the &lt;code>base64&lt;/code> tool, asking it to remove the Base64 encoding, producing a binary output. We save that output to a file for future use. &lt;strong>Note:&lt;/strong> Careful with the &lt;code>CiphertextBlob&lt;/code> value for the &lt;code>query&lt;/code> parameter - the AWS CLI doesn&amp;rsquo;t check if the requested field is even if the output, so if you have a typo, the command will succeed, but the data sent to &lt;code>base64&lt;/code> is going to be just a word &lt;code>None&lt;/code>. It will lead to unexpected results later.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The value of the &lt;code>CiphertextBlob&lt;/code> field is a Base64-encoded result of the encryption of our plaintext. To decrypt this with KMS, we must first get rid of this Base64-encoding. So to our &lt;code>Encrypt&lt;/code> operation we add the &lt;code>output&lt;/code> parameter, requesting the output to be in the text form instead of the default JSON. We also supply the &lt;code>query&lt;/code> parameter, so the output only contains the value of the specified &lt;code>CiphertextBlob&lt;/code> field. Then we feed the result to the &lt;code>base64&lt;/code> tool, asking it to remove the Base64 encoding, producing a binary output. We save that output to a file for future use.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Careful with the &lt;code>CiphertextBlob&lt;/code> value for the &lt;code>query&lt;/code> parameter - the AWS CLI doesn&amp;rsquo;t check if the requested field is even if the output, so if you have a typo, the command will succeed, but the data sent to &lt;code>base64&lt;/code> is going to be just a word &lt;code>None&lt;/code>. It will lead to unexpected results later.
+&lt;/div>
 &lt;p>When we want to, we can decrypt our file using the same KMS key:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kms decrypt \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --ciphertext-blob fileb://my_encrypted_data \
@@ -2431,7 +2437,8 @@ We set the ARN of our Kinesis stream in the &lt;code>kinesis-stream-source-confi
 In the &lt;code>elasticsearch-destination-configuration&lt;/code> we set (again) the access role, the &lt;code>DomainARN&lt;/code> of the Elasticsearch domain we want to publish to, as well as &lt;code>IndexName&lt;/code> and &lt;code>TypeName&lt;/code> for Elasticsearch.
 Since we want to backup all documents to S3, we also set &lt;code>S3BackupMode&lt;/code> to &lt;code>AllDocuments&lt;/code> and provide a &lt;code>S3Configuration&lt;/code> pointing to our created bucket.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> In LocalStack, per default, the IAM roles will not be verified, so you can provide any ARN here. In AWS, you need to check the access rights of the specified role for the task.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+In LocalStack, per default, the IAM roles will not be verified, so you can provide any ARN here. In AWS, you need to check the access rights of the specified role for the task.
 &lt;/div>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal firehose create-delivery-stream --delivery-stream-name activity-to-elasticsearch-local --delivery-stream-type KinesisStreamAsSource --kinesis-stream-source-configuration &amp;#34;KinesisStreamARN=arn:aws:kinesis:us-east-1:000000000000:stream/kinesis-es-local-stream,RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role&amp;#34; --elasticsearch-destination-configuration &amp;#34;RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,DomainARN=arn:aws:es:us-east-1:000000000000:domain/es-local,IndexName=activity,TypeName=activity,S3BackupMode=AllDocuments,S3Configuration={RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,BucketARN=arn:aws:s3:::kinesis-activity-backup-local}&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -2452,7 +2459,8 @@ We can input our data into our source Kinesis stream, our put it directly into t
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EncryptionType&amp;#34;: &amp;#34;NONE&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note:&lt;/strong> If you are using aws cli v2, you can add &lt;code>--cli-binary-format raw-in-base64-out&lt;/code> to the above command
+&lt;h4 class="alert-heading">Note&lt;/h4>
+If you are using aws cli v2, you can add &lt;code>--cli-binary-format raw-in-base64-out&lt;/code> to the above command
 &lt;/div>
 &lt;/p>
 &lt;p>Or directly into the Firehose delivery stream:&lt;/p>
@@ -2485,7 +2493,7 @@ We can input our data into our source Kinesis stream, our put it directly into t
 &lt;p>If you get a similar output, you have correctly set up a Firehose delivery stream!
 Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
 &lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Switching to the new implementation&lt;/h4>
+&lt;h4 class="alert-heading">Warning&lt;/h4>
 &lt;p>A new implementation of the Lambda service is available since LocalStack 1.3.
 Set &lt;code>PROVIDER_OVERRIDE_LAMBDA=asf&lt;/code> when starting LocalStack and let us know if you experience any issues!&lt;/p>
 &lt;p>Starting with LocalStack 2.0 the current Lambda implementation will be deprecated in favor of this new provider.
@@ -2548,11 +2556,11 @@ Below is a simple example for creating a Lambda layer in Python with a &lt;code>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>(cd /tmp; zip testlambda.zip testlambda.py)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name func1 --runtime python3.8 --role r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers $LAYER_ARN:1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with &lt;code>DEBUG=1&lt;/code> enabled), which includes the output from the layer util function:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;gt; START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
-&amp;gt; Output from Lambda layer util function
-&amp;gt; Debug output from Lambda function
-&amp;gt; END RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23
-&lt;/code>&lt;/pre>&lt;h3 id="referencing-lambda-layers-from-real-aws">Referencing Lambda layers from real AWS&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>&amp;gt; START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; Output from Lambda layer util function
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; Debug output from Lambda function
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; END RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="referencing-lambda-layers-from-real-aws">Referencing Lambda layers from real AWS&lt;/h3>
 &lt;p>Alternatively, if your Lambda function references a layer in real AWS, there is also a mechanism to integrate such a remote layer into your local dev environment.&lt;/p>
 &lt;p>In order to achieve that, you&amp;rsquo;ll need to make your Lambda layer accessible from the &lt;code>886468871268&lt;/code> AWS account ID (this is an account managed by LocalStack on AWS).
 Assuming you&amp;rsquo;ve created a layer named &lt;code>test-layer&lt;/code> with version &lt;code>1&lt;/code>, you can use the following command to grant access to your layer:&lt;/p>
@@ -2641,7 +2649,9 @@ Assuming you&amp;rsquo;ve created a layer named &lt;code>test-layer&lt;/code> wi
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">official AWS documentation&lt;/a>.&lt;/p></description></item><item><title>User-Guide: CloudWatch Logs</title><link>/user-guide/aws/logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/logs/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">official AWS documentation&lt;/a>.&lt;/p>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>Only the local executor with locally launched LocalStack can be used together with JVM Lambda Functions.&lt;/p></description></item><item><title>User-Guide: CloudWatch Logs</title><link>/user-guide/aws/logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/logs/</guid><description>
 &lt;p>&lt;a href="https://docs.aws.amazon.com/cloudwatch/index.html">CloudWatch Logs&lt;/a> allows to store and retrieve logs. While some services automatically create and write logs (e.g. Lambda), logs can also be added manually.
 CloudWatch Logs is available in the Community version. However, some specific features are only available in Pro.&lt;/p>
 &lt;h2 id="subscription-filters">Subscription Filters&lt;/h2>
@@ -2710,10 +2720,12 @@ Any cluster created with the OpenSearch Service will show up in the Elasticsearc
 &lt;h2 id="creating-an-opensearch-cluster">Creating an OpenSearch cluster&lt;/h2>
 &lt;p>You can go ahead and use &lt;a href="/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a> to create a new OpenSearch domain via the &lt;code>aws opensearch create-domain&lt;/code> command.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: Every time when you create a cluster with a version of OpenSearch you haven&amp;rsquo;t used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Every time when you create a cluster with a version of OpenSearch you haven&amp;rsquo;t used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
-&lt;strong>Note&lt;/strong>: The default OpenSearch version used is 1.1.0.
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The default OpenSearch version used is 1.1.0.
 &lt;/div>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal opensearch create-domain --domain-name my-domain
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -2787,13 +2799,13 @@ Any cluster created with the OpenSearch Service will show up in the Elasticsearc
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>In the LocalStack log you will see something like, where you can see the cluster starting up in the background.&lt;/p>
-&lt;pre tabindex="0">&lt;code>2022-01-13T10:36:29.436:INFO:localstack.services.opensearch.cluster: starting opensearch: /var/lib/localstack/libs/opensearch/1.1.0/bin/opensearch -E http.port=35403 -E http.publish_port=35403 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data=&amp;#34;/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data&amp;#34; -E path.repo=&amp;#34;/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup&amp;#34; -E plugins.security.disabled=true with env {&amp;#39;OPENSEARCH_JAVA_OPTS&amp;#39;: &amp;#39;-Xms200m -Xmx600m&amp;#39;, &amp;#39;OPENSEARCH_TMPDIR&amp;#39;: &amp;#39;/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp&amp;#39;}
-2022-01-13T10:36:29.437:INFO:localstack.services.opensearch.cluster: registering an endpoint proxy for http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566 =&amp;gt; http://127.0.0.1:35403
-2022-01-13T10:36:32.803:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,800][INFO ][o.o.n.Node ] [host-pc] version[1.1.0], pid[231895], build[tar/15e9f137622d878b79103df8f82d78d782b686a1/2021-10-04T21:29:03.079792Z], OS[Linux/5.11.0-46-generic/amd64], JVM[AdoptOpenJDK/OpenJDK 64-Bit Server VM/15.0.1/15.0.1+9]
-2022-01-13T10:36:32.805:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,805][INFO ][o.o.n.Node ] [host-pc] JVM home [/var/lib/localstack/libs/opensearch/1.1.0/jdk], using bundled JDK [true]
-2022-01-13T10:36:32.806:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,805][INFO ][o.o.n.Node ] [host-pc] JVM arguments [-Xshare:auto, -Dopensearch.networkaddress.cache.ttl=60, -Dopensearch.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -XX:+ShowCodeDetailsInExceptionMessages, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -XX:+UseG1GC, -XX:G1ReservePercent=25, -XX:InitiatingHeapOccupancyPercent=30, -Djava.io.tmpdir=/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms200m, -Xmx600m, -XX:MaxDirectMemorySize=314572800, -Dopensearch.path.home=/var/lib/localstack/libs/opensearch/1.1.0, -Dopensearch.path.conf=/var/lib/localstack/libs/opensearch/1.1.0/config, -Dopensearch.distribution.type=tar, -Dopensearch.bundled_jdk=true]
-...
-&lt;/code>&lt;/pre>&lt;p>and after some time, you should see that the &lt;code>Processing&lt;/code> state of the domain is set to &lt;code>false&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>2022-01-13T10:36:29.436:INFO:localstack.services.opensearch.cluster: starting opensearch: /var/lib/localstack/libs/opensearch/1.1.0/bin/opensearch -E http.port=35403 -E http.publish_port=35403 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data=&amp;#34;/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data&amp;#34; -E path.repo=&amp;#34;/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup&amp;#34; -E plugins.security.disabled=true with env {&amp;#39;OPENSEARCH_JAVA_OPTS&amp;#39;: &amp;#39;-Xms200m -Xmx600m&amp;#39;, &amp;#39;OPENSEARCH_TMPDIR&amp;#39;: &amp;#39;/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp&amp;#39;}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2022-01-13T10:36:29.437:INFO:localstack.services.opensearch.cluster: registering an endpoint proxy for http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566 =&amp;gt; http://127.0.0.1:35403
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2022-01-13T10:36:32.803:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,800][INFO ][o.o.n.Node ] [host-pc] version[1.1.0], pid[231895], build[tar/15e9f137622d878b79103df8f82d78d782b686a1/2021-10-04T21:29:03.079792Z], OS[Linux/5.11.0-46-generic/amd64], JVM[AdoptOpenJDK/OpenJDK 64-Bit Server VM/15.0.1/15.0.1+9]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2022-01-13T10:36:32.805:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,805][INFO ][o.o.n.Node ] [host-pc] JVM home [/var/lib/localstack/libs/opensearch/1.1.0/jdk], using bundled JDK [true]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2022-01-13T10:36:32.806:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,805][INFO ][o.o.n.Node ] [host-pc] JVM arguments [-Xshare:auto, -Dopensearch.networkaddress.cache.ttl=60, -Dopensearch.networkaddress.cache.negative.ttl=10, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -XX:+ShowCodeDetailsInExceptionMessages, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dio.netty.allocator.numDirectArenas=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.locale.providers=SPI,COMPAT, -XX:+UseG1GC, -XX:G1ReservePercent=25, -XX:InitiatingHeapOccupancyPercent=30, -Djava.io.tmpdir=/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp, -XX:+HeapDumpOnOutOfMemoryError, -XX:HeapDumpPath=data, -XX:ErrorFile=logs/hs_err_pid%p.log, -Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m, -Xms200m, -Xmx600m, -XX:MaxDirectMemorySize=314572800, -Dopensearch.path.home=/var/lib/localstack/libs/opensearch/1.1.0, -Dopensearch.path.conf=/var/lib/localstack/libs/opensearch/1.1.0/config, -Dopensearch.distribution.type=tar, -Dopensearch.bundled_jdk=true]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and after some time, you should see that the &lt;code>Processing&lt;/code> state of the domain is set to &lt;code>false&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal opensearch describe-domain --domain-name my-domain | jq &amp;#34;.DomainStatus.Processing&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>false&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="creating-an-elasticsearch-cluster">Creating an Elasticsearch cluster&lt;/h3>
@@ -2887,19 +2899,19 @@ In this case, you can set &lt;code>OPENSEARCH_MULTI_CLUSTER=0&lt;/code>, which w
 This can however lead to unexpected behavior when persisting data into OpenSearch, or creating clusters with different versions, so we do not recommend it.&lt;/p>
 &lt;h3 id="storage-layout">Storage Layout&lt;/h3>
 &lt;p>OpenSearch will be organized in your state directory as follows:&lt;/p>
-&lt;pre tabindex="0">&lt;code>localstack@machine % tree -L 4 ./volume/state
-./volume/state
-├── opensearch
-│ └── arn:aws:es:us-east-1:000000000000:domain
-│ ├── my-cluster-1
-│ │ ├── backup
-│ │ ├── data
-│ │ └── tmp
-│ ├── my-cluster-2
-│ │ ├── backup
-│ │ ├── data
-│ │ └── tmp
-&lt;/code>&lt;/pre>&lt;h2 id="custom-opensearch-backends">Custom OpenSearch backends&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>localstack@machine % tree -L 4 ./volume/state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>./volume/state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── opensearch
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ └── arn:aws:es:us-east-1:000000000000:domain
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ ├── my-cluster-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── backup
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ └── tmp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ ├── my-cluster-2
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── backup
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ └── tmp
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="custom-opensearch-backends">Custom OpenSearch backends&lt;/h2>
 &lt;p>LocalStack downloads OpenSearch asynchronously the first time you run the &lt;code>aws opensearch create-domain&lt;/code>, so you will get the response from LocalStack first and then (after download/install) you will have your OpenSearch cluster running locally.
 You may not want this, and instead use your already running OpenSearch cluster.
 This can also be useful when you want to run a cluster with a custom configuration that LocalStack does not support.&lt;/p>
@@ -3065,7 +3077,7 @@ LocalStack will return the endpoint immediately, but keep &lt;code>Processing = 
 &lt;li>The &lt;code>CustomEndpointOptions&lt;/code> allows arbitrary endpoint URLs, which is not allowed in AWS.&lt;/li>
 &lt;/ul>
 &lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
-&lt;p>If you are using the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY=domain&lt;/code> (which is the default) and are having issues with resolving the subdomains, &lt;a href="/references/limitations/#dns-rebind-protection">please check if your DNS blocks rebind queries&lt;/a>.&lt;/p></description></item><item><title>User-Guide: S3</title><link>/user-guide/aws/s3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/s3/</guid><description>
+&lt;p>If you are using the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY=domain&lt;/code> (which is the default) and are having issues with resolving the subdomains, &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/#dns-rebind-protection">please check if your DNS blocks rebind queries&lt;/a>.&lt;/p></description></item><item><title>User-Guide: S3</title><link>/user-guide/aws/s3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/s3/</guid><description>
 &lt;p>AWS S3 is a managed scalable object storage service that can be used to store any amount of data for a wide range of use cases.&lt;/p>
 &lt;p>S3 is shipped with the LocalStack Community version and is &lt;a href="/user-guide/aws/feature-coverage/">extensively supported&lt;/a>. Trying to run the examples in the &lt;a href="https://docs.aws.amazon.com/s3/index.html">official AWS developer&lt;/a> guide against LocalStack is a great place to start.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
@@ -3096,13 +3108,13 @@ LocalStack will return the endpoint immediately, but keep &lt;code>Processing = 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ETag&amp;#34;: &amp;#34;\&amp;#34;d41d8cd98f00b204e9800998ecf8427e\&amp;#34;&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Path-Style Requests versus Virtual Hosted-Style Requests &lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>Just like AWS, LocalStack differentiates between &lt;a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html">Path-Style and Virtual Hosted-Style Requests&lt;/a> depending on your &lt;code>Host&lt;/code> header for a request.&lt;/p>
 &lt;p>Example:&lt;/p>
-&lt;pre tabindex="0">&lt;code>&amp;lt;bucket-name&amp;gt;.s3.&amp;lt;region&amp;gt;.localhost.localstack.cloud # host-style request
-&amp;lt;bucket-name&amp;gt;.s3.&amp;lt;region&amp;gt;.amazonaws.com # host-style request
-&lt;/code>&lt;/pre>&lt;p>As a special case in LocalStack, leaving out &lt;code>.s3.&amp;lt;region&amp;gt;&lt;/code> also works for the &lt;code>localhost.localstack.cloud&lt;/code> domain:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>&amp;lt;bucket-name&amp;gt;.s3.&amp;lt;region&amp;gt;.localhost.localstack.cloud # host-style request
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;bucket-name&amp;gt;.s3.&amp;lt;region&amp;gt;.amazonaws.com # host-style request
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>As a special case in LocalStack, leaving out &lt;code>.s3.&amp;lt;region&amp;gt;&lt;/code> also works for the &lt;code>localhost.localstack.cloud&lt;/code> domain:&lt;/p>
 &lt;p>&lt;code>&amp;lt;bucket-name&amp;gt;.localhost.localstack.cloud&lt;/code> is also a host-style request.&lt;/p>
 &lt;p>All other requests will be considered path-style requests.&lt;/p>
 &lt;/div>
@@ -3130,11 +3142,13 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ses send-email \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-Note: If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call &lt;code>awslocal ses verify-email-identity --email-address user1@yourdomain.com&lt;/code>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Hint&lt;/h4>
+&lt;p>If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>awslocal ses verify-email-identity --email-address user1@yourdomain.com
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
-&lt;/p>
 &lt;p>The &lt;a href="https://app.localstack.cloud">Web user interface&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
 &lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item><item><title>User-Guide: Simple Notification Service (SNS)</title><link>/user-guide/aws/sns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sns/</guid><description>
 &lt;p>AWS Simple Notification Service (SNS) is a central service used to coordinate the delivery of messages to subscribing endpoints or clients. SNS is a serverless messaging services that can distribute massive number of messages to multiple subscribers, and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints.&lt;/p>
@@ -3315,8 +3329,8 @@ For example, you could send a &lt;code>SendMessage&lt;/code> command using a &lt
 &lt;p>Adding the &lt;code>Accept: application/json&lt;/code> header will make the server return JSON:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>curl -H &amp;#34;Accept: application/json&amp;#34; &amp;#34;http://localhost:4566/000000000000/my-queue?Action=SendMessage&amp;amp;MessageBody=hello%2Fworld&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;SendMessageResponse&amp;#34;: {&amp;#34;SendMessageResult&amp;#34;: {&amp;#34;MD5OfMessageBody&amp;#34;: &amp;#34;c6be4e95a26409675447367b3e79f663&amp;#34;, &amp;#34;MessageId&amp;#34;: &amp;#34;748297f2-4abd-4ec2-afc0-4d1a497fe604&amp;#34;}, &amp;#34;ResponseMetadata&amp;#34;: {&amp;#34;RequestId&amp;#34;: &amp;#34;XEA5L5AX16RTPET25U3TIRIASN6KNIT820WIT3EY7RCH7164W68T&amp;#34;}}}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Behavior changes in 0.14.2&lt;/h4>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
 In previous releases, an empty HTTP request to a queue would return a &lt;code>&amp;lt;GetQueueUrlResponse&amp;gt;&lt;/code>.
 This has since been aligned to the behavior of AWS, which returns a &lt;code>&amp;lt;UnknownOperationException/&amp;gt;&lt;/code>.
 To run a &lt;code>GetQueueUrl&lt;/code> request, add the &lt;code>?Action=GetQueueUrl&amp;amp;QueueName=&amp;lt;QueueName&amp;gt;&amp;quot;&lt;/code> query string to the URL.
