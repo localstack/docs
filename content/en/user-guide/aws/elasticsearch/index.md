@@ -17,12 +17,12 @@ Any cluster created with the Elasticsearch Service will show up in the OpenSearc
 
 You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new elasticsearch domain via the `aws es create-elasticsearch-domain` command.
 
-{{< alert >}}
-**Note**: Unless you use the Elasticsearch default version, the first time you create a cluster with a specific version, the Elasticsearch binary is downloaded, which may take a while to download.
+{{< alert title="Note">}}
+Unless you use the Elasticsearch default version, the first time you create a cluster with a specific version, the Elasticsearch binary is downloaded, which may take a while to download.
 {{< /alert >}}
 
-{{< alert >}}
-**Note**: The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.
+{{< alert title="Note">}}
+The default Elasticsearch version used is 7.10.0. This is a slight deviation from the default version used in AWS (Elasticsearch 1.5), which is not supported in LocalStack.
 {{< /alert >}}
 
 {{< command >}}
@@ -60,7 +60,7 @@ $ awslocal es create-elasticsearch-domain --domain-name my-domain
 
 In the LocalStack log you will see something like the following, where you can see the cluster starting up in the background.
 
-```
+```plaintext
 2021-11-08T16:29:28:INFO:localstack.services.es.cluster: starting elasticsearch: /opt/code/localstack/localstack/localstack/infra/elasticsearch/bin/elasticsearch -E http.port=57705 -E http.publish_port=57705 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data="/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data" -E path.repo="/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup" -E xpack.ml.enabled=false with env {'ES_JAVA_OPTS': '-Xms200m -Xmx600m', 'ES_TMPDIR': '/var/lib/localstack/lib//elasticsearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp'}
 2021-11-08T16:29:28:INFO:localstack.services.es.cluster: registering an endpoint proxy for http://my-domain.us-east-1.es.localhost.localstack.cloud:4566 => http://127.0.0.1:57705
 2021-11-08T16:29:30:INFO:localstack.services.es.cluster: OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
@@ -180,7 +180,7 @@ This can however lead to unexpected behavior when persisting data into Elasticse
 
 Elasticsearch will be organized in your state directory as follows:
 
-```
+```plaintext
 localstack@machine % tree -L 4 volume/state
 .
 ├── elasticsearch

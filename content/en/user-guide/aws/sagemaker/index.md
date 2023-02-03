@@ -13,7 +13,7 @@ LocalStack Pro provides a local version of the SageMaker API, which allows runni
 ## Model Training
 
 A basic training example using the `sagemaker.tensorflow.TensorFlow` class is provided in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/sagemaker-ml-jobs). Essentially, the code boils down to these core lines:
-```
+```python3
 inputs = ...  # load training data files
 mnist_estimator = TensorFlow(entry_point='mnist.py', role='arn:aws:...',
     framework_version='1.12.0', sagemaker_session=sagemaker_session,
@@ -27,9 +27,9 @@ The code snippet above uploads the model training code to local S3, submits a ne
 
 SageMaker supports the deployment and real-time inference of singular local ML models. An example for that is provided in our [PRO samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/sagemaker-inference). As explained in the ReadMe of the sample, you will need to retrieve the image with your AWS account by connecting with [the provided ECR repository](https://github.com/aws/deep-learning-containers/blob/master/available_images.md):
 
-```
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 763104351884.dkr.ecr.us-east-1.amazonaws.com
-```
+{{< command >}}
+$ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 763104351884.dkr.ecr.us-east-1.amazonaws.com
+{{< /command >}}
 
 The example also shows the two currently supported options of inference - on the container itself or through the `sagemaker-runtime` invocation endpoint:
 
@@ -56,6 +56,6 @@ def inference_model_boto3(run_id: str = "0"):
     _show_predictions(json.loads(response["Body"].read()))
 ```
 
-{{< alert >}}
-**Note:** SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
+{{< alert title="Note" >}}
+SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
 {{< /alert >}}

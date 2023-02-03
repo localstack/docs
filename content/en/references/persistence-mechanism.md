@@ -57,7 +57,7 @@ LocalStack stores and Moto backend objects are serialized separately.
 Certain services may keep additional data files apart from serialized states.
 For instance, Kinesis persists some data in form of JSON while DynamoDB serializes a SQLite database.
 
-```
+```plaintext
 /var/lib/localstack/state    # state directory
 ├── api_states
 │   ├── dynamodb

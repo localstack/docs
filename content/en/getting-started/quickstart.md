@@ -10,7 +10,7 @@ cascade:
 
 This quickstart guide will walk you through starting LocalStack on your local machine to deploying a sample AWS application locally using LocalStack's cloud emulation. This guide assumes that you have [installed LocalStack on your local machine]({{< ref "installation" >}}), [signed up](https://app.localstack.cloud) for a LocalStack account and configured your [API key]({{< ref "api-key" >}}) to authenticate your LocalStack container on startup.
 
-{{< alert >}}
+{{< alert title="Note" >}}
 The quickest way to experiment with LocalStack is to use one of our [LocalStack quickstart samples](https://app.localstack.cloud/quickstart) to deploy a thumbnail creator, request worker application, or an asynchronous microservice with tracing/debugging. The quickstart samples will automatically connect to your running LocalStack container on your local machine and run the applications.
 {{< /alert >}}
 
@@ -24,7 +24,7 @@ $ EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000 localstack start
 
 You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
 
-{{< alert >}}
+{{< alert title="Note" >}}
 LocalStack supports setting environment variables as Configuration options to alter the behavior of LocalStack. The `EXTRA_CORS_ALLOWED_ORIGINS` configuration allows other services to communicate with LocalStack. Refer to our [comprehensive documentation on LocalStack Configuration options]({{< ref "references/configuration" >}}).
 {{< /alert >}}
 

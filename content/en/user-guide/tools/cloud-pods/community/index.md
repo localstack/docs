@@ -43,13 +43,13 @@ To load this Cloud Pod, you can run the following command:
 $ localstack pod load git://localstack/cloud-pods/s3-trigger-thumbnail
 {{< /command >}}
 
-{{% alert %}}
+{{< alert title="Note" >}}
 The above command is equivalent to:
 
 {{< command >}}
 $ localstack pod load https://raw.githubusercontent.com/localstack/cloud-pods/main/s3-trigger-thumbnail
 {{< /command >}}
-{{% /alert %}}
+{{< /alert >}}
 
 To test the loaded pod, you can run the following command:
 

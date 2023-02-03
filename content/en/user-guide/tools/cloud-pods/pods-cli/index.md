@@ -80,9 +80,10 @@ Options:
   --help               Show this message and exit.
 ```
 
-{{% alert %}}
-Community users have access to a restricted version of the `save` command.  In particular, they can simply invoke the `save` command with a file URI as an argument.
-{{% /alert %}}
+{{< alert title="Note">}}
+Community users have access to a restricted version of the `save` command.
+In particular, they can simply invoke the `save` command with a file URI as an argument.
+{{< /alert >}}
 
 ### `load`
 
@@ -122,9 +123,9 @@ Options:
   --help               Show this message and exit.
 ```
 
-{{% alert %}}
+{{< alert title="Note">}}
 Similar to the `save` command, the usage of the Cloud Pod's platform is restricted to licensed users. Community users can load a Cloud Pod from a local URI file, URL, or public GitHub repository. However, they have no access to Cloud Pods versioning.
-{{% /alert %}}
+{{< /alert >}}
 
 ### `delete`
 

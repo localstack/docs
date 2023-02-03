@@ -12,7 +12,7 @@ LocalStack Pro version provides a basic support for creating and deploying conta
 
 By default, the **ECS Fargate** launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.
 
-{{< alert >}}**Note**:
+{{< alert title="Note">}}
 More complex features like integration of application load balancers (ALBs) are currently not available. Nonetheless, they are being developed and will be available in the near future.
 {{< /alert >}}
 

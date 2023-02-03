@@ -19,8 +19,8 @@ To install LocalStack Cockpit, [**Docker**](https://www.docker.com) is the only 
 {{< img src="cockpit-screenshot.png" class="img-fluid shadow rounded" >}}
 </p>
 
-{{< alert >}}
-*Note*: The Cockpit beta version is not yet verified on Windows and Mac app stores.
+{{< alert title="Note" >}}
+The Cockpit beta version is not yet verified on Windows and Mac app stores.
 On [Windows](https://www.windowscentral.com/how-disable-smartscreen-trusted-app-windows-10) and [Mac](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac) you need to allow your OS to run untrusted code.
 {{< /alert >}}
 
@@ -32,8 +32,8 @@ LocalStack Cockpit helps users to manage their LocalStack instance with a simple
 
 While starting Cockpit, it will automatically check your system environment to ensure that everything is ready to start LocalStack. It includes checking Docker version, pulling the official LocalStack Docker image, and checking for the presence of the LocalStack CLI and runtime status. In the absence of a Docker image, Cockpit will automatically pull the latest version of the LocalStack Docker image.
 
-{{< alert >}}
-*Note*: Before starting LocalStack Cockpit, **Docker** should be already running.
+{{< alert title="Note">}}
+Before starting LocalStack Cockpit, Docker should be already running.
 {{< /alert >}}
 
 <p>

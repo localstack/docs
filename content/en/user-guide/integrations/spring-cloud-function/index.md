@@ -30,10 +30,9 @@ your serverless applications powered by Spring Cloud Function framework.
 | Edition      | community [pro]   |
 | Platform     | x64_86 (-aarch64) |
 
-{{% alert title="aarch64 warning" color="warning" %}}
-Some features and services described in this document may not work properly on
-aarch64, including Apple's M1 silicon
-{{% /alert %}}
+{{< alert title="Warning" color="warning" >}}
+Some features and services described in this document may not work properly on aarch64, including Apple's M1 silicon.
+{{< /alert >}}
 
 ## Covered Topics
 
@@ -486,10 +485,9 @@ configured earlier.
 
 #### Cold Start and Warmup (PRO)
 
-{{% alert title="Pro Features" color="info" %}}
-Please note that *EVENTS* is a LocalStack PRO feature and is not supported
-in Community version
-{{% /alert %}}
+{{< alert title="Note">}}
+Please note that *EVENTS* is a LocalStack PRO feature and is not supported in Community version.
+{{< /alert >}}
 
 We know Java's cold start is always a pain.
 To minimize this pain, we will try to define a pre-warming endpoint within the Rest API.

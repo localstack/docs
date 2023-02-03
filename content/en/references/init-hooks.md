@@ -19,7 +19,7 @@ You can hook into each of these lifecycle phases using custom shell or python sc
 Each lifecycle phase has it's own directory in `/etc/localstack/init`.
 You can mount individual files, stage directories, or the entire init directory from your host into the container.
 
-```
+```plaintext
 /etc
 └── localstack
     └── init

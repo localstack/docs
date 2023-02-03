@@ -63,11 +63,11 @@ curl -H "Accept: application/json" "http://localhost:4566/000000000000/my-queue?
 {{< / command >}}
 
 
-{{% alert title="Behavior changes in 0.14.2" color="info" %}}
+{{< alert title="Note" >}}
 In previous releases, an empty HTTP request to a queue would return a `<GetQueueUrlResponse>`.
 This has since been aligned to the behavior of AWS, which returns a `<UnknownOperationException/>`.
 To run a `GetQueueUrl` request, add the `?Action=GetQueueUrl&QueueName=<QueueName>"` query string to the URL.
-{{% /alert %}}
+{{< /alert >}}
 
 ## Configuration
 

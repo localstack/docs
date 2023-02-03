@@ -11,12 +11,12 @@ aliases:
 With [version 0.13](https://github.com/localstack/localstack/releases/tag/v0.13.0), LocalStack officially publishes a [multi-architecture Docker manifest](https://hub.docker.com/r/localstack/localstack).
 This manifest contains links to a Linux AMD64 as well as a Linux ARM64 image.
 
-{{% alert title="Experimental" color="warning" %}}
+{{< alert title="Note">}}
 The ARM64 image of LocalStack is still experimental.
 Help us getting aware of current issues with the ARM64 image by [filing an issue](https://github.com/localstack/localstack/issues/new?assignees=&labels=bug,ARM64%2Cneeds-triaging&template=bug-report.yml&title=bug%3A+%3Ctitle%3E) if you experience any problems.
 
 Currently known limitations are collected in the GitHub issue [localstack/localstack#4921](https://github.com/localstack/localstack/issues/4921).
-{{% /alert %}}
+{{< /alert >}}
 
 ## Pulling the image
 With the multi-arch Docker manifest, your Docker client (and therefore the [LocalStack CLI]({{< ref "getting-started/#localstack-cli" >}})) now automatically selects the image according to your platform:
@@ -35,9 +35,9 @@ If you want to execute Docker Lambda functions or binaries which have not been b
 
 You can do so by installing a AMD64 `bin_fmt` emulator on your ARM64 host system with the following command:
 
-{{% alert title="Affects host system" color="warning" %}}
-The following command installs additionals emulators on your _host system_.
-{{% /alert %}}
+{{< alert title="Warning" color="warning" >}}
+The following command installs additionals emulators on your host system.
+{{< /alert >}}
 
 {{< command >}}
 $ docker run --privileged --rm tonistiigi/binfmt --install amd64
@@ -63,22 +63,27 @@ $ docker run --privileged --rm tonistiigi/binfmt
 {{< / command >}}
 
 ## Troubleshooting
+
 ### Pulling images for other architectures
-{{% alert title="Unsupported" color="warning" %}}
+
+{{< alert title="Warning" color="warning" >}}
 Please be aware that this workaround is not supported by LocalStack at all.
-{{% /alert %}}
+{{< /alert >}}
+
 If you want to use a LocalStack image which has been built for another architecture than yours, you can instruct Docker to use another platform by setting the `DOCKER_DEFAULT_PLATFORM` environment variable:
+
 {{< command >}}
 $ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 {{< / command >}}
+
 When using Docker Compose, you can use the `platform` element [as described in the specification](https://github.com/compose-spec/compose-spec/blob/master/spec.md#platform).
 
 ### Apple Silicon / Apple M1
 If you are experiencing issues with the ARM64 image (and after you created an issue to make us aware of the problem 😉), you can try to use the AMD64 packages on your Apple Silicon device and use Apple Rosetta to emulate the AMD64 / x86_64 CPU architecture.
 
-{{% alert title="Unsupported" color="warning" %}}
+{{< alert title="Warning" color="warning" >}}
 Please be aware that this workaround is not supported by LocalStack at all.
-{{% /alert %}}
+{{< /alert >}}
 
 First, you should enable "Rosetta" on your preferred terminal.
 This way you'll be installing packages for `x86_64` platform.
@@ -111,9 +116,9 @@ pyenv global 3.8.10
 
 Then clone LocalStack to your machine, run `make install` and then `make start`.
 
-{{% alert title="Note on JVM Lambda" color="warning" %}}
+{{< alert title="Note">}}
 You need to use the `local` lambda executor for JVM Lambda functions.
-{{% /alert %}}
+{{< /alert >}}
 
 
 ### Raspberry Pi

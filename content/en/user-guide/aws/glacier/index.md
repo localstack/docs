@@ -35,8 +35,8 @@ In this getting started guide, you'll learn how to make a basic usage of Glacier
    {{< command >}}
    $ awslocal glacier initiate-job --account-id - --vault-name <VAULT-NAME> --vault-name <VAULT-NAME> --job-parameters <JSON-CONFIGURATION-FILE>
    {{< /command >}}
-   {{< alert >}}
-   **Note**: JSON Configuration Options can be found [on the official AWS documentation](https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html). The following setting can be used in case of Inventory retrieval: `{ "Type": "inventory-retrieval", "ArchiveId": <ARCHIVE-ID> }`. Archive ID can be got as an output of the Data Upload/List Jobs request.
+   {{< alert title="Note" >}}
+   JSON Configuration Options can be found [on the official AWS documentation](https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html). The following setting can be used in case of Inventory retrieval: `{ "Type": "inventory-retrieval", "ArchiveId": <ARCHIVE-ID> }`. Archive ID can be got as an output of the Data Upload/List Jobs request.
    {{< /alert >}}
 
 5. Use the `upload-archive` command to upload an archive to a vault:
@@ -49,8 +49,8 @@ In this getting started guide, you'll learn how to make a basic usage of Glacier
    {{< command >}}
    $ awslocal glacier initiate-job --account-id - --vault-name <VAULT-NAME> --job-parameters <JSON-CONFIGURATION-FILE>
    {{< /command >}}
-   {{< alert >}}
-   **Note**: JSON Configuration Options can be found [on the official AWS documentation](https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html). The following setting can be used in case of Inventory retrieval: `{ "Type": "archive-retrieval", "ArchiveId": <ARCHIVE-ID> }`. Archive ID can be got as an output of the Data Upload/List Jobs request.
+   {{< alert title="Note" >}}
+   JSON Configuration Options can be found [on the official AWS documentation](https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html). The following setting can be used in case of Inventory retrieval: `{ "Type": "archive-retrieval", "ArchiveId": <ARCHIVE-ID> }`. Archive ID can be got as an output of the Data Upload/List Jobs request.
    {{< /alert >}}
 
 7. The data download process can be verified through the List Jobs command to check progress. Once the Job is complete the data can be downloaded to the current location using the following command:

@@ -31,7 +31,7 @@ $ pulumi new aws-typescript
 
 We use the default configuration values:
 
-```
+```plaintext
 This command will walk you through creating a new Pulumi project.
 
 Enter a value or leave blank to accept the (default), and press <ENTER>.
@@ -399,7 +399,7 @@ $ awslocal s3 ls
 
 Where you should see something like
 
-```
+```plaintext
 2021-09-30 11:50:59 my-bucket-6c21027
 ```
 

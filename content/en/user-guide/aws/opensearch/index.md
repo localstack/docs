@@ -17,12 +17,12 @@ Any cluster created with the OpenSearch Service will show up in the Elasticsearc
 
 You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new OpenSearch domain via the `aws opensearch create-domain` command.
 
-{{< alert >}}
-**Note**: Every time when you create a cluster with a version of OpenSearch you haven't used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
+{{< alert title="Note">}}
+Every time when you create a cluster with a version of OpenSearch you haven't used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
 {{< /alert >}}
 
-{{< alert >}}
-**Note**: The default OpenSearch version used is 1.1.0.
+{{< alert title="Note">}}
+The default OpenSearch version used is 1.1.0.
 {{< /alert >}}
 
 {{< command >}}
@@ -102,7 +102,7 @@ $ awslocal opensearch create-domain --domain-name my-domain
 
 In the LocalStack log you will see something like, where you can see the cluster starting up in the background.
 
-```
+```plaintext
 2022-01-13T10:36:29.436:INFO:localstack.services.opensearch.cluster: starting opensearch: /var/lib/localstack/libs/opensearch/1.1.0/bin/opensearch -E http.port=35403 -E http.publish_port=35403 -E transport.port=0 -E network.host=127.0.0.1 -E http.compression=false -E path.data="/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/data" -E path.repo="/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/backup" -E plugins.security.disabled=true with env {'OPENSEARCH_JAVA_OPTS': '-Xms200m -Xmx600m', 'OPENSEARCH_TMPDIR': '/var/lib/localstack/opensearch/arn:aws:es:us-east-1:000000000000:domain/my-domain/tmp'}
 2022-01-13T10:36:29.437:INFO:localstack.services.opensearch.cluster: registering an endpoint proxy for http://my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566 => http://127.0.0.1:35403
 2022-01-13T10:36:32.803:INFO:localstack.services.opensearch.cluster: [2022-01-13T10:36:32,800][INFO ][o.o.n.Node               ] [host-pc] version[1.1.0], pid[231895], build[tar/15e9f137622d878b79103df8f82d78d782b686a1/2021-10-04T21:29:03.079792Z], OS[Linux/5.11.0-46-generic/amd64], JVM[AdoptOpenJDK/OpenJDK 64-Bit Server VM/15.0.1/15.0.1+9]
@@ -222,7 +222,7 @@ This can however lead to unexpected behavior when persisting data into OpenSearc
 
 OpenSearch will be organized in your state directory as follows:
 
-```
+```plaintext
 localstack@machine % tree -L 4 ./volume/state
 ./volume/state
 ├── opensearch
@@ -417,4 +417,4 @@ $ curl -X PUT my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/my-
 
 ## Troubleshooting
 
-If you are using the `OPENSEARCH_ENDPOINT_STRATEGY=domain` (which is the default) and are having issues with resolving the subdomains, [please check if your DNS blocks rebind queries]({{< ref "limitations#dns-rebind-protection" >}}).
+If you are using the `OPENSEARCH_ENDPOINT_STRATEGY=domain` (which is the default) and are having issues with resolving the subdomains, [please check if your DNS blocks rebind queries]({{< ref "dns-server#dns-rebind-protection" >}}).

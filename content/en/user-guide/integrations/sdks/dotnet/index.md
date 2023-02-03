@@ -34,8 +34,9 @@ var lambdaClient = new AmazonLambdaClient(new BasicAWSCredentials("temp", "temp"
     });
 ```
 
-{{< alert >}}
-Make sure you are setting the `AuthenticationRegion` and not the `RegionEndpoint`. Setting the `RegionEndpoint` to a constant like `RegionEndpoint.EUWest1` will override the ServiceURL, and your request will end up against AWS.
+{{< alert title="Note">}}
+Make sure you are setting the `AuthenticationRegion` and not the `RegionEndpoint`.
+Setting the `RegionEndpoint` to a constant like `RegionEndpoint.EUWest1` will override the ServiceURL, and your request will end up against AWS.
 {{< /alert >}}
 
 
