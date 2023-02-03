@@ -22,11 +22,11 @@ jobs:
 
       - name: Set up system wide dependencies
         run: |
-          sudo apt-get install libsasl2-dev jq wget
+          sudo apt-get install jq wget
 
       - name: Set up Python 3.10
         id: setup-python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
@@ -71,7 +71,7 @@ jobs:
           # Store the result in resources/diff-check.log and store the diff count in the GitHub Action output "diff-count"
           mkdir -p resources
           (git diff --name-only origin/parity-coverage-auto-updates content/en/references/ 2>/dev/null || git diff --name-only origin/${{ github.event.inputs.targetBranch || 'main' }} content/en/references/ 2>/dev/null) | tee resources/diff-check.log
-          echo "::set-output name=diff-count::$(cat resources/diff-check.log | wc -l)"
+          echo "diff-count::$(cat resources/diff-check.log | wc -l)" >> $GITHUB_OUTPUT
 
       - name: Read PR markdown template
         if: ${{ success() && steps.check-for-changes.outputs.diff-count != '0' && steps.check-for-changes.outputs.diff-count != '' }}
