@@ -74,8 +74,8 @@ We set the ARN of our Kinesis stream in the `kinesis-stream-source-configuration
 In the `elasticsearch-destination-configuration` we set (again) the access role, the `DomainARN` of the Elasticsearch domain we want to publish to, as well as `IndexName` and `TypeName` for Elasticsearch.
 Since we want to backup all documents to S3, we also set `S3BackupMode` to `AllDocuments` and provide a `S3Configuration` pointing to our created bucket.
 
-{{< alert >}}
-**Note:** In LocalStack, per default, the IAM roles will not be verified, so you can provide any ARN here. In AWS, you need to check the access rights of the specified role for the task.
+{{< alert title="Note">}}
+In LocalStack, per default, the IAM roles will not be verified, so you can provide any ARN here. In AWS, you need to check the access rights of the specified role for the task.
 {{< /alert >}}
 
 {{< command >}}
@@ -107,8 +107,8 @@ $ awslocal kinesis put-record --stream-name kinesis-es-local-stream --data '{ "t
     "EncryptionType": "NONE"
 }
 {{< / command >}}
-{{< alert >}}
-**Note:** If you are using aws cli v2, you can add `--cli-binary-format raw-in-base64-out` to the above command
+{{< alert title="Note">}}
+If you are using aws cli v2, you can add `--cli-binary-format raw-in-base64-out` to the above command
 {{< /alert >}}
 
 

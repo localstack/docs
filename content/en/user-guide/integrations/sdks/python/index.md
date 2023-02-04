@@ -28,14 +28,17 @@ if __name__ == "__main__":
     main()
 ```
 
-**Note:** If you're connecting from within a Python **Lambda function** handler in LocalStack, you can create a default client without configuring the `endpoint_url` - LocalStack will automatically forward the invocations to the local API endpoints (available in Pro, see [here]({{< ref "local-endpoint-injection" >}}) for more details).
-```
+{{< alert title="Note">}}
+If you're connecting from within a Python **Lambda function** handler in LocalStack, you can create a default client without configuring the `endpoint_url` - LocalStack will automatically forward the invocations to the local API endpoints (available in Pro, see [here]({{< ref "local-endpoint-injection" >}}) for more details).
+{{< /alert >}}
+
+```python3
 client = boto3.client("lambda")
 ...
 ```
 
 Alternatively, if you prefer to (or need to) set the endpoints directly, you can use the `$LOCALSTACK_HOSTNAME` environment variable which is available when executing user code (e.g., Lambda functions, ECS containers) in LocalStack:
-```
+```python3
 import os
 endpoint_url = f"http://{os.getenv("LOCALSTACK_HOSTNAME")}:{os.getenv("EDGE_PORT")}"
 client = boto3.client("lambda", endpoint_url=endpoint_url)

@@ -51,7 +51,7 @@ $ localstack daemons start
 
 The address for SSH access to the instance is printed in the logs when the instance is initialised.
 
-```
+```plaintext
 2022-03-21T14:46:49.540  INFO  Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705, 172.17.0.4:22
 ```
 
@@ -73,7 +73,7 @@ $ awslocal ec2 describe-security-groups --group-names default
 
 The port mapping is printed in the logs as when the instance is intialised.
 
-```
+```plaintext
 2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
 ```
 

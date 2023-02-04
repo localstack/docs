@@ -39,6 +39,6 @@ $ redis-cli -p 4510 get foo
 
 We also support the `create-replication-group` API which supports the replication groups in ElastiCache clusters. With the API, you can now have a Redis cluster, a Redis replication group with cluster mode disabled, and a Redis replication group with cluster mode enabled.
 
-{{< alert >}}**Note**:
+{{< alert title="Note">}}
 Redis requires at least 3+ nodes to form a Redis replication group with cluster mode enabled. Hence, if the user requests only 2 node groups, we transparently upgrade to 3 nodes behind the scenes, to avoid raising an error.
 {{< /alert >}}

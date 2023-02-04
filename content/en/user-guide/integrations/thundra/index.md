@@ -16,9 +16,9 @@ This guide describes how you can monitor and debug your AWS Lambda functions wit
 
 ## Integrating Thundra with LocalStack
 
-{{% alert title="Supported languages" color="info" %}}
-Currently only **Node.js**, **Python** and **Java** Lambdas are supported in this integration - support for other runtimes (.NET, Go) is coming soon.
-{{% /alert %}}
+{{< alert title="Information" color="success" >}}
+Currently only Node.js, Python and Java Lambdas are supported in this integration - support for other runtimes (.NET, Go) is coming soon.
+{{< /alert >}}
 
 LocalStack comes with out-of-the-box support for Thundra. Simply obtain a Thundra API key [here](https://console.thundra.io/onboarding/serverless) and add it to your Lambda function's environment variables (`THUNDRA_APIKEY`):
 

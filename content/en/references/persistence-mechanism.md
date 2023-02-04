@@ -7,7 +7,10 @@ aliases:
   - /localstack/persistence-mechanism/
 ---
 
-## Overview
+{{< alert title="Note">}}
+Please note that persisted states may not be compatibile across different versions of LocalStack.
+We are actively working on addressing this limitation in the upcoming releases.
+{{< /alert >}}
 
 The persistence mechanism is essentially a "pause and resume" feature for your LocalStack application state.
 For instance, you may want to run consecutive integration tests where each test loads in a different context but depends on the state produced by a previous test.
@@ -54,7 +57,7 @@ LocalStack stores and Moto backend objects are serialized separately.
 Certain services may keep additional data files apart from serialized states.
 For instance, Kinesis persists some data in form of JSON while DynamoDB serializes a SQLite database.
 
-```
+```plaintext
 /var/lib/localstack/state    # state directory
 ├── api_states
 │   ├── dynamodb

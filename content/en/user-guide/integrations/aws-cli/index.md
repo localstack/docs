@@ -43,8 +43,8 @@ Create a configuration profile. The configuration file will be created under `~/
 $ aws configure --profile default
 {{< / command >}}
 
-{{< alert >}}
-**Note** Please use `test` as value for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to make pre-signed URLs for S3 buckets work.
+{{< alert title="Note">}}
+Please use `test` as value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to make pre-signed URLs for S3 buckets work.
 Our pre-signed URL signature verification algorithm validates the pre-signed URL and its expiration.
 {{< /alert >}}
 
@@ -73,8 +73,8 @@ Note that the command above also installs the latest version of the underlying A
 $ pip install awscli-local
 {{< / command >}}
 
-{{< alert >}}
-**Note:** Automatic installation of AWS CLI version 2 is currently not supported yet (at the time of writing there is no official pypi package for `v2` available), but the `awslocal` technically also works with AWS CLI v2 (see [this section]({{< ref "#limitations" >}}) for more details).
+{{< alert title="Note" >}}
+Automatic installation of AWS CLI version 2 is currently not supported yet (at the time of writing there is no official pypi package for `v2` available), but the `awslocal` technically also works with AWS CLI v2 (see [this section]({{< ref "#limitations" >}}) for more details).
 {{< /alert >}}
 
 ### Usage

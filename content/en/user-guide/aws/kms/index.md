@@ -97,7 +97,11 @@ Its output has the following look:
 }
 ```
 
-The value of the `CiphertextBlob` field is a Base64-encoded result of the encryption of our plaintext. To decrypt this with KMS, we must first get rid of this Base64-encoding. So to our `Encrypt` operation we add the `output` parameter, requesting the output to be in the text form instead of the default JSON. We also supply the `query` parameter, so the output only contains the value of the specified `CiphertextBlob` field. Then we feed the result to the `base64` tool, asking it to remove the Base64 encoding, producing a binary output. We save that output to a file for future use. **Note:** Careful with the `CiphertextBlob` value for the `query` parameter - the AWS CLI doesn't check if the requested field is even if the output, so if you have a typo, the command will succeed, but the data sent to `base64` is going to be just a word `None`. It will lead to unexpected results later.
+The value of the `CiphertextBlob` field is a Base64-encoded result of the encryption of our plaintext. To decrypt this with KMS, we must first get rid of this Base64-encoding. So to our `Encrypt` operation we add the `output` parameter, requesting the output to be in the text form instead of the default JSON. We also supply the `query` parameter, so the output only contains the value of the specified `CiphertextBlob` field. Then we feed the result to the `base64` tool, asking it to remove the Base64 encoding, producing a binary output. We save that output to a file for future use.
+
+{{< alert title="Warning" color="warning">}}
+Careful with the `CiphertextBlob` value for the `query` parameter - the AWS CLI doesn't check if the requested field is even if the output, so if you have a typo, the command will succeed, but the data sent to `base64` is going to be just a word `None`. It will lead to unexpected results later.
+{{< /alert >}}
 
 When we want to, we can decrypt our file using the same KMS key:
 

@@ -10,7 +10,7 @@ aliases:
 
 The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.
 
-{{< alert >}}**Note**:
+{{< alert title="Note">}}
 In order to run Glue jobs, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Spark, Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you're on a decent internet connection when pulling the dependencies for the first time.
 {{< /alert >}}
 
@@ -204,7 +204,7 @@ The Glue Schema Registry allows you to centrally discover, control, and evolve d
 With the Schema Registry, you can manage and enforce schemas and schema compatibilities in your streaming applications.
 It integrates nicely with [Managed Streaming for Kafka (MSK)](../managed-streaming-for-kafka).
 
-{{< alert >}}**Note**:
+{{< alert title="Note" >}}
 Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry. Support for other dataformats will be added in the future.
 {{< /alert >}}
 

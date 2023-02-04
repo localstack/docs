@@ -11,11 +11,9 @@ description: >
   Using LocalStack in multi-tenant setups
 ---
 
-{{< alert title="Warning" color="warning" >}}
-Known limitations of multi-accounts:
-- Not supported for setups that use cross-account and cross-service access.
-
-Please see <https://github.com/localstack/localstack/issues/7041> for more information.
+{{< alert title="Note">}}
+Please note that multi-accounts may not work for use-cases that have cross-account and cross-service access.
+See [this issue](https://github.com/localstack/localstack/issues/7041) for more information.
 {{< /alert >}}
 
 LocalStack ships with multi-account support which allows namespacing based on AWS account ID and region name.
@@ -33,10 +31,7 @@ LocalStack will also ignore possible production AWS Access Key IDs (starting wit
 
 In the future LocalStack shall support proper access key IDs issued by the local IAM service, which will then be internally translated to corresponding account IDs.
 
-{{< alert title="Warning" color="warning">}}
-Older releases of LocalStack allowed account IDs to be overridden via the `TEST_AWS_ACCOUNT_ID` environment variable.
-This functionality has been removed.
-{{< /alert >}}
+## Examples
 
 In following examples, we configure the AWS CLI account ID via environment variable.
 

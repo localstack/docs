@@ -112,9 +112,11 @@ This section covers configuration values that are specific to certain AWS servic
 
 ### Elasticsearch
 
-{{% alert title="Deprecated" color="warning" %}}
-While the ElasticSearch API is actively maintained, the configuration variables for ElasticSearch have been deprecated. Please use the [OpenSearch configuration variables](#opensearch) instead. The OpenSearch configuration variables are used to manage both, OpenSearch and ElasticSearch clusters.
-{{% /alert %}}
+{{< alert title="Warning" color="warning" >}}
+While the ElasticSearch API is actively maintained, the configuration variables for ElasticSearch have been deprecated.
+Please use the [OpenSearch configuration variables](#opensearch) instead.
+The OpenSearch configuration variables are used to manage both, OpenSearch and ElasticSearch clusters.
+{{< /alert >}}
 
 | Variable | Example Values | Description |
 | - | - | - |

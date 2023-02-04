@@ -30,6 +30,6 @@ Running this code in Lambda on LocalStack will result in two trace segments bein
 
 You can also checkout another of our examples with Xray and Lambda, deployed via the Serverless framework, [`here`](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray)
 
-{{< alert >}}
-**Note:** To use XRay in Lambdas, please note that you'll need to configure `LAMBDA_XRAY_INIT=1` - this will ensure that the XRay daemon process is fully initialized when spawning Lambda containers (may slightly increase startup times).
+{{< alert title="Note" >}}
+To use XRay in Lambdas, please note that you'll need to configure `LAMBDA_XRAY_INIT=1` - this will ensure that the XRay daemon process is fully initialized when spawning Lambda containers (may slightly increase startup times).
 {{< /alert >}}
