@@ -8875,10 +8875,9 @@ Using the built-in DNS capabilities requires privileged access for the LocalStac
 &lt;p>Just like AWS, LocalStack differentiates between &lt;a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html">Path-Style and Virtual Hosted-Style Requests&lt;/a> depending on your &lt;code>Host&lt;/code> header for a request.&lt;/p>
 &lt;p>Example:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>&amp;lt;bucket-name&amp;gt;.s3.&amp;lt;region&amp;gt;.localhost.localstack.cloud # host-style request
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;bucket-name&amp;gt;.s3.&amp;lt;region&amp;gt;.amazonaws.com # host-style request
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>As a special case in LocalStack, leaving out &lt;code>.s3.&amp;lt;region&amp;gt;&lt;/code> also works for the &lt;code>localhost.localstack.cloud&lt;/code> domain:&lt;/p>
-&lt;p>&lt;code>&amp;lt;bucket-name&amp;gt;.localhost.localstack.cloud&lt;/code> is also a host-style request.&lt;/p>
-&lt;p>All other requests will be considered path-style requests.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>As a special case in LocalStack, leaving out &lt;code>&amp;lt;region&amp;gt;&lt;/code> also works for the &lt;code>s3.localhost.localstack.cloud&lt;/code> domain:&lt;/p>
+&lt;p>&lt;code>&amp;lt;bucket-name&amp;gt;.s3.localhost.localstack.cloud&lt;/code> is also a host-style request.&lt;/p>
+&lt;p>All other requests will be considered path-style requests. It is advised to use the &lt;code>s3.localhost.localstack.cloud&lt;/code> endpoint URL for all requests targeting S3.&lt;/p>
 &lt;/div>
 &lt;h2 id="s3-providers">S3 Providers&lt;/h2>
 &lt;p>LocalStack&amp;rsquo;s S3 support is currently available via two providers: &lt;code>old&lt;/code> and &lt;code>asf&lt;/code>. For users, switching between the two providers has a lot of impacts. Using the &lt;code>PROVIDER_OVERRIDE_S3&lt;/code>, you can switch between the two providers. The &lt;code>old&lt;/code> provider is the default provider, and the &lt;code>asf&lt;/code> provider is ASF, our new and more stable provider. The &lt;code>old&lt;/code> provider is loaded by default, and you need to set &lt;code>PROVIDER_OVERRIDE_S3=asf&lt;/code> to use the ASF provider. Licensed users can use &lt;code>asf_pro&lt;/code> to use the ASF provider with the &lt;a href="/references/coverage/#s3">Pro features&lt;/a>.&lt;/p>
