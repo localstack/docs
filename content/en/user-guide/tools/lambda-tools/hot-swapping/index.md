@@ -314,12 +314,12 @@ class ApplicationStack(parent: Construct, name: String) : Stack(parent, name) {
 }
 {{< / highlight >}}
 
-{{% alert %}}
+{{< alert title="Note" >}}
 
-**Note**: As mentioned in the code, you will have to use an alternative local bucket marker to `__local__` as this is not a valid S3 bucket name.
+As mentioned in the code, you will have to use an alternative local bucket marker to `__local__` as this is not a valid S3 bucket name.
 To change it (to, e.g., `hot-code`) you can use the environment variable `BUCKET_MARKER_LOCAL`.
 
-{{% /alert %}}
+{{< /alert >}}
 
 Then to bootstrap and deploy the stack run the following shell script
 

@@ -65,7 +65,7 @@ By default, ECR will return a `repositoryUri` starting with `localhost`, like: `
 If we set the `HOSTNAME_EXTERNAL` to `localhost.localstack.cloud`, ECR will return a `repositoryUri` like `localhost.localstack.cloud:<port>/<repository_name>`.
 
 {{< alert title="Notes" >}}
-In this section, we will assume `localhost.localstack.cloud` resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about [DNS rebind protection]({{< ref "limitations#dns-rebind-protection" >}}) to learn more.
+In this section, we will assume `localhost.localstack.cloud` resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}) to learn more.
 If this domain does not resolve on your host it is also possible not to set `HOSTNAME_EXTERNAL`, please nevertheless use `localhost.localstack.cloud` as registry in your pod configuration.
 LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` within ECR itself, and you can use the `localhost:<port>/<repository_name>` Uri for tagging and pushing the image on your host.
 {{< / alert >}}
@@ -97,7 +97,7 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
 }
 {{< / command >}}
 
-{{< alert >}}**Note**:
+{{< alert title="Note">}}
 When creating an ECR, a port from the [the external service port range]({{< ref "external-ports" >}}) is dynamically selected. \
 Therefore, the port can differ from `4510` used in the samples below.
 Make sure to use the correct URL / port by using the `repositoryUrl` of the `create-repository` request.
@@ -201,7 +201,7 @@ Now, if we describe the pod:
 kubectl describe pod fancier-nginx
 {{< / command >}}
 ... we can see, in the events, that the pull from ECR was successful:
-```
+```plaintext
   Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
 ```
 
@@ -270,7 +270,7 @@ In order to enable HTTPS for your endpoints, we can instruct Kubernetes to use S
 
 The local EKS cluster is pre-configured with a secret named `ls-secret-tls` which can be used to define the ingress `tls` section:
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:

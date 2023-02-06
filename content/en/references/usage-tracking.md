@@ -1,5 +1,5 @@
 ---
-title: LocalStack usage tracking
+title: Usage Tracking
 weight: 75
 description: >
   Understand what data LocalStack collects and how you can opt out of usage tracking.

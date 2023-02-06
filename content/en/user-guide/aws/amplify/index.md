@@ -20,7 +20,7 @@ The `amplifylocal` command line is published as an [npm library](https://www.npm
 $ npm install -g amplify-js-local @aws-amplify/cli
 {{< /command >}}
 
-{{< alert title="Note" color="primary">}}
+{{< alert title="Note">}}
 The dependency `@aws-amplify/cli` needs to be installed manually to decouple the two libraries, and allow using arbitrary versions of `@aws-amplify/cli` under the covers.
 {{< /alert >}}
 

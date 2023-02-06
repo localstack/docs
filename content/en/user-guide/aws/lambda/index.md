@@ -8,7 +8,7 @@ aliases:
   - /aws/lambda/
 ---
 
-{{< alert title="Switching to the new implementation" color="warning" >}}
+{{< alert title="Warning" color="warning" >}}
 A new implementation of the Lambda service is available since LocalStack 1.3.
 Set `PROVIDER_OVERRIDE_LAMBDA=asf` when starting LocalStack and let us know if you experience any issues!
 
@@ -104,7 +104,7 @@ $ awslocal lambda create-function --function-name func1 --runtime python3.8 --ro
 {{< / command >}}
 
 Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with `DEBUG=1` enabled), which includes the output from the layer util function:
-```
+```plaintext
 > START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
 > Output from Lambda layer util function
 > Debug output from Lambda function
@@ -162,3 +162,7 @@ The filter expression uses a strict JSON format to match the filtering criteria.
 ```
 
 If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the [official AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
+
+## Limitations
+
+Only the local executor with locally launched LocalStack can be used together with JVM Lambda Functions.

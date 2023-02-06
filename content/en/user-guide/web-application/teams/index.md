@@ -8,9 +8,9 @@ description: >
 
 Teams on LocalStack allow you to collaborate with members of your organization. You can invite other users to your team and assign them different roles and permissions. It includes advanced role settings such as purchasing subscriptions, managing payment methods, and more, which can be adjusted by the team administrator. You can purchase a plan with multiple seats for your team, which allows you to distribute the API keys among your team members.
 
-{{% alert title="Additional Info" color="info" %}}
+{{< alert title="Note" >}}
 Organizations/Teams are used interchangeably within our Web Application.
-{{% /alert %}}
+{{< /alert >}}
 
 #### Inviting Team Members
 

@@ -55,8 +55,8 @@ Usage: terraform [global options] <subcommand> [args]
 ...
 {{< / command >}}
 
-{{< alert >}}
-**Note**: Alternatively, you can also manually configure the local endpoints in the `provider` section of your Terraform script - see further below.
+{{< alert title="Note">}}
+Alternatively, you can also manually configure the local endpoints in the `provider` section of your Terraform script - see further below.
 {{< /alert >}}
 
 ### Deployment
@@ -124,8 +124,8 @@ In case of S3, this looks like the following snippet, in this case we opted to u
   }
 ```
 
-{{< alert >}}
-**Note**: In case of issues resolving this DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `s3_use_path_style = true`. The S3 service endpoint is slightly
+{{< alert title="Note">}}
+In case of issues resolving this DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `s3_use_path_style = true`. The S3 service endpoint is slightly
 different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
 {{< /alert >}}
 

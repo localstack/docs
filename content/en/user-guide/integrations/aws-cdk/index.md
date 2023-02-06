@@ -12,7 +12,7 @@ aliases:
 ![AWS CDK](aws-cdk-logo.svg)
 ## Overview
 
-The AWS Cloud Development Kit (CDK) is an IaC (Infrastructure-as-Code) tool using general-purpose programming languages such as TypeScript/JavaScript, Python, Java, and .NET to programmatically define your cloud architecture on AWS.
+The AWS Cloud Development Kit (CDK) is an Infrastructure-as-Code (IaC) tool using general-purpose programming languages such as TypeScript/JavaScript, Python, Java, and .NET to programmatically define your cloud architecture on AWS.
 
 ## AWS CDK CLI for LocalStack
 
@@ -31,9 +31,9 @@ cdklocal --version
 # e.g. 1.65.5
 ```
 
-{{% alert title="Local node_modules" color="warning" %}}
+{{< alert title="Note">}}
 Using `cdklocal` locally (e.g. within the `node_modules` of your repo instead of globally installed) does not work at the moment for some setups, so make sure you install both `aws-cdk` and `aws-cdk-local` with the `-G` flag.
-{{% /alert %}}
+{{< /alert >}}
 
 ### Usage
 
@@ -67,7 +67,7 @@ The CDK command line ships with a sample app generator to run a quick test for g
 mkdir /tmp/test; cd /tmp/test
 cdklocal init sample-app --language=javascript
 
-# deploy the sample app 
+# deploy the sample app
 cdklocal deploy
 > Do you wish to deploy these changes (y/n)? y
 ```
@@ -85,7 +85,16 @@ $ awslocal sns list-topics
 }
 {{< /command >}}
 
+## Limitations
+
+### Stacks with validated certificates
+
+By default, stacks with validated certificates may not be deployed using the `local` lambda executor.
+This originates from the way how CDK ensures the certificate is ready - it creates a single-file lambda function with a single dependency on `aws-sdk` which is usually preinstalled and available globally in lambda runtime.
+When this lambda is executed locally from the `/tmp` folder, the package can not be discovered by Node due to the way how Node package resolution works.
+
 ## Other resources
+
 - [Hot-swapping Lambda functions with CDK]({{< ref "user-guide/tools/lambda-tools/hot-swapping#aws-cloud-development-kit-cdk-configuration" >}})
 
 ## External resources
@@ -98,5 +107,3 @@ $ awslocal sns list-topics
 
 - https://blog.dennisokeeffe.com/blog/2021-08-07-using-the-aws-cdk-with-localstack-and-aws-cdk-local
 - https://www.youtube.com/watch?v=3_sqr0G9zb0
-
-

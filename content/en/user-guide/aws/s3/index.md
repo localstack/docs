@@ -46,22 +46,23 @@ $ awslocal s3api put-object --bucket sample-bucket --key index.html --body index
 {{< / command >}}
 
 
-{{% alert title="Path-Style Requests versus Virtual Hosted-Style Requests " color="info" %}}
+{{< alert title="Note" >}}
 Just like AWS, LocalStack differentiates between [Path-Style and Virtual Hosted-Style Requests](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) depending on your `Host` header for a request.
 
 Example:
 
-```
+```plaintext
 <bucket-name>.s3.<region>.localhost.localstack.cloud # host-style request
-<bucket-name>.s3.<region>.amazonaws.com # host-style request
 ```
 
-As a special case in LocalStack, leaving out `.s3.<region>` also works for the `localhost.localstack.cloud` domain:
+As a special case in LocalStack, leaving out `<region>` also works for the `s3.localhost.localstack.cloud` domain:
 
-`<bucket-name>.localhost.localstack.cloud` is also a host-style request.
+`<bucket-name>.s3.localhost.localstack.cloud` is also a host-style request.
 
-All other requests will be considered path-style requests.
+
+All other requests will be considered path-style requests. It is advised to use the `s3.localhost.localstack.cloud` endpoint URL for all requests targeting S3.
 {{% /alert %}}
+
 
 ## S3 Providers
 

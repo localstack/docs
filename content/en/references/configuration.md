@@ -112,9 +112,11 @@ This section covers configuration values that are specific to certain AWS servic
 
 ### Elasticsearch
 
-{{% alert title="Deprecated" color="warning" %}}
-While the ElasticSearch API is actively maintained, the configuration variables for ElasticSearch have been deprecated. Please use the [OpenSearch configuration variables](#opensearch) instead. The OpenSearch configuration variables are used to manage both, OpenSearch and ElasticSearch clusters.
-{{% /alert %}}
+{{< alert title="Warning" color="warning" >}}
+While the ElasticSearch API is actively maintained, the configuration variables for ElasticSearch have been deprecated.
+Please use the [OpenSearch configuration variables](#opensearch) instead.
+The OpenSearch configuration variables are used to manage both, OpenSearch and ElasticSearch clusters.
+{{< /alert >}}
 
 | Variable | Example Values | Description |
 | - | - | - |
@@ -201,6 +203,8 @@ While the ElasticSearch API is actively maintained, the configuration variables 
 | Variable | Example Values | Description |
 | - | - | - |
 | `S3_DIR` | | Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro. |
+| `S3_SKIP_SIGNATURE_VALIDATION`| `0` / `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. |
+| `S3_SKIP_KMS_KEY_VALIDATION` | `0` / `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
 
 ### StepFunctions
 

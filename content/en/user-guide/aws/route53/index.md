@@ -20,8 +20,8 @@ $ dig @localhost test.example.com
 test.example.com.	300	IN	A	1.2.3.4
 {{< / command >}}
 
-{{< alert >}}
-**Note**: Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the `DNS_ADDRESS` configuration variable).
+{{< alert title="Note">}}
+Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the `DNS_ADDRESS` configuration variable).
 {{< /alert >}}
 
 ## Customizing internal endpoint resolution

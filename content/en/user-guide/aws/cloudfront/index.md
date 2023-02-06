@@ -21,12 +21,12 @@ $ domain=$(awslocal cloudfront create-distribution \
 $ curl -k https://$domain/hello.txt
 {{< / command >}}
 
-{{< alert >}}
-**Note:** In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "user-guide/tools/local-endpoint-injection/dns-server" >}}) for details.
+{{< alert title="Note" >}}
+In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "user-guide/tools/local-endpoint-injection/dns-server" >}}) for details.
 {{< /alert >}}
 
-{{< alert >}}
-**Note:** In the code example above, the last command (`curl https://$domain/hello.txt`) may temporarily fail with a warning message `Could not resolve host`. This is due to the fact that operating systems use different DNS caching strategies, and it may take some time for the CloudFront distribution's DNS name (e.g., `abc123.cloudfront.net`) to become available in the system. Usually after a few retries the command should work, though. Note that a similar behavior can also be observed in the real AWS - CloudFront DNS names can also take up to 10-15 minutes to propagate across the network.
+{{< alert title="Note">}}
+In the code example above, the last command (`curl https://$domain/hello.txt`) may temporarily fail with a warning message `Could not resolve host`. This is due to the fact that operating systems use different DNS caching strategies, and it may take some time for the CloudFront distribution's DNS name (e.g., `abc123.cloudfront.net`) to become available in the system. Usually after a few retries the command should work, though. Note that a similar behavior can also be observed in the real AWS - CloudFront DNS names can also take up to 10-15 minutes to propagate across the network.
 {{< /alert >}}
 
 ## Using custom URLs
@@ -43,6 +43,6 @@ distribution beside these shown in this example. They were omited here for brevi
 --distribution-config {...'Aliases':'{'Quantity':2, 'Items': ['custom.domain.one', 'customDomain.two']}'...}
 {{< / command >}}
 
-{{< alert >}}
-**Note:** In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "user-guide/tools/local-endpoint-injection/dns-server" >}}) for details.
+{{< alert title="Note">}}
+In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on [configuring the local DNS server]({{< ref "user-guide/tools/local-endpoint-injection/dns-server" >}}) for details.
 {{< /alert >}}

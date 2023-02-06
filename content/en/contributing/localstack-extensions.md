@@ -68,6 +68,7 @@ class Extension(BaseExtension):
     - update_request_handlers
     - update_response_handlers
     - on_platform_ready
+    - on_platform_shutdown
     """
 
     namespace: str = "localstack.extensions"
@@ -112,6 +113,14 @@ class Extension(BaseExtension):
     def on_platform_ready(self):
         """
         Called when LocalStack is ready and the Ready marker has been printed.
+        """
+        pass
+
+    def on_platform_shutdown(self):
+        """
+        Called when LocalStack is shutting down. Can be used to close any resources (threads, processes, sockets, etc.).
+
+        Added in v1.4
         """
         pass
 ```
