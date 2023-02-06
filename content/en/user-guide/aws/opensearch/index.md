@@ -32,7 +32,7 @@ Features that were deprecated in OpenSearch 1.x and removed in OpenSearch 2.x ar
 
 You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new OpenSearch domain via the `aws opensearch create-domain` command.
 
-{{< alert title="Note" color="success">}}
+{{< alert title="Note" >}}
 Every time when you create a cluster with a version of OpenSearch you haven't used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
 {{< /alert >}}
 
