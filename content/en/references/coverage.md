@@ -2710,6 +2710,22 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
+      <td>ActivateType (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>BatchDescribeTypeConfigurations (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>CancelUpdateStack (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ContinueUpdateRollback (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>CreateChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2726,6 +2742,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DeactivateType (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2734,7 +2754,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DeleteStackInstances (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteStackSet</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeregisterType (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeAccountLimits (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2742,11 +2774,31 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeChangeSetHooks (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribePublisher (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeStackDriftDetectionStatus (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeStackEvents <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeStackInstance (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeStackResource <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeStackResourceDrifts (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2766,7 +2818,35 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeType (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeTypeRegistration (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DetectStackDrift (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DetectStackResourceDrift (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DetectStackSetDrift (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>EstimateTemplateCost (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ExecuteChangeSet <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>GetStackPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2775,6 +2855,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetTemplateSummary <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ImportStacksToStackSet (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2798,6 +2882,14 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListStackSetOperationResults (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListStackSetOperations (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListStackSets</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2806,7 +2898,67 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListTypeRegistrations (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListTypeVersions (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListTypes (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PublishType (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>RecordHandlerProgress (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>RegisterPublisher (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>RegisterType (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>RollbackStack (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>SetStackPolicy (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>SetTypeConfiguration (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>SetTypeDefaultVersion (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>SignalResource (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>StopStackSetOperation (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>TestType (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>UpdateStack <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UpdateStackInstances (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2820,164 +2972,6 @@ hide_readingtime: true
     <tr>
       <td>ValidateTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
-    </tr>
-  </tbody>
-  <tbody>    <tr>
-      <td><a data-toggle="collapse" href=".cloudformation-notimplemented">Show missing</a></td>
-      <td style="text-align:right"></td>
-    </tr>
-  </tbody>
-  <tbody class="collapse cloudformation-notimplemented">     <tr>
-      <td>ActivateType</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>BatchDescribeTypeConfigurations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>CancelUpdateStack</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ContinueUpdateRollback</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeactivateType</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeleteStackInstances</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DeregisterType</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeAccountLimits</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeChangeSetHooks</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribePublisher</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeStackDriftDetectionStatus</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeStackInstance</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeStackResourceDrifts</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeType</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeTypeRegistration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DetectStackDrift</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DetectStackResourceDrift</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DetectStackSetDrift</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>EstimateTemplateCost</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>GetStackPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ImportStacksToStackSet</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListStackSetOperationResults</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListStackSetOperations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListTypeRegistrations</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListTypeVersions</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListTypes</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PublishType</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>RecordHandlerProgress</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>RegisterPublisher</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>RegisterType</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>RollbackStack</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>SetStackPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>SetTypeConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>SetTypeDefaultVersion</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>SignalResource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>StopStackSetOperation</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>TestType</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateStackInstances</td>
-       <td style="text-align:right">-</td>
     </tr>
   </tbody>
  </table>
@@ -6332,10 +6326,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ProvisionIpamPoolCidr</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PurchaseReservedInstancesOffering <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -7746,6 +7736,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ProvisionIpamPoolCidr</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ProvisionPublicIpv4PoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8323,6 +8317,14 @@ hide_readingtime: true
       <td>DescribeFileSystems (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
+    <tr>
+      <td>DescribeLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PutLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".efs-notimplemented">Show missing</a></td>
@@ -8382,10 +8384,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribeLifecycleConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DescribeMountTargetSecurityGroups</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8419,10 +8417,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>PutFileSystemPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutLifecycleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9438,7 +9432,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListClusters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10734,7 +10728,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateConnection (Pro) </td>
+      <td>UpdateConnection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21084,7 +21078,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddPermission</td>
+      <td>AddPermission <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
