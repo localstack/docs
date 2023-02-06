@@ -2578,6 +2578,18 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ListTagsForResource (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>TagResource (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UntagResource (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>UpdateAnomalyMonitor (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2672,23 +2684,11 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ProvideAnomalyFeedback</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>StartSavingsPlansPurchaseRecommendationGeneration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>TagResource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3516,11 +3516,23 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateChannel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteChannel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteEventDataStore</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3548,6 +3560,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListChannels</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3572,6 +3588,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>PutResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RegisterOrganizationDelegatedAdmin</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3589,6 +3609,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StopImport</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateChannel</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6332,10 +6356,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ProvisionIpamPoolCidr</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PurchaseReservedInstancesOffering <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6490,6 +6510,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>AssignPrivateNatGatewayAddress</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>AssociateClientVpnTargetNetwork</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -6503,6 +6527,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AssociateIpamResourceDiscovery</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AssociateNatGatewayAddress</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7314,6 +7342,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DisassociateNatGatewayAddress</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DisassociateTransitGatewayMulticastDomain</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7746,6 +7778,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ProvisionIpamPoolCidr</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ProvisionPublicIpv4PoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7867,6 +7903,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>TerminateClientVpnConnections</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UnassignPrivateNatGatewayAddress</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8323,6 +8363,14 @@ hide_readingtime: true
       <td>DescribeFileSystems (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
+    <tr>
+      <td>DescribeLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PutLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".efs-notimplemented">Show missing</a></td>
@@ -8382,10 +8430,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribeLifecycleConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DescribeMountTargetSecurityGroups</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8419,10 +8463,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>PutFileSystemPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutLifecycleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9438,7 +9478,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListClusters (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10734,7 +10774,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateConnection (Pro) </td>
+      <td>UpdateConnection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15072,19 +15112,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateUser (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteBroker (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>DeleteTags (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteUser (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15100,14 +15132,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeConfigurationRevision (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeUser (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListBrokers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -15119,26 +15143,6 @@ hide_readingtime: true
       <td>ListTags (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>ListUsers (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RebootBroker (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateBroker (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateConfiguration (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateUser (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".mq-notimplemented">Show missing</a></td>
@@ -15146,11 +15150,47 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse mq-notimplemented">     <tr>
+      <td>CreateUser</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteUser</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeBrokerInstanceOptions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeConfigurationRevision</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeUser</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListConfigurationRevisions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListUsers</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RebootBroker</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateBroker</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateUser</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -21084,7 +21124,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddPermission</td>
+      <td>AddPermission <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
