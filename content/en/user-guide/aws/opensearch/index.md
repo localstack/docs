@@ -9,20 +9,31 @@ aliases:
 ---
 
 The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/).
-This service is, like its AWS counterpart, heavily linked with the [Elasticsearch Service](../elasticsearch).
+This service, like its AWS counterpart, is closely coupled with the [Elasticsearch Service](../elasticsearch).
 Any cluster created with the OpenSearch Service will show up in the Elasticsearch Service and vice versa.
+
+Following versions of OpenSearch are supported:
+
+- 1.0
+- 1.1
+- 1.2
+- 1.3
+- 2.3 (default)
+
+{{< alert title="Warning" color="warning">}}
+LocalStack uses the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py) internally.
+
+Features that were deprecated in OpenSearch 1.x and removed in OpenSearch 2.x are not guaranteed to work when using OpenSearch 1.x clusters with LocalStack.
+[More details here](https://github.com/opensearch-project/opensearch-py/blob/main/COMPATIBILITY.md).
+{{< /alert >}}
 
 
 ## Creating an OpenSearch cluster
 
 You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new OpenSearch domain via the `aws opensearch create-domain` command.
 
-{{< alert title="Note">}}
+{{< alert title="Note" >}}
 Every time when you create a cluster with a version of OpenSearch you haven't used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
-{{< /alert >}}
-
-{{< alert title="Note">}}
-The default OpenSearch version used is 1.1.0.
 {{< /alert >}}
 
 {{< command >}}
