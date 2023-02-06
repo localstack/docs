@@ -62,32 +62,32 @@ import (
 )
 
 func main() {
-  awsEndpoint = "http://localhost:4566"
-  awsRegion = "us-east-1"
+  awsEndpoint := "http://localhost:4566"
+	awsRegion := "us-east-1"
 
-  customResolver := aws.EndpointResolverFunc(func(service, region string) (aws.Endpoint, error) {
-    if awsEndpoint != "" {
-      return aws.Endpoint{
-        PartitionID:   "aws",
-        URL:           awsEndpoint,
-        SigningRegion: awsRegion,
-      }, nil
-    }
+	customResolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
+		if awsEndpoint != "" {
+			return aws.Endpoint{
+				PartitionID:   "aws",
+				URL:           awsEndpoint,
+				SigningRegion: awsRegion,
+			}, nil
+		}
 
-    // returning EndpointNotFoundError will allow the service to fallback to its default resolution
-    return aws.Endpoint{}, &aws.EndpointNotFoundError{}
-  })
+		// returning EndpointNotFoundError will allow the service to fallback to its default resolution
+		return aws.Endpoint{}, &aws.EndpointNotFoundError{}
+	})
 
-  awsCfg, err := config.LoadDefaultConfig(context.TODO(),
-    config.WithRegion(awsRegion),
-    config.WithEndpointResolver(customResolver),
-  )
-  if err != nil {
-    log.Fatalf("Cannot load the AWS configs: %s", err)
-  }
+	awsCfg, err := config.LoadDefaultConfig(context.TODO(),
+		config.WithRegion(awsRegion),
+		config.WithEndpointResolverWithOptions(customResolver),
+	)
+	if err != nil {
+		log.Fatalf("Cannot load the AWS configs: %s", err)
+	}
 
   // Create the resource client
-  client = s3.NewFromConfig(awsCfg, func(o *s3.Options) {
+  client := s3.NewFromConfig(awsCfg, func(o *s3.Options) {
     o.UsePathStyle = true
   })
   // ...
