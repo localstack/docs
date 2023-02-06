@@ -71,8 +71,8 @@ func main() {
         PartitionID:   "aws",
         URL:           awsEndpoint,
         SigningRegion: awsRegion,
-        }, nil
-      }
+      }, nil
+    }
 
     // returning EndpointNotFoundError will allow the service to fallback to its default resolution
     return aws.Endpoint{}, &aws.EndpointNotFoundError{}
