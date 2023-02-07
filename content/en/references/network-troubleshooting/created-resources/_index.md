@@ -9,7 +9,7 @@ tags:
 You are trying to access a resource that was created by LocalStack, for example an OpenSearch cluster or RDS database.
 
 When created, these resources are accessible from a URL, or they will return a hostname that you can access.
-In general, the environment variable `LOCALSTACK_HOSTNAME` can be used to control what hostname is returned.
+In general, the environment variable `LOCALSTACK_HOSTNAME` can be used to control what hostname is returned, though currently not in every case.
 For more details about specific situations, see below.
 
 # From your host
