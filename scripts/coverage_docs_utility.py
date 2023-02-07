@@ -191,7 +191,6 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
 
     :returns: dict with details about invoked operations
     """
-    # TODO contains internal + external
     recorded_data = _init_metric_recorder(service_dict)
     pathlist = Path(base_dir).rglob("*.csv")
     for path in pathlist:
@@ -202,9 +201,14 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
             for metric in csv_dict_reader:
                 node_id = metric.get("node_id") or metric.get("test_node_id")
 
+                # skip tests are marked as xfail
                 if str(metric.get("xfail", "")).lower() == "true":
-                    print(f"test {node_id} marked as xfail")
                     continue
+                
+                if metric.get("origin").lower() == "internal":
+                    # exclude all internal service calls, those might be false positives for aws-validated tests
+                    continue
+
                 service = recorded_data.get(metric.get("service"))
                 # some metrics (e.g. moto) could include tests for services, we do not support
                 if not service:
@@ -234,8 +238,13 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
 
                 ops["invoked"] += 1
                 if str(metric.get("snapshot", "false")).lower() == "true":
-                    ops["snapshot"] = True  # TODO snapshot currently includes also "skip_verify"
-                    ops["snapshot_skipped_paths"] = metric.get("snapshot_skipped_paths", "")
+                    if ops.get("snapshot") == True:
+                        # only update snapshot_skipped_paths if necessary (we prefer the test record where nothing was skipped)
+                        ops["snapshot_skipped_paths"] = "" if metric.get("snapshot_skipped_paths", "") else ops.get("snapshot_skipped_paths", "") 
+                    else:
+                        ops["snapshot"] = True  # TODO snapshot currently includes also "skip_verify"
+                        ops["snapshot_skipped_paths"] = metric.get("snapshot_skipped_paths", "") 
+
                 if str(metric.get("aws_validated", "false")).lower() == "true":
                     ops["aws_validated"] = True
                 if not metric.get("parameters"):
