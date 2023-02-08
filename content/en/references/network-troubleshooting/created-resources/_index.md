@@ -8,8 +8,8 @@ tags:
 
 You are trying to access a resource that was created by LocalStack, for example an OpenSearch cluster or RDS database.
 
-When created, these resources are accessible from a URL, or they will return a hostname that you can access.
-In general, the environment variable `LOCALSTACK_HOSTNAME` can be used to control what hostname is returned, though currently not in every case.
+When created, these resources are accessible from a URL, or they will return a hostname that use to access the resource.
+In general, the environment variable `HOSTNAME_EXTERNAL` can be used to control what hostname is returned, though currently not in every case.
 For more details about specific situations, see below.
 
 # From your host
@@ -18,7 +18,7 @@ For more details about specific situations, see below.
 
 **Example**: you have created an OpenSearch cluster and wish to access it from the computer that is running LocalStack.
 
-The `LOCALSTACK_HOSTNAME` environment variable can be set to configure the hostname returned.
+The `HOSTNAME_EXTERNAL` environment variable can be set to configure the hostname returned.
 See the [service-specific documentation]({{<ref "user-guide/aws/feature-coverage">}}) for more details.
 
 # From a container LocalStack created
