@@ -16,8 +16,8 @@ The persistence mechanism is essentially a "pause and resume" feature for your L
 For instance, you may want to run consecutive integration tests where each test loads in a different context but depends on the state produced by a previous test.
 Commonly, you may simply have a local development server that relies on a non-ephemeral application state.
 
-While the persistence mechanism covers most services, not all of them are supported yet.
-Please make sure to check the [feature coverage page]({{< ref "feature-coverage" >}}) to see whether your desired services are covered.
+While the persistence mechanism covers most services, you might get affected by an edge case, which is not yet supported..
+Please make sure to report this issue on our [GitHub page](https://github.com/localstack/localstack/issues/new/choose).
 
 To enable the persistence mechanism simply set the `PERSISTENCE` environment variable to `1`.
 Note that persistence is a Pro feature, therefore the `LOCALSTACK_API_KEY` must also be set.
