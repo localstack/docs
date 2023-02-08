@@ -11,7 +11,7 @@ aliases:
 
 LocalStack keeps track of all sent emails for retrospection.
 
-The sent messages can be retrieved via a service API endpoint (GET `/_localstack/ses`) or from the filesystem.
+The sent messages can be retrieved via a service API endpoint (GET `/_aws/ses`) or from the filesystem.
 
 Messages are also saved to the state directory (see [filesystem layout]({{< ref "filesystem" >}})).
 The files are saved as JSON in the `ses/` subdirectory and organised by message ID.

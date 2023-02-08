@@ -592,7 +592,7 @@ $ curl -s localhost:8080/process
 To check whether the email has been sent, you can query the LocalStack internal SES endpoint using the following command:
 
 {{< command >}}
-$ curl -s localhost:4566/_localstack/ses | jq .
+$ curl -s localhost:4566/_aws/ses | jq .
 {{< / command >}}
 
 You will see an output similar to the following:
