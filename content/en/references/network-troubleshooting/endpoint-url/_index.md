@@ -14,7 +14,8 @@ Use this page to find the scenario that best matches your use case
 
 **Example**: you have run `localstack start`, or you are accessing LocalStack started in Docker (or docker-compose).
 
-The hostname `localhost.localstack.cloud` maps to 127.0.0.1, i.e. your computer, and if you expose port 4566 from your LocalStack container then you should be able to connect.
+The hostname `localhost.localstack.cloud` maps to 127.0.0.1, i.e. your computer.
+If you expose port 4566 from your LocalStack container then you should be able to connect.
 If not, you can use `localhost` or any domain name that refers to `localhost`.
 
 # From a container LocalStack created
@@ -54,6 +55,10 @@ services:
 networks:
   ls:
     name: ls
+
+# Your application code can then use
+# http://localstack:4566 for the
+# endpoint url
 {{</tab>}}
 {{</tabpane>}}
 
@@ -61,9 +66,10 @@ networks:
 
 {{< figure src="../images/7.svg" width="400" >}}
 
-**Example**: you are running your application code in a container and accessing AWS resources such as S3 through LocalStack.
+**Example**: you are running your application code in a container and accessing AWS resources such as S3 in LocalStack.
 
-Similar to the example above, consider configuring docker networking when launching your container.
+It may be useful to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and set the `LAMBDA_DOCKER_NETWORK` environment variable to this value.
+Then your application code can access the LocalStack instance by its hostname. For example:
 
 {{<tabpane>}}
 {{<tab header="CLI" lang="bash">}}
@@ -97,6 +103,10 @@ services:
 networks:
   ls:
     name: ls
+
+# Your application code can then use
+# http://localstack:4566 for the
+# endpoint url
 {{</tab>}}
 {{</tabpane>}}
 
