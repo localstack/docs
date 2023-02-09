@@ -178,7 +178,7 @@ More details on Cognito Lambda triggers can be found in the [AWS documentation](
 
 You can also access the local [Cognito login form](https://docs.aws.amazon.com/cognito/latest/developerguide/login-endpoint.html) by entering the following URL in your browser:
 ```plaintext
-https://localhost.localstack.cloud/login?response_type=code&client_id=<client_id>&redirect_uri=<redirect_uri>
+https://localhost.localstack.cloud/_aws/cognito-idp/login?response_type=code&client_id=<client_id>&redirect_uri=<redirect_uri>
 ```
 Please replace `<client_id>` with the ID of an existing user pool client ID (in this case, `example_user`), and `<redirect_uri>` with the redirect URI of your application (e.g., `http://example.com`).
 
@@ -195,7 +195,7 @@ Note that the value of the `redirect_uri` parameter must match the value provide
   --data-urlencode 'redirect_uri=http://example.com' \
   --data-urlencode "client_id=${client_id}" \
   --data-urlencode 'code=test123' \
-  'http://localhost:4566/oauth2/token'
+  'http://localhost:4566/_aws/cognito-idp/oauth2/token'
 {"access_token": "eyJ0eXAi…lKaHx44Q", "expires_in": 86400, "token_type": "Bearer", "refresh_token": "e3f08304", "id_token": "eyJ0eXAi…ADTXv5mA"}
 ```
 
