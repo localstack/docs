@@ -12,6 +12,8 @@ This quickstart guide will walk you through starting LocalStack on your local ma
 
 {{< alert title="Note" >}}
 The quickest way to experiment with LocalStack is to use one of our [LocalStack quickstart samples](https://app.localstack.cloud/quickstart) to deploy a thumbnail creator, request worker application, or an asynchronous microservice with tracing/debugging. The quickstart samples will automatically connect to your running LocalStack container on your local machine and run the applications.
+
+To quickly see the outcome of this quickstart guide, try running the [Request worker sample app](https://app.localstack.cloud/quickstart-cloudformation) sample from our website.
 {{< /alert >}}
 
 ## Start your LocalStack container
@@ -19,7 +21,7 @@ The quickest way to experiment with LocalStack is to use one of our [LocalStack 
 After installing LocalStack and configuring your API key, let us start LocalStack. You can start LocalStack via the `localstack` CLI, Docker, or a Docker Compose setup. To run our sample AWS application, we will start LocalStack with the `EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000` configuration. In this guide, we will use the `localstack` CLI to start LocalStack.
 
 {{< command >}}
-$ EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000 localstack start 
+$ EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000 localstack start
 {{< / command >}}
 
 You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
