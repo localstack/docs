@@ -24,7 +24,7 @@ If not, you can use `localhost` or any domain name that refers to `localhost`.
 
 **Example**: your code is running in an ECS container that LocalStack has created.
 
-It may be useful to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and set the `LAMBDA_DOCKER_NETWORK` environment variable to this value.
+It may be useful to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and set the `MAIN_DOCKER_NETWORK` environment variable to this value.
 Then code running in ECS can access the LocalStack instance by its hostname. For example:
 
 {{<tabpane>}}
@@ -32,7 +32,7 @@ Then code running in ECS can access the LocalStack instance by its hostname. For
 # create the network
 docker network create my-network
 # launch localstack
-LAMBDA_DOCKER_NETWORK=my-network DOCKER_FLAGS="--network my-network" localstack start
+MAIN_DOCKER_NETWORK=my-network DOCKER_FLAGS="--network my-network" localstack start
 # then your code can access localstack at its container name (by default: localstack_main)
 aws --endpoint-url http://localstack_main:4566 s3api list-buckets
 {{</tab>}}
@@ -40,7 +40,7 @@ aws --endpoint-url http://localstack_main:4566 s3api list-buckets
 # create the network
 docker network create my-network
 # launch localstack
-docker run --rm -it --network my-network -e LAMBDA_DOCKER_NETWORK=my-network <other flags> localstack/localstack[-pro]
+docker run --rm -it --network my-network -e MAIN_DOCKER_NETWORK=my-network <other flags> localstack/localstack[-pro]
 # then your code can access localstack at its container name (by default: localstack_main)
 aws --endpoint-url http://localstack_main:4566 s3api list-buckets
 {{</tab>}}
@@ -49,7 +49,7 @@ services:
   localstack:
     # ... other configuration here
     environment:
-      LAMBDA_DOCKER_NETWORK=ls
+      MAIN_DOCKER_NETWORK=ls
     networks:
     - ls
 networks:
@@ -68,7 +68,7 @@ networks:
 
 **Example**: you are running your application code in a container and accessing AWS resources such as S3 in LocalStack.
 
-It may be useful to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and set the `LAMBDA_DOCKER_NETWORK` environment variable to this value.
+It may be useful to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and set the `MAIN_DOCKER_NETWORK` environment variable to this value.
 Then your application code can access the LocalStack instance by its hostname. For example:
 
 {{<tabpane>}}
