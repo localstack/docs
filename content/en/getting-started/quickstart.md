@@ -16,27 +16,23 @@ The quickest way to experiment with LocalStack is to use one of our [LocalStack 
 
 ## Start your LocalStack container
 
-After installing LocalStack and configuring your API key, let us start LocalStack. You can start LocalStack via the `localstack` CLI, Docker, or a Docker Compose setup. To run our sample AWS application, we will start LocalStack with the `EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000` configuration. In this guide, we will use the `localstack` CLI to start LocalStack.
+After installing LocalStack and configuring your API key, let us start LocalStack. To run our sample AWS application, we will start LocalStack using the `localstack` CLI.
 
 {{< command >}}
-$ EXTRA_CORS_ALLOWED_ORIGINS=http://localhost:3000 localstack start 
+$ localstack start 
 {{< / command >}}
 
 You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
 
-{{< alert title="Note" >}}
-LocalStack supports setting environment variables as Configuration options to alter the behavior of LocalStack. The `EXTRA_CORS_ALLOWED_ORIGINS` configuration allows other services to communicate with LocalStack. Refer to our [comprehensive documentation on LocalStack Configuration options]({{< ref "references/configuration" >}}).
-{{< /alert >}}
-
 ## Setup the sample AWS application
 
-With LocalStack ready, you are ready to run your first AWS application locally. Clone our [sample application](https://github.com/localstack/localstack-demo) using Git on your local machine:
+With LocalStack ready, you can now run your first AWS application locally. Clone our [sample application](https://github.com/localstack/localstack-demo) using Git on your local machine:
 
 {{< command >}}
-$ git clone git@github.com:localstack/localstack-demo.git
+$ git clone https://github.com/localstack/localstack-demo.git
 {{< / command >}}
 
-The sample app illustrates a typical web application scenario with asynchronous request processing happening in the background, all running locally inside LocalStack.
+The sample app illustrates a typical web application scenario with asynchronous request processing happening in the background, all running on your machine, inside LocalStack.
 
 <img src="../sample-app-architecture.png" alt="Application architecture for the sample application, with the different components and services involved in processing the requests." title="Application architecture for the sample application, with the different components and services involved in processing the requests." width="600px" />
 
@@ -50,28 +46,19 @@ In this sample application:
 
 All of these resources will be deployed to the local `us-east-1` region on LocalStack using Serverless framework.
 
-Let us install all the dependencies for our sample application. You need to ensure that you have Node.js and `npm` available, to install Serverless framework and other dependencies. Run the command:
-
-{{< command >}}
-$ npm install
-$ npm install -g serverless
-{{< / command >}}
-
 ## Run the sample AWS application
 
-With the initial setup now completed, you can deploy the application via `serverless` CLI:
+You need to ensure that you have Node.js and `npm` available, to install Serverless framework and other dependencies.
+
+The application has been updated to make your life easier. The only thing left to do now is to run:
 
 {{< command >}}
-$ serverless deploy --stage local
+$ make deploy
 {{< / command >}}
 
-Let us now serve the web application locally which can be accessed through your browser:
+This easy to use wrapper hides commands like `npm install` and `npm install -g serverless`.
 
-{{< command >}}
-$ npm run web
-{{< / command >}}
-
-Navigate to [`localhost:3000/`](http://localhost:3000/) to access the web application. You can enable the **Auto-Refresh** and click on **Create new request**. You will see the request being processed in the table below after an alert that your request has been sent and queued. After the processing is complete, you will see an option in the table to download the result from S3. Click on it to download a text file with the message: `Archive result for request XXXXXXX`.
+Navigate to [`http://localhost:4566/archive-bucket/index.html`](http://localhost:4566/archive-bucket/index.html) to access the web application. You can enable the **Auto-Refresh** and click on **Create new request**. You will see the request being processed in the table below after an alert that your request has been sent and queued. After the processing is complete, you will see an option in the table to download the result from S3. Click on it to download a text file with the message: `Archive result for request XXXXXXX`.
 
 If you have the `awslocal` CLI installed, you can run the following command to see the archive results in the local S3 bucket:
 
