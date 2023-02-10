@@ -124,7 +124,7 @@ LocalStack must listen to the address of the host, or `0.0.0.0`.
 EDGE_BIND_HOST="0.0.0.0" localstack start
 {{</tab>}}
 {{<tab header="Docker" lang="bash">}}
-# this command exposes ports on 0.0.0.0 by default
+# this command exposes ports on all interfaces by default
 docker run --rm -it -p 4566:4566 <additional arguments> localstack
 {{</tab>}}
 {{<tab header="docker-compose" lang="yaml">}}
