@@ -17,6 +17,10 @@ Use this page to find the scenario that best matches your use case
 If you expose port 4566 from your LocalStack container then you should be able to connect by connecting to `localhost`.
 If not, you can use `localhost` or any domain name that refers to `localhost`.
 
+{{<alert title="Note">}}
+If you bind a domain name to `localhost`, check that you are not subject to [DNS rebind protection]({{< ref "user-guide/tools/local-endpoint-injection/dns-server#dns-rebind-protection" >}}).
+{{</alert>}}
+
 # From a container LocalStack created
 
 {{< figure src="../images/4.svg" width="400" >}}
