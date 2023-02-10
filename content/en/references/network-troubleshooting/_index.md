@@ -26,7 +26,7 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 For example with the [AWS CLI]({{< ref "user-guide/integrations/aws-cli" >}}) where you need to specify the URL of LocalStack yourself, such as:
 
 {{< command >}}
-aws --endpoint-url http://localhost.localstack.cloud:4566 <command>
+aws --endpoint-url http://localhost:4566 <command>
 # or
 awslocal <command>
 {{< / command >}}
@@ -36,7 +36,7 @@ or using a language SDK, for example with [`boto3`](https://boto3.amazonaws.com/
 ```python
 import boto3
 
-client = boto3.client("s3", endpoint_url="http://localhost.localstack.cloud:4566")
+client = boto3.client("s3", endpoint_url="http://localhost:4566")
 ```
 
 [Click here to learn more...]({{< ref "endpoint-url" >}})
