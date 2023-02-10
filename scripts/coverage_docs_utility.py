@@ -205,9 +205,11 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
                 if str(metric.get("xfail", "")).lower() == "true":
                     continue
                 
-                if metric.get("origin").lower() == "internal":
-                    # exclude all internal service calls, those might be false positives for aws-validated tests
-                    continue
+                # TODO skipping "internal" seems to lower the coverage now, because some tests use e.g. cfn other implicit calls
+                # to verify behavior -> takle this issue in the next iteration
+                #if metric.get("origin").lower() == "internal":
+                #    # exclude all internal service calls, those might be false positives for aws-validated tests
+                #    continue
 
                 service = recorded_data.get(metric.get("service"))
                 # some metrics (e.g. moto) could include tests for services, we do not support
