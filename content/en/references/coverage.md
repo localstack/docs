@@ -24,7 +24,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddTagsToCertificate</td>
+      <td>AddTagsToCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -36,11 +36,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ExportCertificate</td>
+      <td>ExportCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCertificate</td>
+      <td>GetCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -56,7 +56,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTagsFromCertificate</td>
+      <td>RemoveTagsFromCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -64,7 +64,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ResendValidationEmail</td>
+      <td>ResendValidationEmail <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -324,7 +324,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateVpcLink</td>
+      <td>CreateVpcLink <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -344,7 +344,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDeployment</td>
+      <td>DeleteDeployment <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -356,7 +356,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteGatewayResponse</td>
+      <td>DeleteGatewayResponse <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -396,15 +396,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUsagePlan</td>
+      <td>DeleteUsagePlan <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteUsagePlanKey</td>
+      <td>DeleteUsagePlanKey <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteVpcLink</td>
+      <td>DeleteVpcLink <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -416,7 +416,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApiKey</td>
+      <td>GetApiKey <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -476,11 +476,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetGatewayResponse</td>
+      <td>GetGatewayResponse <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetGatewayResponses</td>
+      <td>GetGatewayResponses <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -536,7 +536,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetStages</td>
+      <td>GetStages <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -548,7 +548,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetUsagePlanKey</td>
+      <td>GetUsagePlanKey <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -564,7 +564,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetVpcLinks</td>
+      <td>GetVpcLinks <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -576,7 +576,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutGatewayResponse</td>
+      <td>PutGatewayResponse <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -616,7 +616,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApiKey</td>
+      <td>UpdateApiKey <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -850,7 +850,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApiMapping (Pro) </td>
+      <td>DeleteApiMapping (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -858,7 +858,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCorsConfiguration (Pro) </td>
+      <td>DeleteCorsConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -878,7 +878,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteModel (Pro) </td>
+      <td>DeleteModel (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -902,11 +902,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApiMapping (Pro) </td>
+      <td>GetApiMapping (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApiMappings (Pro) </td>
+      <td>GetApiMappings (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -954,7 +954,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetModel (Pro) </td>
+      <td>GetModel (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -986,7 +986,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTags (Pro) </td>
+      <td>GetTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1006,7 +1006,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource (Pro) </td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1022,7 +1022,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAuthorizer (Pro) </td>
+      <td>UpdateAuthorizer (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1042,7 +1042,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateModel (Pro) </td>
+      <td>UpdateModel (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1302,7 +1302,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteScheduledAction (Pro) </td>
+      <td>DeleteScheduledAction (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1318,7 +1318,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeScheduledActions (Pro) </td>
+      <td>DescribeScheduledActions (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1326,7 +1326,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutScheduledAction (Pro) </td>
+      <td>PutScheduledAction (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1398,7 +1398,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApiKey (Pro) </td>
+      <td>DeleteApiKey (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1658,7 +1658,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListQueryExecutions (Pro) </td>
+      <td>ListQueryExecutions (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1670,7 +1670,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartQueryExecution (Pro) </td>
+      <td>StartQueryExecution (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1846,11 +1846,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AttachLoadBalancerTargetGroups (Pro) </td>
+      <td>AttachLoadBalancerTargetGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AttachLoadBalancers (Pro) </td>
+      <td>AttachLoadBalancers (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1862,7 +1862,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateOrUpdateTags (Pro) </td>
+      <td>CreateOrUpdateTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1874,7 +1874,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLifecycleHook (Pro) </td>
+      <td>DeleteLifecycleHook (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1882,19 +1882,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteScheduledAction (Pro) </td>
+      <td>DeleteScheduledAction (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTags (Pro) </td>
+      <td>DeleteTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeAutoScalingGroups (Pro) </td>
+      <td>DescribeAutoScalingGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeAutoScalingInstances (Pro) </td>
+      <td>DescribeAutoScalingInstances (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1902,15 +1902,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLifecycleHooks (Pro) </td>
+      <td>DescribeLifecycleHooks (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancerTargetGroups (Pro) </td>
+      <td>DescribeLoadBalancerTargetGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancers (Pro) </td>
+      <td>DescribeLoadBalancers (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1918,7 +1918,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribePolicies (Pro) </td>
+      <td>DescribePolicies (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1926,23 +1926,23 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeScheduledActions (Pro) </td>
+      <td>DescribeScheduledActions (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTags (Pro) </td>
+      <td>DescribeTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachInstances (Pro) </td>
+      <td>DetachInstances (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachLoadBalancerTargetGroups (Pro) </td>
+      <td>DetachLoadBalancerTargetGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachLoadBalancers (Pro) </td>
+      <td>DetachLoadBalancers (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1954,7 +1954,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnterStandby (Pro) </td>
+      <td>EnterStandby (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -1962,47 +1962,47 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ExitStandby (Pro) </td>
+      <td>ExitStandby (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutLifecycleHook (Pro) </td>
+      <td>PutLifecycleHook (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutScalingPolicy (Pro) </td>
+      <td>PutScalingPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutScheduledUpdateGroupAction (Pro) </td>
+      <td>PutScheduledUpdateGroupAction (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ResumeProcesses (Pro) </td>
+      <td>ResumeProcesses (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetDesiredCapacity (Pro) </td>
+      <td>SetDesiredCapacity (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetInstanceHealth (Pro) </td>
+      <td>SetInstanceHealth (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetInstanceProtection (Pro) </td>
+      <td>SetInstanceProtection (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SuspendProcesses (Pro) </td>
+      <td>SuspendProcesses (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TerminateInstanceInAutoScalingGroup (Pro) </td>
+      <td>TerminateInstanceInAutoScalingGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAutoScalingGroup (Pro) </td>
+      <td>UpdateAutoScalingGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -2426,7 +2426,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>CancelJob (Pro) </td>
+      <td>CancelJob (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2438,6 +2438,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateSchedulingPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteComputeEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -2446,11 +2450,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DeleteSchedulingPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeregisterJobDefinition (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeComputeEnvironments (Pro) </td>
+      <td>DescribeComputeEnvironments (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2458,7 +2466,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJobQueues (Pro) </td>
+      <td>DescribeJobQueues (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2466,11 +2474,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListJobs (Pro) </td>
+      <td>DescribeSchedulingPolicies (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource (Pro) </td>
+      <td>ListJobs (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListSchedulingPolicies (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2482,15 +2498,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource (Pro) </td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TerminateJob (Pro) </td>
+      <td>TerminateJob (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource (Pro) </td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2498,34 +2514,12 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateJobQueue (Pro) </td>
+      <td>UpdateJobQueue (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
-  </tbody>
-  <tbody>    <tr>
-      <td><a data-toggle="collapse" href=".batch-notimplemented">Show missing</a></td>
-      <td style="text-align:right"></td>
-    </tr>
-  </tbody>
-  <tbody class="collapse batch-notimplemented">     <tr>
-      <td>CreateSchedulingPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
     <tr>
-      <td>DeleteSchedulingPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeSchedulingPolicies</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListSchedulingPolicies</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateSchedulingPolicy</td>
-       <td style="text-align:right">-</td>
+      <td>UpdateSchedulingPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+       <td style="text-align:right">✅</td>
     </tr>
   </tbody>
  </table>
@@ -2575,6 +2569,18 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>GetAnomalySubscriptions (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListTagsForResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UntagResource (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2672,23 +2678,11 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ProvideAnomalyFeedback</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>StartSavingsPlansPurchaseRecommendationGeneration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>TagResource</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UntagResource</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -2722,7 +2716,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateStackSet</td>
+      <td>CreateStackSet <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2754,7 +2748,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeStackSet</td>
+      <td>DescribeStackSet <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2778,7 +2772,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListChangeSets</td>
+      <td>ListChangeSets <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2798,7 +2792,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListStackSets</td>
+      <td>ListStackSets <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2810,7 +2804,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateStackSet</td>
+      <td>UpdateStackSet <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3438,7 +3432,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddTags (Pro) </td>
+      <td>AddTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3454,11 +3448,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetEventSelectors (Pro) </td>
+      <td>GetEventSelectors (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetInsightSelectors (Pro) </td>
+      <td>GetInsightSelectors (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3486,11 +3480,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutInsightSelectors (Pro) </td>
+      <td>PutInsightSelectors (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTags (Pro) </td>
+      <td>RemoveTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3516,11 +3510,23 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>CreateChannel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>CreateEventDataStore</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DeleteChannel</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DeleteEventDataStore</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteResourcePolicy</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3548,6 +3554,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>GetResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListChannels</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3572,6 +3582,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>PutResourcePolicy</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>RegisterOrganizationDelegatedAdmin</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -3589,6 +3603,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>StopImport</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateChannel</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -3614,7 +3632,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDashboards</td>
+      <td>DeleteDashboards <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3622,7 +3640,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeAlarmsForMetric</td>
+      <td>DescribeAlarmsForMetric <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3634,7 +3652,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDashboard</td>
+      <td>GetDashboard <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3646,7 +3664,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDashboards</td>
+      <td>ListDashboards <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -3662,7 +3680,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutDashboard</td>
+      <td>PutDashboard <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4118,7 +4136,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeIdentityPool (Pro) </td>
+      <td>DescribeIdentityPool (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4134,11 +4152,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetOpenIdToken (Pro) </td>
+      <td>GetOpenIdToken (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetOpenIdTokenForDeveloperIdentity (Pro) </td>
+      <td>GetOpenIdTokenForDeveloperIdentity (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4154,7 +4172,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateIdentityPool (Pro) </td>
+      <td>UpdateIdentityPool (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -4250,7 +4268,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminEnableUser (Pro) </td>
+      <td>AdminEnableUser (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4266,7 +4284,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AdminRemoveUserFromGroup (Pro) </td>
+      <td>AdminRemoveUserFromGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4466,7 +4484,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateGroup (Pro) </td>
+      <td>UpdateGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4478,7 +4496,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateUserAttributes (Pro) </td>
+      <td>UpdateUserAttributes (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4646,23 +4664,23 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>BatchGetAggregateResourceConfig</td>
+      <td>BatchGetAggregateResourceConfig <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>BatchGetResourceConfig</td>
+      <td>BatchGetResourceConfig <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAggregationAuthorization</td>
+      <td>DeleteAggregationAuthorization <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteConfigRule</td>
+      <td>DeleteConfigRule <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteConfigurationAggregator</td>
+      <td>DeleteConfigurationAggregator <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4674,23 +4692,23 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteOrganizationConformancePack</td>
+      <td>DeleteOrganizationConformancePack <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeAggregationAuthorizations</td>
+      <td>DescribeAggregationAuthorizations <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeConfigRules</td>
+      <td>DescribeConfigRules <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeConfigurationAggregators</td>
+      <td>DescribeConfigurationAggregators <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeConfigurationRecorderStatus</td>
+      <td>DescribeConfigurationRecorderStatus <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4702,43 +4720,43 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOrganizationConformancePackStatuses</td>
+      <td>DescribeOrganizationConformancePackStatuses <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOrganizationConformancePacks</td>
+      <td>DescribeOrganizationConformancePacks <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetOrganizationConformancePackDetailedStatus</td>
+      <td>GetOrganizationConformancePackDetailedStatus <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetResourceConfigHistory</td>
+      <td>GetResourceConfigHistory <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAggregateDiscoveredResources</td>
+      <td>ListAggregateDiscoveredResources <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDiscoveredResources</td>
+      <td>ListDiscoveredResources <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutAggregationAuthorization</td>
+      <td>PutAggregationAuthorization <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutConfigRule</td>
+      <td>PutConfigRule <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutConfigurationAggregator</td>
+      <td>PutConfigurationAggregator <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4754,23 +4772,23 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutOrganizationConformancePack</td>
+      <td>PutOrganizationConformancePack <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartConfigurationRecorder</td>
+      <td>StartConfigurationRecorder <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopConfigurationRecorder</td>
+      <td>StopConfigurationRecorder <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -5342,7 +5360,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBackups (Pro) </td>
+      <td>ListBackups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5540,6 +5558,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>AllocateHosts</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AssignIpv6Addresses</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5656,11 +5678,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLaunchTemplate</td>
+      <td>CreateLaunchTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLaunchTemplateVersion</td>
+      <td>CreateLaunchTemplateVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5800,7 +5822,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLaunchTemplate</td>
+      <td>DeleteLaunchTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5948,6 +5970,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeHosts</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeIamInstanceProfileAssociations</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5996,7 +6022,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLaunchTemplates</td>
+      <td>DescribeLaunchTemplates <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6188,7 +6214,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisassociateIamInstanceProfile</td>
+      <td>DisassociateIamInstanceProfile <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6260,11 +6286,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ModifyHosts</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ModifyImageAttribute</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>ModifyInstanceAttribute</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ModifyLaunchTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6332,10 +6366,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ProvisionIpamPoolCidr</td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>PurchaseReservedInstancesOffering <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6357,6 +6387,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ReleaseAddress <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ReleaseHosts</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6478,15 +6512,15 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>AllocateHosts</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>AllocateIpamPoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
       <td>ApplySecurityGroupsToClientVpnTargetNetwork</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AssignPrivateNatGatewayAddress</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -6503,6 +6537,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AssociateIpamResourceDiscovery</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>AssociateNatGatewayAddress</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7030,10 +7068,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribeHosts</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DescribeIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7314,6 +7348,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DisassociateNatGatewayAddress</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DisassociateTransitGatewayMulticastDomain</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7582,10 +7620,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ModifyHosts</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ModifyIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7639,10 +7673,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ModifyIpamScope</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ModifyLaunchTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7746,6 +7776,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>ProvisionIpamPoolCidr</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ProvisionPublicIpv4PoolCidr</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7779,10 +7813,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>RejectVpcEndpointConnections</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ReleaseHosts</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7870,6 +7900,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>UnassignPrivateNatGatewayAddress</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>WithdrawByoipCidr</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7904,7 +7938,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRegistryPolicy (Pro) </td>
+      <td>DeleteRegistryPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7912,11 +7946,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRepositoryPolicy (Pro) </td>
+      <td>DeleteRepositoryPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeImageScanFindings (Pro) </td>
+      <td>DescribeImageScanFindings (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7924,7 +7958,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeRegistry (Pro) </td>
+      <td>DescribeRegistry (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7944,11 +7978,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRegistryPolicy (Pro) </td>
+      <td>GetRegistryPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRepositoryPolicy (Pro) </td>
+      <td>GetRepositoryPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7960,11 +7994,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutImage (Pro) </td>
+      <td>PutImage (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutImageScanningConfiguration (Pro) </td>
+      <td>PutImageScanningConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -7976,19 +8010,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutRegistryPolicy (Pro) </td>
+      <td>PutRegistryPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutReplicationConfiguration (Pro) </td>
+      <td>PutReplicationConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetRepositoryPolicy (Pro) </td>
+      <td>SetRepositoryPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartImageScan (Pro) </td>
+      <td>StartImageScan (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8072,7 +8106,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>CreateCapacityProvider (Pro) </td>
+      <td>CreateCapacityProvider (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8088,7 +8122,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAccountSetting (Pro) </td>
+      <td>DeleteAccountSetting (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8096,7 +8130,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCapacityProvider (Pro) </td>
+      <td>DeleteCapacityProvider (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8108,7 +8142,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTaskSet (Pro) </td>
+      <td>DeleteTaskSet (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8120,7 +8154,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCapacityProviders (Pro) </td>
+      <td>DescribeCapacityProviders (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8128,7 +8162,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeContainerInstances (Pro) </td>
+      <td>DescribeContainerInstances (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8140,7 +8174,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTaskSets (Pro) </td>
+      <td>DescribeTaskSets (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8148,11 +8182,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DiscoverPollEndpoint (Pro) </td>
+      <td>DiscoverPollEndpoint (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAccountSettings (Pro) </td>
+      <td>ListAccountSettings (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8168,7 +8202,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListServices (Pro) </td>
+      <td>ListServices (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8176,7 +8210,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTaskDefinitionFamilies (Pro) </td>
+      <td>ListTaskDefinitionFamilies (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8188,7 +8222,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutAccountSetting (Pro) </td>
+      <td>PutAccountSetting (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8212,7 +8246,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartTask (Pro) </td>
+      <td>StartTask (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8224,7 +8258,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource (Pro) </td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>UpdateCapacityProvider (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -8240,11 +8278,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateServicePrimaryTaskSet (Pro) </td>
+      <td>UpdateServicePrimaryTaskSet (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateTaskSet (Pro) </td>
+      <td>UpdateTaskSet (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -8279,10 +8317,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>SubmitTaskStateChange</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateCapacityProvider</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8321,6 +8355,14 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>DescribeFileSystems (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DescribeLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>PutLifecycleConfiguration (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -8382,10 +8424,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribeLifecycleConfiguration</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DescribeMountTargetSecurityGroups</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -8419,10 +8457,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>PutFileSystemPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>PutLifecycleConfiguration</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -9100,51 +9134,51 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddTags (Pro) </td>
+      <td>AddTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ApplySecurityGroupsToLoadBalancer (Pro) </td>
+      <td>ApplySecurityGroupsToLoadBalancer (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AttachLoadBalancerToSubnets (Pro) </td>
+      <td>AttachLoadBalancerToSubnets (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ConfigureHealthCheck (Pro) </td>
+      <td>ConfigureHealthCheck (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateAppCookieStickinessPolicy (Pro) </td>
+      <td>CreateAppCookieStickinessPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLBCookieStickinessPolicy (Pro) </td>
+      <td>CreateLBCookieStickinessPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLoadBalancer (Pro) </td>
+      <td>CreateLoadBalancer (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLoadBalancerListeners (Pro) </td>
+      <td>CreateLoadBalancerListeners (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLoadBalancerPolicy (Pro) </td>
+      <td>CreateLoadBalancerPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLoadBalancer (Pro) </td>
+      <td>DeleteLoadBalancer (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLoadBalancerListeners (Pro) </td>
+      <td>DeleteLoadBalancerListeners (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLoadBalancerPolicy (Pro) </td>
+      <td>DeleteLoadBalancerPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9152,39 +9186,39 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeInstanceHealth (Pro) </td>
+      <td>DescribeInstanceHealth (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancerAttributes (Pro) </td>
+      <td>DescribeLoadBalancerAttributes (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancerPolicies (Pro) </td>
+      <td>DescribeLoadBalancerPolicies (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLoadBalancers (Pro) </td>
+      <td>DescribeLoadBalancers (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTags (Pro) </td>
+      <td>DescribeTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachLoadBalancerFromSubnets (Pro) </td>
+      <td>DetachLoadBalancerFromSubnets (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableAvailabilityZonesForLoadBalancer (Pro) </td>
+      <td>DisableAvailabilityZonesForLoadBalancer (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableAvailabilityZonesForLoadBalancer (Pro) </td>
+      <td>EnableAvailabilityZonesForLoadBalancer (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyLoadBalancerAttributes (Pro) </td>
+      <td>ModifyLoadBalancerAttributes (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9192,19 +9226,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTags (Pro) </td>
+      <td>RemoveTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetLoadBalancerListenerSSLCertificate (Pro) </td>
+      <td>SetLoadBalancerListenerSSLCertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetLoadBalancerPoliciesForBackendServer (Pro) </td>
+      <td>SetLoadBalancerPoliciesForBackendServer (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetLoadBalancerPoliciesOfListener (Pro) </td>
+      <td>SetLoadBalancerPoliciesOfListener (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -9236,11 +9270,11 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddListenerCertificates (Pro) </td>
+      <td>AddListenerCertificates (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddTags (Pro) </td>
+      <td>AddTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9280,11 +9314,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeAccountLimits (Pro) </td>
+      <td>DescribeAccountLimits (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeListenerCertificates (Pro) </td>
+      <td>DescribeListenerCertificates (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9304,15 +9338,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeSSLPolicies (Pro) </td>
+      <td>DescribeSSLPolicies (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTags (Pro) </td>
+      <td>DescribeTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTargetGroupAttributes (Pro) </td>
+      <td>DescribeTargetGroupAttributes (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9324,7 +9358,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyListener (Pro) </td>
+      <td>ModifyListener (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9332,11 +9366,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyRule (Pro) </td>
+      <td>ModifyRule (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyTargetGroup (Pro) </td>
+      <td>ModifyTargetGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9348,11 +9382,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveListenerCertificates (Pro) </td>
+      <td>RemoveListenerCertificates (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTags (Pro) </td>
+      <td>RemoveTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9360,15 +9394,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetRulePriorities (Pro) </td>
+      <td>SetRulePriorities (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetSecurityGroups (Pro) </td>
+      <td>SetSecurityGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetSubnets (Pro) </td>
+      <td>SetSubnets (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -9390,39 +9424,39 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddInstanceGroups (Pro) </td>
+      <td>AddInstanceGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddJobFlowSteps (Pro) </td>
+      <td>AddJobFlowSteps (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AddTags (Pro) </td>
+      <td>AddTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateSecurityConfiguration (Pro) </td>
+      <td>CreateSecurityConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSecurityConfiguration (Pro) </td>
+      <td>DeleteSecurityConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCluster (Pro) </td>
+      <td>DescribeCluster (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJobFlows (Pro) </td>
+      <td>DescribeJobFlows (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeSecurityConfiguration (Pro) </td>
+      <td>DescribeSecurityConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeStep (Pro) </td>
+      <td>DescribeStep (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9434,11 +9468,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListBootstrapActions (Pro) </td>
+      <td>ListBootstrapActions (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListClusters (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+      <td>ListClusters (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9446,19 +9480,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInstanceGroups (Pro) </td>
+      <td>ListInstanceGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInstances (Pro) </td>
+      <td>ListInstances (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSteps (Pro) </td>
+      <td>ListSteps (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyCluster (Pro) </td>
+      <td>ModifyCluster (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9466,11 +9500,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyInstanceGroups (Pro) </td>
+      <td>ModifyInstanceGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutAutoScalingPolicy (Pro) </td>
+      <td>PutAutoScalingPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9478,7 +9512,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveAutoScalingPolicy (Pro) </td>
+      <td>RemoveAutoScalingPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9486,7 +9520,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTags (Pro) </td>
+      <td>RemoveTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9494,15 +9528,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetTerminationProtection (Pro) </td>
+      <td>SetTerminationProtection (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetVisibleToAllUsers (Pro) </td>
+      <td>SetVisibleToAllUsers (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TerminateJobFlows (Pro) </td>
+      <td>TerminateJobFlows (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -9838,7 +9872,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>CancelReplay</td>
+      <td>CancelReplay <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9846,7 +9880,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateArchive</td>
+      <td>CreateArchive <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9862,7 +9896,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteArchive</td>
+      <td>DeleteArchive <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9882,7 +9916,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeArchive</td>
+      <td>DescribeArchive <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9894,7 +9928,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeReplay</td>
+      <td>DescribeReplay <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9906,15 +9940,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableRule</td>
+      <td>EnableRule <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListApiDestinations</td>
+      <td>ListApiDestinations <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListArchives</td>
+      <td>ListArchives <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9926,11 +9960,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListReplays</td>
+      <td>ListReplays <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRuleNamesByTarget</td>
+      <td>ListRuleNamesByTarget <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9970,7 +10004,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartReplay</td>
+      <td>StartReplay <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -9986,15 +10020,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateApiDestination</td>
+      <td>UpdateApiDestination <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateArchive</td>
+      <td>UpdateArchive <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateConnection</td>
+      <td>UpdateConnection <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -10114,7 +10148,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagDeliveryStream</td>
+      <td>UntagDeliveryStream <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10242,11 +10276,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteArchive (Pro) </td>
+      <td>DeleteArchive (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteVault (Pro) </td>
+      <td>DeleteVault (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10258,11 +10292,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeJob (Pro) </td>
+      <td>DescribeJob (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeVault (Pro) </td>
+      <td>DescribeVault (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10282,7 +10316,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListJobs (Pro) </td>
+      <td>ListJobs (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10290,7 +10324,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListVaults (Pro) </td>
+      <td>ListVaults (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10634,7 +10668,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTags (Pro) </td>
+      <td>GetTags (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10722,11 +10756,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource (Pro) </td>
+      <td>TagResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource (Pro) </td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -10734,7 +10768,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateConnection (Pro) </td>
+      <td>UpdateConnection (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11238,7 +11272,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateAccountAlias</td>
+      <td>CreateAccountAlias <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11250,11 +11284,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLoginProfile</td>
+      <td>CreateLoginProfile <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateOpenIDConnectProvider</td>
+      <td>CreateOpenIDConnectProvider <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11262,7 +11296,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePolicyVersion</td>
+      <td>CreatePolicyVersion <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11270,7 +11304,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateSAMLProvider</td>
+      <td>CreateSAMLProvider <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11282,11 +11316,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateVirtualMFADevice</td>
+      <td>CreateVirtualMFADevice <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeactivateMFADevice</td>
+      <td>DeactivateMFADevice <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11294,11 +11328,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAccountAlias</td>
+      <td>DeleteAccountAlias <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAccountPasswordPolicy</td>
+      <td>DeleteAccountPasswordPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11314,11 +11348,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLoginProfile</td>
+      <td>DeleteLoginProfile <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteOpenIDConnectProvider</td>
+      <td>DeleteOpenIDConnectProvider <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11326,7 +11360,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePolicyVersion</td>
+      <td>DeletePolicyVersion <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11342,15 +11376,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSAMLProvider</td>
+      <td>DeleteSAMLProvider <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSSHPublicKey</td>
+      <td>DeleteSSHPublicKey <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteServerCertificate</td>
+      <td>DeleteServerCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11358,7 +11392,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSigningCertificate</td>
+      <td>DeleteSigningCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11374,7 +11408,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteVirtualMFADevice</td>
+      <td>DeleteVirtualMFADevice <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11390,31 +11424,31 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableMFADevice</td>
+      <td>EnableMFADevice <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GenerateCredentialReport</td>
+      <td>GenerateCredentialReport <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccessKeyLastUsed</td>
+      <td>GetAccessKeyLastUsed <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccountAuthorizationDetails</td>
+      <td>GetAccountAuthorizationDetails <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccountPasswordPolicy</td>
+      <td>GetAccountPasswordPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccountSummary</td>
+      <td>GetAccountSummary <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetCredentialReport</td>
+      <td>GetCredentialReport <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11426,15 +11460,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetInstanceProfile</td>
+      <td>GetInstanceProfile <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetLoginProfile</td>
+      <td>GetLoginProfile <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetOpenIDConnectProvider</td>
+      <td>GetOpenIDConnectProvider <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11454,19 +11488,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSAMLProvider</td>
+      <td>GetSAMLProvider <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSSHPublicKey</td>
+      <td>GetSSHPublicKey <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetServerCertificate</td>
+      <td>GetServerCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetServiceLinkedRoleDeletionStatus</td>
+      <td>GetServiceLinkedRoleDeletionStatus <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11482,7 +11516,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAccountAliases</td>
+      <td>ListAccountAliases <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11498,7 +11532,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListEntitiesForPolicy</td>
+      <td>ListEntitiesForPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11506,7 +11540,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListGroups</td>
+      <td>ListGroups <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11518,7 +11552,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListInstanceProfiles</td>
+      <td>ListInstanceProfiles <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11526,15 +11560,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListMFADevices</td>
+      <td>ListMFADevices <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListOpenIDConnectProviderTags</td>
+      <td>ListOpenIDConnectProviderTags <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListOpenIDConnectProviders</td>
+      <td>ListOpenIDConnectProviders <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11542,7 +11576,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPolicyTags</td>
+      <td>ListPolicyTags <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11554,7 +11588,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRoleTags</td>
+      <td>ListRoleTags <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11562,19 +11596,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSAMLProviders</td>
+      <td>ListSAMLProviders <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSSHPublicKeys</td>
+      <td>ListSSHPublicKeys <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListServerCertificates</td>
+      <td>ListServerCertificates <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListSigningCertificates</td>
+      <td>ListSigningCertificates <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11582,15 +11616,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListUserTags</td>
+      <td>ListUserTags <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListUsers</td>
+      <td>ListUsers <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListVirtualMFADevices</td>
+      <td>ListVirtualMFADevices <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11622,7 +11656,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetDefaultPolicyVersion</td>
+      <td>SetDefaultPolicyVersion <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11634,19 +11668,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagOpenIDConnectProvider</td>
+      <td>TagOpenIDConnectProvider <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagPolicy</td>
+      <td>TagPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagRole</td>
+      <td>TagRole <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagUser</td>
+      <td>TagUser <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11654,19 +11688,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagOpenIDConnectProvider</td>
+      <td>UntagOpenIDConnectProvider <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagPolicy</td>
+      <td>UntagPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagRole</td>
+      <td>UntagRole <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagUser</td>
+      <td>UntagUser <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11674,7 +11708,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateAccountPasswordPolicy</td>
+      <td>UpdateAccountPasswordPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11682,15 +11716,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateGroup</td>
+      <td>UpdateGroup <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateLoginProfile</td>
+      <td>UpdateLoginProfile <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateOpenIDConnectProviderThumbprint</td>
+      <td>UpdateOpenIDConnectProviderThumbprint <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11698,7 +11732,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateRoleDescription</td>
+      <td>UpdateRoleDescription <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11706,27 +11740,27 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateSSHPublicKey</td>
+      <td>UpdateSSHPublicKey <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateSigningCertificate</td>
+      <td>UpdateSigningCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateUser</td>
+      <td>UpdateUser <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UploadSSHPublicKey</td>
+      <td>UploadSSHPublicKey <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UploadServerCertificate</td>
+      <td>UploadServerCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UploadSigningCertificate</td>
+      <td>UploadSigningCertificate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -11890,11 +11924,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateCertificateFromCsr (Pro) </td>
+      <td>CreateCertificateFromCsr (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDomainConfiguration (Pro) </td>
+      <td>CreateDomainConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11906,7 +11940,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateKeysAndCertificate (Pro) </td>
+      <td>CreateKeysAndCertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11930,7 +11964,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateThingType (Pro) </td>
+      <td>CreateThingType (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11942,15 +11976,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCACertificate (Pro) </td>
+      <td>DeleteCACertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteCertificate (Pro) </td>
+      <td>DeleteCertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDomainConfiguration (Pro) </td>
+      <td>DeleteDomainConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11986,7 +12020,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteThingType (Pro) </td>
+      <td>DeleteThingType (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -11998,19 +12032,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeprecateThingType (Pro) </td>
+      <td>DeprecateThingType (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCACertificate (Pro) </td>
+      <td>DescribeCACertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCertificate (Pro) </td>
+      <td>DescribeCertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDomainConfiguration (Pro) </td>
+      <td>DescribeDomainConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12038,7 +12072,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeThingType (Pro) </td>
+      <td>DescribeThingType (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12074,7 +12108,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetRegistrationCode (Pro) </td>
+      <td>GetRegistrationCode (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12086,19 +12120,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAttachedPolicies (Pro) </td>
+      <td>ListAttachedPolicies (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCertificates (Pro) </td>
+      <td>ListCertificates (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCertificatesByCA (Pro) </td>
+      <td>ListCertificatesByCA (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDomainConfigurations (Pro) </td>
+      <td>ListDomainConfigurations (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12110,7 +12144,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListJobs (Pro) </td>
+      <td>ListJobs (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12142,7 +12176,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTargetsForPolicy (Pro) </td>
+      <td>ListTargetsForPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12158,7 +12192,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListThingTypes (Pro) </td>
+      <td>ListThingTypes (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12174,7 +12208,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterCACertificate (Pro) </td>
+      <td>RegisterCACertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12182,7 +12216,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterCertificateWithoutCA (Pro) </td>
+      <td>RegisterCertificateWithoutCA (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -12206,15 +12240,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateCACertificate (Pro) </td>
+      <td>UpdateCACertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateCertificate (Pro) </td>
+      <td>UpdateCertificate (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDomainConfiguration (Pro) </td>
+      <td>UpdateDomainConfiguration (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -13666,11 +13700,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableEnhancedMonitoring</td>
+      <td>DisableEnhancedMonitoring <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableEnhancedMonitoring</td>
+      <td>EnableEnhancedMonitoring <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14472,7 +14506,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteFunctionConcurrency</td>
+      <td>DeleteFunctionConcurrency <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14508,7 +14542,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetFunctionConcurrency</td>
+      <td>GetFunctionConcurrency <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14568,7 +14602,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTags</td>
+      <td>ListTags <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14588,7 +14622,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutFunctionConcurrency</td>
+      <td>PutFunctionConcurrency <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14600,11 +14634,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TagResource</td>
+      <td>TagResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14704,7 +14738,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>CreateExportTask</td>
+      <td>CreateExportTask <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14728,11 +14762,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteResourcePolicy</td>
+      <td>DeleteResourcePolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteRetentionPolicy</td>
+      <td>DeleteRetentionPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14752,7 +14786,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeResourcePolicies</td>
+      <td>DescribeResourcePolicies <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14788,7 +14822,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutRetentionPolicy</td>
+      <td>PutRetentionPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -14796,7 +14830,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartQuery</td>
+      <td>StartQuery <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15072,19 +15106,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateUser (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>DeleteBroker (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>DeleteTags (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DeleteUser (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15100,14 +15126,6 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeConfigurationRevision (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>DescribeUser (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
       <td>ListBrokers (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -15119,26 +15137,6 @@ hide_readingtime: true
       <td>ListTags (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
-    <tr>
-      <td>ListUsers (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>RebootBroker (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateBroker (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateConfiguration (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
-    <tr>
-      <td>UpdateUser (Pro) </td>
-       <td style="text-align:right">✅</td>
-    </tr>
   </tbody>
   <tbody>    <tr>
       <td><a data-toggle="collapse" href=".mq-notimplemented">Show missing</a></td>
@@ -15146,11 +15144,47 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse mq-notimplemented">     <tr>
+      <td>CreateUser</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DeleteUser</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>DescribeBrokerInstanceOptions</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>DescribeConfigurationRevision</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeUser</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListConfigurationRevisions</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListUsers</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>RebootBroker</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateBroker</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateConfiguration</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>UpdateUser</td>
        <td style="text-align:right">-</td>
     </tr>
   </tbody>
@@ -15748,11 +15782,11 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AttachPolicy (Pro) </td>
+      <td>AttachPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CloseAccount (Pro) </td>
+      <td>CloseAccount (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15764,7 +15798,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateOrganizationalUnit (Pro) </td>
+      <td>CreateOrganizationalUnit (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15776,7 +15810,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteOrganizationalUnit (Pro) </td>
+      <td>DeleteOrganizationalUnit (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15784,7 +15818,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeregisterDelegatedAdministrator (Pro) </td>
+      <td>DeregisterDelegatedAdministrator (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15792,7 +15826,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeCreateAccountStatus (Pro) </td>
+      <td>DescribeCreateAccountStatus (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15800,79 +15834,79 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOrganizationalUnit (Pro) </td>
+      <td>DescribeOrganizationalUnit (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribePolicy (Pro) </td>
+      <td>DescribePolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DetachPolicy (Pro) </td>
+      <td>DetachPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableAWSServiceAccess (Pro) </td>
+      <td>DisableAWSServiceAccess (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisablePolicyType (Pro) </td>
+      <td>DisablePolicyType (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableAWSServiceAccess (Pro) </td>
+      <td>EnableAWSServiceAccess (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnablePolicyType (Pro) </td>
+      <td>EnablePolicyType (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAWSServiceAccessForOrganization (Pro) </td>
+      <td>ListAWSServiceAccessForOrganization (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAccounts (Pro) </td>
+      <td>ListAccounts (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListAccountsForParent (Pro) </td>
+      <td>ListAccountsForParent (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListChildren (Pro) </td>
+      <td>ListChildren (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListCreateAccountStatus (Pro) </td>
+      <td>ListCreateAccountStatus (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDelegatedAdministrators (Pro) </td>
+      <td>ListDelegatedAdministrators (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDelegatedServicesForAccount (Pro) </td>
+      <td>ListDelegatedServicesForAccount (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListOrganizationalUnitsForParent (Pro) </td>
+      <td>ListOrganizationalUnitsForParent (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListParents (Pro) </td>
+      <td>ListParents (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPolicies (Pro) </td>
+      <td>ListPolicies (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPoliciesForTarget (Pro) </td>
+      <td>ListPoliciesForTarget (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListRoots (Pro) </td>
+      <td>ListRoots (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15880,15 +15914,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTargetsForPolicy (Pro) </td>
+      <td>ListTargetsForPolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>MoveAccount (Pro) </td>
+      <td>MoveAccount (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RegisterDelegatedAdministrator (Pro) </td>
+      <td>RegisterDelegatedAdministrator (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -15900,15 +15934,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource (Pro) </td>
+      <td>UntagResource (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateOrganizationalUnit (Pro) </td>
+      <td>UpdateOrganizationalUnit (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdatePolicy (Pro) </td>
+      <td>UpdatePolicy (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -16110,19 +16144,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AuthorizeDBSecurityGroupIngress (Pro) </td>
+      <td>AuthorizeDBSecurityGroupIngress (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CancelExportTask (Pro) </td>
+      <td>CancelExportTask (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CopyDBClusterSnapshot (Pro) </td>
+      <td>CopyDBClusterSnapshot (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CopyDBSnapshot (Pro) </td>
+      <td>CopyDBSnapshot (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16146,7 +16180,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBInstanceReadReplica (Pro) </td>
+      <td>CreateDBInstanceReadReplica (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16158,7 +16192,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDBSecurityGroup (Pro) </td>
+      <td>CreateDBSecurityGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16170,11 +16204,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateEventSubscription (Pro) </td>
+      <td>CreateEventSubscription (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateOptionGroup (Pro) </td>
+      <td>CreateOptionGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16206,11 +16240,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBSecurityGroup (Pro) </td>
+      <td>DeleteDBSecurityGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDBSnapshot (Pro) </td>
+      <td>DeleteDBSnapshot (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16218,11 +16252,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteEventSubscription (Pro) </td>
+      <td>DeleteEventSubscription (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteOptionGroup (Pro) </td>
+      <td>DeleteOptionGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16282,7 +16316,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDBSecurityGroups (Pro) </td>
+      <td>DescribeDBSecurityGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16294,11 +16328,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeEventSubscriptions (Pro) </td>
+      <td>DescribeEventSubscriptions (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeExportTasks (Pro) </td>
+      <td>DescribeExportTasks (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16306,11 +16340,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOptionGroupOptions (Pro) </td>
+      <td>DescribeOptionGroupOptions (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeOptionGroups (Pro) </td>
+      <td>DescribeOptionGroups (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16350,15 +16384,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDBSubnetGroup (Pro) </td>
+      <td>ModifyDBSubnetGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyOptionGroup (Pro) </td>
+      <td>ModifyOptionGroup (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PromoteReadReplica (Pro) </td>
+      <td>PromoteReadReplica (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16386,23 +16420,23 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartDBCluster (Pro) </td>
+      <td>StartDBCluster (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartDBInstance (Pro) </td>
+      <td>StartDBInstance (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartExportTask (Pro) </td>
+      <td>StartExportTask (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopDBCluster (Pro) </td>
+      <td>StopDBCluster (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopDBInstance (Pro) </td>
+      <td>StopDBInstance (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -16750,19 +16784,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateClusterSnapshot</td>
+      <td>CreateClusterSnapshot <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateClusterSubnetGroup</td>
+      <td>CreateClusterSubnetGroup <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateSnapshotCopyGrant</td>
+      <td>CreateSnapshotCopyGrant <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTags</td>
+      <td>CreateTags <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16770,27 +16804,27 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteClusterParameterGroup</td>
+      <td>DeleteClusterParameterGroup <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteClusterSecurityGroup</td>
+      <td>DeleteClusterSecurityGroup <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteClusterSnapshot</td>
+      <td>DeleteClusterSnapshot <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteClusterSubnetGroup</td>
+      <td>DeleteClusterSubnetGroup <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteSnapshotCopyGrant</td>
+      <td>DeleteSnapshotCopyGrant <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTags</td>
+      <td>DeleteTags <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16806,11 +16840,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeClusterSnapshots</td>
+      <td>DescribeClusterSnapshots <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeClusterSubnetGroups</td>
+      <td>DescribeClusterSubnetGroups <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -16826,43 +16860,43 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeSnapshotCopyGrants</td>
+      <td>DescribeSnapshotCopyGrants <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTags</td>
+      <td>DescribeTags <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisableSnapshotCopy</td>
+      <td>DisableSnapshotCopy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>EnableSnapshotCopy</td>
+      <td>EnableSnapshotCopy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetClusterCredentials</td>
+      <td>GetClusterCredentials <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyCluster</td>
+      <td>ModifyCluster <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifySnapshotCopyRetentionPeriod</td>
+      <td>ModifySnapshotCopyRetentionPeriod <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PauseCluster</td>
+      <td>PauseCluster <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RestoreFromClusterSnapshot</td>
+      <td>RestoreFromClusterSnapshot <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ResumeCluster</td>
+      <td>ResumeCluster <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -17302,11 +17336,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetGroupConfiguration</td>
+      <td>GetGroupConfiguration <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetGroupQuery</td>
+      <td>GetGroupQuery <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17314,15 +17348,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutGroupConfiguration</td>
+      <td>PutGroupConfiguration <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateGroup</td>
+      <td>UpdateGroup <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateGroupQuery</td>
+      <td>UpdateGroupQuery <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -17454,7 +17488,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateQueryLoggingConfig</td>
+      <td>CreateQueryLoggingConfig <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17470,7 +17504,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteQueryLoggingConfig</td>
+      <td>DeleteQueryLoggingConfig <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17486,7 +17520,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDNSSEC</td>
+      <td>GetDNSSEC <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17498,11 +17532,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetHostedZoneCount</td>
+      <td>GetHostedZoneCount <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetQueryLoggingConfig</td>
+      <td>GetQueryLoggingConfig <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17510,7 +17544,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListHealthChecks</td>
+      <td>ListHealthChecks <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17526,7 +17560,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListQueryLoggingConfigs</td>
+      <td>ListQueryLoggingConfigs <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17546,7 +17580,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateHostedZoneComment</td>
+      <td>UpdateHostedZoneComment <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -17738,7 +17772,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AssociateResolverEndpointIpAddress</td>
+      <td>AssociateResolverEndpointIpAddress <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17802,7 +17836,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisassociateResolverEndpointIpAddress</td>
+      <td>DisassociateResolverEndpointIpAddress <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17830,7 +17864,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetResolverEndpoint</td>
+      <td>GetResolverEndpoint <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17842,11 +17876,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetResolverRule</td>
+      <td>GetResolverRule <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetResolverRuleAssociation</td>
+      <td>GetResolverRuleAssociation <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17870,7 +17904,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResolverEndpointIpAddresses</td>
+      <td>ListResolverEndpointIpAddresses <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17890,7 +17924,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListResolverRules</td>
+      <td>ListResolverRules <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -17902,7 +17936,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18006,7 +18040,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AbortMultipartUpload</td>
+      <td>AbortMultipartUpload <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18038,7 +18072,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBucketEncryption</td>
+      <td>DeleteBucketEncryption <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18058,7 +18092,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBucketOwnershipControls</td>
+      <td>DeleteBucketOwnershipControls <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18066,11 +18100,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBucketReplication</td>
+      <td>DeleteBucketReplication <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteBucketTagging</td>
+      <td>DeleteBucketTagging <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18090,7 +18124,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePublicAccessBlock</td>
+      <td>DeletePublicAccessBlock <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18150,7 +18184,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetBucketOwnershipControls</td>
+      <td>GetBucketOwnershipControls <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18206,7 +18240,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetObjectTagging</td>
+      <td>GetObjectTagging <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18246,7 +18280,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListMultipartUploads</td>
+      <td>ListMultipartUploads <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18266,7 +18300,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketAccelerateConfiguration</td>
+      <td>PutBucketAccelerateConfiguration <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18282,7 +18316,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketEncryption</td>
+      <td>PutBucketEncryption <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18302,7 +18336,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketLogging</td>
+      <td>PutBucketLogging <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18318,7 +18352,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutBucketOwnershipControls</td>
+      <td>PutBucketOwnershipControls <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18358,7 +18392,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutObjectLockConfiguration</td>
+      <td>PutObjectLockConfiguration <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18370,7 +18404,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutPublicAccessBlock</td>
+      <td>PutPublicAccessBlock <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18386,7 +18420,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UploadPartCopy</td>
+      <td>UploadPartCopy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18408,7 +18442,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>CreateAccessPoint</td>
+      <td>CreateAccessPoint <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18416,11 +18450,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAccessPoint</td>
+      <td>DeleteAccessPoint <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteAccessPointPolicy</td>
+      <td>DeleteAccessPointPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18428,15 +18462,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccessPoint</td>
+      <td>GetAccessPoint <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccessPointPolicy</td>
+      <td>GetAccessPointPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetAccessPointPolicyStatus</td>
+      <td>GetAccessPointPolicyStatus <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18448,7 +18482,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>PutAccessPointPolicy</td>
+      <td>PutAccessPointPolicy <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18676,7 +18710,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>AssociateTrialComponent (Pro) </td>
+      <td>AssociateTrialComponent (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18688,7 +18722,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateExperiment (Pro) </td>
+      <td>CreateExperiment (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18696,31 +18730,31 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateNotebookInstance (Pro) </td>
+      <td>CreateNotebookInstance (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateNotebookInstanceLifecycleConfig (Pro) </td>
+      <td>CreateNotebookInstanceLifecycleConfig (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreatePipeline (Pro) </td>
+      <td>CreatePipeline (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateProcessingJob (Pro) </td>
+      <td>CreateProcessingJob (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrainingJob (Pro) </td>
+      <td>CreateTrainingJob (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrial (Pro) </td>
+      <td>CreateTrial (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrialComponent (Pro) </td>
+      <td>CreateTrialComponent (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18732,7 +18766,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteExperiment (Pro) </td>
+      <td>DeleteExperiment (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18740,15 +18774,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteNotebookInstance (Pro) </td>
+      <td>DeleteNotebookInstance (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteNotebookInstanceLifecycleConfig (Pro) </td>
+      <td>DeleteNotebookInstanceLifecycleConfig (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeletePipeline (Pro) </td>
+      <td>DeletePipeline (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18756,11 +18790,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTrial (Pro) </td>
+      <td>DeleteTrial (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteTrialComponent (Pro) </td>
+      <td>DeleteTrialComponent (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18776,31 +18810,31 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeModel (Pro) </td>
+      <td>DescribeModel (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeNotebookInstance (Pro) </td>
+      <td>DescribeNotebookInstance (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeNotebookInstanceLifecycleConfig (Pro) </td>
+      <td>DescribeNotebookInstanceLifecycleConfig (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribePipeline (Pro) </td>
+      <td>DescribePipeline (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribePipelineDefinitionForExecution (Pro) </td>
+      <td>DescribePipelineDefinitionForExecution (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribePipelineExecution (Pro) </td>
+      <td>DescribePipelineExecution (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeProcessingJob (Pro) </td>
+      <td>DescribeProcessingJob (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18816,7 +18850,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DisassociateTrialComponent (Pro) </td>
+      <td>DisassociateTrialComponent (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18832,27 +18866,27 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListExperiments (Pro) </td>
+      <td>ListExperiments (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListModels (Pro) </td>
+      <td>ListModels (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPipelineExecutions (Pro) </td>
+      <td>ListPipelineExecutions (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPipelineParametersForExecution (Pro) </td>
+      <td>ListPipelineParametersForExecution (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListPipelines (Pro) </td>
+      <td>ListPipelines (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListProcessingJobs (Pro) </td>
+      <td>ListProcessingJobs (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18860,15 +18894,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTrainingJobs (Pro) </td>
+      <td>ListTrainingJobs (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTrialComponents (Pro) </td>
+      <td>ListTrialComponents (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTrials (Pro) </td>
+      <td>ListTrials (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18876,15 +18910,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartNotebookInstance (Pro) </td>
+      <td>StartNotebookInstance (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartPipelineExecution (Pro) </td>
+      <td>StartPipelineExecution (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopNotebookInstance (Pro) </td>
+      <td>StopNotebookInstance (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -18892,7 +18926,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdatePipeline (Pro) </td>
+      <td>UpdatePipeline (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -19920,7 +19954,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>CancelRotateSecret</td>
+      <td>CancelRotateSecret <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -19968,7 +20002,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RestoreSecret</td>
+      <td>RestoreSecret <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20260,7 +20294,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteIdentity</td>
+      <td>DeleteIdentity <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20280,7 +20314,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeConfigurationSet</td>
+      <td>DescribeConfigurationSet <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20292,11 +20326,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetIdentityMailFromDomainAttributes</td>
+      <td>GetIdentityMailFromDomainAttributes <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetIdentityNotificationAttributes</td>
+      <td>GetIdentityNotificationAttributes <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20304,19 +20338,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSendQuota</td>
+      <td>GetSendQuota <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetSendStatistics</td>
+      <td>GetSendStatistics <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetTemplate</td>
+      <td>GetTemplate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListIdentities</td>
+      <td>ListIdentities <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20328,7 +20362,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListVerifiedEmailAddresses</td>
+      <td>ListVerifiedEmailAddresses <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -20352,35 +20386,35 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetIdentityFeedbackForwardingEnabled</td>
+      <td>SetIdentityFeedbackForwardingEnabled <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetIdentityMailFromDomain</td>
+      <td>SetIdentityMailFromDomain <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>SetIdentityNotificationTopic</td>
+      <td>SetIdentityNotificationTopic <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>TestRenderTemplate</td>
+      <td>TestRenderTemplate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateReceiptRule</td>
+      <td>UpdateReceiptRule <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateTemplate</td>
+      <td>UpdateTemplate <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>VerifyDomainDkim</td>
+      <td>VerifyDomainDkim <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>VerifyDomainIdentity</td>
+      <td>VerifyDomainIdentity <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21084,7 +21118,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddPermission</td>
+      <td>AddPermission <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21092,7 +21126,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ChangeMessageVisibilityBatch</td>
+      <td>ChangeMessageVisibilityBatch <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21178,7 +21212,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>AddTagsToResource</td>
+      <td>AddTagsToResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21186,19 +21220,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateDocument</td>
+      <td>CreateDocument <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateMaintenanceWindow</td>
+      <td>CreateMaintenanceWindow <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteDocument</td>
+      <td>DeleteDocument <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteMaintenanceWindow</td>
+      <td>DeleteMaintenanceWindow <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21206,15 +21240,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteParameters</td>
+      <td>DeleteParameters <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDocument</td>
+      <td>DescribeDocument <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeDocumentPermission</td>
+      <td>DescribeDocumentPermission <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21222,7 +21256,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeMaintenanceWindows</td>
+      <td>DescribeMaintenanceWindows <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21234,7 +21268,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetDocument</td>
+      <td>GetDocument <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21246,7 +21280,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetParameterHistory</td>
+      <td>GetParameterHistory <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21270,15 +21304,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListDocuments</td>
+      <td>ListDocuments <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListTagsForResource</td>
+      <td>ListTagsForResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ModifyDocumentPermission</td>
+      <td>ModifyDocumentPermission <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21286,7 +21320,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RemoveTagsFromResource</td>
+      <td>RemoveTagsFromResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21294,11 +21328,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDocument</td>
+      <td>UpdateDocument <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UpdateDocumentDefaultVersion</td>
+      <td>UpdateDocumentDefaultVersion <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
   </tbody>
@@ -21834,7 +21868,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StopExecution</td>
+      <td>StopExecution <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21842,7 +21876,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>UntagResource</td>
+      <td>UntagResource <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -21928,11 +21962,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeTrustedAdvisorChecks</td>
+      <td>DescribeTrustedAdvisorChecks <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>RefreshTrustedAdvisorCheck</td>
+      <td>RefreshTrustedAdvisorCheck <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22316,19 +22350,19 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>CreateMedicalVocabulary</td>
+      <td>CreateMedicalVocabulary <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateVocabulary</td>
+      <td>CreateVocabulary <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteMedicalTranscriptionJob</td>
+      <td>DeleteMedicalTranscriptionJob <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteMedicalVocabulary</td>
+      <td>DeleteMedicalVocabulary <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22336,15 +22370,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteVocabulary</td>
+      <td>DeleteVocabulary <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetMedicalTranscriptionJob</td>
+      <td>GetMedicalTranscriptionJob <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetMedicalVocabulary</td>
+      <td>GetMedicalVocabulary <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22352,15 +22386,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetVocabulary</td>
+      <td>GetVocabulary <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListMedicalTranscriptionJobs</td>
+      <td>ListMedicalTranscriptionJobs <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListMedicalVocabularies</td>
+      <td>ListMedicalVocabularies <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22368,11 +22402,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>ListVocabularies</td>
+      <td>ListVocabularies <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>StartMedicalTranscriptionJob</td>
+      <td>StartMedicalTranscriptionJob <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22744,7 +22778,7 @@ hide_readingtime: true
   </thead>
   <tbody>
     <tr>
-      <td>BatchGetTraces (Pro) </td>
+      <td>BatchGetTraces (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22760,7 +22794,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetServiceGraph (Pro) </td>
+      <td>GetServiceGraph (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22877,5 +22911,6 @@ hide_readingtime: true
 ## Misc ##
 
 Endpoints marked with ✨ are covered by our integration test suite.
+The 💫 indicates that moto integration tests cover the endpoint, and run succesfully against LocalStack.
 
 </div>
