@@ -2100,6 +2100,10 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
+      <td>RollbackInstanceRefresh</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>StartInstanceRefresh</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -2438,11 +2442,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>CreateSchedulingPolicy (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DeleteComputeEnvironment (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>DeleteJobQueue (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>DeleteSchedulingPolicy (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2466,7 +2478,15 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeSchedulingPolicies (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ListJobs (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ListSchedulingPolicies (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -2501,31 +2521,9 @@ hide_readingtime: true
       <td>UpdateJobQueue (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
-  </tbody>
-  <tbody>    <tr>
-      <td><a data-toggle="collapse" href=".batch-notimplemented">Show missing</a></td>
-      <td style="text-align:right"></td>
-    </tr>
-  </tbody>
-  <tbody class="collapse batch-notimplemented">     <tr>
-      <td>CreateSchedulingPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
     <tr>
-      <td>DeleteSchedulingPolicy</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeSchedulingPolicies</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ListSchedulingPolicies</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateSchedulingPolicy</td>
-       <td style="text-align:right">-</td>
+      <td>UpdateSchedulingPolicy (Pro) </td>
+       <td style="text-align:right">✅</td>
     </tr>
   </tbody>
  </table>
@@ -5564,6 +5562,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>AllocateHosts</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>AssignIpv6Addresses</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5680,11 +5682,11 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLaunchTemplate</td>
+      <td>CreateLaunchTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateLaunchTemplateVersion</td>
+      <td>CreateLaunchTemplateVersion <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5824,7 +5826,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteLaunchTemplate</td>
+      <td>DeleteLaunchTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5972,6 +5974,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeHosts</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeIamInstanceProfileAssociations</td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -6020,7 +6026,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeLaunchTemplates</td>
+      <td>DescribeLaunchTemplates <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6284,11 +6290,19 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>ModifyHosts</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>ModifyImageAttribute</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
       <td>ModifyInstanceAttribute</td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ModifyLaunchTemplate <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6377,6 +6391,10 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ReleaseAddress <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
+      <td>ReleaseHosts</td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -6495,10 +6513,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>AdvertiseByoipCidr</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>AllocateHosts</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7058,10 +7072,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>DescribeHosts</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>DescribeIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7614,10 +7624,6 @@ hide_readingtime: true
        <td style="text-align:right">-</td>
     </tr>
     <tr>
-      <td>ModifyHosts</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
       <td>ModifyIdFormat</td>
        <td style="text-align:right">-</td>
     </tr>
@@ -7671,10 +7677,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>ModifyIpamScope</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ModifyLaunchTemplate</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -7815,10 +7817,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>RejectVpcEndpointConnections</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>ReleaseHosts</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -8268,6 +8266,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>UpdateCapacityProvider (Pro) </td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>UpdateCluster (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -8319,10 +8321,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>SubmitTaskStateChange</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateCapacityProvider</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
