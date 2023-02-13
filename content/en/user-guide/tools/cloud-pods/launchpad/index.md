@@ -10,12 +10,21 @@ description: >
 For more general information about Cloud Pods, please visit the [Cloud Pods Overview]({{< ref "cloud-pods" >}}). <br>
 The LocalStack Cloud Pods Launchpad allows you to quickly share and inject cloud pods into a LocalStack instance.
 
+
 ## Creating your sharable link
 Navigate to [app.localstack.cloud/launchpad](https://app.localstack.cloud/launchpad) where you can create a sharable link for your pods.
 <img src="link-generator.png" alt="Cloud Pods Launchpad Link Generator" />
 
 Enter a public URl to your pod in the first input field, and click on 'Generate Link'.
 The resulting link can be copied and shared with others.
+
+{{< alert title="Warning" color="warning" >}}
+Please consider that the launchpad takes an arbitrary URL as input and passes it onto your LocalStack instance to inject the pod. 
+This may lead to unintended side effects, as the URL that is passed to the launchpad is not validated in any way. 
+
+We also display the URL on the UI, so please make sure that your trust the URL when using the launchpad.
+{{< /alert >}}
+
 
 ## Adding a badge to your repository
 <img src="badge-demo.png" style="margin-bottom: 1rem" alt="Cloud Pods Badge Demonstration" />
@@ -50,12 +59,3 @@ This can happen if the pod is not available anymore or if the URL is not valid. 
 ### Failed to inject pod
 In case the launchpad fails to inject the pod into your LocalStack instance, you will see 'Pod injection failed' in the log message.
 This may be due to a couple of reasons, like version mismatch. Please check out your LocalStack logs for more information.
-
-## Security implications of the launchpad
-
-{{< alert title="Warning" color="warning" >}}
-Please consider that the launchpad takes an arbitrary URL as input and passes it onto your LocalStack instance to inject the pod. 
-This may lead to unintended side effects, as the URL that is passed to the launchpad is not validated in any way. 
-
-We also display the URL on the UI, so please make sure that your trust the URL when using the launchpad.
-{{< /alert >}}
