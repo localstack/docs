@@ -2337,7 +2337,43 @@ We are actively working on addressing this limitation in the upcoming releases.
 &lt;p>Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow you to take snapshots of your local instance (with the &lt;code>save&lt;/code> command) and inject such snapshots into a running instance (with the &lt;code>load&lt;/code> command) without requiring a restart.&lt;/p>
 &lt;p>In addition, we provide a remote storage backend that can be used to store the state of your running application and share it with your team members.&lt;/p>
 &lt;p>You can interact with Cloud Pods via the Web UI, and to load and store the persistent state of pods, you can use the &lt;code>localstack&lt;/code> &lt;a href="/user-guide/tools/cloud-pods/pods-cli/">command-line interface (CLI)&lt;/a>.&lt;/p>
-&lt;p>&lt;img src="pods-ui.png" alt="Cloud Pods Web UI">&lt;/p></description></item><item><title>User-Guide: Amazon MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
+&lt;p>&lt;img src="pods-ui.png" alt="Cloud Pods Web UI">&lt;/p></description></item><item><title>User-Guide: Cloud Pods Launchpad</title><link>/user-guide/tools/cloud-pods/launchpad/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/launchpad/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>For more general information about Cloud Pods, please visit the &lt;a href="/user-guide/tools/cloud-pods/">Cloud Pods Overview&lt;/a>. &lt;br>
+The LocalStack Cloud Pods Launchpad allows you to quickly share and inject cloud pods into a LocalStack instance.&lt;/p>
+&lt;h2 id="creating-your-sharable-link">Creating your sharable link&lt;/h2>
+&lt;p>Navigate to &lt;a href="https://app.localstack.cloud/launchpad">app.localstack.cloud/launchpad&lt;/a> where you can create a sharable link for your pods.
+&lt;img src="link-generator.png" alt="Cloud Pods Launchpad Link Generator" />&lt;/p>
+&lt;p>Enter a public URl to your pod in the first input field, and click on &amp;lsquo;Generate Link&amp;rsquo;.
+The resulting link can be copied and shared with others.&lt;/p>
+&lt;h2 id="adding-a-badge-to-your-repository">Adding a badge to your repository&lt;/h2>
+&lt;img src="badge-demo.png" style="margin-bottom: 1rem" alt="Cloud Pods Badge Demonstration" />
+&lt;p>If you want to add a badge to your README that links to the Cloud Pod Launchpad, you can use the following markdown snippet:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-markdown" data-lang="markdown">&lt;span style="display:flex;">&lt;span>[&lt;span style="color:#204a87;font-weight:bold">![Launch LocalStack Cloudpod&lt;/span>](&lt;span style="color:#c4a000">https://localstack.cloud/gh/launch-pod-badge.svg&lt;/span>)](https://app.localstack.cloud/launchpad?url=url_of_your_pod)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Please note that you have to add the &lt;code>url_of_your_pod&lt;/code> as the &lt;code>url&lt;/code> query parameter to the URL.
+For example if you are hosting the pod in the same repository, just use the URL pointing to the raw pod file.
+Additionally, you can use the &lt;a href="#creating-your-sharable-link">Link Generator&lt;/a> to create the sharable link for your pod.&lt;/p>
+&lt;p>Check out a proper example &lt;a href="https://github.com/localstack/cloud-pod-badge" target="_blank">on this GitHub repository&lt;/a>.&lt;/p>
+&lt;h2 id="troubleshooting-common-problems">Troubleshooting common problems&lt;/h2>
+&lt;p>In this section we present an overview of common problems and how to solve them.&lt;/p>
+&lt;h3 id="localstack-is-not-running">LocalStack is not running&lt;/h3>
+&lt;p>In case your LocalStack instance is not running, you will see the following error message:
+&lt;img src="ls-not-running.png" alt="Cloud Pods Launchpad Error LocalStack not running" />&lt;/p>
+&lt;p>Please start up your LocalStack instance and try again. Find out more about how to start LocalStack in the &lt;a href="/user-guide/tools/cloud-pods/getting-started/">Getting Started&lt;/a> section.&lt;/p>
+&lt;h3 id="failed-to-load-metadata">Failed to load metadata&lt;/h3>
+&lt;p>In case the launchpad fails to load the metadata of your pod, you will see the following error message:
+&lt;img src="metadata-load-failed.png" alt="Cloud Pods Launchpad Error failed to load metadata" />&lt;/p>
+&lt;p>This can happen if the pod is not available anymore or if the URL is not valid. Please check the URL and try again.&lt;/p>
+&lt;h3 id="failed-to-inject-pod">Failed to inject pod&lt;/h3>
+&lt;p>In case the launchpad fails to inject the pod into your LocalStack instance, you will see &amp;lsquo;Pod injection failed&amp;rsquo; in the log message.
+This may be due to a couple of reasons, like version mismatch. Please check out your LocalStack logs for more information.&lt;/p>
+&lt;h2 id="security-implications-of-the-launchpad">Security implications of the launchpad&lt;/h2>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+&lt;p>Please consider that the launchpad takes an arbitrary URL as input and passes it onto your LocalStack instance to inject the pod.
+This may lead to unintended side effects, as the URL that is passed to the launchpad is not validated in any way.&lt;/p>
+&lt;p>We also display the URL on the UI, so please make sure that your trust the URL when using the launchpad.&lt;/p>
+&lt;/div></description></item><item><title>User-Guide: Amazon MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
 &lt;p>Amazon MQ is a fully managed service for open-source message brokers.
 Basic support is included in LocalStack Pro, please refer to the &lt;a href="/user-guide/aws/feature-coverage/">feature-coverage&lt;/a> for more information.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
