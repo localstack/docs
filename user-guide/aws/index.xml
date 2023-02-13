@@ -6214,7 +6214,7 @@ The issuer endpoint generally follows this pattern, where &lt;code>&amp;lt;pool_
 &lt;p>More details on Cognito Lambda triggers can be found in the &lt;a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html">AWS documentation&lt;/a>.&lt;/p>
 &lt;h2 id="oauth-flows-via-cognito-login-form">OAuth Flows via Cognito Login Form&lt;/h2>
 &lt;p>You can also access the local &lt;a href="https://docs.aws.amazon.com/cognito/latest/developerguide/login-endpoint.html">Cognito login form&lt;/a> by entering the following URL in your browser:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>https://localhost.localstack.cloud/login?response_type=code&amp;amp;client_id=&amp;lt;client_id&amp;gt;&amp;amp;redirect_uri=&amp;lt;redirect_uri&amp;gt;
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>https://localhost.localstack.cloud/_aws/cognito-idp/login?response_type=code&amp;amp;client_id=&amp;lt;client_id&amp;gt;&amp;amp;redirect_uri=&amp;lt;redirect_uri&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Please replace &lt;code>&amp;lt;client_id&amp;gt;&lt;/code> with the ID of an existing user pool client ID (in this case, &lt;code>example_user&lt;/code>), and &lt;code>&amp;lt;redirect_uri&amp;gt;&lt;/code> with the redirect URI of your application (e.g., &lt;code>http://example.com&lt;/code>).&lt;/p>
 &lt;p>The login form should look similar to the screenshot below:
 &lt;figure>
@@ -6229,7 +6229,7 @@ Note that the value of the &lt;code>redirect_uri&lt;/code> parameter must match 
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --data-urlencode &lt;span style="color:#4e9a06">&amp;#39;redirect_uri=http://example.com&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --data-urlencode &lt;span style="color:#4e9a06">&amp;#34;client_id=&lt;/span>&lt;span style="color:#4e9a06">${&lt;/span>&lt;span style="color:#000">client_id&lt;/span>&lt;span style="color:#4e9a06">}&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --data-urlencode &lt;span style="color:#4e9a06">&amp;#39;code=test123&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;http://localhost:4566/oauth2/token&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;http://localhost:4566/_aws/cognito-idp/oauth2/token&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;access_token&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;eyJ0eXAi…lKaHx44Q&amp;#34;&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;expires_in&amp;#34;&lt;/span>: 86400, &lt;span style="color:#4e9a06">&amp;#34;token_type&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Bearer&amp;#34;&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;refresh_token&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;e3f08304&amp;#34;&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;id_token&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;eyJ0eXAi…ADTXv5mA&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="serverless-and-cognito">Serverless and Cognito&lt;/h2>
 &lt;p>You can also use Cognito and LocalStack in conjunction with the &lt;a href="https://www.serverless.com/">Serverless framework&lt;/a>.&lt;/p>
@@ -8752,6 +8752,7 @@ Redshift is essentially mocked in LocalStack alongside the node type. Hence whil
 &lt;h4 class="alert-heading">Note&lt;/h4>
 The &lt;code>describe-db-cluster&lt;/code> and &lt;code>describe-db-instances&lt;/code> calls will still return the &lt;code>engine-version&lt;/code> as it was defined for the creation, but the actual installed postgres engine could be different. This is important, e.g., when using a terraform configuration, as it should not detect changes in that case.
 &lt;/div>
+&lt;p>DB instances and DB cluster with Postgres engine support the creation and restoring of snapshots.&lt;/p>
 &lt;h3 id="mariadb-engine">MariaDB Engine&lt;/h3>
 &lt;p>MariaDB will be installed as OS package in LocalStack. Currently, it is not possible to freely select a specific version.&lt;/p>
 &lt;p>Snapshots are currently not supported for MariaDB.&lt;/p>
@@ -8945,7 +8946,7 @@ SageMaker is a fairly comprehensive API - for now, only a subset of the function
 &lt;/div></description></item><item><title>User-Guide: Simple Email Service (SES)</title><link>/user-guide/aws/ses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ses/</guid><description>
 &lt;h2 id="community">Community&lt;/h2>
 &lt;p>LocalStack keeps track of all sent emails for retrospection.&lt;/p>
-&lt;p>The sent messages can be retrieved via a service API endpoint (GET &lt;code>/_localstack/ses&lt;/code>) or from the filesystem.&lt;/p>
+&lt;p>The sent messages can be retrieved via a service API endpoint (GET &lt;code>/_aws/ses&lt;/code>) or from the filesystem.&lt;/p>
 &lt;p>Messages are also saved to the state directory (see &lt;a href="/references/filesystem/">filesystem layout&lt;/a>).
 The files are saved as JSON in the &lt;code>ses/&lt;/code> subdirectory and organised by message ID.&lt;/p>
 &lt;h2 id="pro">Pro&lt;/h2>
