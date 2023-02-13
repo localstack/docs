@@ -248,6 +248,60 @@ localstack@machine % tree -L 4 ./volume/state
 │       │   └── tmp
 ```
 
+### Advanced Security Options
+Since LocalStack 1.4.0, the OpenSearch and ElasticSearch services support "Advanced Security Options".
+Currently, the internal user database for OpenSearch domains is supported.
+ElasticSearch domains are currently not supported (neither via the OpenSearch nor the ElasticSearch service).
+There is no integration with IAM yet (but this might be implemented in later iterations, based on user feedback).
+
+A secure OpenSearch domain can be spawned with this example CLI input:
+```json
+{
+    "DomainName": "secure-domain",
+    "ClusterConfig": {
+        "InstanceType": "r5.large.search",
+        "InstanceCount": 1,
+            "DedicatedMasterEnabled": false,
+            "ZoneAwarenessEnabled": false,
+            "WarmEnabled": false
+        },
+    "EBSOptions": {
+        "EBSEnabled": true,
+        "VolumeType": "gp2",
+        "VolumeSize": 10
+    },
+    "EncryptionAtRestOptions": {
+        "Enabled": true
+    },
+    "NodeToNodeEncryptionOptions": {
+        "Enabled": true
+    },
+    "DomainEndpointOptions": {
+        "EnforceHTTPS": true
+    },
+    "AdvancedSecurityOptions": {
+        "Enabled": true,
+        "InternalUserDatabaseEnabled": true,
+        "MasterUserOptions": {
+            "MasterUserName": "admin",
+            "MasterUserPassword": "really-secure-passwordAa!1"
+        }
+    }
+}
+```
+
+It can be provisioned with the following aws(local) cli command, presumed the above CLI input is stored in a file called `opensearch_domain.json`:
+{{< command >}}
+$ awslocal opensearch create-domain --cli-input-json file://./opensearch_domain.json
+{{< /command >}}
+
+Once the domain is set up (`Processing: false`), the cluster can only be accessed with the given master user credentials (via HTTP basic auth):
+{{< command >}}
+$ curl -u "admin:really-secure-passwordAa!1" http://secure-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health
+{"cluster_name":"opensearch","status":"green",...}
+{{< /command >}}
+Any unauthorized requests will result in an HTTP response status code 401 (Unauthorized).
+
 ## Custom OpenSearch backends
 
 LocalStack downloads OpenSearch asynchronously the first time you run the `aws opensearch create-domain`, so you will get the response from LocalStack first and then (after download/install) you will have your OpenSearch cluster running locally.
