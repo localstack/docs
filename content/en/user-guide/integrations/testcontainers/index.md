@@ -22,7 +22,7 @@ aliases:
 
 ## Overview
 
-[Testcontainers](https://www.testcontainers.org/) is a library that helps you to run your
+[Testcontainers](https://www.testcontainers.com/) is a library that helps you to run your
 tests against real dependencies.
 
 In this guide, you will learn how to use [Testcontainers](https://www.testcontainers.org/) 
