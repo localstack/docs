@@ -19,40 +19,141 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 ---
 
-## Accessing LocalStack directly
+<div class="container">
+<div class="row">
 
-{{< figure src="./images/overview-1.svg" width="400" >}}
+<h2><a href="{{< ref "endpoint-url" >}}">Using the endpoint URL</a></h2>
 
-For example with the [AWS CLI]({{< ref "user-guide/integrations/aws-cli" >}}) where you need to specify the URL of LocalStack yourself, such as:
+</div>
+<div class="row py-4">
+<div class="col-xl-3  p-4 shadow d-flex flex-column">
+<a href="{{< ref "endpoint-url#from-the-same-computer" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
 
-{{< command >}}
-aws --endpoint-url http://localhost:4566 <command>
-# or
-awslocal <command>
-{{< / command >}}
+<h4>From the same computer</h4>
 
-or using a language SDK, for example with [`boto3`](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html):
+{{< figure src="./images/1.svg" width="400" >}}
 
-```python
-import boto3
+<!-- **Example**: you have run `localstack start`, or you are accessing LocalStack started in Docker (or docker-compose). -->
 
-client = boto3.client("s3", endpoint_url="http://localhost:4566")
-```
+</a>
+</div>
 
-[Click here to learn more...]({{< ref "endpoint-url" >}})
+<div class="col-xl-3  p-4 shadow d-flex flex-column">
+<a href="{{< ref "endpoint-url#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
 
-## Accessing LocalStack using transparent endpoint injection
+<h4>From a container LocalStack created</h4>
 
-{{< figure src="./images/overview-2.svg" width="400" >}}
+{{< figure src="./images/4.svg" width="400" >}}
 
-You are using a [language SDK]({{< ref "/user-guide/integrations/sdks" >}}) to access LocalStack, for example [`boto3`](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html), and are making requests to `amazonaws.com` and expecting them to reach LocalStack.
+<!-- **Example**: your code is running in an ECS container that LocalStack has created. -->
 
-[Click here to learn more...]({{< ref "transparent-endpoint-injection" >}})
+</a>
+</div>
 
-## Accessing a resource that LocalStack has created by URL
+<div class="col-xl-3  p-4 shadow d-flex flex-column">
+<a href="{{< ref "endpoint-url#from-your-container" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
 
-{{< figure src="./images/overview-3.svg" width="270" >}}
+<h4>From your container</h4>
 
-You have created a resource in LocalStack such as an RDS or OpenSearch instance.
+{{< figure src="./images/7.svg" width="400" >}}
 
-[Click here to learn more...]({{< ref "created-resources" >}})
+<!-- **Example**: you are running your application code in a container and accessing AWS resources such as S3 in LocalStack. -->
+
+</a>
+</div>
+
+<div class="col-xl-3  p-4 shadow d-flex flex-column">
+<a href="{{< ref "endpoint-url#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+
+
+<h4>From a separate host</h4>
+
+{{< figure src="./images/10.svg" width="400" >}}
+
+</a>
+</div>
+
+
+</div> <!-- row -->
+
+<div class="row">
+
+<h2><a href="{{< ref "transparent-endpoint-injection">}}">Using transparent endpoint injection</a></h2>
+
+</div>
+
+<div class="row py-4">
+<div class="col-xl-6  p-4 shadow d-flex flex-column">
+<a href="{{< ref "transparent-endpoint-injection#from-your-host" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+
+<h4>From your host</h4>
+
+{{< figure src="./images/2.svg" width="400" >}}
+
+<!-- If you are using LocalStack with an [API key]({{<ref "getting-started/api-key">}}), then you can use the [DNS server]({{<ref "user-guide/tools/local-endpoint-injection/dns-server">}}) to perform requests to LocalStack as if it were AWS. -->
+
+</a>
+</div>
+<div class="col-xl-6  p-4 shadow d-flex flex-column">
+<a href="{{< ref "transparent-endpoint-injection#from-a-lambda-function" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+
+<h4>From a lambda function</h4>
+
+{{< figure src="./images/5.svg" width="400" >}}
+
+</a>
+</div>
+
+</div> <!-- row -->
+
+<div class="row">
+
+<h2><a href="{{< ref "created-resources">}}">Accessing a resource created by LocalStack</a></h2>
+
+</div>
+
+<div class="row py-4">
+
+<div class="col-xl-3  p-4 shadow d-flex flex-column">
+<a href="{{< ref "created-resources#from-your-host" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+
+<h4>From your host</h4>
+
+{{< figure src="./images/3.svg" width="400" >}}
+
+<!-- **Example**: you have created an OpenSearch cluster and wish to access it from the computer that is running LocalStack. -->
+
+</a>
+</div>
+
+
+<div class="col-xl-3  p-4 shadow d-flex flex-column">
+<a href="{{< ref "created-resources#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+
+<h4>From a container LocalStack created</h4>
+
+{{< figure src="./images/6.svg" width="400" >}}
+
+</a>
+</div>
+<div class="col-xl-3  p-4 shadow d-flex flex-column">
+<a href="{{< ref "created-resources#from-your-container" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+
+<h4>From your container</h4>
+
+{{< figure src="./images/9.svg" width="400" >}}
+
+</a>
+</div>
+
+<div class="col-xl-3  p-4 shadow d-flex flex-column">
+<a href="{{< ref "created-resources#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+
+<h4>From a separate host</h4>
+
+{{< figure src="./images/12.svg" width="400" >}}
+
+</a>
+</div>
+</div> <!-- row -->
+</div> <!-- container -->
