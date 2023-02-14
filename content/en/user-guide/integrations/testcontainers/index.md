@@ -25,7 +25,7 @@ aliases:
 [Testcontainers](https://www.testcontainers.com/) is a library that helps you to run your
 tests against real dependencies.
 
-In this guide, you will learn how to use [Testcontainers](https://www.testcontainers.org/) 
+In this guide, you will learn how to use [Testcontainers](https://www.testcontainers.com/) 
 with LocalStack.
 
 ## Covered Topics
