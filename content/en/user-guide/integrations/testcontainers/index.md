@@ -38,6 +38,79 @@ with LocalStack.
 
 ### Testcontainers for Go
 
+Testcontainers for Go provides a [LocalStack module](https://golang.testcontainers.org/modules/localstack/)
+which allows you to run LocalStack in a Docker container and use it in your tests.
+
+Install it into your project:
+
+{{< command >}}
+$ go get github.com/testcontainers/testcontainers-go/modules/localstack
+{{< / command >}}
+
+In order to use LocalStack in your tests, you need to create a container instance:
+
+```go
+container, err := localstack.StartContainer(
+    ctx,
+    localstack.OverrideContainerRequest(testcontainers.ContainerRequest{
+        Env: map[string]string{
+            "AWS_ACCESS_KEY_ID":     accesskey,
+            "AWS_SECRET_ACCESS_KEY": secretkey,
+            "AWS_SESSION_TOKEN":     token,
+            "AWS_DEFAULT_REGION":    region,
+            "SERVICES":              "s3,sqs,cloudwatchlogs,kms",
+        }},
+    ),
+)
+```
+
+Configure the client to use the LocalStack endpoint:
+
+```go
+func s3Client(ctx context.Context, l *localstack.LocalStackContainer) (*s3.Client, error) {
+    // the Testcontainers Docker provider is used to get the host of the Docker daemon
+    provider, err := testcontainers.NewDockerProvider()
+    if err != nil {
+        return nil, err
+    }
+
+    host, err := provider.DaemonHost(ctx)
+    if err != nil {
+        return nil, err
+    }
+
+    mappedPort, err := l.MappedPort(ctx, nat.Port("4566/tcp"))
+    if err != nil {
+        return nil, err
+    }
+
+    customResolver := aws.EndpointResolverWithOptionsFunc(
+        func(service, region string, opts ...interface{}) (aws.Endpoint, error) {
+            return aws.Endpoint{
+                PartitionID:   "aws",
+                URL:           fmt.Sprintf("http://%s:%d", host, mappedPort.Int()),
+                SigningRegion: region,
+            }, nil
+        })
+
+    awsCfg, err := config.LoadDefaultConfig(context.TODO(),
+        config.WithRegion(region),
+        config.WithEndpointResolverWithOptions(customResolver),
+        config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(accesskey, secretkey, token)),
+    )
+    if err != nil {
+        return nil, err
+    }
+
+    client := s3.NewFromConfig(awsCfg, func(o *s3.Options) {
+        o.UsePathStyle = true
+    })
+
+    return client, nil
+}
+
+```
+
 ### Testcontainers for Java
 
 Testcontainers for Java provides a [LocalStack module](https://www.testcontainers.org/modules/localstack/)
