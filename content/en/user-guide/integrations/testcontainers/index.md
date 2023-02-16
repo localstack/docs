@@ -40,7 +40,7 @@ with LocalStack.
 
 ### Testcontainers for Java
 
-Testcontainers provides a [LocalStack module](https://www.testcontainers.org/modules/localstack/)
+Testcontainers for Java provides a [LocalStack module](https://www.testcontainers.org/modules/localstack/)
 which allows you to run LocalStack in a Docker container and use it in your tests.
 
 With Maven:
