@@ -30,26 +30,34 @@ with LocalStack.
 
 ## Covered Topics
 
-* [Testcontainers for .NET](#testcontainers-for-net)
-* [Testcontainers for Go](#testcontainers-for-go)
-* [Testcontainers for Java](#testcontainers-for-java)
+* [Installing the Localstack module](#installing-the-localstack-module)
+* [Obtaining a LocalStack container](#obtaining-a-localstack-container)
+* [Configuring the AWS client](#configuring-the-aws-client)
+* [Useful Links](#useful-links)
 
-### Testcontainers for .NET
+### Installing the Localstack module
 
-### Testcontainers for Go
+{{< tabpane >}}
+{{< tab header="Go" lang="go">}}
+go get github.com/testcontainers/testcontainers-go/modules/localstack
+{{< /tab >}}
+{{< tab header="Java (Maven)" lang="xml">}}
+<dependency>
+    <groupId>org.testcontainers</groupId>
+    <artifactId>localstack</artifactId>
+    <version>1.17.6</version>
+    <scope>test</scope>
+</dependency>
+{{< /tab >}}
+{{< tab header="Java (Gradle)" lang="gradle">}}
+testImplementation 'org.testcontainers:localstack:1.17.6'
+{{< /tab >}}
+{{< /tabpane >}}
 
-Testcontainers for Go provides a [LocalStack module](https://golang.testcontainers.org/modules/localstack/)
-which allows you to run LocalStack in a Docker container and use it in your tests.
+### Obtaining a LocalStack container
 
-Install it into your project:
-
-{{< command >}}
-$ go get github.com/testcontainers/testcontainers-go/modules/localstack
-{{< / command >}}
-
-In order to use LocalStack in your tests, you need to create a container instance:
-
-```go
+{{< tabpane >}}
+{{< tab header="Go" lang="go">}}
 container, err := localstack.StartContainer(
     ctx,
     localstack.OverrideContainerRequest(testcontainers.ContainerRequest{
@@ -62,11 +70,17 @@ container, err := localstack.StartContainer(
         }},
     ),
 )
-```
+{{< /tab >}}
+{{< tab header="Java" lang="java">}}
+LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:1.4.0")
+    .withServices(LocalStackContainer.Service.S3);
+{{< /tab >}}
+{{< /tabpane >}}
 
-Configure the client to use the LocalStack endpoint:
+## Configuring the AWS client
 
-```go
+{{< tabpane >}}
+{{< tab header="Go" lang="go">}}
 func s3Client(ctx context.Context, l *localstack.LocalStackContainer) (*s3.Client, error) {
     // the Testcontainers Docker provider is used to get the host of the Docker daemon
     provider, err := testcontainers.NewDockerProvider()
@@ -108,49 +122,20 @@ func s3Client(ctx context.Context, l *localstack.LocalStackContainer) (*s3.Clien
 
     return client, nil
 }
-
-```
-
-### Testcontainers for Java
-
-Testcontainers for Java provides a [LocalStack module](https://www.testcontainers.org/modules/localstack/)
-which allows you to run LocalStack in a Docker container and use it in your tests.
-
-With Maven:
-
-```xml
-<dependency>
-    <groupId>org.testcontainers</groupId>
-    <artifactId>localstack</artifactId>
-    <version>1.17.6</version>
-    <scope>test</scope>
-</dependency>
-```
-
-With Gradle:
-
-```gradle
-testImplementation 'org.testcontainers:localstack:1.17.6'
- ```
-
-In order to use LocalStack in your tests, you need to create a `LocalStackContainer` instance
-
-```java
-LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:1.4.0")
-    .withServices(LocalStackContainer.Service.S3);
-```
-
-Configure the client to use the LocalStack endpoint:
-
-```java
+{{< /tab >}}
+{{< tab header="Java" lang="java">}}
 S3Client s3 = S3Client.builder()
     .endpointOverride(localstack.getEndpointOverride(LocalStackContainer.Service.S3))
     .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(localstack.getAccessKey(), localstack.getSecretKey())))
     .region(Region.of(localstack.getRegion()))
     .build();
-```
+{{< /tab >}}
+{{< /tabpane >}}
 
 ## Useful Links
 
-* https://www.testcontainers.org/
-* https://www.testcontainers.org/modules/localstack/
+* https://www.testcontainers.com (Java, .NET, Go, Python, Ruby, Node.js)
+* https://www.testcontainers.org (Java)
+* https://www.testcontainers.org/modules/localstack (Java)
+* https://golang.testcontainers.org (Go)
+* https://golang.testcontainers.org/modules/localstack (Go)
