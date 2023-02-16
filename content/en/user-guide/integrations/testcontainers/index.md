@@ -18,14 +18,14 @@ aliases:
   - /integrations/testcontainers/
 ---
 
-<img src="testcontainers-logo.svg" width="600px" alt="Testcontainers logo"><br />
+<img src="testcontainers-logo.svg" width="600px" alt="Testcontainers logo">
 
 ## Overview
 
 [Testcontainers](https://www.testcontainers.com/) is a library that helps you to run your
 tests against real dependencies.
 
-In this guide, you will learn how to use [Testcontainers](https://www.testcontainers.com/) 
+In this guide, you will learn how to use [Testcontainers](https://www.testcontainers.com/)
 with LocalStack.
 
 ## Covered Topics
@@ -52,6 +52,9 @@ go get github.com/testcontainers/testcontainers-go/modules/localstack
 {{< tab header="Java (Gradle)" lang="gradle">}}
 testImplementation 'org.testcontainers:localstack:1.17.6'
 {{< /tab >}}
+{{< tab header="NuGet" lang="shell">}}
+dotnet add package Testcontainers --version 2.4.0
+{{< /tab >}}
 {{< /tabpane >}}
 
 ### Obtaining a LocalStack container
@@ -74,6 +77,29 @@ container, err := localstack.StartContainer(
 {{< tab header="Java" lang="java">}}
 LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:1.4.0")
     .withServices(LocalStackContainer.Service.S3);
+{{< /tab >}}
+{{< tab header=".NET" lang="csharp">}}
+
+/* The current released version of Testcontainers for .NET does not include a
+LocalStack module. However, developers who want to use Testcontainers with
+LocalStack should not be discouraged, as the Testcontainers team has already
+developed a LocalStack module that will be included in the next release. In the
+meantime, developers can still use Testcontainers' generic builder to create a
+LocalStack container. */
+
+const string localStackImage = "localstack/localstack:1.4.0";
+
+const ushort localStackPort = 4566
+
+var localStackContainer = new ContainerBuilder()
+    .WithImage(localStackImage)
+    .WithPortBinding(localStackPort, true)
+    .WithWaitStrategy(Wait.ForUnixContainer().UntilHttpRequestIsSucceeded(request =>
+        request.ForPath("/_localstack/health").ForPort(localStackPort)))
+    .Build();
+
+await localStackContainer.StartAsync()
+    .ConfigureAwait(false);
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -129,6 +155,11 @@ S3Client s3 = S3Client.builder()
     .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(localstack.getAccessKey(), localstack.getSecretKey())))
     .region(Region.of(localstack.getRegion()))
     .build();
+{{< /tab >}}
+{{< tab header=".NET" lang="csharp">}}
+var config = new AmazonS3Config();
+config.ServiceURL = _localStackContainer.GetConnectionString();
+using var client = new AmazonS3Client(config);
 {{< /tab >}}
 {{< /tabpane >}}
 
