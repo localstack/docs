@@ -8,7 +8,7 @@ tags:
 
 Use this page to find the scenario that best matches your use case
 
-# From the same computer
+## From the same computer
 
 {{< figure src="../images/1.svg" width="400" >}}
 
@@ -21,7 +21,7 @@ If not, you can use `localhost` or any domain name that refers to `localhost`.
 If you bind a domain name to `localhost`, check that you are not subject to [DNS rebind protection]({{< ref "user-guide/tools/local-endpoint-injection/dns-server#dns-rebind-protection" >}}).
 {{</alert>}}
 
-# From a container LocalStack created
+## From a container LocalStack created
 
 {{< figure src="../images/4.svg" width="400" >}}
 
@@ -65,7 +65,7 @@ networks:
 {{</tab>}}
 {{</tabpane>}}
 
-# From your container
+## From your container
 
 {{< figure src="../images/7.svg" width="400" >}}
 
@@ -113,7 +113,7 @@ networks:
 {{</tab>}}
 {{</tabpane>}}
 
-# From a separate host
+## From a separate host
 
 {{< figure src="../images/10.svg" width="400" >}}
 
