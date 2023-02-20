@@ -15,9 +15,9 @@ You can see which APIs are being used, which clients of integrations use particu
 To get started, the `LOCALSTACK_API_KEY` environment variable needs to be configured. The system will start making your events accessible on the LocalStack [Web Application dashboard](https://app.localstack.cloud/dashboard).
 
 {{< alert title="Information" color="success" >}}
-Data privacy is one of our key concerns, hence data is collected only in an anonymized way.
-No sensitive information about your application is ever exposed.
-The data is only used to provide you with insights into the usage of LocalStack and to improve the product.
+Your privacy matters to us! We only collect anonymized and sanitized data.
+No sensitive information about your application is ever collected or exposed.
+The data is only used to provide you with insights into the usage of LocalStack and to help us improve the product.
 {{< /alert >}}
 
 ## Getting started
@@ -33,6 +33,7 @@ The Stack widget will also display the number of API calls, services employed an
 <img src="detailed-stack-information.png" width="600px" alt="Detailed Stack Insights">
 
 <br>You can click on the individual stack to display detailed information. This includes the number of API calls, service invocations, the user agent (`aws-cli`, `terraform` etc.) and the particular service called in the specific spin-up. You can also use the slide toggle to pick up a particular time duration during which the user made specific API calls.
+Please note that stack insights are only collected if the LocalStack sessions runs for less than 24 hours.
 
 ## List of events during Stack lifetime
 
