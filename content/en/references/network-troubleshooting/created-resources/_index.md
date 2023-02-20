@@ -18,7 +18,7 @@ This is primarily used for communication within LocalStack and should not be use
 We are currently working on streamlining the configuration under different scenarios.
 {{</alert>}}
 
-# From your host
+## From your host
 
 {{< figure src="../images/3.svg" width="400" >}}
 
@@ -27,7 +27,7 @@ We are currently working on streamlining the configuration under different scena
 The `HOSTNAME_EXTERNAL` environment variable can be set to configure the hostname returned.
 See the [service-specific documentation]({{<ref "user-guide/aws/feature-coverage">}}) for more details.
 
-# From a container LocalStack created
+## From a container LocalStack created
 
 {{< figure src="../images/6.svg" width="400" >}}
 
@@ -37,13 +37,13 @@ In addition, the Lambda service supports an additional environment variable `HOS
 For example, when running LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), the LocalStack container can be reached from other containers in the network with the service name.
 Setting `HOSTNAME_FROM_LAMBDA` to this value may resolve problems with lambda functions accessing resources created by LocalStack.
 
-# From your container
+## From your container
 
 {{< figure src="../images/9.svg" width="400" >}}
 
 See the [advice given when using the endpoint url]({{<ref "endpoint-url#from-your-container" >}}).
 
-# From a separate host
+## From a separate host
 
 {{< figure src="../images/12.svg" width="400" >}}
 
