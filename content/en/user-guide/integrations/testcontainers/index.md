@@ -38,6 +38,9 @@ with LocalStack.
 ### Installing the Localstack module
 
 {{< tabpane >}}
+{{< tab header="NuGet" lang="shell">}}
+dotnet add package Testcontainers --version 2.4.0
+{{< /tab >}}
 {{< tab header="Go" lang="go">}}
 go get github.com/testcontainers/testcontainers-go/modules/localstack
 {{< /tab >}}
@@ -52,34 +55,12 @@ go get github.com/testcontainers/testcontainers-go/modules/localstack
 {{< tab header="Java (Gradle)" lang="gradle">}}
 testImplementation 'org.testcontainers:localstack:1.17.6'
 {{< /tab >}}
-{{< tab header="NuGet" lang="shell">}}
-dotnet add package Testcontainers --version 2.4.0
-{{< /tab >}}
 {{< /tabpane >}}
 
 ### Obtaining a LocalStack container
 
 {{< tabpane >}}
-{{< tab header="Go" lang="go">}}
-container, err := localstack.StartContainer(
-    ctx,
-    localstack.OverrideContainerRequest(testcontainers.ContainerRequest{
-        Env: map[string]string{
-            "AWS_ACCESS_KEY_ID":     accesskey,
-            "AWS_SECRET_ACCESS_KEY": secretkey,
-            "AWS_SESSION_TOKEN":     token,
-            "AWS_DEFAULT_REGION":    region,
-            "SERVICES":              "s3,sqs,cloudwatchlogs,kms",
-        }},
-    ),
-)
-{{< /tab >}}
-{{< tab header="Java" lang="java">}}
-LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:1.4.0")
-    .withServices(LocalStackContainer.Service.S3);
-{{< /tab >}}
 {{< tab header=".NET" lang="csharp">}}
-
 /* The current released version of Testcontainers for .NET does not include a
 LocalStack module. However, developers who want to use Testcontainers with
 LocalStack should not be discouraged, as the Testcontainers team has already
@@ -101,11 +82,34 @@ var localStackContainer = new ContainerBuilder()
 await localStackContainer.StartAsync()
     .ConfigureAwait(false);
 {{< /tab >}}
+{{< tab header="Go" lang="go">}}
+container, err := localstack.StartContainer(
+    ctx,
+    localstack.OverrideContainerRequest(testcontainers.ContainerRequest{
+        Env: map[string]string{
+            "AWS_ACCESS_KEY_ID":     accesskey,
+            "AWS_SECRET_ACCESS_KEY": secretkey,
+            "AWS_SESSION_TOKEN":     token,
+            "AWS_DEFAULT_REGION":    region,
+            "SERVICES":              "s3,sqs,cloudwatchlogs,kms",
+        }},
+    ),
+)
+{{< /tab >}}
+{{< tab header="Java" lang="java">}}
+LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:1.4.0")
+    .withServices(LocalStackContainer.Service.S3);
+{{< /tab >}}
 {{< /tabpane >}}
 
 ## Configuring the AWS client
 
 {{< tabpane >}}
+{{< tab header=".NET" lang="csharp">}}
+var config = new AmazonS3Config();
+config.ServiceURL = _localStackContainer.GetConnectionString();
+using var client = new AmazonS3Client(config);
+{{< /tab >}}
 {{< tab header="Go" lang="go">}}
 func s3Client(ctx context.Context, l *localstack.LocalStackContainer) (*s3.Client, error) {
     // the Testcontainers Docker provider is used to get the host of the Docker daemon
@@ -155,11 +159,6 @@ S3Client s3 = S3Client.builder()
     .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(localstack.getAccessKey(), localstack.getSecretKey())))
     .region(Region.of(localstack.getRegion()))
     .build();
-{{< /tab >}}
-{{< tab header=".NET" lang="csharp">}}
-var config = new AmazonS3Config();
-config.ServiceURL = _localStackContainer.GetConnectionString();
-using var client = new AmazonS3Client(config);
 {{< /tab >}}
 {{< /tabpane >}}
 
