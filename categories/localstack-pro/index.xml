@@ -2344,11 +2344,15 @@ If you choose to ship your own SDKs with your Lambda or using a layer, it will f
 &lt;p>This feature is currently not supported for custom Lambda container images.&lt;/p></description></item><item><title>User-Guide: Cloud Pods</title><link>/user-guide/tools/cloud-pods/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/</guid><description>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Please note that cloud pods may not be compatibile across different versions of LocalStack.
+Please note that cloud pods may not be compatible across different versions of LocalStack.
 We are actively working on addressing this limitation in the upcoming releases.
 &lt;/div>
 &lt;p>Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.&lt;/p>
 &lt;p>&lt;img src="pods-persistence.png" alt="Persistence versus Cloud Pods">&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Demo&lt;/h4>
+To quickly see cloud pods in action, we prepared a small sample application that uses cloud pods to inject its state into a running LocalStack container. &lt;a href="https://app.localstack.cloud/quickstart/demo4">Cloud Pod Thumbnail Sample App&lt;/a>
+&lt;/div>
 &lt;p>While the &lt;a href="/references/persistence-mechanism/">Persistence&lt;/a> feature ensures that the service state survives container restarts, Cloud Pods go beyond and allow more fine-grained control over your state.&lt;/p>
 &lt;p>Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow you to take snapshots of your local instance (with the &lt;code>save&lt;/code> command) and inject such snapshots into a running instance (with the &lt;code>load&lt;/code> command) without requiring a restart.&lt;/p>
 &lt;p>In addition, we provide a remote storage backend that can be used to store the state of your running application and share it with your team members.&lt;/p>
@@ -2396,7 +2400,7 @@ Basic support is included in LocalStack Pro, please refer to the &lt;a href="/us
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>In the following, we outline basic MQ usage. Please also refer to the sample here: &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker">Localstack Pro Samples&lt;/a>.
 Assuming you have &lt;a href="/user-guide/integrations/aws-cli/">&lt;code>awslocal&lt;/code>&lt;/a> installed, you can try the following commands:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mq create-broker --broker-name test-broker --deployment-mode SINGLE_INSTANCE --engine-type ACTIVEMQ --engine-version=&amp;#39;5.16.5&amp;#39; --host-instance-type &amp;#39;mq.t2.micro&amp;#39; --auto-minor-version-upgrade --publicly-accessible --users=&amp;#39;{&amp;#34;ConsoleAccess&amp;#34;: true, &amp;#34;Groups&amp;#34;: [&amp;#34;testgroup&amp;#34;],&amp;#34;Password&amp;#34;: &amp;#34;QXwV*$iUM9USHnVv&amp;amp;!^7s3c@&amp;#34;, &amp;#34;Username&amp;#34;: &amp;#34;admin&amp;#34;}&amp;#39;
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mq create-broker --broker-name test-broker --deployment-mode SINGLE_INSTANCE --engine-type ACTIVEMQ --engine-version=&amp;#39;5.16.6&amp;#39; --host-instance-type &amp;#39;mq.t2.micro&amp;#39; --auto-minor-version-upgrade --publicly-accessible --users=&amp;#39;{&amp;#34;ConsoleAccess&amp;#34;: true, &amp;#34;Groups&amp;#34;: [&amp;#34;testgroup&amp;#34;],&amp;#34;Password&amp;#34;: &amp;#34;QXwV*$iUM9USHnVv&amp;amp;!^7s3c@&amp;#34;, &amp;#34;Username&amp;#34;: &amp;#34;admin&amp;#34;}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerArn&amp;#34;: &amp;#34;arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerId&amp;#34;: &amp;#34;b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;
@@ -2428,7 +2432,7 @@ Assuming you have &lt;a href="/user-guide/integrations/aws-cli/">&lt;code>awsloc
 &lt;h2 id="localstack-limitations-and-differences-to-aws">Localstack limitations and differences to AWS&lt;/h2>
 &lt;p>Only basic functionality is supported right now, main limitations are the following:&lt;/p>
 &lt;ul>
-&lt;li>Only ActiveMQ (version 5.16.5) is supported&lt;/li>
+&lt;li>Only ActiveMQ (version 5.16.6) is supported&lt;/li>
 &lt;li>Users are not actively enforced (but needed to make proper calls)&lt;/li>
 &lt;li>While it is possible to create configurations, they are not actively enforced in a broker&lt;/li>
 &lt;li>Persistence and Cloud Pods are not supported&lt;/li>
