@@ -55,7 +55,7 @@ $ curl -XPOST -d "body=message" http://admin:admin@localhost:4513/api/message\?d
 
 ## Localstack limitations and differences to AWS
 Only basic functionality is supported right now, main limitations are the following:
-* Only ActiveMQ (version 5.16.5) is supported
+* Only ActiveMQ (version 5.16.6) is supported
 * Users are not actively enforced (but needed to make proper calls)
 * While it is possible to create configurations, they are not actively enforced in a broker
 * Persistence and Cloud Pods are not supported
