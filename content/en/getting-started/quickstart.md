@@ -13,7 +13,7 @@ This quickstart guide will walk you through starting LocalStack on your local ma
 {{< alert title="Note" >}}
 The quickest way to experiment with LocalStack is to use one of our [LocalStack quickstart samples](https://app.localstack.cloud/quickstart) to deploy a thumbnail creator, request worker application, or an asynchronous microservice with tracing/debugging. The quickstart samples will automatically connect to your running LocalStack container on your local machine and run the applications.
 
-To quickly see the outcome of this quickstart guide, try running the [Request Worker](https://app.localstack.cloud/quickstart-cloudformation) sample from our website.
+To quickly see the outcome of this quickstart guide, try deploying the [Request Worker](https://app.localstack.cloud/quickstart-cloudformation) sample from our website.
 {{< /alert >}}
 
 ## Start your LocalStack container
