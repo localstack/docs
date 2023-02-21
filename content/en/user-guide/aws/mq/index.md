@@ -15,7 +15,7 @@ In the following, we outline basic MQ usage. Please also refer to the sample her
 Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed, you can try the following commands:
 
 {{< command >}}
-$ awslocal mq create-broker --broker-name test-broker --deployment-mode SINGLE_INSTANCE --engine-type ACTIVEMQ --engine-version='5.16.5' --host-instance-type 'mq.t2.micro' --auto-minor-version-upgrade --publicly-accessible --users='{"ConsoleAccess": true, "Groups": ["testgroup"],"Password": "QXwV*$iUM9USHnVv&!^7s3c@", "Username": "admin"}'
+$ awslocal mq create-broker --broker-name test-broker --deployment-mode SINGLE_INSTANCE --engine-type ACTIVEMQ --engine-version='5.16.6' --host-instance-type 'mq.t2.micro' --auto-minor-version-upgrade --publicly-accessible --users='{"ConsoleAccess": true, "Groups": ["testgroup"],"Password": "QXwV*$iUM9USHnVv&!^7s3c@", "Username": "admin"}'
 {
     "BrokerArn": "arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545",
     "BrokerId": "b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545"
