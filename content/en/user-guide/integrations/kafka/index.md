@@ -1,15 +1,17 @@
 ---
 title: "Self-managed Kafka cluster"
 tags: ["kafka", "self-managed"]
-categories: []
+categories: ["LocalStack Pro"]
 weight: 11
 description: >
-  Using LocalStack lambda with self-managed Kafka cluster
+  Using LocalStack Lambda with a self-managed Kafka cluster
 aliases:
   - /integrations/kafka/
 ---
 
-LocalStack does not currently support AWS MSK out of the box, but you can run your own self-managed Kafka cluster and integrate it with your own applications.
+LocalStack Pro supports [AWS Managed Streaming for Kafka (MSK)]({{< ref "managed-streaming-for-kafka" >}}) and you can create Kafka clusters directly through the MSK API that will run in LocalStack.
+In some cases, you may want to run your own self-managed Kafka cluster and integrate it with your applications, like triggering Lambdas from a Kafka stream running in your own cluster.
+The Lambda integration with self-managed Kafka clusters is also a LocalStack Pro feature.
 
 ## Running self-managed Kafka
 
