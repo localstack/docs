@@ -195,6 +195,13 @@ localstack@machine % tree -L 4 volume/state
 │       │   └── tmp
 ```
 
+
+### Advanced Security Options
+Since LocalStack 1.4.0, the OpenSearch and ElasticSearch services support "Advanced Security Options".
+This feature is currently only supported for OpenSearch domains (which can also be created by the elasticsearch service).
+More info can be found on [the OpenSearch Service docs page](../opensearch#advanced-security-options).
+
+
 ## Custom Elasticsearch backends
 
 LocalStack downloads elasticsearch asynchronously the first time you run the `aws es create-elasticsearch-domain`, so you will get the response from localstack first and then (after download/install) you will have your elasticsearch cluster running locally.
