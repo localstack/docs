@@ -9,20 +9,31 @@ aliases:
 ---
 
 The OpenSearch Service in LocalStack lets you create one or more single-node OpenSearch clusters that behave like the [Amazon OpenSearch Service](https://aws.amazon.com/opensearch-service/).
-This service is, like its AWS counterpart, heavily linked with the [Elasticsearch Service](../elasticsearch).
+This service, like its AWS counterpart, is closely coupled with the [Elasticsearch Service](../elasticsearch).
 Any cluster created with the OpenSearch Service will show up in the Elasticsearch Service and vice versa.
+
+Following versions of OpenSearch are supported:
+
+- 1.0
+- 1.1
+- 1.2
+- 1.3
+- 2.3 (default)
+
+{{< alert title="Warning" color="warning">}}
+LocalStack uses the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py) internally.
+
+Features that were deprecated in OpenSearch 1.x and removed in OpenSearch 2.x are not guaranteed to work when using OpenSearch 1.x clusters with LocalStack.
+[More details here](https://github.com/opensearch-project/opensearch-py/blob/main/COMPATIBILITY.md).
+{{< /alert >}}
 
 
 ## Creating an OpenSearch cluster
 
 You can go ahead and use [awslocal]({{< ref "aws-cli.md#localstack-aws-cli-awslocal" >}}) to create a new OpenSearch domain via the `aws opensearch create-domain` command.
 
-{{< alert title="Note">}}
+{{< alert title="Note" >}}
 Every time when you create a cluster with a version of OpenSearch you haven't used before, the OpenSearch binary for the respective version needs to be downloaded, which may take a while.
-{{< /alert >}}
-
-{{< alert title="Note">}}
-The default OpenSearch version used is 1.1.0.
 {{< /alert >}}
 
 {{< command >}}
@@ -236,6 +247,60 @@ localstack@machine % tree -L 4 ./volume/state
 │       │   ├── data
 │       │   └── tmp
 ```
+
+### Advanced Security Options
+Since LocalStack 1.4.0, the OpenSearch and ElasticSearch services support "Advanced Security Options".
+Currently, the internal user database for OpenSearch domains is supported.
+ElasticSearch domains are currently not supported (neither via the OpenSearch nor the ElasticSearch service).
+There is no integration with IAM yet (but this might be implemented in later iterations, based on user feedback).
+
+A secure OpenSearch domain can be spawned with this example CLI input:
+```json
+{
+    "DomainName": "secure-domain",
+    "ClusterConfig": {
+        "InstanceType": "r5.large.search",
+        "InstanceCount": 1,
+            "DedicatedMasterEnabled": false,
+            "ZoneAwarenessEnabled": false,
+            "WarmEnabled": false
+        },
+    "EBSOptions": {
+        "EBSEnabled": true,
+        "VolumeType": "gp2",
+        "VolumeSize": 10
+    },
+    "EncryptionAtRestOptions": {
+        "Enabled": true
+    },
+    "NodeToNodeEncryptionOptions": {
+        "Enabled": true
+    },
+    "DomainEndpointOptions": {
+        "EnforceHTTPS": true
+    },
+    "AdvancedSecurityOptions": {
+        "Enabled": true,
+        "InternalUserDatabaseEnabled": true,
+        "MasterUserOptions": {
+            "MasterUserName": "admin",
+            "MasterUserPassword": "really-secure-passwordAa!1"
+        }
+    }
+}
+```
+
+It can be provisioned with the following aws(local) cli command, presumed the above CLI input is stored in a file called `opensearch_domain.json`:
+{{< command >}}
+$ awslocal opensearch create-domain --cli-input-json file://./opensearch_domain.json
+{{< /command >}}
+
+Once the domain is set up (`Processing: false`), the cluster can only be accessed with the given master user credentials (via HTTP basic auth):
+{{< command >}}
+$ curl -u "admin:really-secure-passwordAa!1" http://secure-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health
+{"cluster_name":"opensearch","status":"green",...}
+{{< /command >}}
+Any unauthorized requests will result in an HTTP response status code 401 (Unauthorized).
 
 ## Custom OpenSearch backends
 

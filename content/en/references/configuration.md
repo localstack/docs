@@ -203,6 +203,8 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 | Variable | Example Values | Description |
 | - | - | - |
 | `S3_DIR` | | Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro. |
+| `S3_SKIP_SIGNATURE_VALIDATION`| `0` / `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. |
+| `S3_SKIP_KMS_KEY_VALIDATION` | `0` / `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
 
 ### StepFunctions
 
@@ -253,7 +255,7 @@ Some of the services can be configured to switch to a particular provider:
 | Variable| Valid options | Notes |
 | - | - | - |
 | `KINESIS_PROVIDER` |  *Deprecated*. `kinesis-mock` (default) and `kinesalite` | |
-| `KMS_PROVIDER` |  `moto` (default) and `local-kms` | |
+| `KMS_PROVIDER` |  *Deprecated*. `moto` (default) and `local-kms` | |
 
 ## Profiles
 
@@ -299,7 +301,7 @@ python -m localstack.cli.main --profile=dev config show
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
-| `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments)
+| `EDGE_FORWARD_URL` | | *Deprecated*. Optional target URL to forward all edge requests to (e.g., for distributed deployments)
 | `MOCK_UNIMPLEMENTED` | | *Deprecated*. Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself

@@ -30,6 +30,8 @@ In order to disable installation of custom versions, you may configure the envir
 The `describe-db-cluster` and `describe-db-instances` calls will still return the `engine-version` as it was defined for the creation, but the actual installed postgres engine could be different. This is important, e.g., when using a terraform configuration, as it should not detect changes in that case.
 {{< /alert >}}
 
+DB instances and DB cluster with Postgres engine support the creation and restoring of snapshots.
+
 ### MariaDB Engine
 
 MariaDB will be installed as OS package in LocalStack. Currently, it is not possible to freely select a specific version. 
