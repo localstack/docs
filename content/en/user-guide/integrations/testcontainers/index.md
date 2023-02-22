@@ -83,18 +83,7 @@ await localStackContainer.StartAsync()
     .ConfigureAwait(false);
 {{< /tab >}}
 {{< tab header="Go" lang="go">}}
-container, err := localstack.StartContainer(
-    ctx,
-    localstack.OverrideContainerRequest(testcontainers.ContainerRequest{
-        Env: map[string]string{
-            "AWS_ACCESS_KEY_ID":     accesskey,
-            "AWS_SECRET_ACCESS_KEY": secretkey,
-            "AWS_SESSION_TOKEN":     token,
-            "AWS_DEFAULT_REGION":    region,
-            "SERVICES":              "s3,sqs,cloudwatchlogs,kms",
-        }},
-    ),
-)
+container, err := localstack.StartContainer(ctx, localstack.NoopOverrideContainerRequest)
 {{< /tab >}}
 {{< tab header="Java" lang="java">}}
 LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:1.4.0")
