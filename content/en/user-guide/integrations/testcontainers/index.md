@@ -162,7 +162,7 @@ S3Client s3 = S3Client.builder()
 {{< /tab >}}
 {{< /tabpane >}}
 
-## Useful Links
+## Resources
 
 * https://www.testcontainers.com (Java, .NET, Go, Python, Ruby, Node.js)
 * https://www.testcontainers.org (Java)
