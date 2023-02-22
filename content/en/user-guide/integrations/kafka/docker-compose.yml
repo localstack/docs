@@ -52,7 +52,7 @@ services:
 
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
-    image: localstack/localstack
+    image: localstack/localstack-pro
     ports:
       - "4566:4566"
     depends_on:
@@ -62,6 +62,7 @@ services:
       - DEBUG=${DEBUG- }
       - PERSISTENCE=${PERSISTENCE- }
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
