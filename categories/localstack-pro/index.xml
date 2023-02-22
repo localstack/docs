@@ -2394,7 +2394,96 @@ Please check the URL and try again.&lt;/p>
 &lt;h3 id="failed-to-inject-pod">Failed to inject pod&lt;/h3>
 &lt;p>In case the launchpad fails to inject the pod into your LocalStack instance, you will see &amp;lsquo;Pod injection failed&amp;rsquo; in the log message.
 This may be due to a couple of reasons, like version mismatch.
-Please check out your LocalStack logs for more information.&lt;/p></description></item><item><title>User-Guide: Amazon MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
+Please check out your LocalStack logs for more information.&lt;/p></description></item><item><title>User-Guide: Self-managed Kafka cluster</title><link>/user-guide/integrations/kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/kafka/</guid><description>
+&lt;p>LocalStack Pro supports &lt;a href="/user-guide/aws/managed-streaming-for-kafka/">AWS Managed Streaming for Kafka (MSK)&lt;/a> and you can create Kafka clusters directly through the MSK API that will run in LocalStack.
+In some cases, you may want to run your own self-managed Kafka cluster and integrate it with your applications, like triggering Lambdas from a Kafka stream running in your own cluster.
+The Lambda integration with self-managed Kafka clusters is also a LocalStack Pro feature.&lt;/p>
+&lt;h2 id="running-self-managed-kafka">Running self-managed Kafka&lt;/h2>
+&lt;p>You can find the &lt;a href="docker-compose.yml">example Docker Compose&lt;/a> file which contains a single-noded ZooKeeper and a Kafka cluster and a simple LocalStack setup as well as &lt;a href="https://github.com/cloudhut/kowl">Kowl&lt;/a>, an Apache Kafka Web UI.&lt;/p>
+&lt;ol>
+&lt;li>Run Docker Compose:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker-compose up -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;ol start="2">
+&lt;li>Create the Lambda function:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name fun1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler lambda.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime python3.8 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role r1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb://lambda.zip
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;FunctionName&amp;#34;: &amp;#34;fun1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;FunctionArn&amp;#34;: &amp;#34;arn:aws:lambda:us-east-1:000000000000:function:fun1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Runtime&amp;#34;: &amp;#34;python3.8&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Role&amp;#34;: &amp;#34;r1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Handler&amp;#34;: &amp;#34;lambda.handler&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CodeSize&amp;#34;: 294,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Description&amp;#34;: &amp;#34;&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Timeout&amp;#34;: 3,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;LastModified&amp;#34;: &amp;#34;2021-05-19T02:01:06.617+0000&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CodeSha256&amp;#34;: &amp;#34;/GPsiNXaq4tBA4QpxPCwgpeVfP7j+1tTH6zdkJ3jiU4=&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Version&amp;#34;: &amp;#34;$LATEST&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VpcConfig&amp;#34;: {},
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TracingConfig&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Mode&amp;#34;: &amp;#34;PassThrough&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RevisionId&amp;#34;: &amp;#34;d85469d2-8558-4d75-bc0e-5926f373e12c&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;Active&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;LastUpdateStatus&amp;#34;: &amp;#34;Successful&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;PackageType&amp;#34;: &amp;#34;Zip&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;ol start="3">
+&lt;li>Create an example secret:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal secretsmanager create-secret --name localstack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:secretsmanager:us-east-1:000000000000:secret:localstack-TDIuI&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;localstack&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VersionId&amp;#34;: &amp;#34;32bbb8e2-46ee-4322-b3d5-b6459d54513b&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;ol start="4">
+&lt;li>Create an example Kafka topic:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker exec -ti kafka kafka-topics --zookeeper zookeeper:2181 --create --replication-factor 1 --partitions 1 --topic t1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Created topic t1.&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;ol start="5">
+&lt;li>Create the event source mapping to your local kafka cluster:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-event-source-mapping \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topics t1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --source-access-configuration Type=SASL_SCRAM_512_AUTH,URI=arn:aws:secretsmanager:us-east-1:000000000000:secret:localstack-TDIuI \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name arn:aws:lambda:us-east-1:000000000000:function:fun1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --self-managed-event-source &amp;#39;{&amp;#34;Endpoints&amp;#34;:{&amp;#34;KAFKA_BOOTSTRAP_SERVERS&amp;#34;:[&amp;#34;localhost:9092&amp;#34;]}}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UUID&amp;#34;: &amp;#34;4a2b0ea6-960c-4847-8684-465876dd6dbd&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BatchSize&amp;#34;: 100,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;FunctionArn&amp;#34;: &amp;#34;arn:aws:lambda:us-east-1:000000000000:function:fun1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;LastModified&amp;#34;: &amp;#34;2021-05-19T04:02:49+02:00&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;LastProcessingResult&amp;#34;: &amp;#34;OK&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;Enabled&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StateTransitionReason&amp;#34;: &amp;#34;User action&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Topics&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;t1&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SourceAccessConfigurations&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Type&amp;#34;: &amp;#34;SASL_SCRAM_512_AUTH&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;URI&amp;#34;: &amp;#34;arn:aws:secretsmanager:us-east-1:000000000000:secret:localstack-TDIuI&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SelfManagedEventSource&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Endpoints&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KAFKA_BOOTSTRAP_SERVERS&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;localhost:9092&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;ol start="6">
+&lt;li>Additionally visit &lt;code>http://localhost:8080&lt;/code> for Kowl&amp;rsquo;s UI.&lt;/li>
+&lt;/ol></description></item><item><title>User-Guide: Amazon MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
 &lt;p>Amazon MQ is a fully managed service for open-source message brokers.
 Basic support is included in LocalStack Pro, please refer to the &lt;a href="/user-guide/aws/feature-coverage/">feature-coverage&lt;/a> for more information.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
