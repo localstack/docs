@@ -12,6 +12,8 @@ This quickstart guide will walk you through starting LocalStack on your local ma
 
 {{< alert title="Note" >}}
 The quickest way to experiment with LocalStack is to use one of our [LocalStack quickstart samples](https://app.localstack.cloud/quickstart) to deploy a thumbnail creator, request worker application, or an asynchronous microservice with tracing/debugging. The quickstart samples will automatically connect to your running LocalStack container on your local machine and run the applications.
+
+To quickly see the outcome of this quickstart guide, try deploying the [Request Worker](https://app.localstack.cloud/quickstart-cloudformation) sample from our website.
 {{< /alert >}}
 
 ## Start your LocalStack container
@@ -19,7 +21,7 @@ The quickest way to experiment with LocalStack is to use one of our [LocalStack 
 After installing LocalStack and configuring your API key, let us start LocalStack. To run our sample AWS application, we will start LocalStack using the `localstack` CLI.
 
 {{< command >}}
-$ localstack start 
+$ localstack start
 {{< / command >}}
 
 You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
@@ -60,7 +62,7 @@ This easy to use wrapper hides commands like `npm install` and `npm install -g s
 
 Navigate to [`http://localhost:4566/archive-bucket/index.html`](http://localhost:4566/archive-bucket/index.html) to access the web application. You can enable the **Auto-Refresh** and click on **Create new request**. You will see the request being processed in the table below after an alert that your request has been sent and queued. After the processing is complete, you will see an option in the table to download the result from S3. Click on it to download a text file with the message: `Archive result for request XXXXXXX`.
 
-If you have the `awslocal` CLI installed, you can run the following command to see the archive results in the local S3 bucket:
+If you have the `awslocal` [CLI installed](https://github.com/localstack/awscli-local) (via `pip install awscli-local`), you can run the following command to see the archive results in the local S3 bucket:
 
 {{< command >}}
 $ awslocal s3 ls s3://archive-bucket/
