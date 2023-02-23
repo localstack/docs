@@ -27,8 +27,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </div>
 <div class="row py-4">
-<div class="col-xl-3  p-4 shadow d-flex flex-column">
-<a href="{{< ref "endpoint-url#from-the-same-computer" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
+<a href="{{< ref "endpoint-url#from-the-same-computer" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
   **From the same computer**
 
@@ -39,8 +39,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </a>
 </div>
 
-<div class="col-xl-3  p-4 shadow d-flex flex-column">
-<a href="{{< ref "endpoint-url#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
+<a href="{{< ref "endpoint-url#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 **From a container LocalStack created**
 
@@ -51,8 +51,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </a>
 </div>
 
-<div class="col-xl-3  p-4 shadow d-flex flex-column">
-<a href="{{< ref "endpoint-url#from-your-container" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
+<a href="{{< ref "endpoint-url#from-your-container" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 **From your container**
 
@@ -63,8 +63,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </a>
 </div>
 
-<div class="col-xl-3  p-4 shadow d-flex flex-column">
-<a href="{{< ref "endpoint-url#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
+<a href="{{< ref "endpoint-url#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 
 **From a separate host**
@@ -84,8 +84,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </div>
 
 <div class="row py-4">
-<div class="col-xl-6  p-4 shadow d-flex flex-column">
-<a href="{{< ref "transparent-endpoint-injection#from-your-host" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-xl-6 col-md-12 py-2 d-flex justify-content-center">
+<a href="{{< ref "transparent-endpoint-injection#from-your-host" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 **From your host**
 
@@ -95,8 +95,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </a>
 </div>
-<div class="col-xl-6  p-4 shadow d-flex flex-column">
-<a href="{{< ref "transparent-endpoint-injection#from-a-lambda-function" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-xl-6 col-md-12 py-2 d-flex justify-content-center">
+<a href="{{< ref "transparent-endpoint-injection#from-a-lambda-function" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 **From a lambda function**
 
@@ -115,8 +115,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 <div class="row py-4">
 
-<div class="col-xl-3  p-4 shadow d-flex flex-column">
-<a href="{{< ref "created-resources#from-your-host" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
+<a href="{{< ref "created-resources#from-your-host" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 **From your host**
 
@@ -128,8 +128,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </div>
 
 
-<div class="col-xl-3  p-4 shadow d-flex flex-column">
-<a href="{{< ref "created-resources#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
+<a href="{{< ref "created-resources#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 **From a container LocalStack created**
 
@@ -137,8 +137,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </a>
 </div>
-<div class="col-xl-3  p-4 shadow d-flex flex-column">
-<a href="{{< ref "created-resources#from-your-container" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
+<a href="{{< ref "created-resources#from-your-container" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 **From your container**
 
@@ -147,8 +147,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </a>
 </div>
 
-<div class="col-xl-3  p-4 shadow d-flex flex-column">
-<a href="{{< ref "created-resources#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column flex-grow-1">
+<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
+<a href="{{< ref "created-resources#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
 
 **From a separate host**
 
