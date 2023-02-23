@@ -8,8 +8,6 @@ description: >
   How to troubleshoot common network problems
 ---
 
-## Overview
-
 Below are several scenarios in which you may be trying to use LocalStack.
 If you are having difficulties connecting your application code to LocalStack, please visit the links below each section which go into further details.
 
@@ -20,15 +18,15 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 ---
 
 <div class="container">
-<div class="row">
+<div class="row pt-6">
 
 ## [Using the endpoint URL]({{< ref "endpoint-url" >}})
 
 
 </div>
-<div class="row py-4">
-<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
-<a href="{{< ref "endpoint-url#from-the-same-computer" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="row">
+<div class="col-lg-12 col-xl-6 d-flex justify-content-center">
+<a href="{{< ref "endpoint-url#from-the-same-computer" >}}" class="justify-content-between d-flex flex-column text-center">
 
   **From the same computer**
 
@@ -39,8 +37,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </a>
 </div>
 
-<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
-<a href="{{< ref "endpoint-url#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="col-lg-12 col-xl-6 d-flex justify-content-center">
+<a href="{{< ref "endpoint-url#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From a container LocalStack created**
 
@@ -51,8 +49,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </a>
 </div>
 
-<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
-<a href="{{< ref "endpoint-url#from-your-container" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="col-lg-12 col-xl-6 d-flex justify-content-center">
+<a href="{{< ref "endpoint-url#from-your-container" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From your container**
 
@@ -63,8 +61,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </a>
 </div>
 
-<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
-<a href="{{< ref "endpoint-url#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="col-lg-12 col-xl-6 d-flex justify-content-center">
+<a href="{{< ref "endpoint-url#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column text-center">
 
 
 **From a separate host**
@@ -77,15 +75,15 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </div> <!-- row -->
 
-<div class="row">
+<div class="row pt-6">
 
-<h2><a href="{{< ref "transparent-endpoint-injection">}}">Using transparent endpoint injection</a></h2>
+## [Using transparent endpoint injection]({{< ref "transparent-endpoint-injection">}})
 
 </div>
 
-<div class="row py-4">
-<div class="col-xl-6 col-md-12 py-2 d-flex justify-content-center">
-<a href="{{< ref "transparent-endpoint-injection#from-your-host" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="row">
+<div class="col-xl-6 col-md-12 d-flex justify-content-center">
+<a href="{{< ref "transparent-endpoint-injection#from-your-host" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From your host**
 
@@ -95,8 +93,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </a>
 </div>
-<div class="col-xl-6 col-md-12 py-2 d-flex justify-content-center">
-<a href="{{< ref "transparent-endpoint-injection#from-a-lambda-function" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="col-xl-6 col-md-12 d-flex justify-content-center">
+<a href="{{< ref "transparent-endpoint-injection#from-a-lambda-function" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From a lambda function**
 
@@ -107,16 +105,16 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </div> <!-- row -->
 
-<div class="row">
+<div class="row pt-6">
 
-<h2><a href="{{< ref "created-resources">}}">Accessing a resource created by LocalStack</a></h2>
+## [Accessing a resource created by LocalStack]({{< ref "created-resources">}})
 
 </div>
 
-<div class="row py-4">
+<div class="row">
 
-<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
-<a href="{{< ref "created-resources#from-your-host" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="col-lg-12 col-xl-6 d-flex justify-content-center">
+<a href="{{< ref "created-resources#from-your-host" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From your host**
 
@@ -128,8 +126,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </div>
 
 
-<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
-<a href="{{< ref "created-resources#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="col-lg-12 col-xl-6 d-flex justify-content-center">
+<a href="{{< ref "created-resources#from-a-container-localstack-created" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From a container LocalStack created**
 
@@ -137,8 +135,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </a>
 </div>
-<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
-<a href="{{< ref "created-resources#from-your-container" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="col-lg-12 col-xl-6 d-flex justify-content-center">
+<a href="{{< ref "created-resources#from-your-container" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From your container**
 
@@ -147,8 +145,8 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 </a>
 </div>
 
-<div class="col-lg-12 col-xl-6 py-2 d-flex justify-content-center">
-<a href="{{< ref "created-resources#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column text-center px-4 py-2">
+<div class="col-lg-12 col-xl-6 d-flex justify-content-center">
+<a href="{{< ref "created-resources#from-a-separate-host" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From a separate host**
 
