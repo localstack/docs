@@ -32,7 +32,6 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 {{< figure src="./images/1.svg" width="400" >}}
 
-<!-- **Example**: you have run `localstack start`, or you are accessing LocalStack started in Docker (or docker-compose). -->
 
 </a>
 </div>
@@ -44,8 +43,6 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 {{< figure src="./images/4.svg" width="400" >}}
 
-<!-- **Example**: your code is running in an ECS container that LocalStack has created. -->
-
 </a>
 </div>
 
@@ -55,8 +52,6 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 **From your container**
 
 {{< figure src="./images/7.svg" width="400" >}}
-
-<!-- **Example**: you are running your application code in a container and accessing AWS resources such as S3 in LocalStack. -->
 
 </a>
 </div>
@@ -89,8 +84,6 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 {{< figure src="./images/2.svg" width="400" >}}
 
-<!-- If you are using LocalStack with an [API key]({{<ref "getting-started/api-key">}}), then you can use the [DNS server]({{<ref "user-guide/tools/local-endpoint-injection/dns-server">}}) to perform requests to LocalStack as if it were AWS. -->
-
 </a>
 </div>
 <div class="col-xl-6 col-md-12 d-flex justify-content-center">
@@ -119,8 +112,6 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 **From your host**
 
 {{< figure src="./images/3.svg" width="400" >}}
-
-<!-- **Example**: you have created an OpenSearch cluster and wish to access it from the computer that is running LocalStack. -->
 
 </a>
 </div>
