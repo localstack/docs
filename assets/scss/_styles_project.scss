@@ -255,10 +255,38 @@ table {
 
 @import "components/details";
 
-.coverage-report table tr td {
-    min-width: 20em;
+.coverage-report table {
+    max-height: 70vh;
 }
 
+.coverage-report table thead,
+table tfoot {
+  position: sticky;
+}
+
+.coverage-report table thead {
+  inset-block-start: 0; /* "top" */
+}
+
+.coverage-report table thead tr {
+    // sticky header
+    background-color: white;
+    left: 0;
+    position: sticky;
+    z-index: 9999;
+}
+
+.coverage-report table tfoot {
+  inset-block-end: 0; /* "bottom" */
+}
+
+.coverage-operation-not-implemented {
+    color: $gray-500;
+}
+
+.coverage-operation-details-icon {
+    text-align: center; 
+}
 .coverage-report table .collapsing {
     transition: none !important;
   }
