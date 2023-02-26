@@ -1,0 +1,28 @@
+{{ define "main" }}
+<!-- {{ .Content }} -->
+
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+
+    <div class="td-content">
+        <h1>Samples</h1>
+        <p>Just an ugly page to demonstrate how to use Hugo data templates</p>
+
+        <div>
+            <ul>
+            {{ range $.Site.Data.developerhub.applications.applications }}
+                <li>
+                    <a href="{{.url}}">{{ .title }}</a>
+                    <div>
+                    {{ range .tags }}<span class="badge badge-secondary">{{ . }}</span>{{ end}}
+                    </div>
+                    <p>{{ .description }}</p>
+                    <img src="{{ .teaser }}" style="max-width: 100px">
+                </li>
+            {{ end }}
+            </ul>
+        </div>
+    </div>
+
+</main>
+
+{{ end }}
