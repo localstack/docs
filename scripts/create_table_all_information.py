@@ -2,7 +2,8 @@ import csv
 import os
 import sys
 from pathlib import Path
-
+import json
+from json import JSONDecodeError
 
 def create_metric_coverage_docs(file_name: str, metrics: dict):
     if os.path.exists(file_name):
@@ -75,13 +76,14 @@ hide_readingtime: true
                         aws_validated = True
                     if op_details.get("snapshot"):
                         aws_validated = True
-                        if op_details.get('snapshot_skipped_paths', ''):
-                            snapshot_skipped = True
-                            snapshot_tested = True
-                        elif op_details.get('snapshot_skipped_paths', '') == "all":
+                        skipped_path = op_details.get('snapshot_skipped_paths', '')
+                        if skipped_path == "all":
                             # we set "all" if there was not path, e.g. the entire snapshot verification is skipped
                             # we do not consider it as "snapshot tested" then
                             snapshot_tested = False
+                        elif skipped_path:
+                            snapshot_skipped = True
+                            snapshot_tested = True
                 details = f"""<tr>
                 <td>{operation}</td>
                 <td class="coverage-operation-details-icon">{"✅" if op_details.get("implemented") else ""}</td>
@@ -93,17 +95,26 @@ hide_readingtime: true
                 <td><a href=#{operation.lower()}>Show details</a></td>
                 </tr>
                 """
+                test_details = ""
+                # "parameter_combination": {"param_identifier": {"params":"param1, param2","tests": {"node_id": {"snapshot": True, "skipped_path": "all"}},"response":200, "error": "exception")}
+                test_details += "#### Parameter Combinations Tested\n\n"
+                for _, detail in sorted(op_details.get("parameter_combination",{}).items()):
+                    
+                    test_details += f" * **{detail.get('params')}**\n"
+                    test_details += f"   * Response: {detail.get('response')}{' (' + detail.get('error') +')' if detail.get('error') else ''}\n"
+                    test_details += "   * Tests:\n"""
+                    for node_id, node_details in sorted(detail.get("tests").items()):
+                        test_details += f"     * {node_id}\n"
+                        skipped_paths = node_details.get('skipped_path')
+                        if node_details.get('aws_validated') or node_details.get("snapshot"): 
+                            test_details += f"       * AWS validated{', Snapshot test' if node_details.get('snapshot') and  skipped_paths is not 'all' else ''}{' (some snapshot validation excluded)' if skipped_paths else ''}\n"
 
+                    test_details += "\n\n"
                 show_details += f"""
-
 ### {operation}
 
-Parameter Inputs: {op_details.get("parameters")}
-
-Errors: {op_details.get("errors")}
-
-Tests: {op_details.get("tests")}
-                """
+{test_details}
+"""
             else:
                 details = f"""<tr>
                 <td class="coverage-operation-not-implemented">{operation}</td>
@@ -207,9 +218,7 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
                 {"invoked": 0,
                 "aws_validated": False,
                 "snapshot": False,
-                "parameters": {"param1": 0},
-                "errors": {"InvokeException": 0},
-                "tests": [],
+                "parameter_combination": {"param_identifier": {"params":[param1, param2],"test": {"node_id": {"snapshot": True, "skipped_path": "all"}},"response":200, "error": "exception")},
                 "source": [] },
             ....
             },
@@ -229,18 +238,19 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
         with open(path, "r") as csv_obj:
             csv_dict_reader = csv.DictReader(csv_obj)
             for metric in csv_dict_reader:
-                if metric.get("service") == "dynamodb" and metric.get('operation') == "CreateBackup":
-                    print(f"found dynamodb, checking {metric.get('operation')}")
                 node_id = metric.get("node_id") or metric.get("test_node_id")
 
+                # skip tests are marked as xfail
                 if str(metric.get("xfail", "")).lower() == "true":
-                    # print(f"test {node_id} marked as xfail")
                     continue
-                #if metric.get("origin").lower() == "internal":
-                    # exclude all internal service calls, those might be false positives for aws-validated tests
-                    #continue
-                service = recorded_data.get(metric.get("service"))
                 
+                # TODO skipping "internal" seems to lower the coverage now, because some tests use e.g. cfn other implicit calls
+                # to verify behavior -> takle this issue in the next iteration
+                #if metric.get("origin").lower() == "internal":
+                #    # exclude all internal service calls, those might be false positives for aws-validated tests
+                #    continue
+
+                service = recorded_data.get(metric.get("service"))
                 # some metrics (e.g. moto) could include tests for services, we do not support
                 if not service:
                     print(f"---> service {metric.get('service')} was not found")
@@ -249,25 +259,17 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
                 if not ops:
                     print(f"---> operation {metric.get('service')}.{metric.get('operation')} was not found")
                     continue
+                
 
-                errors = ops.setdefault("errors", {})
-                if exception := metric.get("exception"):
-                    errors[exception] = ops.get(exception, 0) + 1
-                elif int(metric.get("response_code", -1)) >= 300:
-                    # TODO we do not know the expected errors at this point
-                    print(
-                        f"Exception assumed for {metric.get('service')}.{metric.get('operation')}: code {metric.get('response_code')} {metric.get('response_data')}"
-                    )
-                    for expected_error in ops.get("errors", {}).keys():
-                        if expected_error in metric.get("response_data"):
-                            # assume we have a match
-                            errors[expected_error] += 1
-                            print(
-                                f"Exception assumed for {metric.service}.{metric.operation}: code {metric.response_code}"
-                            )
-                            break
+                if param_exception := metric.get("exception", ""):
+                    if param_exception == "CommonServiceException":
+                        try:
+                            data = json.loads(metric.get("response_data","{}"))
+                            param_exception = data.get("__type", param_exception)
+                        except JSONDecodeError:
+                            print(f"{metric.get('service')}: could not decode CommonServiceException details")
+                            
 
-                ops["invoked"] += 1
                 if str(metric.get("snapshot", "false")).lower() == "true":
                     if ops.get("snapshot") == True:
                         # only update snapshot_skipped_paths if necessary (we prefer the test record where nothing was skipped)
@@ -275,24 +277,49 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
                     else:
                         ops["snapshot"] = True  # TODO snapshot currently includes also "skip_verify"
                         ops["snapshot_skipped_paths"] = metric.get("snapshot_skipped_paths", "") 
+
                 if str(metric.get("aws_validated", "false")).lower() == "true":
                     ops["aws_validated"] = True
-                if not metric.get("parameters"):
-                    params = ops.setdefault("parameters", {})
-                    params["_none_"] = params.get("_none_", 0) + 1
-                else:
-                    for p in metric.get("parameters").split(","):
-                        ops["parameters"][p] = ops["parameters"].setdefault(p, 0) + 1
+
+                parameter_combination = ops.setdefault("parameter_combination", {})
+                test_node_origin = ""
+                if test_source.startswith("community"):
+                    test_node_origin = "LocalStack Community"
+                elif test_source.startswith("pro"):
+                    test_node_origin = "LocalStack Pro"
+                elif test_source.startswith("moto"):
+                    test_node_origin = "Moto"
+
+                test_node_id = f"{test_node_origin}: {node_id}"
+
+                params = metric.get("parameters", "None").split(",")
+                params.sort()
+
+                parameters = ", ".join(params)
+                response_code = int(metric.get("response_code", -1))
+                param_comb_key = f"{parameters}:{response_code}"
+
+
+                param_details = parameter_combination.setdefault(param_comb_key, {})
+                if not param_details:
+                    param_details["params"] = parameters
+                    param_details["response"] = response_code
+                    param_details["error"] =  param_exception
+
+                node_ids = param_details.setdefault("tests", {})
+                # remove parametrized info from node id, as it will have the same attributes
+                cur_node_id_simple = test_node_id.split("[")[0]
+                node_ids[cur_node_id_simple] = {"snapshot": metric.get("snapshot", "false").lower() == "true",
+                                                "skipped_path": metric.get("snapshot_skipped_paths", ""),
+                                                "aws_validated": str(metric.get("aws_validated", "false")).lower() == "true"}
+                
+                # "parameter_combination": {"param_identifier": {"params":"param1, param2","tests": {"node_id": {"snapshot": True, "skipped_path": "all"}},"response":200, "error": "exception")}
+
+
 
                 source_list = ops.setdefault("source", [])
                 if test_source not in source_list:
                     source_list.append(test_source)
-
-                test_list = ops.setdefault("tests", [])
-
-                test_node_id = f"{test_source}_{node_id}"
-                if test_node_id not in test_list:
-                    test_list.append(test_node_id)
 
     return recorded_data
 
