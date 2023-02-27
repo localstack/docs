@@ -45,33 +45,33 @@
                     {{/* Otherwise we show a nice formatted list of subpages with page descriptions */}}
                     <hr class="panel-line">
 
-
                         <div class="row">
-                            <div class="col-sm-3">
-                                <div class="card flex-grow-1 h-100"></div>
-                            
-                            </div>
-                            <div class="col-sm-9">
-                            
-                            <div class="w-100">
-                                <input class="w-100"></input>
-                            </div>
+                            <div class="col-sm-12">
                             <div class="row">
-                                {{ range $pages }}
-                                {{ $manualLink := cond (isset .Params "manuallink") .Params.manualLink ( cond (isset .Params "manuallinkrelref") (relref . .Params.manualLinkRelref) .RelPermalink) }}
-                                <div class="entry col-sm-4 ">
-                                    <div class="card">
+                              {{ range $.Site.Data.developerhub.applications.applications }}
+                                <div class="entry col-xs-12 col-md-4 ">
+                                    <div class="card h-100">
                                         <div class="card-body">
-                                            <h5 class="card-title">
-                                            <a class="stretched-link" href="{{ $manualLink }}">
-                                                {{ with .Params.title }}{{ . }}{{end}}
-                                            </a>
+                                            <h5 class="card-title d-flex align-items-center">
+                                              <a class="stretched-link mr-2" href="{{ .url }}">
+                                                  {{ with .title }}{{ . }}{{end}}
+                                              </a>
+                                              {{ with .pro }}
+                                                <span class="badge" style="background-color: rgb(99, 236, 211)">Pro</span>
+                                              {{ end }}
                                             </h5>
-                                            <p class="card-text">{{.Params.description}}</p>
-
-                                            {{ range .Params.tags }}
-                                            <span class="badge badge-primary">{{ . }}</span>
-                                            {{ end }}
+                                            <!-- <img src="{{ .teaser }}" style="max-width: 100px"> -->
+                                            <div>
+                                              {{ range .services }}
+                                                <img src="/images/services/{{ . }}.svg" style="border-radius: 4px; max-width: 20px;">
+                                              {{ end }}
+                                            </div>
+                                            <div>
+                                              {{ range .tags }}
+                                                <span class="badge badge-primary">{{ . }}</span>
+                                              {{ end }}
+                                            </div>
+                                            <p class="card-text">{{.description}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,6 @@
                             </div>
                             </div>
                         </div>
-
 
                     {{ end }}
                 </div>

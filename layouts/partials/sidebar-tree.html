@@ -5,7 +5,7 @@
   {{ if not .Site.Params.ui.sidebar_search_disable -}}
   <form class="td-sidebar__search d-flex align-items-center">
     {{ partial "search-input.html" . }}
-    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ms-3 fas fa-bars" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ms-3 fas fa-bars collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
     </button>
   </form>
   {{ else -}}
@@ -90,12 +90,12 @@
 {{ $withChild := gt (len $pages) 0 -}}
 {{ $manualLink := cond (isset $s.Params "manuallink") $s.Params.manualLink ( cond (isset $s.Params "manuallinkrelref") (relref $s $s.Params.manualLinkRelref) $s.RelPermalink) -}}
 {{ $manualLinkTitle := cond (isset $s.Params "manuallinktitle") $s.Params.manualLinkTitle $s.Title -}}
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section{{ if $withChild }} with-child{{ else }} without-child{{ end }}{{ if $activePath }} active-path{{ end }}{{ if (not (or $show $p.Site.Params.ui.sidebar_menu_foldable )) }} collapse{{ end }}" id="{{ $mid }}-li">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section{{ if $withChild }} with-child{{ else }} without-child{{ end }}{{ if $activePath }} active-path{{ end }}{{ if (not (or $show $p.Site.Params.ui.sidebar_menu_foldable )) }} collapse{{ end }}" id="{{ $mid }}-li-2">
   {{ if (and $p.Site.Params.ui.sidebar_menu_foldable (ge $ulNr 1)) -}}
-  <input type="checkbox" id="{{ $mid }}-check"{{ if $activePath}} checked{{ end }}/>
-  <label for="{{ $mid }}-check"><a href="{{ $manualLink }}"{{ if ne $s.LinkTitle $manualLinkTitle }} title="Developer Hub"{{ end }}{{ with $s.Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }} class="align-left ps-0 {{ if $active}} active{{ end }} td-sidebar-link{{ if $s.IsPage }} td-sidebar-link__page{{ else }} td-sidebar-link__section{{ end }}{{ if $treeRoot }} tree-root{{ end }}" id="{{ $mid }}">{{ with $s.Params.Icon}}<i class="{{ . }}"></i>{{ end }}<span class="{{ if $active }}td-sidebar-nav-active-item{{ end }}">{{ $s.LinkTitle }}</span></a></label>
+  <input type="checkbox" id="{{ $mid }}-check-2"{{ if $activePath}} checked{{ end }}/>
+  <label for="{{ $mid }}-check"><a href="{{ $manualLink }}"{{ if ne $s.LinkTitle $manualLinkTitle }} title="Developer Hub"{{ end }}{{ with $s.Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }} class="align-left ps-0 {{ if $active}} active{{ end }} td-sidebar-link{{ if $s.IsPage }} td-sidebar-link__page{{ else }} td-sidebar-link__section{{ end }}{{ if $treeRoot }} tree-root{{ end }}" id="{{ $mid }}-2">{{ with $s.Params.Icon}}<i class="{{ . }}"></i>{{ end }}<span class="{{ if $active }}td-sidebar-nav-active-item{{ end }}">{{ $s.LinkTitle }}</span></a></label>
   {{ else -}}
-  <a href="/developer-hub" title="Developer Hub" class="align-left ps-0{{ if $active}} active{{ end }} td-sidebar-link{{ if $s.IsPage }} td-sidebar-link__page{{ else }} td-sidebar-link__section{{ end }}{{ if $treeRoot }} tree-root{{ end }}" id="{{ $mid }}">{{ with $s.Params.Icon}}<i class="{{ . }}"></i>{{ end }}<span class="{{ if $active }}td-sidebar-nav-active-item{{ end }}">Developer Hub</span></a>
+  <a href="/developer-hub" title="Developer Hub" class="align-left ps-0{{ if $active}} active{{ end }} td-sidebar-link{{ if $s.IsPage }} td-sidebar-link__page{{ else }} td-sidebar-link__section{{ end }}{{ if $treeRoot }} tree-root{{ end }}" id="{{ $mid }}-2">{{ with $s.Params.Icon}}<i class="{{ . }}"></i>{{ end }}<span class="{{ if $active }}td-sidebar-nav-active-item{{ end }}">Developer Hub</span></a>
   {{- end }}
   {{- if $withChild }}
   {{- $ulNr := add $ulNr 1 }}
