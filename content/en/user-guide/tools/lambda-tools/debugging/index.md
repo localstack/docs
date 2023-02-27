@@ -38,28 +38,31 @@ For a simple working example of this feature, you can refer to
 [our samples](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
 There, the necessary code fragments for enabling debugging are already present.
 
-## Configure LocalStack for remote Python debugging
+
+### Debugging a Python Lambda in Visual Studio Code
+
+#### Configure LocalStack for VS Code remote Python debugging
 
 First, make sure that LocalStack is started with the following configuration (see the [Configuration docs]({{< ref "configuration#lambda" >}}) for more information):
+
 {{< command >}}
 $ LAMBDA_REMOTE_DOCKER=0 \
     LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
     DEBUG=1 localstack start
 {{< /command >}}
 
-
-### Debugging Python Lambda in Visual Studio Code
-
 #### Preparing your code
 
 For providing the debug server, we use [`debugpy`](https://github.com/microsoft/debugpy)
 inside the Lambda function code. In general, all you need is the following code
 fragment placed inside your handler code:
+
 ```python
 import debugpy
 debugpy.listen(19891)
 debugpy.wait_for_client()  # blocks execution until client is attached
 ```
+
 For extra convenience, you can use the `wait_for_debug_client` function from our example.
 It implements the above-mentioned start of the debug server and also adds an automatic cancellation of the wait task if the debug client (i.e. VSCode) doesn't connect.
 
@@ -117,9 +120,15 @@ The screenshot below shows the triggered breakpoint with our `'Hello from LocalS
 
 ![Visual Studio Code debugging](vscode-debugging-py-1.png)
 
-### Debugging Python Lambda in PyCharm Professional
+#### Limitations
+
+Due to the ports published by the lambda container for the debugger, you can currently only debug one Lambda at a time. Due to the port publishing, multiple concurrently running lambda environments are not supported.
+
+### Debugging a Python Lambda in PyCharm Professional
 
 Please be aware that [remote debugging in PyCharm](https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html) is only available in the Professional version. 
+
+You do not need to change the `LAMBDA_DOCKER_FLAGS` when debugging with PyCharm Professional.
 
 #### Configuring PyCharm for remote Python debugging
 
@@ -166,7 +175,7 @@ In the next step we create our function. In order to debug the function in PyCha
 ### Creating the Lambda function
 
 To create the Lambda function, you just need to take care of two things:
-1. Deploy the function via an S3 Bucket. You need to use the magic variable `__local__` as the bucket name.
+1. Deploy the function via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket name.
 2. Set the S3 key to the path of the directory your lambda function resides in.
    The handler is then referenced by the filename of your lambda code and the function in that code that should be invoked.
 
@@ -174,7 +183,7 @@ So, in our [example](https://github.com/localstack/localstack-pro-samples/tree/m
 
 {{< command >}}
 $ awslocal lambda create-function --function-name my-cool-local-function \
-    --code S3Bucket="__local__",S3Key="$(pwd)/" \
+    --code S3Bucket="hot-reload",S3Key="$(pwd)/" \
     --handler handler.handler \
     --runtime python3.8 \
     --timeout 150 \
@@ -186,10 +195,6 @@ We can quickly verify that it works by invoking it with a simple payload:
 {{< command >}}
 $ awslocal lambda invoke --function-name my-cool-local-function --payload '{"message": "Hello from LocalStack!"}' output.txt
 {{< /command >}}
-
-### Limitations
-
-Due to the ports used by the debugger, you can currently only debug one Lambda at a time. This would lead multiple concurrent invocations to not work.
 
 ## Debugging JVM lambdas
 
