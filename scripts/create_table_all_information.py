@@ -260,7 +260,7 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
                     print(f"---> operation {metric.get('service')}.{metric.get('operation')} was not found")
                     continue
                 
-
+                ops["invoked"] += 1
                 if param_exception := metric.get("exception", ""):
                     if param_exception == "CommonServiceException":
                         try:

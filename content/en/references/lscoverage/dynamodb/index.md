@@ -28,9 +28,9 @@ hide_readingtime: true
                 <td>BatchExecuteStatement</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#batchexecutestatement>Show details</a></td>
                 </tr>
@@ -38,9 +38,9 @@ hide_readingtime: true
                 <td>BatchGetItem</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#batchgetitem>Show details</a></td>
                 </tr>
@@ -48,9 +48,9 @@ hide_readingtime: true
                 <td>BatchWriteItem</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#batchwriteitem>Show details</a></td>
                 </tr>
@@ -58,7 +58,7 @@ hide_readingtime: true
                 <td>CreateBackup</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Pro</td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td class="coverage-operation-details-icon"></td>
                 <td class="coverage-operation-details-icon"></td>
@@ -68,9 +68,9 @@ hide_readingtime: true
                 <td>CreateGlobalTable</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#createglobaltable>Show details</a></td>
                 </tr>
@@ -78,9 +78,9 @@ hide_readingtime: true
                 <td>CreateTable</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#createtable>Show details</a></td>
                 </tr>
@@ -88,7 +88,7 @@ hide_readingtime: true
                 <td>DeleteBackup</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Pro</td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td class="coverage-operation-details-icon"></td>
                 <td class="coverage-operation-details-icon"></td>
@@ -98,19 +98,19 @@ hide_readingtime: true
                 <td>DeleteItem</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td><a href=#deleteitem>Show details</a></td>
                 </tr>
                 <tr>
                 <td>DeleteTable</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#deletetable>Show details</a></td>
                 </tr>
@@ -168,9 +168,9 @@ hide_readingtime: true
                 <td>DescribeGlobalTable</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#describeglobaltable>Show details</a></td>
                 </tr>
@@ -198,9 +198,9 @@ hide_readingtime: true
                 <td>DescribeKinesisStreamingDestination</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#describekinesisstreamingdestination>Show details</a></td>
                 </tr>
@@ -218,9 +218,9 @@ hide_readingtime: true
                 <td>DescribeTable</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#describetable>Show details</a></td>
                 </tr>
@@ -238,19 +238,19 @@ hide_readingtime: true
                 <td>DescribeTimeToLive</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td><a href=#describetimetolive>Show details</a></td>
                 </tr>
                 <tr>
                 <td>DisableKinesisStreamingDestination</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#disablekinesisstreamingdestination>Show details</a></td>
                 </tr>
@@ -258,9 +258,9 @@ hide_readingtime: true
                 <td>EnableKinesisStreamingDestination</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#enablekinesisstreamingdestination>Show details</a></td>
                 </tr>
@@ -268,9 +268,9 @@ hide_readingtime: true
                 <td>ExecuteStatement</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#executestatement>Show details</a></td>
                 </tr>
@@ -278,9 +278,9 @@ hide_readingtime: true
                 <td>ExecuteTransaction</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#executetransaction>Show details</a></td>
                 </tr>
@@ -298,9 +298,9 @@ hide_readingtime: true
                 <td>GetItem</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#getitem>Show details</a></td>
                 </tr>
@@ -319,7 +319,7 @@ hide_readingtime: true
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Pro</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#listbackups>Show details</a></td>
@@ -368,9 +368,9 @@ hide_readingtime: true
                 <td>ListTables</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#listtables>Show details</a></td>
                 </tr>
@@ -378,19 +378,19 @@ hide_readingtime: true
                 <td>ListTagsOfResource</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td><a href=#listtagsofresource>Show details</a></td>
                 </tr>
                 <tr>
                 <td>PutItem</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#putitem>Show details</a></td>
                 </tr>
@@ -398,9 +398,9 @@ hide_readingtime: true
                 <td>Query</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#query>Show details</a></td>
                 </tr>
@@ -408,7 +408,7 @@ hide_readingtime: true
                 <td>RestoreTableFromBackup</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Pro</td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td class="coverage-operation-details-icon"></td>
                 <td class="coverage-operation-details-icon"></td>
@@ -428,9 +428,9 @@ hide_readingtime: true
                 <td>Scan</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#scan>Show details</a></td>
                 </tr>
@@ -438,9 +438,9 @@ hide_readingtime: true
                 <td>TagResource</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#tagresource>Show details</a></td>
                 </tr>
@@ -448,9 +448,9 @@ hide_readingtime: true
                 <td>TransactGetItems</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#transactgetitems>Show details</a></td>
                 </tr>
@@ -458,9 +458,9 @@ hide_readingtime: true
                 <td>TransactWriteItems</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#transactwriteitems>Show details</a></td>
                 </tr>
@@ -468,9 +468,9 @@ hide_readingtime: true
                 <td>UntagResource</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#untagresource>Show details</a></td>
                 </tr>
@@ -498,9 +498,9 @@ hide_readingtime: true
                 <td>UpdateGlobalTable</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#updateglobaltable>Show details</a></td>
                 </tr>
@@ -518,9 +518,9 @@ hide_readingtime: true
                 <td>UpdateItem</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#updateitem>Show details</a></td>
                 </tr>
@@ -528,9 +528,9 @@ hide_readingtime: true
                 <td>UpdateTable</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#updatetable>Show details</a></td>
                 </tr>
@@ -548,9 +548,9 @@ hide_readingtime: true
                 <td>UpdateTimeToLive</td>
                 <td class="coverage-operation-details-icon">✅</td>
                 <td>Community</td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
-                <td class="coverage-operation-details-icon"></td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
+                <td class="coverage-operation-details-icon">✅</td>
                 <td class="coverage-operation-details-icon"></td>
                 <td><a href=#updatetimetolive>Show details</a></td>
                 </tr>
