@@ -22,7 +22,7 @@ We recommend taking the following steps:
 - Install LocalStack and/or AWS-related dependencies to define the commands that should be run before all builds.
 - Run your LocalStack-related tests in the main job. 
 
-The following example Travis CI job config (`.gitlab-ci.yml`) executes these steps, creates a new S3 bucket, copies some content to the bucket, and check the available buckets:
+The following example Gitlab CI job config (`.gitlab-ci.yml`) executes these steps, creates a new S3 bucket, copies some content to the bucket, and check the available buckets:
 
 ```yml
 image: python:3.10
