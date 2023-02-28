@@ -76,6 +76,7 @@ hide_readingtime: true
                         aws_validated = True
                     if op_details.get("snapshot"):
                         aws_validated = True
+                        snapshot_tested = True
                         skipped_path = op_details.get('snapshot_skipped_paths', '')
                         if skipped_path == "all":
                             # we set "all" if there was not path, e.g. the entire snapshot verification is skipped
@@ -83,7 +84,8 @@ hide_readingtime: true
                             snapshot_tested = False
                         elif skipped_path:
                             snapshot_skipped = True
-                            snapshot_tested = True
+
+                tested = ls_tested or moto_tested
                 details = f"""<tr>
                 <td>{operation}</td>
                 <td class="coverage-operation-details-icon">{"✅" if op_details.get("implemented") else ""}</td>
@@ -92,23 +94,35 @@ hide_readingtime: true
                 <td class="coverage-operation-details-icon">{"✅" if moto_tested else ""}</td>
                 <td class="coverage-operation-details-icon">{"✅" if aws_validated else ""}</td>
                 <td class="coverage-operation-details-icon">{"✅" if snapshot_tested else ""}</td>
-                <td><a href=#{operation.lower()}>Show details</a></td>
+                <td>{'<a href=#'+operation.lower()+'Show details</a>' if tested else ""}</td>
                 </tr>
                 """
+                AWS_VALIDATED_TAG = '<span class="coverage-report-tag-aws-validated">AWS validated</span>'
+                SNAPSHOT_TAG = '<span class="coverage-report-tag-snapshot">Snapshot Test</span>'
+                SNAPSHOT_PARTIAL_TAG = '<span class="coverage-report-tag-snapshot">Snapshot Test Partial</span>'
                 test_details = ""
-                # "parameter_combination": {"param_identifier": {"params":"param1, param2","tests": {"node_id": {"snapshot": True, "skipped_path": "all"}},"response":200, "error": "exception")}
-                test_details += "#### Parameter Combinations Tested\n\n"
+                # "parameter_combination": {"param_identifier": {"params":"param1, param2","tests": {"node_id": {"source": "LocalStack Community", "snapshot": True, "skipped_path": "all", "response":200, "error": "exception"}})}
+                test_details += f"The following lists all integration tests that include calls to the operation `{service}.{operation}`.\n\nIt includes details about the used parameter combination and their return code.\n\n"
+                
                 for _, detail in sorted(op_details.get("parameter_combination",{}).items()):
-                    
-                    test_details += f" * **{detail.get('params')}**\n"
-                    test_details += f"   * Response: {detail.get('response')}{' (' + detail.get('error') +')' if detail.get('error') else ''}\n"
-                    test_details += "   * Tests:\n"""
-                    for node_id, node_details in sorted(detail.get("tests").items()):
-                        test_details += f"     * {node_id}\n"
-                        skipped_paths = node_details.get('skipped_path')
-                        if node_details.get('aws_validated') or node_details.get("snapshot"): 
-                            test_details += f"       * AWS validated{', Snapshot test' if node_details.get('snapshot') and  skipped_paths is not 'all' else ''}{' (some snapshot validation excluded)' if skipped_paths else ''}\n"
+                    test_details += f"#### Parameters: {detail.get('params')}\n"
+                    cur_sub_title = ""
+                    for node_id, node_details in sorted(detail.get("tests").items(), key=lambda x: (x[1]["source"],x[1]["response"])):
+                        sub_title = node_details["source"]
 
+                        if cur_sub_title != sub_title:
+                            cur_sub_title = sub_title
+                            test_details += f" * {cur_sub_title}\n"
+                        
+                        response = f"{node_details.get('response')} {'ok' if not node_details.get('error') else node_details.get('error')}"
+                        simple_test_name = node_id.split("::")[-1]
+                        aws_validated = AWS_VALIDATED_TAG if node_details.get("aws_validated") or node_details.get("snapshot") else ""
+                        if node_details.get("snapshot") and not node_details.get("skipped_path") == 'all':
+                            snapshot = SNAPSHOT_TAG if not node_details.get("skipped_path") else SNAPSHOT_PARTIAL_TAG
+                        else:
+                            snapshot = ""
+                        test_details += f"""   * <span class="coverage-report-tag-response-ok">{response}</span> <span class="coverage-report-tooltip">{simple_test_name}<span class="coverage-report-tooltiptext">{node_id}</span></span> {aws_validated} {snapshot}\n"""
+                        
                     test_details += "\n\n"
                 show_details += f"""
 ### {operation}
@@ -290,30 +304,32 @@ def aggregate_recorded_raw_data(base_dir: str, service_dict: dict):
                 elif test_source.startswith("moto"):
                     test_node_origin = "Moto"
 
-                test_node_id = f"{test_node_origin}: {node_id}"
 
                 params = metric.get("parameters", "None").split(",")
                 params.sort()
 
                 parameters = ", ".join(params)
                 response_code = int(metric.get("response_code", -1))
-                param_comb_key = f"{parameters}:{response_code}"
 
 
-                param_details = parameter_combination.setdefault(param_comb_key, {})
+                param_details = parameter_combination.setdefault(parameters, {})
                 if not param_details:
                     param_details["params"] = parameters
-                    param_details["response"] = response_code
-                    param_details["error"] =  param_exception
 
                 node_ids = param_details.setdefault("tests", {})
-                # remove parametrized info from node id, as it will have the same attributes
-                cur_node_id_simple = test_node_id.split("[")[0]
-                node_ids[cur_node_id_simple] = {"snapshot": metric.get("snapshot", "false").lower() == "true",
-                                                "skipped_path": metric.get("snapshot_skipped_paths", ""),
-                                                "aws_validated": str(metric.get("aws_validated", "false")).lower() == "true"}
                 
-                # "parameter_combination": {"param_identifier": {"params":"param1, param2","tests": {"node_id": {"snapshot": True, "skipped_path": "all"}},"response":200, "error": "exception")}
+                test_node_id = f"{test_node_origin}: {node_id}"
+                # remove parametrized info from node id, as it will have the same attributes
+                #cur_node_id_simple = test_node_id.split("[")[0]
+                node_ids[test_node_id] = {
+                    "source": test_node_origin,
+                    "snapshot": metric.get("snapshot", "false").lower() == "true",
+                    "skipped_path": metric.get("snapshot_skipped_paths", ""),
+                    "aws_validated": str(metric.get("aws_validated", "false")).lower() == "true",
+                    "response": response_code,
+                    "error":  param_exception}
+                
+                # "parameter_combination": {"param_identifier": {"params":"param1, param2","tests": {"node_id": {"snapshot": True, "skipped_path": "all","response":200, "error": "exception"}}}
 
 
 

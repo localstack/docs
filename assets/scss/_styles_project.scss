@@ -290,7 +290,56 @@ table tfoot {
 .coverage-report table .collapsing {
     transition: none !important;
   }
+.coverage-report-tag {
+    border-radius: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+.coverage-report-tag-aws-validated {
+    @extend .coverage-report-tag;
+    color: white;
+    background-color: $primary;
+}
+.coverage-report-tag-snapshot {
+    @extend .coverage-report-tag;
+    color: white;
+    background-color: $blue-dark;
+}
 
+.coverage-report-tag-response-ok {
+    @extend .coverage-report-tag;
+    color: white;
+    background-color: $secondary;
+}
+
+.coverage-report-tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted $black; /* If you want dots under the hoverable text */
+  }
+  
+  /* Tooltip text */
+.coverage-report-tooltip .coverage-report-tooltiptext {
+    visibility: hidden;
+    background-color: $black;
+    color: #fff;
+    text-align: left;
+    padding: 5px;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+.coverage-report-tooltip:hover .coverage-report-tooltiptext {
+    visibility: visible;
+}
 
 #td-sidebar-menu {
     padding-top: 0.5rem
