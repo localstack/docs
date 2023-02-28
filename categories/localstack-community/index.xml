@@ -1895,12 +1895,12 @@ to &lt;a href="/user-guide/tools/lambda-tools/hot-swapping/">iterate quickly ove
 &lt;p>For a simple working example of this feature, you can refer to
 &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">our samples&lt;/a>.
 There, the necessary code fragments for enabling debugging are already present.&lt;/p>
-&lt;h2 id="configure-localstack-for-remote-python-debugging">Configure LocalStack for remote Python debugging&lt;/h2>
-&lt;p>First, make sure that LocalStack is started with the following configuration (see the &lt;a href="/references/configuration/#lambda">Configuration docs&lt;/a> for more information):
+&lt;h3 id="debugging-a-python-lambda-in-visual-studio-code">Debugging a Python Lambda in Visual Studio Code&lt;/h3>
+&lt;h4 id="configure-localstack-for-vs-code-remote-python-debugging">Configure LocalStack for VS Code remote Python debugging&lt;/h4>
+&lt;p>First, make sure that LocalStack is started with the following configuration (see the &lt;a href="/references/configuration/#lambda">Configuration docs&lt;/a> for more information):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LAMBDA_REMOTE_DOCKER=0 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> LAMBDA_DOCKER_FLAGS=&amp;#39;-p 19891:19891&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> DEBUG=1 localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;h3 id="debugging-python-lambda-in-visual-studio-code">Debugging Python Lambda in Visual Studio Code&lt;/h3>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> DEBUG=1 localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h4 id="preparing-your-code">Preparing your code&lt;/h4>
 &lt;p>For providing the debug server, we use &lt;a href="https://github.com/microsoft/debugpy">&lt;code>debugpy&lt;/code>&lt;/a>
 inside the Lambda function code. In general, all you need is the following code
@@ -1953,8 +1953,11 @@ It implements the above-mentioned start of the debug server and also adds an aut
 Make sure to set a breakpoint in the Lambda handler code first, which can then later be inspected.&lt;/p>
 &lt;p>The screenshot below shows the triggered breakpoint with our &lt;code>'Hello from LocalStack!'&lt;/code> in the variable inspection view:&lt;/p>
 &lt;p>&lt;img src="vscode-debugging-py-1.png" alt="Visual Studio Code debugging">&lt;/p>
-&lt;h3 id="debugging-python-lambda-in-pycharm-professional">Debugging Python Lambda in PyCharm Professional&lt;/h3>
+&lt;h4 id="limitations">Limitations&lt;/h4>
+&lt;p>Due to the ports published by the lambda container for the debugger, you can currently only debug one Lambda at a time. Due to the port publishing, multiple concurrently running lambda environments are not supported.&lt;/p>
+&lt;h3 id="debugging-a-python-lambda-in-pycharm-professional">Debugging a Python Lambda in PyCharm Professional&lt;/h3>
 &lt;p>Please be aware that &lt;a href="https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html">remote debugging in PyCharm&lt;/a> is only available in the Professional version.&lt;/p>
+&lt;p>You do not need to change the &lt;code>LAMBDA_DOCKER_FLAGS&lt;/code> when debugging with PyCharm Professional.&lt;/p>
 &lt;h4 id="configuring-pycharm-for-remote-python-debugging">Configuring PyCharm for remote Python debugging&lt;/h4>
 &lt;p>You can &lt;a href="https://www.jetbrains.com/help/pycharm/remote-debugging-with-product.html#remote-debug-config">follow the steps in the offical docs&lt;/a>, which will come down to:&lt;/p>
 &lt;ul>
@@ -1986,21 +1989,19 @@ Make sure to set a breakpoint in the Lambda handler code first, which can then l
 &lt;h3 id="creating-the-lambda-function">Creating the Lambda function&lt;/h3>
 &lt;p>To create the Lambda function, you just need to take care of two things:&lt;/p>
 &lt;ol>
-&lt;li>Deploy the function via an S3 Bucket. You need to use the magic variable &lt;code>__local__&lt;/code> as the bucket name.&lt;/li>
+&lt;li>Deploy the function via an S3 Bucket. You need to use the magic variable &lt;code>hot-reload&lt;/code> as the bucket name.&lt;/li>
 &lt;li>Set the S3 key to the path of the directory your lambda function resides in.
 The handler is then referenced by the filename of your lambda code and the function in that code that should be invoked.&lt;/li>
 &lt;/ol>
 &lt;p>So, in our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">example&lt;/a>, this would be:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name my-cool-local-function \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;__local__&amp;#34;,S3Key=&amp;#34;$(pwd)/&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;hot-reload&amp;#34;,S3Key=&amp;#34;$(pwd)/&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler handler.handler \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime python3.8 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 150 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role cool-stacklifter&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>We can quickly verify that it works by invoking it with a simple payload:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function --payload &amp;#39;{&amp;#34;message&amp;#34;: &amp;#34;Hello from LocalStack!&amp;#34;}&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="limitations">Limitations&lt;/h3>
-&lt;p>Due to the ports used by the debugger, you can currently only debug one Lambda at a time. This would lead multiple concurrent invocations to not work.&lt;/p>
 &lt;h2 id="debugging-jvm-lambdas">Debugging JVM lambdas&lt;/h2>
 &lt;h3 id="configure-localstack-for-remote-jvm-debugging">Configure LocalStack for remote JVM debugging&lt;/h3>
 &lt;p>Set &lt;code>LAMBDA_JAVA_OPTS&lt;/code> with &lt;code>jdwp&lt;/code> settings and expose the debug port
