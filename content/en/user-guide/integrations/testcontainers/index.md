@@ -30,13 +30,11 @@ with LocalStack.
 
 ## Covered Topics
 
-- [Overview](#overview)
-- [Covered Topics](#covered-topics)
-  - [Installing the Localstack module](#installing-the-localstack-module)
-  - [Obtaining a LocalStack container](#obtaining-a-localstack-container)
-- [Configuring the AWS client](#configuring-the-aws-client)
-- [Special Setup for using RDS](#special-setup-for-using-rds)
-- [Resources](#resources)
+* [Installing the Localstack module](#installing-the-localstack-module)
+* [Obtaining a LocalStack container](#obtaining-a-localstack-container)
+* [Configuring the AWS client](#configuring-the-aws-client)
+* [Special Setup for using RDS](#special-setup-for-using-rds)
+* [Useful Links](#useful-links)
 
 ### Installing the Localstack module
 
@@ -189,7 +187,7 @@ int mapped_port = localstack.getMappedPort(localstack_port);
 
 
 
-## Resources
+## Useful Links
 
 * https://www.testcontainers.com (Java, .NET, Go, Python, Ruby, Node.js)
 * https://www.testcontainers.org (Java)
