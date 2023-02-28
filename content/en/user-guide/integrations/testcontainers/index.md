@@ -194,4 +194,4 @@ int mapped_port = localstack.getMappedPort(localstack_port);
 * https://www.testcontainers.org/modules/localstack (Java)
 * https://golang.testcontainers.org (Go)
 * https://golang.testcontainers.org/modules/localstack (Go)
-* [localstack-pro-samples on testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sampe)
+* [localstack-pro-samples on testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample)
