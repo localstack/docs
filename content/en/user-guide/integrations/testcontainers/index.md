@@ -30,10 +30,13 @@ with LocalStack.
 
 ## Covered Topics
 
-* [Installing the Localstack module](#installing-the-localstack-module)
-* [Obtaining a LocalStack container](#obtaining-a-localstack-container)
-* [Configuring the AWS client](#configuring-the-aws-client)
-* [Useful Links](#useful-links)
+- [Overview](#overview)
+- [Covered Topics](#covered-topics)
+  - [Installing the Localstack module](#installing-the-localstack-module)
+  - [Obtaining a LocalStack container](#obtaining-a-localstack-container)
+- [Configuring the AWS client](#configuring-the-aws-client)
+- [Special Setup for using RDS](#special-setup-for-using-rds)
+- [Resources](#resources)
 
 ### Installing the Localstack module
 
@@ -151,6 +154,41 @@ S3Client s3 = S3Client.builder()
 {{< /tab >}}
 {{< /tabpane >}}
 
+## Special Setup for using RDS
+
+Some services like RDS require additional setup so that the correct port is exposed and accessible for the tests. 
+
+The reserved ports on LocalStack are between `4510-4559`, depending on your use case you might need to expose several ports using `witExposedPorts`.
+
+Please also check the [pro-sample on how to use RDS with Testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample). 
+
+The testcontainer can be created like this:
+
+```java
+/**
+  * Start LocalStackContainer with exposed Ports. Those ports are used by services like RDS, where several databases can be started, running on different ports.
+  * In this sample we only map 5 ports, however, depending on your use case you may need to map ports up to 4559
+*/
+@Rule
+public LocalStackContainer localstack = new LocalStackContainer(localstackImage)
+                                                    .withExposedPorts(4510, 4511, 4512, 4513, 4514) // TODO the port can have any value between 4510-4559, but LS starts from 4510
+                                                    .withEnv("LOCALSTACK_API_KEY", api_key) // TODO add your API key here
+                                                    .withServices(LocalStackContainer.EnabledService.named("rds"));
+
+```
+
+To find the exposed port which you can use to connect to the instance:
+
+```java
+// identify the port localstack provides for the instance
+int localstack_port = response.dbInstance().endpoint().port();
+
+// get the port it was mapped to, e.g. the one we can reach from host/the test
+int mapped_port = localstack.getMappedPort(localstack_port);
+```
+
+
+
 ## Resources
 
 * https://www.testcontainers.com (Java, .NET, Go, Python, Ruby, Node.js)
@@ -158,3 +196,4 @@ S3Client s3 = S3Client.builder()
 * https://www.testcontainers.org/modules/localstack (Java)
 * https://golang.testcontainers.org (Go)
 * https://golang.testcontainers.org/modules/localstack (Go)
+* [localstack-pro-samples on testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sampe)
