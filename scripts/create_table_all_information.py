@@ -13,7 +13,7 @@ def create_metric_coverage_docs(file_name: str, metrics: dict):
 
     for service in sorted(metrics.keys()):
         #output += f"## {service} ##\n\n"
-        if service != 'dynamodb':
+        if service != 'acm':
             continue
 
         DOCS_HEADER = f"""---
@@ -94,41 +94,56 @@ hide_readingtime: true
                 <td class="coverage-operation-details-icon">{"✅" if moto_tested else ""}</td>
                 <td class="coverage-operation-details-icon">{"✅" if aws_validated else ""}</td>
                 <td class="coverage-operation-details-icon">{"✅" if snapshot_tested else ""}</td>
-                <td>{'<a href=#'+operation.lower()+'Show details</a>' if tested else ""}</td>
+                <td>{'<a href=#'+operation.lower()+'>Show details</a>' if tested else ""}</td>
                 </tr>
                 """
+
+
                 AWS_VALIDATED_TAG = '<span class="coverage-report-tag-aws-validated">AWS validated</span>'
                 SNAPSHOT_TAG = '<span class="coverage-report-tag-snapshot">Snapshot Test</span>'
-                SNAPSHOT_PARTIAL_TAG = '<span class="coverage-report-tag-snapshot">Snapshot Test Partial</span>'
-                test_details = ""
+                SNAPSHOT_PARTIAL_TAG = '<span class="coverage-report-tag-snapshot-partial">Snapshot Test Partial</span>'
+                test_details_content = ""
                 # "parameter_combination": {"param_identifier": {"params":"param1, param2","tests": {"node_id": {"source": "LocalStack Community", "snapshot": True, "skipped_path": "all", "response":200, "error": "exception"}})}
-                test_details += f"The following lists all integration tests that include calls to the operation `{service}.{operation}`.\n\nIt includes details about the used parameter combination and their return code.\n\n"
                 
                 for _, detail in sorted(op_details.get("parameter_combination",{}).items()):
-                    test_details += f"#### Parameters: {detail.get('params')}\n"
+                    test_details_content += f"<b>Parameters: {detail.get('params')}</b>\n<ul>\n"
                     cur_sub_title = ""
                     for node_id, node_details in sorted(detail.get("tests").items(), key=lambda x: (x[1]["source"],x[1]["response"])):
                         sub_title = node_details["source"]
 
                         if cur_sub_title != sub_title:
+                            if cur_sub_title:
+                                test_details_content += "</ul>\n"
                             cur_sub_title = sub_title
-                            test_details += f" * {cur_sub_title}\n"
+                            test_details_content += f"""<li> {cur_sub_title}</li><ul class="coverage-report-details-test">\n"""
                         
-                        response = f"{node_details.get('response')} {'ok' if not node_details.get('error') else node_details.get('error')}"
+                        
                         simple_test_name = node_id.split("::")[-1]
                         aws_validated = AWS_VALIDATED_TAG if node_details.get("aws_validated") or node_details.get("snapshot") else ""
                         if node_details.get("snapshot") and not node_details.get("skipped_path") == 'all':
                             snapshot = SNAPSHOT_TAG if not node_details.get("skipped_path") else SNAPSHOT_PARTIAL_TAG
                         else:
                             snapshot = ""
-                        test_details += f"""   * <span class="coverage-report-tag-response-ok">{response}</span> <span class="coverage-report-tooltip">{simple_test_name}<span class="coverage-report-tooltiptext">{node_id}</span></span> {aws_validated} {snapshot}\n"""
-                        
-                    test_details += "\n\n"
-                show_details += f"""
-### {operation}
-
-{test_details}
-"""
+                        error_resp = f"{' ('+node_details.get('error')+')' if node_details.get('error') else ''}"
+                        http_code = f"""<span class="coverage-report-http-code">HTTP Status Code: {node_details.get('response')}{error_resp}</span>"""
+                        test_details_content += f"""<li><span class="coverage-report-tooltip">{simple_test_name}<span class="coverage-report-tooltiptext"> {node_id}</span></span>{http_code} {aws_validated} {snapshot}</li>\n"""
+                    if cur_sub_title:
+                        test_details_content += "</ul>"
+                    test_details_content += "</ul>"
+                
+                if tested:
+                    show_details += f"""
+<div class="card" id="{operation.lower()}">
+    <h3 class="card-header">{operation}</h3>
+    <div class="card-body">
+        <div class="card-text">
+        The following lists all integration tests that include calls to the operation <em>{service}.{operation}</em>.</br>
+        It includes details about the used parameter combination, the HTTP return code, and indicates whether the test is AWS validated, or (partially) snapshot tested.</div></br>
+        {test_details_content}
+        </div>
+</div>
+</br>                
+    """
             else:
                 details = f"""<tr>
                 <td class="coverage-operation-not-implemented">{operation}</td>

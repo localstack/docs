@@ -1,6 +1,6 @@
 ---
 title: "New LocalStack Coverage"
-linkTitle: "Mocks for LocalStack Coverage"
+linkTitle: "New LocalStack Coverage"
 weight: 100
 description: >
   Overview of the implemented AWS APIs in LocalStack
