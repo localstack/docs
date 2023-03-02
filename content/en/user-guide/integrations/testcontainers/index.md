@@ -154,13 +154,11 @@ S3Client s3 = S3Client.builder()
 
 ## Special Setup for using RDS
 
-Some services like RDS require additional setup so that the correct port is exposed and accessible for the tests. 
+Some services like RDS require additional setup so that the correct port is exposed and accessible for the tests. The reserved ports on LocalStack are between `4510-4559`, depending on your use case you might need to expose several ports using `witExposedPorts`.
 
-The reserved ports on LocalStack are between `4510-4559`, depending on your use case you might need to expose several ports using `witExposedPorts`.
+Check the [pro-sample on how to use RDS with Testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample). 
 
-Please also check the [pro-sample on how to use RDS with Testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample). 
-
-The testcontainer can be created like this:
+The Testcontainer can be created like this:
 
 ```java
 /**
@@ -185,8 +183,6 @@ int localstack_port = response.dbInstance().endpoint().port();
 int mapped_port = localstack.getMappedPort(localstack_port);
 ```
 
-
-
 ## Useful Links
 
 * https://www.testcontainers.com (Java, .NET, Go, Python, Ruby, Node.js)
@@ -194,4 +190,3 @@ int mapped_port = localstack.getMappedPort(localstack_port);
 * https://www.testcontainers.org/modules/localstack (Java)
 * https://golang.testcontainers.org (Go)
 * https://golang.testcontainers.org/modules/localstack (Go)
-* [localstack-pro-samples on testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample)
