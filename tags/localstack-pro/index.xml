@@ -39,4 +39,93 @@ Please note that stack insights are only collected if the LocalStack sessions ru
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Brave blocks &lt;code>localhost&lt;/code> requests due to security by default via shields.
 While some sites need access to &lt;code>localhost&lt;/code> / &lt;code>127.0.0.1&lt;/code> to work correctly, an easy option to allow a user to enable this is manually enabling via the site via &lt;code>brave://settings/content/insecureContent&lt;/code>.
-&lt;/div></description></item></channel></rss>
+&lt;/div></description></item><item><title>User-Guide: Single-Sign On</title><link>/user-guide/web-application/single-sign-on/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/single-sign-on/</guid><description>
+&lt;p>LocalStack Enterprise allows to enable custom Single-Sign On (SSO) Identity providers, to facilitate the process of quickly onboarding team members from your organization.&lt;/p>
+&lt;p>In order to configure SSO access, first sign in to the LocalStack Web application under &lt;a href="https://app.localstack.cloud/">app.localstack.cloud&lt;/a>.
+In your profile settings, navigate to the Single Sign-on tab which will list existing SSO Identity Providers (if any exist).&lt;/p>
+&lt;img src="localstack-setting-sso.png" width="800px" alt="Adding SSO Identity providers in LocalStack Settings">
+&lt;p>Next, click the button to create a new identity provider (IdP), where you can choose between the two leading industry standards:&lt;/p>
+&lt;ul>
+&lt;li>OpenID Connect (OIDC): &lt;a href="https://openid.net/connect/">openid.net/connect&lt;/a>&lt;/li>
+&lt;li>SAML: &lt;a href="http://saml.xml.org/saml-specifications">saml.xml.org/saml-specifications&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="configuring-sso-using-openid-connect-oidc">Configuring SSO using OpenID Connect (OIDC)&lt;/h2>
+&lt;p>In the form illustrated below, you can then enter the main information for the new IdP (using OpenID Connect):&lt;/p>
+&lt;ul>
+&lt;li>Name of your identity provider&lt;/li>
+&lt;li>Client ID, Client Secret, Attributes request method, OIDC issues, Authorize scopes, and more.
+&lt;ul>
+&lt;li>You should be able to find these attributes in your OIDC IdP configuration.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;img src="oidc-sso.png" width="600px" alt="Configuring SSO using OpenID Connect (OIDC)">
+&lt;h2 id="configuring-sso-using-saml">Configuring SSO using SAML&lt;/h2>
+&lt;p>When configuring SSO using SAML, you can configure the settings of the Identity Provider via a standard SAML metadata file (see illustration below).
+The SAML metadata file can be specified either via URL or via a file upload.&lt;/p>
+&lt;p>Select &lt;strong>Enable IdP sign out flow&lt;/strong> if you want your users to be logged out from our app and your SAML IdP when they log out from your our Web Application.&lt;/p>
+&lt;img src="saml-sso.png" width="600px" alt="Configuring SSO using SAML">
+&lt;h2 id="attribute-mapping">Attribute mapping&lt;/h2>
+&lt;p>These attributes can be defined to automatically map attributes of user entities in your internal IdP to user attributes in the LocalStack platform.&lt;/p>
+&lt;p>The following user attribute mappings can currently be configured:&lt;/p>
+&lt;ul>
+&lt;li>Email&lt;/li>
+&lt;li>First name&lt;/li>
+&lt;li>Last name&lt;/li>
+&lt;/ul>
+&lt;p>The Email should be configured to ensure correct functionality.&lt;/p>
+&lt;img src="attribute-mapping.png" width="600px" alt="Attribute Mapping">
+&lt;h2 id="callback-url-sign-up-portal-url-and-identifier-entity-id">Callback URL, Sign Up Portal URL and Identifier (Entity Id)&lt;/h2>
+&lt;p>After configuring the base details for your Identity Provider (IdP), the following additional information can be copied from the UI:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Callback URL&lt;/strong>: The Callback URL that you may need to configure in the settings of your IdP.&lt;/li>
+&lt;li>&lt;strong>Identifier (Entity Id)&lt;/strong>: The Identifier (Entity Id) that you may need to configure in the settings of your IdP.&lt;/li>
+&lt;li>&lt;strong>Sign Up Portal URL&lt;/strong>: This is the URL that can be shared with your users to start the SSO signup flow for the LocalStack Web Application. The format of this endpoint is &lt;code>https://app.localstack.cloud/auth/sso/&amp;lt;organizationId&amp;gt;/&amp;lt;ssoName&amp;gt;&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;img src="additional-information-page.png" width="600px" alt="Callback URL, Sign Up Portal URL, and Identifier (Entity Id)">
+&lt;h2 id="user-roles-and-permissions">User Roles and Permissions&lt;/h2>
+&lt;p>For each new member that joins your org, you can specify user roles and permissions that should be assigned to them.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Default User Role&lt;/strong>: The Role that should be assigned to users of your organization signing up via SSO. In most cases, this should be a Member.&lt;/li>
+&lt;li>&lt;strong>Default User Permissions&lt;/strong>: Use this to define which permissions should be assigned to users of your organization signing up via SSO.
+&lt;ul>
+&lt;li>Tip: In order to enable self-serve API keys (i.e., allowing your users to generate their own API keys), make sure to select the &lt;strong>Allow the member to issue an API Key for her/himself&lt;/strong> permission.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;img src="roles-permissions.png" width="600px" alt="User Roles and Permissions"></description></item><item><title>User-Guide: SSO for Azure AD</title><link>/user-guide/web-application/single-sign-on/azure-ad/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/single-sign-on/azure-ad/</guid><description>
+&lt;p>To configure SSO with an Azure AD Enterprise application, we provide a simple step-by-step solution below:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Navigate to &amp;ldquo;Set up single sign on&amp;rdquo; in your Azure AD Enterprise application.&lt;/p>
+&lt;img src="azure-step-1.png" alt="Azure AD First Configuration Step">
+&lt;/li>
+&lt;li>
+&lt;p>In the Basic SAML Configuration, ensure that the settings match the following details&lt;/p>
+&lt;img src="azure-step-2.png" alt="Azure AD Second Configuration Step">
+&lt;/li>
+&lt;/ol>
+&lt;p>Take the correct values for Identifier (Entity ID) and Reply URL from the Identity Provider configuration page.&lt;/p>
+&lt;ol start="3">
+&lt;li>
+&lt;p>In the Attributes &amp;amp; Claims section, add a group claim with the following configuration and save it.&lt;/p>
+&lt;img src="azure-step-3.png" alt="Azure AD Third Configuration Step">
+&lt;/li>
+&lt;li>
+&lt;p>In the SAML Certificates section, copy the App Federation Metadata Url&lt;/p>
+&lt;img src="azure-step-4.png" alt="Azure AD Fourth Configuration Step">
+&lt;/li>
+&lt;li>
+&lt;p>Navigate to our web application, or follow this &lt;a href="https://app.localstack.cloud/account/sso">link&lt;/a>, and:&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Create a new Identity provider&lt;/li>
+&lt;li>Enter a name for you Identity provider, and choose SAML as the provider type.&lt;/li>
+&lt;li>Select URL for the Metadata file and paste the link that you copied previously in step 4.&lt;/li>
+&lt;li>For the attribute mapping, provide the following value for the Email attribute: &lt;code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name&lt;/code> - (This should match the Claim name of user.userprincipalname in your Attributes &amp;amp; Claims)&lt;/li>
+&lt;li>Leave First name attribute and Last name attribute blank.&lt;/li>
+&lt;/ul>
+&lt;ol start="6">
+&lt;li>Let your team members sign up to your LocalStack Organization via the Sign Up Portal Link.&lt;/li>
+&lt;/ol></description></item></channel></rss>
