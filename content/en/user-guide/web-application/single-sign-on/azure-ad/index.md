@@ -26,7 +26,7 @@ To configure SSO with an Azure AD Enterprise application, we provide a simple st
 
     <img src="azure-step-4.png" alt="Azure AD Fourth Configuration Step">
 
-5. Navigate to our web application, or follow this link, and:
+5. Navigate to our web application, or follow this <a href="https://app.localstack.cloud/account/sso">link</a>, and:
 
   * Create a new Identity provider
   * Enter a name for you Identity provider, and choose SAML as the provider type.
