@@ -10,6 +10,7 @@ slug: tutorials
 hide_feedback: true
 hide_readingtime: true
 dev_hub: true
+type: tutorials
 ---
 
 <!-- this div is used as a reference point of where to apply custom style to the list of subcontent -->
