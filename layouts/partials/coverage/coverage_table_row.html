@@ -1,0 +1,20 @@
+{{ range $op := $.operations }} 
+<tr>
+    <!-- Operation -->
+    <td>{{ $op.name }}</td>
+    <!-- Implemented -->
+    <td class="coverage-shadow-overlay-green">{{ if ($op.is_implemented) }} ✔️ {{ end }}</td>
+    <!-- Availability -->
+    <td>{{ if ($op.implemented) }} {{ $op.availability }} {{ end }}</td>
+    <!-- Internal Test Suite -->
+    <td class="coverage-shadow-overlay-green">{{ if ($op.internal_test_suite) }} ✔️ {{ end }}</td>
+    <!-- External Test Suite --> 
+    <td class="coverage-shadow-overlay-green">{{ if ($op.external_test_suite) }} ✔️ {{ end }}</td>
+    <!-- AWS Validated -->
+    <td class="coverage-shadow-overlay-green">{{ if ($op.aws_validated) }} ✔️ {{ end }}</td>
+    <!-- Snapshot Tested -->
+    <td class="coverage-shadow-overlay-green">{{ if ($op.snapshot) }} ✔️ {{ end }}</td>
+    <!-- Details -->
+    <td>{{ if ($op.internal_test_suite) }} <a href=#{{ lower $op.name }}>Show details</a> {{ end }}</td>
+</tr>
+{{ end }}

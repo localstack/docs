@@ -1,0 +1,23 @@
+<h2 id="Details">Details</h2>
+{{ range $operation := $.details }}
+{{ range $op, $details_list := $operation }}
+<div class="card" id="{{ lower $op }}">
+    <h3 class="card-header">{{ $op }}</h3>
+    <div class="card-body">
+        {{ range $detail := $details_list }}
+            <b>Parameters: {{ $detail.parameters }}</b>
+            <ul>
+            {{ with $ls_community := $detail.ls_community }}
+                <li>LocalStack Community</li>
+                {{ partial "coverage/coverage_details_test" $ls_community }}
+            {{ end }}
+            {{ with $ls_pro := $detail.ls_pro }}
+                <li>LocalStack Pro</li>
+                {{ partial "coverage/coverage_details_test" $ls_pro }}
+            {{ end }}
+            </ul>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+{{ end }}

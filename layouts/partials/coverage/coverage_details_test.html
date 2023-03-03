@@ -1,0 +1,26 @@
+<ul class="coverage-report-details-test">
+{{ range $test := . }}
+    <li> 
+    <!-- test name + tooltip -->
+    <span class="coverage-report-tooltip">{{ $test.test }}
+    <span class="coverage-report-tooltiptext">{{ $test.node_id }}</span>
+    </span>
+
+    <!-- HTTP response code + error code if availaible -->
+    <span class="coverage-report-http-code">HTTP Status Code: {{ $test.response }}
+        {{ with $error := $test.error }} ({{ $error }}){{ end }}</span>
+    
+    <!-- tag for aws-validated -->
+    {{ if $test.aws_validated }} <span class="coverage-report-tag-aws-validated">AWS validated</span> {{ end }}
+
+    <!-- tag for snapshot/partial snapshot -->
+    {{ if $test.snapshot_tested}} 
+        {{ if not $test.snapshot_skipped }}
+            <span class="coverage-report-tag-snapshot">Snapshot Test</span>
+        {{ else }}
+            <span class="coverage-report-tag-snapshot-partial">Snapshot Test Partial</span>
+        {{ end }}
+    {{ end }}
+    </li>
+{{ end }}
+</ul>
