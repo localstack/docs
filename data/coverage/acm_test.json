@@ -1,0 +1,74 @@
+{
+    "hello": "world",
+    "service": "acm",
+    "long_name": "",
+    "operations": [
+        {
+            "name": "AddCertificate",
+            "implemented": true,
+            "availability": "community",
+            "internal_test_suite": true,
+            "external_test_suite": true,
+            "aws_validated": true,
+            "snapshot": false
+        },
+        {
+            "name": "DeleteCertificate",
+            "implemented": true,
+            "availability": "community",
+            "internal_test_suite": true,
+            "external_test_suite": false,
+            "aws_validated": false,
+            "snapshot_tested": false
+        }
+    ],
+    "details": [
+        {
+            "AddCertificate": [
+                {
+                    "parameters": "Certificate",
+                    "ls_community": [
+                        {
+                            "node_id": "LocalSTack: tests/test_ec2/test_transit_gateway_peering_attachments.py::test_create_and_accept_transit_gateway_peering_attachment",
+                            "test": "test_something",
+                            "response": "400",
+                            "error": "InvalidException",
+                            "aws_validated": true,
+                            "snapshot_tested": true,
+                            "snapshot_skipped": "$..abc"
+                        },
+                        {
+                            "node_id": "LocalStack: tests/test_acm/test_transit_gateway_peering_attachments.py::test_create_and_accept_transit_gateway_peering_attachment",
+                            "test": "test_another_thing",
+                            "response": "200",
+                            "error": "",
+                            "aws_validated": true,
+                            "snapshot_tested": true,
+                            "snapshot_skipped": ""
+                        }
+                    ],
+                    "ls_pro": [
+                        {
+                            "node_id": "Pro: tests/test_ec2/test_transit_gateway_peering_attachments.py::test_create_and_accept_transit_gateway_peering_attachment",
+                            "test": "test_pro_something",
+                            "response": "400",
+                            "error": "InvalidException",
+                            "aws_validated": true,
+                            "snapshot_tested": true,
+                            "snapshot_skipped": "$..abc"
+                        },
+                        {
+                            "node_id": "Pro: tests/test_acm/test_transit_gateway_peering_attachments.py::test_create_and_accept_transit_gateway_peering_attachment",
+                            "test": "test_pro_another_thing",
+                            "response": "200",
+                            "error": "",
+                            "aws_validated": true,
+                            "snapshot_tested": false,
+                            "snapshot_skipped": "all"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
