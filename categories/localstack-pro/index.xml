@@ -3913,49 +3913,37 @@ Please note that the tag was previously named &lt;code>__k3d_volume_mount__&lt;/
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">example-volume&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">restartPolicy&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Always&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Load Balancing</title><link>/user-guide/aws/elastic-load-balancing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-load-balancing/</guid><description>
-&lt;h2 id="pro">Pro&lt;/h2>
 &lt;p>LocalStack Pro supports Elastic Load Balancing operations for both version 1 and 2.&lt;/p>
 &lt;p>Application load balancers also support request forwarding to IP address and Lambda targets.&lt;/p>
 &lt;h3 id="ip-targets">IP Targets&lt;/h3>
 &lt;p>This example illustrates a load balancer configured for an IP target.&lt;/p>
 &lt;p>Start an HTTP server which will serve as the target of our load balancer.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run -itd -p 5678:5678 docker.io/hashicorp/http-echo:latest -text &amp;#39;hello from the IP target&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run --rm -itd -p 5678:80 ealen/echo-server&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Create the load balancer, target group and register the target, which is the above Docker container in this case.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-subnets --filters Name=availability-zone,Values=us-east-1f \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq .Subnets[].SubnetId
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;subnet-22d4f64a&amp;#34;
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>subnet=$(awslocal ec2 describe-subnets --filters Name=availability-zone,Values=us-east-1f | jq -r &amp;#39;.Subnets[].SubnetId&amp;#39;)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elbv2 create-load-balancer --name example-lb --subnets subnet-22d4f64a \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq &amp;#39;.LoadBalancers[]|.LoadBalancerArn,.DNSName&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;arn:aws:elasticloadbalancing:us-east-1:112233445566:loadbalancer/app/example-lb/50dc6c495c0c9188&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;example-lb.elb.localhost.localstack.cloud&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>loadBalancer=$(awslocal elbv2 create-load-balancer --name example-lb --subnets $subnet \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq -r &amp;#39;.LoadBalancers[]|.LoadBalancerArn&amp;#39;)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elbv2 create-target-group --name example-target-group --protocol HTTP --target-type ip \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq .TargetGroups[].TargetGroupArn
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;arn:aws:elasticloadbalancing:us-east-1:112233445566:targetgroup/example-target-group/50dc6c495c0c9188&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>targetGroup=$(awslocal elbv2 create-target-group --name example-target-group --protocol HTTP --target-type ip \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq -r &amp;#39;.TargetGroups[].TargetGroupArn&amp;#39;)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elbv2 register-targets \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --targets Id=127.0.0.1,Port=5678,AvailabilityZone=all \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --target-group-arn arn:aws:elasticloadbalancing:us-east-1:112233445566:targetgroup/example-target-group/50dc6c495c0c9188&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elbv2 register-targets --targets Id=127.0.0.1,Port=5678,AvailabilityZone=all --target-group-arn $targetGroup&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Create a listener and a rule so that incoming requests are forwarded to the target.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elbv2 create-listener \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --default-actions &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;forward&amp;#34;,&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;arn:aws:elasticloadbalancing:us-east-1:112233445566:targetgroup/example-target-group/50dc6c495c0c9188&amp;#34;,&amp;#34;ForwardConfig&amp;#34;:{&amp;#34;TargetGroups&amp;#34;:[{&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;arn:aws:elasticloadbalancing:us-east-1:112233445566:targetgroup/example-target-group/50dc6c495c0c9188&amp;#34;,&amp;#34;Weight&amp;#34;:11}]}}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --load-balancer-arn arn:aws:elasticloadbalancing:us-east-1:112233445566:loadbalancer/app/example-lb/50dc6c495c0c9188 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq &amp;#39;.Listeners[]|.ListenerArn,.Port&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;arn:aws:elasticloadbalancing:us-east-1:112233445566:listener/app/example/50dc6c495c0c9188/4566140160361637296&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>4566
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>listenerArn=$(awslocal elbv2 create-listener \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --default-actions &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;forward&amp;#34;,&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;&amp;#39;$targetGroup&amp;#39;&amp;#34;,&amp;#34;ForwardConfig&amp;#34;:{&amp;#34;TargetGroups&amp;#34;:[{&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;&amp;#39;$targetGroup&amp;#39;&amp;#34;,&amp;#34;Weight&amp;#34;:11}]}}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --load-balancer-arn $loadBalancer | jq -r &amp;#39;.Listeners[]|.ListenerArn&amp;#39;)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elbv2 create-rule \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>listenerRule=$(awslocal elbv2 create-rule \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --conditions Field=path-pattern,Values=/ \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --priority 1 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --actions &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;forward&amp;#34;,&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;arn:aws:elasticloadbalancing:us-east-1:112233445566:targetgroup/example-target-group/50dc6c495c0c9188&amp;#34;,&amp;#34;ForwardConfig&amp;#34;:{&amp;#34;TargetGroups&amp;#34;:[{&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;arn:aws:elasticloadbalancing:us-east-1:112233445566:targetgroup/example-target-group/50dc6c495c0c9188&amp;#34;,&amp;#34;Weight&amp;#34;:11}]}}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --listener-arn arn:aws:elasticloadbalancing:us-east-1:112233445566:listener/app/example/50dc6c495c0c9188/4566140160361637296 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq .Rules[].RuleArn
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;arn:aws:elasticloadbalancing:us-east-1:112233445566:listener-rule/app/example/50dc6c495c0c9188/4566140160361637296/60d9790dd44c69e5&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Finally, issue HTTP request to the &lt;code>DNSName&lt;/code> parameter of &lt;code>CreateLoadBalancer&lt;/code> operation, and &lt;code>Port&lt;/code> parameter of &lt;code>CreateListener&lt;/code> command.
-In the above example, these parameter are filtered using &lt;code>jq&lt;/code>.&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --actions &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;forward&amp;#34;,&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;&amp;#39;$targetGroup&amp;#39;&amp;#34;,&amp;#34;ForwardConfig&amp;#34;:{&amp;#34;TargetGroups&amp;#34;:[{&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;&amp;#39;$targetGroup&amp;#39;&amp;#34;,&amp;#34;Weight&amp;#34;:11}]}}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --listener-arn $listenerArn \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq -r &amp;#39;.Rules[].RuleArn&amp;#39;)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Finally, we issue an HTTP request to the &lt;code>DNSName&lt;/code> parameter of &lt;code>CreateLoadBalancer&lt;/code> operation, and &lt;code>Port&lt;/code> parameter of &lt;code>CreateListener&lt;/code> command.
+In the above example, these parameters are filtered using &lt;code>jq&lt;/code>.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl example-lb.elb.localhost.localstack.cloud:4566
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>hello from the IP target&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;host&amp;#34;:{&amp;#34;hostname&amp;#34;:&amp;#34;...&amp;#34;},&amp;#34;http&amp;#34;:{&amp;#34;method&amp;#34;:&amp;#34;GET&amp;#34;,&amp;#34;baseUrl&amp;#34;:&amp;#34;&amp;#34;,&amp;#34;originalUrl&amp;#34;:&amp;#34;/&amp;#34;,&amp;#34;protocol&amp;#34;:&amp;#34;http&amp;#34;},...}}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="limitations">Limitations&lt;/h3>
 &lt;p>The Aplication Load Balancer currently supports only the &lt;code>forward&lt;/code> and &lt;code>redirect&lt;/code> action types.&lt;/p></description></item><item><title>User-Guide: Elastic MapReduce (EMR)</title><link>/user-guide/aws/elastic-mapreduce/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-mapreduce/</guid><description>
 &lt;p>LocalStack Pro allows running data analytics workloads locally via the &lt;a href="https://aws.amazon.com/emr">EMR&lt;/a> API. EMR utilizes various tools in the &lt;a href="https://hadoop.apache.org/">Hadoop&lt;/a> and &lt;a href="https://spark.apache.org">Spark&lt;/a> ecosystem, and your EMR instance is automatically configured to connect seamlessly to the LocalStack S3 API.&lt;/p>
