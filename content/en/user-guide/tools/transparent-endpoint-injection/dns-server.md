@@ -5,7 +5,7 @@ weight: 6
 description: >
   Use LocalStack as DNS server to redirect AWS queries to LocalStack
 aliases:
-  - /tools/local-endpoint-injection/dns-server/
+  - /tools/transparent-endpoint-injection/dns-server/
 ---
 
 LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.

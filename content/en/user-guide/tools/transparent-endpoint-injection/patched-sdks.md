@@ -5,7 +5,7 @@ weight: 6
 description: >
   Using patched SDKs in Lambdas to transparently redirect AWS API calls to LocalStack
 aliases:
-  - /tools/local-endpoint-injection/patched-sdks/
+  - /tools/transparent-endpoint-injection/patched-sdks/
 ---
 
 The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.

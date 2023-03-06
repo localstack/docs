@@ -12,14 +12,14 @@ You are trying to access LocalStack, but you are making requests to AWS (`*.amaz
 
 {{< figure src="../images/2.svg" width="400" >}}
 
-If you are using LocalStack with an [API key]({{<ref "getting-started/api-key">}}), then you can use the [DNS server]({{<ref "user-guide/tools/local-endpoint-injection/dns-server">}}) to perform requests to LocalStack as if it were AWS.
+If you are using LocalStack with an [API key]({{<ref "getting-started/api-key">}}), then you can use the [DNS server]({{<ref "user-guide/tools/transparent-endpoint-injection/dns-server">}}) to perform requests to LocalStack as if it were AWS.
 
 If you are using the community version of LocalStack, you can provide your own DNS server to achieve the same result, but this is not managed by LocalStack.
 
-In both cases, SSL verification must be disabled. See the [limitations of the DNS server]({{<ref "user-guide/tools/local-endpoint-injection/dns-server#limitations" >}}) for more information.
+In both cases, SSL verification must be disabled. See the [limitations of the DNS server]({{<ref "user-guide/tools/transparent-endpoint-injection/dns-server#limitations" >}}) for more information.
 
 ## From a lambda function
 
 {{< figure src="../images/5.svg" width="400" >}}
 
-See our [help pages on using Lambda in LocalStack]({{<ref "user-guide/tools/local-endpoint-injection">}})
+See our [help pages on using Lambda in LocalStack]({{<ref "user-guide/tools/transparent-endpoint-injection">}})

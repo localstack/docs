@@ -1,11 +1,11 @@
 ---
-title: "Local Endpoint Injection"
-linkTitle: "Local Endpoint Injection"
+title: "Transparent Endpoint Injection"
+linkTitle: "Transparent Endpoint Injection"
 weight: 10
 description: >
   Transparently inject local endpoints into AWS SDKs and redirect your AWS calls to LocalStack
 aliases:
-  - /tools/local-endpoint-injection/
+  - /tools/transparent-endpoint-injection/
 ---
 
 In the community (open source) edition, the application code needs to configure each AWS SDK client instance with the target `endpoint URL` to point to the APIs on `localhost` or, in the case of Lambdas running in the context of LocalStack, the `endpoint URL` should point to `http://${LOCALSTACK_HOSTNAME}:${EDGE_PORT}`.
