@@ -1,11 +1,10 @@
 <h2 id="Details">Details</h2>
-{{ range $operation := $.details }}
-{{ range $op, $details_list := $operation }}
+{{ range $op, $details_list := $.details }}
 <div class="card" id="{{ lower $op }}">
     <h3 class="card-header">{{ $op }}</h3>
     <div class="card-body">
-        {{ range $detail := $details_list }}
-            <b>Parameters: {{ $detail.parameters }}</b>
+        {{ range $parameters, $detail := $details_list }}
+            <b>Parameters: {{ $parameters }}</b>
             <ul>
             {{ with $ls_community := $detail.ls_community }}
                 <li>LocalStack Community</li>
@@ -19,5 +18,4 @@
         {{ end }}
     </div>
 </div>
-{{ end }}
 {{ end }}
