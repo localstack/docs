@@ -8,8 +8,7 @@ description: >
   How to troubleshoot common network problems
 ---
 
-Below are several scenarios in which you may be trying to use LocalStack.
-If you are having difficulties connecting your application code to LocalStack, please visit the links below each section which go into further details.
+If you are having difficulties connecting your application code to LocalStack, please choose the scenario below that best describes your networking layout.
 
 {{<alert title="Note">}}
 LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not trying to access LocalStack over IPv6.
@@ -22,9 +21,15 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 ## [Using the endpoint URL]({{< ref "endpoint-url" >}})
 
+</div>
+
+<div class="row mt-2">
+
+For example, setting the `endpoint_url` parameter with a [language SDK]({{< ref "user-guide/integrations/sdks" >}}).
 
 </div>
-<div class="row">
+
+<div class="row mt-4">
 <div class="col-lg-12 col-xl-6 d-flex justify-content-center">
 <a href="{{< ref "endpoint-url#from-the-same-computer" >}}" class="justify-content-between d-flex flex-column text-center">
 
@@ -76,7 +81,13 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </div>
 
-<div class="row">
+<div class="row mt-2">
+
+See the [lambda documentation]({{< ref "user-guide/tools/transparent-endpoint-injection" >}}) for more information about the capability.
+
+</div>
+
+<div class="row mt-4">
 <div class="col-xl-6 col-md-12 d-flex justify-content-center">
 <a href="{{< ref "transparent-endpoint-injection#from-your-host" >}}" class="justify-content-between d-flex flex-column text-center">
 
@@ -104,14 +115,20 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 </div>
 
-<div class="row">
+<div class="row mt-2">
+
+For example you have created an OpenSearch cluster, and are trying to access that resource by its URL.
+
+</div>
+
+<div class="row mt-4">
 
 <div class="col-lg-12 col-xl-6 d-flex justify-content-center">
 <a href="{{< ref "created-resources#from-your-host" >}}" class="justify-content-between d-flex flex-column text-center">
 
 **From your host**
 
-{{< figure src="./images/3.svg" width="400" >}}
+{{< figure src="./images/3.svg" width="300" >}}
 
 </a>
 </div>
@@ -122,7 +139,7 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 **From a container LocalStack created**
 
-{{< figure src="./images/6.svg" width="400" >}}
+{{< figure src="./images/6.svg" width="300" >}}
 
 </a>
 </div>
@@ -131,7 +148,7 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 **From your container**
 
-{{< figure src="./images/9.svg" width="400" >}}
+{{< figure src="./images/9.svg" width="300" >}}
 
 </a>
 </div>
@@ -141,7 +158,7 @@ LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not tr
 
 **From a separate host**
 
-{{< figure src="./images/12.svg" width="400" >}}
+{{< figure src="./images/12.svg" width="300" >}}
 
 </a>
 </div>
