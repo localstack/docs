@@ -850,7 +850,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DeleteApiMapping (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+      <td>DeleteApiMapping (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -902,7 +902,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>GetApiMapping (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+      <td>GetApiMapping (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -4140,7 +4140,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>DescribeIdentityPool (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+      <td>DescribeIdentityPool (Pro)  <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -5324,6 +5324,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>DescribeContinuousBackups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>DescribeGlobalTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5412,6 +5416,10 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
+      <td>UpdateContinuousBackups <a href="#misc" title="covered by our integration test suite">✨</a></td>
+       <td style="text-align:right">✅</td>
+    </tr>
+    <tr>
       <td>UpdateGlobalTable <a href="#misc" title="covered by our integration test suite">✨</a></td>
        <td style="text-align:right">✅</td>
     </tr>
@@ -5435,10 +5443,6 @@ hide_readingtime: true
   </tbody>
   <tbody class="collapse dynamodb-notimplemented">     <tr>
       <td>DescribeBackup</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>DescribeContinuousBackups</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -5487,10 +5491,6 @@ hide_readingtime: true
     </tr>
     <tr>
       <td>RestoreTableToPointInTime</td>
-       <td style="text-align:right">-</td>
-    </tr>
-    <tr>
-      <td>UpdateContinuousBackups</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
@@ -18762,7 +18762,7 @@ hide_readingtime: true
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
-      <td>CreateTrainingJob (Pro)  <a href="#misc" title="covered by moto test suite">💫</a></td>
+      <td>CreateTrainingJob (Pro) </td>
        <td style="text-align:right">✅</td>
     </tr>
     <tr>
@@ -22332,7 +22332,23 @@ hide_readingtime: true
     </tr>
   </tbody>
   <tbody class="collapse timestream-write-notimplemented">     <tr>
+      <td>CreateBatchLoadTask</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>DescribeBatchLoadTask</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ListBatchLoadTasks</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
       <td>ListTagsForResource</td>
+       <td style="text-align:right">-</td>
+    </tr>
+    <tr>
+      <td>ResumeBatchLoadTask</td>
        <td style="text-align:right">-</td>
     </tr>
     <tr>
