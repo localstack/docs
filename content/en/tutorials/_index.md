@@ -3,7 +3,7 @@ title: "Tutorials"
 linkTitle: "Tutorials"
 weight: 10
 description: >
-  The goal of these tutorials is to help you create a mental model for how LocalStack works.
+  These tutorials aim to enhance your comprehension of LocalStack's functionality by providing detailed information on how it works for specific use-cases, using a diverse stack of resources.
 cascade:
   type: docs
 slug: tutorials

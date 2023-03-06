@@ -1,8 +1,8 @@
 ---
-title: Applications
-linkTitle: Applications
+title: Sample Applications
+linkTitle: Sample Applications
 description: >
-  The goal of these applications is to help you touch real world applications running in LocalStack.
+  These applications are designed to help you get started with real-world scenarios running in LocalStack. By utilizing these samples, you can rapidly and conveniently create, configure, and deploy applications without being concerned about the underlying infrastructure. The applications are user-friendly and offer the essential tools to get you started promptly.
 main_menu: false
 weight: 20
 type: applications
