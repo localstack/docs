@@ -1,9 +1,14 @@
-{{ range $op := $.operations }} 
+{{ range $operation := $.operations }} 
+{{ range $op_name, $op := $operation }}
 <tr>
     <!-- Operation -->
-    <td>{{ $op.name }}</td>
+    {{ if ($op.implemented) }} 
+    <td>{{ $op_name }}</td>
+    {{ else }}
+    <td class="coverage-operation-not-implemented">{{ $op_name }}</td>
+    {{ end }}
     <!-- Implemented -->
-    <td class="coverage-shadow-overlay-green">{{ if ($op.is_implemented) }} ✔️ {{ end }}</td>
+    <td class="coverage-shadow-overlay-green">{{ if ($op.implemented) }} ✔️ {{ end }}</td>
     <!-- Availability -->
     <td>{{ if ($op.implemented) }} {{ $op.availability }} {{ end }}</td>
     <!-- Internal Test Suite -->
@@ -13,8 +18,9 @@
     <!-- AWS Validated -->
     <td class="coverage-shadow-overlay-green">{{ if ($op.aws_validated) }} ✔️ {{ end }}</td>
     <!-- Snapshot Tested -->
-    <td class="coverage-shadow-overlay-green">{{ if ($op.snapshot) }} ✔️ {{ end }}</td>
+    <td class="coverage-shadow-overlay-green">{{ if ($op.snapshot_tested) }} ✔️ {{ end }}</td>
     <!-- Details -->
     <td>{{ if ($op.internal_test_suite) }} <a href=#{{ lower $op.name }}>Show details</a> {{ end }}</td>
 </tr>
+{{ end }}
 {{ end }}

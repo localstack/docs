@@ -1,0 +1,883 @@
+{
+  "service": "qldb",
+  "operations": [
+    {
+      "CancelJournalKinesisStream": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "CreateLedger": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DeleteLedger": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeJournalKinesisStream": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeJournalS3Export": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeLedger": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ExportJournalToS3": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "GetBlock": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "GetDigest": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "GetRevision": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListJournalKinesisStreamsForLedger": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListJournalS3Exports": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListJournalS3ExportsForLedger": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListLedgers": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListTagsForResource": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "StreamJournalToKinesis": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "TagResource": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "UntagResource": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "UpdateLedger": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "UpdateLedgerPermissionsMode": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    }
+  ],
+  "details": {
+    "CreateLedger": {
+      "Name, PermissionsMode": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_qldb.py::test_create_ledgers",
+            "test": "test_create_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_complex_insert",
+            "test": "test_complex_insert",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_describe_and_delete_ledger",
+            "test": "test_describe_and_delete_ledger",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_insert_multiple_docs",
+            "test": "test_insert_multiple_docs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_ledgers",
+            "test": "test_list_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_tables",
+            "test": "test_list_tables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_committed_views",
+            "test": "test_query_committed_views",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_history",
+            "test": "test_query_history",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_ion_timestamp",
+            "test": "test_query_ion_timestamp",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_join_tables",
+            "test": "test_query_join_tables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_with_parameters",
+            "test": "test_query_with_parameters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_with_params_via_api",
+            "test": "test_query_with_params_via_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_stream_journal",
+            "test": "test_stream_journal",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_update_query_response",
+            "test": "test_update_query_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "Name, PermissionsMode, Tags": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_qldb.py::test_create_ledgers",
+            "test": "test_create_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "DeleteLedger": {
+      "Name": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_qldb.py::test_create_ledgers",
+            "test": "test_create_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_complex_insert",
+            "test": "test_complex_insert",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_describe_and_delete_ledger",
+            "test": "test_describe_and_delete_ledger",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_insert_multiple_docs",
+            "test": "test_insert_multiple_docs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_tables",
+            "test": "test_list_tables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_committed_views",
+            "test": "test_query_committed_views",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_history",
+            "test": "test_query_history",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_ion_timestamp",
+            "test": "test_query_ion_timestamp",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_join_tables",
+            "test": "test_query_join_tables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_with_parameters",
+            "test": "test_query_with_parameters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_stream_journal",
+            "test": "test_stream_journal",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_update_query_response",
+            "test": "test_update_query_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_describe_and_delete_ledger",
+            "test": "test_describe_and_delete_ledger",
+            "response": "412",
+            "error": "ResourcePreconditionNotMetException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeLedger": {
+      "Name": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_qldb.py::test_create_ledgers",
+            "test": "test_create_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_complex_insert",
+            "test": "test_complex_insert",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_describe_and_delete_ledger",
+            "test": "test_describe_and_delete_ledger",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_insert_multiple_docs",
+            "test": "test_insert_multiple_docs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_ledgers",
+            "test": "test_list_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_tables",
+            "test": "test_list_tables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_committed_views",
+            "test": "test_query_committed_views",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_history",
+            "test": "test_query_history",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_ion_timestamp",
+            "test": "test_query_ion_timestamp",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_join_tables",
+            "test": "test_query_join_tables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_with_parameters",
+            "test": "test_query_with_parameters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_with_params_via_api",
+            "test": "test_query_with_params_via_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_stream_journal",
+            "test": "test_stream_journal",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_update_query_response",
+            "test": "test_update_query_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_qldb.py::test_create_ledgers",
+            "test": "test_create_ledgers",
+            "response": "404",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_describe_and_delete_ledger",
+            "test": "test_describe_and_delete_ledger",
+            "response": "404",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListLedgers": {
+      "without any parameters": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_qldb.py::test_create_ledgers",
+            "test": "test_create_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_ledgers",
+            "test": "test_list_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListTagsForResource": {
+      "ResourceArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_qldb.py::test_create_ledgers",
+            "test": "test_create_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "StreamJournalToKinesis": {
+      "InclusiveStartTime, KinesisConfiguration, LedgerName, RoleArn, StreamName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_stream_journal",
+            "test": "test_stream_journal",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateLedger": {
+      "DeletionProtection, Name": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_qldb.py::test_create_ledgers",
+            "test": "test_create_ledgers",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_complex_insert",
+            "test": "test_complex_insert",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_describe_and_delete_ledger",
+            "test": "test_describe_and_delete_ledger",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_insert_multiple_docs",
+            "test": "test_insert_multiple_docs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_tables",
+            "test": "test_list_tables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_committed_views",
+            "test": "test_query_committed_views",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_history",
+            "test": "test_query_history",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_ion_timestamp",
+            "test": "test_query_ion_timestamp",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_join_tables",
+            "test": "test_query_join_tables",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_with_parameters",
+            "test": "test_query_with_parameters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_stream_journal",
+            "test": "test_stream_journal",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_update_query_response",
+            "test": "test_update_query_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_with_params_via_api",
+            "test": "test_query_with_params_via_api",
+            "response": "404",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    }
+  }
+}
