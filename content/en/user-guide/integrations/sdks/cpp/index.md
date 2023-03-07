@@ -4,8 +4,6 @@ categories: []
 tags: ["sdk"]
 description: >
   How to use the C++ AWS SDK with LocalStack.
-aliases:
-  - /integrations/sdks/cpp/
 ---
 
 ## Overview
@@ -16,7 +14,8 @@ which is the preferred way of integrating the C++ SDK with LocalStack.
 ## Example
 
 Consider the following example, which creates an SQS queue, sends a message to it, then receives the same message via the SDK:
-```
+
+```cpp
 #include <iostream>
 #include <aws/core/Aws.h>
 #include <aws/core/utils/logging/LogLevel.h>
@@ -74,7 +73,8 @@ int main()
 ```
 
 Once compiled, we'll see the following output when running the application:
-```
+
+```sh
 Creating queue ...
 Sending message ...
 Receiving message ...
