@@ -23,6 +23,7 @@ Consider the following example, which creates an SQS queue, sends a message to i
 #include <aws/sqs/model/CreateQueueRequest.h>
 #include <aws/sqs/model/SendMessageRequest.h>
 #include <aws/sqs/model/ReceiveMessageRequest.h>
+#include <aws/sqs/model/DeleteMessageRequest.h>
 
 using namespace Aws;
 
@@ -39,6 +40,7 @@ int main()
     SQS::SQSClient client = SQS::SQSClient(clientConfig);
 
     // create queue
+    std::cout << "Creating queue ..." << std::endl;
     Aws::SQS::Model::CreateQueueRequest cqReq;
     cqReq.SetQueueName("test-queue");
     auto cqRes = client.CreateQueue(cqReq);
@@ -64,7 +66,15 @@ int main()
     std::cout << "Received message:" << std::endl;
     std::cout << "  MessageId: " << message.GetMessageId() << std::endl;
     std::cout << "  ReceiptHandle: " << message.GetReceiptHandle() << std::endl;
-    std::cout << "  Body: " << message.GetBody() << std::endl << std::endl;
+    std::cout << "  Body: " << message.GetBody() << std::endl;
+
+    // delete message
+    std::cout << "Deleting message ..." << std::endl;
+    Aws::SQS::Model::DeleteMessageRequest dmReq;
+    dmReq.SetQueueUrl(queueUrl);
+    dmReq.SetReceiptHandle(message.GetReceiptHandle());
+    auto dmRes = client.DeleteMessage(dmReq);
+    std::cout << "Delete message success result: " << dmRes.IsSuccess() << std::endl;
 
     // shut down the SDK
     ShutdownAPI(options);
@@ -83,6 +93,8 @@ Received message:
   MessageId: 4731b327-49b2-4410-a8da-2c479e7bde04
   ReceiptHandle: ZTQ1M2Q1ZjYtMjBkZS00ODQxLTlkYzQtMjBlMGQ4MDNkODVkIGFybjphd3M6c3FzOnVzLWVhc3QtMTowMDAwMDAwMDAwMDA6dGVzdC1xdWV1ZSA0NzMxYjMyNy00OWIyLTQ0MTAtYThkYS0yYzQ3OWU3YmRlMDQgMTY3ODIxMjExMS42ODk1NTE=
   Body: test message 123
+Deleting message ...
+Delete message success result: 1
 ```
 
 ## Resources
