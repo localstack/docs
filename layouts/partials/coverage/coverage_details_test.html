@@ -11,15 +11,17 @@
         {{ with $error := $test.error }} ({{ $error }}){{ end }}</span>
     
     <!-- tag for aws-validated -->
-    {{ if $test.aws_validated }} <span class="coverage-report-tag-aws-validated">AWS validated</span> {{ end }}
+    {{ if $test.aws_validated }} <span class="coverage-report-tag-aws-validated" style="margin-left: 20px;">AWS validated</span> {{ end }}
 
     <!-- tag for snapshot/partial snapshot -->
     {{ if $test.snapshot_tested}} 
-        {{ if not $test.snapshot_skipped }}
-            <span class="coverage-report-tag-snapshot">Snapshot Test</span>
+    <span class="coverage-report-tag-snapshot">Snapshot Tested</span>
+        <!-- TODO for now we exclude the "skipped" information, as it might be too confusing 
+            {{ if not $test.snapshot_skipped }}
+            <span class="coverage-report-tag-snapshot">Snapshot Tested</span>
         {{ else }}
-            <span class="coverage-report-tag-snapshot-partial">Snapshot Test Partial</span>
-        {{ end }}
+        <span class="coverage-report-tag-snapshot">Snapshot Tested*</span>
+        {{ end }} -->
     {{ end }}
     </li>
 {{ end }}
