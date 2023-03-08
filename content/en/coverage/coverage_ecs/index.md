@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for ecs"
-linkTitle: "LocalStack Coverage ecs"
+title: "Coverage ecs"
+linkTitle: "Coverage ecs"
 description: >
-  Overview of the implemented AWS APIs in ecs
+  Implementation details for Elastic Container Service (ECS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="ecs" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="ecs" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="ecs" >}}

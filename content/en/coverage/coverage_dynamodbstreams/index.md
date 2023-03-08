@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for dynamodbstreams"
-linkTitle: "LocalStack Coverage dynamodbstreams"
+title: "Coverage dynamodbstreams"
+linkTitle: "Coverage dynamodbstreams"
 description: >
-  Overview of the implemented AWS APIs in dynamodbstreams
+  Implementation details for DynamoDB Streams
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="dynamodbstreams" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="dynamodbstreams" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="dynamodbstreams" >}}

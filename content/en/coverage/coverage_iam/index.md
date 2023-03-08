@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for iam"
-linkTitle: "LocalStack Coverage iam"
+title: "Coverage iam"
+linkTitle: "Coverage iam"
 description: >
-  Overview of the implemented AWS APIs in iam
+  Implementation details for Identity and Access Management (IAM)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="iam" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="iam" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="iam" >}}

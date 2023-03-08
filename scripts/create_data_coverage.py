@@ -9,18 +9,27 @@ import shutil
 from operator import itemgetter
 
 DOCS_MD = """---
-title: "LocalStack Coverage for {service}"
-linkTitle: "LocalStack Coverage {service}"
+title: "Coverage {service}"
+linkTitle: "Coverage {service}"
 description: >
-  Overview of the implemented AWS APIs in {service}
+  {description}
 hide_readingtime: true
 ---
 
-{{{{< localstack_coverage service="{service}" >}}}}
+## Coverage Overview
+{{{{< localstack_coverage_table service="{service}" >}}}}
 
+## Testing Details
+{{{{< localstack_coverage_details service="{service}" >}}}}
 """
 
-def create_markdown_files_for_services(target_dir: str, services: list[str], delete_if_exists: bool=False):   
+def create_markdown_files_for_services(target_dir: str, services: list[str], service_lookup_details: str = None, delete_if_exists: bool=False):   
+    service_lookup = Path(service_lookup_details)
+    service_info = {}
+    if service_lookup.exists() and service_lookup.is_file():
+        with open(service_lookup, 'r') as f:
+            service_info = json.load(f)
+
     for service in services:
 
         dirpath = Path(target_dir).joinpath(f"coverage_{service}")
@@ -30,9 +39,17 @@ def create_markdown_files_for_services(target_dir: str, services: list[str], del
         
         dirpath.mkdir(parents=True, exist_ok=True)
 
+        service_name_details = service_info.get(service, {})
+        details_name = service
+        if service_name_details:
+            details_name = service_name_details.get("long_name", details_name)
+            if short_name := service_name_details.get("short_name"):
+                details_name += f" ({short_name})"
+
+        description = f"Implementation details for {details_name}"
         file_name = dirpath.joinpath("index.md")
         with open(file_name, "w") as fd:
-            fd.write(DOCS_MD.format(service=service))
+            fd.write(DOCS_MD.format(service=service, description=description))
 
         print(f"--> created markdown: {file_name}")
 
@@ -41,10 +58,21 @@ def create_data_templates_for_service(target_dir: str, metrics: dict, service: s
     output = {}
     details = metrics.pop("details", {})
     operations = []
+    community_support = False
+    pro_support = False
     for key, value in metrics.items():
         operations.append({key: value})
+        if not community_support and value.get("availability") == "community":
+            community_support = True
+        if not pro_support and value.get("availability") == "pro":
+            pro_support = True
     
     output["service"] = service
+    if pro_support:
+        output["pro_support"] = True
+    if community_support:
+        output["community_support"] = True
+
     output["operations"] = operations
 
     # sort the details
@@ -78,7 +106,7 @@ def create_data_templates_for_service(target_dir: str, metrics: dict, service: s
 
     print(f"--> created data-template: {file_name}")
 
-def main(path_to_implementation_details: str, path_to_raw_metrics: str, target_dir: str):
+def main(path_to_implementation_details: str, path_to_raw_metrics: str, target_dir: str, service_lookup_details: str = None):
     impl_details = {}
     # read the implementation-details for pro + community first and generate a dict
     # with information about all services and operation, and indicator if those are implemented, and avaiable only in pro:
@@ -108,24 +136,27 @@ def main(path_to_implementation_details: str, path_to_raw_metrics: str, target_d
             if row["is_implemented"] == "True":
                 service[row["operation"]]["pro"] = False 
 
-
+    services = sorted(impl_details.keys())
 
     # create the coverage-docs
     services = sorted(impl_details.keys())
     create_markdown_files_for_services(
-        target_dir=target_dir + "/md", services=services
+        target_dir=target_dir + "/md", services=services, service_lookup_details=service_lookup_details
     )
+
     
     for service in services:
+        # TODO special handling for rds/neptune/docdb
+        check_service = service
+        if service in ["neptune", "docdb"]:
+            check_service = "rds"
         # now check the actual recorded test data and map the information
         recorded_metrics = aggregate_recorded_raw_data(
-            base_dir=path_to_raw_metrics, operations=impl_details.get(service), service_of_interest=service
+            base_dir=path_to_raw_metrics, operations=impl_details.get(service), service_of_interest=check_service
         )
-        # TODO special handling for rds/neptune/docdb
-        if service in ["neptun", "docdb"]:
-            service = "rds"
-        create_data_templates_for_service(target_dir + "/data", recorded_metrics, service)
 
+        create_data_templates_for_service(target_dir + "/data", recorded_metrics, service)
+    
 
 def _init_metric_recorder(operations_dict: dict):
     """
@@ -133,8 +164,10 @@ def _init_metric_recorder(operations_dict: dict):
     :param operations_dict: 
     """
     operations = {}
+
     for operation, details in operations_dict.items():
         availability = "pro" if details["pro"] else "community"
+        
         if not details["implemented"]:
             availability = ""
         op_attributes = {
@@ -248,15 +281,25 @@ def aggregate_recorded_raw_data(base_dir: str, operations: dict, service_of_inte
                 node_id = metric.get("node_id") or metric.get("test_node_id")
                 if param_exception := metric.get("exception", ""):
                     if param_exception == "CommonServiceException":
+                        # try to get more details about the CommonServiceException from the response
                         try:
                             data = json.loads(metric.get("response_data","{}"))
                             param_exception = data.get("__type", param_exception)
                         except JSONDecodeError:
-                            print(f"{metric.get('service')}: could not decode CommonServiceException details ({param_exception})")
-            
+                            pass
+                            # print(f"{metric.get('service')}: could not decode CommonServiceException details ({param_exception})")
+
+                # get simple test name (will be shown on coverage page)
+                if node_id.endswith("]"):
+                    # workaround for tests that have a "::" as part of a parameterized test
+                    # e.g. tests/integration/mytest.py::SomeTest::test_and_or_functions[Fn::Or-0-0-False]
+                    tmp = node_id[0:node_id.rfind("[")].split("::")[-1]
+                    simple_test_name = tmp + node_id[node_id.rfind("["):]
+                else:
+                    simple_test_name = node_id.split("::")[-1]
                 test_detail = {
                     "node_id": f"{test_node_origin}: {node_id}",
-                    "test": node_id.split("::")[-1],
+                    "test": simple_test_name,
                     "response": metric.get("response_code", -1),
                     "error": param_exception,
                     "snapshot_skipped": metric.get("snapshot_skipped_paths", ""),
@@ -281,7 +324,15 @@ def print_usage():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4 or not Path(sys.argv[1]).is_dir() or not Path(sys.argv[2]).is_dir():
+    if len(sys.argv) < 4 or not Path(sys.argv[1]).is_dir() or not Path(sys.argv[2]).is_dir():
         print_usage()
     else:
-        main(sys.argv[1], sys.argv[2], sys.argv[3])
+        path_to_implementation_details = sys.argv[1]
+        path_to_raw_metrics = sys.argv[2]
+        target_dir = sys.argv[3]
+        service_lookup_details = None
+
+        if len(sys.argv) == 5:
+            # optional parameter, path to service_display_name.json
+            service_lookup_details = sys.argv[4]
+        main(path_to_implementation_details, path_to_raw_metrics, target_dir, service_lookup_details)

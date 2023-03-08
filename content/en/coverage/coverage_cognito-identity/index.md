@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for cognito-identity"
-linkTitle: "LocalStack Coverage cognito-identity"
+title: "Coverage cognito-identity"
+linkTitle: "Coverage cognito-identity"
 description: >
-  Overview of the implemented AWS APIs in cognito-identity
+  Implementation details for Cognito Identity
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="cognito-identity" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="cognito-identity" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="cognito-identity" >}}

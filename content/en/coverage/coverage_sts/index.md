@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for sts"
-linkTitle: "LocalStack Coverage sts"
+title: "Coverage sts"
+linkTitle: "Coverage sts"
 description: >
-  Overview of the implemented AWS APIs in sts
+  Implementation details for Security Token Service (STS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="sts" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="sts" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="sts" >}}

@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for sesv2"
-linkTitle: "LocalStack Coverage sesv2"
+title: "Coverage sesv2"
+linkTitle: "Coverage sesv2"
 description: >
-  Overview of the implemented AWS APIs in sesv2
+  Implementation details for Simple Email Service v2 (SES v2)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="sesv2" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="sesv2" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="sesv2" >}}

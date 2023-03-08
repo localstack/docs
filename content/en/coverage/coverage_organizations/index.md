@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for organizations"
-linkTitle: "LocalStack Coverage organizations"
+title: "Coverage organizations"
+linkTitle: "Coverage organizations"
 description: >
-  Overview of the implemented AWS APIs in organizations
+  Implementation details for Organizations
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="organizations" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="organizations" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="organizations" >}}

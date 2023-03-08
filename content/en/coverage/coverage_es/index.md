@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for es"
-linkTitle: "LocalStack Coverage es"
+title: "Coverage es"
+linkTitle: "Coverage es"
 description: >
-  Overview of the implemented AWS APIs in es
+  Implementation details for OpenSearch, legacy Elasticsearch (ES)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="es" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="es" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="es" >}}

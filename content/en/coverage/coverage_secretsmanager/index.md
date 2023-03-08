@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for secretsmanager"
-linkTitle: "LocalStack Coverage secretsmanager"
+title: "Coverage secretsmanager"
+linkTitle: "Coverage secretsmanager"
 description: >
-  Overview of the implemented AWS APIs in secretsmanager
+  Implementation details for Secrets Manager
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="secretsmanager" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="secretsmanager" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="secretsmanager" >}}

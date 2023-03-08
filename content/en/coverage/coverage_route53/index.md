@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for route53"
-linkTitle: "LocalStack Coverage route53"
+title: "Coverage route53"
+linkTitle: "Coverage route53"
 description: >
-  Overview of the implemented AWS APIs in route53
+  Implementation details for Route 53
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="route53" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="route53" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="route53" >}}

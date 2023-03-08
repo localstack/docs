@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for config"
-linkTitle: "LocalStack Coverage config"
+title: "Coverage config"
+linkTitle: "Coverage config"
 description: >
-  Overview of the implemented AWS APIs in config
+  Implementation details for Config
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="config" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="config" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="config" >}}

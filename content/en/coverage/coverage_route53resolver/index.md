@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for route53resolver"
-linkTitle: "LocalStack Coverage route53resolver"
+title: "Coverage route53resolver"
+linkTitle: "Coverage route53resolver"
 description: >
-  Overview of the implemented AWS APIs in route53resolver
+  Implementation details for Route 53 Resolver
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="route53resolver" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="route53resolver" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="route53resolver" >}}

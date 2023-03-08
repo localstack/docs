@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for timestream-query"
-linkTitle: "LocalStack Coverage timestream-query"
+title: "Coverage timestream-query"
+linkTitle: "Coverage timestream-query"
 description: >
-  Overview of the implemented AWS APIs in timestream-query
+  Implementation details for Timestream Query
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="timestream-query" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="timestream-query" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="timestream-query" >}}

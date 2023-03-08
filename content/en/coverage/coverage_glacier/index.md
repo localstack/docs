@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for glacier"
-linkTitle: "LocalStack Coverage glacier"
+title: "Coverage glacier"
+linkTitle: "Coverage glacier"
 description: >
-  Overview of the implemented AWS APIs in glacier
+  Implementation details for S3 Glacier (Glacier)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="glacier" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="glacier" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="glacier" >}}

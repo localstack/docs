@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for eks"
-linkTitle: "LocalStack Coverage eks"
+title: "Coverage eks"
+linkTitle: "Coverage eks"
 description: >
-  Overview of the implemented AWS APIs in eks
+  Implementation details for Elastic Kubernetes Service (EKS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="eks" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="eks" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="eks" >}}

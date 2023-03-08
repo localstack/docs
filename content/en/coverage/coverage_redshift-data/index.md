@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for redshift-data"
-linkTitle: "LocalStack Coverage redshift-data"
+title: "Coverage redshift-data"
+linkTitle: "Coverage redshift-data"
 description: >
-  Overview of the implemented AWS APIs in redshift-data
+  Implementation details for Redshift Data
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="redshift-data" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="redshift-data" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="redshift-data" >}}

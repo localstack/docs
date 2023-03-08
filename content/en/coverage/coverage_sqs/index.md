@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for sqs"
-linkTitle: "LocalStack Coverage sqs"
+title: "Coverage sqs"
+linkTitle: "Coverage sqs"
 description: >
-  Overview of the implemented AWS APIs in sqs
+  Implementation details for Simple Queue Service (SQS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="sqs" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="sqs" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="sqs" >}}

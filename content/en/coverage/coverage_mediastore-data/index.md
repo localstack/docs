@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for mediastore-data"
-linkTitle: "LocalStack Coverage mediastore-data"
+title: "Coverage mediastore-data"
+linkTitle: "Coverage mediastore-data"
 description: >
-  Overview of the implemented AWS APIs in mediastore-data
+  Implementation details for Elemental MediaStore Data
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="mediastore-data" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="mediastore-data" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="mediastore-data" >}}

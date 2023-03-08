@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for cloudfront"
-linkTitle: "LocalStack Coverage cloudfront"
+title: "Coverage cloudfront"
+linkTitle: "Coverage cloudfront"
 description: >
-  Overview of the implemented AWS APIs in cloudfront
+  Implementation details for CloudFront
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="cloudfront" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="cloudfront" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="cloudfront" >}}

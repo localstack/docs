@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for appsync"
-linkTitle: "LocalStack Coverage appsync"
+title: "Coverage appsync"
+linkTitle: "Coverage appsync"
 description: >
-  Overview of the implemented AWS APIs in appsync
+  Implementation details for AppSync
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="appsync" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="appsync" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="appsync" >}}

@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for xray"
-linkTitle: "LocalStack Coverage xray"
+title: "Coverage xray"
+linkTitle: "Coverage xray"
 description: >
-  Overview of the implemented AWS APIs in xray
+  Implementation details for X-Ray
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="xray" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="xray" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="xray" >}}

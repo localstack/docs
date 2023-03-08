@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for iotanalytics"
-linkTitle: "LocalStack Coverage iotanalytics"
+title: "Coverage iotanalytics"
+linkTitle: "Coverage iotanalytics"
 description: >
-  Overview of the implemented AWS APIs in iotanalytics
+  Implementation details for IoT Analytics
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="iotanalytics" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="iotanalytics" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="iotanalytics" >}}

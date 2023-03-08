@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for ses"
-linkTitle: "LocalStack Coverage ses"
+title: "Coverage ses"
+linkTitle: "Coverage ses"
 description: >
-  Overview of the implemented AWS APIs in ses
+  Implementation details for Simple Email Service (SES)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="ses" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="ses" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="ses" >}}

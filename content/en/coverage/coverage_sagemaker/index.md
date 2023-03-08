@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for sagemaker"
-linkTitle: "LocalStack Coverage sagemaker"
+title: "Coverage sagemaker"
+linkTitle: "Coverage sagemaker"
 description: >
-  Overview of the implemented AWS APIs in sagemaker
+  Implementation details for SageMaker
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="sagemaker" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="sagemaker" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="sagemaker" >}}

@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for kms"
-linkTitle: "LocalStack Coverage kms"
+title: "Coverage kms"
+linkTitle: "Coverage kms"
 description: >
-  Overview of the implemented AWS APIs in kms
+  Implementation details for Key Management Service (KMS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="kms" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="kms" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="kms" >}}

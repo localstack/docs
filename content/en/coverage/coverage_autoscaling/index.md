@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for autoscaling"
-linkTitle: "LocalStack Coverage autoscaling"
+title: "Coverage autoscaling"
+linkTitle: "Coverage autoscaling"
 description: >
-  Overview of the implemented AWS APIs in autoscaling
+  Implementation details for Auto Scaling
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="autoscaling" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="autoscaling" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="autoscaling" >}}

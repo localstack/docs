@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for sagemaker-runtime"
-linkTitle: "LocalStack Coverage sagemaker-runtime"
+title: "Coverage sagemaker-runtime"
+linkTitle: "Coverage sagemaker-runtime"
 description: >
-  Overview of the implemented AWS APIs in sagemaker-runtime
+  Implementation details for SageMaker Runtime
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="sagemaker-runtime" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="sagemaker-runtime" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="sagemaker-runtime" >}}

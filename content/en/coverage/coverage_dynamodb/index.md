@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for dynamodb"
-linkTitle: "LocalStack Coverage dynamodb"
+title: "Coverage dynamodb"
+linkTitle: "Coverage dynamodb"
 description: >
-  Overview of the implemented AWS APIs in dynamodb
+  Implementation details for DynamoDB
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="dynamodb" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="dynamodb" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="dynamodb" >}}

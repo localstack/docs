@@ -264,6 +264,10 @@ table tfoot {
   inset-block-start: 0; 
 }
 
+.coverage-report table thead tr th {
+    border: 0px; 
+}
+
 .coverage-report table thead tr {
     // sticky header
     background-color: white;
@@ -272,6 +276,13 @@ table tfoot {
     z-index: 9999;
 }
 
+.coverage-report-header-availability {
+    background-color: rgba($dark-purple, .2);
+}
+
+.coverage-report-header-testing {
+    background-color: rgba($blue-dark, .2);
+}
 .coverage-operation-not-implemented {
     color: $gray-500;
 }
@@ -395,6 +406,15 @@ table tfoot {
     }
 }
 
+#m-coverage-li {
+    .ul-2 {
+        display: none !important
+    }
+    label:before {
+        display: none !important
+    }
+}
+
 #tutorial-page + .section-index {
     > .entry {
         border: 1px solid #ced4da;
@@ -405,6 +425,38 @@ table tfoot {
             margin-bottom: 0.5rem;
         }
     }
+}
+
+#coverage-page + .section-index {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(20rem, 1fr) );
+    > .panel-line {
+            position: absolute;
+    }
+    > .entry {
+        border: 1px solid $primary;
+        padding: 1rem;
+        margin: 0.5rem;
+        > p {
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+#serviceNameCoverageInput {
+    width: 99%;
+    padding: 1rem;
+    margin: 0.5rem;
+    border: 2px solid $primary;
+    color: $primary;
+    font-size: 110%;
+    background-color: rgba($primary, .1);
+}
+
+#serviceNameCoverageInput:focus{
+    background-color: rgba($primary, .2);
+    border: 3px solid $primary;
+    outline: none !important;
 }
 
 .feedback--title {

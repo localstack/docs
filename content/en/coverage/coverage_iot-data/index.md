@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for iot-data"
-linkTitle: "LocalStack Coverage iot-data"
+title: "Coverage iot-data"
+linkTitle: "Coverage iot-data"
 description: >
-  Overview of the implemented AWS APIs in iot-data
+  Implementation details for IoT Data
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="iot-data" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="iot-data" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="iot-data" >}}

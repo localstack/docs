@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for appconfig"
-linkTitle: "LocalStack Coverage appconfig"
+title: "Coverage appconfig"
+linkTitle: "Coverage appconfig"
 description: >
-  Overview of the implemented AWS APIs in appconfig
+  Implementation details for AppConfig
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="appconfig" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="appconfig" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="appconfig" >}}

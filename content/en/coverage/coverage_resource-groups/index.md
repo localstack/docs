@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for resource-groups"
-linkTitle: "LocalStack Coverage resource-groups"
+title: "Coverage resource-groups"
+linkTitle: "Coverage resource-groups"
 description: >
-  Overview of the implemented AWS APIs in resource-groups
+  Implementation details for Resource Groups
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="resource-groups" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="resource-groups" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="resource-groups" >}}

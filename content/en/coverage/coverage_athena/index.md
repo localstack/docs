@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for athena"
-linkTitle: "LocalStack Coverage athena"
+title: "Coverage athena"
+linkTitle: "Coverage athena"
 description: >
-  Overview of the implemented AWS APIs in athena
+  Implementation details for Athena
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="athena" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="athena" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="athena" >}}

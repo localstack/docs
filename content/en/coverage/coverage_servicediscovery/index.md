@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for servicediscovery"
-linkTitle: "LocalStack Coverage servicediscovery"
+title: "Coverage servicediscovery"
+linkTitle: "Coverage servicediscovery"
 description: >
-  Overview of the implemented AWS APIs in servicediscovery
+  Implementation details for Cloud Map (Service Discovery)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="servicediscovery" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="servicediscovery" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="servicediscovery" >}}
