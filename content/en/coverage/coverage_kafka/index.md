@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for kafka"
-linkTitle: "LocalStack Coverage kafka"
+title: "Coverage kafka"
+linkTitle: "Coverage kafka"
 description: >
-  Overview of the implemented AWS APIs in kafka
+  Implementation details for Managed Streaming for Apache Kafka (MSK)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="kafka" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="kafka" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="kafka" >}}

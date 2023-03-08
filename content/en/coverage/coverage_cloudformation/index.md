@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for cloudformation"
-linkTitle: "LocalStack Coverage cloudformation"
+title: "Coverage cloudformation"
+linkTitle: "Coverage cloudformation"
 description: >
-  Overview of the implemented AWS APIs in cloudformation
+  Implementation details for CloudFormation
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="cloudformation" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="cloudformation" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="cloudformation" >}}

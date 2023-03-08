@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for qldb"
-linkTitle: "LocalStack Coverage qldb"
+title: "Coverage qldb"
+linkTitle: "Coverage qldb"
 description: >
-  Overview of the implemented AWS APIs in qldb
+  Implementation details for Quantum Ledger Database (QLDB)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="qldb" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="qldb" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="qldb" >}}

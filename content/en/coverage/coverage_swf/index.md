@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for swf"
-linkTitle: "LocalStack Coverage swf"
+title: "Coverage swf"
+linkTitle: "Coverage swf"
 description: >
-  Overview of the implemented AWS APIs in swf
+  Implementation details for Simple Workflow Service (SWF)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="swf" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="swf" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="swf" >}}

@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for transfer"
-linkTitle: "LocalStack Coverage transfer"
+title: "Coverage transfer"
+linkTitle: "Coverage transfer"
 description: >
-  Overview of the implemented AWS APIs in transfer
+  Implementation details for Transfer
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="transfer" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="transfer" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="transfer" >}}

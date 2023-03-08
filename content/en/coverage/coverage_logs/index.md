@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for logs"
-linkTitle: "LocalStack Coverage logs"
+title: "Coverage logs"
+linkTitle: "Coverage logs"
 description: >
-  Overview of the implemented AWS APIs in logs
+  Implementation details for CloudWatch Logs
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="logs" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="logs" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="logs" >}}

@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for docdb"
-linkTitle: "LocalStack Coverage docdb"
+title: "Coverage docdb"
+linkTitle: "Coverage docdb"
 description: >
-  Overview of the implemented AWS APIs in docdb
+  Implementation details for DocumentDB
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="docdb" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="docdb" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="docdb" >}}

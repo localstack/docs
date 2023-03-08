@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for lakeformation"
-linkTitle: "LocalStack Coverage lakeformation"
+title: "Coverage lakeformation"
+linkTitle: "Coverage lakeformation"
 description: >
-  Overview of the implemented AWS APIs in lakeformation
+  Implementation details for Lake Formation
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="lakeformation" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="lakeformation" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="lakeformation" >}}

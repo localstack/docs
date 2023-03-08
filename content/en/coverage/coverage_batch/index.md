@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for batch"
-linkTitle: "LocalStack Coverage batch"
+title: "Coverage batch"
+linkTitle: "Coverage batch"
 description: >
-  Overview of the implemented AWS APIs in batch
+  Implementation details for Batch
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="batch" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="batch" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="batch" >}}

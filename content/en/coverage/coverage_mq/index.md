@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for mq"
-linkTitle: "LocalStack Coverage mq"
+title: "Coverage mq"
+linkTitle: "Coverage mq"
 description: >
-  Overview of the implemented AWS APIs in mq
+  Implementation details for Amazon MQ
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="mq" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="mq" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="mq" >}}

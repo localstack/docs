@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for ecr"
-linkTitle: "LocalStack Coverage ecr"
+title: "Coverage ecr"
+linkTitle: "Coverage ecr"
 description: >
-  Overview of the implemented AWS APIs in ecr
+  Implementation details for Elastic Container Registry (ECR)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="ecr" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="ecr" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="ecr" >}}

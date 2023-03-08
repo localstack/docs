@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for stepfunctions"
-linkTitle: "LocalStack Coverage stepfunctions"
+title: "Coverage stepfunctions"
+linkTitle: "Coverage stepfunctions"
 description: >
-  Overview of the implemented AWS APIs in stepfunctions
+  Implementation details for Step Functions
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="stepfunctions" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="stepfunctions" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="stepfunctions" >}}

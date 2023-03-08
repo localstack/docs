@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for s3control"
-linkTitle: "LocalStack Coverage s3control"
+title: "Coverage s3control"
+linkTitle: "Coverage s3control"
 description: >
-  Overview of the implemented AWS APIs in s3control
+  Implementation details for Simple Storage Service Control (S3 Control)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="s3control" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="s3control" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="s3control" >}}

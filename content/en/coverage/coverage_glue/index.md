@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for glue"
-linkTitle: "LocalStack Coverage glue"
+title: "Coverage glue"
+linkTitle: "Coverage glue"
 description: >
-  Overview of the implemented AWS APIs in glue
+  Implementation details for Glue
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="glue" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="glue" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="glue" >}}

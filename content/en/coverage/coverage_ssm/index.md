@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for ssm"
-linkTitle: "LocalStack Coverage ssm"
+title: "Coverage ssm"
+linkTitle: "Coverage ssm"
 description: >
-  Overview of the implemented AWS APIs in ssm
+  Implementation details for Web Services Systems Manager (SSM)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="ssm" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="ssm" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="ssm" >}}

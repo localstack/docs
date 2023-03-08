@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for kinesisanalytics"
-linkTitle: "LocalStack Coverage kinesisanalytics"
+title: "Coverage kinesisanalytics"
+linkTitle: "Coverage kinesisanalytics"
 description: >
-  Overview of the implemented AWS APIs in kinesisanalytics
+  Implementation details for Kinesis Data Analytics API
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="kinesisanalytics" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="kinesisanalytics" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="kinesisanalytics" >}}

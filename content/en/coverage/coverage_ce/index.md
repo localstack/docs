@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for ce"
-linkTitle: "LocalStack Coverage ce"
+title: "Coverage ce"
+linkTitle: "Coverage ce"
 description: >
-  Overview of the implemented AWS APIs in ce
+  Implementation details for Cost Explorer API (CE)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="ce" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="ce" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="ce" >}}

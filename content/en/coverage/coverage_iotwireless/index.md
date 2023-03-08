@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for iotwireless"
-linkTitle: "LocalStack Coverage iotwireless"
+title: "Coverage iotwireless"
+linkTitle: "Coverage iotwireless"
 description: >
-  Overview of the implemented AWS APIs in iotwireless
+  Implementation details for IoT Wireless
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="iotwireless" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="iotwireless" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="iotwireless" >}}

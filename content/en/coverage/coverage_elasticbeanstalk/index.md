@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for elasticbeanstalk"
-linkTitle: "LocalStack Coverage elasticbeanstalk"
+title: "Coverage elasticbeanstalk"
+linkTitle: "Coverage elasticbeanstalk"
 description: >
-  Overview of the implemented AWS APIs in elasticbeanstalk
+  Implementation details for Elastic Beanstalk
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="elasticbeanstalk" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="elasticbeanstalk" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="elasticbeanstalk" >}}

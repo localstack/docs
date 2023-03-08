@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for transcribe"
-linkTitle: "LocalStack Coverage transcribe"
+title: "Coverage transcribe"
+linkTitle: "Coverage transcribe"
 description: >
-  Overview of the implemented AWS APIs in transcribe
+  Implementation details for Transcribe
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="transcribe" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="transcribe" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="transcribe" >}}

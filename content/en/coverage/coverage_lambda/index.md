@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for lambda"
-linkTitle: "LocalStack Coverage lambda"
+title: "Coverage lambda"
+linkTitle: "Coverage lambda"
 description: >
-  Overview of the implemented AWS APIs in lambda
+  Implementation details for Lambda
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="lambda" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="lambda" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="lambda" >}}

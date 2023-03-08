@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for neptune"
-linkTitle: "LocalStack Coverage neptune"
+title: "Coverage neptune"
+linkTitle: "Coverage neptune"
 description: >
-  Overview of the implemented AWS APIs in neptune
+  Implementation details for Neptune
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="neptune" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="neptune" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="neptune" >}}

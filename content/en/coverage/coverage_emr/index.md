@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for emr"
-linkTitle: "LocalStack Coverage emr"
+title: "Coverage emr"
+linkTitle: "Coverage emr"
 description: >
-  Overview of the implemented AWS APIs in emr
+  Implementation details for Elastic MapReduce (EMR)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="emr" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="emr" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="emr" >}}

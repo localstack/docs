@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for events"
-linkTitle: "LocalStack Coverage events"
+title: "Coverage events"
+linkTitle: "Coverage events"
 description: >
-  Overview of the implemented AWS APIs in events
+  Implementation details for EventBridge
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="events" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="events" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="events" >}}

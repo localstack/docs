@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for kinesis"
-linkTitle: "LocalStack Coverage kinesis"
+title: "Coverage kinesis"
+linkTitle: "Coverage kinesis"
 description: >
-  Overview of the implemented AWS APIs in kinesis
+  Implementation details for Kinesis
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="kinesis" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="kinesis" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="kinesis" >}}

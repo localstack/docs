@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for rds"
-linkTitle: "LocalStack Coverage rds"
+title: "Coverage rds"
+linkTitle: "Coverage rds"
 description: >
-  Overview of the implemented AWS APIs in rds
+  Implementation details for Relational Database Service (RDS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="rds" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="rds" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="rds" >}}

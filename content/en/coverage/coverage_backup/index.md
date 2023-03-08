@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for backup"
-linkTitle: "LocalStack Coverage backup"
+title: "Coverage backup"
+linkTitle: "Coverage backup"
 description: >
-  Overview of the implemented AWS APIs in backup
+  Implementation details for Backup
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="backup" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="backup" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="backup" >}}

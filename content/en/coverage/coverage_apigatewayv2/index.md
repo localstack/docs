@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for apigatewayv2"
-linkTitle: "LocalStack Coverage apigatewayv2"
+title: "Coverage apigatewayv2"
+linkTitle: "Coverage apigatewayv2"
 description: >
-  Overview of the implemented AWS APIs in apigatewayv2
+  Implementation details for API Gateway v2
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="apigatewayv2" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="apigatewayv2" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="apigatewayv2" >}}

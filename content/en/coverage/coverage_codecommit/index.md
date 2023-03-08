@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for codecommit"
-linkTitle: "LocalStack Coverage codecommit"
+title: "Coverage codecommit"
+linkTitle: "Coverage codecommit"
 description: >
-  Overview of the implemented AWS APIs in codecommit
+  Implementation details for CodeCommit
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="codecommit" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="codecommit" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="codecommit" >}}

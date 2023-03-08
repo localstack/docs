@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for apigatewaymanagementapi"
-linkTitle: "LocalStack Coverage apigatewaymanagementapi"
+title: "Coverage apigatewaymanagementapi"
+linkTitle: "Coverage apigatewaymanagementapi"
 description: >
-  Overview of the implemented AWS APIs in apigatewaymanagementapi
+  Implementation details for API Gateway Management API
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="apigatewaymanagementapi" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="apigatewaymanagementapi" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="apigatewaymanagementapi" >}}

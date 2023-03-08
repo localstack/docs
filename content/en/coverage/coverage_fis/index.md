@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for fis"
-linkTitle: "LocalStack Coverage fis"
+title: "Coverage fis"
+linkTitle: "Coverage fis"
 description: >
-  Overview of the implemented AWS APIs in fis
+  Implementation details for Fault Injection Simulator (FIS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="fis" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="fis" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="fis" >}}

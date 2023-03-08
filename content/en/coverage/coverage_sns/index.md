@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for sns"
-linkTitle: "LocalStack Coverage sns"
+title: "Coverage sns"
+linkTitle: "Coverage sns"
 description: >
-  Overview of the implemented AWS APIs in sns
+  Implementation details for Simple Notification Service (SNS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="sns" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="sns" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="sns" >}}

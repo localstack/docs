@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for resourcegroupstaggingapi"
-linkTitle: "LocalStack Coverage resourcegroupstaggingapi"
+title: "Coverage resourcegroupstaggingapi"
+linkTitle: "Coverage resourcegroupstaggingapi"
 description: >
-  Overview of the implemented AWS APIs in resourcegroupstaggingapi
+  Implementation details for Resource Groups Tagging API
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="resourcegroupstaggingapi" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="resourcegroupstaggingapi" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="resourcegroupstaggingapi" >}}

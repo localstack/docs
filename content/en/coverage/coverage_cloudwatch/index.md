@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for cloudwatch"
-linkTitle: "LocalStack Coverage cloudwatch"
+title: "Coverage cloudwatch"
+linkTitle: "Coverage cloudwatch"
 description: >
-  Overview of the implemented AWS APIs in cloudwatch
+  Implementation details for CloudWatch
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="cloudwatch" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="cloudwatch" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="cloudwatch" >}}

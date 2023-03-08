@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for amplify"
-linkTitle: "LocalStack Coverage amplify"
+title: "Coverage amplify"
+linkTitle: "Coverage amplify"
 description: >
-  Overview of the implemented AWS APIs in amplify
+  Implementation details for Amplify
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="amplify" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="amplify" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="amplify" >}}

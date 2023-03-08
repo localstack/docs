@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for elbv2"
-linkTitle: "LocalStack Coverage elbv2"
+title: "Coverage elbv2"
+linkTitle: "Coverage elbv2"
 description: >
-  Overview of the implemented AWS APIs in elbv2
+  Implementation details for Elastic Load Balancer v2 (ELB v2)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="elbv2" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="elbv2" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="elbv2" >}}

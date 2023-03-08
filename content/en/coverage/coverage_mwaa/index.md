@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for mwaa"
-linkTitle: "LocalStack Coverage mwaa"
+title: "Coverage mwaa"
+linkTitle: "Coverage mwaa"
 description: >
-  Overview of the implemented AWS APIs in mwaa
+  Implementation details for Managed Workflows for Apache Airflow (MWAA)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="mwaa" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="mwaa" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="mwaa" >}}

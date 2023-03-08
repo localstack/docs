@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for serverlessrepo"
-linkTitle: "LocalStack Coverage serverlessrepo"
+title: "Coverage serverlessrepo"
+linkTitle: "Coverage serverlessrepo"
 description: >
-  Overview of the implemented AWS APIs in serverlessrepo
+  Implementation details for Serverless Application Repository
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="serverlessrepo" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="serverlessrepo" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="serverlessrepo" >}}

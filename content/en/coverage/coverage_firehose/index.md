@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for firehose"
-linkTitle: "LocalStack Coverage firehose"
+title: "Coverage firehose"
+linkTitle: "Coverage firehose"
 description: >
-  Overview of the implemented AWS APIs in firehose
+  Implementation details for Kinesis Data Firehose
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="firehose" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="firehose" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="firehose" >}}

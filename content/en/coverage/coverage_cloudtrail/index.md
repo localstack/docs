@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for cloudtrail"
-linkTitle: "LocalStack Coverage cloudtrail"
+title: "Coverage cloudtrail"
+linkTitle: "Coverage cloudtrail"
 description: >
-  Overview of the implemented AWS APIs in cloudtrail
+  Implementation details for CloudTrail
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="cloudtrail" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="cloudtrail" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="cloudtrail" >}}

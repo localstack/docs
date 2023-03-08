@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for acm"
-linkTitle: "LocalStack Coverage acm"
+title: "Coverage acm"
+linkTitle: "Coverage acm"
 description: >
-  Overview of the implemented AWS APIs in acm
+  Implementation details for AWS Certificate Manager (ACM)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="acm" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="acm" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="acm" >}}

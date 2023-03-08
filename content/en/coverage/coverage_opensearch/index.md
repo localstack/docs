@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for opensearch"
-linkTitle: "LocalStack Coverage opensearch"
+title: "Coverage opensearch"
+linkTitle: "Coverage opensearch"
 description: >
-  Overview of the implemented AWS APIs in opensearch
+  Implementation details for OpenSearch
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="opensearch" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="opensearch" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="opensearch" >}}

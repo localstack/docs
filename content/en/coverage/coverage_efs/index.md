@@ -1,10 +1,13 @@
 ---
-title: "LocalStack Coverage for efs"
-linkTitle: "LocalStack Coverage efs"
+title: "Coverage efs"
+linkTitle: "Coverage efs"
 description: >
-  Overview of the implemented AWS APIs in efs
+  Implementation details for Elastic File System (EFS)
 hide_readingtime: true
 ---
 
-{{< localstack_coverage service="efs" >}}
+## Coverage Overview
+{{< localstack_coverage_table service="efs" >}}
 
+## Testing Details
+{{< localstack_coverage_details service="efs" >}}
