@@ -3433,13 +3433,20 @@ LocalStack will return the endpoint immediately, but keep &lt;code>Processing = 
 &lt;p>Specifying in the following format: &lt;code>&amp;lt;path&amp;gt;:&amp;lt;name&amp;gt;&lt;/code> will create an S3 bucket named &lt;code>&amp;lt;name&amp;gt;&lt;/code> and utilize &lt;code>&amp;lt;path&amp;gt;&lt;/code> for that S3 bucket&amp;rsquo;s files. Multiple S3 buckets may be created at one time by using a comma to separate each path and name mapping (i.e. &lt;code>&amp;lt;path&amp;gt;:&amp;lt;name&amp;gt;,&amp;lt;path&amp;gt;:&amp;lt;name&amp;gt;&lt;/code>).&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">S3_DIRS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>/tmp/s3-buckets/first-bucket:my-first-bucket,/tmp/s3-buckets/second-bucket:my-second-bucket
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In both configurations of &lt;code>S3_DIRS&lt;/code>, if Localstack is started and the path(s) specified in &lt;code>S3_DIRS&lt;/code> are not empty, the S3 buckets will be pre-populated with files.&lt;/p></description></item><item><title>User-Guide: Simple Email Service (SES)</title><link>/user-guide/aws/ses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ses/</guid><description>
-&lt;h2 id="community">Community&lt;/h2>
-&lt;p>LocalStack keeps track of all sent emails for retrospection.&lt;/p>
-&lt;p>The sent messages can be retrieved via a service API endpoint (GET &lt;code>/_aws/ses&lt;/code>) or from the filesystem.&lt;/p>
-&lt;p>Messages are also saved to the state directory (see &lt;a href="/references/filesystem/">filesystem layout&lt;/a>).
-The files are saved as JSON in the &lt;code>ses/&lt;/code> subdirectory and organised by message ID.&lt;/p>
-&lt;h2 id="pro">Pro&lt;/h2>
-&lt;p>LocalStack Pro ships with extended support including a simple user interface to inspect email accounts and sent messages, as well as support for sending SES messages through an actual SMTP email server.&lt;/p>
+&lt;h2 id="sent-emails">Sent Emails&lt;/h2>
+&lt;p>LocalStack keeps track of all sent emails for retrospection.
+The sent messages can be retrieved in following ways:&lt;/p>
+&lt;ul>
+&lt;li>Filesystem: All messages are saved to the state directory (see &lt;a href="/references/filesystem/">filesystem layout&lt;/a>).
+The files are saved as JSON in the &lt;code>ses/&lt;/code> subdirectory and organised by message ID.&lt;/li>
+&lt;li>API endpoint: LocalStack provides a service endpoint (&lt;code>/_aws/ses&lt;/code>) which can be used to return in-memory saved messages.
+A &lt;code>GET&lt;/code> call returns all messages.
+Query parameters &lt;code>id&lt;/code> and &lt;code>email&lt;/code> can be used to filter by message ID and message source respectively.
+A &lt;code>DELETE&lt;/code> call clears all messages from the memory.
+The query parameter &lt;code>id&lt;/code> can be used to delete only a specific message.&lt;/li>
+&lt;/ul>
+&lt;h2 id="smtp-integration">SMTP Integration&lt;/h2>
+&lt;p>LocalStack Pro ships with support for sending SES messages through an actual SMTP email server.&lt;/p>
 &lt;p>Please refer to the &lt;a href="/references/configuration/#emails">Configuration&lt;/a> guide for instructions on how to configure the connection parameters of your SMTP server (&lt;code>SMTP_HOST&lt;/code>/&lt;code>SMTP_USER&lt;/code>/&lt;code>SMTP_PASS&lt;/code>).&lt;/p>
 &lt;p>Once the SMTP server has been configured, the SES user interface in the Web app can be used to create a new email account (e.g., &lt;code>user1@yourdomain.com&lt;/code>).
 Emails can be sent via the command line (or SES client SDK):
@@ -3453,7 +3460,8 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>awslocal ses verify-email-identity --email-address user1@yourdomain.com
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
-&lt;p>The &lt;a href="https://app.localstack.cloud">Web user interface&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
+&lt;h2 id="user-interface">User Interface&lt;/h2>
+&lt;p>&lt;a href="https://app.localstack.cloud">LocalStack Web app&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
 &lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item><item><title>User-Guide: Simple Notification Service (SNS)</title><link>/user-guide/aws/sns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sns/</guid><description>
 &lt;p>AWS Simple Notification Service (SNS) is a central service used to coordinate the delivery of messages to subscribing endpoints or clients. SNS is a serverless messaging services that can distribute massive number of messages to multiple subscribers, and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints.&lt;/p>
 &lt;p>SNS particularly employs the Publish/Subscribe, an asychronous messaging pattern that decouples services that produce events from services that process events. SNS is available over LocalStack Community and the supported APIs are available over our &lt;a href="/user-guide/aws/feature-coverage/">feature coverage page&lt;/a>.&lt;/p>
