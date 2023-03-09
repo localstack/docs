@@ -2,14 +2,14 @@
   "applications": [
     {
       "title": "Shipment List Demo",
-      "description": "Shipment List Demo Application - AWS in PROD and LocalStack on DEV environment",
+      "description": "AWS in PROD and LocalStack on DEV environment.The shipment-list-demo is a Spring Boot app for performing CRUD operations on shipments that authorized employees can view. React is used for the frontend, while S3 stores pictures and DynamoDB stores entities. Additionally, a Lambda function is used for picture validation.",
       "url": "https://github.com/tinyg210/shipment-list-demo",
       "teaser": "https://raw.githubusercontent.com/tinyg210/shipment-list-demo/master/app_diagram.png",
-      "services": ["s3", "ddb", "lmb"],
+      "services": ["s3", "ddb", "lmb", "iam"],
       "deployment":  ["terraform"],
-      "platform": ["java", "spring-boot"],
-      "tags": ["some-tag"],
-      "pro": true
+      "platform": ["java", "react"],
+      "tags": ["spring boot", "lambda-trigger"],
+      "pro": false
     },
     {
       "title": "Serverless Image Resizer",
@@ -18,39 +18,40 @@
       "teaser": "https://user-images.githubusercontent.com/3996682/203586505-e54ccb3e-5101-4ee8-917d-d6372ee965ef.png",
       "services": ["s3", "ssm", "lmb", "sns", "ses"],
       "deployment":  ["awscli", "github-actions"],
-      "platform": ["python"],
+      "platform": ["python", "javascript"],
       "tags": ["s3-website", "lambda-function-urls"]
     },
     {
-      "title": "Shipment List Demo",
-      "description": "Shipment List Demo Application - AWS in PROD and LocalStack on DEV environment",
-      "url": "https://github.com/tinyg210/shipment-list-demo",
-      "teaser": "https://raw.githubusercontent.com/tinyg210/shipment-list-demo/master/app_diagram.png",
-      "services": ["s3", "ddb", "lmb"],
-      "deployment":  ["terraform"],
-      "platform": ["java", "spring-boot"],
-      "tags": ["some-tag"],
+      "title": "Health Check Kinesis Data Streams service",
+      "description": "To monitor the health of Kinesis Data Streams, a tracer message can be created and sent to a health-check stream. This message is then consumed to generate a custom real-time metric for CloudWatch, which can be used to set up an alarm. This alarm will notify you immediately if there are any issues with the service's ability to produce or consume data, allowing for quick resolution of any issues.",
+      "url": "https://github.com/aws-samples/amazon-kinesis-data-streams-health-check",
+      "teaser": "https://raw.githubusercontent.com/aws-samples/amazon-kinesis-data-streams-health-check/main/images/Kinesis_HealthCheck_Architecture.png",
+      "services": ["lmb", "iam", "kns", "cwl","ebr"],
+      "deployment":  ["cdk"],
+      "platform": ["java"],
+      "tags": ["data-streams", "health-check", "monitoring"],
       "pro": true
     },
     {
-      "title": "Serverless Image Resizer",
-      "description": "A serverless application that demos several AWS functionalities on LocalStack. The sample also includes a GitHub actions workflow to demonstrate how to run end-to-end tests of your AWS apps using LocalStack in CI.",
-      "url": "https://github.com/thrau/serverless-image-resizer",
-      "teaser": "https://user-images.githubusercontent.com/3996682/203586505-e54ccb3e-5101-4ee8-917d-d6372ee965ef.png",
-      "services": ["s3", "ssm", "lmb", "sns", "ses"],
-      "deployment":  ["awscli", "github-actions"],
-      "platform": ["python"],
-      "tags": ["s3-website", "lambda-function-urls"]
+      "title": "CDK-EMR-S3-trigger project",
+      "description": "This Typescript CDK Project for EMR is triggered by S3 file upload. The cdk.json file executes the app. When the source S3 Bucket triggers the Lambda function, EMR job executes with specified config. Result is stored in the destination S3 Bucket for use/download. The project automates EMR workflows, ensuring scalability and reliability.",
+      "url": "https://github.com/aws-samples/aws-cdk-emr-s3-trigger",
+      "teaser": "https://raw.githubusercontent.com/aws-samples/aws-cdk-emr-s3-trigger/master/readme/architecture.png",
+      "services": ["s3", "lmb", "emr"],
+      "deployment":  ["cdk"],
+      "platform": ["scala", "python", "typescript", "javascript"],
+      "tags": ["emr-job", "s3-trigger", "lambda-trigger"],
+      "pro": true
     },
     {
-      "title": "Shipment List Demo",
-      "description": "Shipment List Demo Application - AWS in PROD and LocalStack on DEV environment",
-      "url": "https://github.com/tinyg210/shipment-list-demo",
-      "teaser": "https://raw.githubusercontent.com/tinyg210/shipment-list-demo/master/app_diagram.png",
-      "services": ["s3", "ddb", "lmb"],
-      "deployment":  ["terraform"],
-      "platform": ["java", "spring-boot"],
-      "tags": ["some-tag"],
+      "title": "Step-up Authentication using Amazon Cognito",
+      "description": "Showcase step-up authentication using Amazon API Gateway Lambda Authorizer, Lambda functions, Amazon Cognito, and DynamoDB. The solution employs Amazon Cognito as the identity provider, API Gateway with Authorizer Lambda function to trigger the Step-up workflow engine, and DynamoDB as the persistent layer for the engine.",
+      "url": "https://github.com/aws-samples/step-up-auth",
+      "teaser": "https://raw.githubusercontent.com/aws-samples/step-up-auth/main/documentation/step-up-auth-design.png",
+      "services": ["agw", "lmb", "ddb", "cgn"],
+      "deployment":  ["cdk", "awscli"],
+      "platform": ["typescript","javascript"],
+      "tags": ["application-security", "step-up-auth", "rule-based-authentication"],
       "pro": true
     }
   ]
