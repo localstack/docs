@@ -34,7 +34,7 @@ function searchForServiceNameInLink() {
 }
 </script>
 
-<input autocomplete=off type="text" id="serviceNameCoverageInput" onkeyup="searchForServiceNameInLink()" placeholder="Search for Service Name ...">
+<input autocomplete=off type="text" id="serviceNameCoverageInput" onkeyup="searchForServiceNameInLink()" placeholder="🔍 Search for Service Name ...">
 
 <!-- this div is used as a reference point of where to apply custom style to the list of subcontent -->
 <div id="coverage-page"></div>
