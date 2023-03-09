@@ -30,8 +30,8 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -84,7 +84,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -96,8 +96,8 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -173,23 +173,13 @@
       "CertificateArn": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_kinesis.py::test_apigateway_to_kinesis",
-            "test": "test_apigateway_to_kinesis",
+            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_integration_kinesis.py::TestKinesisSource::test_create_kinesis_event_source_mapping",
+            "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EncryptionType', '$..ChildShards']",
+            "snapshot_skipped": "['$..Records..eventID', '$..Records..kinesis.kinesisSchemaVersion', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[10]",
-            "test": "test_cdk_bootstrap[10]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -220,17 +210,27 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_edge.py::TestEdgeAPI::test_invoke_kinesis",
-            "test": "test_invoke_kinesis",
+            "node_id": "LocalStack Community: tests/integration/test_acm.py::TestACM::test_import_certificate",
+            "test": "test_import_certificate",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_ssm.py::TestSSM::test_describe_parameters",
+            "test": "test_describe_parameters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -281,13 +281,13 @@
       "CertificateArn": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[10]",
-            "test": "test_cdk_bootstrap[10]",
+            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_integration_kinesis.py::TestKinesisSource::test_create_kinesis_event_source_mapping",
+            "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..Records..eventID', '$..Records..kinesis.kinesisSchemaVersion', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -415,7 +415,7 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcement::test_enforce_policy_acm",
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_acm",
             "test": "test_enforce_policy_acm",
             "response": "200",
             "error": "",
@@ -425,7 +425,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcement::test_enforce_policy_acm",
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_acm",
             "test": "test_enforce_policy_acm",
             "response": "400",
             "error": "AccessDeniedException",
@@ -441,13 +441,13 @@
       "CertificateArn": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[10]",
-            "test": "test_cdk_bootstrap[10]",
+            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_integration_kinesis.py::TestKinesisSource::test_create_kinesis_event_source_mapping",
+            "test": "test_create_kinesis_event_source_mapping",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..Records..eventID', '$..Records..kinesis.kinesisSchemaVersion', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {

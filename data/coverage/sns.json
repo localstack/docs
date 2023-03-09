@@ -726,7 +726,7 @@
             "test": "test_java_lambda_subscribe_sns_topic",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers']",
+            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -787,6 +787,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackEvents']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types",
+            "test": "test_events_resource_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -866,7 +876,7 @@
             "test": "test_cfn_lambda_permissions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Policy.PolicyArn', '$..Policy.PolicyName', '$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..RevisionId']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -1256,7 +1266,7 @@
             "test": "test_exists_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1266,7 +1276,17 @@
             "test": "test_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy_for_batch",
+            "test": "test_filter_policy_for_batch",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1626,7 +1646,7 @@
             "test": "test_subscribe_sqs_queue",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1712,6 +1732,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSSubscription::test_python_lambda_subscribe_sns_topic",
             "test": "test_python_lambda_subscribe_sns_topic",
             "response": "200",
@@ -1732,6 +1762,36 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sns_publish_topic_attributes",
+            "test": "test_sns_publish_topic_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns",
+            "test": "test_get_resource_policy_sns",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns_non_existent",
+            "test": "test_get_resource_policy_sns_non_existent",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/integration/test_glacier.py::TestGlacier::test_inventory_retrieval",
@@ -1896,21 +1956,41 @@
       "TopicArn": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_integration_kinesis.py::TestKinesisSource::test_create_kinesis_event_source_mapping",
-            "test": "test_create_kinesis_event_source_mapping",
+            "node_id": "LocalStack Community: ",
+            "test": "",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..Records..kinesis.kinesisSchemaVersion', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_kinesis.py::test_apigateway_to_kinesis",
+            "test": "test_apigateway_to_kinesis",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..EncryptionType', '$..ChildShards']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaFunction::test_function_lifecycle",
+            "test": "test_function_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Architectures', '$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..CodeSigningConfig', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_runtimes.py::TestPythonRuntimes::test_handler_in_submodule[python3.9]",
             "test": "test_handler_in_submodule[python3.9]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers']",
+            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1918,6 +1998,16 @@
           {
             "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_changesets.py::test_create_change_set_with_ssm_parameter",
             "test": "test_create_change_set_with_ssm_parameter",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_changesets.py::test_create_change_set_without_parameters",
+            "test": "test_create_change_set_without_parameters",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2006,21 +2096,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_dynamodb.py::test_deploy_stack_with_dynamodb_table",
-            "test": "test_deploy_stack_with_dynamodb_table",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_permissions",
             "test": "test_cfn_lambda_permissions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Policy.PolicyArn', '$..Policy.PolicyName', '$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..RevisionId']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2030,7 +2110,7 @@
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StartingPosition', '$..StateTransitionReason', '$..Topics']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2056,6 +2136,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies",
+            "test": "test_sam_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_deploy_stack_with_sns_topic",
             "test": "test_deploy_stack_with_sns_topic",
             "response": "200",
@@ -2064,16 +2154,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_topic_fifo_with_deduplication",
-            "test": "test_sns_topic_fifo_with_deduplication",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_topic_fifo_without_suffix_fails",
@@ -2176,6 +2256,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestTypes::test_implicit_type_conversion",
+            "test": "test_implicit_type_conversion",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_not_exist",
             "test": "test_bucket_not_exist",
             "response": "200",
@@ -2196,6 +2286,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/stepfunctions/legacy/test_stepfunctions_legacy.py::TestStateMachine::test_create_choice_state_machine",
+            "test": "test_create_choice_state_machine",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/stepfunctions/legacy/test_stepfunctions_legacy.py::test_aws_sdk_task",
             "test": "test_aws_sdk_task",
             "response": "200",
@@ -2204,16 +2304,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_apigateway_api.py::test_create_authorizer",
-            "test": "test_create_authorizer",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_aws_sqs_metrics_created",
@@ -2276,24 +2366,24 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_firehose.py::test_firehose_http[True]",
-            "test": "test_firehose_http[True]",
+            "node_id": "LocalStack Community: tests/integration/test_kms.py::TestKMS::test_create_key",
+            "test": "test_create_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_create_clusters",
+            "test": "test_create_clusters",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_endpoint[INBOUND-5]",
-            "test": "test_create_resolver_endpoint[INBOUND-5]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..SecurityGroupIds']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_cannot_create_event_for_no_topic",
@@ -2450,7 +2540,7 @@
             "test": "test_exists_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2460,7 +2550,17 @@
             "test": "test_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy_for_batch",
+            "test": "test_filter_policy_for_batch",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2890,7 +2990,7 @@
             "test": "test_subscribe_sqs_queue",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2966,104 +3066,14 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_swf.py::TestSwf::test_run_workflow",
-            "test": "test_run_workflow",
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection",
-            "test": "test_update_termination_protection",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection",
-            "test": "test_update_termination_protection",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection",
-            "test": "test_update_termination_protection",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection",
-            "test": "test_update_termination_protection",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection",
-            "test": "test_update_termination_protection",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection",
-            "test": "test_update_termination_protection",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_permissions",
-            "test": "test_cfn_lambda_permissions",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "['$..Policy.PolicyArn', '$..Policy.PolicyName', '$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..RevisionId']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter",
-            "test": "test_lambda_w_dynamodb_event_filter",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_subscription",
-            "test": "test_sns_subscription",
-            "response": "404",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_creating_event_destination_without_configuration_set",
@@ -3126,6 +3136,36 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sqs_receive_queue_attributes_resource_deny",
+            "test": "test_sqs_receive_queue_attributes_resource_deny",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Error.Detail']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourceDetection::test_s3_create_bucket",
+            "test": "test_s3_create_bucket",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns_non_existent",
+            "test": "test_get_resource_policy_sns_non_existent",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/integration/test_glacier.py::TestGlacier::test_select_query_archive",
@@ -3268,7 +3308,7 @@
             "test": "test_exists_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3278,7 +3318,17 @@
             "test": "test_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy_for_batch",
+            "test": "test_filter_policy_for_batch",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3568,7 +3618,7 @@
             "test": "test_subscribe_sqs_queue",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3599,6 +3649,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3644,7 +3704,7 @@
             "test": "test_cfn_lambda_permissions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Policy.PolicyArn', '$..Policy.PolicyName', '$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..RevisionId']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3770,6 +3830,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_cannot_create_event_for_no_topic",
             "test": "test_cannot_create_event_for_no_topic",
             "response": "404",
@@ -3788,6 +3858,48 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sns_publish_topic_attributes",
+            "test": "test_sns_publish_topic_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns",
+            "test": "test_get_resource_policy_sns",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns_non_existent",
+            "test": "test_get_resource_policy_sns_non_existent",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns_non_existent",
+            "test": "test_get_resource_policy_sns_non_existent",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       }
@@ -3842,6 +3954,16 @@
       "TopicArn": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types",
+            "test": "test_events_resource_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkSampleApp::test_cdk_sample",
             "test": "test_cdk_sample",
             "response": "200",
@@ -3866,7 +3988,7 @@
             "test": "test_cfn_lambda_permissions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Policy.PolicyArn', '$..Policy.PolicyName', '$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..RevisionId']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3910,6 +4032,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types",
+            "test": "test_events_resource_types",
+            "response": "404",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkSampleApp::test_cdk_sample",
@@ -4096,6 +4228,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types",
+            "test": "test_events_resource_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_updating_an_updated_stack_sets_status",
             "test": "test_updating_an_updated_stack_sets_status",
             "response": "200",
@@ -4170,7 +4312,7 @@
             "test": "test_cfn_lambda_permissions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Policy.PolicyArn', '$..Policy.PolicyName', '$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..RevisionId']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4480,7 +4622,7 @@
             "test": "test_exists_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4490,7 +4632,7 @@
             "test": "test_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4590,7 +4732,7 @@
             "test": "test_subscribe_sqs_queue",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4908,7 +5050,7 @@
             "test": "test_java_lambda_subscribe_sns_topic",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers']",
+            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -5009,6 +5151,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5116,7 +5268,7 @@
             "test": "test_cfn_lambda_permissions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Policy.PolicyArn', '$..Policy.PolicyName', '$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..RevisionId']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5404,6 +5556,16 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sns_publish_topic_attributes",
+            "test": "test_sns_publish_topic_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_glacier.py::TestGlacier::test_inventory_retrieval",
             "test": "test_inventory_retrieval",
             "response": "200",
@@ -5412,6 +5574,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sns_publish_topic_attributes",
+            "test": "test_sns_publish_topic_attributes",
+            "response": "403",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -5419,6 +5591,16 @@
     "PublishBatch": {
       "PublishBatchRequestEntries, TopicArn": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy_for_batch",
+            "test": "test_filter_policy_for_batch",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
@@ -5550,7 +5732,7 @@
             "test": "test_exists_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5560,7 +5742,17 @@
             "test": "test_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy_for_batch",
+            "test": "test_filter_policy_for_batch",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5740,7 +5932,7 @@
             "test": "test_subscribe_sqs_queue",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5876,7 +6068,7 @@
             "test": "test_java_lambda_subscribe_sns_topic",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers']",
+            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5912,14 +6104,46 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_endpoint[INBOUND-5]",
-            "test": "test_create_resolver_endpoint[INBOUND-5]",
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_kms.py::TestKMS::test_create_key",
+            "test": "test_create_key",
             "response": "404",
             "error": "CommonServiceException",
-            "snapshot_skipped": "['$..SecurityGroupIds']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          }
+        ],
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sns_publish_topic_attributes",
+            "test": "test_sns_publish_topic_attributes",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns",
+            "test": "test_get_resource_policy_sns",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -5956,7 +6180,7 @@
             "test": "test_java_lambda_subscribe_sns_topic",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers']",
+            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6122,6 +6346,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSSubscription::test_python_lambda_subscribe_sns_topic",
             "test": "test_python_lambda_subscribe_sns_topic",
             "response": "200",
@@ -6178,6 +6412,16 @@
       "Endpoint, Protocol, TopicArn": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types",
+            "test": "test_events_resource_types",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkSampleApp::test_cdk_sample",
             "test": "test_cdk_sample",
             "response": "200",
@@ -6202,7 +6446,7 @@
             "test": "test_cfn_lambda_permissions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Policy.PolicyArn', '$..Policy.PolicyName', '$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..RevisionId']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -6382,7 +6626,7 @@
             "test": "test_exists_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6392,7 +6636,17 @@
             "test": "test_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy_for_batch",
+            "test": "test_filter_policy_for_batch",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6642,7 +6896,7 @@
             "test": "test_subscribe_sqs_queue",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6752,43 +7006,53 @@
       "SubscriptionArn": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_integration_kinesis.py::TestKinesisSource::test_create_kinesis_event_source_mapping",
-            "test": "test_create_kinesis_event_source_mapping",
+            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaFunction::test_function_lifecycle",
+            "test": "test_function_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Records..eventID', '$..Records..kinesis.kinesisSchemaVersion', '$..BisectBatchOnFunctionError', '$..DestinationConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRecordAgeInSeconds', '$..ResponseMetadata.HTTPStatusCode', '$..State', '$..Topics', '$..TumblingWindowInSeconds']",
+            "snapshot_skipped": "['$..Architectures', '$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..CodeSigningConfig', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_runtimes.py::TestPythonRuntimes::test_handler_in_submodule[python3.9]",
             "test": "test_handler_in_submodule[python3.9]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers']",
+            "snapshot_skipped": "['$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..LogResult', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_changesets.py::test_create_change_set_without_parameters",
+            "test": "test_create_change_set_without_parameters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Code.RepositoryType', '$..Configuration.EphemeralStorage', '$..Configuration.MemorySize', '$..Configuration.VpcConfig', '$..FunctionResponseTypes', '$..LastProcessingResult', '$..MaximumBatchingWindowInSeconds', '$..MaximumRetryAttempts', '$..ParallelizationFactor', '$..StartingPosition', '$..StateTransitionReason', '$..Topics']",
+            "snapshot_skipped": "['$..Configuration.RuntimeVersionConfig', '$..Configuration.SnapStart', '$..Versions..SnapStart']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_parameter_defaults",
-            "test": "test_parameter_defaults",
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies",
+            "test": "test_sam_policies",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -6810,6 +7074,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/stepfunctions/legacy/test_stepfunctions_legacy.py::TestStateMachine::test_create_choice_state_machine",
+            "test": "test_create_choice_state_machine",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_breaching_alarm_actions",
@@ -6882,6 +7156,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/test_kms.py::TestKMS::test_create_key",
+            "test": "test_create_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_notifications.py::TestNotifications::test_sns_to_sqs",
             "test": "test_sns_to_sqs",
             "response": "200",
@@ -6890,16 +7174,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_endpoint[INBOUND-5]",
-            "test": "test_create_resolver_endpoint[INBOUND-5]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..SecurityGroupIds']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_cannot_create_event_for_no_topic",
@@ -7006,7 +7280,7 @@
             "test": "test_exists_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7016,7 +7290,7 @@
             "test": "test_filter_policy",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7386,7 +7660,7 @@
             "test": "test_subscribe_sqs_queue",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Attributes.SubscriptionPrincipal']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7437,6 +7711,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda",
+            "test": "test_delivery_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.get-topic-attrs.Attributes.DeliveryPolicy', '$.get-topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.get-topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"

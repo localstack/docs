@@ -361,7 +361,7 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1763,7 +1763,17 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1847,7 +1857,7 @@
       "DBClusterIdentifier, Engine, MasterUserPassword, MasterUsername": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_misc_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
             "test": "test_create_misc_resources",
             "response": "200",
             "error": "",
@@ -1995,16 +2005,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_misc_resources",
-            "test": "test_create_misc_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_docdb.py::TestDocDB::test_create_query_db",
             "test": "test_create_query_db",
             "response": "200",
@@ -2022,6 +2022,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster",
+            "test": "test_create_aurora_v2_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -2163,7 +2173,7 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "400",
             "error": "InvalidParameterCombination",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2187,7 +2197,17 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2207,7 +2227,7 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "400",
             "error": "InvalidParameterCombination",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2221,7 +2241,7 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "400",
             "error": "InvalidParameterCombination",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2235,7 +2255,7 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "400",
             "error": "InvalidParameterCombination",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2425,7 +2445,7 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2577,16 +2597,6 @@
       "DBSubnetGroupDescription, DBSubnetGroupName, SubnetIds, Tags": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_misc_resources",
-            "test": "test_create_misc_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_servicediscovery.py::test_create_service",
             "test": "test_create_service",
             "response": "200",
@@ -2613,7 +2623,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_misc_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
             "test": "test_create_misc_resources",
             "response": "200",
             "error": "",
@@ -2681,16 +2691,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
-            "response": "404",
-            "error": "DBClusterNotFoundFault",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       },
@@ -2704,6 +2704,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -2767,6 +2777,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_modify_db_cluster",
+            "test": "test_modify_db_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_modify_db_instance_with_db_parameter_group",
             "test": "test_modify_db_instance_with_db_parameter_group",
             "response": "200",
@@ -2817,16 +2837,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_postgres",
-            "test": "test_create_aurora_postgres",
-            "response": "400",
-            "error": "InvalidDBClusterStateFault",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_postgres_instance",
             "test": "test_create_aurora_postgres_instance",
             "response": "400",
@@ -2837,13 +2847,23 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_modify_db_cluster",
-            "test": "test_modify_db_cluster",
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
             "response": "400",
             "error": "InvalidDBClusterStateFault",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_describe_db_cluster_not_existent",
+            "test": "test_describe_db_cluster_not_existent",
+            "response": "404",
+            "error": "DBClusterNotFoundFault",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -2949,7 +2969,17 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3093,6 +3123,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_describe_db_cluster_not_existent",
+            "test": "test_describe_db_cluster_not_existent",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -3133,7 +3173,7 @@
       "DBSubnetGroupName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_misc_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
             "test": "test_create_misc_resources",
             "response": "200",
             "error": "",
@@ -3151,16 +3191,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -3275,6 +3305,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
+            "test": "test_create_misc_resources",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_docdb.py::TestDocDB::test_create_query_db_with_port",
             "test": "test_create_query_db_with_port",
             "response": "200",
@@ -3325,11 +3365,11 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster",
-            "test": "test_create_aurora_v2_cluster",
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -3405,20 +3445,10 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_servicediscovery.py::test_create_instances",
-            "test": "test_create_instances",
+            "node_id": "LocalStack Pro: tests/integration/test_servicediscovery.py::test_create_service",
+            "test": "test_create_service",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_misc_resources",
-            "test": "test_create_misc_resources",
-            "response": "404",
-            "error": "DBClusterParameterGroupNotFoundFault",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
@@ -3442,6 +3472,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster",
+            "test": "test_create_aurora_v2_cluster",
+            "response": "404",
+            "error": "DBClusterParameterGroupNotFoundFault",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -3583,7 +3623,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_misc_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
             "test": "test_create_misc_resources",
             "response": "200",
             "error": "",
@@ -3591,6 +3631,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_describe_db_cluster_not_existent",
+            "test": "test_describe_db_cluster_not_existent",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/integration/test_servicediscovery.py::test_create_service",
@@ -3651,7 +3701,17 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3785,6 +3845,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_describe_db_cluster_not_existent",
+            "test": "test_describe_db_cluster_not_existent",
+            "response": "404",
+            "error": "DBClusterNotFoundFault",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -3871,7 +3941,17 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4071,7 +4151,17 @@
             "test": "test_create_aurora_v2_cluster",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DbClusterResourceId', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint', '$..DBClusters..DBClusterMembers..IsClusterWriter', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..Port']",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..DBInstanceStatus', '$..Endpoint', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_create_aurora_v2_cluster_delete_instances",
+            "test": "test_create_aurora_v2_cluster_delete_instances",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..VpcSecurityGroups', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..DBParameterGroups', '$..StorageType', '$..EngineVersion', '$..AvailabilityZone', '$..PromotionTier', '$..StorageThroughput', '$..CertificateDetails', '$..delete_db_cluster.DBCluster.DBClusterMembers', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DbClusterResourceId', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..ReaderEndpoint', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -4313,7 +4403,7 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cloudformation.py::TestCloudFormation::test_create_misc_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
             "test": "test_create_misc_resources",
             "response": "200",
             "error": "",
