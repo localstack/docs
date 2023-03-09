@@ -7,18 +7,21 @@ aliases:
   - /aws/ses/
 ---
 
-## Community
+## Sent Emails
 
 LocalStack keeps track of all sent emails for retrospection.
+The sent messages can be retrieved in following ways:
+- Filesystem: All messages are saved to the state directory (see [filesystem layout]({{< ref "filesystem" >}})).
+    The files are saved as JSON in the `ses/` subdirectory and organised by message ID.
+- API endpoint: LocalStack provides a service endpoint (`/_aws/ses`) which can be used to return in-memory saved messages.
+    A `GET` call returns all messages.
+    Query parameters `id` and `email` can be used to filter by message ID and message source respectively.
+    A `DELETE` call clears all messages from the memory.
+    The query parameter `id` can be used to delete only a specific message.
 
-The sent messages can be retrieved via a service API endpoint (GET `/_aws/ses`) or from the filesystem.
+## SMTP Integration
 
-Messages are also saved to the state directory (see [filesystem layout]({{< ref "filesystem" >}})).
-The files are saved as JSON in the `ses/` subdirectory and organised by message ID.
-
-## Pro
-
-LocalStack Pro ships with extended support including a simple user interface to inspect email accounts and sent messages, as well as support for sending SES messages through an actual SMTP email server.
+LocalStack Pro ships with support for sending SES messages through an actual SMTP email server.
 
 Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).
 
@@ -38,6 +41,8 @@ awslocal ses verify-email-identity --email-address user1@yourdomain.com
 ```
 {{< /alert >}}
 
-The [Web user interface](https://app.localstack.cloud) can be used to view the sent email messages, as illustrated in the screenshot below:
+## User Interface
+
+[LocalStack Web app](https://app.localstack.cloud) can be used to view the sent email messages, as illustrated in the screenshot below:
 
 ![SES Web Interface](sesInterface.png)
