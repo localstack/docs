@@ -397,24 +397,27 @@ def print_usage():
 
 
 if __name__ == "__main__":
-    if (
-        len(sys.argv) < 4
-        or not Path(sys.argv[1]).is_dir()
-        or not Path(sys.argv[2]).is_dir()
-    ):
-        print_usage()
-    else:
-        path_to_implementation_details = sys.argv[1]
-        path_to_raw_metrics = sys.argv[2]
-        target_dir = sys.argv[3]
-        service_lookup_details = None
+    import argparse
 
-        if len(sys.argv) == 5:
-            # optional parameter, path to service_display_name.json
-            service_lookup_details = sys.argv[4]
-        main(
-            path_to_implementation_details,
-            path_to_raw_metrics,
-            target_dir,
-            service_lookup_details,
-        )
+    argParser = argparse.ArgumentParser()
+    argParser.add_argument("-i", "--implementation-details", required=True, help="path to implementation details")
+    argParser.add_argument("-r", "--raw-metrics", required=True, help="path to raw metrics")
+    argParser.add_argument("-o", "--output-dir", required=True, help="directory where the generated files will be stored")
+    argParser.add_argument("-s", "--service-details-json", help="path to service_display_name.json")
+
+    args = argParser.parse_args()
+
+    path_to_implementation_details = args.implementation_details
+    path_to_raw_metrics = sys.argv[2]
+    target_dir = sys.argv[3]
+    service_lookup_details = None
+
+    if len(sys.argv) == 5:
+        # optional parameter, path to service_display_name.json
+        service_lookup_details = sys.argv[4]
+    main(
+        path_to_implementation_details=args.implementation_details,
+        path_to_raw_metrics=args.raw_metrics,
+        target_dir=args.output_dir,
+        service_lookup_details=args.service_details_json,
+    )
