@@ -104,6 +104,12 @@ This section covers configuration values that are specific to certain AWS servic
 | `DYNAMODB_DELAY_TRANSIENT_STATUSES` | `0`\|`1` | When activated, DynamoDB will introduce artificial delays in resource creation to simulate the actual cloud service more closely. Currently works only for CREATING and DELETING online index statuses. |
 | `DYNAMODB_CORS` | `*` | Enable CORS support for specific allow-list list the domains separated by `,` use `*` for public access (default is `*`) |
 
+### EC2
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `EC2_DOCKER_FLAGS` | `--privileged` | Additional flags passed to Docker when launching containerised instances. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
+
 ### EKS
 
 | Variable | Example Values | Description |
