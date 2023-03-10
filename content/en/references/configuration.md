@@ -83,7 +83,7 @@ This section covers configuration values that are specific to certain AWS servic
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Only flags for volumes, ports, environment variables and add-hosts are allowed. |
+| `BATCH_DOCKER_FLAGS` | `-e TEST_ENV=1337` | Additional flags provided to the batch container. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
 
 ### BigData (EMR, Athena, Glue)
 
@@ -108,7 +108,7 @@ This section covers configuration values that are specific to certain AWS servic
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `EC2_DOCKER_FLAGS` | `--privileged` | Additional flags passed to Docker when launching containerised instances. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
+| `EC2_DOCKER_FLAGS` | `--privileged` | Additional flags passed to Docker when launching containerized instances. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
 ### EKS
 
@@ -154,7 +154,7 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console.|
 | `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Optional bucket name for running lambdas locally.|
 | `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
-| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Lambda Docker `run`\|`create` commands (e.g., useful for specifying custom volume mounts). Does only support environment, volume, port and add-host flags |
+| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, user, platform and privileged mode. |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. Only applicable when using docker-reuse executor. |
 | `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed |
 | | `kubernetes` | PRO-only. Execute lambdas in a Kubernetes cluster |
@@ -180,7 +180,7 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 | `LAMBDA_CODE_EXTRACT_TIME` | `25` | Time in seconds to wait at max while extracting Lambda code. By default it is 25 seconds for limiting the execution time to avoid client/network timeout issues.| 
 | `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
 | `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function. |
-| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Lambda Docker `run`\|`create` commands (e.g., useful for specifying custom volume mounts). Does only support environment, volume, port and add-host flags |
+| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, user, platform and privileged mode. |
 | `LAMBDA_CONTAINER_REGISTRY` | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.|
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. Only applicable when using docker-reuse executor. |
 | `LAMBDA_FALLBACK_URL` | | Fallback URL to use when a non-existing Lambda is invoked. Either records invocations in DynamoDB (value `dynamodb://<table_name>`) or forwards invocations as a POST request (value `http(s)://...`).|
