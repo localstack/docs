@@ -83,7 +83,7 @@ The getting started covers email subscription, but SNS can integrate with many A
 3. Subscribing an existing SQS queue, to a topic:
    {{< command >}}
    $ awslocal sns subscribe --topic-arn "arn:aws:sns:us-east-1:000000000000:my-topic" --protocol sqs --notification-endpoint "arn:aws:sqs:us-east-1:000000000000:my-queue"
-   {{< command >}}
+   {{< /command >}}
 
 4. Sending a message to the queue, via the topic
    {{< command >}}
