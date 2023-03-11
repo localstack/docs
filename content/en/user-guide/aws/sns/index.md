@@ -65,6 +65,57 @@ In this getting started guide, you'll learn how to make a basic usage of SNS ove
    $ awslocal sns delete-topic --topic-arn "arn:aws:sns:us-east-1:000000000000:test-topic"
    {{< /command >}}
 
+
+### Further exploration: working with SQS subscriptions for SNS
+
+The getting started covers email subscription, but SNS can integrate with many AWS technologies as seen in the [aws-cli docs](https://docs.aws.amazon.com/cli/latest/reference/sns/subscribe.html). A Common technology to integrate with is SQS.
+
+1. First we need to ensure we create an SQS queue named `my-queue`:
+   {{< command >}}
+   $ awslocal sqs create-queue --queue-name my-queue
+   {{< /command >}}
+
+2. Next we can create the topic, named `my-topic` we will subscribe to:
+   {{< command >}}
+   $ awslocal sns create-topic --name my-topic
+   {{< /command >}}
+
+3. Subscribing an existing SQS queue, to a topic:
+   {{< command >}}
+   $ awslocal sns subscribe --topic-arn "arn:aws:sns:us-east-1:000000000000:my-topic" --protocol sqs --notification-endpoint "arn:aws:sqs:us-east-1:000000000000:my-queue"
+   {{< command >}}
+
+4. Sending a message to the queue, via the topic
+   {{< command >}}
+   $ awslocal publish --topic-arn "arn:aws:sns:us-east-1:000000000000:my-topic" --message "hello!"
+   {{< /command >}}
+
+5. Checking our message has arrived
+   {{< command >}}
+   $ awslocal receive-message --queue-url "http://localhost:4566/000000000000/my-queue"
+   {{< /command >}}
+
+6. List all the SNS subscriptions:
+   {{< command >}}
+   $ awslocal sns list-subscriptions
+   {{< /command >}}
+
+7. Unsubscribe SQS from SNS topic:
+   {{< command >}}
+   $ awslocal sns unsubscribe --subscription-arn "arn:aws:sns:us-east-1:000000000000:my-topic:a573da81-b8e2-493e-bc99-fa5a5377bdf4"
+   {{< /command >}}
+
+8. Delete an SNS topic:
+   {{< command >}}
+   $ awslocal sns delete-topic --topic-arn "arn:aws:sns:us-east-1:000000000000:my-topic"
+   {{< /command >}}
+
+9. Delete the SQS queue:
+   {{< command >}}
+   $ awslocal sqs delete-queue --queue-url "http://localhost:4566/000000000000/my-queue"
+   {{< /command >}}
+
+
 ## Using LocalStack Pro
 
 LocalStack Pro users can access our [LocalStack App's](https://app.localstack.cloud) web user-interface to work with SNS and other AWS services. It is a convenient way to work with SNS, and allows you to create and manage SNS topics, subscriptions, and messages, in a fashion similar to the AWS console. While using the LocalStack App, ensure you have the LocalStack instance running.
