@@ -181,7 +181,47 @@ Before starting LocalStack Cockpit, Docker should be already running.
 &lt;li>Linux: &lt;code>~/.config/localstack-cockpit/logs/&lt;/code>&lt;/li>
 &lt;li>macOS: &lt;code>~/Library/Logs/localstack-cockpit/&lt;/code>&lt;/li>
 &lt;li>Windows: &lt;code>%USERPROFILE%\AppData\Roaming\localstack-cockpit\logs\&lt;/code>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: LocalStack Docker Extension</title><link>/user-guide/tools/localstack-docker-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localstack-docker-extension/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: LocalSurf</title><link>/user-guide/tools/localsurf/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localsurf/</guid><description>
+&lt;p>LocalSurf is a Chrome browser plugin to repoint AWS service calls to &lt;a href="https://localstack.cloud/">LocalStack&lt;/a>. While developing and testing AWS cloud Web applications locally with LocalStack, we need to make the browser connect to the local endpoint (&lt;code>http://localhost:4566&lt;/code>) instead of the AWS production servers (&lt;code>*.amazonaws.com&lt;/code>). LocalSurf enables you to use the production code without changes, and have the browser make requests to LocalStack instead of AWS directly by explicitly setting the &lt;a href="https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/specifying-endpoints.html">&lt;code>endpoint&lt;/code> attribute&lt;/a> in the &lt;a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Endpoint.html">AWS JavaScript SDK&lt;/a>.&lt;/p>
+&lt;blockquote>
+&lt;p>This plugin is experimental and still under active development. Please report any issues or feature requests on our &lt;a href="https://github.com/localstack/local-surf">GitHub repository&lt;/a>.&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="installation">Installation&lt;/h2>
+&lt;p>This extension is not yet available in the Chrome Web Store, but can be installed directly from source. Clone the repository on your local machine to get started:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git clone git@github.com:localstack/local-surf.git&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Head over to &lt;code>chrome://extensions/&lt;/code> in Chrome, then select &lt;code>&amp;quot;Load unpacked&amp;quot;&lt;/code> and point to the directory where the source code files are stored on the disk.&lt;/p>
+&lt;p>Once installed, a new icon should appear in the Chrome extensions bar. When clicking on the icon, the plugin can be enabled/disabled by toggling the &lt;strong>Enable local mode&lt;/strong> checkbox.&lt;/p>
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/localsurf/localsurf-extension.png"/>
+&lt;/p>
+&lt;h2 id="usage">Usage&lt;/h2>
+&lt;p>To illustrate how the plugin works, we use the AWS &lt;a href="https://github.com/aws-samples/serverless-coffee-workshop">Serverlesspresso&lt;/a> sample application. This app consists of various backend components (e.g., DynamoDB tables, Lambda functions, Cognito user pools, etc), as well as a hosted Web app user interface (UI) that can be used to interact with the backend components.&lt;/p>
+&lt;p>We can deploy the backend components to LocalStack directly, using the &lt;code>samlocal&lt;/code> command line interface (CLI):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>samlocal build
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>samlocal deploy&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Once deployed, the &lt;code>samlocal&lt;/code> CLI will print out a display app URL which will look similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>Key DisplayAppURI
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Description The URL &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> the Display App
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Value https://workshop-display.serverlesscoffee.com/?region&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>us-east-1&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">userPoolId&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>us-east-1_43c9800e64c84467aa0abdb102e226ef&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">userPoolWebClientId&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>vr9aw2jr7iv36ezwaaqlzzkvbp&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">poolId&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>us-east-1:95dc88d0-1029-48fe-ba7b-1e6a9741bfc5&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">host&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>localhost.localstack.cloud&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">orderManagerEndpoint&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://fapencq0ue.execute-api.amazonaws.com:4566/Prod&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">APIGWEndpointValidatorService&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://psmdc7b1lv.execute-api.amazonaws.com:4566/Prod&lt;span style="color:#000;font-weight:bold">&amp;amp;&lt;/span>&lt;span style="color:#000">APIGWEndpointConfigService&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>https://hw7yw61ba7.execute-api.amazonaws.com:4566/Prod
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We can then open the URL in the browser and confirm the configurations in the form dialog:&lt;/p>
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/localsurf/serverlesspresso-config.png"/>
+&lt;/p>
+&lt;br>
+Once confirmed, we are being forwarded to a signin screen, which uses an AWS Cognito user pool to manage authentication:
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/localsurf/serverlesspresso-login.png"/>
+&lt;/p>
+&lt;br>
+After clicking **Sign In** in this form, we can see that the browser makes a request to LocalStack (to `localhost.localstack.cloud`, which is a domain name that resolves to `127.0.0.1`).
+&lt;br>
+&lt;p>
+&lt;img class="img-fluid shadow rounded" src="/user-guide/tools/localsurf/chrome-networking.png"/>
+&lt;/p>
+&lt;br>
+This sample demonstrates how we can take an existing Web application, without any modification, and make it talk to the LocalStack APIs directly from the browser via the LocalSurf plugin.
+&lt;h2 id="note">Note&lt;/h2>
+&lt;p>Use this extension at your own risk - it is provided on an as-is basis, &lt;strong>without&lt;/strong> warranties or conditions of &lt;strong>any&lt;/strong> kind. In particular, it is your obligation to ensure that the use of this extension is compliant with the user license agreement and the terms &amp;amp; conditions of Amazon Web Services (AWS) and their services.&lt;/p></description></item><item><title>User-Guide: LocalStack Docker Extension</title><link>/user-guide/tools/localstack-docker-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localstack-docker-extension/</guid><description>
 &lt;p>The LocalStack Extension for Docker Desktop enables developers working with LocalStack to operate their LocalStack container via Docker Desktop, including checking service status, container logs, and configuring profiles. To install the LocalStack Extension for Docker Desktop, you need to have &lt;a href="https://www.docker.com/products/docker-desktop">Docker Desktop installed on your machine&lt;/a>.&lt;/p>
 &lt;img src="localstack-docker-extension.png" alt="LocalStack Extension for Docker Desktop" title="LocalStack Extension for Docker Desktop" width="900" />
 &lt;h2 id="installation">Installation&lt;/h2>
