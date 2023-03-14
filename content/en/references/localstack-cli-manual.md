@@ -1,6 +1,6 @@
 ---
 title: "LocalStack CLI manual"
-weight: 2
+weight: 3
 description: >
   The reference guide for LocalStack CLI commands and how to get started on using them!
 ---

@@ -62,7 +62,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -106,7 +106,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -161,7 +161,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -359,7 +359,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -389,6 +389,17 @@
     },
     {
       "ListPackagesForDomain": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListScheduledActions": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -521,6 +532,17 @@
     },
     {
       "UpdatePackage": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "UpdateScheduledAction": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -1016,16 +1038,6 @@
       "DomainName": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout",
-            "test": "test_failing_lambda_retries_after_visibility_timeout",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ParallelizationFactor', '$..LastProcessingResult', '$..Topics', '$..MaximumRetryAttempts', '$..MaximumBatchingWindowInSeconds', '$..FunctionResponseTypes', '$..StartingPosition', '$..StateTransitionReason']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_get_template_summary.py::test_get_template_summary",
             "test": "test_get_template_summary",
             "response": "200",
@@ -1036,8 +1048,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_error_injection.py::TestErrorInjection::test_kinesis_error_injection",
-            "test": "test_kinesis_error_injection",
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_opensearch.py::test_domain",
+            "test": "test_domain",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1098,6 +1110,16 @@
           {
             "node_id": "LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_update_domain_config",
             "test": "test_update_domain_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_events.py::TestEvents::test_put_rule",
+            "test": "test_put_rule",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1816,7 +1838,7 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcement::test_enforce_policy_elasticsearch",
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch",
             "test": "test_enforce_policy_elasticsearch",
             "response": "200",
             "error": "",
@@ -1826,7 +1848,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcement::test_enforce_policy_elasticsearch_two_domains",
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch_two_domains",
             "test": "test_enforce_policy_elasticsearch_two_domains",
             "response": "200",
             "error": "",
@@ -1836,7 +1858,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcement::test_enforce_policy_elasticsearch_two_domains_two_policies",
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch_two_domains_two_policies",
             "test": "test_enforce_policy_elasticsearch_two_domains_two_policies",
             "response": "200",
             "error": "",

@@ -107,8 +107,8 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -151,8 +151,8 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -347,7 +347,7 @@
       "ListTagsForResource": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -369,10 +369,10 @@
       "StopDeployment": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -597,7 +597,11 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
+          }
+        ]
+      },
+      "ApplicationId, LocationUri, Name, Tags": {
+        "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_hosted_configuration_version_crud_workflow",
             "test": "test_hosted_configuration_version_crud_workflow",
@@ -651,6 +655,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_deployment_strategy_crud_workflow",
+            "test": "test_deployment_strategy_crud_workflow",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -841,6 +855,16 @@
       "DeploymentStrategyId": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_appsync.py::test_graphqlapi",
+            "test": "test_graphqlapi",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..graphqlApi.tags', '$..graphqlApi.xrayEnabled', '$..graphqlApi.arn']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_deployment_strategy_crud_workflow",
             "test": "test_deployment_strategy_crud_workflow",
             "response": "204",
@@ -882,6 +906,16 @@
     "DeleteHostedConfigurationVersion": {
       "ApplicationId, ConfigurationProfileId, VersionNumber": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_appsync.py::test_graphqlapi",
+            "test": "test_graphqlapi",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "['$..graphqlApi.tags', '$..graphqlApi.xrayEnabled', '$..graphqlApi.arn']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_hosted_configuration_version_crud_workflow",
             "test": "test_hosted_configuration_version_crud_workflow",
@@ -1263,6 +1297,52 @@
         ]
       }
     },
+    "ListTagsForResource": {
+      "ResourceArn": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_deployment_simulation",
+            "test": "test_deployment_simulation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_deployment_strategy_crud_workflow",
+            "test": "test_deployment_strategy_crud_workflow",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_environment_crud_workflow",
+            "test": "test_environment_crud_workflow",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_hosted_configuration_version_crud_workflow",
+            "test": "test_hosted_configuration_version_crud_workflow",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "StartDeployment": {
       "ApplicationId, ConfigurationProfileId, ConfigurationVersion, DeploymentStrategyId, EnvironmentId": {
         "ls_pro": [
@@ -1286,6 +1366,32 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$..Type', '$..CompletedAt', '$..ConfigurationName', '$..FinalBakeTimeInMinutes', '$..GrowthType', '$..PercentageComplete', '$..State', '$..FinalBakeTimeInMinutes', '$..GrowthType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_appconfig.py::TestAppConfig::test_deployment_simulation",
+            "test": "test_deployment_simulation",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "StopDeployment": {
+      "ApplicationId, DeploymentNumber, EnvironmentId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_appsync.py::test_graphqlapi",
+            "test": "test_graphqlapi",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..graphqlApi.tags', '$..graphqlApi.xrayEnabled', '$..graphqlApi.arn']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
