@@ -15,7 +15,7 @@ LocalSurf is a Chrome browser plugin to repoint AWS service calls to [LocalStack
 This extension is not yet available in the Chrome Web Store, but can be installed directly from source. Clone the repository on your local machine to get started:
 
 {{< command >}}
-$ git clone git@github.com:whummer/local-surf.git
+$ git clone git@github.com:localstack/local-surf.git
 {{< /command >}}
 
 Head over to `chrome://extensions/`  in Chrome, then select  `"Load unpacked"`  and point to the directory where the source code files are stored on the disk.
