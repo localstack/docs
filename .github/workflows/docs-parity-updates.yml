@@ -30,15 +30,25 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Download metrics data from Pro test pipeline (GitHub)
+      - name: Download metrics data from Pro pipeline (GitHub)
         working-directory: docs
         run: ./scripts/get_latest_github_metrics.sh ./target master
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
-          REPOSITORY_NAME: localstack-ext
-          ARTIFACT_ID: parity-metric-ext-raw
-          WORKFLOW: "Integration Tests"
+          REPOSITORY_NAME: lsv2test-ext
+          ARTIFACT_ID: parity-metric-ext-raw # TODO might be renamed
+          WORKFLOW: "Build, Test, Push" # TODO rename
           RENAME_ARTIFACT: pro-integration-test.csv
+      
+      - name: Download coverage (capture-notimplemented) data from Pro pipeline (GitHub)
+        working-directory: docs
+        run: ./scripts/get_latest_github_metrics.sh ./target master
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: lsv2test-ext
+          ARTIFACT_ID: capture-notimplemented-pro # TODO might be renamed
+          WORKFLOW: "Build, Test, Push" # TODO rename
+          RESOURCE_FOLDER: "metrics-implementation-details"
 
       - name: Download metrics data from latest Community test run (CircleCI)
         working-directory: docs
