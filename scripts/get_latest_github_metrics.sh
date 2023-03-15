@@ -4,20 +4,34 @@ set -euo pipefail
 # input params
 PARENT_FOLDER=${1:-target}
 METRICS_ARTIFACTS_BRANCH=${2:-master}
+
+# ENVs
 REPOSITORY_NAME=${REPOSITORY_NAME:-localstack-ext}
 ARTIFACT_ID=${ARTIFACT_ID:-parity-metric-ext-raw}
 WORKFLOW=${WORKFLOW:-"Integration Tests"}
-RENAME_ARTIFACT=${RENAME_ARTIFACT:-pro-integration-test.csv}
+RENAME_ARTIFACT=${RENAME_ARTIFACT:-}
 FILTER_SUCCESS=${FILTER_SUCCESS:-1}
 
+RESOURCE_FOLDER=${RESOURCE_FOLDER:-metrics-raw}
 REPOSITORY_OWNER=localstack
-METRICS_RAW="$PARENT_FOLDER/metrics-raw"
+TARGET_FOLDER="$PARENT_FOLDER/$RESOURCE_FOLDER"
 
 TMP_FOLDER=$PARENT_FOLDER/tmp_download
 mkdir -p $TMP_FOLDER
 
+# Resulting directory structure required for the create_data_coverage.py
+# - resources/metrics-raw
+#   - community-integration-test.csv (Community)
+#   - pro-integration-test.csv (Pro)              -> fetched from GitHub
+#   - moto-integration-test.csv (Moto)            -> fetched from GitHub
+#   - ...
+# - resources/metrics-implementation-details
+#   - community
+#     - implementation_coverage_full.csv
+#   - pro
+#     - implementation_coverage_full.csv          -> fetched from GitHub
 
-echo "Searching for Artifact: $ARTIFACT_ID on branch $METRICS_ARTIFACTS_BRANCH in repo $REPOSITORY_OWNER/$REPOSITORY_NAME."
+echo "Searching for Artifact: $ARTIFACT_ID in workflow '$WORKFLOW' on branch $METRICS_ARTIFACTS_BRANCH in repo $REPOSITORY_OWNER/$REPOSITORY_NAME."
 
 # Get the latest successful build
 # check filter criteria - some workflows might be expected to fail, but still have the artifact we are interested in
@@ -27,6 +41,11 @@ if [ "$FILTER_SUCCESS" == "1" ]; then
 else
     echo "searching last workflow with 'status=completed'"
     RUN_ID=$(gh run list --limit 20 --branch $METRICS_ARTIFACTS_BRANCH --repo $REPOSITORY_OWNER/$REPOSITORY_NAME --workflow "$WORKFLOW" --json databaseId,conclusion,status --jq '.[] | select(.status=="completed" and (.conclusion=="failure" or .conclusion=="success"))' | jq -rs '.[0].databaseId')
+fi
+
+if [ "$RUN_ID" == "null" ];then
+    echo "no run id found something must be wrong, exiting now..."
+    exit 1
 fi
 
 echo "Trying to download file with runid $RUN_ID..."
@@ -61,17 +80,25 @@ else
     RELATED_ID=$(echo $RELATED_BUILD_DETAILS | jq -rs '.[0].id')
     echo "Extracted ID $RELATED_ID, trying to download artefacts now..."
 
-    # download the artifact for the realted build -> this time we fail if the download was not successful
+    # download the artifact for the related build -> this time we fail if the download was not successful
     gh run download $RELATED_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -n $ARTIFACT_ID -D $TMP_FOLDER
     echo "...dowloaded $ARTIFACT_ID successfully"
     tree $TMP_FOLDER
 fi
 
 
-echo "Moving raw metrics data to $METRICS_RAW"
-mkdir -p $METRICS_RAW
-mv $TMP_FOLDER/*.csv $METRICS_RAW/$RENAME_ARTIFACT
+echo "Moving artifact to $TARGET_FOLDER"
+mkdir -p $TARGET_FOLDER
+if [[ -z "${RENAME_ARTIFACT}" ]]; then
+    # pro implementation_coverage artifact download has a subfolder "pro"
+    cp -R $TMP_FOLDER/* $TARGET_FOLDER
+else
+    # metrics-raw-data artifacts -> we are only want to keept the csv and rename it
+    mv $TMP_FOLDER/*.csv $TARGET_FOLDER/$RENAME_ARTIFACT
+fi
+
+# cleanup
 rm -rf $TMP_FOLDER
-echo "content of $METRICS_RAW:"
-tree $METRICS_RAW
+echo "content of $TARGET_FOLDER:"
+tree $TARGET_FOLDER
 echo "Done."
