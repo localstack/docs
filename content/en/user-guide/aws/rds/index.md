@@ -42,12 +42,12 @@ Snapshots are currently not supported for MariaDB.
 
 By default, a MariaDB installation is used when requesting a MySQL engine type. 
 
-If you wish to use a real MySQL version, you can do so by setting the environment variable `RDS_MYSQL_DOCKER=1`. With this feature enabled, MySQL community server will be started in a new docker container when requesting the MySQL engine. The `engine-version` will be used as the tag for the image, meaning you can freely select the desired MySQL version that is listed on the the [official MySQL docker hub](https://hub.docker.com/_/mysql).
+If you wish to use a real MySQL version, you can do so by setting the environment variable `RDS_MYSQL_DOCKER=1`. With this feature enabled, MySQL community server will be started in a new Docker container when requesting the MySQL engine. The `engine-version` will be used as the tag for the image, meaning you can freely select the desired MySQL version that is listed on the [official MySQL Docker Hub](https://hub.docker.com/_/mysql).
 
 In case you want to use a special image, you can also set the environment variable `MYSQL_IMAGE=<my-image:tag>`.
 
 {{< alert title="Note" >}}
-Please be aware that MySQL images for `arm64` are only available for newer versions. Please check the [docker hub](https://hub.docker.com/_/mysql) for details on the availability.
+Please be aware that MySQL images for `arm64` are only available for newer versions. Please check the [MySQL Docker Hub repository](https://hub.docker.com/_/mysql) for details on the availability.
 {{< /alert >}}
 
 Please note that the `MasterUserPassword` defined for the database cluster/instance will be used as the `MYSQL_ROOT_PASSWORD` environment for user `root` in the MySQL container. The user for `MasterUserName` will use the same password, and will have full access to the defined database.
@@ -141,24 +141,23 @@ Please consider the following notes regarding default usernames/passwords and da
 IAM auth token can be used to connect to RDS. This feature is currently only supported for Postgres in LocalStack.
 
 {{< alert title="Note" >}}
-Please be aware that the IAM authentication is not verified at this point. Meaning any user that is granted the role `rds_iam` will receive a valid token.
+Please be aware that the IAM authentication is not verified at this point, which means that any DB user that is granted the role `rds_iam` will receive a valid token and will be able to connect to the database.
 {{< /alert >}}
 
 ### Using IAM example
 
-The following show cases the IAM functionality for Postgres:
+The following example showcases the IAM authentication flow for RDS Postgres:
 
 * create a DB instance, and retrieve the host and port for the instance
 * connect to the DB using the master username and password. Then create a new user and grant it the role `rds_iam`:
    * `CREATE USER <username> WITH LOGIN`
    * `GRANT rds_iam TO <username>`
-* receive a token for the `<username>`:
-   * awslocal rds generate-db-auth-token --username $USER --hostname $HOST --port $PORT
-* connect to the DB with the user you have a created and the token you have received in the previous step as password
+* generate a token for the `<username>` via the `generate-db-auth-token` command
+* connect to the DB with the user you have a created and the token generated in the previous step as password
 
 {{< command >}}
 $ MASTER_USER=hello
-$ MASTER_PW=MyPassw0rd!
+$ MASTER_PW='MyPassw0rd!'
 $ DB_NAME=test
 
 $ awslocal rds create-db-instance --master-username $MASTER_USER --master-user-password $MASTER_PW --db-instance-identifier mydb --engine postgres --db-name $DB_NAME --enable-iam-database-authentication --db-instance-class db.t3.small
