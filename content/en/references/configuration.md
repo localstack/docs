@@ -197,6 +197,9 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 | Variable | Example Values | Description |
 | - | - | - |
 | `RDS_PG_CUSTOM_VERSIONS` | `0` / `1` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
+| `RDS_MYSQL_DOCKER`       | `0` (default) / `1` | Whether to enable MySQL engines (instead of MariaDB). Will run the MySQL cluster/instances in a new docker container. |
+| `MYSQL_IMAGE`            | `mysql:8.0`       | Defines a specific MySQL image that should be used when spinning up the MySQL engine. Only available if `RDS_MYSQL_DOCKER` is enabled. |
+| `MSSQL_IMAGE`            | `mcr.microsoft.com/mssql/server:2022-latest` | Defines a specific image that should be used when spinning up a SQL server engine. |
 
 ### S3
 
