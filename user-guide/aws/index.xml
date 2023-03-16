@@ -8794,14 +8794,19 @@ The &lt;code>describe-db-cluster&lt;/code> and &lt;code>describe-db-instances&lt
 &lt;p>Snapshots are currently not supported for MariaDB.&lt;/p>
 &lt;h3 id="mysql-engine">MySQL Engine&lt;/h3>
 &lt;p>By default, a MariaDB installation is used when requesting a MySQL engine type.&lt;/p>
-&lt;p>If you wish to use a real MySQL version, you can do so by setting the environment variable &lt;code>RDS_MYSQL_DOCKER=1&lt;/code>. With this feature enabled, MySQL community server will be started in a new docker container when requesting the MySQL engine. The &lt;code>engine-version&lt;/code> will be used as the tag for the image, meaning you can freely select the desired MySQL version.&lt;/p>
+&lt;p>If you wish to use a real MySQL version, you can do so by setting the environment variable &lt;code>RDS_MYSQL_DOCKER=1&lt;/code>. With this feature enabled, MySQL community server will be started in a new Docker container when requesting the MySQL engine. The &lt;code>engine-version&lt;/code> will be used as the tag for the image, meaning you can freely select the desired MySQL version that is listed on the &lt;a href="https://hub.docker.com/_/mysql">official MySQL Docker Hub&lt;/a>.&lt;/p>
 &lt;p>In case you want to use a special image, you can also set the environment variable &lt;code>MYSQL_IMAGE=&amp;lt;my-image:tag&amp;gt;&lt;/code>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Please be aware that MySQL images for &lt;code>arm64&lt;/code> are only available for newer versions. Please check the &lt;a href="https://hub.docker.com/_/mysql">MySQL Docker Hub repository&lt;/a> for details on the availability.
+&lt;/div>
 &lt;p>Please note that the &lt;code>MasterUserPassword&lt;/code> defined for the database cluster/instance will be used as the &lt;code>MYSQL_ROOT_PASSWORD&lt;/code> environment for user &lt;code>root&lt;/code> in the MySQL container. The user for &lt;code>MasterUserName&lt;/code> will use the same password, and will have full access to the defined database.&lt;/p>
 &lt;p>DB Snapshots are currently not supported for MySQL.&lt;/p>
 &lt;h3 id="mssql-engine">MSSQL Engine&lt;/h3>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In order to use MSSQL databases, you need to explicitly accept the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by setting &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> in the LocalStack container environment.
+&lt;p>In order to use MSSQL databases, you need to explicitly accept the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by setting &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> in the LocalStack container environment.&lt;/p>
+&lt;p>Please note that MSSQL does not yet have official support for &lt;code>arm64&lt;/code>.&lt;/p>
 &lt;/div>
 &lt;p>For the MSSQL engine, the database server is started in a new docker container using the &lt;code>latest&lt;/code> image.&lt;/p>
 &lt;p>DB Snapshots are currently not supported for MSSQL.&lt;/p>
@@ -8865,7 +8870,42 @@ In order to use MSSQL databases, you need to explicitly accept the &lt;a href="h
 &lt;li>You can use any &lt;code>master-username&lt;/code>, except &amp;ldquo;postgres&amp;rdquo;, for creating a new RDS instance. The user will automatically be created.&lt;/li>
 &lt;li>The user &amp;ldquo;postgres&amp;rdquo; is special, and it is not possible to create a new RDS instance with this user name.&lt;/li>
 &lt;li>Do not use &lt;code>db-name&lt;/code> &amp;ldquo;postgres&amp;rdquo; as it is already in use by LocalStack.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
+&lt;/ul>
+&lt;h2 id="iam-authentication-support">IAM Authentication Support&lt;/h2>
+&lt;p>IAM auth token can be used to connect to RDS. This feature is currently only supported for Postgres in LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Please be aware that the IAM authentication is not verified at this point, which means that any DB user that is granted the role &lt;code>rds_iam&lt;/code> will receive a valid token and will be able to connect to the database.
+&lt;/div>
+&lt;h3 id="using-iam-example">Using IAM example&lt;/h3>
+&lt;p>The following example showcases the IAM authentication flow for RDS Postgres:&lt;/p>
+&lt;ul>
+&lt;li>create a DB instance, and retrieve the host and port for the instance&lt;/li>
+&lt;li>connect to the DB using the master username and password. Then create a new user and grant it the role &lt;code>rds_iam&lt;/code>:
+&lt;ul>
+&lt;li>&lt;code>CREATE USER &amp;lt;username&amp;gt; WITH LOGIN&lt;/code>&lt;/li>
+&lt;li>&lt;code>GRANT rds_iam TO &amp;lt;username&amp;gt;&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>generate a token for the &lt;code>&amp;lt;username&amp;gt;&lt;/code> via the &lt;code>generate-db-auth-token&lt;/code> command&lt;/li>
+&lt;li>connect to the DB with the user you have a created and the token generated in the previous step as password&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>MASTER_USER=hello
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>MASTER_PW=&amp;#39;MyPassw0rd!&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>DB_NAME=test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-instance --master-username $MASTER_USER --master-user-password $MASTER_PW --db-instance-identifier mydb --engine postgres --db-name $DB_NAME --enable-iam-database-authentication --db-instance-class db.t3.small
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PORT=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r &amp;#34;.DBInstances[0].Endpoint.Port&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>HOST=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r &amp;#34;.DBInstances[0].Endpoint.Address&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c &amp;#39;CREATE USER myiam WITH LOGIN&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c &amp;#39;GRANT rds_iam TO myiam&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>TOKEN=$(awslocal rds generate-db-auth-token --username myiam --hostname $HOST --port $PORT)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
 &lt;p>The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.&lt;/p>
 &lt;p>The example below illustrates the creation of a hosted zone &lt;code>example.com&lt;/code>, registration of an A record named &lt;code>test.example.com&lt;/code> that points to &lt;code>1.2.3.4&lt;/code>, and finally querying the DNS record by using the &lt;code>dig&lt;/code> command against the DNS server running on &lt;code>localhost&lt;/code> (inside the LocalStack container, on port &lt;code>53&lt;/code>):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name example.com --caller-reference r1 | jq -r &amp;#39;.HostedZone.Id&amp;#39;)
