@@ -32,16 +32,16 @@ Suppose your code is running inside an ECS container that LocalStack has created
 docker network create my-network
 # launch localstack
 MAIN_DOCKER_NETWORK=my-network DOCKER_FLAGS="--network my-network" localstack start
-# then your code can access localstack at its container name (by default: localstack_main)
-aws --endpoint-url http://localstack_main:4566 s3api list-buckets
+# then your code can access localstack at its container name (by default: localstack-main)
+aws --endpoint-url http://localstack-main:4566 s3api list-buckets
 {{</tab>}}
 {{<tab header="Docker" lang="bash">}}
 # create the network
 docker network create my-network
 # launch localstack
 docker run --rm -it --network my-network -e MAIN_DOCKER_NETWORK=my-network <other flags> localstack/localstack[-pro]
-# then your code can access localstack at its container name (by default: localstack_main)
-aws --endpoint-url http://localstack_main:4566 s3api list-buckets
+# then your code can access localstack at its container name (by default: localstack-main)
+aws --endpoint-url http://localstack-main:4566 s3api list-buckets
 {{</tab>}}
 {{<tab header="docker-compose.yml" lang="yml">}}
 services:
@@ -75,7 +75,7 @@ docker network create my-network
 DOCKER_FLAGS="--network my-network" localstack start
 # launch your container
 docker run --rm it --network my-network <image name>
-# then your code can access localstack at its container name (by default: localstack_main)
+# then your code can access localstack at its container name (by default: localstack-main)
 {{</tab>}}
 {{<tab header="Docker" lang="bash">}}
 # create the network
@@ -84,7 +84,7 @@ docker network create my-network
 docker run --rm -it --network my-network <other flags> localstack/localstack[-pro]
 # launch your container
 docker run --rm it --network my-network <image name>
-# then your code can access localstack at its container name (by default: localstack_main)
+# then your code can access localstack at its container name (by default: localstack-main)
 {{</tab>}}
 {{<tab header="docker-compose.yml" lang="yml">}}
 services:

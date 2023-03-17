@@ -238,7 +238,7 @@ services:
       - data01:/usr/share/elasticsearch/data
 
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack-main}"
     image: localstack/localstack
     ports:
       - "4566:4566"

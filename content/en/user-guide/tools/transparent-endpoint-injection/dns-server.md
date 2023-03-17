@@ -147,7 +147,7 @@ Also, it configures the DNS route to exclusively (and only) route the following 
 If you want to perform this action manually, please do the following steps:
 
 1. Find out the bridge interface and container IP of your LocalStack container.
-    Use `docker inspect localstack_main` to get the IP address and network, then `docker inspect network` to get the interface name.
+    Use `docker inspect localstack-main` to get the IP address and network, then `docker inspect network` to get the interface name.
     If the interface name is not mentioned, it is usually the first 12 characters of the network ID prefixed with `br-`, like `br-0ae393d3345e`.
     If you use the default bridge network, it is usually `docker0`.
 
