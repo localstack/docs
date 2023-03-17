@@ -1,0 +1,26 @@
+direction: right
+
+host: Host {
+  docker: Docker Network {
+    ls: LocalStack {
+      icon: ./images-src/assets/localstack.svg
+      shape: image
+    }
+
+    docdb: Resource {
+      icon: ./images-src/assets/documentdb.svg
+      shape: image
+    }
+
+    script: Your code {
+      icon: ./images-src/assets/docker.svg
+      shape: image
+    }
+  }
+}
+
+host.docker.docdb <- host.docker.script: {
+  style: {
+    font-size: 24
+  }
+}

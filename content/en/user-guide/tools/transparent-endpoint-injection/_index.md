@@ -1,6 +1,6 @@
 ---
-title: "Local Endpoint Injection"
-linkTitle: "Local Endpoint Injection"
+title: "Transparent Endpoint Injection"
+linkTitle: "Transparent Endpoint Injection"
 weight: 10
 description: >
   Transparently inject local endpoints into AWS SDKs and redirect your AWS calls to LocalStack
