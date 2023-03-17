@@ -102,6 +102,13 @@ Like production AWS, the contents of user data is saved at `/var/lib/cloud/insta
 Its execution is logged at `/var/log/cloud-init-output.log`.
 
 
+## Passing additional flags to Docker
+
+Use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to pass additional flags to Docker when starting containerised instances.
+For example, this can be used to start the container in privileged mode with `--privileged`, or use a different CPU platform with `--platform`, etc.
+Note that this affects all instances that are launched in the LocalStack session.
+
+
 ## Operations
 
 The Docker backend supports following operations:
