@@ -6040,7 +6040,7 @@ When running the Community Edition, any unsupported resources in the stack are i
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -k https://$domain/hello.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
+In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -6055,7 +6055,7 @@ distribution beside these shown in this example. They were omited here for brevi
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>--distribution-config {...&amp;#39;Aliases&amp;#39;:&amp;#39;{&amp;#39;Quantity&amp;#39;:2, &amp;#39;Items&amp;#39;: [&amp;#39;custom.domain.one&amp;#39;, &amp;#39;customDomain.two&amp;#39;]}&amp;#39;...}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
+In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
 &lt;/div></description></item><item><title>User-Guide: CloudWatch</title><link>/user-guide/aws/cloudwatch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudwatch/</guid><description>
 &lt;p>The &lt;a href="https://docs.aws.amazon.com/cloudwatch/">CloudWatch API&lt;/a> allows monitoring of AWS resources.&lt;/p>
 &lt;h2 id="metric-alarms">Metric Alarms&lt;/h2>
@@ -6523,7 +6523,7 @@ By default, ECR will return a &lt;code>repositoryUri&lt;/code> starting with &lt
 If we set the &lt;code>HOSTNAME_EXTERNAL&lt;/code> to &lt;code>localhost.localstack.cloud&lt;/code>, ECR will return a &lt;code>repositoryUri&lt;/code> like &lt;code>localhost.localstack.cloud:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Notes&lt;/h4>
-In this section, we will assume &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a> to learn more.
+In this section, we will assume &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a> to learn more.
 If this domain does not resolve on your host it is also possible not to set &lt;code>HOSTNAME_EXTERNAL&lt;/code>, please nevertheless use &lt;code>localhost.localstack.cloud&lt;/code> as registry in your pod configuration.
 LocalStack will take care of the DNS resolution of &lt;code>localhost.localstack.cloud&lt;/code> within ECR itself, and you can use the &lt;code>localhost:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code> Uri for tagging and pushing the image on your host.
 &lt;/div>
@@ -8728,7 +8728,7 @@ LocalStack will return the endpoint immediately, but keep &lt;code>Processing = 
 &lt;li>The &lt;code>CustomEndpointOptions&lt;/code> allows arbitrary endpoint URLs, which is not allowed in AWS.&lt;/li>
 &lt;/ul>
 &lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
-&lt;p>If you are using the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY=domain&lt;/code> (which is the default) and are having issues with resolving the subdomains, &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/#dns-rebind-protection">please check if your DNS blocks rebind queries&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
+&lt;p>If you are using the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY=domain&lt;/code> (which is the default) and are having issues with resolving the subdomains, &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#dns-rebind-protection">please check if your DNS blocks rebind queries&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
 &lt;p>The Quantum Ledger Database (QLDB) API supports queries over cryptographically verifiable data, stored in a journal of immutable transaction events. LocalStack allows to create local ledgers and journals, to perform &lt;code>CREATE TABLE&lt;/code> statements, to insert data via &lt;code>INSERT&lt;/code> statements, and to query data via &lt;code>SELECT&lt;/code> statements.&lt;/p>
 &lt;p>QLDB uses the &lt;a href="https://amzn.github.io/ion-docs">Amazon ION data format&lt;/a>, a data serialization format that represents a superset of JSON, with a number of additional features.&lt;/p>
 &lt;p>A simple QLDB example running on LocalStack is provided in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/qldb-ledger-queries">this Github repository&lt;/a>. The sample consists of two simple scenarios: (1) to create and list tables via the &lt;code>pyqldb&lt;/code> Python library, and (2) to insert data into two tables and perform a &lt;code>JOIN&lt;/code> query that combines data from the two tables. The sample output is posted below:&lt;/p>

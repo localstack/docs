@@ -235,7 +235,7 @@ Similar to the &lt;code>save&lt;/code> command, the usage of the Cloud Pod&amp;r
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -n, --name TEXT Name of the Cloud Pod &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>required&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: DNS Server</title><link>/user-guide/tools/local-endpoint-injection/dns-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/local-endpoint-injection/dns-server/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: DNS Server</title><link>/user-guide/tools/transparent-endpoint-injection/dns-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/transparent-endpoint-injection/dns-server/</guid><description>
 &lt;p>LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.&lt;/p>
 &lt;p>When the system starts up, the log output contains the IP address of the local DNS server. Typically, this address by default is either &lt;code>0.0.0.0&lt;/code> (see example below) or &lt;code>127.0.0.1&lt;/code> if LocalStack cannot bind to &lt;code>0.0.0.0&lt;/code> due to a conflicting service.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Starting DNS servers (tcp/udp port 53 on 0.0.0.0)...
@@ -366,10 +366,10 @@ Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (lik
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; WHEN: Fr Jän 14 11:23:12 CET 2022
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; MSG SIZE rcvd: 90&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>If the the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
-If not, please check the configuration of your router / DNS if the Rebind Protection is active or &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/#system-dns-configuration">enable the LocalStack DNS on your system&lt;/a>.&lt;/p>
+If not, please check the configuration of your router / DNS if the Rebind Protection is active or &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#system-dns-configuration">enable the LocalStack DNS on your system&lt;/a>.&lt;/p>
 &lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
 &lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
-&lt;p>Please refer to the steps in the &lt;a href="/user-guide/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item><item><title>User-Guide: Patched AWS SDKs for Lambdas</title><link>/user-guide/tools/local-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/local-endpoint-injection/patched-sdks/</guid><description>
+&lt;p>Please refer to the steps in the &lt;a href="/user-guide/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item><item><title>User-Guide: Patched AWS SDKs for Lambdas</title><link>/user-guide/tools/transparent-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/transparent-endpoint-injection/patched-sdks/</guid><description>
 &lt;p>The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
 This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.&lt;/p>
 &lt;p>Assuming you had a Python Lambda handler that attempts to list all S3 buckets. In the past, you had to manually configure the &lt;code>endpoint_url&lt;/code> parameter on the boto3 client (and potentially use environment switches for dev/prod in your test code):&lt;/p>
@@ -386,7 +386,7 @@ This behavior is enabled by default for most Lambda runtimes when using LocalSta
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 This functionality only works when using the SDKs provided by the Lambda execution environment itself.
-If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the &lt;a href="/user-guide/tools/local-endpoint-injection/dns-server/">DNS based transparent execution&lt;/a> if enabled, since those SDK versions will not be patched.
+If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">DNS based transparent execution&lt;/a> if enabled, since those SDK versions will not be patched.
 &lt;/div>
 &lt;p>This feature works by patching the AWS SDKs in the docker images, which provide the execution environment for Lambdas within LocalStack.&lt;/p>
 &lt;p>The main advantage of this mode is, that no DNS magic is involved, and SSL certificate checks do not have to be disabled.&lt;/p>
