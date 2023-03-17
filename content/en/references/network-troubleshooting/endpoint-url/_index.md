@@ -1,37 +1,30 @@
 ---
-title: Accessing LocalStack via the Endpoint URL
+title: Accessing LocalStack via the endpoint URL
 weight: 1
 tags:
 - troubleshooting
 - networking
 ---
 
-Use this page to find the scenario that best matches your use case
+This documentation provides step-by-step guidance on how to access LocalStack services via the endpoint URL and troubleshoot common issues.
 
 ## From the same computer
 
 {{< figure src="../images/1.svg" width="400" >}}
 
-**Example**: you are running localstack on your computer and are trying to access it via the AWS CLI.
-
-If you expose port 4566 from your LocalStack instance then you should be able to connect by connecting to `localhost`, or any domain name that refers to `localhost`.
-The LocalStack CLI does this for you, but when running the docker container either directly or with `docker compose`, this must be done manually.
-See the [getting started documentation]({{< ref "getting-started/installation" >}}) for more information.
+Suppose you have LocalStack installed on your machine and want to access it using the AWS CLI. To connect, you must expose port 4566 from your LocalStack instance and connect to `localhost` or a domain name that points to `localhost`. While the LocalStack CLI does this automatically, when running the Docker container directly or with docker compose, you must configure it manually. Check out the [getting started documentation]({{< ref "getting-started/installation" >}}) for more information.
 
 {{<alert title="Note">}}
-If you bind a domain name to `localhost`, check that you are not subject to [DNS rebind protection]({{< ref "user-guide/tools/transparent-endpoint-injection/dns-server#dns-rebind-protection" >}}).
+Additionally, if you bind a domain name to `localhost`, ensure that you are not subject to [DNS rebind protection]({{< ref "user-guide/tools/transparent-endpoint-injection/dns-server#dns-rebind-protection" >}}).
 {{</alert>}}
 
-If you need to change which port is exposed, you can use the `EDGE_PORT` [configuration variable]({{< ref "references/configuration" >}}) when starting LocalStack.
+You can also use the `EDGE_PORT` [configuration variable]({{< ref "references/configuration" >}}) to change the exposed port if necessary.
 
 ## From a container LocalStack created
 
 {{< figure src="../images/4.svg" width="400" >}}
 
-**Example**: your code is running in an ECS container that LocalStack has created.
-
-It may be useful to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and set the `MAIN_DOCKER_NETWORK` environment variable to this value.
-Then code running in the container can access the LocalStack instance by its hostname. For example:
+Suppose your code is running inside an ECS container that LocalStack has created. To enable access to the LocalStack instance, it's advisable to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and then set the `MAIN_DOCKER_NETWORK` environment variable to this network's name. This allows the code running inside the container to access the LocalStack instance using its hostname. For example:
 
 {{<tabpane>}}
 {{<tab header="CLI" lang="bash">}}
@@ -72,11 +65,7 @@ networks:
 
 {{< figure src="../images/7.svg" width="400" >}}
 
-**Example**: you are running your application code in a container and accessing AWS resources such as S3 in LocalStack.
-
-It may be useful to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and set the `MAIN_DOCKER_NETWORK` environment variable to this value.
-Then code running in the container can access the LocalStack instance by its hostname. For example:
-
+Suppose you're accessing AWS resources such as S3 in LocalStack by running your application code in a container. To facilitate access to LocalStack from within the container, it's recommended to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/) and set the MAIN_DOCKER_NETWORK environment variable to the network's name. Doing so enables the containerized code to connect to the LocalStack instance using its hostname. For instance:
 
 {{<tabpane>}}
 {{<tab header="CLI" lang="bash">}}
@@ -141,4 +130,4 @@ services:
 {{</tab>}}
 {{</tabpane>}}
 
-See our [FAQ article on accessing LocalStack from another computer]({{<ref "getting-started/faq#how-can-i-access-localstack-from-an-alternative-computer">}}).
+Check out our [FAQ article on accessing LocalStack from another computer]({{<ref "getting-started/faq#how-can-i-access-localstack-from-an-alternative-computer">}}).

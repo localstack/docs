@@ -8,7 +8,7 @@ description: >
   How to troubleshoot common network problems
 ---
 
-If you are having difficulties connecting your application code to LocalStack, please choose the scenario below that best describes your networking layout.
+If you have difficulties connecting your application code to LocalStack, please choose the scenario below that best describes your networking layout.
 
 {{<alert title="Note">}}
 LocalStack only binds to IPv4 addresses (e.g. `127.0.0.1`). Check you are not trying to access LocalStack over IPv6.
@@ -117,7 +117,7 @@ See the [lambda documentation]({{< ref "user-guide/tools/transparent-endpoint-in
 
 <div class="row mt-2">
 
-For example you have created an OpenSearch cluster, and are trying to access that resource by its URL.
+For example, you have created an OpenSearch cluster and are trying to access that resource by its URL.
 
 </div>
 
