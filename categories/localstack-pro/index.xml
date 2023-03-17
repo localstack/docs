@@ -3514,6 +3514,10 @@ The script can be passed to the &lt;code>UserData&lt;/code> argument of &lt;code
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> whoami | tee /myname &amp;amp;&amp;amp; echo localstack; echo &amp;#34;not printed&amp;#34;&amp;gt;/dev/null;&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Like production AWS, the contents of user data is saved at &lt;code>/var/lib/cloud/instances/&amp;lt;instance_id&amp;gt;/user-data.txt&lt;/code> on the instance.
 Its execution is logged at &lt;code>/var/log/cloud-init-output.log&lt;/code>.&lt;/p>
+&lt;h2 id="passing-additional-flags-to-docker">Passing additional flags to Docker&lt;/h2>
+&lt;p>Use the &lt;a href="/references/configuration/#ec2">&lt;code>EC2_DOCKER_FLAGS&lt;/code>&lt;/a> LocalStack configuration variable to pass additional flags to Docker when starting containerised instances.
+For example, this can be used to start the container in privileged mode with &lt;code>--privileged&lt;/code>, or use a different CPU platform with &lt;code>--platform&lt;/code>, etc.
+Note that this affects all instances that are launched in the LocalStack session.&lt;/p>
 &lt;h2 id="operations">Operations&lt;/h2>
 &lt;p>The Docker backend supports following operations:&lt;/p>
 &lt;table>
