@@ -43,6 +43,8 @@ Setting the `RegionEndpoint` to a constant like `RegionEndpoint.EUWest1` will ov
 
 ### S3 specific endpoint
 
+Here is another example, this time with an `S3Client` and its specific endpoint.
+
 ```csharp
 var config = new AmazonS3Config({ ServiceURL = "http://s3.localhost.localstack.cloud:4566" });
 var s3client = new AmazonS3Client(config);
