@@ -7,11 +7,11 @@ description: >
 type: tutorials
 ---
 
-Amazon Elastic Container Service (ECS) is a fully-managed container orchestration service that allows you to run and manage Docker containers on AWS. With ECS, you can deploy, manage, and scale containerized applications quickly and efficiently, which includes microservices, batch processing jobs, and web applications. ECS supports two launch types: EC2 and Fargate. With the EC2 launch type, you can run containers on a cluster of EC2 instances you manage. With Fargate, AWS manages the underlying infrastructure, and you only need to worry about the container. Fargate launch type provides a serverless-like experience for running containers, allowing you to focus on your applications rather than infrastructure.
+[Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) is a fully-managed container orchestration service that allows you to run and manage Docker containers on AWS. With ECS, you can deploy, manage, and scale containerized applications quickly and efficiently, which includes microservices, batch processing jobs, and web applications. ECS supports two [launch types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html): EC2 and Fargate. With the EC2 launch type, you can run containers on a cluster of EC2 instances you manage. With Fargate, AWS manages the underlying infrastructure, and you only need to worry about the container. Fargate launch type provides a serverless-like experience for running containers, allowing you to focus on your applications rather than infrastructure.
 
-ECR allows users to push their software packaged inside containers into an AWS-managed registry. Using ECR, you can version, tag, and manage your image lifecycles independently of your application. ECR is tightly integrated with other AWS services, such as ECS, EKS, and Lambda, and allows you to deploy your container image to these services. We can configure our ECS tasks to pull container images from ECR repositories. You can also use ECS task definitions to specify container settings such as CPU and memory limits, environment variables, and networking configuration, thus enabling you to focus on building and deploying your containerized applications with ease.
+[Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) allows users to push their software packaged inside containers into an AWS-managed registry. Using ECR, you can version, tag, and manage your image lifecycles independently of your application. ECR is tightly integrated with other AWS services, such as ECS, EKS, and Lambda, and allows you to deploy your container image to these services. We can configure our ECS tasks to pull container images from ECR repositories. You can also use ECS task definitions to specify container settings such as CPU and memory limits, environment variables, and networking configuration, thus enabling you to focus on building and deploying your containerized applications with ease.
 
-LocalStack Pro supports the creation of ECR registries and repositories, as well as ECS clusters and tasks on your local machine. In this tutorial, we will demonstrate how to use it to set up an NGINX web server to serve a static website by deploying CloudFormation templates on a local AWS environment provisioned by LocalStack.
+[LocalStack Pro](https://localstack.cloud/) supports the creation of ECR registries and repositories, as well as ECS clusters and tasks on your local machine. In this tutorial, we will demonstrate how to use it to set up an NGINX web server to serve a static website by deploying CloudFormation templates on a local AWS environment provisioned by LocalStack.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ LocalStack Pro supports the creation of ECR registries and repositories, as well
 -   [Docker](https://docker.io/)
 -   [`cURL`](https://curl.se/download.html)
 
-## Create the Docker image
+## Creating the Docker image
 
 To start setting up an NGINX web server on an ECS cluster, we will first create the Docker image, which can be further pushed to an ECR repository. Let us start by creating a `Dockerfile` for our NGINX web server. The `Dockerfile` will be used to build the Docker image for our NGINX web server.
 
@@ -78,7 +78,7 @@ $ docker push <REPOSITORY_URI>
 
 The Docker image will take a few seconds to be pushed to the local ECR repository. Once the Docker image is pushed to the ECR repository, we will create an ECS cluster and deploy our NGINX web server.
 
-## Create the local ECS infrastructure
+## Creating the local ECS infrastructure
 
 LocalStack supports ECS task definitions, services, and tasks. It allows deploying our ECR containers via the ECS Fargate launch type, which utilizes the local Docker engine to deploy containers locally. Before deploying our NGINX web server, we will create the required ECS infrastructure on our local machine using a CloudFormation template. Based on a [publically available CloudFormation template](https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/ECS/FargateLaunchType/clusters/public-vpc.yml), you can create a new file named `ecs.infra.yml` inside a new `templates` directory.
 
@@ -354,6 +354,8 @@ You can check out your deployed stack on the LocalStack Web Application by navig
 
 To deploy the ECS service, we will use another CloudFormation template. Create another file named `ecs.sample.yml` in the `templates` directory, based on the [publically available CloudFormation template](https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/ECS/FargateLaunchType/services/public-service.yml). This template will deploy the ECS service on AWS Fargate and expose it via a public load balancer.
 
+Let us first declare the parameters for the CloudFormation template:
+
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Deploy a service on AWS Fargate, hosted in a public subnet, and accessible via a public load balancer.
@@ -412,7 +414,11 @@ Parameters:
 
 Conditions:
   HasCustomRole: !Not [ !Equals [!Ref 'Role', ''] ]
+```
 
+Next, we can define the resources, which includes our task, service, target group, and load balancer rule:
+
+```yaml
 Resources:
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
