@@ -1,0 +1,26 @@
+{{ $service := .Get "service" }}
+{{ $data := index site.Data.coverage $service }}
+{{ $service_details := index site.Data.coverage.service_display_name $service}}
+
+{{ with $display_name := $service_details.long_name}}
+{{ with $api := $service_details.api }}
+<div>
+<!-- add links to api reference, and show display name for the service -->
+<a href="{{ $api }}">{{ $display_name }}{{ with $short_name := $service_details.short_name }} ({{ $short_name }}){{ end }}</a> 
+ is supported by LocalStack 
+<!-- wording for the supported version -->
+{{ if and ($data.pro_support) ($data.community_support) }}
+    in the <b>community version</b> with additional features available in the <b>pro version</b>.
+{{ else }}
+    {{ if $data.pro_support }}
+        <b>only in the pro version</b>.
+    {{ else }}
+       in the <b>community version</b>.
+    {{ end }}
+{{ end }}
+</div>
+{{ end }}
+{{ end }}
+<br/>
+<!-- actual table -->
+{{ partial "coverage/coverage_table" $data }}
