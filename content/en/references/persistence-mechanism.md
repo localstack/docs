@@ -105,6 +105,7 @@ Persistence for services that are _not_ listed here _may_ work correctly, but ar
 * SNS
 * SQS
 * Stepfunctions
+* RDS: Postgres, MariaDB, MySQL
 * ... TODO
 
 ### Known limitations
@@ -113,6 +114,9 @@ Persistence for services that are _not_ listed here _may_ work correctly, but ar
 * **MSK**: Kafka brokers are not restored
 * **EC2**: works for most resources, but emulated VM data is not restored
 * **Firehose**: Kinesis delivery streams are not restored
+* **RDS**: MSSQL database is not restored
+* **Neptune**: database is not restored
+* **DocDB**: database is not restored
 * ... TODO
 
 ## Technical Details
