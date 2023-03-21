@@ -38,7 +38,7 @@ This way, any saved change inside your source file directly affects the already 
 When using the new Lambda provider, hot-reloading does not conflict with fast execution times, and it is not needed to spawn a new container for every invocation.
 Also, hot reloading for Lambda layers (Pro) is now supported, it works identical to functions, but only 1 layer is allowed per function if hot-reloading is active in the layer.
 
-For more information about behavioral changes, please consult the [Lambda Behavioral Changes]({{< ref "references/lambda-asf-provider" >}}) page.
+For more information about behavioral changes, please consult the [Lambda Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}) page.
 
 ## Application Configuration Examples
 

@@ -3,6 +3,8 @@ title: "Lambda Provider Behavioral Changes"
 weight: 5
 description: >
   Behavioral changes to become default with the new lambda provider
+aliases:
+  /references/lambda-asf-provider/
 ---
 
 ## Overview
@@ -30,7 +32,7 @@ Timeouts are now properly supported, and will, as in AWS, not kill the environme
 
 ## Changes in Hot Swapping
 The magic key for hot reloading (or swapping) buckets has changed from `__local__` to `hot-reload`.
-While the former is still supported in the old provider, the new one (`asf`) will only support the latter.
+While the former is still supported in the old provider, the new one (`v2`) will only support the latter.
 The configuration variable `BUCKET_MARKER_LOCAL` is still respected. Use this if you want to customize its name.
 Since the new Lambda provider does not restart the containers after each invocation, even for hot reloading, the filesystem will stay the same.
 
