@@ -1408,7 +1408,7 @@ This way, any saved change inside your source file directly affects the already 
 &lt;h2 id="using-the-new-lambda-provider">Using the new Lambda provider&lt;/h2>
 &lt;p>When using the new Lambda provider, hot-reloading does not conflict with fast execution times, and it is not needed to spawn a new container for every invocation.
 Also, hot reloading for Lambda layers (Pro) is now supported, it works identical to functions, but only 1 layer is allowed per function if hot-reloading is active in the layer.&lt;/p>
-&lt;p>For more information about behavioral changes, please consult the &lt;a href="/references/lambda-asf-provider/">Lambda Behavioral Changes&lt;/a> page.&lt;/p>
+&lt;p>For more information about behavioral changes, please consult the &lt;a href="/references/lambda-v2-provider/">Lambda Behavioral Changes&lt;/a> page.&lt;/p>
 &lt;h2 id="application-configuration-examples">Application Configuration Examples&lt;/h2>
 &lt;h3 id="code-hot-swapping-for-jvm-lambdas">Code hot-swapping for JVM Lambdas&lt;/h3>
 &lt;p>Since lambda containers lifetime is usually limited, regular hot code swapping
@@ -2786,16 +2786,16 @@ Also checkout the specified S3 bucket to check if your backup is working correct
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 &lt;p>A new implementation of the Lambda service is available since LocalStack 1.3.
-Set &lt;code>PROVIDER_OVERRIDE_LAMBDA=asf&lt;/code> when starting LocalStack and let us know if you experience any issues!&lt;/p>
+Set &lt;code>PROVIDER_OVERRIDE_LAMBDA=v2&lt;/code> when starting LocalStack and let us know if you experience any issues!&lt;/p>
 &lt;p>Starting with LocalStack 2.0 the current Lambda implementation will be deprecated in favor of this new provider.
-For more information about behavioral changes, please consult the &lt;a href="/references/lambda-asf-provider/">Lambda Behavioral Changes&lt;/a> page.&lt;/p>
+For more information about behavioral changes, please consult the &lt;a href="/references/lambda-v2-provider/">Lambda Behavioral Changes&lt;/a> page.&lt;/p>
 &lt;/div>
 &lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem. Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units. With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.&lt;/p>
 &lt;p>LocalStack allows you to execute your Lambda functions locally, without the need to deploy them to AWS. This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS. LocalStack allows you to execute your Lambda functions, in various execution modes, which is detailed on our &lt;a href="/references/lambda-executors/">Lambda execution modes&lt;/a> page.&lt;/p>
 &lt;h2 id="lambda-providers">Lambda Providers&lt;/h2>
-&lt;p>LocalStack&amp;rsquo;s Lambda support is available via two providers, the old one and our new and more stable provider (labeled &lt;code>asf&lt;/code> after our new internal service framework). Set the &lt;code>PROVIDER_OVERRIDE_LAMBDA&lt;/code> variable to switch between the two providers, e.g. &lt;code>PROVIDER_OVERRIDE_LAMBDA=asf&lt;/code>.&lt;/p>
+&lt;p>LocalStack&amp;rsquo;s Lambda support is available via two providers, the old one &lt;code>legacy&lt;/code> and our new and more stable provider &lt;code>v2&lt;/code> (formerly known as &lt;code>asf&lt;/code>). Set the &lt;code>PROVIDER_OVERRIDE_LAMBDA&lt;/code> variable to switch between the two providers, e.g. &lt;code>PROVIDER_OVERRIDE_LAMBDA=v2&lt;/code>.&lt;/p>
 &lt;p>By default LocalStack still uses the old provider.
-With LocalStack v2.0, this will be changed to ASF, but the old provider will still be available, in case you need some additional time to migrate.
+With LocalStack v2.0, this will be changed to &lt;code>v2&lt;/code>, but the old provider will still be available (&lt;code>legacy&lt;/code>), in case you need some additional time to migrate.
 This fallback option will then be removed in further releases.&lt;/p>
 &lt;h2 id="special-tooling-for-lambdas">Special tooling for Lambdas&lt;/h2>
 &lt;p>We also provide tools to help you develop, debug and test your Lambda functions more efficiently:&lt;/p>
@@ -3463,8 +3463,8 @@ LocalStack will return the endpoint immediately, but keep &lt;code>Processing = 
 &lt;p>All other requests will be considered path-style requests. It is advised to use the &lt;code>s3.localhost.localstack.cloud&lt;/code> endpoint URL for all requests targeting S3.&lt;/p>
 &lt;/div>
 &lt;h2 id="s3-providers">S3 Providers&lt;/h2>
-&lt;p>LocalStack&amp;rsquo;s S3 support is currently available via two providers: &lt;code>old&lt;/code> and &lt;code>asf&lt;/code>. For users, switching between the two providers has a lot of impacts. Using the &lt;code>PROVIDER_OVERRIDE_S3&lt;/code>, you can switch between the two providers. The &lt;code>old&lt;/code> provider is the default provider, and the &lt;code>asf&lt;/code> provider is ASF, our new and more stable provider. The &lt;code>old&lt;/code> provider is loaded by default, and you need to set &lt;code>PROVIDER_OVERRIDE_S3=asf&lt;/code> to use the ASF provider. Licensed users can use &lt;code>asf_pro&lt;/code> to use the ASF provider with the &lt;a href="/references/coverage/#s3">Pro features&lt;/a>.&lt;/p>
-&lt;p>With v2.0, the default will be changed to ASF, but the old provider will still be available (using the feature flag with the value &lt;code>legacy&lt;/code>), though it will be removed in further releases.&lt;/p>
+&lt;p>LocalStack&amp;rsquo;s S3 support is currently available via two providers: &lt;code>legacy&lt;/code> and &lt;code>v2&lt;/code> (formerly known as &lt;code>asf&lt;/code>). For users, switching between the two providers has a lot of impacts. Using the &lt;code>PROVIDER_OVERRIDE_S3&lt;/code>, you can switch between the two providers. The &lt;code>legacy&lt;/code> provider is the default provider and the &lt;code>v2&lt;/code> provider is our new and more stable provider. The &lt;code>legacy&lt;/code> provider is loaded by default, and you need to set &lt;code>PROVIDER_OVERRIDE_S3=v2&lt;/code> to use the new provider.&lt;/p>
+&lt;p>With v2.0, the default will be changed to &lt;code>v2&lt;/code>, but the legacy provider will still be available (using the feature flag with the value &lt;code>legacy&lt;/code>), though it will be removed in further releases.&lt;/p>
 &lt;h2 id="storage-configuration">Storage Configuration&lt;/h2>
 &lt;p>Localstack Pro can be configured to store S3 files in specific locations on the filesystem. This can be useful in many different ways, including moving multiple files into place in one or more S3 buckets without needing to use &lt;code>awslocal&lt;/code> to upload them. Localstack will use the path(s) specified in the &lt;code>S3_DIRS&lt;/code> environment variable to store files within the container. Paired with a docker mount, this can be used to store files in the path of choice on the filesystem.&lt;/p>
 &lt;p>Paths may be specified in two different configurations. Specifying only a path will store all S3 buckets in that path:&lt;/p>
