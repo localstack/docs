@@ -2,47 +2,134 @@
 title: "Lambda Provider Behavioral Changes"
 weight: 5
 description: >
-  Behavioral changes to become default with the new lambda provider
+  Behavioral changes of the new lambda provider
 aliases:
   /references/lambda-asf-provider/
 ---
 
 ## Overview
-The new lambda provider has some significant changes in its behavior.
-This includes both its API parity, the execution and the container environments themselves.
-
-## API
-Parity with AWS has been increased across all Lambda API methods.
-Another improvement is the stricter input validation, so expect more invalid input to fail.
-One example of this, are Lambda roles. While don't have to actually exist, now have to be at least in a valid ARN format. Using arbitrary strings like `r1` is no longer supported.
-
-## Execution
-Lambda will now use the official AWS provided lambda images, instead of lambci images.
-This leads to an increased parity with the AWS Lambda environments.
-Another effect is that lambda now supports ARM containers, which will be executed depending on your host machine architecture (only available for runtimes based on amazon linux 2).
-
-Lambda will now, by default, reuse containers for each lambda version.
-This leads to significantly decreased execution times (from ~800 - 1000ms from the old `docker` executor to around 10ms for a simple echo lambda).
-Initialization / global state of your lambdas will stay the same between invocations, as long as it is executed in the same environment.
-
-Multiple concurrent executions will cause LocalStack to scale up and start additional environments for your function, to allow parallel executions.
-
-Timeouts are now properly supported, and will, as in AWS, not kill the environment itself (filesystem stays the same) but only restart the internal infrastructure (your code), as do function errors.
-
-
-## Changes in Hot Swapping
-The magic key for hot reloading (or swapping) buckets has changed from `__local__` to `hot-reload`.
-While the former is still supported in the old provider, the new one (`v2`) will only support the latter.
-The configuration variable `BUCKET_MARKER_LOCAL` is still respected. Use this if you want to customize its name.
-Since the new Lambda provider does not restart the containers after each invocation, even for hot reloading, the filesystem will stay the same.
-
-Since the runtime inside the container will only be restarted after a change, any initialization you do, will only be reset for invocations after a change in the specified code folders.
-This leads to faster invocation times if no changes have occurred.
-
-Please keep in mind that any changes to the filesystem (for example in /tmp) will not be deleted if the function code changed.
+The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [parity compared to AWS](https://localstack.cloud/blog/2022-08-04-parity-explained/).
+It comes with significant behavioral changes related to the
+Lambda API,
+Docker Execution Environment,
+Configuration,
+and Hot Reloading.
 
 {{< alert title="Note">}}
-It can take up to 700ms for the lambda to detect the changes you did in the code folder. Until that time has passed, any invocations will still be executed on the former code.
-
-If using Docker Desktop, you might need to allow file sharing for your target folders: [https://docs.docker.com/desktop/settings/mac/#file-sharing](https://docs.docker.com/desktop/settings/mac/#file-sharing)
+The new lambda provider is active by default starting from Localstack&nbsp;v2.0
+The old lambda provider is temporarily available using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
 {{< /alert >}}
+
+## Lambda API
+
+**Improved parity compared to AWS:**
+Lambda API methods in LocalStack behave like in [AWS](https://docs.aws.amazon.com/lambda/latest/dg/API_Reference.html).
+This was not always the case in the old provider without systematic testing.
+If you discover a difference between LocalStack and AWS in the new provider, please report a [bug on GitHub](https://github.com/localstack/localstack/issues/new/choose).
+
+**Stricter input validation:**
+Expect more exceptions in the new provider due to invalid input.
+For example, the old provider accepted arbitrary strings such as `r1` as a [lambda role](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Role) when creating a function.
+The new provider validates the role arn in the format `arn:aws:iam::123456789012:role/lambda-ex` using an appropriate regex but currently does not check whether it actually exists.
+
+**Asynchronous function creation:**
+Creating and updating lambda functions now happens asynchronously following the [AWS Lambda state model](https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/).
+Newly created functions are always in the `Pending` state and move to `Active` once they ready for handling invocations.
+The old provider created functions synchronously by blocking until the function state was active.
+If you experience the following exception:
+> An error occurred (ResourceConflictException) when calling the Invoke operation (reached max retries: 0):
+The operation cannot be performed at this time.
+The function is currently in the following state: Pending
+
+Wait until the function becomes active using a [waiter](https://docs.aws.amazon.com/cli/latest/reference/lambda/wait/function-active-v2.html)
+or check the function state with a [GetFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_GetFunction.html) call:
+
+{{< command >}}
+$ awslocal lambda wait function-active-v2 --function-name my-lambda
+{{< / command >}}
+
+Alternatively, `LAMBDA_SYNCHRONOUS_CREATE=1` forces synchronous creation (not recommended).
+
+## Docker Execution Environment
+
+**Docker socket mounting required:**
+Mounting the Docker socket into the LocalStack container is now required to run Lambdas.
+Please add the Docker mount `"/var/run/docker.sock:/var/run/docker.sock"` to your LocalStack startup as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
+If mounting the Docker socket is impossible and no external `DOCKER_HOST` is available, please refer to TODO(worker link) for instructions on how to configure self-managed worker containers.
+
+**Local executor mode is discontinued:**
+The [Lambda Executor Modes]({{< ref "references/lambda-executors" >}}) such as `LAMBDA_EXECUTOR=local` are discontinued in the new provider.
+In the old provider, lambda functions were executed within the LocalStack container in the local executor mode.
+This was mostly used as a fallback if the Docker socket was not available in the LocalStack container.
+Hence, many users unintentionally used the local executor mode despite configuring `LAMBDA_EXECUTOR=docker`.
+The new provider requires no such configuration and now behaves equivalent to the old `docker-reuse` executor.
+
+**No container restart after each invocation:**
+Lambda containers are reused between invocations.
+Therefore, filesystem changes (for example in `/tmp`) persist between subsequent invocations if dispatched to the same container.
+This is called a "warm start" (see [Operating Lambda](https://aws.amazon.com/blogs/compute/operating-lambda-performance-optimization-part-1/)).
+If you want to force "cold starts", you could set `LAMBDA_KEEPALIVE_MS` to 0 milliseconds.
+
+**Official AWS-provided Lambda images:**
+The new provider uses the official AWS [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) pulled from `public.ecr.aws/lambda/` instead of *lambci* images.
+Hence, the filesystem in Lambda functions now match the AWS Lambda production environment.
+
+**ARM64 lambda functions:**
+Lambda now supports ARM containers for compatible runtimes based on Amazon Linux 2.
+ARM-compatible hosts can create functions with the `arm64` architecture.
+More details are provided under [ARM64 support]({{< ref "references/arm64-support" >}}).
+
+**Transparent endpoint injection in LocalStack Pro:**
+Lambda functions resolve AWS domains such as `s3.amazonaws.com` to the LocalStack container.
+This domain resolution is now completely DNS-based and can be disabled by setting `DNS_ADDRESS=0`.
+For more details, please refer to [Transparent Endpoint Injection]({{< ref "user-guide/tools/transparent-endpoint-injection" >}}).
+The old provider provided patched AWS SDKs to transparently redirect AWS API calls to LocalStack.
+
+## Configuration
+
+The new provider offers new configuration options documented under [Configuration]({{< ref "references/configuration" >}}).
+Please open a [feature request on GitHub](https://github.com/localstack/localstack/issues/new/choose) and motivate your scenario if you miss something.
+
+The following configuration options from the old provider are discontinued in the new provider:
+* `LAMBDA_EXECUTOR` and in particular `LAMBDA_EXECUTOR=local` should be removed (see "Local executor mode is discontinued" above).
+* `LAMBDA_STAY_OPEN_MODE` is now the default behavior and can be removed. Instead, `LAMBDA_KEEPALIVE_MS` can be used to configure how long containers should be kept running in-between invocations.  
+* `LAMBDA_REMOTE_DOCKER` is not used anymore because the new provider always copies zip files and automatically configures mounting for hot reloading.
+* `LAMBDA_CODE_EXTRACT_TIME` is not used anymore because function creation now happens asynchronously.
+* `LAMBDA_DOCKER_DNS` is currently not supported.
+* `LAMBDA_CONTAINER_REGISTRY` is not used anymore. Use the more flexible `LAMBDA_RUNTIME_IMAGE_MAPPING` to customize individual runtimes.
+* `LAMBDA_FALLBACK_URL` is not supported anymore.
+* `LAMBDA_FORWARD_URL` is not supported anymore.
+* `HOSTNAME_FROM_LAMBDA` is not supported anymore.
+* `LAMBDA_XRAY_INIT` is not needed anymore because the X-Ray daemon is always initialized.
+* `SYNCHRONOUS_KINESIS_EVENTS` and `SYNCHRONOUS_SNS_EVENTS` are not supported anymore.
+
+The following configuration options are continuously supported:
+* `BUCKET_MARKER_LOCAL` has a new default value `hot-reload` (new) because the former default `__local__` (old) is an invalid bucket name.
+* `LAMBDA_TRUNCATE_STDOUT`
+* `LAMBDA_DOCKER_NETWORK`
+* `LAMBDA_DOCKER_FLAGS`
+* `LAMBDA_REMOVE_CONTAINERS`
+
+## Hot Reloading
+
+Hot reloading or [Hot Swapping]({{< ref "user-guide/tools/lambda-tools/hot-swapping" >}}) automatically reflects code changes to Lambda functions without any redeployment.
+
+**Default S3 bucket name changed:**
+The default magic S3 bucket name changed from `__local__` to `hot-reload`.
+Please change your deployment configuration accordingly, or use the `BUCKET_MARKER_LOCAL` configuration to customize the value.
+
+**Delay in code change detection:**
+It can take up to 700ms to detect code changes.
+In the meantime, invocations still execute the former code.
+Hot reloading triggers after 500ms without changes, and it can take up to 200ms until the change is notified.
+
+**Runtime restart after each code change:**
+The runtime inside the container is restarted after every code change.
+Therefore, any initialization code *outside* the handler function re-executes after every code change.
+However, the container itself does not restart.
+Therefore, filesystem changes persist between code changes for invocations dispatched to the same container.
+
+**File sharing permissions with Docker Desktop on macOS:**
+If using Docker Desktop on macOS, you might need to allow [file sharing](https://docs.docker.com/desktop/settings/mac/#file-sharing) for your target folders.
+MacOS may prompt you to grant Docker access to your target folders.
+
