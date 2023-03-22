@@ -103,7 +103,7 @@ The following configuration options from the old provider are discontinued in th
 * `LAMBDA_XRAY_INIT` is not needed anymore because the X-Ray daemon is always initialized.
 * `SYNCHRONOUS_KINESIS_EVENTS` and `SYNCHRONOUS_SNS_EVENTS` are not supported anymore.
 
-The following configuration options are continuously supported:
+The following configuration options are still supported in the new provider:
 * `BUCKET_MARKER_LOCAL` has a new default value `hot-reload` (new) because the former default `__local__` (old) is an invalid bucket name.
 * `LAMBDA_TRUNCATE_STDOUT`
 * `LAMBDA_DOCKER_NETWORK`
