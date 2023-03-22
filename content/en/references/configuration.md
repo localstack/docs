@@ -14,14 +14,45 @@ You can pass these via environment variables, e.g., like the following:
 $ DEBUG=1 localstack start
 {{< / command >}}
 
+## Configuration of listen addresses
+
+Since LocalStack v2, configuration of the networking behaviour of LocalStack has changed.
+Configuration variables have been split into two categories: _cosmetic_ and _functional_.
+
+---
+
+_Functional_ variables control what addresses LocalStack binds on.
+The process that accepts network requests from outside LocalStack needs to be told what IP address and port to listen on.
+Before v2 this was configured with the `EDGE_PORT`, `EDGE_PORT_HTTP` and `EDGE_BIND_HOST` variables.
+Since v2, these variables have been deprecated, and replaced with `EDGE_BIND` which configures the same properties of the HTTP/HTTP server, but in a more streamlined way.
+
+**`EDGE_BIND`**: This variable has the form: `<ip address>:<port>(,<ip address>:<port>)*` i.e. a comma separated list of `<ip address>:<port>` values.
+If `EDGE_BIND` is specified, then at least one entry must be present.
+Both ip address and port are optional, so if `EDGE_BIND=0.0.0.0`, this is translated internally to `0.0.0.0:4566`.
+If `EDGE_BIND=:10101`, this is translated internally to `0.0.0.0:10101` if running in docker, or `127.0.0.1:10101` otherwise.
+If not specified, the configuration defaults to `0.0.0.0:4566` in docker, or `127.0.0.1:4566` otherwise.
+
+---
+
+_Cosmetic_ variables have no effect on the addresses LocalStack listens on, they are used for configuration of the LocalStack hostname when URLs or addresses of created resources are required.
+For example, when setting `LOCALSTACK_HOST` to `my-host:9000` and creating an SQS queue, the resulting URL will be `my-host:9000/sqs/us-east-1/<account id>/<queue name>`.
+
+**`LOCALSTACK_HOST`**: This variable has the form: `<hostname>:<port>`.
+Both hostname and port are optional, so if `LOCALSTACK_HOST=my-host` then this is translated internally to `my-host:4566`.
+If `LOCALSTACK_HOST=:10101` then this is translated internally to `localhost.localstack.cloud:10101`.
+
+If `EDGE_BIND` is not given, but `LOCALSTACK_HOST` is then the port from `LOCALSTACK_HOST` is used to configure LocalStack.
+This is a shortcut when binding to a custom port _and_ specifying a custom hostname.
+
 ## Core
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to.|
-| `EDGE_PORT` | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
+| `EDGE_BIND` | `127.0.0.1:4566` (default, community), `0.0.0.0:4456` (docker, community), `127.0.0.1:4566,127.0.0.1:443` (default, pro), `0.0.0.0:4566,0.0.0.0:443` (docker, pro) | Address(es) the edge service binds to. |
+| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| *Deprecated*. Address the edge service binds to.|
+| `EDGE_PORT` | `4566` (default)| *Deprecated*. Port number for the edge service, the main entry point for all API invocations. |
 | `HOSTNAME`| `localhost` (default) | Name of the host to expose the services internally. For framework-internal communication, e.g., services are started in different containers using docker-compose.|
-| `HOSTNAME_EXTERNAL` | `localhost` (default) | Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client.|
+| `HOSTNAME_EXTERNAL` | `localhost` (default) | *Deprecated*. Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client.|
 | `DEBUG` | `0`\|`1`| Flag to increase log level and print more verbose logs (useful for troubleshooting issues)|
 | `IMAGE_NAME`| `localstack/localstack` (default), `localstack/localstack:0.11.0` | Specific name and tag of LocalStack Docker image to use.|
 | `USE_LIGHT_IMAGE` | `1` (default) | *Deprecated*. Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
