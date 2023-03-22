@@ -32,6 +32,9 @@ Both ip address and port are optional, so if `EDGE_BIND=0.0.0.0`, this is transl
 If `EDGE_BIND=:10101`, this is translated internally to `0.0.0.0:10101` if running in docker, or `127.0.0.1:10101` otherwise.
 If not specified, the configuration defaults to `0.0.0.0:4566` in docker, or `127.0.0.1:4566` otherwise.
 
+If multiple values are given, then LocalStack listens on each address.
+There is no longer a distinction between HTTP and HTTPS, so the configuration `EDGE_BIND=0.0.0.0:4566,0.0.0.0:443` enables both HTTP and HTTPS traffic on both addresses, for example for use with both `awslocal` and using [transparent endpoint injection]({{< ref "user-guide/tools/transparent-endpoint-injection" >}}).
+
 ---
 
 _Cosmetic_ variables have no effect on the addresses LocalStack listens on, they are used for configuration of the LocalStack hostname when URLs or addresses of created resources are required.
