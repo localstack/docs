@@ -9,29 +9,30 @@ aliases:
 ---
 
 {{< alert title="Warning" color="warning" >}}
-A new implementation of the Lambda service is available since LocalStack 1.3.
-Set `PROVIDER_OVERRIDE_LAMBDA=v2` when starting LocalStack and let us know if you experience any issues!
+**New implementation active by default starting with Localstack&nbsp;v2.0**<br>
+The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [parity compared to AWS](https://localstack.cloud/blog/2022-08-04-parity-explained/).
+The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
 
-Starting with LocalStack 2.0 the current Lambda implementation will be deprecated in favor of this new provider.
-For more information about behavioral changes, please consult the [Lambda Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}) page.
+For more information about behavioral changes, please consult the [Lambda Provider Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}) page.
 {{< /alert >}}
 
 
-AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem. Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units. With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.
+AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem.
+Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units.
+With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.
 
-LocalStack allows you to execute your Lambda functions locally, without the need to deploy them to AWS. This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS. LocalStack allows you to execute your Lambda functions, in various execution modes, which is detailed on our [Lambda execution modes]({{< ref "lambda-executors" >}}) page.
+LocalStack allows you to develop, debug, and execute your Lambda functions locally, without the need to deploy them to AWS.
+This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS.
 
 ## Lambda Providers
 
-LocalStack's Lambda support is available via two providers, the old one `legacy` and our new and more stable provider `v2` (formerly known as `asf`). Set the `PROVIDER_OVERRIDE_LAMBDA` variable to switch between the two providers, e.g. `PROVIDER_OVERRIDE_LAMBDA=v2`. 
+LocalStack provides two implementations of the Lambda service available as providers:
+* The new lambda provider `v2` (formerly known as `asf`) is our currently supported and stable implementation. It is active by default starting with Localstack&nbsp;v2.0. It is available since LocalStack&nbsp;v1.3 using `PROVIDER_OVERRIDE_LAMBDA=v2`.
+* The old lambda provider `legacy` is deprecated in Localstack&nbsp;v2. It is temporarily available using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
 
-By default LocalStack still uses the old provider.
-With LocalStack v2.0, this will be changed to `v2`, but the old provider will still be available (`legacy`), in case you need some additional time to migrate.
-This fallback option will then be removed in further releases. 
+## Special tooling for Lambda
 
-## Special tooling for Lambdas
-
-We also provide tools to help you develop, debug and test your Lambda functions more efficiently:
+We provide tools to develop, debug, and test your Lambda functions more efficiently:
 
 - [Hot swapping]({{< ref "hot-swapping" >}}): Hot code swapping for Lambda functions using LocalStack’s code mounting feature.
 - [Remote debugging]({{< ref "debugging" >}}): Attaching a debugger to your Lambda function using your IDE.

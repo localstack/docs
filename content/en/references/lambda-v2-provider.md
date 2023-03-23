@@ -16,8 +16,8 @@ Configuration,
 and Hot Reloading.
 
 {{< alert title="Note">}}
-The new lambda provider is active by default starting from Localstack&nbsp;v2.0
-The old lambda provider is temporarily available using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
+The new lambda provider is active by default starting with Localstack&nbsp;v2.0.<br>
+The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
 {{< /alert >}}
 
 ## Lambda API

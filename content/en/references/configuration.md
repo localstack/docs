@@ -149,7 +149,7 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 
 ### Lambda
 
-The [new lambda provider]({{< ref "references/lambda-v2-provider" >}}) `v2` (formerly known as `asf`) is active by default starting from Localstack&nbsp;v2.0.
+The [new lambda provider]({{< ref "references/lambda-v2-provider" >}}) `v2` (formerly known as `asf`) is active by default starting with Localstack&nbsp;v2.0.
 
 | Variable| Example Values | Description |
 | - | - | - |
@@ -169,7 +169,7 @@ The [new lambda provider]({{< ref "references/lambda-v2-provider" >}}) `v2` (for
 
 ### Lambda (Legacy)
 
-The old lambda provider is temporarily available using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
+The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
 
 | Variable| Example Values | Description |
 | - | - | - |
