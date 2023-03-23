@@ -141,7 +141,7 @@ However, if you try to access your bucket from [LocalStack Web Application](http
   "CORSRules": [
     {
       "AllowedHeaders": ["*"],
-      "AllowedMethods": ["GET", "POST", "PUT"],
+      "AllowedMethods": ["GET", "POST", "PUT", "HEAD", "DELETE"],
       "AllowedOrigins": [
         "http://localhost:3000",
         "https://app.localstack.cloud",
