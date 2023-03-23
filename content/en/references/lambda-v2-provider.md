@@ -34,27 +34,15 @@ The new provider validates the role arn in the format `arn:aws:iam::123456789012
 
 **Asynchronous function creation:**
 Creating and updating lambda functions now happens asynchronously following the [AWS Lambda state model](https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/).
-Newly created functions are always in the `Pending` state and move to `Active` once they ready for handling invocations.
 The old provider created functions synchronously by blocking until the function state was active.
-If you experience the following exception:
-> An error occurred (ResourceConflictException) when calling the Invoke operation (reached max retries: 0):
-The operation cannot be performed at this time.
-The function is currently in the following state: Pending
-
-Wait until the function becomes active using a [waiter](https://docs.aws.amazon.com/cli/latest/reference/lambda/wait/function-active-v2.html)
-or check the function state with a [GetFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_GetFunction.html) call:
-
-{{< command >}}
-$ awslocal lambda wait function-active-v2 --function-name my-lambda
-{{< / command >}}
-
-Alternatively, `LAMBDA_SYNCHRONOUS_CREATE=1` forces synchronous creation (not recommended).
+In the new provider, functions are always created in the `Pending` state and move to `Active` once they ready for handling invocations.
+Migration instructions are provided in the troubleshooting example [Function in Pending state](#function-in-pending-state) below.
 
 ## Docker Execution Environment
 
 **Docker socket mounting required:**
 Mounting the Docker socket into the LocalStack container is now required to run Lambdas.
-Please add the Docker mount `"/var/run/docker.sock:/var/run/docker.sock"` to your LocalStack startup as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
+Please add the Docker volume mount `"/var/run/docker.sock:/var/run/docker.sock"` to your LocalStack startup as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
 If mounting the Docker socket is impossible and no external `DOCKER_HOST` is available, please refer to TODO(worker link) for instructions on how to configure self-managed worker containers.
 
 **Local executor mode is discontinued:**
@@ -138,3 +126,58 @@ MacOS may prompt you to grant Docker access to your target folders.
 Hot reloading now works without additional LocalStack startup configuration.
 In the old provider, it was required to start LocalStack with `LAMBDA_REMOTE_DOCKER=0`.
 This configuration is not used anymore because the new provider always copies zip files and automatically configures hot reloading.
+
+## Troubleshooting
+
+### Docker not available
+
+If all lambda functions fail to deploy or invoke with a similar error than below,
+mount the Docker socket `"/var/run/docker.sock:/var/run/docker.sock"` as a volume when starting LocalStack as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
+
+* LocalStack logs:
+
+  ```log
+  Lambda 'arn:aws:lambda:us-east-1:000000000000:function:my-function:$LATEST' changed to failed. Reason: Docker not available
+  ...
+  raise ContainerException("Docker not available")
+  ```
+
+  ```log
+  Error applying changes for CloudFormation stack "sam-app": Waiter FunctionActiveV2 failed: Waiter encountered a terminal failure state: For expression "Configuration.State" we matched expected path: "Failed" Traceback (most recent call last):
+  ...
+  botocore.exceptions.WaiterError: Waiter FunctionActiveV2 failed: Waiter encountered a terminal failure state: For expression "Configuration.State" we matched expected path: "Failed"
+  ```
+
+* awslocal CLI:
+
+  {{< command >}}
+  $ awslocal lambda get-function --function-name my-function
+  An error occurred (ResourceConflictException) when calling the Invoke operation (reached max retries: 0): The operation cannot be performed at this time. The function is currently in the following state: Failed
+  {{< / command >}}
+
+* samlocal / cloudformation:
+
+  {{< command >}}
+  $ samlocal sync --stack-name sam-app
+  Error: Failed to create/update the stack: sam-app, Waiter StackCreateComplete failed: Waiter encountered a terminal failure state: For expression "Stacks[].StackStatus" we matched expected path: "CREATE_FAILED" at least once
+  {{< / command >}}
+
+### Function in Pending state
+
+If you experience the following `ResourceConflictException` exception when trying to invoke a function:
+
+{{< command >}}
+$ awslocal lambda get-function --function-name my-function
+An error occurred (ResourceConflictException) when calling the Invoke operation (reached max retries: 0):
+The operation cannot be performed at this time.
+The function is currently in the following state: Pending
+{{< / command >}}
+
+Wait until the function becomes active using a [waiter](https://docs.aws.amazon.com/cli/latest/reference/lambda/wait/function-active-v2.html)
+or check the function state with a [GetFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_GetFunction.html) call:
+
+{{< command >}}
+$ awslocal lambda wait function-active-v2 --function-name my-lambda
+{{< / command >}}
+
+Alternatively, `LAMBDA_SYNCHRONOUS_CREATE=1` forces synchronous (not recommended).
