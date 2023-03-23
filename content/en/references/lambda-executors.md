@@ -9,7 +9,7 @@ aliases:
 
 {{< alert title="Warning" color="warning">}}
 Lambda executor modes are **deprecated** and only used by the old lambda provider.
-The new lambda provider (default since Localstack&nbsp;v2.0) requires no such configuration and behaves equivalent to the old `docker-reuse` executor.<br>
+The new lambda provider (default since Localstack&nbsp;v2.0) requires no such configuration and behaves like the old `docker-reuse` executor.<br>
 Please refer to [Lambda Provider Behavioral Change]({{< ref "lambda-v2-provider" >}}) for more details about the new lambda implementation.
 {{< /alert >}}
 

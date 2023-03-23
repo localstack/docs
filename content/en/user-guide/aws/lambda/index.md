@@ -9,11 +9,11 @@ aliases:
 ---
 
 {{< alert title="Warning" color="warning" >}}
-**New implementation active by default starting with Localstack&nbsp;v2.0**<br>
-The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [parity compared to AWS](https://localstack.cloud/blog/2022-08-04-parity-explained/).
+**A new implementation is active starting with Localstack&nbsp;v2.0**<br>
+The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [AWS parity](https://localstack.cloud/blog/2022-08-04-parity-explained/).
 The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
 
-For more information about behavioral changes, please consult the [Lambda Provider Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}) page.
+For more information about behavioral changes, please consult the page [Lambda Provider Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}).
 {{< /alert >}}
 
 
@@ -41,13 +41,13 @@ We provide tools to develop, debug, and test your Lambda functions more efficien
 
 LocalStack Pro samples contains a number of code examples that demonstrate how to use LocalStack to execute Lambda functions:
 
-- [Lambda Hot Reloading](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-hot-reloading): Demonstrates hot reloading of function code and layers.
-- [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging): Demonstrates debugging Lambda functions locally.
-- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls): Demonstrates Lambda Function URLs to call a function via HTTP.
-- [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers): Demonstrates Lambda layers deployed via the Serverless framework.
-- [Lambda PHP/Bref](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-php-bref-cdk-app): Demonstrates PHP/Bref with and without fpm deployed via the Serverless framework and AWS CDK.
-- [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image): Demonstrates Lambda container images. The Lambda image is built using Docker and pushed to a local ECR registry.
-- [Lambda XRay Tracing](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray): Demonstrates Lambda XRay tracing deployed via the Serverless framework.
+- [Lambda Hot Reloading](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-hot-reloading) demonstrates hot reloading of function code and layers.
+- [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging) demonstrates debugging Lambda functions locally.
+- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls) demonstrates Lambda Function URLs to call a function via HTTP.
+- [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers) demonstrates Lambda layers deployed via the Serverless framework.
+- [Lambda PHP/Bref](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-php-bref-cdk-app) demonstrates PHP/Bref with and without fpm deployed via the Serverless framework and AWS CDK.
+- [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image) demonstrates Lambda container images. The Lambda image is built using Docker and pushed to a local ECR registry.
+- [Lambda XRay Tracing](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray) demonstrates Lambda XRay tracing deployed via the Serverless framework.
 
 ## Lambda Function URL
 

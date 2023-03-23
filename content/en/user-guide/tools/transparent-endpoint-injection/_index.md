@@ -12,6 +12,6 @@ In the community (open source) edition, the application code needs to configure 
 
 The Pro version provides two options for transparently making your application logic speak to the local APIs instead of real AWS (without having to change your production code):
 1. integrated DNS server
-2. patched AWS SDKs
+2. patched AWS SDKs (**deprecated**)
 
 More details can be found in the subsections below.

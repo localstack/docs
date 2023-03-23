@@ -22,7 +22,7 @@ Pro users can also hot-reload Lambda layers.
 Please change your deployment configuration accordingly because the old value is an invalid bucket name.
 The configuration `BUCKET_MARKER_LOCAL` is still supported.
 
-For more information about behavioral changes in the new lambda provider, please consult the [Lambda Provider Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}) page.
+For more information about behavioral changes in the new lambda provider, please consult the page [Lambda Provider Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}).
 {{< /alert >}}
 
 ## Covered Topics

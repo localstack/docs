@@ -8,7 +8,7 @@ aliases:
 ---
 
 ## Overview
-The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [parity compared to AWS](https://localstack.cloud/blog/2022-08-04-parity-explained/).
+The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation of our [local Lambda service]({{< ref "lambda" >}}) with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [AWS parity](https://localstack.cloud/blog/2022-08-04-parity-explained/).
 It comes with significant behavioral changes related to the
 Lambda API,
 Docker Execution Environment,
@@ -35,13 +35,13 @@ The new provider validates the role arn in the format `arn:aws:iam::000000000000
 **Asynchronous function creation:**
 Creating and updating lambda functions now happens asynchronously following the [AWS Lambda state model](https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/).
 The old provider created functions synchronously by blocking until the function state was active.
-In the new provider, functions are always created in the `Pending` state and move to `Active` once they ready for handling invocations.
+In the new provider, functions are always created in the `Pending` state and move to `Active` once they are ready for handling invocations.
 Migration instructions are provided in the troubleshooting example [Function in Pending state](#function-in-pending-state) below.
 
 ## Docker Execution Environment
 
 **Docker socket mounting required:**
-Mounting the Docker socket into the LocalStack container is now required to run Lambdas.
+Mounting the Docker socket into the LocalStack container is now required to run lambda functions.
 Please add the Docker volume mount `"/var/run/docker.sock:/var/run/docker.sock"` to your LocalStack startup as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
 If mounting the Docker socket is impossible and no external `DOCKER_HOST` is available, self-managed worker containers will be available (coming soon).
 
@@ -50,7 +50,7 @@ The [Lambda Executor Modes]({{< ref "references/lambda-executors" >}}) such as `
 In the old provider, lambda functions were executed within the LocalStack container in the local executor mode.
 This was mostly used as a fallback if the Docker socket was not available in the LocalStack container.
 Hence, many users unintentionally used the local executor mode despite configuring `LAMBDA_EXECUTOR=docker`.
-The new provider requires no such configuration and now behaves equivalent to the old `docker-reuse` executor.
+The new provider requires no such configuration and now behaves like the old `docker-reuse` executor.
 
 **No container restart after each invocation:**
 Lambda containers are reused between invocations.
@@ -59,7 +59,7 @@ This is called a "warm start" (see [Operating Lambda](https://aws.amazon.com/blo
 If you want to force "cold starts", you could set `LAMBDA_KEEPALIVE_MS` to 0 milliseconds.
 
 **Official AWS-provided Lambda images:**
-The new provider uses the official AWS [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) pulled from `public.ecr.aws/lambda/` instead of *lambci* images.
+The new provider uses the official AWS [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) pulled from `public.ecr.aws/lambda/` instead of lambci images.
 Hence, the filesystem in Lambda functions now match the AWS Lambda production environment.
 
 **ARM64 lambda functions:**
@@ -173,11 +173,37 @@ The operation cannot be performed at this time.
 The function is currently in the following state: Pending
 {{< / command >}}
 
-Wait until the function becomes active using a [waiter](https://docs.aws.amazon.com/cli/latest/reference/lambda/wait/function-active-v2.html)
-or check the function state with a [GetFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_GetFunction.html) call:
+Wait until the function becomes active using a [waiter](https://docs.aws.amazon.com/cli/latest/reference/lambda/wait/function-active-v2.html):
 
 {{< command >}}
-$ awslocal lambda wait function-active-v2 --function-name my-lambda
+$ awslocal lambda wait function-active-v2 --function-name my-function
 {{< / command >}}
 
-Alternatively, `LAMBDA_SYNCHRONOUS_CREATE=1` forces synchronous (not recommended).
+Alternatively, check the function state using a [get-function](https://awscli.amazonaws.com/v2/documentation/api/2.0.34/reference/lambda/get-function.html) call:
+
+{{< command >}}
+$ awslocal lambda get-function --function-name my-function
+{
+  "Configuration": {
+    ...
+    "RevisionId": "c61d6139-1441-4ad5-983a-5a1cec7a1847",
+    "State": "Pending",
+    "StateReason": "The function is being created.",
+    "StateReasonCode": "Creating",
+    ...
+  }
+}
+
+$ awslocal lambda get-function --function-name my-function
+{
+  "Configuration": {
+    ...
+    "RevisionId": "c6633a28-b8d2-40f7-b8e1-02f6f32e8473",
+    "State": "Active",
+    "LastUpdateStatus": "Successful",
+    ...
+  }
+}
+{{< / command >}}
+
+The [configuration]({{< ref "configuration" >}}) `LAMBDA_SYNCHRONOUS_CREATE=1` forces synchronous function creation but is not recommended.
