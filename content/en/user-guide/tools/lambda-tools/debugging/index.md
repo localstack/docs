@@ -358,7 +358,7 @@ exports.handler = async (event) => {
 Create the lambda function using:
 {{< command >}}
 $ awslocal lambda create-function --function-name func1 \
-    --code S3Bucket="__local__",S3Key="$(pwd)/" \
+    --code S3Bucket="hot-reload",S3Key="$(pwd)/" \
     --handler myindex.handler \
     --runtime nodejs14.x \
     --timeout 150 \

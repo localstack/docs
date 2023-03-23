@@ -42,14 +42,14 @@ Using `cdklocal` locally (e.g. within the `node_modules` of your repo instead of
 {{< command >}}
 $ cdklocal --help
 {{< /command >}}
-### Configuration
 
+### Configuration
 
 The following environment variables can be configured:
 
 * `EDGE_PORT`: Port under which LocalStack edge service is accessible (default: `4566`)
 * `LOCALSTACK_HOSTNAME`: Target host under which LocalStack edge service is accessible (default: `localhost`)
-* `LAMBDA_MOUNT_CODE`: Whether to use local Lambda code mounting (via setting `__local__` S3 bucket name)
+* `LAMBDA_MOUNT_CODE`: Whether to use local Lambda code mounting (via setting `hot-reload` S3 bucket name)
 
 
 ### Example

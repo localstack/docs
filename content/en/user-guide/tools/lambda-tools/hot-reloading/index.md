@@ -4,46 +4,63 @@ date: 2021-09-27
 weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
-  Hot code reloading for Lambda functions using LocalStack code mounting
+  Hot code reloading continuously applies code changes to Lambda functions
 aliases:
   - /user-guide/tools/lambda-tools/hot-swapping/
   - /tools/lambda-tools/hot-swapping/
 ---
 
-| Complexity   | ★☆☆☆☆             |
-|--------------|-------------------|
-| Time to read | 5 minutes         |
-| Edition      | community/pro     |
-| Platform     | any               |
+Hot reloading (formerly known as hot swapping) continuously applies code changes to Lambda functions without manual redeployment.
 
 Quickly iterating over Lambda function code can be quite cumbersome, as you need to deploy your function on every change.
-With LocalStack you can avoid this hurdle by mounting your code directly from the source folder.
-This way, any saved change inside your source file directly affects the already deployed Lambda function -- without any redeployment!
+LocalStack enables fast feedback cycles during development by automatically reloading your function code.
+Pro users can also hot-reload Lambda layers.
+
+{{< alert title="Note" >}}
+**The magic S3 bucket name changed from `__local__` to `hot-reload` in Localstack&nbsp;v2.0**
+
+Please change your deployment configuration accordingly because the old value is an invalid bucket name.
+The configuration `BUCKET_MARKER_LOCAL` is still supported.
+
+For more information about behavioral changes in the new lambda provider, please consult the [Lambda Provider Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}) page.
+{{< /alert >}}
 
 ## Covered Topics
 
-[Using the new Lambda provider](#using-the-new-lambda-provider):
-[Application Configuration Examples](#application-configuration-examples):
-* [Hot code reloading for JVM Lambdas](#hot-code-reloading-for-jvm-lambdas)
-* [Hot code reloading for Python Lambdas](#hot-code-reloading-for-python-lambdas)
-* Debugging Nodejs lambdas (under development)
+* [Hot Reloading Behavior](#hot-reloading-behavior)
+* [Application Configuration Examples](#application-configuration-examples):
+  * [Hot reloading for JVM Lambdas](#hot-reloading-for-jvm-lambdas)
+  * [Hot reloading for Python Lambdas](#hot-reloading-for-python-lambdas)
+  * Debugging Nodejs lambdas (under development)
+* [Deployment Configuration Examples](#deployment-configuration-examples):
+  * [Serverless Framework Configuration](#serverless-framework-configuration)
+  * [AWS Cloud Development Kit (CDK) Configuration](#aws-cloud-development-kit-cdk-configuration)
+  * [Terraform Configuration](#terraform-configuration)
+* [Useful Links](#useful-links)
 
-[Deployment Configuration Examples](#deployment-configuration-examples):
-* [Serverless Framework Configuration](#serverless-framework-configuration)
-* [AWS Cloud Development Kit (CDK) Configuration](#aws-cloud-development-kit-cdk-configuration)
-* [Terraform Configuration](#terraform-configuration)
+## Hot Reloading Behavior
 
-[Useful Links](#useful-links)
+**Delay in code change detection:**
+It can take up to 700ms to detect code changes.
+In the meantime, invocations still execute the former code.
+Hot reloading triggers after 500ms without changes, and it can take up to 200ms until the change is notified.
 
-## Using the new Lambda provider
-When using the new Lambda provider, hot-reloading does not conflict with fast execution times, and it is not needed to spawn a new container for every invocation.
-Also, hot reloading for Lambda layers (Pro) is now supported, it works identical to functions, but only 1 layer is allowed per function if hot-reloading is active in the layer.
+**Runtime restart after each code change:**
+The runtime inside the container is restarted after every code change.
+Therefore, any initialization code *outside* the handler function re-executes after every code change.
+However, the container itself does not restart.
+Therefore, filesystem changes persist between code changes for invocations dispatched to the same container.
 
-For more information about behavioral changes, please consult the [Lambda Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}) page.
+**File sharing permissions with Docker Desktop on macOS:**
+If using Docker Desktop on macOS, you might need to allow [file sharing](https://docs.docker.com/desktop/settings/mac/#file-sharing) for your target folders.
+MacOS may prompt you to grant Docker access to your target folders.
+
+**Layer limit with hot reloading for layers:**
+When hot reloading is active for a Lambda layer (Pro), the function can use at most one layer.
 
 ## Application Configuration Examples
 
-### Hot code reloading for JVM Lambdas
+### Hot reloading for JVM Lambdas
 
 Since lambda containers lifetime is usually limited, regular hot code reloading
 techniques are not applicable here.
@@ -83,10 +100,10 @@ $ bin/watchman.sh src "./gradlew buildHot"
 {{< / command >}}
 
 Please note that you still need to configure your deployment tool to use
-local code mounting. Read the "[Deployment Configuration Examples](#deployment-configuration-examples)"
+local code mounting. Read the [Deployment Configuration Examples](#deployment-configuration-examples)
 for more information.
 
-### Hot code reloading for Python Lambdas
+### Hot reloading for Python Lambdas
 
 We will show you how you can do this with a simple example function, taken directly from the
 [AWS Lambda developer guide](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py).
@@ -98,32 +115,10 @@ $ cd /tmp
 $ git clone git@github.com:awsdocs/aws-doc-sdk-examples.git
 {{< / command >}}
 
-#### Starting up LocalStack
-
-First, we need to make sure we start LocalStack with the right configuration.
-This is as simple as setting `LAMBDA_REMOTE_DOCKER`(see the [Configuration Documentation]({{< ref "configuration#lambda" >}}) for more information):
-
-{{< command >}}
-$ LAMBDA_REMOTE_DOCKER=0 localstack start
-{{< / command >}}
-
-Accordingly, if you are launching LocalStack via Docker or Docker Compose:
-
-```yaml
-#docker-compose.yml
-
-services:
-  localstack:
-    ...
-    environment:
-      ...
-      - LAMBDA_REMOTE_DOCKER=false
-```
-
 #### Creating the Lambda Function
 
 To create the Lambda function, you just need to take care of two things:
-1. Deploy via an S3 Bucket. You need to use the magic variable `__local__` as the bucket.
+1. Deploy via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket.
 2. Set the S3 key to the path of the directory your lambda function resides in.
    The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
 
@@ -131,13 +126,13 @@ So, using the AWS example, this would be:
 
 {{< command >}}
 $ awslocal lambda create-function --function-name my-cool-local-function \
-    --code S3Bucket="__local__",S3Key="/tmp/aws-doc-sdk-examples/python/example_code/lambda/boto_client_examples" \
+    --code S3Bucket="hot-reload",S3Key="/tmp/aws-doc-sdk-examples/python/example_code/lambda/boto_client_examples" \
     --handler lambda_handler_basic.lambda_handler \
     --runtime python3.8 \
     --role cool-stacklifter
 {{< / command >}}
 
-You can also check out some of our "[Deployment Configuration Examples](#deployment-configuration-examples)".
+You can also check out some of our [Deployment Configuration Examples](#deployment-configuration-examples).
 
 We can also quickly make sure that it works by invoking it with a simple payload:
 
@@ -302,11 +297,7 @@ class ApplicationStack(parent: Construct, name: String) : Stack(parent, name) {
      */
     private fun buildCodeSource(): Code  {
         if (STAGE == "local") {
-            /**
-             * For CDK you have to use a valid S3 bucket name instead of '__local__'
-             * because of client-side validation
-             */
-            val bucket = Bucket.fromBucketName(this, "HotReloadingBucket", "hot-code")
+            val bucket = Bucket.fromBucketName(this, "HotReloadingBucket", "hot-reload")
             return Code.fromBucket(bucket, LAMBDA_MOUNT_CWD)
         }
 
@@ -314,13 +305,6 @@ class ApplicationStack(parent: Construct, name: String) : Stack(parent, name) {
     }
 }
 {{< / highlight >}}
-
-{{< alert title="Note" >}}
-
-As mentioned in the code, you will have to use an alternative local bucket marker to `__local__` as this is not a valid S3 bucket name.
-To change it (to, e.g., `hot-code`) you can use the environment variable `BUCKET_MARKER_LOCAL`.
-
-{{< /alert >}}
 
 Then to bootstrap and deploy the stack run the following shell script
 
@@ -393,7 +377,7 @@ EOF
 }
 
 resource "aws_lambda_function" "exampleFunctionOne" {
-    s3_bucket     = var.STAGE == "local" ? "__local__" : null
+    s3_bucket     = var.STAGE == "local" ? "hot-reload" : null
     s3_key        = var.STAGE == "local" ? var.LAMBDA_MOUNT_CWD : null
     filename      = var.STAGE == "local" ? null : var.JAR_PATH
     function_name = "ExampleFunctionOne"

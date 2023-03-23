@@ -93,7 +93,7 @@ Please open a [feature request on GitHub](https://github.com/localstack/localsta
 The following configuration options from the old provider are discontinued in the new provider:
 * `LAMBDA_EXECUTOR` and in particular `LAMBDA_EXECUTOR=local` should be removed (see "Local executor mode is discontinued" above).
 * `LAMBDA_STAY_OPEN_MODE` is now the default behavior and can be removed. Instead, `LAMBDA_KEEPALIVE_MS` can be used to configure how long containers should be kept running in-between invocations.  
-* `LAMBDA_REMOTE_DOCKER` is not used anymore because the new provider always copies zip files and automatically configures mounting for hot reloading.
+* `LAMBDA_REMOTE_DOCKER` is not used anymore because the new provider always copies zip files and automatically configures hot reloading.
 * `LAMBDA_CODE_EXTRACT_TIME` is not used anymore because function creation now happens asynchronously.
 * `LAMBDA_DOCKER_DNS` is currently not supported.
 * `LAMBDA_CONTAINER_REGISTRY` is not used anymore. Use the more flexible `LAMBDA_RUNTIME_IMAGE_MAPPING` to customize individual runtimes.
@@ -112,7 +112,7 @@ The following configuration options are still supported in the new provider:
 
 ## Hot Reloading
 
-Hot reloading or [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}) automatically reflects code changes to Lambda functions without any redeployment.
+[Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}) (formerly known as hot swapping) continuously applies code changes to Lambda functions without manual redeployment.
 
 **Default S3 bucket name changed:**
 The default magic S3 bucket name changed from `__local__` to `hot-reload`.
@@ -122,6 +122,7 @@ Please change your deployment configuration accordingly, or use the `BUCKET_MARK
 It can take up to 700ms to detect code changes.
 In the meantime, invocations still execute the former code.
 Hot reloading triggers after 500ms without changes, and it can take up to 200ms until the change is notified.
+In the old provider, changes were reflected instantly using code mounting but container restarting added extra delay.
 
 **Runtime restart after each code change:**
 The runtime inside the container is restarted after every code change.
@@ -133,3 +134,7 @@ Therefore, filesystem changes persist between code changes for invocations dispa
 If using Docker Desktop on macOS, you might need to allow [file sharing](https://docs.docker.com/desktop/settings/mac/#file-sharing) for your target folders.
 MacOS may prompt you to grant Docker access to your target folders.
 
+**Startup configuration automated:**
+Hot reloading now works without additional LocalStack startup configuration.
+In the old provider, it was required to start LocalStack with `LAMBDA_REMOTE_DOCKER=0`.
+This configuration is not used anymore because the new provider always copies zip files and automatically configures hot reloading.
