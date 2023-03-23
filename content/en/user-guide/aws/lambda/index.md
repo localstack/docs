@@ -27,25 +27,27 @@ This is a great way to test your code, and to learn more about how your Lambda f
 ## Lambda Providers
 
 LocalStack provides two implementations of the Lambda service available as providers:
-* The new lambda provider `v2` (formerly known as `asf`) is our currently supported and stable implementation. It is active by default starting with Localstack&nbsp;v2.0. It is available since LocalStack&nbsp;v1.3 using `PROVIDER_OVERRIDE_LAMBDA=v2`.
+* The new lambda provider `v2` (formerly known as `asf`) is our currently supported and stable implementation. It is active by default starting with Localstack&nbsp;v2.0 and available since LocalStack&nbsp;v1.3 using `PROVIDER_OVERRIDE_LAMBDA=v2`.
 * The old lambda provider `legacy` is deprecated in Localstack&nbsp;v2. It is temporarily available using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
 
 ## Special tooling for Lambda
 
 We provide tools to develop, debug, and test your Lambda functions more efficiently:
 
-- [Hot reloading]({{< ref "hot-reloading" >}}): Hot code reloading for Lambda functions using the code mounting feature of LocalStack.
+- [Hot reloading]({{< ref "hot-reloading" >}}): Continuously applies code changes to Lambda functions without manual redeployment. Formerly known as hot swapping.
 - [Remote debugging]({{< ref "debugging" >}}): Attaching a debugger to your Lambda function using your IDE.
 
 ## Lambda sample applications
 
 LocalStack Pro samples contains a number of code examples that demonstrate how to use LocalStack to execute Lambda functions:
 
-- [Lambda XRay Tracing](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray): Simple demo application illustrating Lambda XRay tracing using LocalStack, deployed via the Serverless framework.
-- [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image): Simple demo application illustrating Lambda container images in LocalStack. The Lambda image is built using Docker and pushed to a local ECR registry.
-- [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging): Simple demo application to illustrate debugging Lambdas locally.
-- [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers): Simple demo application illustrating Lambda layers using LocalStack, deployed via the Serverless framework.
-- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls): Simple demo application illustrating Lambda Function URLs using LocalStack, to call a Lambda Function via HTTP.
+- [Lambda Hot Reloading](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-hot-reloading): Demonstrates hot reloading of function code and layers.
+- [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging): Demonstrates debugging Lambda functions locally.
+- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls): Demonstrates Lambda Function URLs to call a function via HTTP.
+- [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers): Demonstrates Lambda layers deployed via the Serverless framework.
+- [Lambda PHP/Bref](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-php-bref-cdk-app): Demonstrates PHP/Bref with and without fpm deployed via the Serverless framework and AWS CDK.
+- [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image): Demonstrates Lambda container images. The Lambda image is built using Docker and pushed to a local ECR registry.
+- [Lambda XRay Tracing](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray): Demonstrates Lambda XRay tracing deployed via the Serverless framework.
 
 ## Lambda Function URL
 
@@ -71,10 +73,6 @@ awslocal lambda create-function-url-config \
 ## Lambda Container Images
 
 LocalStack Pro supports [Lambda functions defined as container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html), so you can bundle your code and dependencies as one container image.
-
-{{< alert >}}
-If your Lambda custom image fails with the error `exec /tmp/xxx.sh: no such file or directory`, ensure `bash` and `python 2/3` is installed inside your container image for the integration with LocalStack to work.
-{{< /alert >}}
 
 ## Lambda Layers
 
@@ -163,7 +161,3 @@ The filter expression uses a strict JSON format to match the filtering criteria.
 ```
 
 If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the [official AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
-
-## Limitations
-
-Only the local executor with locally launched LocalStack can be used together with JVM Lambda Functions.
