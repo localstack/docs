@@ -43,7 +43,7 @@ Migration instructions are provided in the troubleshooting example [Function in 
 **Docker socket mounting required:**
 Mounting the Docker socket into the LocalStack container is now required to run Lambdas.
 Please add the Docker volume mount `"/var/run/docker.sock:/var/run/docker.sock"` to your LocalStack startup as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
-If mounting the Docker socket is impossible and no external `DOCKER_HOST` is available, please refer to TODO(worker link) for instructions on how to configure self-managed worker containers.
+If mounting the Docker socket is impossible and no external `DOCKER_HOST` is available, self-managed worker containers will be available (coming soon).
 
 **Local executor mode is discontinued:**
 The [Lambda Executor Modes]({{< ref "references/lambda-executors" >}}) such as `LAMBDA_EXECUTOR=local` are discontinued in the new provider.

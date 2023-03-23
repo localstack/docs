@@ -9,7 +9,7 @@ aliases:
 ---
 
 {{< alert title="Warning" color="warning">}}
-This functionality is **deprecated** and only used by the old lambda provider.
+Patched AWS SDKs for Lambdas are **deprecated** and only used by the old lambda provider.
 The new lambda provider (default since Localstack&nbsp;v2.0) uses DNS-based domain resolution (except for the Ruby runtime).<br>
 Please refer to [Lambda Provider Behavioral Change]({{< ref "lambda-v2-provider" >}}) for more details about the new lambda implementation.
 {{< /alert >}}
