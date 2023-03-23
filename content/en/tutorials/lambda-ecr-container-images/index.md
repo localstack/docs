@@ -139,12 +139,12 @@ $ awslocal lambda create-function \
     --function-name localstack-lambda-container-image \
     --package-type Image \
     --code ImageUri="localstack-lambda-container-image" \
-    --role arn:aws:iam::000000000:role/lambda-r1 \
+    --role arn:aws:iam::000000000:role/lambda-role \
     --handler handler.handler
 {
     "FunctionName": "localstack-lambda-container-image",
     "FunctionArn": "arn:aws:lambda:<REGION>:000000000000:function:localstack-lambda-container-image",
-    "Role": "arn:aws:iam::000000000:role/lambda-r1",
+    "Role": "arn:aws:iam::000000000:role/lambda-role",
     "Handler": "handler.handler",
     "Description": "",
     "Timeout": 3,

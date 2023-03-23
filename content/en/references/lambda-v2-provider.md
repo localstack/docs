@@ -30,7 +30,7 @@ If you discover a difference between LocalStack and AWS in the new provider, ple
 **Stricter input validation:**
 Expect more exceptions in the new provider due to invalid input.
 For example, the old provider accepted arbitrary strings such as `r1` as a [lambda role](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Role) when creating a function.
-The new provider validates the role arn in the format `arn:aws:iam::123456789012:role/lambda-ex` using an appropriate regex but currently does not check whether it actually exists.
+The new provider validates the role arn in the format `arn:aws:iam::000000000000:role/lambda-role` using an appropriate regex but currently does not check whether it actually exists.
 
 **Asynchronous function creation:**
 Creating and updating lambda functions now happens asynchronously following the [AWS Lambda state model](https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/).

@@ -99,7 +99,7 @@ $ echo 'def handler(*args, **kwargs):' > /tmp/testlambda.py
 $ echo '  import testlayer; testlayer.util()' >> /tmp/testlambda.py
 $ echo '  print("Debug output from Lambda function")' >> /tmp/testlambda.py
 $ (cd /tmp; zip testlambda.zip testlambda.py)
-$ awslocal lambda create-function --function-name func1 --runtime python3.8 --role r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers $LAYER_ARN:1
+$ awslocal lambda create-function --function-name func1 --runtime python3.8 --role arn:aws:iam::000000000000:role/lambda-role --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers $LAYER_ARN:1
 {{< / command >}}
 
 Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with `DEBUG=1` enabled), which includes the output from the layer util function:

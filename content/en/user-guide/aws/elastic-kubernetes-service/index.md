@@ -19,7 +19,7 @@ The default method for creating Kubernetes clusters via the local EKS API is to 
 
 A new cluster can be created using the following command:
 {{< command >}}
-$ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}'
+$ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}'
 {{</ command >}}
 
 You should then see some Docker containers getting started, e.g.:
@@ -118,13 +118,13 @@ $ docker push localhost.localstack.cloud:4510/fancier-nginx
 
 Now, let us set up the EKS cluster using the image pushed to local ECR.
 {{< command >}}
-$ awslocal eks create-cluster --name fancier-cluster --role-arn "r1" --resources-vpc-config "{}"
+$ awslocal eks create-cluster --name fancier-cluster --role-arn "arn:aws:iam::000000000000:role/eks-role" --resources-vpc-config "{}"
 {
     "cluster": {
         "name": "fancier-cluster",
         "arn": "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster",
         "createdAt": "2022-04-13T16:38:24.850000+02:00",
-        "roleArn": "r1",
+        "roleArn": "arn:aws:iam::000000000000:role/eks-role",
         "resourcesVpcConfig": {},
         "identity": {
             "oidc": {
@@ -146,7 +146,7 @@ awslocal eks describe-cluster --name "fancier-cluster"
         "arn": "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster",
         "createdAt": "2022-04-13T17:12:39.738000+02:00",
         "endpoint": "https://localhost.localstack.cloud:4511",
-        "roleArn": "r1",
+        "roleArn": "arn:aws:iam::000000000000:role/eks-role",
         "resourcesVpcConfig": {},
         "identity": {
             "oidc": {
@@ -309,7 +309,7 @@ In recent versions of Docker, you can simply enable Kubernetes as an embedded se
 
 The example below illustrates how to create an EKS cluster configuration (assuming you have [`awslocal`](https://github.com/localstack/awscli-local) installed):
 {{< command >}}
-$ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}'
+$ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}'
 {
     "cluster": {
         "name": "cluster1",
@@ -336,7 +336,7 @@ By default, the load balancer (LB) is exposed on port `8081`. In order to custom
 
 For example, if we want to expose the LB on ports `8085` and `8086`, the following tag definition can be used on cluster creation:
 {{< command >}}
-$ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}' --tags '{"_lb_ports_":"8085,8086"}'
+$ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}' --tags '{"_lb_ports_":"8085,8086"}'
 {{< /command >}}
 
 ## Routing traffic to services on different endpoints
@@ -403,7 +403,7 @@ If you have specific directories which you want to mount from your local dev mac
 First, make sure to create your cluster with the special tag `_volume_mount_`, specifying how you want to mount a volume from your dev machine to the cluster nodes:
 
 {{< command >}}
-$ awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config '{}' --tags '{"_volume_mount_":"/path/on/host:/path/on/node"}'
+$ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}' --tags '{"_volume_mount_":"/path/on/host:/path/on/node"}'
 {
     "cluster": {
         "name": "cluster1",

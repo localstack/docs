@@ -41,7 +41,7 @@ $ awslocal s3 cp job.py s3://glue-test/job.py
 
 Next, we can create a job definition:
 {{< command >}}
-$ awslocal glue create-job --name job1 --role r1 \
+$ awslocal glue create-job --name job1 --role arn:aws:iam::000000000000:role/glue-role \
   --command '{"Name": "pythonshell", "ScriptLocation": "s3://glue-test/job.py"}'
 {{< / command >}}
 ... and finally start the job:
@@ -139,7 +139,7 @@ $ awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=2/file.c
 Then we can create and trigger the crawler:
 {{< command >}}
 $ awslocal glue create-database --database-input '{"Name":"db1"}'
-$ awslocal glue create-crawler --name c1 --database-name db1 --role r1 --targets '{"S3Targets": [{"Path": "s3://test/table1"}]}'
+$ awslocal glue create-crawler --name c1 --database-name db1 --role arn:aws:iam::000000000000:role/glue-role --targets '{"S3Targets": [{"Path": "s3://test/table1"}]}'
 $ awslocal glue start-crawler --name c1
 {{< / command >}}
 
@@ -183,7 +183,7 @@ Next, we're creating the Glue database, the JDBC connection, as well as the craw
 $ awslocal glue create-database --database-input '{"Name":"gluedb1"}'
 $ awslocal glue create-connection --connection-input \
     {"Name":"conn1","ConnectionType":"JDBC","ConnectionProperties":{"USERNAME":"test","PASSWORD":"test","JDBC_CONNECTION_URL":"jdbc:redshift://localhost.localstack.cloud:4510/db1"}}'
-$ awslocal glue create-crawler --name c1 --database-name gluedb1 --role r1 --targets '{"JdbcTargets":[{"ConnectionName":"conn1","Path":"db1/%/mytable1"}]}'
+$ awslocal glue create-crawler --name c1 --database-name gluedb1 --role arn:aws:iam::000000000000:role/glue-role --targets '{"JdbcTargets":[{"ConnectionName":"conn1","Path":"db1/%/mytable1"}]}'
 $ awslocal glue start-crawler --name c1
 ...
 $ awslocal glue get-crawler --name c1

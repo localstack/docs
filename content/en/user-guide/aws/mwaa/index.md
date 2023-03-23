@@ -19,7 +19,7 @@ Next create the environment with the bucket ARN as follows:
 
 {{< command >}}
 $ awslocal mwaa create-environment --dag-s3-path /dags \
-        --execution-role-arn r1 \
+        --execution-role-arn arn:aws:iam::000000000000:role/airflow-role \
         --network-configuration {} \
         --source-bucket-arn arn:aws:s3:::my-mwaa-bucket \
         --airflow-version 2.2.2 \
