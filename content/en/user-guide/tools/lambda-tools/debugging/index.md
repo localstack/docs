@@ -3,21 +3,15 @@ title: "Remote Debugging"
 weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
-  Attach a debugger to your Lambda functions from your IDE.
+  Attach a debugger to your Lambda functions from your IDE
 aliases:
   - /tools/lambda-tools/debugging/
 ---
 
 # Overview
 
-This guide covers the remote debugging of Lambda functions with [Visual Studio Code](https://code.visualstudio.com/) or IntelliJ IDEA as an IDE.
-For a simple working example of this feature, check out [our samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
-
-| Complexity   | ★☆☆☆☆             |
-|--------------|-------------------|
-| Time to read | 5 minutes         |
-| Edition      | community/pro     |
-| Platform     | any               |
+This guide covers remote debugging of Lambda functions with the IDEs [Visual Studio Code](https://code.visualstudio.com/) and [IntelliJ IDEA](https://www.jetbrains.com/idea/).
+For a simple working example of this feature, check out Pro sample [lambda-mounting-and-debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
 
 More examples and tooling support for local Lambda debugging (including support for other IDEs like PyCharm) is coming soon - stay tuned!
 
