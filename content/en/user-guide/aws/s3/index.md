@@ -92,7 +92,9 @@ In both configurations of `S3_DIRS`, if Localstack is started and the path(s) sp
 
 You can configure Cross-Origin Resource Sharing (CORS) on a LocalStack S3 bucket using AWS Command Line Interface (CLI). It would allow your local application to communicate directly with an S3 bucket in LocalStack. By default, LocalStack will apply specific CORS rules to all requests to allow you to display and access your resources through [LocalStack Web Application](https://app.localstack.cloud). If no CORS rules are configured for your S3 bucket, LocalStack will apply default rules unless specified otherwise.
 
-To configure CORS rules for your S3 bucket, you need to have the `awslocal` wrapper installed and configured. Optionally, you can run a local web application on [localhost:3000](http://localhost:3000). Run the following command on your terminal to create your S3 bucket:
+To configure CORS rules for your S3 bucket, you can use the `awslocal` wrapper. Optionally, you can run a local web application on [localhost:3000](http://localhost:3000). You can emulate the same behavior with an AWS SDK or an integration that you are using. Follow this step-by-step guide to configure CORS rules on your S3 bucket.
+
+Run the following command on your terminal to create your S3 bucket:
 
 {{< command >}}
 $ awslocal s3api create-bucket --bucket cors-bucket
