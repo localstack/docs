@@ -156,8 +156,8 @@ $ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
 
-- This command does not bind all ports which are potentially used by LocalStack, nor does it mount any volumes.
-  When using Docker to manually start LocalStack, you will have to configure the container on your own.
+- This command does not bind all ports that are potentially used by LocalStack, nor does it mount any volumes.
+  When using Docker to manually start LocalStack, you will have to configure the container on your own (see [docker-compose-pro.yml](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml) and [Configuration]({{< ref "configuration" >}})).
   This could be seen as the "expert mode" of starting LocalStack.
   If you are looking for a simpler method of starting LocalStack, please use the [LocalStack CLI]({{< ref "#localstack-cli" >}}).
 
@@ -187,6 +187,8 @@ $ docker-compose up
 - If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in the `docker-compose.yml` file. Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
+
+- Mounting the docker socket `"/var/run/docker.sock:/var/run/docker.sock"` as a volume is required for the Lambda service.
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
