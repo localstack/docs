@@ -129,7 +129,7 @@ $ awslocal lambda create-function --function-name my-cool-local-function \
     --code S3Bucket="hot-reload",S3Key="/tmp/aws-doc-sdk-examples/python/example_code/lambda/boto_client_examples" \
     --handler lambda_handler_basic.lambda_handler \
     --runtime python3.8 \
-    --role cool-stacklifter
+    --role arn:aws:iam::000000000000:role/lambda-role
 {{< / command >}}
 
 You can also check out some of our [Deployment Configuration Examples](#deployment-configuration-examples).

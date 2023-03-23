@@ -59,7 +59,7 @@ $ awslocal lambda create-function \
     --runtime <lambda-runtime> \
     --zip-file fileb://<path/to/zip/file> \
     --handler index.handler \
-    --role cool-stacklifter
+    --role arn:aws:iam::000000000000:role/lambda-role
 {{< / command >}}
 
 After the Lambda function is created, you can create a Function URL to call the Lambda function:

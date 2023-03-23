@@ -181,7 +181,7 @@ $ awslocal lambda create-function --function-name my-cool-local-function \
     --handler handler.handler \
     --runtime python3.8 \
     --timeout 150 \
-    --role cool-stacklifter
+    --role arn:aws:iam::000000000000:role/lambda-role
 {{< /command >}}
 
 We can quickly verify that it works by invoking it with a simple payload:
@@ -356,7 +356,7 @@ $ awslocal lambda create-function --function-name func1 \
     --handler myindex.handler \
     --runtime nodejs14.x \
     --timeout 150 \
-    --role cool-stacklifter
+    --role arn:aws:iam::000000000000:role/lambda-role
 {{< /command >}}
 
 Now to debug your lambda function, click on the `Debug` icon with
