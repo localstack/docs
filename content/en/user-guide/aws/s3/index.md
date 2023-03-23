@@ -59,10 +59,8 @@ As a special case in LocalStack, leaving out `<region>` also works for the `s3.l
 
 `<bucket-name>.s3.localhost.localstack.cloud` is also a host-style request.
 
-
 All other requests will be considered path-style requests. It is advised to use the `s3.localhost.localstack.cloud` endpoint URL for all requests targeting S3.
 {{% /alert %}}
-
 
 ## S3 Providers
 
@@ -89,3 +87,79 @@ S3_DIRS=/tmp/s3-buckets/first-bucket:my-first-bucket,/tmp/s3-buckets/second-buck
 ```
 
 In both configurations of `S3_DIRS`, if Localstack is started and the path(s) specified in `S3_DIRS` are not empty, the S3 buckets will be pre-populated with files.
+
+## Configuring Cross-Origin Resource Sharing on S3
+
+You can configure Cross-Origin Resource Sharing (CORS) on a LocalStack S3 bucket using AWS Command Line Interface (CLI). It would allow your local application to communicate directly with an S3 bucket in LocalStack. By default, LocalStack will apply specific CORS rules to all requests to allow you to display and access your resources through [LocalStack Web Application](https://app.localstack.cloud). If no CORS rules are configured for your S3 bucket, LocalStack will apply default rules unless specified otherwise.
+
+To configure CORS rules for your S3 bucket, you can use the `awslocal` wrapper. Optionally, you can run a local web application on [localhost:3000](http://localhost:3000). You can emulate the same behavior with an AWS SDK or an integration that you are using. Follow this step-by-step guide to configure CORS rules on your S3 bucket.
+
+Run the following command on your terminal to create your S3 bucket:
+
+{{< command >}}
+$ awslocal s3api create-bucket --bucket cors-bucket
+{
+    "Location": "/cors-bucket"
+}
+{{< / command >}}
+
+Next, create a JSON file with the CORS configuration. The file should have the following format:
+
+```json
+{
+  "CORSRules": [
+    {
+      "AllowedHeaders": ["*"],
+      "AllowedMethods": ["GET", "POST", "PUT"],
+      "AllowedOrigins": ["http://localhost:3000"],
+      "ExposeHeaders": ["ETag"]
+    }
+  ]
+}
+```
+
+{{< alert title="Note" >}}
+Note that this configuration is a sample, and you can tailor it so fit your needs better, for example restricting the **AllowedHeaders** to specific ones.
+{{% /alert %}}
+
+Save the file locally with a name of your choice, for example `cors-config.json`. Run the following command to apply the CORS configuration to your S3 bucket:
+
+{{< command >}}
+$ awslocal s3api put-bucket-cors --bucket cors-bucket --cors-configuration file://cors-config.json
+{{< / command >}}
+
+You can further verify that the CORS configuration was applied successfully by running the following command:
+
+{{< command >}}
+$ awslocal s3api get-bucket-cors --bucket cors-bucket
+{{< / command >}}
+
+On applying the configuration successfully, you should see the same JSON configuration file you created earlier. Your S3 bucket is configured to allow cross-origin resource sharing, and if you try to send requests from your local application running on [localhost:3000](http://localhost:3000), they should be successful.
+
+However, if you try to access your bucket from [LocalStack Web Application](https://app.localstack.cloud), you’ll see errors, and your bucket won’t be accessible anymore. We can edit the JSON file `cors-config.json` you created earlier with the following configuration and save it:
+
+```json
+{
+  "CORSRules": [
+    {
+      "AllowedHeaders": ["*"],
+      "AllowedMethods": ["GET", "POST", "PUT", "HEAD", "DELETE"],
+      "AllowedOrigins": [
+        "http://localhost:3000",
+        "https://app.localstack.cloud",
+        "http://app.localstack.cloud"
+      ],
+      "ExposeHeaders": ["ETag"]
+    }
+  ]
+}
+```
+
+You can now run the same steps as before to update the CORS configuration and verifying if it is applied correctly:
+
+{{< command >}}
+$ awslocal s3api put-bucket-cors --bucket cors-bucket --cors-configuration file://cors-config.json
+$ awslocal s3api get-bucket-cors --bucket cors-bucket
+{{< / command >}}
+
+You can try again to upload files in your bucket from the [LocalStack Web Application](https://app.localstack.cloud) and it should work.
