@@ -31,7 +31,7 @@ LocalStack Pro contains various advanced extensions to the LocalStack base platf
 $ docker pull localstack/localstack-pro:latest
 {{< / command >}}
 
-To use the LocalStack Pro image, you must configure an environment variable named `LOCALSTACK_API_KEY` to contain your API key. The LocalStack Pro image will display a warning if you do not set an API key (or the key is inactive) and will not activate the Pro features. LocalStack Pro gives you access to the complete set of LocalStack features, including [LocalStack Web Application](https://app.localstack.cloud) and [dedicated customer support](https://docs.localstack.cloud/getting-started/help-and-support/#pro-support). 
+To use the LocalStack Pro image, you must configure an environment variable named `LOCALSTACK_API_KEY` to contain your API key. The LocalStack Pro image will display a warning if you do not set an API key (or if the key is invalid/expired) and will not activate the Pro features. LocalStack Pro gives you access to the complete set of LocalStack features, including the [LocalStack Web Application](https://app.localstack.cloud) and [dedicated customer support](https://docs.localstack.cloud/getting-started/help-and-support/#pro-support). 
 
 You can use the Pro image to start your LocalStack container using various [installation methods](https://docs.localstack.cloud/getting-started/installation/). While configuring to run LocalStack with Docker or Docker Compose, run the `localstack/localstack-pro` image with the appropriate tag you have pulled (if not `latest`).
 
