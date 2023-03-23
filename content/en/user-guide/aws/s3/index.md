@@ -134,7 +134,7 @@ $ awslocal s3api get-bucket-cors --bucket cors-bucket
 
 On applying the configuration successfully, you should see the same JSON configuration file you created earlier. Your S3 bucket is configured to allow cross-origin resource sharing, and if you try to send requests from your local application running on [localhost:3000](http://localhost:3000), they should be successful.
 
-However, if you try to access your bucket from [LocalStack Web Application](https://app.localstack.cloud), you’ll see errors, and your bucket won’t be accessible anymore. We can edit the JSON file `core-config.json` you created earlier with the following configuration and save it:
+However, if you try to access your bucket from [LocalStack Web Application](https://app.localstack.cloud), you’ll see errors, and your bucket won’t be accessible anymore. We can edit the JSON file `cors-config.json` you created earlier with the following configuration and save it:
 
 ```json
 {
