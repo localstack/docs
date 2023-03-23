@@ -34,7 +34,7 @@ LocalStack provides two implementations of the Lambda service available as provi
 
 We provide tools to develop, debug, and test your Lambda functions more efficiently:
 
-- [Hot swapping]({{< ref "hot-swapping" >}}): Hot code swapping for Lambda functions using LocalStack’s code mounting feature.
+- [Hot reloading]({{< ref "hot-reloading" >}}): Hot code reloading for Lambda functions using the code mounting feature of LocalStack.
 - [Remote debugging]({{< ref "debugging" >}}): Attaching a debugger to your Lambda function using your IDE.
 
 ## Lambda sample applications

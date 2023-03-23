@@ -32,7 +32,7 @@ More examples and tooling support for local Lambda debugging (including support 
 
 Lambda functions debugging used to be a difficult task. LocalStack changes that
 with the same local code mounting functionality that also helps you
-to [iterate quickly over your function code]({{< ref "hot-swapping" >}}).
+to [iterate quickly over your function code]({{< ref "hot-reloading" >}}).
 
 For a simple working example of this feature, you can refer to
 [our samples](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).

@@ -153,7 +153,7 @@ The [new lambda provider]({{< ref "references/lambda-v2-provider" >}}) `v2` (for
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Optional bucket name for [Hot Swapping]({{< ref "user-guide/tools/lambda-tools/hot-swapping" >}}). |
+| `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Optional bucket name for [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}). |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, ulimits, user, platform, and privileged mode. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | Optional [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
 | `LAMBDA_KEEPALIVE_MS` | `600000` (default 10min) | Time in milliseconds until lambda kills the execution environment after the last invocation has been processed. Set to `0` to immediately kill the execution environment after an invocation. |
@@ -177,7 +177,7 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 | | `docker` (default) | Run each function invocation in a separate Docker container. |
 | | `local` (fallback) | Run Lambda functions in a temporary directory on the local machine. |
 | | `docker-reuse` | Create one Docker container per function and reuse it across invocations. |
-| `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the [stay-open mode]({{< ref "lambda-executors#stay-open-mode" >}}) of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Swapping]({{< ref "hot-swapping" >}}).<br> **Removed in new provider because stay-open mode is the default behavior. `LAMBDA_KEEPALIVE_MS` can be used to configure how long containers should be kept running in-between invocations.** |
+| `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the [stay-open mode]({{< ref "lambda-executors#stay-open-mode" >}}) of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Reloading]({{< ref "hot-reloading" >}}).<br> **Removed in new provider because stay-open mode is the default behavior. `LAMBDA_KEEPALIVE_MS` can be used to configure how long containers should be kept running in-between invocations.** |
 | `LAMBDA_REMOTE_DOCKER` | | determines whether Lambda code is copied or mounted into containers.<br> **Removed in new provider because zip file copying is used by default and hot reloading automatically configures mounting.** |
 | | `true` (default) | your Lambda function definitions will be passed to the container by copying the zip file (potentially slower). It allows for remote execution, where the host and the client are not on the same machine.|
 | | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. |

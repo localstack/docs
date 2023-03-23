@@ -72,7 +72,7 @@ A list of failing tests with this mode can be found [in this GitHub issue](https
 #### Docker-exec execution mode
 This mode is the default if LocalStack is started in host mode.
 If you experience failures using the stay-open mode (either due to the mentioned restrictions or networking problems), you can force this mode by setting `LAMBDA_STAY_OPEN_MODE=0`.
-Also if you want to use [Hot Swapping]({{< ref "hot-swapping" >}}) you should set `LAMBDA_STAY_OPEN_MODE=0`.
+Also if you want to use [Hot Reloading]({{< ref "hot-reloading" >}}) you should set `LAMBDA_STAY_OPEN_MODE=0`.
 
 This execution mode provides a balance between the speed of a local execution and the feature set and isolation of the `docker` executor.
 While the initial call, which creates the container, will take roughly the same time of `docker` executor, the subsequent invocations will only take around 1 second (start to finish, invoked using the awscli), which is roughly the time an actual aws invocation using this method takes.

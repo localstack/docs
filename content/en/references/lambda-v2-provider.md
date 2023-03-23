@@ -112,7 +112,7 @@ The following configuration options are still supported in the new provider:
 
 ## Hot Reloading
 
-Hot reloading or [Hot Swapping]({{< ref "user-guide/tools/lambda-tools/hot-swapping" >}}) automatically reflects code changes to Lambda functions without any redeployment.
+Hot reloading or [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}) automatically reflects code changes to Lambda functions without any redeployment.
 
 **Default S3 bucket name changed:**
 The default magic S3 bucket name changed from `__local__` to `hot-reload`.

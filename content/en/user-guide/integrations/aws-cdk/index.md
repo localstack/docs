@@ -95,7 +95,7 @@ When this lambda is executed locally from the `/tmp` folder, the package can not
 
 ## Other resources
 
-- [Hot-swapping Lambda functions with CDK]({{< ref "user-guide/tools/lambda-tools/hot-swapping#aws-cloud-development-kit-cdk-configuration" >}})
+- [Hot-reloading Lambda functions with CDK]({{< ref "user-guide/tools/lambda-tools/hot-reloading#aws-cloud-development-kit-cdk-configuration" >}})
 
 ## External resources
 

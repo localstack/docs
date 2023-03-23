@@ -28,7 +28,7 @@ If you are running LocalStack through a `docker run` command, do not forget to e
 
 ## Mounting local directories for ECS tasks
 
-In some cases, it can be useful to mount code from the host filesystem into the ECS container. For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task's Docker image each time - similar to the [Lambda hot swapping](https://docs.localstack.cloud/user-guide/tools/lambda-tools/hot-swapping) feature in LocalStack.
+In some cases, it can be useful to mount code from the host filesystem into the ECS container. For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task's Docker image each time - similar to the [Lambda Hot Reloading](https://docs.localstack.cloud/user-guide/tools/lambda-tools/hot-reloading) feature in LocalStack.
 
 In order to leverage code mounting, we can use the ECS bind mounts feature, which is covered in the [AWS Bind mounts documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bind-mounts.html).
 

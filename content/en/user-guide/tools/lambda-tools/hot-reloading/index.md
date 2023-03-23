@@ -1,11 +1,12 @@
 ---
-title: "Hot Swapping"
+title: "Hot Reloading"
 date: 2021-09-27
 weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
-  Hot code swapping for Lambda functions using LocalStack's code mounting
+  Hot code reloading for Lambda functions using LocalStack code mounting
 aliases:
+  - /user-guide/tools/lambda-tools/hot-swapping/
   - /tools/lambda-tools/hot-swapping/
 ---
 
@@ -23,8 +24,8 @@ This way, any saved change inside your source file directly affects the already 
 
 [Using the new Lambda provider](#using-the-new-lambda-provider):
 [Application Configuration Examples](#application-configuration-examples):
-* [Code hot-swapping for JVM Lambdas](#code-hot-swapping-for-jvm-lambdas)
-* [Code hot-swapping for Python Lambdas](#code-hot-swapping-for-python-lambdas)
+* [Hot code reloading for JVM Lambdas](#hot-code-reloading-for-jvm-lambdas)
+* [Hot code reloading for Python Lambdas](#hot-code-reloading-for-python-lambdas)
 * Debugging Nodejs lambdas (under development)
 
 [Deployment Configuration Examples](#deployment-configuration-examples):
@@ -42,9 +43,9 @@ For more information about behavioral changes, please consult the [Lambda Behavi
 
 ## Application Configuration Examples
 
-### Code hot-swapping for JVM Lambdas
+### Hot code reloading for JVM Lambdas
 
-Since lambda containers lifetime is usually limited, regular hot code swapping
+Since lambda containers lifetime is usually limited, regular hot code reloading
 techniques are not applicable here.
 
 In our implementation, we will be watching for fs changes under the project folder,
@@ -75,7 +76,7 @@ task buildHot(type: Copy) {
 buildHot.dependsOn shadowJar
 ```
 
-Now run the following command to start watching your project in a hot-swapping mode:
+Now run the following command to start watching your project in a hot-reloading mode:
 
 {{< command >}}
 $ bin/watchman.sh src "./gradlew buildHot"
@@ -85,7 +86,7 @@ Please note that you still need to configure your deployment tool to use
 local code mounting. Read the "[Deployment Configuration Examples](#deployment-configuration-examples)"
 for more information.
 
-### Code hot-swapping for Python Lambdas
+### Hot code reloading for Python Lambdas
 
 We will show you how you can do this with a simple example function, taken directly from the
 [AWS Lambda developer guide](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py).
@@ -201,14 +202,14 @@ Note: As an alternative to modifying `sys.path`, you could also set the `PYTHONP
 
 ##### Using a watchman script to copy libraries
 
-Another alternative is to implement a watchman script that will be preparing a special folder for hot code swapping.
+Another alternative is to implement a watchman script that will be preparing a special folder for hot code reloading.
 
 In our example, we are using `build/hot` folder as a mounting point for our Lambdas.
 
 First, create a watchman wrapper by using
 [one of our examples](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice/bin/watchman.sh)
 
-After that, you can use the following `Makefile` snippet, or implement another shell script to prepare the codebase for hot swapping:
+After that, you can use the following `Makefile` snippet, or implement another shell script to prepare the codebase for hot reloading:
 
 ```make
 BUILD_FOLDER ?= build
