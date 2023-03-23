@@ -41,6 +41,6 @@ Earlier, we maintained `localstack/localstack-light` and `localstack/localstack-
 
 ## Image tags
 
-We use tags for versions with significant features, enhancements, or bug fixes. To ensure that we move quickly and steadily, we run nightly builds, where all our updates are available on the `latest` tag of LocalStack's Docker image. We intend to announce more significant features and enhancements during major & minor releases. We will not create new releases for minor bug fixes and enhancements to ensure that we don't break your existing workflows.
+We use tags for versions with significant features, enhancements, or bug fixes - following [semantic versioning](https://semver.org). To ensure that we move quickly and steadily, we run nightly builds, where all our updates are available on the `latest` tag of LocalStack's Docker image. We intend to announce more significant features and enhancements during major & minor releases. We occasionally create patch releases for minor bug fixes and enhancements, to ensure that we can deliver changes quickly while not breaking your existing workflows (in case you prefer not to use `latest`).
 
 To check out the various tags available for LocalStack, you can visit the [LocalStack Community](https://hub.docker.com/r/localstack/localstack/tags?page=1&ordering=last_updated) & [LocalStack Pro](https://hub.docker.com/r/localstack/localstack-pro/tags?page=1&ordering=last_updated) Docker Hub pages.
