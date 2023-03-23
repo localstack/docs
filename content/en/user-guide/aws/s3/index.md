@@ -90,9 +90,9 @@ In both configurations of `S3_DIRS`, if Localstack is started and the path(s) sp
 
 ## Configuring Cross-Origin Resource Sharing on S3
 
-You can configure Cross-Origin Resource Sharing (CORS) on an LocalStack S3 bucket using AWS Command Line Interface (CLI). It would allow your local application to directly communicate with a S3 bucket available in LocalStack. By default, LocalStack will apply specific CORS rules to all requests to allow you to display and access your resources through [LocalStack Web Application](https://app.localstack.cloud). If no CORS rules are configured for your S3 bucket, LocalStack will apply default rules, unless specified otherwise.
+You can configure Cross-Origin Resource Sharing (CORS) on a LocalStack S3 bucket using AWS Command Line Interface (CLI). It would allow your local application to communicate directly with an S3 bucket in LocalStack. By default, LocalStack will apply specific CORS rules to all requests to allow you to display and access your resources through [LocalStack Web Application](https://app.localstack.cloud). If no CORS rules are configured for your S3 bucket, LocalStack will apply default rules unless specified otherwise.
 
-To configure CORS rules for your S3 bucket, you need to have `awslocal` wrapper installed and configured. Optionally, you can have a local web application running on [localhost:3000](http://localhost:3000). Run the following command on your terminal to create your S3 bucket:
+To configure CORS rules for your S3 bucket, you need to have the `awslocal` wrapper installed and configured. Optionally, you can run a local web application on [localhost:3000](http://localhost:3000). Run the following command on your terminal to create your S3 bucket:
 
 {{< command >}}
 $ awslocal s3api create-bucket --bucket cors-bucket
@@ -132,9 +132,9 @@ You can further verify that the CORS configuration was applied successfully by r
 $ awslocal s3api get-bucket-cors --bucket cors-bucket
 {{< / command >}}
 
-If the configuration was applied successfully, you should see the same JSON configuration file you created earlier. Your S3 bucket is now configured to allow cross-origin resource sharing, and if you try to send requests from your local application running on [localhost:3000](http://localhost:3000), they should be successful.
+On applying the configuration successfully, you should see the same JSON configuration file you created earlier. Your S3 bucket is configured to allow cross-origin resource sharing, and if you try to send requests from your local application running on [localhost:3000](http://localhost:3000), they should be successful.
 
-However if you try to access your bucket from [LocalStack Web Application](https://app.localstack.cloud), you’ll see errors and your bucket won’t be accessible anymore. We can edit the JSON file `core-config.json` you’ve created earlier with the following configuration and save it:
+However, if you try to access your bucket from [LocalStack Web Application](https://app.localstack.cloud), you’ll see errors, and your bucket won’t be accessible anymore. We can edit the JSON file `core-config.json` you created earlier with the following configuration and save it:
 
 ```json
 {
