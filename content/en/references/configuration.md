@@ -156,9 +156,11 @@ The [new lambda provider]({{< ref "references/lambda-v2-provider" >}}) `v2` (for
 | `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Optional bucket name for [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}). |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, ulimits, user, platform, and privileged mode. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | Optional [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
-| `LAMBDA_KEEPALIVE_MS` | `600000` (default 10min) | Time in milliseconds until lambda kills the execution environment after the last invocation has been processed. Set to `0` to immediately kill the execution environment after an invocation. |
+| `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default) | PRO-only. Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
 | `LAMBDA_IGNORE_ARCHITECTURE` | `0` (default) | Whether to ignore the AWS architectures (x86_64 or arm64) configured for the lambda function. Set to `1` to run cross-platform compatible lambda functions natively (i.e., Docker selects architecture). |
 | `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
+| `LAMBDA_KEEPALIVE_MS` | `600000` (default 10min) | Time in milliseconds until lambda kills the execution environment after the last invocation has been processed. Set to `0` to immediately kill the execution environment after an invocation. |
+| `LAMBDA_LIMITS_CONCURRENT_EXECUTIONS` | `1000` (default) | The maximum number of events that functions can process simultaneously in the current Region. See [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/lambda-service.html) |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. |
 | `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `10` (default) | How many seconds Lambda will wait for the runtime environment to start up. |
 | `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed. |
