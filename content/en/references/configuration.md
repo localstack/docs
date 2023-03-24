@@ -149,7 +149,7 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 
 ### Lambda
 
-The [new lambda provider]({{< ref "references/lambda-v2-provider" >}}) `v2` (formerly known as `asf`) is active by default starting with Localstack&nbsp;v2.0.
+The [new lambda provider]({{< ref "lambda-provider-v2" >}}) `v2` (formerly known as `asf`) is active by default starting with Localstack&nbsp;v2.0.
 
 | Variable| Example Values | Description |
 | - | - | - |
@@ -171,11 +171,11 @@ The [new lambda provider]({{< ref "references/lambda-v2-provider" >}}) `v2` (for
 
 ### Lambda (Legacy)
 
-The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
+The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "lambda-provider-v2" >}}) to the new lambda provider.
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in [Lambda Executor Modes]({{< ref "lambda-executors" >}}).<br> **Removed in new provider. Mount the Docker socket or see [migration guide]({{< ref "references/lambda-v2-provider" >}}).** |
+| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in [Lambda Executor Modes]({{< ref "lambda-executors" >}}).<br> **Removed in new provider. Mount the Docker socket or see [migration guide]({{< ref "lambda-provider-v2" >}}).** |
 | | `docker` (default) | Run each function invocation in a separate Docker container. |
 | | `local` (fallback) | Run Lambda functions in a temporary directory on the local machine. |
 | | `docker-reuse` | Create one Docker container per function and reuse it across invocations. |

@@ -5,6 +5,7 @@ description: >
   Behavioral changes of the new lambda provider
 aliases:
   /references/lambda-asf-provider/
+  /references/lambda-v2-provider/
 ---
 
 {{< alert title="Note">}}
