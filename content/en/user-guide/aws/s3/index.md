@@ -70,7 +70,7 @@ With v2.0, the default will be changed to `v2`, but the legacy provider will sti
 
 ## Storage Configuration
 
-Localstack Pro can be configured to store S3 files in specific locations on the filesystem. This can be useful in many different ways, including moving multiple files into place in one or more S3 buckets without needing to use `awslocal` to upload them. Localstack will use the path(s) specified in the `S3_DIRS` environment variable to store files within the container. Paired with a docker mount, this can be used to store files in the path of choice on the filesystem.
+Localstack Pro can be configured to store S3 files in specific locations on the filesystem. This can be useful in many different ways, including moving multiple files into place in one or more S3 buckets without needing to use `awslocal` to upload them. Localstack will use the path(s) specified in the `S3_DIR` environment variable to store files within the container. Paired with a docker mount, this can be used to store files in the path of choice on the filesystem.
 
 Paths may be specified in two different configurations. Specifying only a path will store all S3 buckets in that path:
 
@@ -83,10 +83,14 @@ New S3 buckets will be created as directories with the same name as the S3 Bucke
 Specifying in the following format: `<path>:<name>` will create an S3 bucket named `<name>` and utilize `<path>` for that S3 bucket's files. Multiple S3 buckets may be created at one time by using a comma to separate each path and name mapping (i.e. `<path>:<name>,<path>:<name>`).
 
 ```bash
-S3_DIRS=/tmp/s3-buckets/first-bucket:my-first-bucket,/tmp/s3-buckets/second-bucket:my-second-bucket
+S3_DIR=/tmp/s3-buckets/first-bucket:my-first-bucket,/tmp/s3-buckets/second-bucket:my-second-bucket
 ```
 
-In both configurations of `S3_DIRS`, if Localstack is started and the path(s) specified in `S3_DIRS` are not empty, the S3 buckets will be pre-populated with files.
+In both configurations of `S3_DIR`, if Localstack is started and the path(s) specified in `S3_DIR` are not empty, the S3 buckets will be pre-populated with files.
+
+{{< alert title="Note" >}}
+Please note that using `S3_DIR` does not work well with `PERSISTENCE=1`. Using `PERSISTENCE=1` can help you to store those files once in LocalStack and not having to mount them separately with `S3_DIR` from your LocalStack volume. See [our Persistence documentation]({{< ref "persistence-mechanism" >}}).
+{{% /alert %}}
 
 ## Configuring Cross-Origin Resource Sharing on S3
 
