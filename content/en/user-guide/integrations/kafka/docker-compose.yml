@@ -51,7 +51,7 @@ services:
       - KAFKA_BROKERS=kafka:29092
 
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack-main}"
     image: localstack/localstack-pro
     ports:
       - "4566:4566"
@@ -61,7 +61,6 @@ services:
     environment:
       - DEBUG=${DEBUG- }
       - PERSISTENCE=${PERSISTENCE- }
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
       - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:

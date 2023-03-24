@@ -192,25 +192,6 @@ custom:
 
 When this flag is set, the lambda code will be mounted into the container running the function directly from your local directory instead of packaging and uploading it.
 
-If you want to use this feature together with the local lambda executor (`LAMBDA_EXECUTOR=local`), you need to make sure the container running localstack itself can find the code.
-To do that, you need to manually mount the code into the localstack container, here is a snippet using a `docker-compose.yml` with the essentials.
-Where `/absolute/path/to/todos` is the path on your local machine that points to the `todos/` directory containing the lambda code from our previous example.
-
-```yaml
-# docker-compose.yml to start localstack
-
-services:
-  localstack:
-    # ...
-    environment:
-      - LAMBDA_EXECUTOR=local
-      - LAMBDA_REMOTE_DOCKER=0
-      # ...
-    volumes:
-      # ...
-      - "/absolute/path/to/todos:/absolute/path/to/todos"
-```
-
 ## Ran into trouble?
 
 If you run into any issues or problems while integrating LocalStack with your Serverless app, please [submit an issue](https://github.com/localstack/serverless-localstack/issues).
