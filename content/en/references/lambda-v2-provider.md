@@ -132,7 +132,8 @@ This configuration is not used anymore because the new provider always copies zi
 ### Docker not available
 
 If all lambda functions fail to deploy or invoke with a similar error than below,
-mount the Docker socket `"/var/run/docker.sock:/var/run/docker.sock"` as a volume when starting LocalStack as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
+add the Docker volume mount `"/var/run/docker.sock:/var/run/docker.sock"` to your LocalStack startup
+as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
 
 * LocalStack logs:
 

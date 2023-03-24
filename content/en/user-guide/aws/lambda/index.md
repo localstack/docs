@@ -13,7 +13,10 @@ aliases:
 The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [AWS parity](https://localstack.cloud/blog/2022-08-04-parity-explained/).
 The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
 
-For more information about behavioral changes, please consult the page [Lambda Provider Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}).
+If you encounter an error related to `Docker not available`,
+mount the Docker socket `/var/run/docker.sock` as a volume when starting LocalStack (see troubleshooting [here]({{< ref "lambda-v2-provider#docker-not-available" >}})).
+
+Please consult the page [Lambda Provider Behavioral Changes]({{< ref "references/lambda-v2-provider" >}}) for more information.
 {{< /alert >}}
 
 
