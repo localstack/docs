@@ -149,7 +149,8 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 
 ### Lambda
 
-The [new lambda provider]({{< ref "lambda-provider-v2" >}}) `v2` (formerly known as `asf`) is active by default starting with Localstack&nbsp;v2.0.
+**New implementation active starting with Localstack v2.0 (Docker latest as of 2023-03-23)**<br>
+Please consult the page [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}) for more information.
 
 | Variable| Example Values | Description |
 | - | - | - |

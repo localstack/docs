@@ -76,7 +76,7 @@ The old provider provided patched AWS SDKs to transparently redirect AWS API cal
 
 ## Configuration
 
-The new provider offers new configuration options documented under [Configuration]({{< ref "references/configuration" >}}).
+The new provider offers new configuration options documented under [Configuration]({{< ref "references/configuration#lambda" >}}).
 Please open a [feature request on GitHub](https://github.com/localstack/localstack/issues/new/choose) and motivate your scenario if you miss something.
 
 The following configuration options from the old provider are discontinued in the new provider:
