@@ -9,7 +9,7 @@ aliases:
 ---
 
 {{< alert title="Warning" color="warning" >}}
-**A new implementation is active starting with Localstack&nbsp;v2.0**<br>
+**New implementation active starting with Localstack&nbsp;v2.0 (Docker `latest` as of 2023-03-23)**<br>
 The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [AWS parity](https://localstack.cloud/blog/2022-08-04-parity-explained/).
 The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
 
@@ -23,12 +23,6 @@ With the help of AWS Lambda, you can strive for more modular code that can be te
 
 LocalStack allows you to develop, debug, and execute your Lambda functions locally, without the need to deploy them to AWS.
 This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS.
-
-## Lambda Providers
-
-LocalStack provides two implementations of the Lambda service available as providers:
-* The new lambda provider `v2` (formerly known as `asf`) is our currently supported and stable implementation. It is active by default starting with Localstack&nbsp;v2.0 and available since LocalStack&nbsp;v1.3 using `PROVIDER_OVERRIDE_LAMBDA=v2`.
-* The old lambda provider `legacy` is deprecated in Localstack&nbsp;v2. It is temporarily available using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "references/lambda-v2-provider" >}}) to the new lambda provider.
 
 ## Special tooling for Lambda
 

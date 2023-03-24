@@ -7,6 +7,11 @@ aliases:
   /references/lambda-asf-provider/
 ---
 
+{{< alert title="Note">}}
+**New implementation active starting with Localstack v2.0 (Docker `latest` as of 2023-03-23)**
+The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
+{{< /alert >}}
+
 ## Overview
 The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation of our [local Lambda service]({{< ref "lambda" >}}) with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [AWS parity](https://localstack.cloud/blog/2022-08-04-parity-explained/).
 It comes with significant behavioral changes related to the
@@ -14,11 +19,6 @@ Lambda API,
 Docker Execution Environment,
 Configuration,
 and Hot Reloading.
-
-{{< alert title="Note">}}
-The new lambda provider is active by default starting with Localstack&nbsp;v2.0.<br>
-The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
-{{< /alert >}}
 
 ## Lambda API
 
