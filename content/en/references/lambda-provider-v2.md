@@ -9,7 +9,7 @@ aliases:
 ---
 
 {{< alert title="Note">}}
-**New implementation active starting with Localstack v2.0 (Docker `latest` as of 2023-03-23)**
+**New implementation active since Localstack&nbsp;v2.0 (Docker `latest` since 2023-03-23)**<br>
 The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
 {{< /alert >}}
 
@@ -132,7 +132,7 @@ This configuration is not used anymore because the new provider always copies zi
 
 ### Docker not available
 
-If all lambda functions fail to deploy or invoke with a similar error than below,
+If deploying or invoking any lambda function fails with a similar error than below,
 add the Docker volume mount `"/var/run/docker.sock:/var/run/docker.sock"` to your LocalStack startup
 as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).
 
@@ -208,4 +208,16 @@ $ awslocal lambda get-function --function-name my-function
 }
 {{< / command >}}
 
-The [configuration]({{< ref "configuration" >}}) `LAMBDA_SYNCHRONOUS_CREATE=1` forces synchronous function creation but is not recommended.
+The [configuration]({{< ref "configuration#lambda" >}}) `LAMBDA_SYNCHRONOUS_CREATE=1` forces synchronous function creation but is not recommended.
+
+### Not implemented error
+
+If creating any lambda function fails with a `NotImplementedError` in the LocalStack logs and an `InternalFailure` (501) in the client:
+
+{{< command >}}
+$ awslocal lambda create-function <parameters>
+An error occurred (InternalFailure) when calling the CreateFunction operation (reached max retries: 0): API action 'CreateFunction' for service 'lambda' not yet implemented or pro feature - check https://docs.localstack.cloud/user-guide/aws/feature-coverage for further information
+{{< / command >}}
+
+Please check your [configuration]({{< ref "configuration#lambda" >}}) for `PROVIDER_OVERRIDE_LAMBDA`.
+If you are not using Localstack&nbsp;v2.0 yet, remove `PROVIDER_OVERRIDE_LAMBDA=legacy`.
