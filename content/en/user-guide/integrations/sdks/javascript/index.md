@@ -44,7 +44,8 @@ lambda.listFunctions({}, (err, data) => {
   }
 });
 
-// Now, we create an S3 client, which has a special endpoint (see S3 documentation to read more about the different endpoints).
+// Now, we create an S3 client, which has a special endpoint
+// (see S3 documentation to read more about the different endpoints).
 const s3 = new AWS.S3({
   endpoint: 'http://s3.localhost.localstack.cloud:4566',
   s3ForcePathStyle: true,  // If you want to use virtual host addressing of buckets, you can remove `s3ForcePathStyle: true`. 
@@ -64,6 +65,7 @@ s3.listBuckets((err, data) => {
 {{< /tab >}}
 {{< tab header="aws-sdk-js-v3" lang="javascript" >}}
 const { LambdaClient, ListFunctionsCommand } = require('@aws-sdk/client-lambda');
+const { S3Client, ListBucketsCommand } = require('@aws-sdk/client-s3');
 
 // Configure the AWS SDK to use the LocalStack endpoint and credentials
 const lambda = new LambdaClient({
@@ -81,13 +83,15 @@ lambda.send(new ListFunctionsCommand({}))
   .catch((error) => console.error(error));
 
 
-/* By default, @aws-sdk/client-s3 will using virtual host addressing (http://<bucket-name>.s3.localhost.localstack.cloud:4566/<key-name>). To allow those requests to be directed to LocalStack, you need to set a specific endpoint. If this is not possible, you can set the special S3 configuration flag to use path addressing instead (http://s3.localhost.localstack.cloud:4566/<bucket-name>/<key-name>). You can read S3 documentation to learn more about the different endpoints. 
-*/
-const { S3Client, ListBucketsCommand } = require('@aws-sdk/client-s3');
+// By default, @aws-sdk/client-s3 will using virtual host addressing (http://<bucket-name>.s3.localhost.localstack.cloud:4566/<key-name>).
+// To allow those requests to be directed to LocalStack, you need to set a specific endpoint.
+// If this is not possible, you can set the special S3 configuration flag to 
+// use path addressing instead (http://s3.localhost.localstack.cloud:4566/<bucket-name>/<key-name>).
+// You can read S3 documentation to learn more about the different endpoints. 
 
-const s3Client = new S3({
+const s3 = new S3({
   region: 'us-east-1',
-  forcePathStyle: true,  // If you want to use virtual host addressing of buckets, you can remove `forcePathStyle: true`. 
+  forcePathStyle: true, // If you want to use virtual host addressing of buckets, you can remove `forcePathStyle: true`. 
   endpoint: 'http://s3.localstack.localhost.cloud:4566',
   credentials: {
     accessKeyId: 'test',
@@ -96,7 +100,7 @@ const s3Client = new S3({
 });
 
 // Call an S3 API using the LocalStack endpoint
-s3Client.send(new ListBucketsCommand({}))
+s3.send(new ListBucketsCommand({}))
   .then((data) => console.log(data))
   .catch((error) => console.error(error));
   
@@ -105,7 +109,7 @@ s3Client.send(new ListBucketsCommand({}))
 {{< /tabpane >}}
 
 {{< alert title="Note">}}
-In case of issues resolving S3 DNS record, we can fallback to http://localhost:4566 in combination with the provider setting `forcePathStyle: true` (see the specific way of setting this parameter for each SDK above). The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets. See [S3 documentation]({{< ref "S3" >}}) about endpoints.
+In case of issues resolving S3 DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `forcePathStyle: true` (see the specific way of setting this parameter for each SDK above). The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets. See [S3 documentation]({{< ref "S3" >}}) about endpoints.
 {{< /alert >}}
 
 
