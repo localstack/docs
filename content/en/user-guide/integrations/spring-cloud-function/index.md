@@ -58,7 +58,7 @@ any other JVM setup.
     * [Cold Start and Warmup (PRO)](#cold-start-and-warmup-pro)
     * [Creating other lambda Handlers](#creating-other-lambda-handlers)
 * [Setting up Deployment](#settings-up-deployment)
-* [Testing, Debugging and Hot Code Reloading](#testing-debugging-and-code-hot-reloading)
+* [Testing, Debugging and Hot Reloading](#testing-debugging-and-hot-reloading)
 * [Useful links](#useful-links)
 
 ### Limitations
@@ -868,10 +868,10 @@ resource "aws_lambda_function" "exampleFunctionTwo" {
 {{< /tab >}}
 {{< /tabpane >}}
 
-## Testing, Debugging and Hot Code Reloading
+## Testing, Debugging and Hot Reloading
 
 Please read our [Lambda Tools](/content/en/tools/lambda-tools/_index.md)
-documentation to learn more about testing, debugging and hot code reloading
+documentation to learn more about testing, debugging, and hot reloading
 for JVM Lambda functions.
 
 ## Useful Links
