@@ -6462,7 +6462,7 @@ If your ECS containers depend on LocalStack services, this should be the network
 For more information regarding the configuration of LocalStack, please check the &lt;a href="/references/configuration/">LocalStack configuration&lt;/a> section.&lt;/p>
 &lt;p>If you are running LocalStack through a &lt;code>docker run&lt;/code> command, do not forget to enable the communication from the container to the Docker Engine API. You can provide the access by adding the following option &lt;code>-v /var/run/docker.sock:/var/run/docker.sock&lt;/code>.&lt;/p>
 &lt;h2 id="mounting-local-directories-for-ecs-tasks">Mounting local directories for ECS tasks&lt;/h2>
-&lt;p>In some cases, it can be useful to mount code from the host filesystem into the ECS container. For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task&amp;rsquo;s Docker image each time - similar to the &lt;a href="https://docs.localstack.cloud/user-guide/tools/lambda-tools/hot-swapping">Lambda hot swapping&lt;/a> feature in LocalStack.&lt;/p>
+&lt;p>In some cases, it can be useful to mount code from the host filesystem into the ECS container. For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task&amp;rsquo;s Docker image each time - similar to the &lt;a href="/user-guide/tools/lambda-tools/hot-reloading/">Lambda Hot Reloading&lt;/a> feature in LocalStack.&lt;/p>
 &lt;p>In order to leverage code mounting, we can use the ECS bind mounts feature, which is covered in the &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bind-mounts.html">AWS Bind mounts documentation&lt;/a>.&lt;/p>
 &lt;p>For example, the Python sample code below registers a task definition, mounting a host path &lt;code>/host/path&lt;/code> into the container under &lt;code>/container/path&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">ecs_client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> boto3.client&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;ecs&amp;#34;&lt;/span>, &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
@@ -6491,7 +6491,7 @@ For more information regarding the configuration of LocalStack, please check the
 &lt;h2 id="auto-installing-an-embedded-kubernetes-cluster">Auto-installing an embedded Kubernetes cluster&lt;/h2>
 &lt;p>The default method for creating Kubernetes clusters via the local EKS API is to spin up an embedded &lt;a href="https://k3d.io">k3d&lt;/a> kube cluster within Docker. LocalStack handles the download and installation transparently - on most systems the installation is performed automatically, and no customizations should be required.&lt;/p>
 &lt;p>A new cluster can be created using the following command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config &amp;#39;{}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config &amp;#39;{}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>You should then see some Docker containers getting started, e.g.:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker ps
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
@@ -6562,13 +6562,13 @@ Make sure to use the correct URL / port by using the &lt;code>repositoryUrl&lt;/
 &amp;hellip; and push it to ECR:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker push localhost.localstack.cloud:4510/fancier-nginx&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Now, let us set up the EKS cluster using the image pushed to local ECR.
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name fancier-cluster --role-arn &amp;#34;r1&amp;#34; --resources-vpc-config &amp;#34;{}&amp;#34;
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name fancier-cluster --role-arn &amp;#34;arn:aws:iam::000000000000:role/eks-role&amp;#34; --resources-vpc-config &amp;#34;{}&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;fancier-cluster&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;arn&amp;#34;: &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;createdAt&amp;#34;: &amp;#34;2022-04-13T16:38:24.850000+02:00&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;roleArn&amp;#34;: &amp;#34;r1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;roleArn&amp;#34;: &amp;#34;arn:aws:iam::000000000000:role/eks-role&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;resourcesVpcConfig&amp;#34;: {},
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;identity&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;oidc&amp;#34;: {
@@ -6587,7 +6587,7 @@ Make sure to use the correct URL / port by using the &lt;code>repositoryUrl&lt;/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;arn&amp;#34;: &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;createdAt&amp;#34;: &amp;#34;2022-04-13T17:12:39.738000+02:00&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpoint&amp;#34;: &amp;#34;https://localhost.localstack.cloud:4511&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;roleArn&amp;#34;: &amp;#34;r1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;roleArn&amp;#34;: &amp;#34;arn:aws:iam::000000000000:role/eks-role&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;resourcesVpcConfig&amp;#34;: {},
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;identity&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;oidc&amp;#34;: {
@@ -6710,7 +6710,7 @@ The &lt;code>ls-secret-tls&lt;/code> is created in the &lt;code>default&lt;/code
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In recent versions of Docker, you can simply enable Kubernetes as an embedded service running inside Docker. See below for a screenshot of the Docker settings for Kubernetes in MacOS (similar configurations apply for Linux/Windows). By default, it is asssumed that Kubernetes API runs on the local TCP port &lt;code>6443&lt;/code>.&lt;/p>
 &lt;img src="kubernetes.png" alt="Kubernetes in Docker" title="Kubernetes in Docker" width="450" />
 &lt;p>The example below illustrates how to create an EKS cluster configuration (assuming you have &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> installed):
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config &amp;#39;{}&amp;#39;
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config &amp;#39;{}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;cluster1&amp;#34;,
@@ -6731,7 +6731,7 @@ The &lt;code>ls-secret-tls&lt;/code> is created in the &lt;code>default&lt;/code
 &lt;h2 id="exposing-the-kubernetes-load-balancer-on-custom-ports">Exposing the Kubernetes Load Balancer on custom ports&lt;/h2>
 &lt;p>By default, the load balancer (LB) is exposed on port &lt;code>8081&lt;/code>. In order to customize the port, or expose the LB on multiple ports, you can use the special tag name &lt;code>_lb_ports_&lt;/code> when creating the cluster.&lt;/p>
 &lt;p>For example, if we want to expose the LB on ports &lt;code>8085&lt;/code> and &lt;code>8086&lt;/code>, the following tag definition can be used on cluster creation:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config &amp;#39;{}&amp;#39; --tags &amp;#39;{&amp;#34;_lb_ports_&amp;#34;:&amp;#34;8085,8086&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config &amp;#39;{}&amp;#39; --tags &amp;#39;{&amp;#34;_lb_ports_&amp;#34;:&amp;#34;8085,8086&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;h2 id="routing-traffic-to-services-on-different-endpoints">Routing traffic to services on different endpoints&lt;/h2>
 &lt;p>A frequent use case when working with EKS is to access multiple kube services behind different endpoints.&lt;/p>
 &lt;p>For example, you may have multiple microservices that all use a common path versioning scheme, say, with API request paths starting with &lt;code>/v1/...&lt;/code>. In that case, path-based routing cannot easily be used if the services should be accessible in a uniform way.&lt;/p>
@@ -6778,7 +6778,7 @@ The &lt;code>ls-secret-tls&lt;/code> is created in the &lt;code>default&lt;/code
 &lt;h2 id="mounting-directories-from-host-to-pod">Mounting directories from host to pod&lt;/h2>
 &lt;p>If you have specific directories which you want to mount from your local dev machine into one of your pods you can do this with two simple steps:&lt;/p>
 &lt;p>First, make sure to create your cluster with the special tag &lt;code>_volume_mount_&lt;/code>, specifying how you want to mount a volume from your dev machine to the cluster nodes:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn r1 --resources-vpc-config &amp;#39;{}&amp;#39; --tags &amp;#39;{&amp;#34;_volume_mount_&amp;#34;:&amp;#34;/path/on/host:/path/on/node&amp;#34;}&amp;#39;
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config &amp;#39;{}&amp;#39; --tags &amp;#39;{&amp;#34;_volume_mount_&amp;#34;:&amp;#34;/path/on/host:/path/on/node&amp;#34;}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;cluster1&amp;#34;,
@@ -7092,7 +7092,7 @@ Note that only a single backend can be configured, meaning that you will get a s
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">data01:/usr/share/elasticsearch/data&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;${LOCALSTACK_DOCKER_NAME-localstack_main}&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;${LOCALSTACK_DOCKER_NAME-localstack-main}&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack/localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;4566:4566&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -7102,7 +7102,6 @@ Note that only a single backend can be configured, meaning that you will get a s
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">ES_CUSTOM_BACKEND=http://elasticsearch:9200&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DEBUG=${DEBUG- }&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">PERSISTENCE=${PERSISTENCE- }&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DOCKER_HOST=unix:///var/run/docker.sock&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -7382,7 +7381,7 @@ In order to run Glue jobs, some additional dependencies have to be fetched from 
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://glue-test
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp job.py s3://glue-test/job.py&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Next, we can create a job definition:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-job --name job1 --role r1 \
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-job --name job1 --role arn:aws:iam::000000000000:role/glue-role \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --command &amp;#39;{&amp;#34;Name&amp;#34;: &amp;#34;pythonshell&amp;#34;, &amp;#34;ScriptLocation&amp;#34;: &amp;#34;s3://glue-test/job.py&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &amp;hellip; and finally start the job:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-job-run --job-name job1
@@ -7453,7 +7452,7 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=2/file.csv&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Then we can create and trigger the crawler:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-database --database-input &amp;#39;{&amp;#34;Name&amp;#34;:&amp;#34;db1&amp;#34;}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler --name c1 --database-name db1 --role r1 --targets &amp;#39;{&amp;#34;S3Targets&amp;#34;: [{&amp;#34;Path&amp;#34;: &amp;#34;s3://test/table1&amp;#34;}]}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler --name c1 --database-name db1 --role arn:aws:iam::000000000000:role/glue-role --targets &amp;#39;{&amp;#34;S3Targets&amp;#34;: [{&amp;#34;Path&amp;#34;: &amp;#34;s3://test/table1&amp;#34;}]}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler --name c1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Finally, we can query the table and partitions metadata that has been created by the crawler:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-tables --database-name db1
@@ -7485,7 +7484,7 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-database --database-input &amp;#39;{&amp;#34;Name&amp;#34;:&amp;#34;gluedb1&amp;#34;}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-connection --connection-input \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {&amp;#34;Name&amp;#34;:&amp;#34;conn1&amp;#34;,&amp;#34;ConnectionType&amp;#34;:&amp;#34;JDBC&amp;#34;,&amp;#34;ConnectionProperties&amp;#34;:{&amp;#34;USERNAME&amp;#34;:&amp;#34;test&amp;#34;,&amp;#34;PASSWORD&amp;#34;:&amp;#34;test&amp;#34;,&amp;#34;JDBC_CONNECTION_URL&amp;#34;:&amp;#34;jdbc:redshift://localhost.localstack.cloud:4510/db1&amp;#34;}}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler --name c1 --database-name gluedb1 --role r1 --targets &amp;#39;{&amp;#34;JdbcTargets&amp;#34;:[{&amp;#34;ConnectionName&amp;#34;:&amp;#34;conn1&amp;#34;,&amp;#34;Path&amp;#34;:&amp;#34;db1/%/mytable1&amp;#34;}]}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler --name c1 --database-name gluedb1 --role arn:aws:iam::000000000000:role/glue-role --targets &amp;#39;{&amp;#34;JdbcTargets&amp;#34;:[{&amp;#34;ConnectionName&amp;#34;:&amp;#34;conn1&amp;#34;,&amp;#34;Path&amp;#34;:&amp;#34;db1/%/mytable1&amp;#34;}]}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler --name c1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-crawler --name c1
@@ -7904,34 +7903,36 @@ If you are using aws cli v2, you can add &lt;code>--cli-binary-format raw-in-bas
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>If you get a similar output, you have correctly set up a Firehose delivery stream!
 Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-&lt;p>A new implementation of the Lambda service is available since LocalStack 1.3.
-Set &lt;code>PROVIDER_OVERRIDE_LAMBDA=v2&lt;/code> when starting LocalStack and let us know if you experience any issues!&lt;/p>
-&lt;p>Starting with LocalStack 2.0 the current Lambda implementation will be deprecated in favor of this new provider.
-For more information about behavioral changes, please consult the &lt;a href="/references/lambda-v2-provider/">Lambda Behavioral Changes&lt;/a> page.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>&lt;strong>New implementation active since Localstack v2.0 (Docker &lt;code>latest&lt;/code> since 2023-03-23)&lt;/strong>&lt;br>
+The new lambda provider &lt;code>v2&lt;/code> (formerly known as &lt;code>asf&lt;/code>) offers a completely re-written implementation with improved performance, &lt;a href="/references/coverage/coverage_lambda/">feature coverage&lt;/a>, and &lt;a href="https://localstack.cloud/blog/2022-08-04-parity-explained/">AWS parity&lt;/a>.
+The old lambda provider is temporarily available in Localstack v2 using &lt;code>PROVIDER_OVERRIDE_LAMBDA=legacy&lt;/code> but we highly recommend &lt;a href="/references/lambda-provider-v2/">migrating&lt;/a> to the new lambda provider.&lt;/p>
+&lt;p>If you encounter an error related to &lt;code>Docker not available&lt;/code>,
+mount the Docker socket &lt;code>/var/run/docker.sock&lt;/code> as a volume when starting LocalStack (see troubleshooting &lt;a href="/references/lambda-provider-v2/#docker-not-available">here&lt;/a>).&lt;/p>
+&lt;p>Please consult the page &lt;a href="/references/lambda-provider-v2/">Lambda Provider Behavioral Changes&lt;/a> for more information.&lt;/p>
 &lt;/div>
-&lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem. Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units. With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.&lt;/p>
-&lt;p>LocalStack allows you to execute your Lambda functions locally, without the need to deploy them to AWS. This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS. LocalStack allows you to execute your Lambda functions, in various execution modes, which is detailed on our &lt;a href="/references/lambda-executors/">Lambda execution modes&lt;/a> page.&lt;/p>
-&lt;h2 id="lambda-providers">Lambda Providers&lt;/h2>
-&lt;p>LocalStack&amp;rsquo;s Lambda support is available via two providers, the old one &lt;code>legacy&lt;/code> and our new and more stable provider &lt;code>v2&lt;/code> (formerly known as &lt;code>asf&lt;/code>). Set the &lt;code>PROVIDER_OVERRIDE_LAMBDA&lt;/code> variable to switch between the two providers, e.g. &lt;code>PROVIDER_OVERRIDE_LAMBDA=v2&lt;/code>.&lt;/p>
-&lt;p>By default LocalStack still uses the old provider.
-With LocalStack v2.0, this will be changed to &lt;code>v2&lt;/code>, but the old provider will still be available (&lt;code>legacy&lt;/code>), in case you need some additional time to migrate.
-This fallback option will then be removed in further releases.&lt;/p>
-&lt;h2 id="special-tooling-for-lambdas">Special tooling for Lambdas&lt;/h2>
-&lt;p>We also provide tools to help you develop, debug and test your Lambda functions more efficiently:&lt;/p>
+&lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem.
+Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units.
+With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.&lt;/p>
+&lt;p>LocalStack allows you to develop, debug, and execute your Lambda functions locally, without the need to deploy them to AWS.
+This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS.&lt;/p>
+&lt;h2 id="special-tooling-for-lambda">Special tooling for Lambda&lt;/h2>
+&lt;p>We provide tools to develop, debug, and test your Lambda functions more efficiently:&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="/user-guide/tools/lambda-tools/hot-swapping/">Hot swapping&lt;/a>: Hot code swapping for Lambda functions using LocalStack’s code mounting feature.&lt;/li>
+&lt;li>&lt;a href="/user-guide/tools/lambda-tools/hot-reloading/">Hot reloading&lt;/a>: Continuously applies code changes to Lambda functions without manual redeployment. Formerly known as hot swapping.&lt;/li>
 &lt;li>&lt;a href="/user-guide/tools/lambda-tools/debugging/">Remote debugging&lt;/a>: Attaching a debugger to your Lambda function using your IDE.&lt;/li>
 &lt;/ul>
 &lt;h2 id="lambda-sample-applications">Lambda sample applications&lt;/h2>
 &lt;p>LocalStack Pro samples contains a number of code examples that demonstrate how to use LocalStack to execute Lambda functions:&lt;/p>
 &lt;ul>
-&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray">Lambda XRay Tracing&lt;/a>: Simple demo application illustrating Lambda XRay tracing using LocalStack, deployed via the Serverless framework.&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image">Lambda Container Images&lt;/a>: Simple demo application illustrating Lambda container images in LocalStack. The Lambda image is built using Docker and pushed to a local ECR registry.&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging&lt;/a>: Simple demo application to illustrate debugging Lambdas locally.&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers">Lambda Layers&lt;/a>: Simple demo application illustrating Lambda layers using LocalStack, deployed via the Serverless framework.&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls">Lambda Function URL&lt;/a>: Simple demo application illustrating Lambda Function URLs using LocalStack, to call a Lambda Function via HTTP.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-hot-reloading">Lambda Hot Reloading&lt;/a> demonstrates hot reloading of function code and layers.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging&lt;/a> demonstrates debugging Lambda functions locally.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls">Lambda Function URL&lt;/a> demonstrates Lambda Function URLs to call a function via HTTP.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers">Lambda Layers&lt;/a> demonstrates Lambda layers deployed via the Serverless framework.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-php-bref-cdk-app">Lambda PHP/Bref&lt;/a> demonstrates PHP/Bref with and without fpm deployed via the Serverless framework and AWS CDK.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image">Lambda Container Images&lt;/a> demonstrates Lambda container images. The Lambda image is built using Docker and pushed to a local ECR registry.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray">Lambda XRay Tracing&lt;/a> demonstrates Lambda XRay tracing deployed via the Serverless framework.&lt;/li>
 &lt;/ul>
 &lt;h2 id="lambda-function-url">Lambda Function URL&lt;/h2>
 &lt;p>LocalStack supports &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html">Lambda Function URLs&lt;/a> for calling Lambda Functions via HTTP. Below is a simple example to deploy a Lamda function via a ZIP file before creating a Function URL:&lt;/p>
@@ -7940,16 +7941,13 @@ This fallback option will then be removed in further releases.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime &amp;lt;lambda-runtime&amp;gt; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb://&amp;lt;path/to/zip/file&amp;gt; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler index.handler \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role cool-stacklifter&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>After the Lambda function is created, you can create a Function URL to call the Lambda function:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal lambda create-function-url-config \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name &amp;lt;function-name&amp;gt; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --auth-type NONE&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="lambda-container-images">Lambda Container Images&lt;/h2>
 &lt;p>LocalStack Pro supports &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/images-create.html">Lambda functions defined as container images&lt;/a>, so you can bundle your code and dependencies as one container image.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-If your Lambda custom image fails with the error &lt;code>exec /tmp/xxx.sh: no such file or directory&lt;/code>, ensure &lt;code>bash&lt;/code> and &lt;code>python 2/3&lt;/code> is installed inside your container image for the integration with LocalStack to work.
-&lt;/div>
 &lt;h2 id="lambda-layers">Lambda Layers&lt;/h2>
 &lt;p>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layers&lt;/a> are an AWS feature that allows to pull in additional code and content into your Lambda functions.&lt;/p>
 &lt;p>LocalStack Pro provides support for deploying Lambda layers locally - for more details on general usage, please follow the documentation and examples in the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS documentation on Lambda layers&lt;/a>.&lt;/p>
@@ -7966,7 +7964,7 @@ Below is a simple example for creating a Lambda layer in Python with a &lt;code>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; import testlayer; testlayer.util()&amp;#39; &amp;gt;&amp;gt; /tmp/testlambda.py
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; print(&amp;#34;Debug output from Lambda function&amp;#34;)&amp;#39; &amp;gt;&amp;gt; /tmp/testlambda.py
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>(cd /tmp; zip testlambda.zip testlambda.py)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name func1 --runtime python3.8 --role r1 --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers $LAYER_ARN:1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name func1 --runtime python3.8 --role arn:aws:iam::000000000000:role/lambda-role --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers $LAYER_ARN:1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with &lt;code>DEBUG=1&lt;/code> enabled), which includes the output from the layer util function:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>&amp;gt; START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;gt; Output from Lambda layer util function
@@ -8061,9 +8059,7 @@ Assuming you&amp;rsquo;ve created a layer named &lt;code>test-layer&lt;/code> wi
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">official AWS documentation&lt;/a>.&lt;/p>
-&lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;p>Only the local executor with locally launched LocalStack can be used together with JVM Lambda Functions.&lt;/p></description></item><item><title>User-Guide: CloudWatch Logs</title><link>/user-guide/aws/logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/logs/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html">official AWS documentation&lt;/a>.&lt;/p></description></item><item><title>User-Guide: CloudWatch Logs</title><link>/user-guide/aws/logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/logs/</guid><description>
 &lt;p>&lt;a href="https://docs.aws.amazon.com/cloudwatch/index.html">CloudWatch Logs&lt;/a> allows to store and retrieve logs. While some services automatically create and write logs (e.g. Lambda), logs can also be added manually.
 CloudWatch Logs is available in the Community version. However, some specific features are only available in Pro.&lt;/p>
 &lt;h2 id="subscription-filters">Subscription Filters&lt;/h2>
@@ -8251,7 +8247,7 @@ The following step is optional and may not be required, depending on the operati
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://my-mwaa-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Next create the environment with the bucket ARN as follows:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mwaa create-environment --dag-s3-path /dags \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --execution-role-arn r1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --execution-role-arn arn:aws:iam::000000000000:role/airflow-role \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --network-configuration {} \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --source-bucket-arn arn:aws:s3:::my-mwaa-bucket \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --airflow-version 2.2.2 \

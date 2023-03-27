@@ -11,7 +11,7 @@ Podman support is still experimental, and the following docs give you an overvie
 &lt;p>To run &lt;code>localstack&lt;/code>, simply aliasing &lt;code>alias docker=podman&lt;/code> is not enough, for the following reasons:&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>localstack&lt;/code> is using &lt;a href="https://pypi.org/project/docker/">docker-py&lt;/a> which requires a connection to &lt;code>/var/run/docker.sock&lt;/code>&lt;/li>
-&lt;li>&lt;code>LAMBDA_EXECUTOR=docker&lt;/code> requires mounting &lt;code>/var/run/docker.sock&lt;/code> into the container&lt;/li>
+&lt;li>Lambda requires mounting the Docker socket &lt;code>/var/run/docker.sock&lt;/code> into the container (see &lt;a href="/references/lambda-provider-v2/">Lambda Provider Behavioral Changes&lt;/a>).&lt;/li>
 &lt;/ul>
 &lt;p>Here are several options on running LocalStack using podman:&lt;/p>
 &lt;h3 id="podman-docker">podman-docker&lt;/h3>

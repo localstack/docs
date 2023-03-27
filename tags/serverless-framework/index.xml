@@ -135,22 +135,7 @@ Next, you need make minor adjustments to your function code in order to make you
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">lambda&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">mountCode&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When this flag is set, the lambda code will be mounted into the container running the function directly from your local directory instead of packaging and uploading it.&lt;/p>
-&lt;p>If you want to use this feature together with the local lambda executor (&lt;code>LAMBDA_EXECUTOR=local&lt;/code>), you need to make sure the container running localstack itself can find the code.
-To do that, you need to manually mount the code into the localstack container, here is a snippet using a &lt;code>docker-compose.yml&lt;/code> with the essentials.
-Where &lt;code>/absolute/path/to/todos&lt;/code> is the path on your local machine that points to the &lt;code>todos/&lt;/code> directory containing the lambda code from our previous example.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># docker-compose.yml to start localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># ...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_EXECUTOR=local&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_REMOTE_DOCKER=0&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># ...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># ...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/absolute/path/to/todos:/absolute/path/to/todos&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="ran-into-trouble">Ran into trouble?&lt;/h2>
+&lt;h2 id="ran-into-trouble">Ran into trouble?&lt;/h2>
 &lt;p>If you run into any issues or problems while integrating LocalStack with your Serverless app, please &lt;a href="https://github.com/localstack/serverless-localstack/issues">submit an issue&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Spring Cloud Function</title><link>/user-guide/integrations/spring-cloud-function/</link><pubDate>Tue, 28 Sep 2021 00:00:00 +0000</pubDate><guid>/user-guide/integrations/spring-cloud-function/</guid><description>
 &lt;p>&lt;img src="spring-logo.svg" width="600px" alt="Spring logo">&lt;br />&lt;/p>
 &lt;h2 id="overview">Overview&lt;/h2>
@@ -207,7 +192,7 @@ any other JVM setup.&lt;/p>
 &lt;/ul>
 &lt;/li>
 &lt;li>&lt;a href="#settings-up-deployment">Setting up Deployment&lt;/a>&lt;/li>
-&lt;li>&lt;a href="#testing-debugging-and-code-hot-swapping">Testing, Debugging and Code hot-swapping&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#testing-debugging-and-hot-reloading">Testing, Debugging and Hot Reloading&lt;/a>&lt;/li>
 &lt;li>&lt;a href="#useful-links">Useful links&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h3 id="limitations">Limitations&lt;/h3>
@@ -1280,9 +1265,9 @@ id="tabs-15-02" role="tabpanel" aria-labelled-by="tabs-15-02-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;h2 id="testing-debugging-and-code-hot-swapping">Testing, Debugging and Code hot-swapping&lt;/h2>
+&lt;h2 id="testing-debugging-and-hot-reloading">Testing, Debugging and Hot Reloading&lt;/h2>
 &lt;p>Please read our &lt;a href="/content/en/tools/lambda-tools/_index.md">Lambda Tools&lt;/a>
-documentation to learn more about testing, debugging and code hot-swapping
+documentation to learn more about testing, debugging, and hot reloading
 for JVM Lambda functions.&lt;/p>
 &lt;h2 id="useful-links">Useful Links&lt;/h2>
 &lt;ul>

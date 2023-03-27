@@ -7,21 +7,21 @@ This manifest contains links to a Linux AMD64 as well as a Linux ARM64 image.&lt
 Help us getting aware of current issues with the ARM64 image by &lt;a href="https://github.com/localstack/localstack/issues/new?assignees=&amp;amp;labels=bug,ARM64%2Cneeds-triaging&amp;amp;template=bug-report.yml&amp;amp;title=bug%3A+%3Ctitle%3E">filing an issue&lt;/a> if you experience any problems.&lt;/p>
 &lt;p>Currently known limitations are collected in the GitHub issue &lt;a href="https://github.com/localstack/localstack/issues/4921">localstack/localstack#4921&lt;/a>.&lt;/p>
 &lt;/div>
-&lt;h2 id="pulling-the-image">Pulling the image&lt;/h2>
+&lt;h2 id="pulling-the-localstack-image">Pulling the LocalStack image&lt;/h2>
 &lt;p>With the multi-arch Docker manifest, your Docker client (and therefore the &lt;a href="/getting-started/#localstack-cli">LocalStack CLI&lt;/a>) now automatically selects the image according to your platform:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker pull localstack/localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;p>You can check the architecture of the pulled image by using &lt;code>docker inspect&lt;/code>:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker inspect localstack/localstack | jq &amp;#39;.[0].Architecture&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;arm64&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;h2 id="using-amd64-lambda-functions-and-binaries-on-arm64">Using AMD64 Lambda functions and binaries on ARM64&lt;/h2>
-&lt;p>If you want to execute Docker Lambda functions or binaries which have not been built for your architecture, you need to configure cross-platform emulation on your system.&lt;/p>
-&lt;p>You can do so by installing a AMD64 &lt;code>bin_fmt&lt;/code> emulator on your ARM64 host system with the following command:&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-The following command installs additionals emulators on your host system.
-&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt --install amd64&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can check the current status with:
+&lt;h2 id="lambda-multi-architecture-support">Lambda multi-architecture support&lt;/h2>
+&lt;p>LocalStack executes Lambda functions in Docker containers with the target platform &lt;code>linux/amd64&lt;/code> or &lt;code>linux/arm64&lt;/code>
+depending on the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set architecture&lt;/a> configured for the function (&lt;code>x86_64&lt;/code> by default or &lt;code>arm64&lt;/code>).
+This behavior can lead to errors if the host system, the Docker image, or the code/layer of the function do not support the target architecture.
+If you prefer to execute Lambda functions natively, you can set the &lt;a href="/references/configuration/#lambda">configuration&lt;/a> variable &lt;code>LAMBDA_IGNORE_ARCHITECTURE=1&lt;/code>.&lt;/p>
+&lt;p>Host systems with &lt;a href="https://docs.docker.com/build/building/multi-platform/">multi-architecture support&lt;/a> can run containers for different Linux architectures using emulation.
+For example, an Apple Silicon MacBook can execute &lt;code>linux/arm64&lt;/code> (&lt;code>arm64&lt;/code>) lambda functions natively or emulate them for &lt;code>linux/arm64&lt;/code> (&lt;code>x86_64&lt;/code>).
+However, emulation through qemu is only best-effort and certain features such as &lt;a href="https://github.com/docker/for-mac/issues/5191#issuecomment-834154431">ptrace&lt;/a> for debugging might not work.&lt;/p>
+&lt;p>You can check the supported architectures on your host system with:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex; background-color:#dfdfdf">&lt;span> &amp;#34;supported&amp;#34;: [
@@ -37,6 +37,14 @@ The following command installs additionals emulators on your host system.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;qemu-aarch64&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>If you want to execute Docker Lambda functions or binaries which have not been built for your architecture,
+you might need to configure cross-platform emulation on your system.&lt;/p>
+&lt;p>You can do so by installing the &lt;code>bin_fmt&lt;/code> emulator with the following command:&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+The following command installs additionals emulators on your host system.
+&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt --install amd64&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
 &lt;h3 id="pulling-images-for-other-architectures">Pulling images for other architectures&lt;/h3>
 &lt;div class="alert alert-warning" role="alert">
