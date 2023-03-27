@@ -31,12 +31,12 @@ If you discover a difference between LocalStack and AWS in the new provider, ple
 **Stricter input validation:**
 Expect more exceptions in the new provider due to invalid input.
 For example, the old provider accepted arbitrary strings such as `r1` as a [lambda role](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html#SSS-CreateFunction-request-Role) when creating a function.
-The new provider validates the role `arn` in the format `arn:aws:iam::000000000000:role/lambda-role` using an appropriate regex but currently does not check whether it exists.
+The new provider validates the role ARN in the format `arn:aws:iam::000000000000:role/lambda-role` using an appropriate regex but currently does not check whether it exists.
 
 **Asynchronous function creation:**
 Creating and updating lambda functions now happens asynchronously following the [AWS Lambda state model](https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/).
 The old provider created functions synchronously by blocking until the function state was active.
-In the new provider, functions are always created in the `Pending` state and move to `Active` once they are ready to handle invocations.
+In the new provider, functions are always created in the `Pending` state and move to `Active` once they are ready to accept invocations.
 Migration instructions are provided in the troubleshooting example [Function in Pending state](#function-in-pending-state) below.
 
 ## Docker Execution Environment
@@ -51,7 +51,7 @@ The [Lambda Executor Modes]({{< ref "references/lambda-executors" >}}) such as `
 In the old provider, lambda functions were executed within the LocalStack container in the local executor mode.
 It was primarily used as a fallback if the Docker socket was unavailable in the LocalStack container.
 Hence, many users unintentionally used the local executor mode despite configuring `LAMBDA_EXECUTOR=docker`.
-The new provider requires no such configuration and now behaves like the old `docker-reuse` executor.
+The new provider requires no such configuration and now behaves similar to the old `docker-reuse` executor.
 
 **No container restart after each invocation:**
 Lambda containers are reused between invocations.
@@ -115,8 +115,8 @@ In the old provider, changes were reflected instantly using code mounting but co
 
 **Runtime restart after each code change:**
 The runtime inside the container is restarted after every code change.
-Therefore, the handler function re-executes any initialization code *outside* after every code change.
-However, the container itself does not restart.
+During the runtime restart, the handler function re-executes any initialization code *outside* your handler function.
+The container itself is not restarted.
 Therefore, filesystem changes persist between code changes for invocations dispatched to the same container.
 
 **File sharing permissions with Docker Desktop on macOS:**
