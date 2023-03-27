@@ -89,4 +89,6 @@ hugo v0.88.1-5BC54738+extended linux/amd64 BuildDate=2021-09-04T09:39:19Z Vendor
 Error: Error building site: "/home/localstack/Repos/docs-test/content/en/get-started/_index.md:57:1": failed to extract shortcode: template for shortcode "alert" not found
 Built in 45 ms
 ```
-Make sure to correctly clone and initialize the git submodules of this repo. For details see the section "[Clone the repo](#clone-the-repo)" above.
+
+1. Make sure to correctly clone and initialize the git submodules of this repo. For details see the section "[Clone the repo](#clone-the-repo)" above.
+2. Delete the Hugo Module cache using `hugo mod clean` or `make clean`.
