@@ -9,7 +9,7 @@ METRICS_ARTIFACTS_BRANCH=${2:-master}
 REPOSITORY_NAME=${REPOSITORY_NAME:-localstack-ext}
 ARTIFACT_ID=${ARTIFACT_ID:-parity-metric-ext-raw}
 WORKFLOW=${WORKFLOW:-"Integration Tests"}
-RENAME_ARTIFACT=${RENAME_ARTIFACT:-}
+PREFIX_ARTIFACT=${PREFIX_ARTIFACT:-}
 FILTER_SUCCESS=${FILTER_SUCCESS:-1}
 
 RESOURCE_FOLDER=${RESOURCE_FOLDER:-metrics-raw}
@@ -89,12 +89,15 @@ fi
 
 echo "Moving artifact to $TARGET_FOLDER"
 mkdir -p $TARGET_FOLDER
-if [[ -z "${RENAME_ARTIFACT}" ]]; then
+if [[ -z "${PREFIX_ARTIFACT}" ]]; then
     # pro implementation_coverage artifact download has a subfolder "pro"
     cp -R $TMP_FOLDER/* $TARGET_FOLDER
 else
     # metrics-raw-data artifacts -> we are only want to keept the csv and rename it
-    mv $TMP_FOLDER/*.csv $TARGET_FOLDER/$RENAME_ARTIFACT
+    for file in $TMP_FOLDER/*.csv; do
+      org_file_name=$(echo $file | sed "s/.*\///")
+      mv -- "$file" "$TARGET_FOLDER/$PREFIX_ARTIFACT-$org_file_name"
+    done
 fi
 
 # cleanup

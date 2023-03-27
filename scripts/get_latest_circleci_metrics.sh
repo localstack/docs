@@ -45,8 +45,6 @@ echo "Moving community metrics implementation details to $METRICS_IMPL..."
 mkdir -p $METRICS_IMPL
 mv community $METRICS_IMPL
 
-# TODO currently the CircleCI master still has the pro details, which would be added to the PR if we do not remove it
-rm -rf pro
 
 echo "Resulting file structure:"
 tree $PARENT_FOLDER

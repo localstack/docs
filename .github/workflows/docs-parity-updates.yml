@@ -38,7 +38,7 @@ jobs:
           REPOSITORY_NAME: localstack-moto-test-coverage 
           ARTIFACT_ID: test-metrics
           WORKFLOW: moto-integration-tests
-          RENAME_ARTIFACT: moto-integration-test.csv
+          PREFIX_ARTIFACT: moto-integration-test
           FILTER_SUCCESS: 0
 
       - name: Download metrics data from Pro pipeline (GitHub)
@@ -46,19 +46,19 @@ jobs:
         run: ./scripts/get_latest_github_metrics.sh ./target master
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
-          REPOSITORY_NAME: lsv2test-ext
-          ARTIFACT_ID: parity-metric-ext-raw # TODO might be renamed
-          WORKFLOW: "Build, Test, Push" # TODO rename
-          RENAME_ARTIFACT: pro-integration-test.csv
+          REPOSITORY_NAME: localstack-ext
+          ARTIFACT_ID: parity-metric-ext-raw 
+          WORKFLOW: "Build, Test, Push" 
+          PREFIX_ARTIFACT: pro-integration-test
       
       - name: Download coverage (capture-notimplemented) data from Pro pipeline (GitHub)
         working-directory: docs
         run: ./scripts/get_latest_github_metrics.sh ./target master
         env:
           GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
-          REPOSITORY_NAME: lsv2test-ext
-          ARTIFACT_ID: capture-notimplemented-pro # TODO might be renamed
-          WORKFLOW: "Build, Test, Push" # TODO rename
+          REPOSITORY_NAME: localstack-ext
+          ARTIFACT_ID: capture-notimplemented-pro 
+          WORKFLOW: "Build, Test, Push" 
           RESOURCE_FOLDER: "metrics-implementation-details"
 
       - name: Download metrics data from latest Community test run (CircleCI)
