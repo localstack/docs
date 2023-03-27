@@ -8,6 +8,9 @@ dev:
 
 install:
 	git submodule update --init --recursive
-	@which hugo && echo "Please install Hugo extended: https://gohugo.io/installation/"
+	@which hugo || echo "Please install Hugo extended: https://gohugo.io/installation/"
 
-.PHONY: serve dev install
+clean:
+	hugo mod clean
+
+.PHONY: serve dev install clean

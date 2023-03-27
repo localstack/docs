@@ -147,48 +147,60 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 | `KINESIS_LATENCY` | `500` (default), `0` (to disable)| Integer value of milliseconds, causing the Kinesis API to delay returning a response in order to mimic latency from a live AWS call. |
 | `KINESIS_INITIALIZE_STREAMS` | `"my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1"` | A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. Only works with the `kinesis-mock` `KINESIS_PROVIDER`. |
 
-### Lambda (New / `v2`)
+### Lambda
+
+**New [Lambda]({{< ref "lambda" >}}) implementation active since Localstack&nbsp;v2.0 (Docker `latest` since 2023-03-23)**<br>
+Please consult the page [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}) for more information.
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console.|
-| `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Optional bucket name for running lambdas locally.|
-| `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
-| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, user, platform and privileged mode. |
-| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. Only applicable when using docker-reuse executor. |
-| `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed |
-| | `kubernetes` | PRO-only. Execute lambdas in a Kubernetes cluster |
-| `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `10` (default) | How many seconds Lambda will wait for the runtime environment to start up |
-| `LAMBDA_RUNTIME_IMAGE_MAPPING` | | Allows two options to customize the resolution of Lambda runtime: <br> 1. pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> 2. json dict mapping the <runtime> to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
-| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default) | Prefix for images that will be used to execute Lambda functions in kubernetes. |
-
+| `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Magic S3 bucket name for [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}). |
+| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, ulimits, user, platform, and privileged mode. |
+| `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
+| `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
+| `LAMBDA_IGNORE_ARCHITECTURE` | `0` (default) | Whether to ignore the AWS architectures (x86_64 or arm64) configured for the lambda function. Set to `1` to run cross-platform compatible lambda functions natively (i.e., Docker selects architecture). |
+| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
+| `LAMBDA_KEEPALIVE_MS` | `600000` (default 10min) | Time in milliseconds until lambda shuts down the execution environment after the last invocation has been processed. Set to `0` to immediately shut down the execution environment after an invocation. |
+| `LAMBDA_LIMITS_CONCURRENT_EXECUTIONS` | `1000` (default) | The maximum number of events that functions can process simultaneously in the current Region. See [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/lambda-service.html) |
+| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. |
+| `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `10` (default) | How many seconds Lambda will wait for the runtime environment to start up. |
+| `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed. |
+| | `kubernetes` (pro) | Execute lambdas in a Kubernetes cluster. |
+| `LAMBDA_RUNTIME_IMAGE_MAPPING` | [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) (default) | Customize the Docker image of Lambda runtimes, either by:<br> a) pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> b) json dict mapping the `<runtime>` to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
+| `LAMBDA_SYNCHRONOUS_CREATE` | `0` (default) | Set to `1` to create lambda functions synchronously (not recommended). |
+| `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console. This does not affect the logs processing in CloudWatch. |
+| `PROVIDER_OVERRIDE_LAMBDA` | `v2` (default) | Currently supported implementation of our [local Lambda service]({{< ref "lambda" >}}) active since Localstack&nbsp;v2.0 (Docker `latest` since 2023-03-23). |
+| | `legacy` (**Deprecated**) | Use the old lambda provider (not recommended).<br>**See [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}).** |
 
 ### Lambda (Legacy)
 
+The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "lambda-provider-v2" >}}) to the new lambda provider.
+
 | Variable| Example Values | Description |
 | - | - | - |
-| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in [Lambda Executor Modes]({{< ref "lambda-executors" >}}). |
+| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in [Lambda Executor Modes]({{< ref "lambda-executors" >}}).<br> **Removed in new provider. Mount the Docker socket or see [migration guide]({{< ref "lambda-provider-v2" >}}).** |
 | | `docker` (default) | Run each function invocation in a separate Docker container. |
 | | `local` (fallback) | Run Lambda functions in a temporary directory on the local machine. |
 | | `docker-reuse` | Create one Docker container per function and reuse it across invocations. |
-| `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the [stay-open mode]({{< ref "lambda-executors#stay-open-mode" >}}) of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Swapping]({{< ref "hot-swapping" >}}).|
-| `LAMBDA_REMOTE_DOCKER` | | determines whether Lambda code is copied or mounted into containers |
+| `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the [stay-open mode]({{< ref "lambda-executors#stay-open-mode" >}}) of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Reloading]({{< ref "hot-reloading" >}}).<br> **Removed in new provider because stay-open mode is the default behavior. `LAMBDA_KEEPALIVE_MS` can be used to configure how long containers should be kept running in-between invocations.** |
+| `LAMBDA_REMOTE_DOCKER` | | determines whether Lambda code is copied or mounted into containers.<br> **Removed in new provider because zip file copying is used by default and hot reloading automatically configures mounting.** |
 | | `true` (default) | your Lambda function definitions will be passed to the container by copying the zip file (potentially slower). It allows for remote execution, where the host and the client are not on the same machine.|
 | | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. |
-| `LAMBDA_TRUNCATE_STDOUT` | `2000` | Allows increasing the default char value for truncation of lambda logs.|
-| `BUCKET_MARKER_LOCAL` | | Optional bucket name for running lambdas locally.|
-| `LAMBDA_CODE_EXTRACT_TIME` | `25` | Time in seconds to wait at max while extracting Lambda code. By default it is 25 seconds for limiting the execution time to avoid client/network timeout issues.| 
-| `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to if not default bridge network. |
-| `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function. |
-| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, user, platform and privileged mode. |
-| `LAMBDA_CONTAINER_REGISTRY` | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.|
-| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove containers after Lambdas being inactive for 10 minutes. Only applicable when using docker-reuse executor. |
-| `LAMBDA_FALLBACK_URL` | | Fallback URL to use when a non-existing Lambda is invoked. Either records invocations in DynamoDB (value `dynamodb://<table_name>`) or forwards invocations as a POST request (value `http(s)://...`).|
-| `LAMBDA_FORWARD_URL` | | URL used to forward all Lambda invocations (useful to run Lambdas via an external service).
-| `LAMBDA_JAVA_OPTS` | `-Xmx512M` | Allow passing custom JVM options to Java Lambdas executed in Docker. Use `_debug_port_` placeholder to configure the debug port, e.g., `-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=_debug_port_`. |
-| `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`. |
-| `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times) |
-| `SYNCHRONOUS_KINESIS_EVENTS` | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations. |
+| `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char value for truncation of lambda logs. This does not affect the logs processing in CloudWatch.<br> **Still supported in new provider.** |
+| `BUCKET_MARKER_LOCAL` | `__local__` (default) | Optional bucket name for running lambdas locally.<br> **Still supported in new provider but default changed to `hot-reload`.** |
+| `LAMBDA_CODE_EXTRACT_TIME` | `25` (default) | Time in seconds to wait at max while extracting Lambda code. By default, it is 25 seconds for limiting the execution time to avoid client/network timeout issues. <br> **Removed in new provider because function creation happens asynchronously.**| 
+| `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to.<br> **Still supported in new provider.** |
+| `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function.<br> **Currently not supported in new provider.** |
+| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, user, platform and privileged mode.<br> **Still supported in new provider.** |
+| `LAMBDA_CONTAINER_REGISTRY` | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.<br> **Replaced by `LAMBDA_RUNTIME_IMAGE_MAPPING` in new provider.** |
+| `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. Only applicable when using docker-reuse executor.<br> **Still supported in new provider.** |
+| `LAMBDA_FALLBACK_URL` | | Fallback URL to use when a non-existing Lambda is invoked. Either records invocations in DynamoDB (value `dynamodb://<table_name>`) or forwards invocations as a POST request (value `http(s)://...`).<br> **Removed in new provider.** |
+| `LAMBDA_FORWARD_URL` | | URL used to forward all Lambda invocations (useful to run Lambdas via an external service). <br> **Removed in new provider.** |
+| `LAMBDA_JAVA_OPTS` | `-Xmx512M` | Allow passing custom JVM options to Java Lambdas executed in Docker. Use `_debug_port_` placeholder to configure the debug port, e.g., `-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=_debug_port_`.<br> **Currently not supported in new provider but possible via custom entrypoint.** |
+| `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`. <br> **Removed in new provider.** |
+| `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times).<br> **Removed in new provider because the X-Ray daemon is always initialized.** |
+| `SYNCHRONOUS_KINESIS_EVENTS` | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations.<br> **Removed in new provider.** |
+| `PROVIDER_OVERRIDE_LAMBDA` | `asf` (optional) | Opt-in to use the new lambda provider beta. See [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}). <br> **Active by default in the new provider.** |
 
 ### OpenSearch
 

@@ -8,6 +8,12 @@ aliases:
   - /tools/local-endpoint-injection/patched-sdks/
 ---
 
+{{< alert title="Warning" color="warning">}}
+Patched AWS SDKs for Lambdas are **deprecated** and only used by the old lambda provider.
+The new lambda provider (active since Localstack&nbsp;v2.0) uses DNS-based domain resolution (except for the Ruby runtime).<br>
+Please refer to [Lambda Provider Behavioral Change]({{< ref "lambda-provider-v2" >}}) for more details about the new lambda implementation.
+{{< /alert >}}
+
 The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
 This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.
 

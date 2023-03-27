@@ -18,7 +18,8 @@ Help us getting aware of current issues with the ARM64 image by [filing an issue
 Currently known limitations are collected in the GitHub issue [localstack/localstack#4921](https://github.com/localstack/localstack/issues/4921).
 {{< /alert >}}
 
-## Pulling the image
+## Pulling the LocalStack image
+
 With the multi-arch Docker manifest, your Docker client (and therefore the [LocalStack CLI]({{< ref "getting-started/#localstack-cli" >}})) now automatically selects the image according to your platform:
 {{< command >}}
 $ docker pull localstack/localstack
@@ -30,20 +31,18 @@ $ docker inspect localstack/localstack | jq '.[0].Architecture'
 "arm64"
 {{< / command >}}
 
-## Using AMD64 Lambda functions and binaries on ARM64
-If you want to execute Docker Lambda functions or binaries which have not been built for your architecture, you need to configure cross-platform emulation on your system.
+## Lambda multi-architecture support
 
-You can do so by installing a AMD64 `bin_fmt` emulator on your ARM64 host system with the following command:
+LocalStack executes Lambda functions in Docker containers with the target platform `linux/amd64` or `linux/arm64`
+depending on the [instruction set architecture](https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html) configured for the function (`x86_64` by default or `arm64`).
+This behavior can lead to errors if the host system, the Docker image, or the code/layer of the function do not support the target architecture.
+If you prefer to execute Lambda functions natively, you can set the [configuration]({{< ref "configuration#lambda" >}}) variable `LAMBDA_IGNORE_ARCHITECTURE=1`.
 
-{{< alert title="Warning" color="warning" >}}
-The following command installs additionals emulators on your host system.
-{{< /alert >}}
+Host systems with [multi-architecture support](https://docs.docker.com/build/building/multi-platform/) can run containers for different Linux architectures using emulation.
+For example, an Apple Silicon MacBook can execute `linux/arm64` (`arm64`) lambda functions natively or emulate them for `linux/arm64` (`x86_64`).
+However, emulation through qemu is only best-effort and certain features such as [ptrace](https://github.com/docker/for-mac/issues/5191#issuecomment-834154431) for debugging might not work.
 
-{{< command >}}
-$ docker run --privileged --rm tonistiigi/binfmt --install amd64
-{{< / command >}}
-
-You can check the current status with:
+You can check the supported architectures on your host system with:
 {{< command "hl_lines=3-7" >}}
 $ docker run --privileged --rm tonistiigi/binfmt
 {
@@ -60,6 +59,19 @@ $ docker run --privileged --rm tonistiigi/binfmt
     "qemu-aarch64"
   ]
 }
+{{< / command >}}
+
+If you want to execute Docker Lambda functions or binaries which have not been built for your architecture,
+you might need to configure cross-platform emulation on your system.
+
+You can do so by installing the `bin_fmt` emulator with the following command:
+
+{{< alert title="Warning" color="warning" >}}
+The following command installs additionals emulators on your host system.
+{{< /alert >}}
+
+{{< command >}}
+$ docker run --privileged --rm tonistiigi/binfmt --install amd64
 {{< / command >}}
 
 ## Troubleshooting

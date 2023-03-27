@@ -175,7 +175,7 @@ In the above commands, we first create two zip files for our Lambda functions: l
 {{< command >}}
 $ awslocal lambda create-function --function-name ml-train \
   --runtime python3.8 \
-  --role r1 \
+  --role arn:aws:iam::000000000000:role/lambda-role \
   --handler train.handler \
   --timeout 600 \
   --code '{"S3Bucket":"reproducible-ml","S3Key":"lambda.zip"}' \
@@ -183,7 +183,7 @@ $ awslocal lambda create-function --function-name ml-train \
 
 $ awslocal lambda create-function --function-name ml-predict \
   --runtime python3.8 \
-  --role r1 \
+  --role arn:aws:iam::000000000000:role/lambda-role \
   --handler infer.handler \
   --timeout 600 \
   --code '{"S3Bucket":"reproducible-ml","S3Key":"infer.zip"}' \

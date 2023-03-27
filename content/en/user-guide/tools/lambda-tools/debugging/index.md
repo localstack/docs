@@ -3,21 +3,15 @@ title: "Remote Debugging"
 weight: 5
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
-  Attach a debugger to your Lambda functions from your IDE.
+  Attach a debugger to your Lambda functions from within your IDE
 aliases:
   - /tools/lambda-tools/debugging/
 ---
 
 # Overview
 
-This guide covers the remote debugging of Lambda functions with [Visual Studio Code](https://code.visualstudio.com/) or IntelliJ IDEA as an IDE.
-For a simple working example of this feature, check out [our samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
-
-| Complexity   | ★☆☆☆☆             |
-|--------------|-------------------|
-| Time to read | 5 minutes         |
-| Edition      | community/pro     |
-| Platform     | any               |
+This guide covers remote debugging of Lambda functions with the IDEs [Visual Studio Code](https://code.visualstudio.com/) and [IntelliJ IDEA](https://www.jetbrains.com/idea/).
+For a simple working example of this feature, check out Pro sample [lambda-mounting-and-debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
 
 More examples and tooling support for local Lambda debugging (including support for other IDEs like PyCharm) is coming soon - stay tuned!
 
@@ -32,7 +26,7 @@ More examples and tooling support for local Lambda debugging (including support 
 
 Lambda functions debugging used to be a difficult task. LocalStack changes that
 with the same local code mounting functionality that also helps you
-to [iterate quickly over your function code]({{< ref "hot-swapping" >}}).
+to [iterate quickly over your function code]({{< ref "hot-reloading" >}}).
 
 For a simple working example of this feature, you can refer to
 [our samples](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).
@@ -187,7 +181,7 @@ $ awslocal lambda create-function --function-name my-cool-local-function \
     --handler handler.handler \
     --runtime python3.8 \
     --timeout 150 \
-    --role cool-stacklifter
+    --role arn:aws:iam::000000000000:role/lambda-role
 {{< /command >}}
 
 We can quickly verify that it works by invoking it with a simple payload:
@@ -358,11 +352,11 @@ exports.handler = async (event) => {
 Create the lambda function using:
 {{< command >}}
 $ awslocal lambda create-function --function-name func1 \
-    --code S3Bucket="__local__",S3Key="$(pwd)/" \
+    --code S3Bucket="hot-reload",S3Key="$(pwd)/" \
     --handler myindex.handler \
     --runtime nodejs14.x \
     --timeout 150 \
-    --role cool-stacklifter
+    --role arn:aws:iam::000000000000:role/lambda-role
 {{< /command >}}
 
 Now to debug your lambda function, click on the `Debug` icon with

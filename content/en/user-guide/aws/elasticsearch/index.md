@@ -238,7 +238,7 @@ services:
       - data01:/usr/share/elasticsearch/data
 
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack-main}"
     image: localstack/localstack
     ports:
       - "4566:4566"
@@ -248,7 +248,6 @@ services:
       - ES_CUSTOM_BACKEND=http://elasticsearch:9200
       - DEBUG=${DEBUG- }
       - PERSISTENCE=${PERSISTENCE- }
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
