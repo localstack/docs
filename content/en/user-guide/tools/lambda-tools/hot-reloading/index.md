@@ -43,11 +43,11 @@ More information about the new lambda provider is available under [Lambda Provid
 **Delay in code change detection:**
 It can take up to 700ms to detect code changes.
 In the meantime, invocations still execute the former code.
-Hot reloading triggers after 500ms without changes, and it can take up to 200ms until the change is notified.
+Hot reloading triggers after 500ms without changes, can take up to 200ms until the change is notified.
 
 **Runtime restart after each code change:**
 The runtime inside the container is restarted after every code change.
-Therefore, any initialization code *outside* the handler function re-executes after every code change.
+Therefore, the handler function re-executes any initialization code *outside* after every code change.
 However, the container itself does not restart.
 Therefore, filesystem changes persist between code changes for invocations dispatched to the same container.
 
