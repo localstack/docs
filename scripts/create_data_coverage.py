@@ -334,6 +334,13 @@ def aggregate_recorded_raw_data(
                 if not op_record.get("aws_validated") and aws_validated:
                     op_record["aws_validated"] = True
 
+                node_id = metric.get("node_id") or metric.get("test_node_id")
+
+                if internal_test and not op_record["implemented"]:
+                    print(f"WARN: {service}.{op_name} classified as 'not implemented', but found a test calling it: ({source}) {node_id}")
+                    op_record["implemented"] = True
+                    op_record["availability"] = "pro" if source == "ls_pro" else "community"
+                
                 # test details currently only considered for internal test suite
                 # TODO might change when we include terraform test results
                 if not internal_test:
@@ -356,7 +363,6 @@ def aggregate_recorded_raw_data(
                 # separate lists for source ("ls_community" and "ls_pro")
                 test_list = param_test_details.setdefault(source, [])
 
-                node_id = metric.get("node_id") or metric.get("test_node_id")
                 if param_exception := metric.get("exception", ""):
                     if param_exception == "CommonServiceException":
                         # try to get more details about the CommonServiceException from the response
