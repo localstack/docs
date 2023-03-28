@@ -1,5 +1,6 @@
 {
   "service": "ssm",
+  "pro_support": true,
   "community_support": true,
   "operations": [
     {
@@ -26,8 +27,8 @@
     },
     {
       "CancelCommand": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": false,
         "aws_validated": false,
@@ -444,8 +445,8 @@
     },
     {
       "DescribeInstanceInformation": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": false,
         "aws_validated": false,
@@ -1552,6 +1553,26 @@
       "Name": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator",
+            "test": "test_api_gateway_request_validator",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.invalid-request-body.Type', '$..methodIntegration.integrationResponses', '$..methodIntegration.passthroughBehavior', '$..methodIntegration.requestParameters', '$..methodIntegration.timeoutInMillis']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_destinations.py::TestLambdaDLQ::test_dead_letter_queue",
+            "test": "test_dead_letter_queue",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DeadLetterConfig', '$..result']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[11]",
             "test": "test_cdk_bootstrap[11]",
             "response": "200",
@@ -1690,26 +1711,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/secretsmanager/test_secretsmanager.py::TestSecretsManager::test_create_and_update_secret[s-c64bdc03-True]",
-            "test": "test_create_and_update_secret[s-c64bdc03-True]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_put_metric_data",
-            "test": "test_put_metric_data",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_ssm.py::TestSSM::test_get_inexistent_maintenance_window",
