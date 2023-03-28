@@ -339,8 +339,7 @@ def aggregate_recorded_raw_data(
                 if internal_test and not op_record["implemented"]:
                     print(f"WARN: {service}.{op_name} classified as 'not implemented', but found a test calling it: ({source}) {node_id}")
                     op_record["implemented"] = True
-                    if source == "ls_pro":
-                        op_record["availability"] = "pro"
+                    op_record["availability"] = "pro" if source == "ls_pro" else "community"
                 
                 # test details currently only considered for internal test suite
                 # TODO might change when we include terraform test results
