@@ -91,10 +91,10 @@ lambda.send(new ListFunctionsCommand({}))
 // -> http://s3.localhost.localstack.cloud:4566/<bucket-name>/<key-name>
 // You can read the S3 documentation to learn more about the different endpoints. 
 
-const s3 = new S3({
+const s3 = new S3Client({
   region: 'us-east-1',
   forcePathStyle: true, // If you want to use virtual host addressing of buckets, you can remove `forcePathStyle: true`. 
-  endpoint: 'http://s3.localstack.localhost.cloud:4566',
+  endpoint: 'http://s3.localhost.localstack.cloud:4566',
   credentials: {
     accessKeyId: 'test',
     secretAccessKey: 'test',
