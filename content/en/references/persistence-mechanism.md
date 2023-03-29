@@ -152,7 +152,7 @@ Here is what this looks like:
 │   │   └── store.state
 │   └── lambda
 │       └── store.state
-└── api_states               # assets directory
+└── assets                   # assets directory
     ├── dynamodb             # dynamodb assets
     │   ├── 000000000000_eu-central-1.db
     │   └── 886002141588_us-east-1.db
