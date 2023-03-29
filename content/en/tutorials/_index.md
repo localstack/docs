@@ -3,9 +3,8 @@ title: "Tutorials"
 linkTitle: "Tutorials"
 weight: 10
 description: >
-  These tutorials aim to enhance your comprehension of LocalStack's functionality by providing detailed information on how it works for specific use-cases, using a diverse stack of resources.
+  These tutorials enhance your comprehension of LocalStack's functionality by providing detailed information on how it works for specific use cases using diverse resources. These guides help you set up and build your local cloud development & testing environment with the help of LocalStack, using local AWS services, integrations, and tools, helping create a mental model for how LocalStack works.
   <br></br>
-  Don't miss out on our Community's latest blog posts! Check us out on <a href=https://hashnode.localstack.cloud/>hashnode.localstack.cloud</a> for some exciting reads!
 cascade:
   type: docs
 slug: tutorials
