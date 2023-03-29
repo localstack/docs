@@ -39,7 +39,10 @@ wget -m --cut-dirs 5 --no-host-directories $ARTIFACT_URLS
 
 echo "Moving raw community metrics data to $METRICS_RAW"
 mkdir -p $METRICS_RAW
-mv parity_metrics/metric-report-*.csv $METRICS_RAW/community-integration-test.csv
+for file in parity_metrics/*.csv; do
+      org_file_name=$(echo $file | sed "s/.*\///")
+      mv -- "$file" "$METRICS_RAW/community-integration-test-$org_file_name"
+done
 
 echo "Moving community metrics implementation details to $METRICS_IMPL..."
 mkdir -p $METRICS_IMPL
