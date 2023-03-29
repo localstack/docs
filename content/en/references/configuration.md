@@ -34,6 +34,7 @@ $ DEBUG=1 localstack start
 | `EXTERNAL_SERVICE_PORTS_START` | `4510` (default) | Start of [the external service port range]({{< ref "external-ports" >}}) (included). |
 | `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of [the external service port range]({{< ref "external-ports" >}}) (excluded). |
 | `EAGER_SERVICE_LOADING` | `0` (default) | Boolean that toggles lazy loading of services. If eager loading is enabled, services are started at LocalStack startup rather than their first use. Eager loading significantly increases LocalStack startup time. |
+| `ALLOW_NONSTANDARD_REGIONS` | `0` (default) | Allows the use of non-standard AWS regions. By default, LocalStack only accepts [standard AWS regions](https://docs.aws.amazon.com/general/latest/gr/rande.html). |
 
 [1]: http://docs.aws.amazon.com/cli/latest/reference/#available-services
 
@@ -201,6 +202,12 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 | `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times).<br> **Removed in new provider because the X-Ray daemon is always initialized.** |
 | `SYNCHRONOUS_KINESIS_EVENTS` | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations.<br> **Removed in new provider.** |
 | `PROVIDER_OVERRIDE_LAMBDA` | `asf` (optional) | Opt-in to use the new lambda provider beta. See [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}). <br> **Active by default in the new provider.** |
+
+### MWAA
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `MWAA_PIP_TRUSTED_HOSTS` | `pypi.org,files.pythonhosted.org` | Comma-separated list of hosts for which SSL verification is not performed when installing Python dependencies for MWAA environment. |
 
 ### OpenSearch
 
