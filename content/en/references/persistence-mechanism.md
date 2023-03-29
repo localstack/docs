@@ -56,11 +56,11 @@ LocalStack takes point-in-time snapshot of its state and dumps them to disk.
 There are four strategies that you can choose from that govern when these snapshots are taken.
 You can select a particular save strategy by setting `SNAPSHOT_SAVE_STRATEGY=<strategy>`.
 
-* **`ON_REQUEST`**: on every AWS API call that potentially modifies the state of a service, LocalStack will save the state of that service.
+* **`ON_REQUEST`**: (**default**) on every AWS API call that potentially modifies the state of a service, LocalStack will save the state of that service.
   This was the default strategy until v2.0. It minimizes the chance for data loss, but also has significant performance implications. The service has to be locked during snapshotting, meaning that any requests to the particular AWS service will be blocked until the snapshot is complete.  In many cases this is just a few milliseconds, but can become significant in some services.
 * **`ON_SHUTDOWN`**: the state of all services are saved during the shutdown phase of LocalStack.
   This strategy has zero performance impact, but is not good when you want to minimize the chance for data loss. Should LocalStack for some reason not shut down properly or is terminated before it can finalize the snapshot, you may be left with an incomplete state on disk.
-* **`SCHEDULED`**: (**default**) every 15 seconds, the state of all services that have been modified since the last snapshot are saved.
+* **`SCHEDULED`**: every 15 seconds, the state of all services that have been modified since the last snapshot are saved.
   This is a compromise between `ON_REQUEST` and `ON_SHUTDOWN` in terms of performance and reliability.
 * **`MANUAL`**: turns off automatic snapshotting and gives you control through the internal state endpoints.
 
@@ -126,7 +126,7 @@ Some services also store application-specific data, which we call _assets_.
 For example, when you start an RDS PostgreSQL database, LocalStack not only stores the RDS resource information, but also the PostgreSQL data.
 Another example is Kinesis, which persists some data in form of JSON objects per account, or DynamoDB that serializes its stat into an SQLite database per account and region.
 
-The current LocalStack snapshot is stored into `/var/lib/localstack/state`, and separated into `api_states` (LocalStack internal state), and assets (one directory per service).
+The current LocalStack snapshot is stored into `/var/lib/localstack/state`, and separated into `api_states` (LocalStack internal state), and `assets` (one directory per service).
 Here is what this looks like:
 
 ```plaintext
@@ -140,12 +140,13 @@ Here is what this looks like:
 │   │   └── store.state
 │   └── lambda
 │       └── store.state
-├── dynamodb                # dynamodb assets
-│   ├── 000000000000_eu-central-1.db
-│   └── 886002141588_us-east-1.db
-└── kinesis                 # kinesis assets
-    ├── 000000000000.json
-    └── 886002141588.json
+└── api_states               # assets directory
+    ├── dynamodb             # dynamodb assets
+    │   ├── 000000000000_eu-central-1.db
+    │   └── 886002141588_us-east-1.db
+    └── kinesis              # kinesis assets
+        ├── 000000000000.json
+        └── 886002141588.json
 ```
 
 To load a snapshot, LocalStack traverses the state directory and deserializes state files to loads them into the memory.
