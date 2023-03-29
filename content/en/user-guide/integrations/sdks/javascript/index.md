@@ -54,6 +54,12 @@ const s3 = new AWS.S3({
   region: 'us-east-1',
 });
 
+// if your region is `us-east-1`, you will need to override the globalEndpoint of the client
+// due to an issue in the SDK with `createBucket`.
+// you will need to set it to the hostname of your endpoint specified right above
+// if your region is different than `us-east-1`, you can skip that line
+s3.api.globalEndpoint = 's3.localhost.localstack.cloud';
+
 // Call an S3 API using the LocalStack endpoint
 s3.listBuckets((err, data) => {
   if (err) {
