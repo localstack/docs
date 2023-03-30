@@ -138,7 +138,7 @@ Some services also store application-specific data, which we call _assets_.
 For example, when you start an RDS PostgreSQL database, LocalStack not only stores the RDS resource information, but also the PostgreSQL data.
 Another example is Kinesis, which persists some data in form of JSON objects per account, or DynamoDB that serializes its stat into an SQLite database per account and region.
 
-The current LocalStack snapshot is stored into `/var/lib/localstack/state`, and separated into `api_states` (LocalStack internal state), and `assets` (one directory per service).
+The current LocalStack snapshot is stored into `/var/lib/localstack/state`, and separated into `api_states` (LocalStack internal state), and assets (one directory per service).
 Here is what this looks like:
 
 ```plaintext
@@ -152,13 +152,12 @@ Here is what this looks like:
 │   │   └── store.state
 │   └── lambda
 │       └── store.state
-└── assets                   # assets directory
-    ├── dynamodb             # dynamodb assets
-    │   ├── 000000000000_eu-central-1.db
-    │   └── 886002141588_us-east-1.db
-    └── kinesis              # kinesis assets
-        ├── 000000000000.json
-        └── 886002141588.json
+├── dynamodb                # dynamodb assets
+│   ├── 000000000000_eu-central-1.db
+│   └── 886002141588_us-east-1.db
+└── kinesis                 # kinesis assets
+    ├── 000000000000.json
+    └── 886002141588.json
 ```
 
 To load a snapshot, LocalStack traverses the state directory and deserializes state files to loads them into the memory.
