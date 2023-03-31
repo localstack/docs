@@ -278,6 +278,11 @@ def aggregate_recorded_raw_data(
                 service = metric.get("service")
                 if service != service_of_interest:
                     continue
+                
+                node_id = metric.get("node_id") or metric.get("test_node_id")
+                if not node_id:
+                    # some records do not have a node-id -> relates to requests in the background between tests
+                    continue
 
                 # skip tests are marked as xfail
                 if str(metric.get("xfail", "")).lower() == "true":
@@ -334,7 +339,6 @@ def aggregate_recorded_raw_data(
                 if not op_record.get("aws_validated") and aws_validated:
                     op_record["aws_validated"] = True
 
-                node_id = metric.get("node_id") or metric.get("test_node_id")
 
                 if internal_test and not op_record["implemented"]:
                     print(f"WARN: {service}.{op_name} classified as 'not implemented', but found a test calling it: ({source}) {node_id}")
