@@ -21,6 +21,21 @@ Docker Execution Environment,
 Configuration,
 and Hot Reloading.
 
+## Highlights
+
+- **[Feature coverage]({{< ref "coverage_lambda" >}}):** LocalStack&nbsp;2.0 supports 95% of all Lambda API operations.
+- **[AWS Parity](https://localstack.cloud/blog/2022-08-04-parity-explained/):** The local Lambda API behaves like in AWS with 90% parity test coverage.
+- **[Official AWS images](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html):** Lambda functions use the official Docker base images pulled from `public.ecr.aws/lambda/`.
+- **[Lambda runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html):** All supported managed runtimes from AWS are available and tested in LocalStack. The new provider added `nodejs18.x`.
+- **[ARM support]({{< ref "arm64-support#lambda-multi-architecture-support" >}}):** Run arm64 and x86_64 Lambda functions on hosts with multi-architecture support.
+- **[Extensions API](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-extensions-api.html):** Use third-party extensions to customize the Lambda execution environment. This deep integration enables monitoring, observability, or advanced developer tooling.
+- **[Lambda concurrency](https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html):** Prevent cold-starts with provisioned concurrency and limit the number of concurrent function instances with reserved concurrency.
+- **Performance:** 10ms warm-start and 600ms cold-start for an Echo Python Lambda
+- **[Hot reloading]({{< ref "hot-reloading" >}}):** Continuously apply code changes to Lambda functions and layers (Pro) for all managed runtimes.
+- **[Persistence]({{< ref "persistence-mechanism" >}}) and [Cloud Pods]({{< ref "cloud-pods" >}}):** Save your Lambda state across restarts and share a snapshot of your Lambda infrastructure.
+
+Check out our [Lambda release announcement](https://discuss.localstack.cloud/t/new-lambda-implementation-in-localstack-2-0/258) for more details about further improvements.
+
 ## Lambda API
 
 **Improved parity compared to AWS:**
