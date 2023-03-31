@@ -2374,7 +2374,7 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -3154,7 +3154,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -3231,7 +3231,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -3814,7 +3814,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -3825,7 +3825,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -3836,7 +3836,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": true,
+        "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -6256,7 +6256,7 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": false,
+        "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
       }
@@ -6801,13 +6801,33 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_generate_db_auth_token",
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_generate_db_auth_token",
             "test": "test_generate_db_auth_token",
             "response": "200",
             "error": "",
             "snapshot_skipped": "all",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_postgres_extension_query_export_to_s3",
+            "test": "test_postgres_extension_query_export_to_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_postgres_extension_table_import_from_s3",
+            "test": "test_postgres_extension_table_import_from_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -6989,6 +7009,16 @@
           {
             "node_id": "LocalStack Community: tests/integration/test_multi_accounts.py::TestMultiAccounts::test_account_id_namespacing_for_moto_backends",
             "test": "test_account_id_namespacing_for_moto_backends",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_stores.py::test_nonstandard_regions",
+            "test": "test_nonstandard_regions",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8677,26 +8707,6 @@
       "GroupId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_lifecycle",
-            "test": "test_stack_lifecycle",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_update_ec2_instance_type",
             "test": "test_cfn_update_ec2_instance_type",
             "response": "200",
@@ -8705,6 +8715,26 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_path_based_on_data",
+            "test": "test_path_based_on_data",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..tracingConfiguration']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -8943,16 +8973,6 @@
       "VpcId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_get_template[yaml]",
             "test": "test_get_template[yaml]",
             "response": "200",
@@ -8990,16 +9010,6 @@
             "snapshot_skipped": "['$..DriftInformation', '$..Metadata']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda",
-            "test": "test_events_sqs_sns_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -9101,6 +9111,26 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_list_templates",
+            "test": "test_list_templates",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -9191,11 +9221,11 @@
       "VpcEndpointIds": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_lifecycle",
-            "test": "test_stack_lifecycle",
+            "node_id": "LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_path_based_on_data",
+            "test": "test_path_based_on_data",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..tracingConfiguration']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -9263,18 +9293,18 @@
       "AttributeNames": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
+            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_common.py::TestLambdaRuntimesCommon::test_echo_invoke[python3.7]",
+            "test": "test_echo_invoke[python3.7]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_firehose.py::test_firehose_http[True]",
-            "test": "test_firehose_http[True]",
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -9397,16 +9427,6 @@
       "InstanceIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_stop_instances",
-            "test": "test_action_ec2_stop_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_terminate_instances",
             "test": "test_action_ec2_terminate_instances",
             "response": "200",
@@ -9432,16 +9452,6 @@
     "DescribeInstances": {
       "Filters": {
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_stop_instances",
-            "test": "test_action_ec2_stop_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
           {
             "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_terminate_instances",
             "test": "test_action_ec2_terminate_instances",
@@ -9765,16 +9775,6 @@
       "Filters": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_ec2.py::test_vpc_creates_default_sg",
             "test": "test_vpc_creates_default_sg",
             "response": "200",
@@ -9783,6 +9783,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_terraform.py::TestTerraform::test_bucket_exists",
@@ -9815,12 +9825,12 @@
       "Filters": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           }
@@ -9959,16 +9969,6 @@
       "Filters": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_ec2.py::test_cfn_with_multiple_route_table_associations",
             "test": "test_cfn_with_multiple_route_table_associations",
             "response": "200",
@@ -10019,16 +10019,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda",
-            "test": "test_events_sqs_sns_lambda",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_update_ec2_instance_type",
             "test": "test_cfn_update_ec2_instance_type",
             "response": "200",
@@ -10061,6 +10051,26 @@
           {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_functions_in_output_export_name",
             "test": "test_functions_in_output_export_name",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_list_templates",
+            "test": "test_list_templates",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10369,16 +10379,6 @@
       "Filters": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_ec2.py::test_vpc_creates_default_sg",
             "test": "test_vpc_creates_default_sg",
             "response": "200",
@@ -10387,6 +10387,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_terraform.py::TestTerraform::test_bucket_exists",
@@ -10415,18 +10425,18 @@
       "GroupIds": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_ec2.py::test_vpc_creates_default_sg",
+            "test": "test_vpc_creates_default_sg",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_ec2.py::test_vpc_creates_default_sg",
-            "test": "test_vpc_creates_default_sg",
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -11055,12 +11065,12 @@
       "Attribute, VpcId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -11081,12 +11091,12 @@
       "VpcIds": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -11107,12 +11117,12 @@
       "VpcIds": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -11555,12 +11565,12 @@
       "VpcIds": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id",
-            "test": "test_delete_rest_api_with_invalid_id",
+            "node_id": "LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed",
+            "test": "test_apigateway_deployed",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -12189,6 +12199,26 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_modify_db_cluster",
+            "test": "test_modify_db_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_postgres_extension_query_export_to_s3",
+            "test": "test_postgres_extension_query_export_to_s3",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -12305,16 +12335,6 @@
       "ClientToken, ImageId, MaxCount, MinCount, TagSpecifications": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_stop_instances",
-            "test": "test_action_ec2_stop_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_terminate_instances",
             "test": "test_action_ec2_terminate_instances",
             "response": "200",
@@ -12409,16 +12429,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_stop_instances",
-            "test": "test_action_ec2_stop_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_stop_start_terminate_instances_for_invalid_instance_id_raises[stop_instances]",
