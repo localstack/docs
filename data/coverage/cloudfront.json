@@ -26,12 +26,12 @@
     },
     {
       "CreateCachePolicy": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -224,12 +224,12 @@
     },
     {
       "DeleteCachePolicy": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -389,8 +389,8 @@
     },
     {
       "DescribeFunction": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": false,
         "aws_validated": false,
@@ -400,12 +400,12 @@
     },
     {
       "GetCachePolicy": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -708,12 +708,12 @@
     },
     {
       "ListCachePolicies": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -755,7 +755,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -1005,8 +1005,8 @@
     },
     {
       "UpdateCachePolicy": {
-        "implemented": false,
-        "availability": "",
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "aws_validated": false,
@@ -1170,6 +1170,22 @@
     }
   ],
   "details": {
+    "CreateCachePolicy": {
+      "CachePolicyConfig": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_cache_policies",
+            "test": "test_cache_policies",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
     "CreateCloudFrontOriginAccessIdentity": {
       "CloudFrontOriginAccessIdentityConfig": {
         "ls_pro": [
@@ -1222,6 +1238,26 @@
           {
             "node_id": "LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_custom_errors[False]",
             "test": "test_custom_errors[False]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_custom_errors[True]",
+            "test": "test_custom_errors[True]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_custom_errors[True]",
+            "test": "test_custom_errors[True]",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
@@ -1452,6 +1488,22 @@
         ]
       }
     },
+    "DeleteCachePolicy": {
+      "Id, IfMatch": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_origin_access_control",
+            "test": "test_origin_access_control",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
     "DeleteCloudFrontOriginAccessIdentity": {
       "Id, IfMatch": {
         "ls_pro": [
@@ -1567,6 +1619,16 @@
     "DeleteFunction": {
       "IfMatch, Name": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
+            "test": "test_cognito_role_attachment",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_create_function",
             "test": "test_create_function",
@@ -1700,8 +1762,8 @@
       "Id, IfMatch": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_origin_access_control",
-            "test": "test_origin_access_control",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_cache_policies",
+            "test": "test_cache_policies",
             "response": "204",
             "error": "",
             "snapshot_skipped": "",
@@ -1738,102 +1800,28 @@
           {
             "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
             "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
+            "response": "200",
+            "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          },
+          }
+        ]
+      }
+    },
+    "GetCachePolicy": {
+      "Id": {
+        "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_cache_policies",
+            "test": "test_cache_policies",
+            "response": "200",
+            "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
-            "test": "test_cognito_role_attachment",
-            "response": "501",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -1978,8 +1966,8 @@
       "Id": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_origin_access_control",
-            "test": "test_origin_access_control",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_cache_policies",
+            "test": "test_cache_policies",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2026,6 +2014,22 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          }
+        ]
+      }
+    },
+    "ListCachePolicies": {
+      "Marker, MaxItems, Type": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_cache_policies",
+            "test": "test_cache_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
