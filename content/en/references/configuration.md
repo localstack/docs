@@ -151,17 +151,17 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 
 ### Lambda
 
-**New [Lambda]({{< ref "lambda" >}}) implementation active since Localstack&nbsp;v2.0 (Docker `latest` since 2023-03-23)**<br>
+**New [Lambda]({{< ref "lambda" >}}) implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23)**<br>
 Please consult the page [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}) for more information.
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Magic S3 bucket name for [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}). |
+| `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Magic S3 bucket name for [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}). The S3Key points to the source code on the local file system. |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, ulimits, user, platform, and privileged mode. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
 | `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
 | `LAMBDA_IGNORE_ARCHITECTURE` | `0` (default) | Whether to ignore the AWS architectures (x86_64 or arm64) configured for the lambda function. Set to `1` to run cross-platform compatible lambda functions natively (i.e., Docker selects architecture). |
-| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
+| `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default, pro) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
 | `LAMBDA_KEEPALIVE_MS` | `600000` (default 10min) | Time in milliseconds until lambda shuts down the execution environment after the last invocation has been processed. Set to `0` to immediately shut down the execution environment after an invocation. |
 | `LAMBDA_LIMITS_CONCURRENT_EXECUTIONS` | `1000` (default) | The maximum number of events that functions can process simultaneously in the current Region. See [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/lambda-service.html) |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. |
@@ -171,8 +171,8 @@ Please consult the page [Lambda Provider Behavioral Changes]({{< ref "lambda-pro
 | `LAMBDA_RUNTIME_IMAGE_MAPPING` | [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) (default) | Customize the Docker image of Lambda runtimes, either by:<br> a) pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> b) json dict mapping the `<runtime>` to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
 | `LAMBDA_SYNCHRONOUS_CREATE` | `0` (default) | Set to `1` to create lambda functions synchronously (not recommended). |
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console. This does not affect the logs processing in CloudWatch. |
-| `PROVIDER_OVERRIDE_LAMBDA` | `v2` (default) | Currently supported implementation of our [local Lambda service]({{< ref "lambda" >}}) active since Localstack&nbsp;v2.0 (Docker `latest` since 2023-03-23). |
-| | `legacy` (**Deprecated**) | Use the old lambda provider (not recommended).<br>**See [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}).** |
+| `PROVIDER_OVERRIDE_LAMBDA` | `v2` (default) | Currently supported implementation of our [local Lambda service]({{< ref "lambda" >}}) active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23). |
+| | `legacy` (**deprecated**) | Use the old lambda provider (not recommended).<br>**See [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}).** |
 
 ### Lambda (Legacy)
 

@@ -1,5 +1,5 @@
 ---
-title: "Lambda Executor Modes"
+title: "Lambda Executor Modes (Deprecated)"
 weight: 5
 description: >
   Overview of the different Lambda execution modes
@@ -9,8 +9,9 @@ aliases:
 
 {{< alert title="Warning" color="warning">}}
 Lambda executor modes are **deprecated** and only used by the old lambda provider.
-The new lambda provider (default since Localstack&nbsp;v2.0) requires no such configuration and behaves like the old `docker-reuse` executor.<br>
-Please refer to [Lambda Provider Behavioral Change]({{< ref "lambda-provider-v2" >}}) for more details about the new lambda implementation.
+The new lambda provider (active since LocalStack&nbsp;2.0) requires no such configuration and behaves similar to the old `docker-reuse` executor.
+Please add the Docker volume mount `"/var/run/docker.sock:/var/run/docker.sock"` to your LocalStack startup as exemplified in our official [docker-compose.yml](https://github.com/localstack/localstack/blob/master/docker-compose.yml).<br>
+Refer to [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}) for more details about the new lambda implementation.
 {{< /alert >}}
 
 ## Overview

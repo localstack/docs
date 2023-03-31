@@ -9,8 +9,8 @@ aliases:
 ---
 
 {{< alert title="Note">}}
-**New implementation active since Localstack&nbsp;v2.0 (Docker `latest` since 2023-03-23)**<br>
-The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
+**New implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23)**<br>
+The old lambda provider is temporarily available in LocalStack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
 {{< /alert >}}
 
 ## Overview
@@ -220,4 +220,4 @@ An error occurred (InternalFailure) when calling the CreateFunction operation (r
 {{< / command >}}
 
 Please check your [configuration]({{< ref "configuration#lambda" >}}) for `PROVIDER_OVERRIDE_LAMBDA`.
-If you are not using Localstack&nbsp;v2.0 yet, remove `PROVIDER_OVERRIDE_LAMBDA=legacy`.
+If you are not using LocalStack&nbsp;2.0 yet, remove `PROVIDER_OVERRIDE_LAMBDA=legacy`.
