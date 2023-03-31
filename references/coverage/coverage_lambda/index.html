@@ -1,7 +1,7 @@
 <!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en class=no-js><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.101.0"><meta name=robots content="index, follow"><link rel="shortcut icon" href=/favicons/favicon.ico><link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36><link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48><link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72><link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144><link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192><title>Lambda | Docs</title><meta name=description content="Implementation details for API lambda
 "><meta property="og:title" content="Lambda"><meta property="og:description" content="Implementation details for API lambda
 "><meta property="og:type" content="article"><meta property="og:url" content="/references/coverage/coverage_lambda/"><meta property="article:section" content="references"><meta property="article:modified_time" content="2023-03-20T14:38:19+01:00"><meta property="og:site_name" content="Docs"><meta itemprop=name content="Lambda"><meta itemprop=description content="Implementation details for API lambda
-"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="32250"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Lambda"><meta name=twitter:description content="Implementation details for API lambda
+"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="32473"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="Lambda"><meta name=twitter:description content="Implementation details for API lambda
 "><link rel=preload href=/scss/main.min.db0937836ef51a1c7436cc5707fc03828ff00040379cf88060c02f6849daf3e1.css as=style><link href=/scss/main.min.db0937836ef51a1c7436cc5707fc03828ff00040379cf88060c02f6849daf3e1.css rel=stylesheet integrity><script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@docsearch/css@3><script type=text/javascript id=hs-script-loader async defer src=//js-eu1.hs-scripts.com/26596507.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-101988473-1"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-101988473-1")}</script></head><body class=td-page><header><nav class="js-navbar-scroll navbar navbar-expand flex-column flex-md-row td-navbar"><div class=navbar-brand><a class=brand-link href=/><span class=navbar-logo><img src=/images/logo.svg height=40px></span>
@@ -544,6 +544,9 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_authorization
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_lambda_authorization</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 201</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_lambda_redirect
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_lambda_redirect</span></span>
@@ -1352,10 +1355,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_no_timeout
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaBehavior::test_lambda_invoke_no_timeout</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 201</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_timed_out_environment_reuse
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaBehavior::test_lambda_invoke_timed_out_environment_reuse</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_with_timeout
@@ -2206,9 +2205,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_cognito_authorization_auth_context_propagated_without_groups</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_integration_and_request[appsync_integrated_service1]
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_integration_and_request[appsync_integrated_service1]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_lambda_authorization
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_authorization
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_lambda_authorization</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke
@@ -2219,7 +2216,13 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_lambda_non_existent
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_lambda_non_existent</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_admin_create_user_should_trigger_custom_message_lambda
+<span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_lambda_sqs_destination
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_sqs_destination</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 201</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 201</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_admin_create_user_should_trigger_custom_message_lambda
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_admin_create_user_should_trigger_custom_message_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_api_gateway_cognito_pool_authorizer
@@ -2259,7 +2262,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_extensions
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_lambda_extensions</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_lambda_extensions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: Code, Environment, FunctionName, Handler, Role, Runtime, Tags, Timeout, TracingConfig</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_traceid_outside_handler[Active]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_xray.py::test_traceid_outside_handler[Active]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
@@ -2502,6 +2505,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading[nodejs18.x]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_hot_reloading[python3.9]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading[python3.9]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_hot_reloading_publish_version
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading_publish_version</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_events_sqs_sns_lambda
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
@@ -2592,10 +2597,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_customresource_lambda_backed
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_customresources.py::test_customresource_lambda_backed</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_log_group_for_custom_resource_lambda
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_lambda.py::test_log_group_for_custom_resource_lambda</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 201</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_lambda_redirect
+<span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_lambda_redirect
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_lambda_redirect</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cdk_trail_cw_logs
@@ -2738,10 +2740,13 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deleteeventsourcemapping style=scroll-margin-top:5rem>DeleteEventSourceMapping</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: UUID</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_delete_rest_api_with_invalid_id
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deleteeventsourcemapping style=scroll-margin-top:5rem>DeleteEventSourceMapping</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: UUID</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_event_source_mapping_lifecycle
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_http_integration
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_integrations.py::test_http_integration</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_event_source_mapping_lifecycle
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_lifecycle</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -2861,9 +2866,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_sqs.py::test_sqs_queue_as_lambda_dead_letter_queue</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cdk_bootstrap[10]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[10]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -2883,8 +2886,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestIntegration::test_scheduled_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_lambda_send_message_to_sqs[python3.7]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_send_message_to_sqs[python3.7]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_list_templates
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_list_templates</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_create_event_source_validation
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaEventSourceMappings::test_create_event_source_validation</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
@@ -2899,11 +2902,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_kafka_lambda_event_source_mapping[True]
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 202</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deletefunction style=scroll-margin-top:5rem>DeleteFunction</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: FunctionName</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_import_rest_api
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_api.py::test_import_rest_api</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_api_gateway_handle_domain_name
+<span class=coverage-report-http-code>HTTP Status Code: 202</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deletefunction style=scroll-margin-top:5rem>DeleteFunction</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: FunctionName</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_api_gateway_handle_domain_name
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_api_gateway_handle_domain_name</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_api_gateway_http_integration_with_path_request_parameter
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_api_gateway_http_integration_with_path_request_parameter</span></span>
@@ -2945,7 +2944,11 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::test_rest_api_multi_region[path_based_url-ANY]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_rest_api_multi_region[path_based_url-GET]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::test_rest_api_multi_region[path_based_url-GET]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_http_integration
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_http_integration
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_integrations.py::test_http_integration</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_put_integration_responses
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_integrations.py::test_put_integration_responses</span></span>
@@ -2979,10 +2982,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_no_timeout
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaBehavior::test_lambda_invoke_no_timeout</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_timed_out_environment_reuse
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaBehavior::test_lambda_invoke_timed_out_environment_reuse</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_with_timeout
@@ -3593,6 +3592,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_common.py::TestLambdaRuntimesCommon::test_uncaught_exception_invoke[ruby2.7]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dead_letter_queue
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_destinations.py::TestLambdaDLQ::test_dead_letter_queue</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_assess_lambda_destination_invocation[payload0]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_destinations.py::TestLambdaDestinationSqs::test_assess_lambda_destination_invocation[payload0]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
@@ -3607,10 +3610,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_additional_docker_flags
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestDockerFlags::test_additional_docker_flags</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_hot_reloading[nodejs18.x]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading[nodejs18.x]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_hot_reloading[python3.9]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading[python3.9]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_hot_reloading_publish_version
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading_publish_version</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_deletion_event_source_mapping_with_dynamodb
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_deletion_event_source_mapping_with_dynamodb</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
@@ -3842,19 +3845,17 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_runtimes.py::TestPythonRuntimes::test_python_runtime_unhandled_errors[python3.9]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_lifecycle
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_lifecycle</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_apigateway_rest_api
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_nested_stack
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_nested_stacks.py::test_nested_stack</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_cfn_apigateway_rest_api
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_apigateway_rest_api</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_cdk_bootstrap[10]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[10]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_cdk_sample
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkSampleApp::test_cdk_sample</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_eventbus_policies
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_eventbus_policies</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -3888,6 +3889,9 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_vpc
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_vpc</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_lambda_w_dynamodb_event_filter
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_multiple_lambda_permissions_for_singlefn
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
@@ -3904,6 +3908,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_template</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_sqs_queue_policy
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sqs.py::test_sqs_queue_policy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_parameter_defaults
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_parameter_defaults</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke_localhost
@@ -3982,11 +3988,11 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_object_created_put
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_object_created_put</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sqs.py::TestS3NotificationsToSQS::test_object_created_put</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_object_created_put
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sqs.py::TestS3NotificationsToSQS::test_object_created_put</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_path_based_on_data
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_path_based_on_data</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_step_functions_calling_api_gateway
@@ -3995,14 +4001,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_put_metric_data
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_put_metric_data</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_list_versions
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_list_versions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_rule_disable
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_rule_disable</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_firehose_http[False]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_firehose.py::test_firehose_http[False]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_firehose_s3
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestIntegration::test_firehose_s3</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_scheduled_lambda
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestIntegration::test_scheduled_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_lambda_put_item_to_dynamodb[python3.7]
@@ -4025,15 +4027,21 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_start_stepfunctions_execution[python3.9]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_kinesis_lambda_forward_chain
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::test_kinesis_lambda_forward_chain</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_put_subscription_filter_firehose
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_create_stream_without_stream_name_raises
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kinesis.py::TestKinesis::test_create_stream_without_stream_name_raises</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_put_subscription_filter_firehose
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_logs.py::TestCloudWatchLogs::test_put_subscription_filter_firehose</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_http_api_for_function_url
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestLambda::test_http_api_for_function_url</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_default_strategy
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestOpenSearch::test_default_strategy</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_list_templates
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_list_templates</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_create_resolver_endpoint[INBOUND-5]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_endpoint[INBOUND-5]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_publish_unicode_chars
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_unicode_chars</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
@@ -4046,15 +4054,13 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_redrive_policy_lambda_subscription</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_subscribe_sns_topic
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSSubscription::test_python_lambda_subscribe_sns_topic</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_invalid_receipt_handle_should_return_error_message
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sqs.py::TestSqsProvider::test_invalid_receipt_handle_should_return_error_message</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_eventinvokeconfig_lifecycle
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_bucket_exists
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_terraform.py::TestTerraform::test_bucket_exists</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_lambda_eventinvokeconfig_lifecycle
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaEventInvokeConfig::test_lambda_eventinvokeconfig_lifecycle</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span>
@@ -4316,11 +4322,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_cognito_authorization_auth_context_propagated_without_groups</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_integration_and_request[appsync_integrated_service0]
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_integration_and_request[appsync_integrated_service0]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_integration_and_request[appsync_integrated_service2]
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_integration_and_request[appsync_integrated_service2]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_pipeline_resolver
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_pipeline_resolver
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_pipeline_resolver</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -4334,10 +4336,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_docdb_cluster
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_docdb.py::test_docdb_cluster</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_log_group_for_custom_resource_lambda
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_lambda.py::test_log_group_for_custom_resource_lambda</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_create_cluster
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_create_cluster
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_msk.py::test_create_cluster</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_create_misc_resources
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources</span></span>
@@ -4353,6 +4352,11 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_lambda_non_existent</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_sqs
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sqs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_sns_sqs_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_sqs_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_list_ledgers
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_ledgers</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_origin_access_control
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_origin_access_control</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
@@ -4445,8 +4449,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLayerHotReloading::test_multiple_hot_reloading_layers_fail</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_modify_db_cluster
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_modify_db_cluster</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_postgres_s3_extension_helpers
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_postgres_s3_extension_helpers</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_cors_preflight_requests
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_cors_preflight_requests</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
@@ -4629,11 +4633,18 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaEventInvokeConfig::test_lambda_eventinvokeconfig_exceptions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_http_integration
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_integrations.py::test_http_integration</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_lambda_version
+(ResourceNotFoundException)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_version
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_version</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 404
+(ResourceNotFoundException)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_object_created_put
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sqs.py::TestS3NotificationsToSQS::test_object_created_put</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -4642,10 +4653,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_templates
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_list_templates</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_docdb_cluster
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_docdb_cluster
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_docdb.py::test_docdb_cluster</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deletefunctionurlconfig style=scroll-margin-top:5rem>DeleteFunctionUrlConfig</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: FunctionName</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_url_config_lifecycle
@@ -4835,10 +4843,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=geteventsourcemapping style=scroll-margin-top:5rem>GetEventSourceMapping</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: UUID</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_delete_rest_api_with_invalid_id
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_event_source_mapping_lifecycle
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=geteventsourcemapping style=scroll-margin-top:5rem>GetEventSourceMapping</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: UUID</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_event_source_mapping_lifecycle
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_lifecycle</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -4974,7 +4979,9 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_bucket_exists
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_bucket_exists
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_terraform.py::TestTerraform::test_bucket_exists</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_event_source_mapping_exceptions
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_exceptions</span></span>
@@ -5033,10 +5040,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_apigw_test_invoke_method_api
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_apigw_test_invoke_method_api</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_delete_rest_api_with_invalid_id
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_malformed_response_apigw_invocation
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_malformed_response_apigw_invocation
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_malformed_response_apigw_invocation</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_response_headers_invocation_with_apigw
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_response_headers_invocation_with_apigw</span></span>
@@ -5096,10 +5100,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_no_timeout
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaBehavior::test_lambda_invoke_no_timeout</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_timed_out_environment_reuse
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaBehavior::test_lambda_invoke_timed_out_environment_reuse</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_with_timeout
@@ -5744,6 +5744,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading[nodejs18.x]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_hot_reloading[python3.9]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading[python3.9]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_hot_reloading_publish_version
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading_publish_version</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deletion_event_source_mapping_with_dynamodb
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_deletion_event_source_mapping_with_dynamodb</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -6206,6 +6208,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_function_url
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestLambda::test_function_url</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_redrive_policy_lambda_subscription
@@ -6681,10 +6685,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_customresources.py::test_customresource_lambda_backed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_layer_python
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_lambda.py::TestLambdaLayer::test_lambda_layer_python</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_log_group_for_custom_resource_lambda
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_lambda.py::test_log_group_for_custom_resource_lambda</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_create_misc_resources
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_misc_resources
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_lambda
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_lambda</span></span>
@@ -6696,7 +6697,13 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_lambda_non_existent
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_lambda_non_existent</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_redirect
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_sqs_destination
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_sqs_destination</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_lambda_redirect
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_lambda_redirect</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cdk_trail_cw_logs
@@ -6789,7 +6796,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_extensions
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_lambda_extensions</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_lambda_extensions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cloudfront_distribution_with_logging
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_cloudfront.py::test_cloudfront_distribution_with_logging</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
@@ -6801,11 +6808,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 (ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_lambda_layer_python
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_lambda.py::TestLambdaLayer::test_lambda_layer_python</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_log_group_for_custom_resource_lambda
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_lambda.py::test_log_group_for_custom_resource_lambda</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_create_misc_resources
+(ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_create_misc_resources
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_lambda_redirect
@@ -7279,7 +7282,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_lambda
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_lambda</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_lambda
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_lambda
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_lambda
@@ -7302,7 +7308,11 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 (ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_lambda_non_existent
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_lambda_non_existent</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: FunctionName, Qualifier</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_lambda_permission_fn_versioning
+(ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 404
+(ResourceNotFoundException)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: FunctionName, Qualifier</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_lambda_permission_fn_versioning
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaPermissions::test_lambda_permission_fn_versioning</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -7616,9 +7626,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_step_functions_calling_api_gateway</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_start_stepfunctions_execution[python3.7]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_start_stepfunctions_execution[python3.7]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_start_stepfunctions_execution[python3.8]
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_start_stepfunctions_execution[python3.8]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_start_stepfunctions_execution[python3.8]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_start_stepfunctions_execution[python3.9]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestLambdaOutgoingSdkCalls::test_lambda_start_stepfunctions_execution[python3.9]</span></span>
@@ -7679,9 +7687,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_should_ignore_schedules_for_put_event
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_should_ignore_schedules_for_put_event</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_firehose_kinesis_to_s3
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestIntegration::test_firehose_kinesis_to_s3</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_lambda_streams_batch_and_transactions
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_lambda_streams_batch_and_transactions
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestIntegration::test_lambda_streams_batch_and_transactions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span></li><li><span class=coverage-report-tooltip>test_sns_topic_as_lambda_dead_letter_queue
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_sns_topic_as_lambda_dead_letter_queue</span></span>
@@ -7695,11 +7701,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSSubscription::test_python_lambda_subscribe_sns_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 202</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_apigateway_with_step_function_integration[DeleteStateMachine]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_apigateway_with_step_function_integration[DeleteStateMachine]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_redrive_policy_lambda_subscription
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_redrive_policy_lambda_subscription
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_redrive_policy_lambda_subscription</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span>
@@ -7758,7 +7760,21 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaContainer::test_container_image_lambda_chained_invocation</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: FunctionName, LogType, Payload</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_invocation_with_logs[nodejs16.x]
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_sqs_destination
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_sqs_destination</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 202</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 202</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 403
+(AccessDeniedException)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_step_functions_integration[host_based_url-1.0]
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_step_functions_integration[host_based_url-1.0]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 404
+(ResourceNotFoundException)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: FunctionName, LogType, Payload</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_invocation_with_logs[nodejs16.x]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaFeatures::test_invocation_with_logs[nodejs16.x]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -7799,10 +7815,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_no_timeout
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaBehavior::test_lambda_invoke_no_timeout</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_timed_out_environment_reuse
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaBehavior::test_lambda_invoke_timed_out_environment_reuse</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke_with_timeout
@@ -8429,17 +8441,12 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_cognito_authorization_auth_context_propagated_without_groups</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_integration_and_request[appsync_integrated_service1]
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_integration_and_request[appsync_integrated_service1]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_authorization
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_authorization
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_lambda_authorization</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_customresource_lambda_backed
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_customresources.py::test_customresource_lambda_backed</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_log_group_for_custom_resource_lambda
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_lambda.py::test_log_group_for_custom_resource_lambda</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cdk_trail_cw_logs
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cdk_trail_cw_logs
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudtrail.py::TestCloudTrail::test_cdk_trail_cw_logs</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_admin_create_user_should_trigger_custom_message_lambda
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_admin_create_user_should_trigger_custom_message_lambda</span></span>
@@ -8490,7 +8497,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_extensions
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_rds.py::TestRDSPostgres::test_lambda_extensions</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_lambda_extensions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: FunctionName, Payload, Qualifier</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_alias_routingconfig
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaAliases::test_alias_routingconfig</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -8608,14 +8615,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping_with_on_failure_destination_config</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_no_parameters_update
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_no_parameters_update</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_failing_lambda_retries_after_visibility_timeout
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_sqs.py::test_failing_lambda_retries_after_visibility_timeout</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_update_using_template_url
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_using_template_url</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_redrive_policy_with_failing_lambda
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_sqs.py::test_redrive_policy_with_failing_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_update_with_previous_parameter_value
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_with_previous_parameter_value</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_report_batch_item_failures
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_sqs.py::test_report_batch_item_failures</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sqs_queue_as_lambda_dead_letter_queue
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_sqs.py::test_sqs_queue_as_lambda_dead_letter_queue</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_firehose_stack_with_kinesis_as_source
@@ -8720,10 +8733,26 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_write_error_injection
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_error_injection.py::TestErrorInjection::test_dynamodb_write_error_injection</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_domain
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_create_domain</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_existing_domain_causes_exception
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_create_existing_domain_causes_exception</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_describe_domains
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_describe_domains</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_domain_version
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_domain_version</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_compatible_version_for_domain
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_get_compatible_version_for_domain</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_path_endpoint_strategy
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_path_endpoint_strategy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_update_domain_config
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_update_domain_config</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_delivery_stream_with_kinesis_as_source
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_firehose.py::TestFirehoseIntegration::test_delivery_stream_with_kinesis_as_source</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kinesis_firehose_elasticsearch_s3_backup
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kinesis_firehose_incompatible_with_opensearch_2_3
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_incompatible_with_opensearch_2_3</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kinesis_firehose_opensearch_s3_backup[domain]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_opensearch_s3_backup[domain]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kinesis_firehose_opensearch_s3_backup[path]
@@ -8751,12 +8780,108 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dynamodb_resolvers
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_dynamodb_resolvers</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_integration_and_request[appsync_integrated_service0]
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_integration_and_request[appsync_integrated_service0]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_websocket_subscriptions
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_websocket_subscriptions</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_application_with_output_and_reference
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_kinesisanalytics.py::test_application_with_output_and_reference</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_layer_python
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_lambda.py::TestLambdaLayer::test_lambda_layer_python</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_cluster
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_msk.py::test_create_cluster</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_db_instance_deployment
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_rds.py::test_db_instance_deployment</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_hostedzone_optionaltrailingdot[without_trailing_dot]
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_route53.py::test_hostedzone_optionaltrailingdot[without_trailing_dot]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_hostedzone_with_comment
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_route53.py::test_hostedzone_with_comment</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_assume_role_cw_logs
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_assume_role_cw_logs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_batch_create_compute_environment
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_batch_create_compute_environment</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_apigateway
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_apigateway</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_elasticsearch_two_domains
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_elasticsearch_two_domains</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_kinesis
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_kinesis</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_lambda
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_lambda</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_logs
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_logs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_policy_sqs_not_resource_all
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_sqs_not_resource_all</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_enforce_s3_admin_policy
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_s3_admin_policy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_ecr_repository_policies
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_efs_file_system_policy
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_efs_file_system_policy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_invoke
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_lambda_invoke</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sqs_receive_queue_attributes
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sqs_receive_queue_attributes</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sqs_receive_queue_attributes_role_permission_boundary
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sqs_receive_queue_attributes_role_permission_boundary</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sqs_receive_queue_attributes_user_permission_boundary
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sqs_receive_queue_attributes_user_permission_boundary</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_iam_role_attached_policy
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMPolicyRetrieval::test_iam_role_attached_policy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_iam_user_and_group_policies
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMPolicyRetrieval::test_iam_user_and_group_policies</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_extract_caller_principal_role[user]
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMPrincipalDetection::test_extract_caller_principal_role[user]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_lambda
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_lambda</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_sqs_non_existent
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sqs_non_existent</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_sqs_destination
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_sqs_destination</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sns_sqs_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_sqs_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_insert_multiple_docs
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_insert_multiple_docs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_list_tables
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_list_tables</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_query_by_metadata
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_by_metadata</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_query_committed_views
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_committed_views</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_query_history
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_history</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_query_join_tables
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_query_join_tables</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_stream_journal
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/qldb/test_qldb.py::TestQLDB::test_stream_journal</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_stackinfo_resource
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/services/internal/test_stackinfo.py::test_stackinfo_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_scheduled_backup_and_restore
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_backup.py::TestBackup::test_scheduled_backup_and_restore</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_table_backups
@@ -8779,83 +8904,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_kinesis_analyticsv2.py::TestKinesisAnalyticsV2Provider::test_list_and_update_applications</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_tag_list_tag_untag_resource
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_kinesis_analyticsv2.py::TestKinesisAnalyticsV2Provider::test_tag_list_tag_untag_resource</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_external_layer_download
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestExternalLayerDownload::test_external_layer_download</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_external_layer_exceptions
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestExternalLayerDownload::test_external_layer_exceptions</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_external_layer_specific
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestExternalLayerDownload::test_external_layer_specific</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_container_image_lambda_chained_invocation
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaContainer::test_container_image_lambda_chained_invocation</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_container_image_lambda_with_image_config
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaContainer::test_container_image_lambda_with_image_config</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_from_image[node]
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaContainer::test_lambda_from_image[node]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_from_image[python]
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaContainer::test_lambda_from_image[python]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cross_account_layer
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaLayerBehavior::test_cross_account_layer</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_function_multiple_layers_override
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaLayerBehavior::test_function_multiple_layers_override</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_function_using_layer
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaLayerBehavior::test_function_using_layer</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_function_using_layer_overriding_runtime
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLambdaLayerBehavior::test_function_using_layer_overriding_runtime</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_layer_and_function_hot_reloading
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLayerHotReloading::test_layer_and_function_hot_reloading</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_layer_only_hot_reloading
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLayerHotReloading::test_layer_only_hot_reloading</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_multiple_hot_reloading_layers_fail
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_lambda.py::TestLayerHotReloading::test_multiple_hot_reloading_layers_fail</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_json_metric_filters
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_logs.py::TestCloudWatchLogsPro::test_json_metric_filters</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_put_subscription_filter_kinesis_with_filter_pattern
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_logs.py::TestCloudWatchLogsPro::test_put_subscription_filter_kinesis_with_filter_pattern</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_broker
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_mq.py::TestMQ::test_create_broker</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_describe_broker
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_mq.py::TestMQ::test_describe_broker</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_send_to_active_mq
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_mq.py::TestMQ::test_send_to_active_mq</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_send_to_activemq_curl
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_mq.py::TestMQ::test_send_to_activemq_curl</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: EventSourceArn, FunctionName</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_events_sqs_sns_lambda
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: EventSourceArn, FunctionName</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_events_sqs_sns_lambda
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source</span></span>
@@ -9063,10 +9112,9 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_version</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: FunctionName, MaxItems</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_delete_rest_api_with_invalid_id
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_basic.py::TestAPIGateway::test_delete_rest_api_with_invalid_id</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_bucket_exists
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: FunctionName, MaxItems</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_apigateway_deployed
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_bucket_exists
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_terraform.py::TestTerraform::test_bucket_exists</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=publishlayerversion style=scroll-margin-top:5rem>PublishLayerVersion</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: CompatibleArchitectures, CompatibleRuntimes, Content, Description, LayerName, LicenseInfo</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_layer_lifecycle
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaLayer::test_layer_lifecycle</span></span>
@@ -9152,7 +9200,9 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaVersions::test_publish_with_wrong_sha256</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 201</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_with_wrong_sha256
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_hot_reloading_publish_version
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_developer_tools.py::TestHotReloading::test_hot_reloading_publish_version</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 201</span></li><li><span class=coverage-report-tooltip>test_publish_with_wrong_sha256
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaVersions::test_publish_with_wrong_sha256</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 400
 (InvalidParameterValueException)</span>
@@ -9352,7 +9402,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 400
 (ValidationException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: DestinationConfig, FunctionName, MaximumEventAgeInSeconds, MaximumRetryAttempts, Qualifier</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_apigateway_deployed
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_lambda_sqs_destination
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_sqs_destination</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: DestinationConfig, FunctionName, MaximumEventAgeInSeconds, MaximumRetryAttempts, Qualifier</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_apigateway_deployed
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: DestinationConfig, FunctionName, MaximumRetryAttempts</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_reserved_concurrency
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda.py::TestLambdaConcurrency::test_reserved_concurrency</span></span>
@@ -9536,10 +9589,12 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sam_template
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_template</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_http_integration
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_integrations.py::test_http_integration</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 204</span></li><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_permission_exceptions
+(ResourceNotFoundException)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_permission_exceptions
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaPermissions::test_permission_exceptions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (ResourceNotFoundException)</span>
@@ -9602,10 +9657,12 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 (ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_retry_and_catch
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_retry_and_catch</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_list_templates
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_list_templates</span></span>
+(ResourceNotFoundException)</span></li><li><span class=coverage-report-tooltip>test_object_created_put
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sqs.py::TestS3NotificationsToSQS::test_object_created_put</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
-(ResourceNotFoundException)</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_origin_access_control
+(ResourceNotFoundException)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_origin_access_control
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_origin_access_control</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 204</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
