@@ -162,8 +162,8 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -270,10 +270,10 @@
       "GetRepositoryPolicy": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -293,7 +293,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -391,10 +391,10 @@
       "SetRepositoryPolicy": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -679,6 +679,16 @@
       "repositoryName": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_ecr.py::TestECR::test_auth_token_in_different_regions",
             "test": "test_auth_token_in_different_regions",
             "response": "200",
@@ -933,6 +943,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_get_lambda_layer",
+            "test": "test_get_lambda_layer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/integration/test_ecr.py::TestECR::test_auth_token_in_different_regions",
@@ -1195,6 +1215,16 @@
       "repositoryName": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_ecr.py::TestECR::test_describe_images",
             "test": "test_describe_images",
             "response": "200",
@@ -1212,6 +1242,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "400",
+            "error": "AccessDeniedException",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1262,6 +1302,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_get_lambda_layer",
+            "test": "test_get_lambda_layer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -1479,6 +1529,26 @@
       "registryId, repositoryNames": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_get_lambda_layer",
+            "test": "test_get_lambda_layer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_ecr.py::TestECR::test_auth_token_in_different_regions",
             "test": "test_auth_token_in_different_regions",
             "response": "200",
@@ -1727,16 +1797,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_serverlessrepo.py::TestServerlessRepo::test_crud_applications",
-            "test": "test_crud_applications",
-            "response": "400",
-            "error": "RepositoryNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ]
       },
@@ -1887,9 +1947,45 @@
         ]
       }
     },
+    "GetRepositoryPolicy": {
+      "repositoryName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "400",
+            "error": "RepositoryPolicyNotFoundException",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
     "ListImages": {
       "repositoryName": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_get_lambda_layer",
+            "test": "test_get_lambda_layer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
           {
             "node_id": "LocalStack Pro: tests/integration/test_ecr.py::TestECR::test_auth_token_in_different_regions",
             "test": "test_auth_token_in_different_regions",
@@ -2156,6 +2252,22 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "SetRepositoryPolicy": {
+      "policyText, repositoryName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_ecr_repository_policies",
+            "test": "test_ecr_repository_policies",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..repository.repositoryUri']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
