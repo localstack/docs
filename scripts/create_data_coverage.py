@@ -215,6 +215,7 @@ def _init_metric_recorder(operations_dict: dict):
             "availability": availability,
             "internal_test_suite": False,
             "external_test_suite": False,
+            "terraform_test_suite": False,
             "aws_validated": False,
             "snapshot_tested": False,
             "snapshot_skipped": "",
@@ -237,6 +238,7 @@ def aggregate_recorded_raw_data(
                 "internal_test_suite": false,
                 "external_test_suite": true,
                 "aws_validated": false,
+                "terraform_test_suite": false,
                 "snapshot_tested": false,
                 "snapshot_skipped": ""
                  },
@@ -312,6 +314,14 @@ def aggregate_recorded_raw_data(
                 else:
                     external_test = True
 
+
+                if external_test and metric.get("response_code") in ["500", "501"]:
+                    # some external tests (e.g seen for terraform) seem to succeed even though single operation calls fail
+                    # we do not include those are "passed tests"
+                    print(f"skipping {service}.{op_name}: response_code {metric.get('response_code')} ({test_source})")
+                    continue 
+
+                terraform_validated = True if test_source.startswith("terraform") else False
                 if internal_test and not op_record.get("internal_test_suite"):
                     op_record["internal_test_suite"] = True
                 if external_test and not op_record.get("external_test_suite"):
@@ -339,6 +349,8 @@ def aggregate_recorded_raw_data(
                 if not op_record.get("aws_validated") and aws_validated:
                     op_record["aws_validated"] = True
 
+                if not op_record.get("terraform_test_suite") and terraform_validated:
+                    op_record["terraform_test_suite"] = True
 
                 if internal_test and not op_record["implemented"]:
                     print(f"WARN: {service}.{op_name} classified as 'not implemented', but found a test calling it: ({source}) {node_id}")
