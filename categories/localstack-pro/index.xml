@@ -2401,10 +2401,26 @@ The configuration depends on the operating system.&lt;/p>
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Please be careful when changing the network configuration on your system, as this may have undesired side effects.
 &lt;/div>
-&lt;h3 id="mac-os">Mac OS&lt;/h3>
-&lt;p>In Mac OS it can be configured in the Network System Settings, under Linux this is usually achieved by configuring &lt;code>/etc/resolv.conf&lt;/code> as follows:&lt;/p>
+&lt;h3 id="macos">macOS&lt;/h3>
+&lt;p>In macOS it can be configured in the Network System Settings, under Linux this is usually achieved by configuring &lt;code>/etc/resolv.conf&lt;/code> as follows:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>nameserver 0.0.0.0
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The example above needs to be adjusted to the actual IP address of the DNS server. You can also configure a custom IP address by setting the &lt;code>DNS_ADDRESS&lt;/code> environment variable (e.g., &lt;code>DNS_ADDRESS=127.0.0.1&lt;/code>).&lt;/p>
+&lt;p>If you require access to DNS from the host, &lt;code>docker&lt;/code> must be able to publish port 53 from the LocalStack container to your host.
+It can only do this if there are no other processes listening on port 53.&lt;/p>
+&lt;p>A common macOS process that listens on port 53 is &lt;code>mDNSResponder&lt;/code>, which is part of the &lt;a href="https://developer.apple.com/bonjour/">Bonjour protocol&lt;/a>.
+To find out if a program is listening on a port, run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># sudo is required if the port is &amp;lt; 1024&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>sudo&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> lsof -P -i :&amp;lt;port&amp;gt; &lt;span style="color:#000;font-weight:bold">|&lt;/span> grep LISTEN
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># e.g. sudo lsof -P -i :53 | grep LISTEN&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If &lt;code>mDNSResponder&lt;/code> is listening on port 53, the output looks like&lt;/p>
+&lt;pre tabindex="0">&lt;code>$ sudo lsof -P -i :53 | grep LISTEN
+mDNSRespo 627 _mdnsresponder 54u IPv4 0xbe20f6c354a1802d 0t0 TCP *:53 (LISTEN)
+mDNSRespo 627 _mdnsresponder 55u IPv6 0xbe20f6c34d8b9d75 0t0 TCP *:53 (LISTEN)
+&lt;/code>&lt;/pre>&lt;p>If this is the case, you can disable &amp;ldquo;Internet Sharing&amp;rdquo; in system preferences, which should disable Bonjour and therefore &lt;code>mDNSResponder&lt;/code>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+From LocalStack version 2.0.0, LocalStack does not fail to start when ports on the host cannot be bound.
+This includes port 53 for DNS.
+&lt;/div>
 &lt;h3 id="linux">Linux&lt;/h3>
 &lt;p>In Linux, the configuration depends on your network manager/DNS configuration.&lt;/p>
 &lt;h4 id="systemd-resolved">systemd-resolved&lt;/h4>
@@ -2450,7 +2466,7 @@ If you use the default bridge network, it is usually &lt;code>docker0&lt;/code>.
 &lt;p>When correctly configured, either using the LocalStack CLI command or manually, only the requests for the mentioned domain names are routed to LocalStack, all other queries will resolve as usual.&lt;/p>
 &lt;h4 id="other-resolution-settings">Other resolution settings&lt;/h4>
 &lt;p>Depending on your Linux distribution, the settings to set a DNS server can be quite different.
-In some systems, directly editing &lt;code>/etc/resolv.conf&lt;/code> is possible, like described in &lt;a href="#mac-os">Mac OS&lt;/a>.
+In some systems, directly editing &lt;code>/etc/resolv.conf&lt;/code> is possible, like described in &lt;a href="#mac-os">macOS&lt;/a>.
 If your &lt;code>/etc/resolv.conf&lt;/code> is overwritten by some service, it might be possible to install and enable/start &lt;code>resolvconf&lt;/code> and specify the nameserver in &lt;code>/etc/resolvconf/resolv.conf.d/head&lt;/code> with &lt;code>nameserver 127.0.0.1&lt;/code>.
 This will prepend this line in the resolv.conf file even after changes.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
