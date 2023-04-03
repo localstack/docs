@@ -95,15 +95,42 @@ Please be careful when changing the network configuration on your system, as thi
 {{< /alert >}}
 
 
-### Mac OS
+### macOS
 
-In Mac OS it can be configured in the Network System Settings, under Linux this is usually achieved by configuring `/etc/resolv.conf` as follows:
+In macOS it can be configured in the Network System Settings, under Linux this is usually achieved by configuring `/etc/resolv.conf` as follows:
 
 ```text
 nameserver 0.0.0.0
 ```
 
 The example above needs to be adjusted to the actual IP address of the DNS server. You can also configure a custom IP address by setting the `DNS_ADDRESS` environment variable (e.g., `DNS_ADDRESS=127.0.0.1`).
+
+If you require access to DNS from the host, `docker` must be able to publish port 53 from the LocalStack container to your host.
+It can only do this if there are no other processes listening on port 53.
+
+A common macOS process that listens on port 53 is `mDNSResponder`, which is part of the [Bonjour protocol](https://developer.apple.com/bonjour/).
+To find out if a program is listening on a port, run the following command:
+
+```bash
+# sudo is required if the port is < 1024
+[sudo] lsof -P -i :<port> | grep LISTEN
+# e.g. sudo lsof -P -i :53 | grep LISTEN
+```
+
+If `mDNSResponder` is listening on port 53, the output looks like
+
+```
+$ sudo lsof -P -i :53 | grep LISTEN
+mDNSRespo 627 _mdnsresponder   54u  IPv4 0xbe20f6c354a1802d      0t0  TCP *:53 (LISTEN)
+mDNSRespo 627 _mdnsresponder   55u  IPv6 0xbe20f6c34d8b9d75      0t0  TCP *:53 (LISTEN)
+```
+
+If this is the case, you can disable "Internet Sharing" in system preferences, which should disable Bonjour and therefore `mDNSResponder`.
+
+{{<alert>}}
+From LocalStack version 2.0.0, LocalStack does not fail to start when ports on the host cannot be bound.
+This includes port 53 for DNS.
+{{</alert>}}
 
 ### Linux
 
@@ -170,7 +197,7 @@ When correctly configured, either using the LocalStack CLI command or manually, 
 #### Other resolution settings
 
 Depending on your Linux distribution, the settings to set a DNS server can be quite different.
-In some systems, directly editing `/etc/resolv.conf` is possible, like described in [Mac OS]({{< ref "#mac-os" >}}).
+In some systems, directly editing `/etc/resolv.conf` is possible, like described in [macOS]({{< ref "#mac-os" >}}).
 If your `/etc/resolv.conf` is overwritten by some service, it might be possible to install and enable/start `resolvconf` and specify the nameserver in `/etc/resolvconf/resolv.conf.d/head` with `nameserver 127.0.0.1`.
 This will prepend this line in the resolv.conf file even after changes.
 
