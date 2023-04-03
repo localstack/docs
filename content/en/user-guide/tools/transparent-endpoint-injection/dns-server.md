@@ -95,9 +95,9 @@ Please be careful when changing the network configuration on your system, as thi
 {{< /alert >}}
 
 
-### Mac OS
+### macOS
 
-In Mac OS it can be configured in the Network System Settings, under Linux this is usually achieved by configuring `/etc/resolv.conf` as follows:
+In macOS it can be configured in the Network System Settings, under Linux this is usually achieved by configuring `/etc/resolv.conf` as follows:
 
 ```text
 nameserver 0.0.0.0
@@ -170,7 +170,7 @@ When correctly configured, either using the LocalStack CLI command or manually, 
 #### Other resolution settings
 
 Depending on your Linux distribution, the settings to set a DNS server can be quite different.
-In some systems, directly editing `/etc/resolv.conf` is possible, like described in [Mac OS]({{< ref "#mac-os" >}}).
+In some systems, directly editing `/etc/resolv.conf` is possible, like described in [macOS]({{< ref "#mac-os" >}}).
 If your `/etc/resolv.conf` is overwritten by some service, it might be possible to install and enable/start `resolvconf` and specify the nameserver in `/etc/resolvconf/resolv.conf.d/head` with `nameserver 127.0.0.1`.
 This will prepend this line in the resolv.conf file even after changes.
 

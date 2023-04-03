@@ -62,7 +62,7 @@ Cockpit provides quick access to your LocalStack logs for instant insights. Curr
 
 ## Known issues
 
-- Mac OS X 10.0 and lower are not supported yet.
+- macOS X 10.0 and lower are not supported yet.
 - There may be `glibc` issues on older Linux versions.
 
 While installing Cockpit on Mac M1, macOS may prevent the software from running because of issues with code signing. To fix it, you can run `xattr -rc` in the terminal on the binary file and then run the application again. You can visit the [Apple Developer Forum thread](https://developer.apple.com/forums/thread/692774) for more information.
