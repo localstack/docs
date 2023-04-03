@@ -105,6 +105,33 @@ nameserver 0.0.0.0
 
 The example above needs to be adjusted to the actual IP address of the DNS server. You can also configure a custom IP address by setting the `DNS_ADDRESS` environment variable (e.g., `DNS_ADDRESS=127.0.0.1`).
 
+If you require access to DNS from the host, `docker` must be able to publish port 53 from the LocalStack container to your host.
+It can only do this if there are no other processes listening on port 53.
+
+A common macOS process that listens on port 53 is `mDNSResponder`, which is part of the [Bonjour protocol](https://developer.apple.com/bonjour/).
+To find out if a program is listening on a port, run the following command:
+
+```bash
+# sudo is required if the port is < 1024
+[sudo] lsof -P -i :<port> | grep LISTEN
+# e.g. sudo lsof -P -i :53 | grep LISTEN
+```
+
+If `mDNSResponder` is listening on port 53, the output looks like
+
+```
+$ sudo lsof -P -i :53 | grep LISTEN
+mDNSRespo 627 _mdnsresponder   54u  IPv4 0xbe20f6c354a1802d      0t0  TCP *:53 (LISTEN)
+mDNSRespo 627 _mdnsresponder   55u  IPv6 0xbe20f6c34d8b9d75      0t0  TCP *:53 (LISTEN)
+```
+
+If this is the case, you can disable "Internet Sharing" in system preferences, which should disable Bonjour and therefore `mDNSResponder`.
+
+{{<alert>}}
+From LocalStack version 2.0.0, LocalStack does not fail to start when ports on the host cannot be bound.
+This includes port 53 for DNS.
+{{</alert>}}
+
 ### Linux
 
 In Linux, the configuration depends on your network manager/DNS configuration.
