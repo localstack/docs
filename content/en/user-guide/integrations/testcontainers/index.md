@@ -40,7 +40,7 @@ with LocalStack.
 
 {{< tabpane >}}
 {{< tab header="NuGet" lang="shell">}}
-dotnet add package Testcontainers --version 2.4.0
+dotnet add package Testcontainers.LocalStack --version 3.0.0
 {{< /tab >}}
 {{< tab header="Go" lang="go">}}
 go get github.com/testcontainers/testcontainers-go/modules/localstack
@@ -62,23 +62,7 @@ testImplementation 'org.testcontainers:localstack:1.17.6'
 
 {{< tabpane >}}
 {{< tab header=".NET" lang="csharp">}}
-/* The current released version of Testcontainers for .NET does not include a
-LocalStack module. However, developers who want to use Testcontainers with
-LocalStack should not be discouraged, as the Testcontainers team has already
-developed a LocalStack module that will be included in the next release. In the
-meantime, developers can still use Testcontainers' generic builder to create a
-LocalStack container. */
-
-const string localStackImage = "localstack/localstack:1.4.0";
-
-const ushort localStackPort = 4566
-
-var localStackContainer = new ContainerBuilder()
-    .WithImage(localStackImage)
-    .WithPortBinding(localStackPort, true)
-    .WithWaitStrategy(Wait.ForUnixContainer().UntilHttpRequestIsSucceeded(request =>
-        request.ForPath("/_localstack/health").ForPort(localStackPort)))
-    .Build();
+var localStackContainer = new LocalStackBuilder().Build();
 
 await localStackContainer.StartAsync()
     .ConfigureAwait(false);
@@ -97,7 +81,7 @@ LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:
 {{< tabpane >}}
 {{< tab header=".NET" lang="csharp">}}
 var config = new AmazonS3Config();
-config.ServiceURL = _localStackContainer.GetConnectionString();
+config.ServiceURL = localStackContainer.GetConnectionString();
 using var client = new AmazonS3Client(config);
 {{< /tab >}}
 {{< tab header="Go" lang="go">}}
@@ -156,7 +140,7 @@ S3Client s3 = S3Client.builder()
 
 Some services like RDS require additional setup so that the correct port is exposed and accessible for the tests. The reserved ports on LocalStack are between `4510-4559`, depending on your use case you might need to expose several ports using `witExposedPorts`.
 
-Check the [pro-sample on how to use RDS with Testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample). 
+Check the [pro-sample on how to use RDS with Testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample).
 
 The Testcontainer can be created like this:
 
