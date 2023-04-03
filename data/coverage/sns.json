@@ -682,7 +682,7 @@
             "test": "test_message_to_fifo_sqs[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -692,7 +692,7 @@
             "test": "test_message_to_fifo_sqs[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -712,7 +712,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -722,7 +722,27 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -732,7 +752,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -742,7 +762,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2046,11 +2066,11 @@
       "TopicArn": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator",
-            "test": "test_api_gateway_request_validator",
+            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_lambda.py::test_lambda_aws_proxy_integration",
+            "test": "test_lambda_aws_proxy_integration",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.invalid-request-body.Type', '$..methodIntegration.integrationResponses', '$..methodIntegration.passthroughBehavior', '$..methodIntegration.requestParameters', '$..methodIntegration.timeoutInMillis']",
+            "snapshot_skipped": "['$..body', '$..headers.Accept', '$..headers.Content-Length', '$..headers.Accept-Encoding', '$..headers.Authorization', '$..headers.CloudFront-Forwarded-Proto', '$..headers.CloudFront-Is-Desktop-Viewer', '$..headers.CloudFront-Is-Mobile-Viewer', '$..headers.CloudFront-Is-SmartTV-Viewer', '$..headers.CloudFront-Is-Tablet-Viewer', '$..headers.CloudFront-Viewer-ASN', '$..headers.CloudFront-Viewer-Country', '$..headers.Connection', '$..headers.Host', '$..headers.Remote-Addr', '$..headers.Via', '$..headers.X-Amz-Cf-Id', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Forwarded-For', '$..headers.X-Forwarded-Port', '$..headers.X-Forwarded-Proto', '$..headers.accept', '$..headers.accept-encoding', '$..headers.x-localstack-edge', '$..headers.x-localstack-request-url', '$..headers.x-localstack-tgt-api', '$..multiValueHeaders.Content-Length', '$..multiValueHeaders.Accept', '$..multiValueHeaders.Accept-Encoding', '$..multiValueHeaders.Authorization', '$..multiValueHeaders.CloudFront-Forwarded-Proto', '$..multiValueHeaders.CloudFront-Is-Desktop-Viewer', '$..multiValueHeaders.CloudFront-Is-Mobile-Viewer', '$..multiValueHeaders.CloudFront-Is-SmartTV-Viewer', '$..multiValueHeaders.CloudFront-Is-Tablet-Viewer', '$..multiValueHeaders.CloudFront-Viewer-ASN', '$..multiValueHeaders.CloudFront-Viewer-Country', '$..multiValueHeaders.Connection', '$..multiValueHeaders.Host', '$..multiValueHeaders.Remote-Addr', '$..multiValueHeaders.Via', '$..multiValueHeaders.X-Amz-Cf-Id', '$..multiValueHeaders.X-Amzn-Trace-Id', '$..multiValueHeaders.X-Forwarded-For', '$..multiValueHeaders.X-Forwarded-Port', '$..multiValueHeaders.X-Forwarded-Proto', '$..multiValueHeaders.accept', '$..multiValueHeaders.accept-encoding', '$..multiValueHeaders.x-localstack-edge', '$..multiValueHeaders.x-localstack-request-url', '$..multiValueHeaders.x-localstack-tgt-api', '$..pathParameters', '$..requestContext.apiId', '$..requestContext.authorizer', '$..requestContext.domainName', '$..requestContext.domainPrefix', '$..requestContext.extendedRequestId', '$..requestContext.identity.accessKey', '$..requestContext.identity.accountId', '$..requestContext.identity.caller', '$..requestContext.identity.cognitoAuthenticationProvider', '$..requestContext.identity.cognitoAuthenticationType', '$..requestContext.identity.cognitoIdentityId', '$..requestContext.identity.cognitoIdentityPoolId', '$..requestContext.identity.principalOrgId', '$..requestContext.identity.user', '$..requestContext.identity.userArn', '$..stageVariables']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -2156,6 +2176,36 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_dynamodb.py::test_deploy_stack_with_dynamodb_table",
+            "test": "test_deploy_stack_with_dynamodb_table",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_elasticsearch.py::test_cfn_handle_elasticsearch_domain",
+            "test": "test_cfn_handle_elasticsearch_domain",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda",
+            "test": "test_events_sqs_sns_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
@@ -2164,16 +2214,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter",
-            "test": "test_lambda_w_dynamodb_event_filter",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn",
@@ -2204,26 +2244,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_logs.py::test_logstream",
-            "test": "test_logstream",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies",
-            "test": "test_sam_policies",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_deploy_stack_with_sns_topic",
@@ -2346,6 +2366,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/secretsmanager/test_secretsmanager.py::TestSecretsManager::test_create_and_update_secret[s-c64bdc03-True]",
+            "test": "test_create_and_update_secret[s-c64bdc03-True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_aws_sqs_metrics_created",
             "test": "test_aws_sqs_metrics_created",
             "response": "200",
@@ -2386,6 +2416,46 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/test_config_endpoint.py::test_config_endpoint",
+            "test": "test_config_endpoint",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_non_ascii_chars",
+            "test": "test_non_ascii_chars",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_edge.py::TestEdgeAPI::test_invoke_kinesis",
+            "test": "test_invoke_kinesis",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_es.py::TestElasticsearchProvider::test_list_versions",
+            "test": "test_list_versions",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_events.py::TestEvents::test_api_destinations[auth0]",
             "test": "test_api_destinations[auth0]",
             "response": "200",
@@ -2398,46 +2468,6 @@
           {
             "node_id": "LocalStack Community: tests/integration/test_events.py::TestEvents::test_put_events_with_target_sns",
             "test": "test_put_events_with_target_sns",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_events.py::TestEvents::test_put_rule",
-            "test": "test_put_rule",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_logs.py::TestCloudWatchLogs::test_create_and_delete_log_group",
-            "test": "test_create_and_delete_log_group",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_multi_accounts.py::TestMultiAccounts::test_account_id_namespacing_for_moto_backends",
-            "test": "test_account_id_namespacing_for_moto_backends",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_security.py::TestCSRF::test_CSRF",
-            "test": "test_CSRF",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2680,7 +2710,7 @@
             "test": "test_message_to_fifo_sqs[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2690,7 +2720,7 @@
             "test": "test_message_to_fifo_sqs[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2730,7 +2760,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2740,7 +2770,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2761,6 +2791,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2820,7 +2870,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2830,7 +2880,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3154,16 +3204,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_sqs.py::TestSqsProvider::test_get_queue_url_contains_request_host",
-            "test": "test_get_queue_url_contains_request_host",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_creating_event_destination_without_configuration_set",
@@ -3508,7 +3548,7 @@
             "test": "test_message_to_fifo_sqs[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3518,7 +3558,7 @@
             "test": "test_message_to_fifo_sqs[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3548,7 +3588,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3558,7 +3598,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3579,6 +3619,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3628,7 +3688,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -3638,7 +3698,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4024,7 +4084,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4034,7 +4094,27 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5072,7 +5152,7 @@
             "test": "test_message_to_fifo_sqs[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5114,7 +5194,7 @@
             "test": "test_message_to_fifo_sqs[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5124,7 +5204,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5134,7 +5214,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5822,7 +5902,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5832,7 +5912,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -5843,6 +5923,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6008,7 +6108,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6018,7 +6118,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6029,6 +6129,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6048,7 +6168,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6330,11 +6450,11 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator",
-            "test": "test_api_gateway_request_validator",
+            "node_id": "LocalStack Community: tests/integration/secretsmanager/test_secretsmanager.py::TestSecretsManager::test_create_and_update_secret[s-c64bdc03-True]",
+            "test": "test_create_and_update_secret[s-c64bdc03-True]",
             "response": "404",
             "error": "CommonServiceException",
-            "snapshot_skipped": "['$.invalid-request-body.Type', '$..methodIntegration.integrationResponses', '$..methodIntegration.passthroughBehavior', '$..methodIntegration.requestParameters', '$..methodIntegration.timeoutInMillis']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -6922,7 +7042,7 @@
             "test": "test_message_to_fifo_sqs[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6932,7 +7052,7 @@
             "test": "test_message_to_fifo_sqs[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6942,7 +7062,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6952,7 +7072,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -6973,6 +7093,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7022,7 +7162,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7032,7 +7172,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7252,11 +7392,11 @@
       "SubscriptionArn": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator",
-            "test": "test_api_gateway_request_validator",
+            "node_id": "LocalStack Community: tests/integration/apigateway/test_apigateway_lambda.py::test_lambda_aws_proxy_integration",
+            "test": "test_lambda_aws_proxy_integration",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.invalid-request-body.Type', '$..methodIntegration.integrationResponses', '$..methodIntegration.passthroughBehavior', '$..methodIntegration.requestParameters', '$..methodIntegration.timeoutInMillis']",
+            "snapshot_skipped": "['$..body', '$..headers.Accept', '$..headers.Content-Length', '$..headers.Accept-Encoding', '$..headers.Authorization', '$..headers.CloudFront-Forwarded-Proto', '$..headers.CloudFront-Is-Desktop-Viewer', '$..headers.CloudFront-Is-Mobile-Viewer', '$..headers.CloudFront-Is-SmartTV-Viewer', '$..headers.CloudFront-Is-Tablet-Viewer', '$..headers.CloudFront-Viewer-ASN', '$..headers.CloudFront-Viewer-Country', '$..headers.Connection', '$..headers.Host', '$..headers.Remote-Addr', '$..headers.Via', '$..headers.X-Amz-Cf-Id', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Forwarded-For', '$..headers.X-Forwarded-Port', '$..headers.X-Forwarded-Proto', '$..headers.accept', '$..headers.accept-encoding', '$..headers.x-localstack-edge', '$..headers.x-localstack-request-url', '$..headers.x-localstack-tgt-api', '$..multiValueHeaders.Content-Length', '$..multiValueHeaders.Accept', '$..multiValueHeaders.Accept-Encoding', '$..multiValueHeaders.Authorization', '$..multiValueHeaders.CloudFront-Forwarded-Proto', '$..multiValueHeaders.CloudFront-Is-Desktop-Viewer', '$..multiValueHeaders.CloudFront-Is-Mobile-Viewer', '$..multiValueHeaders.CloudFront-Is-SmartTV-Viewer', '$..multiValueHeaders.CloudFront-Is-Tablet-Viewer', '$..multiValueHeaders.CloudFront-Viewer-ASN', '$..multiValueHeaders.CloudFront-Viewer-Country', '$..multiValueHeaders.Connection', '$..multiValueHeaders.Host', '$..multiValueHeaders.Remote-Addr', '$..multiValueHeaders.Via', '$..multiValueHeaders.X-Amz-Cf-Id', '$..multiValueHeaders.X-Amzn-Trace-Id', '$..multiValueHeaders.X-Forwarded-For', '$..multiValueHeaders.X-Forwarded-Port', '$..multiValueHeaders.X-Forwarded-Proto', '$..multiValueHeaders.accept', '$..multiValueHeaders.accept-encoding', '$..multiValueHeaders.x-localstack-edge', '$..multiValueHeaders.x-localstack-request-url', '$..multiValueHeaders.x-localstack-tgt-api', '$..pathParameters', '$..requestContext.apiId', '$..requestContext.authorizer', '$..requestContext.domainName', '$..requestContext.domainPrefix', '$..requestContext.extendedRequestId', '$..requestContext.identity.accessKey', '$..requestContext.identity.accountId', '$..requestContext.identity.caller', '$..requestContext.identity.cognitoAuthenticationProvider', '$..requestContext.identity.cognitoAuthenticationType', '$..requestContext.identity.cognitoIdentityId', '$..requestContext.identity.cognitoIdentityPoolId', '$..requestContext.identity.principalOrgId', '$..requestContext.identity.user', '$..requestContext.identity.userArn', '$..stageVariables']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -7272,6 +7412,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_dynamodb.py::test_deploy_stack_with_dynamodb_table",
+            "test": "test_deploy_stack_with_dynamodb_table",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_elasticsearch.py::test_cfn_handle_elasticsearch_domain",
+            "test": "test_cfn_handle_elasticsearch_domain",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source",
             "test": "test_cfn_lambda_sqs_source",
             "response": "200",
@@ -7280,26 +7440,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter",
-            "test": "test_lambda_w_dynamodb_event_filter",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies",
-            "test": "test_sam_policies",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_not_exist",
@@ -7320,6 +7460,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/secretsmanager/test_secretsmanager.py::TestSecretsManager::test_create_and_update_secret[s-c64bdc03-True]",
+            "test": "test_create_and_update_secret[s-c64bdc03-True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_breaching_alarm_actions",
@@ -7362,6 +7512,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_non_ascii_chars",
+            "test": "test_non_ascii_chars",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_edge.py::TestEdgeAPI::test_message_modifying_handler",
             "test": "test_message_modifying_handler",
             "response": "200",
@@ -7390,16 +7550,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_logs.py::TestCloudWatchLogs::test_create_and_delete_log_group",
-            "test": "test_create_and_delete_log_group",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/integration/test_notifications.py::TestNotifications::test_sns_to_sqs",
@@ -7596,7 +7746,7 @@
             "test": "test_message_to_fifo_sqs[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7606,7 +7756,7 @@
             "test": "test_message_to_fifo_sqs[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber', '$..Messages..Attributes.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7646,7 +7796,7 @@
             "test": "test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action', '$..Messages..Attributes.SequenceNumber', '$..Successful..SequenceNumber']",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7667,6 +7817,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]",
+            "test": "test_publish_fifo_batch_messages_to_dlq[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$.topic-attrs.Attributes.DeliveryPolicy', '$.topic-attrs.Attributes.EffectiveDeliveryPolicy', '$.topic-attrs.Attributes.Policy.Statement..Action']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7696,7 +7866,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7706,7 +7876,7 @@
             "test": "test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Messages..Body.SignatureVersion', '$..Messages..Body.Signature', '$..Messages..Body.SigningCertURL', '$..Messages..Body.SequenceNumber']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7990,16 +8160,6 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_sqs.py::TestSqsProvider::test_get_queue_url_contains_request_host",
-            "test": "test_get_queue_url_contains_request_host",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ],
         "ls_pro": [
