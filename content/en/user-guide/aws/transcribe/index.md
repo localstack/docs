@@ -16,6 +16,11 @@ Language models are around 50 MiB each and saved to the cache directory (see [Fi
 
 {{< alert title="Note" >}}
 This service has limited support for aarch64/Apple Silicon.
+
+If you encounter `cannot load library *.so` errors, please try the AMD64 build of LocalStack:
+{{< command >}}
+$ docker pull localstack/localstack:2.0.0 --platform amd64
+{{< /command >}}
 {{< /alert >}}
 
 ## Supported Formats
