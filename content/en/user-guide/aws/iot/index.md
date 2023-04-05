@@ -8,8 +8,8 @@ aliases:
   - /aws/iot/
 ---
 
-LocalStack Pro supports IoT Core, IoT Analytics, IoT Data and related APIs.
-The main endpoints for creating and updating entities are implemented along with the CloudFormation integrations.
+LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs.
+Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.
 
 ## MQTT Broker
 
@@ -27,7 +27,7 @@ This endpoint can then be used with any MQTT client to publish and subscribe to 
 
 ## Lifecycle Events
 
-LocalStack also publishes the [IoT lifecycle events](https://docs.aws.amazon.com/iot/latest/developerguide/life-cycle-events.html) to the standard endpoints.
+LocalStack also publishes the [lifecycle events](https://docs.aws.amazon.com/iot/latest/developerguide/life-cycle-events.html) to the standard endpoints.
 
 - `$aws/events/presence/connected/clientId`: when a client connects
 - `$aws/events/presence/disconnected/clientId`: when a client disconnects
@@ -40,4 +40,6 @@ Currently the `principalIdentifier` and `sessionIdentifier` fields in event payl
 
 It is also possible to use advanced features like SQL queries for IoT topic rules.
 
-For example, you can use the [`CreateTopicRule`](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html) operation to define a topic rule with a SQL query `SELECT * FROM 'my/topic' where attr=123` which will trigger a Lambda function whenever a message with attribute `attr=123` is received on the MQTT topic `my/topic`.
+For example, you can use the [`CreateTopicRule`](https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html) operation to define a topic rule with a SQL query `SELECT * FROM 'my/topic' where attr=123` which will execute a trigger whenever a message with attribute `attr=123` is received on the MQTT topic `my/topic`.
+
+Supported triggers include Kinesis, Lambda, SQS and Firehose.
