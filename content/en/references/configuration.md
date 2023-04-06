@@ -372,11 +372,12 @@ More information [here]({{< ref "dns-server" >}}).
 
 ## LocalStack Pro
 
-| Variable | Example Values | Description |
-| - | - | - |
-| `LOCALSTACK_API_KEY` | | API key to activate LocalStack Pro.
-| `LOG_LICENSE_ISSUES` | 1 (default) | Whether to log issues with the license activation to the console.
-| `REQUIRE_PRO` | 0 (default) | Whether to require license activation to succeed to start LocalStack. If set to 0 (default) LocalStack will start as community version if the license cannot be activated.
+| Variable             | Example Values | Description |
+|----------------------|----------------| - |
+| `ACTIVATE_PRO`       | 1 (default)    | Whether pro should be activated or not. This is set to true by default if using the `localstack/localstack-pro` container image. If set to `1`, LocalStack will fail to start if the license key activation did not work. If set to `0`, an attempt is made to start LocalStack without pro features.
+| `LOCALSTACK_API_KEY` |                | API key to activate LocalStack Pro.
+| `LOG_LICENSE_ISSUES` | 1 (default)    | Whether to log issues with the license activation to the console.
+
 
 ## Read-only
 
