@@ -31,7 +31,7 @@ More information about the new lambda provider is available under [Lambda Provid
 * [Application Configuration Examples](#application-configuration-examples):
   * [Hot reloading for JVM Lambdas](#hot-reloading-for-jvm-lambdas)
   * [Hot reloading for Python Lambdas](#hot-reloading-for-python-lambdas)
-  * Debugging Nodejs lambdas (under development)
+  * [Hot reloading for TypeScript Lambdas](#hot-reloading-for-typescript-lambdas)
 * [Deployment Configuration Examples](#deployment-configuration-examples):
   * [Serverless Framework Configuration](#serverless-framework-configuration)
   * [AWS Cloud Development Kit (CDK) Configuration](#aws-cloud-development-kit-cdk-configuration)
@@ -225,6 +225,109 @@ watch:
 To run the example above, run `make watch`. The script is copying the project module `PROJECT_MODULE_NAME`
 along with all dependencies into the `build/hot` folder, which is then mounted into
 LocalStack's Lambda container.
+
+### Hot reloading for TypeScript Lambdas
+
+You can hot-reload your [TypeScript Lambda functions](https://docs.aws.amazon.com/lambda/latest/dg/lambda-typescript.html). We will check-out a simple example to create a simple `Hello World!` Lambda function using TypeScript.
+
+#### Setting up the Lambda function
+
+Create a new Node.js project with `npm` or an alternative package manager:
+
+{{< command >}}
+$ npm init -y
+{{< / command >}}
+
+Install the the [@types/aws-lambda](https://www.npmjs.com/package/@types/aws-lambda) and [esbuild](https://esbuild.github.io/) packages in your Node.js project:
+
+{{< command >}}
+$ npm install -D @types/aws-lambda esbuild
+{{< / command >}}
+
+Create a new file named `index.ts`. Add the following code to the new file:
+
+```ts
+import { Context, APIGatewayProxyResult, APIGatewayEvent } from 'aws-lambda';
+
+export const handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
+  console.log(`Event: ${JSON.stringify(event, null, 2)}`);
+  console.log(`Context: ${JSON.stringify(context, null, 2)}`);
+  return {
+      statusCode: 200,
+      body: JSON.stringify({
+          message: 'Hello World!',
+      }),
+   };
+};
+```
+
+Add a build script to your `package.json` file:
+
+```json
+"scripts": {
+    "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js"
+  },
+```
+
+The build script will use `esbuild` to bundle and minify the TypeScript code into a single JavaScript file, which will be placed in the `dist` folder.
+
+You can now run the build script to create the `dist/index.js` file:
+
+{{< command >}}
+$ npm run build
+{{< / command >}}
+
+#### Creating the Lambda Function
+
+To create the Lambda function, you need to take care of two things:
+
+- Deploy via an S3 Bucket. You need to use the magic variable `hot-reload` as the bucket.
+- Set the S3 key to the path of the directory your lambda function resides in. The handler is then referenced by the filename of your lambda code and the function in that code that needs to be invoked.
+
+Create the Lambda Function using the `awslocal` CLI:
+
+{{< command >}}
+awslocal lambda create-function \
+    --function-name hello-world \
+    --runtime "nodejs16.x" \
+    --role arn:aws:iam::123456789012:role/lambda-ex \
+    --code S3Bucket="hot-reload",S3Key="$(PWD)/dist" \
+    --handler index.handler
+{{< / command >}}
+
+You can quickly make sure that it works by invoking it with a simple payload:
+
+{{< command >}}
+$ awslocal lambda invoke \
+    --function-name hello-world \
+    --payload '{"action": "test"}' output.txt
+{{< / command >}}
+
+The invocation returns itself returns:
+
+```sh
+{
+    "StatusCode": 200,
+    "LogResult": "",
+    "ExecutedVersion": "$LATEST"
+}
+```
+
+The `output.txt` file contains the following:
+
+```sh
+{"statusCode":200,"body":"{\"message\":\"Hello World!\"}"}
+```
+
+#### Changing the Lambda Function
+
+The Lambda function is now mounted as a file in the executing container, hence any change that we save on the file will be there in an instant.
+
+Change the `Hello World!` message to `Hello LocalStack!` and run `npm run build`. Trigger the Lambda once again. You will see the following in the `output.txt` file:
+
+```sh
+{"statusCode":200,"body":"{\"message\":\"Hello LocalStack!\"}"}
+```
 
 ## Deployment Configuration Examples
 
