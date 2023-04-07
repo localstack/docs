@@ -96,4 +96,30 @@ Otherwise, check our collected most [common activation issues](#common-activatio
 
 ## Common activation issues
 
-Navigate to our [FAQ page]({{< ref "faq" >}}) if your are having troubles with the LocalStack API key activation If you have any further problems concerning your API key activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).
+
+Since LocalStack v2.0.0, the image `localstack/localstack-pro` requires a successful key activation to start.
+If the key activation fails, LocalStack will quit with an error messages that may look something like this:
+
+```
+===============================================
+API key activation failed! 🔑❌
+
+The API key you provided in the `LOCALSTACK_API_KEY` environment variable '"foo..."(6)' could not beactivated against our licensing server. Server message: Unable to verify API key.
+
+Due to this error, Localstack has quit. LocalStack pro features can only be used with a valid license.
+
+- Please check that your API key is set up correctly and that you are using the correct key.
+  You can find your API key in our webapp at https://app.localstack.cloud.
+- If you want to continue using LocalStack without pro features you can set `ACTIVATE_PRO=0`.
+```
+
+There are several reasons a key activation can fail:
+* Missing credentials: Using `localstack/localstack-pro` requires per default to have an API key set.
+* Invalid key: there is no valid license associated with the key, for example because the license has expired.
+* License server cannot be reached: LocalStack will try to perform an offline license activation if the license server cannot be reached, but will require a re-activation every 24 hours.
+
+If you are using the `localstack/localstack-pro` image, but cannot activate your license key, we recommend falling back to the community version `localstack/localstack`.
+If that is not an option, you can set `ACTIVATE_PRO=0` which will attempt to start LocalStack without pro features.
+
+Navigate to our [FAQ page]({{< ref "faq" >}}) if your are having troubles with the LocalStack API key activation.
+If you have any further problems concerning your API key activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).
