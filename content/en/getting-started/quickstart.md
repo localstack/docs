@@ -50,15 +50,13 @@ All of these resources will be deployed to the local `us-east-1` region on Local
 
 ## Run the sample AWS application
 
-You need to ensure that you have Node.js and `npm` available, to install Serverless framework and other dependencies.
-
-The application has been updated to make your life easier. The only thing left to do now is to run:
+Please ensure that you have Node.js, `npm`, and `make` installed, before trying to deploy the application with the following `make` command:
 
 {{< command >}}
 $ make deploy
 {{< / command >}}
 
-This easy to use wrapper hides commands like `npm install` and `npm install -g serverless`.
+This easy to use wrapper hides commands like `npm install` and `npm install -g serverless`, which will install all necessary dependencies to run the application.
 
 Navigate to [`http://localhost:4566/archive-bucket/index.html`](http://localhost:4566/archive-bucket/index.html) to access the web application. You can enable the **Auto-Refresh** and click on **Create new request**. You will see the request being processed in the table below after an alert that your request has been sent and queued. After the processing is complete, you will see an option in the table to download the result from S3. Click on it to download a text file with the message: `Archive result for request XXXXXXX`.
 
