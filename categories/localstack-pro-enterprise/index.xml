@@ -1,5 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Pro &amp; Enterprise</title><link>/categories/localstack-pro-enterprise/</link><description>Recent content in LocalStack Pro &amp; Enterprise on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/categories/localstack-pro-enterprise/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting-Started: API Key</title><link>/getting-started/api-key/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/getting-started/api-key/</guid><description>
-&lt;p>The LocalStack API key is a unique identifier to authenticate your LocalStack instance. You can find your API key in the &lt;a href="https://app.localstack.cloud/account/apikeys">LocalStack Web app&lt;/a>. This guide demonstrates how you can use your new LocalStack licenses and go over some best practices regarding the usage, activation, and safety of your LocalStack API key.&lt;/p>
+&lt;p>The LocalStack API key is a unique identifier to activate your LocalStack license needed to start LocalStack Pro.
+You can find your API key in the &lt;a href="https://app.localstack.cloud/account/apikeys">LocalStack Web app&lt;/a>.
+This guide demonstrates how you can use your new LocalStack licenses and go over some best practices regarding the usage, activation, and safety of your LocalStack API key.&lt;/p>
 &lt;h2 id="getting-your-api-key">Getting your API key&lt;/h2>
 &lt;p>To get started, you need to have a LocalStack license. If you don&amp;rsquo;t have one, you can &lt;a href="https://localstack.cloud/pricing/">sign up for a free trial&lt;/a> without any credit card required. The free trial will last 14 days, and you can use it to test all the features of LocalStack. After a free trial, you can find your API key in the &lt;a href="https://app.localstack.cloud">LocalStack Web app&lt;/a> in the &lt;strong>Account&lt;/strong> → &lt;strong>Subscriptions&lt;/strong> section.&lt;/p>
 &lt;div class="alert alert-danger" role="alert">
@@ -53,4 +55,22 @@ If you are using LocalStack with an API Key, you need to pull &lt;code>localstac
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>[...] Successfully activated API key&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Otherwise, check our collected most &lt;a href="#common-activation-issues">common activation issues&lt;/a>.&lt;/p>
 &lt;h2 id="common-activation-issues">Common activation issues&lt;/h2>
-&lt;p>Navigate to our &lt;a href="/getting-started/faq/">FAQ page&lt;/a> if your are having troubles with the LocalStack API key activation If you have any further problems concerning your API key activation, or if the steps do not help, do not hesitate to &lt;a href="https://localstack.cloud/contact/">contact us&lt;/a>.&lt;/p></description></item></channel></rss>
+&lt;p>Since LocalStack v2.0.0, the image &lt;code>localstack/localstack-pro&lt;/code> requires a successful key activation to start.
+If the key activation fails, LocalStack will quit with an error messages that may look something like this:&lt;/p>
+&lt;pre tabindex="0">&lt;code>===============================================
+API key activation failed! 🔑❌
+The API key you provided in the `LOCALSTACK_API_KEY` environment variable &amp;#39;&amp;#34;foo...&amp;#34;(6)&amp;#39; could not beactivated against our licensing server. Server message: Unable to verify API key.
+Due to this error, Localstack has quit. LocalStack pro features can only be used with a valid license.
+- Please check that your API key is set up correctly and that you are using the correct key.
+You can find your API key in our webapp at https://app.localstack.cloud.
+- If you want to continue using LocalStack without pro features you can set `ACTIVATE_PRO=0`.
+&lt;/code>&lt;/pre>&lt;p>There are several reasons a key activation can fail:&lt;/p>
+&lt;ul>
+&lt;li>Missing credentials: Using &lt;code>localstack/localstack-pro&lt;/code> requires per default to have an API key set.&lt;/li>
+&lt;li>Invalid key: there is no valid license associated with the key, for example because the license has expired.&lt;/li>
+&lt;li>License server cannot be reached: LocalStack will try to perform an offline license activation if the license server cannot be reached, but will require a re-activation every 24 hours.&lt;/li>
+&lt;/ul>
+&lt;p>If you are using the &lt;code>localstack/localstack-pro&lt;/code> image, but cannot activate your license key, we recommend falling back to the community version &lt;code>localstack/localstack&lt;/code>.
+If that is not an option, you can set &lt;code>ACTIVATE_PRO=0&lt;/code> which will attempt to start LocalStack without pro features.&lt;/p>
+&lt;p>Navigate to our &lt;a href="/getting-started/faq/">FAQ page&lt;/a> if your are having troubles with the LocalStack API key activation.
+If you have any further problems concerning your API key activation, or if the steps do not help, do not hesitate to &lt;a href="https://localstack.cloud/contact/">contact us&lt;/a>.&lt;/p></description></item></channel></rss>
