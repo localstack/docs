@@ -1164,16 +1164,6 @@
       "ConfigurationSetName": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_multi_accounts.py::TestMultiAccounts::test_account_id_namespacing_for_moto_backends",
-            "test": "test_account_id_namespacing_for_moto_backends",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_cannot_create_event_for_no_topic",
             "test": "test_cannot_create_event_for_no_topic",
             "response": "200",
@@ -1184,8 +1174,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_creating_event_destination_without_configuration_set",
-            "test": "test_creating_event_destination_without_configuration_set",
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_deleting_non_existent_configuration_set_event_destination",
+            "test": "test_deleting_non_existent_configuration_set_event_destination",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1199,6 +1189,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Signature', '$..SigningCertURL', '$..TopicArn', '$..UnsubscribeURL', '$..Message.delivery.processingTimeMillis', '$..Message.delivery.reportingMTA', '$..Message.delivery.smtpResponse', '$..Message.mail.commonHeaders', '$..Message.mail.headers', '$..Message.mail.headersTruncated', '$..Message.mail.tags', '$..Message.mail.timestamp']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_ses_sns_topic_integration_send_email",
+            "test": "test_ses_sns_topic_integration_send_email",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Message.delivery.processingTimeMillis', '$..Message.delivery.reportingMTA', '$..Message.delivery.smtpResponse', '$..Message.mail.commonHeaders', '$..Message.mail.headers', '$..Message.mail.headersTruncated', \"$..Message.mail.tags.'ses:caller-identity'\", \"$..Message.mail.tags.'ses:configuration-set'\", \"$..Message.mail.tags.'ses:from-domain'\", \"$..Message.mail.tags.'ses:operation'\", \"$..Message.mail.tags.'ses:outgoing-ip'\", \"$..Message.mail.tags.'ses:source-ip'\", '$..Message.mail.timestamp']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1250,31 +1250,21 @@
       "ConfigurationSetName, EventDestinationName": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_multi_accounts.py::TestMultiAccounts::test_account_id_namespacing_for_moto_backends",
-            "test": "test_account_id_namespacing_for_moto_backends",
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_sending_to_deleted_topic",
+            "test": "test_sending_to_deleted_topic",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_cannot_create_event_for_no_topic",
-            "test": "test_cannot_create_event_for_no_topic",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Signature', '$..SigningCertURL', '$..TopicArn', '$..UnsubscribeURL', '$..Message.delivery.processingTimeMillis', '$..Message.delivery.reportingMTA', '$..Message.delivery.smtpResponse', '$..Message.mail.commonHeaders', '$..Message.mail.headers', '$..Message.mail.headersTruncated', '$..Message.mail.tags', '$..Message.mail.timestamp']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_creating_event_destination_without_configuration_set",
-            "test": "test_creating_event_destination_without_configuration_set",
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_ses_sns_topic_integration_send_email",
+            "test": "test_ses_sns_topic_integration_send_email",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..Message.delivery.processingTimeMillis', '$..Message.delivery.reportingMTA', '$..Message.delivery.smtpResponse', '$..Message.mail.commonHeaders', '$..Message.mail.headers', '$..Message.mail.headersTruncated', \"$..Message.mail.tags.'ses:caller-identity'\", \"$..Message.mail.tags.'ses:configuration-set'\", \"$..Message.mail.tags.'ses:from-domain'\", \"$..Message.mail.tags.'ses:operation'\", \"$..Message.mail.tags.'ses:outgoing-ip'\", \"$..Message.mail.tags.'ses:source-ip'\", '$..Message.mail.timestamp']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1295,6 +1285,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Message.delivery.processingTimeMillis', '$..Message.delivery.reportingMTA', '$..Message.delivery.smtpResponse', '$..Message.mail.commonHeaders', '$..Message.mail.headers', '$..Message.mail.headersTruncated', \"$..Message.mail.tags.'ses:caller-identity'\", \"$..Message.mail.tags.'ses:configuration-set'\", \"$..Message.mail.tags.'ses:from-domain'\", \"$..Message.mail.tags.'ses:operation'\", \"$..Message.mail.tags.'ses:outgoing-ip'\", \"$..Message.mail.tags.'ses:source-ip'\", '$..Message.mail.timestamp']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_trying_to_delete_event_destination_from_non_existent_configuration_set",
+            "test": "test_trying_to_delete_event_destination_from_non_existent_configuration_set",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1498,16 +1498,6 @@
       "TemplateName": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_clone_receipt_rule_set",
-            "test": "test_clone_receipt_rule_set",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_delete_template",
             "test": "test_delete_template",
             "response": "200",
@@ -1518,8 +1508,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_get_identity_verification_attributes",
-            "test": "test_get_identity_verification_attributes",
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_list_templates",
+            "test": "test_list_templates",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1548,8 +1538,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_ses_sns_topic_integration_send_raw_email",
-            "test": "test_ses_sns_topic_integration_send_raw_email",
+            "node_id": "LocalStack Community: tests/integration/test_ses.py::TestSES::test_ses_sns_topic_integration_send_templated_email",
+            "test": "test_ses_sns_topic_integration_send_templated_email",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Message.delivery.processingTimeMillis', '$..Message.delivery.reportingMTA', '$..Message.delivery.smtpResponse', '$..Message.mail.commonHeaders', '$..Message.mail.headers', '$..Message.mail.headersTruncated', \"$..Message.mail.tags.'ses:caller-identity'\", \"$..Message.mail.tags.'ses:configuration-set'\", \"$..Message.mail.tags.'ses:from-domain'\", \"$..Message.mail.tags.'ses:operation'\", \"$..Message.mail.tags.'ses:outgoing-ip'\", \"$..Message.mail.tags.'ses:source-ip'\", '$..Message.mail.timestamp']",

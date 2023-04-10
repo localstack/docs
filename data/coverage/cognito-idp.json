@@ -437,8 +437,8 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -515,7 +515,7 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -4773,6 +4773,16 @@
       "GroupName, UserPoolId": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_user_group_in_pool",
+            "test": "test_create_user_group_in_pool",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_groups",
             "test": "test_user_groups",
             "response": "200",
@@ -4809,18 +4819,8 @@
       "ProviderName, UserPoolId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_customresources.py::test_customresource_lambda_backed",
-            "test": "test_customresource_lambda_backed",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
-            "test": "test_create_misc_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
+            "test": "test_cognito_role_attachment",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -4845,8 +4845,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Authorizers::test_create_apigateway_authorizer_client_credentials",
+            "test": "test_create_apigateway_authorizer_client_credentials",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -4877,12 +4877,12 @@
       "UserPoolId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_http_lambda_authorizers[eu-west-1-UrlType.HOST_BASED-1.0-POST]",
-            "test": "test_http_lambda_authorizers[eu-west-1-UrlType.HOST_BASED-1.0-POST]",
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_apigw_v2_http_jwt_authorizer",
+            "test": "test_apigw_v2_http_jwt_authorizer",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -4899,6 +4899,16 @@
           {
             "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[bogus-2.0]",
             "test": "test_lambda_jwt_authorizer[bogus-2.0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[http://localhost:4566-1.0]",
+            "test": "test_lambda_jwt_authorizer[http://localhost:4566-1.0]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4927,12 +4937,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_rest_apis.py::TestRestAPIs::test_cognito_authorizer_token_types[client_credentials]",
+            "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -4987,8 +4997,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_rest_apis.py::TestRestAPIs::test_custom_authorizer[NONE-GET]",
-            "test": "test_custom_authorizer[NONE-GET]",
+            "node_id": "LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_cognito_authorization",
+            "test": "test_cognito_authorization",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5067,38 +5077,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_dynamodb_resolvers",
-            "test": "test_dynamodb_resolvers",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_lambda_authorization",
-            "test": "test_lambda_authorization",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_pipeline_resolver",
-            "test": "test_pipeline_resolver",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..uris.GRAPHQL', '$..uris.REALTIME', '$..requestMappingTemplate', '$..errors..data', '$..errors..errorInfo', '$..errors..errorType', '$..errors..locations..sourceName']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
+            "node_id": "LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_websocket_subscriptions",
+            "test": "test_websocket_subscriptions",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5107,8 +5087,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_customresources.py::test_customresource_lambda_backed",
-            "test": "test_customresource_lambda_backed",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Authorizers::test_create_apigateway_authorizer_client_credentials",
+            "test": "test_create_apigateway_authorizer_client_credentials",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5117,8 +5097,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
-            "test": "test_create_misc_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
+            "test": "test_cognito_role_attachment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5153,6 +5133,16 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_api_gateway_cognito_pool_authorizer",
+            "test": "test_api_gateway_cognito_pool_authorizer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5207,13 +5197,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_cognito_identity_pool_roles",
-            "test": "test_create_cognito_identity_pool_roles",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_pool_mfa_off",
+            "test": "test_create_pool_mfa_off",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -5237,8 +5227,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_get_signing_certificate",
-            "test": "test_get_signing_certificate",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_describe_user_pool",
+            "test": "test_describe_user_pool",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5247,13 +5237,23 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_get_user_with_fake_access_token",
-            "test": "test_get_user_with_fake_access_token",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_force_alias_creation",
+            "test": "test_force_alias_creation",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message', '$..message']",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_get_signing_certificate",
+            "test": "test_get_signing_certificate",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -5287,12 +5287,32 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_login_via_web_form",
+            "test": "test_login_via_web_form",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_login_with_preferred_username",
             "test": "test_login_with_preferred_username",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_login_with_preferred_username_attr_change",
+            "test": "test_login_with_preferred_username_attr_change",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5357,16 +5377,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_signup_with_confirmation_code",
-            "test": "test_signup_with_confirmation_code",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_signup_with_email_phone_aliases",
             "test": "test_signup_with_email_phone_aliases",
             "response": "200",
@@ -5393,6 +5403,16 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_tags",
+            "test": "test_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5437,8 +5457,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_group_deletion_with_non_existing_pool",
-            "test": "test_user_group_deletion_with_non_existing_pool",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_group_deletion_with_non_existing_group",
+            "test": "test_user_group_deletion_with_non_existing_group",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5454,6 +5474,26 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_login_before_confirmation",
+            "test": "test_user_login_before_confirmation",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_client_updates",
+            "test": "test_user_pool_client_updates",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -5555,16 +5595,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_costexplorer.py::TestCostExplorer::test_cost_categories",
-            "test": "test_cost_categories",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ]
       }
@@ -5623,12 +5653,12 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_cognito_identity_pool_roles",
-            "test": "test_create_cognito_identity_pool_roles",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_admin_user_with_duplicate_email_but_valid_userconfiguration",
+            "test": "test_create_admin_user_with_duplicate_email_but_valid_userconfiguration",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5643,18 +5673,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_lambda_authorization",
-            "test": "test_lambda_authorization",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_customresources.py::test_customresource_lambda_backed",
-            "test": "test_customresource_lambda_backed",
+            "node_id": "LocalStack Pro: tests/integration/appsync/test_appsync.py::TestAppSync::test_websocket_subscriptions",
+            "test": "test_websocket_subscriptions",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -5663,8 +5683,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
-            "test": "test_create_misc_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_cognito.py::test_cognito_role_attachment",
+            "test": "test_cognito_role_attachment",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -5679,12 +5699,12 @@
       "Domain, UserPoolId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_http_lambda_authorizers[eu-west-1-UrlType.HOST_BASED-1.0-POST]",
-            "test": "test_http_lambda_authorizers[eu-west-1-UrlType.HOST_BASED-1.0-POST]",
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_apigw_v2_http_jwt_authorizer",
+            "test": "test_apigw_v2_http_jwt_authorizer",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5709,6 +5729,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[http://localhost:4566-1.0]",
+            "test": "test_lambda_jwt_authorizer[http://localhost:4566-1.0]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[http://localhost:4566-2.0]",
             "test": "test_lambda_jwt_authorizer[http://localhost:4566-2.0]",
             "response": "200",
@@ -5719,12 +5749,12 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_rest_apis.py::TestRestAPIs::test_cognito_authorizer_token_types[client_credentials]",
+            "test": "test_cognito_authorizer_token_types[client_credentials]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5739,28 +5769,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_rest_apis.py::TestRestAPIs::test_custom_authorizer[NONE-GET]",
-            "test": "test_custom_authorizer[NONE-GET]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_api_gateway_cognito_pool_authorizer_oauth_client_credentials_token",
+            "test": "test_api_gateway_cognito_pool_authorizer_oauth_client_credentials_token",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AuthSessionValidity', '$..ExplicitAuthFlows', '$..DeletionProtection', '$..AdminCreateUserConfig.UnusedAccountValidityDays', '$..AliasAttributes', '$..EstimatedNumberOfUsers', '$..LambdaConfig', '$..MfaConfiguration', '$..SchemaAttributes', '$..body', '$..headers.Accept', '$..headers.Accept-Encoding', '$..headers.Authorization', '$..headers.CloudFront-Forwarded-Proto', '$..headers.CloudFront-Is-Desktop-Viewer', '$..headers.CloudFront-Is-Mobile-Viewer', '$..headers.CloudFront-Is-SmartTV-Viewer', '$..headers.CloudFront-Is-Tablet-Viewer', '$..headers.CloudFront-Viewer-ASN', '$..headers.CloudFront-Viewer-Country', '$..headers.Connection', '$..headers.Host', '$..headers.User-Agent', '$..headers.Via', '$..headers.X-Amz-Cf-Id', '$..headers.X-Amzn-Trace-Id', '$..headers.X-Forwarded-For', '$..headers.X-Forwarded-Port', '$..headers.X-Forwarded-Proto', '$..headers.accept', '$..headers.accept-encoding', '$..headers.authorization', '$..headers.connection', '$..headers.host', '$..headers.user-agent', '$..headers.x-localstack-edge', '$..headers.x-localstack-request-url', '$..headers.x-localstack-tgt-api', '$..multiValueHeaders.Accept', '$..multiValueHeaders.Accept-Encoding', '$..multiValueHeaders.Authorization', '$..multiValueHeaders.CloudFront-Forwarded-Proto', '$..multiValueHeaders.CloudFront-Is-Desktop-Viewer', '$..multiValueHeaders.CloudFront-Is-Mobile-Viewer', '$..multiValueHeaders.CloudFront-Is-SmartTV-Viewer', '$..multiValueHeaders.CloudFront-Is-Tablet-Viewer', '$..multiValueHeaders.CloudFront-Viewer-ASN', '$..multiValueHeaders.CloudFront-Viewer-Country', '$..multiValueHeaders.Connection', '$..multiValueHeaders.Host', '$..multiValueHeaders.User-Agent', '$..multiValueHeaders.Via', '$..multiValueHeaders.X-Amz-Cf-Id', '$..multiValueHeaders.X-Amzn-Trace-Id', '$..multiValueHeaders.X-Forwarded-For', '$..multiValueHeaders.X-Forwarded-Port', '$..multiValueHeaders.X-Forwarded-Proto', '$..multiValueHeaders.accept', '$..multiValueHeaders.accept-encoding', '$..multiValueHeaders.authorization', '$..multiValueHeaders.connection', '$..multiValueHeaders.host', '$..multiValueHeaders.user-agent', '$..multiValueHeaders.x-localstack-edge', '$..multiValueHeaders.x-localstack-request-url', '$..multiValueHeaders.x-localstack-tgt-api', '$..pathParameters', '$..requestContext.authorizer.claims', '$..requestContext.domainName', '$..requestContext.extendedRequestId', '$..requestContext.identity.accessKey', '$..requestContext.identity.accountId', '$..requestContext.identity.caller', '$..requestContext.identity.cognitoAuthenticationProvider', '$..requestContext.identity.cognitoAuthenticationType', '$..requestContext.identity.principalOrgId', '$..requestContext.identity.user', '$..requestContext.identity.userArn', '$..stageVariables']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_custom_scopes",
+            "test": "test_custom_scopes",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_get_signing_certificate",
-            "test": "test_get_signing_certificate",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Apis::test_create_apigatewayv2_resources",
-            "test": "test_create_apigatewayv2_resources",
+            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Authorizers::test_create_apigateway_authorizer_client_credentials",
+            "test": "test_create_apigateway_authorizer_client_credentials",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -5827,14 +5857,24 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_http_lambda_authorizers[eu-west-1-UrlType.HOST_BASED-1.0-POST]",
-            "test": "test_http_lambda_authorizers[eu-west-1-UrlType.HOST_BASED-1.0-POST]",
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_apigw_v2_http_jwt_authorizer",
+            "test": "test_apigw_v2_http_jwt_authorizer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[bogus-1.0]",
+            "test": "test_lambda_jwt_authorizer[bogus-1.0]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[bogus-1.0]",
@@ -5847,8 +5887,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[bogus-1.0]",
-            "test": "test_lambda_jwt_authorizer[bogus-1.0]",
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[bogus-2.0]",
+            "test": "test_lambda_jwt_authorizer[bogus-2.0]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5867,8 +5907,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[bogus-2.0]",
-            "test": "test_lambda_jwt_authorizer[bogus-2.0]",
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[http://localhost:4566-1.0]",
+            "test": "test_lambda_jwt_authorizer[http://localhost:4566-1.0]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5884,16 +5924,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[http://localhost:4566-2.0]",
-            "test": "test_lambda_jwt_authorizer[http://localhost:4566-2.0]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -5907,12 +5937,22 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestImportAPIs::test_import_apis",
-            "test": "test_import_apis",
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_lambda_jwt_authorizer[http://localhost:4566-2.0]",
+            "test": "test_lambda_jwt_authorizer[http://localhost:4566-2.0]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/apigateway/test_rest_apis.py::TestRestAPIs::test_cognito_authorizer_token_types[client_credentials]",
+            "test": "test_cognito_authorizer_token_types[client_credentials]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "all",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5923,16 +5963,6 @@
             "error": "",
             "snapshot_skipped": "all",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_rest_apis.py::TestRestAPIs::test_custom_authorizer[NONE-GET]",
-            "test": "test_custom_authorizer[NONE-GET]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5953,6 +5983,16 @@
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_api_gateway_cognito_pool_authorizer",
+            "test": "test_api_gateway_cognito_pool_authorizer",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -5987,26 +6027,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_admin_user_with_duplicate_email_but_valid_userconfiguration",
-            "test": "test_create_admin_user_with_duplicate_email_but_valid_userconfiguration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "all",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_user_group_in_pool",
-            "test": "test_create_user_group_in_pool",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_custom_scopes",
             "test": "test_custom_scopes",
             "response": "200",
@@ -6027,8 +6047,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_get_signing_certificate",
-            "test": "test_get_signing_certificate",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_force_alias_creation",
+            "test": "test_force_alias_creation",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -6037,13 +6057,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_get_user_with_fake_access_token",
-            "test": "test_get_user_with_fake_access_token",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_get_signing_certificate",
+            "test": "test_get_signing_certificate",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Error.Message', '$..message']",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -6067,8 +6087,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_login_with_preferred_username",
-            "test": "test_login_with_preferred_username",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_login_via_web_form",
+            "test": "test_login_via_web_form",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -6077,12 +6097,12 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_mfa_config",
-            "test": "test_mfa_config",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_login_with_preferred_username_attr_change",
+            "test": "test_login_with_preferred_username_attr_change",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -6127,16 +6147,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_signup_with_confirmation_code",
-            "test": "test_signup_with_confirmation_code",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_signup_with_email_phone_aliases",
             "test": "test_signup_with_email_phone_aliases",
             "response": "200",
@@ -6167,6 +6177,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_tags",
+            "test": "test_tags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_token_endpoint[body]",
+            "test": "test_token_endpoint[body]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_token_endpoint[body]",
             "test": "test_token_endpoint[body]",
             "response": "200",
@@ -6177,8 +6207,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_token_endpoint[body]",
-            "test": "test_token_endpoint[body]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_token_endpoint[query_params]",
+            "test": "test_token_endpoint[query_params]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -6195,16 +6225,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_token_endpoint[query_params]",
-            "test": "test_token_endpoint[query_params]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_attributes_upon_creation[False]",
@@ -6227,8 +6247,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_group_deletion_with_non_existing_pool",
-            "test": "test_user_group_deletion_with_non_existing_pool",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_group_deletion_with_non_existing_group",
+            "test": "test_user_group_deletion_with_non_existing_group",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -6237,8 +6257,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_status_after_confirmation",
-            "test": "test_user_status_after_confirmation",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_groups",
+            "test": "test_user_groups",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -6247,13 +6267,23 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_well_known_paths",
-            "test": "test_well_known_paths",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_login_before_confirmation",
+            "test": "test_user_login_before_confirmation",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_client_updates",
+            "test": "test_user_pool_client_updates",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -6327,18 +6357,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_costexplorer.py::TestCostExplorer::test_cost_categories",
-            "test": "test_cost_categories",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_describe_user_pool",
-            "test": "test_describe_user_pool",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_mfa_config",
+            "test": "test_mfa_config",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
@@ -6347,8 +6367,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_describe_user_pool",
-            "test": "test_describe_user_pool",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_mfa_config",
+            "test": "test_mfa_config",
             "response": "400",
             "error": "ResourceNotFoundException",
             "snapshot_skipped": "",
