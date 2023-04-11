@@ -1,7 +1,7 @@
 <!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en class=no-js><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.101.0"><meta name=robots content="index, follow"><link rel="shortcut icon" href=/favicons/favicon.ico><link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36><link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48><link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72><link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144><link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192><title>SNS (Simple Notification Service) | Docs</title><meta name=description content="Implementation details for API sns
 "><meta property="og:title" content="SNS (Simple Notification Service)"><meta property="og:description" content="Implementation details for API sns
 "><meta property="og:type" content="article"><meta property="og:url" content="/references/coverage/coverage_sns/"><meta property="article:section" content="references"><meta property="article:modified_time" content="2023-03-20T14:38:19+01:00"><meta property="og:site_name" content="Docs"><meta itemprop=name content="SNS (Simple Notification Service)"><meta itemprop=description content="Implementation details for API sns
-"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="9128"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="SNS (Simple Notification Service)"><meta name=twitter:description content="Implementation details for API sns
+"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="9333"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="SNS (Simple Notification Service)"><meta name=twitter:description content="Implementation details for API sns
 "><link rel=preload href=/scss/main.min.db0937836ef51a1c7436cc5707fc03828ff00040379cf88060c02f6849daf3e1.css as=style><link href=/scss/main.min.db0937836ef51a1c7436cc5707fc03828ff00040379cf88060c02f6849daf3e1.css rel=stylesheet integrity><script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@docsearch/css@3><script type=text/javascript id=hs-script-loader async defer src=//js-eu1.hs-scripts.com/26596507.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-101988473-1"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-101988473-1")}</script></head><body class=td-page><header><nav class="js-navbar-scroll navbar navbar-expand flex-column flex-md-row td-navbar"><div class=navbar-brand><a class=brand-link href=/><span class=navbar-logo><img src=/images/logo.svg height=40px></span>
@@ -342,6 +342,14 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[False]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -565,6 +573,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_exc</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_to_sqs
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_to_sqs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_multiple_subscriptions_http_endpoint
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_multiple_subscriptions_http_endpoint</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -776,63 +788,64 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 400
 (InvalidParameterException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deleteendpoint style=scroll-margin-top:5rem>DeleteEndpoint</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: EndpointArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_message_attributes_prefixes
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_attributes_prefixes</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deleteendpoint style=scroll-margin-top:5rem>DeleteEndpoint</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: EndpointArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_publish_to_platform_endpoint_can_retrospect
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_platform_endpoint_can_retrospect</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_platform_endpoint_is_dispatched
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_platform_endpoint_is_dispatched</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscription_after_failure_to_deliver
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscription_after_failure_to_deliver</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscribe_platform_endpoint
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscribe_platform_endpoint</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_unknown_topic_publish
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_unknown_topic_publish</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deleteplatformapplication style=scroll-margin-top:5rem>DeletePlatformApplication</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: PlatformApplicationArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_message_attributes_prefixes
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_attributes_prefixes</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deleteplatformapplication style=scroll-margin-top:5rem>DeletePlatformApplication</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: PlatformApplicationArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_publish_to_platform_endpoint_can_retrospect
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_platform_endpoint_can_retrospect</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_platform_endpoint_is_dispatched
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_platform_endpoint_is_dispatched</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscription_after_failure_to_deliver
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscription_after_failure_to_deliver</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscribe_platform_endpoint
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscribe_platform_endpoint</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_unknown_topic_publish
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_unknown_topic_publish</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deletetopic style=scroll-margin-top:5rem>DeleteTopic</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: TopicArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_handler_in_submodule[python3.7]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_runtimes.py::TestPythonRuntimes::test_handler_in_submodule[python3.7]</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=deletetopic style=scroll-margin-top:5rem>DeleteTopic</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: TopicArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_java_lambda_subscribe_sns_topic
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_runtimes.py::TestJavaRuntimes::test_java_lambda_subscribe_sns_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_change_set_with_ssm_parameter
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_changesets.py::test_create_change_set_with_ssm_parameter</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_execute_change_set
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_changesets.py::test_execute_change_set</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_failure_options_for_stack_creation[False-0]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_failure_options_for_stack_creation[False-0]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_template_summary
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_get_template_summary.py::test_get_template_summary</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_get_template[json]
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_template[json]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_get_template[json]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_update_resources
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_update_resources</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_template[yaml]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_get_template[yaml]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_update_termination_protection
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_events_after_deployment
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_list_events_after_deployment</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_events_resource_types
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_updating_an_updated_stack_sets_status
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_updating_an_updated_stack_sets_status</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_basic_update
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_basic_update</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_no_parameters_update
@@ -845,60 +858,50 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_with_previous_parameter_value</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_sqs_source
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cdk_sample
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkSampleApp::test_cdk_sample</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_w_dynamodb_event_filter
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_multiple_lambda_permissions_for_singlefn
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_events_sqs_sns_lambda
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_permissions
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_permissions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_update_ec2_instance_type
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_update_ec2_instance_type</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_functions_in_output_export_name
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_functions_in_output_export_name
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_functions_in_output_export_name</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_logstream
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_logs.py::test_logstream</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sam_policies
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_deploy_stack_with_sns_topic
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deploy_stack_with_sns_topic
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_deploy_stack_with_sns_topic</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_topic_fifo_without_suffix_fails
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_topic_fifo_without_suffix_fails</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_import_values_across_stacks
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestImportValues::test_import_values_across_stacks</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_and_or_functions[Fn::And-0-0-False]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestIntrinsicFunctions::test_and_or_functions[Fn::And-0-0-False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_subscription
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_subscription</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_topic_fifo_with_deduplication
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_topic_fifo_with_deduplication</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_resolve_secretsmanager[resolve_secretsmanager.yaml]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestSecretsManagerParameters::test_resolve_secretsmanager[resolve_secretsmanager.yaml]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_resolve_secretsmanager[resolve_secretsmanager_full.yaml]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestSecretsManagerParameters::test_resolve_secretsmanager[resolve_secretsmanager_full.yaml]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_resolve_secretsmanager[resolve_secretsmanager_partial.yaml]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestSecretsManagerParameters::test_resolve_secretsmanager[resolve_secretsmanager_partial.yaml]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_resolve_ssm
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_stack_with_ssm_parameters
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestSsmParameters::test_create_stack_with_ssm_parameters</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_resolve_ssm
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestSsmParameters::test_resolve_ssm</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_resolve_ssm_secure
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestSsmParameters::test_resolve_ssm_secure</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_resolve_ssm_with_version
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestSsmParameters::test_resolve_ssm_with_version</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_bucket_not_exist
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_not_exist</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_implicit_type_conversion
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_template_engine.py::TestTypes::test_implicit_type_conversion</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_bucket_notifications_with_filter
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_notifications_with_filter</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_aws_sqs_metrics_created
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_aws_sqs_metrics_created</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_object_created_put
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_object_created_put</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_breaching_alarm_actions
@@ -913,28 +916,26 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_put_metric_alarm</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_api_destinations[auth0]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_api_destinations[auth0]</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_set_alarm
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_set_alarm</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_put_events_with_target_sns
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_put_events_with_target_sns</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_put_rule
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_put_rule</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_and_delete_log_group
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_logs.py::TestCloudWatchLogs::test_create_and_delete_log_group</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_account_id_namespacing_for_moto_backends
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_multi_accounts.py::TestMultiAccounts::test_account_id_namespacing_for_moto_backends</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_CSRF
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_security.py::TestCSRF::test_CSRF</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cannot_create_event_for_no_topic
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_cannot_create_event_for_no_topic</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_deleting_non_existent_configuration_set
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_deleting_non_existent_configuration_set</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_scheduled_expression_events
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_scheduled_expression_events</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_delivery_logs_for_sns
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_logs.py::TestCloudWatchLogs::test_delivery_logs_for_sns</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_to_sqs
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_notifications.py::TestNotifications::test_sns_to_sqs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_creating_event_destination_without_configuration_set
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_creating_event_destination_without_configuration_set</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sending_to_deleted_topic
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_sending_to_deleted_topic</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_ses_sns_topic_integration_send_email
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_ses_sns_topic_integration_send_email</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_ses_sns_topic_integration_send_raw_email
@@ -943,6 +944,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_ses_sns_topic_integration_send_templated_email
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_ses_sns_topic_integration_send_templated_email</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_trying_to_delete_event_destination_from_non_existent_configuration_set
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_trying_to_delete_event_destination_from_non_existent_configuration_set</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_attribute_raw_subscribe
@@ -955,10 +960,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_duplicate_topic_with_more_tags
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_duplicate_topic_with_more_tags</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_platform_endpoint_check_idempotency
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_platform_endpoint_check_idempotency</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_topic_after_delete_with_new_tags
@@ -1017,6 +1018,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_exc</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_to_sqs
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_to_sqs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_to_fifo_sqs[False]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_to_fifo_sqs[False]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -1053,12 +1058,28 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_without_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_by_path_parameters
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_by_path_parameters</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[False]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_message_before_subscribe_topic
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_message_before_subscribe_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_sms
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_sms</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_message_by_target_arn
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_message_by_target_arn</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_non_existent_target
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_non_existent_target</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_sms_endpoint
@@ -1181,6 +1202,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscribe_with_invalid_protocol</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscription_after_failure_to_deliver
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscription_after_failure_to_deliver</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_tags
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_tags</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -1209,58 +1234,56 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_queue_url_contains_request_host
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sqs.py::TestSqsProvider::test_get_queue_url_contains_request_host</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_subscribe_sns_topic
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSSubscription::test_python_lambda_subscribe_sns_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_creating_event_destination_without_configuration_set
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_creating_event_destination_without_configuration_set</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sending_to_deleted_topic
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_sending_to_deleted_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (CommonServiceException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_platform_endpoint_check_idempotency
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_platform_endpoint_check_idempotency</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_duplicate_topic_check_idempotency
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_duplicate_topic_check_idempotency</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (CommonServiceException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_platform_endpoint_check_idempotency
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_platform_endpoint_check_idempotency</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_duplicate_topic_check_idempotency
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_duplicate_topic_check_idempotency</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (CommonServiceException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_platform_endpoint_check_idempotency
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_platform_endpoint_check_idempotency</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_duplicate_topic_check_idempotency
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_duplicate_topic_check_idempotency</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (CommonServiceException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_not_found_error_on_set_subscription_attributes
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_not_found_error_on_set_subscription_attributes</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_topic_after_delete_with_new_tags
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_topic_after_delete_with_new_tags</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (CommonServiceException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_message_by_target_arn
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_message_by_target_arn</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_topic_test_arn
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_topic_test_arn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
 (CommonServiceException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_docdb_cluster
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_docdb.py::test_docdb_cluster</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sqs_receive_queue_attributes_resource_deny
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sqs_receive_queue_attributes_resource_deny</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_sns_publish_topic_attributes
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sns_publish_topic_attributes</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_s3_create_bucket
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourceDetection::test_s3_create_bucket</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_sns
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_sns_non_existent
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns_non_existent</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_sqs_destination
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_lambda_sqs_destination</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_lambda_subscription
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_lambda_subscription</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sns_sqs_subscription
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestInterServiceCommunicationEnforcement::test_sns_sqs_subscription</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_select_query_archive
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_glacier.py::TestGlacier::test_select_query_archive</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_inventory_retrieval
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_glacier.py::TestGlacier::test_inventory_retrieval</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=getsubscriptionattributes style=scroll-margin-top:5rem>GetSubscriptionAttributes</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: SubscriptionArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_bucket_notifications_with_filter
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_notifications_with_filter</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -1337,6 +1360,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_attributes_prefixes</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_to_sqs
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_to_sqs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_to_fifo_sqs[False]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_to_fifo_sqs[False]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -1367,6 +1394,14 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_by_path_parameters
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_by_path_parameters</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[False]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_message_before_subscribe_topic
@@ -1545,6 +1580,14 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[False]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_delivery_lambda
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -1580,20 +1623,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_resource_policy_sns_non_existent
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_internals.py::TestIAMResourcePolicyRetrieval::test_get_resource_policy_sns_non_existent</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
-(NotFoundException)</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=listendpointsbyplatformapplication style=scroll-margin-top:5rem>ListEndpointsByPlatformApplication</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: PlatformApplicationArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_message_attributes_prefixes
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_attributes_prefixes</span></span>
+(NotFoundException)</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=listendpointsbyplatformapplication style=scroll-margin-top:5rem>ListEndpointsByPlatformApplication</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: PlatformApplicationArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_publish_to_platform_endpoint_can_retrospect
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_platform_endpoint_can_retrospect</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_platform_endpoint_is_dispatched
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_platform_endpoint_is_dispatched</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscription_after_failure_to_deliver
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscription_after_failure_to_deliver</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_unknown_topic_publish
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_unknown_topic_publish</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscribe_platform_endpoint
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscribe_platform_endpoint</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=listsubscriptionsbytopic style=scroll-margin-top:5rem>ListSubscriptionsByTopic</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: TopicArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_events_resource_types
@@ -1931,9 +1970,18 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_exc</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_to_sqs
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_to_sqs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_platform_endpoint_is_dispatched
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_platform_endpoint_is_dispatched</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_exc
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_exc</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 400
+(InvalidParameterException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_exc
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_exc</span></span>
@@ -2188,6 +2236,14 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_from_sns_to_sqs</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[False]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_empty_or_wrong_message_attributes
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_empty_or_wrong_message_attributes</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 400
@@ -2264,6 +2320,14 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_batch_messages_from_sns_to_sqs
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_from_sns_to_sqs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[False]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_sqs_from_sns
@@ -2391,12 +2455,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_events_sqs_sns_lambda
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 404
-(CommonServiceException)</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_sns_publish_topic_attributes
+(CommonServiceException)</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_sns_publish_topic_attributes
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_sns_publish_topic_attributes</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -2601,6 +2663,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_attributes_prefixes</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_to_sqs
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_to_sqs</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_to_fifo_sqs[False]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_to_fifo_sqs[False]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -2623,6 +2689,14 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_by_path_parameters
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_by_path_parameters</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[False]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_message_before_subscribe_topic
@@ -2728,31 +2802,30 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 400
 (InvalidParameterException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=unsubscribe style=scroll-margin-top:5rem>Unsubscribe</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: SubscriptionArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=unsubscribe style=scroll-margin-top:5rem>Unsubscribe</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: SubscriptionArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_java_lambda_subscribe_sns_topic
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_runtimes.py::TestJavaRuntimes::test_java_lambda_subscribe_sns_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_handler_in_submodule[python3.7]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_runtimes.py::TestPythonRuntimes::test_handler_in_submodule[python3.7]</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_events_resource_types
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_sqs_source
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_sqs_source</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cdk_sample
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkSampleApp::test_cdk_sample</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_w_dynamodb_event_filter
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_w_dynamodb_event_filter</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_sam_policies
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_bucket_not_exist
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_not_exist</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_events_sqs_sns_lambda
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_permissions
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_permissions</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_bucket_notifications_with_filter
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_notifications_with_filter</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_object_created_put
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_object_created_put</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_breaching_alarm_actions
@@ -2769,22 +2842,22 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_set_alarm
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_cloudwatch.py::TestCloudwatch::test_set_alarm</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_message_modifying_handler
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_edge.py::TestEdgeAPI::test_message_modifying_handler</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_api_destinations[auth0]
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_api_destinations[auth0]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_put_events_into_event_bus
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_put_events_into_event_bus</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_and_delete_log_group
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_logs.py::TestCloudWatchLogs::test_create_and_delete_log_group</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_invoke_sns_sqs_integration_using_edge_port
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_edge.py::TestEdgeAPI::test_invoke_sns_sqs_integration_using_edge_port</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_put_events_with_target_sns
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_put_events_with_target_sns</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_scheduled_expression_events
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_events.py::TestEvents::test_scheduled_expression_events</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_delivery_logs_for_sns
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_logs.py::TestCloudWatchLogs::test_delivery_logs_for_sns</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_to_sqs
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_notifications.py::TestNotifications::test_sns_to_sqs</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cannot_create_event_for_no_topic
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_cannot_create_event_for_no_topic</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sending_to_deleted_topic
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_sending_to_deleted_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_creating_event_destination_without_configuration_set
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_creating_event_destination_without_configuration_set</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_ses_sns_topic_integration_send_email
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ses.py::TestSES::test_ses_sns_topic_integration_send_email</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_ses_sns_topic_integration_send_raw_email
@@ -2797,14 +2870,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_attribute_raw_subscribe
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_attribute_raw_subscribe</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_duplicate_topic_with_more_tags
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_duplicate_topic_with_more_tags</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_topic_after_delete_with_new_tags
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_create_topic_after_delete_with_new_tags</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dlq_external_http_endpoint[False]
@@ -2831,6 +2896,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_filter_policy_for_batch
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy_for_batch</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_filter_policy_on_message_body[False]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_filter_policy_on_message_body[False]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -2847,8 +2916,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_attributes_prefixes</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_exc
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_exc</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_structure_json_to_sqs
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_message_structure_json_to_sqs</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_message_to_fifo_sqs[False]
@@ -2867,28 +2936,48 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_not_found_error_on_set_subscription_attributes</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_batch_exceptions
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_exceptions</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_from_fifo_topic_to_fifo_queue[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_from_fifo_topic_to_fifo_queue[True]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_batch_messages_from_sns_to_sqs
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_from_sns_to_sqs</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_batch_messages_without_topic
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_batch_messages_without_topic</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_by_path_parameters
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_by_path_parameters</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[False]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[False]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_fifo_batch_messages_to_dlq[True]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_fifo_batch_messages_to_dlq[True]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_message_before_subscribe_topic
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_message_before_subscribe_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_message_by_target_arn
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_message_by_target_arn</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_sms_endpoint
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_sms_endpoint</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_sqs_from_sns
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_sqs_from_sns</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_sqs_from_sns_with_xray_propagation
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_sqs_from_sns_with_xray_propagation</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[False]
@@ -2897,10 +2986,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_fifo_topic_to_sqs_queue_no_content_dedup[True]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_fifo_with_target_arn
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_fifo_with_target_arn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_to_firehose_with_s3
@@ -2915,20 +3000,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_to_platform_endpoint_is_dispatched</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_too_long_message
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_too_long_message</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_unicode_chars
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_unicode_chars</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_with_empty_subject
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_with_empty_subject</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_publish_wrong_phone_format
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_publish_wrong_phone_format</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_redrive_policy_http_subscription
@@ -2947,8 +3020,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_redrive_policy_sqs_queue_subscription[True]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sns_confirm_subscription_wrong_token
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_sns_confirm_subscription_wrong_token</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_set_subscription_filter_policy_scope
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_set_subscription_filter_policy_scope</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sns_topic_as_lambda_dead_letter_queue
@@ -2987,16 +3060,12 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscribe_sqs_queue</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscribe_with_invalid_protocol
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscribe_with_invalid_protocol</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_subscription_after_failure_to_deliver
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_subscription_after_failure_to_deliver</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_unknown_topic_publish
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_unknown_topic_publish</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_topic_email_subscription_confirmation
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_topic_email_subscription_confirmation</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_unsubscribe_from_non_existing_subscription
@@ -3011,14 +3080,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_validations_for_fifo</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_queue_url_contains_request_host
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sqs.py::TestSqsProvider::test_get_queue_url_contains_request_host</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_delivery_lambda
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSPublishDelivery::test_delivery_lambda</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_docdb_cluster
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_docdb.py::test_docdb_cluster</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_select_query_archive
-<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_glacier.py::TestGlacier::test_select_query_archive</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_subscribe_sns_topic
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSSubscription::test_python_lambda_subscribe_sns_topic</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_inventory_retrieval
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_glacier.py::TestGlacier::test_inventory_retrieval</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=untagresource style=scroll-margin-top:5rem>UntagResource</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: ResourceArn, TagKeys</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_tags
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sns.py::TestSNSProvider::test_tags</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
