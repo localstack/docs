@@ -42,7 +42,7 @@ $ helm repo add localstack https://localstack.github.io/helm-charts
 
 After you have installed the Helm client, you can deploy a Helm chart into a Kubernetes cluster.
 
-Please refer to the [Quick Start guide](https://helm.sh/docs/intro/quickstart/)  if you wish to get running in just a few commands, otherwise the [Using Helm Guide](https://helm.sh/docs/intro/using_helm/) provides detailed instructions on how to use the Helm client to manage packages on your Kubernetes cluster.
+Please refer to the [Quick Start guide](https://helm.sh/docs/intro/quickstart/)  if you wish to get running in just a few commands, otherwise the [Using Helm guide](https://helm.sh/docs/intro/using_helm/) provides detailed instructions on how to use the Helm client to manage packages on your Kubernetes cluster.
 
 Some useful Helm client commands are:
 
