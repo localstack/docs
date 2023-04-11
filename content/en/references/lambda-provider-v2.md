@@ -156,7 +156,7 @@ as exemplified in our official [docker-compose.yml](https://github.com/localstac
   ```log
   Lambda 'arn:aws:lambda:us-east-1:000000000000:function:my-function:$LATEST' changed to failed. Reason: Docker not available
   ...
-  raise ContainerException("Docker not available")
+  raise DockerNotAvailable("Docker not available")
   ```
 
   ```log
