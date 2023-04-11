@@ -118,8 +118,8 @@
         "availability": "community",
         "internal_test_suite": true,
         "external_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -915,13 +915,13 @@
       "FirewallDomainListId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_elasticsearch.py::test_cfn_handle_elasticsearch_domain",
-            "test": "test_cfn_handle_elasticsearch_domain",
+            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_domain_lists",
+            "test": "test_list_firewall_domain_lists",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..ManagedOwnerName']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -931,11 +931,41 @@
       "ResolverEndpointId": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_associate_and_disassociate_resolver_rule",
+            "test": "test_associate_and_disassociate_resolver_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroupIds', '$..ShareStatus', '$..StatusMessage']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_endpoint[INBOUND-5]",
+            "test": "test_create_resolver_endpoint[INBOUND-5]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroupIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_endpoint[OUTBOUND-10]",
             "test": "test_create_resolver_endpoint[OUTBOUND-10]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..SecurityGroupIds']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_rule",
+            "test": "test_create_resolver_rule",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroupIds', '$..ShareStatus']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -951,31 +981,11 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_delete_non_existent_resolver_rule",
-            "test": "test_delete_non_existent_resolver_rule",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_delete_resolver_endpoint",
             "test": "test_delete_resolver_endpoint",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..SecurityGroupIds']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_domain_lists",
-            "test": "test_list_firewall_domain_lists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..ManagedOwnerName']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -991,11 +1001,11 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_route53resolver_bad_create_endpoint_security_groups",
-            "test": "test_route53resolver_bad_create_endpoint_security_groups",
+            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_multiple_create_resolver_endpoint_with_same_req_id",
+            "test": "test_multiple_create_resolver_endpoint_with_same_req_id",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..SecurityGroupIds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1053,21 +1063,21 @@
       "ResolverRuleId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_rule",
-            "test": "test_create_resolver_rule",
+            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_associate_and_disassociate_resolver_rule",
+            "test": "test_associate_and_disassociate_resolver_rule",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..SecurityGroupIds', '$..ShareStatus']",
+            "snapshot_skipped": "['$..SecurityGroupIds', '$..ShareStatus', '$..StatusMessage']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_list_firewall_domain_lists",
-            "test": "test_list_firewall_domain_lists",
+            "node_id": "LocalStack Community: tests/integration/test_route53resolver.py::TestRoute53Resolver::test_create_resolver_rule",
+            "test": "test_create_resolver_rule",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ManagedOwnerName']",
+            "snapshot_skipped": "['$..SecurityGroupIds', '$..ShareStatus']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
