@@ -262,7 +262,7 @@ $ awslocal kms verify  \
       --signature fileb://my_encrypted_data 
 {{</ command >}}
 
-The `Verify` operaations has the following output:
+The `Verify` operation has the following output:
 ```json
 {
     "KeyId": "789ffd57-179b-493a-8415-b0b541b3ce7e",
