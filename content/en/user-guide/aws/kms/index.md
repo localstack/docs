@@ -10,7 +10,7 @@ aliases:
 
 Key Management Service (KMS) is mainly about:
 - Creation and management of cryptographic keys.
-- Use of these keys to encrypt / decrypt data or to sign messages and to verify signatures for signed ones.
+- Use of these keys to encrypt/decrypt data or to sign messages and to verify signatures for signed ones.
 
 We advise to consult [the official AWS KMS documentation](https://docs.aws.amazon.com/kms/latest/APIReference/Welcome.html) on all KMS operations.
 
@@ -125,11 +125,7 @@ In this example we will use key specification as `HMAC_256` and mac algorithm as
 
 An HMAC key can be created in KMS with the following command:
 
-{{< command >}}
-$ awslocal kms create-key \
-      --key-spec HMAC_256 \
-      --key-usage GENERATE_VERIFY_MAC 
-{{</ command >}}
+{{< command >}} $ awslocal kms create-key --key-spec HMAC_256 --key-usage GENERATE_VERIFY_MAC {{</ command >}}
 
 Note that the `GENERATE_VERIFY_MAC` value for the `--key-usage` parameter is required even though it's the only valid value for HMAC KMS keys. The allowed values of `--key-spec` parameter can be checked in [official AWS documentation](https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html#hmac-key-specs)
 
