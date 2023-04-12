@@ -179,7 +179,7 @@ Its ouput has the following look:
 }
 ```
 
-Let's now create an asymmetric KMS key for `Sign` and `Verify` operations. In this example we will use `RSA_2048` key pair for signing and verification. Also, note that the `--key-usage` parameter is required even though `SIGN_VERIFY` is the only valid value for RSA KMS keys.
+Let's now create an asymmetric KMS key for `Sign` and `Verify` operations. In this example we will use `RSA_2048` key pair for signing and verification, you can look at other specs in the [AWS reference page](https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html). Also, note that the `--key-usage` parameter is required even though `SIGN_VERIFY` is the only valid value for RSA KMS keys.
 
 {{< command >}} $ awslocal kms create-key --key-spec RSA_2048 --key-usage SIGN_VERIFY {{</ command >}}
 
