@@ -17,7 +17,7 @@ LocalStack enables fast feedback cycles during development by automatically relo
 Pro users can also hot-reload Lambda layers.
 
 {{< alert title="Note" >}}
-**The magic S3 bucket name changed from `__local__` to `hot-reload` in Localstack&nbsp;v2.0**
+**The magic S3 bucket name changed from `__local__` to `hot-reload` in LocalStack&nbsp;2.0**
 
 Please change your deployment configuration accordingly because the old value is an invalid bucket name.
 The configuration `BUCKET_MARKER_LOCAL` is still supported.

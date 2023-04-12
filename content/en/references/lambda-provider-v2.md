@@ -9,8 +9,8 @@ aliases:
 ---
 
 {{< alert title="Note">}}
-**New implementation active since Localstack&nbsp;v2.0 (Docker `latest` since 2023-03-23)**<br>
-The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
+**New implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23)**<br>
+The old lambda provider is temporarily available in LocalStack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend migrating to the new lambda provider.
 {{< /alert >}}
 
 ## Overview
@@ -20,6 +20,21 @@ Lambda API,
 Docker Execution Environment,
 Configuration,
 and Hot Reloading.
+
+## Highlights
+
+- **[Feature coverage]({{< ref "coverage_lambda" >}}):** LocalStack&nbsp;2.0 supports 95% of all Lambda API operations.
+- **[AWS Parity](https://localstack.cloud/blog/2022-08-04-parity-explained/):** The local Lambda API behaves like in AWS with 90% parity test coverage.
+- **[Official AWS images](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html):** Lambda functions use the official Docker base images pulled from `public.ecr.aws/lambda/`.
+- **[Lambda runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html):** All supported managed runtimes from AWS are available and tested in LocalStack. The new provider added `nodejs18.x`.
+- **[ARM support]({{< ref "arm64-support#lambda-multi-architecture-support" >}}):** Run arm64 and x86_64 Lambda functions on hosts with multi-architecture support.
+- **[Extensions API](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-extensions-api.html):** Use third-party extensions to customize the Lambda execution environment. This deep integration enables monitoring, observability, or advanced developer tooling.
+- **[Lambda concurrency](https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html):** Prevent cold-starts with provisioned concurrency and limit the number of concurrent function instances with reserved concurrency.
+- **Performance:** 10ms warm-start and 600ms cold-start for an Echo Python Lambda
+- **[Hot reloading]({{< ref "hot-reloading" >}}):** Continuously apply code changes to Lambda functions and layers (Pro) for all managed runtimes.
+- **[Persistence]({{< ref "persistence-mechanism" >}}) and [Cloud Pods]({{< ref "cloud-pods" >}}):** Save your Lambda state across restarts and share a snapshot of your Lambda infrastructure.
+
+Check out our [Lambda release announcement](https://discuss.localstack.cloud/t/new-lambda-implementation-in-localstack-2-0/258) for more details about further improvements.
 
 ## Lambda API
 
@@ -141,7 +156,7 @@ as exemplified in our official [docker-compose.yml](https://github.com/localstac
   ```log
   Lambda 'arn:aws:lambda:us-east-1:000000000000:function:my-function:$LATEST' changed to failed. Reason: Docker not available
   ...
-  raise ContainerException("Docker not available")
+  raise DockerNotAvailable("Docker not available")
   ```
 
   ```log
@@ -220,4 +235,4 @@ An error occurred (InternalFailure) when calling the CreateFunction operation (r
 {{< / command >}}
 
 Please check your [configuration]({{< ref "configuration#lambda" >}}) for `PROVIDER_OVERRIDE_LAMBDA`.
-If you are not using Localstack&nbsp;v2.0 yet, remove `PROVIDER_OVERRIDE_LAMBDA=legacy`.
+If you are not using LocalStack&nbsp;2.0 yet, remove `PROVIDER_OVERRIDE_LAMBDA=legacy`.
