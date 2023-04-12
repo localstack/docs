@@ -8,7 +8,7 @@ aliases:
   - /aws/kms/
 ---
 
-Key Management Service (KMS) is mainly about
+Key Management Service (KMS) is mainly about:
 - Creation and management of cryptographic keys.
 - Use of these keys to encrypt / decrypt data or to sign messages and to verify signatures for signed ones.
 
@@ -23,7 +23,7 @@ You can check [the official AWS reference page](https://docs.aws.amazon.com/kms/
 
 ## Tutorial
 
-Let's create a simple symmetric encryption key and use it to encrypt / decrypt something.
+Let's first create a simple symmetric encryption key and use it to encrypt/ decrypt something.
 
 A new key can be created in KMS with the following command:
 
@@ -120,10 +120,127 @@ As with the previous `Encrypt` call, we have to get rid of the Base64-encoding t
 ```sh
 some important stuff
 ```
+Let's now create a hash-based message authentication code(HMAC) key and use it to generate and verify mac for a specified message. In this example we will use key specification as `HMAC_256` and mac algorithm as `HMAC_SHA_256`.
+
+An HMAC key can be created in KMS with the following command:
+
+{{< command >}} $ awslocal kms create-key --key-spec HMAC_256 --key-usage GENERATE_VERIFY_MAC {{</ command >}}
+
+Note that the `GENERATE_VERIFY_MAC` value for the `--key-usage` parameter is required even though it's the only valid value for HMAC KMS keys. The allowed values of `--key-spec` parameter can be checked in [official AWS documentation](https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html#hmac-key-specs)
+
+The create HMAC command gives the following output:
+```sh
+{
+    "KeyMetadata": {
+        "AWSAccountId": "000000000000",
+        "KeyId": "922c14f0-f6e9-4d22-a56a-9619b78621f0",
+        "Arn": "arn:aws:kms:us-east-1:000000000000:key/922c14f0-f6e9-4d22-a56a-9619b78621f0",
+        "CreationDate": 1681215688.040106,
+        "Enabled": true,
+        "Description": "",
+        "KeyUsage": "GENERATE_VERIFY_MAC",
+        "KeyState": "Enabled",
+        "Origin": "AWS_KMS",
+        "KeyManager": "CUSTOMER",
+        "CustomerMasterKeySpec": "HMAC_256",
+        "KeySpec": "HMAC_256",
+        "MultiRegion": false,
+        "MacAlgorithms": [
+            "HMAC_SHA_256"
+        ]
+    }
+}
+```
+
+We can now use this key and a valid [MAC algorithm](https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html#hmac-key-specs) to generate an HMAC for a message say "some important stuff". 
+
+{{< command >}} $ awslocal kms generate-mac --message "some important stuff" --key-id 922c14f0-f6e9-4d22-a56a-9619b78621f0 --mac-algorithm HMAC_SHA_256 --query Mac --output text | base64 --decode > my_encrypted_data {{</ command >}}
+
+The `GenerateMac` operation has the following output:
+```sh
+{
+    "Mac": "Kl1cQNOgdYmwm3zXCOBfBa/mgq7bywA2HhQj4lHazUg=",
+    "MacAlgorithm": "HMAC_SHA_256",
+    "KeyId": "arn:aws:kms:us-east-1:000000000000:key/922c14f0-f6e9-4d22-a56a-9619b78621f0"
+}
+```
+
+We now use `VerifyMac` which is done by computing an HMAC using the message, key, MAC algorithm and this is compared to the HMAC that you specify. . If the HMACs are identical, the verification succeeds; otherwise, it fails.
+
+{{< command >}} $ awslocal kms verify-mac  --message "some important stuff" --key-id 922c14f0-f6e9-4d22-a56a-9619b78621f0 --mac-algorithm HMAC_SHA_256  --mac fileb://my_encrypted_data {{</ command >}}
+
+Its ouput has the following look:
+
+```sh
+{
+    "KeyId": "arn:aws:kms:us-east-1:000000000000:key/922c14f0-f6e9-4d22-a56a-9619b78621f0",
+    "MacValid": true,
+    "MacAlgorithm": "HMAC_SHA_256"
+}
+```
+
+Let's now create an asymmetric KMS key for `Sign` and `Verify` operations. In this example we will use `RSA_2048` key pair for signing and verification. Also, note that the `--key-usage` parameter is required even though `SIGN_VERIFY` is the only valid value for RSA KMS keys.
+
+{{< command >}} $ awslocal kms create-key --key-spec RSA_2048 --key-usage SIGN_VERIFY {{</ command >}}
+
+The output looks as follows:
+```sh
+{
+    "KeyMetadata": {
+        "AWSAccountId": "000000000000",
+        "KeyId": "789ffd57-179b-493a-8415-b0b541b3ce7e",
+        "Arn": "arn:aws:kms:us-east-1:000000000000:key/789ffd57-179b-493a-8415-b0b541b3ce7e",
+        "CreationDate": 1681219769.125121,
+        "Enabled": true,
+        "Description": "",
+        "KeyUsage": "SIGN_VERIFY",
+        "KeyState": "Enabled",
+        "Origin": "AWS_KMS",
+        "KeyManager": "CUSTOMER",
+        "CustomerMasterKeySpec": "RSA_2048",
+        "KeySpec": "RSA_2048",
+        "SigningAlgorithms": [
+            "RSASSA_PKCS1_V1_5_SHA_256",
+            "RSASSA_PKCS1_V1_5_SHA_384",
+            "RSASSA_PKCS1_V1_5_SHA_512",
+            "RSASSA_PSS_SHA_256",
+            "RSASSA_PSS_SHA_384",
+            "RSASSA_PSS_SHA_512"
+        ],
+        "MultiRegion": false
+    }
+}
+```
+
+Now let's create a digital signature for a message "some important stuff" using the KMS key created in the above command. 
+
+{{< command >}} $ awslocal kms sign --key-id  789ffd57-179b-493a-8415-b0b541b3ce7e --message "some important stuff" --signing-algorithm "RSASSA_PSS_SHA_256" --query Signature --output text | base64 --decode > my_encrypted_data {{</ command >}}
+
+The `Sign` operation has the following output:
+```sh
+{
+    "KeyId": "789ffd57-179b-493a-8415-b0b541b3ce7e",
+    "Signature": "pu2nLuRDhUJtLI8gkScv72gSUpWEneGa0DlX0I8vh80CH3UlRWNOoKZjXn5tY2nD9WtKCS+XLkdpJJdrQLcEzuqNA7b3snRMbNeW1T8uY7MrefLud2D8DWota1LckiI/piC7iashOCCMBVkRNRpv59MHEQRr1CWmCzbbHaRwp++dJ+LZ5jHR3ypTI3PU/yPVk0de5MRU3OmHywYukA9mJ11wpNzB/Vud6n9GdDDIkGywjctHOSZYuFvMwf4F4877nrL9xOxjol/tQOMCmwgmRtBn0hFZqjG4LccEiPElLG8w6Ax47KsFWa16QcaWDr4QfptOltVuG3fEYxTpa8+NcQ==",
+    "SigningAlgorithm": "RSASSA_PSS_SHA_256"
+}
+```
+
+Let's now verify the digital signature that was generated by the `Sign` operation. If the signature is verified, the value of the `SignatureValid` field in the response is `True` else if it fails with an `KMSInvalidSignatureException` exception.
+
+{{< command >}} $ awslocal kms verify  --key-id 789ffd57-179b-493a-8415-b0b541b3ce7e --message "some important stuff" --signing-algorithm "RSASSA_PSS_SHA_256"  --signature fileb://my_encrypted_data {{</ command >}}
+
+The `Verify` operaations has the following output:
+```sh
+{
+    "KeyId": "789ffd57-179b-493a-8415-b0b541b3ce7e",
+    "SignatureValid": true,
+    "SigningAlgorithm": "RSASSA_PSS_SHA_256"
+}
+```
 
 ## Current differences between LocalStack KMS and AWS KMS
 
 1. LocalStack KMS always performs symmetric key encryption - even if the requested key is an asymmetric one. LocalStack also has a format of encrypted data different from the one used in AWS. This would cause your decryption to fail if you create a key yourself outside LocalStack KMS, import it to KMS with the [ImportKeyMaterial](https://docs.aws.amazon.com/kms/latest/APIReference/API_ImportKeyMaterial.html) operation, encrypt something with LocalStack KMS and then try to decrypt it outside of LocalStack with your copy of the key. Less exotic setups should be fine. 
-2. In AWS KMS, keys have many possible [states](https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html). In LocalStack KMS, only `Enabled`, `Disabled` and `PendingDeletion` states exist.
+2. In AWS KMS, keys have many possible [states](https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html). In LocalStack KMS, only `Enabled`, `Disabled`, `Creating`, `PendingImport` and `PendingDeletion` states exist.
 3. LocalStack KMS supports [multi-region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html), but, unlike in AWS KMS, multi-region key replicas are not synchronized with their primary key. So if you create a replica of a multi-regional key and then update some settings for the primary key, the replica won't get automatically updated.
 4. AWS KMS has [aliases](https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html), that are created automatically for KMS keys used by services like, for example, S3. While LocalStack supports those pre-created aliases, they are getting created on the first attempt to access such an alias and are not visible before such an attempt.   
