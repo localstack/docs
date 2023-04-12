@@ -1,5 +1,5 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – m1</title><link>/tags/m1/</link><description>Recent content in m1 on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/m1/index.xml" rel="self" type="application/rss+xml"/><item><title>References: ARM64 Support</title><link>/references/arm64-support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/arm64-support/</guid><description>
-&lt;p>With &lt;a href="https://github.com/localstack/localstack/releases/tag/v0.13.0">version 0.13&lt;/a>, LocalStack officially publishes a &lt;a href="https://hub.docker.com/r/localstack/localstack">multi-architecture Docker manifest&lt;/a>.
+&lt;p>Since &lt;a href="https://github.com/localstack/localstack/releases/tag/v0.13.0">version 0.13&lt;/a>, LocalStack officially publishes a &lt;a href="https://hub.docker.com/r/localstack/localstack">multi-architecture Docker manifest&lt;/a>.
 This manifest contains links to a Linux AMD64 as well as a Linux ARM64 image.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -14,12 +14,12 @@ Help us getting aware of current issues with the ARM64 image by &lt;a href="http
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker inspect localstack/localstack | jq &amp;#39;.[0].Architecture&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;arm64&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;h2 id="lambda-multi-architecture-support">Lambda multi-architecture support&lt;/h2>
-&lt;p>LocalStack executes Lambda functions in Docker containers with the target platform &lt;code>linux/amd64&lt;/code> or &lt;code>linux/arm64&lt;/code>
+&lt;p>Since LocalStack 2.0, Lambda functions execute in Docker containers with the target platform &lt;code>linux/amd64&lt;/code> or &lt;code>linux/arm64&lt;/code>
 depending on the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html">instruction set architecture&lt;/a> configured for the function (&lt;code>x86_64&lt;/code> by default or &lt;code>arm64&lt;/code>).
 This behavior can lead to errors if the host system, the Docker image, or the code/layer of the function do not support the target architecture.
 If you prefer to execute Lambda functions natively, you can set the &lt;a href="/references/configuration/#lambda">configuration&lt;/a> variable &lt;code>LAMBDA_IGNORE_ARCHITECTURE=1&lt;/code>.&lt;/p>
 &lt;p>Host systems with &lt;a href="https://docs.docker.com/build/building/multi-platform/">multi-architecture support&lt;/a> can run containers for different Linux architectures using emulation.
-For example, an Apple Silicon MacBook can execute &lt;code>linux/arm64&lt;/code> (&lt;code>arm64&lt;/code>) lambda functions natively or emulate them for &lt;code>linux/arm64&lt;/code> (&lt;code>x86_64&lt;/code>).
+For example, an Apple Silicon MacBook can execute &lt;code>linux/arm64&lt;/code> (&lt;code>arm64&lt;/code>) Lambda functions natively or emulate them for &lt;code>linux/arm64&lt;/code> (&lt;code>x86_64&lt;/code>).
 However, emulation through qemu is only best-effort and certain features such as &lt;a href="https://github.com/docker/for-mac/issues/5191#issuecomment-834154431">ptrace&lt;/a> for debugging might not work.&lt;/p>
 &lt;p>You can check the supported architectures on your host system with:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run --privileged --rm tonistiigi/binfmt
