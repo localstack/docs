@@ -23,7 +23,7 @@ You can check [the official AWS reference page](https://docs.aws.amazon.com/kms/
 
 ## Tutorial
 
-Let's first create a simple symmetric encryption key and use it to encrypt/ decrypt something.
+Let's first create a simple symmetric encryption key and use it to encrypt/decrypt something.
 
 A new key can be created in KMS with the following command:
 
@@ -33,7 +33,7 @@ $ awslocal kms create-key
 
 By default, this command creates a symmetric encryption key, so we do not even have to supply any additional arguments. In the output we want to pay attention to the ID of the newly created key, `010a4301-4205-4df8-ae52-4c2895d47326` in this case:
 
-```sh
+```json
 {
     "KeyMetadata": {
         "AWSAccountId": "000000000000",
@@ -89,7 +89,7 @@ $ awslocal kms encrypt \
 
 Its output has the following look:
 
-```sh
+```json
 {
     "CiphertextBlob": "MDA4NDk4ZDYtMGU1ZS00NjU3LWEyZTQtMDliYTcwNDgyMmJkxw1eaLVUeUZA7bZzp+k7VAAAAAAAAAAAAAAAAAAAAAAetG9/5Znpw83/4xhwObc6Fc2B73y1ZvIigwahKopT0Q==",
     "KeyId": "arn:aws:kms:us-east-1:000000000000:key/010a4301-4205-4df8-ae52-4c2895d47326",
@@ -120,16 +120,21 @@ As with the previous `Encrypt` call, we have to get rid of the Base64-encoding t
 ```sh
 some important stuff
 ```
-Let's now create a hash-based message authentication code(HMAC) key and use it to generate and verify mac for a specified message. In this example we will use key specification as `HMAC_256` and mac algorithm as `HMAC_SHA_256`.
+Let's now create a hash-based message authentication code(HMAC) key and use it to generate and verify mac for a specified message. 
+In this example we will use key specification as `HMAC_256` and mac algorithm as `HMAC_SHA_256`.
 
 An HMAC key can be created in KMS with the following command:
 
-{{< command >}} $ awslocal kms create-key --key-spec HMAC_256 --key-usage GENERATE_VERIFY_MAC {{</ command >}}
+{{< command >}}
+$ awslocal kms create-key \
+      --key-spec HMAC_256 \
+      --key-usage GENERATE_VERIFY_MAC 
+{{</ command >}}
 
 Note that the `GENERATE_VERIFY_MAC` value for the `--key-usage` parameter is required even though it's the only valid value for HMAC KMS keys. The allowed values of `--key-spec` parameter can be checked in [official AWS documentation](https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html#hmac-key-specs)
 
 The create HMAC command gives the following output:
-```sh
+```json
 {
     "KeyMetadata": {
         "AWSAccountId": "000000000000",
@@ -154,10 +159,18 @@ The create HMAC command gives the following output:
 
 We can now use this key and a valid [MAC algorithm](https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html#hmac-key-specs) to generate an HMAC for a message say "some important stuff". 
 
-{{< command >}} $ awslocal kms generate-mac --message "some important stuff" --key-id 922c14f0-f6e9-4d22-a56a-9619b78621f0 --mac-algorithm HMAC_SHA_256 --query Mac --output text | base64 --decode > my_encrypted_data {{</ command >}}
+{{< command >}}
+$ awslocal kms generate-mac \
+      --message "some important stuff" \
+      --key-id 922c14f0-f6e9-4d22-a56a-9619b78621f0 \
+      --mac-algorithm HMAC_SHA_256 \
+      --query Mac \
+      --output text \
+      | base64 --decode > my_encrypted_data 
+{{</ command >}}
 
 The `GenerateMac` operation has the following output:
-```sh
+```json
 {
     "Mac": "Kl1cQNOgdYmwm3zXCOBfBa/mgq7bywA2HhQj4lHazUg=",
     "MacAlgorithm": "HMAC_SHA_256",
@@ -165,13 +178,20 @@ The `GenerateMac` operation has the following output:
 }
 ```
 
-We now use `VerifyMac` which is done by computing an HMAC using the message, key, MAC algorithm and this is compared to the HMAC that you specify. . If the HMACs are identical, the verification succeeds; otherwise, it fails.
+We now use `VerifyMac` which works by computing an HMAC using the message, key, MAC algorithm and this is compared to the HMAC that you specify.
+If the HMACs are identical, the verification succeeds; otherwise, it fails.
 
-{{< command >}} $ awslocal kms verify-mac  --message "some important stuff" --key-id 922c14f0-f6e9-4d22-a56a-9619b78621f0 --mac-algorithm HMAC_SHA_256  --mac fileb://my_encrypted_data {{</ command >}}
+{{< command >}}
+$ awslocal kms verify-mac  \
+      --message "some important stuff" \
+      --key-id 922c14f0-f6e9-4d22-a56a-9619b78621f0 \
+      --mac-algorithm HMAC_SHA_256  \
+      --mac fileb://my_encrypted_data 
+{{</ command >}}
 
 Its ouput has the following look:
 
-```sh
+```json
 {
     "KeyId": "arn:aws:kms:us-east-1:000000000000:key/922c14f0-f6e9-4d22-a56a-9619b78621f0",
     "MacValid": true,
@@ -179,12 +199,18 @@ Its ouput has the following look:
 }
 ```
 
-Let's now create an asymmetric KMS key for `Sign` and `Verify` operations. In this example we will use `RSA_2048` key pair for signing and verification, you can look at other specs in the [AWS reference page](https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html). Also, note that the `--key-usage` parameter is required even though `SIGN_VERIFY` is the only valid value for RSA KMS keys.
+Let's now create an asymmetric KMS key for `Sign` and `Verify` operations. In this example we will use `RSA_2048` key pair for signing and verification.
+You can look at other specs in the [AWS reference page](https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html).
+Also, note that the `--key-usage` parameter is required even though `SIGN_VERIFY` is the only valid value for RSA KMS keys.
 
-{{< command >}} $ awslocal kms create-key --key-spec RSA_2048 --key-usage SIGN_VERIFY {{</ command >}}
+{{< command >}}
+$ awslocal kms create-key \
+      --key-spec RSA_2048 \
+      --key-usage SIGN_VERIFY 
+{{</ command >}}
 
 The output looks as follows:
-```sh
+```json
 {
     "KeyMetadata": {
         "AWSAccountId": "000000000000",
@@ -214,10 +240,18 @@ The output looks as follows:
 
 Now let's create a digital signature for a message "some important stuff" using the KMS key created in the above command. 
 
-{{< command >}} $ awslocal kms sign --key-id  789ffd57-179b-493a-8415-b0b541b3ce7e --message "some important stuff" --signing-algorithm "RSASSA_PSS_SHA_256" --query Signature --output text | base64 --decode > my_encrypted_data {{</ command >}}
+{{< command >}}
+$ awslocal kms sign \
+      --key-id  789ffd57-179b-493a-8415-b0b541b3ce7e \
+      --message "some important stuff" \
+      --signing-algorithm "RSASSA_PSS_SHA_256" \
+      --query Signature \
+      --output text \
+      | base64 --decode > my_encrypted_data 
+{{</ command >}}
 
 The `Sign` operation has the following output:
-```sh
+```json
 {
     "KeyId": "789ffd57-179b-493a-8415-b0b541b3ce7e",
     "Signature": "pu2nLuRDhUJtLI8gkScv72gSUpWEneGa0DlX0I8vh80CH3UlRWNOoKZjXn5tY2nD9WtKCS+XLkdpJJdrQLcEzuqNA7b3snRMbNeW1T8uY7MrefLud2D8DWota1LckiI/piC7iashOCCMBVkRNRpv59MHEQRr1CWmCzbbHaRwp++dJ+LZ5jHR3ypTI3PU/yPVk0de5MRU3OmHywYukA9mJ11wpNzB/Vud6n9GdDDIkGywjctHOSZYuFvMwf4F4877nrL9xOxjol/tQOMCmwgmRtBn0hFZqjG4LccEiPElLG8w6Ax47KsFWa16QcaWDr4QfptOltVuG3fEYxTpa8+NcQ==",
@@ -225,12 +259,19 @@ The `Sign` operation has the following output:
 }
 ```
 
-Let's now verify the digital signature that was generated by the `Sign` operation. If the signature is verified, the value of the `SignatureValid` field in the response is `True` else if it fails with an `KMSInvalidSignatureException` exception.
+Let's now verify the digital signature that was generated by the `Sign` operation.
+If the signature is verified, the value of the `SignatureValid` field in the response is `True` else it fails with an `KMSInvalidSignatureException` exception.
 
-{{< command >}} $ awslocal kms verify  --key-id 789ffd57-179b-493a-8415-b0b541b3ce7e --message "some important stuff" --signing-algorithm "RSASSA_PSS_SHA_256"  --signature fileb://my_encrypted_data {{</ command >}}
+{{< command >}}
+$ awslocal kms verify  \
+      --key-id 789ffd57-179b-493a-8415-b0b541b3ce7e \
+      --message "some important stuff" \
+      --signing-algorithm "RSASSA_PSS_SHA_256"  \
+      --signature fileb://my_encrypted_data 
+{{</ command >}}
 
 The `Verify` operaations has the following output:
-```sh
+```json
 {
     "KeyId": "789ffd57-179b-493a-8415-b0b541b3ce7e",
     "SignatureValid": true,
