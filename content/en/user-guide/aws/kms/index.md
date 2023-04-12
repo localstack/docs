@@ -166,7 +166,7 @@ $ awslocal kms generate-mac \
       --mac-algorithm HMAC_SHA_256 \
       --query Mac \
       --output text \
-      | base64 --decode > my_encrypted_data 
+  | base64 --decode > my_encrypted_data 
 {{</ command >}}
 
 The `GenerateMac` operation has the following output:
@@ -203,11 +203,7 @@ Let's now create an asymmetric KMS key for `Sign` and `Verify` operations. In th
 You can look at other specs in the [AWS reference page](https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html).
 Also, note that the `--key-usage` parameter is required even though `SIGN_VERIFY` is the only valid value for RSA KMS keys.
 
-{{< command >}}
-$ awslocal kms create-key \
-      --key-spec RSA_2048 \
-      --key-usage SIGN_VERIFY 
-{{</ command >}}
+{{< command >}} $ awslocal kms create-key --key-spec RSA_2048 --key-usage SIGN_VERIFY {{</ command >}}
 
 The output looks as follows:
 ```json
@@ -247,7 +243,7 @@ $ awslocal kms sign \
       --signing-algorithm "RSASSA_PSS_SHA_256" \
       --query Signature \
       --output text \
-      | base64 --decode > my_encrypted_data 
+  | base64 --decode > my_encrypted_data 
 {{</ command >}}
 
 The `Sign` operation has the following output:
