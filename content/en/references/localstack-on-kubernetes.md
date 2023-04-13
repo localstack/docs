@@ -9,7 +9,7 @@ description: >
   Overview of how you can run LocalStack on Kubernetes
 ---
 
-LocalStack can be deployed on Kubernetes using the [LocalStack Helm chart](http://helm.localstack.cloud/).
+LocalStack can be deployed on [Kubernetes](https://kubernetes.io/) using the [LocalStack Helm chart](http://helm.localstack.cloud/).
 
 ## Helm Chart
 
@@ -140,3 +140,7 @@ $ awslocal apigateway --endpoint-url=http://localhost:8081 get-rest-apis
 {{< /command >}}
 
 We can then use a browser to open the [Web UI](http://localhost:8081/archive-bucket/index.html), which should have been deployed to an S3 bucket inside LocalStack. The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.
+
+{{< alert title="Note" >}}
+LocalStack on Kubernetes can be used in conjunction with the [LocalStack Community image](https://hub.docker.com/r/localstack/localstack). However, specific features such as execution of Lambda functions as Kubernetes pods is only available in the [LocalStack Pro image](https://hub.docker.com/r/localstack/localstack-pro).
+{{< /alert >}}
