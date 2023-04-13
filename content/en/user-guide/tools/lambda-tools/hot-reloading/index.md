@@ -265,7 +265,7 @@ Add a build script to your `package.json` file:
 
 ```json
 "scripts": {
-    "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js"
+    "build": "esbuild index.ts --bundle --minify --sourcemap --platform=node --target=es2020 --outfile=dist/index.js --watch"
   },
 ```
 
@@ -308,7 +308,6 @@ The invocation returns itself returns:
 ```sh
 {
     "StatusCode": 200,
-    "LogResult": "",
     "ExecutedVersion": "$LATEST"
 }
 ```
