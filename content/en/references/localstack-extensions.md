@@ -11,7 +11,7 @@ aliases:
   - /contributing/localstack-extensions/
 ---
 
-LocalStack Extensions that allow developers to extend and customize LocalStack. The feature and the API are currently experimental and may be subject to change.
+LocalStack Extensions allow developers to extend and customize LocalStack. The feature and the API are currently experimental and may be subject to change.
 
 ## Using Extensions
 
