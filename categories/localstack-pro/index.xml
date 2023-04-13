@@ -2766,7 +2766,92 @@ The Lambda integration with self-managed Kafka clusters is also a LocalStack Pro
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;ol start="6">
 &lt;li>Additionally visit &lt;code>http://localhost:8080&lt;/code> for Kowl&amp;rsquo;s UI.&lt;/li>
-&lt;/ol></description></item><item><title>User-Guide: Amazon MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
+&lt;/ol></description></item><item><title>References: LocalStack on Kubernetes</title><link>/references/localstack-on-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/localstack-on-kubernetes/</guid><description>
+&lt;p>LocalStack can be deployed on &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> using the &lt;a href="http://helm.localstack.cloud/">LocalStack Helm chart&lt;/a>.&lt;/p>
+&lt;h2 id="helm-chart">Helm Chart&lt;/h2>
+&lt;p>To deploy LocalStack in your &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> cluster, you can use &lt;a href="https://helm.sh/">Helm&lt;/a>.&lt;/p>
+&lt;h3 id="prerequisites">Prerequisites&lt;/h3>
+&lt;ul>
+&lt;li>Kubernetes 1.19+&lt;/li>
+&lt;li>Helm 3.2.0+&lt;/li>
+&lt;/ul>
+&lt;h3 id="setup-a-kubernetes-cluster">Setup a Kubernetes cluster&lt;/h3>
+&lt;p>For setting up Kubernetes refer to the Kubernetes &lt;a href="https://kubernetes.io/docs/getting-started-guides/">getting started guide&lt;/a>.&lt;/p>
+&lt;h3 id="install-helm">Install Helm&lt;/h3>
+&lt;p>Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources.&lt;/p>
+&lt;p>To install Helm, refer to the &lt;a href="https://github.com/helm/helm#install">Helm install guide&lt;/a> and ensure that the &lt;code>helm&lt;/code> binary is in the &lt;code>PATH&lt;/code> of your shell.&lt;/p>
+&lt;h3 id="add-repository">Add repository&lt;/h3>
+&lt;p>The following command allows you to download and install all the charts from this repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>helm repo add localstack https://localstack.github.io/helm-charts&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="use-helm">Use Helm&lt;/h3>
+&lt;p>After you have installed the Helm client, you can deploy a Helm chart into a Kubernetes cluster.&lt;/p>
+&lt;p>Please refer to the &lt;a href="https://helm.sh/docs/intro/quickstart/">Quick Start guide&lt;/a> if you wish to get running in just a few commands, otherwise the &lt;a href="https://helm.sh/docs/intro/using_helm/">Using Helm guide&lt;/a> provides detailed instructions on how to use the Helm client to manage packages on your Kubernetes cluster.&lt;/p>
+&lt;p>Some useful Helm client commands are:&lt;/p>
+&lt;ul>
+&lt;li>View available charts: &lt;code>helm search repo&lt;/code>&lt;/li>
+&lt;li>Install a chart: &lt;code>helm install &amp;lt;name&amp;gt; localstack/&amp;lt;chart&amp;gt;&lt;/code>&lt;/li>
+&lt;li>Upgrade your application: &lt;code>helm upgrade&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h2 id="sample-repository-l8k">Sample repository (&lt;code>l8k&lt;/code>)&lt;/h2>
+&lt;p>The &lt;a href="https://github.com/localstack/localstack-on-k8s">`localstack-on-k8s&lt;/a> sample repository that illustrates running LocalStack on Kubernetes (k8s).&lt;/p>
+&lt;h3 id="prerequisites-1">Prerequisites&lt;/h3>
+&lt;p>This sample requires the following tools installed on your machine:&lt;/p>
+&lt;ul>
+&lt;li>Python 3.7+&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.docker.com">Docker&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://git-scm.com">Git&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://helm.sh">Helm&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kubernetes.io/docs/tasks/tools/#kubectl">&lt;code>kubectl&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.npmjs.com/package/serverless">Serverless&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>Clone the repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git@github.com:localstack/localstack-on-k8s.git&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To install the Python dependencies in a virtualenv:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>make install&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To create an embedded Kubernetes (k3d) cluster in Docker and install LocalStack in it (via Helm):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>make init&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After initialization, your &lt;code>kubectl&lt;/code> command-line should be automatically configured to point to the local cluster context:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl config current-context
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>k3d-ls-cluster&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="deploy-a-sample-application">Deploy a sample application&lt;/h3>
+&lt;p>Once LocalStack is installed in the Kubernetes cluster, we can deploy the sample app on the LocalStack instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>make deploy&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="test-the-sample-application">Test the sample application&lt;/h3>
+&lt;p>Once the sample app is deployed, the Kubernetes environment should contain the following resources:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl get all
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY STATUS RESTARTS AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pod/localstack-6fd5b98f59-zcx2t 1/1 Running 0 5m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>service/kubernetes ClusterIP 10.43.0.1 &amp;lt;none&amp;gt; 443/TCP 5m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>service/localstack NodePort 10.43.100.167 &amp;lt;none&amp;gt; 4566:31566/TCP,4571:31571/TCP 5m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY UP-TO-DATE AVAILABLE AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deployment.apps/localstack 1/1 1 1 5m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME DESIRED CURRENT READY AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>replicaset.apps/localstack-6fd5b98f59 1 1 1 5m&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The LocalStack instance should be available via the local ingress port &lt;code>8081&lt;/code>. We can verify that the resources were successfully created by running a few &lt;code>awslocal&lt;/code> commands against the local endpoint:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs --endpoint-url=http://localhost:8081 list-queues
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;QueueUrls&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;http://localhost:8081/000000000000/requestQueue&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal apigateway --endpoint-url=http://localhost:8081 get-rest-apis
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;items&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;id&amp;#34;: &amp;#34;ses2pi5oap&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;local-localstack-demo&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can then use a browser to open the &lt;a href="http://localhost:8081/archive-bucket/index.html">Web UI&lt;/a>, which should have been deployed to an S3 bucket inside LocalStack. The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack on Kubernetes can be used in conjunction with the &lt;a href="https://hub.docker.com/r/localstack/localstack">LocalStack Community image&lt;/a>. However, specific features such as execution of Lambda functions as Kubernetes pods is only available in the &lt;a href="https://hub.docker.com/r/localstack/localstack-pro">LocalStack Pro image&lt;/a>.
+&lt;/div></description></item><item><title>User-Guide: Amazon MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
 &lt;p>Amazon MQ is a fully managed service for open-source message brokers.
 Basic support is included in LocalStack Pro, please refer to the &lt;a href="/user-guide/aws/feature-coverage/">feature-coverage&lt;/a> for more information.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
@@ -5255,70 +5340,4 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;li>Only &lt;code>AWS-RunShellScript&lt;/code> is supported for Dockerised instances.&lt;/li>
 &lt;li>If the command returns a non-zero code, the standard output and standard error streams are not captured and will be empty.&lt;/li>
 &lt;li>Shell constructs like job controls (&lt;code>&amp;amp;&amp;amp;&lt;/code>, &lt;code>||&lt;/code>), redirection (&lt;code>&amp;gt;&lt;/code>) etc. are not supported.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Timestream</title><link>/user-guide/aws/timestream/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/timestream/</guid><description>
-&lt;p>LocalStack Pro contains basic support for Timestream time series databases, including these operations:&lt;/p>
-&lt;ul>
-&lt;li>Creating databases&lt;/li>
-&lt;li>Creating tables&lt;/li>
-&lt;li>Writing records to tables&lt;/li>
-&lt;li>Querying timeseries data from tables&lt;/li>
-&lt;/ul>
-&lt;h2 id="simple-usage-example">Simple Usage Example&lt;/h2>
-&lt;p>The following example illustrates the basic operations, using the &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> command line.&lt;/p>
-&lt;p>First, we create a test database and table:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write create-database --database-name testDB
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write create-table --database-name testDB --table-name testTable&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>We can then add a few records with a timestamp, measure name, and value to the table:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write write-records --database-name testDB --table-name testTable --records &amp;#39;[{&amp;#34;MeasureName&amp;#34;:&amp;#34;cpu&amp;#34;,&amp;#34;MeasureValue&amp;#34;:&amp;#34;60&amp;#34;,&amp;#34;TimeUnit&amp;#34;:&amp;#34;SECONDS&amp;#34;,&amp;#34;Time&amp;#34;:&amp;#34;1636986409&amp;#34;}]&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write write-records --database-name testDB --table-name testTable --records &amp;#39;[{&amp;#34;MeasureName&amp;#34;:&amp;#34;cpu&amp;#34;,&amp;#34;MeasureValue&amp;#34;:&amp;#34;80&amp;#34;,&amp;#34;TimeUnit&amp;#34;:&amp;#34;SECONDS&amp;#34;,&amp;#34;Time&amp;#34;:&amp;#34;1636986412&amp;#34;}]&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-write write-records --database-name testDB --table-name testTable --records &amp;#39;[{&amp;#34;MeasureName&amp;#34;:&amp;#34;cpu&amp;#34;,&amp;#34;MeasureValue&amp;#34;:&amp;#34;70&amp;#34;,&amp;#34;TimeUnit&amp;#34;:&amp;#34;SECONDS&amp;#34;,&amp;#34;Time&amp;#34;:&amp;#34;1636986414&amp;#34;}]&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Finally, we can run a query to retrieve the timeseries data (or aggregate values) from the table:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal timestream-query query --query-string &amp;#34;SELECT CREATE_TIME_SERIES(time, measure_value::double) as cpu FROM testDB.timeStreamTable WHERE measure_name=&amp;#39;cpu&amp;#39;&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Rows&amp;#34;: [{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Data&amp;#34;: [{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TimeSeriesValue&amp;#34;: [{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Time&amp;#34;: &amp;#34;2021-11-15T14:26:49&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Value&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ScalarValue&amp;#34;: 60
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;h2 id="date--time-functions">Date / Time Functions&lt;/h2>
-&lt;p>LocalStack supports the following functions for querying Timestream data:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Function&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;th>Data type&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>ago (interval)&lt;/td>
-&lt;td>Returns the value corresponding to current_timestamp &lt;code>interval&lt;/code>.&lt;/td>
-&lt;td>timestamp&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>bin (timestamp, interval)&lt;/td>
-&lt;td>Returns a rounded value down to a multiple of given bin &lt;code>interval&lt;/code>.&lt;/td>
-&lt;td>timestamp&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>parse_duration (string)&lt;/td>
-&lt;td>Returns an &lt;code>interval&lt;/code> equivalent parsed out of the input string.&lt;/td>
-&lt;td>interval&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>from_iso8601_date (string)&lt;/td>
-&lt;td>Parses the ISO 8601 date string into internal Timestamp format for UTC 00:00:00 of the specified date.&lt;/td>
-&lt;td>timestamp&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>from_iso8601_timestamp (string)&lt;/td>
-&lt;td>Parses the ISO 8601 timestamp into internal timestamp format.&lt;/td>
-&lt;td>timestamp&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>

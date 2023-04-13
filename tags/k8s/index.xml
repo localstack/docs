@@ -1,0 +1,86 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – k8s</title><link>/tags/k8s/</link><description>Recent content in k8s on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/k8s/index.xml" rel="self" type="application/rss+xml"/><item><title>References: LocalStack on Kubernetes</title><link>/references/localstack-on-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/localstack-on-kubernetes/</guid><description>
+&lt;p>LocalStack can be deployed on &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> using the &lt;a href="http://helm.localstack.cloud/">LocalStack Helm chart&lt;/a>.&lt;/p>
+&lt;h2 id="helm-chart">Helm Chart&lt;/h2>
+&lt;p>To deploy LocalStack in your &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> cluster, you can use &lt;a href="https://helm.sh/">Helm&lt;/a>.&lt;/p>
+&lt;h3 id="prerequisites">Prerequisites&lt;/h3>
+&lt;ul>
+&lt;li>Kubernetes 1.19+&lt;/li>
+&lt;li>Helm 3.2.0+&lt;/li>
+&lt;/ul>
+&lt;h3 id="setup-a-kubernetes-cluster">Setup a Kubernetes cluster&lt;/h3>
+&lt;p>For setting up Kubernetes refer to the Kubernetes &lt;a href="https://kubernetes.io/docs/getting-started-guides/">getting started guide&lt;/a>.&lt;/p>
+&lt;h3 id="install-helm">Install Helm&lt;/h3>
+&lt;p>Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources.&lt;/p>
+&lt;p>To install Helm, refer to the &lt;a href="https://github.com/helm/helm#install">Helm install guide&lt;/a> and ensure that the &lt;code>helm&lt;/code> binary is in the &lt;code>PATH&lt;/code> of your shell.&lt;/p>
+&lt;h3 id="add-repository">Add repository&lt;/h3>
+&lt;p>The following command allows you to download and install all the charts from this repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>helm repo add localstack https://localstack.github.io/helm-charts&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="use-helm">Use Helm&lt;/h3>
+&lt;p>After you have installed the Helm client, you can deploy a Helm chart into a Kubernetes cluster.&lt;/p>
+&lt;p>Please refer to the &lt;a href="https://helm.sh/docs/intro/quickstart/">Quick Start guide&lt;/a> if you wish to get running in just a few commands, otherwise the &lt;a href="https://helm.sh/docs/intro/using_helm/">Using Helm guide&lt;/a> provides detailed instructions on how to use the Helm client to manage packages on your Kubernetes cluster.&lt;/p>
+&lt;p>Some useful Helm client commands are:&lt;/p>
+&lt;ul>
+&lt;li>View available charts: &lt;code>helm search repo&lt;/code>&lt;/li>
+&lt;li>Install a chart: &lt;code>helm install &amp;lt;name&amp;gt; localstack/&amp;lt;chart&amp;gt;&lt;/code>&lt;/li>
+&lt;li>Upgrade your application: &lt;code>helm upgrade&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h2 id="sample-repository-l8k">Sample repository (&lt;code>l8k&lt;/code>)&lt;/h2>
+&lt;p>The &lt;a href="https://github.com/localstack/localstack-on-k8s">`localstack-on-k8s&lt;/a> sample repository that illustrates running LocalStack on Kubernetes (k8s).&lt;/p>
+&lt;h3 id="prerequisites-1">Prerequisites&lt;/h3>
+&lt;p>This sample requires the following tools installed on your machine:&lt;/p>
+&lt;ul>
+&lt;li>Python 3.7+&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.docker.com">Docker&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://git-scm.com">Git&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://helm.sh">Helm&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kubernetes.io/docs/tasks/tools/#kubectl">&lt;code>kubectl&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.npmjs.com/package/serverless">Serverless&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>Clone the repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git@github.com:localstack/localstack-on-k8s.git&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To install the Python dependencies in a virtualenv:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>make install&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To create an embedded Kubernetes (k3d) cluster in Docker and install LocalStack in it (via Helm):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>make init&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After initialization, your &lt;code>kubectl&lt;/code> command-line should be automatically configured to point to the local cluster context:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl config current-context
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>k3d-ls-cluster&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="deploy-a-sample-application">Deploy a sample application&lt;/h3>
+&lt;p>Once LocalStack is installed in the Kubernetes cluster, we can deploy the sample app on the LocalStack instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>make deploy&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="test-the-sample-application">Test the sample application&lt;/h3>
+&lt;p>Once the sample app is deployed, the Kubernetes environment should contain the following resources:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl get all
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY STATUS RESTARTS AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pod/localstack-6fd5b98f59-zcx2t 1/1 Running 0 5m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>service/kubernetes ClusterIP 10.43.0.1 &amp;lt;none&amp;gt; 443/TCP 5m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>service/localstack NodePort 10.43.100.167 &amp;lt;none&amp;gt; 4566:31566/TCP,4571:31571/TCP 5m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY UP-TO-DATE AVAILABLE AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>deployment.apps/localstack 1/1 1 1 5m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME DESIRED CURRENT READY AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>replicaset.apps/localstack-6fd5b98f59 1 1 1 5m&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The LocalStack instance should be available via the local ingress port &lt;code>8081&lt;/code>. We can verify that the resources were successfully created by running a few &lt;code>awslocal&lt;/code> commands against the local endpoint:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs --endpoint-url=http://localhost:8081 list-queues
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;QueueUrls&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;http://localhost:8081/000000000000/requestQueue&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal apigateway --endpoint-url=http://localhost:8081 get-rest-apis
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;items&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;id&amp;#34;: &amp;#34;ses2pi5oap&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;local-localstack-demo&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can then use a browser to open the &lt;a href="http://localhost:8081/archive-bucket/index.html">Web UI&lt;/a>, which should have been deployed to an S3 bucket inside LocalStack. The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack on Kubernetes can be used in conjunction with the &lt;a href="https://hub.docker.com/r/localstack/localstack">LocalStack Community image&lt;/a>. However, specific features such as execution of Lambda functions as Kubernetes pods is only available in the &lt;a href="https://hub.docker.com/r/localstack/localstack-pro">LocalStack Pro image&lt;/a>.
+&lt;/div></description></item></channel></rss>
