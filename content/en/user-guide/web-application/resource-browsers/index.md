@@ -10,7 +10,9 @@ LocalStack Resource Browsers allow you to view, manage, and deploy AWS resources
 
 {{< alert title="Warning" color="warning">}}
 - If you encounter a `Network Failure` error message while accessing the Resource Browsers, it is likely that the LocalStack container is not running or the local endpoint URL is not configured correctly. To resolve this issue, ensure that your LocalStack container is running or your local endpoint URL is configured correctly.
+{{< /alert >}}
 
+{{<alert title="Note">}}
 - An AWS region dropdown menu in the dashboard is located on the top right of the navigation bar, beside the notifications icon. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.
 
 - Resource Browsers provide an experience similar to the AWS Management Console. However, the Resource Browsers are not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console. We recommend using our [integrations](https://docs.localstack.cloud/user-guide/integrations/) to create your resources, with Resource Browsers being used for quick viewing and management of your resources.
