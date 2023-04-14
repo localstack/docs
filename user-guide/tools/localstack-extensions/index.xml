@@ -1,0 +1,51 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Extensions</title><link>/user-guide/tools/localstack-extensions/</link><description>Recent content in LocalStack Extensions on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/user-guide/tools/localstack-extensions/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: AWS Replicator Extension</title><link>/user-guide/tools/localstack-extensions/aws-replicator-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localstack-extensions/aws-replicator-extension/</guid><description>
+&lt;p>AWS Replicator Extension is a LocalStack extension that allows you to replicate AWS resources into your local machine.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+This Extension is experimental and still under active development. Please report any issues or feature requests on our &lt;a href="https://github.com/localstack/localstack-extensions">GitHub repository&lt;/a>.
+&lt;/div>
+&lt;h2 id="installation">Installation&lt;/h2>
+&lt;p>To install the CLI extension, use the following &lt;code>pip&lt;/code> command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install &amp;#34;git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-aws-replicator&amp;amp;subdirectory=aws-replicator&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To install the Extension itself (server component running inside LocalStack), use the following &lt;code>extensions&lt;/code> command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install &amp;#34;git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-aws-replicator&amp;amp;subdirectory=aws-replicator&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="usage">Usage&lt;/h2>
+&lt;p>This extension currently offers two modes of operation:&lt;/p>
+&lt;ul>
+&lt;li>AWS connection proxy&lt;/li>
+&lt;li>Resource replicator CLI&lt;/li>
+&lt;/ul>
+&lt;h3 id="aws-connection-proxy">AWS Connection Proxy&lt;/h3>
+&lt;p>The AWS connection proxy can be used to forward certain API calls in LocalStack to real AWS, in order to enable seamless transition between local and remote resources.&lt;/p>
+&lt;p>For example, in order to forward all API calls for DynamoDB/S3/Cognito to real AWS, the proxy can be started via the CLI as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>configure terminal session to allow access to a real cloud account
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_ACCESS_KEY_ID=... AWS_SECRET_ACCESS_KEY=...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>start proxy via the CLI
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack aws proxy -s dynamodb,s3,cognito-idp&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Be careful when using the proxy. Ensure to never give access to production accounts or any critical/sensitive data!
+&lt;/div>
+&lt;h3 id="resource-replicator-cli">Resource Replicator CLI&lt;/h3>
+&lt;p>Resource Replicator CLI can be used to replicate the state, e.g., an SQS queue and the messages contained in it, from AWS into your LocalStack instance.&lt;/p>
+&lt;p>To use the resource replicator, make sure that you have access to AWS configured in your terminal. The extension will only talk to AWS in read-only mode, and will &lt;strong>not&lt;/strong> make any changes to your real AWS account.&lt;/p>
+&lt;p>The following command can be used to replicate SQS queues (including their messages) into your LocalStack instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack aws replicate -s sqs&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Once the command has completed, you should be able to list and interact with the queue that was replicated into your local account:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs list-queues
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs receive-message --queue-url ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Stripe Extension</title><link>/user-guide/tools/localstack-extensions/stripe-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localstack-extensions/stripe-extension/</guid><description>
+&lt;p>The Stripe Extension provides a mocked version of Stripe as a service, via &lt;a href="https://github.com/adrienverge/localstripe">&lt;code>localstripe&lt;/code>&lt;/a>, a stateful Stripe server implementation in Python. The extension is purely for testing purposes, and is not intended for production use. The LocalStack Stripe Extension does not modify &lt;code>localstripe&lt;/code> in any way.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+This Extension is experimental and still under active development. Please report any issues or feature requests on our &lt;a href="https://github.com/localstack/localstack-extensions">GitHub repository&lt;/a>.
+&lt;/div>
+&lt;h2 id="installation">Installation&lt;/h2>
+&lt;p>To install the Stripe Extension, run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install &amp;#34;git+https://github.com/localstack/localstack-extensions/#egg=localstack-extensions-stripe&amp;amp;subdirectory=stripe&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="usage">Usage&lt;/h2>
+&lt;p>After installation, you can query Strip either through &lt;a href="https://localhost:4566/stripe">&lt;code>localhost:4566/stripe&lt;/code>&lt;/a> or &lt;a href="https://stripe.localhost.localstack.cloud:4566">&lt;code>stripe.localhost.localstack.cloud:4566&lt;/code>&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl stripe.localhost.localstack.cloud:4566/v1/customers \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -u sk_test_12345: \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -d description=&amp;#34;Customer data for Alice&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
