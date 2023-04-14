@@ -317,7 +317,7 @@ def aggregate_recorded_raw_data(
 
                 if external_test and metric.get("response_code") in ["500", "501"]:
                     # some external tests (e.g seen for terraform) seem to succeed even though single operation calls fail
-                    # we do not include those are "passed tests"
+                    # we do not include those as "passed tests"
                     print(f"skipping {service}.{op_name}: response_code {metric.get('response_code')} ({test_source})")
                     continue 
 
