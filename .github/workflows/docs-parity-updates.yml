@@ -41,6 +41,16 @@ jobs:
           PREFIX_ARTIFACT: moto-integration-test
           FILTER_SUCCESS: 0
 
+      - name: Download metrics data from Terraform Integration test pipeline (GitHub)
+        working-directory: docs
+        run: ./scripts/get_latest_github_metrics.sh ./target main
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack-terraform-test 
+          ARTIFACT_ID: test-metrics
+          WORKFLOW: "Terraform Tests"
+          FILTER_SUCCESS: 0
+
       - name: Download metrics data from Pro pipeline (GitHub)
         working-directory: docs
         run: ./scripts/get_latest_github_metrics.sh ./target master
