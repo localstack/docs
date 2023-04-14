@@ -1,25 +1,31 @@
 ---
 title: "LocalStack Extensions"
+linkTitle: "LocalStack Extensions"
 weight: 8
 description: >
   LocalStack Extensions allows developers to extend and customize LocalStack.
+categories: ["LocalStack Pro"]
+tags: ["extensions"]
 aliases:
   - /developer-guide/localstack-extensions/
+  - /contributing/localstack-extensions/
 ---
 
-With LocalStack 1.0 we have introduced LocalStack Extensions that allow developers to extend and customize LocalStack. Both the feature and the API are currently experimental and may be subject to change.
+LocalStack Extensions allow developers to extend and customize LocalStack. The feature and the API are currently experimental and may be subject to change.
 
 ## Using Extensions
 
-Extensions are a LocalStack Pro feature. To use and install extensions, use the CLI to first log in to your account
+Extensions are a LocalStack Pro feature. To use and install extensions, use the CLI to first login to your account
 
-```console
+{{< command >}}
 $ localstack login
 Please provide your login credentials below
 Username: ...
-```
+{{< / command >}}
 
-```console
+To get a list of all available commands in LocalStack Extensions, run:
+
+{{< command >}}
 $ localstack extensions --help
 
 Usage: localstack extensions [OPTIONS] COMMAND [ARGS]...
@@ -33,24 +39,23 @@ Commands:
   init       Initialize the LocalStack extensions environment
   install    Install a LocalStack extension
   uninstall  Remove a LocalStack extension
-```
+{{< / command >}}
 
-To install an extension, specify the name of the pip dependency that contains the extension. For example, for the official Stripe extension, you can either use the package distributed on pypi:
+To install an extension, specify the name of the `pip` dependency that contains the extension. For example, for the official Stripe extension, you can either use the package distributed on PyPI:
 
-
-```console
+{{< command >}}
 $ localstack extensions install localstack-extensions-stripe
-```
+{{< / command >}}
 
-or you can install it directly from this git repository
+You can alternatively install it directly from our Git repository:
 
-```console
+{{< command >}}
 $ localstack extensions install "git+https://github.com/localstack/localstack-extensions/#egg=localstack-extensions-stripe&subdirectory=stripe"
-```
+{{< / command >}}
 
 ## Developing Extensions
 
-### The extensions API
+### Extensions API
 
 LocalStack exposes a Python API for building extensions that can be found in the core codebase in [`localstack.extensions.api`](https://github.com/localstack/localstack/tree/master/localstack/extensions/api).
 
