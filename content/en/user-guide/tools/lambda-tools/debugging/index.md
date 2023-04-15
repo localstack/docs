@@ -210,7 +210,7 @@ services:
 ```
 
 Note the `suspend=y` option here, it will delay code execution until debugger is
-attached to debgger server. If you want to change that simply switch to `suspend=n`.
+attached to debugger server. If you want to change that simply switch to `suspend=n`.
 
 ### Configuring IntelliJ IDEA for remote JVM debugging
 
