@@ -209,8 +209,8 @@ services:
       - LAMBDA_DOCKER_FLAGS=-p 127.0.0.1:5050:5050
 ```
 
-Note the `suspend=y` option here, it will delay code execution until debugger is
-attached to debgger server. If you want to change that simply switch to `suspend=n`.
+Note the `suspend=y` option here, it will delay code execution until the debugger is
+attached to the debugger server. If you want to change that, simply switch to `suspend=n`.
 
 ### Configuring IntelliJ IDEA for remote JVM debugging
 
