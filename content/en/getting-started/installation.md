@@ -178,7 +178,7 @@ If you want to manually manage your Docker container, it's usually a good idea t
 
 #### Starting LocalStack with Docker-Compose
 
-You can start LocalStack with [Docker-Compose](https://docs.docker.com/compose/) by configurig a `docker-compose.yml` file. Currently, `docker-compose` version 1.9.0+ is supported.
+You can start LocalStack with [Docker Compose](https://docs.docker.com/compose/) by configuring a `docker-compose.yml` file. Currently, `docker-compose` version 1.9.0+ is supported.
 
 {{< tabpane >}}
 {{< tab header="Community" lang="yml" >}}
