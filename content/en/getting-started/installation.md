@@ -178,7 +178,51 @@ If you want to manually manage your Docker container, it's usually a good idea t
 
 #### Starting LocalStack with Docker-Compose
 
-You can use the [`docker-compose.yml` file from the official LocalStack repository](https://github.com/localstack/localstack/blob/master/docker-compose.yml) and use this command (currently requires `docker-compose` version 1.9.0+):
+You can start LocalStack with [Docker Compose](https://docs.docker.com/compose/) by configuring a `docker-compose.yml` file. Currently, `docker-compose` version 1.9.0+ is supported.
+
+{{< tabpane >}}
+{{< tab header="Community" lang="yml" >}}
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+{{< /tab >}}
+{{< tab header="Pro" lang="yml" >}}
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack-pro  # required for Pro
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "127.0.0.1:53:53"                # DNS config (required for Pro)
+      - "127.0.0.1:53:53/udp"            # DNS config (required for Pro)
+      - "127.0.0.1:443:443"              # LocalStack HTTPS Gateway (required for Pro)
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # required for Pro
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+{{< /tab >}}
+{{< /tabpane >}}
+
+Start the container by running the following command:
 
 {{< command >}}
 $ docker-compose up
