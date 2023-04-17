@@ -19,7 +19,9 @@ With LocalStack logging, you can easily retrieve additional detail around errors
 
 You can explicitly set a log level via two configuration variables: `DEBUG` and `LS_LOG`. You can configure them while starting the LocalStack container, either with the CLI or a Docker/Docker-Compose setup.
 
-`DEBUG` can be either `0` or `1` (`0` is the default). With `DEBUG`, you can print more verbose logs, useful for troubleshooting issues. `LS_LOG` supports the following values:
+`DEBUG` can be either `0` or `1` (`0` is the default). With `DEBUG`, you can print more verbose logs, useful for troubleshooting issues. With `DEBUG=1`, errors inside LocalStack are reported to the client in full, and these stack traces can help you better triage your issues.
+
+`LS_LOG` supports the following values:
 
 - `trace`
 - `trace-internal`
@@ -29,7 +31,7 @@ You can explicitly set a log level via two configuration variables: `DEBUG` and 
 - `error`
 - `warning`
 
-The `LS_LOG` overrides the `DEBUG` variable and will provide the same log format but append the request and response objects and the HTTP headers to the log line. With `DEBUG=1`, errors inside LocalStack are reported to the client in full, and these stack traces can help you better triage your issues.
+The `LS_LOG` affects the log handlers level directly. If `LS_LOG` is configured as `trace` or `trace-internal`, it will automatically set `DEBUG=1`. To retrieve the debug information, it is recommended to set `DEBUG=1`. While configuring `LS_LOG` as `trace` or `trace-internal`, the LocalStack container will report the same log format but append the request and response objects and the HTTP headers to the log line.
 
 ## Error reporting
 
