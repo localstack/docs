@@ -12,7 +12,19 @@
 &lt;li>Tax ID&lt;/li>
 &lt;/ul>
 &lt;p>The above information is required if you are acting on behalf of a company.&lt;/p>
-&lt;img src="indcomp.PNG" width="800px" alt="Switch for Individual and Company Account"></description></item><item><title>User-Guide: Stack Insights</title><link>/user-guide/web-application/stack-insights/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/stack-insights/</guid><description>
+&lt;img src="indcomp.PNG" width="800px" alt="Switch for Individual and Company Account"></description></item><item><title>User-Guide: Teams</title><link>/user-guide/web-application/teams/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/teams/</guid><description>
+&lt;p>Teams on LocalStack allow you to collaborate with members of your organization. You can invite other users to your team and assign them different roles and permissions. It includes advanced role settings such as purchasing subscriptions, managing payment methods, and more, which can be adjusted by the team administrator. You can purchase a plan with multiple seats for your team, which allows you to distribute the API keys among your team members.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Organizations/Teams are used interchangeably within our Web Application.
+&lt;/div>
+&lt;h4 id="inviting-team-members">Inviting Team Members&lt;/h4>
+&lt;p>To invite team members, navigate to the &lt;a href="https://app.localstack.cloud/account/members">&lt;strong>app.localstack.cloud/account/members&lt;/strong>&lt;/a> section of your profile. You will be prompted to enter the &lt;strong>User Name&lt;/strong> and &lt;strong>Email Address&lt;/strong> of the team member you wish to invite. Once you have entered the details, click on the plus symbol (&lt;code>+&lt;/code>) to invite them to your team.&lt;/p>
+&lt;img src="teammembers.PNG" width="800px" alt="Inviting Team Members">
+&lt;h4 id="member-roles--api-keys">Member Roles &amp;amp; API Keys&lt;/h4>
+&lt;p>After a team member has been invited, you can assign them different roles and permissions. You can also assign them an API key, which will allow them to access the LocalStack Web Application and the Pro CLI (command line interface).&lt;/p>
+&lt;img src="memberroles.PNG" width="900px" alt="Editing team member settings">
+&lt;p>To access the API key, the members must navigate to the &lt;a href="https://app.localstack.cloud/account/apikeys">&lt;strong>app.localstack.cloud/account/apikeys&lt;/strong>&lt;/a> section of their profile.&lt;/p></description></item><item><title>User-Guide: Stack Insights</title><link>/user-guide/web-application/stack-insights/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/stack-insights/</guid><description>
 &lt;p>LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall. Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.&lt;/p>
 &lt;p>You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.&lt;/p>
 &lt;p>To get started, the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable needs to be configured. The system will start making your events accessible on the LocalStack &lt;a href="https://app.localstack.cloud/dashboard">Web Application dashboard&lt;/a>.&lt;/p>
@@ -39,7 +51,96 @@ Please note that stack insights are only collected if the LocalStack sessions ru
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Brave blocks &lt;code>localhost&lt;/code> requests due to security by default via shields.
 While some sites need access to &lt;code>localhost&lt;/code> / &lt;code>127.0.0.1&lt;/code> to work correctly, an easy option to allow a user to enable this is manually enabling via the site via &lt;code>brave://settings/content/insecureContent&lt;/code>.
-&lt;/div></description></item><item><title>User-Guide: Single-Sign On</title><link>/user-guide/web-application/single-sign-on/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/single-sign-on/</guid><description>
+&lt;/div></description></item><item><title>User-Guide: Resource Browser</title><link>/user-guide/web-application/resource-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/resource-browser/</guid><description>
+&lt;p>The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building &amp;amp; testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine. The Resource Browser can be operated only if a LocalStack container is running on your local machine and the local endpoint URL, which can be configured in the &lt;a href="https://app.localstack.cloud/account/settings">account settings&lt;/a> of the web application, points to the URL under which LocalStack is accessible.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+&lt;ul>
+&lt;li>If you encounter a &lt;code>Network Failure&lt;/code> error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the local endpoint URL is not configured correctly. To resolve this issue, ensure that your LocalStack container is running or your &lt;a href="https://app.localstack.cloud/account/settings">local endpoint URL is configured correctly&lt;/a>.&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>An AWS region dropdown menu in the dashboard is located on the top right of the navigation bar, beside the notifications icon. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The Resource Browser provide an experience similar to the AWS Management Console. However, the Resource Browser is not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console. We recommend using our &lt;a href="https://docs.localstack.cloud/user-guide/integrations/">integrations&lt;/a> to create your resources, with the Resource Browser being used for quick viewing and management of your resources.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>To view the running services in your LocalStack container, you can use the &lt;a href="https://app.localstack.cloud/status">System Status&lt;/a>. This view provides a quick overview of the running services in your LocalStack container. To get a detailed telemetry of your API calls to your LocalStack containers, check out &lt;a href="https://docs.localstack.cloud/user-guide/web-application/stack-insights/">Stack Insights&lt;/a>.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;h2 id="supported-services">Supported services&lt;/h2>
+&lt;p>We currently support the following local AWS services in our Resource Browser:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/gateway/v1">API Gateway&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/appsync">AppSync&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/athena/databases">Athena&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/backup/plans">Backup&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/cloudformation/stacks">CloudFormation&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/cloudtrail/events">CloudTrail&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/cloudwatch/groups">CloudWatch Logs&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/monitoring">CloudWatch Metrics&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/cognito">Cognito&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/dynamodb">DynamoDB&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/ec2">EC2&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/ecr/repositories">ECR&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/ecs">ECS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/elasticache">ElastiCache&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/eventbridge">EventBridge&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/glue">Glue&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/iam">IAM&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/kinesis">Kinesis&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/kms">KMS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/lambda/functions">Lambda&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/rds/instances">RDS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/s3">S3&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/ses/v1/identities">SES&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/sqs">SQS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/sns">SNS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/secretsmanager">Secrets Manager&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/stepfunctions">Step Functions&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/ssm">Systems Manager&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://app.localstack.cloud/resources/timestream">TimestreamDB&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: SSO for Azure AD</title><link>/user-guide/web-application/single-sign-on/azure-ad/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/single-sign-on/azure-ad/</guid><description>
+&lt;p>To configure SSO with an Azure AD Enterprise application, we provide a simple step-by-step solution below:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Navigate to &amp;ldquo;Set up single sign on&amp;rdquo; in your Azure AD Enterprise application.&lt;/p>
+&lt;img src="azure-step-1.png" alt="Azure AD First Configuration Step">
+&lt;/li>
+&lt;li>
+&lt;p>In the Basic SAML Configuration, ensure that the settings match the following details&lt;/p>
+&lt;img src="azure-step-2.png" alt="Azure AD Second Configuration Step">
+&lt;/li>
+&lt;/ol>
+&lt;p>Take the correct values for Identifier (Entity ID) and Reply URL from the Identity Provider configuration page.&lt;/p>
+&lt;ol start="3">
+&lt;li>
+&lt;p>In the Attributes &amp;amp; Claims section, add a group claim with the following configuration and save it.&lt;/p>
+&lt;img src="azure-step-3.png" alt="Azure AD Third Configuration Step">
+&lt;/li>
+&lt;li>
+&lt;p>In the SAML Certificates section, copy the App Federation Metadata Url&lt;/p>
+&lt;img src="azure-step-4.png" alt="Azure AD Fourth Configuration Step">
+&lt;/li>
+&lt;li>
+&lt;p>Navigate to our web application, or follow this &lt;a href="https://app.localstack.cloud/account/sso">link&lt;/a>, and:&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Create a new Identity provider&lt;/li>
+&lt;li>Enter a name for you Identity provider, and choose SAML as the provider type.&lt;/li>
+&lt;li>Select URL for the Metadata file and paste the link that you copied previously in step 4.&lt;/li>
+&lt;li>For the attribute mapping, provide the following value for the Email attribute: &lt;code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name&lt;/code> - (This should match the Claim name of user.userprincipalname in your Attributes &amp;amp; Claims)&lt;/li>
+&lt;li>Leave First name attribute and Last name attribute blank.&lt;/li>
+&lt;/ul>
+&lt;ol start="6">
+&lt;li>Let your team members sign up to your LocalStack Organization via the Sign Up Portal Link.&lt;/li>
+&lt;/ol></description></item><item><title>User-Guide: Single-Sign On</title><link>/user-guide/web-application/single-sign-on/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/single-sign-on/</guid><description>
 &lt;p>LocalStack Enterprise allows to enable custom Single-Sign On (SSO) Identity providers, to facilitate the process of quickly onboarding team members from your organization.&lt;/p>
 &lt;p>In order to configure SSO access, first sign in to the LocalStack Web application under &lt;a href="https://app.localstack.cloud/">app.localstack.cloud&lt;/a>.
 In your profile settings, navigate to the Single Sign-on tab which will list existing SSO Identity Providers (if any exist).&lt;/p>
@@ -93,39 +194,4 @@ The SAML metadata file can be specified either via URL or via a file upload.&lt;
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;img src="roles-permissions.png" width="600px" alt="User Roles and Permissions"></description></item><item><title>User-Guide: SSO for Azure AD</title><link>/user-guide/web-application/single-sign-on/azure-ad/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/single-sign-on/azure-ad/</guid><description>
-&lt;p>To configure SSO with an Azure AD Enterprise application, we provide a simple step-by-step solution below:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Navigate to &amp;ldquo;Set up single sign on&amp;rdquo; in your Azure AD Enterprise application.&lt;/p>
-&lt;img src="azure-step-1.png" alt="Azure AD First Configuration Step">
-&lt;/li>
-&lt;li>
-&lt;p>In the Basic SAML Configuration, ensure that the settings match the following details&lt;/p>
-&lt;img src="azure-step-2.png" alt="Azure AD Second Configuration Step">
-&lt;/li>
-&lt;/ol>
-&lt;p>Take the correct values for Identifier (Entity ID) and Reply URL from the Identity Provider configuration page.&lt;/p>
-&lt;ol start="3">
-&lt;li>
-&lt;p>In the Attributes &amp;amp; Claims section, add a group claim with the following configuration and save it.&lt;/p>
-&lt;img src="azure-step-3.png" alt="Azure AD Third Configuration Step">
-&lt;/li>
-&lt;li>
-&lt;p>In the SAML Certificates section, copy the App Federation Metadata Url&lt;/p>
-&lt;img src="azure-step-4.png" alt="Azure AD Fourth Configuration Step">
-&lt;/li>
-&lt;li>
-&lt;p>Navigate to our web application, or follow this &lt;a href="https://app.localstack.cloud/account/sso">link&lt;/a>, and:&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;ul>
-&lt;li>Create a new Identity provider&lt;/li>
-&lt;li>Enter a name for you Identity provider, and choose SAML as the provider type.&lt;/li>
-&lt;li>Select URL for the Metadata file and paste the link that you copied previously in step 4.&lt;/li>
-&lt;li>For the attribute mapping, provide the following value for the Email attribute: &lt;code>http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name&lt;/code> - (This should match the Claim name of user.userprincipalname in your Attributes &amp;amp; Claims)&lt;/li>
-&lt;li>Leave First name attribute and Last name attribute blank.&lt;/li>
-&lt;/ul>
-&lt;ol start="6">
-&lt;li>Let your team members sign up to your LocalStack Organization via the Sign Up Portal Link.&lt;/li>
-&lt;/ol></description></item></channel></rss>
+&lt;img src="roles-permissions.png" width="600px" alt="User Roles and Permissions"></description></item></channel></rss>
