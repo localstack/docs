@@ -1,28 +1,28 @@
 ---
-title: "Resource Browsers"
+title: "Resource Browser"
 tags: ["LocalStack Pro"]
 weight: 4
 description: >
-    Resource Browsers allows you to view and manage your local AWS resources through LocalStack Web Application.
+    The Resource Browser allows you to view and manage your local AWS resources through the LocalStack Web Application.
 ---
 
-LocalStack Resource Browsers allow you to view, manage, and deploy AWS resources locally while building & testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine. Resource Browsers can be operated only if a LocalStack container is running on your local machine and the local endpoint URL, under which LocalStack is accessible, has been configured.
+The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building & testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine. The Resource Browser can be operated only if a LocalStack container is running on your local machine and the local endpoint URL, which can be configured in the [account settings](https://app.localstack.cloud/account/settings) of the web application, points to the URL under which LocalStack is accessible.
 
 {{< alert title="Warning" color="warning">}}
-- If you encounter a `Network Failure` error message while accessing the Resource Browsers, it is likely that the LocalStack container is not running or the local endpoint URL is not configured correctly. To resolve this issue, ensure that your LocalStack container is running or your local endpoint URL is configured correctly.
+- If you encounter a `Network Failure` error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the local endpoint URL is not configured correctly. To resolve this issue, ensure that your LocalStack container is running or your [local endpoint URL is configured correctly](https://app.localstack.cloud/account/settings).
 {{< /alert >}}
 
 {{<alert title="Note">}}
 - An AWS region dropdown menu in the dashboard is located on the top right of the navigation bar, beside the notifications icon. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.
 
-- Resource Browsers provide an experience similar to the AWS Management Console. However, the Resource Browsers are not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console. We recommend using our [integrations](https://docs.localstack.cloud/user-guide/integrations/) to create your resources, with Resource Browsers being used for quick viewing and management of your resources.
+- The Resource Browser provide an experience similar to the AWS Management Console. However, the Resource Browser is not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console. We recommend using our [integrations](https://docs.localstack.cloud/user-guide/integrations/) to create your resources, with the Resource Browser being used for quick viewing and management of your resources.
 
-- To view the running services in your LocalStack container, you can use the [System Status](https://app.localstack.cloud/status). The dashboard provides a quick overview of the running services in your LocalStack container. To get a detailed telemetry of your API calls to the LocalStack container, check out [Stack Insights](https://docs.localstack.cloud/user-guide/web-application/stack-insights/).
+- To view the running services in your LocalStack container, you can use the [System Status](https://app.localstack.cloud/status). This view provides a quick overview of the running services in your LocalStack container. To get a detailed telemetry of your API calls to your LocalStack containers, check out [Stack Insights](https://docs.localstack.cloud/user-guide/web-application/stack-insights/).
 {{< /alert >}}
 
 ## Supported services
 
-We provide Resource Browsers for the following local AWS services:
+We currently support the following local AWS services in our Resource Browser:
 
 - [API Gateway](https://app.localstack.cloud/resources/gateway/v1)
 - [AppSync](https://app.localstack.cloud/resources/appsync)
