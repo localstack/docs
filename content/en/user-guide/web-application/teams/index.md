@@ -1,6 +1,6 @@
 ---
 title: "Teams"
-tags: [] 
+tags: ["LocalStack Pro"]
 weight: 2
 description: >
   LocalStack Organizations/Teams offer a flexible way of managing access roles, permissions, and API keys for your team members.
