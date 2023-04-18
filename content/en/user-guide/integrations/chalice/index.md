@@ -1,6 +1,6 @@
 ---
 title: "AWS Chalice"
-weight: 12
+weight: 13
 tags: ["chalice"]
 categories: []
 description: >
