@@ -321,6 +321,10 @@ To display the config environment variables, you can use the following command:
 python -m localstack.cli.main --profile=dev config show
 {{< / command >}}
 
+{{< alert title="Note" >}}
+The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup. You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups. For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
+{{< /alert >}}
+
 ## Persistence
 
 To learn more about these configuration options, see our docs on [Persistence]({{< ref "persistence-mechanism" >}}).
