@@ -188,3 +188,19 @@ $ dig api.localstack.cloud
 If the result has some other status than `status: NOERROR,` your machine cannot resolve this domain.
 
 Some corporate DNS servers might filter requests to certain domains. Contact your network administrator to safelist` localstack.cloud` domains.
+
+### What's LocalStack Pro's patching schedule for security patches and bug fixes?
+
+Emergency vulnerabilities are treated with the highest priority and fixed on the same business day. The cloud provider (AWS) manages and maintains most of the infrastructure. All infrastructure configuration is fully encoded as code scripts (Infrastructure-as-Code) and can quickly be recreated in an emergency.
+
+### Does LocalStack have a security program that scans the containers for security issues?
+
+We are performing regular vulnerability scan reports for all software assets, including code and dependency scanning in our Github repositories (using Dependabot) and Docker image scans (using Trivy/Aquasec/Snyk image security scanner). If any vulnerabilities/CVEs are detected, they are fixed and usually rolled out within one business week.
+
+### Do we have any security documentation such as penetration test reports or SOC2 reports?
+
+We have yet to get a SOC2 report. To get a penetration test report, please get in touch with us at [info@localstack.cloud](mailto:info@localstack.cloud).
+
+### Does LocalStack provide offline capabilities?
+
+LocalStack Community and Pro/Team provide limited offline capabilities. To use a fully-fledged offline mode, you may use LocalStack Enterprise, which can be used in air-gapped environments. LocalStack Docker images need to download additional dependencies for specific services (Elasticsearch, Big Data services, etc.), while the offline image bakes all dependencies into the picture, along with any other configuration that you might need. For more details, please look at our [enterprise offering](https://localstack.cloud/pricing/).
