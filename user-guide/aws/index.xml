@@ -7660,14 +7660,29 @@ Inter-service communication evaluation (for example for sts:AssumeRole) also is 
 &lt;/div>
 &lt;h2 id="supported-apis">Supported APIs&lt;/h2>
 &lt;p>IAM security enforcement is available for all AWS APIs in LocalStack - it has been thoroughly tested, among others, for the following services: ACM, API Gateway, CloudFormation, CloudWatch (metrics/events/logs), DynamoDB, DynamoDB Streams, Elasticsearch Service, EventBus, Kinesis, KMS, Lambda, Redshift, S3, SecretsManager, SNS, SQS.&lt;/p></description></item><item><title>User-Guide: IoT</title><link>/user-guide/aws/iot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iot/</guid><description>
-&lt;p>Basic support for &lt;a href="https://aws.amazon.com/iot/">IoT&lt;/a> (including IoT Analytics, IoT Data, and related APIs) is provided in the Pro version. The main endpoints for creating and updating entities are currently implemented, as well as the CloudFormation integrations for creating them.&lt;/p>
-&lt;p>The IoT API ships with a built-in MQTT message broker. In order to get the MQTT endpoint, the &lt;code>describe-endpoint&lt;/code> API can be used; for example, using &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a>:
+&lt;p>LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs.
+Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.&lt;/p>
+&lt;h2 id="mqtt-broker">MQTT Broker&lt;/h2>
+&lt;p>LocalStack ships with a built-in MQTT broker.
+To retrieve the MQTT endpoint, use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_DescribeEndpoint.html">&lt;code>DescribeEndpoint&lt;/code>&lt;/a> operation.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iot describe-endpoint
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpointAddress&amp;#34;: &amp;#34;localhost:4510&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>This endpoint can then be used with any MQTT client to send/receive messages (e.g., using the endpoint URL &lt;code>mqtt://localhost:4510&lt;/code>).&lt;/p>
-&lt;p>LocalStack Pro also supports advanced features like SQL queries for IoT topic rules. For example, you can use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html">&lt;code>CreateTopicRule&lt;/code> API&lt;/a> to define a topic rule with a SQL query &lt;code>SELECT * FROM 'my/topic' where attr=123&lt;/code> which will trigger a Lambda function whenever a message with attribute &lt;code>attr=123&lt;/code> is received on the MQTT topic &lt;code>my/topic&lt;/code>.&lt;/p></description></item><item><title>User-Guide: Key Management Service (KMS)</title><link>/user-guide/aws/kms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kms/</guid><description>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpointAddress&amp;#34;: &amp;#34;localhost.localstack.cloud:4510&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This endpoint can then be used with any MQTT client to publish and subscribe to topics.&lt;/p>
+&lt;h2 id="lifecycle-events">Lifecycle Events&lt;/h2>
+&lt;p>LocalStack also publishes the &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/life-cycle-events.html">lifecycle events&lt;/a> to the standard endpoints.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>$aws/events/presence/connected/clientId&lt;/code>: when a client connects&lt;/li>
+&lt;li>&lt;code>$aws/events/presence/disconnected/clientId&lt;/code>: when a client disconnects&lt;/li>
+&lt;li>&lt;code>$aws/events/subscriptions/subscribed/clientId&lt;/code>: when a client subscribes to a topic&lt;/li>
+&lt;li>&lt;code>$aws/events/subscriptions/unsubscribed/clientId&lt;/code>: when a client unsubscribes from a topic&lt;/li>
+&lt;/ul>
+&lt;p>Currently the &lt;code>principalIdentifier&lt;/code> and &lt;code>sessionIdentifier&lt;/code> fields in event payload contain dummy values.&lt;/p>
+&lt;h2 id="topic-rules">Topic Rules&lt;/h2>
+&lt;p>It is also possible to use advanced features like SQL queries for IoT topic rules.&lt;/p>
+&lt;p>For example, you can use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html">&lt;code>CreateTopicRule&lt;/code>&lt;/a> operation to define a topic rule with a SQL query &lt;code>SELECT * FROM 'my/topic' where attr=123&lt;/code> which will execute a trigger whenever a message with attribute &lt;code>attr=123&lt;/code> is received on the MQTT topic &lt;code>my/topic&lt;/code>.&lt;/p>
+&lt;p>Supported triggers include Kinesis, Lambda, SQS and Firehose.&lt;/p></description></item><item><title>User-Guide: Key Management Service (KMS)</title><link>/user-guide/aws/kms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kms/</guid><description>
 &lt;p>Key Management Service (KMS) is mainly about:&lt;/p>
 &lt;ul>
 &lt;li>Creation and management of cryptographic keys.&lt;/li>
