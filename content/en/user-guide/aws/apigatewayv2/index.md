@@ -148,6 +148,10 @@ $ awslocal apigatewayv2 create-api --name=my-api --protocol-type=HTTP --tags="_c
 }
 {{< / command >}}
 
+{{< alert title="Note">}}
+Setting the API Gateway ID via `_custom_id_` works only on the creation of the resource, but not on update in LocalStack. Ensure that you set the `_custom_id_` tag on creation of the resource.
+{{< /alert >}}
+
 ### AWS API Gateway Custom Domain Name
 
 You can use custom domain names with both API Gateway REST APIs and API Gateway V2 APIs. To route requests to a custom domain name for an API Gateway V2 API, include the Host header in your request with the custom domain name. For example:
