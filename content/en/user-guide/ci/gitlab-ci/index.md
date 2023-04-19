@@ -25,7 +25,7 @@ We recommend taking the following steps:
 The following example Gitlab CI job config (`.gitlab-ci.yml`) executes these steps, creates a new S3 bucket, copies some content to the bucket, and check the available buckets:
 
 ```yml
-image: python:3.10
+image: docker:20.10.16
 
 stages:
   - test
@@ -33,20 +33,32 @@ stages:
 test:
   stage: test
   variables:
-    AWS_ACCESS_KEY_ID: dummy
-    AWS_SECRET_ACCESS_KEY: dummy
-    AWS_DEFAULT_REGION: eu-central-1
+    AWS_ACCESS_KEY_ID: test
+    AWS_SECRET_ACCESS_KEY: test
+    AWS_DEFAULT_REGION: us-east-1
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    LOCALSTACK_HOSTNAME: localhost.localstack.cloud
+    HOSTNAME_EXTERNAL: localhost.localstack.cloud
+
   services:
-    - name: localstack/localstack
-      alias: localstack
+    - name: docker:20.10.16-dind
+      alias: docker
+      command: ["--tls=false"]
+
   before_script:
-    - LOCALSTACK_URL=http://localstack:4566
-    - pip install awscli
+    - apk update
+    - apk add gcc musl-dev linux-headers py3-pip python3 python3-dev curl
+    - python3 -m pip install localstack awscli
   script:
-    - aws s3 mb s3://test --endpoint-url ${LOCALSTACK_URL}
+    - docker pull localstack/localstack:latest
+    - dind_ip="$(getent hosts docker | cut -d' ' -f1)"
+    - echo "${dind_ip} localhost.localstack.cloud " >> /etc/hosts
+    - DOCKER_HOST="tcp://${dind_ip}:2375" localstack start -d
+    - aws --endpoint http://localhost.localstack.cloud:4566 s3 mb s3://test
     - echo "hello world" > /tmp/hello-world
-    - aws s3 cp /tmp/hello-world s3://test/hello-world --endpoint-url ${LOCALSTACK_URL}
-    - aws s3 ls s3://test/ --endpoint-url ${LOCALSTACK_URL}
+    - aws --endpoint http://localhost.localstack.cloud:4566 s3 cp /tmp/hello-world s3://test/hello-world
+    - aws --endpoint http://localhost.localstack.cloud:4566 s3 ls s3://test/
 ```
 
 {{< alert title="Note">}}
