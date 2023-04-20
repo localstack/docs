@@ -193,13 +193,13 @@ Some corporate DNS servers might filter requests to certain domains. Contact you
 
 We take security seriously and respond to any emergency vulnerabilities as soon as possible. Our cloud provider (AWS) handles most of the infrastructure maintenance for us. We also use Infrastructure-as-Code scripts to ensure that our infrastructure configuration is consistent and recoverable in case of a disaster.
 
-### Does LocalStack have a security program that scans the containers for security issues?
+### How does LocalStack ensure the security of its containers and images? 
 
-We are performing regular vulnerability scan reports for all software assets, including code and dependency scanning in our Github repositories (using Dependabot) and Docker image scans (using Trivy/Aquasec/Snyk image security scanner). If any vulnerabilities/CVEs are detected, they are fixed and usually rolled out within one business week.
+Our software assets are regularly checked for vulnerabilities, such as code issues and outdated dependencies. We use Dependabot to scan our GitHub repositories, and Trivy as well as Snyk (among other security tools) to scan our Docker images.
 
-### Do we have any security documentation such as penetration test reports or SOC2 reports?
+### Do you have any penetration test reports or SOC2 reports that demonstrate your security compliance?
 
-We have yet to get a SOC2 report. To get a penetration test report, please get in touch with us at [info@localstack.cloud](mailto:info@localstack.cloud).
+We conduct regular penetration tests and audits to ensure our services are secure and compliant. If you want to access our security documentation and test reports, please contact us at info@localstack.cloud, and we will be happy to share them with you.
 
 ### Does LocalStack provide offline capabilities?
 
