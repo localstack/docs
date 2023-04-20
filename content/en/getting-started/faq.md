@@ -189,7 +189,7 @@ If the result has some other status than `status: NOERROR,` your machine cannot 
 
 Some corporate DNS servers might filter requests to certain domains. Contact your network administrator to safelist` localstack.cloud` domains.
 
-How does LocalStack Pro handle security patches and bug fixes?
+### How does LocalStack Pro handle security patches and bug fixes?
 
 Emergency vulnerabilities are treated with the highest priority and fixed on the same business day. The cloud provider (AWS) manages and maintains most of the infrastructure. All infrastructure configuration is fully encoded as code scripts (Infrastructure-as-Code) and can quickly be recreated in an emergency.
 
