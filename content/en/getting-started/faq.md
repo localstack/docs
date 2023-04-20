@@ -191,7 +191,7 @@ Some corporate DNS servers might filter requests to certain domains. Contact you
 
 ### How does LocalStack Pro handle security patches and bug fixes?
 
-Emergency vulnerabilities are treated with the highest priority and fixed on the same business day. The cloud provider (AWS) manages and maintains most of the infrastructure. All infrastructure configuration is fully encoded as code scripts (Infrastructure-as-Code) and can quickly be recreated in an emergency.
+We take security seriously and respond to any emergency vulnerabilities as soon as possible. Our cloud provider (AWS) handles most of the infrastructure maintenance for us. We also use Infrastructure-as-Code scripts to ensure that our infrastructure configuration is consistent and recoverable in case of a disaster.
 
 ### Does LocalStack have a security program that scans the containers for security issues?
 
