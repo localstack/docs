@@ -41,9 +41,7 @@ stages:
               type: Service
               spec:
                 connectorRef: my_connector
-                image: localstack/localstack:1.2.0
-                envVariables:
-                  LOCALSTACK_API_KEY: <+secrets.getValue("localstack-api-key")>
+                image: localstack/localstack
           execution:
             steps:
               - step:
@@ -58,3 +56,20 @@ stages:
 ```
 
 To run the pipeline, click **Save** and then **Run Pipeline**. You will be able to see LocalStack Service Dependency logs that verify that the LocalStack Container is healthy and running.
+
+## Using LocalStack Pro
+
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your API key 
+by selecting **Optional Configuration** to add an environment variable named **LOCALSTACK_API_KEY** to have an API key configured. Here is an example:
+
+```yaml
+serviceDependencies:
+  - identifier: localstack
+    name: localstack
+    type: Service
+    spec:
+      connectorRef: my_connector
+      image: localstack/localstack-pro
+      envVariables:
+        LOCALSTACK_API_KEY: <+secrets.getValue("localstack-api-key")>
+```

@@ -51,7 +51,7 @@ test:
 
 ## Activate LocalStack Pro
 
-You can easily enable LocalStack Pro by adding your API key to the repository's environment variables. Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section. Select the **Add Variable** button and fill in the necessary details. After you create a variable, you can use it in the `.gitlab-ci.yml` file.
+You can easily enable LocalStack Pro by by using the `localstack/localstack-pro` image and adding your API key to the repository's environment variables. Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section. Select the **Add Variable** button and fill in the necessary details. After you create a variable, you can use it in the `.gitlab-ci.yml` file.
 
 However Variables set in the GitLab UI are not passed down to service containers. We need to assign them to variables in the UI, and then re-assign them in our `.gitlab-ci.yml`:
 
@@ -64,7 +64,7 @@ test:
     AWS_DEFAULT_REGION: eu-central-1
     LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
   services:
-    - name: localstack/localstack
+    - name: localstack/localstack-pro
       alias: localstack
       variables:
         LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY}

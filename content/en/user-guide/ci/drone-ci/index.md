@@ -42,12 +42,12 @@ steps:
 
 ## Using LocalStack Pro
 
-You can easily enable LocalStack Pro by adding your API key to Drone Repository secrets. You can manage them from your repository settings screen. Navigate to your Repository secrets on your Drone repository and add the LocalStack API key as `localstack_api_key`. Here is an example:
+You can easily enable LocalStack Pro by by using the `localstack/localstack-pro` image and adding your API key to Drone Repository secrets. You can manage them from your repository settings screen. Navigate to your Repository secrets on your Drone repository and add the LocalStack API key as `localstack_api_key`. Here is an example:
 
 ```yml
 services:
 - name: localstack
-  image: localstack/localstack
+  image: localstack/localstack-pro
   environment:
     LOCALSTACK_API_KEY:
       from_secret: localstack_api_key
