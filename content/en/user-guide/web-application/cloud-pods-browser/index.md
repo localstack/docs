@@ -12,7 +12,7 @@ description: >
 
 ## Usage
 
-You can use Cloud Pods to manage your local AWS infrastructure and collaborate with others:
+You can use [Cloud Pods](https://docs.localstack.cloud/user-guide/tools/cloud-pods/) to manage your local AWS infrastructure and collaborate with others:
 
 - Cloud Pods are accessible to all LocalStack Team users in your organization namespace. Public Cloud Pods are accessible to all LocalStack users.
 - Cloud Pods version history is available, and you can view the version history of a Cloud Pod and access a previous version of a Cloud Pod.
