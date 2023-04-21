@@ -6,7 +6,10 @@ description: >
     Cloud Pods Browser allows you to view, manage, and explore your Cloud Pods through LocalStack Web Application.
 ---
 
-[Cloud Pods Browser](https://app.localstack.cloud/pods) contains all your Cloud Pods and each Cloud Pod's version history over the LocalStack Web Application. Cloud Pods Browser is accessible to LocalStack Team & Enterprise users. You can own Cloud Pods individually or share the ownership of a Cloud Pod in an organization. Alternatively, you can also make a Cloud Pod by configuring the [visibility of your Cloud Pod](https://docs.localstack.cloud/user-guide/tools/cloud-pods/pods-cli/#save).
+[The Cloud Pods Browser](https://app.localstack.cloud/pods) lets you access and manage all your Cloud Pods. Cloud Pods Browser is a feature of our LocalStack Web Application that is exclusive to **LocalStack Team & Enterprise users**.
+
+With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance. 
+The LocalStack CLI allows you to create new Cloud Pods and configure their [visibility settings](https://docs.localstack.cloud/user-guide/tools/cloud-pods/pods-cli/#save).
 
 <img src="cloud-pods-browser.png" alt="LocalStack Web Application's Cloud Pods Browser outlining various saved Clod Pods" title="Cloud Pods Browser" width="900" />
 
