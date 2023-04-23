@@ -2,7 +2,7 @@
 title: "Self-managed Kafka cluster"
 tags: ["kafka", "self-managed"]
 categories: ["LocalStack Pro"]
-weight: 11
+weight: 12
 description: >
   Using LocalStack Lambda with a self-managed Kafka cluster
 aliases:

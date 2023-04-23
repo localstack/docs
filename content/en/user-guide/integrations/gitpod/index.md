@@ -1,7 +1,7 @@
 ---
 title: "GitPod"
 tags: ["gitpod", "development-environment", "ide-integration"]
-weight: 13
+weight: 14
 description: >
   Use GitPod's fully automated, ephemeral workspaces to develop & test your cloud applications with LocalStack
 ---
