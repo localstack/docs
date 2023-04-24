@@ -8,6 +8,8 @@ description: >
 
 The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building & testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine. The Resource Browser can be operated only if a LocalStack container is running on your local machine and the local endpoint URL, which can be configured in the [account settings](https://app.localstack.cloud/account/settings) of the web application, points to the URL under which LocalStack is accessible.
 
+<img src="resource-browser.png" alt="LocalStack Web Application's Resource Browsers outlining various local AWS services" title="Resource Browser" width="900" />
+
 {{< alert title="Warning" color="warning">}}
 - If you encounter a `Network Failure` error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the local endpoint URL is not configured correctly. To resolve this issue, ensure that your LocalStack container is running or your [local endpoint URL is configured correctly](https://app.localstack.cloud/account/settings).
 {{< /alert >}}
