@@ -1,0 +1,24 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Enterprise</title><link>/tags/localstack-enterprise/</link><description>Recent content in LocalStack Enterprise on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/localstack-enterprise/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Cloud Pods Browser</title><link>/user-guide/web-application/cloud-pods-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/cloud-pods-browser/</guid><description>
+&lt;p>&lt;a href="https://app.localstack.cloud/pods">The Cloud Pods Browser&lt;/a> lets you access and manage all your Cloud Pods. The Cloud Pods Browser is a feature of our LocalStack Web Application that is exclusive to &lt;strong>LocalStack Team &amp;amp; Enterprise users&lt;/strong>.&lt;/p>
+&lt;p>With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance.
+The LocalStack CLI allows you to create new Cloud Pods and configure their &lt;a href="https://docs.localstack.cloud/user-guide/tools/cloud-pods/pods-cli/#save">visibility settings&lt;/a>.&lt;/p>
+&lt;img src="cloud-pods-browser.png" alt="LocalStack Web Application's Cloud Pods Browser outlining various saved Clod Pods" title="Cloud Pods Browser" width="900" />
+&lt;h2 id="usage">Usage&lt;/h2>
+&lt;p>You can use &lt;a href="https://docs.localstack.cloud/user-guide/tools/cloud-pods/">Cloud Pods&lt;/a> to manage your local AWS infrastructure and collaborate with others:&lt;/p>
+&lt;ul>
+&lt;li>Cloud Pods are accessible to all LocalStack Team users in your organization namespace. Public Cloud Pods are accessible to all LocalStack users.&lt;/li>
+&lt;li>Cloud Pods version history is available, which allows you to view the version history of a Cloud Pod and access previous versions of specific Cloud Pods.&lt;/li>
+&lt;li>Cloud Pods can be made public, injected into a running LocalStack container, or deleted - all from the LocalStack Web Application.&lt;/li>
+&lt;/ul>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+LocalStack Pro users cannot access the Cloud Pods Browser. Community &amp;amp; Pro users can use the &lt;a href="https://docs.localstack.cloud/user-guide/tools/cloud-pods/community/">Community Cloud Pods&lt;/a> and save their Cloud Pods locally or share them via a GitHub/GitLab repository. The &lt;a href="https://docs.localstack.cloud/user-guide/tools/cloud-pods/launchpad/">Cloud Pods launchpad&lt;/a> can be used to inject a Cloud Pod into a running LocalStack container through a simple click.
+&lt;/div>
+&lt;h2 id="access-the-version-history">Access the version history&lt;/h2>
+&lt;p>To view the version history of a Cloud Pod, click on the Cloud Pod&amp;rsquo;s name in the Cloud Pods Browser. You will be able to see a list of all versions, and view details of a specific version, in JSON format, by clicking on it.&lt;/p>
+&lt;img src="cloud-pods-version-history.png" alt="LocalStack Web Application's Cloud Pods Browser outlining the versions of the Clod Pod" title="Cloud Pods Browser displaying the version history of the Cloud Pod" width="900" />
+&lt;p>To create a new version of a Cloud Pod, refer to the &lt;a href="https://docs.localstack.cloud/user-guide/tools/cloud-pods/pods-cli/#save">Cloud Pods CLI&lt;/a> documentation.&lt;/p>
+&lt;h2 id="save-a-cloud-pod">Save a Cloud Pod&lt;/h2>
+&lt;p>Users do not need to upload their Cloud Pod to the LocalStack Web Application since the Cloud Pods CLI automatically uploads pods via the &lt;code>save&lt;/code> operation. Similarly, the Cloud Pods CLI automatically injects the Cloud Pod into a running LocalStack container via the &lt;code>load&lt;/code> operation after specifying the Cloud Pod&amp;rsquo;s name. You can alternatively select a Cloud Pod on the Cloud Pods Browser and inject it into a running LocalStack container.&lt;/p>
+&lt;img src="cloud-pod-inject.png" alt="Inject a Cloud Pod through the Cloud Pods Browser" title="Inject a Cloud Pod through the Cloud Pods Browser" width="900" />
+&lt;p>We use a secure storage mechanism to store Cloud Pods on the LocalStack Web Application. When you push a Cloud Pod, it is stored securely in our storage backend in AWS, with each user/organization receiving a dedicated, isolated S3 bucket. Pushing and pulling a Cloud Pod from our Web Application is facilitated by using secure S3 pre-signed URLs for the Cloud Pods CLI to interact directly with the S3 bucket, rather than piping the state files through our LocalStack Platform APIs.&lt;/p></description></item></channel></rss>
