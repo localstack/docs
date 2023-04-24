@@ -7,23 +7,22 @@ description: >
 type: tutorials
 ---
 
-[Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) is a fully-managed container orchestration service that allows you to run and manage Docker containers on AWS. With ECS, you can deploy, manage, and scale containerized applications quickly and efficiently, which includes microservices, batch processing jobs, and web applications. ECS supports two [launch types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html): EC2 and Fargate. With the EC2 launch type, you can run containers on a cluster of EC2 instances you manage. With Fargate, AWS manages the underlying infrastructure, and you only need to worry about the container. Fargate launch type provides a serverless-like experience for running containers, allowing you to focus on your applications rather than infrastructure.
+[Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) is a fully-managed container orchestration service that simplifies the deployment, management, and scaling of Docker containers on AWS. With support for two [launch types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html), EC2 and Fargate, ECS allows you to run containers on your cluster of EC2 instances or have AWS manage your underlying infrastructure with Fargate. The Fargate launch type provides a serverless-like experience for running containers, allowing you to focus on your applications instead of infrastructure.
 
-[Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) allows users to push their software packaged inside containers into an AWS-managed registry. Using ECR, you can version, tag, and manage your image lifecycles independently of your application. ECR is tightly integrated with other AWS services, such as ECS, EKS, and Lambda, and allows you to deploy your container image to these services. We can configure our ECS tasks to pull container images from ECR repositories. You can also use ECS task definitions to specify container settings such as CPU and memory limits, environment variables, and networking configuration, thus enabling you to focus on building and deploying your containerized applications with ease.
+[Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) is a fully-managed service that allows you to store, manage, and deploy Docker container images. It is tightly integrated with other AWS services such as ECS, EKS, and Lambda, enabling you to quickly deploy your container images to these services. With ECR, you can version, tag, and manage your container images’ lifecycles independently of your applications, making it easy to maintain and deploy your containers.
 
-[LocalStack Pro](https://localstack.cloud/) supports the creation of ECR registries and repositories, as well as ECS clusters and tasks on your local machine. In this tutorial, we will demonstrate how to use it to set up an NGINX web server to serve a static website by deploying CloudFormation templates on a local AWS environment provisioned by LocalStack.
+ECS tasks can pull container images from ECR repositories and are customizable using task definitions to specify settings such as CPU and memory limits, environment variables, and networking configurations. [LocalStack Pro](https://localstack.cloud/) allows creating ECR registries, repositories, and ECS clusters and tasks on your local machine. This tutorial will showcase using LocalStack to set up an NGINX web server to serve a static website using CloudFormation templates in a local AWS environment.
 
 ## Prerequisites
 
--   [LocalStack Pro](https://localstack.cloud/pricing/)  to emulate the AWS services (SNS, SQS, SES, etc) locally
-    -   Don’t worry, if you don’t have a subscription yet, you can just get a trial license for free.
+-   [LocalStack Pro](https://localstack.cloud/pricing/)
 -   [awslocal](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
 -   [Docker](https://docker.io/)
 -   [`cURL`](https://curl.se/download.html)
 
 ## Creating the Docker image
 
-To start setting up an NGINX web server on an ECS cluster, we will first create the Docker image, which can be further pushed to an ECR repository. Let us start by creating a `Dockerfile` for our NGINX web server. The `Dockerfile` will be used to build the Docker image for our NGINX web server.
+To start setting up an NGINX web server on an ECS cluster, we need to create a Docker image that can be pushed to an ECR repository. We'll begin by creating a `Dockerfile` that defines the configuration for our NGINX web server.
 
 ```dockerfile
 FROM nginx
@@ -31,19 +30,19 @@ FROM nginx
 ENV foo=bar
 ```
 
-The `Dockerfile` uses the official `nginx` image from Docker Hub, enabling us to serve the default index page. Before building our Docker image, we will start LocalStack and create an ECR repository to push our Docker image. Start LocalStack with the `LOCALSTACK_API_KEY` environment variable to use your LocalStack Pro API key.
+The `Dockerfile` uses the official `nginx` image from Docker Hub, which allows us to serve the default index page. Before building our Docker image, we need to start LocalStack and create an ECR repository to push our Docker image. To start LocalStack with the `LOCALSTACK_API_KEY` environment variable, run the following command:
 
-```bash
+{{< command >}} 
 $ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
-```
+{{< / command >}}
 
 Next, we will create an ECR repository to push our Docker image. We will use the `awslocal` CLI to create the repository.
 
-```bash
-awslocal ecr create-repository --repository-name <REPOSITORY_NAME>
-```
+{{< command >}} 
+$ awslocal ecr create-repository --repository-name <REPOSITORY_NAME>
+{{< / command >}}
 
-Define a `REPSITORY_NAME` for your ECR repository and replace it in the above command. The output of the above command will be similar to the following:
+Replace `<REPOSITORY_NAME>` with your desired repository name. The output of this command will contain the `repositoryUri` value that we'll need in the next step:
 
 ```json
 {
@@ -64,25 +63,25 @@ Define a `REPSITORY_NAME` for your ECR repository and replace it in the above co
 }
 ```
 
-Copy the `repositoryUri` value from the above output and replace the `REPOSITORY_URI` value in the following command.
+Copy the `repositoryUri` value from the output and replace `<REPOSITORY_URI>` in the following command:
 
-```bash
+{{< command >}} 
 $ docker build -t <REPOSITORY_URI> .
-```
+{{< / command >}}
 
-The above command will build the Docker image for our NGINX web server. Next, we will push the Docker image to the ECR repository we created earlier.
+This command will build the Docker image for our NGINX web server. After the build is complete, we'll push the Docker image to the ECR repository we created earlier using the following command:
 
-```bash
+{{< command >}}
 $ docker push <REPOSITORY_URI>
-```
+{{< / command >}}
 
-The Docker image will take a few seconds to be pushed to the local ECR repository. Once the Docker image is pushed to the ECR repository, we will create an ECS cluster and deploy our NGINX web server.
+After a few seconds, the Docker image will be pushed to the local ECR repository. We can now create an ECS cluster and deploy our NGINX web server.
 
 ## Creating the local ECS infrastructure
 
-LocalStack supports ECS task definitions, services, and tasks. It allows deploying our ECR containers via the ECS Fargate launch type, which utilizes the local Docker engine to deploy containers locally. Before deploying our NGINX web server, we will create the required ECS infrastructure on our local machine using a CloudFormation template. Based on a [publically available CloudFormation template](https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/ECS/FargateLaunchType/clusters/public-vpc.yml), you can create a new file named `ecs.infra.yml` inside a new `templates` directory.
+LocalStack enables the deployment of ECS task definitions, services, and tasks, allowing us to deploy our ECR containers via the ECS Fargate launch type, which uses the local Docker engine to deploy containers locally. To create the necessary ECS infrastructure on our local machine before deploying our NGINX web server, we will use a CloudFormation template. 
 
-Let us start by adding the `Mappings`, and configuring the subnet masks' hard values. These masks define the range of internal IP addresses that can be assigned. We will configure two subnets that cover the ranges from `10.0.0.0` to `10.0.255.255`.
+You can create a new file named `ecs.infra.yml` inside a new `templates` directory, using a [publicly available CloudFormation template as a starting point](https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/ECS/FargateLaunchType/clusters/public-vpc.yml). To begin, we'll add the `Mappings` section and configure the subnet mask values, which define the range of internal IP addresses that can be assigned.
 
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
@@ -92,7 +91,7 @@ Description: A stack for deploying containerized applications in AWS Fargate.
 Mappings:
   SubnetConfig:
     VPC:
-      CIDR: '10.0.1.0/16'
+      CIDR: '10.0.0.0/16'
     PublicOne:
       CIDR: '10.0.2.0/24'
     PublicTwo:
@@ -283,9 +282,11 @@ Resources:
               Resource: '*'
 ```
 
-Above, we have set up the VPC in which containers will be networked and created networking resources for the public subnets. Going further, we added a security group for the container running in Fargate and an IAM role that authorizes ECS to manage resources in the VPC.
+So far, we have set up the VPC where the containers will be networked and created networking resources for the public subnets. We have also added a security group for the container running in Fargate and an IAM role that authorizes ECS to manage resources in the VPC.
 
-We can now configure the outputs generated by the CloudFormation template:
+Next, we can configure the outputs generated by the CloudFormation template. These outputs are values generated during the creation of the CloudFormation stack and can be used by other resources or scripts in your application.
+
+To export the values as CloudFormation outputs, we can add the following to the end of our `ecs.infra.yml` file:
 
 ```yaml
 Outputs:
@@ -336,25 +337,25 @@ Outputs:
       Name: !Join [ ':', [ !Ref 'AWS::StackName', 'FargateContainerSecurityGroup' ] ]
 ```
 
-Let us now deploy the above CloudFormation template. We can do this by running the following command:
+To deploy the CloudFormation template we created earlier, use the following command:
 
-```bash
+{{< command >}}
 $ awslocal cloudformation create-stack --stack-name <STACK_NAME> --template-body file://templates/ecs.infra.yml
-```
+{{< /command >}}
 
-Configure the `<STACK_NAME>` with the name of your choice. You can check wait until the stack status is `CREATE_COMPLETE` by running the following command:
+Make sure to replace `<STACK_NAME>` with a name of your choice. Wait until the stack status changes to `CREATE_COMPLETE` by running the following command:
 
-```bash
-awslocal cloudformation wait stack-create-complete --stack-name <STACK_NAME>
-```
+{{< command >}}
+$ awslocal cloudformation wait stack-create-complete --stack-name <STACK_NAME>
+{{< /command >}}
 
-You can check out your deployed stack on the LocalStack Web Application by navigating to the [CloudFormation resource browser](https://app.localstack.cloud/resources/cloudformation/stacks). Let us now go ahead and deploy the ECS service.
+You can also check your deployed stack on the LocalStack Web Application by navigating to the [CloudFormation resource browser](https://app.localstack.cloud/resources/cloudformation/stacks). With the ECS infrastructure now in place, we can proceed to deploy our NGINX web server.
 
 ## Deploying the ECS service
 
-To deploy the ECS service, we will use another CloudFormation template. Create another file named `ecs.sample.yml` in the `templates` directory, based on the [publically available CloudFormation template](https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/ECS/FargateLaunchType/services/public-service.yml). This template will deploy the ECS service on AWS Fargate and expose it via a public load balancer.
+To deploy the ECS service, we'll use another CloudFormation template. You can create a new file named `ecs.sample.yml` in the `templates` directory, based on the [publicly available CloudFormation template](https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/ECS/FargateLaunchType/services/public-service.yml). This template will deploy the ECS service on AWS Fargate and expose it via a public load balancer.
 
-Let us first declare the parameters for the CloudFormation template:
+Before we proceed, let's declare the parameters for the CloudFormation template:
 
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
@@ -508,46 +509,48 @@ Resources:
       Priority: !Ref 'Priority'
 ```
 
-Let us now deploy the above CloudFormation template. We can do this by running the following command:
+Next, let's deploy the CloudFormation template by running the following command:
 
-```bash
+{{< command >}}
 $ awslocal cloudformation create-stack --stack-name <STACK_NAME> --template-body file://templates/ecs.sample.yml --parameters ParameterKey=ImageUrl,ParameterValue=<REPOSITORY_URI>
-```
+{{< /command >}}
 
-To verify that the ECS service is deployed successfully, you can check the status of the stack by running the following command:
+Replace `<STACK_NAME>` with a name of your choice and `<REPOSITORY_URI>` with the URI of the Docker image that you want to deploy. Wait for the stack to be created by running the following command:
 
-```bash
+{{< command >}}
 $ awslocal cloudformation wait stack-create-complete --stack-name <STACK_NAME>
-```
+{{< /command >}}
 
-We have the ECS service deployed successfully. Let us now go ahead and access the application endpoint. Before doing that, let us list all the ECS clusters we have deployed in our local environment. Run the following command to list the cluster ARN:
+Now that the ECS service has been deployed successfully, let's access the application endpoint. First, let's list all the ECS clusters we have deployed in our local environment by running the following command to retrieve the cluster ARN:
 
-```bash
+{{< command >}}
 $ awslocal ecs list-clusters | jq -r '.clusterArns[0]'
-```
+{{< /command >}}
 
-Save the output of the above command as `CLUSTER_ARN`, as we will use it to list all the tasks running in the cluster. Run the following command to list the task ARN:
+Save the output of the above command as `CLUSTER_ARN`, as we will use it to list the tasks running in the cluster. Next, run the following command to list the task ARN:
 
-```bash
+{{< command >}}
 $ awslocal ecs list-tasks --cluster <CLUSTER_ARN> | jq -r '.taskArns[0]'
-```
+{{< /command >}}
 
-Save the task ARN as `TASK_ARN`. Let us list the port number on which the application is running. Run the following command:
+Save the task ARN as `TASK_ARN`. Let us now list the port number on which the application is running. Run the following command:
 
-```bash
+{{< command >}}
 $ awslocal ecs describe-tasks --cluster <CLUSTER_ARN> --tasks <TASK_ARN> | jq -r '.tasks[0].containers[0].networkBindings[0].hostPort'
-```
+{{< /command >}}
 
 Earlier, we configured the application to run on port `45139`, in our `HostPort` parameter. Let us now access the application endpoint. Run the following command to get the public IP address of the host:
 
-```bash
+{{< command >}}
 $ curl localhost:45139 
-```
+{{< /command >}}
 
-Alternatively, in the address bar, you can navigate to your web browser and enter [`localhost:45139`](https://localhost:45139/). You should see the default index page of the NGINX web server.
+Alternatively, in the address bar of your web browser, you can navigate to [`localhost:45139`](https://localhost:45139/). You should see the default index page of the NGINX web server.
 
 ## Conclusion
 
-In conclusion, this tutorial showcases deploying a containerized service locally using Amazon ECS, ECR, and LocalStack. We have also showcased how you can deploy your local AWS infrastructure using CloudFormation templates with the `awslocal` CLI. With LocalStack, you can also mount code from your host filesystem into the ECS container to enable a quick debugging loop where you can test changes without having to build and redeploy the task’s Docker image each time.
+In this tutorial, we have demonstrated how to deploy a containerized service locally using Amazon ECS, ECR, and LocalStack. We have also shown how you can use CloudFormation templates with the awslocal CLI to deploy your local AWS infrastructure.
 
-The code for this tutorial can be found in our [LocalStack Pro samples](https://github.com/localstack/localstack-pro-samples/tree/master/ecs-ecr-container-app) over GitHub, including a `Makefile` to execute it step-by-step.
+With LocalStack, you can easily mount code from your host filesystem into the ECS container, allowing for a quicker debugging loop that doesn't require rebuilding and redeploying the task's Docker image for each change.
+
+To try out this tutorial for yourself, you can find the code in our LocalStack Pro samples on [LocalStack Pro samples](https://github.com/localstack/localstack-pro-samples/tree/master/ecs-ecr-container-app) over GitHub, including a `Makefile` to execute each step of the process.
