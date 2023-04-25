@@ -144,7 +144,7 @@ See [LocalStack Cockpit]({{< ref "cockpit" >}}).
 
 ### Docker
 
-If you do not want to use the [LocalStack CLI]({{< ref "#localstack-cli" >}}), you can also decide to manually start the LocalStack Docker container.
+To use LocalStack without the [LocalStack CLI]({{< ref "#localstack-cli" >}}), you have the option of running the LocalStack Docker container by yourself. This method requires more manual steps and configuration, but it gives you more control over the container settings and environment variables.
 
 #### Prerequisites
 
