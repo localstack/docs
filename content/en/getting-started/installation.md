@@ -31,6 +31,8 @@ LocalStack currently provides the following options:
 - [Helm]({{< ref "#helm" >}})\
   Use `helm` to create a LocalStack deployment in a Kubernetes cluster.
 
+LocalStack runs inside a Docker container, and the above options are different ways to start and manage the LocalStack Docker container. The LocalStack CLI is the easiest way to get started, and we recommend using it for your first steps with LocalStack. For a comprehensive overview of the LocalStack images, check out our [Docker images documentation]({{< ref "docker-images" >}}).
+
 ### LocalStack CLI
 
 The LocalStack CLI aims to simplify starting and managing LocalStack. It provides convenience features to start LocalStack on your local machine, as a Docker container on your machine, or even on a remote Docker host. In addition you can easily check the status or open a shell in your LocalStack instance if you want to take a deep-dive.
@@ -45,16 +47,19 @@ Please make sure to install the following tools on your machine before moving ah
 
 #### Installation
 
-You can download the latest version of LocalStack via `pip` or `brew`:
+Download the latest LocalStack release:
 
 {{< tabpane >}}
-{{< tab header="PyPI" lang="bash" >}}
-python3 -m pip install localstack
-{{< /tab >}}
-{{< tab header="Homebrew" lang="bash" >}}
+{{< tab header="macOS brew" lang="shell" >}}
 brew install localstack
 {{< /tab >}}
-{{< / tabpane >}}
+{{< tab header="macOS/Linux PyPI" lang="shell" >}}
+python3 -m pip install localstack
+{{< /tab >}}
+{{< tab header="Windows" lang="shell" >}}
+python -m pip install localstack
+{{< /tab >}}
+{{< /tabpane >}}
 
 {{< alert title="Note" >}}
 To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
@@ -138,7 +143,8 @@ $ localstack start
 See [LocalStack Cockpit]({{< ref "cockpit" >}}).
 
 ### Docker
-If you do not want to use the [LocalStack CLI]({{< ref "#localstack-cli" >}}), you can also decide to manually start the LocalStack Docker container.
+
+To use LocalStack without the [LocalStack CLI]({{< ref "#localstack-cli" >}}), you have the option of running the LocalStack Docker container by yourself. This method requires more manual steps and configuration, but it gives you more control over the container settings and environment variables.
 
 #### Prerequisites
 
@@ -148,9 +154,15 @@ You can check if `docker` is correctly configured on your machine by executing `
 #### Starting LocalStack with Docker
 
 You can start the Docker container simply by executing the following `docker run` command:
-{{< command >}}
-$ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
-{{< / command >}}
+
+{{< tabpane >}}
+{{< tab header="Community" lang="shell" >}}
+docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
+{{< /tab >}}
+{{< tab header="Pro" lang="shell" >}}
+docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack-pro
+{{< /tab >}}
+{{< /tabpane >}}
 
 {{< alert title="Notes" >}}
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version. If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
