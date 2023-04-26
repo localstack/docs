@@ -40,7 +40,7 @@ $env:LOCALSTACK_API_KEY=<YOUR_API_KEY> localstack start -d
 The `localstack` CLI will detect the API key and properly pass it to the LocalStack container.
 
 {{< alert title="Note" >}}
-If you are using LocalStack with an API Key, you need to pull the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image) that includes the Pro APIs and other exotic features.
+If you are using LocalStack with an API Key, you need to pull the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image) that includes the Pro services and several other advanced features.
 {{< /alert >}}
 
 ### Starting LocalStack via Docker
