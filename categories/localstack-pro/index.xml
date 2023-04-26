@@ -3586,6 +3586,16 @@ Please refer to the &lt;a href="/references/configuration/#emails">Configuration
 &lt;h3 id="adding-a-client">Adding a Client&lt;/h3>
 &lt;p>Now we add a client to our newly created pool. Again, we will also need the ID of the created client for the next step. The complete command for client creation with subsequent ID extraction is therefore:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client | jq -rc &amp;#34;.UserPoolClient.ClientId&amp;#34;)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="using-predefined-ids-on-pool-creation">Using predefined IDs on pool creation&lt;/h3>
+&lt;p>It is possible to use a predefined ID when creating Cognito user or identity pools, by setting the tag &lt;code>_custom_id_&lt;/code>. This can
+be helpful when testing auth flows with LocalStack frequently being restarted and resourced re-created.
+For example:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp create-user-pool --pool-name p1 --user-pool-tags &amp;#34;_custom_id_=myid123&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UserPool&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Id&amp;#34;: &amp;#34;myid123&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;p1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="signing-up-and-confirming-a-user">Signing up and confirming a user&lt;/h3>
 &lt;p>With these steps already taken, we can now sign up a user:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp sign-up --client-id $client_id --username example_user --password 12345678Aa! --user-attributes Name=email,Value=&amp;lt;your.email@address.com&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
