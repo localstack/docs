@@ -14,39 +14,34 @@ This guide demonstrates how you can use your new LocalStack licenses and go over
 
 ## Getting your API key
 
-To get started, you need to have a LocalStack license. If you don't have one, you can [sign up for a free trial](https://localstack.cloud/pricing/) without any credit card required. The free trial will last 14 days, and you can use it to test all the features of LocalStack. After a free trial, you can find your API key in the [LocalStack Web app](https://app.localstack.cloud) in the **Account** → **Subscriptions** section.
+To get started, you need to have a LocalStack license. If you don't have one, you can [sign up for a free trial](https://localstack.cloud/pricing/) without any credit card required. The free trial will last 14 days, and you can use it to test all the features of LocalStack. After a free trial, you can find your API key in the [LocalStack Web app](https://app.localstack.cloud) in the [**Account Settings** → **API Keys** section](https://app.localstack.cloud/account/apikeys).
 
 {{< alert title="Important" color="danger" >}}
 - Avoid sharing your API key with anyone. Ensure that you do not commit it to any source code management systems (like Git repositories).
-
 - If you push an API key to a public repository, it has potentially been exposed and might remain in the history (even if you try to rewrite it).
-
 - If you accidentally publish your API key, please [contact us](https://localstack.cloud/contact/) immediately to get your API key rotated!
-
 - If you want to use your API key in your CI environment, check out our [CI documentation]({{< ref "user-guide/ci" >}}) to see the proper way to handle secrets in your CI environment to store your API key securely.
-{{< /alert >}}
-
-## Using your API key
-
-LocalStack expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`. Before starting LocalStack, define the environment variable - for example, using the following command in a MacOS or Linux environment:
-
-{{< command >}}
-$ export LOCALSTACK_API_KEY=<your-api-key>
-{{< / command >}}
-
-{{< alert title="Note" >}}
-If you are using LocalStack with an API Key, you need to pull `localstack/localstack-pro` image as part of your LocalStack setup. Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 {{< /alert >}}
 
 ### Starting LocalStack via CLI
 
-To start LocalStack using the LocalStack CLI, you don't have to perform any further steps (after exporting the environment variable).
+LocalStack expects your API key to be present in the environment variable `LOCALSTACK_API_KEY`. You can define the `LOCALSTACK_API_KEY` environment variable before or while starting LocalStack using the `localstack` CLI.
 
-{{< command >}}
-$ localstack start
-{{< / command >}}
+{{< tabpane >}}
+{{< tab header="macOS/Linux" lang="shell" >}}
+export LOCALSTACK_API_KEY=<YOUR_API_KEY>
+localstack start -d
+{{< /tab >}}
+{{< tab header="Windows" lang="shell" >}}
+$env:LOCALSTACK_API_KEY=<YOUR_API_KEY> localstack start -d
+{{< /tab >}}
+{{< /tabpane >}}
 
-LocalStack will detect the API key and properly pass it to the LocalStack container.
+The `localstack` CLI will detect the API key and properly pass it to the LocalStack container.
+
+{{< alert title="Note" >}}
+If you are using LocalStack with an API Key, you need to pull the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image) that includes the Pro services and several other advanced features.
+{{< /alert >}}
 
 ### Starting LocalStack via Docker
 
@@ -61,7 +56,7 @@ $ docker run \
   localstack/localstack-pro
 {{< / command >}}
 
-For more information about starting LocalStack, take a look at our general [Getting Started]({{< ref "getting-started" >}}) guide.
+For more information about starting LocalStack with Docker, take a look at our [Docker installation](https://docs.localstack.cloud/getting-started/installation/#docker) guide.
 
 ### Starting LocalStack via Docker-Compose
 
@@ -72,7 +67,7 @@ environment:
   - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY- }
 ```
 
-It sets the API key we defined before (by using the `export` command) into your LocalStack container, such that the key activation can take place.
+You can set the API key manually, or you can use the `export` command to set the API key in your current shell session. The API key will be passed into your LocalStack container, such that the key activation can take place.
 
 ## Licensing-related configuration
 
@@ -95,7 +90,6 @@ If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing"
 Otherwise, check our collected most [common activation issues](#common-activation-issues).
 
 ## Common activation issues
-
 
 Since LocalStack v2.0.0, the image `localstack/localstack-pro` requires a successful key activation to start.
 If the key activation fails, LocalStack will quit with an error messages that may look something like this:
