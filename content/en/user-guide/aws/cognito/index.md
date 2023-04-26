@@ -80,6 +80,22 @@ Now we add a client to our newly created pool. Again, we will also need the ID o
 $ client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client | jq -rc ".UserPoolClient.ClientId")
 {{< /command >}}
 
+### Using predefined IDs on pool creation
+
+It is possible to use a predefined ID when creating Cognito user or identity pools, by setting the tag `_custom_id_`. This can
+be helpful when testing auth flows with LocalStack frequently being restarted and resourced re-created.
+For example:
+
+{{< command >}}
+$ awslocal cognito-idp create-user-pool --pool-name p1 --user-pool-tags "_custom_id_=myid123"
+{
+    "UserPool": {
+        "Id": "myid123",
+        "Name": "p1",
+    ...
+{{< /command >}}
+
+
 ### Signing up and confirming a user
 
 With these steps already taken, we can now sign up a user:

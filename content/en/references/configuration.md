@@ -117,6 +117,7 @@ This section covers configuration values that are specific to certain AWS servic
 | Variable | Example Values | Description |
 | - | - | - |
 | `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
+| `EKS_K3S_IMAGE_TAG` | `v1.22.6-k3s1` (default) | Custom tag of the `k8s/rancher` image used to spin up Kubernetes clusters locally. |
 
 ### Elasticsearch
 
