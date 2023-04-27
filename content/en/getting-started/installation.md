@@ -157,11 +157,19 @@ You can start the Docker container simply by executing the following `docker run
 
 {{< tabpane >}}
 {{< tab header="Community" lang="shell" >}}
-docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack
+docker run \
+  --rm -it \
+  -p 4566:4566 \
+  -p 4510-4559:4510-4559 \
+  localstack/localstack
 {{< /tab >}}
 {{< tab header="Pro" lang="shell" >}}
-docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack-pro
-{{< /tab >}}
+docker run \
+  --rm -it \
+  -p 4566:4566 \
+  -p 4510-4559:4510-4559 \
+  -e LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:- } \
+  localstack/localstack-pro{{< /tab >}}
 {{< /tabpane >}}
 
 {{< alert title="Notes" >}}
@@ -177,6 +185,8 @@ docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack-pr
   If you are looking for a simpler method of starting LocalStack, please use the [LocalStack CLI]({{< ref "#localstack-cli" >}}).
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
+
+- To configure an API key, refer to the [API Key](https://docs.localstack.cloud/getting-started/api-key/) documentation.
 {{< /alert >}}
 
 ### Docker-Compose
@@ -251,12 +261,12 @@ $ docker-compose up
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
-- Before 0.13: If you do not connect your LocalStack container to the default bridge network with `network_mode: bridge` as in the example, you need to set `LAMBDA_DOCKER_NETWORK=<docker-compose-network>`. 
-
 - If using the Docker default bridge network using `network_mode: bridge`, container name resolution will not work inside your containers. Please consider removing it, if this functionality is needed.
+
+- To configure an API key, refer to the [API Key](https://docs.localstack.cloud/getting-started/api-key/) documentation.
 {{< /alert >}}
 
-Please note that there's a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, environment variables, etc.). We recommend using the LocalStack CLI to validate your configuration, which will print warning messages in case it detects any (potential) misconfigurations:
+Please note that there are a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, and environment variables). We recommend using the LocalStack CLI to validate your configuration, which will print warning messages in case it detects any potential misconfigurations:
 
 {{< command >}}
 $ localstack config validate
