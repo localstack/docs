@@ -10,7 +10,7 @@ aliases:
 
 This guide describes how to start and use LocalStack in your CircleCI pipelines.
 
-## The LocalStack Circle CI Orb
+## Setting up your CircleCI job
 
 LocalStack is an official partner of [Circle CI](https://circleci.com/) and can easily be integrated into your pipeline by using the [official CircleCI Orb](https://circleci.com/developer/orbs/orb/localstack/platform).\
 The [Orb's documentation](https://circleci.com/developer/orbs/orb/localstack/platform) features examples, as well as a description of the available commands.
@@ -36,16 +36,10 @@ workflows:
       - run-integration-tests
 ```
 
-## Activate LocalStack Pro
+## Configuring an API key
+
 You can easily enable LocalStack Pro by adding your API key to the project's environment variables. The LocalStack Orb will automatically pick it up and activate the Pro features.
 
 Just go to the project settings in CircleCI, click on `Environment Variables` in the sidebar and add your API key:
 
 ![Adding the LocalStack API key in CircleCI](circleci-env-config.png)
-
-
-
-
-## Ran into trouble?
-
-If you run into any issues or problems while integrating LocalStack with CircleCI, please [submit an issue](https://github.com/localstack/ci-plugin-circleci/issues).

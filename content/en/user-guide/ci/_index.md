@@ -33,4 +33,8 @@ The Pro subscription is mainly intended for use on individual user machines. We 
 
 ## CI integrations
 
-The steps required for the integration differ slightly depending on your preferred CI platform. Please refer to the relevant sections below for detailed instructions on the integration process. To follow the instructions, you can first retrieve the CI key from the Account settings page in the [LocalStack Web app](https://app.localstack.cloud).
+The steps required for the integration differ slightly depending on your preferred CI platform. Please refer to the relevant sections below for detailed instructions on the integration process. To follow the instructions, you can first retrieve the CI key from the [Account settings page](https://app.localstack.cloud/account/apikeys) in the [LocalStack Web app](https://app.localstack.cloud).
+
+## CI images
+
+LocalStack Docker images can be used in your CI environment by adding a CI Key. The images are available on [Docker Hub](https://hub.docker.com/r/localstack/localstack/tags), and comprehensive documentation is available on our [Docker images](https://docs.localstack.cloud/references/docker-images/) documentation. Community users can use the `localstack/localstack` image, while Pro and Team users can use the `localstack/localstack-pro` image. For Big Data jobs that require services such as EMR, Athena, and Glue, we provide a mono-container that uses the `localstack/localstack-pro:2.0.2-bigdata` image, which bakes in the required dependencies, such as Hadoop, Hive, Presto, into the LocalStack image.

@@ -19,6 +19,7 @@ When you want to integrate LocalStack into your job configuration, you just have
 - Wait for the container to report that it is up and running.
 
 The following example Travis CI job config (`.travis.yaml`) executes these steps, creates a new S3 bucket, and prints a nice message in the end:
+
 ```yaml
 language: python
 
@@ -47,9 +48,26 @@ script:
   - echo "Execute your tests here :)"
 ```
 
-## Activate LocalStack Pro
-You can easily enable LocalStack Pro by adding your API key to the project's environment variables. The LocalStack CLI will automatically pick it up and activate the Pro features.
+## Configuring an API key
+
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your API key to the project's environment variables. The LocalStack CLI will automatically pick it up and activate the Pro features.
 
 Just go to the project settings in Travis CI (`More options` → `Settings`), scroll down to the `Environment Variables` section, and add your API key:
 
 ![Adding the LocalStack API key in Travis CI](travis-ci-env-config.png)
+
+Here is an example:
+
+```yaml
+before_install:
+  # Install the LocalStack CLI and awslocal
+  - python -m pip install localstack awscli-local[ver1]
+  # Make sure to pull the latest version of the image
+  - docker pull localstack/localstack-pro
+  # Start LocalStack in the background
+  - localstack start -d
+  # Wait 30 seconds for the LocalStack container to become ready before timing out
+  - echo "Waiting for LocalStack startup..."
+  - localstack wait -t 30
+  - echo "Startup complete"
+```
