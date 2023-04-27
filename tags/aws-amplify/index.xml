@@ -1,0 +1,89 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – aws-amplify</title><link>/tags/aws-amplify/</link><description>Recent content in aws-amplify on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/aws-amplify/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: AWS Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>AWS Amplify is a JavaScript-based development framework with libraries, UI components, and a standard CLI interface for building and deploying web and mobile applications. With Amplify, developers can build and host static websites, single-page applications, and full-stack serverless web applications using an abstraction layer over popular AWS services like DynamoDB, Cognito, AppSync, Lambda, S3, and more.&lt;/p>
+&lt;p>LocalStack supports AWS Amplify via a lightweight wrapper script called &lt;code>amplifylocal&lt;/code> and an Amplify CLI Plugin. &lt;code>amplifylocal&lt;/code> enables developers to use the Amplify JS library against LocalStack&amp;rsquo;s emulated APIs, as a drop-in replacement for the standard &lt;code>amplify&lt;/code> CLI command. The Amplify CLI plugin allows the &lt;code>amplify&lt;/code> CLI tool to create resources directly on your local machine.&lt;/p>
+&lt;p>LocalStack supports Amplify via the Pro/Team offering, allowing you to use the Amplify APIs to build and test their Amplify applications locally. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_amplify/">API coverage page&lt;/a>, which provides information on the extent of Amplify&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="amplifylocal-cli">&lt;code>amplifylocal&lt;/code> CLI&lt;/h2>
+&lt;p>The &lt;code>amplifylocal&lt;/code> CLI is a thin wrapper script for using the Amplify JS library against local AWS APIs provided by LocalStack.&lt;/p>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>To install &lt;code>amplifylocal&lt;/code>, simply install the &lt;a href="https://www.npmjs.com/package/amplify-js-local">amplify-js-local&lt;/a> package from the npm registry:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>npm install -g amplify-js-local @aws-amplify/cli&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Note that you also need to install the &lt;code>@aws-amplify/cli&lt;/code> package manually to ensure decoupling of the two libraries and allow the use of arbitrary versions of &lt;code>@aws-amplify/cli&lt;/code> under the covers.
+&lt;/div>
+&lt;p>You can check the version of the underlying &lt;code>@aws-amplify/cli&lt;/code> installation used by &lt;code>amplifylocal&lt;/code> by running:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplifylocal --version&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This will return the version number of the installed &lt;code>@aws-amplify/cli&lt;/code> package.&lt;/p>
+&lt;h3 id="configuration">Configuration&lt;/h3>
+&lt;p>You can configure the following environment variables to customize LocalStack&amp;rsquo;s behaviour:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>EDGE_PORT&lt;/code>: The port under which LocalStack&amp;rsquo;s edge service is accessible (default: &lt;code>4566&lt;/code>).&lt;/li>
+&lt;li>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>: The target host under which LocalStack&amp;rsquo;s edge service is accessible (default: &lt;code>localhost&lt;/code>).&lt;/li>
+&lt;/ul>
+&lt;h2 id="getting-started">Getting Started&lt;/h2>
+&lt;p>This guide provides step-by-step instructions on deploying a sample AWS Amplify application using the &lt;code>amplifylocal&lt;/code> CLI on LocalStack. The guide assumes that you have already installed &lt;code>amplifylocal&lt;/code>. Before you begin, ensure that you have started your LocalStack container using your preferred method.&lt;/p>
+&lt;p>Clone the &lt;a href="https://github.com/aws-samples/aws-amplify-graphql">AWS Amplify sample application&lt;/a>, demonstrating how to use GraphQL to build an application that allows users to log in to the system, upload and download private photos.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git clone git@github.com:aws-samples/aws-amplify-graphql.git&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Navigate to the &lt;code>aws-amplify-graphql&lt;/code> directory and install the dependencies.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cd aws-amplify-graphql
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>npm install&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Initialize the Amplify project. You will be prompted to enter a project name and select project configurations. Once you have entered your preferred configurations, you can initialize the project.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplifylocal init&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Add the authentication service to the project.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplifylocal add auth&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Add the API service to the project.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplifylocal add api&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Deploy the application over the emulated AWS infrastructure created by LocalStack.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplifylocal push&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Once the deployment is complete, you can inspect the created resources using the &lt;code>awslocal&lt;/code> CLI. This will display a list of created resources including name, API ID, authentication type, ARN, and URIs.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync list-graphql-apis
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;graphqlApis&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;awsamplifygraphql-dev&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;apiId&amp;#34;: &amp;#34;1a6f1f11&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;authenticationType&amp;#34;: &amp;#34;API_KEY&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;arn&amp;#34;: &amp;#34;arn:aws:appsync:us-east-1:000000000000:apis/1a6f1f11&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;uris&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;GRAPHQL&amp;#34;: &amp;#34;http://localhost:4566/graphql/1a6f1f11&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;REALTIME&amp;#34;: &amp;#34;ws://localhost:4510/graphql/1a6f1f11&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="amplify-js-library">Amplify JS Library&lt;/h3>
+&lt;p>In addition to the &lt;code>amplifylocal&lt;/code> CLI, you can use the Amplify JS library in your local Node.js programs or ES6 frontend code, such as React.js.&lt;/p>
+&lt;h4 id="nodejs-program-backend">Node.js Program (Backend)&lt;/h4>
+&lt;p>To use Amplify in your Node.js program, import and apply the patches as shown below:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">const&lt;/span> &lt;span style="color:#000">amplifyLocal&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">require&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;amplify-js-local/lib/index&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">amplifyLocal&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">applyPatches&lt;/span>&lt;span style="color:#000;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can then use the regular Amplify commands, which should automatically use the local endpoints.&lt;/p>
+&lt;h4 id="es6-javascript-code">ES6 JavaScript Code&lt;/h4>
+&lt;p>To use Amplify in your ES6 JavaScript code, first import Amplify and the &lt;code>applyPatches&lt;/code> function as shown below:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">Amplify&lt;/span> &lt;span style="color:#000">from&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;aws-amplify&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">applyPatches&lt;/span> &lt;span style="color:#000">from&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;amplify-js-local/lib/es6&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">// apply patches
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">applyPatches&lt;/span>&lt;span style="color:#000;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">// configure Amplify
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">Amplify&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">configure&lt;/span>&lt;span style="color:#000;font-weight:bold">(...);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="amplify-localstack-plugin">Amplify LocalStack Plugin&lt;/h2>
+&lt;p>Amplify LocalStack Plugin allows the &lt;code>amplify&lt;/code> CLI tool to create resources on your local machine instead of AWS. It achieves this by redirecting any requests to AWS to a LocalStack container running locally on your machine.&lt;/p>
+&lt;h3 id="installation-1">Installation&lt;/h3>
+&lt;p>To install the Amplify LocalStack Plugin, install the &lt;a href="https://www.npmjs.com/package/amplify-localstack">amplify-localstack&lt;/a> package from the npm registry and add the plugin to your Amplify setup:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>npm install -g amplify-localstack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify plugin add amplify-localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="configuration-1">Configuration&lt;/h3>
+&lt;p>You can configure the following environment variables to customize LocalStack&amp;rsquo;s behaviour:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>EDGE_PORT&lt;/code>: The port number under which the LocalStack edge service is accessible. The default value is &lt;code>4566&lt;/code>.&lt;/li>
+&lt;li>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>: It specifies the target host under which the LocalStack edge service is accessible. The default value is &lt;code>localhost.localstack.cloud&lt;/code>.&lt;/li>
+&lt;li>&lt;code>LOCALSTACK_ENDPOINT&lt;/code>: It allows you to set a custom endpoint directly. If set, it overrides the values set for &lt;code>EDGE_PORT&lt;/code> and &lt;code>LOCALSTACK_HOSTNAME&lt;/code>. The default value is &lt;code>https://localhost.localstack.cloud:4566&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;h3 id="usage">Usage&lt;/h3>
+&lt;p>After installing the plugin, you can deploy your resources to LocalStack using the &lt;code>amplify init&lt;/code> or &lt;code>amplify push&lt;/code> commands. The console will prompt you to select whether to deploy to LocalStack or AWS.&lt;/p>
+&lt;p>You can also add the parameter &lt;code>--use-localstack true&lt;/code> to your commands to avoid being prompted and automatically use LocalStack. Here is an example:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify init --use-localstack true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify add api
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify push --use-localstack true&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
