@@ -2,46 +2,68 @@
 title: "AWS Certificate Manager (ACM)"
 linkTitle: "AWS Certificate Manager"
 categories: ["LocalStack Community"]
+tags:
+- aws-certificate-manager
+- acm
 description: >
   Get started with AWS Certificate Manager (ACM) on LocalStack
 aliases:
   - /aws/acm/
 ---
 
-AWS Certificate Manager (ACM) allows you to provision, manage, and deploy public and private SSL/TLS certificates to be used with other AWS services and internally connected resources. ACM allows you to secure multiple domain names and multiple names within a domain, create wildcard SSL certificates to protect an entire domain and its subdomains, and install public ACM certificates via services integrated with ACM.
+## Introduction
 
-LocalStack provides ACM support via the Community offering. You can use the ACM API to create, list, and delete certificates. The supported APIs are available over our [feature coverage page]({{< ref "feature-coverage" >}}).
+[AWS Certificate Manager (ACM)](https://aws.amazon.com/certificate-manager/) is a service that enables you to create and manage SSL/TLS certificates that can be used to secure your applications and resources in AWS. You can use ACM to provision and deploy public or private certificates trusted by browsers and other clients.
+
+ACM supports securing multiple domain names and subdomains and can create wildcard SSL certificates to protect an entire domain and its subdomains. You can also use ACM to import certificates from third-party certificate authorities or to generate private certificates for internal use.
+
+LocalStack supports ACM via the Community offering, allowing you to use the ACM API to create, list, and delete certificates. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_acm/), which provides information on the extent of ACM's integration with LocalStack.
 
 ## Getting started
 
-In this getting started guide, you'll learn how to make a basic usage of ACM over LocalStack. This guide is intended for users who wish to get more acquainted with ACM, and assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:
+This guide is designed for users who are new to ACM and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. Follow these steps to get started:
 
-1. Request a new public ACM certificate via the `request-certificate` command and specify the domain name for which you want to request a certificate for:
-   {{< command >}}
-   $ awslocal acm request-certificate \
-        --domain-name www.example.com \
-        --validation-method DNS \
-        --idempotency-token 1234 \
-        --options CertificateTransparencyLoggingPreference=DISABLED
+Start your LocalStack container using your preferred method, then use the [RequestCertificate API](https://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html) to request a new public ACM certificate. Specify the domain name you want to request the certificate for, and any additional options you need. Here's an example command:
 
-    {
-    "CertificateArn": "arn:aws:acm:<region>:000000000000:certificate/<certificate_ID>"
-    }
-   {{< /command >}}
+{{< command >}}
+$ awslocal acm request-certificate \
+   --domain-name www.example.com \
+   --validation-method DNS \
+   --idempotency-token 1234 \
+   --options CertificateTransparencyLoggingPreference=DISABLED
+{{< /command >}}
 
-2. You can list all the certificates in your account by running the following command:
-   {{< command >}}
-   $ awslocal acm list-certificates --max-items 10
-   {{< /command >}}
+This command will return the Amazon Resource Name (ARN) of the new certificate, which you can use in other ACM commands.
 
-3. You can view the certificate details via the `describe-certificate` command to display certificate details:
-   {{< command >}}
-   $ awslocal acm describe-certificate --certificate-arn arn:aws:acm:<region>:account:certificate/<certificate_ID>
-   {{< /command >}}
+```json
+{
+   "CertificateArn": "arn:aws:acm:<region>:000000000000:certificate/<certificate_ID>"
+}
+```
 
-4. You can use the `delete-certificate` command to delete a certificate:
-   {{< command >}}
-   $ awslocal acm delete-certificate --certificate-arn arn:aws:acm:<region>:account:certificate/<certificate_ID>
-   {{< /command >}}
+Use the [`ListCertificates` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_ListCertificates.html) to list all the certificates. This command returns a list of the ARNs of all the certificates that have been requested or imported into ACM. Here's an example command:
 
-Navigate to the [official AWS ACM documentation](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) on all ACM operations and concepts.
+{{< command >}}
+$ awslocal acm list-certificates --max-items 10
+{{< /command >}}
+
+Use the [`DescribeCertificate` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_DescribeCertificate.html) to view the details of a specific certificate. Provide the ARN of the certificate you want to view, and this command will return information about the certificate's status, domain name, and other attributes. Here's an example command:
+
+{{< command >}}
+$ awslocal acm describe-certificate --certificate-arn arn:aws:acm:<region>:account:certificate/<certificate_ID>
+{{< /command >}}
+
+Finally you can use the [`DeleteCertificate` API](https://docs.aws.amazon.com/acm/latest/APIReference/API_DeleteCertificate.html) to delete a certificate from ACM, by passing the ARN of the certificate you want to delete. Here's an example command:
+
+{{< command >}}
+$ awslocal acm delete-certificate --certificate-arn arn:aws:acm:<region>:account:certificate/<certificate_ID>
+{{< /command >}}
+
+For more comprehensive information on ACM, refer to the [AWS Certificate Manager](https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) documentation. You can use the `awslocal` CLI or any [integration](https://docs.localstack.cloud/user-guide/integrations/) to interact with ACM in LocalStack.
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use ACM in LocalStack for various use cases:
+
+- [API Gateway with Custom Domains](https://github.com/localstack/localstack-pro-samples/tree/master/apigw-custom-domain)
+- [Generating an ACM certificate via Terraform](https://github.com/localstack/localstack-terraform-samples/tree/master/acm-route53)
