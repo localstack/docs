@@ -48,7 +48,7 @@ script:
   - echo "Execute your tests here :)"
 ```
 
-## Activate LocalStack Pro
+## Configuring an API key
 
 You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your API key to the project's environment variables. The LocalStack CLI will automatically pick it up and activate the Pro features.
 

@@ -8,7 +8,7 @@ description: >
 
 Harness CI allows you to create software pipelines that will enable you to check out your code, build the software, run your tests, and validate every code change. In this guide, we will take a look at how you can integrate LocalStack in Harness CI pipelines for testing and delivering cloud-native applications.
 
-## Harness CI Pipelines
+## Setting up your Harness CI pipeline
 
 Harness CI pipelines implements [Service Dependency](https://docs.harness.io/article/vo4sjbd09g-configure-service-dependency-step-settings) to make a detached service accessible to all steps in a stage. Service dependencies can run workflows for integration testing or Docker-in-Docker (`dind`) services. LocalStack can be run as a Service Dependency in a Harness CI pipeline. The pipeline can be either setup in the user-interface, or [configured using YAML](#yaml-configuration).
 
@@ -57,7 +57,7 @@ stages:
 
 To run the pipeline, click **Save** and then **Run Pipeline**. You will be able to see LocalStack Service Dependency logs that verify that the LocalStack Container is healthy and running.
 
-## Using LocalStack Pro
+## Configuring an API key
 
 You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your API key 
 by selecting **Optional Configuration** to add an environment variable named **LOCALSTACK_API_KEY** to have an API key configured. Here is an example:
