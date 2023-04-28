@@ -5,7 +5,6 @@ categories: ["LocalStack Community", "LocalStack Pro"]
 tags:
 - apigateway
 - apigatewayv2
-- apigateway
 - apigateway-localstack
 description: >
   Get started with Amazon API Gateway on LocalStack
@@ -68,7 +67,7 @@ This creates a new Lambda function named `apigw-lambda` with the code you specif
 
 ### Create a REST API
 
-We will use the API Gateway's [`CreateRESTAPI`](https://docs.aws.amazon.com/apigateway/latest/api/API_CreateRestApi.html) API to create a new REST API. Here's an example command: 
+We will use the API Gateway's [`CreateRestApi`](https://docs.aws.amazon.com/apigateway/latest/api/API_CreateRestApi.html) API to create a new REST API. Here's an example command: 
 
 {{< command >}}
 $ awslocal apigateway create-rest-api --name 'API Gateway Lambda integration'
@@ -116,7 +115,7 @@ The above command returns the following response:
 
 Note the ID of the root resource returned in the response. You'll need this ID for the next step.
 
-### Create a Resource
+### Create a resource
 
 Create a new resource for the API using the [`CreateResource`](https://docs.aws.amazon.com/apigateway/latest/api/API_CreateResource.html) API. Use the ID of the resource returned in the previous step as the parent ID:
 
@@ -186,7 +185,7 @@ The above command integrates the `GET` method with the Lambda function created i
 Create a new deployment for the API using the [`CreateDeployment`](https://docs.aws.amazon.com/apigateway/latest/api/API_CreateDeployment.html) API:
 
 {{< command >}}
-awslocal apigateway create-deployment \
+$ awslocal apigateway create-deployment \
   --rest-api-id <REST_API_ID> \
   --stage-name test
 {{< /command >}}
@@ -194,7 +193,7 @@ awslocal apigateway create-deployment \
 Your API is now ready to be invoked. You can use `cURL` or any HTTP REST client to invoke the API endpoint:
 
 {{< command >}}
-curl -X GET http://localhost:4566/restapis/<REST_API_ID>/test/_user_request_/test
+$ curl -X GET http://localhost:4566/restapis/<REST_API_ID>/test/_user_request_/test
 
 {"message":"Hello World"}
 {{< /command >}}
@@ -352,10 +351,10 @@ Setting the API Gateway ID via `_custom_id_` works only on the creation of the r
 
 ## Custom Domain Names with API Gateway
 
-You can use custom domain names with API Gateway V1 and V2 APIs. To route requests to a custom domain name for an API Gateway V2 API, include the Host header with the custom domain name in your request. For example, assuming that you have set up a custom domain name test.`example.com` to point to your LocalStack instance, you can send a request like this:
+You can use custom domain names with API Gateway V1 and V2 APIs. To route requests to a custom domain name for an API Gateway V2 API, include the `Host` header with the custom domain name in your request. For example, assuming that you have set up a custom domain name `test.example.com` to point to your LocalStack instance, you can send a request like this:
 
 {{< command >}}
-curl -H 'Host: test.example.com' http://localhost:4566/test
+$ curl -H 'Host: test.example.com' http://localhost:4566/test
 {{< / command >}}
 
 ## API Gateway Resource Browser
@@ -380,10 +379,10 @@ You can also use the Resource Browser to check out the **Authorizers**, **Models
 
 The following code snippets and sample applications provide practical examples of how to use ACM in LocalStack for various use cases:
 
-- [API Gateway with Custom Domains over our LocalStack Pro samples](https://github.com/localstack/localstack-pro-samples/tree/master/apigw-custom-domain).
-- [Websockets via API Gateway V2](https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets).
+- [API Gateway with Custom Domains over our LocalStack Pro samples](https://github.com/localstack/localstack-pro-samples/tree/master/apigw-custom-domain)
+- [Websockets via API Gateway V2](https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets)
 - [Serverless Container-based APIs with Amazon ECS and Amazon API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
 - [Step-up Authentication using Amazon Cognito, DynamoDB, API Gateway Lambda Authorizer, and Lambda functions](https://github.com/localstack/step-up-auth-sample)
 - [Serverless Microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda](https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample)
 - [Note-Taking application using AWS SDK for JavaScript, Amazon DynamoDB, Lambda, Cognito, API Gateway, and S3](https://github.com/localstack/aws-sdk-js-notes-app)
-- For Terraform samples, check out the [LocalStack Terraform examples](https://github.com/localstack/localstack-terraform-samples) repository.
+- For Terraform samples, check out the [LocalStack Terraform examples](https://github.com/localstack/localstack-terraform-samples) repository
