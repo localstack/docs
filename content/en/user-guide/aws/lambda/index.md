@@ -49,7 +49,7 @@ exports.handler = async (event) => {
 Enter the following command to create a new Lambda function:
 
 {{< command >}}
-awslocal lambda create-function \
+$ awslocal lambda create-function \
     --function-name localstack-lamba-url-example \
     --runtime nodejs14.x \
     --zip-file fileb://function.zip \
@@ -78,7 +78,7 @@ This will generate a HTTP URL that can be used to invoke the Lambda function. Th
 You can now trigger the Lambda function by sending a HTTP POST request to the URL using `cURL` or your REST HTTP client:
 
 {{< command >}}
-curl -X POST \
+$ curl -X POST \
     'http://<XXXXXXXX>.lambda-url.us-east-1.localhost.localstack.cloud:4566/' \
     -H 'Content-Type: application/json' \
     -d '{"num1": "10", "num2": "10"}'
