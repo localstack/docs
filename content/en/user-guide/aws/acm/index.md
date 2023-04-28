@@ -21,7 +21,7 @@ LocalStack supports ACM via the Community offering, allowing you to use the ACM 
 
 ## Getting started
 
-This guide is designed for users who are new to ACM and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. Follow these steps to get started:
+This guide is designed for users who are new to ACM and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method, then use the [RequestCertificate API](https://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html) to request a new public ACM certificate. Specify the domain name you want to request the certificate for, and any additional options you need. Here's an example command:
 
