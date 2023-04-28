@@ -1,86 +1,115 @@
 ---
-title: "Lambda"
-linkTitle: "Lambda"
+title: "AWS Lambda"
+linkTitle: "AWS Lambda"
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
-  Get started with local development and testing of AWS Lambdas on LocalStack
+  Get started with AWS Lambdas on LocalStack
+tags:
+- lambda
+- aws-lambda
+- lambda-hot-reloading
+- lambda-debugging
+- localstack-lambda
+- serverless
+- lambda-layers
 aliases:
   - /aws/lambda/
+  - /references/lambda-executors/
+  - /references/lambda-provider-v2/
 ---
 
-{{< alert title="Note">}}
-**New implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23)**<br>
-The new lambda provider `v2` (formerly known as `asf`) offers a completely re-written implementation with improved performance, [feature coverage]({{< ref "references/coverage/coverage_lambda" >}}), and [AWS parity](https://localstack.cloud/blog/2022-08-04-parity-explained/).
-The old lambda provider is temporarily available in LocalStack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "lambda-provider-v2" >}}) to the new lambda provider.
+## Introduction
 
-If you encounter an error related to `Docker not available`,
-mount the Docker socket `/var/run/docker.sock` as a volume when starting LocalStack (see troubleshooting [here]({{< ref "lambda-provider-v2#docker-not-available" >}})).
+AWS Lambda is a Serverless Function as a Service (FaaS) platform that lets you run code in your preferred programming language on the AWS ecosystem. AWS Lambda automatically scales your code to meet demand and handles server provisioning, management, and maintenance. AWS Lambda allows you to break down your application into smaller, independent functions that integrate seamlessly with AWS services.
 
-Please consult the page [Lambda Provider Behavioral Changes]({{< ref "references/lambda-provider-v2" >}}) for more information.
-{{< /alert >}}
+LocalStack supports Lambda via the Community & Pro/Team offering, allowing you to use the Lambda API to create, deploy, and test your Lambda functions. The supported APIs are available on our [Lambda coverage page](https://docs.localstack.cloud/references/coverage/coverage_lambda/), which provides information on the extent of Lambda's integration with LocalStack.
 
+## Getting started
 
-AWS Lambda is a Serverless Function as a Service (FaaS) system that allows you to write code in your favorite programming language and run it on the AWS ecosystem.
-Unlike deploying your code on a server, you can now break down your application into many independent functions and deploy them as a singular units.
-With the help of AWS Lambda, you can strive for more modular code that can be tested and debugged while integrated with the AWS infrastructure and your core system.
+This guide is designed for users new to Lambda and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-LocalStack allows you to develop, debug, and execute your Lambda functions locally, without the need to deploy them to AWS.
-This is a great way to test your code, and to learn more about how your Lambda functions work, before deploying them to AWS.
+Start your LocalStack container using your preferred method. We will demonstrate how to create a Lambda function with a Function URL. With the Function URL property, you can call a Lambda Function via an HTTP API call.
 
-## Special tooling for Lambda
+### Create a Lambda function
 
-We provide tools to develop, debug, and test your Lambda functions more efficiently:
+To create a new Lambda function, create a new file called `index.js` with the following code:
 
-- [Hot reloading]({{< ref "hot-reloading" >}}): Continuously applies code changes to Lambda functions without manual redeployment. Formerly known as hot swapping.
-- [Remote debugging]({{< ref "debugging" >}}): Attaching a debugger to your Lambda function using your IDE.
+```javascript
+exports.handler = async (event) => {
+    let body = JSON.parse(event.body)
+    const product = body.num1 * body.num2;
+    const response = {
+        statusCode: 200,
+        body: "The product of " + body.num1 + " and " + body.num2 + " is " + product,
+    };
+    return response;
+};
+```
 
-## Lambda sample applications
-
-LocalStack Pro samples contains a number of code examples that demonstrate how to use LocalStack to execute Lambda functions:
-
-- [Lambda Hot Reloading](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-hot-reloading) demonstrates hot reloading of function code and layers.
-- [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging) demonstrates debugging Lambda functions locally.
-- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls) demonstrates Lambda Function URLs to call a function via HTTP.
-- [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers) demonstrates Lambda layers deployed via the Serverless framework.
-- [Lambda PHP/Bref](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-php-bref-cdk-app) demonstrates PHP/Bref with and without fpm deployed via the Serverless framework and AWS CDK.
-- [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image) demonstrates Lambda container images. The Lambda image is built using Docker and pushed to a local ECR registry.
-- [Lambda XRay Tracing](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray) demonstrates Lambda XRay tracing deployed via the Serverless framework.
-
-## Lambda Function URL
-
-LocalStack supports [Lambda Function URLs](https://docs.aws.amazon.com/lambda/latest/dg/urls-configuration.html) for calling Lambda Functions via HTTP. Below is a simple example to deploy a Lamda function via a ZIP file before creating a Function URL:
+Enter the following command to create a new Lambda function:
 
 {{< command >}}
-$ awslocal lambda create-function \
-    --function-name <function-name> \
-    --runtime <lambda-runtime> \
-    --zip-file fileb://<path/to/zip/file> \
+awslocal lambda create-function \
+    --function-name localstack-lamba-url-example \
+    --runtime nodejs14.x \
+    --zip-file fileb://function.zip \
     --handler index.handler \
-    --role arn:aws:iam::000000000000:role/lambda-role
+    --role arn:aws:iam::000000000000:role/cool-stacklifter
 {{< / command >}}
 
-After the Lambda function is created, you can create a Function URL to call the Lambda function:
+{{< alert title="Note" >}}
+In the old Lambda provider, you could create a function with any arbitrary string as the role, such as `r1`. However, the new provider requires the role ARN to be in the format `arn:aws:iam::000000000000:role/lambda-role` and validates it using an appropriate regex. However, it currently does not check whether the role exists.
+{{< /alert >}}
+
+### Create a Function URL
+
+With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the [`CreateFunctionURLConfig` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html). To create a URL for invoking the function, run the following command:
 
 {{< command >}}
-awslocal lambda create-function-url-config \
-    --function-name <function-name> \
+$ awslocal lambda create-function-url-config \
+    --function-name localstack-lamba-url-example \
     --auth-type NONE
 {{< / command >}}
 
-## Lambda Container Images
+This will generate a HTTP URL that can be used to invoke the Lambda function. The URL will be in the format `http://<XXXXXXXX>.lambda-url.us-east-1.localhost.localstack.cloud:4566`.
 
-LocalStack Pro supports [Lambda functions defined as container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html), so you can bundle your code and dependencies as one container image.
+### Trigger the Lambda function URL
 
-## Lambda Layers
+You can now trigger the Lambda function by sending a HTTP POST request to the URL using `cURL` or your REST HTTP client:
 
-[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) are an AWS feature that allows to pull in additional code and content into your Lambda functions.
+{{< command >}}
+curl -X POST \
+    'http://<XXXXXXXX>.lambda-url.us-east-1.localhost.localstack.cloud:4566/' \
+    -H 'Content-Type: application/json' \
+    -d '{"num1": "10", "num2": "10"}'
+{{< / command >}}
 
-LocalStack Pro provides support for deploying Lambda layers locally - for more details on general usage, please follow the documentation and examples in the [AWS documentation on Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+The following output would be retrieved:
 
-### Creating Lambda layers locally
+```sh
+The product of 10 and 10 is 100% 
+```
 
-To create a Lambda layer locally, you can simply use the `PublishLayerVersion` API against LocalStack.
-Below is a simple example for creating a Lambda layer in Python with a `util()` function that prints some test output.
+## LocalStack features
+
+LocalStack provides additional features and functionality on top of the official AWS APIs, to help you develop, debug, and test your local Lambda functions.
+
+### Special Tools
+
+LocalStack provides various tools to help you develop, debug, and test your AWS Lambda functions more efficiently.
+
+* **Hot reloading**: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our [hot reloading documentation]({{< ref "hot-reloading" >}}).
+* **Remote debugging**: LocalStack's remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our [debugging documentation]({{< ref "debugging" >}}).
+
+### Lambda Layers
+
+[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) lets you include additional code and dependencies in your Lambda functions. With LocalStack Pro/Team, you can deploy Lambda Layers locally to streamline your development and testing process.
+
+To learn more about Lambda Layers, refer to the [AWS documentation on Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). Here, we'll focus specifically on how to create Lambda Layers locally in LocalStack Pro/Team.
+
+#### Creating and invoking a Lambda Layer Locally
+
+To create a Lambda Layer locally, you can use the [`PublishLayerVersion` API](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html) in LocalStack. Here's a simple example using Python:
 
 {{< command >}}
 $ mkdir -p /tmp/python/
@@ -90,29 +119,39 @@ $ (cd /tmp; zip -r testlayer.zip python)
 $ LAYER_ARN=$(awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip | jq -r .LayerArn)
 {{< / command >}}
 
-We can then create a simple Lambda function which references and imports the Lambda layer:
+Next, define a Lambda function that uses our layer:
+
 {{< command >}}
 $ echo 'def handler(*args, **kwargs):' > /tmp/testlambda.py
 $ echo '  import testlayer; testlayer.util()' >> /tmp/testlambda.py
 $ echo '  print("Debug output from Lambda function")' >> /tmp/testlambda.py
 $ (cd /tmp; zip testlambda.zip testlambda.py)
-$ awslocal lambda create-function --function-name func1 --runtime python3.8 --role arn:aws:iam::000000000000:role/lambda-role --handler testlambda.handler --timeout 30 --zip-file fileb:///tmp/testlambda.zip --layers $LAYER_ARN:1
+$ awslocal lambda create-function \
+  --function-name func1 \
+  --runtime python3.8 \
+  --role arn:aws:iam::000000000000:role/lambda-role \
+  --handler testlambda.handler \
+  --timeout 30 \
+  --zip-file fileb:///tmp/testlambda.zip \
+  --layers $LAYER_ARN:1
 {{< / command >}}
 
-Once we invoke the Lambda function, we should see the following logs in the LocalStack container (with `DEBUG=1` enabled), which includes the output from the layer util function:
-```plaintext
+Here, we've defined a Lambda function called `handler()` that imports the `util()` function from our `layer1` Lambda Layer. We then used the [`CreateFunction` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) to create this Lambda function in LocalStack, specifying the `layer1` Lambda Layer as a dependency.
+
+To test our Lambda function and see the output from the Lambda Layer, we can invoke the function and check the logs (with `DEBUG=1` enabled). Here's an example:
+
+```shell
 > START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: $LATEST
 > Output from Lambda layer util function
 > Debug output from Lambda function
 > END RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23
 ```
 
-### Referencing Lambda layers from real AWS
+#### Referencing Lambda layers from AWS
 
-Alternatively, if your Lambda function references a layer in real AWS, there is also a mechanism to integrate such a remote layer into your local dev environment.
+If your Lambda function references a layer in real AWS, you can integrate it into your local dev environment by making it accessible to the `886468871268` AWS account ID. This account is managed by LocalStack on AWS.
 
-In order to achieve that, you'll need to make your Lambda layer accessible from the `886468871268` AWS account ID (this is an account managed by LocalStack on AWS).
-Assuming you've created a layer named `test-layer` with version `1`, you can use the following command to grant access to your layer:
+To grant access to your layer, run the following command:
 
 {{< command >}}
 $ aws lambda add-layer-version-permission
@@ -123,38 +162,136 @@ $ aws lambda add-layer-version-permission
   --action lambda:GetLayerVersion
 {{< / command >}}
 
-Next time you reference this layer (with the real AWS Lambda layer ARN) in one of your local Lambda functions, it will get automatically pulled down and integrated into your local dev environment.
+Replace `test-layer` and `1` with the name and version number of your layer, respectively.
 
-## Lambda Event Filtering
+After granting access, the next time you reference the layer in one of your local Lambda functions using the AWS Lambda layer ARN, the layer will be automatically pulled down and integrated into your local dev environment.
 
-Lambda Functions with the event-filtering enables ease of integration and developing cloud-native applications. LocalStack enables Lambda Event Filtering for DynamoDB Streams, and SQS. The filtering implements following filtering syntax:
+### Transparent endpoint injection
 
-| Comparison operator | Example                                             | Rule syntax                                       |
-| ------------------- | --------------------------------------------------- | ------------------------------------------------- |
-| Null                | UserID is null                                      | "UserID": [ null ]                                |
-| Empty               | LastName is empty                                   | "LastName": [""]                                  |
-| Equals              | Name is "Alice"                                     | "Name": [ "Alice" ]                               |
-| And                 | Location is "New York" and Day is "Monday"          | "Location": [ "New York" ], "Day": ["Monday"]     |
-| Or                  | PaymentType is "Credit" or "Debit"                  | "PaymentType": [ "Credit", "Debit"]               |
-| Not                 | Weather is anything but "Raining"                   | "Weather": [ { "anything-but": [ "Raining" ] } ]  |
-| Numeric (equals)    | Price is 100                                        | "Price": [ { "numeric": [ "=", 100 ] } ]          |
-| Numeric (range)     | Price is more than 10, and less than or equal to 20 | "Price": [ { "numeric": [ ">", 10, "<=", 20 ] } ] |
-| Exists              | ProductName exists                                  | "ProductName": [ { "exists": true } ]             |
-| Does not exist      | ProductName does not exist                          | "ProductName": [ { "exists": false } ]            |
-| Begins with         | Region is in the US                                 | "Region": [ {"prefix": "us-" } ]                  |
+Lambda functions in LocalStack resolve AWS domains, such as `s3.amazonaws.com`, to the LocalStack container. This domain resolution is DNS-based and can be disabled by setting `DNS_ADDRESS=0`. For more information, refer to [Transparent Endpoint Injection]({{< ref "user-guide/tools/transparent-endpoint-injection" >}}).
 
-The filter expression uses a strict JSON format to match the filtering criteria. For example, in a DynamoDB Stream, JSON is validated against the key `dynamodb` which is part of the event JSON. An example of a filter expression is:
+Previously, LocalStack provided patched AWS SDKs to redirect AWS API calls transparently to LocalStack. However, the current implementation relies entirely on DNS-based resolution. Note that if you disable DNS-based resolution, your Lambda functions may not be able to communicate with AWS services. Therefore, we recommend enabling DNS-based resolution for most use cases.
 
-```json
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing Lambda resources. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Lambda** under the **Compute** section.
+
+The Resource Browser displays [Functions](https://app.localstack.cloud/resources/lambda/functions) and [Layers](https://app.localstack.cloud/resources/lambda/layers) resources. You can click on individual resources to view their details.
+
+<img src="lambda-resource-browser.png" alt="Lambda Resource Browser" title="Lambda Resource Browser" width="900" />
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Functions & Layers**: Create a new [Lambda function](https://app.localstack.cloud/resources/lambda/functions/new) or a new [Lambda Layer](https://app.localstack.cloud/resources/lambda/layers/new) by clicking on **Create API** button on top-right and creating a new configuration by clicking on **Submit** button.
+- **View Function & Layer Details**: Click on any function or layer to view detailed information such as the resource's name, ARN, runtime, handler, and more. You can also navigate across different versions of the resource.
+- **Delete Functions & Layers**: To delete a function or layer, select the resource from the Resource Browser, click on the **Remove Selected** button at the top-right of the screen, and confirm the deletion by clicking on the **Continue** button.
+
+## Lambda providers
+
+LocalStack's implementation of Lambda is designed to be easy to use and flexible. The platform uses [official Docker base images](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) pulled from `public.ecr.aws/lambda/` and supports both `arm64` and `x86_64` architectures. Lambda functions can be run on hosts with [multi-architecture support](https://docs.localstack.cloud/references/arm64-support/#lambda-multi-architecture-support), allowing you to leverage LocalStack's Lambda API to develop and test functions with high parity with AWS Lambda.
+
+With LocalStack's Lambda implementation, you can customize the Lambda execution environment using the [Lambda Extensions API](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-extensions-api.html). This API allows for advanced monitoring, observability, or developer tooling, providing greater control and flexibility over your Lambda functions.
+
+As part of the [2.0 release](https://discuss.localstack.cloud/t/new-lambda-implementation-in-localstack-2-0/258), LocalStack's Lambda provider has been migrated to v2 (formerly known as asf). With this change, the Lambda executor modes have been deprecated and only used by the old Lambda provider, which can be configured by setting the following configuration variable: `PROVIDER_OVERRIDE_LAMBDA=legacy`. However, it is not recommended.
+
+The `v2` provider features similar to the previous `docker-reuse` executor and requires the Docker volume mount (`/var/run/docker.sock:/var/run/docker.sock`) to be configured while starting LocalStack. The following configuration options from the old provider are discontinued in the new provider:
+
+* The `LAMBDA_EXECUTOR` and specifically, the `LAMBDA_EXECUTOR=local` options are no longer supported.
+* The `LAMBDA_STAY_OPEN_MODE` is now the default behavior and can be removed. Instead, use the `LAMBDA_KEEPALIVE_MS` option to configure how long containers should be kept running in between invocations.
+* The `LAMBDA_REMOTE_DOCKER` option is not used anymore since the new provider automatically copies zip files and configures hot reloading.
+* The `LAMBDA_CODE_EXTRACT_TIME` option is no longer used because function creation is now asynchronous.
+* The `LAMBDA_DOCKER_DNS`, `HOSTNAME_FROM_LAMBDA`, `LAMBDA_FALLBACK_URL`, `SYNCHRONOUS_KINESIS_EVENTS`, `SYNCHRONOUS_SNS_EVENTS` and `LAMBDA_FORWARD_URL` options are currently not supported.
+* The `LAMBDA_CONTAINER_REGISTRY` option is not used anymore. Instead, use the more flexible `LAMBDA_RUNTIME_IMAGE_MAPPING` option to customize individual runtimes.
+* The `LAMBDA_XRAY_INIT` option is no longer needed because the X-Ray daemon is always initialized.
+
+However, the new provider still supports the following configuration options:
+
+* The `BUCKET_MARKER_LOCAL` option has a new default value, `hot-reload`. The former default value `__local__` is an invalid bucket name.
+* The `LAMBDA_TRUNCATE_STDOUT` option.
+* The `LAMBDA_DOCKER_NETWORK` option.
+* The `LAMBDA_DOCKER_FLAGS` option.
+* The `LAMBDA_REMOVE_CONTAINERS` option.
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use Lambda in LocalStack for various use cases:
+
+- [Lambda Hot Reloading](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-hot-reloading) shows how to use hot reloading to update function code and layers without having to redeploy them.
+- [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging) demonstrates how to debug Lambda functions locally using code mounting.
+- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls) shows how to use HTTP to invoke a Lambda function via its Function URL.
+- [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers) demonstrates how to use Lambda layers, which are reusable packages of code that can be shared across multiple functions.
+- [Lambda PHP/Bref](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-php-bref-cdk-app) shows how to use PHP/Bref with and without fpm, using the Serverless framework and AWS CDK.
+- [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image) demonstrates how to use Lambda functions packaged as container images, which can be built using Docker and pushed to a local ECR registry.
+- [Lambda XRay Tracing](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray) shows how to enable AWS X-Ray tracing for Lambda functions using the Serverless framework.
+
+## Troubleshooting
+
+### Docker not available
+
+In the old Lambda provider, Lambda functions were executed within the LocalStack container using the local executor mode. This mode was used as a fallback if the Docker socket was unavailable in the LocalStack container. However, many users inadvertently used the local executor mode instead of the intended Docker executor mode, which caused unexpected behavior.
+
+If you encounter the following error message, you may be using the local executor mode:
+
+{{< tabpane >}}
+{{< tab header="LocalStack Logs" lang="shell" >}}
+Lambda 'arn:aws:lambda:us-east-1:000000000000:function:my-function:$LATEST' changed to failed. Reason: Docker not available
+...
+raise DockerNotAvailable("Docker not available")
+{{< /tab >}}
+{{< tab header="AWS CLI" lang="shell" >}}
+An error occurred (ResourceConflictException) when calling the Invoke operation (reached max retries: 0): The operation cannot be performed at this time. The function is currently in the following state: Failed
+{{< /tab >}}
+{{< tab header="SAM" lang="shell" >}}
+Error: Failed to create/update the stack: sam-app, Waiter StackCreateComplete failed: Waiter encountered a terminal failure state: For expression "Stacks[].StackStatus" we matched expected path: "CREATE_FAILED" at least once
+{{< /tab >}}
+{{< /tabpane >}}
+
+To fix this issue, add the Docker volume mount `/var/run/docker.sock:/var/run/docker.sock` to your LocalStack startup. Refer to our [sample `docker-compose.yml` file](https://github.com/localstack/localstack/blob/master/docker-compose.yml) as an example.
+
+### Lambda functions not found
+
+Creating and updating Lambda functions in the new Lambda provider now follows the [AWS Lambda state model](https://aws.amazon.com/blogs/compute/tracking-the-state-of-lambda-functions/), which allows for asynchronous processing. Functions are always created in the `Pending state` and move to `Active` once they are ready to accept invocations. It is a departure from the old provider, which created functions synchronously by blocking until the function state was active. The configuration `LAMBDA_SYNCHRONOUS_CREATE=1` can force synchronous function creation, but it is not recommended.
+
+If you receive a `ResourceConflictException` when trying to invoke a function, it is currently in a `Pending` state and cannot be executed yet. To wait until the function becomes `active`, you can use the following command:
+
+{{< command >}}
+$ awslocal lambda get-function --function-name my-function
+An error occurred (ResourceConflictException) when calling the Invoke operation (reached max retries: 0):
+The operation cannot be performed at this time.
+The function is currently in the following state: Pending
+
+$ awslocal lambda wait function-active-v2 --function-name my-function
+{{< / command >}}
+
+Alternatively, you can check the function state using the [`GetFunction` API](https://docs.aws.amazon.com/lambda/latest/dg/API_GetFunction.html):
+
+{{< command >}}
+$ awslocal lambda get-function --function-name my-function
 {
-    "Records": [
-        {
-            ...
-            "dynamodb": { }
-            ...
-        }
-    ]
+  "Configuration": {
+    ...
+    "RevisionId": "c61d6139-1441-4ad5-983a-5a1cec7a1847",
+    "State": "Pending",
+    "StateReason": "The function is being created.",
+    "StateReasonCode": "Creating",
+    ...
+  }
 }
-```
 
-If your DynamoDB event is being triggered, you can now apply additional logic via event filtering with patterns. The event filtering will use criteria checks mentioned above. However only five event filtering patterns is limited to a single Lambda function and each of the 5 patterns is validated against an OR condition. For more information, refer to the [official AWS documentation](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
+$ awslocal lambda get-function --function-name my-function
+{
+  "Configuration": {
+    ...
+    "RevisionId": "c6633a28-b8d2-40f7-b8e1-02f6f32e8473",
+    "State": "Active",
+    "LastUpdateStatus": "Successful",
+    ...
+  }
+}
+{{< / command >}}
+
+If the function is still in the `Pending` state, the output will include a `"State": "Pending"` field and a `"StateReason": "The function is being created."` message. Once the function is active, the `"State"` field will change to `"Active"` and the `"LastUpdateStatus"` field will indicate the status of the last update.
+
+### Not implemented error
+
+If you encounter a `NotImplementedError` in the LocalStack logs and an `InternalFailure (501) error` in the client while creating a Lambda function using the [`CreateFunction` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html), check your `PROVIDER_OVERRIDE_LAMBDA` configuration. You might encounter this error if it is set to `legacy`.
