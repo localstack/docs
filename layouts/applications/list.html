@@ -14,9 +14,7 @@
             {{ partial "sidebar.html" . }}
           </aside>
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
-            {{ partial "page-meta-links.html" . }}
-            {{ partial "toc.html" . }}
-            {{ partial "taxonomy_terms_clouds.html" . }}
+            {{ partial "developer-hub/filters-sidebar.html" . }}
           </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
             {{ partial "version-banner.html" . }}
@@ -45,27 +43,31 @@
                     {{/* Otherwise we show a nice formatted list of subpages with page descriptions */}}
                     <hr class="panel-line">
 
+                    {{ $servicesData := $.Site.Data.developerhub.services }}
                         <div class="row">
-                            <div class="col-sm-12">
+                          <div class="col-sm-12">
                             <div class="row">
                               {{ range $.Site.Data.developerhub.applications.applications }}
-                                <div class="entry col-xs-12 col-sm-6 col-md-4 ">
+                                {{$services := cond (ne (len .services) 0)  (printf " service-%s" (delimit .services " service-")) "" }}
+                                {{$deployment := cond (ne (len .deployment) 0)  (printf " deployment-%s" (delimit .deployment " deployment-")) "" }}
+                                {{$platform := cond (ne (len .platform) 0)  (printf " platform-%s" (delimit .platform " platform-")) "" }}
+                                <div class='entry col-xs-12 col-sm-6 col-md-4{{$services}}{{$deployment}}{{ $platform }}' data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}' data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}' data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}' data-cloudpod='{{.cloudPods}}'>
                                     <div class="card h-100">
                                       <div>
                                         <img src="{{.teaser}}" >
                                       </div>
                                         <div class="card-body">
                                             <h5 class="card-title d-flex align-items-center">
-                                              <a class="stretched-link mr-2" href="{{ .url }}">
+                                              <a class="mr-2" href="{{ .url }}">
                                                   {{ with .title }}{{ . }}{{end}}
                                               </a>
                                             </h5>
                                             <div>
                                               {{ range .services }}
-                                                <img src="/images/services/{{ . }}.svg" style="border-radius: 4px; max-width: 30px;margin-right: 5px; margin-top: 5px">
+                                                <img src="/images/services/{{ . }}.svg" style="border-radius: 4px; max-width: 30px;margin-right: 5px; margin-top: 5px" data-toggle="tooltip" data-placement="top" title="{{index $servicesData .}}" aria-label="{{index $servicesData .}}">
                                               {{ end }}
                                               {{ with .pro }}
-                                              <img src="/images/pro-badge.png" style="border-radius: 4px; max-width: 30px;margin-right: 5px; margin-top: 5px">
+                                              <img src="/images/pro-badge.png" style="border-radius: 4px; max-width: 30px;margin-right: 5px; margin-top: 5px"  data-toggle="tooltip" data-placement="top" title="Localstack Pro" aria-label="Localstack Pro">
                                               {{ end }}
                                             </div>
                                             <div>
@@ -87,7 +89,7 @@
 
                     {{ end }}
                 </div>
-                
+
                 {{ if (and (not .Params.hide_feedback) (.Site.Params.ui.feedback.enable) (.Site.GoogleAnalytics)) }}
                     {{ partial "feedback.html" .Site.Params.ui.feedback }}
                     <br />
@@ -103,6 +105,11 @@
       </div>
       {{ partial "footer.html" . }}
     </div>
+    <script>
+      var servicesData = {{.Site.Data.developerhub.services}}
+      var deploymentsData = {{.Site.Data.developerhub.deployments}}
+      var platformsData = {{.Site.Data.developerhub.platforms}}
+    </script>
     {{ partial "scripts.html" . }}
   </body>
   <style>
@@ -112,4 +119,46 @@
       margin: 0;
     }
   </style>
+  <script>
+    var checkboxItemHtmlGenerator = function(prefix,lookup,item){
+    return `
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" value="${prefix}-${item}" class="custom-control-input" id="${prefix}-${item}" aria-label="${prefix}-${item}">
+      <label class="custom-control-label" for="${prefix}-${item}">${lookup[item] || item}</label>
+    </div>
+    `
+    }
+    var buildFilters = function(){
+      let items = document.querySelectorAll('.entry');
+      let services='', deployments='', platforms='';
+      items.forEach(function(value){
+
+        let service = value.getAttribute('data-services'),
+        platform = value.getAttribute('data-platforms'),
+        deployment = value.getAttribute('data-deployments');
+
+        services += service ? service.split(',')+',' : '';
+        platforms += platform ? platform.split(',')+',' : '';
+        deployments += deployment ? deployment.split(',')+',' : '';
+      })
+      // Set removes duplicates
+      services = Array.from(new Set(services.slice(0,-1).split(',')));
+      platforms = Array.from(new Set(platforms.slice(0,-1).split(',')));
+      deployments = Array.from(new Set(deployments.slice(0,-1).split(',')));
+      let servicesHtml='', deploymentsHtml='', platformsHtml='';
+      services.sort().map(function(service){
+        servicesHtml += checkboxItemHtmlGenerator('service', servicesData, service)
+      })
+      deployments.sort().map(function(deployment){
+        deploymentsHtml += checkboxItemHtmlGenerator('deployment', deploymentsData, deployment)
+      })
+      platforms.sort().map(function(platform){
+        platformsHtml += checkboxItemHtmlGenerator('platform', platformsData, platform)
+      })
+      document.getElementById('filters-services-container').innerHTML=servicesHtml;
+      document.getElementById('filter-deployments-container').innerHTML=deploymentsHtml;
+      document.getElementById('filter-platforms-container').innerHTML=platformsHtml;
+    }
+    buildFilters();
+  </script>
 </html>
