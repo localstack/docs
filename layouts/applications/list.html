@@ -51,7 +51,8 @@
                                 {{$services := cond (ne (len .services) 0)  (printf " service-%s" (delimit .services " service-")) "" }}
                                 {{$deployment := cond (ne (len .deployment) 0)  (printf " deployment-%s" (delimit .deployment " deployment-")) "" }}
                                 {{$platform := cond (ne (len .platform) 0)  (printf " platform-%s" (delimit .platform " platform-")) "" }}
-                                <div class='entry col-xs-12 col-sm-6 col-md-4{{$services}}{{$deployment}}{{ $platform }}' data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}' data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}' data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}' data-cloudpod='{{.cloudPods}}'>
+                                {{$cloudpod := cond (eq (.cloudPods) true) " cloudpod-true" "" }}
+                                <div class='entry col-xs-12 col-sm-6 col-md-4{{$services}}{{$deployment}}{{ $platform }}{{$cloudpod}}' data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}' data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}' data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}' data-cloudpod='{{.cloudPods}}'>
                                     <div class="card h-100">
                                       <div>
                                         <img src="{{.teaser}}" >
@@ -82,6 +83,7 @@
                                     </div>
                                 </div>
                             {{ end }}
+                            <div class="no-results col-xs-12 flex-grow-1 text-center" style="display: none;">No applications available with the selected filters</div>
 
                             </div>
                             </div>
@@ -120,6 +122,9 @@
     }
   </style>
   <script>
+    var $items = $('.entry');
+    var $noResults = $('.no-results');
+
     var checkboxItemHtmlGenerator = function(prefix,lookup,item){
     return `
     <div class="custom-control custom-checkbox">
@@ -129,9 +134,8 @@
     `
     }
     var buildFilters = function(){
-      let items = document.querySelectorAll('.entry');
       let services='', deployments='', platforms='';
-      items.forEach(function(value){
+      $items.each(function(_i, value){
 
         let service = value.getAttribute('data-services'),
         platform = value.getAttribute('data-platforms'),
@@ -155,10 +159,58 @@
       platforms.sort().map(function(platform){
         platformsHtml += checkboxItemHtmlGenerator('platform', platformsData, platform)
       })
-      document.getElementById('filters-services-container').innerHTML=servicesHtml;
-      document.getElementById('filter-deployments-container').innerHTML=deploymentsHtml;
-      document.getElementById('filter-platforms-container').innerHTML=platformsHtml;
+      $('#filters-services-container').html(servicesHtml);
+      $('#filter-deployments-container').html(deploymentsHtml);
+      $('#filter-platforms-container').html(platformsHtml);
     }
+    var filtersState = {
+      services:[],
+      deployments:[],
+      platforms:[],
+      cloudpods:[],
+    }
+
+    var bindFilterEvents = function(){
+      $('#sidebar-filters-parent .custom-control-input').on('change', function (e) {
+        let type = `${e.target.value.split('-')[0]}s`;
+        let arr = e.target.checked ?
+              filtersState[type].concat(e.target.value) :
+              filtersState[type].filter(function(item){ return item !== e.target.value })
+        Object.assign(filtersState, { [type]: arr })
+        updateUI();
+      });
+    }
+
+    var isFiltersApplied = function(){
+      let applied = false;
+      Object.keys(filtersState).forEach(function(key){
+        if(filtersState[key].length !==0) applied = true;
+      })
+      return applied;
+    }
+
+    var updateUI = function(){
+      $noResults.hide();
+      if(!isFiltersApplied()){
+      $items.show(); // Show all items if no filters are applied
+       return;
+      }
+      $items.hide();
+      $items.each(function(_i, item){
+        item
+      })
+      var $filteredItems = $items;
+      Object.keys(filtersState).forEach(function(key){
+        let selector = filtersState[key].length ===1 ?
+         filtersState[key] :
+         filtersState[key].join(', .')
+         $filteredItems=$filteredItems.filter(selector!=="" ? `.${selector}` : "*");
+      })
+      $filteredItems.show();
+      if($filteredItems.length===0) $noResults.show();
+    }
+
     buildFilters();
-  </script>
+    bindFilterEvents();
+    </script>
 </html>
