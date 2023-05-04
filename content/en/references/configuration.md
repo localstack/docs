@@ -152,8 +152,8 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 
 ### Lambda
 
-**New [Lambda]({{< ref "lambda" >}}) implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23)**<br>
-Please consult the page [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}) for more information.
+**New [Lambda]({{< ref "user-guide/aws/lambda" >}}) implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23)**<br>
+Please consult the page [Lambda providers]({{< ref "user-guide/aws/lambda" >}}) for more information.
 
 | Variable| Example Values | Description |
 | - | - | - |
@@ -172,20 +172,20 @@ Please consult the page [Lambda Provider Behavioral Changes]({{< ref "lambda-pro
 | `LAMBDA_RUNTIME_IMAGE_MAPPING` | [base images for Lambda](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-images.html) (default) | Customize the Docker image of Lambda runtimes, either by:<br> a) pattern with `<runtime>` placeholder, e.g. `custom-repo/lambda-<runtime>:2022` <br> b) json dict mapping the `<runtime>` to an image, e.g. `{"python3.9": "custom-repo/lambda-py:thon3.9"}` |
 | `LAMBDA_SYNCHRONOUS_CREATE` | `0` (default) | Set to `1` to create lambda functions synchronously (not recommended). |
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char limit for truncation of lambda log lines when printed in the console. This does not affect the logs processing in CloudWatch. |
-| `PROVIDER_OVERRIDE_LAMBDA` | `v2` (default) | Currently supported implementation of our [local Lambda service]({{< ref "lambda" >}}) active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23). |
-| | `legacy` (**deprecated**) | Use the old lambda provider (not recommended).<br>**See [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}).** |
+| `PROVIDER_OVERRIDE_LAMBDA` | `v2` (default) | Currently supported implementation of our [local Lambda service]({{< ref "user-guide/aws/lambda" >}}) active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23). |
+| | `legacy` (**deprecated**) | Use the old lambda provider (not recommended).<br>**See [Lambda providers]({{< ref "user-guide/aws/lambda" >}}).** |
 
 ### Lambda (Legacy)
 
-The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "lambda-provider-v2" >}}) to the new lambda provider.
+The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PROVIDER_OVERRIDE_LAMBDA=legacy` but we highly recommend [migrating]({{< ref "user-guide/aws/lambda" >}}) to the new Lambda provider.
 
 | Variable| Example Values | Description |
 | - | - | - |
-| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in [Lambda Executor Modes]({{< ref "lambda-executors" >}}).<br> **Removed in new provider. Mount the Docker socket or see [migration guide]({{< ref "lambda-provider-v2" >}}).** |
+| `LAMBDA_EXECUTOR` |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in Lambda Executor Modes.<br> **Removed in new provider. Mount the Docker socket or see [migration guide]({{< ref "user-guide/aws/lambda" >}}).** |
 | | `docker` (default) | Run each function invocation in a separate Docker container. |
 | | `local` (fallback) | Run Lambda functions in a temporary directory on the local machine. |
 | | `docker-reuse` | Create one Docker container per function and reuse it across invocations. |
-| `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the [stay-open mode]({{< ref "lambda-executors#stay-open-mode" >}}) of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Reloading]({{< ref "hot-reloading" >}}).<br> **Removed in new provider because stay-open mode is the default behavior. `LAMBDA_KEEPALIVE_MS` can be used to configure how long containers should be kept running in-between invocations.** |
+| `LAMBDA_STAY_OPEN_MODE` | `1` (default) | Usage of the stay-open mode of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Reloading]({{< ref "hot-reloading" >}}).<br> **Removed in new provider because stay-open mode is the default behavior. `LAMBDA_KEEPALIVE_MS` can be used to configure how long containers should be kept running in-between invocations.** |
 | `LAMBDA_REMOTE_DOCKER` | | determines whether Lambda code is copied or mounted into containers.<br> **Removed in new provider because zip file copying is used by default and hot reloading automatically configures mounting.** |
 | | `true` (default) | your Lambda function definitions will be passed to the container by copying the zip file (potentially slower). It allows for remote execution, where the host and the client are not on the same machine.|
 | | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. |
@@ -203,7 +203,7 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 | `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`. <br> **Removed in new provider.** |
 | `LAMBDA_XRAY_INIT` | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times).<br> **Removed in new provider because the X-Ray daemon is always initialized.** |
 | `SYNCHRONOUS_KINESIS_EVENTS` | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations.<br> **Removed in new provider.** |
-| `PROVIDER_OVERRIDE_LAMBDA` | `asf` (optional) | Opt-in to use the new lambda provider beta. See [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}). <br> **Active by default in the new provider.** |
+| `PROVIDER_OVERRIDE_LAMBDA` | `asf` (optional) | Opt-in to use the new lambda provider beta. See [Lambda providers]({{< ref "user-guide/aws/lambda" >}}). <br> **Active by default in the new provider.** |
 
 ### MWAA
 
