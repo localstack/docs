@@ -16,13 +16,14 @@ To start LocalStack, we recommend starting it using Services. Services can be co
 
 We recommend taking the following steps:
 
-- Use a GitLab CI image for the keyword `image` that best fits your use-case (`python:3.10`, `node:16` or anything specific).
-- Add GitLab CI variables using the keyword `variables` to include `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`.
-- Create a service using the keyword `services` and reference `localstack/localstack` to pull the latest Docker image and assign an `alias` for the container (`localstack` in our case).
+- Use a GitLab CI image for the keyword image that best fits your use-case (`docker:20.10.16` or any other version).
+- Add GitLab CI variables using the keyword variables to include `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`.
+- Create a service using the keyword `services` and reference `docker:20.10.16-dind` to pull the latest Docker image and assign an alias for the container (`docker` in our case). Use the `command` option to disable TLS with `--tls=false`.
 - Install LocalStack and/or AWS-related dependencies to define the commands that should be run before all builds.
-- Run your LocalStack-related tests in the main job. 
+- In the `before_script` section, add commands to set up the `LOCALSTACK_HOSTNAME` and `HOSTNAME_EXTERNAL` environment variables and append `localhost.localstack.cloud` to `/etc/hosts` using the IP address of the `docker` service.
+- In the script section, pull the `localstack/localstack` Docker image, start LocalStack in detached mode, and run your LocalStack-related tests.
 
-The following example Gitlab CI job config (`.gitlab-ci.yml`) executes these steps, creates a new S3 bucket, copies some content to the bucket, and check the available buckets:
+The following example Gitlab CI job config (`.gitlab-ci.yml`) executes these steps, creates a new S3 bucket, copies some content to the bucket, and checks the content of the bucket:
 
 ```yml
 image: docker:20.10.16
@@ -48,7 +49,7 @@ test:
 
   before_script:
     - apk update
-    - apk add gcc musl-dev linux-headers py3-pip python3 python3-dev curl
+    - apk add gcc musl-dev linux-headers py3-pip python3 python3-dev
     - python3 -m pip install localstack awscli
   script:
     - docker pull localstack/localstack:latest
@@ -72,16 +73,20 @@ You can easily enable LocalStack Pro by using the `localstack/localstack-pro` im
 However Variables set in the GitLab UI are not passed down to service containers. We need to assign them to variables in the UI, and then re-assign them in our `.gitlab-ci.yml`:
 
 ```yaml
+...
 test:
   stage: test
   variables:
-    AWS_ACCESS_KEY_ID: dummy
-    AWS_SECRET_ACCESS_KEY: dummy
-    AWS_DEFAULT_REGION: eu-central-1
+    AWS_ACCESS_KEY_ID: test
+    AWS_SECRET_ACCESS_KEY: test
+    AWS_DEFAULT_REGION: us-east-1
     LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
-  services:
-    - name: localstack/localstack-pro
-      alias: localstack
-      variables:
-        LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY}
+  ...
+  script:
+    - docker pull localstack/localstack-pro:latest
+    ...
+    - DOCKER_HOST="tcp://${dind_ip}:2375" localstack start -d
+...
 ```
+
+You can check the logs of the LocalStack container to see if the activation was successful. If the API key activation fails, LocalStack container will exit with an error code.
