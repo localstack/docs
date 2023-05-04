@@ -117,6 +117,7 @@ This section covers configuration values that are specific to certain AWS servic
 | Variable | Example Values | Description |
 | - | - | - |
 | `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
+| `EKS_K3S_IMAGE_TAG` | `v1.22.6-k3s1` (default) | Custom tag of the `k8s/rancher` image used to spin up Kubernetes clusters locally. |
 
 ### Elasticsearch
 
@@ -320,6 +321,10 @@ To display the config environment variables, you can use the following command:
 {{< command >}}
 python -m localstack.cli.main --profile=dev config show
 {{< / command >}}
+
+{{< alert title="Note" >}}
+The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup. You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups. For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
+{{< /alert >}}
 
 ## Persistence
 

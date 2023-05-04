@@ -19,7 +19,7 @@ Currently, it is possible to spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL 
 
 When creating an RDS DB cluster or instance with `postgres`/`aurora-postgresql` DB engine and a specific `EngineVersion`, LocalStack will install and provision the respective Postgres version on demand.
 
-Currently, versions 11, 12, and 13 can be chosen - when selecting a major version outside of this range, the default version 11 is used as fallback.
+Currently, major versions between 10 and 15 can be chosen - when selecting a major version outside of this range, the default version 11 is used as fallback.
 
 Please be aware that the minor version cannot be freely selected - the latest available version will be installed in the docker environment.
 

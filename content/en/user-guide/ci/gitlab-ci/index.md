@@ -65,9 +65,9 @@ test:
 While working with a Docker-in-Docker (`dind`) setup, the Docker runner requires `privileged` mode. You must always use `privileged = true` in your GitLab CI's `config.toml` file while setting up LocalStack in GitLab CI runners. For more information, see [GitLab CI Docker-in-Docker](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor) documentation.
 {{< /alert >}}
 
-## Activate LocalStack Pro
+## Configuring an API key
 
-You can easily enable LocalStack Pro by adding your API key to the repository's environment variables. Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section. Select the **Add Variable** button and fill in the necessary details. After you create a variable, you can use it in the `.gitlab-ci.yml` file.
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your API key to the repository's environment variables. Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section. Select the **Add Variable** button and fill in the necessary details. After you create a variable, you can use it in the `.gitlab-ci.yml` file.
 
 However Variables set in the GitLab UI are not passed down to service containers. We need to assign them to variables in the UI, and then re-assign them in our `.gitlab-ci.yml`:
 
@@ -80,7 +80,7 @@ test:
     AWS_DEFAULT_REGION: eu-central-1
     LOCALSTACK_API_KEY: $LOCALSTACK_API_KEY
   services:
-    - name: localstack/localstack
+    - name: localstack/localstack-pro
       alias: localstack
       variables:
         LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY}

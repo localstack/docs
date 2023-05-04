@@ -188,3 +188,19 @@ $ dig api.localstack.cloud
 If the result has some other status than `status: NOERROR,` your machine cannot resolve this domain.
 
 Some corporate DNS servers might filter requests to certain domains. Contact your network administrator to safelist` localstack.cloud` domains.
+
+### How does LocalStack Pro handle security patches and bug fixes?
+
+We take security seriously and respond to any emergency vulnerabilities as soon as possible. Our cloud provider (AWS) handles most of the infrastructure maintenance for us. We also use Infrastructure-as-Code scripts to ensure that our infrastructure configuration is consistent and recoverable in case of a disaster.
+
+### How does LocalStack ensure the security of its containers and images? 
+
+Our software assets are regularly checked for vulnerabilities, such as code issues and outdated dependencies. We use Dependabot to scan our GitHub repositories, and Trivy as well as Snyk (among other security tools) to scan our Docker images.
+
+### Do you have any penetration test reports or SOC2 reports that demonstrate your security compliance?
+
+We conduct regular penetration tests and audits to ensure our services are secure and compliant. If you want to access our security documentation and test reports, please contact us at info@localstack.cloud, and we will be happy to share them with you.
+
+### Does LocalStack provide offline capabilities?
+
+LocalStack Community and Pro/Team provide limited offline capabilities. To use a fully-fledged offline mode, you may use LocalStack Enterprise, which can be used in air-gapped environments. The regular LocalStack Docker images may need to download additional dependencies for specific services (e.g., Elasticsearch, Big Data services) at runtime, while the offline image bakes all dependencies into the image, along with any other configuration that you might need. For more details, please take a look at our [Enterprise offering](https://localstack.cloud/pricing).
