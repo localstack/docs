@@ -52,7 +52,7 @@
                                 {{$deployment := cond (ne (len .deployment) 0)  (printf " deployment-%s" (delimit .deployment " deployment-")) "" }}
                                 {{$platform := cond (ne (len .platform) 0)  (printf " platform-%s" (delimit .platform " platform-")) "" }}
                                 {{$cloudpod := cond (eq (.cloudPods) true) " cloudpod-true" "" }}
-                                <div class='entry col-xs-12 col-sm-6 col-md-4{{$services}}{{$deployment}}{{ $platform }}{{$cloudpod}}' data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}' data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}' data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}' data-cloudpod='{{.cloudPods}}'>
+                                <div class='entry col-xs-12 col-sm-6 col-md-4{{$services}}{{$deployment}}{{ $platform }}{{$cloudpod}}' data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}' data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}' data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}' data-slug="{{.title | urlize}}">
                                     <div class="card h-100">
                                       <div>
                                         <img src="{{.teaser}}" >
@@ -73,7 +73,7 @@
                                             </div>
                                             <div>
                                               {{ range .tags }}
-                                                <span class="badge badge-primary" style="font-weight: normal;">{{ . }}</span>
+                                                <a class="badge badge-primary no-text-decoration" target="_blank" style="font-weight: normal;" href="/tags/{{ . }}">{{ . }}</a>
                                               {{ end }}
                                             </div>
                                             <br>
@@ -122,95 +122,113 @@
     }
   </style>
   <script>
-    var $items = $('.entry');
-    var $noResults = $('.no-results');
-
-    var checkboxItemHtmlGenerator = function(prefix,lookup,item){
-    return `
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" value="${prefix}-${item}" class="custom-control-input" id="${prefix}-${item}" aria-label="${prefix}-${item}">
-      <label class="custom-control-label" for="${prefix}-${item}">${lookup[item] || item}</label>
-    </div>
-    `
-    }
-    var buildFilters = function(){
-      let services='', deployments='', platforms='';
-      $items.each(function(_i, value){
-
-        let service = value.getAttribute('data-services'),
-        platform = value.getAttribute('data-platforms'),
-        deployment = value.getAttribute('data-deployments');
-
-        services += service ? service.split(',')+',' : '';
-        platforms += platform ? platform.split(',')+',' : '';
-        deployments += deployment ? deployment.split(',')+',' : '';
-      })
-      // Set removes duplicates
-      services = Array.from(new Set(services.slice(0,-1).split(',')));
-      platforms = Array.from(new Set(platforms.slice(0,-1).split(',')));
-      deployments = Array.from(new Set(deployments.slice(0,-1).split(',')));
-      let servicesHtml='', deploymentsHtml='', platformsHtml='';
-      services.sort().map(function(service){
-        servicesHtml += checkboxItemHtmlGenerator('service', servicesData, service)
-      })
-      deployments.sort().map(function(deployment){
-        deploymentsHtml += checkboxItemHtmlGenerator('deployment', deploymentsData, deployment)
-      })
-      platforms.sort().map(function(platform){
-        platformsHtml += checkboxItemHtmlGenerator('platform', platformsData, platform)
-      })
-      $('#filters-services-container').html(servicesHtml);
-      $('#filter-deployments-container').html(deploymentsHtml);
-      $('#filter-platforms-container').html(platformsHtml);
-    }
+    var $items = $(".entry");
+    var $noResults = $(".no-results");
     var filtersState = {
-      services:[],
-      deployments:[],
-      platforms:[],
-      cloudpods:[],
-    }
+      services: [],
+      deployments: [],
+      platforms: [],
+      cloudpods: [],
+    };
 
-    var bindFilterEvents = function(){
-      $('#sidebar-filters-parent .custom-control-input').on('change', function (e) {
-        let type = `${e.target.value.split('-')[0]}s`;
-        let arr = e.target.checked ?
-              filtersState[type].concat(e.target.value) :
-              filtersState[type].filter(function(item){ return item !== e.target.value })
-        Object.assign(filtersState, { [type]: arr })
-        updateUI();
+    var checkboxItemHtmlGenerator = function (prefix, lookup, item) {
+      return `
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" value="${prefix}-${item}" class="custom-control-input" id="${prefix}-${item}" aria-label="${prefix}-${item}">
+        <label class="custom-control-label" for="${prefix}-${item}">${lookup[item] || item}</label>
+      </div>
+      `;
+    };
+    var buildFiltersUI = function () {
+      let services = "",
+        deployments = "",
+        platforms = "";
+
+      $items.each(function (_i, value) {
+        let service = value.getAttribute("data-services"),
+          platform = value.getAttribute("data-platforms"),
+          deployment = value.getAttribute("data-deployments");
+
+        services += service ? service.split(",") + "," : "";
+        platforms += platform ? platform.split(",") + "," : "";
+        deployments += deployment ? deployment.split(",") + "," : "";
       });
-    }
 
-    var isFiltersApplied = function(){
+      // Set removes duplicates
+      services = Array.from(new Set(services.slice(0, -1).split(",")));
+      platforms = Array.from(new Set(platforms.slice(0, -1).split(",")));
+      deployments = Array.from(new Set(deployments.slice(0, -1).split(",")));
+
+      let servicesHtml = "",
+        deploymentsHtml = "",
+        platformsHtml = "";
+
+      services.sort().map(function (service) {
+        servicesHtml += checkboxItemHtmlGenerator("service", servicesData, service);
+      });
+      deployments.sort().map(function (deployment) {
+        deploymentsHtml += checkboxItemHtmlGenerator("deployment", deploymentsData, deployment);
+      });
+      platforms.sort().map(function (platform) {
+        platformsHtml += checkboxItemHtmlGenerator("platform", platformsData, platform);
+      });
+
+      $("#filters-services-container").html(servicesHtml);
+      $("#filter-deployments-container").html(deploymentsHtml);
+      $("#filter-platforms-container").html(platformsHtml);
+    };
+
+    var bindFilterEvents = function () {
+      $("#sidebar-filters-parent .custom-control-input").on("change", function (e) {
+        let type = `${e.target.value.split("-")[0]}s`;
+        let arr = e.target.checked
+          ? filtersState[type].concat(e.target.value)
+          : filtersState[type].filter(function (item) {
+              return item !== e.target.value;
+            });
+        Object.assign(filtersState, { [type]: arr });
+        updateApplicationsUI();
+      });
+    };
+
+    var isFiltersApplied = function () {
       let applied = false;
-      Object.keys(filtersState).forEach(function(key){
-        if(filtersState[key].length !==0) applied = true;
-      })
+      Object.keys(filtersState).forEach(function (key) {
+        if (filtersState[key].length !== 0) applied = true;
+      });
       return applied;
-    }
+    };
 
-    var updateUI = function(){
+    var updateApplicationsUI = function () {
       $noResults.hide();
-      if(!isFiltersApplied()){
-      $items.show(); // Show all items if no filters are applied
-       return;
-      }
-      $items.hide();
-      $items.each(function(_i, item){
-        item
-      })
-      var $filteredItems = $items;
-      Object.keys(filtersState).forEach(function(key){
-        let selector = filtersState[key].length ===1 ?
-         filtersState[key] :
-         filtersState[key].join(', .')
-         $filteredItems=$filteredItems.filter(selector!=="" ? `.${selector}` : "*");
-      })
-      $filteredItems.show();
-      if($filteredItems.length===0) $noResults.show();
-    }
 
-    buildFilters();
+      if (!isFiltersApplied()) {
+        $items.show(); // Show all items if no filters are applied
+        return;
+      }
+
+      $items.hide();
+
+      var $filteredItems = $items;
+      Object.keys(filtersState).forEach(function (key) {
+        let selector = filtersState[key].length === 1 ? filtersState[key] : filtersState[key].join(", .");
+        $filteredItems = $filteredItems.filter(selector !== "" ? `.${selector}` : "*");
+      });
+      $filteredItems.show();
+      if ($filteredItems.length === 0) $noResults.show();
+    };
+
+    var filterByQueryString = function () {
+      let queryString = window.location.search;
+      let urlParams = new URLSearchParams(queryString);
+      let id = urlParams.get("id");
+      if (!id || !$(`[data-slug="${id}"]`).length) return;
+      $items.not(`[data-slug="${id}"]`).hide();
+    };
+
+    buildFiltersUI();
     bindFilterEvents();
-    </script>
+    filterByQueryString();
+  </script>
+
 </html>
