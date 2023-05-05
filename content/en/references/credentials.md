@@ -22,7 +22,7 @@ For example, `112233445566`.
 ### Structured access key ID
 
 You can specify a structured key like `LSIAQAAAAAAVNCBMPNSG` (which translates to account ID `000000000042`).
-This must be atleast 20 characters in length and must be decodable to an account ID.
+This must be at least 20 characters in length and must be decodable to an account ID.
 
 {{< alert title="Note">}}
 In the future LocalStack will support IAM service which will issue proper access key IDs.
