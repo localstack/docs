@@ -27,10 +27,6 @@ This field must either contain a valid 12-digit or an alpha-numeric string.
 In the first case, the value is assumed to be the account ID.
 In the second case, the default account ID `000000000000` is used as fallback.
 
-LocalStack will also ignore possible production AWS Access Key IDs (starting with `ASIA...` or `AKIA...`) and fallback to default.
-
-In the future LocalStack shall support proper access key IDs issued by the local IAM service, which will then be internally translated to corresponding account IDs.
-
 ## Examples
 
 In following examples, we configure the AWS CLI account ID via environment variable.
