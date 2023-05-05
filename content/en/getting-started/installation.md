@@ -257,7 +257,7 @@ $ docker-compose up
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
 
-- Mounting the Docker socket `/var/run/docker.sock` as a volume is required for the Lambda service. Check out the [Lambda Provider Behavioral Changes]({{< ref "lambda-provider-v2" >}}) documentation for more information.
+- Mounting the Docker socket `/var/run/docker.sock` as a volume is required for the Lambda service. Check out the [Lambda providers]({{< ref "user-guide/aws/lambda" >}}) documentation for more information.
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
