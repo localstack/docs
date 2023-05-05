@@ -29,7 +29,8 @@ In the future LocalStack will support IAM service which will issue proper access
 {{< /alert >}}
 
 By default, LocalStack will only accept access keys that start with the `LSIA...` or `LKIA...` prefix.
-This is a safeguard to prevent misuse of production AWS access key IDs, which start with `ASIA...`/`AKIA...` prefix.
+If keys with `ASIA...`/`AKIA...` prefix are provided, these are rejected and the fallback account ID `000000000000` is used.
+This is a safeguard to prevent misuse of production AWS access key IDs.
 To disable this safeguard, set the `PARITY_AWS_ACCESS_KEY_ID` configuration variable.
 
 {{< alert title="Warning" color="warning" >}}
