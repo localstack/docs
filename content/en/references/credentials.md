@@ -24,10 +24,6 @@ For example, `112233445566`.
 You can specify a structured key like `LSIAQAAAAAAVNCBMPNSG` (which translates to account ID `000000000042`).
 This must be at least 20 characters in length and must be decodable to an account ID.
 
-{{< alert title="Note">}}
-In the future LocalStack will support IAM service which will issue proper access key IDs.
-{{< /alert >}}
-
 By default, LocalStack will only accept access keys that start with the `LSIA...` or `LKIA...` prefix.
 If keys with `ASIA...`/`AKIA...` prefix are provided, these are rejected and the fallback account ID `000000000000` is used.
 This is a safeguard to prevent misuse of production AWS access key IDs.
