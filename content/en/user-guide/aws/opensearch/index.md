@@ -18,7 +18,8 @@ Following versions of OpenSearch are supported:
 - 1.1
 - 1.2
 - 1.3
-- 2.3 (default)
+- 2.3
+- 2.5 (default)
 
 {{< alert title="Warning" color="warning">}}
 LocalStack uses the [OpenSearch Python client 2.x](https://github.com/opensearch-project/opensearch-py) internally.
