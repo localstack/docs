@@ -38,7 +38,7 @@ Disabling the access key safeguard and using production access key IDs may cause
 We strongly recommend leaving it on.
 {{< /alert >}}
 
-### Random alphanumeric string
+### Alphanumeric string
 
 You can also specify an arbitrary alphanumeric access key ID like `test` or `foobar123`.
 In all such cases, the account ID will be evalutated to `000000000000`.
