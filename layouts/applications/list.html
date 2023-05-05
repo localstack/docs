@@ -192,7 +192,7 @@
         $filterCheckboxes.prop("checked", false);
         updateApplicationsUI();
       });
-      $("#sidebar-filters-parent .custom-control-input").on("change", function (e) {
+      $filterCheckboxes.on("change", function (e) {
         let type = `${e.target.value.split("-")[0]}s`;
         let arr = e.target.checked
           ? filtersState[type].concat(e.target.value)
