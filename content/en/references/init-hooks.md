@@ -15,8 +15,8 @@ LocalStack has four well-known lifecycle phases or stages:
 * `READY`: LocalStack is ready to serve requests
 * `SHUTDOWN`: LocalStack is shutting down
 
-You can hook into each of these lifecycle phases using custom shell or python scripts.
-Each lifecycle phase has it's own directory in `/etc/localstack/init`.
+You can hook into each of these lifecycle phases using custom shell or Python scripts.
+Each lifecycle phase has its own directory in `/etc/localstack/init`.
 You can mount individual files, stage directories, or the entire init directory from your host into the container.
 
 ```plaintext
@@ -29,7 +29,7 @@ You can mount individual files, stage directories, or the entire init directory 
         └── start.d          <-- executed when localstack starts up
 ```
 
-In these directories, you can put either executable shell scripts or python programs, which will be executed from within a Python process.
+In these directories, you can put either executable shell scripts or Python programs, which will be executed from within a Python process.
 All except `boot.d` will be run in the same Python interpreter as LocalStack, which gives additional ways of configuring/extending LocalStack.
 
 Currently, known script extensions are `.sh`, and `.py`.
