@@ -672,7 +672,7 @@ In the coverage table below, the features are marked with their respective avail
 | Receipt Rules                                                      | ⭐⭐⭐         | CRUD               |       |
 | Sending Emails via SMTP (Pro)                                      | ⭐⭐⭐⭐       | Emulated           |       |
 | Templates                                                          | ⭐⭐⭐⭐       | CRUD               |       |
-| **Simple Storage Service (SES) v2** (Pro)                                                   | [Details 🔍]({{< ref "references/coverage/coverage_sesv2" >}}) |                 |       |
+| **Simple Email Service (SES) v2** (Pro)                                                   | [Details 🔍]({{< ref "references/coverage/coverage_sesv2" >}}) |                 |       |
 | Identities                                                         | ⭐⭐           | CRUD               |       |
 | Sending Emails via SMTP                                            | ⭐⭐⭐⭐       | Emulated           |       |
 | Templates                                                          | ⭐⭐⭐⭐       | CRUD               |       |
