@@ -106,6 +106,51 @@ networks:
 {{</tab>}}
 {{</tabpane>}}
 
+### Wildcard DNS access
+
+Resources created by LocalStack may be accessible via virtual host addressing, for example an S3 bucket can be accessed at `<bucket>.s3.<region>.localhost.localstack.cloud`, however this hostname resolves to the ip address `127.0.0.1`.
+This may not be accessible from containers running in your docker network.
+Also, docker does not support wildcard DNS configuration with `--add-host` (`docker` CLI) or `extra_hosts:` (`docker-compose`) so generated resource URLs cannot be easily mapped to the LocalStack container within the docker netwwork.
+
+In order to map more complex domain names to the LocalStack container within the docker network, the LocalStack container can be used as a DNS server, but this requires more configuration.
+Specifically the LocalStack container must have a static IP address within the network.
+This can be achieved with the following `docker-compose.yml` example:
+
+```yaml
+services:
+  localstack:
+    # ... other configuration here
+    environment:
+      - DNS_RESOLVE_IP=<private ip address>
+    networks:
+      ls:
+        ipv4_address: <private ip address>
+
+  application:
+    # ... other configuration here
+    dns:
+      - <localstack container ip address>
+    networks:
+      ls:
+
+networks:
+  ls:
+    name: ls
+    ipam:
+      config:
+        - subnet: <ip address range CIDR>
+```
+
+For example, with the following values:
+
+* private ip address: 10.0.2.20
+* ip address range CIDR: 10.0.2.0/24
+
+{{<alert>}}
+We suggest using a private IP address range for your containers, such as 10.0.0.0/8 since this does not conflict with IP addresses assigned by docker.
+Also avoid using `X.X.X.1` as this often represents the host within that subnet.
+{{</alert>}}
+
 ## From a separate host
 
 {{< figure src="../images/10.svg" width="400" >}}
