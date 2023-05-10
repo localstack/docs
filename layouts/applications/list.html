@@ -22,7 +22,7 @@
             <div class="td-content">
                 <h1>{{ .Title }}</h1>
                 {{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}
-                <a href="javascript:void(0)" class="show-all-apps-btn" style="display: none;">Show all Applications</a>
+                <a href="javascript:void(0)" id="show-all-apps-btn" style="display: none;">Show all Applications</a>
                 <header class="article-meta">
                     {{ partial "taxonomy_terms_article_wrapper.html" . }}
                     {{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) }}
@@ -53,7 +53,13 @@
                                 {{$deployment := cond (ne (len .deployment) 0)  (printf " deployment-%s" (delimit .deployment " deployment-")) "" }}
                                 {{$platform := cond (ne (len .platform) 0)  (printf " platform-%s" (delimit .platform " platform-")) "" }}
                                 {{$cloudpod := cond (eq (.cloudPods) true) " cloudpod-true" "" }}
-                                <div class='entry col-xs-12 col-sm-6 col-md-4{{$services}}{{$deployment}}{{ $platform }}{{$cloudpod}}' data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}' data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}' data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}' data-slug="{{.title | urlize}}">
+                                <div
+                                  class='entry application-card col-xs-12 col-sm-6 col-md-4{{$services}}{{$deployment}}{{ $platform }}{{$cloudpod}}'
+                                  data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}'
+                                  data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}'
+                                  data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}'
+                                  data-slug="{{.title | urlize}}"
+                                  >
                                     <div class="card h-100">
                                       <div>
                                         <img src="{{.teaser}}" >
@@ -66,10 +72,17 @@
                                             </h5>
                                             <div>
                                               {{ range .services }}
-                                                <img src="/images/services/{{ . }}.svg" style="border-radius: 4px; max-width: 30px;margin-right: 5px; margin-top: 5px" data-toggle="tooltip" data-placement="top" title="{{index $servicesData .}}" aria-label="{{index $servicesData .}}">
+                                                <img
+                                                  src="/images/services/{{ . }}.svg"
+                                                  class="application-icon" data-toggle="tooltip" data-placement="top"
+                                                  title="{{index $servicesData .}}" aria-label="{{index $servicesData .}}"
+                                                />
                                               {{ end }}
                                               {{ with .pro }}
-                                              <img src="/images/pro-badge.png" style="border-radius: 4px; max-width: 30px;margin-right: 5px; margin-top: 5px"  data-toggle="tooltip" data-placement="top" title="Localstack Pro" aria-label="Localstack Pro">
+                                              <img
+                                                src="/images/pro-badge.png" class="application-icon" data-toggle="tooltip"
+                                                data-placement="top" title="Localstack Pro" aria-label="Localstack Pro"
+                                              />
                                               {{ end }}
                                             </div>
                                             <div>
@@ -84,9 +97,11 @@
                                     </div>
                                 </div>
                             {{ end }}
-                            <div class="no-results col-xs-12 flex-grow-1 text-center" style="display: none;">No applications available with the selected filters. <a href="javascript:void(0)" class="clear-filters-trigger" >Clear filters</a></div>
-
-                            </div>
+                                <div id="no-results" class="col-xs-12 flex-grow-1 text-center" style="display: none;">
+                                  No applications available with the selected filters.
+                                  <a href="javascript:void(0)" class="clear-filters-trigger" >Clear filters</a>
+                                </div>
+                             </div>
                             </div>
                         </div>
 
@@ -108,11 +123,6 @@
       </div>
       {{ partial "footer.html" . }}
     </div>
-    <script>
-      var servicesData = {{.Site.Data.developerhub.services}}
-      var deploymentsData = {{.Site.Data.developerhub.deployments}}
-      var platformsData = {{.Site.Data.developerhub.platforms}}
-    </script>
     {{ partial "scripts.html" . }}
   </body>
   <style>
@@ -123,10 +133,13 @@
     }
   </style>
   <script>
-    var $items = $(".entry");
-    var $noResults = $(".no-results");
+    var servicesData = {{.Site.Data.developerhub.services}};
+    var deploymentsData = {{.Site.Data.developerhub.deployments}};
+    var platformsData = {{.Site.Data.developerhub.platforms}};
+    var $items = $(".application-card");
+    var $noResults = $("#no-results");
     var $clearFiltersBtn = $(".clear-filters-trigger");
-    var $showAllAppsBtn = $('.show-all-apps-btn')
+    var $showAllAppsBtn = $("#show-all-apps-btn");
     var filtersState = {
       services: [],
       deployments: [],
@@ -134,7 +147,7 @@
       cloudpods: [],
     };
 
-    var checkboxItemHtmlGenerator = function (prefix, lookup, item) {
+    var generateCheckboxItemHtml = function (prefix, lookup, item) {
       return `
       <div class="custom-control custom-checkbox">
         <input type="checkbox" value="${prefix}-${item}" class="custom-control-input" id="${prefix}-${item}" aria-label="${prefix}-${item}">
@@ -143,9 +156,9 @@
       `;
     };
     var buildFiltersUI = function () {
-      let services = "",
-        deployments = "",
-        platforms = "";
+      let services = "";
+      let deployments = "";
+      let platforms = "";
 
       $items.each(function (_i, value) {
         let service = value.getAttribute("data-services"),
@@ -217,7 +230,7 @@
 
       if (!isFiltersApplied()) {
         $('aside').find($clearFiltersBtn).hide();
-        $items.show(); // Show all items if no filters are applied
+        $items.show();
         return;
       }
 
