@@ -127,7 +127,7 @@ mDNSRespo 627 _mdnsresponder   55u  IPv6 0xbe20f6c34d8b9d75      0t0  TCP *:53 (
 
 If this is the case, you can disable "Internet Sharing" in system preferences, which should disable Bonjour and therefore `mDNSResponder`.
 
-{{<alert>}}
+{{< alert title="Note">}}
 From LocalStack version 2.0.0, LocalStack does not fail to start when ports on the host cannot be bound.
 This includes port 53 for DNS.
 {{</alert>}}
