@@ -2,7 +2,12 @@
 
 # Example usage
 # bash create-applications.sh ../../../data/developerhub/applications.json
+# Dependencies for this script: jq
 
+# This function converts a given string into a URL-friendly slug by
+# replacing non-alphanumeric characters with hyphens, removing apostrophes,
+# transliterating any non-ASCII characters to their closest ASCII equivalent,
+# and converting all characters to lowercase.
 function slugify() {
   iconv -t ascii//TRANSLIT \
   | tr -d "'" \
@@ -15,6 +20,12 @@ if [[ $# -eq 0 ]] ; then
     exit 0
 fi
 APPLICATIONS=$(jq '.applications' $1)
+
+# The loop iterates applications array encoded in base64 format to avoid special characters.
+# The data is decoded back to its original JSON format and data is extracted using jq.
+# A slug is created from the title, and a folder is created with the slug as the folder name.
+# An index.md file is created inside the folder,
+# which contains the application information extracted earlier.
 for row in $(echo "${APPLICATIONS}" | jq -r '.[] | @base64'); do
     _jq() {
      echo ${row} | base64 --decode | jq -r ${1}

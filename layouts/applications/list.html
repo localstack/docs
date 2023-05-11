@@ -99,7 +99,7 @@
                             {{ end }}
                                 <div id="no-results" class="col-xs-12 flex-grow-1 text-center" style="display: none;">
                                   No applications available with the selected filters.
-                                  <a href="javascript:void(0)" class="clear-filters-trigger" >Clear filters</a>
+                                  <a href="javascript:void(0)" class="clear-filters-btn" >Clear filters</a>
                                 </div>
                              </div>
                             </div>
@@ -138,7 +138,7 @@
     var platformsData = {{.Site.Data.developerhub.platforms}};
     var $items = $(".application-card");
     var $noResults = $("#no-results");
-    var $clearFiltersBtn = $(".clear-filters-trigger");
+    var $clearFiltersBtn = $(".clear-filters-btn");
     var $showAllAppsBtn = $("#show-all-apps-btn");
     var filtersState = {
       services: [],
@@ -161,9 +161,9 @@
       let platforms = "";
 
       $items.each(function (_i, value) {
-        let service = value.getAttribute("data-services"),
-          platform = value.getAttribute("data-platforms"),
-          deployment = value.getAttribute("data-deployments");
+        let service = value.getAttribute("data-services");
+        let platform = value.getAttribute("data-platforms");
+        let deployment = value.getAttribute("data-deployments");
 
         services += service ? service.split(",") + "," : "";
         platforms += platform ? platform.split(",") + "," : "";
