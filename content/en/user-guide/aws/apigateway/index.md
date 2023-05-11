@@ -170,7 +170,7 @@ Now, create a new integration for the method using the [`PutIntegration`](https:
 {{< command >}}
 $ awslocal apigateway put-integration \
   --rest-api-id <REST_API_ID> \
-  --resource-id <RSOURCE_ID> \
+  --resource-id <RESOURCE_ID> \
   --http-method GET \
   --type AWS_PROXY \
   --integration-http-method POST \
