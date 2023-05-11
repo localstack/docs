@@ -146,29 +146,38 @@ $ awslocal lambda create-function \
     --function-name localstack-lambda-container-image \
     --package-type Image \
     --code ImageUri="localstack-lambda-container-image" \
-    --role arn:aws:iam::000000000:role/lambda-role \
+    --role arn:aws:iam::000000000000:role/lambda-role \
     --handler handler.handler
 {
     "FunctionName": "localstack-lambda-container-image",
-    "FunctionArn": "arn:aws:lambda:<REGION>:000000000000:function:localstack-lambda-container-image",
-    "Role": "arn:aws:iam::000000000:role/lambda-role",
+    "FunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:localstack-lambda-container-image",
+    "Role": "arn:aws:iam::000000000000:role/lambda-role",
     "Handler": "handler.handler",
+    "CodeSize": 0,
     "Description": "",
     "Timeout": 3,
-    "LastModified": "<TIMESTAMP>",
+    "MemorySize": 128,
+    "LastModified": "2023-05-11T06:06:37.372826+0000",
+    "CodeSha256": "9be73524cd5aa70fbcee3fc8d7aac4eb7e2a644e9ef2b13031719077a65c0031",
     "Version": "$LATEST",
-    "VpcConfig": {},
     "TracingConfig": {
         "Mode": "PassThrough"
     },
-    "RevisionId": "<REVISION_ID>",
-    "Layers": [],
-    "State": "Active",
-    "LastUpdateStatus": "Successful",
+    "RevisionId": "f953a7ea-4d92-4458-a46c-821c056fd33c",
+    "State": "Pending",
+    "StateReason": "The function is being created.",
+    "StateReasonCode": "Creating",
     "PackageType": "Image",
     "Architectures": [
         "x86_64"
-    ]
+    ],
+    "EphemeralStorage": {
+        "Size": 512
+    },
+    "SnapStart": {
+        "ApplyOn": "None",
+        "OptimizationStatus": "Off"
+    }
 }
 {{< / command >}}
 
@@ -193,9 +202,6 @@ $ awslocal lambda invoke --function-name localstack-lambda-container-image /tmp/
 The command above will execute the Lambda function locally within the LocalStack environment. The response will include the StatusCode, LogResult, and ExecutedVersion. You can find the logs of the Lambda invocation in the LocalStack container output, precisely when `DEBUG=1` is enabled.
 
 {{< command >}}
-Starting XRay server loop on UDP port 2000
-Starting DNS server loop on UDP port 53
------
 Hello from LocalStack Lambda container image!
 {{< / command >}}
 
