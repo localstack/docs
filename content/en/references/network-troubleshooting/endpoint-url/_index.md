@@ -112,17 +112,33 @@ networks:
 This feature is only part of our pro offering.
 {{</alert>}}
 
-Resources created by LocalStack are accessible via virtual host addressing, for example an S3 bucket can be accessed at `<bucket>.s3.<region>.localhost.localstack.cloud`, however this hostname resolves to the ip address `127.0.0.1`.
-This domain name may not be resolvable from containers running in your docker network, since by default any subdomains of `localhost.localstack.cloud` are aliased to `127.0.0.1`.
+Some resources created by LocalStack are accessible via virtual host addressing, for example an S3 bucket can be accessed at `<bucket>.s3.<region>.localhost.localstack.cloud`.
+The LocalStack container is not reachable at this address from containers running in your docker network, since by default any subdomains of `localhost.localstack.cloud` resolve to `127.0.0.1`.
 If docker supported wildcard DNS configuration with `--network-alias` (docker CLI) or `aliases:` (`docker-compose`), this could be solved with docker configuration alone.
 
 In order to map more complex domain names to the LocalStack container within the docker network, the LocalStack container can be used as a DNS server, but this requires more configuration.
 Specifically the LocalStack container must have a static IP address within the network.
 This can be achieved with the following `docker-compose.yml` example:
 
-**TODO(srw)**: docker cli example
-
-```yaml
+{{<tabpane>}}
+{{<tab header="Docker" lang="bash">}}
+# create the network
+docker network create my-network --subnet <ip address range CIDR>
+# start LocalStack
+docker run --rm -it \
+    --network my-network \
+    --ip <private ip address> \
+    -e DNS_RESOLVE_IP=<private ip address> \
+    <other flags> \
+    localstack/localstack-pro
+# start your application container
+docker run --rm -it \
+    --dns <private ip address> \
+    --network my-network \
+    <args>
+# then your code can access LocalStack at <subdomain>.localhost.localstack.cloud
+{{</tab>}}
+{{<tab header="docker-compose" lang="yaml">}}
 services:
   localstack:
     # ... other configuration here
@@ -145,7 +161,8 @@ networks:
     ipam:
       config:
         - subnet: <ip address range CIDR>
-```
+{{</tab>}}
+{{</tabpane>}}
 
 For example, with the following values:
 
