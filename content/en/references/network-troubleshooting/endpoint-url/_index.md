@@ -108,6 +108,10 @@ networks:
 
 ### Wildcard DNS access
 
+{{<alert title="Pro only" color="warning">}}
+This feature is only part of our pro offering.
+{{</alert>}}
+
 Resources created by LocalStack are accessible via virtual host addressing, for example an S3 bucket can be accessed at `<bucket>.s3.<region>.localhost.localstack.cloud`, however this hostname resolves to the ip address `127.0.0.1`.
 This domain name may not be resolvable from containers running in your docker network, since by default any subdomains of `localhost.localstack.cloud` are aliased to `127.0.0.1`.
 If docker supported wildcard DNS configuration with `--network-alias` (docker CLI) or `aliases:` (`docker-compose`), this could be solved with docker configuration alone.
