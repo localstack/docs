@@ -93,6 +93,16 @@ AWS does not allow creating a queue with the same name for 60 seconds after it w
 See the [DeleteQueue API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
 LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with `SQS_DELAY_RECENTLY_DELETED=1`.
 
+### Disable CloudWatch Metrics Reporting
+
+Sending, receiving, and deleting SQS messages will automatically trigger CloudWatch metrics. 
+This [AWS parity feature](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html) is enabled by default, but can be deactivated.
+
+Additionally, metrics about `Approximate*` messages are send to CloudWatch by default once every minute, but the interval (in seconds) can also be configured using `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL=120`.
+
+`SQS_DISABLE_CLOUDWATCH_METRICS=1` will disable all CloudWatch metrics for SQS (including `Approximate*` metrics).
+
+
 ## Developer endpoints
 
 Our SQS implementation provides additional endpoints for developers under `/_aws/sqs`, that allow you to inspect queues without side effects.
