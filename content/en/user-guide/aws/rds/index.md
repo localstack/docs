@@ -68,7 +68,16 @@ DB Snapshots are currently not supported for MSSQL.
 
 ## End-to-end example (Postgres)
 
-The local RDS service also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries against RDS clusters over a JSON/REST interface. Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple `SELECT 123` query via the RDS Data API.
+The local RDS service also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries against RDS clusters over a JSON/REST interface. 
+
+Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple `SELECT 123` query via the RDS Data API.
+
+{{< alert title="Note" >}}
+Secrets for RDS can currently only be resolved when providing the secret directly, like in the sample below. 
+The json-format is not yet supported.
+{{< /alert >}}
+
+
 {{< command >}}
 $ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test
 {
@@ -80,7 +89,6 @@ $ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-pos
         ...
     }
 }
-
 
 $ awslocal secretsmanager create-secret --name dbpass --secret-string test
 {
