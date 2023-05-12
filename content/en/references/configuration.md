@@ -79,7 +79,7 @@ This section covers configuration values that are specific to certain AWS servic
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `GRAPHQL_ENDPOINT_STRATEGY` | `legacy`\|`domain`\|`path` |  Governs how AppSync endpoints are created to access a GraphQL API (see [AppSync Endpoints]({{< ref "appsync#endpoints" >}})) |
+| `GRAPHQL_ENDPOINT_STRATEGY` | `legacy`\|`domain`\|`path` |  Governs how AppSync endpoints are created to access a GraphQL API (see [AppSync Endpoints]({{< ref "/tags/appsync#endpoints" >}})) |
 
 ### Batch
 
@@ -199,7 +199,7 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 | | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. |
 | `LAMBDA_TRUNCATE_STDOUT` | `2000` (default) | Allows increasing the default char value for truncation of lambda logs. This does not affect the logs processing in CloudWatch.<br> **Still supported in new provider.** |
 | `BUCKET_MARKER_LOCAL` | `__local__` (default) | Optional bucket name for running lambdas locally.<br> **Still supported in new provider but default changed to `hot-reload`.** |
-| `LAMBDA_CODE_EXTRACT_TIME` | `25` (default) | Time in seconds to wait at max while extracting Lambda code. By default, it is 25 seconds for limiting the execution time to avoid client/network timeout issues. <br> **Removed in new provider because function creation happens asynchronously.**| 
+| `LAMBDA_CODE_EXTRACT_TIME` | `25` (default) | Time in seconds to wait at max while extracting Lambda code. By default, it is 25 seconds for limiting the execution time to avoid client/network timeout issues. <br> **Removed in new provider because function creation happens asynchronously.**|
 | `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to.<br> **Still supported in new provider.** |
 | `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function.<br> **Currently not supported in new provider.** |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, user, platform and privileged mode.<br> **Still supported in new provider.** |

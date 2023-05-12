@@ -5,87 +5,104 @@
       "description": "Deploy a Full-Stack Serverless Web application, and deploy it with Terraform & CloudFormation on LocalStack",
       "url": "https://github.com/localstack/serverless-api-ecs-apigateway-sample",
       "teaser": "https://raw.githubusercontent.com/localstack/serverless-api-ecs-apigateway-sample/main/images/serverless-container-api.png",
-      "services": ["ddb", "agw", "iam", "cgn", "ecs"],
+      "services": ["ddb", "agw", "iam", "cgn", "ecs","s3"],
       "deployment":  ["terraform", "awscli","cloudformation"],
       "platform": ["javascript"],
       "tags": ["serverless-containers", "security", "identity", "compliance"],
-      "pro": true
+      "complexity": ["intermediate"],
+      "pro": true,
+      "cloudPods": false
     },
     {
       "title": "Full-Stack application with AWS Lambda, DynamoDB & S3 for shipment validation",
       "description": "Configure a CRUD web application for shipment validation & listing, and deploy it with Terraform on LocalStack",
       "url": "https://github.com/localstack/shipment-list-demo",
       "teaser": "https://raw.githubusercontent.com/localstack/shipment-list-demo/master/app_diagram.png",
-      "services": ["s3", "ddb", "lmb", "iam"],
+      "services": ["s3", "ddb", "lmb", "iam", "cwl"],
       "deployment":  ["terraform"],
-      "platform": ["java", "react"],
+      "platform": ["java", "javascript"],
       "tags": ["spring-boot", "lambda-trigger"],
-      "pro": false
+      "complexity": ["intermediate"],
+      "pro": false,
+      "cloudPods": false
     },
     {
       "title": "Step-up Authentication using Amazon Cognito",
       "description": "Setup a Step-up Authentication workflow for a higher level of security, deployed using Cloud Development Kit on LocalStack",
       "url": "https://github.com/localstack/step-up-auth-sample",
       "teaser": "https://raw.githubusercontent.com/localstack/step-up-auth-sample/main/images/step-up-architecture.png",
-      "services": ["agw", "lmb", "ddb", "cgn"],
+      "services": ["agw", "lmb", "ddb", "cgn", "clf", "s3", "ecr", "ebr", "cfr", "ssm"],
       "deployment":  ["cdk", "awscli"],
       "platform": ["typescript","javascript"],
       "tags": ["step-up-auth", "rule-based-authentication", "localsurf"],
-      "pro": true
+      "complexity": ["advanced"],
+      "pro": true,
+      "cloudPods": true
     },
     {
       "title": "Serverless microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda",
       "description": "Serverless microservices for managing friend state in gaming services asynchronously deployed using Cloud Development Kit on LocalStack",
       "url": "https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample",
       "teaser": "https://raw.githubusercontent.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample/main/images/microservices-apigateway-lambda-dynamodb-sqs-sample-architecture.png",
-      "services": ["lmb", "agw", "ddb", "sqs"],
-      "deployment":  ["cdk"],
-      "platform": ["typescript"],
+      "services": ["lmb", "agw", "ddb", "sqs","agw", "clf", "s3", "ecr", "ebr", "kns", "iam", "ssm"],
+      "deployment":  ["cdk", "awscli"],
+      "platform": ["typescript", "javascript"],
       "tags": ["serverless", "microservices"],
-      "pro": true
+      "complexity": ["basic"],
+      "pro": true,
+      "cloudPods": false
     },
     {
       "title": "Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3",
       "description": "Event-driven architecture demonstrating a recruiting agency application deployed using Serverless Application Model on LocalStack",
       "url": "https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo",
       "teaser": "https://raw.githubusercontent.com/localstack/event-driven-architecture-with-amazon-sns-fifo/master/images/architecture.png",
-      "services": ["sqs", "lmb", "ddb", "sns", "s3"],
-      "deployment":  ["samlocal", "sam"],
+      "services": ["sqs", "lmb", "ddb", "sns", "s3", "clf","ebr", "cwl", "iam"],
+      "deployment":  ["sam"],
       "platform": ["python"],
       "tags": ["serverless", "event-driven-architecture"],
-      "pro": true
+      "complexity": ["intermediate"],
+      "pro": true,
+      "cloudPods": false
     },
     {
       "title": "Note-Taking application using AWS SDK for JavaScript",
       "description": "Serverless Note-Taking application demonstrating a Web Application built using Lambda, API Gateway, and DynamoDB deployed using CDK on LocalStack",
       "url": "https://github.com/localstack/aws-sdk-js-notes-app",
       "teaser": "https://raw.githubusercontent.com/localstack/aws-sdk-js-notes-app/main/aws-sdk-js-notes.png",
-      "services": ["agw", "lmb", "ddb"],
-      "deployment":  ["awslocal", "cdklocal"],
+      "services": [ "lmb", "ddb","clf", "cwl", "iam", "s3", "sns", "ebr", "sqs"],
+      "deployment":  ["awscli", "cdk"],
       "platform": ["typescript", "javascript"],
       "tags": ["serverless"],
-      "pro": true
+      "complexity": ["basic"],
+      "pro": true,
+      "cloudPods": false
     },
     {
       "title": "Serverless Image Resizer with AWS Lambda, S3, SNS, and SES",
       "description": "Serverless Image Resizer demonstrating a Web Application to resize upload images using S3 & Lambda with SNS to SES Subscriptions on LocalStack",
       "url": "https://github.com/localstack/serverless-image-resizer",
       "teaser": "https://user-images.githubusercontent.com/3996682/229322761-92f52eec-5bfb-412a-a3cb-8af4ee1fed24.png",
-      "services": ["s3", "lmb", "sns", "ses"],
-      "deployment":  ["awslocal"],
+      "services": ["s3", "lmb", "sns", "ses", "ebr","cwl","ssm"],
+      "deployment":  ["awscli"],
       "platform": ["python"],
       "tags": ["serverless"],
-      "pro": false
+      "complexity": ["intermediate"],
+      "pro": false,
+      "cloudPods": true
     },
     {
       "title": "Query data in S3 Bucket with Amazon Athena, Glue Catalog & CloudFormation",
       "description": "Leverage Amazon Athena to run standard SQL to analyze a large amount of data in Amazon S3 buckets deployed using CloudFormation on LocalStack",
       "url": "https://github.com/localstack/query-data-s3-athena-glue-sample",
       "teaser": "https://raw.githubusercontent.com/localstack/query-data-s3-athena-glue-sample/main/images/architecture.png",
-      "services": ["s3", "ath", "glu"],
-      "deployment":  ["awslocal", "cloudformation"],
+      "services": ["s3", "ath", "glu", "clf"],
+      "deployment":  ["awscli"],
+      "platform": [],
       "tags" : ["big-data", "data-analytics"],
-      "pro": true
+      "complexity": ["intermediate"],
+      "pro": true,
+      "cloudPods": false
     },
     {
       "title": "AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL",
@@ -93,9 +110,12 @@
       "url": "https://github.com/localstack/appsync-graphql-api-sample",
       "teaser": "https://raw.githubusercontent.com/localstack/appsync-graphql-api-sample/main/images/appsync-datasource-architecture.png",
       "services": ["rds", "ddb", "app"],
-      "deployment":  ["serverless-framework"],
+      "deployment":  ["serverless"],
+      "platform": ["python"],
       "tags" : ["graphql", "appsync", "databases", "rds", "dynamodb"],
-      "pro": true
+      "complexity": ["intermediate"],
+      "pro": true,
+      "cloudPods": false
     },
     {
       "title": "MNIST handwritten digit recognition model running on a local SageMaker endpoint",
@@ -103,19 +123,25 @@
       "url": "https://github.com/localstack/mnist-sagemaker",
       "teaser": "https://raw.githubusercontent.com/localstack/mnist-sagemaker/main/assets/architecture-diagram.png",
       "services": ["sgm", "lmb", "s3"],
-      "deployment":  ["boto3"],
+      "deployment":  ["serverless"],
+      "platform": ["javascript"],
       "tags" : ["machine-learning", "serverless"],
-      "pro": true
+      "complexity": ["intermediate"],
+      "pro": true,
+      "cloudPods": false
     },
     {
       "title": "Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS",
       "description": "Serverless architecture demonstrating a Loan Broker application with a a Recipient List pattern and a Scatter Gather pattern deployed using Cloud Development Kit (CDK) on LocalStack",
       "url": "https://github.com/localstack/loan-broker-stepfunctions-lambda-app",
       "teaser": "https://raw.githubusercontent.com/localstack/loan-broker-stepfunctions-lambda-app/main/images/architecture-diagram.png",
-      "services": ["ddb", "lmb", "sqs", "sns", "sfn"],
+      "services": ["ddb", "lmb", "sqs", "sns", "stf"],
       "deployment":  ["cdk"],
+      "platform": ["typescript", "javascript"],
       "tags": ["serverless"],
-      "pro": false
+      "complexity": ["advanced"],
+      "pro": false,
+      "cloudPods": false
     }
   ]
 }
