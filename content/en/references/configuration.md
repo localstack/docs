@@ -35,6 +35,7 @@ $ DEBUG=1 localstack start
 | `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of [the external service port range]({{< ref "external-ports" >}}) (excluded). |
 | `EAGER_SERVICE_LOADING` | `0` (default) | Boolean that toggles lazy loading of services. If eager loading is enabled, services are started at LocalStack startup rather than their first use. Eager loading significantly increases LocalStack startup time. |
 | `ALLOW_NONSTANDARD_REGIONS` | `0` (default) | Allows the use of non-standard AWS regions. By default, LocalStack only accepts [standard AWS regions](https://docs.aws.amazon.com/general/latest/gr/rande.html). |
+| `PARITY_AWS_ACCESS_KEY_ID` | `0` (default) | Enables the use production-like access key IDs. By default, LocalStack issues keys with `LSIA...` and `LKIA...` prefix, and will reject keys that start with `ASIA...` or `AKIA...`. |
 
 [1]: http://docs.aws.amazon.com/cli/latest/reference/#available-services
 
