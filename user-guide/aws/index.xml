@@ -9651,6 +9651,12 @@ LocalStack disables this behavior by default, but it can be enabled by starting 
 &lt;p>AWS does not allow creating a queue with the same name for 60 seconds after it was deleted.
 See the &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html">DeleteQueue API Reference&lt;/a>.
 LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with &lt;code>SQS_DELAY_RECENTLY_DELETED=1&lt;/code>.&lt;/p>
+&lt;h3 id="disable-cloudwatch-metrics-reporting">Disable CloudWatch Metrics Reporting&lt;/h3>
+&lt;p>Sending, receiving, and deleting SQS messages will automatically trigger CloudWatch metrics.
+This &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html">AWS parity feature&lt;/a> is enabled by default, but can be deactivated.
+Deactivating CloudWatch metrics can improve the performance of SQS message operations, but will disable any integration with CloudWatch such as triggering alarms.&lt;/p>
+&lt;p>Additionally, metrics about &lt;code>Approximate*&lt;/code> messages are send to CloudWatch by default once every minute, but the interval (in seconds) can also be configured using &lt;code>SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL=120&lt;/code>.&lt;/p>
+&lt;p>&lt;code>SQS_DISABLE_CLOUDWATCH_METRICS=1&lt;/code> will disable all CloudWatch metrics for SQS (including &lt;code>Approximate*&lt;/code> metrics).&lt;/p>
 &lt;h2 id="developer-endpoints">Developer endpoints&lt;/h2>
 &lt;p>Our SQS implementation provides additional endpoints for developers under &lt;code>/_aws/sqs&lt;/code>, that allow you to inspect queues without side effects.
 For instance, sometimes you want to peek into queues without actually performing a &lt;code>ReceiveMessage&lt;/code> operation.&lt;/p>
