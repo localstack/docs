@@ -97,6 +97,7 @@ LocalStack disables this behavior by default, but it can be enabled by starting 
 
 Sending, receiving, and deleting SQS messages will automatically trigger CloudWatch metrics. 
 This [AWS parity feature](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html) is enabled by default, but can be deactivated.
+Deactivating CloudWatch metrics can improve the performance of SQS message operations, but will disable any integration with CloudWatch such as triggering alarms.
 
 Additionally, metrics about `Approximate*` messages are send to CloudWatch by default once every minute, but the interval (in seconds) can also be configured using `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL=120`.
 
