@@ -115,7 +115,7 @@ $ mkdir -p /tmp/python/
 $ echo 'def util():' > /tmp/python/testlayer.py
 $ echo '  print("Output from Lambda layer util function")' >> /tmp/python/testlayer.py
 $ (cd /tmp; zip -r testlayer.zip python)
-$ LAYER_ARN=$(awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip | jq -r .LayerArn)
+$ LAYER_ARN=$(awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip | jq -r .LayerVersionArn)
 {{< / command >}}
 
 Next, define a Lambda function that uses our layer:
@@ -132,7 +132,7 @@ $ awslocal lambda create-function \
   --handler testlambda.handler \
   --timeout 30 \
   --zip-file fileb:///tmp/testlambda.zip \
-  --layers $LAYER_ARN:1
+  --layers $LAYER_ARN
 {{< / command >}}
 
 Here, we've defined a Lambda function called `handler()` that imports the `util()` function from our `layer1` Lambda Layer. We then used the [`CreateFunction` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) to create this Lambda function in LocalStack, specifying the `layer1` Lambda Layer as a dependency.
