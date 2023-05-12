@@ -52,12 +52,15 @@
                                 {{$services := cond (ne (len .services) 0)  (printf " service-%s" (delimit .services " service-")) "" }}
                                 {{$deployment := cond (ne (len .deployment) 0)  (printf " deployment-%s" (delimit .deployment " deployment-")) "" }}
                                 {{$platform := cond (ne (len .platform) 0)  (printf " platform-%s" (delimit .platform " platform-")) "" }}
+                                {{$level := cond (ne (len .complexity) 0)  (printf " level-%s" (delimit .complexity " level-")) "" }}
                                 {{$cloudpod := cond (eq (.cloudPods) true) " cloudpod-true" "" }}
+                                {{$className := print $services $deployment $platform $level $cloudpod}}
                                 <div
-                                  class='entry application-card col-xs-12 col-sm-6 col-md-4{{$services}}{{$deployment}}{{ $platform }}{{$cloudpod}}'
+                                  class='entry application-card col-xs-12 col-sm-6 col-md-4{{$className}}'
                                   data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}'
                                   data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}'
                                   data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}'
+                                  data-levels='{{cond (ne (len .complexity) 0) (delimit .complexity ",") ""}}'
                                   data-slug="{{.title | urlize}}"
                                   >
                                     <div class="card h-100">
@@ -136,6 +139,8 @@
     var servicesData = {{.Site.Data.developerhub.services}};
     var deploymentsData = {{.Site.Data.developerhub.deployments}};
     var platformsData = {{.Site.Data.developerhub.platforms}};
+    var levelsData = {{.Site.Data.developerhub.complexities.data}};
+    var levelOrder = {{.Site.Data.developerhub.complexities.order}};
     var $items = $(".application-card");
     var $noResults = $("#no-results");
     var $clearFiltersBtn = $(".clear-filters-btn");
@@ -144,14 +149,20 @@
       services: [],
       deployments: [],
       platforms: [],
+      levels: [],
       cloudpods: [],
+    };
+
+    var levelsSorter = function (a, b){
+      // Required as its custom sorting
+      return levelOrder.indexOf(a) - levelOrder.indexOf(b);
     };
 
     var generateCheckboxItemHtml = function (prefix, lookup, item) {
       return `
       <div class="custom-control custom-checkbox">
         <input type="checkbox" value="${prefix}-${item}" class="custom-control-input" id="${prefix}-${item}" aria-label="${prefix}-${item}">
-        <label class="custom-control-label" for="${prefix}-${item}">${lookup[item] || item}</label>
+        <label class="custom-control-label" for="${prefix}-${item}">${lookup ? lookup[item] : item}</label>
       </div>
       `;
     };
@@ -159,25 +170,30 @@
       let services = "";
       let deployments = "";
       let platforms = "";
+      let levels = "";
 
       $items.each(function (_i, value) {
         let service = value.getAttribute("data-services");
         let platform = value.getAttribute("data-platforms");
         let deployment = value.getAttribute("data-deployments");
+        let level = value.getAttribute("data-levels");
 
         services += service ? service.split(",") + "," : "";
         platforms += platform ? platform.split(",") + "," : "";
         deployments += deployment ? deployment.split(",") + "," : "";
+        levels += level ? level.split(",") + "," : "";
       });
 
       // Set removes duplicates
       services = Array.from(new Set(services.slice(0, -1).split(",")));
       platforms = Array.from(new Set(platforms.slice(0, -1).split(",")));
       deployments = Array.from(new Set(deployments.slice(0, -1).split(",")));
+      levels = Array.from(new Set(levels.slice(0, -1).split(",")));
 
       let servicesHtml = "";
       let deploymentsHtml = "";
       let platformsHtml = "";
+      let levelsHtml = "";
 
       services.sort().map(function (service) {
         servicesHtml += generateCheckboxItemHtml("service", servicesData, service);
@@ -188,10 +204,14 @@
       platforms.sort().map(function (platform) {
         platformsHtml += generateCheckboxItemHtml("platform", platformsData, platform);
       });
+      levels.sort(levelsSorter).map(function (level) {
+        levelsHtml += generateCheckboxItemHtml("level", levelsData, level);
+      });
 
       $("#filters-services-container").html(servicesHtml);
       $("#filter-deployments-container").html(deploymentsHtml);
       $("#filter-platforms-container").html(platformsHtml);
+      $("#filter-levels-container").html(levelsHtml);
     };
 
     var bindFilterEvents = function () {
