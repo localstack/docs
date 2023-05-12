@@ -1,0 +1,23 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – access-key-id</title><link>/tags/access-key-id/</link><description>Recent content in access-key-id on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/access-key-id/index.xml" rel="self" type="application/rss+xml"/><item><title>References: Credentials</title><link>/references/credentials/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/credentials/</guid><description>
+&lt;p>Like AWS, LocalStack requires access key IDs to be set in all operations.
+The choice of access key ID will affect &lt;a href="/references/multi-account-setups/">multi-account namespacing&lt;/a>.
+Values of secret access keys are currently ignored by LocalStack.&lt;/p>
+&lt;p>Access key IDs can be one of following patterns:&lt;/p>
+&lt;h3 id="accounts-ids">Accounts IDs&lt;/h3>
+&lt;p>You can specify a 12-digit number which will be taken by LocalStack as the account ID.
+For example, &lt;code>112233445566&lt;/code>.&lt;/p>
+&lt;h3 id="structured-access-key-id">Structured access key ID&lt;/h3>
+&lt;p>You can specify a structured key like &lt;code>LSIAQAAAAAAVNCBMPNSG&lt;/code> (which translates to account ID &lt;code>000000000042&lt;/code>).
+This must be at least 20 characters in length and must be decodable to an account ID.&lt;/p>
+&lt;p>By default, LocalStack will only accept access keys that start with the &lt;code>LSIA...&lt;/code> or &lt;code>LKIA...&lt;/code> prefix.
+If keys with &lt;code>ASIA...&lt;/code>/&lt;code>AKIA...&lt;/code> prefix are provided, these are rejected and the fallback account ID &lt;code>000000000000&lt;/code> is used.
+This is a safeguard to prevent misuse of production AWS access key IDs.
+To disable this safeguard, set the &lt;code>PARITY_AWS_ACCESS_KEY_ID&lt;/code> configuration variable.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Disabling the access key safeguard and using production access key IDs may cause accidental connections to AWS.
+We strongly recommend leaving it on.
+&lt;/div>
+&lt;h3 id="alphanumeric-string">Alphanumeric string&lt;/h3>
+&lt;p>You can also specify an arbitrary alphanumeric access key ID like &lt;code>test&lt;/code> or &lt;code>foobar123&lt;/code>.
+In all such cases, the account ID will be evalutated to &lt;code>000000000000&lt;/code>.&lt;/p></description></item></channel></rss>
