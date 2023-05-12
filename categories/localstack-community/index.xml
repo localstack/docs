@@ -3258,7 +3258,7 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;def util():&amp;#39; &amp;gt; /tmp/python/testlayer.py
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; print(&amp;#34;Output from Lambda layer util function&amp;#34;)&amp;#39; &amp;gt;&amp;gt; /tmp/python/testlayer.py
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>(cd /tmp; zip -r testlayer.zip python)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LAYER_ARN=$(awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip | jq -r .LayerArn)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LAYER_ARN=$(awslocal lambda publish-layer-version --layer-name layer1 --zip-file fileb:///tmp/testlayer.zip | jq -r .LayerVersionArn)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Next, define a Lambda function that uses our layer:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;def handler(*args, **kwargs):&amp;#39; &amp;gt; /tmp/testlambda.py
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39; import testlayer; testlayer.util()&amp;#39; &amp;gt;&amp;gt; /tmp/testlambda.py
@@ -3271,7 +3271,7 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler testlambda.handler \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 30 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb:///tmp/testlambda.zip \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --layers $LAYER_ARN:1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --layers $LAYER_ARN&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Here, we&amp;rsquo;ve defined a Lambda function called &lt;code>handler()&lt;/code> that imports the &lt;code>util()&lt;/code> function from our &lt;code>layer1&lt;/code> Lambda Layer. We then used the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html">&lt;code>CreateFunction&lt;/code> API&lt;/a> to create this Lambda function in LocalStack, specifying the &lt;code>layer1&lt;/code> Lambda Layer as a dependency.&lt;/p>
 &lt;p>To test our Lambda function and see the output from the Lambda Layer, we can invoke the function and check the logs (with &lt;code>DEBUG=1&lt;/code> enabled). Here&amp;rsquo;s an example:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&amp;gt; START RequestId: a8bc4ce6-e2e8-189e-cf58-c2eb72827c23 Version: &lt;span style="color:#000">$LATEST&lt;/span>
