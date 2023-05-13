@@ -33,7 +33,9 @@ or:
 ### Install Hugo
 LocalStack Docs is based on the [Hugo static site generator](https://gohugo.io).
 
-In order to contribute to LocalStack Docs, you need to [install Hugo](https://gohugo.io/getting-started/installing) in order to verify your changes. Make sure to install the _extended_ version of Hugo.
+In order to contribute to LocalStack Docs, you need to [install Hugo](https://gohugo.io/getting-started/installing) in order to verify your changes. Make sure to install the _extended_ version of Hugo version `v0.97.3` or major, there are some well-know issues on 0.8X  / 0.9.X versions.
+
+We recommend get the recent version of Hugo with `Brew` at https://formulae.brew.sh/formula/hugo
 
 ### Run locally
 Once you have Hugo installed, you can start your local server with the following command:
