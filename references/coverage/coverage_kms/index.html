@@ -1,7 +1,7 @@
 <!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en class=no-js><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.101.0"><meta name=robots content="index, follow"><link rel="shortcut icon" href=/favicons/favicon.ico><link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36><link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48><link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72><link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144><link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192><title>KMS (Key Management Service) | Docs</title><meta name=description content="Implementation details for API kms
 "><meta property="og:title" content="KMS (Key Management Service)"><meta property="og:description" content="Implementation details for API kms
 "><meta property="og:type" content="article"><meta property="og:url" content="/references/coverage/coverage_kms/"><meta property="article:section" content="references"><meta property="article:modified_time" content="2023-03-20T14:38:19+01:00"><meta property="og:site_name" content="Docs"><meta itemprop=name content="KMS (Key Management Service)"><meta itemprop=description content="Implementation details for API kms
-"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="5776"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="KMS (Key Management Service)"><meta name=twitter:description content="Implementation details for API kms
+"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="6067"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="KMS (Key Management Service)"><meta name=twitter:description content="Implementation details for API kms
 "><link rel=preload href=/scss/main.min.71d14bc4501c2375aa6ba71a924ecd222cda10b101b78fa8ce4cd2e48a824949.css as=style><link href=/scss/main.min.71d14bc4501c2375aa6ba71a924ecd222cda10b101b78fa8ce4cd2e48a824949.css rel=stylesheet integrity><script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@docsearch/css@3><script type=text/javascript id=hs-script-loader async defer src=//js-eu1.hs-scripts.com/26596507.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-101988473-1"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-101988473-1")}</script></head><body class=td-page><header><nav class="js-navbar-scroll navbar navbar-expand flex-column flex-md-row td-navbar"><div class=navbar-brand><a class=brand-link href=/><span class=navbar-logo><img src=/images/logo.svg height=40px></span>
@@ -302,12 +302,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_create_grant_with_valid_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_retirable_grants
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_list_retirable_grants</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_id_and_key_id
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_id_and_key_id</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_token
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_token</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_revoke_grant
@@ -372,28 +380,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_create_list_delete_alias</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_disable_and_enable_key
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_disable_and_enable_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_error_messaging_for_invalid_keys
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_error_messaging_for_invalid_keys</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_pair</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair_without_plaintext
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_pair_without_plaintext</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_without_plaintext
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_without_plaintext</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_key_does_not_exist
@@ -424,8 +420,12 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_plaintext_size_for_encrypt</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_id_and_key_id
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_id_and_key_id</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_token
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_token</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_revoke_grant
@@ -444,6 +444,22 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_update_key_description</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_pair</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair_without_plaintext
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_pair_without_plaintext</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_without_plaintext
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_without_plaintext</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: Description, KeySpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_hmac_create_key_invalid_operations
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_hmac_create_key_invalid_operations</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 400
@@ -456,6 +472,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: Description, KeySpec, KeyUsage</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cant_use_disabled_or_deleted_keys
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cant_use_disabled_or_deleted_keys</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_encrypt_decrypt[RSA_2048-RSAES_OAEP_SHA_256]
@@ -635,16 +655,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: CiphertextBlob, EncryptionContext, KeyId</a><ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_encrypt_via_aws_encryption_sdk
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_crypto.py::test_encrypt_via_aws_encryption_sdk</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: CiphertextBlob, KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_generate_data_key
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_pair</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: CiphertextBlob, KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_import_key
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_import_key</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_pair</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_error_messaging_for_invalid_keys
@@ -699,10 +723,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deploy_stack_with_kms
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_deploy_stack_with_kms</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deploy_stack_with_kms
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_deploy_stack_with_kms</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kms_key_disabled
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_kms_key_disabled</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kms_key_disabled
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_kms_key_disabled</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_dynamodb_create_table_with_partial_sse_specification
@@ -711,6 +731,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_key
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_create_key</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_describe_and_list_sign_key
@@ -895,6 +919,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_all_types_of_key_id_can_be_used_for_encryption</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_error_messaging_for_invalid_keys
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_error_messaging_for_invalid_keys</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -920,12 +948,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatedatakey style=scroll-margin-top:5rem>GenerateDataKey</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: EncryptionContext, KeyId, NumberOfBytes</a><ul><li>LocalStack Pro</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_encrypt_via_aws_encryption_sdk
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_crypto.py::test_encrypt_via_aws_encryption_sdk</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: KeyId, KeySpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cant_use_disabled_or_deleted_keys
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: KeyId, KeySpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cant_use_disabled_or_deleted_keys
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cant_use_disabled_or_deleted_keys</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cant_use_disabled_or_deleted_keys
@@ -938,19 +970,35 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 400
 (KMSInvalidStateException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatedatakeypair style=scroll-margin-top:5rem>GenerateDataKeyPair</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, KeyPairSpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_generate_data_key_pair
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_pair</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatedatakeypair style=scroll-margin-top:5rem>GenerateDataKeyPair</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, KeyPairSpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatedatakeypairwithoutplaintext style=scroll-margin-top:5rem>GenerateDataKeyPairWithoutPlaintext</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, KeyPairSpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_generate_data_key_pair_without_plaintext
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_pair_without_plaintext</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_pair</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatedatakeywithoutplaintext style=scroll-margin-top:5rem>GenerateDataKeyWithoutPlaintext</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, KeySpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_generate_data_key_without_plaintext
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_without_plaintext</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatedatakeypairwithoutplaintext style=scroll-margin-top:5rem>GenerateDataKeyPairWithoutPlaintext</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, KeyPairSpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatemac style=scroll-margin-top:5rem>GenerateMac</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, MacAlgorithm, Message</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair_without_plaintext
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_pair_without_plaintext</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatedatakeywithoutplaintext style=scroll-margin-top:5rem>GenerateDataKeyWithoutPlaintext</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: KeyId, KeySpec</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_generate_data_key_without_plaintext
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_without_plaintext</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=generatemac style=scroll-margin-top:5rem>GenerateMac</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, MacAlgorithm, Message</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -1060,7 +1108,11 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_kms_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=getkeyrotationstatus style=scroll-margin-top:5rem>GetKeyRotationStatus</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_key_rotation_status
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=getkeyrotationstatus style=scroll-margin-top:5rem>GetKeyRotationStatus</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_key_rotation_status
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_key_rotation_status</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -1072,7 +1124,11 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_import_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=getpublickey style=scroll-margin-top:5rem>GetPublicKey</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_get_public_key
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=getpublickey style=scroll-margin-top:5rem>GetPublicKey</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_public_key
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_get_public_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -1093,8 +1149,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[12]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cdk_bootstrap_redeploy
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap_redeploy</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_with_kms_resources
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_with_kms_resources
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_list_delete_alias
@@ -1130,8 +1184,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_create_grant_with_valid_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_id_and_key_id
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_id_and_key_id</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_token
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_token</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_revoke_grant
@@ -1242,11 +1304,23 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_list_retirable_grants</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: GrantToken</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_retire_grant
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_id_and_key_id
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_id_and_key_id</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=revokegrant style=scroll-margin-top:5rem>RevokeGrant</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: GrantId, KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_revoke_grant
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: GrantToken</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_token
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_token</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=revokegrant style=scroll-margin-top:5rem>RevokeGrant</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: GrantId, KeyId</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_revoke_grant
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_revoke_grant</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -1313,6 +1387,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_create_multi_region_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_describe_and_list_sign_key
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_describe_and_list_sign_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -1371,22 +1449,6 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_and_verify_mac[HMAC_512-HMAC_SHA_512]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_and_verify_mac[HMAC_512-HMAC_SHA_512]</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_pair</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair_without_plaintext
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_pair_without_plaintext</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_without_plaintext
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_data_key_without_plaintext</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_key_does_not_exist
@@ -1465,8 +1527,12 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_replicate_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_id_and_key_id
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_id_and_key_id</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_retire_grant_with_grant_token
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_retire_grant_with_grant_token</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_revoke_grant
@@ -1521,6 +1587,22 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_update_key_description</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_pair</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_pair_without_plaintext
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_pair_without_plaintext</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_data_key_without_plaintext
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMSGenerateKeys::test_generate_data_key_without_plaintext</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_security_groups
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_terraform.py::TestTerraform::test_security_groups</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cant_delete_deleted_key
@@ -1537,7 +1619,11 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementResourceBasedPolicies::test_kms_key</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=sign style=scroll-margin-top:5rem>Sign</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, Message, MessageType, SigningAlgorithm</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_sign_verify[ECC_NIST_P256-ECDSA_SHA_256]
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=sign style=scroll-margin-top:5rem>Sign</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, Message, MessageType, SigningAlgorithm</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sign_verify[ECC_NIST_P256-ECDSA_SHA_256]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_sign_verify[ECC_NIST_P256-ECDSA_SHA_256]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -1752,7 +1838,15 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 400
 (ValidationException)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=verifymac style=scroll-margin-top:5rem>VerifyMac</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, Mac, MacAlgorithm, Message</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: KeyId, Message, Signature, SigningAlgorithm</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=verifymac style=scroll-margin-top:5rem>VerifyMac</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: KeyId, Mac, MacAlgorithm, Message</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_cross_accounts_access
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_cross_accounts_access</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_kms.py::TestKMS::test_generate_and_verify_mac[HMAC_224-HMAC_SHA_224]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
