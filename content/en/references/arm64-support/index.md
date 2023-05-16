@@ -1,8 +1,8 @@
 ---
 title: "ARM64 Support"
-weight: 30
+weight: 50
 description: >
-  Describes the support for the ARM64 CPU architecture in LocalStack.
+  Running LocalStack on ARM64 CPUs
 tags: ["apple", "silicon", "m1", "raspberry pi"]
 aliases:
   - /localstack/arm64-support/

@@ -1,6 +1,6 @@
 ---
 title: Internal Endpoints
-weight: 120
+weight: 50
 tags:
 - internal-endpoints
 - localstack-endpoints

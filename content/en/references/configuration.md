@@ -1,8 +1,8 @@
 ---
 title: "Configuration"
-weight: 1
+weight: 10
 description: >
-  Environment variables which affect LocalStack.
+  Using environment variables to configure LocalStack
 aliases:
   - /localstack/configuration/
 ---

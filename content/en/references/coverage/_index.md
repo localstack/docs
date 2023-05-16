@@ -1,7 +1,7 @@
 ---
 title: "LocalStack Coverage"
 linkTitle: "LocalStack Coverage"
-weight: 2
+weight: 5
 description: >
   Overview of the implemented AWS APIs in LocalStack
 cascade:

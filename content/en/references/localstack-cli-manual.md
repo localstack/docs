@@ -1,8 +1,8 @@
 ---
-title: "LocalStack CLI manual"
-weight: 3
+title: "LocalStack CLI Manual"
+weight: 50
 description: >
-  The reference guide for LocalStack CLI commands and how to get started on using them!
+  Reference guide for LocalStack CLI commands
 ---
 
 The LocalStack command-line interface (CLI) is a tool for starting, managing, and configuring your LocalStack container. It provides convenience features that make it easier to use LocalStack, and use LocalStack tools like Cloud Pods, Extensions, and more. The `localstack` CLI syntax is:

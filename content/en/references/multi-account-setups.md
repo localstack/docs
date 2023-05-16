@@ -6,7 +6,7 @@ tags: ["multi-tenant", "multi-account", "account-id", "namespaces"]
 aliases:
   - /aws/multi-account-setups/
   - /tools/multi-account-setups/
-weight: 5
+weight: 50
 description: >
   Using LocalStack in multi-tenant setups
 ---

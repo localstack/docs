@@ -1,8 +1,8 @@
 ---
-title: "Initialization hooks"
-weight: 5
+title: "Initialization Hooks"
+weight: 50
 description: >
-  Write shell or Python scripts to customize or initialize your LocalStack instance.
+  Writing shell or Python scripts to customize or initialize your LocalStack instance
 aliases:
   - /localstack/init-hooks/
 ---
