@@ -5,7 +5,7 @@ categories: ["LocalStack"]
 tags: ["multi-tenant", "multi-account", "namespaces"]
 weight: 5
 description: >
-  Accessing resources in another account or availability zone
+  Accessing resources in another account or region
 ---
 
 LocalStack namespaces all resources by the account ID and (in some cases) region.
@@ -20,7 +20,7 @@ Please report any issues on our GitHub issue tracker.
 
 ## Cross-Account
 
-Resources that are accessible cross-accounts are always identified by ARNs.
+Resources that are accessible across accounts are always identified by ARNs.
 
 This includes:
 - Lambda functions and layers
@@ -29,7 +29,7 @@ This includes:
 
 ## Cross-Region
 
-AWS provides separate API endpoints for each availability zone.
+AWS provides separate API endpoints for each region.
 Generally, resources can only be accessed in the region where they are created.
 
 In contrast, LocalStack runs on a single API endpoint.
