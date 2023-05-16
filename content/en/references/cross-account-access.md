@@ -20,13 +20,12 @@ Please report any issues on our GitHub issue tracker.
 
 ## Cross-Account
 
-Cross-account access can be facilitated for certains resource types.
-These resources are always identified by ARNs.
+Resources that are accessible cross-accounts are always identified by ARNs.
 
-Currently this is supported for following services:
-- Lambda: For functions and layers
-- SQS: For queues 
-- KMS: For keys
+This includes:
+- Lambda functions and layers
+- SQS queues 
+- KMS keys
 
 ## Cross-Region
 
