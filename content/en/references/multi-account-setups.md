@@ -1,7 +1,7 @@
 ---
 title: "Multi-Account Setups"
 linkTitle: "Multi-Account Setups"
-categories: ["LocalStack Pro"]
+categories: []
 tags: ["multi-tenant", "multi-account", "account-id", "namespaces"]
 aliases:
   - /aws/multi-account-setups/
