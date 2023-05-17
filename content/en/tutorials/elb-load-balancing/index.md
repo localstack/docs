@@ -66,10 +66,22 @@ In the above commands, we use `npm init -y` to initialize a new Node.js project 
 
 The `serverless-localstack` plugin enables your Serverless project to redirect AWS API calls to LocalStack, while the `serverless-deployment-bucket` plugin creates a deployment bucket in LocalStack. This bucket is responsible for storing the deployment artifacts and ensuring that old deployment buckets are properly cleaned up after each deployment.
 
-To set up the plugins, you need to add the following properties to your `serverless.yml` file:
+We have a `serverless.yml` file in the directory to define our Serverless project's configuration, which includes information such as the service name, the provider (AWS in this case), the functions, and example events that trigger those functions. To set up the plugins we installed earlier, you need to add the following properties to your `serverless.yml` file:
 
 ```yaml
-...
+service: serverless-elb
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+
+functions:
+  hello:
+    handler: handler.hello
+
 plugins:
   - serverless-deployment-bucket
   - serverless-localstack
@@ -79,8 +91,6 @@ custom:
     stages:
       - local
 ```
-
-In the above configuration, `my-service` represents the name of your service. Make sure to adjust it to match your project's name.
 
 To configure Serverless to use the LocalStack plugin specifically for the `local` stage and ensure that your Serverless project only deploys to LocalStack instead of the real AWS Cloud, you need to set the `--stage` flag when using the `serverless deploy` command and specify the flag variable as `local`.
 
@@ -150,7 +160,7 @@ module.exports.hello2 = async (event) => {
 
 We have defined the `hello1` and `hello2` Lambda functions in the updated code. Each function receives an event parameter and logs it to the console. The function then returns a response with a status code of 200 and a plain text body containing the respective `"Hello"` message. It's important to note that the `isBase64Encoded` property is not required for plain text responses. It is typically used when you need to include binary content in the response body and want to indicate that the content is Base64 encoded.
 
-Now, let's move to the `serverless.yml` file and specify our deployment bucket and the functions we want to deploy. Your initial configuration in the serverless.yml file should look like this:
+Let us now configure the `serverless.yml` file to create an Application Load Balancer (ALB) and attach the Lambda functions to it.
 
 ```yaml
 service: serverless-elb
@@ -187,10 +197,9 @@ custom:
   localstack:
     stages:
       - local
-...
 ```
 
-In the above configuration, we specify the service name as `my-service` and set the provider to AWS with the Node.js 12.x runtime. We include the necessary plugins, `serverless-localstack` and `serverless-deployment-bucket`, for LocalStack support and deployment bucket management. Next, we define the `hello1` and `hello2` functions with their respective handlers and event triggers. In this example, both functions are triggered by HTTP GET requests to the `/hello1` and `/hello2` paths.
+In the above configuration, we specify the service name (`serverless-elb` in this case) and set the provider to AWS with the Node.js 12.x runtime. We include the necessary plugins, `serverless-localstack` and `serverless-deployment-bucket`, for LocalStack support and deployment bucket management. Next, we define the `hello1` and `hello2` functions with their respective handlers and event triggers. In this example, both functions are triggered by HTTP GET requests to the `/hello1` and `/hello2` paths.
 
 Lastly, let's create a VPC, a subnet, an Application Load Balancer, and an HTTP listener on the load balancer that redirects traffic to the target group. To do this, add the following resources to your `serverless.yml` file:
 
