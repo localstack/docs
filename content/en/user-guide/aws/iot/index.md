@@ -41,13 +41,13 @@ Currently the `principalIdentifier` and `sessionIdentifier` fields in event payl
 LocalStack can publish the [registry events](https://docs.aws.amazon.com/iot/latest/developerguide/registry-events.html), if [you enable it](https://docs.aws.amazon.com/iot/latest/developerguide/iot-events.html#iot-events-enable).
 
 {{< command >}}
-awslocal iot update-event-configurations --event-configurations "{\"THING\":{\"Enabled\": true}}"
+$ awslocal iot update-event-configurations --event-configurations "{\"THING\":{\"Enabled\": true}}"
 {{< / command >}}
 
 You can then subscribe or use topic rules on the follow topics:
 
 - `$aws/events/thing/<thingName>/created`: when a new Thing is created
-- `$aws/events/thing/<thingName>/updated`: when a Thing is update
+- `$aws/events/thing/<thingName>/updated`: when a Thing is updated
 - `$aws/events/thing/<thingName>/deleted`: when a Thing is deleted
 
 ## Topic Rules
