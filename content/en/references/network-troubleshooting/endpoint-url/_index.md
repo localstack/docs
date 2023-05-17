@@ -113,10 +113,10 @@ This feature is part of our [pro](https://localstack.cloud/pricing/) offering.
 {{</alert>}}
 
 Some resources created by LocalStack are accessible via virtual host addressing, for example an S3 bucket can be accessed at `<bucket>.s3.<region>.localhost.localstack.cloud`.
-The LocalStack container is not reachable at this address from containers running in your docker network, since by default any subdomains of `localhost.localstack.cloud` resolve to `127.0.0.1`.
-If docker supported wildcard DNS configuration with `--network-alias` (docker CLI) or `aliases:` (`docker-compose`), this could be solved with docker configuration alone.
+The LocalStack container is not reachable at this address from containers running in your Docker network, since by default any subdomains of `localhost.localstack.cloud` resolve to `127.0.0.1`.
+If Docker supported wildcard DNS configuration with `--network-alias` (Docker CLI) or `aliases:` (`docker-compose`), this could be solved with Docker configuration alone.
 
-In order to map more complex domain names to the LocalStack container within the docker network, the LocalStack container can be used as a DNS server, but this requires more configuration.
+In order to map more complex domain names to the LocalStack container within the Docker network, the LocalStack container can be used as a DNS server, but this requires more configuration.
 Specifically the LocalStack container must have a static IP address within the network.
 This can be achieved with the following example:
 
@@ -167,7 +167,7 @@ networks:
 Requests from the *application* container to `<bucket-name>.s3.<region>.localhost.localstack.cloud:4566/<key>`, will reach the LocalStack container.
 
 {{<alert title="Note">}}
-We suggest using a private IP address range for your containers, such as 10.0.0.0/8 since this does not conflict with IP addresses assigned by docker.
+We suggest using a private IP address range for your containers, such as 10.0.0.0/8 since this does not conflict with IP addresses assigned by Docker.
 Also avoid using `X.X.X.1` as this often represents the host within that subnet.
 {{</alert>}}
 
