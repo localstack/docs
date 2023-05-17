@@ -7816,10 +7816,19 @@ To retrieve the MQTT endpoint, use the &lt;a href="https://docs.aws.amazon.com/i
 &lt;li>&lt;code>$aws/events/subscriptions/unsubscribed/clientId&lt;/code>: when a client unsubscribes from a topic&lt;/li>
 &lt;/ul>
 &lt;p>Currently the &lt;code>principalIdentifier&lt;/code> and &lt;code>sessionIdentifier&lt;/code> fields in event payload contain dummy values.&lt;/p>
+&lt;h2 id="registry-events-for-things">Registry Events for Things&lt;/h2>
+&lt;p>LocalStack can publish the &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/registry-events.html">registry events&lt;/a>, if &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-events.html#iot-events-enable">you enable it&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iot update-event-configurations --event-configurations &amp;#34;{\&amp;#34;THING\&amp;#34;:{\&amp;#34;Enabled\&amp;#34;: true}}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can then subscribe or use topic rules on the follow topics:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/created&lt;/code>: when a new Thing is created&lt;/li>
+&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/updated&lt;/code>: when a Thing is updated&lt;/li>
+&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/deleted&lt;/code>: when a Thing is deleted&lt;/li>
+&lt;/ul>
 &lt;h2 id="topic-rules">Topic Rules&lt;/h2>
 &lt;p>It is also possible to use advanced features like SQL queries for IoT topic rules.&lt;/p>
 &lt;p>For example, you can use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateTopicRule.html">&lt;code>CreateTopicRule&lt;/code>&lt;/a> operation to define a topic rule with a SQL query &lt;code>SELECT * FROM 'my/topic' where attr=123&lt;/code> which will execute a trigger whenever a message with attribute &lt;code>attr=123&lt;/code> is received on the MQTT topic &lt;code>my/topic&lt;/code>.&lt;/p>
-&lt;p>Supported triggers include Kinesis, Lambda, SQS and Firehose.&lt;/p></description></item><item><title>User-Guide: Key Management Service (KMS)</title><link>/user-guide/aws/kms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kms/</guid><description>
+&lt;p>Supported triggers include Kinesis, Lambda, SQS, Firehose and DynamoDB v2.&lt;/p></description></item><item><title>User-Guide: Key Management Service (KMS)</title><link>/user-guide/aws/kms/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kms/</guid><description>
 &lt;p>Key Management Service (KMS) is mainly about:&lt;/p>
 &lt;ul>
 &lt;li>Creation and management of cryptographic keys.&lt;/li>
