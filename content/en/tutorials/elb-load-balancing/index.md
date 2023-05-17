@@ -60,7 +60,7 @@ $ npm init -y
 $ npm install -D serverless serverless-localstack serverless-deployment-bucket
 {{< / command >}}
 
-In the above commands, we use `npm init -y' to initialize a new Node.js project with default settings and then install the necessary dependencies, including `serverless`, `serverless-localstack`, and `serverless-deployment-bucket`, as dev dependencies.
+In the above commands, we use `npm init -y` to initialize a new Node.js project with default settings and then install the necessary dependencies, including `serverless`, `serverless-localstack`, and `serverless-deployment-bucket`, as dev dependencies.
 
 The `serverless-localstack` plugin enables your Serverless project to redirect AWS API calls to LocalStack, while the `serverless-deployment-bucket` plugin creates a deployment bucket in LocalStack. This bucket is responsible for storing the deployment artifacts and ensuring that old deployment buckets are properly cleaned up after each deployment.
 
