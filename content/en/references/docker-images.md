@@ -1,10 +1,10 @@
 ---
-title: Docker images
-weight: 100
+title: Docker Images
+weight: 50
 tags:
 - docker
 description: >
-  Overview of LocalStack Docker images and their usage
+  Overview of LocalStack Docker images and their purpose
 ---
 
 LocalStack functions as a local “mini-cloud” operating system that runs inside a Docker container. LocalStack has multiple components, which include process management, file system abstraction, event processing, schedulers, and more. Running inside a Docker container, LocalStack exposes external network ports for integrations, SDKs, or CLI interfaces to connect to LocalStack APIs. The LocalStack & LocalStack Pro Docker images have been downloaded over 130+ million times and provide a multi-arch build compatible with AMD/x86 and ARM-based CPU architectures. This section will cover the different Docker images available for LocalStack and how to use them.

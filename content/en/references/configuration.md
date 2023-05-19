@@ -1,20 +1,23 @@
 ---
 title: "Configuration"
-weight: 1
+weight: 10
 description: >
-  Environment variables which affect LocalStack.
+  Overview of configuration options in LocalStack
 aliases:
   - /localstack/configuration/
 ---
 
-LocalStack allows for many different configuration options.
-You can pass these via environment variables, e.g., like the following:
+LocalStack exposes various configuration options to control its behaviour.
+
+These options can be passed to LocalStack as environment variables like so:
 
 {{< command >}}
 $ DEBUG=1 localstack start
 {{< / command >}}
 
 ## Core
+
+Options that affect the core LocalStack system.
 
 | Variable | Example Values | Description |
 | - | - | - |
@@ -41,7 +44,7 @@ $ DEBUG=1 localstack start
 
 ### CLI
 
-These variables are only relevant when using the CLI to start LocalStack.
+These options are applicable when using the CLI to start LocalStack.
 
 | Variable | Example Values | Description |
 | - | - | - |
@@ -51,7 +54,7 @@ These variables are only relevant when using the CLI to start LocalStack.
 
 ### Docker
 
-Docker is used extensively by LocalStack, and there are several configuration parameters for how LocalStack interacts with Docker.
+Options to configure how LocalStack interacts with Docker.
 
 | Variable | Example Values | Description |
 | - | - | - |
@@ -64,16 +67,7 @@ Docker is used extensively by LocalStack, and there are several configuration pa
 
 ## Local AWS Services
 
-This section covers configuration values that are specific to certain AWS services.
-
-* [AppSync]({{< ref "#appsync" >}})
-* [Batch]({{< ref "#batch" >}})
-* [DynamoDB]({{< ref "#dynamodb" >}})
-* [Elastic Kubernetes Service (EKS)]({{< ref "#eks" >}})
-* [Elasticsearch]({{< ref "#elasticsearch" >}})
-* [Kinesis]({{< ref "#kinesis" >}})
-* [Lambda]({{< ref "#lambda" >}})
-* [Stepfunctions]({{< ref "#stepfunctions" >}})
+This section covers configuration options that are specific to certain AWS services.
 
 ### AppSync
 
@@ -160,8 +154,10 @@ The OpenSearch configuration variables are used to manage both, OpenSearch and E
 
 ### Lambda
 
-**New [Lambda]({{< ref "user-guide/aws/lambda" >}}) implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23)**<br>
+{{< alert title="Note" >}}
+New [Lambda]({{< ref "user-guide/aws/lambda" >}}) implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23).
 Please consult the page [Lambda providers]({{< ref "user-guide/aws/lambda" >}}) for more information.
+{{</alert>}}
 
 | Variable| Example Values | Description |
 | - | - | - |
@@ -262,7 +258,9 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 
 ## Security
 
-Please be aware that the following configurations may have severe security implications!
+{{< alert title="Warning" color="warning" >}}
+Please be aware that the following options may have severe security implications.
+{{</alert>}}
 
 | Variable| Example Values | Description |
 | - | - | - |
@@ -338,7 +336,7 @@ The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Co
 
 ## Persistence
 
-To learn more about these configuration options, see our docs on [Persistence]({{< ref "persistence-mechanism" >}}).
+To learn more about these configuration options, see [Persistence]({{< ref "persistence-mechanism" >}}).
 
 | Variable | Valid options | Description |
 | - | - | - |
@@ -377,7 +375,7 @@ Additionally, the following *read-only* environment variables are available:
 
 ## DNS
 
-More information [here]({{< ref "dns-server" >}}).
+To learn more about these configuration options, see [DNS Server]({{< ref "dns-server" >}}).
 
 | Variable | Example Values | Description |
 | - | - | - |

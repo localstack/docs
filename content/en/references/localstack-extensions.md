@@ -1,9 +1,9 @@
 ---
 title: "LocalStack Extensions"
 linkTitle: "LocalStack Extensions"
-weight: 8
+weight: 50
 description: >
-  LocalStack Extensions allows developers to extend and customize LocalStack.
+  Using LocalStack Extensions to extend and customize LocalStack
 categories: ["LocalStack Pro"]
 tags: ["extensions"]
 aliases:

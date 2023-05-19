@@ -1,15 +1,13 @@
 ---
 title: "Persistence"
-weight: 5
+weight: 50
 description: >
-  How LocalStack stores state on disk
+  Internals of LocalStack persistence mechanism
 aliases:
   - /localstack/persistence-mechanism/
 ---
 
-## Persistence mechanisms
-
-By default, LocalStack is an _ephemeral_ environment, meaning that, once you terminate your LocalStack instance, all state will be discarded.
+By default, LocalStack is an ephemeral environment, meaning that, once you terminate your LocalStack instance, all state will be discarded.
 Persistence is a LocalStack Pro feature that can save and restore the state of LocalStack including all AWS resources and their data.
 
 LocalStack has two distinct persistence mechanisms

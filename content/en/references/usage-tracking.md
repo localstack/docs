@@ -1,8 +1,8 @@
 ---
 title: Usage Tracking
-weight: 75
+weight: 50
 description: >
-  Understand what data LocalStack collects and how you can opt out of usage tracking.
+  Understand what data LocalStack collects and how you can opt out of usage tracking
 aliases:
   - /localstack/usage-tracking/
 ---

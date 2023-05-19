@@ -1,10 +1,10 @@
 ---
 title: Custom TLS certificates
-weight: 99
+weight: 50
 tags:
 - ssl
 description: >
-  How to use custom TLS certificates with LocalStack
+  Using custom TLS certificates with LocalStack
 ---
 
 ## Background

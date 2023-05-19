@@ -1,12 +1,12 @@
 ---
 title: LocalStack on Kubernetes
-weight: 110
+weight: 50
 categories: ["LocalStack Community", "LocalStack Pro"]
 tags:
 - kubernetes
 - k8s
 description: >
-  Overview of how you can run LocalStack on Kubernetes
+  Running LocalStack on Kubernetes
 ---
 
 LocalStack can be deployed on [Kubernetes](https://kubernetes.io/) using the [LocalStack Helm chart](http://helm.localstack.cloud/).
