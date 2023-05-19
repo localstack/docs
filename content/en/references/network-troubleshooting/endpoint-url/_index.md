@@ -106,6 +106,77 @@ networks:
 {{</tab>}}
 {{</tabpane>}}
 
+### Wildcard DNS access
+
+{{<alert title="Pro only" color="alert">}}
+The Wildcard DNS access feature is part of [LocalStack's Pro/Team offering](https://localstack.cloud/pricing) and requires an API key to be configured.
+{{</alert>}}
+
+Certain resources created by LocalStack can be accessed using virtual host addressing. For example, an S3 bucket can be accessed at the following address format: `<bucket>.s3.<region>.localhost.localstack.cloud`. 
+
+By default, the LocalStack container cannot be reached from containers running in your Docker network at the above address. This is because any subdomains of `localhost.localstack.cloud` is resolved to `127.0.0.1` within the Docker network. 
+
+If Docker supported wildcard DNS configuration with `--network-alias` (Docker CLI) or `aliases:` (`docker-compose`), this could be solved with Docker configuration alone.
+
+To map more complex domain names to the LocalStack container within the Docker network, the LocalStack container can be utilized as a DNS server. However, this approach requires additional configuration steps. 
+
+Specifically, the LocalStack container must have a static IP address within the network. To set up the LocalStack container as a DNS server, a static IP address must be assigned within the Docker network. 
+
+Here is an example of how you can set it up:
+
+{{<tabpane>}}
+{{<tab header="Docker" lang="bash">}}
+# Create the network
+docker network create my-network --subnet <ip address range CIDR>
+
+# Start LocalStack
+docker run --rm -it \
+    --network my-network \
+    --ip 10.0.2.20 \
+    -e DNS_RESOLVE_IP=10.0.2.20 \
+    <other flags> \
+    localstack/localstack-pro
+
+# Start your application container
+docker run --rm -it \
+    --dns 10.0.2.20 \
+    --network my-network \
+    <args>
+# Your code can now access LocalStack at <subdomain>.localhost.localstack.cloud
+{{</tab>}}
+{{<tab header="docker-compose.yml" lang="yaml">}}
+services:
+  localstack:
+    # ... other configuration here
+    environment:
+      - DNS_RESOLVE_IP=10.0.2.20
+    networks:
+      ls:
+        ipv4_address: 10.0.2.20
+
+  application:
+    # ... other configuration here
+    dns:
+      - 10.0.2.20
+    networks:
+      ls:
+
+networks:
+  ls:
+    name: ls
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24
+{{</tab>}}
+{{</tabpane>}}
+
+To access LocalStack resources from the *application* container, you can make requests to the following address format: `<bucket-name>.s3.<region>.localhost.localstack.cloud:4566/<key>`. This will ensure that the requests reach the LocalStack container.
+
+{{<alert title="Note">}}
+For optimal configuration, we recommend using a private IP address range, such as 10.0.0.0/8, for your containers. This helps avoid conflicts with IP addresses assigned by Docker.
+Additionally, it's advisable to avoid using `X.X.X.1` as an IP address, as it is commonly reserved for the host within that subnet.
+{{</alert>}}
+
 ## From a separate host
 
 {{< figure src="../images/10.svg" width="400" >}}
