@@ -77,7 +77,7 @@ By executing these steps, you have defined the Dockerfile that instructs Docker 
 Now that the initial setup is complete let's explore how to leverage LocalStack's AWS emulation by pushing our image to ECR and deploying the Lambda container image. Start LocalStack by executing the following command. Make sure to replace `<your-api-key>` with your actual API key:
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
+$ LOCALSTACK_API_KEY=<your-api-key> DEBUG=1 localstack start -d
 {{< / command >}}
 
 Once the LocalStack container is running, we can create a new ECR repository to store our container image. Use the `awslocal` CLI to achieve this. Run the following command to create the repository, replacing `localstack-lambda-container-image` with the desired name for your repository:
@@ -89,8 +89,8 @@ $ awslocal ecr create-repository --repository-name localstack-lambda-container-i
         "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/localstack-lambda-container-image",
         "registryId": "000000000000",
         "repositoryName": "localstack-lambda-container-image",
-        "repositoryUri": "localhost:4510/localstack-lambda-container-image",
-        "createdAt": "<timestamp>",
+        "repositoryUri": "localhost.localstack.cloud:4510/localstack-lambda-container-image",
+        "createdAt": <timestamp>,
         "imageTagMutability": "MUTABLE",
         "imageScanningConfiguration": {
             "scanOnPush": false
@@ -122,12 +122,12 @@ $ awslocal ecr describe-images --repository-name localstack-lambda-container-ima
         {
             "registryId": "000000000000",
             "repositoryName": "localstack-lambda-container-image",
-            "imageDigest": "sha256:<digest>",
+            "imageDigest": "sha256:459fce12258ff1048925e0f4e7fb039d8b54111a8e3cca5db4acb434a9e8af37",
             "imageTags": [
                 "latest"
             ],
-            "imageSizeInBytes": 181885144,
-            "imagePushedAt": "<timestamp>",
+            "imageSizeInBytes": 184217147,
+            "imagePushedAt": <timestamp>,
             "imageManifestMediaType": "application/vnd.docker.distribution.manifest.v2+json",
             "artifactMediaType": "application/vnd.docker.container.image.v1+json"
         }
@@ -139,7 +139,7 @@ By running this command, you can confirm that the image is now in the ECR reposi
 
 ## Deploying the Lambda function
 
-To deploy the container image as a Lambda function, we'll create a new Lambda function using the `create-function` command. Run the following command to create the function:
+To deploy the container image as a Lambda function, we will create a new Lambda function using the `create-function` command. Run the following command to create the function:
 
 {{< command >}}
 $ awslocal lambda create-function \
@@ -157,13 +157,13 @@ $ awslocal lambda create-function \
     "Description": "",
     "Timeout": 3,
     "MemorySize": 128,
-    "LastModified": "2023-05-11T06:06:37.372826+0000",
+    "LastModified": <timestamp>,
     "CodeSha256": "9be73524cd5aa70fbcee3fc8d7aac4eb7e2a644e9ef2b13031719077a65c0031",
     "Version": "$LATEST",
     "TracingConfig": {
         "Mode": "PassThrough"
     },
-    "RevisionId": "f953a7ea-4d92-4458-a46c-821c056fd33c",
+    "RevisionId": "cab4268c-2d56-4591-821a-9154e157b984",
     "State": "Pending",
     "StateReason": "The function is being created.",
     "StateReasonCode": "Creating",
@@ -199,7 +199,7 @@ $ awslocal lambda invoke --function-name localstack-lambda-container-image /tmp/
 }
 {{< / command >}}
 
-The command above will execute the Lambda function locally within the LocalStack environment. The response will include the StatusCode, LogResult, and ExecutedVersion. You can find the logs of the Lambda invocation in the LocalStack container output, precisely when `DEBUG=1` is enabled.
+The command above will execute the Lambda function locally within the LocalStack environment. The response will include the StatusCode and ExecutedVersion. You can find the logs of the Lambda invocation in the Lambda container output:
 
 {{< command >}}
 Hello from LocalStack Lambda container image!
