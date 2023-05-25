@@ -8,30 +8,29 @@ description: >
   Accessing resources in another account or region
 ---
 
-LocalStack namespaces all resources by the account ID and (in some cases) region.
-Certain resource types can be accessed across accounts or regions.
-This page covers the specifics of facilitating such setups.
+LocalStack automatically assigns namespaces to all resources based on the account ID and, in some cases, the region.
+However, there are certain resource types that can be accessed across multiple accounts or regions.
+This document provides detailed information on how to configure and facilitate such setups effectively.
 
 {{< alert title="Note">}}
 Cross-account support in LocalStack is being actively developed.
-Please report any issues on our GitHub issue tracker.
+Please report any issues on our [GitHub issue tracker](https://github.com/localstack/localstack/issues/new/choose).
 {{< /alert >}}
-
 
 ## Cross-Account
 
-Resources that are accessible across accounts are always identified by ARNs.
+Resources that can be accessed across multiple accounts are always identified by their Amazon Resource Names (ARNs).
 
-This includes:
+These resource types include:
+
 - Lambda functions and layers
-- SQS queues 
-- KMS keys
+- Simple Queue Service (SQS) queues
+- Key Management Service (KMS) keys
 
 ## Cross-Region
 
-AWS provides separate API endpoints for each region.
-Generally, resources can only be accessed in the region where they are created.
+AWS provides individual API endpoints for each region, and typically, resources can only be accessed within their respective regions.
 
-In contrast, LocalStack runs on a single API endpoint.
-Most services do not enforce the restriction that the region parameter in the request must match the region in the resource identifier (ARN).
+On the other hand, LocalStack operates on a unified API endpoint, allowing interactions with services across regions.
 
+Unlike AWS, LocalStack does not strictly enforce the requirement that the region parameter in the request must match the region specified in the resource identifier (ARN).
