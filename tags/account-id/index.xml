@@ -26,14 +26,10 @@ In all such cases, the account ID will be evalutated to &lt;code>000000000000&lt
 Please note that multi-accounts may not work for use-cases that have cross-account and cross-service access.
 See &lt;a href="https://github.com/localstack/localstack/issues/7041">this issue&lt;/a> for more information.
 &lt;/div>
-&lt;p>LocalStack ships with multi-account support which allows namespacing based on AWS account ID and region name.&lt;/p>
-&lt;p>The AWS account ID to be used must be sent as part of the request.
-There is no server-side configuration required.&lt;/p>
+&lt;p>LocalStack ships with multi-account support which allows namespacing based on AWS account ID.&lt;/p>
 &lt;p>LocalStack uses the value in the AWS Access Key ID field for the purpose of namespacing over account ID.
-This field can be configured in the AWS CLI in multiple ways: please refer to AWS CLI documentation &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence">here&lt;/a>.
-This field must either contain a valid 12-digit or an alpha-numeric string.
-In the first case, the value is assumed to be the account ID.
-In the second case, the default account ID &lt;code>000000000000&lt;/code> is used as fallback.&lt;/p>
+For more information, see &lt;a href="/references/credentials/">Credentials&lt;/a>.&lt;/p>
+&lt;p>The Access Key ID field can be configured in the AWS CLI in multiple ways: please refer to &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence">AWS CLI documentation&lt;/a>.&lt;/p>
 &lt;h2 id="examples">Examples&lt;/h2>
 &lt;p>In following examples, we configure the AWS CLI account ID via environment variable.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 create-key-pair --key-name green-hospital

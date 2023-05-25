@@ -2935,50 +2935,7 @@ example below.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 LocalStack on Kubernetes can be used in conjunction with the &lt;a href="https://hub.docker.com/r/localstack/localstack">LocalStack Community image&lt;/a>. However, specific features such as execution of Lambda functions as Kubernetes pods is only available in the &lt;a href="https://hub.docker.com/r/localstack/localstack-pro">LocalStack Pro image&lt;/a>.
-&lt;/div></description></item><item><title>References: Multi-Account Setups</title><link>/references/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/multi-account-setups/</guid><description>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Please note that multi-accounts may not work for use-cases that have cross-account and cross-service access.
-See &lt;a href="https://github.com/localstack/localstack/issues/7041">this issue&lt;/a> for more information.
-&lt;/div>
-&lt;p>LocalStack ships with multi-account support which allows namespacing based on AWS account ID and region name.&lt;/p>
-&lt;p>The AWS account ID to be used must be sent as part of the request.
-There is no server-side configuration required.&lt;/p>
-&lt;p>LocalStack uses the value in the AWS Access Key ID field for the purpose of namespacing over account ID.
-This field can be configured in the AWS CLI in multiple ways: please refer to AWS CLI documentation &lt;a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence">here&lt;/a>.
-This field must either contain a valid 12-digit or an alpha-numeric string.
-In the first case, the value is assumed to be the account ID.
-In the second case, the default account ID &lt;code>000000000000&lt;/code> is used as fallback.&lt;/p>
-&lt;h2 id="examples">Examples&lt;/h2>
-&lt;p>In following examples, we configure the AWS CLI account ID via environment variable.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 create-key-pair --key-name green-hospital
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 create-key-pair --key-name red-medicine
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000001 awslocal ec2 describe-key-pairs
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyPairs&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyFingerprint&amp;#34;: &amp;#34;6b:e3:a3:41:4b:60:f3:6d:7b:84:3e:17:e3:ad:d0:15&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyName&amp;#34;: &amp;#34;green-hospital&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=000000000002 awslocal ec2 describe-key-pairs
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyPairs&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyFingerprint&amp;#34;: &amp;#34;16:4c:64:13:36:41:7c:75:d0:51:f0:db:ed:d7:c8:95&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyName&amp;#34;: &amp;#34;red-medicine&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>If no explicit Account ID is set, LocalStack falls back to default. In this example, no resources are returned.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-key-pairs
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyPairs&amp;#34;: []
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Amazon API Gateway</title><link>/user-guide/aws/apigateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/apigateway/</guid><description>
+&lt;/div></description></item><item><title>User-Guide: Amazon API Gateway</title><link>/user-guide/aws/apigateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/apigateway/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Amazon API Gateway is a managed service that enables developers to create, deploy, and manage APIs (Application Programming Interfaces). It allows easy creation of REST, HTTP, and WebSocket APIs to securely access data, business logic, or functionality from backend services like AWS Lambda functions or EC2 instances. API Gateway supports standard HTTP methods such as &lt;code>GET&lt;/code>, &lt;code>POST&lt;/code>, &lt;code>PUT&lt;/code>, &lt;code>PATCH&lt;/code>, and &lt;code>DELETE&lt;/code> and integrates with various AWS services, including Lambda, Cognito, CloudWatch, and X-Ray.&lt;/p>
 &lt;p>LocalStack supports API Gateway V1 via the Community offering and API Gateway V2 via the Pro/Team offering, allowing you to use the API Gateway to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_apigatewayv2/">API coverage page&lt;/a>, which provides information on the extent of API Gateway V2&amp;rsquo;s integration with LocalStack.&lt;/p>
@@ -5594,4 +5551,90 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;/div>
 &lt;h2 id="user-interface">User Interface&lt;/h2>
 &lt;p>&lt;a href="https://app.localstack.cloud">LocalStack Web app&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
-&lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item></channel></rss>
+&lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item><item><title>User-Guide: Systems Manager (SSM)</title><link>/user-guide/aws/systems-manager/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/systems-manager/</guid><description>
+&lt;p>Systems Manager can be used in conjunction with the &lt;a href="/user-guide/aws/elastic-compute-cloud/">EC2 Docker backend&lt;/a> to run operational tasks on the Dockerised instances.&lt;/p>
+&lt;p>The following table highlights some differences between LocalStack SSM and AWS SSM.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>LocalStack&lt;/th>
+&lt;th>AWS&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Instances are automatically registered with SSM&lt;/td>
+&lt;td>Instances are manually registered using &lt;a href="https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateActivation.html">&lt;code>CreateActivation&lt;/code>&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Uses Docker exec to perform operations&lt;/td>
+&lt;td>Uses &lt;a href="https://github.com/aws/amazon-ssm-agent">Amazon SSM Agent&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Instance IDs are prefixed with &lt;code>i-&lt;/code>&lt;/td>
+&lt;td>Instance IDs are prefixed with &lt;code>mi-&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Following operations are currently supported:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align:left">Operation&lt;/th>
+&lt;th style="text-align:left">Notes&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align:left">DescribeInstanceInformation&lt;/td>
+&lt;td style="text-align:left">List all registered instances&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">SendCommand&lt;/td>
+&lt;td style="text-align:left">Currently only &lt;code>AWS-RunShellScript&lt;/code> document is supported&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">ListCommandInvocations&lt;/td>
+&lt;td style="text-align:left">List all invocations&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">GetCommandInvocation&lt;/td>
+&lt;td style="text-align:left">Details of an invocation including standard output and standard error contents&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="examples">Examples&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ssm send-command --document-name &amp;#34;AWS-RunShellScript&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --document-version &amp;#34;1&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --instance-ids i-04df0c15 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --parameters &amp;#34;commands=&amp;#39;cat ./uptime&amp;#39;,workingDirectory=/proc&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Command&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CommandId&amp;#34;: &amp;#34;e53e67c3-a8f2-419e-87e4-e596880797e8&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DocumentName&amp;#34;: &amp;#34;AWS-RunShellScript&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DocumentVersion&amp;#34;: &amp;#34;1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;InstanceIds&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;i-04df0c15&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Status&amp;#34;: &amp;#34;InProgress&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ssm get-command-invocation \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --command-id a0105ed1-0a4d-423b-9a64-9a49828f5391 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --instance-id i-04df0c15
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CommandId&amp;#34;: &amp;#34;a0105ed1-0a4d-423b-9a64-9a49828f5391&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;InstanceId&amp;#34;: &amp;#34;i-04df0c15&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DocumentName&amp;#34;: &amp;#34;AWS-RunShellScript&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DocumentVersion&amp;#34;: &amp;#34;1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Status&amp;#34;: &amp;#34;Success&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StandardOutputContent&amp;#34;: &amp;#34;1066081.29 510156.74\n&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StandardErrorContent&amp;#34;: &amp;#34;&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="limitations">Limitations&lt;/h3>
+&lt;ul>
+&lt;li>Only &lt;code>AWS-RunShellScript&lt;/code> is supported for Dockerised instances.&lt;/li>
+&lt;li>If the command returns a non-zero code, the standard output and standard error streams are not captured and will be empty.&lt;/li>
+&lt;li>Shell constructs like job controls (&lt;code>&amp;amp;&amp;amp;&lt;/code>, &lt;code>||&lt;/code>), redirection (&lt;code>&amp;gt;&lt;/code>) etc. are not supported.&lt;/li>
+&lt;/ul></description></item></channel></rss>

@@ -30,7 +30,27 @@
 &lt;li>Only Community-available AWS services can be saved and loaded in a Community Cloud Pod.&lt;/li>
 &lt;li>Users are responsible for storing their saved states. Pro users can use our Cloud Pods platform to make storing and sharing their saved states easier.&lt;/li>
 &lt;li>Cloud Pods for Community users do not support versioning out of the box.&lt;/li>
-&lt;/ul></description></item><item><title>References: Credentials</title><link>/references/credentials/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/credentials/</guid><description>
+&lt;/ul></description></item><item><title>References: Cross-Account and Cross-Region Access</title><link>/references/cross-account-access/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/cross-account-access/</guid><description>
+&lt;p>LocalStack automatically assigns namespaces to all resources based on the account ID and, in some cases, the region.
+However, there are certain resource types that can be accessed across multiple accounts or regions.
+This document provides detailed information on how to configure and facilitate such setups effectively.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Cross-account support in LocalStack is being actively developed.
+Please report any issues on our &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub issue tracker&lt;/a>.
+&lt;/div>
+&lt;h2 id="cross-account">Cross-Account&lt;/h2>
+&lt;p>Resources that can be accessed across multiple accounts are always identified by their Amazon Resource Names (ARNs).&lt;/p>
+&lt;p>These resource types include:&lt;/p>
+&lt;ul>
+&lt;li>Lambda functions and layers&lt;/li>
+&lt;li>Simple Queue Service (SQS) queues&lt;/li>
+&lt;li>Key Management Service (KMS) keys&lt;/li>
+&lt;/ul>
+&lt;h2 id="cross-region">Cross-Region&lt;/h2>
+&lt;p>AWS provides individual API endpoints for each region, and typically, resources can only be accessed within their respective regions.&lt;/p>
+&lt;p>On the other hand, LocalStack operates on a unified API endpoint, allowing interactions with services across regions.&lt;/p>
+&lt;p>Unlike AWS, LocalStack does not strictly enforce the requirement that the region parameter in the request must match the region specified in the resource identifier (ARN).&lt;/p></description></item><item><title>References: Credentials</title><link>/references/credentials/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/credentials/</guid><description>
 &lt;p>Like AWS, LocalStack requires access key IDs to be set in all operations.
 The choice of access key ID will affect &lt;a href="/references/multi-account-setups/">multi-account namespacing&lt;/a>.
 Values of secret access keys are currently ignored by LocalStack.&lt;/p>
