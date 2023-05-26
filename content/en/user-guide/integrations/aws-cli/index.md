@@ -30,7 +30,7 @@ $ pip install awscli
 Configure AWS test environment variables and add the `--endpoint-url=<localstack-url>` flag to your `aws` CLI invocations.
 For example:
 {{< command >}}
-$ export AWS_ACCESS_KEY_ID="test"
+$ export AWS_ACCESS_KEY_ID="000000000000"
 $ export AWS_SECRET_ACCESS_KEY="test"
 $ export AWS_DEFAULT_REGION="us-east-1"
 
