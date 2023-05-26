@@ -1,6 +1,6 @@
 ---
 title: "External Service Port Range"
-weight: 5
+weight: 50
 description: >
     The range of ports used by services not directly provided by LocalStack
 aliases:

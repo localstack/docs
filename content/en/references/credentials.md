@@ -3,7 +3,7 @@ title: "Credentials"
 linkTitle: "Credentials"
 categories: ["LocalStack"]
 tags: ["access-key-id", "secret-access-key", "account-id"]
-weight: 5
+weight: 50
 description: >
   Credentials for accessing LocalStack services
 ---

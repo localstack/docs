@@ -1,6 +1,6 @@
 ---
 title: Logging
-weight: 110
+weight: 50
 tags:
 - logging
 description: >

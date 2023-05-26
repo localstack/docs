@@ -1,6 +1,6 @@
 ---
 title: "Filesystem Layout"
-weight: 5
+weight: 50
 description: >
   Overview of runtime directory structure
 aliases:

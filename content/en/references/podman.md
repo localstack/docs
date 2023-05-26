@@ -1,8 +1,8 @@
 ---
 title: "Podman"
-weight: 30
+weight: 50
 description: >
-  Describes how to run LocalStack inside Podman.
+  Running LocalStack inside Podman
 tags: ["podman", "docker"]
 aliases:
   - /localstack/podman/
