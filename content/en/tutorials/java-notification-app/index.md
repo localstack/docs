@@ -5,6 +5,25 @@ weight: 3
 description: >
   Build a Java Spring Boot application to configure Simple Email Service (SES) to send messages using AWS Java SDK in LocalStack. Learn how to configure Simple Queue Service (SQS) & Simple Notification Service (SNS) using CloudFormation templates deployed locally.
 type: tutorials
+teaser: ""
+services:
+- Simple Email Service
+- Simple Queue Service
+- Simple Notification Service
+- CloudFormation
+platform: Java
+deployment:
+- AWS Java SDK
+- CloudFormation
+tags:
+- Java
+- Spring Boot
+- AWS Java SDK
+- Simple Email Service
+- Simple Queue Service
+- Simple Notification Service
+- CloudFormation
+pro: true
 ---
 
 Java is a popular platform for cloud applications that use Amazon Web Services.

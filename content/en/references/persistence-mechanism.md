@@ -16,7 +16,7 @@ LocalStack has two distinct persistence mechanisms
 * **Cloud Pods**: a way to store, distribute, inspect, and version snapshots.
 
 This document is concerned with snapshot-based persistence.
-To learn more about cloud pods and their use cases, please refer to our documentation on [**Cloud pods**]({{< ref "cloud-pods">}}).
+To learn more about cloud pods and their use cases, please refer to our documentation on [**Cloud pods**]({{< ref "user-guide/tools/cloud-pods">}}).
 
 ## Snapshot-based persistence
 

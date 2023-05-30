@@ -6,7 +6,7 @@ description: >
   LocalStack Accounts allow you to manage your resources & configurations, and serve as an entry point to our Web Application, the Pro CLI, and more!
 ---
 
-To start using LocalStack's Web Application, you must create an account. With a LocalStack account, you can sign-up for a license and use your API keys to access our advanced features. These include [AWS services]({{< ref "references/coverage" >}}) marked under **Pro**, [Stack Insights]({{< ref "stack-insights" >}}), [Cloud Pods]({{< ref "cloud-pods" >}}), and more!
+To start using LocalStack's Web Application, you must create an account. With a LocalStack account, you can sign-up for a license and use your API keys to access our advanced features. These include [AWS services]({{< ref "references/coverage" >}}) marked under **Pro**, [Stack Insights]({{< ref "stack-insights" >}}), [Cloud Pods]({{< ref "user-guide/tools/cloud-pods" >}}), and more!
 
 ## Creating an account
 

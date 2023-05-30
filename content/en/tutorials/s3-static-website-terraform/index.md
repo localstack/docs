@@ -5,6 +5,19 @@ weight: 4
 description: >
   Host a static website using a Simple Storage Service (S3) bucket to serve static content by provisioning the infrastructure using Terraform in LocalStack. Learn how to configure S3 buckets locally for testing and integration, and make use of LocalStack's S3 API & `tflocal` CLI to provision infrastructure locally.
 type: tutorials
+teaser: ""
+services:
+- S3
+platform: HTML
+deployment:
+- Terraform
+tags:
+- S3
+- Terraform
+- S3-Website
+- Static-Website
+- tflocal CLI
+pro: false
 ---
 
 [AWS Simple Storage Service (S3)](https://aws.amazon.com/s3/) is a proprietary object storage solution that can store an unlimited number of objects for many use cases. S3 is a highly scalable, durable and reliable service that we can use for various use cases: hosting a static site, handling big data analytics, managing application logs, storing web assets and much more!
@@ -317,4 +330,4 @@ $ tflocal apply
 
 In this tutorial, we have seen how to use LocalStack to create an S3 bucket and configure it to serve a static website. We have also seen how you can use Terraform to provision AWS infrastructure in an emulated local environment using LocalStack. You can use the [LocalStack App](https://app.localstack.cloud) to view the created buckets and files on the LocalStack Resource dashboard for S3 and upload more files or perform other operations on the bucket. Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without creating any real AWS resources.
 
-The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website). Further documentation for S3 is available on our [S3 documentation]({{<ref "s3" >}}).
+The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website). Further documentation for S3 is available on our [S3 documentation]({{<ref "user-guide/aws/s3" >}}).
