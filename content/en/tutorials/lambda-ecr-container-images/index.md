@@ -7,11 +7,12 @@ description: >
 type: tutorials
 teaser: ""
 services:
-- Elastic Container Registry
-- Lambda
-platform: Python
+- ecr
+- lmb
+platform:
+- python
 deployment:
-- AWS CLI
+- awscli
 tags:
 - Lambda
 - ECR

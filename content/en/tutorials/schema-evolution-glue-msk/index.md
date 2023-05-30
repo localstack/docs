@@ -7,11 +7,12 @@ description: >
 type: tutorials
 teaser: ""
 services:
-- Managed Streaming for Kafka (MSK)
-- AWS Glue Schema Registry
-platform: Java
+- msk
+- glu
+platform:
+- java
 deployment:
-- AWS CLI
+- awscli
 tags:
 - Kafka
 - MSK
@@ -110,7 +111,7 @@ In our root pom, we configure the `producer` and the `consumer` module, some sha
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-    
+
     <dependencies>
         <dependency>
             <groupId>software.amazon.glue</groupId>
@@ -215,7 +216,7 @@ After the maven plugin is done, we have all types generated for both the produce
                                     ├── unicorn_color.java
                                     ├── UnicornPreferredColor.java
                                     └── UnicornRideRequest.java
-``` 
+```
 
 Since we want to log the sent and received messages, we need to configure the logging by adding a `log4j.properties` to the `src/main/resources` folder of the two modules:
 
@@ -809,7 +810,7 @@ In the logs we can see that the producer fails when trying to register its new, 
 ...
 [AWSSchemaRegistryClient][INFO ] Registered the schema version with schema version id = 8f625284-07b4-442e-83ae-395cd7853746 and with version number = 3 and status FAILURE
 ...
-[WARNING] 
+[WARNING]
 com.amazonaws.services.schemaregistry.exception.AWSSchemaRegistryException: Register schema :: Call failed when registering the schema with the schema registry for schema name = unicorn-ride-request-schema-avro
     at com.amazonaws.services.schemaregistry.common.AWSSchemaRegistryClient.registerSchemaVersion (AWSSchemaRegistryClient.java:310)
 ...
@@ -835,7 +836,7 @@ In the logs, we can see that the consumer fails because the AVRO schema used by 
 ...
 [DatumReaderInstance][DEBUG] Using SpecificDatumReader for de-serializing Avro message, schema: {"type":"record","name":"UnicornRideRequest","namespace":"cloud.localstack.demos.gluemsk.schema","fields":[{"name":"request_id","type":"int","doc":"customer request id"},{"name":"pickup_address","type":"string","doc":"customer pickup address"},{"name":"destination_address","type":"string","doc":"customer destination address"},{"name":"ride_fare","type":"float","doc":"ride fare amount (USD)"},{"name":"ride_duration","type":"int","doc":"ride duration in minutes"},{"name":"preferred_unicorn_color","type":{"type":"enum","name":"UnicornPreferredColor","symbols":["WHITE","BLACK","RED","BLUE","GREY"]},"default":"WHITE"},{"name":"recommended_unicorn","type":{"type":"record","name":"RecommendedUnicorn","fields":[{"name":"unicorn_id","type":"int","doc":"recommended unicorn id"},{"name":"color","type":{"type":"enum","name":"unicorn_color","symbols":["WHITE","RED","BLUE"]}},{"name":"stars_rating","type":["null","int"],"doc":"unicorn star ratings based on customers feedback","default":null}]}},{"name":"customer","type":{"type":"record","name":"Customer","fields":[{"name":"customer_account_no","type":"int","doc":"customer account number"},{"name":"first_name","type":"string"},{"name":"middle_name","type":["null","string"],"default":null},{"name":"last_name","type":"string"},{"name":"email_addresses","type":["null",{"type":"array","items":"string"}]},{"name":"customer_address","type":"string","doc":"customer address"},{"name":"mode_of_payment","type":{"type":"enum","name":"ModeOfPayment","symbols":["CARD","CASH"]},"default":"CARD"},{"name":"customer_rating","type":["null","int"],"default":null}]}}]})
 ...
-[WARNING] 
+[WARNING]
 org.apache.kafka.common.errors.SerializationException: Error deserializing key/value for partition unicorn-ride-request-topic-0 at offset 100. If needed, please seek past the record to continue consumption.
 Caused by: com.amazonaws.services.schemaregistry.exception.AWSSchemaRegistryException: Exception occurred while de-serializing Avro message
     at com.amazonaws.services.schemaregistry.deserializers.avro.AvroDeserializer.deserialize (AvroDeserializer.java:103)

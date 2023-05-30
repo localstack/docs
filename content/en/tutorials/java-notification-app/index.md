@@ -7,14 +7,15 @@ description: >
 type: tutorials
 teaser: ""
 services:
-- Simple Email Service
-- Simple Queue Service
-- Simple Notification Service
-- CloudFormation
-platform: Java
+- ses
+- sqs
+- sns
+- clf
+platform:
+- java
 deployment:
-- AWS Java SDK
-- CloudFormation
+- aws-java-sdk
+- cloudFormation
 tags:
 - Java
 - Spring Boot
@@ -645,6 +646,6 @@ You can also navigate to the MailHog via the user-interface: [`localhost:8025`](
 In this tutorial, we have demonstrated, how you can:
 
 - Use CloudFormation to provision infrastructure for SNS & SQS subscriptions on LocalStack
-- Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages. 
+- Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages.
 
 Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the email messages sent by SES. The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).

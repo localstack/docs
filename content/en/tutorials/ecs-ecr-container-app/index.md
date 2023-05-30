@@ -7,12 +7,13 @@ description: >
 type: tutorials
 teaser: ""
 services:
-- Elastic Container Service
-- Elastic Container Registry
-platform: Docker
+- ecs
+- ecr
+platform:
+- docker
 deployment:
-- CloudFormation
-- AWS CLI
+- cloudformation
+- awscli
 tags:
 - Docker
 - ECS
@@ -48,13 +49,13 @@ ENV foo=bar
 
 The `Dockerfile` uses the official `nginx` image from Docker Hub, which allows us to serve the default index page. Before building our Docker image, we need to start LocalStack and create an ECR repository to push our Docker image. To start LocalStack with the `LOCALSTACK_API_KEY` environment variable, run the following command:
 
-{{< command >}} 
+{{< command >}}
 $ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
 {{< / command >}}
 
 Next, we will create an ECR repository to push our Docker image. We will use the `awslocal` CLI to create the repository.
 
-{{< command >}} 
+{{< command >}}
 $ awslocal ecr create-repository --repository-name <REPOSITORY_NAME>
 {{< / command >}}
 
@@ -81,7 +82,7 @@ Replace `<REPOSITORY_NAME>` with your desired repository name. The output of thi
 
 Copy the `repositoryUri` value from the output and replace `<REPOSITORY_URI>` in the following command:
 
-{{< command >}} 
+{{< command >}}
 $ docker build -t <REPOSITORY_URI> .
 {{< / command >}}
 
@@ -95,7 +96,7 @@ After a few seconds, the Docker image will be pushed to the local ECR repository
 
 ## Creating the local ECS infrastructure
 
-LocalStack enables the deployment of ECS task definitions, services, and tasks, allowing us to deploy our ECR containers via the ECS Fargate launch type, which uses the local Docker engine to deploy containers locally. To create the necessary ECS infrastructure on our local machine before deploying our NGINX web server, we will use a CloudFormation template. 
+LocalStack enables the deployment of ECS task definitions, services, and tasks, allowing us to deploy our ECR containers via the ECS Fargate launch type, which uses the local Docker engine to deploy containers locally. To create the necessary ECS infrastructure on our local machine before deploying our NGINX web server, we will use a CloudFormation template.
 
 You can create a new file named `ecs.infra.yml` inside a new `templates` directory, using a [publicly available CloudFormation template as a starting point](https://github.com/awslabs/aws-cloudformation-templates/blob/master/aws/services/ECS/FargateLaunchType/clusters/public-vpc.yml). To begin, we'll add the `Mappings` section and configure the subnet mask values, which define the range of internal IP addresses that can be assigned.
 
@@ -558,7 +559,7 @@ $ awslocal ecs describe-tasks --cluster <CLUSTER_ARN> --tasks <TASK_ARN> | jq -r
 Earlier, we configured the application to run on port `45139`, in our `HostPort` parameter. Let us now access the application endpoint. Run the following command to get the public IP address of the host:
 
 {{< command >}}
-$ curl localhost:45139 
+$ curl localhost:45139
 {{< /command >}}
 
 Alternatively, in the address bar of your web browser, you can navigate to [`localhost:45139`](https://localhost:45139/). You should see the default index page of the NGINX web server.

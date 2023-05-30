@@ -7,10 +7,11 @@ description: >
 type: tutorials
 teaser: ""
 services:
-- S3
-platform: HTML
+- s3
+platform:
+- html
 deployment:
-- Terraform
+- terraform
 tags:
 - S3
 - Terraform
