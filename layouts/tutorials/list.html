@@ -50,25 +50,32 @@
                   {{ else }}
                   {{/* Otherwise we show a nice formatted list of subpages with page descriptions */}}
                   <hr class="panel-line">
+                    <div class="row">
                       {{ range $pages }}
                           {{ $manualLink := cond (isset .Params "manuallink") .Params.manualLink ( cond (isset .Params "manuallinkrelref") (relref . .Params.manualLinkRelref) .RelPermalink) }}
                           {{$services := cond (ne (len .Params.Services) 0)  (printf " service-%s" (delimit .Params.Services " service-")) "" }}
                           {{$deployment := cond (ne (len .Params.Deployment) 0)  (printf " deployment-%s" (delimit .Params.Deployment " deployment-")) "" }}
                           {{$platform := cond (ne (len .Params.Platform) 0)  (printf " platform-%s" (delimit .Params.Platform " platform-")) "" }}
                           {{$className := print $services $deployment $platform}}
-                          <div class="entry filters-card{{$className}}"
+                          <div class="entry col-12 col-sm-6 col-lg-4 filters-card{{$className}}"
                             data-services='{{cond (ne (len .Params.Services) 0) (delimit .Params.Services ",") ""}}'
                             data-deployments='{{cond (ne (len .Params.Deployment) 0) (delimit .Params.Deployment ",") ""}}'
                             data-platforms='{{cond (ne (len .Params.Platform) 0) (delimit .Params.Platform ",") ""}}'
                           >
-                            <div class="row">
-                              <div class="col">
-                                <h5>
-                                    <a href="{{ $manualLink }}"{{ with .Params.manualLinkTitle }} title="{{ . }}"{{ end }}{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}>{{- .Title -}}</a>
-                                </h5>
-                                <p>{{ .Description | markdownify }}</p>
-                              </div>
+                          <div class="card h-100">
+                            <div>
+                            {{ $image := .Page.Resources.GetMatch (printf "*%s*" (.Params.leadimage)) }}
+                            {{ with $image }}
+                            <img class="card-img" src="{{ .RelPermalink }}"/>
+                            {{end}}
                             </div>
+                            <div class="card-body">
+                            <h5>
+                                <a href="{{ $manualLink }}"{{ with .Params.manualLinkTitle }} title="{{ . }}"{{ end }}{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}>{{- .Title -}}</a>
+                            </h5>
+                            <p>{{ .Description | markdownify }}</p>
+                            </div>
+                          </div>
                           </div>
                           <div id="no-results" class="col-xs-12 flex-grow-1 text-center" style="display: none;">
                             No tutorials available with the selected filters.
@@ -76,6 +83,7 @@
                           </div>
                       {{ end }}
                   {{ end }}
+                </div>
               </div>
 
 

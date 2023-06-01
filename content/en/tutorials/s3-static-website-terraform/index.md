@@ -19,6 +19,7 @@ tags:
 - Static-Website
 - tflocal CLI
 pro: false
+leadimage: "s3-static-website-terraform-featured-image.jpg"
 ---
 
 [AWS Simple Storage Service (S3)](https://aws.amazon.com/s3/) is a proprietary object storage solution that can store an unlimited number of objects for many use cases. S3 is a highly scalable, durable and reliable service that we can use for various use cases: hosting a static site, handling big data analytics, managing application logs, storing web assets and much more!

@@ -25,6 +25,7 @@ tags:
 - Simple Notification Service
 - CloudFormation
 pro: true
+leadimage: "java-notification-app-featured-image.jpg"
 ---
 
 Java is a popular platform for cloud applications that use Amazon Web Services.

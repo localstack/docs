@@ -21,6 +21,7 @@ tags:
 - Lambda Layers
 - Reproducible
 pro: true
+leadimage: "reproducible-machine-learning-cloud-pods-featured-image.jpg"
 ---
 
 [LocalStack Cloud Pods]({{< ref "user-guide/tools/cloud-pods" >}}) enable you to create persistent state snapshots of your LocalStack instance, which can then be versioned, shared, and restored. It allows next-generation state management and team collaboration for your local cloud development environment, which you can utilize to create persistent shareable cloud sandboxes. Cloud Pods works directly with the [LocalStack CLI]({{< ref "references/localstack-cli-manual" >}}) to save, merge, and restore snapshots of your LocalStack state. You can always tear down your LocalStack instance and restore it from a snapshot at any point in time.
