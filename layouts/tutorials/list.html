@@ -69,11 +69,16 @@
                             <img class="card-img" src="{{ .RelPermalink }}"/>
                             {{end}}
                             </div>
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column">
                             <h5>
                                 <a href="{{ $manualLink }}"{{ with .Params.manualLinkTitle }} title="{{ . }}"{{ end }}{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}>{{- .Title -}}</a>
                             </h5>
                             <p>{{ .Description | markdownify }}</p>
+                            <div class="reading-time-in-card text-muted mt-auto">
+                              {{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) }}
+                                {{ partial "reading-time.html" . }}
+                              {{ end }}
+                            </div>
                             </div>
                           </div>
                           </div>
