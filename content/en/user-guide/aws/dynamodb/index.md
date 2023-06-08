@@ -40,7 +40,7 @@ $ awslocal dynamodb list-tables --region eu-central-1
     ]
 }
 
-$ awslocal dynamodb put-item --table-name global01 --item '{"id":{"S":"foo"}} --region eu-central-1
+$ awslocal dynamodb put-item --table-name global01 --item '{"id":{"S":"foo"}}' --region eu-central-1
 
 $ awslocal dynamodb describe-table --table-name global01 --query 'Table.ItemCount' --region ap-south-1
 1
