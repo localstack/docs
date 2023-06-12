@@ -14,6 +14,9 @@ LocalStack supports a basic version of the [Relational Database Service (RDS)](h
 
 Currently, it is possible to spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases on the local machine.
 
+{{< alert title="Note" >}}
+Some configuration of the RDS clusters and instances have currently only CRUD functionality. E.g., the `storage-encrypted` flag is returned as it is set, but there is no support for actual storage encryption yet. 
+{{< /alert >}}
 
 ### Postgres Engine
 
