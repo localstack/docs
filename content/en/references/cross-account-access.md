@@ -107,6 +107,3 @@ This means that the bucket name has to be globally unique.
 AWS provides individual API endpoints for each region, and typically, resources can only be accessed within their respective regions.
 
 On the other hand, LocalStack operates on a unified API endpoint, allowing interactions with services across regions.
-
-LocalStack services generally do not enforce the requirement that the region parameter in the request must match the region specified in the resource identifier (ARN).
-Currently only Lambda enforces this restriction.
