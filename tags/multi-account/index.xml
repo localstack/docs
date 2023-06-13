@@ -1,24 +1,94 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – multi-account</title><link>/tags/multi-account/</link><description>Recent content in multi-account on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/multi-account/index.xml" rel="self" type="application/rss+xml"/><item><title>References: Cross-Account and Cross-Region Access</title><link>/references/cross-account-access/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/cross-account-access/</guid><description>
-&lt;p>LocalStack automatically assigns namespaces to all resources based on the account ID and, in some cases, the region.
+&lt;p>LocalStack automatically namespaces all resources based on the account ID and, in some cases, the region.
 However, there are certain resource types that can be accessed across multiple accounts or regions.
-This document provides detailed information on how to configure and facilitate such setups effectively.&lt;/p>
+This document provides information to help design such setups.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Cross-account support in LocalStack is being actively developed.
 Please report any issues on our &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub issue tracker&lt;/a>.
 &lt;/div>
 &lt;h2 id="cross-account">Cross-Account&lt;/h2>
-&lt;p>Resources that can be accessed across multiple accounts are always identified by their Amazon Resource Names (ARNs).&lt;/p>
-&lt;p>These resource types include:&lt;/p>
+&lt;p>Resources that can be accessed across multiple accounts are always identified by their Amazon Resource Names (ARNs).
+The full list of resources and operations that allow cross-account access are listed below.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+IAM currently does not enforce cross-account access.
+Any ACLs, identity-based or resource-based policy attached to these operations or resources will be ignored.
+&lt;/div>
+&lt;h3 id="lambda-functions-and-layers">Lambda functions and layers&lt;/h3>
 &lt;ul>
-&lt;li>Lambda functions and layers&lt;/li>
-&lt;li>Simple Queue Service (SQS) queues&lt;/li>
-&lt;li>Key Management Service (KMS) keys&lt;/li>
+&lt;li>&lt;code>AddLayerVersionPermission&lt;/code>&lt;/li>
+&lt;li>&lt;code>CreateAlias&lt;/code>&lt;/li>
+&lt;li>&lt;code>DeleteAlias&lt;/code>&lt;/li>
+&lt;li>&lt;code>DeleteFunction&lt;/code>&lt;/li>
+&lt;li>&lt;code>DeleteFunctionConcurrency&lt;/code>&lt;/li>
+&lt;li>&lt;code>DeleteLayerVersion&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetAlias&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetFunction&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetFunctionConfiguration&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetLayerVersion&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetLayerVersionByArn&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetLayerVersionPolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetPolicy&lt;/code>&lt;/li>
+&lt;li>&lt;code>Invoke&lt;/code>&lt;/li>
+&lt;li>&lt;code>ListAliases&lt;/code>&lt;/li>
+&lt;li>&lt;code>ListLayerVersions&lt;/code>&lt;/li>
+&lt;li>&lt;code>ListTags&lt;/code>&lt;/li>
+&lt;li>&lt;code>ListVersionsByFunction&lt;/code>&lt;/li>
+&lt;li>&lt;code>PublishVersion&lt;/code>&lt;/li>
+&lt;li>&lt;code>PutFunctionConcurrency&lt;/code>&lt;/li>
+&lt;li>&lt;code>RemoveLayerVersionPermission&lt;/code>&lt;/li>
+&lt;li>&lt;code>TagResource&lt;/code>&lt;/li>
+&lt;li>&lt;code>UntagResource&lt;/code>&lt;/li>
+&lt;li>&lt;code>UpdateAlias&lt;/code>&lt;/li>
+&lt;li>&lt;code>UpdateFunctionCode&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h3 id="sqs-queues">SQS queues&lt;/h3>
+&lt;p>On AWS, all operations except &lt;code>AddPermission&lt;/code>, &lt;code>CreateQueue&lt;/code>, &lt;code>DeleteQueue&lt;/code>, &lt;code>ListQueues&lt;/code>, &lt;code>ListQueueTags&lt;/code>, &lt;code>RemovePermission&lt;/code>, &lt;code>SetQueueAttributes&lt;/code>, &lt;code>TagQueue&lt;/code> and &lt;code>UntagQueue&lt;/code> allow cross-account access.&lt;/p>
+&lt;p>On LocalStack, all operations allow cross-account access.&lt;/p>
+&lt;h3 id="kms-keys">KMS keys&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>CreateGrant&lt;/code>&lt;/li>
+&lt;li>&lt;code>Decrypt&lt;/code>&lt;/li>
+&lt;li>&lt;code>DescribeKey&lt;/code>&lt;/li>
+&lt;li>&lt;code>Encrypt&lt;/code>&lt;/li>
+&lt;li>&lt;code>GenerateDataKey&lt;/code>&lt;/li>
+&lt;li>&lt;code>GenerateDataKeyPair&lt;/code>&lt;/li>
+&lt;li>&lt;code>GenerateDataKeyPairWithoutPlaintext&lt;/code>&lt;/li>
+&lt;li>&lt;code>GenerateDataKeyWithoutPlaintext&lt;/code>&lt;/li>
+&lt;li>&lt;code>GenerateMac&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetKeyRotationStatus&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetPublicKey&lt;/code>&lt;/li>
+&lt;li>&lt;code>ListGrants&lt;/code>&lt;/li>
+&lt;li>&lt;code>RetireGrant&lt;/code>&lt;/li>
+&lt;li>&lt;code>RevokeGrant&lt;/code>&lt;/li>
+&lt;li>&lt;code>Sign&lt;/code>&lt;/li>
+&lt;li>&lt;code>Verify&lt;/code>&lt;/li>
+&lt;li>&lt;code>VerifyMac&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;!-- - ReEncrypt (NOT IMPLEMENTED IN LOCALSTACK) -->
+&lt;h3 id="sns-topics">SNS topics&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>AddPermission&lt;/code>&lt;/li>
+&lt;li>&lt;code>DeleteTopic&lt;/code>&lt;/li>
+&lt;li>&lt;code>GetTopicAttributes&lt;/code>&lt;/li>
+&lt;li>&lt;code>ListSubscriptionByTopic&lt;/code>&lt;/li>
+&lt;li>&lt;code>Publish&lt;/code>&lt;/li>
+&lt;li>&lt;code>RemovePermission&lt;/code>&lt;/li>
+&lt;li>&lt;code>SetTopicAttributes&lt;/code>&lt;/li>
+&lt;li>&lt;code>Subscribe&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h3 id="s3-buckets">S3 buckets&lt;/h3>
+&lt;p>Like AWS, LocalStack S3 has a bucket namespace which is shared by all accounts.
+This means that the bucket name has to be globally unique.&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>GetObject&lt;/code>&lt;/li>
+&lt;li>&lt;code>ListObjects&lt;/code>&lt;/li>
+&lt;li>&lt;code>PutObject&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;h2 id="cross-region">Cross-Region&lt;/h2>
 &lt;p>AWS provides individual API endpoints for each region, and typically, resources can only be accessed within their respective regions.&lt;/p>
-&lt;p>On the other hand, LocalStack operates on a unified API endpoint, allowing interactions with services across regions.&lt;/p>
-&lt;p>Unlike AWS, LocalStack does not strictly enforce the requirement that the region parameter in the request must match the region specified in the resource identifier (ARN).&lt;/p></description></item><item><title>References: Multi-Account Setups</title><link>/references/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/multi-account-setups/</guid><description>
+&lt;p>On the other hand, LocalStack operates on a unified API endpoint, allowing interactions with services across regions.&lt;/p></description></item><item><title>References: Multi-Account Setups</title><link>/references/multi-account-setups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/multi-account-setups/</guid><description>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Please note that multi-accounts may not work for use-cases that have cross-account and cross-service access.
