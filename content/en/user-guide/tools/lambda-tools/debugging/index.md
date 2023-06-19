@@ -53,7 +53,7 @@ fragment placed inside your handler code:
 
 ```python
 import debugpy
-debugpy.listen(19891)
+debugpy.listen(("0.0.0.0", 19891))
 debugpy.wait_for_client()  # blocks execution until client is attached
 ```
 
