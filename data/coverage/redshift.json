@@ -176,7 +176,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -188,7 +188,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -584,7 +584,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -596,7 +596,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -944,7 +944,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -1340,7 +1340,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -1450,6 +1450,20 @@
       }
     },
     "CreateCluster": {
+      "ClusterIdentifier, ClusterType, DBName, MasterUserPassword, MasterUsername, NodeType": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_redshift.py::test_redshift_cluster",
+            "test": "test_redshift_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      },
       "ClusterIdentifier, DBName, MasterUserPassword, MasterUsername, NodeType": {
         "ls_pro": [
           {
@@ -1690,6 +1704,26 @@
       },
       "ClusterIdentifier": {
         "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_redshift.py::test_redshift_cluster",
+            "test": "test_redshift_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/integration/cloudformation/resources/test_redshift.py::test_redshift_cluster",
+            "test": "test_redshift_cluster",
+            "response": "400",
+            "error": "CommonServiceException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_create_clusters",
             "test": "test_create_clusters",

@@ -67,7 +67,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -103,7 +103,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -115,7 +115,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -294,12 +294,12 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_admin_no_srp_auth_flow",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestAuthFlows::test_admin_no_srp_auth_flow",
             "test": "test_admin_no_srp_auth_flow",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -349,8 +349,8 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -368,9 +368,9 @@
             "test": "test_srp_login",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..AccountRecoverySetting']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -411,6 +411,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_error_messages",
+            "test": "test_user_pool_error_messages",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -488,6 +498,36 @@
             "origin": "internal"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestAuthFlows::test_admin_no_srp_auth_flow",
+            "test": "test_admin_no_srp_auth_flow",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_change_password[user-{short_uid}@example.com]",
+            "test": "test_change_password[user-{short_uid}@example.com]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_change_password[user-{short_uid}]",
+            "test": "test_change_password[user-{short_uid}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_cognito_identity_pool_roles",
             "test": "test_create_cognito_identity_pool_roles",
             "response": "200",
@@ -498,11 +538,51 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_login_via_web_form",
+            "test": "test_login_via_web_form",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_mfa_sms_config",
+            "test": "test_mfa_sms_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_password_policy",
+            "test": "test_password_policy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_restore_forgotten_password",
             "test": "test_restore_forgotten_password",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_srp_login",
+            "test": "test_srp_login",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AccountRecoverySetting']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -530,6 +610,26 @@
           {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_update_user_mfa_preferences",
             "test": "test_update_user_mfa_preferences",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_groups",
+            "test": "test_user_groups",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_error_messages",
+            "test": "test_user_pool_error_messages",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -577,15 +677,15 @@
       }
     },
     "GetCredentialsForIdentity": {
-      "IdentityId": {
+      "IdentityId, Logins": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_admin_no_srp_auth_flow",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestAuthFlows::test_admin_no_srp_auth_flow",
             "test": "test_admin_no_srp_auth_flow",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -635,8 +735,18 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_restore_forgotten_password",
+            "test": "test_restore_forgotten_password",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -644,31 +754,7 @@
             "test": "test_srp_login",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_groups",
-            "test": "test_user_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
-      "IdentityId, Logins": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_restore_forgotten_password",
-            "test": "test_restore_forgotten_password",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
+            "snapshot_skipped": "['$..AccountRecoverySetting']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -696,6 +782,26 @@
           {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_update_user_mfa_preferences",
             "test": "test_update_user_mfa_preferences",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_groups",
+            "test": "test_user_groups",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_error_messages",
+            "test": "test_user_pool_error_messages",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -744,12 +850,12 @@
       "IdentityPoolId, Logins": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_admin_no_srp_auth_flow",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestAuthFlows::test_admin_no_srp_auth_flow",
             "test": "test_admin_no_srp_auth_flow",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
@@ -799,8 +905,8 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -818,9 +924,9 @@
             "test": "test_srp_login",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..AccountRecoverySetting']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -861,6 +967,16 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_error_messages",
+            "test": "test_user_pool_error_messages",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -986,6 +1102,36 @@
       "IdentityPoolId, Roles": {
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestAuthFlows::test_admin_no_srp_auth_flow",
+            "test": "test_admin_no_srp_auth_flow",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_change_password[user-{short_uid}@example.com]",
+            "test": "test_change_password[user-{short_uid}@example.com]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_change_password[user-{short_uid}]",
+            "test": "test_change_password[user-{short_uid}]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_create_cognito_identity_pool_roles",
             "test": "test_create_cognito_identity_pool_roles",
             "response": "200",
@@ -996,11 +1142,51 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_login_via_web_form",
+            "test": "test_login_via_web_form",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_mfa_sms_config",
+            "test": "test_mfa_sms_config",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_password_policy",
+            "test": "test_password_policy",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_restore_forgotten_password",
             "test": "test_restore_forgotten_password",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_srp_login",
+            "test": "test_srp_login",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..AccountRecoverySetting']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1028,6 +1214,26 @@
           {
             "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_update_user_mfa_preferences",
             "test": "test_update_user_mfa_preferences",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_groups",
+            "test": "test_user_groups",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_error_messages",
+            "test": "test_user_pool_error_messages",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
