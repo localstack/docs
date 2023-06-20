@@ -37,37 +37,48 @@ LocalStack runs inside a Docker container, and the above options are different w
 
 The LocalStack CLI aims to simplify starting and managing LocalStack. It provides convenience features to start LocalStack on your local machine, as a Docker container on your machine, or even on a remote Docker host. In addition you can easily check the status or open a shell in your LocalStack instance if you want to take a deep-dive.
 
-#### Prerequisites
-
-Please make sure to install the following tools on your machine before moving ahead:
-
-- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.10 is supported)
-- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
-- [`docker`](https://docs.docker.com/get-docker/)
-
 #### Installation
 
 Download the latest LocalStack release:
 
-{{< tabpane >}}
-{{< tab header="macOS brew" lang="shell" >}}
-brew install localstack
-{{< /tab >}}
-{{< tab header="macOS/Linux PyPI" lang="shell" >}}
-python3 -m pip install localstack
-{{< /tab >}}
-{{< tab header="Windows" lang="shell" >}}
-python -m pip install localstack
-{{< /tab >}}
-{{< /tabpane >}}
+{{< tabpane text=true >}}
+{{< tab header="MacOS" >}}
+<h3>Brew</h3>
+You can install the LocalStack CLI directly from our official LocalStack tap:
+{{< command >}}
+$ brew install localstack/tap/localstack
+{{< / command >}}
+
+<h3>or Binary Download</h3>
+<p>
+Alternatively, you can just download the respective binary for your architecture directly:<br>
+{{< cli-binary-download os="macos" >}}
+</p>
+<p>
+Then extract the LocalStack CLI from the terminal:
+{{< command >}}
+$ sudo tar xvzf ~/Downloads/localstack-cli-*-darwin-*-onefile.tgz -C /usr/local/bin
+{{< / command >}}
+</p>
+
+<h3>or Python</h3>
+You can also install the LocalStack CLI directly in your Python environment.<br>
+Please make sure to install the following tools on your machine before moving ahead:
+{{% markdown %}}
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.11 is supported)
+- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
+
+Afterwards you can install the LocalStack CLI in your Python environment with:
+{{< command >}}
+$ python3 -m pip install --upgrade localstack
+{{< / command >}}
+{{% /markdown %}}
 
 {{< alert title="Note" >}}
 To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
-
 {{< command >}} 
 $ python3 -m pip install localstack==<version>
 {{< / command >}}
-
 Here `<version>` depicts the particular LocalStack version that you would like to download and use.
 {{< /alert >}}
 
@@ -75,6 +86,93 @@ Here `<version>` depicts the particular LocalStack version that you would like t
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
 If you have problems with permissions in MacOS X Sierra, install with `python3 -m pip install --user localstack`.
 {{< /alert >}}
+{{< /tab >}}
+
+
+
+{{< tab header="Linux" >}}
+<h3>Binary Download</h3>
+<p>
+You can just download the respective binary for your architecture directly:<br>
+{{< cli-binary-download os="macos" >}}
+</p>
+<p>
+Then extract the LocalStack CLI from the terminal:
+{{< command >}}
+$ sudo tar xvzf ~/Downloads/localstack-cli-*-linux-*-onefile.tgz -C /usr/local/bin
+{{< / command >}}
+</p>
+
+<h3>or Homebrew on Linux</h3>
+<p>
+Alternatively, if you are using <a href="https://docs.brew.sh/Homebrew-on-Linux">Homebrew for Linux</a>, you can install the LocalStack CLI directly from our official LocalStack tap:
+{{< command >}}
+$ brew install localstack/tap/localstack
+{{< / command >}}
+</p>
+
+<h3>or Python</h3>
+You can also install the LocalStack CLI directly in your PYthon environment.<br>
+Please make sure to install the following tools on your machine before moving ahead:
+{{% markdown %}}
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.11 is supported)
+- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
+
+Afterwards you can install the LocalStack CLI in your Python environment with:
+{{< command >}}
+$ python3 -m pip install --upgrade localstack
+{{< / command >}}
+{{% /markdown %}}
+
+{{< alert title="Note" >}}
+To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
+{{< command >}} 
+$ python3 -m pip install localstack==<version>
+{{< / command >}}
+Here `<version>` depicts the particular LocalStack version that you would like to download and use.
+{{< /alert >}}
+
+{{< alert title="Important" color="danger" >}}
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
+{{< /alert >}}
+{{< /tab >}}
+
+
+
+{{< tab header="Windows" >}}
+<h3>Binary Download</h3>
+
+You can just download the respective binary for your architecture directly: 
+{{< cli-binary-download os="windows" >}}<br/>
+Then extract the archive and execute the binary using Powershell.
+</p>
+
+<h3>or Python</h3>
+You can also install the LocalStack CLI directly in your Python environment.<br>
+Please make sure to install the following tools on your machine before moving ahead:
+{{% markdown %}}
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.11 is supported)
+- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
+
+Afterwards you can install the LocalStack CLI in your Python environment with:
+{{< command >}}
+$ python3 -m pip install --upgrade localstack
+{{< / command >}}
+{{% /markdown %}}
+
+{{< alert title="Note" >}}
+To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
+{{< command >}} 
+$ python3 -m pip install localstack==<version>
+{{< / command >}}
+Here `<version>` depicts the particular LocalStack version that you would like to download and use.
+{{< /alert >}}
+
+{{< alert title="Important" color="danger" >}}
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
+{{< /alert >}}
+{{< /tab >}}
+{{< /tabpane >}}
 
 Afterwards you should be able to use the LocalStack CLI in your terminal:
 
