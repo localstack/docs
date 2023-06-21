@@ -26,6 +26,18 @@ $ localstack start
 
 You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
 
+{{< alert title="Notes" >}}
+- This command loads all services provided by LocalStack, they will however be started on the first request reaching this service.
+
+- By default, LocalStack uses the image tagged `latest` that is cached on your machine, and will **not** pull the latest image automatically from Docker Hub (i.e., the image needs to be pulled manually if needed).
+
+- The default image `localstack/localstack` in DockerHub refers to the community version of LocalStack.
+  The `localstack/localstack-pro` image refers to the Pro version of LocalStack. Previously we maintained `localstack-light` and `localstack-full` images which has been deprecated and will be removed with the LocalStack 2.0 release.
+
+- When an [API key]({{< ref "api-key" >}}) is set in your environment, `localstack start` will attempt to start LocalStack with the `localstack/localtack-pro` image.
+  A successful key activation is required to start LocalStack Pro but can be disabled by setting `ACTIVATE_PRO=0`.
+{{< /alert >}}
+
 ## Setup the sample AWS application
 
 With LocalStack ready, you can now run your first AWS application locally. Clone our [sample application](https://github.com/localstack/localstack-demo) using Git on your local machine:
