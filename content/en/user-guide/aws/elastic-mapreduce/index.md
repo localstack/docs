@@ -31,9 +31,6 @@ $ awslocal emr create-cluster \
           --release-label emr-5.9.0 \
           --instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m4.large InstanceGroupType=CORE,InstanceCount=1,InstanceType=m4.large
 {{< / command >}}
-
-The command above will spin up one more more Docker containers on your local machine that can be used to run analytics workloads using Spark, Hadoop, Pig, and other tools.
-
 You will see a response similar to the following:
 
 ```sh
