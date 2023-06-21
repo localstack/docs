@@ -22,7 +22,7 @@ To utilize the EMR API, certain additional dependencies need to be downloaded fr
 
 ## Getting started
 
-This guide is designed for users new to emr and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+This guide is designed for users new to EMR and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method. We will create a virtual EMR cluster using the AWS CLI. To create an EMR cluster, run the following command:
 
