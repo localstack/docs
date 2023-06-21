@@ -166,6 +166,9 @@ Besides using the CLI, there are other ways of starting and managing your LocalS
 - [LocalStack Cockpit]({{< ref "#localstack-cockpit" >}})\
   Get a desktop experience and work with your local LocalStack instance via the UI.
 
+- [LocalStack Docker Extension]({{< ref "#localstack-docker-extension" >}})\
+  Use the LocalStack extension for Docker Desktop to work with your LocalStack instance.
+
 - [Docker]({{< ref "#docker" >}})\
   Use the `docker` CLI to manually start the LocalStack Docker container.
 
@@ -181,6 +184,10 @@ For a comprehensive overview of the LocalStack images, check out our [Docker ima
 ### LocalStack Cockpit
 
 See [LocalStack Cockpit]({{< ref "cockpit" >}}).
+
+### LocalStack Docker Extension
+
+See [LocalStack Docker Extension]({{< ref "localstack-docker-extension" >}}).
 
 ### Docker
 
