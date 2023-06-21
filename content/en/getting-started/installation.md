@@ -46,7 +46,7 @@ Download the latest LocalStack release:
 <h3>Brew</h3>
 You can install the LocalStack CLI directly from our official LocalStack tap:
 {{< command >}}
-$ brew install localstack/tap/localstack
+$ brew install localstack/tap/localstack-cli
 {{< / command >}}
 
 <h3>or Binary Download</h3>
@@ -107,7 +107,7 @@ $ sudo tar xvzf ~/Downloads/localstack-cli-*-linux-*-onefile.tgz -C /usr/local/b
 <p>
 Alternatively, if you are using <a href="https://docs.brew.sh/Homebrew-on-Linux">Homebrew for Linux</a>, you can install the LocalStack CLI directly from our official LocalStack tap:
 {{< command >}}
-$ brew install localstack/tap/localstack
+$ brew install localstack/tap/localstack-cli
 {{< / command >}}
 </p>
 
