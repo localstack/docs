@@ -28,7 +28,7 @@ Alternatively, you can just download the respective binary for your architecture
 <p>
 Then extract the LocalStack CLI from the terminal:
 {{< command >}}
-$ sudo tar xvzf ~/Downloads/localstack-cli-*-darwin-*-onefile.tar.gz -C /usr/local/bin
+$ sudo tar xvzf ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-darwin-*-onefile.tar.gz -C /usr/local/bin
 {{< / command >}}
 </p>
 </details>
@@ -63,7 +63,7 @@ You can just download the respective binary for your architecture directly:<br>
 <p>
 Then extract the LocalStack CLI from the terminal:
 {{< command >}}
-$ sudo tar xvzf ~/Downloads/localstack-cli-*-linux-*-onefile.tar.gz -C /usr/local/bin
+$ sudo tar xvzf ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-linux-*-onefile.tar.gz -C /usr/local/bin
 {{< / command >}}
 </p>
 
@@ -155,7 +155,7 @@ Do not use `sudo` or the `root` user - LocalStack should be installed and starte
 To verify that the LocalStack CLI was installed correctly, you can check the version in your terminal:
 {{< command >}}
 $ localstack --version
-2.1.0
+{{< localstack-latest-version >}}
 {{< / command >}}
 
 You are all set! Check out our [Quickstart guide]({{< ref "quickstart" >}}) to start your local cloud!
