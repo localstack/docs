@@ -17,7 +17,7 @@ LocalStack Pro supports EMR and allows developers to run data analytics workload
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_emr/), which provides information on the extent of EMR's integration with LocalStack.
 
 {{< alert title="Note">}}
-To utilize the EMR API, certain additional dependencies need to be downloaded from the network. This includes a Docker image of approximately 1.5 GB, which incorporates essential tools like Presto, Hive, and others. These dependencies are fetched automatically during service startup. Therefore, it's important to ensure a reliable internet connection when retrieving the dependencies for the first time.
+To utilize the EMR API, certain additional dependencies need to be downloaded from the network (including Hadoop, Hive, Spark, etc). These dependencies are fetched automatically during service startup, hence it is important to ensure a reliable internet connection when retrieving the dependencies for the first time. Alternatively, you can use one of our `*-bigdata` Docker image tags which already ship with the required libraries baked in and may provide better stability (see [here](https://docs.localstack.cloud/user-guide/ci/#ci-images) for more details).
 {{< /alert >}}
 
 ## Getting started
