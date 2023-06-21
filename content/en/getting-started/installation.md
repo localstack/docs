@@ -363,7 +363,7 @@ Commands:
 {{< / command >}}
 
 Updating the LocalStack CLI itself (`localstack update localstack-cli` and `localstack update all`) is currently only supported if you installed the CLI in a Python environment.
-If you have installed the CLI with Brew or directly as a binary, please just perform the installation commands again to update to the latest version.
+If you have installed the CLI with Brew or directly as a binary, please simply perform the installation commands again to update to the latest version.
 
 ## Troubleshooting
 

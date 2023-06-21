@@ -31,10 +31,10 @@ You can optionally run your LocalStack container in background mode by adding th
 
 - By default, LocalStack uses the image tagged `latest` that is cached on your machine, and will **not** pull the latest image automatically from Docker Hub (i.e., the image needs to be pulled manually if needed).
 
-- The default image `localstack/localstack` in DockerHub refers to the community version of LocalStack.
-  The `localstack/localstack-pro` image refers to the Pro version of LocalStack. Previously we maintained `localstack-light` and `localstack-full` images which has been deprecated and will be removed with the LocalStack 2.0 release.
+- The default image [`localstack/localstack`](https://hub.docker.com/r/localstack/localstack) on Docker Hub refers to the community version of LocalStack.
+  The [`localstack/localstack-pro`](https://hub.docker.com/r/localstack/localstack-pro) image refers to the Pro version of LocalStack. Previously we maintained `localstack-light` and `localstack-full` images which have been deprecated and removed with the LocalStack 2.0 release.
 
-- When an [API key]({{< ref "api-key" >}}) is set in your environment, `localstack start` will attempt to start LocalStack with the `localstack/localtack-pro` image.
+- If an [API key]({{< ref "api-key" >}}) is set in your environment, `localstack start` will attempt to start LocalStack with the `localstack/localtack-pro` image.
   A successful key activation is required to start LocalStack Pro but can be disabled by setting `ACTIVATE_PRO=0`.
 {{< /alert >}}
 
