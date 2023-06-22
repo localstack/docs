@@ -1,7 +1,7 @@
 ---
 title: "Quickstart"
 linkTitle: "Quickstart"
-weight: 4
+weight: 30
 description: >
   This quickstart gives an overview of how you can get a simple AWS application up and running on your local machine to understand local cloud development with LocalStack!
 cascade:

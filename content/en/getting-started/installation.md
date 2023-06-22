@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 3
+weight: 10
 description: >
   Basic installation guide to get started with LocalStack on your local machine.
 cascade:
@@ -158,7 +158,9 @@ $ localstack --version
 {{< localstack-latest-version >}}
 {{< / command >}}
 
-You are all set! Check out our [Quickstart guide]({{< ref "quickstart" >}}) to start your local cloud!
+You are all set!
+To use all of LocalStack's features we recommend to [get a LocalStack account and set up your api key]({{< ref "api-key" >}}).
+Afterwards, check out our [Quickstart guide]({{< ref "quickstart" >}}) to start your local cloud!
 
 ## Alternatives
 Besides using the CLI, there are other ways of starting and managing your LocalStack instance:

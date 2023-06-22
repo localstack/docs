@@ -1,7 +1,7 @@
 ---
 title: "Help & Support"
 linkTitle: "Help & Support"
-weight: 7
+weight: 60
 description: >
   This page outlines how to get help and support while using LocalStack.
 cascade:
