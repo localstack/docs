@@ -6434,12 +6434,8 @@ These are tables belonging to the same account and replicated across different r
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb describe-table --table-name global01 --query &amp;#39;Table.ItemCount&amp;#39; --region ap-south-1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-When describing global tables, the current table is treated as a replica.
-This is a known bug &lt;a href="https://github.com/localstack/localstack/issues/7426">https://github.com/localstack/localstack/issues/7426&lt;/a>.
-&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb describe-table --table-name global01 --query &amp;#39;Table.Replicas&amp;#39; --region us-west-1
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>Get all replicas
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb describe-table --table-name global01 --query &amp;#39;Table.Replicas&amp;#39; --region us-west-1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegionName&amp;#34;: &amp;#34;ap-south-1&amp;#34;,
@@ -6448,15 +6444,11 @@ This is a known bug &lt;a href="https://github.com/localstack/localstack/issues/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegionName&amp;#34;: &amp;#34;eu-central-1&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ReplicaStatus&amp;#34;: &amp;#34;ACTIVE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegionName&amp;#34;: &amp;#34;us-west-1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ReplicaStatus&amp;#34;: &amp;#34;ACTIVE&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
-It is currently not possible to remove the original table region from the replication set.
+It is currently not possible to remove the original table region from the replication set while keeping the replicas.
 Deleting the original table will also remove all the replicas.
 &lt;/div>
 &lt;div class="alert alert-warning" role="alert">
