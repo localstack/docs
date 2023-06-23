@@ -67,6 +67,9 @@ The CDK command line ships with a sample app generator to run a quick test for g
 mkdir /tmp/test; cd /tmp/test
 cdklocal init sample-app --language=javascript
 
+# bootstrap localstack environment
+cdklocal bootstrap
+
 # deploy the sample app
 cdklocal deploy
 > Do you wish to deploy these changes (y/n)? y
