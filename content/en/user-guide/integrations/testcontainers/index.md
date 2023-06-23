@@ -71,7 +71,7 @@ await localStackContainer.StartAsync()
 container, err := localstack.StartContainer(ctx, localstack.NoopOverrideContainerRequest)
 {{< /tab >}}
 {{< tab header="Java" lang="java">}}
-LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:2.0.0");
+LocalStackContainer localstack = new LocalStackContainer(DockerImageName.parse("localstack/localstack:2.0.0"));
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -128,7 +128,7 @@ func s3Client(ctx context.Context, l *localstack.LocalStackContainer) (*s3.Clien
 {{< /tab >}}
 {{< tab header="Java" lang="java">}}
 S3Client s3 = S3Client.builder()
-    .endpointOverride(localstack.getEndpointOverride(LocalStackContainer.Service.S3))
+    .endpointOverride(localstack.getEndpoint())
     .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(localstack.getAccessKey(), localstack.getSecretKey())))
     .region(Region.of(localstack.getRegion()))
     .build();
@@ -149,7 +149,7 @@ The Testcontainer can be created like this:
   * In this sample we only map 5 ports, however, depending on your use case you may need to map ports up to 4559
 */
 @Rule
-public LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:2.0.0")
+public LocalStackContainer localstack = new LocalStackContainer(DockerImageName("localstack/localstack:2.0.0"))
                                                     .withExposedPorts(4510, 4511, 4512, 4513, 4514) // TODO the port can have any value between 4510-4559, but LS starts from 4510
                                                     .withEnv("LOCALSTACK_API_KEY", api_key); // TODO add your API key here
 
