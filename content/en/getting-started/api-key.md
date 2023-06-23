@@ -1,6 +1,6 @@
 ---
 title: "API Key"
-weight: 5
+weight: 20
 categories: ["LocalStack Pro & Enterprise"]
 description: >
   Configure your API key to start LocalStack

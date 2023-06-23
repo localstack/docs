@@ -1,7 +1,7 @@
 ---
 title: "Quickstart"
 linkTitle: "Quickstart"
-weight: 4
+weight: 30
 description: >
   This quickstart gives an overview of how you can get a simple AWS application up and running on your local machine to understand local cloud development with LocalStack!
 cascade:
@@ -25,6 +25,18 @@ $ localstack start
 {{< / command >}}
 
 You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
+
+{{< alert title="Notes" >}}
+- This command loads all services provided by LocalStack, they will however be started on the first request reaching this service.
+
+- By default, LocalStack uses the image tagged `latest` that is cached on your machine, and will **not** pull the latest image automatically from Docker Hub (i.e., the image needs to be pulled manually if needed).
+
+- The default image [`localstack/localstack`](https://hub.docker.com/r/localstack/localstack) on Docker Hub refers to the community version of LocalStack.
+  The [`localstack/localstack-pro`](https://hub.docker.com/r/localstack/localstack-pro) image refers to the Pro version of LocalStack. Previously we maintained `localstack-light` and `localstack-full` images which have been deprecated and removed with the LocalStack 2.0 release.
+
+- If an [API key]({{< ref "api-key" >}}) is set in your environment, `localstack start` will attempt to start LocalStack with the `localstack/localtack-pro` image.
+  A successful key activation is required to start LocalStack Pro but can be disabled by setting `ACTIVATE_PRO=0`.
+{{< /alert >}}
 
 ## Setup the sample AWS application
 

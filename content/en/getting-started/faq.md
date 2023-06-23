@@ -1,7 +1,7 @@
 ---
 title: "Frequently Asked Questions"
 linkTitle: "FAQ"
-weight: 7
+weight: 40
 description: >
   This page answers the frequently asked questions about LocalStack Pro, Enterprise, and Community Editions. 
 cascade:
