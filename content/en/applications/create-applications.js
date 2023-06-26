@@ -14,12 +14,7 @@ function slugify(str) {
     .toLowerCase();
 }
 
-if (process.argv.length <= 2) {
-  console.log('Please pass path argument');
-  process.exit(0);
-}
-
-const filePath = process.argv[2];
+const filePath = 'data/developerhub/applications.json';
 const fileData = fs.readFileSync(filePath, 'utf8');
 const applications = JSON.parse(fileData).applications;
 let fileNames = '';
