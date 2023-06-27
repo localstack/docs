@@ -15,6 +15,8 @@ These options can be passed to LocalStack as environment variables like so:
 $ DEBUG=1 localstack start
 {{< / command >}}
 
+You can also use [Configuration Profiles](#configuration-profiles).
+
 ## Core
 
 Options that affect the core LocalStack system.
@@ -274,46 +276,6 @@ Please check with your SMTP email service provider for the following settings.
 | `SMTP_PASS` |  | Login password for the SMTP server if required. |
 | `SMTP_EMAIL` | `sender@example.com` | Origin email address. Required for Cognito only. |
 
-
-## Profiles
-
-LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory. A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory. Here is an example of what configuration profiles might look like:
-
-```sh
-% tree ~/.localstack
-/home/username/.localstack
-├── default.env
-├── dev.env
-└── pro.env
-```
-
-Here is an example of what a specific environment profile looks like
-
-```sh
-% cat ~/.localstack/pro-debug.env
-LOCALSTACK_API_KEY=XXXXX
-DEBUG=1
-DEVELOP=1
-```
-
-You can load a profile by either setting the `env` variable `CONFIG_PROFILE=<profile>` or the `--profile=<profile>` CLI flag when using the CLI. Let's take an example to load the `dev.env` profile file if it exists:
-
-{{< command >}}
-python -m localstack.cli.main --profile=dev start
-{{< / command >}}
-
-If no profile is specified, the `default.env` profile will be loaded. While explicitly specified, the environment variables will always overwrite the profile.
-
-To display the config environment variables, you can use the following command:
-
-{{< command >}}
-python -m localstack.cli.main --profile=dev config show
-{{< / command >}}
-
-{{< alert title="Note" >}}
-The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup. You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups. For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
-{{< /alert >}}
-
 ## Persistence
 
 To learn more about these configuration options, see [Persistence]({{< ref "persistence-mechanism" >}}).
@@ -396,3 +358,50 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 | `SKIP_INFRA_DOWNLOADS` | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
 | `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
+
+
+## Configuration Profiles
+
+LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory.
+A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory.
+
+Here is an example of what configuration profiles might look like:
+
+{{< command >}}
+$ tree ~/.localstack
+/home/username/.localstack
+├── default.env
+├── dev.env
+└── pro.env
+{{< / command >}}
+
+Here is an example of what a specific environment profile looks like
+
+{{< command >}}
+$ cat ~/.localstack/pro-debug.env
+LOCALSTACK_API_KEY=XXXXX
+DEBUG=1
+DEVELOP=1
+{{< / command >}}
+
+You can load a profile by either setting the `env` variable `CONFIG_PROFILE=<profile>` or the `--profile=<profile>` CLI flag when using the CLI.
+Let's take an example to load the `dev.env` profile file if it exists:
+
+{{< command >}}
+$ python -m localstack.cli.main --profile=dev start
+{{< / command >}}
+
+If no profile is specified, the `default.env` profile will be loaded.
+While explicitly specified, the environment variables will always overwrite the profile.
+
+To display the config environment variables, you can use the following command:
+
+{{< command >}}
+$ python -m localstack.cli.main --profile=dev config show
+{{< / command >}}
+
+{{< alert title="Note" >}}
+The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup.
+You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups.
+For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
+{{< /alert >}}
