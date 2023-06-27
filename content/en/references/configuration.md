@@ -15,7 +15,7 @@ These options can be passed to LocalStack as environment variables like so:
 $ DEBUG=1 localstack start
 {{< / command >}}
 
-You can also use [Configuration Profiles](#configuration-profiles).
+You can also use [Profiles](#profiles).
 
 ## Core
 
@@ -23,35 +23,34 @@ Options that affect the core LocalStack system.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `HOSTNAME`| `localhost` (default) | Name of the host to expose the services internally. For framework-internal communication, e.g., services are started in different containers using docker-compose.|
 | `DEBUG` | `0`\|`1`| Flag to increase log level and print more verbose logs (useful for troubleshooting issues)|
 | `IMAGE_NAME`| `localstack/localstack` (default), `localstack/localstack:0.11.0` | Specific name and tag of LocalStack Docker image to use.|
 | `GATEWAY_LISTEN`| `127.0.0.1:4566` (default in host mode), `0.0.0.0:4566` (default in Docker mode) | Configures the bind addresses of LocalStack. It has the form `<ip address>:<port>(,<ip address>:<port>)*`. |
-| `LOCALSTACK_HOST`| `localhost.localstack.cloud:4566` (default) | This value is interpolated into URLs and addresses that point to LocalStack host. It has the form `<hostname>:<port>`. |
-| `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [filesystem layout]({{< ref "filesystem" >}}). |
-| `PERSISTENCE` | `0` (default) | Enable persistence. See [persistence mechanism]({{< ref "persistence-mechanism" >}}) and [filesystem layout]({{< ref "filesystem" >}}). |
+| `LOCALSTACK_HOST`| `localhost.localstack.cloud:4566` (default) | This is interpolated into URLs and addresses that are returned by LocalStack. It has the form `<hostname>:<port>`. |
+| `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
+| `PERSISTENCE` | `0` (default) | Enable persistence. See [Persistence Mechanism]({{< ref "persistence-mechanism" >}}) and [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `PERSIST_ALL` | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
 | `LS_LOG` | `trace`, `trace-internal`, `debug`, `info`, `warn`, `error`, `warning`| Specify the log level. Currently overrides the `DEBUG` configuration. `trace` for detailed request/response, `trace-internal` for internal calls, too. |
-| `EXTERNAL_SERVICE_PORTS_START` | `4510` (default) | Start of [the external service port range]({{< ref "external-ports" >}}) (included). |
-| `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of [the external service port range]({{< ref "external-ports" >}}) (excluded). |
+| `EXTERNAL_SERVICE_PORTS_START` | `4510` (default) | Start of the [External Service Port Range]({{< ref "external-ports" >}}) (inclusive). |
+| `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of the [External Service Port Range]({{< ref "external-ports" >}}) (exclusive). |
 | `EAGER_SERVICE_LOADING` | `0` (default) | Boolean that toggles lazy loading of services. If eager loading is enabled, services are started at LocalStack startup rather than their first use. Eager loading significantly increases LocalStack startup time. |
 | `ALLOW_NONSTANDARD_REGIONS` | `0` (default) | Allows the use of non-standard AWS regions. By default, LocalStack only accepts [standard AWS regions](https://docs.aws.amazon.com/general/latest/gr/rande.html). |
 | `PARITY_AWS_ACCESS_KEY_ID` | `0` (default) | Enables the use production-like access key IDs. By default, LocalStack issues keys with `LSIA...` and `LKIA...` prefix, and will reject keys that start with `ASIA...` or `AKIA...`. |
 
 [1]: http://docs.aws.amazon.com/cli/latest/reference/#available-services
 
-### CLI
+## CLI
 
 These options are applicable when using the CLI to start LocalStack.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `LOCALSTACK_VOLUME_DIR` | `~/.cache/localstack/volume` (on Linux) | The location on the host of the LocalStack volume directory mount. See [filesystem layout]({{< ref "filesystem#using-the-cli" >}}) |
+| `LOCALSTACK_VOLUME_DIR` | `~/.cache/localstack/volume` (on Linux) | The location on the host of the LocalStack volume directory mount. See [Filesystem Layout]({{< ref "filesystem#using-the-cli" >}}) |
 | `CONFIG_PROFILE` | | The configuration profile to load. See [Profiles]({{< ref "#profiles" >}}) |
 | `CONFIG_DIR` | `~/.localstack` | The path where LocalStack can find configuration profiles and other CLI-specific configuration |
 
-### Docker
+## Docker
 
 Options to configure how LocalStack interacts with Docker.
 
@@ -344,9 +343,9 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `SERVICES` | `kinesis,lambda,sqs`,`serverless`| **Deprecated.** Only works with `EAGER_SERVICE_LOADING=1`. Comma-separated list of [AWS CLI service names][1] or shorthands to start. Per default, all services are loaded and started on the first request for that service. |
 | `<SERVICE>_BACKEND` | | **Deprecated.** Custom endpoint URL to use for a specific service, where <SERVICE> is the uppercase service name.
 | `<SERVICE>_PORT_EXTERNAL` | `4567` | **Deprecated.** Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
-| `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | **Deprecated.** Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. |
-| `HOSTNAME_EXTERNAL` | `localhost` (default) | **Deprecated.** Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client.|
-| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| **Deprecated.** Address the edge service binds to.|
+| `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | **Deprecated.** Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. Use `LOCALSTACK_HOST` instead. |
+| `HOSTNAME_EXTERNAL` | `localhost` (default) | **Deprecated.** Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client. Use `LOCALSTACK_HOST` instead. |
+| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| **Deprecated.** Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
 | `EDGE_PORT` | `4566` (default)| **Deprecated.** Port number for the edge service, the main entry point for all API invocations. |
 | `EDGE_FORWARD_URL` | | **Deprecated.** Optional target URL to forward all edge requests to (e.g., for distributed deployments)
 | `USE_LIGHT_IMAGE` | `1` (default) | **Deprecated.** Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
@@ -360,7 +359,7 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `MOCK_UNIMPLEMENTED` | | **Deprecated.** Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 
 
-## Configuration Profiles
+## Profiles
 
 LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory.
 A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory.
