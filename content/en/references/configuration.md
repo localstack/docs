@@ -120,23 +120,15 @@ This section covers configuration options that are specific to certain AWS servi
 
 ### Elasticsearch
 
-{{< alert title="Warning" color="warning" >}}
-While the ElasticSearch API is actively maintained, the configuration variables for ElasticSearch have been deprecated.
-Please use the [OpenSearch configuration variables](#opensearch) instead.
-The OpenSearch configuration variables are used to manage both, OpenSearch and ElasticSearch clusters.
+{{< alert title="Note">}}
+The OpenSearch configuration variables are used to manage both OpenSearch and ElasticSearch clusters.
+See [here](#opensearch).
 {{< /alert >}}
-
-| Variable | Example Values | Description |
-| - | - | - |
-| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | *Deprecated*. Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
-| `ES_MULTI_CLUSTER` | `0`\|`1` | *Deprecated*. Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
-| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | *Deprecated*. Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 
 ### IAM
 | Variable | Example Values | Description |
 | - | - | - |
 | `ENFORCE_IAM` | `0` (default)\|`1` | Enable IAM policy evaluation and enforcement. If this is disabled (the default), IAM policies will have no effect to your requests. |
-| `LEGACY_IAM_PROVIDER` | `0` (default)\|`1` | (deprecated) Enable the pre-1.0 legacy IAM provider |
 | `IAM_SOFT_MODE` | `0` (default)\|`1` | Enable IAM soft mode. This leads to policy evaluation without actually denying access. Needs `ENFORCE_IAM` enabled as well. For more information, see [Identity and Access Management]({{< ref "iam" >}}).|
 
 ### Kinesis
@@ -283,15 +275,6 @@ Please check with your SMTP email service provider for the following settings.
 | `SMTP_EMAIL` | `sender@example.com` | Origin email address. Required for Cognito only. |
 
 
-## Provider
-
-Some of the services can be configured to switch to a particular provider:
-
-| Variable| Valid options | Notes |
-| - | - | - |
-| `KINESIS_PROVIDER` |  *Deprecated*. `kinesis-mock` (default) and `kinesalite` | |
-| `KMS_PROVIDER` |  *Deprecated*. `moto` (default) and `local-kms` | |
-
 ## Profiles
 
 LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory. A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory. Here is an example of what configuration profiles might look like:
@@ -344,13 +327,10 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SKIP_INFRA_DOWNLOADS` | | *Deprecated*. Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
-| `EDGE_FORWARD_URL` | | *Deprecated*. Optional target URL to forward all edge requests to (e.g., for distributed deployments)
-| `MOCK_UNIMPLEMENTED` | | *Deprecated*. Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
 | `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
@@ -365,10 +345,6 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 | `DEVELOP_PORT` | | Port number for debugpy server
 | `WAIT_FOR_DEBUGGER` | | Forces LocalStack to wait for a debugger to start the services
 
-Additionally, the following read-only environment variables are available:
-
-* `LOCALSTACK_HOSTNAME`: Name of the host where LocalStack services are available. Use this hostname as endpoint (e.g., `http://${LOCALSTACK_HOSTNAME}:4566`) in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda).
-
 
 ## DNS
 
@@ -380,6 +356,7 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | `DNS_SERVER` | 8.8.8.8 (default) | Fallback DNS server for non-modified queries.
 | `DNS_RESOLVE_IP` | 127.0.0.1 | IP address the DNS integration should return as A record for modified queries. This will override any automatic detection of the proper response IP.
 | `DNS_LOCAL_NAME_PATTERNS` | | Names which should be resolved to the LocalStack IP, as python-compatible regex.
+
 
 ## LocalStack Pro
 
@@ -409,5 +386,13 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `HOSTNAME_EXTERNAL` | `localhost` (default) | Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client.|
 | `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to.|
 | `EDGE_PORT` | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
+| `EDGE_FORWARD_URL` | | Optional target URL to forward all edge requests to (e.g., for distributed deployments)
 | `USE_LIGHT_IMAGE` | `1` (default) | Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
 | `INIT_SCRIPTS_PATH` | `/some/path` | Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
+| `LEGACY_IAM_PROVIDER` | `0` (default)\|`1` | Enables the pre-1.0 legacy IAM provider |
+| `KMS_PROVIDER` | `moto` (default), `local-kms` | `local-kms` is deprecated. |
+| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
+| `ES_MULTI_CLUSTER` | `0`\|`1` | Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
+| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
+| `SKIP_INFRA_DOWNLOADS` | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
+| `MOCK_UNIMPLEMENTED` | | Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
