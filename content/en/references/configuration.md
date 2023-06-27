@@ -21,18 +21,15 @@ Options that affect the core LocalStack system.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to.|
-| `EDGE_PORT` | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
 | `HOSTNAME`| `localhost` (default) | Name of the host to expose the services internally. For framework-internal communication, e.g., services are started in different containers using docker-compose.|
-| `HOSTNAME_EXTERNAL` | `localhost` (default) | Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client.|
 | `DEBUG` | `0`\|`1`| Flag to increase log level and print more verbose logs (useful for troubleshooting issues)|
 | `IMAGE_NAME`| `localstack/localstack` (default), `localstack/localstack:0.11.0` | Specific name and tag of LocalStack Docker image to use.|
-| `USE_LIGHT_IMAGE` | `1` (default) | *Deprecated*. Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
+| `GATEWAY_LISTEN`| `127.0.0.1:4566` (default in host mode), `0.0.0.0:4566` (default in Docker mode) | Configures the bind addresses of LocalStack. It has the form `<ip address>:<port>(,<ip address>:<port>)*`. |
+| `LOCALSTACK_HOST`| `localhost.localstack.cloud:4566` (default) | This value is interpolated into URLs and addresses that point to LocalStack host. It has the form `<hostname>:<port>`. |
 | `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [filesystem layout]({{< ref "filesystem" >}}). |
 | `PERSISTENCE` | `0` (default) | Enable persistence. See [persistence mechanism]({{< ref "persistence-mechanism" >}}) and [filesystem layout]({{< ref "filesystem" >}}). |
 | `PERSIST_ALL` | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
-| `INIT_SCRIPTS_PATH` | `/some/path` | *Deprecated*. Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
 | `LS_LOG` | `trace`, `trace-internal`, `debug`, `info`, `warn`, `error`, `warning`| Specify the log level. Currently overrides the `DEBUG` configuration. `trace` for detailed request/response, `trace-internal` for internal calls, too. |
 | `EXTERNAL_SERVICE_PORTS_START` | `4510` (default) | Start of [the external service port range]({{< ref "external-ports" >}}) (included). |
 | `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of [the external service port range]({{< ref "external-ports" >}}) (excluded). |
@@ -368,9 +365,9 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 | `DEVELOP_PORT` | | Port number for debugpy server
 | `WAIT_FOR_DEBUGGER` | | Forces LocalStack to wait for a debugger to start the services
 
-Additionally, the following *read-only* environment variables are available:
+Additionally, the following read-only environment variables are available:
 
-* `LOCALSTACK_HOSTNAME`: Name of the host where LocalStack services are available. Use this     hostname as endpoint (e.g., `http://${LOCALSTACK_HOSTNAME}:4566`) in order to **access the services from within your Lambda functions** (e.g., to store an item to DynamoDB or S3 from a Lambda).
+* `LOCALSTACK_HOSTNAME`: Name of the host where LocalStack services are available. Use this hostname as endpoint (e.g., `http://${LOCALSTACK_HOSTNAME}:4566`) in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda).
 
 
 ## DNS
@@ -393,22 +390,24 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | `LOG_LICENSE_ISSUES` | 1 (default)    | Whether to log issues with the license activation to the console.
 
 
-## Read-only
-
-| Variable | Usage Example | Description |
-| - | - | - |
-| `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). |
-
 ## Deprecated
+
+These configurations are deprecated and will be removed in the upcoming major version.
 
 | Variable | Example Values | Description |
 | - | - | - |
 | `USE_SSL` | `false` (default) | Whether to use https://... URLs with SSL encryption. Deprecated as of version 0.11.3. Each service endpoint now supports multiplexing HTTP/HTTPS traffic over the same port. |
-| `DEFAULT_REGION` | | *Deprecated*. AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
-| `USE_SINGLE_REGION` | | *Deprecated*. Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
+| `DEFAULT_REGION` | | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
+| `USE_SINGLE_REGION` | | Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
 | `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | Local directory for saving persistent data. This option is deprecated since LocalStack v1 and will be ignored. Please use `PERSISTENCE`. Using this option will set `PERSISTENCE=1` as a deprecation path. The state will be stored in your LocalStack volume in the `state/` directory |
 | `HOST_TMP_FOLDER` | `/some/path` | Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
 | `TMPDIR`| `/tmp` (default)| Temporary folder on the host running the CLI and inside the LocalStack container .|
 | `SERVICES` | `kinesis,lambda,sqs`,`serverless`| Only works with `EAGER_SERVICE_LOADING=1`. Comma-separated list of [AWS CLI service names][1] or shorthands to start. Per default, all services are loaded and started on the first request for that service. |
 | `<SERVICE>_BACKEND` | | Custom endpoint URL to use for a specific service, where <SERVICE> is the uppercase service name.
 | `<SERVICE>_PORT_EXTERNAL` | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
+| `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. |
+| `HOSTNAME_EXTERNAL` | `localhost` (default) | Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client.|
+| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to.|
+| `EDGE_PORT` | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
+| `USE_LIGHT_IMAGE` | `1` (default) | Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
+| `INIT_SCRIPTS_PATH` | `/some/path` | Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
