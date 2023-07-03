@@ -834,7 +834,7 @@
       "CreateImage": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -2613,8 +2613,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -3198,7 +3198,7 @@
       "DescribeInstanceStatus": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
@@ -4700,7 +4700,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -7737,32 +7737,6 @@
             "snapshot_skipped": "['$..headers.host', '$..headers.user-agent', '$..headers.x-amzn-trace-id', '$..headers.x-forwarded-for', '$..headers.x-forwarded-port', '$..headers.x-forwarded-proto']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "CreateImage": {
-      "InstanceId, Name": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_create_image",
-            "test": "test_create_image",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_create_image",
-            "test": "test_create_image",
-            "response": "400",
-            "error": "InvalidInstanceIdError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -10910,13 +10884,13 @@
       "AttributeNames": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaFunction::test_function_lifecycle",
-            "test": "test_function_lifecycle",
+            "node_id": "LocalStack Community: tests/integration/test_opensearch.py::TestOpensearchProvider::test_list_versions",
+            "test": "test_list_versions",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..Architectures', '$..EphemeralStorage', '$..LastUpdateStatus', '$..MemorySize', '$..State', '$..StateReason', '$..StateReasonCode', '$..VpcConfig', '$..CodeSigningConfig', '$..Environment', '$..HTTPStatusCode', '$..Layers', '$..CreateFunctionResponse.RuntimeVersionConfig', '$..CreateFunctionResponse.SnapStart']",
-            "aws_validated": true,
-            "snapshot_tested": true,
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -10986,32 +10960,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-mock]",
-            "test": "test_run_stop_start_terminate_instances[sdk-mock]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
-      "Filters": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_create_image",
-            "test": "test_create_image",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -11050,82 +11000,12 @@
         ]
       }
     },
-    "DescribeInstanceStatus": {
-      "InstanceIds": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_terminate_instances",
-            "test": "test_action_ec2_terminate_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ssm_send_command",
-            "test": "test_action_ssm_send_command",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
     "DescribeInstances": {
-      "Filters": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_terminate_instances",
-            "test": "test_action_ec2_terminate_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ssm_send_command",
-            "test": "test_action_ssm_send_command",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          }
-        ]
-      },
       "InstanceIds": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_describe_instances",
             "test": "test_describe_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-docker]",
-            "test": "test_run_stop_start_terminate_instances[sdk-docker]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-mock]",
-            "test": "test_run_stop_start_terminate_instances[sdk-mock]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -11454,16 +11334,6 @@
             "test": "test_ec2_launch_template",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..CreatedBy', '$..LaunchTemplateId', '$..LaunchTemplateName', '$..PhysicalResourceId', '$..Tags', '$..StackId', '$..StackName']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ec2.py::test_ec2_launch_template",
-            "test": "test_ec2_launch_template",
-            "response": "400",
-            "error": "CommonServiceException",
             "snapshot_skipped": "['$..CreatedBy', '$..LaunchTemplateId', '$..LaunchTemplateName', '$..PhysicalResourceId', '$..Tags', '$..StackId', '$..StackName']",
             "aws_validated": true,
             "snapshot_tested": true,
@@ -12532,6 +12402,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsMysql::test_data_api[False]",
+            "test": "test_data_api[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsMysql::test_data_api[True]",
+            "test": "test_data_api[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_add_role_to_db_cluster",
             "test": "test_add_role_to_db_cluster",
             "response": "200",
@@ -13464,7 +13354,7 @@
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..ZookeeperConnectString', '$..ZookeeperConnectStringTls', '$..Tags']",
+            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -14407,6 +14297,26 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsMysql::test_data_api[False]",
+            "test": "test_data_api[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsMysql::test_data_api[True]",
+            "test": "test_data_api[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -16004,38 +15914,8 @@
       "ClientToken, ImageId, MaxCount, MinCount": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_create_image",
-            "test": "test_create_image",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_describe_instances",
             "test": "test_describe_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-docker]",
-            "test": "test_run_stop_start_terminate_instances[sdk-docker]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-mock]",
-            "test": "test_run_stop_start_terminate_instances[sdk-mock]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -16082,50 +15962,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-docker]",
-            "test": "test_run_stop_start_terminate_instances[sdk-docker]",
-            "response": "400",
-            "error": "InvalidAMIIdError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-mock]",
-            "test": "test_run_stop_start_terminate_instances[sdk-mock]",
-            "response": "400",
-            "error": "InvalidAMIIdError",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
-      "ClientToken, ImageId, MaxCount, MinCount, TagSpecifications": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_terminate_instances",
-            "test": "test_action_ec2_terminate_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ssm_send_command",
-            "test": "test_action_ssm_send_command",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ]
       },
@@ -16148,26 +15984,6 @@
       "InstanceIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-docker]",
-            "test": "test_run_stop_start_terminate_instances[sdk-docker]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-mock]",
-            "test": "test_run_stop_start_terminate_instances[sdk-mock]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_stop_start_terminate_instances_for_invalid_instance_id_raises[start_instances]",
             "test": "test_stop_start_terminate_instances_for_invalid_instance_id_raises[start_instances]",
             "response": "400",
@@ -16184,26 +16000,6 @@
       "InstanceIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-docker]",
-            "test": "test_run_stop_start_terminate_instances[sdk-docker]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-mock]",
-            "test": "test_run_stop_start_terminate_instances[sdk-mock]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_stop_start_terminate_instances_for_invalid_instance_id_raises[stop_instances]",
             "test": "test_stop_start_terminate_instances_for_invalid_instance_id_raises[stop_instances]",
             "response": "400",
@@ -16219,36 +16015,6 @@
     "TerminateInstances": {
       "InstanceIds": {
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-docker]",
-            "test": "test_run_stop_start_terminate_instances[sdk-docker]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ec2.py::TestEC2::test_run_stop_start_terminate_instances[sdk-mock]",
-            "test": "test_run_stop_start_terminate_instances[sdk-mock]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_fis.py::TestFis::test_action_ec2_terminate_instances",
-            "test": "test_action_ec2_terminate_instances",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
           {
             "node_id": "LocalStack Pro: tests/integration/test_ssm.py::TestSsm::test_cancel_command",
             "test": "test_cancel_command",
