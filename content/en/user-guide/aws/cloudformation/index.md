@@ -95,7 +95,6 @@ Your feature requests help us prioritize which resources we need to prioritize, 
 | Mappings            | **Full**                                        |
 | Conditions          | **Full**                                        |
 | Transform           | Partial (Only for `AWS::Serverless-2016-10-31`) |
-| Outputs             | **Full**                                        |
 | Custom resources    | Partial                                         |
 | Drift detection     | -                                               |
 | Importing Resources | -                                               |
