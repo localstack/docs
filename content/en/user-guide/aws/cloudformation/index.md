@@ -161,7 +161,7 @@ Localstack supports a wide range of Cloudformation template features, including:
 
   You can use the `UsePreviousValue` attribute to specify that a resource should not be recreated when you update your stack. This can be useful if you want to preserve the state of a resource when you update your stack.
 
-* **Magros**
+* **Macros**
   Macros allow you to define reusable blocks of code that can be used in your templates.
 
     * `GlobalScope`: applies the transformation on the complete template.
