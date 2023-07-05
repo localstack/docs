@@ -90,11 +90,11 @@ Your feature requests help us prioritize which resources we need to prioritize, 
 | Feature             | Support                                         |
 |:--------------------|:------------------------------------------------|
 | Parameters          | Partial                                         |
-| Dynamic References  | -                                               |
+| Dynamic References  | **Full**                                        |
 | Rules               | -                                               |
 | Mappings            | **Full**                                        |
 | Conditions          | **Full**                                        |
-| Transform           | Partial (Only for `AWS::Serverless-2016-10-31`) |
+| Transform           | **Full**                                        |
 | Outputs             | **Full**                                        |
 | Custom resources    | Partial                                         |
 | Drift detection     | -                                               |
@@ -102,9 +102,33 @@ Your feature requests help us prioritize which resources we need to prioritize, 
 | Change sets         | **Full**                                        |
 | Nested stacks       | Partial                                         |
 | StackSets           | Partial                                         |
+| Intrinsic Functions | Partial                                         |
 
 In general `UPDATE` support for resources is currently limited.
 Prefer re-creating a stack rather than updating an existing one. 
+
+### Intrinsic Functions
+
+Localstack supports a wide range of Cloudformation Intrinsic functions:
+
+| Intrinsic Function | Supported | Explanation |
+|---|---|---|
+| Fn::And | Yes | Performs a logical AND operation on two or more expressions. |
+| Fn::Or | Yes | Performs a logical OR operation on two or more expressions. |
+| Fn::Base64 | Yes | Converts a binary string to a Base64-encoded string. |
+| Fn::Sub | Yes | Performs a string substitution operation. |
+| Fn::Split | Yes | Splits a string into an array of strings. |
+| Fn::Length | Yes | Returns the length of a string. |
+| Fn::Join | Yes | Joins an array of strings into a single string. |
+| Fn::FindInMap | Yes | Finds a value in a map. |
+| Fn::Ref | Yes | References a resource in the template. |
+| Fn::GetAtt | Yes | Gets an attribute from a resource. |
+| Fn::If | Yes | Performs a conditional evaluation. |
+| Fn::Import | Yes | Imports a value from another template. |
+| Fn::ToJsonString | No | Converts an object or map into a json string. |
+| Fn::Cidr | No | Generates a CIDR block from the inputs. |
+| Fn::GetAZs | No | Returns a list of the Availability Zones of a region. |
+
 
 ### Resources (Community Edition)
 
