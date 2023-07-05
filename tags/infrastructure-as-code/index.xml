@@ -752,7 +752,7 @@ Your feature requests help us prioritize which resources we need to prioritize, 
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">Dynamic References&lt;/td>
-&lt;td style="text-align:left">-&lt;/td>
+&lt;td style="text-align:left">&lt;strong>Full&lt;/strong>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">Rules&lt;/td>
@@ -768,7 +768,7 @@ Your feature requests help us prioritize which resources we need to prioritize, 
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">Transform&lt;/td>
-&lt;td style="text-align:left">Partial (Only for &lt;code>AWS::Serverless-2016-10-31&lt;/code>)&lt;/td>
+&lt;td style="text-align:left">&lt;strong>Full&lt;/strong>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align:left">Outputs&lt;/td>
@@ -798,10 +798,102 @@ Your feature requests help us prioritize which resources we need to prioritize, 
 &lt;td style="text-align:left">StackSets&lt;/td>
 &lt;td style="text-align:left">Partial&lt;/td>
 &lt;/tr>
+&lt;tr>
+&lt;td style="text-align:left">Intrinsic Functions&lt;/td>
+&lt;td style="text-align:left">Partial&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table>
 &lt;p>In general &lt;code>UPDATE&lt;/code> support for resources is currently limited.
 Prefer re-creating a stack rather than updating an existing one.&lt;/p>
+&lt;h3 id="intrinsic-functions">Intrinsic Functions&lt;/h3>
+&lt;p>Localstack supports a wide range of Cloudformation Intrinsic functions:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Intrinsic Function&lt;/th>
+&lt;th>Supported&lt;/th>
+&lt;th>Explanation&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Fn::And&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Performs a logical AND operation on two or more expressions.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Or&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Performs a logical OR operation on two or more expressions.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Base64&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Converts a binary string to a Base64-encoded string.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Sub&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Performs a string substitution operation.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Split&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Splits a string into an array of strings.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Length&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Returns the length of a string.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Join&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Joins an array of strings into a single string.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::FindInMap&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Finds a value in a map.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Ref&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>References a resource in the template.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::GetAtt&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Gets an attribute from a resource.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::If&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Performs a conditional evaluation.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Import&lt;/td>
+&lt;td>Yes&lt;/td>
+&lt;td>Imports a value from another template.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::ToJsonString&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Converts an object or map into a json string.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::Cidr&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Generates a CIDR block from the inputs.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Fn::GetAZs&lt;/td>
+&lt;td>No&lt;/td>
+&lt;td>Returns a list of the Availability Zones of a region.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h3 id="resources-community-edition">Resources (Community Edition)&lt;/h3>
 &lt;table>
 &lt;thead>
