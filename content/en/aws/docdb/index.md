@@ -3,7 +3,7 @@ title: "DocumentDB (DocDB)"
 linkTitle: "DocumentDB (DocDB)"
 categories: ["LocalStack Pro"]
 description: >
-DocumentDB (DocDB)
+  DocumentDB (DocDB)
 ---
 
 LocalStack supports a basic version of [Amazon DocumentDB](https://aws.amazon.com/documentdb/) for
