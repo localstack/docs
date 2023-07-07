@@ -118,7 +118,7 @@ Some noticeable fields:
 
 - `--db-instance-identifier test-company`: Represents the unique identifier of the newly created
   database
-- `--db-instance-class db.r5.large`: Is the instance type or class for the Amazon DocumentDB
+- `--db-instance-class db.r5.large`: Is the type or class of the Amazon DocumentDB
   instance. It determines the compute and memory capacity allocated to the instance. `db.r5.large` refers to a specific instance type in
   the R5 family. Although the flag is required for database creation, LocalStack will only mock the `DBInstanceClass` attribute.
   
