@@ -40,6 +40,10 @@ Attempting to launch Dockerised instances with these AMIs will return `InvalidAM
 
 ## Networking
 
+{{< alert title="Note" >}}
+LocalStack daemon is deprecated and will be removed in an upcoming major release.
+{{< /alert >}}
+
 LocalStack supports assignment of unique private IP addresses for Dockerised instances.
 To leverage this feature, it is necessary to run the LocalStack daemon process on the host which takes care of creating and managing networking on the host system.
 
