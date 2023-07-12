@@ -53,7 +53,7 @@ Enter the following command to create a new Lambda function:
 {{< command >}}
 $ zip function.zip index.js
 $ awslocal lambda create-function \
-    --function-name localstack-lamba-url-example \
+    --function-name localstack-lambda-url-example \
     --runtime nodejs18.x \
     --zip-file fileb://function.zip \
     --handler index.handler \
@@ -70,7 +70,7 @@ With the Function URL property, there is now a new way to call a Lambda Function
 
 {{< command >}}
 $ awslocal lambda create-function-url-config \
-    --function-name localstack-lamba-url-example \
+    --function-name localstack-lambda-url-example \
     --auth-type NONE
 {{< / command >}}
 
