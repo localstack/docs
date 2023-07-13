@@ -3220,7 +3220,7 @@ Also checkout the specified S3 bucket to check if your backup is working correct
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Enter the following command to create a new Lambda function:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zip function.zip index.js
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name localstack-lamba-url-example \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name localstack-lambda-url-example \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs18.x \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb://function.zip \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler index.handler \
@@ -3232,7 +3232,7 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 &lt;h3 id="create-a-function-url">Create a Function URL&lt;/h3>
 &lt;p>With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html">&lt;code>CreateFunctionURLConfig&lt;/code> API&lt;/a>. To create a URL for invoking the function, run the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function-url-config \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name localstack-lamba-url-example \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name localstack-lambda-url-example \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --auth-type NONE&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>This will generate a HTTP URL that can be used to invoke the Lambda function. The URL will be in the format &lt;code>http://&amp;lt;XXXXXXXX&amp;gt;.lambda-url.us-east-1.localhost.localstack.cloud:4566&lt;/code>.&lt;/p>
 &lt;h3 id="trigger-the-lambda-function-url">Trigger the Lambda function URL&lt;/h3>
