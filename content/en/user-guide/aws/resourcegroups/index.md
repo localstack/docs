@@ -13,7 +13,7 @@ LocalStack supports Resource Groups via the Community offering, allowing you to 
 
 ## Getting Started
 
-This guide is designed for users new to Lambda and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+This guide is designed for users new to Resource Groups and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method. We will demonstrate how to create a Resource Group using the AWS CLI. We will use tag-based query to create a resource group. However, you can also use CloudFormation stack-based queries to create a resource group.
 
