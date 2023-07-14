@@ -86,6 +86,18 @@ The service name refers to the AWS service code.
 curl -X POST http://localhost:4566/_localstack/state/s3/save
 ```
 
+It is also possible to take and load a snapshot of all the services at once. We provide the following endpoints:
+
+* `POST /_localstack/state/save`
+* `POST /_localstack/state/load`
+
+The response streams line by line the service that has been saved/loaded and the status of the operation.
+```console
+curl -X POST localhost:4566/_localstack/state/save
+{"service": "sqs", "status": "ok"}
+{"service": "s3", "status": "ok"}
+```
+
 ## Service coverage
 
 Although we are working to support both snapshot-based persistence and Cloud pods for all AWS services,
