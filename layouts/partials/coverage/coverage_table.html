@@ -1,3 +1,4 @@
+{{ $service := $.service }} 
 <div class="coverage-report">
     <table>
         <thead>
@@ -11,7 +12,9 @@
             <th class="coverage-report-header-2">Implemented</th>
             <th class="coverage-report-header-2">Edition</th>
             <th class="coverage-report-header-1">Internal Test Suite</th>
+            {{ if not (eq "lambda" $service) }} 
             <th class="coverage-report-header-1">External Test Suite</th>
+            {{ end }}
             <th class="coverage-report-header-1">Terraform Validated</th>
             <th class="coverage-report-header-1">AWS Validated</th>
             <th class="coverage-report-header-1">Snapshot Tested</th>
