@@ -184,3 +184,14 @@ $ TOKEN=$(awslocal rds generate-db-auth-token --username myiam --hostname $HOST 
 
 $ PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST
 {{< / command >}}
+
+## Global Database Support
+
+LocalStack supports [Aurora Global Database](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html), with some limitations:
+
+* When creating a global database, there will only be one local database created. 
+All clusters and instances that belong to the global database will point to the same endpoint. 
+
+* Consequently, clusters that have been removed from a global database cannot be used as a standalone-cluster, like on AWS.
+
+* Persistence for global databases is currently not supported.
