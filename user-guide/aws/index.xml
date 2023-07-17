@@ -9528,7 +9528,21 @@ Please be aware that the IAM authentication is not verified at this point, which
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>TOKEN=$(awslocal rds generate-db-auth-token --username myiam --hostname $HOST --port $PORT)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="global-database-support">Global Database Support&lt;/h2>
+&lt;p>LocalStack supports &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html">Aurora Global Database&lt;/a>, with some limitations:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>When creating a global database, there will only be one local database created.
+All clusters and instances that belong to the global database will point to the same endpoint.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Consequently, clusters that have been removed from a global database cannot be used as a standalone-cluster, like on AWS.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Persistence for global databases is currently not supported.&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
 &lt;p>The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.&lt;/p>
 &lt;p>The example below illustrates the creation of a hosted zone &lt;code>example.com&lt;/code>, registration of an A record named &lt;code>test.example.com&lt;/code> that points to &lt;code>1.2.3.4&lt;/code>, and finally querying the DNS record by using the &lt;code>dig&lt;/code> command against the DNS server running on &lt;code>localhost&lt;/code> (inside the LocalStack container, on port &lt;code>53&lt;/code>):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name example.com --caller-reference r1 | jq -r &amp;#39;.HostedZone.Id&amp;#39;)
