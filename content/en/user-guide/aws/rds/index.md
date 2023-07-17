@@ -192,6 +192,6 @@ LocalStack supports [Aurora Global Database](https://docs.aws.amazon.com/AmazonR
 * When creating a global database, there will only be one local database created. 
 All clusters and instances that belong to the global database will point to the same endpoint. 
 
-* Consequently, clusters that have been removed from global database cannot be used as a standalone-cluster, like on AWS.
+* Consequently, clusters that have been removed from a global database cannot be used as a standalone-cluster, like on AWS.
 
 * Persistence for global databases is currently not supported.
