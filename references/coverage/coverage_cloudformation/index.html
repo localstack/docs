@@ -1,7 +1,7 @@
 <!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en class=no-js><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.101.0"><meta name=robots content="index, follow"><link rel="shortcut icon" href=/favicons/favicon.ico><link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36><link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48><link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72><link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144><link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192><title>CloudFormation | Docs</title><meta name=description content="Implementation details for API cloudformation
 "><meta property="og:title" content="CloudFormation"><meta property="og:description" content="Implementation details for API cloudformation
 "><meta property="og:type" content="article"><meta property="og:url" content="/references/coverage/coverage_cloudformation/"><meta property="article:section" content="references"><meta property="article:modified_time" content="2023-03-20T14:38:19+01:00"><meta property="og:site_name" content="Docs"><meta itemprop=name content="CloudFormation"><meta itemprop=description content="Implementation details for API cloudformation
-"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="17102"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="CloudFormation"><meta name=twitter:description content="Implementation details for API cloudformation
+"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="17676"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="CloudFormation"><meta name=twitter:description content="Implementation details for API cloudformation
 "><link rel=preload href=/scss/main.min.71d14bc4501c2375aa6ba71a924ecd222cda10b101b78fa8ce4cd2e48a824949.css as=style><link href=/scss/main.min.71d14bc4501c2375aa6ba71a924ecd222cda10b101b78fa8ce4cd2e48a824949.css rel=stylesheet integrity><script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@docsearch/css@3><script type=text/javascript id=hs-script-loader async defer src=//js-eu1.hs-scripts.com/26596507.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-101988473-1"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-101988473-1")}</script></head><body class=td-page><header><nav class="js-navbar-scroll navbar navbar-expand flex-column flex-md-row td-navbar"><div class=navbar-brand><a class=brand-link href=/><span class=navbar-logo><img src=/images/logo.svg height=40px></span>
@@ -321,7 +321,13 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_with_previous_parameter_value</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_simple_condition_evaluation_deploys_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_doesnt_deploy_resource
@@ -336,12 +342,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_mapping_working
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_mappings.py::TestCloudFormationMappings::test_simple_mapping_working</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_black_box
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_black_box</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_fn_sub_cases
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_references.py::TestFnSub::test_fn_sub_cases</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_black_box
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_black_box</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_with_full_properties
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_parity.py::TestParity::test_create_with_full_properties</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_parity.py::TestParity::test_create_with_full_properties</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_api_gateway_with_policy_as_dict
@@ -434,7 +444,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_lambda_code_signing_config</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_template_with_short_form_fn_sub
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_code_deployed_via_s3
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_python_lambda_code_deployed_via_s3</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cfn_template_with_short_form_fn_sub
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_template_with_short_form_fn_sub</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_functions_in_output_export_name
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_functions_in_output_export_name</span></span>
@@ -718,8 +731,11 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_acm_certificate
@@ -1200,7 +1216,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_with_previous_parameter_value</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_simple_condition_evaluation_deploys_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_doesnt_deploy_resource
@@ -1215,16 +1240,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_mapping_working
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_mappings.py::TestCloudFormationMappings::test_simple_mapping_working</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_fn_sub_cases
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_references.py::TestFnSub::test_fn_sub_cases</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_black_box
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_black_box</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_black_box</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_with_full_properties
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_parity.py::TestParity::test_create_with_full_properties</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_parity.py::TestParity::test_create_with_full_properties</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_acm_certificate
@@ -1422,7 +1451,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_code_deployed_via_s3
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_python_lambda_code_deployed_via_s3</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_conditional_deployment</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_iam_role_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_iam_role_resource</span></span>
@@ -1960,7 +1992,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_with_previous_parameter_value</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_simple_condition_evaluation_deploys_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_doesnt_deploy_resource
@@ -1975,16 +2016,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_mapping_working
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_mappings.py::TestCloudFormationMappings::test_simple_mapping_working</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_fn_sub_cases
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_references.py::TestFnSub::test_fn_sub_cases</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_black_box
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_black_box</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_black_box</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_with_full_properties
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_parity.py::TestParity::test_create_with_full_properties</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_parity.py::TestParity::test_create_with_full_properties</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_acm_certificate
@@ -2184,7 +2229,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_code_deployed_via_s3
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_python_lambda_code_deployed_via_s3</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_conditional_deployment</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_iam_role_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_iam_role_resource</span></span>
@@ -2708,7 +2756,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_with_previous_parameter_value</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_simple_condition_evaluation_deploys_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_doesnt_deploy_resource
@@ -2723,16 +2780,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_mapping_working
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_mappings.py::TestCloudFormationMappings::test_simple_mapping_working</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_fn_sub_cases
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_references.py::TestFnSub::test_fn_sub_cases</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_black_box
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_black_box</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_black_box</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_with_full_properties
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_parity.py::TestParity::test_create_with_full_properties</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_parity.py::TestParity::test_create_with_full_properties</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_acm_certificate
@@ -2930,7 +2991,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_code_deployed_via_s3
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_python_lambda_code_deployed_via_s3</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_conditional_deployment</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_iam_role_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_iam_role_resource</span></span>
@@ -3642,8 +3706,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_lifecycle</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_lifecycle
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_lifecycle</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_name_creation
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_name_creation</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_update_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_update_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_update_resources
@@ -3662,8 +3734,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_update_termination_protection
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_updating_an_updated_stack_sets_status
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_updating_an_updated_stack_sets_status</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_duplicate_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_transformers.py::test_duplicate_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_duplicate_resources
@@ -3684,7 +3764,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_with_previous_parameter_value</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_simple_condition_evaluation_deploys_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_doesnt_deploy_resource
@@ -3699,16 +3788,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_mapping_working
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_mappings.py::TestCloudFormationMappings::test_simple_mapping_working</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_fn_sub_cases
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_references.py::TestFnSub::test_fn_sub_cases</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_black_box
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_black_box</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_black_box</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_with_full_properties
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_parity.py::TestParity::test_create_with_full_properties</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_parity.py::TestParity::test_create_with_full_properties</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_acm_certificate
@@ -3720,15 +3813,34 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_api_gateway_with_policy_as_dict</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_api_gateway_with_policy_as_dict
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_api_gateway_with_policy_as_dict</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_apigateway_aws_integration
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_apigateway_aws_integration</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_apigateway_aws_integration
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_apigateway_aws_integration</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_apigateway_rest_api
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_apigateway_rest_api</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_apigateway_rest_api
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_apigateway_rest_api</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_apigateway_swagger_import
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_apigateway_swagger_import</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cfn_apigateway_swagger_import
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_apigateway_swagger_import</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cfn_deploy_apigateway_from_s3_swagger
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_deploy_apigateway_from_s3_swagger</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_deploy_apigateway_from_s3_swagger
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_deploy_apigateway_from_s3_swagger</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_deploy_apigateway_integration
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_deploy_apigateway_integration</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_deploy_apigateway_integration
@@ -3739,8 +3851,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_deploy_apigateway_models</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_deploy_apigateway_models
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_deploy_apigateway_models</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_with_apigateway_resources
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_with_apigateway_resources</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_with_apigateway_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_cfn_with_apigateway_resources</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_rest_api_serverless_ref_resolving
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_rest_api_serverless_ref_resolving</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_rest_api_serverless_ref_resolving
@@ -3750,7 +3874,12 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_update_usage_plan
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_update_usage_plan</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_update_usage_plan
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_update_usage_plan</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_url_output
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_url_output</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_url_output
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_apigateway.py::test_url_output</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cdk_bootstrap[10]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[10]</span></span>
@@ -3760,6 +3889,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[12]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cdk_bootstrap_redeploy
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap_redeploy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cdk_template
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_template</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cdk_template
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_template</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cdk_sample
@@ -3908,7 +4039,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_code_deployed_via_s3
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_python_lambda_code_deployed_via_s3</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_conditional_deployment</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_iam_role_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_iam_role_resource</span></span>
@@ -3920,6 +4054,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_s3_notification_configuration[False-us-east-1]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_s3_notification_configuration[True-eu-west-1]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_s3_notification_configuration[True-eu-west-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_serverless_api_resource
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_serverless_api_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_serverless_api_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_serverless_api_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_template_with_short_form_fn_sub
@@ -3964,6 +4100,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_website_configuration
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_website_configuration</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sam_policies
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sam_policies
@@ -4019,10 +4159,18 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke_localhost
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke_localhost</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke_localhost
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke_localhost</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke_localhost_with_path
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke_localhost_with_path</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke_localhost_with_path
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke_localhost_with_path</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke_with_path
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke_with_path</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_invoke_with_path
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_stepfunctions.py::test_apigateway_invoke_with_path</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_statemachine_with_dependencies
@@ -4136,12 +4284,18 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_step_functions_calling_api_gateway</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_step_functions_calling_api_gateway
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_step_functions_calling_api_gateway</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_wait_for_callback
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_wait_for_callback</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cloudformation_deployment
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_opensearch.py::TestOpensearchProvider::test_cloudformation_deployment</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cdk_bootstrap_redeploy
@@ -4170,6 +4324,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_apigateway_authorizer
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Authorizers::test_create_apigateway_authorizer</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_apigateway_authorizer
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Authorizers::test_create_apigateway_authorizer</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_apigateway_authorizer_client_credentials
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/cloudformation/resources/test_apigwv2.py::TestApiGwV2Authorizers::test_create_apigateway_authorizer_client_credentials</span></span>
@@ -4322,6 +4478,9 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_redirect
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_lambda_redirect</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_lambda_redirect
+<span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudfront.py::TestCloudFront::test_lambda_redirect</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cdk_trail_cw_logs
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/test_cloudtrail.py::TestCloudTrail::test_cdk_trail_cw_logs</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
@@ -4434,7 +4593,16 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_update_stack.py::test_update_with_previous_parameter_value</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[None-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[false-DefaultParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_dependency_in_non_evaluated_if_branch[true-FallbackParamValue]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_deploys_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_conditions.py::TestCloudFormationConditions::test_simple_condition_evaluation_deploys_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_condition_evaluation_doesnt_deploy_resource
@@ -4449,16 +4617,20 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_simple_mapping_working
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_mappings.py::TestCloudFormationMappings::test_simple_mapping_working</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_fn_sub_cases
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/engine/test_references.py::TestFnSub::test_fn_sub_cases</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_black_box
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_black_box</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_black_box</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_with_full_properties
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_parity.py::TestParity::test_create_with_full_properties</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_parity.py::TestParity::test_create_with_full_properties</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_acm_certificate
@@ -4656,7 +4828,10 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_multiple_lambda_permissions_for_singlefn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_python_lambda_code_deployed_via_s3
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::test_python_lambda_code_deployed_via_s3</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_cfn_conditional_deployment
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_conditional_deployment</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_iam_role_resource
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_legacy.py::TestCloudFormation::test_cfn_handle_iam_role_resource</span></span>

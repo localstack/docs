@@ -1,7 +1,7 @@
 <!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=en class=no-js><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=generator content="Hugo 0.101.0"><meta name=robots content="index, follow"><link rel="shortcut icon" href=/favicons/favicon.ico><link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180><link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16><link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36><link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48><link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72><link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96><link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144><link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192><title>DynamoDB Streams | Docs</title><meta name=description content="Implementation details for API dynamodbstreams
 "><meta property="og:title" content="DynamoDB Streams"><meta property="og:description" content="Implementation details for API dynamodbstreams
 "><meta property="og:type" content="article"><meta property="og:url" content="/references/coverage/coverage_dynamodbstreams/"><meta property="article:section" content="references"><meta property="article:modified_time" content="2023-03-20T14:38:19+01:00"><meta property="og:site_name" content="Docs"><meta itemprop=name content="DynamoDB Streams"><meta itemprop=description content="Implementation details for API dynamodbstreams
-"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="2592"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="DynamoDB Streams"><meta name=twitter:description content="Implementation details for API dynamodbstreams
+"><meta itemprop=dateModified content="2023-03-20T14:38:19+01:00"><meta itemprop=wordCount content="2925"><meta itemprop=keywords content><meta name=twitter:card content="summary"><meta name=twitter:title content="DynamoDB Streams"><meta name=twitter:description content="Implementation details for API dynamodbstreams
 "><link rel=preload href=/scss/main.min.71d14bc4501c2375aa6ba71a924ecd222cda10b101b78fa8ce4cd2e48a824949.css as=style><link href=/scss/main.min.71d14bc4501c2375aa6ba71a924ecd222cda10b101b78fa8ce4cd2e48a824949.css rel=stylesheet integrity><script src=https://code.jquery.com/jquery-3.6.0.min.js integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK crossorigin=anonymous></script>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@docsearch/css@3><script type=text/javascript id=hs-script-loader async defer src=//js-eu1.hs-scripts.com/26596507.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-101988473-1"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","UA-101988473-1")}</script></head><body class=td-page><header><nav class="js-navbar-scroll navbar navbar-expand flex-column flex-md-row td-navbar"><div class=navbar-brand><a class=brand-link href=/><span class=navbar-logo><img src=/images/logo.svg height=40px></span>
@@ -264,15 +264,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_dynamodb_streams_describe_with_exclusive_start_shard_id</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: StreamArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_api_key_required_for_methods
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_key_required_for_methods</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_event_source_mapping_lifecycle
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li></ul></ul><a href=#howtoread title="how to interpret this data">Parameters: StreamArn</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_event_source_mapping_lifecycle
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_lifecycle</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -332,24 +324,70 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_get_template_summary.py::test_get_template_summary</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_duplicate_resources
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_transformers.py::test_duplicate_resources</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_nested_getatt_ref[TopicArn]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_reference_resolving.py::test_nested_getatt_ref[TopicArn]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_nested_getatt_ref[TopicName]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_reference_resolving.py::test_nested_getatt_ref[TopicName]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sub_resolving
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_reference_resolving.py::test_sub_resolving</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_template[json]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_get_template[json]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_template[yaml]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_get_template[yaml]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_events_after_deployment
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_list_events_after_deployment</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_stack_resources_for_removed_resource
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_list_stack_resources_for_removed_resource</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_stack_description_special_chars
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_description_special_chars</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_lifecycle
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_lifecycle</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_name_creation
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_name_creation</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_update_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_update_resources</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_update_stack_with_same_template
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_update_stack_with_same_template</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_events_resource_types
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_parameter_type
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_list_parameter_type</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_update_termination_protection
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_updating_an_updated_stack_sets_status
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_updating_an_updated_stack_sets_status</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_black_box
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_black_box</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_macro
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cloudformation.py::test_create_macro</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_waitcondition
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cloudformation.py::test_waitcondition</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_black_box</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_with_multiple_route_table_associations
@@ -363,40 +401,43 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_vpc_creates_default_sg
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ec2.py::test_vpc_creates_default_sg</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_event_bus_resource
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_cfn_event_bus_resource</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_events_rule
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_cfn_handle_events_rule</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_events_rule_without_name
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_cfn_handle_events_rule_without_name</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_event_rule_creation_without_target
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_event_rule_creation_without_target</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_event_rule_to_logs
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_event_rule_to_logs</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_eventbus_policies
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_eventbus_policies</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_eventbus_policy_statement
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_eventbus_policy_statement</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_kinesis_firehose_resources
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kinesis.py::test_cfn_handle_kinesis_firehose_resources</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_default_parameters_kinesis
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kinesis.py::test_default_parameters_kinesis</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_dynamodb_stream_response_with_cf
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kinesis.py::test_dynamodb_stream_response_with_cf</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_stream_creation
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kinesis.py::test_stream_creation</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_events_sqs_sns_lambda
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_with_kms_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_deploy_stack_with_kms
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_deploy_stack_with_kms</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kms_key_disabled
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_kms_key_disabled</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sam_policies
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_bucket_autoname
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_bucket_autoname</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_bucket_versioning
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_bucket_versioning</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_bucketpolicy
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_bucketpolicy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cors_configuration
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_cors_configuration</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sam_template
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_template</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_website_configuration
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_website_configuration</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_secretsmanager_secret
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_secretsmanager.py::test_cfn_handle_secretsmanager_secret</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_secret_policy
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_secretsmanager.py::test_cfn_secret_policy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_secretsmanager_gen_secret
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_secretsmanager.py::test_cfn_secretsmanager_gen_secret</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deploy_stack_with_sns_topic
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_deploy_stack_with_sns_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_subscription
@@ -405,40 +446,50 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_topic_fifo_with_deduplication</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_topic_fifo_without_suffix_fails
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_topic_fifo_without_suffix_fails</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deploy_patch_baseline
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_deploy_patch_baseline</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_unsupported
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_unsupported.py::test_unsupported</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_object_by_presigned_request_via_dynamodb
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_lambda.py::TestS3NotificationsToLambda::test_create_object_by_presigned_request_via_dynamodb</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_maintenance_window
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_maintenance_window</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_object_put_via_dynamodb
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_lambda.py::TestS3NotificationsToLambda::test_create_object_put_via_dynamodb</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_parameter_defaults
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_parameter_defaults</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_update_ssm_parameter_tag
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_update_ssm_parameter_tag</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_update_ssm_parameters
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_update_ssm_parameters</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_bucket_notifications_with_filter
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_notifications_with_filter</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_invalid_lambda_arn
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_lambda.py::TestS3NotificationsToLambda::test_invalid_lambda_arn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_invalid_topic_arn
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_invalid_topic_arn</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_path_based_on_data
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_path_based_on_data</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_object_created_put
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_object_created_put</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_step_functions_calling_api_gateway
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_step_functions_calling_api_gateway</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_put_configuration_recorder
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_config_service.py::TestConfigService::test_put_configuration_recorder</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_put_delivery_channel
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_wait_for_callback
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_wait_for_callback</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_boto_wait_for_certificate_validation
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_acm.py::TestACM::test_boto_wait_for_certificate_validation</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_certificate_for_subdomain_wildcard
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_acm.py::TestACM::test_certificate_for_subdomain_wildcard</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_put_delivery_channel
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_config_service.py::TestConfigService::test_put_delivery_channel</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_binary_data_with_stream
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_binary_data_with_stream</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_continuous_backup_update
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_continuous_backup_update</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_duplicate_table
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_create_duplicate_table</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_data_encoding_consistency
@@ -449,8 +500,8 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_dynamodb_batch_execute_statement</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_create_table_with_sse_specification
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_dynamodb_create_table_with_sse_specification</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_create_table_with_partial_sse_specification
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_dynamodb_create_table_with_partial_sse_specification</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_idempotent_writing
@@ -485,52 +536,34 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_large_data_download</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_more_than_20_global_secondary_indexes
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_more_than_20_global_secondary_indexes</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_multiple_update_expressions
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_multiple_update_expressions</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_return_values_in_put_item
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_return_values_in_put_item</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stream_spec_and_region_replacement
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_stream_spec_and_region_replacement</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_transaction_write_items
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_transaction_write_items</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_transact_get_items
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_transact_get_items</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_route_table_association
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ec2.py::TestEc2Integrations::test_create_route_table_association</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_describe_vpc_endpoints_with_filter
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ec2.py::TestEc2Integrations::test_describe_vpc_endpoints_with_filter</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_vcp_peering_difference_regions
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ec2.py::TestEc2Integrations::test_vcp_peering_difference_regions</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_streams_batch_and_transactions
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_valid_local_secondary_index
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_valid_local_secondary_index</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_streams_batch_and_transactions
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestIntegration::test_lambda_streams_batch_and_transactions</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_function_url
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestLambda::test_function_url</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_default_strategy
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestOpenSearch::test_default_strategy</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_path_strategy
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestOpenSearch::test_path_strategy</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_port_strategy
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestOpenSearch::test_port_strategy</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_201_response
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestS3::test_201_response</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_rgsa.py::TestRGSAIntegrations::test_get_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_dynamodb_stream_handler_deployed
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_dynamodb_stream_handler_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kinesis_stream_handler_deployed
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_kinesis_stream_handler_deployed</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_queue_handler_deployed
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_queue_handler_deployed</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_list_messages_as_botocore_endpoint_url
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sqs_backdoor.py::TestSqsDeveloperEdpoints::test_list_messages_as_botocore_endpoint_url</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_nonstandard_regions
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_stores.py::test_nonstandard_regions</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_diagnose_resource
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/utils/test_diagnose.py::test_diagnose_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deletion_event_source_mapping_with_dynamodb
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_deletion_event_source_mapping_with_dynamodb</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 400
@@ -543,15 +576,7 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Pro: tests/integration/iam_enforcement/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_dynamodb_event_source_mapping</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 400
 (AccessDeniedException)</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=getrecords style=scroll-margin-top:5rem>GetRecords</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: Limit, ShardIterator</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_api_gateway_request_validator
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_gateway_request_validator</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_api_key_required_for_methods
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/apigateway/test_apigateway_common.py::TestApiGatewayCommon::test_api_key_required_for_methods</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_event_source_mapping_lifecycle
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li></ul></ul></div></div><br><div class=card><h3 class=card-header id=getrecords style=scroll-margin-top:5rem>GetRecords</h3><div class=card-body><a href=#howtoread title="how to interpret this data">Parameters: Limit, ShardIterator</a><ul><li>LocalStack Community</li><ul class=coverage-report-details-test><li><span class=coverage-report-tooltip>test_event_source_mapping_lifecycle
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_api.py::TestLambdaEventSourceMappings::test_event_source_mapping_lifecycle</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -603,24 +628,70 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_get_template_summary.py::test_get_template_summary</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_duplicate_resources
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_transformers.py::test_duplicate_resources</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_nested_getatt_ref[TopicArn]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_reference_resolving.py::test_nested_getatt_ref[TopicArn]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_nested_getatt_ref[TopicName]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_reference_resolving.py::test_nested_getatt_ref[TopicName]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sub_resolving
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_reference_resolving.py::test_sub_resolving</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_template[json]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_get_template[json]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_get_template[yaml]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_get_template[yaml]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_events_after_deployment
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_list_events_after_deployment</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_stack_resources_for_removed_resource
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_list_stack_resources_for_removed_resource</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_stack_description_special_chars
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_description_special_chars</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_lifecycle
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_lifecycle</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_name_creation
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_name_creation</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stack_update_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_stack_update_resources</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_update_stack_with_same_template
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::TestStacksApi::test_update_stack_with_same_template</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_events_resource_types
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_events_resource_types</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_parameter_type
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_list_parameter_type</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_update_termination_protection
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_update_termination_protection</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_updating_an_updated_stack_sets_status
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/api/test_stacks.py::test_updating_an_updated_stack_sets_status</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_autogenerated_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_autogenerated_values</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_black_box
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/test_aws_iam_user_basic.py::TestBasicCRD::test_black_box</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_macro
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cloudformation.py::test_create_macro</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_waitcondition
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_cloudformation.py::test_waitcondition</span></span>
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resource_providers/iam/aws_iam_user/test_basic.py::TestBasicCRD::test_black_box</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_with_multiple_route_table_associations
@@ -634,40 +705,43 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_vpc_creates_default_sg
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ec2.py::test_vpc_creates_default_sg</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_event_bus_resource
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_cfn_event_bus_resource</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_events_rule
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_cfn_handle_events_rule</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_events_rule_without_name
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_cfn_handle_events_rule_without_name</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_event_rule_creation_without_target
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_event_rule_creation_without_target</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_event_rule_to_logs
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_event_rule_to_logs</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_eventbus_policies
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_eventbus_policies</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_eventbus_policy_statement
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_events.py::test_eventbus_policy_statement</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_kinesis_firehose_resources
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kinesis.py::test_cfn_handle_kinesis_firehose_resources</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_default_parameters_kinesis
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kinesis.py::test_default_parameters_kinesis</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_dynamodb_stream_response_with_cf
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kinesis.py::test_dynamodb_stream_response_with_cf</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_stream_creation
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kinesis.py::test_stream_creation</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_events_sqs_sns_lambda
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_integration.py::test_events_sqs_sns_lambda</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_with_kms_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_deploy_stack_with_kms
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_deploy_stack_with_kms</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kms_key_disabled
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_kms.py::test_kms_key_disabled</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_lambda_dynamodb_source
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sam_policies
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_policies</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_bucket_autoname
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_bucket_autoname</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_bucket_versioning
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_bucket_versioning</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_bucketpolicy
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_bucketpolicy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cors_configuration
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_cors_configuration</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_sam_template
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sam.py::test_sam_template</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_website_configuration
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_s3.py::test_website_configuration</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_handle_secretsmanager_secret
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_secretsmanager.py::test_cfn_handle_secretsmanager_secret</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_cfn_secret_policy
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_secretsmanager.py::test_cfn_secret_policy</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_cfn_secretsmanager_gen_secret
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_secretsmanager.py::test_cfn_secretsmanager_gen_secret</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deploy_stack_with_sns_topic
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_deploy_stack_with_sns_topic</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_subscription
@@ -676,50 +750,58 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_topic_fifo_with_deduplication</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_sns_topic_fifo_without_suffix_fails
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_sns.py::test_sns_topic_fifo_without_suffix_fails</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deploy_patch_baseline
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_deploy_patch_baseline</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_unsupported
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_unsupported.py::test_unsupported</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_create_object_by_presigned_request_via_dynamodb
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_lambda.py::TestS3NotificationsToLambda::test_create_object_by_presigned_request_via_dynamodb</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_maintenance_window
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_maintenance_window</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_object_put_via_dynamodb
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_lambda.py::TestS3NotificationsToLambda::test_create_object_put_via_dynamodb</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_parameter_defaults
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_parameter_defaults</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_update_ssm_parameter_tag
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_update_ssm_parameter_tag</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_update_ssm_parameters
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/resources/test_ssm.py::test_update_ssm_parameters</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span></li><li><span class=coverage-report-tooltip>test_get_cloudformation_ui
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/cloudformation/test_cloudformation_ui.py::TestCloudFormationUi::test_get_cloudformation_ui</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_bucket_not_exist
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_not_exist</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_invalid_lambda_arn
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_lambda.py::TestS3NotificationsToLambda::test_invalid_lambda_arn</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_bucket_notifications_with_filter
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_bucket_notifications_with_filter</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_string_split
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/intrinsic_functions/test_string_operations.py::TestStringOperations::test_string_split</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_invalid_topic_arn
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_invalid_topic_arn</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_path_based_on_data
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_path_based_on_data</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_object_created_put
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/s3/test_s3_notifications_sns.py::TestS3NotificationsToSns::test_object_created_put</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_step_functions_calling_api_gateway
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_step_functions_calling_api_gateway</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_put_configuration_recorder
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_config_service.py::TestConfigService::test_put_configuration_recorder</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_put_delivery_channel
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_wait_for_callback
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/stepfunctions/v2/scenarios/test_sfn_scenarios.py::TestFundamental::test_wait_for_callback</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_boto_wait_for_certificate_validation
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_acm.py::TestACM::test_boto_wait_for_certificate_validation</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_certificate_for_subdomain_wildcard
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_acm.py::TestACM::test_certificate_for_subdomain_wildcard</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_put_delivery_channel
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_config_service.py::TestConfigService::test_put_delivery_channel</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_binary_data_with_stream
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_binary_data_with_stream</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_duplicate_table
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_create_duplicate_table</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_data_encoding_consistency
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_data_encoding_consistency</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_create_table_with_partial_sse_specification
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_dynamodb_create_table_with_partial_sse_specification</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_execute_transaction
@@ -746,66 +828,44 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_dynamodb_with_kinesis_stream</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_empty_and_binary_values
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_empty_and_binary_values</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_global_tables_version_2019
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_global_tables_version_2019</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_non_ascii_chars
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_non_ascii_chars</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_large_data_download
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_large_data_download</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_query_on_deleted_resource
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_query_on_deleted_resource</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_list_tags_of_resource
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_list_tags_of_resource</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_return_values_in_put_item
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_return_values_in_put_item</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_stream_spec_and_region_replacement
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_stream_spec_and_region_replacement</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_time_to_live
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_time_to_live</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_transact_get_items
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_transact_get_items</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_transaction_write_items
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_transaction_write_items</span></span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_valid_local_secondary_index
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_valid_local_secondary_index</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_valid_query_index
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_dynamodb.py::TestDynamoDB::test_valid_query_index</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span>
-<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
-<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_create_route_table_association
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ec2.py::TestEc2Integrations::test_create_route_table_association</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_describe_vpc_endpoints_with_filter
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ec2.py::TestEc2Integrations::test_describe_vpc_endpoints_with_filter</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_vcp_peering_difference_regions
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_ec2.py::TestEc2Integrations::test_vcp_peering_difference_regions</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_streams_batch_and_transactions
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_lambda_streams_batch_and_transactions
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_integration.py::TestIntegration::test_lambda_streams_batch_and_transactions</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_function_url
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestLambda::test_function_url</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_default_strategy
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestOpenSearch::test_default_strategy</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_path_strategy
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestOpenSearch::test_path_strategy</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_port_strategy
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestOpenSearch::test_port_strategy</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_non_us_east_1_location
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_network_configuration.py::TestS3::test_non_us_east_1_location</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_get_resources
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_rgsa.py::TestRGSAIntegrations::test_get_resources</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_apigateway_deployed
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_apigateway_deployed</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_dynamodb_stream_handler_deployed
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_dynamodb_stream_handler_deployed</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_kinesis_stream_handler_deployed
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_kinesis_stream_handler_deployed</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_lambda_with_configs_deployed
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_serverless.py::TestServerless::test_lambda_with_configs_deployed</span></span>
-<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_list_messages_as_botocore_endpoint_url
-<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/test_sqs_backdoor.py::TestSqsDeveloperEdpoints::test_list_messages_as_botocore_endpoint_url</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_diagnose_resource
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/utils/test_diagnose.py::test_diagnose_resource</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 200</span></li><li><span class=coverage-report-tooltip>test_deletion_event_source_mapping_with_dynamodb
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_deletion_event_source_mapping_with_dynamodb</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 500
@@ -816,6 +876,26 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 500
 (InternalError)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_disabled_dynamodb_event_source_mapping
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_disabled_dynamodb_event_source_mapping</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put10-None-filter0-1]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put10-None-filter0-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put10-None-filter0-1]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put10-None-filter0-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put11-item_to_put21-filter1-2]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put11-item_to_put21-filter1-2]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put11-item_to_put21-filter1-2]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put11-item_to_put21-filter1-2]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 500
@@ -823,6 +903,31 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put12-item_to_put22-filter2-1]
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put12-item_to_put22-filter2-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put12-item_to_put22-filter2-1]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put12-item_to_put22-filter2-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put13-item_to_put23-filter3-1]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put13-item_to_put23-filter3-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put13-item_to_put23-filter3-1]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put13-item_to_put23-filter3-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put13-item_to_put23-filter3-1]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put13-item_to_put23-filter3-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put14-item_to_put24-filter4-0]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put14-item_to_put24-filter4-0]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 500
 (InternalError)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
@@ -846,8 +951,38 @@ Some calls might be internal, i.e., they are not explicitly called in the test, 
 <span class=coverage-report-http-code>HTTP Status Code: 500
 (InternalError)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put16-item_to_put26-filter6-1]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put16-item_to_put26-filter6-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_filter[item_to_put16-item_to_put26-filter6-1]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put16-item_to_put26-filter6-1]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_source_mapping
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_source_mapping
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
 <span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_event_source_mapping_with_on_failure_destination_config
 <span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping_with_on_failure_destination_config</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_invalid_event_filter[[{"eventName": ["INSERT"=123}]]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_invalid_event_filter[[{"eventName": ["INSERT"=123}]]</span></span>
+<span class=coverage-report-http-code>HTTP Status Code: 500
+(InternalError)</span>
+<span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
+<span class=coverage-report-tag-snapshot>Snapshot Tested</span></li><li><span class=coverage-report-tooltip>test_dynamodb_invalid_event_filter[single-string]
+<span class=coverage-report-tooltiptext>LocalStack Community: tests/integration/awslambda/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_invalid_event_filter[single-string]</span></span>
 <span class=coverage-report-http-code>HTTP Status Code: 500
 (InternalError)</span>
 <span class=coverage-report-tag-aws-validated style=margin-left:20px>AWS validated</span>
