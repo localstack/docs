@@ -850,8 +850,8 @@ The &lt;code>Producer&lt;/code> contains a &lt;code>main&lt;/code> method which 
 &lt;h4 class="alert-heading">Note&lt;/h4>
 If your Lambda function has additional dependencies, create a file named &lt;code>requirements.txt&lt;/code> in the same directory as the Dockerfile. List the required libraries in this file. You can install these dependencies in the &lt;code>Dockerfile&lt;/code> under the &lt;code>${LAMBDA_TASK_ROOT}&lt;/code> directory.
 &lt;/div>
-&lt;p>With the Dockerfile prepared, you can now build the container image using the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker build -t localstack-lambda-container-image .&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>With the Dockerfile prepared, you can now build the container image using the following command, to check if everything works as intended:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker build .&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>By executing these steps, you have defined the Dockerfile that instructs Docker on how to build the container image for your Lambda function. The resulting image will contain your function code and any specified dependencies.&lt;/p>
 &lt;h2 id="publishing-the-image-to-ecr">Publishing the image to ECR&lt;/h2>
 &lt;p>Now that the initial setup is complete let&amp;rsquo;s explore how to leverage LocalStack&amp;rsquo;s AWS emulation by pushing our image to ECR and deploying the Lambda container image. Start LocalStack by executing the following command. Make sure to replace &lt;code>&amp;lt;your-api-key&amp;gt;&lt;/code> with your actual API key:&lt;/p>
@@ -902,10 +902,15 @@ To further customize the ECR repository, you can pass additional flags to the &l
 &lt;p>By running this command, you can confirm that the image is now in the ECR repository. It ensures it is ready for deployment as a Lambda function using LocalStack&amp;rsquo;s AWS emulation capabilities.&lt;/p>
 &lt;h2 id="deploying-the-lambda-function">Deploying the Lambda function&lt;/h2>
 &lt;p>To deploy the container image as a Lambda function, we will create a new Lambda function using the &lt;code>create-function&lt;/code> command. Run the following command to create the function:&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Before creating the lambda function, please double check under which architecture you have built your image. If your image is built as arm64, you need to specify the lambda architecture when deploying or set &lt;code>LAMBDA_IGNORE_ARCHTIECTURE=1&lt;/code> when starting LocalStack.
+More information can be found &lt;a href="/references/arm64-support/">in our documentation regarding ARM support.&lt;/a>
+&lt;/div>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name localstack-lambda-container-image \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --package-type Image \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code ImageUri=&amp;#34;localstack-lambda-container-image&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code ImageUri=&amp;#34;localhost.localstack.cloud:4510/localstack-lambda-container-image&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler handler.handler
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -941,7 +946,7 @@ To further customize the ECR repository, you can pass additional flags to the &l
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The command provided includes several flags to create the Lambda function. Here&amp;rsquo;s an explanation of each flag:&lt;/p>
 &lt;ul>
-&lt;li>&lt;code>ImageUri&lt;/code>: Specifies the image URI of the container image you pushed to the ECR repository (&lt;code>localstack-lambda-container-image&lt;/code> in this case).&lt;/li>
+&lt;li>&lt;code>ImageUri&lt;/code>: Specifies the image URI of the container image you pushed to the ECR repository (&lt;code>localhost.localstack.cloud:4510/localstack-lambda-container-image&lt;/code> in this case. Use the return &lt;code>repositoryUri&lt;/code> from the create-repository command).&lt;/li>
 &lt;li>&lt;code>package-type&lt;/code>: Sets the package type to Image to indicate that the Lambda function will be created using a container image.&lt;/li>
 &lt;li>&lt;code>function-name&lt;/code>: Specifies the name of the Lambda function you want to create.&lt;/li>
 &lt;li>&lt;code>runtime&lt;/code>: Defines the runtime environment for the Lambda function. In this case, it&amp;rsquo;s specified as provided, indicating that the container image will provide the runtime.&lt;/li>
