@@ -7590,6 +7590,79 @@ Note that only a single backend can be configured, meaning that you will get a s
 &lt;li>By default, AWS only sets the &lt;code>Endpoint&lt;/code> attribute of the cluster status once the cluster is up.
 LocalStack will return the endpoint immediately, but keep &lt;code>Processing = &amp;quot;true&amp;quot;&lt;/code> until the cluster has been started.&lt;/li>
 &lt;li>The &lt;code>CustomEndpointOptions&lt;/code> allows arbitrary endpoint URLs, which is not allowed in AWS&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: EventBridge</title><link>/user-guide/aws/eventbridge/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/eventbridge/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>EventBridge provides a centralized mechanism to discover and communicate events across various AWS services and applications. EventBridge allows you to register, track, and resolve events, which indicates a change in the environment and then applies a rule to route the event to a target. EventBridge rules are tied to an Event Bus to manage event-driven workflows. You can use either identity-based or resource-based policies to control access to EventBridge resources, where the former can be attached to IAM users, groups, and roles, and the latter can be attached to specific AWS resources.&lt;/p>
+&lt;p>LocalStack supports EventBridge via the Community offering, allowing you to use the EventBridge APIs in your local environment to create rules that route events to a target. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_events/">API coverage page&lt;/a>, which provides information on the extent of EventBridge&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting Started&lt;/h2>
+&lt;p>This guide is designed for users new to EventBridge and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate creating an EventBridge rule to run a Lambda function on a schedule.&lt;/p>
+&lt;h3 id="create-a-lambda-function">Create a Lambda Function&lt;/h3>
+&lt;p>To create a new Lambda function, create a new file called &lt;code>index.js&lt;/code> with the following code:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&amp;#39;use strict&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">exports&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">handler&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">callback&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">=&amp;gt;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">console&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">log&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;LogScheduledEvent&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">console&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">log&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;Received event:&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">JSON&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">stringify&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#204a87;font-weight:bold">null&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">callback&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87;font-weight:bold">null&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;Finished&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Run the following command to create a new Lambda function using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html">&lt;code>CreateFunction&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zip function.zip index.js
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name events-example \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs16.x \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb://function.zip \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler index.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/cool-stacklifter&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The output will consist of the &lt;code>FunctionArn&lt;/code>, which you will need to add the Lambda function to the EventBridge target.&lt;/p>
+&lt;h3 id="create-an-eventbridge-rule">Create an EventBridge Rule&lt;/h3>
+&lt;p>Run the following command to create a new EventBridge rule using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/events/put-rule.html">&lt;code>PutRule&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal events put-rule \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name my-scheduled-rule \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --schedule-expression &amp;#39;rate(2 minutes)&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In the above command, we have specified a schedule expression of &lt;code>rate(2 minutes)&lt;/code>, which will run the rule every two minutes. It means that the Lambda function will be invoked every two minutes.&lt;/p>
+&lt;p>Next, grant the EventBridge service principal (&lt;code>events.amazonaws.com&lt;/code>) permission to run the rule, using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/events/add-permission.html">&lt;code>AddPermission&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda add-permission \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name events-example \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statement-id my-scheduled-event \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --action &amp;#39;lambda:InvokeFunction&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --principal events.amazonaws.com \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --source-arn arn:aws:events:us-east-1:000000000000:rule/my-scheduled-rule&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="add-the-lambda-function-as-a-target">Add the Lambda Function as a Target&lt;/h3>
+&lt;p>Create a file names &lt;code>target.json&lt;/code> with the following content:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Arn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:lambda:us-east-1:000000000000:function:events-example&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Finally, add the Lambda function as a target to the EventBridge rule using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/events/put-targets.html">&lt;code>PutTargets&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal events put-targets \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --rule my-scheduled-rule \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --targets file://targets.json&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="verify-the-lambda-invocation">Verify the Lambda invocation&lt;/h3>
+&lt;p>You can verify the Lambda invocation by checking the CloudWatch logs. However, wait at least 2 minutes after running the last command before checking the logs.&lt;/p>
+&lt;p>Run the following command to list the CloudWatch log groups:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs describe-log-groups&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The output will contain the log group name, which you can use to list the log streams:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs describe-log-streams \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name /aws/lambda/events-example&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Alternatively, you can fetch LocalStack logs to verify the Lambda invocation:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack logs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-07-17T09:37:52.028 INFO --- [ asgi_gw_0] localstack.request.aws : AWS lambda.Invoke =&amp;gt; 202
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-07-17T09:37:52.106 INFO --- [ asgi_gw_0] localstack.request.http : POST /_localstack_lambda/97e08ac50c18930f131d9dd9744b8df4/invocations/ecb744d0-b3f2-400f-9e49-c85cf12b1e00/logs =&amp;gt; 202
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-07-17T09:37:52.114 INFO --- [ asgi_gw_0] localstack.request.http : POST /_localstack_lambda/97e08ac50c18930f131d9dd9744b8df4/invocations/ecb744d0-b3f2-400f-9e49-c85cf12b1e00/response =&amp;gt; 202
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing EventBridge Buses. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>EventBridge&lt;/strong> under the &lt;strong>App Integration&lt;/strong> section.&lt;/p>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>View the Event Buses&lt;/strong>: You can view the list of EventBridge Buses running locally, alongside their Amazon Resource Names (ARNs) and Policies.&lt;/li>
+&lt;li>&lt;strong>Create Event Rule&lt;/strong>: You can create a new Event Rule by specifying &lt;strong>Name&lt;/strong>, &lt;strong>Description&lt;/strong>, &lt;strong>Event Pattern&lt;/strong>, &lt;strong>Schedule Expressions&lt;/strong>, &lt;strong>State&lt;/strong>, &lt;strong>Role ARN&lt;/strong>, and &lt;strong>Tags&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Trigger Event&lt;/strong>: You can trigger an Event by specifying the &lt;strong>Entries&lt;/strong> and &lt;strong>Endpoint Id&lt;/strong>. While creating an Entry, you must specify &lt;strong>Source&lt;/strong>, &lt;strong>Event Bus Name&lt;/strong>, &lt;strong>Detail&lt;/strong>, &lt;strong>Resources&lt;/strong>, &lt;strong>Detail Type&lt;/strong>, and &lt;strong>Trace Header&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Remove Selected&lt;/strong>: You can remove the selected EventBridge Bus.&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Fault Injection Simulator (FIS)</title><link>/user-guide/aws/fis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/fis/</guid><description>
 &lt;p>Basic support for the Fault Injection Simulator (FIS) service is included in LocalStack Pro. The local FIS API allows you to introduce faults to other services - in order to check how your setup behaves when parts of it stop working.
 The full list of such possible fault injections - called &amp;ldquo;actions&amp;rdquo; - is available in the &lt;a href="https://docs.aws.amazon.com/fis/latest/userguide/fis-actions-reference.html">AWS docs&lt;/a>.&lt;/p>
@@ -10226,111 +10299,4 @@ id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="known-limitations-and-differences-to-aws">Known limitations and differences to AWS&lt;/h2>
 &lt;ul>
 &lt;li>The &lt;code>ApproximateReceiveCount&lt;/code> attribute of a message will be reset to 0 when the message moves to a DLQ.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Step Functions</title><link>/user-guide/aws/stepfunctions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/stepfunctions/</guid><description>
-&lt;p>Amazon Web Services (AWS) Step Functions is a serverless workflow engine that integrates with AWS Lambda and other AWS services. It allows us to define workflows using Amazon States Language, a JSON-based structured language, to provide the necessary configurations and run the workflow. Step Functions allow you to define standard workflows and express workflows for long-running workflows and high-volume event processing, respectively.&lt;/p>
-&lt;p>LocalStack provides Step Functions support via the Community offering. You can use the Step Functions API to create, execute, update, and delete state machines. The supported APIs are available over our &lt;a href="/user-guide/aws/feature-coverage/">feature coverage page&lt;/a>.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to make basic usage of Step Functions in LocalStack. This guide is intended for users who wish to get more acquainted with Step Functions, and assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Create a state machine using the &lt;code>create-state-machine&lt;/code> command and specify the name of the state machine, the state machine definition, and the role ARN that the state machine will assume to call AWS services:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal stepfunctions create-state-machine \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name &amp;#34;WaitMachine&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --definition &amp;#39;{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StartAt&amp;#34;: &amp;#34;WaitExecution&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;States&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;WaitExecution&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Type&amp;#34;: &amp;#34;Wait&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Seconds&amp;#34;: 10,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;End&amp;#34;: true
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn &amp;#34;arn:aws:iam::000000000000:role/stepfunctions-role&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-In the above example, we have created a state machine named &lt;code>WaitMachine&lt;/code>, with a single state, &lt;code>WaitExecution&lt;/code>, which waits for 10 seconds before completing the execution. The role ARN is used to grant the state machine access to other AWS services, and you can create an IAM role within LocalStack as well. The output of the above command is the ARN of the state machine:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;stateMachineArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:states:&amp;lt;AWS_REGION&amp;gt;:000000000000:stateMachine:WaitMachine&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;creationDate&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;DATE&amp;gt;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>You can list the state machines in your account by running the following command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal stepfunctions list-state-machines&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-The output of the above command is a list of state machines:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;stateMachines&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;stateMachineArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:states:&amp;lt;AWS_REGION&amp;gt;:000000000000:stateMachine:WaitMachine&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;WaitMachine&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;STANDARD&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;creationDate&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;DATE&amp;gt;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>You can retrieve the state machine using the ARN returned in the first step, via the &lt;code>list-state-machines&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal stepfunctions describe-state-machine --state-machine-arn &amp;#34;arn:aws:states:&amp;lt;AWS_REGION&amp;gt;:000000000000:stateMachine:WaitExecution&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-The output of the above command is the state machine definition:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;stateMachineArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;WaitMachine&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;definition&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;{\n \&amp;#34;StartAt\&amp;#34;: \&amp;#34;WaitExecution\&amp;#34;,\n \&amp;#34;States\&amp;#34;: {\n \&amp;#34;WaitExecution\&amp;#34;: {\n \&amp;#34;Type\&amp;#34;: \&amp;#34;Wait\&amp;#34;,\n \&amp;#34;Seconds\&amp;#34;: 10,\n \&amp;#34;End\&amp;#34;: true\n }\n }\n }&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;roleArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/stepfunctions-role&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;STANDARD&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;creationDate&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;DATE&amp;gt;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;loggingConfiguration&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;level&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;OFF&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;includeExecutionData&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>You can next execute the state machine using the &lt;code>start-execution&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal stepfunctions start-execution \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --state-machine-arn &amp;#34;arn:aws:states:&amp;lt;REGION&amp;gt;:000000000000:stateMachine:WaitMachine&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-The output of the above command is the execution ARN:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;executionArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:states:us-east-1:000000000000:execution:WaitMachine:&amp;lt;ID&amp;gt;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;startDate&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;DATE&amp;gt;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>To check the status of the execution, you can use the &lt;code>describe-execution&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal stepfunctions describe-execution \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --execution-arn &amp;#34;arn:aws:states:us-east-1:000000000000:execution:WaitMachine:&amp;lt;ID&amp;gt;&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-The output of the above command is the execution status:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;executionArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:states:us-east-1:000000000000:execution:WaitMachine:32174130-4587-4314-ad63-86c6242523b2&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;stateMachineArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;NAME&amp;gt;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;SUCCEEDED&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;startDate&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;START_DATE&amp;gt;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;stopDate&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;STOP_DATE&amp;gt;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;input&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;{}&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;inputDetails&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;included&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;output&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;{}&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;outputDetails&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;included&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>
-&lt;p>To update the state machine definition, you can use the &lt;code>update-state-machine&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal stepfunctions update-state-machine \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --state-machine-arn &amp;#34;arn:aws:states:&amp;lt;REGION&amp;gt;:000000000000:stateMachine:WaitMachine&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --definition file://path/to/your/statemachine.json
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn &amp;#34;arn:aws:iam::000000000000:role/stepfunctions-role&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>To delete the state machine, you can use the &lt;code>delete-state-machine&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal stepfunctions delete-state-machine \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --state-machine-arn &amp;#34;arn:aws:states:&amp;lt;REGION&amp;gt;:000000000000:stateMachine:WaitMachine&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;p>For an extensive list of supported Step Functions APIs, please refer to the &lt;a href="https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html">official AWS documentation&lt;/a>, and the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/stepfunctions/index.html">CLI reference&lt;/a>.&lt;/p>
-&lt;h2 id="using-localstack-pro">Using LocalStack Pro&lt;/h2>
-&lt;p>LocalStack Pro users can access our &lt;a href="https://app.localstack.cloud">LocalStack App&amp;rsquo;s&lt;/a> web user interface to work with Step Functions and other AWS services. It is a convenient way to work with Step Functions and allows you to check the executions and flowcharts in a fashion similar to the AWS console. While using the LocalStack App, ensure you have the LocalStack instance running. You can also navigate across previous events and executions and view the state machine statuses.&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
