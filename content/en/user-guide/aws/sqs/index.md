@@ -1,73 +1,151 @@
 ---
 title: "Simple Queue Service (SQS)"
-categories: ["LocalStack Community"]
 description: >
-  Get started with Amazon Simple Queue Service (SQS) on LocalStack
+  Get started with Simple Queue Service (SQS) on LocalStack
 aliases:
   - /aws/sqs/
 ---
 
-AWS SQS is a fully managed distributed message queuing service.
-SQS is shipped with the LocalStack Community version and is [extensively supported and tested]({{< ref "feature-coverage" >}}).
+## Introduction
+
+Simple Queue Service (SQS) is a managed messaging service offered by AWS. It allows you to decouple different components of your applications by enabling asynchronous communication through message queues. SQS allows you to reliably send, store, and receive messages with support for standard and FIFO queues.
+
+LocalStack supports SQS via the Community offering, allowing you to use the SQS APIs in your local environment to use a hosted queue to integrate and decouple distributed systems. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sqs/), which provides information on the extent of SQS's integration with LocalStack.
 
 ## Getting started
 
-Trying to run the examples in the [official AWS developer](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html) guide against LocalStack is a great place to start.
-Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed you can also try the following commands:
+This guide is designed for users new to SQS and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+
+Start your LocalStack container using your preferred method. We will demonstrate how to create a SQS queue, retrieve queue attributes and URLs, and receive and delete messages from the queue.
+
+### Create a queue
+
+To create an SQS queue, use the [`CreateQueue`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html) API. Run the following command to create a queue named `localstack-queue`:
 
 {{< command >}}
-$ awslocal sqs create-queue --queue-name sample-queue
-{
-    "QueueUrl": "http://localhost:4566/000000000000/sample-queue"
-}
+$ awslocal sqs create-queue --queue-name localstack-queue
 {{< / command >}}
+
+You can list all queues in your account using the [`ListQueues`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html) API. Run the following command to list all queues in your account:
 
 {{< command >}}
 $ awslocal sqs list-queues
+{{< / command >}}
+
+You will see the following output:
+
+```sh
 {
     "QueueUrls": [
-        "http://localhost:4566/000000000000/sample-queue"
+        "http://localhost:4566/000000000000/localstack-queue"
     ]
 }
-{{< / command >}}
+```
+
+You can query queue attributes with the [`GetQueueAttributes`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html) API. You need to pass the `queue-url` and `attribute-names` parameters.
+
+Run the following command to retrieve the queue attributes:
 
 {{< command >}}
-$ awslocal sqs send-message --queue-url http://localhost:4566/000000000000/sample-queue --message-body test
-{
-    "MD5OfMessageBody": "098f6bcd4621d373cade4e832627b4f6",
-    "MessageId": "74861aab-05f8-0a75-ae20-74d109b7a76e"
-}
+$ awslocal sqs get-queue-attributes --queue-url http://localhost:4566/000000000000/localstack-queue --attribute-names All
 {{< / command >}}
 
+### Sending and receiving messages from the queue
+
+You can send a message to the SQS queue which will be queued and a consumer can pick it up. To send a message to a SQS queue, you can use the [`SendMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html) API.
+
+Run the following command to send a message to the queue:
+
+{{< command >}}
+$ awslocal sqs send-message --queue-url http://localhost:4566/000000000000/localstack-queue --message-body "Hello World"
+{{< / command >}}
+
+It will return the MD5 hash of the Message Body and a Message ID. You will see the following output:
+
+```bash
+{
+    "MD5OfMessageBody": "b10a8db164e0754105b7a99be72e3fe5",
+    "MessageId": "92612c02-4879-47db-92f6-40bf2b341c07"
+}
+```
+
+You can receive messages from the queue using the [`ReceiveMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html) API. Run the following command to receive messages from the queue:
+
+{{< command >}}
+$ awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/localstack-queue
+{{< / command >}}
+
+You will see the Message ID, MD5 hash of the Message Body, Receipt Handle, and the Message Body in the output.
+
+### Delete a message from the queue
+
+To delete a message from the queue, you can use the [`DeleteMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html) API. You need to pass the `queue-url` and `receipt-handle` parameters.
+
+Run the following command to delete a message from the queue:
+
+{{< command >}}
+$ awslocal sqs delete-message --queue-url http://localhost:4566/000000000000/localstack-queue --receipt-handle <receipt-handle>
+{{< / command >}}
+
+Replace `<receipt-handle>` with the receipt handle you received in the previous step. If you have sent multiple messages to the queue, you can purge the queue using the [`PurgeQueue`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html) API.
+
+Run the following command to purge the queue:
+
+{{< command >}}
+$ awslocal sqs purge-queue --queue-url http://localhost:4566/000000000000/localstack-queue
+{{< / command >}}
 
 ## SQS Query API
 
-The [SQS Query API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html) exposes SQS Queue URLs as endpoints and allows you to make HTTP requests directly against the Queue.
-LocalStack also supports the Query API.
+The [SQS Query API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html), provides SQS Queue URLs as endpoints, enabling direct HTTP requests to the queues. LocalStack extends support for the Query API.
 
+With LocalStack, you can conveniently test SQS Query API calls without the need to sign or include `AUTHPARAMS` in your HTTP requests.
 
-LocalStack makes it easy to test SQS Query API calls without having to sign or add `AUTHPARAMS` to your HTTP requests.
-For example, you could send a `SendMessage` command using a `MessageBody` attribute with a simple curl command:
+For instance, you can use a basic `cURL` command to send a `SendMessage` command along with a MessageBody attribute:
+
 {{< command >}}
 $ curl "http://localhost:4566/000000000000/sample-queue?Action=SendMessage&MessageBody=hello%2Fworld"
-
-<?xml version='1.0' encoding='utf-8'?>
-<SendMessageResponse xmlns="http://queue.amazonaws.com/doc/2012-11-05/"><SendMessageResult><MD5OfMessageBody>c6be4e95a26409675447367b3e79f663</MD5OfMessageBody><MessageId>466144ab-1d03-4ec5-8d70-97535b2957fb</MessageId></SendMessageResult><ResponseMetadata><RequestId>JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF</RequestId></ResponseMetadata></SendMessageResponse>
 {{< / command >}}
+
+You will see the following output:
+
+```xml
+<?xml version='1.0' encoding='utf-8'?>
+<SendMessageResponse
+	xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
+	<SendMessageResult>
+		<MD5OfMessageBody>c6be4e95a26409675447367b3e79f663</MD5OfMessageBody>
+		<MessageId>466144ab-1d03-4ec5-8d70-97535b2957fb</MessageId>
+	</SendMessageResult>
+	<ResponseMetadata>
+		<RequestId>JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF</RequestId>
+	</ResponseMetadata>
+</SendMessageResponse>
+```
 
 Adding the `Accept: application/json` header will make the server return JSON:
 
+To receive JSON responses from the server, include the `Accept: application/json` header in your request. Here's an example using the `cURL` command:
+
 {{< command >}}
 curl -H "Accept: application/json" "http://localhost:4566/000000000000/my-queue?Action=SendMessage&MessageBody=hello%2Fworld" 
-{"SendMessageResponse": {"SendMessageResult": {"MD5OfMessageBody": "c6be4e95a26409675447367b3e79f663", "MessageId": "748297f2-4abd-4ec2-afc0-4d1a497fe604"}, "ResponseMetadata": {"RequestId": "XEA5L5AX16RTPET25U3TIRIASN6KNIT820WIT3EY7RCH7164W68T"}}}
 {{< / command >}}
 
+The response will be in JSON format:
 
-{{< alert title="Note" >}}
-In previous releases, an empty HTTP request to a queue would return a `<GetQueueUrlResponse>`.
-This has since been aligned to the behavior of AWS, which returns a `<UnknownOperationException/>`.
-To run a `GetQueueUrl` request, add the `?Action=GetQueueUrl&QueueName=<QueueName>"` query string to the URL.
-{{< /alert >}}
+```json
+{
+	"SendMessageResponse": {
+		"SendMessageResult": {
+			"MD5OfMessageBody": "c6be4e95a26409675447367b3e79f663",
+			"MessageId": "748297f2-4abd-4ec2-afc0-4d1a497fe604"
+		},
+		"ResponseMetadata": {
+			"RequestId": "XEA5L5AX16RTPET25U3TIRIASN6KNIT820WIT3EY7RCH7164W68T"
+		}
+	}
+}
+```
 
 ## Configuration
 
@@ -75,57 +153,59 @@ To run a `GetQueueUrl` request, add the `?Action=GetQueueUrl&QueueName=<QueueNam
 
 You can control the format of the generated Queue URLs by setting the environment variable `SQS_ENDPOINT_STRATEGY` when starting LocalStack to one of the following values.
 
-| Value | URL format | Description |
-| - | - | - |
-| `domain` | `<region>.queue.localhost.localstack.cloud:4566/<account_id>/<queue_name>` | This strategy behaves like the [SQS legacy service endpoints](https://docs.aws.amazon.com/general/latest/gr/sqs-service.html#sqs_region), and uses `localhost.localstack.cloud` to resolve to localhost. When using `us-east-1`, the `<region>.` prefix is omitted. |
-| `path` | `localhost:4566/queue/<region>/<account_id>/<queue_name>` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
-| `off` | `localhost:4566/<account_id>/<queue_name>` | Currently the default for backwards compatibility. Since this format does not encode the region, you cannot query queues that exist in different regions with the same name. |
+| Value    | URL format                                                                 | Description                                                                                                                                                                                                                                                         |
+| -------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `domain` | `<region>.queue.localhost.localstack.cloud:4566/<account_id>/<queue_name>` | This strategy behaves like the [SQS legacy service endpoints](https://docs.aws.amazon.com/general/latest/gr/sqs-service.html#sqs_region), and uses `localhost.localstack.cloud` to resolve to localhost. While using the `us-east-1` region, the `<region>.` prefix is omitted. |
+| `path`   | `localhost:4566/queue/<region>/<account_id>/<queue_name>`                  | An alternative that can be useful if you cannot resolve LocalStack's `localhost` domain.                                                                                                                                                                               |
+| `off`    | `localhost:4566/<account_id>/<queue_name>`                                 | It is the current default for maintaining backward compatibility. However, this format does not encode the region information. As a result, you will encounter limitations when querying queues with the same name that exist in different regions.                                                                               |
 
-### Enabling PurgeQueue errors
+### Enabling `PurgeQueue` errors
 
-AWS only allows one call to `PurgeQueue` every 60 seconds.
-See the [PurgeQueue API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html).
-LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with `SQS_DELAY_PURGE_RETRY=1`.
+In AWS, there is a restriction that allows only one call to the `PurgeQueue` operation every 60 seconds. You can refer to the [`PurgeQueue` API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html) for more details.
 
-### Enabling QueueDeletedRecently errors
+By default, LocalStack disables this behavior. However, if you want to enable the retry delay for `PurgeQueue` in LocalStack, you can start it with the `SQS_DELAY_PURGE_RETRY=1` environment variable.
 
-AWS does not allow creating a queue with the same name for 60 seconds after it was deleted.
-See the [DeleteQueue API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
-LocalStack disables this behavior by default, but it can be enabled by starting LocalStack with `SQS_DELAY_RECENTLY_DELETED=1`.
+### Enabling `QueueDeletedRecently` errors
+
+In AWS, there is a restriction that prevents the creation of a queue with the same name within 60 seconds after it has been deleted. You can find more information about this behavior in the [`DeleteQueue` API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
+
+By default, LocalStack disables this behavior. However, if you want to enable the delay for creating a recently deleted queue in LocalStack, you can start it with the `SQS_DELAY_RECENTLY_DELETED=1` environment variable.
 
 ### Disable CloudWatch Metrics Reporting
 
-Sending, receiving, and deleting SQS messages will automatically trigger CloudWatch metrics. 
-This [AWS parity feature](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html) is enabled by default, but can be deactivated.
-Deactivating CloudWatch metrics can improve the performance of SQS message operations, but will disable any integration with CloudWatch such as triggering alarms.
+When working with SQS messages, actions like sending, receiving, and deleting them will automatically trigger CloudWatch metrics. This feature, known as [CloudWatch metrics for Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html), is enabled by default but can be deactivated if needed.
 
-Additionally, metrics about `Approximate*` messages are send to CloudWatch by default once every minute, but the interval (in seconds) can also be configured using `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL=120`.
+Disabling CloudWatch metrics can enhance the performance of SQS message operations. However, it's important to note that deactivation will also disable any integration with CloudWatch, including the triggering of alarms based on metrics.
 
-`SQS_DISABLE_CLOUDWATCH_METRICS=1` will disable all CloudWatch metrics for SQS (including `Approximate*` metrics).
+By default, metrics related to `Approximate*` messages are sent to CloudWatch once every minute. You can customize the reporting interval (in seconds) by setting the `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL` variable to the desired value, such as `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL=120`.
 
+If you wish to disable all CloudWatch metrics for SQS, including the `Approximate*` metrics, you can set the `SQS_DISABLE_CLOUDWATCH_METRICS` variable to `1`.
 
 ## Developer endpoints
 
-Our SQS implementation provides additional endpoints for developers under `/_aws/sqs`, that allow you to inspect queues without side effects.
-For instance, sometimes you want to peek into queues without actually performing a `ReceiveMessage` operation.
+LocalStack's SQS implementation offers additional endpoints for developers located at `/_aws/sqs`. These endpoints provide the ability to inspect queues without causing any side effects. This can be particularly useful when you need to examine the content of queues without executing a `ReceiveMessage` operation, which would normally remove messages from the queue.
 
 ### Peeking into queues
 
-The endpoint `/_aws/sqs/messages` allows you to access all messages within a queue without triggering the visibility timeout our modifying access metrics.
-This can be used, for example, in tests to wait until a particular message has arrived in the queue.
-The endpoint is fully compatible with the `ReceiveMessage` operation from the SQS API.
-The endpoint returns all messages in the queue, and all attributes and system attributes by default.
-It ignores any other parameters from the `ReceiveMessage` operation, except the `QueueUrl`.
+The `/_aws/sqs/messages` endpoint provides access to all messages within a queue without triggering the visibility timeout or modifying access metrics. This endpoint is particularly useful in scenarios such as tests, where you need to wait until a specific message arrives in the queue.
 
-Here are some examples of how to call the endpoint.
-You can either call the endpoint with the query argument `QueueUrl`, or use the path-based endpoint.
-These two calls would be equivalent:
+The `/_aws/sqs/messages` endpoint is fully compatible with the `ReceiveMessage` operation from the SQS API. By default, it returns all messages in the queue along with their attributes and system attributes. The endpoint ignores any additional parameters from the `ReceiveMessage` operation, except for the `QueueUrl`.
 
-* `http://localhost:4566/_aws/sqs/messages?QueueUrl=http://queue.localhost.localstack.cloud:4566/000000000000/my-queue`
-* `http://localhost:4566/_aws/sqs/messages/us-east-1/000000000000/my-queue`
+You can call the `/_aws/sqs/messages` endpoint in two different ways:
+
+1.  Using the query argument `QueueUrl`, like this:
+    {{< command >}}
+    $ http://localhost:4566/_aws/sqs/messages?QueueUrl=http://queue.localhost.localstack.cloud:4566/000000000000/my-queue
+    {{< / command >}} 
+    
+2.  Utilizing the path-based endpoint, as shown in this example:
+    {{< command >}}
+    $ http://localhost:4566/_aws/sqs/messages/us-east-1/000000000000/my-queue
+    {{< / command >}}
 
 #### XML response
-You can call the endpoint directly to return the raw AWS XML response.
+
+You can directly call the endpoint to obtain the raw AWS XML response.
 
 {{< tabpane >}}
 {{< tab header="cURL" lang="bash" >}}
@@ -142,7 +222,8 @@ print(response.text)  # outputs the response XML
 {{< /tab >}}
 {{< / tabpane >}}
 
-Example output:
+An example response is shown below:
+
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
 <ReceiveMessageResponse xmlns="http://queue.amazonaws.com/doc/2012-11-05/">
@@ -200,7 +281,8 @@ Example output:
 
 #### JSON response
 
-If you prefer a JSON response, you can add the `Accept: application/json` header.
+You can include the `Accept: application/json` header in your request if you prefer a JSON response.
+
 {{< tabpane >}}
 {{< tab header="cURL" lang="bash" >}}
 curl -H "Accept: application/json" \
@@ -217,7 +299,7 @@ print(response.text)  # outputs the response XML
 {{< /tab >}}
 {{< / tabpane >}}
 
-The output JSON will look something like this:
+An example response is shown below:
 
 ```json
 {
@@ -281,9 +363,9 @@ The output JSON will look something like this:
 }
 ```
 
-#### Using an AWS client
+#### AWS Client
 
-Since the endpoint is compatible with the SQS `ReceiveMessage` operation, you can use the endpoint as endpoint URL parameter in your AWS client call.
+Since the `/_aws/sqs/messages` endpoint is compatible with the SQS `ReceiveMessage` operation, you can use the endpoint as the endpoint URL parameter in your AWS client call.
 
 {{< tabpane >}}
 {{< tab header="aws-cli" lang="bash" >}}
@@ -298,7 +380,8 @@ print(response)
 {{< /tab >}}
 {{< / tabpane >}}
 
-Example output:
+An example response is shown below:
+
 ```json
 {
     "Messages": [
@@ -330,6 +413,28 @@ Example output:
 }
 ```
 
-## Known limitations and differences to AWS
+## Resource Browser
 
-* The `ApproximateReceiveCount` attribute of a message will be reset to 0 when the message moves to a DLQ.
+The LocalStack Web Application provides a Resource Browser for managing SQS queues. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **SQS** under the **App Integration** section.
+
+<img src="sqs-resource-browser.png" alt="SQS Resource Browser" title="SQS Resource Browser" width="900" />
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Queue**: Create a new SQS queue by specifying a queue name, optional attributes, and tags.
+- **Send Message**: Send a message to an SQS queue by specifying the queue name, message body, delay seconds, optional message attributes, and more.
+- **View Details and Messages**: View details and messages of an SQS queue by selecting the queue name and navigating to the **Details** and **Messages** tabs.
+- **Delete Queue**: Delete an SQS queue by selecting the queue name and clicking the **Action** button, followed by **Remove Selected**.
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use SQS in LocalStack for various use cases:
+
+- [Serverless microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda](https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample)
+- [Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS](https://github.com/localstack/loan-broker-stepfunctions-lambda-app)
+- [Messaging Processing application with SQS, DynamoDB, and Fargate](https://github.com/localstack/sqs-fargate-ddb-cdk-go)
+- [Serverless Transcription application using Transcribe, S3, Lambda, SQS, and SES](https://github.com/localstack/sample-transcribe-app)
+
+## Limitations
+
+A message's `ApproximateReceiveCount` attribute will be reset to 0 when the message moves to a DLQ.
