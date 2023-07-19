@@ -449,21 +449,22 @@ $ awslocal opensearch describe-domain --domain-name my-domain
 {{< command >}}
 $ curl my-domain.us-east-1.opensearch.localhost.localstack.cloud:4566/_cluster/health | jq
 {
-  "name": "host-pc",
   "cluster_name": "opensearch",
-  "cluster_uuid": "DMN-2TlwRkuhMH4aRRqrkA",
-  "version": {
-    "distribution": "opensearch",
-    "number": "1.1.0",
-    "build_type": "tar",
-    "build_hash": "15e9f137622d878b79103df8f82d78d782b686a1",
-    "build_date": "2021-10-04T21:29:03.079792Z",
-    "build_snapshot": false,
-    "lucene_version": "8.9.0",
-    "minimum_wire_compatibility_version": "6.8.0",
-    "minimum_index_compatibility_version": "6.0.0-beta1"
-  },
-  "tagline": "The OpenSearch Project: https://opensearch.org/"
+  "status": "green",
+  "timed_out": false,
+  "number_of_nodes": 1,
+  "number_of_data_nodes": 1,
+  "discovered_master": true,
+  "active_primary_shards": 0,
+  "active_shards": 0,
+  "relocating_shards": 0,
+  "initializing_shards": 0,
+  "unassigned_shards": 0,
+  "delayed_unassigned_shards": 0,
+  "number_of_pending_tasks": 0,
+  "number_of_in_flight_fetch": 0,
+  "task_max_waiting_in_queue_millis": 0,
+  "active_shards_percent_as_number": 100
 }
 {{< /command >}}
 
