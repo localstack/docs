@@ -1,20 +1,21 @@
 ---
 title: "Timestream"
 linkTitle: "Timestream"
-categories: ["LocalStack Pro"]
 description: >
   Get started with Amazon Timestream on LocalStack
-aliases:
-  - /aws/timestream/
 ---
 
-LocalStack Pro contains basic support for Timestream time series databases, including these operations:
+## Introduction
+
+LocalStack contains basic support for Timestream time series databases, including these operations:
 * Creating databases
 * Creating tables
 * Writing records to tables
 * Querying timeseries data from tables
 
-## Simple Usage Example
+LocalStack supports Timestream via the Pro/Team offering, allowing you to use the Timestream APIs in your local environment. The supported APIs are available on our API Coverage Page ([Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/)/[Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/)), which provides information on the extent of Timestream integration with LocalStack.
+
+## Getting Started
 
 The following example illustrates the basic operations, using the [`awslocal`](https://github.com/localstack/awscli-local) command line.
 
@@ -48,14 +49,8 @@ $ awslocal timestream-query query --query-string "SELECT CREATE_TIME_SERIES(time
 ...
 {{</ command >}}
 
-## Date / Time Functions
+## Limitations
 
-LocalStack supports the following functions for querying Timestream data:
+LocalStack's Timestream implementation is under active development and only supports a limited set of operations, please refer to the API Coverage pages for an up-to-date list of implemented and tested functions within [Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/) and [Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/).
 
-| Function | Description                                                         | Data type |
-|----------|---------------------------------------------------------------------|-----------|
-| ago (interval)      | Returns the value corresponding to current_timestamp `interval`.    | timestamp |
-| bin (timestamp, interval)     | Returns a rounded value down to a multiple of given bin `interval`. | timestamp |
-| parse_duration (string) | Returns an `interval` equivalent parsed out of the input string. | interval |
-| from_iso8601_date (string) | Parses the ISO 8601 date string into internal Timestamp format for UTC 00:00:00 of the specified date. | timestamp |
-| from_iso8601_timestamp (string) | Parses the ISO 8601 timestamp into internal timestamp format. | timestamp |
+If you have a usecase that uses Timestream but doesn't work with our implementation yet, we encourage you to [get in touch](https://localstack.cloud/contact/), so we can streamline any operations you rely on.
