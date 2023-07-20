@@ -7,16 +7,13 @@ description: >
 
 ## Introduction
 
-LocalStack Pro contains basic support for Timestream time series databases, including these operations:
+LocalStack contains basic support for Timestream time series databases, including these operations:
 * Creating databases
 * Creating tables
 * Writing records to tables
 * Querying timeseries data from tables
 
-LocalStack supports Timestream via the Pro/Team offering, allowing 
-you to use the Timestream APIs in your local environment. The supported APIs 
-are available on our API Coverage Page ([Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/)/[Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/)), which provides information on the extent 
-of Timestream integration with LocalStack.
+LocalStack supports Timestream via the Pro/Team offering, allowing you to use the Timestream APIs in your local environment. The supported APIs are available on our API Coverage Page ([Timestream-Query](https://docs.localstack.cloud/references/coverage/coverage_timestream-query/)/[Timestream-Write](https://docs.localstack.cloud/references/coverage/coverage_timestream-write/)), which provides information on the extent of Timestream integration with LocalStack.
 
 ## Getting Started
 
