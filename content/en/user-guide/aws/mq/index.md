@@ -1,17 +1,18 @@
 ---
 title: "Amazon MQ"
-categories: ["LocalStack Pro"]
+linkTitle: "Amazon MQ"
 description: >
   Get started with Amazon MQ on LocalStack
-aliases:
-  - /aws/mq/
 ---
 
+## Introduction
 Amazon MQ is a fully managed service for open-source message brokers.
-Basic support is included in LocalStack Pro, please refer to the [feature-coverage]({{< ref "feature-coverage" >}}) for more information.
+Basic support is included in LocalStack, please refer to the [feature-coverage]({{< ref "feature-coverage" >}}) for more information.
+
+LocalStack supports MQ via the Pro/Team offering, allowing you to use the MQ APIs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_mq/), which provides information on the extent of MQ integration with LocalStack.
 
 ## Getting started
-In the following, we outline basic MQ usage. Please also refer to the sample here: [Localstack Pro Samples](https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker).
+In the following, we outline basic MQ usage.
 Assuming you have [`awslocal`]({{< ref "aws-cli" >}}) installed, you can try the following commands:
 
 {{< command >}}
@@ -52,8 +53,10 @@ Since the broker is now actively listening, we can send a message to a sample qu
 $ curl -XPOST -d "body=message" http://admin:admin@localhost:4513/api/message\?destination\=queue://orders.input
 {{< / command >}}
 
+## Examples
+Simple demo application illustrating the use of MQ using LocalStack: [Demo](https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker).
 
-## Localstack limitations and differences to AWS
+## Limitations
 Only basic functionality is supported right now, main limitations are the following:
 * Only ActiveMQ (version 5.16.6) is supported
 * Users are not actively enforced (but needed to make proper calls)
