@@ -71,7 +71,7 @@ $ awslocal lambda add-permission \
 
 ### Add the Lambda Function as a Target
 
-Create a file names `target.json` with the following content:
+Create a file named `targets.json` with the following content:
 
 ```json
 [
