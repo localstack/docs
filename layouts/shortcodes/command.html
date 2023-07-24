@@ -10,4 +10,4 @@
 {{ end }}
 {{ $highlighted := highlight $inner "text" $options }}
 {{/* Now we replace the custom prefixes with a span that contains the prefix, which is not selectable by users */}}
-{{- replaceRE `###CUSTOM_PREFIX###((?:\$|#)\s)###CUSTOM_PREFIX_END###` "<span class=\"command-prefix\">$1aaa</span>" $highlighted | safeHTML -}}
+{{- replaceRE `###CUSTOM_PREFIX###((?:\$|#)\s)###CUSTOM_PREFIX_END###` "<span class=\"command-prefix\">$1</span>" $highlighted | safeHTML -}}
