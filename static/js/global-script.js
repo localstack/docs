@@ -1,4 +1,9 @@
-function codeCopyBtnClickHandler(){
+function setupCodeBlockCopyButton(){
+  $('.highlight pre').each(function(_i,item){
+    $(item).addClass('code-container');
+    $(item).append('<button class="code-copy-button"><i class="fa fa-copy"></i><span>Copy</span></button>')
+  })
+
   $('.code-copy-button').on('click',function(e){
     e.preventDefault();
     const elem = $(this).closest('.code-container').find('code').clone();
@@ -11,8 +16,4 @@ function codeCopyBtnClickHandler(){
   })
 }
 
-$('.highlight pre').each(function(_i,item){
-  $(item).addClass('code-container');
-  $(item).append('<button class="code-copy-button"><i class="fa fa-copy"></i><span>Copy</span></button>')
-})
-codeCopyBtnClickHandler();
+setupCodeBlockCopyButton();
