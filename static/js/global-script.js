@@ -11,5 +11,8 @@ function codeCopyBtnClickHandler(){
   })
 }
 
-
+$('.highlight pre').each(function(_i,item){
+  $(item).addClass('code-container');
+  $(item).append('<button class="code-copy-button"><i class="fa fa-copy"></i><span>Copy</span></button>')
+})
 codeCopyBtnClickHandler();

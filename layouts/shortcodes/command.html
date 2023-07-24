@@ -10,7 +10,4 @@
 {{ end }}
 {{ $highlighted := highlight $inner "text" $options }}
 {{/* Now we replace the custom prefixes with a span that contains the prefix, which is not selectable by users */}}
-<div class="code-container">
-  {{- replaceRE `###CUSTOM_PREFIX###((?:\$|#)\s)###CUSTOM_PREFIX_END###` "<span class=\"command-prefix\">$1</span>" $highlighted | safeHTML -}}
-  <button class="code-copy-button"><i class="fa fa-copy"></i><span>Copy</span></button>
-</div>
+{{- replaceRE `###CUSTOM_PREFIX###((?:\$|#)\s)###CUSTOM_PREFIX_END###` "<span class=\"command-prefix\">$1aaa</span>" $highlighted | safeHTML -}}
