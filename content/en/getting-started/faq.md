@@ -135,6 +135,50 @@ You can add in the volume `~/.docker/config.json:/config.json` where the `con
 ...
 ```
 
+### How to increase IO performance for LocalStack's Docker image under Windows?
+
+{{< alert title="Note">}}
+Some options that are not part of the standard configuration may have unintended consequences for AWS services that operate within LocalStack.
+For example, these options may interfere with the functionality of AppSync function executor, RDS MySQL persistence and SageMaker.
+We advise you to exercise caution.
+{{< /alert >}}
+
+You can change the LocalStack `volume` folder to use the WSL Linux file system instead of the Windows host folder.  
+To do so, you need to change the [`docker-compose.yml`](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml) file and add the following lines:
+
+{{< tabpane text=true >}}
+{{< tab header="WSL Linux File System" >}}
+{{% markdown %}}
+
+```yaml
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+       - "\\\\wsl$\\<Ubuntu>\\home\\<USERNAME>\\volume:/var/lib/localstack" # mount volume in WSL2 Linux file system
+```
+
+---
+
+As an alternative, you can set the volume as `- "~/volume:/var/lib/localstack"` then start Docker using command `wsl docker compose -f docker-compose.yml up`.
+
+{{% /markdown %}}
+{{< /tab >}}
+{{< tab header="Docker Volumes" >}}
+{{% markdown %}}
+
+```yaml
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+       - "localstack_data:/var/lib/localstack" # mount Docker volume
+volumes:
+  localstack_data:
+```
+
+{{% /markdown %}}
+{{< /tab >}}
+{{< /tabpane >}}
+
+For more details visit [Docker WSL documentation](https://docs.docker.com/desktop/wsl), [Docker WSL best practices](https://docs.docker.com/desktop/wsl/best-practices) and [Docker Volumes documentation](https://docs.docker.com/storage/volumes/).
+
 ## LocalStack Platform FAQs
 
 ### How do I check if my API key is valid and activated?
