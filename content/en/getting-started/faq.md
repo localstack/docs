@@ -177,7 +177,7 @@ volumes:
 {{< /tab >}}
 {{< /tabpane >}}
 
-For more details visit [Docker WSL documentation](https://docs.docker.com/desktop/wsl), [Best practices](https://docs.docker.com/desktop/wsl/best-practices) and [Docker Volumes documentation](https://docs.docker.com/storage/volumes/).
+For more details visit [Docker WSL documentation](https://docs.docker.com/desktop/wsl), [Docker WSL best practices](https://docs.docker.com/desktop/wsl/best-practices) and [Docker Volumes documentation](https://docs.docker.com/storage/volumes/).
 
 ## LocalStack Platform FAQs
 
