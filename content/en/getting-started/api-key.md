@@ -33,7 +33,7 @@ export LOCALSTACK_API_KEY=<YOUR_API_KEY>
 localstack start -d
 {{< /tab >}}
 {{< tab header="Windows" lang="shell" >}}
-$env:LOCALSTACK_API_KEY=<YOUR_API_KEY> localstack start -d
+$env:LOCALSTACK_API_KEY="<YOUR_API_KEY>"; localstack start -d
 {{< /tab >}}
 {{< /tabpane >}}
 
