@@ -32,7 +32,7 @@ LocalStack expects your API key to be present in the environment variable `LOCAL
 export LOCALSTACK_API_KEY=<YOUR_API_KEY>
 localstack start -d
 {{< /tab >}}
-{{< tab header="Windows" lang="shell" >}}
+{{< tab header="Windows" lang="powershell" >}}
 $env:LOCALSTACK_API_KEY="<YOUR_API_KEY>"; localstack start -d
 {{< /tab >}}
 {{< /tabpane >}}
