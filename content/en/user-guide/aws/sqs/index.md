@@ -105,7 +105,7 @@ Additionally, metrics about `Approximate*` messages are send to CloudWatch by de
 
 ## Accessing queues from Lambdas or other containers
 
-When using the SQS Query API from Lambdas or other containers, we recommend setting `SQS_ENDPOINT_STRATEGY=domain`.
+When using the SQS Query API from Lambdas, we recommend setting `SQS_ENDPOINT_STRATEGY=domain`.
 By default, Queue URLs point to `http://localhost:4566`, which can lead to issues when Lambdas or other containers attempt to call these queue URLs directly.
 
 For example, users of the Java SDK often experience the following error when accessing an SQS queue from their Lambda:
@@ -115,9 +115,11 @@ For example, users of the Java SDK often experience the following error when acc
 ...
 ```
 To resolve this issue, set the environment variable `SQS_ENDPOINT_STRATEGY=domain` when starting LocalStack.
-This ensures that the endpoint resolution works correctly, allowing Lambdas and other containers to interact with the SQS service seamlessly.
+This ensures that the endpoint resolution works correctly, allowing Lambdas to interact with the SQS service seamlessly.
 
 Alternatively you can also set up your own Docker network and overwrite the `LOCALSTACK_HOST` variable as described in our [network troubleshooting guide]({{< ref "endpoint-url" >}}).
+This is relevant for users that want to access SQS from other containers, and cannot configure their container to resolve `*.queue.localhost.localstack.cloud` to the LocalStack container.
+
 
 ## Developer endpoints
 
