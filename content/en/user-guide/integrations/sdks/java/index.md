@@ -126,7 +126,8 @@ Pay particular attention to the handling of the data model in the v2 example. As
 boilerplate code can be abstracted with the help of specific annotations which help label the Java bean, the 
 partition key and even specify converters for certain data types. 
 Unfortunately the enhanced mapping in v2 does not support Date type, but a handwritten converter is enough to
-cater to the application's needs. The full list of supported converters can be found [here](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/internal/converter/attribute/package-summary.html).
+cater to the application's needs. The full list of supported converters can be found 
+[here](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/internal/converter/attribute/package-summary.html).
 
 {{<tabpane >}}
 {{<tab header="v1" lang="java">}}
