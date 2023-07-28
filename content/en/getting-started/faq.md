@@ -42,6 +42,21 @@ The diagnose endpoint is only available if you run LocalStack with `DEBUG=1`.
 
 You can access LocalStack from an alternative computer, by exposing port `4566` to the public network interface (`0.0.0.0` instead of `127.0.0.1`) in your `docker-compose.yml` configuration. However, we do not recommend using this setup - for security reasons, as it exposes your local computer to potential attacks from the outside world.
 
+### How to fix LocalStack CLI (Python) UTF-8 encoding issue under Windows?
+
+If you are using LocalStack CLI under Windows, you might run into encoding issues. To fix this, set the following environment variables:  
+Set the system locale (language for non-Unicode programs) to UTF-8 to avoid Unicode errors.
+
+Follow these steps:
+- Open the Control Panel.
+- Go to "Clock and Region" or "Region and Language."
+- Click on the "Administrative" tab.
+- Click on the "Change system locale" button.
+- Select "Beta: Use Unicode UTF-8 for worldwide language support" and click "OK."
+- Restart your computer to apply the changes.
+
+If you would like to keep the system locale as it is, you can mitigate the issue by using the command `localstack --no-banner`.
+
 ### How do I resolve connection issues with proxy blocking access to LocalStack's BigData image?
 
 A company proxy can lead to connection issues. To allow access to the `localstack/bigdata` image, use the following Docker configuration in your `docker-compose.yml` file:
