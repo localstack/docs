@@ -103,6 +103,21 @@ Additionally, metrics about `Approximate*` messages are send to CloudWatch by de
 
 `SQS_DISABLE_CLOUDWATCH_METRICS=1` will disable all CloudWatch metrics for SQS (including `Approximate*` metrics).
 
+## Accessing queues from Lambdas or other containers
+
+When using the SQS Query API from Lambdas or other containers, we recommend setting `SQS_ENDPOINT_STRATEGY=domain`.
+By default, Queue URLs point to `http://localhost:4566`, which can lead to issues when Lambdas or other containers attempt to call these queue URLs directly.
+
+For example, users of the Java SDK often experience the following error when accessing an SQS queue from their Lambda:
+```
+2023-07-28 15:04:00 Unable to execute HTTP request: Connect to localhost:4566 [localhost/127.0.0.1] failed: Connection refused (Connection refused): com.amazonaws.SdkClientException
+2023-07-28 15:04:00 com.amazonaws.SdkClientException: Unable to execute HTTP request: Connect to localhost:4566 [localhost/127.0.0.1] failed: Connection refused (Connection refused)
+...
+```
+To resolve this issue, set the environment variable `SQS_ENDPOINT_STRATEGY=domain` when starting LocalStack.
+This ensures that the endpoint resolution works correctly, allowing Lambdas and other containers to interact with the SQS service seamlessly.
+
+Alternatively you can also set up your own Docker network and overwrite the `LOCALSTACK_HOST` variable as described in our [network troubleshooting guide]({{< ref "endpoint-url" >}}).
 
 ## Developer endpoints
 
