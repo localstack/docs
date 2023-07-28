@@ -122,10 +122,11 @@ a DynamoDB client inserting an entity of type `Person` into a table with the sam
 the database, we would like to retrieve it as well.
 Just like the example before, the scripts to create the AWS services on LocalStack can be found under 
 the `src/main/resources` folder of each module in the repository.
+
 Pay particular attention to the handling of the data model in the v2 example. As part of improvements, some
-boilerplate code can be abstracted with the help of specific annotations which help label the Java bean, the 
+boilerplate code can be abstracted with the help of specific annotations, which help label the Java bean, the 
 partition key and even specify converters for certain data types. 
-Unfortunately the enhanced mapping in v2 does not support Date type, but a handwritten converter is enough to
+Unfortunately, the enhanced mapping in v2 does not support Date type, but a handwritten converter is enough to
 cater to the application's needs. The full list of supported converters can be found 
 [here](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/internal/converter/attribute/package-summary.html).
 
