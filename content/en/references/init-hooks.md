@@ -24,7 +24,7 @@ You can mount individual files, stage directories, or the entire init directory 
 └── localstack
     └── init
         ├── boot.d           <-- executed in the container before localstack starts
-        ├── ready.d          <-- executed when localstack becomes ready (currently equivalent to `/docker-entrypoint-initaws.d`)
+        ├── ready.d          <-- executed when localstack becomes ready
         ├── shutdown.d       <-- executed when localstack shuts down
         └── start.d          <-- executed when localstack starts up
 ```
