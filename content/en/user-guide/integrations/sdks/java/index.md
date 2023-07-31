@@ -29,28 +29,63 @@ exception handling and all the necessary Maven dependencies.
 The scripts to create the AWS services on LocalStack can be found under the `src/main/resources` folder
 of each module in the repository. 
 
+### S3 Service
+
 Below you'll find an example of how to create an S3 client with the endpoint configured for LocalStack.
-The client can be used to upload a file to an existing bucket and then retrieve it.
+The client can be used to upload a file to an existing bucket and then retrieve it. 
+
+
+#### Configuring the S3 Client
 
 {{< tabpane >}}
 {{< tab header="v1" lang="java" >}}
 
     // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
+    // These can be skipped altogether for LocalStack, but we generally want to avoid discrepancies with production code.
 final String ACCESS_KEY = "test";
 final String SECRET_KEY = "test";
+
+
+    // S3 Client with configured credentials, endpoint directing to LocalStack and desired region.
+AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+    .withCredentials(new AWSStaticCredentialsProvider(credentials))
+    .withEndpointConfiguration(new EndpointConfiguration("s3.localhost.localstack.cloud:4566",
+    Regions.US_EAST_1.getName()))
+    .build();
+
+{{< /tab >}}
+
+{{< tab header="v2" lang="java" >}}
+
+    // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
+    // These can be skipped altogether for LocalStack, but we generally want to avoid discrepancies with production code.
+final String ACCESS_KEY = "test";
+final String SECRET_KEY = "test";
+
+    // Desired region.
+Region region = Region.US_EAST_1;
+
+    // S3 Client with configured credentials, endpoint directing to LocalStack and desired region.
+S3Client s3Client = S3Client.builder()
+    .endpointOverride(URI.create("https://s3.localhost.localstack.cloud:4566"))
+    .credentialsProvider(StaticCredentialsProvider.create(
+    AwsBasicCredentials.create(ACCESS_KEY, SECRET_KEY)))
+    .region(region)
+    .build();
+
+{{< /tab >}}
+{{< /tabpane >}}
+
+#### Interacting with S3
+
+{{< tabpane >}}
+{{< tab header="v1" lang="java" >}}
 
     // Existing bucket name.
 final String BUCKET_NAME = "records";
 
     // The key of the object in the bucket, usually the name of the file.
 final String key = "hello-v1.txt";
-
-    // S3 Client with configured credentials, endpoint directing to LocalStack and desired region.
-AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-.withCredentials(new AWSStaticCredentialsProvider(credentials))
-.withEndpointConfiguration(new EndpointConfiguration("s3.localhost.localstack.cloud:4566",
-Regions.US_EAST_1.getName()))
-.build();
 
     // Creating a File object and FileInputStream.
 File file = new File(filePathOnDisk);
@@ -75,47 +110,34 @@ BufferedReader reader = new BufferedReader(new InputStreamReader(objectInputStre
 
 {{< tab header="v2" lang="java" >}}
 
-    // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
-final String ACCESS_KEY = "test";
-final String SECRET_KEY = "test";
-
-    // Desired region.
-Region region = Region.US_EAST_1; 
-
     // Existing bucket name.
 final String BUCKET_NAME = "records";
 
     // The key of the object in the bucket, usually the name of the file.
-final String objectKey = "hello-v1.txt";
-
-    // S3 Client with configured credentials, endpoint directing to LocalStack and desired region.
-S3Client s3Client = S3Client.builder()
-.endpointOverride(URI.create("https://s3.localhost.localstack.cloud:4566"))
-.credentialsProvider(StaticCredentialsProvider.create(
-AwsBasicCredentials.create(ACCESS_KEY, SECRET_KEY)))
-.region(region)
-.build();
+final String objectKey = "hello-v2x.txt";
 
     // Creating the PUT request with all the relevant information.
 PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-.bucket(BUCKET_NAME)
-.key(objectKey)
-.build();
+    .bucket(BUCKET_NAME)
+    .key(objectKey)
+    .build();
 
     // Put the file into the S3 bucket
 PutObjectResponse response = s3Client.putObject(putObjectRequest, Paths.get(filePath));
 
     // Creating the GET request with all the relevant information.
 GetObjectRequest getObjectRequest = GetObjectRequest.builder()
-.bucket(BUCKET_NAME)
-.key(objectKey)
-.build();
+    .bucket(BUCKET_NAME)
+    .key(objectKey)
+    .build();
 
     // Retrieving the object from the bucket.
 ResponseInputStream<GetObjectResponse> response = s3Client.getObject(getObjectRequest);
 
 {{< /tab >}}
 {{< /tabpane >}}
+
+### DynamoDB Service
 
 Another interesting case is interacting with the DynamoDB service. Here we can see code snippets of
 a DynamoDB client inserting an entity of type `Person` into a table with the same name. Once the object is in
@@ -130,25 +152,68 @@ Unfortunately, the enhanced mapping in v2 does not support Date type, but a hand
 cater to the application's needs. The full list of supported converters can be found 
 [here](https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/enhanced/dynamodb/internal/converter/attribute/package-summary.html).
 
-{{<tabpane >}}
-{{<tab header="v1" lang="java">}}
+#### Configuring the DynamoDB Client
+
+{{< tabpane >}}
+{{< tab header="v1" lang="java">}}
 
     // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
+    // These can be skipped altogether for LocalStack, but we generally want to avoid discrepancies with production code.
 final String ACCESS_KEY = "test";
 final String SECRET_KEY = "test";
-
-    // Existing table name
-String TABLE_NAME = "person";
 
     // Building a basic credentials object.
 BasicAWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
 
     // Creating the DynamoDB client using the credentials, specific region and an enpoint configured for LocalStack.
 private static AmazonDynamoDB dynamoDBClient = AmazonDynamoDBClientBuilder.standard()
-.withCredentials(new AWSStaticCredentialsProvider(credentials))
-.withEndpointConfiguration(
-new EndpointConfiguration("localhost.localstack.cloud:4566", Regions.US_EAST_1.getName()))
-.build();
+    .withCredentials(new AWSStaticCredentialsProvider(credentials))
+    .withEndpointConfiguration(
+    new EndpointConfiguration("localhost.localstack.cloud:4566", Regions.US_EAST_1.getName()))
+    .build();
+
+{{< /tab >}}
+
+{{< tab header="v2" lang="java">}}
+
+    // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
+    // These can be skipped altogether for LocalStack, but we generally want to avoid discrepancies with production code.
+final String ACCESS_KEY = "test";
+final String SECRET_KEY = "test";
+
+
+    // Creating the AWS Credentials provider, using the above access and secret keys.
+AwsCredentialsProvider credentials = StaticCredentialsProvider.create(
+AwsBasicCredentials.create(ACCESS_KEY, SECRET_KEY));
+
+    // Selected region.
+Region region = Region.US_EAST_1;
+
+    // Creating the dynamoDB client using the credentials, the specific region and a LocalStack endpoint.
+DynamoDbClient dynamoDbClient = DynamoDbClient.builder()
+    .region(region)
+    .credentialsProvider(
+    credentials)
+    .endpointOverride(URI.create("https://localhost.localstack.cloud:4566"))
+    .build();
+
+    // Creating an enhanced client, which provides additional actions to the plain client.
+DynamoDbEnhancedClient enhancedClient = DynamoDbEnhancedClient.builder()
+    .dynamoDbClient(dynamoDbClient)
+    .build();
+
+{{< /tab >}}
+{{< /tabpane >}}
+
+
+#### Interacting with DynamoDB
+
+{{< tabpane >}}
+
+{{< tab header="v1" lang="java">}}
+
+    // Existing table name
+String TABLE_NAME = "person";
 
     // Creating a DynamoDB instance
 DynamoDB dynamoDB = new DynamoDB(dynamoDBClient);
@@ -185,34 +250,10 @@ person.setBirthdateFromString(item.getString("birthdate"));
 
 {{< /tab >}}
 
-{{<tab header="v2" lang="java">}}
-
-    // Credentials that can be replaced with real AWS values. (To be handled properly and not hardcoded.)
-final String ACCESS_KEY = "test";
-final String SECRET_KEY = "test";
+{{< tab header="v2" lang="java">}}
 
     // Existing table name.
 String TABLE_NAME = "person";
-
-    // Creating the AWS Credentials provider, using the above access and secret keys.
-AwsCredentialsProvider credentials = StaticCredentialsProvider.create(
-AwsBasicCredentials.create(ACCESS_KEY, SECRET_KEY));
-
-    // Selected region.
-Region region = Region.US_EAST_1;
-
-    // Creating the dynamoDB client using the credentials, the specific region and a LocalStack endpoint.
-DynamoDbClient dynamoDbClient = DynamoDbClient.builder()
-.region(region)
-.credentialsProvider(
-credentials)
-.endpointOverride(URI.create("https://localhost.localstack.cloud:4566"))
-.build();
-
-    // Creating an enhanced client, which provides additional actions.
-DynamoDbEnhancedClient enhancedClient = DynamoDbEnhancedClient.builder()
-.dynamoDbClient(dynamoDbClient)
-.build();
 
       // Creating the Person object.
 Person person = new Person();
