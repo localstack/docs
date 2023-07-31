@@ -153,11 +153,11 @@ If your Lambda function references a layer in real AWS, you can integrate it int
 To grant access to your layer, run the following command:
 
 {{< command >}}
-$ aws lambda add-layer-version-permission
-  --layer-name test-layer
-  --version-number 1
-  --statement-id layerAccessFromLocalStack
-  --principal 886468871268
+$ aws lambda add-layer-version-permission \
+  --layer-name test-layer \
+  --version-number 1 \
+  --statement-id layerAccessFromLocalStack \
+  --principal 886468871268 \
   --action lambda:GetLayerVersion
 {{< / command >}}
 
