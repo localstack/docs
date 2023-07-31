@@ -40,9 +40,7 @@ There, the necessary code fragments for enabling debugging are already present.
 First, make sure that LocalStack is started with the following configuration (see the [Configuration docs]({{< ref "configuration#lambda" >}}) for more information):
 
 {{< command >}}
-$ LAMBDA_REMOTE_DOCKER=0 \
-    LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
-    DEBUG=1 localstack start
+$ LAMBDA_DOCKER_FLAGS='-p 19891:19891' localstack start
 {{< /command >}}
 
 #### Preparing your code
@@ -136,7 +134,7 @@ You can [follow the steps in the offical docs](https://www.jetbrains.com/help/py
 
 #### Preparing your code
 
-PyCharm provides a its own debugging package, called `pydevd-pycharm`. Essentially, you will add the following code to your lambda:
+PyCharm provides its own debugging package, called `pydevd-pycharm`. Essentially, you will add the following code to your lambda:
 
 ```python
 import pydevd_pycharm
@@ -284,7 +282,7 @@ lambda function.
 
 ### Configure LocalStack for remote Node.js debugging
 
-`LAMBDA_REMOTE_DOCKER` has to be disabled, and `LAMBDA_DOCKER_FLAGS` needs to enable the debugger using `NODE_OPTIONS`:
+Set the `LAMBDA_DOCKER_FLAGS` to enable the debugger using `NODE_OPTIONS`:
 
 ```yaml
 #docker-compose.yml
@@ -294,7 +292,6 @@ services:
     ...
     environment:
       ...
-      - LAMBDA_REMOTE_DOCKER=0
       - LAMBDA_DOCKER_FLAGS=-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229
 ```
 
