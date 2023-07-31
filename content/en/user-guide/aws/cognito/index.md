@@ -1,35 +1,35 @@
 ---
 title: "Cognito"
 linkTitle: "Cognito"
-categories: ["LocalStack Pro"]
 description: >
-  Get started with AWS Cognito on LocalStack
-aliases:
-  - /aws/cognito/
+  Get started with Cognito on LocalStack
 ---
 
-The [AWS Cognito](https://aws.amazon.com/cognito/) service enables you to manage authentication and access control for AWS-backed apps and resources.
+## Introduction
 
-LocalStack Pro contains basic support for authentication via Cognito. You can create Cognito user pools, sign up and confirm users, set up Lambda triggers, and use the `COGNITO_USER_POOLS` authorizer integration with API Gateway.
+Cognito is managed identity service provided by AWS which is used for securing user authentication, authorization, and managing user identities in web and mobile applications. Cognito enables developers to add user sign-up, sign-in, and access control functionalities to their applications. Cognito supports various authentication methods, including social identity providers, SAML-based identity providers, and custom authentication flows.
+
+LocalStack supports Cognito via the Pro/Team offering, allowing you to use the Cognito APIs in your local environment to manage authentication and access control for your local application and resources. The supported APIs are available on our [Cognito Identity coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-identity/) and [Cognito User Pools coverage page](https://docs.localstack.cloud/references/coverage/coverage_cognito-idp/), which provides information on the extent of Cognito's integration with LocalStack.
 
 {{< alert title="Note">}}
-By default, local Cognito does not send actual email messages.
-To enable this feature, you will require an email address and the corresponding SMTP settings.
-Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server.
+By default, LocalStack's Cognito does not send actual email messages. However, if you wish to enable this feature, you will need to provide an email address and configure the corresponding SMTP settings. The instructions on configuring the connection parameters of your SMTP server can be found in the [Configuration]({{< ref "configuration#emails" >}}) guide to allow your local Cognito environment to send email notifications.
 {{< /alert >}}
 
-## User pools and basic authentication flows
+## Getting started
 
-The following subsections illustrate how you can create a user pool and client, and then sign up and authenticate a new user in the pool.
+This guide is designed for users new to Cognito and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+
+Start your LocalStack container using your preferred method. We will demonstrate how you can create a Cognito user pool and client, and then sign up and authenticate a new user in the pool.
 
 ### Creating a User Pool
 
-Just as with AWS, you can create a user pool in LocalStack with the following command:
+To create a user pool, you can use the [`CreateUserPool`](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPool.html) API call. The following command creates a user pool named `test`:
+
 {{< command >}}
 $ awslocal cognito-idp create-user-pool --pool-name test
 {{< /command >}}
 
-The response should look similar to this:
+You can see an output similar to the following:
 
 ```json
 "UserPool": {
@@ -61,12 +61,13 @@ The response should look similar to this:
 }
 ```
 
-We will need the user pool's `id` for further operations, so save it in a `pool_id` variable:
+You will need the user pool's `id` for further operations. Save it in a `pool_id` variable:
+
 {{< command >}}
 $ pool_id=<your-pool-id>
 {{< /command >}}
 
-Alternatively, you can also use a JSON processor like [`jq`](https://stedolan.github.io/jq/) to directly extract the necessary information when creating a pool in the first place:
+Alternatively, you can use JSON processor like [`jq`](https://stedolan.github.io/jq/) to extract the essential information right from the outset when creating a pool.
 
 {{< command >}}
 $ pool_id=$(awslocal cognito-idp create-user-pool --pool-name test | jq -rc ".UserPool.Id")
@@ -74,17 +75,17 @@ $ pool_id=$(awslocal cognito-idp create-user-pool --pool-name test | jq -rc ".Us
 
 ### Adding a Client
 
-Now we add a client to our newly created pool. Again, we will also need the ID of the created client for the next step. The complete command for client creation with subsequent ID extraction is therefore:
+You can proceed with adding a client to the pool we just created. You will require the ID of the newly created client for the subsequent steps. You can use the [`CreateUserPoolClient`](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPoolClient.html) for both client creation and extraction of the corresponding ID. Run the following command:
 
 {{< command >}}
 $ client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client | jq -rc ".UserPoolClient.ClientId")
 {{< /command >}}
 
-### Using predefined IDs on pool creation
+### Using Predefined IDs for Pool Creation
 
-It is possible to use a predefined ID when creating Cognito user or identity pools, by setting the tag `_custom_id_`. This can
-be helpful when testing auth flows with LocalStack frequently being restarted and resourced re-created.
-For example:
+When creating Cognito user or identity pools, you have the flexibility to utilize a predefined ID by setting the tag `_custom_id_`. This feature proves particularly useful during the testing of authentication flows, especially when dealing with scenarios involving frequent restarts of LocalStack and the recreation of resources.
+
+Run the following command to create a user pool with a predefined ID:
 
 {{< command >}}
 $ awslocal cognito-idp create-user-pool --pool-name p1 --user-pool-tags "_custom_id_=myid123"
@@ -95,15 +96,20 @@ $ awslocal cognito-idp create-user-pool --pool-name p1 --user-pool-tags "_custom
     ...
 {{< /command >}}
 
-
 ### Signing up and confirming a user
 
-With these steps already taken, we can now sign up a user:
+You can now use the [`SignUp`](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html) API to sign up a user. Run the following command:
+
 {{< command >}}
-$ awslocal cognito-idp sign-up --client-id $client_id --username example_user --password 12345678Aa! --user-attributes Name=email,Value=<your.email@address.com>
+$ awslocal cognito-idp sign-up \
+  --client-id $client_id \
+  --username example_user \
+  --password 12345678Aa! \
+  --user-attributes Name=email,Value=<your.email@address.com>
 {{< /command >}}
 
-The response should look similar to this:
+You can see an output similar to the following:
+
 ```json
 {
     "UserConfirmed": false,
@@ -111,19 +117,24 @@ The response should look similar to this:
 }
 ```
 
-After the user is created, a confirmation code is generated. The code is printed in the LocalStack container logs (see below), and can optionally also be sent via email if you have [SMTP configured](#smtp-integration).
+Once the user is successfully created, a confirmation code will be generated. This code can be found in the LocalStack container logs (as shown below). Additionally, if you have [SMTP configured](#smtp-integration), the confirmation code can be optionally sent via email for enhanced convenience and user experience.
 
-```plaintext
+```bash
 INFO:localstack_ext.services.cognito.cognito_idp_api: Confirmation code for Cognito user example_user: 125796
 DEBUG:localstack_ext.bootstrap.email_utils: Sending confirmation code via email to "your.email@address.com"
 ```
 
-We can confirm the user with the activation code, using the following command:
+You can confirm the user with the activation code, using the [`ConfirmSignUp`](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmSignUp.html) API. Execute the following command:
+
 {{< command >}}
-$ awslocal cognito-idp confirm-sign-up --client-id $client_id --username example_user --confirmation-code <received-confirmation-code>
+$ awslocal cognito-idp confirm-sign-up \
+  --client-id $client_id \
+  --username example_user \
+  --confirmation-code <received-confirmation-code>
 {{< /command >}}
 
-As the above command doesn't return an answer, we check the pool to see that the request was successful:
+Since the above command does not provide a direct response, we need to verify the success of the request by checking the pool. Run the following command to use the [`ListUsers`](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUsers.html) API to list the users in the pool:
+
 {{< command "hl_lines=21" >}}
 $ awslocal cognito-idp list-users --user-pool-id $pool_id
 {
@@ -151,26 +162,29 @@ $ awslocal cognito-idp list-users --user-pool-id $pool_id
 }
 {{< /command >}}
 
-### JWT token issuer and JSON Web Key Sets (JWKS) endpoints
+## JWT Token Issuer and JSON Web Key Sets (JWKS) endpoints
 
-The JWT tokens created by Cognito contain an issuer (`iss`) attribute that represents the endpoint of the corresponding user pool.
-The issuer endpoint generally follows this pattern, where `<pool_id>` is the ID of the Cognito user pool:
-```plaintext
+When Cognito creates JWT tokens, they include an issuer (`iss`) attribute that specifies the endpoint of the corresponding user pool. Generally, the issuer endpoint follows this format, with `<pool_id>` being the ID of the Cognito user pool:
+
+```bash
 http://localhost:4566/<pool_id>
 ```
 
-Under certain circumstances (depending on your configurations), there may be slight nuances of the issuer URL, like:
-```plaintext
+However, depending on your specific configurations, there might be slight variations in the issuer URL, such as:
+
+```bash
 https://cognito-idp.localhost.localstack.cloud/<pool_id>
 ```
 
-You can access the JSON Web Key Sets (JWKS) configuration under the following standardized well-known URL for each user pool:
+To access the JSON Web Key Sets (JWKS) configuration for each user pool, you can use the standardized well-known URL below:
+
 {{< command >}}
 $ curl 'http://localhost:4566/<pool_id>/.well-known/jwks.json'
 {"keys": [{"kty": "RSA", "alg": "RS256", "use": "sig", "kid": "test-key", "n": "k6lrbEH..."]}
 {{</ command >}}
 
-Additionally, the global region-specific public keys for Cognito Identity Pools can be retrieved under this endpoint:
+Moreover, you can retrieve the global region-specific public keys for Cognito Identity Pools using the following endpoint:
+
 {{< command >}}
 $ curl http://localhost:4566/.well-known/jwks_uri
 {"keys": [{"kty": "RSA", "alg": "RS512", "use": "sig", "kid": "ap-northeast-11", "n": "AI7mc1assO5..."]}
@@ -178,32 +192,36 @@ $ curl http://localhost:4566/.well-known/jwks_uri
 
 ## Cognito Lambda Triggers
 
-Cognito provides a number of lifecycle hooks in the form of Cognito Lambda triggers. These triggers can be used to react to various lifecycle events and customize the behavior of user signup, confirmation, migration, etc.
+Cognito offers a variety of lifecycle hooks called Cognito Lambda triggers, which allow you to react to different lifecycle events and customize the behavior of user signup, confirmation, migration, and more.
 
-For example, to define a _user migration_ Lambda trigger, we can first create a Lambda function (say, named `"f1"`) capable of performing the migration, and then define the corresponding `--lambda-config` on the user pool creation:
+To illustrate, suppose you wish to define a _user migration_ Lambda trigger. In this case, you can start by creating a Lambda function, let's say named `"f1"`, responsible for performing the migration. Subsequently, you can define the corresponding `--lambda-config` when creating the user pool to link it with the Lambda function:
 
-{{<command >}}
-$ awslocal cognito-idp create-user-pool --pool-name test2 --lambda-config '{"UserMigration":"arn:aws:lambda:us-east-1:000000000000:function:f1"}'
+{{< command >}}
+$ awslocal cognito-idp create-user-pool \
+  --pool-name test2 \
+  --lambda-config '{"UserMigration":"arn:aws:lambda:us-east-1:000000000000:function:f1"}'
 {{< /command >}}
 
-Upon authentication of a non-registered user, Cognito will then automatically call the migration Lambda function and finally add the migrated user to the pool.
-
-More details on Cognito Lambda triggers can be found in the [AWS documentation](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html).
+Upon successful authentication of a non-registered user, Cognito will automatically trigger the migration Lambda function, allowing the user to be added to the pool after migration.
 
 ## OAuth Flows via Cognito Login Form
 
-You can also access the local [Cognito login form](https://docs.aws.amazon.com/cognito/latest/developerguide/login-endpoint.html) by entering the following URL in your browser:
-```plaintext
+You can access the local [Cognito login form](https://docs.aws.amazon.com/cognito/latest/developerguide/login-endpoint.html) by entering the following URL in your web browser:
+
+```bash
 https://localhost.localstack.cloud/_aws/cognito-idp/login?response_type=code&client_id=<client_id>&redirect_uri=<redirect_uri>
 ```
-Please replace `<client_id>` with the ID of an existing user pool client ID (in this case, `example_user`), and `<redirect_uri>` with the redirect URI of your application (e.g., `http://example.com`).
+Replace `<client_id>` with the ID of your existing user pool client (for example, `example_user`), and `<redirect_uri>` with the redirect URI specific to your application (e.g., `http://example.com`).
 
 The login form should look similar to the screenshot below:
+
 {{< figure src="cognitoLogin.png" width="320" >}}
 
-After successful login, the page will redirect to the specified `<redirect_uri>`, with a path parameter `?code=<code>` appended, e.g., `http://example.com?code=test123`.
-Obtain a token by submitting that code with `grant_type=authorization_code` the LocalStack's implementation of the Cognito OAuth2 TOKEN Endpoint documented [here](https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html).
-Note that the value of the `redirect_uri` parameter must match the value provided during login.
+Upon successful login, the page will automatically redirect to the designated `<redirect_uri>`, with an appended path parameter `?code=<code>`. For instance, the redirect URL might look like `http://example.com?code=test123`.
+
+To obtain a token, you need to submit the received code using `grant_type=authorization_code` to LocalStack's implementation of the Cognito OAuth2 TOKEN Endpoint, which is documented [on the AWS Cognito Token endpoint page](https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html).
+
+Note that the value of the `redirect_uri` parameter in your token request must match the value provided during the login process. Ensuring this match is crucial for the proper functioning of the authentication flow.
 
 ```sh
 % curl \
@@ -217,9 +235,10 @@ Note that the value of the `redirect_uri` parameter must match the value provide
 
 ## Serverless and Cognito
 
-You can also use Cognito and LocalStack in conjunction with the [Serverless framework](https://www.serverless.com/).
+Furthermore, you have the option to combine Cognito and LocalStack seamlessly with the [Serverless framework](https://www.serverless.com/).
 
-For example, take this snippet of a `serverless.yml` configuration:
+For instance, consider this snippet from a `serverless.yml` configuration:
+
 ```yaml
 service: test
 
@@ -249,17 +268,35 @@ resources:
         ...
 ```
 
-The serverless configuration can then be deployed using `serverless deploy --stage local`.
-The example contains a Lambda function `http_request` which is connected to an API Gateway endpoint.
-Once deployed, the `v1/request` API Gateway endpoint will be secured against the Cognito user pool "`ExampleUserPool`".
-You can then register users against that local pool, using the same API calls as for AWS.
+After configuring the Serverless setup, you can deploy it using `serverless deploy --stage local`. The provided example includes a Lambda function called `http_request` that's linked to an API Gateway endpoint.
 
-In order to make requests against the secured API Gateway endpoint, use the local Cognito API to retrieve identity credentials which can be sent along as `Authentication` HTTP headers (where `test-1234567` is the name of the access key ID generated by Cognito):
+Once deployed, the `v1/request` API Gateway endpoint will be protected by the Cognito user pool named "`ExampleUserPool`". As a result, you can register users against the local pool using the same API calls as you would with AWS.
 
-```plaintext
+To send requests to the secured API Gateway endpoint, you need to fetch identity credentials from the local Cognito API. These credentials can then be included as `Authentication` HTTP headers (where `test-1234567` represents the name of the access key ID generated by Cognito):
+
+```bash
 Authentication: AWS4-HMAC-SHA256 Credential=test-1234567/20190821/us-east-1/cognito-idp/aws4_request ...
 ```
 
-## Further reading
+## Resource Browser
 
-For a more detailed example, please check out our [sample repository](https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt).
+The LocalStack Web Application provides a Resource Browser for managing Cognito User Pools, and more. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Cognito** under the **Security Identity Compliance** section.
+
+<img src="cognito-resource-browser.png" alt="Cognito Resource Browser" title="Cognito Resource Browser" width="900" />
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create User Pool**: Create a new Cognito User Pool, by specifying the pool name, policies, and other settings.
+- **View User Pools**: View a list of all existing Cognito User Pools, including their **Details**, **Groups**, and **Users**.
+- **Edit User Pool**: Edit an existing Cognito User Pool, by adding additional configurations, policies, and more.
+- **Create Group**: Add a new Group to an existing Cognito User Pool, by specifying the group name, description, Role Arn, and Precedence.
+- **Create User**: Add a new User to an existing Cognito User Pool, by specifying the user name, user attributes, and more.
+- **Remove Selected**: Remove the selected User Pool, Group, or User from the list of existing Cognito resources.
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use Cognito in LocalStack for various use cases:
+
+- [Running Cognito authentication and user pools locally](https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt)
+- [Serverless Container-based APIs with ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
+- [Step-up Authentication using Cognito](https://github.com/localstack/step-up-auth-sample)
