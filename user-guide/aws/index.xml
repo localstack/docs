@@ -8610,11 +8610,11 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="referencing-lambda-layers-from-aws">Referencing Lambda layers from AWS&lt;/h3>
 &lt;p>If your Lambda function references a layer in real AWS, you can integrate it into your local dev environment by making it accessible to the &lt;code>886468871268&lt;/code> AWS account ID. This account is managed by LocalStack on AWS.&lt;/p>
 &lt;p>To grant access to your layer, run the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws lambda add-layer-version-permission
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --layer-name test-layer
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --version-number 1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statement-id layerAccessFromLocalStack
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --principal 886468871268
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws lambda add-layer-version-permission \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --layer-name test-layer \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --version-number 1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statement-id layerAccessFromLocalStack \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --principal 886468871268 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --action lambda:GetLayerVersion&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Replace &lt;code>test-layer&lt;/code> and &lt;code>1&lt;/code> with the name and version number of your layer, respectively.&lt;/p>
 &lt;p>After granting access, the next time you reference the layer in one of your local Lambda functions using the AWS Lambda layer ARN, the layer will be automatically pulled down and integrated into your local dev environment.&lt;/p>

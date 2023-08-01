@@ -2113,9 +2113,7 @@ There, the necessary code fragments for enabling debugging are already present.&
 &lt;h3 id="debugging-a-python-lambda-in-visual-studio-code">Debugging a Python Lambda in Visual Studio Code&lt;/h3>
 &lt;h4 id="configure-localstack-for-vs-code-remote-python-debugging">Configure LocalStack for VS Code remote Python debugging&lt;/h4>
 &lt;p>First, make sure that LocalStack is started with the following configuration (see the &lt;a href="/references/configuration/#lambda">Configuration docs&lt;/a> for more information):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LAMBDA_REMOTE_DOCKER=0 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> LAMBDA_DOCKER_FLAGS=&amp;#39;-p 19891:19891&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> DEBUG=1 localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LAMBDA_DOCKER_FLAGS=&amp;#39;-p 19891:19891&amp;#39; localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h4 id="preparing-your-code">Preparing your code&lt;/h4>
 &lt;p>For providing the debug server, we use &lt;a href="https://github.com/microsoft/debugpy">&lt;code>debugpy&lt;/code>&lt;/a>
 inside the Lambda function code. In general, all you need is the following code
@@ -2182,7 +2180,7 @@ Make sure to set a breakpoint in the Lambda handler code first, which can then l
 &lt;/ul>
 &lt;p>&lt;img src="pycharm_remote_debugging.png" alt="PyCharm Professional Remote Debugging Configuration">&lt;/p>
 &lt;h4 id="preparing-your-code-1">Preparing your code&lt;/h4>
-&lt;p>PyCharm provides a its own debugging package, called &lt;code>pydevd-pycharm&lt;/code>. Essentially, you will add the following code to your lambda:&lt;/p>
+&lt;p>PyCharm provides its own debugging package, called &lt;code>pydevd-pycharm&lt;/code>. Essentially, you will add the following code to your lambda:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">pydevd_pycharm&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">pydevd_pycharm&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">settrace&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;host.docker.internal&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">port&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">19891&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">stdoutToServer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">stderrToServer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
@@ -2283,7 +2281,7 @@ then add the following configuration:&lt;/p>
 lambda function.&lt;/p>
 &lt;h2 id="debugging-nodejs-lambdas">Debugging Node.js lambdas&lt;/h2>
 &lt;h3 id="configure-localstack-for-remote-nodejs-debugging">Configure LocalStack for remote Node.js debugging&lt;/h3>
-&lt;p>&lt;code>LAMBDA_REMOTE_DOCKER&lt;/code> has to be disabled, and &lt;code>LAMBDA_DOCKER_FLAGS&lt;/code> needs to enable the debugger using &lt;code>NODE_OPTIONS&lt;/code>:&lt;/p>
+&lt;p>Set the &lt;code>LAMBDA_DOCKER_FLAGS&lt;/code> to enable the debugger using &lt;code>NODE_OPTIONS&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">#docker-compose.yml&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -2291,7 +2289,6 @@ lambda function.&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_REMOTE_DOCKER=0&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_DOCKER_FLAGS=-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="configuring-visual-studio-code-for-remote-nodejs-debugging">Configuring Visual Studio Code for remote Node.js debugging&lt;/h3>
 &lt;p>Add a new task by creating/modifying the &lt;code>.vscode/tasks.json&lt;/code> file:&lt;/p>
@@ -5149,11 +5146,11 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="referencing-lambda-layers-from-aws">Referencing Lambda layers from AWS&lt;/h3>
 &lt;p>If your Lambda function references a layer in real AWS, you can integrate it into your local dev environment by making it accessible to the &lt;code>886468871268&lt;/code> AWS account ID. This account is managed by LocalStack on AWS.&lt;/p>
 &lt;p>To grant access to your layer, run the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws lambda add-layer-version-permission
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --layer-name test-layer
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --version-number 1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statement-id layerAccessFromLocalStack
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --principal 886468871268
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws lambda add-layer-version-permission \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --layer-name test-layer \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --version-number 1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statement-id layerAccessFromLocalStack \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --principal 886468871268 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --action lambda:GetLayerVersion&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Replace &lt;code>test-layer&lt;/code> and &lt;code>1&lt;/code> with the name and version number of your layer, respectively.&lt;/p>
 &lt;p>After granting access, the next time you reference the layer in one of your local Lambda functions using the AWS Lambda layer ARN, the layer will be automatically pulled down and integrated into your local dev environment.&lt;/p>
