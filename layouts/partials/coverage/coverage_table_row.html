@@ -1,5 +1,6 @@
 {{ range $operation := $.operations }} 
 {{ range $op_name, $op := $operation }}
+{{ $service := $.service }}
 <tr>
     <!-- Operation -->
     {{ if ($op.implemented) }} 
@@ -18,8 +19,10 @@
     <td style="text-align: center;">{{ if ($op.implemented) }} {{ $op.availability }} {{ end }}</td>
     <!-- Internal Test Suite -->
     <td class="coverage-shadow-overlay-green">{{ if ($op.internal_test_suite) }} ✔️ {{ end }}</td>
+    {{ if not (eq "lambda" $service) }} 
     <!-- External Test Suite --> 
     <td class="coverage-shadow-overlay-green">{{ if ($op.external_test_suite) }} ✔️ {{ end }}</td>
+    {{ end }}
     <!-- Terraform Validated -->
     <td class="coverage-shadow-overlay-green">{{ if ($op.terraform_test_suite) }} ✔️ {{ end }}</td>
     <!-- AWS Validated -->
