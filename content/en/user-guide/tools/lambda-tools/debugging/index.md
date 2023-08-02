@@ -214,7 +214,7 @@ $ awslocal lambda create-function --function-name debugfunc \
 --runtime nodejs16.x \
 --timeout 150 \
 --role arn:aws:iam::000000000000:role/lambda-role
---environment Variables='{"Variables": {"_JAVA_OPTIONS": "-Xshare:off -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=0.0.0.0:5050"}}'
+--environment '{"Variables": {"_JAVA_OPTIONS": "-Xshare:off -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=0.0.0.0:5050"}}'
 {{< /command >}}
 
 Note the `suspend=y` option here, it will delay code execution until the debugger is attached to the debugger server.
