@@ -13,8 +13,9 @@ You may see errors in the logs relating to TLS such as &amp;ldquo;unable to get 
 &lt;p>They all can be summarised as:&lt;/p>
 &lt;ol>
 &lt;li>get your proxy&amp;rsquo;s custom certificate into the system certificate store, and&lt;/li>
-&lt;li>configure &lt;a href="https://pypi.python.org/pypi/requests">&lt;code>requests&lt;/code>&lt;/a> to use the custom certificate, and&lt;/li>
-&lt;li>configure &lt;a href="https://curl.se/">&lt;code>curl&lt;/code>&lt;/a> to use the custom certificate.&lt;/li>
+&lt;li>configure &lt;a href="https://pypi.python.org/pypi/requests">&lt;code>requests&lt;/code>&lt;/a> to use the custom certificate,&lt;/li>
+&lt;li>configure &lt;a href="https://curl.se/">&lt;code>curl&lt;/code>&lt;/a> to use the custom certificate, and&lt;/li>
+&lt;li>configure &lt;a href="https://nodejs.org/">&lt;code>node.js&lt;/code>&lt;/a> to use the custom certificate.&lt;/li>
 &lt;/ol>
 &lt;h2 id="creating-a-custom-docker-image">Creating a custom docker image&lt;/h2>
 &lt;p>If you run LocalStack in a docker container (which includes using &lt;a href="/getting-started/#localstack-cli">the CLI&lt;/a>, &lt;a href="/getting-started/#docker">docker&lt;/a>, &lt;a href="/getting-started/#docker-compose">docker-compose&lt;/a>, &lt;a href="/getting-started/#localstack-cockpit">cockpit&lt;/a> or &lt;a href="/getting-started/#helm">helm&lt;/a>), to include a custom TLS root certificate a new docker image should be created.&lt;/p>
@@ -27,6 +28,7 @@ You may see errors in the logs relating to TLS such as &amp;ldquo;unable to get 
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">RUN&lt;/span> update-ca-certificates&lt;span style="color:#a40000">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">ENV&lt;/span> &lt;span style="color:#000">CURL_CA_BUNDLE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>/etc/ssl/certs/ca-certificates.crt&lt;span style="color:#a40000">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">ENV&lt;/span> &lt;span style="color:#000">REQUESTS_CA_BUNDLE&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>/etc/ssl/certs/ca-certificates.crt&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">ENV&lt;/span> &lt;span style="color:#000">NODE_EXTRA_CA_CERTS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>/etc/ssl/certs/ca-certificates.crt&lt;span style="color:#a40000">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and build the image:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker build -t &amp;lt;image name&amp;gt; .&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
@@ -90,6 +92,7 @@ id="tabs-10-02" role="tabpanel" aria-labelled-by="tabs-10-02-tab">
 &lt;ul>
 &lt;li>&lt;code>REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt&lt;/code>, and&lt;/li>
 &lt;li>&lt;code>CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt&lt;/code>, and&lt;/li>
+&lt;li>&lt;code>NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;p>and follow the instructions fn the &lt;a href="/references/init-hooks/">init hooks documentation&lt;/a> for configuring LocalStack to use the hook directory as a &lt;code>boot&lt;/code> hook.&lt;/p>
 &lt;h2 id="custom-tls-certificates-with-host-mode">Custom TLS certificates with host mode&lt;/h2>
@@ -97,11 +100,17 @@ id="tabs-10-02" role="tabpanel" aria-labelled-by="tabs-10-02-tab">
 &lt;p>On linux the custom certificate should be added to your &lt;code>ca-certificates&lt;/code> bundle. For example on Debian based systems (as root):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>cp &amp;lt;your custom certificate.crt&amp;gt; /usr/local/share/ca-certificates
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>update-ca-certificates&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Then run LocalStack with the environment variables &lt;code>REQUESTS_CA_BUNDLE&lt;/code> and &lt;code>CURL_CA_BUNDLE&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Then run LocalStack with the environment variables &lt;code>REQUESTS_CA_BUNDLE&lt;/code>, &lt;code>CURL_CA_BUNDLE&lt;/code>, and `NODE_EXTRA_CA_CERTS``:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack start --host&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="macos">macOS&lt;/h3>
 &lt;p>On macOS the custom certificate should be added to your keychain. See &lt;a href="https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac">this Apple support article&lt;/a> for more information.&lt;/p>
-&lt;p>Then run LocalStack with the environment variables &lt;code>REQUESTS_CA_BUNDLE&lt;/code> and &lt;code>CURL_CA_BUNDLE&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Then run LocalStack with the environment variables &lt;code>REQUESTS_CA_BUNDLE&lt;/code>, &lt;code>CURL_CA_BUNDLE&lt;/code>, and `NODE_EXTRA_CA_CERTS``:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack start --host&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="windows">Windows&lt;/h3>
 &lt;p>Currently host mode does not work with Windows. If you are using WSL2 you should follow the &lt;a href="#linux">Linux&lt;/a> steps above.&lt;/p></description></item></channel></rss>
