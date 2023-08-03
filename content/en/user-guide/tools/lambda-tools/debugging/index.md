@@ -209,11 +209,11 @@ When creating your Lambda function, set the `_JAVA_OPTIONS` environment variable
 
 {{< command >}}
 $ awslocal lambda create-function --function-name debugfunc \
---code file://handler.zip \
+--zip-file fileb://java-handler.zip \
 --handler myindex.handler \
---runtime nodejs16.x \
+--runtime java8.al2 \
 --timeout 150 \
---role arn:aws:iam::000000000000:role/lambda-role
+--role arn:aws:iam::000000000000:role/lambda-role \
 --environment '{"Variables": {"_JAVA_OPTIONS": "-Xshare:off -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=0.0.0.0:5050"}}'
 {{< /command >}}
 
@@ -246,6 +246,7 @@ Now to debug your Lambda function, simply click on the `Debug` icon with `Remote
 
 The debugger can also act as a server by changing the drop-down "Debugger mode" to "Listen to remote JVM".
 In this case you should not set `LAMBDA_DOCKER_FLAGS` since the port will be exposed on your host instead of the Lambda container.
+Compared to the previous setup the "Wait Remote Debugger Server" run configuration should also be removed and instead tick the mark at "Auto restart" after switching to the "Listen to remote JVM" mode.
 
 For the Lambda function you will have to adjust the environment variable to `"_JAVA_OPTIONS": "-Xshare:off -agentlib:jdwp=transport=dt_socket,server=n,address=172.17.0.1:5050,suspend=y,onuncaught=n"`.
 Notice the `address=172.17.0.1:5050`.
