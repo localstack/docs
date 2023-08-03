@@ -108,6 +108,7 @@ Additionally, metrics about `Approximate*` messages are send to CloudWatch by de
 Through the SQS Query API, Queue URLs become endpoints that can be called via HTTP.
 In fact, some SDKs like the Java SDK use the SQS Query API to interact with SQS.
 By default, Queue URLs point to `http://localhost:4566`, which can lead to issues when Lambdas or other containers attempt to call these queue URLs directly.
+These issues are because a Lambda function runs in another Docker container, and LocalStack is not available at `localhost` in that container.
 For example, users of the Java SDK often experience the following error when accessing an SQS queue from their Lambda:
 ```
 2023-07-28 15:04:00 Unable to execute HTTP request: Connect to localhost:4566 [localhost/127.0.0.1] failed: Connection refused (Connection refused): com.amazonaws.SdkClientException
