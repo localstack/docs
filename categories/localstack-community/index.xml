@@ -4254,6 +4254,24 @@ This &lt;a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDev
 Deactivating CloudWatch metrics can improve the performance of SQS message operations, but will disable any integration with CloudWatch such as triggering alarms.&lt;/p>
 &lt;p>Additionally, metrics about &lt;code>Approximate*&lt;/code> messages are send to CloudWatch by default once every minute, but the interval (in seconds) can also be configured using &lt;code>SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL=120&lt;/code>.&lt;/p>
 &lt;p>&lt;code>SQS_DISABLE_CLOUDWATCH_METRICS=1&lt;/code> will disable all CloudWatch metrics for SQS (including &lt;code>Approximate*&lt;/code> metrics).&lt;/p>
+&lt;h2 id="accessing-queues-from-lambdas-or-other-containers">Accessing queues from Lambdas or other containers&lt;/h2>
+&lt;p>Through the SQS Query API, Queue URLs become endpoints that can be called via HTTP.
+In fact, some SDKs like the Java SDK use the SQS Query API to interact with SQS.
+By default, Queue URLs point to &lt;code>http://localhost:4566&lt;/code>, which can lead to issues when Lambdas or other containers attempt to call these queue URLs directly.
+These issues are because a Lambda function runs in another Docker container, and LocalStack is not available at &lt;code>localhost&lt;/code> in that container.
+For example, users of the Java SDK often experience the following error when accessing an SQS queue from their Lambda:&lt;/p>
+&lt;pre tabindex="0">&lt;code>2023-07-28 15:04:00 Unable to execute HTTP request: Connect to localhost:4566 [localhost/127.0.0.1] failed: Connection refused (Connection refused): com.amazonaws.SdkClientException
+2023-07-28 15:04:00 com.amazonaws.SdkClientException: Unable to execute HTTP request: Connect to localhost:4566 [localhost/127.0.0.1] failed: Connection refused (Connection refused)
+...
+&lt;/code>&lt;/pre>&lt;p>Here&amp;rsquo;s what you can do:&lt;/p>
+&lt;h3 id="lambdas">Lambdas&lt;/h3>
+&lt;p>When using the SQS Query API from Lambdas, we recommend setting &lt;code>SQS_ENDPOINT_STRATEGY=domain&lt;/code>.
+This creates queue URLs with &lt;code>*.queue.localhost.localstack.cloud&lt;/code> as domain names.
+Our Lambda implementation resolves these URLs automatically to the LocalStack container, allowing your code to interact with the SQS service seamlessly.&lt;/p>
+&lt;h3 id="other-containers">Other containers&lt;/h3>
+&lt;p>When your code runs in other containers, such as ECS tasks, or your own custom containers, we recommend setting up your own Docker network.
+First, overwrite the &lt;code>LOCALSTACK_HOST&lt;/code> variable as described in our &lt;a href="/references/network-troubleshooting/endpoint-url/">network troubleshooting guide&lt;/a>, and make sure that your containers resolve &lt;code>LOCALSTACK_HOST&lt;/code> to the LocalStak container within the Docker network.
+Then, we recommend using &lt;code>SQS_ENDPOINT_STRATEGY=path&lt;/code>, which will generate queue URLs in the form of &lt;code>http://&amp;lt;LOCALSTACK_HOST&amp;gt;/queue/...&lt;/code>.&lt;/p>
 &lt;h2 id="developer-endpoints">Developer endpoints&lt;/h2>
 &lt;p>Our SQS implementation provides additional endpoints for developers under &lt;code>/_aws/sqs&lt;/code>, that allow you to inspect queues without side effects.
 For instance, sometimes you want to peek into queues without actually performing a &lt;code>ReceiveMessage&lt;/code> operation.&lt;/p>
@@ -4272,28 +4290,28 @@ These two calls would be equivalent:&lt;/p>
 &lt;/ul>
 &lt;h4 id="xml-response">XML response&lt;/h4>
 &lt;p>You can call the endpoint directly to return the raw AWS XML response.&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-8" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-9" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-bash"
-id="tabs-08-00-tab" data-toggle="tab" href="#tabs-08-00" role="tab"
-onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-08-00" aria-selected="false">
+id="tabs-09-00-tab" data-toggle="tab" href="#tabs-09-00" role="tab"
+onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-09-00" aria-selected="false">
 cURL
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-python"
-id="tabs-08-01-tab" data-toggle="tab" href="#tabs-08-01" role="tab"
-onclick="persistLang(&amp;#34;python&amp;#34;);"aria-controls="tabs-08-01" aria-selected="false">
+id="tabs-09-01-tab" data-toggle="tab" href="#tabs-09-01" role="tab"
+onclick="persistLang(&amp;#34;python&amp;#34;);"aria-controls="tabs-09-01" aria-selected="false">
 Python Requests
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-8-content">
+&lt;div class="tab-content" id="tabs-9-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-08-00" role="tabpanel" aria-labelled-by="tabs-08-00-tab">
+id="tabs-09-00" role="tabpanel" aria-labelled-by="tabs-09-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>curl &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566/_aws/sqs/messages?QueueUrl=http://queue.localhost.localstack.cloud:4566/000000000000/my-queue&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-08-01" role="tabpanel" aria-labelled-by="tabs-08-01-tab">
+id="tabs-09-01" role="tabpanel" aria-labelled-by="tabs-09-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">requests&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">requests&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">get&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
@@ -4358,29 +4376,29 @@ id="tabs-08-01" role="tabpanel" aria-labelled-by="tabs-08-01-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/ReceiveMessageResponse&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="json-response">JSON response&lt;/h4>
 &lt;p>If you prefer a JSON response, you can add the &lt;code>Accept: application/json&lt;/code> header.
-&lt;ul class="nav nav-tabs" id="tabs-9" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-10" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-bash"
-id="tabs-09-00-tab" data-toggle="tab" href="#tabs-09-00" role="tab"
-onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-09-00" aria-selected="false">
+id="tabs-10-00-tab" data-toggle="tab" href="#tabs-10-00" role="tab"
+onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-10-00" aria-selected="false">
 cURL
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-python"
-id="tabs-09-01-tab" data-toggle="tab" href="#tabs-09-01" role="tab"
-onclick="persistLang(&amp;#34;python&amp;#34;);"aria-controls="tabs-09-01" aria-selected="false">
+id="tabs-10-01-tab" data-toggle="tab" href="#tabs-10-01" role="tab"
+onclick="persistLang(&amp;#34;python&amp;#34;);"aria-controls="tabs-10-01" aria-selected="false">
 Python Requests
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-9-content">
+&lt;div class="tab-content" id="tabs-10-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-09-00" role="tabpanel" aria-labelled-by="tabs-09-00-tab">
+id="tabs-10-00" role="tabpanel" aria-labelled-by="tabs-10-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>curl -H &lt;span style="color:#4e9a06">&amp;#34;Accept: application/json&amp;#34;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566/_aws/sqs/messages?QueueUrl=http://queue.localhost.localstack.cloud:4566/000000000000/my-queue&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-09-01" role="tabpanel" aria-labelled-by="tabs-09-01-tab">
+id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">requests&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">requests&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">get&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
@@ -4453,29 +4471,29 @@ id="tabs-09-01" role="tabpanel" aria-labelled-by="tabs-09-01-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="using-an-aws-client">Using an AWS client&lt;/h4>
 &lt;p>Since the endpoint is compatible with the SQS &lt;code>ReceiveMessage&lt;/code> operation, you can use the endpoint as endpoint URL parameter in your AWS client call.&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-10" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-11" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-bash"
-id="tabs-10-00-tab" data-toggle="tab" href="#tabs-10-00" role="tab"
-onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-10-00" aria-selected="false">
+id="tabs-11-00-tab" data-toggle="tab" href="#tabs-11-00" role="tab"
+onclick="persistLang(&amp;#34;bash&amp;#34;);"aria-controls="tabs-11-00" aria-selected="false">
 aws-cli
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-python"
-id="tabs-10-01-tab" data-toggle="tab" href="#tabs-10-01" role="tab"
-onclick="persistLang(&amp;#34;python&amp;#34;);"aria-controls="tabs-10-01" aria-selected="false">
+id="tabs-11-01-tab" data-toggle="tab" href="#tabs-11-01" role="tab"
+onclick="persistLang(&amp;#34;python&amp;#34;);"aria-controls="tabs-11-01" aria-selected="false">
 Boto3
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-10-content">
+&lt;div class="tab-content" id="tabs-11-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-10-00" role="tabpanel" aria-labelled-by="tabs-10-00-tab">
+id="tabs-11-00" role="tabpanel" aria-labelled-by="tabs-11-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>aws --endpoint-url&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>http://localhost:4566/_aws/sqs/messages sqs receive-message &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --queue-url&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>http://queue.localhost.localstack.cloud:4566/000000000000/my-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
+id="tabs-11-01" role="tabpanel" aria-labelled-by="tabs-11-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">sqs&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;sqs&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566/_aws/sqs/messages&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">sqs&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">receive_message&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">QueueUrl&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://queue.localhost.localstack.cloud:4566/000000000000/my-queue&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
