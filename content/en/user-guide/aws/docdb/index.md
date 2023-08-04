@@ -12,13 +12,10 @@ can be accessed from localhost. When defining a port to access the container, an
 is no pre-defined port range.
 By default, a master user named `test` will be instantiated without a password.
 
-{{< alert>}}
-
-MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability,
-flexibility, and performance for modern application development. It belongs to the family of
-non-relational
-databases, also known as NoSQL databases.
-
+{{< alert title="Information" color="success">}}
+MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability, flexibility, and performance for modern application development.
+It belongs to the family of
+non-relational databases, also known as NoSQL databases.
 {{< /alert>}}
 
 DocumentDB currently uses the default configuration of the
