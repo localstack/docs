@@ -11,7 +11,17 @@ aliases:
   - /contributing/localstack-extensions/
 ---
 
-LocalStack Extensions allow developers to extend and customize LocalStack. The feature and the API are currently experimental and may be subject to change.
+LocalStack Extensions allow developers to extend and customize LocalStack.
+
+Specific LocalStack Extensions are documented [here]({{< ref "user-guide/tools/localstack-extensions" >}}) and
+can be discovered on our [GitHub repository](https://github.com/localstack/localstack-extensions).
+Our blogpost about [LocalStack’s Cloudflare Extension](https://localstack.cloud/blog/2023-06-26-develop-your-cloudflare-workers-aws-apps-locally-with-localstack-miniflare/)
+showcases LocalStack as a local cloud development platform beyond AWS emulation.
+
+{{<alert title="Note">}}
+The feature and the API are currently experimental and may be subject to change.
+Please report any issues or feature requests on our [GitHub repository](https://github.com/localstack/localstack-extensions).
+{{</alert>}}
 
 ## Using Extensions
 
@@ -33,27 +43,32 @@ Usage: localstack extensions [OPTIONS] COMMAND [ARGS]...
   Manage LocalStack extensions (beta)
 
 Options:
-  --help  Show this message and exit.
+  -v, --verbose  Print more output
+  -h, --help     Show this message and exit
 
 Commands:
+  dev        Developer tools for developing LocalStack extensions
   init       Initialize the LocalStack extensions environment
   install    Install a LocalStack extension
+  list       List installed extension
   uninstall  Remove a LocalStack extension
 {{< / command >}}
 
 To install an extension, specify the name of the `pip` dependency that contains the extension. For example, for the official Stripe extension, you can either use the package distributed on PyPI:
 
 {{< command >}}
-$ localstack extensions install localstack-extension-stripe
+$ localstack extensions install localstack-extension-httpbin
 {{< / command >}}
 
-You can alternatively install it directly from our Git repository:
+You can alternatively install the latest development version directly from our Git repository:
 
 {{< command >}}
-$ localstack extensions install "git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-stripe&subdirectory=stripe"
+$ localstack extensions install "git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-httpbin&subdirectory=httpbin"
 {{< / command >}}
 
 ## Developing Extensions
+
+This section provides a brief overview of how to develop your own extensions.
 
 ### Extensions API
 
@@ -139,7 +154,7 @@ from localstack.extensions.api import Extension
 LOG = logging.getLogger(__name__)
 
 class ReadyAnnouncerExtension(Extension):
-    name = "my_ready_annoucer"
+    name = "my_ready_announcer"
 
     def on_platform_ready(self):
     	LOG.info("my plugin is loaded and localstack is ready to roll!")
@@ -147,8 +162,10 @@ class ReadyAnnouncerExtension(Extension):
 
 ### Package your Extension
 
-Your extensions need to be packaged as Python distributions with a `setup.cfg` or `setup.py` config. LocalStack uses the [Plux](https://github.com/localstack/plux) code loading framework to load your code from a Python [entry point](https://packaging.python.org/en/latest/specifications/entry-points/).
-
+Your extensions needs to be packaged as a Python distribution with a
+`setup.cfg` or `setup.py` config. LocalStack uses the
+[Plux](https://github.com/localstack/plux) code loading framework to load your
+code from a Python [entry point](https://packaging.python.org/en/latest/specifications/entry-points/).
 You can either use Plux to discover the entrypoints from your code when
 building and publishing your distribution, or manually define them as in the
 example below.
@@ -171,7 +188,88 @@ install_requires =
 
 [options.entry_points]
 localstack.extensions =
-    my_ready_annoucer = localstack_annoucer.extension:ReadyAnnouncerExtension
+    my_ready_announcer = localstack_announcer.extension:ReadyAnnouncerExtension
 ```
 
-The entry point group is the Plux namespace `locastack.extensions`, and the entry point name is the plugin name `my_ready_announcer`. The object reference points to the plugin class.
+The entry point group is the Plux namespace `locastack.extensions`, and the
+entry point name is the plugin name `my_ready_announcer`. The object
+reference points to the plugin class.
+
+
+### Using the extensions CLI
+
+The extensions CLI has a set of developer commands that allow you to create new extensions, and toggle local dev mode for extensions.
+Extensions that are toggled for developer mode will be mounted into the localstack container so you don't need to re-install them every time you change something.
+
+```console
+Usage: localstack extensions dev [OPTIONS] COMMAND [ARGS]...
+
+  Developer tools for developing Localstack extensions
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  disable  Disables an extension on the host for developer mode.
+  enable   Enables an extension on the host for developer mode.
+  list     List LocalStack extensions for which dev mode is enabled.
+  new      Create a new LocalStack extension from the official extension...
+```
+
+#### Creating new extensions
+
+First, create a new extension from a template:
+
+{{< command >}}
+$ localstack extensions dev new
+project_name [My LocalStack Extension]: 
+project_short_description [All the boilerplate you need to create a LocalStack extension.]: 
+project_slug [my-localstack-extension]: 
+module_name [my_localstack_extension]: 
+full_name [Jane Doe]: 
+email [jane@example.com]: 
+github_username [janedoe]: 
+version [0.1.0]:
+{{< / command >}}
+
+
+This will create a new Python project with the following layout:
+
+```
+my-localstack-extension
+├── Makefile
+├── my_localstack_extension
+│  ├── extension.py
+│  └── __init__.py
+├── README.md
+├── setup.cfg
+└── setup.py
+```
+
+Then run `make install` in the newly created project to make a distribution package.
+
+#### Start LocalStack with the extension
+
+To start LocalStack with the extension in dev mode, first enable it by running:
+
+{{< command >}}
+$ localstack extensions dev enable ./my-localstack-extension
+{{< / command >}}
+
+
+Then, start LocalStack with `EXTENSION_DEV_MODE=1`
+
+{{< command >}}
+$ EXTENSION_DEV_MODE=1 LOCALSTACK_API_KEY=... localstack start
+{{< / command >}}
+
+In the LocalStack logs you should then see something like:
+```
+==================================================
+👷 LocalStack extension developer mode enabled 🏗
+- mounting extension /opt/code/extensions/my-localstack-extension
+Resuming normal execution, ...
+==================================================
+```
+
+Now, when you make changes to your extensions, you just need to restart LocalStack and the changes will be picked up by LocalStack automatically.
