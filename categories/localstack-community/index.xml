@@ -2011,9 +2011,8 @@ The handler is then referenced by the filename of your lambda code and the funct
 &lt;p>We can quickly verify that it works by invoking it with a simple payload:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function --payload &amp;#39;{&amp;#34;message&amp;#34;: &amp;#34;Hello from LocalStack!&amp;#34;}&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="debugging-jvm-lambdas">Debugging JVM lambdas&lt;/h2>
-&lt;h3 id="configure-localstack-for-remote-jvm-debugging">Configure LocalStack for remote JVM debugging&lt;/h3>
-&lt;p>Set &lt;code>LAMBDA_JAVA_OPTS&lt;/code> with &lt;code>jdwp&lt;/code> settings and expose the debug port
-(you can use any other port of your choice):&lt;/p>
+&lt;h3 id="configure-localstack-and-your-lambda-function-for-remote-jvm-debugging">Configure LocalStack and your Lambda function for remote JVM debugging&lt;/h3>
+&lt;p>Set &lt;code>LAMBDA_DOCKER_FLAGS&lt;/code> to export the &lt;code>5050&lt;/code> (you can use any other port of your choice) port which your IDE debugger will connect to.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">#docker-compose.yml&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -2021,23 +2020,35 @@ The handler is then referenced by the filename of your lambda code and the funct
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5050&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LAMBDA_DOCKER_FLAGS=-p 127.0.0.1:5050:5050&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note the &lt;code>suspend=y&lt;/code> option here, it will delay code execution until the debugger is
-attached to the debugger server. If you want to change that, simply switch to &lt;code>suspend=n&lt;/code>.&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When creating your Lambda function, set the &lt;code>_JAVA_OPTIONS&lt;/code> environment variable like so:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name debugfunc \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--zip-file fileb://java-handler.zip \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--handler myindex.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--runtime java8.al2 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--timeout 150 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--role arn:aws:iam::000000000000:role/lambda-role \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--environment &amp;#39;{&amp;#34;Variables&amp;#34;: {&amp;#34;_JAVA_OPTIONS&amp;#34;: &amp;#34;-Xshare:off -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=0.0.0.0:5050&amp;#34;}}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Note the &lt;code>suspend=y&lt;/code> option here, it will delay code execution until the debugger is attached to the debugger server.
+If you want to change that, simply switch to &lt;code>suspend=n&lt;/code>.&lt;/p>
+&lt;p>By default the runtime environment for Java will set &lt;code>-Xshare: on&lt;/code>, so we&amp;rsquo;ll have to disable it here again.
+Your IDE might show you the listen address as &lt;code>*:5050&lt;/code>, but please note that this only works for Java 9+.&lt;/p>
 &lt;h3 id="configuring-intellij-idea-for-remote-jvm-debugging">Configuring IntelliJ IDEA for remote JVM debugging&lt;/h3>
 &lt;p>Open the &lt;code>Run/Debug Configurations&lt;/code> window and create a new &lt;code>Shell Script&lt;/code> with
 the following content:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">while&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">[[&lt;/span> -z &lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>docker ps &lt;span style="color:#000;font-weight:bold">|&lt;/span> grep :5050&lt;span style="color:#204a87;font-weight:bold">)&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">]]&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> sleep 1&lt;span style="color:#000;font-weight:bold">;&lt;/span> &lt;span style="color:#204a87;font-weight:bold">done&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="inteliji-debugging-jvm-1.png" alt="Run/Debug Configurations">&lt;/p>
-&lt;p>This shell script should simplify the process a bit since the debugger server is not
-immediately available (only once lambda container is up).&lt;/p>
-&lt;p>Then create a new &lt;code>Remote JVM Debug&lt;/code> configuration and use the script from
-above as a &lt;code>Before launch&lt;/code> target:&lt;/p>
+&lt;p>This shell script should simplify the process a bit since the debugger server is not immediately available (only once Lambda container is up).&lt;/p>
+&lt;p>Then create a new &lt;code>Remote JVM Debug&lt;/code> configuration and use the script from above as a &lt;code>Before launch&lt;/code> target:&lt;/p>
 &lt;p>&lt;img src="inteliji-debugging-jvm-2.png" alt="Run/Debug Configurations">&lt;/p>
-&lt;p>Now to debug your lambda function, simply click on the &lt;code>Debug&lt;/code> icon with
-&lt;code>Remote JVM on LS Debug&lt;/code> configuration selected, and then invoke your
-lambda function.&lt;/p>
+&lt;p>Now to debug your Lambda function, simply click on the &lt;code>Debug&lt;/code> icon with &lt;code>Remote JVM on LS Debug&lt;/code> configuration selected, and then invoke your Lambda function.&lt;/p>
+&lt;h3 id="alternative-setup-for-intellij-idea">Alternative setup for IntelliJ IDEA&lt;/h3>
+&lt;p>The debugger can also act as a server by changing the drop-down &amp;ldquo;Debugger mode&amp;rdquo; to &amp;ldquo;Listen to remote JVM&amp;rdquo;.
+In this case you should not set &lt;code>LAMBDA_DOCKER_FLAGS&lt;/code> since the port will be exposed on your host instead of the Lambda container.
+Compared to the previous setup the &amp;ldquo;Wait Remote Debugger Server&amp;rdquo; run configuration should also be removed and instead tick the mark at &amp;ldquo;Auto restart&amp;rdquo; after switching to the &amp;ldquo;Listen to remote JVM&amp;rdquo; mode.&lt;/p>
+&lt;p>For the Lambda function you will have to adjust the environment variable to &lt;code>&amp;quot;_JAVA_OPTIONS&amp;quot;: &amp;quot;-Xshare:off -agentlib:jdwp=transport=dt_socket,server=n,address=172.17.0.1:5050,suspend=y,onuncaught=n&amp;quot;&lt;/code>.
+Notice the &lt;code>address=172.17.0.1:5050&lt;/code>.
+Here we tell the Lambda function to connect to port 5050 on 172.17.0.1. When using Docker desktop you might have to set this to &lt;code>address=host.docker.internal:5050&lt;/code> instead.&lt;/p>
 &lt;h3 id="configuring-visual-studio-code-for-remote-jvm-debugging">Configuring Visual Studio Code for remote JVM debugging&lt;/h3>
 &lt;p>Make sure you installed the following extensions:&lt;/p>
 &lt;ul>
