@@ -21,7 +21,7 @@
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
             {{ partial "version-banner.html" . }}
             {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
-            <div class="td-content">
+            <div class="page-content">
                 <h1>{{ .Title }}</h1>
                 {{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}
                 {{ .Content }}
@@ -35,27 +35,44 @@
                   {{ $pages = (where $pages "Parent.File.UniqueID" "==" $parent.File.UniqueID) }}
                   {{ if or $parent.Params.no_list (eq (len $pages) 0) }}
                   {{/* If no_list is true or we don't have subpages we don't show a list of subpages */}}
-                  {{ else if $parent.Params.simple_list }}
-                  {{/* If simple_list is true we show a bulleted list of subpages */}}
-                      <ul>
-                          {{ range $pages }}
-                              {{ $manualLink := cond (isset .Params "manuallink") .Params.manualLink ( cond (isset .Params "manuallinkrelref") (relref . .Params.manualLinkRelref) .RelPermalink) }}
-                              <li><a href="{{ $manualLink }}"{{ with .Params.manualLinkTitle }} title="{{ . }}"{{ end }}{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}>{{- .Title -}}</a></li>
-                          {{ end }}
-                      </ul>
                   {{ else }}
                   {{/* Otherwise we show a nice formatted list of subpages with page descriptions */}}
-                  <hr class="panel-line">
                       {{ range $pages }}
-                          {{ $manualLink := cond (isset .Params "manuallink") .Params.manualLink ( cond (isset .Params "manuallinkrelref") (relref . .Params.manualLinkRelref) .RelPermalink) }}
-                          <div class="entry">
-                            <div class="row">
-                              <div class="col">
-                                <h5>
-                                    <a href="{{ $manualLink }}"{{ with .Params.manualLinkTitle }} title="{{ . }}"{{ end }}{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}>{{- .Title -}}</a>
-                                </h5>
-                                <p>{{ .Description | markdownify }}</p>
-                              </div>
+                          <div class="course-item">
+                            <div class="row no-gutters">
+                                <div class="col-12 col-lg-6 order-2 order-lg-1">
+                                  <div class="content">
+                                    <div class="inner">
+                                      <h2><a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="hover-link">{{.Title}}</a></h2>
+                                      <p>{{.Description}}</p>
+                                    </div>
+                                    {{ $lessons := .Pages }}
+                                    {{ $maxLessonsLen := 5 }}
+
+                                    <div class="lessons-list-container">
+                                      {{ $visibleLessons := first $maxLessonsLen $lessons }}
+                                      <small class="text-muted">{{ len $lessons }} lessons</small>
+                                      <ul class="lessons-list list-unstyled">
+                                        {{ range $visibleLessons }}
+                                          <li class="lesson-list-item d-flex align-items-center justify-content-between">
+                                            <p><a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="hover-link">{{ .Title }}</a></p>
+                                            <p class="text-muted">{{.Params.length}}</p>
+                                          </li>
+                                        {{ end }}
+                                      </ul>
+
+                                      {{ if gt (len $lessons) $maxLessonsLen }}
+                                        <small class="text-muted"><a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="hover-link">{{ sub (len $lessons) $maxLessonsLen }} more lessons</a></small>
+                                      {{ end }}
+                                    </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 order-1 order-lg-2">
+                                  <a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="d-block">
+                                    <img src="https://via.placeholder.com/556x313.jpg" class="img-fluid" />
+                                  </a>
+                                </div>
                             </div>
                           </div>
                       {{ end }}

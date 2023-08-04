@@ -1,10 +1,10 @@
 ---
-title: "Lesson 2"
-linkTitle: "Lesson 2"
+title: "Lesson 3"
+linkTitle: "Lesson 3"
 weight: 6
 description: >
   Lesson short description
-length: 09:20
+length: 03:25
 type: lessons
 ---
 
