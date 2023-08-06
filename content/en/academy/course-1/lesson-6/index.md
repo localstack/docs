@@ -5,6 +5,7 @@ weight: 6
 description: >
   Lesson short description
 length: 09:01
+leadimage: thumbnail.jpg
 type: lessons
 ---
 

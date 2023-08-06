@@ -60,7 +60,6 @@
                                           </li>
                                         {{ end }}
                                       </ul>
-
                                       {{ if gt (len $lessons) $maxLessonsLen }}
                                         <small class="text-muted"><a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="hover-link">{{ sub (len $lessons) $maxLessonsLen }} more lessons</a></small>
                                       {{ end }}
@@ -70,7 +69,10 @@
                                 </div>
                                 <div class="col-12 col-md-6 order-1 order-lg-2">
                                   <a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="d-block">
-                                    <img src="https://via.placeholder.com/556x313.jpg" class="img-fluid" />
+                                    {{ $image := .Resources.GetMatch (printf "*%s*" (.Params.thumbnail)) }}
+                                    {{ with $image }}
+                                      <img src="{{.RelPermalink}}" class="img-fluid" />
+                                    {{end}}
                                   </a>
                                 </div>
                             </div>

@@ -30,7 +30,11 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col-12 col-lg-5 col-xl-4">
                         <a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="d-block">
-                          <img src="https://via.placeholder.com/556x313.jpg" class="img-fluid" />
+                          {{ $image := .Resources.GetMatch (printf "*%s*" (.Params.leadimage)) }}
+                          {{ $image := $image.Resize "556x" }}
+                          {{ with $image }}
+                            <img src="{{.RelPermalink}}" class="img-fluid" />
+                          {{end}}
                         </a>
                       </div>
                       <div class="col-12 col-lg-7 col-xl-8">
