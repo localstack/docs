@@ -6,6 +6,7 @@ description: >
   Lesson short description
 length: 00:50
 leadimage: thumbnail.jpg
+videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
 ---
 

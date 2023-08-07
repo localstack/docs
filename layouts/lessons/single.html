@@ -25,15 +25,20 @@
               <h1>{{ .Title }}</h1>
               {{ with .Params.description }}<div class="lead mb-1">{{ . | markdownify }}</div>{{ end }}
               {{ $image := .Resources.GetMatch (printf "*%s*" (.Params.leadimage)) }}
+              {{ $videoUrl := .Params.videoUrl }}
               {{ with $image }}
-                <img src="{{.RelPermalink}}" class="w-100 img-fluid mb-3" />
+                {{if $videoUrl}}
+                  <div class="video-thumbnail" data-url="{{$videoUrl}}">
+                    <img src="{{.RelPermalink}}" class="w-100 img-fluid mb-3" />
+                  </div>
+                {{end}}
               {{end}}
               {{.Content}}
               {{ $nextLesson := .PrevInSection }}
               {{ with $nextLesson }}
                 <div class="lessons-item compact mt-5">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col-12 col-lg-5 col-xl-4">
+                  <div class="row no-gutters align-items-start align-items-lg-center">
+                    <div class="col-12 col-md-6 col-lg-5 col-xl-4">
                       <a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="d-block">
                         {{ $image := .Resources.GetMatch (printf "*%s*" (.Params.leadimage)) }}
                         {{ $image := $image.Resize "556x" }}
@@ -42,7 +47,7 @@
                         {{end}}
                       </a>
                     </div>
-                    <div class="col-12 col-lg-7 col-xl-8">
+                    <div class="col-12 col-md-6 col-lg-7 col-xl-8">
                       <div class="content">
                         <small class="up-next-text">Up Next</small>
                         <h2><a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="hover-link">{{.Title}}</a></h2>

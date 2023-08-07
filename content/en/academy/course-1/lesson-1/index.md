@@ -6,6 +6,7 @@ description: >
   Short Description of the Lesson included in the Course. Tend to give a short overview of what the lessons is about. Maximum 3-4 lines.
 length: 05:03
 leadimage: thumbnail.jpg
+videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
 ---
 

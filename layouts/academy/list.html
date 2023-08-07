@@ -20,9 +20,8 @@
           </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
             {{ partial "version-banner.html" . }}
-            {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
             <div class="page-content">
-                <h1>{{ .Title }}</h1>
+                <h1 class="mt-2">{{ .Title }}</h1>
                 {{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}
                 {{ .Content }}
 
@@ -40,7 +39,7 @@
                       {{ range $pages }}
                           <div class="course-item">
                             <div class="row no-gutters">
-                                <div class="col-12 col-lg-6 order-2 order-lg-1">
+                                <div class="col-12 col-lg-6">
                                   <div class="content">
                                     <div class="inner">
                                       <h2><a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="hover-link">{{.Title}}</a></h2>
@@ -67,7 +66,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 order-1 order-lg-2">
+                                <div class="col-12 col-lg-6 d-none d-lg-block">
                                   <a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="d-block">
                                     {{ $image := .Resources.GetMatch (printf "*%s*" (.Params.thumbnail)) }}
                                     {{ with $image }}
