@@ -11,6 +11,11 @@ DynamoDB on LocalStack is powered by [DynamoDB Local](https://docs.aws.amazon.co
 LocalStack has support for global tables (version 2019).
 These are tables belonging to the same account and replicated across different regions.
 
+{{< alert title="Note" >}}
+LocalStack does not support legacy global tables (version 2017).
+Operations like `CreateGlobalTable`, `UpdateGlobalTable`, `DescribeGlobalTable` etc. will not emulate global replications.
+{{< /alert >}}
+
 Following example illustrates the use of global tables:
 
 {{< command >}}

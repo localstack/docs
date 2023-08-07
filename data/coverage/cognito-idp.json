@@ -723,6 +723,18 @@
       }
     },
     {
+      "GetLogDeliveryConfiguration": {
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "GetSigningCertificate": {
         "implemented": true,
         "availability": "pro",
@@ -954,6 +966,18 @@
       "RevokeToken": {
         "implemented": false,
         "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "SetLogDeliveryConfiguration": {
+        "implemented": true,
+        "availability": "pro",
         "internal_test_suite": false,
         "external_test_suite": false,
         "terraform_test_suite": false,
@@ -2284,8 +2308,8 @@
       "UserAttributes, UserPoolId, Username": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes",
-            "test": "test_user_pool_attributes",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[False]",
+            "test": "test_user_pool_attributes[False]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Username']",
@@ -2294,8 +2318,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[True]",
+            "test": "test_user_pool_attributes[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Username']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2304,8 +2338,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2324,8 +2378,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes",
-            "test": "test_user_pool_attributes",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[False]",
+            "test": "test_user_pool_attributes[False]",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "['$..Username']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[True]",
+            "test": "test_user_pool_attributes[True]",
+            "response": "400",
+            "error": "InvalidParameterException",
+            "snapshot_skipped": "['$..Username']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[True]",
+            "test": "test_user_pool_attributes[True]",
             "response": "400",
             "error": "InvalidParameterException",
             "snapshot_skipped": "['$..Username']",
@@ -2358,8 +2432,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2368,8 +2442,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2988,8 +3082,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2998,8 +3092,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3008,8 +3102,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -3018,8 +3112,48 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4274,6 +4408,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       },
@@ -4307,6 +4461,30 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "LambdaConfig, PoolName, UsernameAttributes": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -4908,8 +5086,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4918,8 +5096,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -4942,8 +5120,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes",
-            "test": "test_user_pool_attributes",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[False]",
+            "test": "test_user_pool_attributes[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Username']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[True]",
+            "test": "test_user_pool_attributes[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Username']",
@@ -5054,8 +5242,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5064,8 +5252,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5942,8 +6130,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5952,8 +6140,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5962,8 +6150,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -5972,8 +6160,48 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -6064,8 +6292,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes",
-            "test": "test_user_pool_attributes",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[False]",
+            "test": "test_user_pool_attributes[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Username']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[True]",
+            "test": "test_user_pool_attributes[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Username']",
@@ -7220,8 +7458,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes",
-            "test": "test_user_pool_attributes",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[False]",
+            "test": "test_user_pool_attributes[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Username']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[True]",
+            "test": "test_user_pool_attributes[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Username']",
@@ -7350,8 +7598,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7360,8 +7608,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7370,8 +7618,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -7380,8 +7628,48 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8340,8 +8628,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes",
-            "test": "test_user_pool_attributes",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[False]",
+            "test": "test_user_pool_attributes[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Username']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestCognito::test_user_pool_attributes[True]",
+            "test": "test_user_pool_attributes[True]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..Username']",
@@ -8460,8 +8758,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8470,8 +8768,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8480,8 +8778,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -8490,8 +8788,48 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10126,8 +10464,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10136,8 +10474,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[True-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-True-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-True-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-True-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10470,8 +10828,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-None]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-None]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-None]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -10480,8 +10838,28 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-email]",
-            "test": "test_create_user_with_email_uses_sub_as_username[False-email]",
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[False-False-email]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-None]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/integration/test_cognito.py::TestUserAttributes::test_create_user_with_email_uses_sub_as_username[True-False-email]",
+            "test": "test_create_user_with_email_uses_sub_as_username[True-False-email]",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",

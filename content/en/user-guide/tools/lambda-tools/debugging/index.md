@@ -40,9 +40,7 @@ There, the necessary code fragments for enabling debugging are already present.
 First, make sure that LocalStack is started with the following configuration (see the [Configuration docs]({{< ref "configuration#lambda" >}}) for more information):
 
 {{< command >}}
-$ LAMBDA_REMOTE_DOCKER=0 \
-    LAMBDA_DOCKER_FLAGS='-p 19891:19891' \
-    DEBUG=1 localstack start
+$ LAMBDA_DOCKER_FLAGS='-p 19891:19891' localstack start
 {{< /command >}}
 
 #### Preparing your code
@@ -136,7 +134,7 @@ You can [follow the steps in the offical docs](https://www.jetbrains.com/help/py
 
 #### Preparing your code
 
-PyCharm provides a its own debugging package, called `pydevd-pycharm`. Essentially, you will add the following code to your lambda:
+PyCharm provides its own debugging package, called `pydevd-pycharm`. Essentially, you will add the following code to your lambda:
 
 ```python
 import pydevd_pycharm
@@ -192,10 +190,9 @@ $ awslocal lambda invoke --function-name my-cool-local-function --payload '{"mes
 
 ## Debugging JVM lambdas
 
-### Configure LocalStack for remote JVM debugging
+### Configure LocalStack and your Lambda function for remote JVM debugging
 
-Set `LAMBDA_JAVA_OPTS` with `jdwp` settings and expose the debug port
-(you can use any other port of your choice):
+Set `LAMBDA_DOCKER_FLAGS` to export the `5050` (you can use any other port of your choice) port which your IDE debugger will connect to.
 
 ```yaml
 #docker-compose.yml
@@ -205,12 +202,26 @@ services:
     ...
     environment:
       ...
-      - LAMBDA_JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5050
       - LAMBDA_DOCKER_FLAGS=-p 127.0.0.1:5050:5050
 ```
 
-Note the `suspend=y` option here, it will delay code execution until the debugger is
-attached to the debugger server. If you want to change that, simply switch to `suspend=n`.
+When creating your Lambda function, set the `_JAVA_OPTIONS` environment variable like so:
+
+{{< command >}}
+$ awslocal lambda create-function --function-name debugfunc \
+--zip-file fileb://java-handler.zip \
+--handler myindex.handler \
+--runtime java8.al2 \
+--timeout 150 \
+--role arn:aws:iam::000000000000:role/lambda-role \
+--environment '{"Variables": {"_JAVA_OPTIONS": "-Xshare:off -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=0.0.0.0:5050"}}'
+{{< /command >}}
+
+Note the `suspend=y` option here, it will delay code execution until the debugger is attached to the debugger server.
+If you want to change that, simply switch to `suspend=n`.
+
+By default the runtime environment for Java will set `-Xshare: on`, so we'll have to disable it here again.
+Your IDE might show you the listen address as `*:5050`, but please note that this only works for Java 9+.
 
 ### Configuring IntelliJ IDEA for remote JVM debugging
 
@@ -223,17 +234,24 @@ while [[ -z $(docker ps | grep :5050) ]]; do sleep 1; done
 
 ![Run/Debug Configurations](inteliji-debugging-jvm-1.png)
 
-This shell script should simplify the process a bit since the debugger server is not
-immediately available (only once lambda container is up).
+This shell script should simplify the process a bit since the debugger server is not immediately available (only once Lambda container is up).
 
-Then create a new `Remote JVM Debug` configuration and use the script from
-above as a `Before launch` target:
+Then create a new `Remote JVM Debug` configuration and use the script from above as a `Before launch` target:
 
 ![Run/Debug Configurations](inteliji-debugging-jvm-2.png)
 
-Now to debug your lambda function, simply click on the `Debug` icon with
-`Remote JVM on LS Debug` configuration selected, and then invoke your
-lambda function.
+Now to debug your Lambda function, simply click on the `Debug` icon with `Remote JVM on LS Debug` configuration selected, and then invoke your Lambda function.
+
+### Alternative setup for IntelliJ IDEA
+
+The debugger can also act as a server by changing the drop-down "Debugger mode" to "Listen to remote JVM".
+In this case you should not set `LAMBDA_DOCKER_FLAGS` since the port will be exposed on your host instead of the Lambda container.
+Compared to the previous setup the "Wait Remote Debugger Server" run configuration should also be removed and instead tick the mark at "Auto restart" after switching to the "Listen to remote JVM" mode.
+
+For the Lambda function you will have to adjust the environment variable to `"_JAVA_OPTIONS": "-Xshare:off -agentlib:jdwp=transport=dt_socket,server=n,address=172.17.0.1:5050,suspend=y,onuncaught=n"`.
+Notice the `address=172.17.0.1:5050`.
+Here we tell the Lambda function to connect to port 5050 on 172.17.0.1. When using Docker desktop you might have to set this to `address=host.docker.internal:5050` instead.
+
 
 ### Configuring Visual Studio Code for remote JVM debugging
 
@@ -284,7 +302,7 @@ lambda function.
 
 ### Configure LocalStack for remote Node.js debugging
 
-`LAMBDA_REMOTE_DOCKER` has to be disabled, and `LAMBDA_DOCKER_FLAGS` needs to enable the debugger using `NODE_OPTIONS`:
+Set the `LAMBDA_DOCKER_FLAGS` to enable the debugger using `NODE_OPTIONS`:
 
 ```yaml
 #docker-compose.yml
@@ -294,7 +312,6 @@ services:
     ...
     environment:
       ...
-      - LAMBDA_REMOTE_DOCKER=0
       - LAMBDA_DOCKER_FLAGS=-e NODE_OPTIONS=--inspect-brk=0.0.0.0:9229 -p 9229:9229
 ```
 

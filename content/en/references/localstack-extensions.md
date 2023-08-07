@@ -138,16 +138,16 @@ from localstack.extensions.api import Extension
 
 LOG = logging.getLogger(__name__)
 
-class ReadyAnnoucerExtension(Extension):
+class ReadyAnnouncerExtension(Extension):
     name = "my_ready_annoucer"
 
     def on_platform_ready(self):
-    	LOG.info("my plugin is laded and localstack is ready to roll!")
+    	LOG.info("my plugin is loaded and localstack is ready to roll!")
 ```
 
 ### Package your Extension
 
-Your extensions needs to be packaged as a Python distribution with a `setup.cfg` or `setup.py` config. LocalStack uses the [Plux](https://github.com/localstack/plux) code loading framework to load your code from a Python [entry point](https://packaging.python.org/en/latest/specifications/entry-points/).
+Your extensions need to be packaged as Python distributions with a `setup.cfg` or `setup.py` config. LocalStack uses the [Plux](https://github.com/localstack/plux) code loading framework to load your code from a Python [entry point](https://packaging.python.org/en/latest/specifications/entry-points/).
 
 You can either use Plux to discover the entrypoints from your code when
 building and publishing your distribution, or manually define them as in the
@@ -171,7 +171,7 @@ install_requires =
 
 [options.entry_points]
 localstack.extensions =
-    my_ready_annoucer = localstack_annoucer.extension:ReadyAnnoucerExtension
+    my_ready_annoucer = localstack_annoucer.extension:ReadyAnnouncerExtension
 ```
 
 The entry point group is the Plux namespace `locastack.extensions`, and the entry point name is the plugin name `my_ready_announcer`. The object reference points to the plugin class.
