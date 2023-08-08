@@ -1,13 +1,22 @@
 ---
-title: "Lesson 6"
-linkTitle: "Lesson 6"
+title: "Full Project Demo"
+linkTitle: "Full Project Demo"
 weight: 6
 description: >
-  Lesson short description
+  This video explores one of our many Developer Hub sample applications, a note-taking application. We'll take you
+  through the full process, from checking out the GitHub project, to running the functioning app on LocalStack. 
 length: 09:01
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
 ---
 
-Lesson content here
+Discover the ins and outs of one of our Developer Hub's practical sample applications—a note-taking platform. 
+This video tutorial offers a comprehensive walk-through, beginning with the checkout of the GitHub project and
+culminating in deploying the operational application on LocalStack. Covering the essentials, we'll guide you
+through dependency installation, backend and frontend build, and a detailed exploration of the application's service
+diagram to unveil the integral components at play.
+
+Further exploring:
+
+- [LocalStack Developer Hub Applications](https://docs.localstack.cloud/applications)
