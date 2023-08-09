@@ -65,9 +65,10 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 {{< /alert >}}
 
 ### Invoke the Function with AWS CLI
-Invoke the function directly. See ['Lambda CLI invoke docs'](https://docs.aws.amazon.com/cli/latest/reference/lambda/invoke.html) 
+Invoke the function directly. See [Lambda CLI invoke docs](https://docs.aws.amazon.com/cli/latest/reference/lambda/invoke.html) for more details.
+
 The command below encodes the body as a JSON string, just like an event coming from API Gateway or Lambda URL does.
-This requires AWS CLI v2. To see examples of the three ways to use the AWS CLI with LocalStack, see this repo: [Simple AWS CLI Sample with Lambda](https://github.com/localstack-samples/sample-simple-invoke-lambda)
+This requires AWS CLI v2. To see examples of the three ways to use the AWS CLI with LocalStack, see this repo: [Simple AWS CLI Sample with Lambda](https://github.com/localstack-samples/sample-simple-invoke-lambda).
 
 
 #### Using awslocal
