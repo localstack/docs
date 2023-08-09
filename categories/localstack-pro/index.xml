@@ -5105,6 +5105,23 @@ To retrieve the MQTT endpoint, use the &lt;a href="https://docs.aws.amazon.com/i
 &lt;h4 class="alert-heading">Note&lt;/h4>
 In the old Lambda provider, you could create a function with any arbitrary string as the role, such as &lt;code>r1&lt;/code>. However, the new provider requires the role ARN to be in the format &lt;code>arn:aws:iam::000000000000:role/lambda-role&lt;/code> and validates it using an appropriate regex. However, it currently does not check whether the role exists.
 &lt;/div>
+&lt;h3 id="invoke-the-function-with-aws-cli">Invoke the Function with AWS CLI&lt;/h3>
+&lt;p>Invoke the function directly. See &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/lambda/invoke.html">&amp;lsquo;Lambda CLI invoke docs&amp;rsquo;&lt;/a>
+The command below encodes the body as a JSON string, just like an event coming from API Gateway or Lambda URL does.
+This requires AWS CLI v2. To see examples of the three ways to use the AWS CLI with LocalStack, see this repo: &lt;a href="https://github.com/localstack-samples/sample-simple-invoke-lambda">Simple AWS CLI Sample with Lambda&lt;/a>&lt;/p>
+&lt;h4 id="using-awslocal">Using awslocal&lt;/h4>
+&lt;p>This should be using AWS ClI v2 similar to this output.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>awslocal --version
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>aws-cli/2.13.3 Python/3.11.4 Darwin/22.5.0 exe/x86_64 prompt/off
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name localstack-lambda-url-example \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-binary-format raw-in-base64-out \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;body&amp;#34;: &amp;#34;{\&amp;#34;num1\&amp;#34;: \&amp;#34;10\&amp;#34;, \&amp;#34;num2\&amp;#34;: \&amp;#34;10\&amp;#34;}&amp;#34; }&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h4 id="using-aws-cli-with-endpoint">Using AWS CLI with endpoint&lt;/h4>
+&lt;p>Notice the &amp;ndash;endpoint parameter.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws --endpoint http://localhost:4566 --region us-east-1 lambda invoke --function-name localstack-lambda-url-example \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-binary-format raw-in-base64-out \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;body&amp;#34;: &amp;#34;{\&amp;#34;num1\&amp;#34;: \&amp;#34;10\&amp;#34;, \&amp;#34;num2\&amp;#34;: \&amp;#34;10\&amp;#34;}&amp;#34; }&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="create-a-function-url">Create a Function URL&lt;/h3>
 &lt;p>With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html">&lt;code>CreateFunctionURLConfig&lt;/code> API&lt;/a>. To create a URL for invoking the function, run the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function-url-config \
@@ -5221,40 +5238,40 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 &lt;h3 id="docker-not-available">Docker not available&lt;/h3>
 &lt;p>In the old Lambda provider, Lambda functions were executed within the LocalStack container using the local executor mode. This mode was used as a fallback if the Docker socket was unavailable in the LocalStack container. However, many users inadvertently used the local executor mode instead of the intended Docker executor mode, which caused unexpected behavior.&lt;/p>
 &lt;p>If you encounter the following error message, you may be using the local executor mode:&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-10" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-12" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-shell"
-id="tabs-10-00-tab" data-toggle="tab" href="#tabs-10-00" role="tab"
-onclick="persistLang(&amp;#34;shell&amp;#34;);"aria-controls="tabs-10-00" aria-selected="false">
+id="tabs-12-00-tab" data-toggle="tab" href="#tabs-12-00" role="tab"
+onclick="persistLang(&amp;#34;shell&amp;#34;);"aria-controls="tabs-12-00" aria-selected="false">
 LocalStack Logs
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-10-01-tab" data-toggle="tab" href="#tabs-10-01" role="tab"
-aria-controls="tabs-10-01" aria-selected="false">
+id="tabs-12-01-tab" data-toggle="tab" href="#tabs-12-01" role="tab"
+aria-controls="tabs-12-01" aria-selected="false">
 AWS CLI
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-10-02-tab" data-toggle="tab" href="#tabs-10-02" role="tab"
-aria-controls="tabs-10-02" aria-selected="false">
+id="tabs-12-02-tab" data-toggle="tab" href="#tabs-12-02" role="tab"
+aria-controls="tabs-12-02" aria-selected="false">
 SAM
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-10-content">
+&lt;div class="tab-content" id="tabs-12-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-10-00" role="tabpanel" aria-labelled-by="tabs-10-00-tab">
+id="tabs-12-00" role="tabpanel" aria-labelled-by="tabs-12-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Lambda &lt;span style="color:#4e9a06">&amp;#39;arn:aws:lambda:us-east-1:000000000000:function:my-function:$LATEST&amp;#39;&lt;/span> changed to failed. Reason: Docker not available
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raise DockerNotAvailable&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Docker not available&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
+id="tabs-12-01" role="tabpanel" aria-labelled-by="tabs-12-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>An error occurred &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>ResourceConflictException&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> when calling the Invoke operation &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>reached max retries: 0&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>: The operation cannot be performed at this time. The &lt;span style="color:#204a87;font-weight:bold">function&lt;/span> is currently in the following state: Failed&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-10-02" role="tabpanel" aria-labelled-by="tabs-10-02-tab">
+id="tabs-12-02" role="tabpanel" aria-labelled-by="tabs-12-02-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Error: Failed to create/update the stack: sam-app, Waiter StackCreateComplete failed: Waiter encountered a terminal failure state: For expression &lt;span style="color:#4e9a06">&amp;#34;Stacks[].StackStatus&amp;#34;&lt;/span> we matched expected path: &lt;span style="color:#4e9a06">&amp;#34;CREATE_FAILED&amp;#34;&lt;/span> at least once&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;/div>
