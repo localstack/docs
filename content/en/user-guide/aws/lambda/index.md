@@ -64,6 +64,38 @@ $ awslocal lambda create-function \
 In the old Lambda provider, you could create a function with any arbitrary string as the role, such as `r1`. However, the new provider requires the role ARN to be in the format `arn:aws:iam::000000000000:role/lambda-role` and validates it using an appropriate regex. However, it currently does not check whether the role exists.
 {{< /alert >}}
 
+### Invoke the Function with AWS CLI
+Invoke the function directly. See ['Lambda CLI invoke docs'](https://docs.aws.amazon.com/cli/latest/reference/lambda/invoke.html) 
+The command below encodes the body as a JSON string, just like an event coming from API Gateway or Lambda URL does.
+This requires AWS CLI v2. To see examples of the three ways to use the AWS CLI with LocalStack, see this repo: [Simple AWS CLI Sample with Lambda](https://github.com/localstack-samples/sample-simple-invoke-lambda)
+
+
+#### Using awslocal
+This should be using AWS ClI v2 similar to this output.
+```shell
+awslocal --version
+```
+```text
+aws-cli/2.13.3 Python/3.11.4 Darwin/22.5.0 exe/x86_64 prompt/off
+```
+
+{{< command >}}
+$ awslocal lambda invoke --function-name localstack-lambda-url-example \
+	--cli-binary-format raw-in-base64-out \
+	--payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
+{{< / command >}}
+
+#### Using AWS CLI with endpoint
+Notice the --endpoint parameter.
+
+{{< command >}}
+$ aws --endpoint http://localhost:4566 --region us-east-1 lambda invoke --function-name localstack-lambda-url-example \
+	--cli-binary-format raw-in-base64-out \
+	--payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
+{{< / command >}}
+
+
+
 ### Create a Function URL
 
 With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the [`CreateFunctionURLConfig` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html). To create a URL for invoking the function, run the following command:
