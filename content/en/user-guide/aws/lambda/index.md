@@ -72,7 +72,7 @@ This requires AWS CLI v2. To see examples of the three ways to use the AWS CLI w
 
 
 #### Using awslocal
-This should be using AWS ClI v2 similar to this output.
+This should be using AWS CLI v2 similar to this output.
 ```shell
 awslocal --version
 ```
