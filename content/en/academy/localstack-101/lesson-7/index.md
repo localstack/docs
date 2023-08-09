@@ -10,6 +10,7 @@ length: 15:59
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
+url: "/academy/localstack-101/cloud-pods/"
 ---
 
 This video will cover: 

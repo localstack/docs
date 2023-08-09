@@ -10,6 +10,7 @@ length: 07:01
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
+url: "/academy/localstack-101/getting-started/"
 ---
 
 There are several LocalStack installation methods to kickstart your cloud development journey. 

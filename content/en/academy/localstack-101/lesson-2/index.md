@@ -11,6 +11,7 @@ length: 09:20
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
+url: "/academy/localstack-101/what-is-localstack/"
 ---
 
 In this lesson, we'll talk about LocalStack:

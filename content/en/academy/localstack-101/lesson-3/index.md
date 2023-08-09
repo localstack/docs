@@ -10,6 +10,7 @@ length: 03:25
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
+url: "/academy/localstack-101/why-localstack/"
 ---
 
 Let's imagine this scenario: Alice, a software developer, takes on the task of creating a serverless 

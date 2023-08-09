@@ -10,6 +10,7 @@ length: 00:50
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
+url: "/academy/localstack-101/web-app-resource-browser/"
 ---
 
 In this informative video we guide you through the essential steps of the LocalStack platform:

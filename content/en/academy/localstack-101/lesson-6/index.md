@@ -9,6 +9,7 @@ length: 09:01
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
+url: "/academy/localstack-101/full-project-demo/"
 ---
 
 Discover the ins and outs of one of our Developer Hub's practical sample applications—a note-taking platform. 

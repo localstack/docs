@@ -10,4 +10,5 @@ length: 05:03
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
 type: lessons
+url: /academy/localstack-101/course-overview/
 ---
