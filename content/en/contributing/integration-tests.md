@@ -14,7 +14,7 @@ LocalStack has an extensive set of [integration tests](https://github.com/locals
 The following guiding principles apply to writing integration tests:
 
 -   Tests should pass when running against AWS:
-    -   Don't make assumptions about the time it takes to create resources. If you do asserts after creating resources, use `poll_condition` or `retry` to wait for the resource to be created.
+    -   Don't make assumptions about the time it takes to create resources. If you do asserts after creating resources, use `poll_condition`, `retry` or one of the waiters included in the boto3 library to wait for the resource to be created.
     -   Make sure your tests always clean up AWS resources, even if your test fails! Prefer existing factory fixtures (like `sqs_create_queue`). Introduce try/finally blocks if necessary.
 -   Tests should be runnable concurrently:
     -   Protect your tests against side effects. Example: never assert on global state that could be modified by a concurrently running test (like `assert len(sqs.list_queues()) == 1`; may not hold!).
@@ -28,7 +28,9 @@ The following guiding principles apply to writing integration tests:
 We use [pytest](https://docs.pytest.org) for our testing framework.
 Older tests were written using the unittest framework, but its use is discouraged.
 
-If your test matches the pattern `tests/integration/**/test_*.py` it will be picked up by the integration test suite.
+If your test matches the pattern `tests/integration/**/test_*.py` or `tests/aws/**/test_*.py` it will be picked up by the integration test suite.
+Any test targeting one or more AWS services should go into `tests/aws/**` in the corresponding service package.
+Every test in `tests/aws/**/test_*.py` must be marked by exactly one pytest marker, e.g. `@markers.aws.validated`.
 
 ### Functional-style tests
 
@@ -160,6 +162,8 @@ TEST_TARGET=AWS_CLOUD;
 AWS_DEFAULT_REGION=us-east-1;
 AWS_PROFILE=ls-sandbox
 ```
+
+Once you're confident your test is reliably working against AWS you can add the pytest marker `@markers.aws.validated`.
 
 #### Create a snapshot test
 
