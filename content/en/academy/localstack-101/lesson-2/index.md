@@ -6,7 +6,6 @@ description: >
   Discover the power of LocalStack, a game-changing platform enabling Cloud Development Teams to test and
   develop Cloud applications locally. Replacing AWS in most use cases, LocalStack ships as a 
   Docker image, and supports over 70 AWS APIs, along with advanced collaboration features and CI integrations.
-  LocalStack empowers developers to take control of their environments and optimize development and testing processes.
 length: 09:20
 leadimage: thumbnail.jpg
 videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
