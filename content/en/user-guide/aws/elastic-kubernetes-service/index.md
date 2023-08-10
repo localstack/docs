@@ -413,7 +413,7 @@ $ curl http://eks-service-2.localhost.localstack.cloud:8081/v1
 
 It is important to note that the host names `eks-service-1.localhost.localstack.cloud` and `eks-service-2.localhost.localstack.cloud` both resolve to `127.0.0.1` (localhost). Consequently, you can utilize them to communicate with your service endpoints and distinguish between different services within the Kubernetes load balancer.
 
-However, it might encounter issues in scenarios where you intend to run your Load Balancer (LB) on standard ports such as 80/443 since some of these ports could already be occupied on your local machine. For instance, by default, LocalStack allocates port 443 to expose APIs via the HTTPS endpoint (`https://localhost.localstack.cloud`). Hence, it's crucial to ensure that you expose your LB on a custom, non-standard port to prevent conflicts.
+However, it might encounter issues in scenarios where you intend to run your Load Balancer (LB) on standard ports such as 80/443 since some of these ports may already be occupied on your local machine. For instance, by default, LocalStack allocates port 443 to expose APIs via the HTTPS endpoint (`https://localhost.localstack.cloud`). Hence, it's crucial to ensure that you expose your LB on a custom, non-standard port to prevent conflicts.
 
 Additionally, note that LocalStack EKS employs [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress) as the Kubernetes ingress controller internally.
 
