@@ -152,7 +152,7 @@ You can further tag the image to be pushed to ECR:
 $ docker tag nginx localhost.localstack.cloud:4510/fancier-nginx
 {{< / command >}}
 
-Finally, you can push the image to ECR:
+Finally, you can push the image to local ECR:
 
 {{< command >}}
 $ docker push localhost.localstack.cloud:4510/fancier-nginx
