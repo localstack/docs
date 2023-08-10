@@ -21,6 +21,11 @@ Fetch the Log Groups using the [`DescribeLogGroups`](https://docs.aws.amazon.com
 
 {{< command >}}
 $ awslocal logs describe-log-groups
+{{< / command >}}
+
+The output should look similar to the following:
+
+```sh
 {
     "logGroups": [
         {
@@ -39,12 +44,18 @@ $ awslocal logs describe-log-groups
         }
     ]
 }
-{{< / command >}}
+```
 
 Get the log streams for the Log Group using the [`DescribeLogStreams`](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeLogStreams.html) API. Run the following command to get the Log Stream name:
 
 {{< command >}}
-$ awslocal logs describe-log-streams --log-group-name /aws/lambda/serverless-local-hello
+$ awslocal logs describe-log-streams \
+    --log-group-name /aws/lambda/serverless-local-hello
+{{< / command >}}
+
+The output should look similar to the following:
+
+```sh
 {
     "logStreams": [
         {
@@ -59,12 +70,18 @@ $ awslocal logs describe-log-streams --log-group-name /aws/lambda/serverless-loc
         }
     ]
 }
-{{< / command >}}
+```
 
 You can now fetch the log events using the [`GetLogEvents`](https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html) API. Run the following command to get the logs:
 
 {{< command >}}
-$ awslocal logs get-log-events --log-group-name '/aws/lambda/serverless-local-hello' --log-stream-name '2023/05/02/[$LATEST]853a59d0767cfaf10d6b29a6790d8b03'
+$ awslocal logs get-log-events \
+    --log-group-name '/aws/lambda/serverless-local-hello' --log-stream-name '2023/05/02/[$LATEST]853a59d0767cfaf10d6b29a6790d8b03'
+{{< / command >}}
+
+The output should look similar to the following:
+
+```sh
 {
     "events": [
         {
@@ -86,9 +103,9 @@ $ awslocal logs get-log-events --log-group-name '/aws/lambda/serverless-local-he
     "nextForwardToken": "f/00000000000000000000000000000000000000000000000000000002",
     "nextBackwardToken": "b/00000000000000000000000000000000000000000000000000000000"
 }
-{{< / command >}}
+```
 
-Optionally, you can use [filters](https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html) or [queries](https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html) to refine your results.
+You can use [filters](https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html) or [queries](https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html) with LocalStack Pro/Team to refine your results.
 
 ## Metric Alarms
 
@@ -124,7 +141,9 @@ $ watch "awslocal cloudwatch describe-alarms --alarm-names my-alarm | jq '.Metri
 Afterward, you can add some data that will cause a breach and set the `metric-alarm` state to **ALARM** using the following command:
 
 {{< command >}}
-$ awslocal cloudwatch put-metric-data --namespace test --metric-data '[{"MetricName": "Orders", "Value": -1}]'
+$ awslocal cloudwatch put-metric-data \
+    --namespace test \
+    --metric-data '[{"MetricName": "Orders", "Value": -1}]'
 {{< / command >}}
 
 Within a few seconds, the alarm state should change to **ALARM**, and eventually, it will go back to **OK** as we configured it to treat missing data points as `not breaching`. This allows you to observe how the alarm behaves in response to the provided data.
@@ -159,11 +178,15 @@ Please be aware of the following known limitations in LocalStack:
 - Metric streams are not supported.
 {{< /alert >}}
 
-## CloudWatch Resource Browser
+## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing CloudWatch logs. You can access the Resource Browser by opening the LocalStack Web Application in your browser and navigating to the Resources section, then clicking on [**CloudWatch Logs**](https://app.localstack.cloud/resources/cloudwatch/groups) and [**CloudWatch Metrics**](https://app.localstack.cloud/resources/monitoring) under the **Management/Governance** section.
 
 The Resource Browser allows you to perform the following actions:
+
+<img src="cloudwatch-log-groups-resource-browser.png" alt="CloudWatch Logs Resource Browser" title="CloudWatch Logs Resource Browser" width="900" />
+
+<img src="cloudwatch-metrics-resource-browser.png" alt="CloudWatch Metrics Resource Browser" title="CloudWatch Metrics Resource Browser" width="900" />
 
 * **Create Log Group**: Create a new log group by specifying the `Log Group Name`, `KMS Key ID`, and `Tags`.
 * **Put metric**: Create a new metric by specifying the `Namespace` and `Metric Data`.
