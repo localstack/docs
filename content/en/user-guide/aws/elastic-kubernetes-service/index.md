@@ -27,7 +27,7 @@ You can create a new cluster using the [`CreateCluster`](https://docs.aws.amazon
 
 {{< command >}}
 $ awslocal eks create-cluster \
-  --name fancier-cluster \
+  --name cluster1 \
   --role-arn "arn:aws:iam::000000000000:role/eks-role" \
   --resources-vpc-config "{}"
 {{</ command >}}
@@ -37,8 +37,8 @@ You can see an output similar to the following:
 ```bash
 {
     "cluster": {
-        "name": "fancier-cluster",
-        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster",
+        "name": "cluster1",
+        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/cluster1",
         "createdAt": "2022-04-13T16:38:24.850000+02:00",
         "roleArn": "arn:aws:iam::000000000000:role/eks-role",
         "resourcesVpcConfig": {},
@@ -67,11 +67,11 @@ f05770ec8523   rancher/k3s:v1.21.5-k3s2       "/bin/k3s server --t…"   1 minut
 After successfully creating and initializing the cluster, we can easily find the server endpoint, using the [`DescribeCluster`](https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeCluster.html) API. Run the following command:
 
 {{< command >}}
-$ awslocal eks describe-cluster --name fancier-cluster
+$ awslocal eks describe-cluster --name cluster1
 {
     "cluster": {
-        "name": "fancier-cluster",
-        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster",
+        "name": "cluster1",
+        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/cluster1",
         "createdAt": "2022-04-13T17:12:39.738000+02:00",
         "endpoint": "https://localhost.localstack.cloud:4511",
         "roleArn": "arn:aws:iam::000000000000:role/eks-role",
@@ -163,11 +163,11 @@ Now, let us set up the EKS cluster using the image pushed to local ECR.
 Next, we can configure `kubectl` to use the EKS cluster, using the [`UpdateKubeconfig`](https://docs.aws.amazon.com/eks/latest/APIReference/API_UpdateClusterConfig.html) API. Run the following command:
 
 {{< command >}}
-$ awslocal eks update-kubeconfig \
-  --name fancier-cluster && kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster
+$ awslocal eks update-kubeconfig --name cluster1
+& kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
 ...
-Added new context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster to /home/localstack/.kube/config
-Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster".
+Added new context arn:aws:eks:us-east-1:000000000000:cluster/cluster1 to /home/localstack/.kube/config
+Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/cluster1".
 ...
 {{< / command >}}
 
@@ -274,7 +274,7 @@ You can customize the Load Balancer port by configuring `EKS_LOADBALANCER_PORT` 
 
 ### Enabling HTTPS with local SSL/TLS certificate for the Ingress
 
-To enable HTTPS for your endpoints, you can configure Kubernetes to use SSL/TLS with your [certificate for local domain names](https://github.com/localstack/localstack-artifacts/blob/master/local-certs/server.key) `*.localhost.localstack.cloud`.
+To enable HTTPS for your endpoints, you can configure Kubernetes to use SSL/TLS with the [certificate for local domain names](https://github.com/localstack/localstack-artifacts/blob/master/local-certs/server.key) `*.localhost.localstack.cloud`.
 
 The local EKS cluster comes pre-configured with a secret named `ls-secret-tls`, which can be conveniently utilized to define the `tls` section in the ingress configuration:
 
@@ -340,7 +340,7 @@ $ awslocal eks list-clusters
 
 To interact with your Kubernetes cluster, configure your Kubernetes client (such as `kubectl` or other SDKs) to point to the `endpoint` provided in the `create-cluster` output mentioned earlier. However, depending on whether you're calling the Kubernetes API from your local machine or from within a Lambda function, you might need to use different endpoint URLs.
 
-For local machine interactions, use `https://localhost:6443` as the endpoint URL. If you are accessing the Kubernetes API from within a Lambda function, you should use `https://172.17.0.1:6443` as the endpoint URL.
+For local machine interactions, use `https://localhost:6443` as the endpoint URL. If you are accessing the Kubernetes API from within a Lambda function, you should use `https://172.17.0.1:6443` as the endpoint URL, assuming that `172.17.0.1` is the IP address of the Docker network bridge.
 
 By using the appropriate endpoint URL based on your context, you can effectively communicate with your Kubernetes cluster and manage your resources as needed.
 
