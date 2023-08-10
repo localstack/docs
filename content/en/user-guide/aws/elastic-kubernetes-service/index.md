@@ -92,7 +92,7 @@ $ awslocal eks describe-cluster --name fancier-cluster
 
 ### Utilizing ECR Images within EKS
 
-You can now use ECR (Amazon Elastic Container Registry) images within your EKS (Amazon Elastic Kubernetes Service) environment.
+You can now use ECR (Elastic Container Registry) images within your EKS environment.
 
 #### Initial configuration
 
