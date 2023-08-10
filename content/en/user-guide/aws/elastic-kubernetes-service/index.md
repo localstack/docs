@@ -110,7 +110,7 @@ Once you have configured this correctly, you can seamlessly use your ECR image w
 
 #### Deploying a sample application from an ECR image
 
-To showcase this behavior, let's go through a concise step-by-step guide that will lead us to the successful pulling of an image from ECR. For the purpose of this guide, we will retag the `nginx` image to be pushed to ECR under a different name and then utilize it for a pod configuration.
+To showcase this behavior, let's go through a concise step-by-step guide that will lead us to the successful pulling of an image from local ECR. For the purpose of this guide, we will retag the `nginx` image to be pushed to a local ECR repository under a different name, and then utilize it for a pod configuration.
 
 You can create a new ECR repository using the [`CreateRepository`](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_CreateRepository.html) API. Run the following command:
 
