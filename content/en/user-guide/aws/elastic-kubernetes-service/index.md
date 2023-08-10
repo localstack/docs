@@ -19,7 +19,7 @@ Start your LocalStack container using your preferred method. We will demonstrate
 
 ### Create an embedded Kubernetes cluster
 
-The default approach to create Kubernetes clusters using the local EKS API is by setting up an embedded [k3d](https://k3d.io/) kube cluster within Docker. LocalStack seamlessly manages the download and installation process, making it hassle-free for users. In most cases, the installation is automatic, eliminating the need for any manual customizations.
+The default approach for creating Kubernetes clusters using the local EKS API is by setting up an embedded [k3d](https://k3d.io/) kube cluster within Docker. LocalStack seamlessly manages the download and installation process, making it hassle-free for users. In most cases, the installation is automatic, eliminating the need for any manual customizations.
 
 A new cluster can be created using the following command:
 
