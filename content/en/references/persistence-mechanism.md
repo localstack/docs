@@ -8,7 +8,7 @@ aliases:
 ---
 
 By default, LocalStack is an ephemeral environment, meaning that, once you terminate your LocalStack instance, all state will be discarded.
-Persistence is a LocalStack Pro feature that can save and restore the state of LocalStack including all AWS resources and their data.
+**Persistence is a LocalStack Pro feature** that can save and restore the state of LocalStack including all AWS resources and their data.
 
 LocalStack has two distinct persistence mechanisms
 
