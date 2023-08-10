@@ -6276,12 +6276,82 @@ distribution beside these shown in this example. They were omited here for brevi
 &lt;h4 class="alert-heading">Note&lt;/h4>
 In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
 &lt;/div></description></item><item><title>User-Guide: CloudWatch</title><link>/user-guide/aws/cloudwatch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudwatch/</guid><description>
-&lt;p>The &lt;a href="https://docs.aws.amazon.com/cloudwatch/">CloudWatch API&lt;/a> allows monitoring of AWS resources.&lt;/p>
+&lt;p>CloudWatch is a comprehensive monitoring and observability service that Amazon Web Services (AWS) provides. It allows you to collect and track metrics, collect and monitor log files, and set alarms. CloudWatch provides valuable insights into your AWS resources, applications, and services, enabling you to troubleshoot issues, optimize performance, and make informed decisions.&lt;/p>
+&lt;p>LocalStack supports CloudWatch via its Community offering, allowing you to leverage CloudWatch functionalities on your local machine. With LocalStack, you can create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/">API coverage page&lt;/a>, which provides information on the extent of CloudWatch&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to CloudWatch and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method and deploy your Lambda functions that will generate some logs. You can get the name for your Lambda Functions using the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_ListFunctions.html">&lt;code>ListFunctions&lt;/code>&lt;/a> API.&lt;/p>
+&lt;p>Fetch the Log Groups using the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeLogGroups.html">&lt;code>DescribeLogGroups&lt;/code>&lt;/a> API. Run the following command to get the Log Group name:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs describe-log-groups&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The output should look similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;logGroups&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;logGroupName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;/aws/lambda/serverless-local-hello&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;creationTime&amp;#34;&lt;/span>: 1683009865348,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;metricFilterCount&amp;#34;&lt;/span>: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:logs:us-east-1:000000000000:log-group:/aws/lambda/serverless-local-hello:*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;storedBytes&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">262&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;logGroupName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;/aws/lambda/serverless-local-hello2&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;creationTime&amp;#34;&lt;/span>: 1683009865420,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;metricFilterCount&amp;#34;&lt;/span>: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:logs:us-east-1:000000000000:log-group:/aws/lambda/serverless-local-hello2:*&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;storedBytes&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">262&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Get the log streams for the Log Group using the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeLogStreams.html">&lt;code>DescribeLogStreams&lt;/code>&lt;/a> API. Run the following command to get the Log Stream name:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs describe-log-streams \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name /aws/lambda/serverless-local-hello&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The output should look similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;logStreams&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;logStreamName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023/05/02/[&lt;/span>&lt;span style="color:#000">$LATEST&lt;/span>&lt;span style="color:#4e9a06">]853a59d0767cfaf10d6b29a6790d8b03&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;creationTime&amp;#34;&lt;/span>: 1683009968958,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;firstEventTimestamp&amp;#34;&lt;/span>: 1683009968920,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;lastEventTimestamp&amp;#34;&lt;/span>: 1683009968945,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;lastIngestionTime&amp;#34;&lt;/span>: 1683009968979,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;uploadSequenceToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:logs:us-east-1:000000000000:log-group:/aws/lambda/serverless-local-hello:log-stream:2023/05/02/[&lt;/span>&lt;span style="color:#000">$LATEST&lt;/span>&lt;span style="color:#4e9a06">]853a59d0767cfaf10d6b29a6790d8b03&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;storedBytes&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">262&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can now fetch the log events using the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_GetLogEvents.html">&lt;code>GetLogEvents&lt;/code>&lt;/a> API. Run the following command to get the logs:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs get-log-events \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-group-name &amp;#39;/aws/lambda/serverless-local-hello&amp;#39; --log-stream-name &amp;#39;2023/05/02/[$LATEST]853a59d0767cfaf10d6b29a6790d8b03&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The output should look similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;events&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;timestamp&amp;#34;&lt;/span>: 1683009968920,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;START RequestId: 71712856-9f41-4d22-827c-e3883f799f25 Version: &lt;/span>&lt;span style="color:#000">$LATEST&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ingestionTime&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">1683009968979&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;timestamp&amp;#34;&lt;/span>: 1683009968932,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;END RequestId: 71712856-9f41-4d22-827c-e3883f799f25&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ingestionTime&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">1683009968979&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;timestamp&amp;#34;&lt;/span>: 1683009968945,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;message&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;REPORT RequestId: 71712856-9f41-4d22-827c-e3883f799f25\tDuration: 1.27 ms\tBilled Duration: 2 ms\tMemory Size: 1024 MB\tMax Memory Used: 1024 MB\t&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ingestionTime&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">1683009968979&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nextForwardToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;f/00000000000000000000000000000000000000000000000000000002&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nextBackwardToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;b/00000000000000000000000000000000000000000000000000000000&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/filter-log-events.html">filters&lt;/a> or &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/logs/get-query-results.html">queries&lt;/a> with LocalStack Pro/Team to refine your results.&lt;/p>
 &lt;h2 id="metric-alarms">Metric Alarms&lt;/h2>
-&lt;p>Alarms can be used to observe thresholds for data-of-interest, and trigger actions automatically. Please also consult the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation">AWS docs&lt;/a> on how alarms are evaluated in general.
-LocalStack currently supports metric-alarm evaluation with &lt;code>statistic&lt;/code> and &lt;code>comparison-operator&lt;/code>.&lt;/p>
+&lt;p>Alarms in CloudWatch are crucial in monitoring specific data thresholds and automating actions based on those thresholds. To learn more about how alarms are evaluated in general, please refer to the &lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarm-evaluation">AWS documentation&lt;/a>.&lt;/p>
+&lt;p>In LocalStack, you can use metric-alarm evaluation, explicitly utilizing the statistic and comparison-operator functionalities. These features enable you to define and evaluate alarms based on various statistical calculations and comparison operators.&lt;/p>
 &lt;h3 id="metric-alarm-examples">Metric Alarm Examples&lt;/h3>
-&lt;p>Metric alarms evaluate the state, by taking into account the data points of E.g. you can create this alarm:
+&lt;p>Metric alarms in CloudWatch allow you to evaluate the state of a metric by analyzing its data points over a specified period. With metric alarms, you can create customized thresholds and define actions based on the metric&amp;rsquo;s behavior.&lt;/p>
+&lt;p>To get started with creating an alarm in LocalStack using the &lt;code>awslocal&lt;/code> integration, use the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudwatch put-metric-alarm \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --alarm-name my-alarm \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-name Orders \
@@ -6291,18 +6361,17 @@ LocalStack currently supports metric-alarm evaluation with &lt;code>statistic&lt
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --evaluation-periods 1 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --period 30 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statistic Minimum \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --treat-missing notBreaching&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>You can now in separate terminal, watch the status of the alarm:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>watch &amp;#34;awslocal cloudwatch describe-alarms --alarm-names my-alarm | jq &amp;#39;.MetricAlarms[0].StateValue&amp;#39;&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>And then add some data will cause a breach, and set the metric-alarm to state ALARM:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudwatch put-metric-data --namespace test --metric-data &amp;#39;[{&amp;#34;MetricName&amp;#34;: &amp;#34;Orders&amp;#34;, &amp;#34;Value&amp;#34;: -1}]&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>The alarm state should change to ALARM after a few seconds, and eventually go back to OK - as we configured to treat missing data points as &amp;ldquo;not breaching&amp;rdquo;.&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --treat-missing notBreaching&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To monitor the status of the alarm, open a separate terminal and execute the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>watch &amp;#34;awslocal cloudwatch describe-alarms --alarm-names my-alarm | jq &amp;#39;.MetricAlarms[0].StateValue&amp;#39;&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Afterward, you can add some data that will cause a breach and set the &lt;code>metric-alarm&lt;/code> state to &lt;strong>ALARM&lt;/strong> using the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudwatch put-metric-data \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --namespace test \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-data &amp;#39;[{&amp;#34;MetricName&amp;#34;: &amp;#34;Orders&amp;#34;, &amp;#34;Value&amp;#34;: -1}]&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Within a few seconds, the alarm state should change to &lt;strong>ALARM&lt;/strong>, and eventually, it will go back to &lt;strong>OK&lt;/strong> as we configured it to treat missing data points as &lt;code>not breaching&lt;/code>. This allows you to observe how the alarm behaves in response to the provided data.&lt;/p>
 &lt;h4 id="metric-alarm-with-action">Metric Alarm with Action&lt;/h4>
-&lt;p>Actions are triggered when the state of the alarm changes.
-For this you can configure &lt;code>alarm-actions&lt;/code>, &lt;code>ok-actions&lt;/code> and &lt;code>insufficient-data-actions&lt;/code>.
-Currently, we only support SNS Topics. The topic must be created beforehand.&lt;/p>
-&lt;p>Here is an example with an alarm that will send a message to the defined topic once the alarm is in state ALARM.
-Note that the &lt;code>alarm-actions&lt;/code> requires a valid ARN of an existing SNS topic.
+&lt;p>When the state of an alarm changes, actions can be triggered accordingly. In LocalStack, you can configure &lt;code>alarm-actions&lt;/code>, &lt;code>ok-actions&lt;/code>, and &lt;code>insufficient-data-actions&lt;/code> to specify the actions to be taken. Currently, only SNS Topics are supported as the target for these actions, and it&amp;rsquo;s important to note that the topic must be created beforehand.&lt;/p>
+&lt;p>Here&amp;rsquo;s an example demonstrating how to set up an alarm that sends a message to the specified topic when entering the &lt;strong>ALARM&lt;/strong> state. Make sure to replace &lt;code>&amp;lt;topic-arn&amp;gt;&lt;/code> with the valid ARN of an existing SNS topic.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudwatch put-metric-alarm \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --alarm-name my-alarm \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-name Orders \
@@ -6313,17 +6382,35 @@ Note that the &lt;code>alarm-actions&lt;/code> requires a valid ARN of an existi
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --period 300 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --statistic Maximum \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --treat-missing notBreaching \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --alarm-actions &amp;lt;topic-arn&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --alarm-actions &amp;lt;topic-arn&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>By executing this command, you&amp;rsquo;ll create an alarm named &lt;code>my-alarm&lt;/code> that monitors the &lt;code>Orders&lt;/code> metric in the &lt;code>test&lt;/code> namespace. If the metric value exceeds the threshold of 50 (using the &lt;code>GreaterThanThreshold&lt;/code> operator) during a single evaluation period of 300 seconds, the alarm will trigger the specified action on the provided SNS topic.&lt;/p>
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
-&lt;p>Known limitations:&lt;/p>
+&lt;p>Please be aware of the following known limitations in LocalStack:&lt;/p>
 &lt;ul>
-&lt;li>Anamoly detection, and extended-statics are not supported&lt;/li>
-&lt;li>&lt;code>unit&lt;/code> values are ignored&lt;/li>
-&lt;li>composite-alarms are not evaluated&lt;/li>
-&lt;li>metric-streams are not supported&lt;/li>
+&lt;li>Anomaly detection and extended statistics are not supported.&lt;/li>
+&lt;li>The &lt;code>unit&lt;/code> values specified in the alarm are ignored.&lt;/li>
+&lt;li>Composite alarms are not evaluated.&lt;/li>
+&lt;li>Metric streams are not supported.&lt;/li>
 &lt;/ul>
-&lt;/div></description></item><item><title>User-Guide: CodeCommit</title><link>/user-guide/aws/codecommit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/codecommit/</guid><description>
+&lt;/div>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing CloudWatch logs. You can access the Resource Browser by opening the LocalStack Web Application in your browser and navigating to the Resources section, then clicking on &lt;a href="https://app.localstack.cloud/resources/cloudwatch/groups">&lt;strong>CloudWatch Logs&lt;/strong>&lt;/a> and &lt;a href="https://app.localstack.cloud/resources/monitoring">&lt;strong>CloudWatch Metrics&lt;/strong>&lt;/a> under the &lt;strong>Management/Governance&lt;/strong> section.&lt;/p>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;img src="cloudwatch-log-groups-resource-browser.png" alt="CloudWatch Logs Resource Browser" title="CloudWatch Logs Resource Browser" width="900" />
+&lt;img src="cloudwatch-metrics-resource-browser.png" alt="CloudWatch Metrics Resource Browser" title="CloudWatch Metrics Resource Browser" width="900" />
+&lt;ul>
+&lt;li>&lt;strong>Create Log Group&lt;/strong>: Create a new log group by specifying the &lt;code>Log Group Name&lt;/code>, &lt;code>KMS Key ID&lt;/code>, and &lt;code>Tags&lt;/code>.&lt;/li>
+&lt;li>&lt;strong>Put metric&lt;/strong>: Create a new metric by specifying the &lt;code>Namespace&lt;/code> and &lt;code>Metric Data&lt;/code>.&lt;/li>
+&lt;li>&lt;strong>Put Alarm&lt;/strong>: Create a new alarm by specifying the &lt;code>Alarm Name&lt;/code>, &lt;code>Alarm Description&lt;/code>, &lt;code>Actions Enabled&lt;/code>, &lt;code>Metric Name&lt;/code>, &lt;code>Namespace&lt;/code>, &lt;code>Statistic&lt;/code>, &lt;code>Comparison Operator&lt;/code>, &lt;code>Threshold&lt;/code>, &lt;code>Evaluation Periods&lt;/code>, &lt;code>Period&lt;/code>, &lt;code>Unit&lt;/code>, &lt;code>Treat Missing Data&lt;/code>, &lt;code>Tags&lt;/code>, and &lt;code>Alarm Actions&lt;/code>.&lt;/li>
+&lt;li>&lt;strong>Check the Resources&lt;/strong>: View and manage existing log groups, metrics, and alarms and perform actions such as &lt;code>Delete&lt;/code>, &lt;code>View&lt;/code>, and &lt;code>Edit&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use CloudWatch in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cloudwatch-metrics-aws">Creating Cloudwatch metric alarms&lt;/a> to demonstrate a simple example for creating CloudWatch metric alarm based on the metrics of a failing Lambda function.&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo">Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3&lt;/a> to deploy a recruiting agency application with a job listings website and view the CloudWatch logs.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: CodeCommit</title><link>/user-guide/aws/codecommit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/codecommit/</guid><description>
 &lt;p>LocalStack Pro contains basic support for CodeCommit code repositories. The CodeCommit API can be used to create Git repositories, clone these repos to local folders, push commits with changes, etc.&lt;/p>
 &lt;p>A simple example has been added in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/codecommit-git-repo">this Github repository&lt;/a>. The sample creates an Git repository via the AWS CodeCommit API locally, commits and pushes a test file to the repository, and then checks out the file in a fresh clone of the repository.&lt;/p>
 &lt;p>Please note that CodeCommit is a fairly large API and currently not all methods are supported yet, but we are actively extending the implementation on an ongoing basis.&lt;/p></description></item><item><title>User-Guide: Cognito</title><link>/user-guide/aws/cognito/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cognito/</guid><description>
