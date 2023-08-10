@@ -3,8 +3,6 @@ title: "S3"
 linkTitle: "S3"
 description: >
   Get started with S3 on LocalStack
-aliases:
-  - /aws/s3/
 ---
 
 ## Introduction
@@ -15,7 +13,7 @@ LocalStack supports S3 via the Community offering, allowing you to use the S3 AP
 
 ## Getting started
 
-This guide is designed for users new to CodeCommit and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+This guide is designed for users new to S3 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method. We will demonstrate how you can create an S3 bucket, manage S3 objects, and generate pre-signed URLs for S3 objects.
 
@@ -116,43 +114,13 @@ You will see a generated pre-signed URL for your S3 object. You can use [`cURL`]
 Similar to AWS, LocalStack categorizes requests as either [Path-Style or Virtual Hosted-Style](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html) based on the Host header of the request. The following example illustrates this distinction:
 
 ```bash
-<bucket-name>.s3.<region>.localhost.localstack.cloud # host-style request
+http://<bucket-name>.s3.<region>.localhost.localstack.cloud:4566/<key-name> # host-style request
+http://s3.<region>.localhost.localstack.cloud:4566/<bucket-name>/<key-name> # path-style request
 ```
 
-As a special case in LocalStack, leaving out `<region>` also works for the `s3.localhost.localstack.cloud` domain:
-
-As a special case in LocalStack, leaving out `<region>` also works for the `s3.localhost.localstack.cloud` domain:
-
-In LocalStack, a special case exists where omitting the `<region>` also functions correctly for the `s3.localhost.localstack.cloud domain`. 
-
-`<bucket-name>.s3.localhost.localstack.cloud` is also a host-style request.
+As a special case in LocalStack, leaving out `<region>` also works for the `s3.localhost.localstack.cloud` domain. `<bucket-name>.s3.localhost.localstack.cloud` is also a host-style request.
 
 All other requests are treated as path-style requests. Using the `s3.localhost.localstack.cloud` endpoint URL is recommended for all requests aimed at S3.
-
-## Storage Configuration
-
-LocalStack Pro/Team offers the flexibility to configure specific storage locations on the filesystem for S3 files. This feature has various applications, such as efficiently moving multiple files into one or more S3 buckets without relying on awslocal for uploads. 
-
-To store files within the LocalStack container, specify the path(s) in the `S3_DIR` environment variable. Combining it with a Docker mount allows you to store files in a preferred location on the filesystem.
-
-You have two options for specifying paths:
-
-- If you provide only a path, all S3 buckets will be stored in that location:
-  ```bash
-  S3_DIR=/tmp/s3-buckets
-  ```
-  This setup creates directories with the same names as the S3 buckets, and uploaded files will be stored within these directories.
-- If you use the `<path>:<name>` format, LocalStack will create an S3 bucket named `<name>` and utilize `<path>` as the storage location for that bucket's files.
-  You can create multiple S3 buckets simultaneously by separating each path and name mapping with commas, like this: `<path>:<name>`,`<path>:<name>`.
-  ```bash
-  S3_DIR=/tmp/s3-buckets/first-bucket:my-first-bucket,/tmp/s3-buckets/second-bucket:my-second-bucket
-  ```
-
-Regardless of the `S3_DIR` configuration, if LocalStack is launched and the specified path(s) is not empty, the S3 buckets will be pre-populated with the existing files in those paths.
-
-{{< alert title="Note" >}}
-It's important to be aware that the usage of `S3_DIR` in conjunction with `PERSISTENCE=1` is not supported. When you enable `PERSISTENCE=1`, it allows you to store files within LocalStack without the need to separately mount them using `S3_DIR` from your LocalStack volume. For more details, please refer to our [Persistence documentation]({{< ref "persistence-mechanism" >}}).
-{{% /alert %}}
 
 ## Configuring Cross-Origin Resource Sharing on S3
 
@@ -239,7 +207,7 @@ The LocalStack Web Application provides a [Resource Browser](https://docs.locals
 The Resource Browser allows you to perform the following actions:
 
 - **Create Bucket**: Create a new S3 bucket by specifying a **Bucket Name**, **Bucket Configuration**, **ACL**, **Object Ownership**, and more.
-- **Objects & Permissions**: View, upload, download, and delete objects in your S3 buckets. You can also view and edit the permissions, like the CORS Configuration, for each object.
+- **Objects & Permissions**: View, upload, download, and delete objects in your S3 buckets. You can also view and edit the permissions, like the CORS Configuration for the bucket.
 - **Create Folder**: Create a new folder in your S3 bucket by clicking on the **Create Folder** button and specifying a **Folder Name**.
 - **Delete Bucket**: Delete an S3 bucket by selecting the S3 bucket and clicking on **Actions** button and clicking on **Remove Selected**.
 
