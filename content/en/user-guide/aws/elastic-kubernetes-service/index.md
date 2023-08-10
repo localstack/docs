@@ -202,7 +202,7 @@ EOF
 You can now describe the pod to see if the image was pulled successfully:
 
 {{< command >}}
-kubectl describe pod fancier-nginx
+$ kubectl describe pod fancier-nginx
 {{< / command >}}
 
 In the events, we can see that the pull from ECR was successful:
