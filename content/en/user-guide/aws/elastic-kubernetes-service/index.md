@@ -215,7 +215,7 @@ In the events, we can see that the pull from ECR was successful:
 
 To make an EKS service externally accessible, it is necessary to create an Ingress configuration, which exposes the service on a specific path to the load balancer.
 
-For our sample deployment, we can create an nginx Kubernetes service by applying the following configuration:
+For our sample deployment, we can create an `nginx` Kubernetes service by applying the following configuration:
 
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
