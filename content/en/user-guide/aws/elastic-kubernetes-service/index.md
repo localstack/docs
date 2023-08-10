@@ -7,7 +7,7 @@ description: >
 
 ## Introduction
 
-Elastic Kubernetes Service (EKS) is a managed Kubernetes service that makes it easy to run Kubernetes on AWS without installing, operating, and maintaining your own Kubernetes control plane or worker nodes. Kubernetes is an open-source system for automating containerised applications' deployment, scaling, and management.
+Elastic Kubernetes Service (EKS) is a managed Kubernetes service that makes it easy to run Kubernetes on AWS without installing, operating, and maintaining your own Kubernetes control plane or worker nodes. Kubernetes is an open-source system for automating containerized applications' deployment, scaling, and management.
 
 LocalStack supports Elastic Kubernetes Service via the Pro/Team offering, allowing you to use the EKS APIs in your local environment to spin up embedded Kubernetes clusters in your local Docker engine or use an existing Kubernetes installation you can access from your local machine (defined in `$HOME/.kube/config`). The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_eks/), which provides information on the extent of EKS's integration with LocalStack.
 
