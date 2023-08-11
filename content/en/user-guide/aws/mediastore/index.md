@@ -1,18 +1,18 @@
 ---
 title: Elemental MediaStore
-linkTitle: MediaStore
+linkTitle: Elemental MediaStore
 description: >
-  Get started with MediaStore on LocalStack
+  Get started with Elemental MediaStore on LocalStack
 ---
 
 ## Introduction
 
-LocalStack supports MediaStore via the Pro/Team offering, allowing you to use the MediaStore APIs in your local environment.
-The supported APIs are available on our API Coverage Page, which provides information on the extent of MediaStore integration with LocalStack.
+LocalStack supports Elemental MediaStore via the Pro/Team offering, allowing you to use the Elemental MediaStore APIs in your local environment.
+The supported APIs are available on our API Coverage Page, which provides information on the extent of Elemental MediaStore integration with LocalStack.
 
 ## Getting started
 
-This guide is designed for users new to MediaStore and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
+This guide is designed for users new to Elemental MediaStore and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
 We will walk through creating a container, uploading and downloading an asset.
 
 ### Create a container
@@ -71,5 +71,5 @@ $ awslocal mediastore-data get-object \
 
 ## Troubleshooting
 
-The MediaStore service requires use of a custom HTTP/HTTPS endpoint.
+The Elemental MediaStore service requires use of a custom HTTP/HTTPS endpoint.
 If you encounter any problems, please refer to our [Networking documentation]({{< ref "references/network-troubleshooting" >}}).
