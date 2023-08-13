@@ -8148,10 +8148,7 @@ Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>You can save te &lt;span style="color:#4e9a06">`&lt;/span>AccessKeyId&lt;span style="color:#4e9a06">`&lt;/span> and &lt;span style="color:#4e9a06">`&lt;/span>SecretAccessKey&lt;span style="color:#4e9a06">`&lt;/span> values, and &lt;span style="color:#204a87">export&lt;/span> them in the environment to run commands under the &lt;span style="color:#4e9a06">`&lt;/span>&lt;span style="color:#204a87">test&lt;/span>&lt;span style="color:#4e9a06">`&lt;/span> user. Run the following command:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can save te &lt;code>AccessKeyId&lt;/code> and &lt;code>SecretAccessKey&lt;/code> values, and export them in the environment to run commands under the &lt;code>test&lt;/code> user. Run the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_ACCESS_KEY_ID=LKIAQAAAAAAAGFWKCM5F AWS_SECRET_ACCESS_KEY=DUulXk2N2yD6rgoBBR9A/5iXa6dBcLyDknr925Q5
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sts get-caller-identity
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -8159,20 +8156,12 @@ Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Account&amp;#34;: &amp;#34;000000000000&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Arn&amp;#34;: &amp;#34;arn:aws:iam::000000000000:user/test&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>You can see that the request is now running under the &lt;span style="color:#4e9a06">`&lt;/span>&lt;span style="color:#204a87">test&lt;/span>&lt;span style="color:#4e9a06">`&lt;/span> user.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">## Enforcing IAM Policies&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The Pro/Team offering provides the IAM security enforcement feature that can be used to &lt;span style="color:#204a87">test&lt;/span> your security policies and create a more realistic environment that more closely resembles real AWS. The environment configuration &lt;span style="color:#4e9a06">`&lt;/span>&lt;span style="color:#000">ENFORCE_IAM&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>1&lt;span style="color:#4e9a06">`&lt;/span> is required &lt;span style="color:#204a87;font-weight:bold">while&lt;/span> starting LocalStack to &lt;span style="color:#204a87">enable&lt;/span> this feature. In LocalStack, IAM enforcement is disabled, and all APIs can be accessed without authentication.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Presented below is a straightforward example showcasing the implementation of IAM policy enforcement. Initially, it involves creating a user and obtaining access/secret keys. Subsequently, an attempt is made to create a bucket using that user&lt;span style="color:#4e9a06">&amp;#39;s credentials, which inevitably fails due to insufficient permissions. Lastly, a policy is attached to the user, granting the necessary `s3:CreateBucket` permission, thereby enabling the successful creation of the bucket.
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">To follow this example, please open two separate terminal sessions: **Terminal 1** for the administrative IAM commands, which will utilize the default root IAM user, and **Terminal 2** for executing the commands under the test IAM user we&amp;#39;&lt;/span>re about to create. This way, we can demonstrate the differentiation in access permissions between the administrative and &lt;span style="color:#204a87">test&lt;/span> users in real-time.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>In **Terminal 1**, execute the following commands:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;p>You can see that the request is now running under the &lt;code>test&lt;/code> user.&lt;/p>
+&lt;h2 id="enforcing-iam-policies">Enforcing IAM Policies&lt;/h2>
+&lt;p>The Pro/Team offering provides the IAM security enforcement feature that can be used to test your security policies and create a more realistic environment that more closely resembles real AWS. The environment configuration &lt;code>ENFORCE_IAM=1&lt;/code> is required while starting LocalStack to enable this feature. In LocalStack, IAM enforcement is disabled, and all APIs can be accessed without authentication.&lt;/p>
+&lt;p>Presented below is a straightforward example showcasing the implementation of IAM policy enforcement. Initially, it involves creating a user and obtaining access/secret keys. Subsequently, an attempt is made to create a bucket using that user&amp;rsquo;s credentials, which inevitably fails due to insufficient permissions. Lastly, a policy is attached to the user, granting the necessary &lt;code>s3:CreateBucket&lt;/code> permission, thereby enabling the successful creation of the bucket.&lt;/p>
+&lt;p>To follow this example, please open two separate terminal sessions: &lt;strong>Terminal 1&lt;/strong> for the administrative IAM commands, which will utilize the default root IAM user, and &lt;strong>Terminal 2&lt;/strong> for executing the commands under the test IAM user we&amp;rsquo;re about to create. This way, we can demonstrate the differentiation in access permissions between the administrative and test users in real-time.&lt;/p>
+&lt;p>In &lt;strong>Terminal 1&lt;/strong>, execute the following commands:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-user --user-name test
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-access-key --user-name test
@@ -8180,26 +8169,16 @@ Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;AccessKeyId&amp;#34;: &amp;#34;AKIA4HPFP0TZHP3Z5VI6&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SecretAccessKey&amp;#34;: &amp;#34;mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Navigate to **Terminal 2**, where we will configure the access keys &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> the user &lt;span style="color:#4e9a06">`&lt;/span>&lt;span style="color:#204a87">test&lt;/span>&lt;span style="color:#4e9a06">`&lt;/span> in the environment. Once the access keys are set, you will attempt to create an S3 bucket using these credentials.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;p>Navigate to &lt;strong>Terminal 2&lt;/strong>, where we will configure the access keys for the user &lt;code>test&lt;/code> in the environment. Once the access keys are set, you will attempt to create an S3 bucket using these credentials.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_ACCESS_KEY_ID=AKIA4HPFP0TZHP3Z5VI6 AWS_SECRET_ACCESS_KEY=mwi/8Zhg8ypkJQmkdBq87UA3MbSa3x0HWnkcC/Ua
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://mybucket
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket failed: s3://mybucket An error occurred (AccessDeniedException) when calling the CreateBucket operation: Access to the specified resource is denied&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>As anticipated, the attempt to create the bucket fails with an &lt;span style="color:#4e9a06">`&lt;/span>AccessDeniedException&lt;span style="color:#4e9a06">`&lt;/span> error, confirming that user &lt;span style="color:#4e9a06">`&lt;/span>&lt;span style="color:#204a87">test&lt;/span>&lt;span style="color:#4e9a06">`&lt;/span> lacks the necessary permissions &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> this action.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Let&lt;span style="color:#4e9a06">&amp;#39;s now return to **Terminal 1** and execute the following commands:
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
+&lt;p>As anticipated, the attempt to create the bucket fails with an &lt;code>AccessDeniedException&lt;/code> error, confirming that user &lt;code>test&lt;/code> lacks the necessary permissions for this action.&lt;/p>
+&lt;p>Let&amp;rsquo;s now return to &lt;strong>Terminal 1&lt;/strong> and execute the following commands:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-policy --policy-name p1 --policy-document &amp;#39;{&amp;#34;Version&amp;#34;:&amp;#34;2012-10-17&amp;#34;,&amp;#34;Statement&amp;#34;:[{&amp;#34;Effect&amp;#34;:&amp;#34;Allow&amp;#34;,&amp;#34;Action&amp;#34;:&amp;#34;s3:CreateBucket&amp;#34;,&amp;#34;Resource&amp;#34;:&amp;#34;*&amp;#34;}]}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam attach-user-policy --user-name test --policy-arn arn:aws:iam::000000000000:policy/p1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">Now, let&amp;#39;&lt;/span>s switch back to **Terminal 2** and observe how the bucket creation succeeds with the &lt;span style="color:#4e9a06">`&lt;/span>&lt;span style="color:#204a87">test&lt;/span>&lt;span style="color:#4e9a06">`&lt;/span> IAM user:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;p>Now, let&amp;rsquo;s switch back to &lt;strong>Terminal 2&lt;/strong> and observe how the bucket creation succeeds with the &lt;code>test&lt;/code> IAM user:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>confirm that we&amp;#39;re using the credentials of the `test` user
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sts get-caller-identity
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
@@ -8207,33 +8186,25 @@ Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://mybucket
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket: mybucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Currently, credentials are extracted from the request, typically from the &lt;code>Authorization&lt;/code> HTTP header. However, it&amp;rsquo;s important to note that the request signature is not fully validated, with a few exceptions, such as S3-presigned URLs.
 &lt;/div>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">## Explainable IAM&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The IAM policy engine logs output related to failed policy evaluation directly to the LocalStack log. You can &lt;span style="color:#204a87">enable&lt;/span> &lt;span style="color:#4e9a06">`&lt;/span>&lt;span style="color:#000">DEBUG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>1&lt;span style="color:#4e9a06">`&lt;/span> to gain visibility into these log messages, allowing you to identify the additional policies required &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> your request to succeed.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>For instance, &lt;span style="color:#204a87;font-weight:bold">if&lt;/span> you attempt to add a policy &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> creating Lambda functions but only permit &lt;span style="color:#4e9a06">`&lt;/span>lambda:CreateFunction&lt;span style="color:#4e9a06">`&lt;/span> as an allowed action &lt;span style="color:#204a87;font-weight:bold">while&lt;/span> overlooking the necessity of &lt;span style="color:#4e9a06">`&lt;/span>iam:PassRole&lt;span style="color:#4e9a06">`&lt;/span>, the policy engine&lt;span style="color:#a40000">&amp;#39;&lt;/span>s log will highlight this missing permission.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Create a policy document named &lt;span style="color:#4e9a06">`&lt;/span>policy_1.json&lt;span style="color:#4e9a06">`&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">```&lt;/span>json
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Version&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2012-10-17&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Statement&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Sid&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;FirstStatement&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Effect&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;lambda:CreateFunction&amp;#34;&lt;/span>,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Resource&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;*&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;h2 id="explainable-iam">Explainable IAM&lt;/h2>
+&lt;p>The IAM policy engine logs output related to failed policy evaluation directly to the LocalStack log. You can enable &lt;code>DEBUG=1&lt;/code> to gain visibility into these log messages, allowing you to identify the additional policies required for your request to succeed.&lt;/p>
+&lt;p>For instance, if you attempt to add a policy for creating Lambda functions but only permit &lt;code>lambda:CreateFunction&lt;/code> as an allowed action while overlooking the necessity of &lt;code>iam:PassRole&lt;/code>, the policy engine&amp;rsquo;s log will highlight this missing permission.&lt;/p>
+&lt;p>Create a policy document named &lt;code>policy_1.json&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2012-10-17&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Statement&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Sid&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;FirstStatement&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Action&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;lambda:CreateFunction&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;*&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You will now proceed with creating a new user, attaching the necessary policies, generating access keys, and attempting to create a function using the newly created user&amp;rsquo;s credentials.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-user --user-name test-user
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
