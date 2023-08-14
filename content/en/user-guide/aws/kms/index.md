@@ -89,6 +89,22 @@ The Resource Browser allows you to perform the following actions:
 - **Enable & Disable Key**: Select any listed keys to enable or disable them by clicking the **Actions** button and select **Enable Selected** or **Disable Selected**.
 - **Delete Key**: Select any listed keys to delete them by clicking the **Actions** button and selecting **Schedule Deletion**.
 
+## Custom IDs for KMS keys via tags
+
+You can assign custom IDs to KMS keys using the `_custom_id_` tag during key creation. This can be useful to pre-seed a test environment and use a static `KeyId` for your keys.
+
+Below is a simple example to create a key with a custom `KeyId` (note that the `KeyId` should have the format of a UUID):
+
+{{< command >}}
+$ awslocal kms create-key --tags '[{"TagKey":"_custom_id_","TagValue":"00000000-0000-0000-0000-000000000001"}]'
+{
+    "KeyMetadata": {
+        "AWSAccountId": "000000000000",
+        "KeyId": "00000000-0000-0000-0000-000000000001",
+    ....
+}
+{{< / command >}}
+
 ## Limitations
 
 ### Encryption data format
