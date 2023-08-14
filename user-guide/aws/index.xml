@@ -8364,6 +8364,16 @@ The Resource Browser allows you to perform the following actions:
 &lt;li>&lt;strong>Enable &amp;amp; Disable Key&lt;/strong>: Select any listed keys to enable or disable them by clicking the &lt;strong>Actions&lt;/strong> button and select &lt;strong>Enable Selected&lt;/strong> or &lt;strong>Disable Selected&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>Delete Key&lt;/strong>: Select any listed keys to delete them by clicking the &lt;strong>Actions&lt;/strong> button and selecting &lt;strong>Schedule Deletion&lt;/strong>.&lt;/li>
 &lt;/ul>
+&lt;h2 id="custom-ids-for-kms-keys-via-tags">Custom IDs for KMS keys via tags&lt;/h2>
+&lt;p>You can assign custom IDs to KMS keys using the &lt;code>_custom_id_&lt;/code> tag during key creation. This can be useful to pre-seed a test environment and use a static &lt;code>KeyId&lt;/code> for your keys.&lt;/p>
+&lt;p>Below is a simple example to create a key with a custom &lt;code>KeyId&lt;/code> (note that the &lt;code>KeyId&lt;/code> should have the format of a UUID):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kms create-key --tags &amp;#39;[{&amp;#34;TagKey&amp;#34;:&amp;#34;_custom_id_&amp;#34;,&amp;#34;TagValue&amp;#34;:&amp;#34;00000000-0000-0000-0000-000000000001&amp;#34;}]&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyMetadata&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;AWSAccountId&amp;#34;: &amp;#34;000000000000&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KeyId&amp;#34;: &amp;#34;00000000-0000-0000-0000-000000000001&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ....
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="limitations">Limitations&lt;/h2>
 &lt;h3 id="encryption-data-format">Encryption data format&lt;/h3>
 &lt;p>In LocalStack&amp;rsquo;s KMS implementation, the encryption process is uniformly symmetric, even when an asymmetric key is requested. Furthermore, LocalStack utilizes an encrypted data format distinct from that employed by AWS.&lt;/p>
