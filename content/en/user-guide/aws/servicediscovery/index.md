@@ -7,7 +7,7 @@ description: >
 
 ## Introduction
 
-Service Discovery simplifies the management and discovery of services by locating and connecting to the components and resources that make up their applications. Service Discovery allows for a centralized mechanism for dynamically registering, tracking, and resolving service instances, allowing seamless communication between services. Service discovery uses Cloud Map API actions to manage HTTP and DNS namespaces for ECS services, enabling automatic registration and discovery of services running in the cluster. 
+Service Discovery simplifies the management and discovery of services by locating and connecting to the components and resources that make up their applications. Service Discovery allows for a centralized mechanism for dynamically registering, tracking, and resolving service instances, allowing seamless communication between services. Service discovery uses Cloud Map API actions to manage HTTP and DNS namespaces for services, enabling automatic registration and discovery of services running in the cluster. 
 
 LocalStack supports Resource Groups via the Pro/Team offering, allowing you to use the Service Discovery APIs in your local environment to monitor and manage your services across various environments and network topologies. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_servicediscovery/), which provides information on the extent of Service Discovery's integration with LocalStack.
 
@@ -139,7 +139,7 @@ Create a new file named `ecs-service-discovery.json` and add the following conte
     "taskDefinition": "tutorial-task-def",
     "serviceRegistries": [
        {
-          "registryArn": // Add the ARN of the Service Discovery you created above
+          "registryArn": <ARN_OF_THE_SERVICE_DISCOVERY>
        }
     ],
     "launchType": "FARGATE",
