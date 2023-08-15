@@ -1,83 +1,44 @@
 ---
 title: "Relational Database Service (RDS)"
 linkTitle: "Relational Database Service (RDS)"
-categories: ["LocalStack Pro"]
 description: >
   Get started with Relational Database Service (RDS) on LocalStack
-aliases:
-  - /aws/rds/
 ---
 
-LocalStack supports a basic version of the [Relational Database Service (RDS)](https://aws.amazon.com/rds/) for testing.
+## Introduction
 
-## Supported DB engines
+RDS (Relational Database Service) is a managed database service provided by Amazon Web Services (AWS) that allows users to setup, operate, and scale relational databases in the cloud. RDS allows you to deploy and manage various relational database engines like MySQL, PostgreSQL, MariaDB, and Microsoft SQL Server. RDS handles routine database tasks such as provisioning, patching, backup, recovery, and scaling.
 
-Currently, it is possible to spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases on the local machine.
+LocalStack supports RDS via the Pro/Team offering, allowing you to use the RDS APIs in your local environment to create and manage RDS clusters and instances for testing & integration purposes. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_rds/), which provides information on the extent of RDS's integration with LocalStack.
 
-{{< alert title="Note" >}}
-Some configuration of the RDS clusters and instances have currently only CRUD functionality. E.g., the `storage-encrypted` flag is returned as it is set, but there is no support for actual storage encryption yet. 
-{{< /alert >}}
+## Getting started
 
-### Postgres Engine
+This guide is designed for users new to RDS and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-When creating an RDS DB cluster or instance with `postgres`/`aurora-postgresql` DB engine and a specific `EngineVersion`, LocalStack will install and provision the respective Postgres version on demand.
+Start your LocalStack container using your preferred method. We will demonstrate the following with the AWS CLI:
 
-Currently, major versions between 10 and 15 can be chosen - when selecting a major version outside of this range, the default version 11 is used as fallback.
+1. Creating an RDS cluster.
+2. Generating a `SecretsManager` secret containing the database password.
+3. Executing a basic `SELECT 123 query` through the RDS Data API.
 
-Please be aware that the minor version cannot be freely selected - the latest available version will be installed in the docker environment.
+LocalStack's RDS implementation also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries against RDS clusters over a JSON/REST interface. 
 
-In order to disable installation of custom versions, you may configure the environment variable `RDS_PG_CUSTOM_VERSIONS=0`, in which case always the default Postgres version 11 will be used.
+### Create an RDS cluster
 
-
-{{< alert title="Note" >}}
-The `describe-db-cluster` and `describe-db-instances` calls will still return the `engine-version` as it was defined for the creation, but the actual installed postgres engine could be different. This is important, e.g., when using a terraform configuration, as it should not detect changes in that case.
-{{< /alert >}}
-
-DB instances and DB cluster with Postgres engine support the creation and restoring of snapshots.
-
-### MariaDB Engine
-
-MariaDB will be installed as OS package in LocalStack. Currently, it is not possible to freely select a specific version. 
-
-Snapshots are currently not supported for MariaDB.
-
-### MySQL Engine
-
-By default, a MariaDB installation is used when requesting a MySQL engine type. 
-
-If you wish to use a real MySQL version, you can do so by setting the environment variable `RDS_MYSQL_DOCKER=1`. With this feature enabled, MySQL community server will be started in a new Docker container when requesting the MySQL engine. The `engine-version` will be used as the tag for the image, meaning you can freely select the desired MySQL version that is listed on the [official MySQL Docker Hub](https://hub.docker.com/_/mysql).
-
-In case you want to use a special image, you can also set the environment variable `MYSQL_IMAGE=<my-image:tag>`.
-
-{{< alert title="Note" >}}
-Please be aware that MySQL images for `arm64` are only available for newer versions. Please check the [MySQL Docker Hub repository](https://hub.docker.com/_/mysql) for details on the availability.
-{{< /alert >}}
-
-Please note that the `MasterUserPassword` defined for the database cluster/instance will be used as the `MYSQL_ROOT_PASSWORD` environment for user `root` in the MySQL container. The user for `MasterUserName` will use the same password, and will have full access to the defined database.
-
-DB Snapshots are currently not supported for MySQL.
-
-### MSSQL Engine
-
-{{< alert title="Note" >}}
-In order to use MSSQL databases, you need to explicitly accept the [Microsoft SQL Server End-User Licensing Agreement (EULA)](https://hub.docker.com/_/microsoft-mssql-server) by setting `MSSQL_ACCEPT_EULA=Y` in the LocalStack container environment.
-
-Please note that MSSQL does not yet have official support for `arm64`. 
-{{< /alert >}}
-
-For the MSSQL engine, the database server is started in a new docker container using the `latest` image.
-
-DB Snapshots are currently not supported for MSSQL.
-
-## End-to-end example (Postgres)
-
-The local RDS service also supports the [RDS Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html), which allows executing data queries against RDS clusters over a JSON/REST interface. 
-
-Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple `SELECT 123` query via the RDS Data API.
-
+To create an RDS cluster, you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html) API. The following command creates a new cluster with the name `db1` and the engine `aurora-postgresql`. The cluster will be created with a single instance, which will be used as the master instance. The instance will be created with the default username `test` and password `test`.
 
 {{< command >}}
-$ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test --master-username myuser --master-user-password mypassword
+$ awslocal rds create-db-cluster \
+    --db-cluster-identifier db1 \
+    --engine aurora-postgresql \
+    --database-name test \
+    --master-username myuser \
+    --master-user-password mypassword
+{{< / command >}}
+
+You should see the following output:
+
+```json
 {
     "DBCluster": {
         ...
@@ -87,7 +48,13 @@ $ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-pos
         ...
     }
 }
+```
 
+### Create a SecretsManager secret
+
+To create a `SecretsManager` secret, you can use the [`CreateSecret`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateSecret.html) API. Before creating the secret, you need to create a JSON file containing the credentials for the database. The following command creates a file called `mycreds.json` with the credentials for the database.
+
+{{< command >}}
 $ cat << 'EOF' > mycreds.json
 {
     "engine": "aurora-postgresql", 
@@ -98,17 +65,41 @@ $ cat << 'EOF' > mycreds.json
     "port": "4510"
 }
 EOF
+{{< / command >}}
 
+Run the following command to create the secret:
+
+{{< command >}}
 $ awslocal secretsmanager create-secret \
     --name dbpass \
     --secret-string file://mycreds.json
+{{< / command >}}
+
+You should see the following output:
+
+```json
 {
     "ARN": "arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX",
     "Name": "dbpass",
     "VersionId": "fffa1f4a-2381-4a2b-a977-4869d59a16c0"
 }
+```
 
-$ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX --include-result-metadata --sql 'SELECT 123'
+### Execute a query
+
+To execute a query, you can use the [`ExecuteStatement`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html) API. The following command executes a query against the database. The query returns the value `123`.
+
+{{< command >}}
+$ awslocal rds-data execute-statement \
+    --database test \
+    --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 \
+    --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX \
+    --include-result-metadata --sql 'SELECT 123'
+{{< / command >}}
+
+You should see the following output:
+
+```json
 {
     "columnMetadata": [
         {
@@ -137,69 +128,152 @@ $ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds
         ]
     ]
 }
+```
 
-{{< / command >}}
-
-You can also use other clients like `psql` to interact with the database. The hostname and port of your created instance can be found in the output from above or by running `awslocal rds describe-db-instances`.
+Alternative clients, such as `psql`, can also be employed to interact with the database. You can retrieve the hostname and port of your created instance either from the preceding output or by using the [`DescribeDbInstances`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) API.
 
 {{< command >}}
 $ psql -d test -U test -p 4513 -h localhost -W
-Password: <enter "test">
 {{< / command >}}
 
-## Default usernames and passwords
+## Supported DB engines
 
-Please consider the following notes regarding default usernames/passwords and database names:
-- The default for `master-username` and `db-name` is "test". The default `master-user-password` is "test" - except for MSSQL DBs, which uses "Test123!" as the default master password.
-- You can use any `master-username`, except "postgres", for creating a new RDS instance. The user will automatically be created.
-- The user "postgres" is special, and it is not possible to create a new RDS instance with this user name.
-- Do not use `db-name` "postgres" as it is already in use by LocalStack.
+Presently, you can spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases directly on your local machine, using LocalStack's RDS implementation. However, certain configurations of RDS clusters and instances currently offer only CRUD functionality. For instance, the `storage-encrypted` flag is returned as configured, but active support for actual storage encryption is not yet available.
+
+### PostgreSQL Engine
+
+When you establish an RDS DB cluster or instance using the `postgres`/`aurora-postgresql` DB engine along with a specified `EngineVersion`, LocalStack will dynamically install and configure the corresponding PostgreSQL version as required. Presently, you have the option to choose major versions ranging from 10 to 15. If you select a major version beyond this range, the system will automatically default to version 11.
+
+It's important to note that the selection of minor versions is not available. The latest major version will be installed within the Docker environment. If you wish to prevent the installation of customized versions, adjusting the `RDS_PG_CUSTOM_VERSIONS` environment variable to `0` will enforce the use of the default PostgreSQL version 11.
+
+{{< alert title="Note" >}}
+While the [`DescribeDbCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html) and [`DescribeDbInstances`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) APIs will still reflect the initially defined `engine-version`, the actual installed PostgreSQL engine might differ. This can have implications, particularly when employing a Terraform configuration, where unexpected changes should be avoided.
+{{< /alert >}}
+
+Instances and clusters with the PostgreSQL engine have the capability to both create and restore snapshots.
+
+### MariaDB Engine
+
+MariaDB will be set up as an operating system package within LocalStack. However, currently, the option to choose a particular version is not available. As of now, snapshots are not supported for MariaDB.
+
+### MySQL Engine
+
+When choosing a MySQL engine type, the default installation will be MariaDB. If you prefer to utilize an actual MySQL version, you can achieve this by setting the environment variable `RDS_MYSQL_DOCKER=1`. When this feature is enabled, the MySQL community server will be launched in a new Docker container upon requesting the MySQL engine. 
+
+The `engine-version` will serve as the tag for the Docker image, allowing you to freely select the desired MySQL version from those available on the [official MySQL Docker Hub](https://hub.docker.com/_/mysql). If you have a specific image in mind, you can also use the environment variable `MYSQL_IMAGE=<my-image:tag>`.
+
+{{< alert title="Note" >}}
+The `arm64` MySQL images are limited to newer versions. For more information about availability, check the [MySQL Docker Hub repository](https://hub.docker.com/_/mysql).
+{{< /alert >}}
+
+It's essential to understand that the `MasterUserPassword` you define for the database cluster/instance will be used as the `MYSQL_ROOT_PASSWORD` environment variable for the `root` user within the MySQL container. The user specified in `MasterUserName` will use the same password and will have complete access to the database. As of now, snapshots are not supported for MySQL.
+
+### Microsoft SQL Server Engine
+
+To utilize MSSQL databases, it's necessary to expressly agree to the terms of the [Microsoft SQL Server End-User Licensing Agreement (EULA)](https://hub.docker.com/_/microsoft-mssql-server) by configuring `MSSQL_ACCEPT_EULA=Y` within the LocalStack container environment. The `arm64` architecture is not currently officially supported for MSSQL.
+
+For the MSSQL engine, the database server is initiated in a fresh Docker container using the `latest` image. As of now, snapshots are not supported for MSSQL.
+
+## Default Usernames and Passwords
+
+The following details concern default usernames, passwords, and database names for local RDS clusters created by LocalStack:
+
+-   The default values for `master-username` and `db-name` are both **test**. For the `master-user-password`, the default is **test**, except for MSSQL databases, which employ **Test123!** as the default master password.
+-   When setting up a new RDS instance, you have the flexibility to utilize any `master-username`, with the exception of **postgres**. The system will automatically generate the user.
+-   It's important to remember that the username **postgres** has special significance, preventing the creation of a new RDS instance under this particular name.
+-   For clarity, please avoid using the `db-name` **postgres**, as it is already allocated for use by LocalStack.
 
 ## IAM Authentication Support
 
-IAM auth token can be used to connect to RDS. This feature is currently only supported for Postgres in LocalStack.
+IAM authentication tokens can be employed to establish connections with RDS. As of now, this functionality is supported for PostgreSQL within LocalStack. However, IAM authentication is not yet validated at this stage. Consequently, any database user assigned the `rds_iam` role will obtain a valid token, thereby gaining the ability to connect to the database.
 
-{{< alert title="Note" >}}
-Please be aware that the IAM authentication is not verified at this point, which means that any DB user that is granted the role `rds_iam` will receive a valid token and will be able to connect to the database.
-{{< /alert >}}
+In this example, you will be able to verify the IAM authentication process for RDS Postgres:
 
-### Using IAM example
+1.  Establish a database instance and obtain the corresponding host and port information.
+2.  Connect to the database using the master username and password. Subsequently, generate a new user and assign the `rds_iam` role as follows:
+    -   `CREATE USER <username> WITH LOGIN`
+    -   `GRANT rds_iam TO <username>`
+3.  Create a token for the `<username>` using the `generate-db-auth-token` command.
+4.  Connect to the database utilizing the user you generated and the token obtained in the previous step as the password.
 
-The following example showcases the IAM authentication flow for RDS Postgres:
+### Create a database instance
 
-* create a DB instance, and retrieve the host and port for the instance
-* connect to the DB using the master username and password. Then create a new user and grant it the role `rds_iam`:
-   * `CREATE USER <username> WITH LOGIN`
-   * `GRANT rds_iam TO <username>`
-* generate a token for the `<username>` via the `generate-db-auth-token` command
-* connect to the DB with the user you have a created and the token generated in the previous step as password
+The following command creates a new database instance with the name `mydb` and the engine `postgres`. The database will be created with a single instance, which will be used as the master instance.
 
 {{< command >}}
 $ MASTER_USER=hello
 $ MASTER_PW='MyPassw0rd!'
 $ DB_NAME=test
+$ awslocal rds create-db-instance \
+    --master-username $MASTER_USER \
+    --master-user-password $MASTER_PW \
+    --db-instance-identifier mydb \
+    --engine postgres \
+    --db-name $DB_NAME \
+    --enable-iam-database-authentication \
+    --db-instance-class db.t3.small
+{{< / command >}}
 
-$ awslocal rds create-db-instance --master-username $MASTER_USER --master-user-password $MASTER_PW --db-instance-identifier mydb --engine postgres --db-name $DB_NAME --enable-iam-database-authentication --db-instance-class db.t3.small
+### Connect to the database
 
+You can retrieve the hostname and port of your created instance either from the preceding output or by using the [`DescribeDbInstances`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) API. Run the following command to connect to the database:
+
+{{< command >}}
 $ PORT=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r ".DBInstances[0].Endpoint.Port")
 $ HOST=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r ".DBInstances[0].Endpoint.Address")
+{{< / command >}}
 
+Next, you can connect to the database using the master username and password:
+
+{{< command >}}
 $ PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c 'CREATE USER myiam WITH LOGIN'
-
 $ PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c 'GRANT rds_iam TO myiam'
+{{< / command >}}
 
+### Create a token
+
+You can create a token for the user you generated using the [`generate-db-auth-token`](https://docs.aws.amazon.com/cli/latest/reference/rds/generate-db-auth-token.html) command:
+
+{{< command >}}
 $ TOKEN=$(awslocal rds generate-db-auth-token --username myiam --hostname $HOST --port $PORT)
+{{< / command >}}
 
+You can now connect to the database utilizing the user you generated and the token obtained in the previous step as the password:
+
+{{< command >}}
 $ PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST
 {{< / command >}}
 
 ## Global Database Support
 
-LocalStack supports [Aurora Global Database](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html), with some limitations:
+LocalStack extends support for [Aurora Global Database](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html) with certain limitations:
 
-* When creating a global database, there will only be one local database created. 
-All clusters and instances that belong to the global database will point to the same endpoint. 
+- Creating a global database will result in the generation of a single local database. All clusters and instances associated with the global database will share a common endpoint.
+- It's important to note that clusters removed from a global database lose their ability to function as standalone clusters, differing from their intended behavior on AWS.
+- At present, the capability for persistence within global databases is not available.
 
-* Consequently, clusters that have been removed from a global database cannot be used as a standalone-cluster, like on AWS.
+## Resource Browser
 
-* Persistence for global databases is currently not supported.
+The LocalStack Web Application provides a Resource Browser for managing RDS instances and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **RDS** under the **Database** section.
+
+<img src="rds-resource-browser.png" alt="RDS Resource Browser" title="RDS Resource Browser" width="900" />
+<br>
+<br>
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create Instance**: Create a new RDS instance by specifying the instance name, engine, DBInstance Class & Identifier, and other parameters.
+- **Create Cluster**: Create a new RDS cluster by specifying the database name, engine, DBCluster Identifier, and other parameters.
+- **View Instance & Cluster**: View an existing RDS instance or cluster by clicking the instance/cluster name.
+- **Edit Instance & Cluster**: Edit an existing RDS instance or cluster by clicking the instance/cluster name and clicking the **EDIT INSTANCE** or **EDIT CLUSTER** button.
+- **Remove Instance & Cluster**: Remove an existing RDS instance or cluster by clicking the instance/cluster name and clicking the **ACTIONS** followed by **Remove Selected** button.
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use RDS in LocalStack for various use cases:
+
+- [AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL](https://github.com/localstack/appsync-graphql-api-sample)
+- [Amazon RDS initialization using CDK, Lambda, ECR, and Secrets Manager](https://github.com/localstack/amazon-rds-init-cdk)
+- [Serverless RDS Proxy with API Gateway, Lambda, and Aurora RDS](https://github.com/localstack-samples/sample-serverless-rds-proxy-demo/)
+- [Running queries against an RDS database](https://github.com/localstack/localstack-pro-samples/tree/master/rds-db-queries)
+- [Running cloud integration tests against LocalStack's RDS with Testcontainers](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample)
