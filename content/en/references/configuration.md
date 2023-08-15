@@ -349,9 +349,7 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| **Deprecated.** Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
 | `EDGE_PORT` | `4566` (default)| **Deprecated.** Port number for the edge service, the main entry point for all API invocations. |
 | `EDGE_FORWARD_URL` | | **Deprecated.** Optional target URL to forward all edge requests to (e.g., for distributed deployments)
-| `USE_LIGHT_IMAGE` | `1` (default) | **Deprecated.** Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
 | `INIT_SCRIPTS_PATH` | `/some/path` | **Deprecated.** Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
-| `LEGACY_IAM_PROVIDER` | `0` (default)\|`1` | **Deprecated.** Enables the pre-1.0 legacy IAM provider |
 | `KMS_PROVIDER` | `moto` (default), `local-kms` | **Deprecated.** `local-kms` provider is deprecated and marked for removal. |
 | `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | **Deprecated.** Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
 | `ES_MULTI_CLUSTER` | `0`\|`1` | **Deprecated.** Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
