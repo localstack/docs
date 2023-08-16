@@ -78,6 +78,7 @@ Below is a simple example that illustrates (1) creation of an RDS cluster, (2) c
 
 {{< command >}}
 $ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test --master-username myuser --master-user-password mypassword
+
 {
     "DBCluster": {
         ...
@@ -102,13 +103,21 @@ EOF
 $ awslocal secretsmanager create-secret \
     --name dbpass \
     --secret-string file://mycreds.json
+
 {
     "ARN": "arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX",
     "Name": "dbpass",
     "VersionId": "fffa1f4a-2381-4a2b-a977-4869d59a16c0"
 }
 
-$ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX --include-result-metadata --sql 'SELECT 123'
+# Update the secret-arn with the ARN of the secret you created in the previous step.
+
+$ awslocal rds-data execute-statement --database test \
+  --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 \
+  --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX \
+  --sql 'SELECT 123' \
+  --include-result-metadata
+  
 {
     "columnMetadata": [
         {
