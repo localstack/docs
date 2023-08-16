@@ -7,8 +7,8 @@ description: >
   management using the Resource Browser and an exploration of Stacks, this guide provides a seamless
   journey into harnessing LocalStack's capabilities for your visual development needs.
 length: 00:50
-leadimage: thumbnail.jpg
-videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
+leadimage: web-app.png
+videoUrl: https://www.youtube.com/embed/SoXtngYp-8k
 type: lessons
 url: "/academy/localstack-101/web-app-resource-browser/"
 ---

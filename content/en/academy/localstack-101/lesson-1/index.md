@@ -7,8 +7,8 @@ description: >
   an overview of the exciting topics to be discussed. Discover the course's main themes and gain insight
   into specific sections through a concise overview, allowing you to easily navigate to your preferred content.
 length: 05:03
-leadimage: thumbnail.jpg
-videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
+leadimage: overview.png
+videoUrl: https://www.youtube.com/embed/VLL-BI1AWcc
 type: lessons
 url: /academy/localstack-101/course-overview/
 ---

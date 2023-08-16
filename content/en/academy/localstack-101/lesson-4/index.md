@@ -7,8 +7,8 @@ description: >
   method, using the LocalStack CLI, or alternatively, you can pull the Docker image, run it or include it in
   Docker Compose, and start using AWS services. 
 length: 07:01
-leadimage: thumbnail.jpg
-videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
+leadimage: getting-started.png
+videoUrl: https://www.youtube.com/embed/CzX4mfiS058
 type: lessons
 url: "/academy/localstack-101/getting-started/"
 ---
@@ -22,8 +22,8 @@ You'll understand the diverse approaches to LocalStack installation:
 - Install `awscli-local` and `localstack` via `pip`, or, more recently, you can just use `brew` on macOS.
 - Commence LocalStack using `localstack start [-d]`.
 - Create a bucket and list buckets using `awslocal s3 mb s3://test` and `awslocal s3 ls`.
-2. Alternative - Docker: Dive into an alternate installation method using Docker: pull the image and run it, it's that easy.
-3. Docker Compose: Explore yet another approach via Docker Compose.
+1. Alternative - Docker: Dive into an alternate installation method using Docker: pull the image and run it, it's that easy.
+2. Docker Compose: Explore yet another approach via Docker Compose.
 
 Further reading:
 

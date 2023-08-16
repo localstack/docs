@@ -6,8 +6,8 @@ description: >
   This video explores one of our many Developer Hub sample applications, a note-taking application. We'll take you
   through the full process, from checking out the GitHub project, to running the functioning app on LocalStack. 
 length: 09:01
-leadimage: thumbnail.jpg
-videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
+leadimage: full-demo.png
+videoUrl: https://www.youtube.com/embed/cQxg3Dnteyc
 type: lessons
 url: "/academy/localstack-101/full-project-demo/"
 ---

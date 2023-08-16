@@ -7,8 +7,8 @@ description: >
   develop Cloud applications locally. Replacing AWS in most use cases, LocalStack ships as a 
   Docker image, and supports over 70 AWS APIs, along with advanced collaboration features and CI integrations.
 length: 09:20
-leadimage: thumbnail.jpg
-videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
+leadimage: what-is-ls.png
+videoUrl: https://www.youtube.com/embed/B2EML5L3-tw
 type: lessons
 url: "/academy/localstack-101/what-is-localstack/"
 ---

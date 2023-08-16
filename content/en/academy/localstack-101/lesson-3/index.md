@@ -7,8 +7,8 @@ description: >
   With faster deployment and reduced dependency on infrastructure teams, developers can unleash their full
   potential and streamline cloud workflows.
 length: 03:25
-leadimage: thumbnail.jpg
-videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
+leadimage: why-ls.png
+videoUrl: https://www.youtube.com/embed/EDGIBpUpYWU
 type: lessons
 url: "/academy/localstack-101/why-localstack/"
 ---

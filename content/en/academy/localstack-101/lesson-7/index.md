@@ -7,8 +7,8 @@ description: >
   Uncover their significance in enabling reproducible applications, collaborative sandboxing, and 
   consistent AWS API parity. Engage in a brief and enlightening demo showcasing their practicality.
 length: 15:59
-leadimage: thumbnail.jpg
-videoUrl: https://www.youtube.com/embed/SYCeM-Q6nRs
+leadimage: cloud-pod.png
+videoUrl: https://www.youtube.com/embed/InqTdSvxuag
 type: lessons
 url: "/academy/localstack-101/cloud-pods/"
 ---
