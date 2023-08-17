@@ -68,11 +68,21 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 
 To invoke the Lambda function, you can use the [`Invoke` API](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html). Run the following command to invoke the function:
 
-{{< command >}}
-$ awslocal lambda invoke --function-name localstack-lambda-url-example \
-	--cli-binary-format raw-in-base64-out \
-	--payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
-{{< / command >}}
+{{< tabpane text=true persistLang=false >}}
+  {{% tab header="AWS CLI v1" lang="shell" %}}
+  {{< command >}}
+  $ awslocal lambda invoke --function-name localstack-lambda-url-example \
+    --payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
+  {{< /command >}}
+  {{% /tab %}}
+  {{% tab header="AWS CLI v2" lang="shell" %}}
+  {{< command >}}
+  $ awslocal lambda invoke --function-name localstack-lambda-url-example \
+    --cli-binary-format raw-in-base64-out \
+    --payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
+  {{< /command >}}
+  {{% /tab %}}
+{{< /tabpane >}}
 
 ### Create a Function URL
 
