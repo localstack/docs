@@ -15,7 +15,7 @@ platform:
 - java
 deployment:
 - aws-java-sdk
-- cloudFormation
+- CloudFormation
 tags:
 - Java
 - Spring Boot

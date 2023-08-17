@@ -10,12 +10,11 @@ services:
 - ecs
 - ecr
 platform:
-- docker
+- Shell
 deployment:
-- cloudformation
 - awscli
 tags:
-- Docker
+- BASH
 - ECS
 - ECR
 - Fargate
