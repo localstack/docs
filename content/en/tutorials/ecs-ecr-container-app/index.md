@@ -22,7 +22,7 @@ tags:
 - CloudFormation
 - NGINX
 pro: true
-leadimage: "ecs-ecr-container-app-featured-image.jpg"
+leadimage: "ecs-ecr-container-app-featured-image.png"
 ---
 
 [Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) is a fully-managed container orchestration service that simplifies the deployment, management, and scaling of Docker containers on AWS. With support for two [launch types](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html), EC2 and Fargate, ECS allows you to run containers on your cluster of EC2 instances or have AWS manage your underlying infrastructure with Fargate. The Fargate launch type provides a serverless-like experience for running containers, allowing you to focus on your applications instead of infrastructure.
