@@ -64,23 +64,23 @@
     },
     {
       "RollbackTransaction": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "pro",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     }
   ],
   "details": {
     "BeginTransaction": {
-      "resourceArn, secretArn": {
+      "database, resourceArn, secretArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -96,7 +96,7 @@
       "resourceArn, secretArn, transactionId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -112,7 +112,7 @@
       "awsSecretStoreArn, dbClusterOrInstanceArn, sqlStatements": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -125,10 +125,44 @@
       }
     },
     "ExecuteStatement": {
+      "database, formatRecordsAs, includeResultMetadata, resourceArn, secretArn, sql": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
+            "test": "test_data_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata[8].precision', '$..records[0].[14].stringValue', '$..records[0].[15].stringValue']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "database, includeResultMetadata, resourceArn, secretArn, sql": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsMysql::test_data_api[False]",
+            "test": "test_data_api[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsMysql::test_data_api[True]",
+            "test": "test_data_api[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -142,7 +176,41 @@
       "database, parameters, resourceArn, secretArn, sql": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsMysql::test_data_api[False]",
+            "test": "test_data_api[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsMysql::test_data_api[True]",
+            "test": "test_data_api[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
+            "test": "test_data_api",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata[8].precision', '$..records[0].[14].stringValue', '$..records[0].[15].stringValue']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "database, parameters, resourceArn, secretArn, sql, transactionId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -156,7 +224,27 @@
       "database, resourceArn, secretArn, sql": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsMysql::test_data_api[False]",
+            "test": "test_data_api[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsMysql::test_data_api[True]",
+            "test": "test_data_api[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..columnMetadata..precision']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -166,7 +254,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "400",
             "error": "BadRequestException",
@@ -177,10 +265,10 @@
           }
         ]
       },
-      "formatRecordsAs, includeResultMetadata, resourceArn, secretArn, sql": {
+      "database, resourceArn, secretArn, sql, transactionId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -194,21 +282,7 @@
       "includeResultMetadata, resourceArn, secretArn, sql": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
-            "test": "test_data_api",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..columnMetadata[8].precision', '$..records[0].[14].stringValue', '$..records[0].[15].stringValue']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "parameters, resourceArn, secretArn, sql": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -222,7 +296,7 @@
       "resourceArn, secretArn, sql": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",
@@ -232,11 +306,13 @@
             "origin": "external"
           }
         ]
-      },
-      "resourceArn, secretArn, sql, transactionId": {
+      }
+    },
+    "RollbackTransaction": {
+      "resourceArn, secretArn, transactionId": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_rds.py::TestRdsPostgres::test_data_api",
+            "node_id": "LocalStack Pro: tests/aws/test_rds.py::TestRdsPostgres::test_data_api",
             "test": "test_data_api",
             "response": "200",
             "error": "",

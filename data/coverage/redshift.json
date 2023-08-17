@@ -208,6 +208,18 @@
       }
     },
     {
+      "CreateCustomDomainAssociation": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "CreateEndpointAccess": {
         "implemented": false,
         "availability": "",
@@ -394,6 +406,18 @@
         "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DeleteCustomDomainAssociation": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -646,6 +670,18 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "DescribeCustomDomainAssociations": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -1192,6 +1228,18 @@
       }
     },
     {
+      "ModifyCustomDomainAssociation": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "ModifyEndpointAccess": {
         "implemented": false,
         "availability": "",
@@ -1437,7 +1485,7 @@
       "CIDRIP, ClusterSecurityGroupName": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_cluster_security_groups",
+            "node_id": "LocalStack Community: tests/aws/test_redshift.py::TestRedshift::test_cluster_security_groups",
             "test": "test_cluster_security_groups",
             "response": "200",
             "error": "",
@@ -1450,10 +1498,24 @@
       }
     },
     "CreateCluster": {
+      "ClusterIdentifier, ClusterType, DBName, MasterUserPassword, MasterUsername, NodeType": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/cloudformation/resources/test_redshift.py::test_redshift_cluster",
+            "test": "test_redshift_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          }
+        ]
+      },
       "ClusterIdentifier, DBName, MasterUserPassword, MasterUsername, NodeType": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
@@ -1463,7 +1525,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_redshift_connector",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_redshift_connector",
             "test": "test_redshift_connector",
             "response": "200",
             "error": "",
@@ -1477,7 +1539,7 @@
       "ClusterIdentifier, MasterUserPassword, MasterUsername, NodeType": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_create_clusters",
+            "node_id": "LocalStack Community: tests/aws/test_redshift.py::TestRedshift::test_create_clusters",
             "test": "test_create_clusters",
             "response": "200",
             "error": "",
@@ -1493,7 +1555,7 @@
       "Description, ParameterGroupFamily, ParameterGroupName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_parameter_group",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_parameter_group",
             "test": "test_parameter_group",
             "response": "200",
             "error": "",
@@ -1509,7 +1571,7 @@
       "ClusterSecurityGroupName, Description": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_cluster_security_groups",
+            "node_id": "LocalStack Community: tests/aws/test_redshift.py::TestRedshift::test_cluster_security_groups",
             "test": "test_cluster_security_groups",
             "response": "200",
             "error": "",
@@ -1525,7 +1587,7 @@
       "ClusterIdentifier": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_create_clusters",
+            "node_id": "LocalStack Community: tests/aws/test_redshift.py::TestRedshift::test_create_clusters",
             "test": "test_create_clusters",
             "response": "200",
             "error": "",
@@ -1537,7 +1599,7 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
@@ -1547,7 +1609,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_redshift_connector",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_redshift_connector",
             "test": "test_redshift_connector",
             "response": "200",
             "error": "",
@@ -1561,7 +1623,7 @@
       "ClusterIdentifier, SkipFinalClusterSnapshot": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_create_cluster",
             "test": "test_create_cluster",
             "response": "400",
             "error": "CommonServiceException",
@@ -1571,7 +1633,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_redshift_connector",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_redshift_connector",
             "test": "test_redshift_connector",
             "response": "400",
             "error": "CommonServiceException",
@@ -1587,7 +1649,7 @@
       "ParameterGroupName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_parameter_group",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_parameter_group",
             "test": "test_parameter_group",
             "response": "200",
             "error": "",
@@ -1603,7 +1665,7 @@
       "ParameterGroupName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_parameter_group",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_parameter_group",
             "test": "test_parameter_group",
             "response": "200",
             "error": "",
@@ -1619,7 +1681,7 @@
       "ClusterSecurityGroupName": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_cluster_security_groups",
+            "node_id": "LocalStack Community: tests/aws/test_redshift.py::TestRedshift::test_cluster_security_groups",
             "test": "test_cluster_security_groups",
             "response": "200",
             "error": "",
@@ -1635,7 +1697,7 @@
       "- (without any parameters)": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_create_clusters",
+            "node_id": "LocalStack Community: tests/aws/test_redshift.py::TestRedshift::test_create_clusters",
             "test": "test_create_clusters",
             "response": "200",
             "error": "",
@@ -1647,7 +1709,7 @@
         ],
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_redshift",
+            "node_id": "LocalStack Pro: tests/aws/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_redshift",
             "test": "test_enforce_policy_redshift",
             "response": "200",
             "error": "",
@@ -1657,7 +1719,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
@@ -1667,7 +1729,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_redshift_connector",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_redshift_connector",
             "test": "test_redshift_connector",
             "response": "200",
             "error": "",
@@ -1677,7 +1739,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_redshift",
+            "node_id": "LocalStack Pro: tests/aws/iam_enforcement/test_iam_enforcement.py::TestIAMEnforcementIdentityBasedPolicies::test_enforce_policy_redshift",
             "test": "test_enforce_policy_redshift",
             "response": "400",
             "error": "CommonServiceException",
@@ -1691,7 +1753,17 @@
       "ClusterIdentifier": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/integration/test_redshift.py::TestRedshift::test_create_clusters",
+            "node_id": "LocalStack Community: tests/aws/cloudformation/resources/test_redshift.py::test_redshift_cluster",
+            "test": "test_redshift_cluster",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/test_redshift.py::TestRedshift::test_create_clusters",
             "test": "test_create_clusters",
             "response": "400",
             "error": "CommonServiceException",
@@ -1707,7 +1779,7 @@
       "ParameterGroupFamily": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_redshift.py::TestRedshift::test_parameter_group",
+            "node_id": "LocalStack Pro: tests/aws/test_redshift.py::TestRedshift::test_parameter_group",
             "test": "test_parameter_group",
             "response": "200",
             "error": "",

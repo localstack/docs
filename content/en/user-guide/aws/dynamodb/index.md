@@ -11,6 +11,11 @@ DynamoDB on LocalStack is powered by [DynamoDB Local](https://docs.aws.amazon.co
 LocalStack has support for global tables (version 2019).
 These are tables belonging to the same account and replicated across different regions.
 
+{{< alert title="Note" >}}
+LocalStack does not support legacy global tables (version 2017).
+Operations like `CreateGlobalTable`, `UpdateGlobalTable`, `DescribeGlobalTable` etc. will not emulate global replications.
+{{< /alert >}}
+
 Following example illustrates the use of global tables:
 
 {{< command >}}
@@ -40,18 +45,14 @@ $ awslocal dynamodb list-tables --region eu-central-1
     ]
 }
 
-$ awslocal dynamodb put-item --table-name global01 --item '{"id":{"S":"foo"}} --region eu-central-1
+$ awslocal dynamodb put-item --table-name global01 --item '{"id":{"S":"foo"}}' --region eu-central-1
 
 $ awslocal dynamodb describe-table --table-name global01 --query 'Table.ItemCount' --region ap-south-1
 1
 {{< /command >}}
 
-{{< alert title="Warning" color="warning">}}
-When describing global tables, the current table is treated as a replica.
-This is a known bug <https://github.com/localstack/localstack/issues/7426>.
-{{< /alert >}}
-
 {{< command >}}
+# Get all replicas
 $ awslocal dynamodb describe-table --table-name global01 --query 'Table.Replicas' --region us-west-1
 [
     {
@@ -61,16 +62,12 @@ $ awslocal dynamodb describe-table --table-name global01 --query 'Table.Replicas
     {
         "RegionName": "eu-central-1",
         "ReplicaStatus": "ACTIVE"
-    },
-    {
-        "RegionName": "us-west-1",
-        "ReplicaStatus": "ACTIVE"
     }
 ]
 {{< /command >}}
 
 {{< alert title="Warning" color="warning">}}
-It is currently not possible to remove the original table region from the replication set.
+It is currently not possible to remove the original table region from the replication set while keeping the replicas.
 Deleting the original table will also remove all the replicas.
 {{< /alert >}}
 

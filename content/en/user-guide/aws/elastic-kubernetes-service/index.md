@@ -1,82 +1,119 @@
 ---
 title: "Elastic Kubernetes Service (EKS)"
 linkTitle: "Elastic Kubernetes Service (EKS)"
-categories: ["LocalStack Pro"]
 description: >
   Get started with Elastic Kubernetes Service (EKS) on LocalStack
-aliases:
-  - /aws/elastic-kubernetes-service/
 ---
-LocalStack Pro allows you to use the [EKS](https://docs.aws.amazon.com/eks/) API to create Kubernetes clusters and easily deploy containerized apps locally.
 
-There are two modes for creating EKS clusters on LocalStack:
-* spinning up an embedded kube cluster in your local Docker engine (preferred, simpler), or
-* using an existing Kubernetes installation you can access from your local machine (defined in `$HOME/.kube/config`)
+## Introduction
 
-## Auto-installing an embedded Kubernetes cluster
+Elastic Kubernetes Service (EKS) is a managed Kubernetes service that makes it easy to run Kubernetes on AWS without installing, operating, and maintaining your own Kubernetes control plane or worker nodes. Kubernetes is an open-source system for automating containerized applications' deployment, scaling, and management.
 
-The default method for creating Kubernetes clusters via the local EKS API is to spin up an embedded [k3d](https://k3d.io) kube cluster within Docker. LocalStack handles the download and installation transparently - on most systems the installation is performed automatically, and no customizations should be required.
+LocalStack supports Elastic Kubernetes Service via the Pro/Team offering, allowing you to use the EKS APIs in your local environment to spin up embedded Kubernetes clusters in your local Docker engine or use an existing Kubernetes installation you can access from your local machine (defined in `$HOME/.kube/config`). The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_eks/), which provides information on the extent of EKS's integration with LocalStack.
+
+## Getting started
+
+This guide is designed for users new to Elastic Kubernetes Service and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. To interact with the Kubernetes cluster, you should also install [`kubectl`](https://kubernetes.io/docs/tasks/tools/).
+
+Start your LocalStack container using your preferred method. We will demonstrate how you can auto-install an embedded Kubernetes cluster, configure ingress, and deploy a sample service with ECR.
+
+### Create an embedded Kubernetes cluster
+
+The default approach for creating Kubernetes clusters using the local EKS API is by setting up an embedded [k3d](https://k3d.io/) kube cluster within Docker. LocalStack seamlessly manages the download and installation process, making it hassle-free for users. In most cases, the installation is automatic, eliminating the need for any manual customizations.
 
 A new cluster can be created using the following command:
+
+You can create a new cluster using the [`CreateCluster`](https://docs.aws.amazon.com/eks/latest/APIReference/API_CreateCluster.html) API. Run the following command:
+
 {{< command >}}
-$ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}'
+$ awslocal eks create-cluster \
+  --name cluster1 \
+  --role-arn "arn:aws:iam::000000000000:role/eks-role" \
+  --resources-vpc-config "{}"
 {{</ command >}}
 
-You should then see some Docker containers getting started, e.g.:
+You can see an output similar to the following:
+
+```bash
+{
+    "cluster": {
+        "name": "cluster1",
+        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/cluster1",
+        "createdAt": "2022-04-13T16:38:24.850000+02:00",
+        "roleArn": "arn:aws:iam::000000000000:role/eks-role",
+        "resourcesVpcConfig": {},
+        "identity": {
+            "oidc": {
+                "issuer": "https://localhost.localstack.cloud/eks-oidc"
+            }
+        },
+        "status": "CREATING",
+        "clientRequestToken": "cbdf2bb6-fd3b-42b1-afe0-3c70980b5959"
+    }
+}
+```
+
+You can use the `docker` CLI to check that some containers have been created:
+
 {{< command >}}
 $ docker ps
 CONTAINER ID   IMAGE                          COMMAND                  CREATED          STATUS          PORTS                                           NAMES
+...
 b335f7f089e4   rancher/k3d-proxy:5.0.1-rc.1   "/bin/sh -c nginx-pr…"   1 minute ago   Up 1 minute   0.0.0.0:8081->80/tcp, 0.0.0.0:44959->6443/tcp   k3d-cluster1-serverlb
 f05770ec8523   rancher/k3s:v1.21.5-k3s2       "/bin/k3s server --t…"   1 minute ago   Up 1 minute
+...
 {{</ command >}}
 
-Once the cluster has been created and initialized, we can determine the server `endpoint`:
+After successfully creating and initializing the cluster, we can easily find the server endpoint, using the [`DescribeCluster`](https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeCluster.html) API. Run the following command:
+
 {{< command >}}
 $ awslocal eks describe-cluster --name cluster1
 {
     "cluster": {
         "name": "cluster1",
+        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/cluster1",
+        "createdAt": "2022-04-13T17:12:39.738000+02:00",
+        "endpoint": "https://localhost.localstack.cloud:4511",
+        "roleArn": "arn:aws:iam::000000000000:role/eks-role",
+        "resourcesVpcConfig": {},
+        "identity": {
+            "oidc": {
+                "issuer": "https://localhost.localstack.cloud/eks-oidc"
+            }
+        },
         "status": "ACTIVE",
-        "endpoint": "https://localhost.localstack.cloud:4513",
-        ...
+        "certificateAuthority": {
+            "data": "..."
+        },
+        "clientRequestToken": "d188f578-b353-416b-b309-5d8c76ecc4e2"
     }
 }
 {{</ command >}}
 
-We can then configure the `kubectl` command line to interact with the new cluster endpoint:
-{{< command >}}
-$ awslocal eks update-kubeconfig --name cluster1
-Updated context arn:aws:eks:us-east-1:000000000000:cluster/cluster1 in ~/.kube/config
-$ kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
-Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/cluster1".
-$ kubectl get services
-NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
-service/kubernetes   ClusterIP   10.43.0.1    <none>        443/TCP   70s
-{{</ command >}}
+### Utilizing ECR Images within EKS
 
-### Use images pushed to ECR in EKS
-
-In this section we will, by the use of an example, explore the usage of ECR images inside EKS.
+You can now use ECR (Elastic Container Registry) images within your EKS environment.
 
 #### Initial configuration
 
-You can use the [configuration]({{< ref "configuration" >}}) variable `HOSTNAME_EXTERNAL` to modify the return value of the resource URIs for most services, including ECR.
-By default, ECR will return a `repositoryUri` starting with `localhost`, like: `localhost:<port>/<repository-name>`.
-If we set the `HOSTNAME_EXTERNAL` to `localhost.localstack.cloud`, ECR will return a `repositoryUri` like `localhost.localstack.cloud:<port>/<repository_name>`.
+To modify the return value of resource URIs for most services, including ECR, you can utilize the `HOSTNAME_EXTERNAL` variable in the [configuration]({{< ref "configuration" >}}). By default, ECR returns a `repositoryUri` starting with `localhost`, such as: `localhost:<port>/<repository-name>`. However, if you set the `HOSTNAME_EXTERNAL` to `localhost.localstack.cloud`, the ECR will provide a `repositoryUri` like `localhost.localstack.cloud:<port>/<repository_name>`.
 
 {{< alert title="Notes" >}}
-In this section, we will assume `localhost.localstack.cloud` resolves in your environment and LocalStack is connected to a non-default bridge network. Check the article about [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}) to learn more.
-If this domain does not resolve on your host it is also possible not to set `HOSTNAME_EXTERNAL`, please nevertheless use `localhost.localstack.cloud` as registry in your pod configuration.
-LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` within ECR itself, and you can use the `localhost:<port>/<repository_name>` Uri for tagging and pushing the image on your host.
+In this section, we assume that `localhost.localstack.cloud` resolves in your environment, and LocalStack is connected to a non-default bridge network. For more information, refer to the article about [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}).
+
+If the domain `localhost.localstack.cloud` does not resolve on your host, you can still proceed without setting `HOSTNAME_EXTERNAL`. However it is suggested to use `localhost.localstack.cloud` as the registry in your pod configuration. 
+
+LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` within ECR itself, allowing you to use the `localhost:<port>/<repository_name>` URI for tagging and pushing the image on your host.
 {{< / alert >}}
 
-If this configuration is correct, you can use your ECR image in EKS like expected.
+Once you have configured this correctly, you can seamlessly use your ECR image within EKS as expected.
 
 #### Deploying a sample application from an ECR image
 
-In order to demonstrate this behavior, take a look at the following small tutorial which leads to the point where the image is correctly pulled.
-For the sake of this tutorial, we will retag the `nginx` image to be pushed to ECR using another name, and use it for a pod configuration.
-First, we create a new repository with a chosen name:
+To showcase this behavior, let's go through a concise step-by-step guide that will lead us to the successful pulling of an image from local ECR. For the purpose of this guide, we will retag the `nginx` image to be pushed to a local ECR repository under a different name, and then utilize it for a pod configuration.
+
+You can create a new ECR repository using the [`CreateRepository`](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_CreateRepository.html) API. Run the following command:
+
 {{< command >}}
 $ awslocal ecr create-repository --repository-name "fancier-nginx"
 {
@@ -98,78 +135,44 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
 {{< / command >}}
 
 {{< alert title="Note">}}
-When creating an ECR, a port from the [the external service port range]({{< ref "external-ports" >}}) is dynamically selected. \
-Therefore, the port can differ from `4510` used in the samples below.
-Make sure to use the correct URL / port by using the `repositoryUrl` of the `create-repository` request.
+When creating an ECR repository, a port from the [external service port range]({{< ref "external-ports" >}}) is dynamically assigned. As a result, the port can differ from the static value `4510` used in the examples below.
+
+To ensure the correct URL and port, it's important to use the `repositoryUrl` obtained from the `create-repository` request. This ensures that you have the accurate endpoint to access the repository.
 {{< /alert >}}
 
-Now let us pull the nginx image:
+You can now pull the `nginx` image from Docker Hub using the `docker` CLI:
+
 {{< command >}}
 $ docker pull nginx
 {{< / command >}}
-... tag it to our repository name:
+
+You can further tag the image to be pushed to ECR:
+
 {{< command >}}
 $ docker tag nginx localhost.localstack.cloud:4510/fancier-nginx
 {{< / command >}}
-... and push it to ECR:
+
+Finally, you can push the image to local ECR:
+
 {{< command >}}
 $ docker push localhost.localstack.cloud:4510/fancier-nginx
 {{< / command >}}
 
 Now, let us set up the EKS cluster using the image pushed to local ECR.
+
+Next, we can configure `kubectl` to use the EKS cluster, using the [`UpdateKubeconfig`](https://docs.aws.amazon.com/eks/latest/APIReference/API_UpdateClusterConfig.html) API. Run the following command:
+
 {{< command >}}
-$ awslocal eks create-cluster --name fancier-cluster --role-arn "arn:aws:iam::000000000000:role/eks-role" --resources-vpc-config "{}"
-{
-    "cluster": {
-        "name": "fancier-cluster",
-        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster",
-        "createdAt": "2022-04-13T16:38:24.850000+02:00",
-        "roleArn": "arn:aws:iam::000000000000:role/eks-role",
-        "resourcesVpcConfig": {},
-        "identity": {
-            "oidc": {
-                "issuer": "https://localhost.localstack.cloud/eks-oidc"
-            }
-        },
-        "status": "CREATING",
-        "clientRequestToken": "cbdf2bb6-fd3b-42b1-afe0-3c70980b5959"
-    }
-}
+$ awslocal eks update-kubeconfig --name cluster1
+& kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
+...
+Added new context arn:aws:eks:us-east-1:000000000000:cluster/cluster1 to /home/localstack/.kube/config
+Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/cluster1".
+...
 {{< / command >}}
 
-Once the cluster status is "ACTIVE":
-{{< command >}}
-awslocal eks describe-cluster --name "fancier-cluster"
-{
-    "cluster": {
-        "name": "fancier-cluster",
-        "arn": "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster",
-        "createdAt": "2022-04-13T17:12:39.738000+02:00",
-        "endpoint": "https://localhost.localstack.cloud:4511",
-        "roleArn": "arn:aws:iam::000000000000:role/eks-role",
-        "resourcesVpcConfig": {},
-        "identity": {
-            "oidc": {
-                "issuer": "https://localhost.localstack.cloud/eks-oidc"
-            }
-        },
-        "status": "ACTIVE",
-        "certificateAuthority": {
-            "data": "..."
-        },
-        "clientRequestToken": "d188f578-b353-416b-b309-5d8c76ecc4e2"
-    }
-}
-{{< / command >}}
+You can now go ahead and add a deployment configuration for the `fancier-nginx` image. 
 
-... we will configure `kubectl`:
-{{< command >}}
-$ awslocal eks update-kubeconfig --name fancier-cluster && kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster
-Added new context arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster to /home/localstack/.kube/config
-Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/fancier-cluster".
-{{< / command >}}
-
-... and add a deployment configuration:
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
@@ -196,20 +199,24 @@ spec:
 EOF
 {{< / command >}}
 
-Now, if we describe the pod:
+You can now describe the pod to see if the image was pulled successfully:
+
 {{< command >}}
-kubectl describe pod fancier-nginx
+$ kubectl describe pod fancier-nginx
 {{< / command >}}
-... we can see, in the events, that the pull from ECR was successful:
-```plaintext
+
+In the events, we can see that the pull from ECR was successful:
+
+```bash
   Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
 ```
 
 ### Configuring an Ingress for your services
 
-In order to make an EKS service externally accessible, we need to create an `Ingress` configuration that exposes the service on a certain path to the load balancer.
+To make an EKS service externally accessible, it is necessary to create an Ingress configuration, which exposes the service on a specific path to the load balancer.
 
-We can create an `nginx` Kubernetes service for our sample deployment above by applying the following configuration:
+For our sample deployment, we can create an `nginx` Kubernetes service by applying the following configuration:
+
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -227,7 +234,7 @@ spec:
 EOF
 {{< /command >}}
 
-Now use the following ingress configuration to expose the nginx service on path `/test123`:
+Use the following ingress configuration to expose the `nginx` service on path `/test123`:
 
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
@@ -251,7 +258,8 @@ spec:
 EOF
 {{< /command >}}
 
-We should then be able to send a request to `nginx` via the load balancer port `8081` from the host:
+You will be able to send a request to `nginx` via the load balancer port `8081` from the host:
+
 {{< command >}}
 $ curl http://localhost:8081/test123
 <html>
@@ -261,14 +269,14 @@ $ curl http://localhost:8081/test123
 {{< / command >}}
 
 {{< alert title="Note" >}}
-You can customize the load balancer port by configuring `EKS_LOADBALANCER_PORT` in your environment.
+You can customize the Load Balancer port by configuring `EKS_LOADBALANCER_PORT` in your environment.
 {{< /alert >}}
 
 ### Enabling HTTPS with local SSL/TLS certificate for the Ingress
 
-In order to enable HTTPS for your endpoints, we can instruct Kubernetes to use SSL/TLS with our [certificate for local domain names](https://github.com/localstack/localstack-artifacts/blob/master/local-certs/server.key) `*.localhost.localstack.cloud`.
+To enable HTTPS for your endpoints, you can configure Kubernetes to use SSL/TLS with the [certificate for local domain names](https://github.com/localstack/localstack-artifacts/blob/master/local-certs/server.key) `*.localhost.localstack.cloud`.
 
-The local EKS cluster is pre-configured with a secret named `ls-secret-tls` which can be used to define the ingress `tls` section:
+The local EKS cluster comes pre-configured with a secret named `ls-secret-tls`, which can be conveniently utilized to define the `tls` section in the ingress configuration:
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -287,27 +295,29 @@ spec:
   ...
 ```
 
-After deploying your service with the ingress above, the service should be accessible via the HTTPS endpoint `https://myservice.localhost.localstack.cloud`.
+Once you have deployed your service using the mentioned ingress configuration, it will be accessible via the HTTPS endpoint `https://myservice.localhost.localstack.cloud`.
 
-Please note that the ingress controller doesn't support HTTP/HTTPS multiplexing over the same `Ingress`, hence we need to create two `Ingress` definitions if the service should be accessible via both HTTP and HTTPS.
+Remember that the ingress controller does not support HTTP/HTTPS multiplexing within the same Ingress. Consequently, if you want your service to be accessible via HTTP and HTTPS, you must create two separate Ingress definitions — one Ingress for HTTP and another for HTTPS.
 
 {{< alert title="Note" >}}
-The `ls-secret-tls` is created in the `default` namespace - if your ingress/services are living in a custom namespace, the secret needs to be copied there in order to use it.
+The `ls-secret-tls` secret is created in the `default` namespace. If your ingress and services are residing in a custom namespace, it is essential to copy the secret to that custom namespace to make use of it.
 {{< /alert >}}
 
-## Using an existing Kubernetes installation
+## Use an existing Kubernetes installation
 
-You can also use the EKS API using an existing local Kubernetes installation. This works by mounting the `$HOME/.kube/config` file into the LocalStack container - e.g., when using docker-compose.yml:
+You can also access the EKS API using your existing local Kubernetes installation. This can be achieved by mounting the `$HOME/.kube/config` file into the LocalStack container, especially when using a `docker-compose.yml` file:
+
 ```yaml
 volumes:
   - "${HOME}/.kube/config:/root/.kube/config"
 ```
 
-In recent versions of Docker, you can simply enable Kubernetes as an embedded service running inside Docker. See below for a screenshot of the Docker settings for Kubernetes in MacOS (similar configurations apply for Linux/Windows). By default, it is asssumed that Kubernetes API runs on the local TCP port `6443`.
+In recent versions of Docker, you can enable Kubernetes as an embedded service running inside Docker. The picture below illustrates the Kubernetes settings in Docker for macOS (similar configurations apply for Linux/Windows). By default, the Kubernetes API is assumed to run on the local TCP port `6443`.
 
 <img src="kubernetes.png" alt="Kubernetes in Docker" title="Kubernetes in Docker" width="450" />
 
-The example below illustrates how to create an EKS cluster configuration (assuming you have [`awslocal`](https://github.com/localstack/awscli-local) installed):
+You can create an EKS Cluster configuration using the following command:
+
 {{< command >}}
 $ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}'
 {
@@ -328,24 +338,32 @@ $ awslocal eks list-clusters
 }
 {{< / command >}}
 
-Simply configure your Kubernetes client (e.g., `kubectl` or other SDK) to point to the `endpoint` specified in the `create-cluster` output above. Depending on whether you're calling the Kubernetes API from the local machine or from within a Lambda, you may have to use different endpoint URLs (`https://localhost:6443` vs `https://172.17.0.1:6443`).
+To interact with your Kubernetes cluster, configure your Kubernetes client (such as `kubectl` or other SDKs) to point to the `endpoint` provided in the `create-cluster` output mentioned earlier. However, depending on whether you're calling the Kubernetes API from your local machine or from within a Lambda function, you might need to use different endpoint URLs.
 
-## Exposing the Kubernetes Load Balancer on custom ports
+For local machine interactions, use `https://localhost:6443` as the endpoint URL. If you are accessing the Kubernetes API from within a Lambda function, you should use `https://172.17.0.1:6443` as the endpoint URL, assuming that `172.17.0.1` is the IP address of the Docker network bridge.
 
-By default, the load balancer (LB) is exposed on port `8081`. In order to customize the port, or expose the LB on multiple ports, you can use the special tag name `_lb_ports_` when creating the cluster.
+By using the appropriate endpoint URL based on your context, you can effectively communicate with your Kubernetes cluster and manage your resources as needed.
 
-For example, if we want to expose the LB on ports `8085` and `8086`, the following tag definition can be used on cluster creation:
+## Customizing the Kubernetes Load Balancer Ports
+
+By default, the Kubernetes load balancer (LB) is exposed on port `8081`. If you need to customize the port or expose the load balancer on multiple ports, you can utilize the special tag name `_lb_ports_` during the cluster creation process.
+
+For instance, if you want to expose the load balancer on ports 8085 and 8086, you can use the following tag definition when creating the cluster:
+
 {{< command >}}
-$ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}' --tags '{"_lb_ports_":"8085,8086"}'
+$ awslocal eks create-cluster \
+  --name cluster1 \
+  --role-arn arn:aws:iam::000000000000:role/eks-role \
+  --resources-vpc-config '{}' --tags '{"_lb_ports_":"8085,8086"}'
 {{< /command >}}
 
-## Routing traffic to services on different endpoints
+## Routing Traffic to Services on Different Endpoints
 
-A frequent use case when working with EKS is to access multiple kube services behind different endpoints. 
+When working with EKS, a common scenario is to access multiple Kubernetes services behind different endpoints.
 
-For example, you may have multiple microservices that all use a common path versioning scheme, say, with API request paths starting with `/v1/...`. In that case, path-based routing cannot easily be used if the services should be accessible in a uniform way.
+For instance, you might have multiple microservices, each following a common path versioning scheme, such as API request paths starting with `/v1/...`. In such cases, path-based routing may not be ideal if you need the services to be accessible in a uniform manner.
 
-In order to accommodate such a setup, we recommend using host-based routing rules, as illustrated in the example below:
+To address this requirement, we recommend utilizing host-based routing rules, as demonstrated in the example below:
 
 {{< command >}}
 $ cat <<EOF | kubectl apply -f -
@@ -382,7 +400,10 @@ EOF
 
 The example defines routing rules for two local endpoints - the first rule points to a service `service-1` accessible under `/v1`, and the second rule points to a service `service-2` accessible under the same path `/v1`.
 
-We can then access the two different services under the same path and port number, but using different host names:
+In the provided example, we define routing rules for two local endpoints. The first rule directs traffic to a service named `service-1`, accessible under the path `/v1`. Similarly, the second rule points to a service named `service-2`, also accessible under the same path `/v1`.
+
+This approach enables us to access the two distinct services using the same path and port number, but with different host names. This host-based routing mechanism ensures that each service is uniquely identified based on its designated host name, allowing for a uniform and organized way of accessing multiple services within the EKS cluster.
+
 {{< command >}}
 $ curl http://eks-service-1.localhost.localstack.cloud:8081/v1
 ... [output of service 1]
@@ -390,20 +411,26 @@ $ curl http://eks-service-2.localhost.localstack.cloud:8081/v1
 ... [output of service 2]
 {{< /command >}}
 
-Note that the host names `eks-service-1.localhost.localstack.cloud` and `eks-service-2.localhost.localstack.cloud` both resolve to `127.0.0.1` (localhost), and can hence be used to talk to your service endpoints, and are used inside the Kubernetes load balancer to distinguish between different services.
+It is important to note that the host names `eks-service-1.localhost.localstack.cloud` and `eks-service-2.localhost.localstack.cloud` both resolve to `127.0.0.1` (localhost). Consequently, you can utilize them to communicate with your service endpoints and distinguish between different services within the Kubernetes load balancer.
 
-In a situation, where you are looking to run your Load Balancer (LB) on the standard ports such as 80/443, it would not be able to work. Some of these ports may already be occupied on your local machine. For example, by default LocalStack allocates port 443 to expose the APIs via the HTTPS endpoint (`https://localhost.localstack.cloud`). Please make sure to expose your LB on a custom, non-standard port.
+However, it might encounter issues in scenarios where you intend to run your Load Balancer (LB) on standard ports such as 80/443 since some of these ports may already be occupied on your local machine. For instance, by default, LocalStack allocates port 443 to expose APIs via the HTTPS endpoint (`https://localhost.localstack.cloud`). Hence, it's crucial to ensure that you expose your LB on a custom, non-standard port to prevent conflicts.
 
-Note: Internally, LocalStack EKS is using [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress) as the Kubernetes ingress controller.
+Additionally, note that LocalStack EKS employs [Traefik](https://doc.traefik.io/traefik/providers/kubernetes-ingress) as the Kubernetes ingress controller internally.
 
 ## Mounting directories from host to pod
 
-If you have specific directories which you want to mount from your local dev machine into one of your pods you can do this with two simple steps:
+If you have specific directories which you want to mount from your local dev machine into one of your pods, you can do this with two simple steps:
 
-First, make sure to create your cluster with the special tag `_volume_mount_`, specifying how you want to mount a volume from your dev machine to the cluster nodes:
+If you have specific directories that you want to mount from your local development machine into one of your pods, you can achieve this in two simple steps.
+
+When creating your cluster, include the special tag `_volume_mount_`, which allows you to define the desired volume mounting configuration from your local development machine to the cluster nodes.
 
 {{< command >}}
-$ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}' --tags '{"_volume_mount_":"/path/on/host:/path/on/node"}'
+$ awslocal eks create-cluster \
+  --name cluster1 \
+  --role-arn arn:aws:iam::000000000000:role/eks-role \
+  --resources-vpc-config '{}' \
+  --tags '{"_volume_mount_":"/path/on/host:/path/on/node"}'
 {
     "cluster": {
         "name": "cluster1",
@@ -420,10 +447,10 @@ $ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::0000000000
 {{< / command >}}
 
 {{< alert title="Notes" >}}
-Please note that the tag was previously named `__k3d_volume_mount__`, and has been renamed to `_volume_mount_`. The tag name `__k3d_volume_mount__` is now deprecated and will be removed in an upcoming release. 
+Note that the tag was previously referred to as `__k3d_volume_mount__`, but it has now been renamed to `_volume_mount_`. As a result, the tag name `__k3d_volume_mount__` is considered deprecated and will be removed in an upcoming release.
 {{< /alert >}}
 
-Then, you can create your path with volume mounts as usual, with a configuration similar to this:
+After creating your cluster with the `_volume_mount_` tag, you can create your path with volume mounts as usual. The configuration for the volume mounts can be set up similar to this:
 
 ```yaml
 apiVersion: v1

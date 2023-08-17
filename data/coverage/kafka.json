@@ -147,6 +147,18 @@
       }
     },
     {
+      "DescribeClusterOperationV2": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
       "DescribeConfiguration": {
         "implemented": true,
         "availability": "pro",
@@ -232,6 +244,18 @@
     },
     {
       "ListClusterOperations": {
+        "implemented": false,
+        "availability": "",
+        "internal_test_suite": false,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": false,
+        "snapshot_tested": false,
+        "snapshot_skipped": ""
+      }
+    },
+    {
+      "ListClusterOperationsV2": {
         "implemented": false,
         "availability": "",
         "internal_test_suite": false,
@@ -548,7 +572,7 @@
       "BrokerNodeGroupInfo, ClusterName, KafkaVersion, NumberOfBrokerNodes": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_msk.py::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/cloudformation/resources/test_msk.py::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
@@ -558,17 +582,17 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
             "test": "test_kafka_lambda_event_source_mapping[False]",
             "response": "200",
             "error": "",
@@ -578,7 +602,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
             "test": "test_kafka_lambda_event_source_mapping[True]",
             "response": "200",
             "error": "",
@@ -588,7 +612,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_list_nodes",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_list_nodes",
             "test": "test_list_nodes",
             "response": "200",
             "error": "",
@@ -604,7 +628,7 @@
       "ClusterName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_function_v2_exceptions",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_function_v2_exceptions",
             "test": "test_create_function_v2_exceptions",
             "response": "400",
             "error": "BadRequestException",
@@ -618,11 +642,11 @@
       "ClusterName, Provisioned": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..ZookeeperConnectString', '$..ZookeeperConnectStringTls', '$..Tags']",
+            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -632,7 +656,7 @@
       "ClusterName, Provisioned, Serverless": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_function_v2_exceptions",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_function_v2_exceptions",
             "test": "test_create_function_v2_exceptions",
             "response": "400",
             "error": "BadRequestException",
@@ -648,14 +672,14 @@
       "Description, KafkaVersions, Name, ServerProperties": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -664,7 +688,7 @@
       "ClusterArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_msk.py::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/cloudformation/resources/test_msk.py::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
@@ -674,27 +698,27 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..ZookeeperConnectString', '$..ZookeeperConnectStringTls', '$..Tags']",
+            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
             "test": "test_kafka_lambda_event_source_mapping[False]",
             "response": "200",
             "error": "",
@@ -704,7 +728,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
             "test": "test_kafka_lambda_event_source_mapping[True]",
             "response": "200",
             "error": "",
@@ -714,7 +738,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_list_nodes",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_list_nodes",
             "test": "test_list_nodes",
             "response": "200",
             "error": "",
@@ -730,14 +754,14 @@
       "Arn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -746,27 +770,27 @@
       "ClusterArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..ZookeeperConnectString', '$..ZookeeperConnectStringTls', '$..Tags']",
+            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
             "test": "test_kafka_lambda_event_source_mapping[False]",
             "response": "200",
             "error": "",
@@ -776,7 +800,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
             "test": "test_kafka_lambda_event_source_mapping[True]",
             "response": "200",
             "error": "",
@@ -786,7 +810,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_list_nodes",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_list_nodes",
             "test": "test_list_nodes",
             "response": "200",
             "error": "",
@@ -802,11 +826,11 @@
       "ClusterArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..ZookeeperConnectString', '$..ZookeeperConnectStringTls', '$..Tags']",
+            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -818,24 +842,24 @@
       "Arn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "400",
             "error": "BadRequestException",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -844,24 +868,24 @@
       "Arn, Revision": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "404",
             "error": "NotFoundException",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -870,7 +894,7 @@
       "ClusterArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
             "test": "test_kafka_lambda_event_source_mapping[False]",
             "response": "200",
             "error": "",
@@ -880,17 +904,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[False]",
-            "test": "test_kafka_lambda_event_source_mapping[False]",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
             "test": "test_kafka_lambda_event_source_mapping[True]",
             "response": "200",
             "error": "",
@@ -900,14 +914,14 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_kafka_lambda_event_source_mapping[True]",
             "test": "test_kafka_lambda_event_source_mapping[True]",
-            "response": "200",
-            "error": "",
+            "response": "500",
+            "error": "InternalError",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -916,7 +930,7 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_msk.py::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/cloudformation/resources/test_msk.py::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
@@ -926,7 +940,7 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_msk.py::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/cloudformation/resources/test_msk.py::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
@@ -936,24 +950,24 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..ZookeeperConnectString', '$..ZookeeperConnectStringTls', '$..Tags']",
+            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_cluster",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_cluster",
             "test": "test_create_cluster",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -962,11 +976,11 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_cluster_v2_lifecycle",
             "test": "test_cluster_v2_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..ZookeeperConnectString', '$..ZookeeperConnectStringTls', '$..Tags']",
+            "snapshot_skipped": "['$..ClusterArn', '$..CurrentVersion', '$..BrokerNodeGroupInfo.ConnectivityInfo', '$..BrokerNodeGroupInfo.SecurityGroups', '$..BrokerNodeGroupInfo.StorageInfo', '$..CurrentBrokerSoftwareInfo.KafkaVersion', '$..EncryptionInfo', '$..EnhancedMonitoring', '$..OpenMonitoring', '$..StorageMode', '$..Tags']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -978,14 +992,14 @@
       "Arn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -994,14 +1008,14 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -1010,7 +1024,7 @@
       "ClusterArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_list_nodes",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_list_nodes",
             "test": "test_list_nodes",
             "response": "200",
             "error": "",
@@ -1026,14 +1040,14 @@
       "Arn, Description, ServerProperties": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_kafka.py::TestKafka::test_create_configurations",
+            "node_id": "LocalStack Pro: tests/aws/test_kafka.py::TestKafka::test_create_configurations",
             "test": "test_create_configurations",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }

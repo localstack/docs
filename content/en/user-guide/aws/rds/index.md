@@ -14,6 +14,9 @@ LocalStack supports a basic version of the [Relational Database Service (RDS)](h
 
 Currently, it is possible to spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases on the local machine.
 
+{{< alert title="Note" >}}
+Some configuration of the RDS clusters and instances have currently only CRUD functionality. E.g., the `storage-encrypted` flag is returned as it is set, but there is no support for actual storage encryption yet. 
+{{< /alert >}}
 
 ### Postgres Engine
 
@@ -72,14 +75,9 @@ The local RDS service also supports the [RDS Data API](https://docs.aws.amazon.c
 
 Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple `SELECT 123` query via the RDS Data API.
 
-{{< alert title="Note" >}}
-Secrets for RDS can currently only be resolved when providing the secret directly, like in the sample below. 
-The json-format is not yet supported.
-{{< /alert >}}
-
 
 {{< command >}}
-$ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test
+$ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test --master-username myuser --master-user-password mypassword
 {
     "DBCluster": {
         ...
@@ -90,14 +88,27 @@ $ awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-pos
     }
 }
 
-$ awslocal secretsmanager create-secret --name dbpass --secret-string test
+$ cat << 'EOF' > mycreds.json
 {
-    "ARN": "arn:aws:secretsmanager:eu-central-1:1234567890:secret:dbpass-cfnAX",
+    "engine": "aurora-postgresql", 
+    "username": "myuser",
+    "password": "mypassword",
+    "host": "localhost",
+    "dbname": "test",
+    "port": "4510"
+}
+EOF
+
+$ awslocal secretsmanager create-secret \
+    --name dbpass \
+    --secret-string file://mycreds.json
+{
+    "ARN": "arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX",
     "Name": "dbpass",
     "VersionId": "fffa1f4a-2381-4a2b-a977-4869d59a16c0"
 }
 
-$ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 --secret-arn arn:aws:secretsmanager:eu-central-1:1234567890:secret:dbpass-cfnAX --include-result-metadata --sql 'SELECT 123'
+$ awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX --include-result-metadata --sql 'SELECT 123'
 {
     "columnMetadata": [
         {
@@ -181,3 +192,14 @@ $ TOKEN=$(awslocal rds generate-db-auth-token --username myiam --hostname $HOST 
 
 $ PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST
 {{< / command >}}
+
+## Global Database Support
+
+LocalStack supports [Aurora Global Database](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html), with some limitations:
+
+* When creating a global database, there will only be one local database created. 
+All clusters and instances that belong to the global database will point to the same endpoint. 
+
+* Consequently, clusters that have been removed from a global database cannot be used as a standalone-cluster, like on AWS.
+
+* Persistence for global databases is currently not supported.

@@ -1,3 +1,4 @@
+{{ $service := $.service }} 
 <div class="coverage-report">
     <table>
         <thead>
@@ -11,7 +12,9 @@
             <th class="coverage-report-header-2">Implemented</th>
             <th class="coverage-report-header-2">Edition</th>
             <th class="coverage-report-header-1">Internal Test Suite</th>
+            {{ if not (eq "lambda" $service) }} 
             <th class="coverage-report-header-1">External Test Suite</th>
+            {{ end }}
             <th class="coverage-report-header-1">Terraform Validated</th>
             <th class="coverage-report-header-1">AWS Validated</th>
             <th class="coverage-report-header-1">Snapshot Tested</th>
@@ -26,7 +29,9 @@
     <h3 id="terminology">Terminology</h3>
     <ul>
     <li><b>Internal Test Suite:</b> tested by LocalStack's internal integration test suite</li>
+    {{ if not (eq "lambda" $service) }} 
     <li><b>External Test Suite:</b> covered by an external integration test suite, that runs against LocalStack</li>
+    {{ end }}
     <li><b>Terraform Validated:</b> operation tested with <a href="/user-guide/integrations/terraform/">Terraform</a></li>
     <li><b>AWS Validated:</b> the integration test that includes this operation call was validated against AWS</li>
     <li><b>Snapshot Tested:</b> the operation is part of a <a href="/contributing/parity-testing/">snapshot parity test</a>, which verifies the responses by LocalStack and AWS are the same</li>

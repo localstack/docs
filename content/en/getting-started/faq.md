@@ -1,7 +1,7 @@
 ---
 title: "Frequently Asked Questions"
 linkTitle: "FAQ"
-weight: 7
+weight: 40
 description: >
   This page answers the frequently asked questions about LocalStack Pro, Enterprise, and Community Editions. 
 cascade:
@@ -41,6 +41,21 @@ The diagnose endpoint is only available if you run LocalStack with `DEBUG=1`.
 ### How can I access LocalStack from an alternative computer?
 
 You can access LocalStack from an alternative computer, by exposing port `4566` to the public network interface (`0.0.0.0` instead of `127.0.0.1`) in your `docker-compose.yml` configuration. However, we do not recommend using this setup - for security reasons, as it exposes your local computer to potential attacks from the outside world.
+
+### How to fix LocalStack CLI (Python) UTF-8 encoding issue under Windows?
+
+If you are using LocalStack CLI under Windows, you might run into encoding issues. To fix this, set the following environment variables:  
+Set the system locale (language for non-Unicode programs) to UTF-8 to avoid Unicode errors.
+
+Follow these steps:
+- Open the Control Panel.
+- Go to "Clock and Region" or "Region and Language."
+- Click on the "Administrative" tab.
+- Click on the "Change system locale" button.
+- Select "Beta: Use Unicode UTF-8 for worldwide language support" and click "OK."
+- Restart your computer to apply the changes.
+
+If you would like to keep the system locale as it is, you can mitigate the issue by using the command `localstack --no-banner`.
 
 ### How do I resolve connection issues with proxy blocking access to LocalStack's BigData image?
 
@@ -134,6 +149,50 @@ You can add in the volume `~/.docker/config.json:/config.json` where the `con
       - ~/.docker/config.json:/config.json
 ...
 ```
+
+### How to increase IO performance for LocalStack's Docker image under Windows?
+
+{{< alert title="Note">}}
+Some options that are not part of the standard configuration may have unintended consequences for AWS services that operate within LocalStack.
+For example, these options may interfere with the functionality of AppSync function executor, RDS MySQL persistence and SageMaker.
+We advise you to exercise caution.
+{{< /alert >}}
+
+You can change the LocalStack `volume` folder to use the WSL Linux file system instead of the Windows host folder.  
+To do so, you need to change the [`docker-compose.yml`](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml) file and add the following lines:
+
+{{< tabpane text=true >}}
+{{< tab header="WSL Linux File System" >}}
+{{% markdown %}}
+
+```yaml
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+       - "\\\\wsl$\\<Ubuntu>\\home\\<USERNAME>\\volume:/var/lib/localstack" # mount volume in WSL2 Linux file system
+```
+
+---
+
+As an alternative, you can set the volume as `- "~/volume:/var/lib/localstack"` then start Docker using command `wsl docker compose -f docker-compose.yml up`.
+
+{{% /markdown %}}
+{{< /tab >}}
+{{< tab header="Docker Volumes" >}}
+{{% markdown %}}
+
+```yaml
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+       - "localstack_data:/var/lib/localstack" # mount Docker volume
+volumes:
+  localstack_data:
+```
+
+{{% /markdown %}}
+{{< /tab >}}
+{{< /tabpane >}}
+
+For more details visit [Docker WSL documentation](https://docs.docker.com/desktop/wsl), [Docker WSL best practices](https://docs.docker.com/desktop/wsl/best-practices) and [Docker Volumes documentation](https://docs.docker.com/storage/volumes/).
 
 ## LocalStack Platform FAQs
 

@@ -62,4 +62,5 @@ $ curl example-lb.elb.localhost.localstack.cloud:4566
 
 ### Limitations
 
-The Aplication Load Balancer currently supports only the `forward` and `redirect` action types.
+- The Aplication Load Balancer currently supports only the `forward` and `redirect` action types.
+- When opting for Route53 CNAMEs to direct requests towards the ALBs, it's important to remember that explicit configuration of the `Host` header to match the resource record might be necessary while making calls.
