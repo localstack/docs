@@ -24,4 +24,4 @@ LocalStack also provides additional features to make your life as a cloud develo
 ## Ran into trouble?
 
 We strive to make it as easy as possible for you to use LocalStack, and we are very grateful for any feedback.
-If you run into any issues or problems with this guide, please [submit an issue](https://github.com/localstack/docs/issues). 
+If you run into any issues or problems with this guide, please [submit an issue](https://github.com/localstack/docs/issues).

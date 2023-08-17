@@ -20,7 +20,7 @@ tags:
 - Container
 - Container Image
 pro: true
-leadimage: "lambda-ecr-container-images-featured-image.jpg"
+leadimage: "lambda-ecr-container-images-featured-image.png"
 ---
 
 [Lambda](https://aws.amazon.com/lambda/) is a powerful serverless compute system that enables you to break down your application into smaller, independent functions. These functions can be deployed as individual units within the AWS ecosystem. Lambda offers seamless integration with various AWS services and supports multiple programming languages for different runtime environments. To deploy Lambda functions programmatically, you have two options: [uploading a ZIP file containing your code and dependencies](https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-zip.html) or [packaging your code in a container image](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-images.html) and deploying it through Elastic Container Registry (ECR).
