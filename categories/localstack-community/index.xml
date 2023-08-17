@@ -3136,9 +3136,34 @@ In the old Lambda provider, you could create a function with any arbitrary strin
 &lt;/div>
 &lt;h3 id="invoke-the-function">Invoke the Function&lt;/h3>
 &lt;p>To invoke the Lambda function, you can use the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">&lt;code>Invoke&lt;/code> API&lt;/a>. Run the following command to invoke the function:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active"
+id="tabs-02-00-tab" data-toggle="tab" href="#tabs-02-00" role="tab"
+aria-controls="tabs-02-00" aria-selected="false">
+AWS CLI v1
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link"
+id="tabs-02-01-tab" data-toggle="tab" href="#tabs-02-01" role="tab"
+aria-controls="tabs-02-01" aria-selected="false">
+AWS CLI v2
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-2-content">
+&lt;div class="tab-body tab-pane fade show active"
+id="tabs-02-00" role="tabpanel" aria-labelled-by="tabs-02-00-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name localstack-lambda-url-example \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;body&amp;#34;: &amp;#34;{\&amp;#34;num1\&amp;#34;: \&amp;#34;10\&amp;#34;, \&amp;#34;num2\&amp;#34;: \&amp;#34;10\&amp;#34;}&amp;#34; }&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-body tab-pane fade"
+id="tabs-02-01" role="tabpanel" aria-labelled-by="tabs-02-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name localstack-lambda-url-example \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-binary-format raw-in-base64-out \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;body&amp;#34;: &amp;#34;{\&amp;#34;num1\&amp;#34;: \&amp;#34;10\&amp;#34;, \&amp;#34;num2\&amp;#34;: \&amp;#34;10\&amp;#34;}&amp;#34; }&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
 &lt;h3 id="create-a-function-url">Create a Function URL&lt;/h3>
 &lt;p>With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html">&lt;code>CreateFunctionURLConfig&lt;/code> API&lt;/a>. To create a URL for invoking the function, run the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function-url-config \
