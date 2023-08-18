@@ -27,13 +27,13 @@
               <div class="lessons-list">
                 {{ range .Data.Pages }}
                   <div class="lessons-item">
-                    <div class="row no-gutters align-items-start align-items-lg-center">
+                    <div class="row no-gutters align-items-start">
                       <div class="col-12 col-md-6 col-lg-5 col-xl-4">
                         <a href="{{ .Permalink }}" title="{{.Params.linkTitle}}" class="d-block">
                           {{ $image := .Resources.GetMatch (printf "*%s*" (.Params.leadimage)) }}
                           {{ $image := $image.Resize "556x" }}
                           {{ with $image }}
-                            <img src="{{.RelPermalink}}" class="img-fluid" />
+                            <img src="{{.RelPermalink}}" class="img-fluid img-light-shadow" />
                           {{end}}
                         </a>
                       </div>
