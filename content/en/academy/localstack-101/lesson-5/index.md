@@ -6,7 +6,7 @@ description: >
   LocalStack Web Application lets you view and manage all aspects of the LocalStack platform. 
   In this guide you will learn about Resource Browser, that allows you to view, manage, and 
   deploy AWS resources locally while building & testing cloud applications locally.
-length: 00:50
+length: 03:29
 leadimage: web-app.png
 videoUrl: https://www.youtube.com/embed/SoXtngYp-8k
 type: lessons

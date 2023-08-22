@@ -6,7 +6,7 @@ description: >
   LocalStack is a game-changing platform for cloud developers, offering enhanced productivity, cost savings, and simplified maintenance. 
   With faster deployment and reduced dependency on infrastructure teams, developers can unleash their full
   potential and streamline cloud workflows.
-length: 03:25
+length: 03:39
 leadimage: why-ls.png
 videoUrl: https://www.youtube.com/embed/EDGIBpUpYWU
 type: lessons

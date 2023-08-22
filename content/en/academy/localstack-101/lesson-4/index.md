@@ -6,7 +6,7 @@ description: >
   Discover multiple ways to dive into LocalStack's world of cloud development. Learn the easiest
   method, using the LocalStack CLI, or alternatively, you can pull the Docker image, run it or include it in
   Docker Compose, and start using AWS services. 
-length: 07:01
+length: 03:43
 leadimage: getting-started.png
 videoUrl: https://www.youtube.com/embed/CzX4mfiS058
 type: lessons

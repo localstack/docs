@@ -6,7 +6,7 @@ description: >
   Discover Cloud Pods: a mechanism offering persistent snapshots of LocalStack's application state. 
   Uncover their significance in enabling reproducible applications, collaborative sandboxing, and 
   consistent AWS API parity. Engage in a brief and enlightening demo showcasing their practicality.
-length: 15:59
+length: 03:29
 leadimage: cloud-pod.png
 videoUrl: https://www.youtube.com/embed/InqTdSvxuag
 type: lessons
