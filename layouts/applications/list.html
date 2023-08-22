@@ -56,7 +56,7 @@
                                 {{$cloudpod := cond (eq (.cloudPods) true) " cloudpod-true" "" }}
                                 {{$className := print $services $deployment $platform $level $cloudpod}}
                                 <div
-                                  class='entry application-card col-xs-12 col-sm-6 col-md-4{{$className}}'
+                                  class='entry application-card filters-card col-xs-12 col-sm-6 col-md-4{{$className}}'
                                   data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}'
                                   data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}'
                                   data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}'
@@ -136,152 +136,17 @@
     }
   </style>
   <script>
-    var servicesData = {{.Site.Data.developerhub.services}};
-    var deploymentsData = {{.Site.Data.developerhub.deployments}};
-    var platformsData = {{.Site.Data.developerhub.platforms}};
-    var levelsData = {{.Site.Data.developerhub.complexities.data}};
-    var levelOrder = {{.Site.Data.developerhub.complexities.order}};
-    var $items = $(".application-card");
-    var $noResults = $("#no-results");
-    var $clearFiltersBtn = $(".clear-filters-btn");
-    var $showAllAppsBtn = $("#show-all-apps-btn");
-    var filtersState = {
-      services: [],
-      deployments: [],
-      platforms: [],
-      levels: [],
-      cloudpods: [],
+    var filtersConfig = {
+      data: {
+        services: {{.Site.Data.developerhub.services}},
+        deployments: {{.Site.Data.developerhub.deployments}},
+        platforms: {{.Site.Data.developerhub.platforms}},
+        levels: {{.Site.Data.developerhub.complexities.data}},
+      },
+      levelOrder: {{.Site.Data.developerhub.complexities.order}},
+      hasCloudPod: true,
     };
-
-    var levelsSorter = function (a, b){
-      // Required as its custom sorting
-      return levelOrder.indexOf(a) - levelOrder.indexOf(b);
-    };
-
-    var generateCheckboxItemHtml = function (prefix, lookup, item) {
-      return `
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" value="${prefix}-${item}" class="custom-control-input" id="${prefix}-${item}" aria-label="${prefix}-${item}">
-        <label class="custom-control-label" for="${prefix}-${item}">${lookup[item] || item}</label>
-      </div>
-      `;
-    };
-    var buildFiltersUI = function () {
-      let services = "";
-      let deployments = "";
-      let platforms = "";
-      let levels = "";
-
-      $items.each(function (_i, value) {
-        let service = value.getAttribute("data-services");
-        let platform = value.getAttribute("data-platforms");
-        let deployment = value.getAttribute("data-deployments");
-        let level = value.getAttribute("data-levels");
-
-        services += service ? service.split(",") + "," : "";
-        platforms += platform ? platform.split(",") + "," : "";
-        deployments += deployment ? deployment.split(",") + "," : "";
-        levels += level ? level.split(",") + "," : "";
-      });
-
-      // Set removes duplicates
-      services = Array.from(new Set(services.slice(0, -1).split(",")));
-      platforms = Array.from(new Set(platforms.slice(0, -1).split(",")));
-      deployments = Array.from(new Set(deployments.slice(0, -1).split(",")));
-      levels = Array.from(new Set(levels.slice(0, -1).split(",")));
-
-      let servicesHtml = "";
-      let deploymentsHtml = "";
-      let platformsHtml = "";
-      let levelsHtml = "";
-
-      services.sort().map(function (service) {
-        servicesHtml += generateCheckboxItemHtml("service", servicesData, service);
-      });
-      deployments.sort().map(function (deployment) {
-        deploymentsHtml += generateCheckboxItemHtml("deployment", deploymentsData, deployment);
-      });
-      platforms.sort().map(function (platform) {
-        platformsHtml += generateCheckboxItemHtml("platform", platformsData, platform);
-      });
-      levels.sort(levelsSorter).map(function (level) {
-        levelsHtml += generateCheckboxItemHtml("level", levelsData, level);
-      });
-
-      $("#filters-services-container").html(servicesHtml);
-      $("#filter-deployments-container").html(deploymentsHtml);
-      $("#filter-platforms-container").html(platformsHtml);
-      $("#filter-levels-container").html(levelsHtml);
-    };
-
-    var bindFilterEvents = function () {
-      var $filterCheckboxes = $("#sidebar-filters-parent .custom-control-input");
-
-      $clearFiltersBtn.on("click", function () {
-        filtersState = Object.keys(filtersState).reduce(function (acc, item) {
-          return Object.assign(acc, {[item]: []})
-        }, {})
-        $('aside').find($clearFiltersBtn).hide();
-        $filterCheckboxes.prop("checked", false);
-        updateApplicationsUI();
-      });
-      $filterCheckboxes.on("change", function (e) {
-        let type = `${e.target.value.split("-")[0]}s`;
-        let arr = e.target.checked
-          ? filtersState[type].concat(e.target.value)
-          : filtersState[type].filter(function (item) {
-              return item !== e.target.value;
-            });
-        Object.assign(filtersState, { [type]: arr });
-        updateApplicationsUI();
-      });
-    };
-
-    var isFiltersApplied = function () {
-      let applied = false;
-      Object.keys(filtersState).forEach(function (key) {
-        if (filtersState[key].length !== 0) applied = true;
-      });
-      return applied;
-    };
-
-    var updateApplicationsUI = function () {
-      $noResults.hide();
-
-      if (!isFiltersApplied()) {
-        $('aside').find($clearFiltersBtn).hide();
-        $items.show();
-        return;
-      }
-
-      $items.hide();
-      $clearFiltersBtn.show();
-
-      var $filteredItems = $items;
-      Object.keys(filtersState).forEach(function (key) {
-        let selector = filtersState[key].length === 1 ? filtersState[key][0] : filtersState[key].join(".");
-        $filteredItems = $filteredItems.filter(selector !== "" ? `.${selector}` : "*");
-      });
-      $filteredItems.show();
-      if ($filteredItems.length === 0) $noResults.show();
-    };
-
-    var filterByQueryString = function () {
-      let queryString = window.location.search;
-      let urlParams = new URLSearchParams(queryString);
-      let id = urlParams.get("id");
-      if (!id || !$(`[data-slug="${id}"]`).length) return;
-      $items.not(`[data-slug="${id}"]`).hide();
-      $showAllAppsBtn.show();
-      $showAllAppsBtn.on('click', function () {
-        $(this).remove();
-        $items.show();
-      })
-    };
-
-    buildFiltersUI();
-    bindFilterEvents();
-    filterByQueryString();
   </script>
+  <script src="{{ "js/filters-sidebar-script.js" | relURL }}"></script>
 
 </html>

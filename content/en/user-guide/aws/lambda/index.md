@@ -64,6 +64,26 @@ $ awslocal lambda create-function \
 In the old Lambda provider, you could create a function with any arbitrary string as the role, such as `r1`. However, the new provider requires the role ARN to be in the format `arn:aws:iam::000000000000:role/lambda-role` and validates it using an appropriate regex. However, it currently does not check whether the role exists.
 {{< /alert >}}
 
+### Invoke the Function
+
+To invoke the Lambda function, you can use the [`Invoke` API](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html). Run the following command to invoke the function:
+
+{{< tabpane text=true persistLang=false >}}
+  {{% tab header="AWS CLI v1" lang="shell" %}}
+  {{< command >}}
+  $ awslocal lambda invoke --function-name localstack-lambda-url-example \
+    --payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
+  {{< /command >}}
+  {{% /tab %}}
+  {{% tab header="AWS CLI v2" lang="shell" %}}
+  {{< command >}}
+  $ awslocal lambda invoke --function-name localstack-lambda-url-example \
+    --cli-binary-format raw-in-base64-out \
+    --payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
+  {{< /command >}}
+  {{% /tab %}}
+{{< /tabpane >}}
+
 ### Create a Function URL
 
 With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the [`CreateFunctionURLConfig` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html). To create a URL for invoking the function, run the following command:
