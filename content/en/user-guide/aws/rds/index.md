@@ -216,7 +216,7 @@ $ awslocal rds create-db-instance \
 
 ### Connect to the database
 
-You can retrieve the hostname and port of your created instance either from the preceding output or by using the [`DescribeDbInstances`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) API. Run the following command to connect to the database:
+You can retrieve the hostname and port of your created instance either from the preceding output or by using the [`DescribeDbInstances`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) API. Run the following command to retrieve the host and port of the instance:
 
 {{< command >}}
 $ PORT=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r ".DBInstances[0].Endpoint.Port")
