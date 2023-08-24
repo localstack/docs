@@ -10003,68 +10003,46 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;h2 id="user-interface">User Interface&lt;/h2>
 &lt;p>&lt;a href="https://app.localstack.cloud">LocalStack Web app&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
 &lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item><item><title>User-Guide: Simple Notification Service (SNS)</title><link>/user-guide/aws/sns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sns/</guid><description>
-&lt;p>AWS Simple Notification Service (SNS) is a central service used to coordinate the delivery of messages to subscribing endpoints or clients. SNS is a serverless messaging services that can distribute massive number of messages to multiple subscribers, and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints.&lt;/p>
-&lt;p>SNS particularly employs the Publish/Subscribe, an asychronous messaging pattern that decouples services that produce events from services that process events. SNS is available over LocalStack Community and the supported APIs are available over our &lt;a href="/user-guide/aws/feature-coverage/">feature coverage page&lt;/a>.&lt;/p>
+&lt;p>Simple Notification Service (SNS) is a serverless messaging service that can distribute a massive number of messages to multiple subscribers and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints. SNS employs the Publish/Subscribe, an asynchronous messaging pattern that decouples services that produce events from services that process events.&lt;/p>
+&lt;p>LocalStack supports SNS via the Community offering, allowing you to use the SNS APIs in your local environment to coordinate the delivery of messages to subscribing endpoints or clients. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_sns/">API coverage page&lt;/a>, which provides information on the extent of SNS&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to make a basic usage of SNS over LocalStack. This guide is intended for users who wish to get more acquainted with SNS, and assumes you have basic knowledge of the AWS CLI (and our &lt;code>awslocal&lt;/code> wrapper script). To get started, start your LocalStack instance using your preferred method:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Create a SNS topic, named &lt;code>test-topic&lt;/code>, using the &lt;code>awslocal&lt;/code> wrapper script
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-topic --name test-topic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Set the SNS topic attribute using the SNS topic you created previously:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns set-topic-attributes --topic-arn arn:aws:sns:us-east-1:000000000000:test-topic --attribute-name DisplayName --attribute-value MyTopicDisplayName&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>List all the SNS topics:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-topics&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Get attributes for a single SNS topic:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns get-topic-attributes --topic-arn arn:aws:sns:us-east-1:000000000000:test-topic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Publish messages to SNS topic, assuming you have a file named &lt;code>message.txt&lt;/code> in your current directory:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns publish --topic-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:test-topic&amp;#34; --message file://message.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Subscribe to the SNS topic:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns subscribe --topic-arn arn:aws:sns:us-east-1:000000000000:test-topic --protocol email --notification-endpoint test@gmail.com&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Set SNS Subscription attributes, using the &lt;code>SubscriptionArn&lt;/code> from the previous step:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns set-subscription-attributes --subscription-arn arn:aws:sns:us-east-1:000000000000:test-topic:b6f5e924-dbb3-41c9-aa3b-589dbae0cfff --attribute-name RawMessageDelivery --attribute-value true&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>List all the SNS subscriptions:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-subscriptions&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Unsubscribe from SNS topic:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns unsubscribe --subscription-arn arn:aws:sns:us-east-1:000000000000:test-topic:b6f5e924-dbb3-41c9-aa3b-589dbae0cfff&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Delete an SNS topic:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns delete-topic --topic-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:test-topic&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;h2 id="using-localstack-pro">Using LocalStack Pro&lt;/h2>
-&lt;p>LocalStack Pro users can access our &lt;a href="https://app.localstack.cloud">LocalStack App&amp;rsquo;s&lt;/a> web user-interface to work with SNS and other AWS services. It is a convenient way to work with SNS, and allows you to create and manage SNS topics, subscriptions, and messages, in a fashion similar to the AWS console. While using the LocalStack App, ensure you have the LocalStack instance running.&lt;/p>
-&lt;ol>
-&lt;li>Login to the &lt;a href="https://app.localstack.cloud">web user-interface&lt;/a> and select the &lt;code>SNS&lt;/code> service from the &lt;code>Resources&lt;/code> drop-down.&lt;/li>
-&lt;li>Click on the &lt;code>Create Topic&lt;/code> button to create a new SNS topic.&lt;/li>
-&lt;li>Enter the &lt;code>Name&lt;/code>, &lt;code>Attribute&lt;/code>, and &lt;code>Tags&lt;/code> to create the SNS topic and click &lt;code>Create&lt;/code>.&lt;/li>
-&lt;li>You will be able to see the SNS topic in the &lt;code>SNS Topics&lt;/code> page. Run the following command locally to test the SNS topic:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-topics&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
-&lt;li>Use the web user-interface to perform further operations on the SNS topic, such as deleting the topic, visualizing the topic attributes, and creating a new subscription.&lt;/li>
-&lt;/ol>
-&lt;h2 id="localstack-specifics">LocalStack Specifics&lt;/h2>
-&lt;p>We provide additional features to help you develop, debug and test your SNS applications. They are exposed as internal endpoints that you can access to have more informations about specific internal data.&lt;/p>
-&lt;h3 id="accessing-published-platform-messages">Accessing published Platform Messages&lt;/h3>
-&lt;p>For testing purposes, LocalStack keeps in memory all messages published to a platform endpoint to allow easy retrieval. Check out the &lt;a href="https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html">AWS docs about SNS mobile push notifications&lt;/a> to know more about this.&lt;/p>
-&lt;p>These messages can be accessed in JSON format at &lt;code>GET /_aws/sns/platform-endpoint-messages&lt;/code>. You can specify query parameters to select and filter specific &lt;code>accountId&lt;/code>, &lt;code>region&lt;/code> and &lt;code>endpointArn&lt;/code>.&lt;/p>
-&lt;p>&lt;strong>Query parameters&lt;/strong>&lt;/p>
+&lt;p>This guide is intended for users who wish to get more acquainted with SNS over LocalStack. It assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script).&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an SNS topic, publish messages, and subscribe to the topic.&lt;/p>
+&lt;h3 id="create-an-sns-topic">Create an SNS topic&lt;/h3>
+&lt;p>To create an SNS topic, use the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html">&lt;code>CreateTopic&lt;/code>&lt;/a> API. Run the following command to create a topic named &lt;code>localstack-topic&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-topic --name localstack-topic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can set the SNS topic attribute using the SNS topic you created previously by using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_SetTopicAttributes.html">&lt;code>SetTopicAttributes&lt;/code>&lt;/a> API. Run the following command to set the &lt;code>DisplayName&lt;/code> attribute for the topic:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns set-topic-attributes \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic-arn arn:aws:sns:us-east-1:000000000000:localstack-topic \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-name DisplayName \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-value MyTopicDisplayName&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can list all the SNS topics using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">&lt;code>ListTopics&lt;/code>&lt;/a> API. Run the following command to list all the SNS topics:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-topics&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="get-attributes-and-publish-messages-to-sns-topic">Get attributes and publish messages to SNS topic&lt;/h3>
+&lt;p>You can get attributes for a single SNS topic using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_GetTopicAttributes.html">&lt;code>GetTopicAttributes&lt;/code>&lt;/a> API. Run the following command to get the attributes for the SNS topic:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns get-topic-attributes \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic-arn arn:aws:sns:us-east-1:000000000000:localstack-topic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can change the &lt;code>topic-arn&lt;/code> to the ARN of the SNS topic you created previously.&lt;/p>
+&lt;p>To publish messages to the SNS topic, create a new file named &lt;code>messages.txt&lt;/code> in your current directory and add some content. Run the following command to publish messages to the SNS topic using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">&lt;code>Publish&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns publish \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:localstack-topic&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message file://message.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="subscribing-to-sns-topic-and-setting-subscription-attributes">Subscribing to SNS topic and setting subscription attributes&lt;/h3>
+&lt;p>You can subscribe to the SNS topic using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html">&lt;code>Subscribe&lt;/code>&lt;/a> API. Run the following command to subscribe to the SNS topic:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns subscribe \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic-arn arn:aws:sns:us-east-1:000000000000:localstack-topic \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --protocol email \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --notification-endpoint test@gmail.com&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can configure the SNS Subscription attributes, using the &lt;code>SubscriptionArn&lt;/code> from the previous step. Run the following command to set the &lt;code>RawMessageDelivery&lt;/code> attribute for the subscription:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns set-subscription-attributes \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --subscription-arn arn:aws:sns:us-east-1:000000000000:test-topic:b6f5e924-dbb3-41c9-aa3b-589dbae0cfff \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-name RawMessageDelivery --attribute-value true&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can list all the SNS subscriptions using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_ListSubscriptions.html">&lt;code>ListSubscriptions&lt;/code>&lt;/a> API. Run the following command to list all the SNS subscriptions:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-subscriptions&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="accessing-published-platform-messages">Accessing published Platform Messages&lt;/h2>
+&lt;p>For testing purposes, LocalStack retains all messages published to a platform endpoint in memory, making it easy to retrieve them. To learn more about SNS mobile push notifications, refer to the &lt;a href="https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html">AWS documentation on SNS mobile push notifications&lt;/a>.&lt;/p>
+&lt;p>You can access these messages in JSON format through the &lt;code>GET /_aws/sns/platform-endpoint-messages&lt;/code>. To retrieve specific messages, you can use query parameters to filter by &lt;code>accountId&lt;/code>, &lt;code>region&lt;/code>, and &lt;code>endpointArn&lt;/code>.&lt;/p>
+&lt;h3 id="query-parameters">Query parameters&lt;/h3>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -10077,7 +10055,7 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;tr>
 &lt;td>&lt;code>accountId&lt;/code>&lt;/td>
 &lt;td>No&lt;/td>
-&lt;td>The AWS account ID from which the messages have been published. If not specified, it will use the default &lt;code>000000000000&lt;/code>&lt;/td>
+&lt;td>The AWS Account ID from which the messages have been published. If not specified, it will use the default &lt;code>000000000000&lt;/code>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>region&lt;/code>&lt;/td>
@@ -10087,11 +10065,11 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;tr>
 &lt;td>&lt;code>endpointArn&lt;/code>&lt;/td>
 &lt;td>No&lt;/td>
-&lt;td>The target EndpointArn to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages.&lt;/td>
+&lt;td>The target &lt;code>EndpointArn&lt;/code> to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>&lt;strong>Response format and attributes&lt;/strong>&lt;/p>
+&lt;h3 id="response-format-and-attributes">Response format and attributes&lt;/h3>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -10111,7 +10089,7 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;/tbody>
 &lt;/table>
 &lt;br>
-&lt;p>We will create a platform endpoint in SNS and publish a message to show how to retrieve the message from the internal endpoint.
+&lt;p>In this example, we will create a platform endpoint in SNS and publish a message to it. Run the following commands to create a platform endpoint:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-platform-application --name app-test --platform APNS --attributes {}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;PlatformApplicationArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:app/APNS/app-test&amp;#34;
@@ -10120,14 +10098,14 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-platform-endpoint --platform-application-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:app/APNS/app-test&amp;#34; --token my-fake-token
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EndpointArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns publish --target-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34; --message &amp;#39;{&amp;#34;APNS_PLATFORM&amp;#34;: &amp;#34;{\&amp;#34;aps\&amp;#34;: {\&amp;#34;content-available\&amp;#34;: 1}}&amp;#34;}&amp;#39; --message-structure json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Publish a message to the platform endpoint:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns publish --target-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34; --message &amp;#39;{&amp;#34;APNS_PLATFORM&amp;#34;: &amp;#34;{\&amp;#34;aps\&amp;#34;: {\&amp;#34;content-available\&amp;#34;: 1}}&amp;#34;}&amp;#39; --message-structure json
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MessageId&amp;#34;: &amp;#34;ed501a7a-caab-45aa-a941-2fcc64b5c227&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34; | jq .
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Retrieve the messages published to the platform endpoint using &lt;code>cURL&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34; | jq .
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;platform_endpoint_messages&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34;: [
@@ -10141,11 +10119,29 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;region&amp;#34;: &amp;#34;us-east-1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>You can also reset the saved messages at &lt;code>DELETE /_aws/sns/platform-endpoint-messages&lt;/code>, with those same filters.&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>With those same filters, you can reset the saved messages at &lt;code>DELETE /_aws/sns/platform-endpoint-messages&lt;/code>. Run the following command to reset the saved messages:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -X &amp;#34;DELETE&amp;#34; &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34; | jq .
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;platform_endpoint_messages&amp;#34;: {},
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;region&amp;#34;: &amp;#34;us-east-1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing SNS topics. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>SNS&lt;/strong> under the &lt;strong>App Integration&lt;/strong> section.&lt;/p>
+&lt;img src="sns-resource-browser.png" alt="SNS Resource Browser" title="SNS Resource Browser" width="900" />
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Topic&lt;/strong>: Create a new SNS topic by specifying a topic name, attributes, and tags.&lt;/li>
+&lt;li>&lt;strong>View Details and Subscription&lt;/strong>: View details and subscription of an SNS topic by selecting the topic name and navigating to the &lt;strong>Details&lt;/strong> and &lt;strong>Subscriptions&lt;/strong> tabs.&lt;/li>
+&lt;li>&lt;strong>Create Subscription&lt;/strong>: Create a new subscription for an SNS topic by selecting the topic name, navigating to the &lt;strong>Subscriptions&lt;/strong> tab, and clicking the &lt;strong>Create Subscription&lt;/strong> button. Fill in the required details such as protocol, endpoint, and attributes, delivery policy, return subscription ARN, and click &lt;strong>Create&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Delete Topic&lt;/strong>: Delete an SNS topic by selecting the topic name and clicking the &lt;strong>Action&lt;/strong> button, followed by &lt;strong>Delete Selected&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use SNS in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/shipment-list-demo">Full-Stack application with AWS Lambda, DynamoDB &amp;amp; S3 for shipment validation&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo">Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/loan-broker-stepfunctions-lambda-app">Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/serverless-image-resizer">Serverless Image Resizer with AWS Lambda, S3, SNS, and SES&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
