@@ -88,7 +88,8 @@ You should see the following output:
 ### Execute a query
 
 To execute a query, you can use the [`ExecuteStatement`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html) API. The following command executes a query against the database. The query returns the value `123`.
-
+Make sure to replace the `secret-arn` with the arn from the secret you just created in the previous step. 
+Also check that the `resource-arn` matches the cluster-arn that you have created before.
 {{< command >}}
 $ awslocal rds-data execute-statement \
     --database test \
