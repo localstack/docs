@@ -1,62 +1,182 @@
 ---
 title: "AppSync"
 linkTitle: "AppSync"
-categories: ["LocalStack Pro"]
-description: >
-  Get started with AppSync on LocalStack
-aliases:
-  - /aws/appsync/
+description: Get started with AppSync on LocalStack
 ---
 
-Basic support for AppSync is included in LocalStack Pro. The local AppSync API allows you to spin up local GraphQL APIs and directly expose your data sources (e.g., DynamoDB tables) to external clients.
+## Introduction
 
-## Example AppSync API with DynamoDB data source
+AppSync is a managed service provided by Amazon Web Services (AWS) that enables you to create serverless GraphQL APIs to query databases, microservices, and other APIs. AppSync allows you to define your data models and business logic using a declarative approach, and connect to various data sources, including other AWS services, relational databases, and custom data sources.
 
-For example, you can create a DynamoDB table `"posts"` with a key attribute `id`, and define a GraphQL schema in a file `schema.graphql` like this:
-```plaintext
-schema {
-    query: Query
+LocalStack supports AppSync via the Pro/Team offering, allowing you to use the AppSync APIs in your local environment to connect your applications and services to data and events. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_appsync/), which provides information on the extent of AppSync's integration with LocalStack.
+
+## Getting started
+
+This guide is designed for users new to AppSync and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
+
+Start your LocalStack container using your preferred method. We will demonstrate how to create an AppSync API with a DynamoDB data source using the AWS CLI.
+
+### Create a DynamoDB table
+
+You can create a DynamoDB table using the [`CreateTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) API. Execute the following command to create a table named `DynamoDBNotesTable` with a primary key named `NoteId`:
+
+{{< command >}}
+$ awslocal dynamodb create-table \
+    --table-name DynamoDBNotesTable \
+    --attribute-definitions AttributeName=NoteId,AttributeType=S \
+    --key-schema AttributeName=NoteId,KeyType=HASH \
+    --billing-mode PAY_PER_REQUEST
+{{< /command >}}
+
+After the table is created, you can use the [`ListTables`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ListTables.html) API. Run the following command to list all tables in your running LocalStack container:
+
+{{< command >}}
+$ awslocal dynamodb list-tables
+{{< /command >}}
+
+The following output would be retrieved:
+
+```bash
+{
+    "TableNames": [
+        "DynamoDBNotesTable"
+    ]
+}
+```
+
+### Create a GraphQL API
+
+You can create a GraphQL API using the [`CreateGraphqlApi`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_CreateGraphqlApi.html) API. Execute the following command to create a GraphQL API named `NotesApi`:
+
+{{< command >}}
+$ awslocal appsync create-graphql-api \
+    --name NotesApi \
+    --authentication-type API_KEY
+{{< /command >}}
+
+The following output would be retrieved:
+
+```bash
+{
+    "graphqlApi": {
+        "name": "NotesApi",
+        "apiId": "014d18d0c2b149ee8b66f39173",
+        "authenticationType": "API_KEY",
+        "arn": "arn:aws:appsync:us-east-1:000000000000:apis/014d18d0c2b149ee8b66f39173",
+        "uris": {
+            "GRAPHQL": "http://localhost:4566/graphql/014d18d0c2b149ee8b66f39173",
+            "REALTIME": "ws://localhost:4510/graphql/014d18d0c2b149ee8b66f39173"
+        },
+        "tags": {},
+        "xrayEnabled": false
+    }
+}
+```
+
+You can now create an API key for your GraphQL API using the [`CreateApiKey`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_CreateApiKey.html) API. Execute the following command to create an API key for your GraphQL API:
+
+{{< command >}}
+$ awslocal appsync create-api-key \
+    --api-id 014d18d0c2b149ee8b66f39173
+{{< /command >}}
+
+The following output would be retrieved:
+
+```bash
+{
+    "apiKey": {
+        "id": "31d94a05",
+        "expires": 1693551600
+    }
+}
+```
+
+### Create a GraphQL schema
+
+Create a file named `schema.graphql` with the following content:
+
+```graphql
+type Note {
+  NoteId: ID!
+  title: String
+  content: String
+}
+type PaginatedNotes {
+  notes: [Note!]!
+  nextToken: String
 }
 type Query {
-    getPosts: [Post!]!
+  allNotes(limit: Int, nextToken: String): PaginatedNotes!
+  getNote(NoteId: ID!): Note
 }
-type Post {
-    id: DDBString!
+type Mutation {
+  saveNote(NoteId: ID!, title: String!, content: String!): Note
+  deleteNote(NoteId: ID!): Note
 }
-type DDBString {
-    S: String!
+type Schema {
+  query: Query
+  mutation: Mutation
 }
-```
-... and then use the AppSync API (or CloudFormation) to create the following entities:
-
-1. a GraphQL API
-2. a data source of type `AMAZON_DYNAMODB` that references the `"posts"` DynamoDB table
-3. a request mapping template with a content like this:
-```json
-{
-    "version" : "2017-02-28",
-    "operation" : "Scan"
-}
-```
-4. a response mapping template with a content like this:
-```javascript
-$util.toJson($context.result["Items"])
 ```
 
-Once things have been wired up properly, and assuming the ID of your GraphQL API is `"api123"`, you should be able to run the following GraphQL query to retrieve all items from the `"posts"` DynamoDB table:
+You can start the schema creation process using the [`StartSchemaCreation`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_StartSchemaCreation.html) API. Execute the following command to start the schema creation process:
+
 {{< command >}}
-$ curl -d '{"query":"query {getPosts{id{S}}}"}' http://localhost:4605/graphql/api123
-{{< / command >}}
+$ awslocal appsync start-schema-creation \
+    --api-id 014d18d0c2b149ee8b66f39173 \
+    --definition file://schema.graphql
+{{< /command >}}
 
-For more details, please refer to the self-contained sample published in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/appsync-graphql-api).
+The following output would be retrieved:
+
+```bash
+{
+    "status": "ACTIVE"
+}
+```
+
+### Create a data source
+
+You can create a data source using the [`CreateDataSource`](https://docs.aws.amazon.com/appsync/latest/APIReference/API_CreateDataSource.html) API. Execute the following command to create a data source named `DynamoDBNotesTable`:
+
+{{< command >}}
+$ awslocal appsync create-data-source \
+    --name AppSyncDB \
+    --api-id 014d18d0c2b149ee8b66f39173 \
+    --type AMAZON_DYNAMODB \
+    --dynamodb-config tableName=DynamoDBNotesTable,awsRegion=us-east-1
+{{< /command >}}
+
+The following output would be retrieved:
+
+```bash
+{
+    "dataSource": {
+        "dataSourceArn": "arn:aws:appsync:us-east-1:000000000000:apis/014d18d0c2b149ee8b66f39173/datasources/AppSyncDB",
+        "name": "AppSyncDB",
+        "type": "AMAZON_DYNAMODB",
+        "dynamodbConfig": {
+            "tableName": "DynamoDBNotesTable",
+            "awsRegion": "us-east-1"
+        }
+    }
+}
+```
 
 ## Custom GraphQL API IDs
 
-It is possible to use a predefined ID when creating GraphQL APIs by setting the tag `_custom_id_`.
-For example:
+You can employ a pre-defined ID during the creation of GraphQL APIs by utilizing the special tag `_custom_id_`. For example, the following command will create a GraphQL API with the ID `faceb00c`:
 
 {{< command >}}
-$ awslocal appsync create-graphql-api --name my-api --authentication-type API_KEY --tags _custom_id_=faceb00c
+$ awslocal appsync create-graphql-api \
+    --name my-api \
+    --authentication-type API_KEY \
+    --tags _custom_id_=faceb00c
+{{< /command >}}
+
+The following output would be retrieved:
+
+```bash
 {
     "graphqlApi": {
         "name": "my-api",
@@ -72,24 +192,51 @@ $ awslocal appsync create-graphql-api --name my-api --authentication-type API_KE
         }
     }
 }
-{{< /command >}}
+```
 
 ## GraphQL Resolvers
 
-LocalStack currently provides support for the following [AppSync resolver types](https://docs.aws.amazon.com/appsync/latest/devguide/tutorials.html):
+These resolver types are available in [AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/tutorials.html) and can be configured to interact with various data sources and services. LocalStack Pro supports the following resolver types:
 
-* `AMAZON_DYNAMODB` - for accessing DynamoDB tables
-* `RELATIONAL_DATABASE` - for accessing RDS database tables
-* `AWS_LAMBDA` - for retrieving data from Lambda function invocations
-* `HTTP` - for calling HTTP endpoints to fetch data
-* `NONE` - for pass-through resolver mapping templates that return the incoming payload
+| Resolver Type         | Description                                                            |
+| --------------------- | ---------------------------------------------------------------------- |
+| `AMAZON_DYNAMODB`     | Provides access to DynamoDB tables.                                    |
+| `RELATIONAL_DATABASE` | Provides access to RDS database tables.                                |
+| `AWS_LAMBDA`          | Allows retrieval of data from Lambda function invocations.             |
+| `HTTP`                | Enables calling HTTP endpoints to fetch data.                          |
+| `NONE`                | Used for pass-through resolver mapping templates returning input data. |
 
-## GraphQL Endpoints 
+## Configuring GraphQL Endpoints
 
 There are three configurable strategies that govern how GraphQL API endpoints are created. The strategy can be configured via the `GRAPHQL_ENDPOINT_STRATEGY` environment variable.
 
-| Value | Format | Description |
-| - | - | - |
-| `domain` | `<api-id>.appsync-api.localhost.localstack.cloud:4566` | This will be the default strategy in the future that uses the `localhost.localstack.cloud` domain to route to your localhost |
-| `path` | `localhost:4566/appsync-api/<api-id>/graphql` | An alternative that can be useful if you cannot resolve LocalStack's localhost domain |
-| `legacy` | `localhost:4566/graphql/<api-id>` | The old shape of the endpoint, which is currently the default but will be phased out|
+| Value    | Format                                                 | Description                                                                                         |
+|----------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `domain` | `<api-id>.appsync-api.localhost.localstack.cloud:4566` | This strategy, slated to be the future default, uses the `localhost.localstack.cloud` domain to route to your localhost. |
+| `path`   | `localhost:4566/appsync-api/<api-id>/graphql`         | An alternative strategy that can be beneficial if you're unable to resolve LocalStack's `localhost` domain. |
+| `legacy` | `localhost:4566/graphql/<api-id>`                    | This strategy represents the old endpoint format, which is currently the default but will eventually be phased out. |
+
+## Resource Browser
+
+The LocalStack Web Application provides a Resource Browser for managing AppSync APIs, Data Sources, Schema, Query, Types, Resolvers, Functions and API keys. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **AppSync** under the **App Integration** section.
+
+<img src="appsync-resource-browser.png" alt="AppSync Resource Browser" title="AppSync Resource Browser" width="900" />
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create API**: Create a new GraphQL API by clicking **Create API** and providing a name for the API, Authentication Type, and optional tags among other parameters.
+- **Edit API**: Click on the GraphQL API name and click **Edit API** to edit the GraphQL API, by updating the parameters before clicking **Submit**.
+- **Create Data Source**: Click on the GraphQL API name and click **Data Source**. Click on **Create Data Source** to create a new data source for the GraphQL API, by providing a name for the data source, data source type, and Service Role ARN before clicking **Submit**.
+- **Edit Data Source**: Click on the GraphQL API name and click **Data Source**. Click on the data source name and click **Edit Data Source** to edit the data source, by updating the parameters before clicking **Submit**.
+- **Create Types**: Click on the GraphQL API name and click **Types**. Click on **Create Type** to create a type definition, in GraphQL Schema Definition Language (SDL) format, before clicking **Submit**.
+- **Create API Key**: Click on the GraphQL API name and click **API Keys**. Click on **Create API Key** to create an API key for the GraphQL API, by providing a description for the API key and its expiration time before clicking **Submit**.
+- **View and edit Schema**: Click on the GraphQL API name and click **Schema**. You can view the GraphQL schema, and edit the GraphQL schema, in GraphQL Schema Definition Language (SDL) format, before clicking **Update**.
+- **Query**: Click on the GraphQL API name and click **Query**. You can query the GraphQL API by providing the GraphQL query and variables, including the operation and API key, before clicking **Execute**.
+- **Attach Resolver**: Click on the GraphQL API name and click **Resolvers**. Click on **Attach Resolver** to attach a resolver to a field, by providing the field name, data source name, Request Mapping Template, Response Mapping Template, among other parameters, before clicking **Submit**.
+- **Create Function**: Click on the GraphQL API name and click **Functions**. Click on **Create Function** to create a function, by providing a name for the function, data source name, and Function Version, Request Mapping Template, Response Mapping Template, among other parameters, before clicking **Submit**.
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use AppSync in LocalStack for various use cases:
+
+- [AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL](https://github.com/localstack/appsync-graphql-api-sample)
