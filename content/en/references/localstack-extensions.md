@@ -44,13 +44,13 @@ Commands:
 To install an extension, specify the name of the `pip` dependency that contains the extension. For example, for the official Stripe extension, you can either use the package distributed on PyPI:
 
 {{< command >}}
-$ localstack extensions install localstack-extensions-stripe
+$ localstack extensions install localstack-extension-stripe
 {{< / command >}}
 
 You can alternatively install it directly from our Git repository:
 
 {{< command >}}
-$ localstack extensions install "git+https://github.com/localstack/localstack-extensions/#egg=localstack-extensions-stripe&subdirectory=stripe"
+$ localstack extensions install "git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-stripe&subdirectory=stripe"
 {{< / command >}}
 
 ## Developing Extensions
