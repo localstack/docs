@@ -97,7 +97,7 @@ The output of the command looks similar to this:
 
 To use LocalStack MSK, you can download and utilize the Kafka command line interface (CLI) to create a topic for producing and consuming data.
 
-To download Apache Kafka, execute the following command.
+To download Apache Kafka, execute the following commands.
 
 {{< command >}}
 wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
