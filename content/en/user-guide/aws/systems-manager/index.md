@@ -1,66 +1,127 @@
 ---
 title: "Systems Manager (SSM)"
 linkTitle: "Systems Manager (SSM)"
-categories: ["LocalStack Pro"]
-description: Get started with AWS Systems Manager (SSM) on LocalStack
-aliases:
-  - /aws/systems-manager/
+description: Get started with Systems Manager (SSM) on LocalStack
 ---
 
-Systems Manager can be used in conjunction with the [EC2 Docker backend]({{< ref "../elastic-compute-cloud/index.md" >}}) to run operational tasks on the Dockerised instances.
+## Introduction
 
-The following table highlights some differences between LocalStack SSM and AWS SSM.
+Systems Manager (SSM) is a management service provided by Amazon Web Services that helps you effectively manage and control your infrastructure resources. SSM simplifies tasks related to system and application management, patching, configuration, and automation, allowing you to maintain the health and compliance of your environment.
 
-| LocalStack | AWS |
-|------------|-----|
-| Instances are automatically registered with SSM | Instances are manually registered using [`CreateActivation`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateActivation.html) |
-| Uses Docker exec to perform operations | Uses [Amazon SSM Agent](https://github.com/aws/amazon-ssm-agent) |
-| Instance IDs are prefixed with `i-` | Instance IDs are prefixed with `mi-` |
+LocalStack supports SSM via the Community offering with some additional features in the Pro/Team offering, allowing you to use the SSM APIs in your local environment to run operational tasks on the Dockerised instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ssm/), which provides information on the extent of SSM's integration with LocalStack.
 
-Following operations are currently supported:
+## Getting started
 
-| Operation | Notes |
-|:----------|:------|
-| DescribeInstanceInformation | List all registered instances |
-| SendCommand | Currently only `AWS-RunShellScript` document is supported |
-| ListCommandInvocations | List all invocations |
-| GetCommandInvocation | Details of an invocation including standard output and standard error contents |
+This guide is designed for users new to Systems Manager (SSM) and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-### Examples
+Start your LocalStack container using your preferred method with an additional `EC2_VM_MANAGER=docker` configuration variable. We will demonstrate how to use EC2 and SSM functionalities when using the Docker backend with LocalStack with the AWS CLI.
+
+### Create an EC2 instance
+
+To get started, pull the `ubuntu:focal` image from Docker Hub and tag it as `localstack-ec2/ubuntu-focal-docker-ami:ami-00a001`. LocalStack uses a naming scheme to recognise and manage the containers and images associated with it. The container are named `localstack-ec2.<InstanceId>`, while images are tagged `localstack-ec2/<AmiName>:<AmiId>`.
+
+{{< command >}}
+$ docker pull ubuntu:focal
+$ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-docker-ami:ami-00a001
+{{< / command >}}
+
+LocalStack's Docker backend treats Docker images with the above naming scheme as AMIs. The AMI ID is the last part of the image tag, `ami-00a001` in this case. You can run an EC2 instance using the [`RunInstances`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_RunInstances.html) API. Execute the following command to create an EC2 instance using the `ami-00a001` AMI.
+
+{{< command >}}
+$ awslocal ec2 run-instances \
+    --image-id ami-00a001 --count 1
+{{< / command >}}
+
+The following output would be retrieved:
+
+```bash
+{
+    ...
+    "Instances": [
+        {
+            ...
+            "InstanceId": "i-abf6920789a06dd84",
+            "InstanceType": "m1.small",
+            ...
+            "SecurityGroups": [],
+            "SourceDestCheck": true,
+            "Tags": [],
+            "VirtualizationType": "paravirtual"
+        }
+    ],
+    "OwnerId": "000000000000",
+    "ReservationId": "r-e9b21a68"
+    ...
+```
+
+You can copy the `InstanceId` value and use it in the following commands.
+
+### Send command using SSM
+
+You can use the [`SendCommand`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_SendCommand.html) API to send commands to the EC2 instance. The following command sends a `cat lsb-release` command in the `/etc` directory to the EC2 instance.
 
 {{< command >}}
 $ awslocal ssm send-command --document-name "AWS-RunShellScript" \
     --document-version "1" \
-    --instance-ids i-04df0c15 \
-    --parameters "commands='cat ./uptime',workingDirectory=/proc"
+    --instance-ids i-abf6920789a06dd84 \
+    --parameters "commands='cat lsb-release',workingDirectory=/etc"
+{{< / command >}}
+
+The following output would be retrieved:
+
+```bash
 {
     "Command": {
-        "CommandId": "e53e67c3-a8f2-419e-87e4-e596880797e8",
+        "CommandId": "23547a9b-6993-4967-9446-f96b9b5dac70",
         "DocumentName": "AWS-RunShellScript",
         "DocumentVersion": "1",
         "InstanceIds": [
-            "i-04df0c15"
+            "i-abf6920789a06dd84"
         ],
         "Status": "InProgress"
     }
 }
+```
 
+You can copy the `CommandId` value and use it in the following commands.
+
+### Retrieve the command output
+
+You can use the [`GetCommandInvocation`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_GetCommandInvocation.html) API to retrieve the command output. The following command retrieves the output of the command sent in the previous step.
+
+{{< command >}}
 $ awslocal ssm get-command-invocation \
-    --command-id a0105ed1-0a4d-423b-9a64-9a49828f5391 \
-    --instance-id i-04df0c15
+    --command-id 23547a9b-6993-4967-9446-f96b9b5dac70 \
+    --instance-id i-abf6920789a06dd84
+{{< / command >}}
+
+Change the `CommandId` and `InstanceId` values to the ones you received in the previous step. The following output would be retrieved:
+
+```bash
 {
-    "CommandId": "a0105ed1-0a4d-423b-9a64-9a49828f5391",
-    "InstanceId": "i-04df0c15",
+    "CommandId": "23547a9b-6993-4967-9446-f96b9b5dac70",
+    "InstanceId": "i-abf6920789a06dd84",
     "DocumentName": "AWS-RunShellScript",
     "DocumentVersion": "1",
     "Status": "Success",
-    "StandardOutputContent": "1066081.29 510156.74\n",
+    "StandardOutputContent": "DISTRIB_ID=Ubuntu\nDISTRIB_RELEASE=20.04\nDISTRIB_CODENAME=focal\nDISTRIB_DESCRIPTION=\"Ubuntu 20.04.6 LTS\"\n",
     "StandardErrorContent": ""
 }
-{{< /command >}}
+```
 
-### Limitations
+## Limitations
 
-- Only `AWS-RunShellScript` is supported for Dockerised instances.
-- If the command returns a non-zero code, the standard output and standard error streams are not captured and will be empty.
-- Shell constructs like job controls (`&&`, `||`), redirection (`>`) etc. are not supported.
+The following table highlights some differences between LocalStack SSM and AWS SSM.
+
+| LocalStack                               | AWS                                                                                                                                                |
+| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Automated SSM registration for instances | Manual instance registration using [`CreateActivation`](https://docs.aws.amazon.com/systems-manager/latest/APIReference/API_CreateActivation.html) |
+| Operations performed through Docker exec | Operations facilitated by [Amazon SSM Agent](https://github.com/aws/amazon-ssm-agent)                                                              |
+| Instance IDs prefixed with `i-`          | Instance IDs prefixed with `mi-`                                                                                                                   |
+
+The other limitations of LocalStack SSM are:
+
+-   Dockerised instances only support `AWS-RunShellScript` commands.
+-   Commands returning non-zero codes won't capture standard output or error streams, leaving them empty.
+-   Shell constructs such as job controls (`&&`, `||`), and redirection (`>`) are not supported.
+
