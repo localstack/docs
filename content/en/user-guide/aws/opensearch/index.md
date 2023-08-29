@@ -7,7 +7,7 @@ description: >
 
 ## Introduction
 
-OpenSearch Service is an open-source search and analytics engine, offering developers and organizations advanced search capabilities, robust data analysis, and insightful visualizations. OpenSearch Service also offers log analytics, real-time application monitoring, and clickstream analysis. The following versions of OpenSearch Service are supported by LocalStack
+OpenSearch Service is an open-source search and analytics engine, offering developers and organizations advanced search capabilities, robust data analysis, and insightful visualizations. OpenSearch Service also offers log analytics, real-time application monitoring, and clickstream analysis. The following versions of OpenSearch Service are supported by LocalStack:
 
 - 1.0
 - 1.1
