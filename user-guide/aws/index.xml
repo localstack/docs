@@ -8575,109 +8575,89 @@ This is very resource intensive when a large number of AWS accounts are used.&lt
 &lt;p>This will be addressed in a future update.
 Follow up with &lt;a href="https://github.com/etspaceman/kinesis-mock/issues/377">this Kinesis Mock issue&lt;/a> to keep track of this feature.&lt;/p></description></item><item><title>User-Guide: Kinesis Data Analytics</title><link>/user-guide/aws/kinesis-analytics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-analytics/</guid><description>
 &lt;p>The Kinesis Data Analytics API allows you to run continuous SQL queries directly over your Kinesis data streams. A basic support is included in LocalStack Pro which allows you to create Kinesis Analytics applications, define input and output streams and schema types, and run continuous queries locally.&lt;/p></description></item><item><title>User-Guide: Kinesis Data Firehose</title><link>/user-guide/aws/kinesis-firehose/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-firehose/</guid><description>
-&lt;p>Kinesis Data Firehose is a service to extract, transform and load (ETL service) data to multiple destinations.
-LocalStack supports Firehose with Kinesis as source, and S3, Elasticsearch or HttpEndpoints as targets.&lt;/p>
-&lt;h2 id="examples">Examples&lt;/h2>
-&lt;p>We will provide some examples to illustrate the possibilities of Firehose in LocalStack.&lt;/p>
-&lt;h3 id="using-firehose-to-load-kinesis-data-into-elasticsearch-with-s3-backup">Using Firehose to load Kinesis data into Elasticsearch with S3 Backup&lt;/h3>
-&lt;p>As example, we want to deliver data sent to a Kinesis stream into Elasticsearch via Firehose, while making a full backup into a S3 bucket.
-We will assume LocalStack is already &lt;a href="/getting-started/">started correctly&lt;/a> and we have &lt;code>awslocal&lt;/code> &lt;a href="/user-guide/integrations/aws-cli/">installed&lt;/a>.&lt;/p>
-&lt;p>First we will create our Elasticsearch domain:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name es-local
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DomainStatus&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DomainId&amp;#34;: &amp;#34;000000000000/es-local&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DomainName&amp;#34;: &amp;#34;es-local&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:es:us-east-1:000000000000:domain/es-local&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Created&amp;#34;: true,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Deleted&amp;#34;: false,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Endpoint&amp;#34;: &amp;#34;es-local.us-east-1.es.localhost.localstack.cloud:443&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Processing&amp;#34;: true,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ElasticsearchVersion&amp;#34;: &amp;#34;7.10.0&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ElasticsearchClusterConfig&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;InstanceType&amp;#34;: &amp;#34;m3.medium.elasticsearch&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;InstanceCount&amp;#34;: 1,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DedicatedMasterEnabled&amp;#34;: true,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ZoneAwarenessEnabled&amp;#34;: false,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DedicatedMasterType&amp;#34;: &amp;#34;m3.medium.elasticsearch&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DedicatedMasterCount&amp;#34;: 1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EBSOptions&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EBSEnabled&amp;#34;: true,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VolumeType&amp;#34;: &amp;#34;gp2&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VolumeSize&amp;#34;: 10,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Iops&amp;#34;: 0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CognitoOptions&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Enabled&amp;#34;: false
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>We need the &lt;code>Endpoint&lt;/code> returned here later for the confirmation of our setup.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Kinesis Data Firehose is a service provided by AWS that allows you to extract, transform and load streaming data into various destinations, such as Amazon S3, Amazon Redshift, and Elasticsearch. With Kinesis Data Firehose, you can ingest and deliver real-time data from different sources as it automates data delivery, handles buffering and compression, and scales according to the data volume.&lt;/p>
+&lt;p>LocalStack supports Kinesis Data Firehose via the Community offering, allowing you to use the Kinesis Data Firehose APIs in your local environment to load and transform real-time data. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_firehose/">API coverage page&lt;/a>, which provides information on the extent of Kinesis Data Firehose&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Kinesis Data Firehouse and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to use Firehose to load Kinesis data into Elasticsearch with S3 Backup with the AWS CLI.&lt;/p>
+&lt;h3 id="create-an-elasticsearch-domain">Create an Elasticsearch domain&lt;/h3>
+&lt;p>You can create an Elasticsearch domain using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/es/create-elasticsearch-domain.html">&lt;code>create-elasticsearch-domain&lt;/code>&lt;/a> command. Execute the following command to create a domain named &lt;code>es-local&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal es create-elasticsearch-domain --domain-name es-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Save the value of the &lt;code>Endpoint&lt;/code> field from the response, as it will be required further down to confirm the setup.&lt;/p>
+&lt;h3 id="create-the-source-kinensis-stream">Create the source Kinensis stream&lt;/h3>
 &lt;p>Now let us create our target S3 bucket and our source Kinesis stream:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://kinesis-activity-backup-local
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>make_bucket: kinesis-activity-backup-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream --stream-name kinesis-es-local-stream --shard-count 2&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Next, we will create our Firehose delivery stream with Elasticsearch as destination, and S3 as target for our AllDocuments backup.
-We set the ARN of our Kinesis stream in the &lt;code>kinesis-stream-source-configuration&lt;/code> as well as the role we want to use for accessing the stream.
-In the &lt;code>elasticsearch-destination-configuration&lt;/code> we set (again) the access role, the &lt;code>DomainARN&lt;/code> of the Elasticsearch domain we want to publish to, as well as &lt;code>IndexName&lt;/code> and &lt;code>TypeName&lt;/code> for Elasticsearch.
-Since we want to backup all documents to S3, we also set &lt;code>S3BackupMode&lt;/code> to &lt;code>AllDocuments&lt;/code> and provide a &lt;code>S3Configuration&lt;/code> pointing to our created bucket.&lt;/p>
+&lt;p>Before creating the stream, we need to create an S3 bucket to store our backup data. You can do this using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html">&lt;code>mb&lt;/code>&lt;/a> command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://kinesis-activity-backup-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can now use the &lt;a href="https://docs.aws.amazon.com/kinesis/latest/APIReference/API_CreateStream.html">&lt;code>CreateStream&lt;/code>&lt;/a> API to create a Kinesis stream named &lt;code>kinesis-es-local-stream&lt;/code> with two shards:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --stream-name kinesis-es-local-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --shard-count 2&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-firehouse-delivery-stream">Create a Firehouse delivery stream&lt;/h3>
+&lt;p>You can now create the Firehose delivery stream. In this configuration, Elasticsearch serves as the destination, while S3 serves as the repository for our AllDocuments backup. Within the &lt;code>kinesis-stream-source-configuration&lt;/code>, it is required to specify the ARN of our Kinesis stream and the role that will allow you the access to the stream.&lt;/p>
+&lt;p>The &lt;code>elasticsearch-destination-configuration&lt;/code> sets vital parameters, which includes the access role, &lt;code>DomainARN&lt;/code> of the Elasticsearch domain where you wish to publish, and the settings including the &lt;code>IndexName&lt;/code> and &lt;code>TypeName&lt;/code> for the Elasticsearch setup. Additionally to backup all documents to S3, the &lt;code>S3BackupMode&lt;/code> parameter is set to &lt;code>AllDocuments&lt;/code>, which is accompanied by &lt;code>S3Configuration&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In LocalStack, per default, the IAM roles will not be verified, so you can provide any ARN here. In AWS, you need to check the access rights of the specified role for the task.
+Within LocalStack&amp;rsquo;s default configuration, IAM roles remain unverified and no strict validation is applied on ARNs. However, when operating within the AWS environment, you need to check the access rights of the specified role for the task.
 &lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal firehose create-delivery-stream --delivery-stream-name activity-to-elasticsearch-local --delivery-stream-type KinesisStreamAsSource --kinesis-stream-source-configuration &amp;#34;KinesisStreamARN=arn:aws:kinesis:us-east-1:000000000000:stream/kinesis-es-local-stream,RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role&amp;#34; --elasticsearch-destination-configuration &amp;#34;RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,DomainARN=arn:aws:es:us-east-1:000000000000:domain/es-local,IndexName=activity,TypeName=activity,S3BackupMode=AllDocuments,S3Configuration={RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,BucketARN=arn:aws:s3:::kinesis-activity-backup-local}&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DeliveryStreamARN&amp;#34;: &amp;#34;arn:aws:firehose:us-east-1:000000000000:deliverystream/activity-to-elasticsearch-local&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Before testing the integration, we should check whether the Elasticsearch cluster is already started up.
-We can do this using the following command (for more information about this, check out the &lt;a href="/user-guide/aws/elasticsearch/">docs page about Elasticsearch&lt;/a>.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain --domain-name es-local | jq &amp;#34;.DomainStatus.Processing&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>false&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Once this command returns &lt;code>false&lt;/code>, we are ready to proceed with ingesting our data.
-We can input our data into our source Kinesis stream, our put it directly into the Firehose delivery stream.&lt;/p>
-&lt;p>To put it into Kinesis, run:&lt;/p>
-&lt;p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis put-record --stream-name kinesis-es-local-stream --data &amp;#39;{ &amp;#34;target&amp;#34;: &amp;#34;barry&amp;#34; }&amp;#39; --partition-key partition
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ShardId&amp;#34;: &amp;#34;shardId-000000000001&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SequenceNumber&amp;#34;: &amp;#34;49625461294598302663271645332877318906244481566013128722&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EncryptionType&amp;#34;: &amp;#34;NONE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/firehose/latest/APIReference/API_CreateDeliveryStream.html">&lt;code>CreateDeliveryStream&lt;/code>&lt;/a> API to create a Firehose delivery stream named &lt;code>activity-to-elasticsearch-local&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal firehose create-delivery-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --delivery-stream-name activity-to-elasticsearch-local \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --delivery-stream-type KinesisStreamAsSource \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --kinesis-stream-source-configuration &amp;#34;KinesisStreamARN=arn:aws:kinesis:us-east-1:000000000000:stream/kinesis-es-local-stream,RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --elasticsearch-destination-configuration &amp;#34;RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,DomainARN=arn:aws:es:us-east-1:000000000000:domain/es-local,IndexName=activity,TypeName=activity,S3BackupMode=AllDocuments,S3Configuration={RoleARN=arn:aws:iam::000000000000:role/Firehose-Reader-Role,BucketARN=arn:aws:s3:::kinesis-activity-backup-local}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>On successful execution, the command will return the &lt;code>DeliveryStreamARN&lt;/code> of the created delivery stream:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DeliveryStreamARN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:firehose:us-east-1:000000000000:deliverystream/activity-to-elasticsearch-local&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="testing-the-setup">Testing the setup&lt;/h3>
+&lt;p>Before testing the integration, it&amp;rsquo;s necessary to confirm if the local Elasticsearch cluster is up. You can use the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/es/describe-elasticsearch-domain.html">&lt;code>describe-elasticsearch-domain&lt;/code>&lt;/a> command to check the status of the Elasticsearch cluster. Run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --domain-name es-local | jq &amp;#34;.DomainStatus.Processing&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Once the command returns &lt;code>false&lt;/code>, you can move forward with data ingestion. The data can be added to the source Kinesis stream or directly to the Firehose delivery stream.&lt;/p>
+&lt;p>You can add data to the Kinesis stream using the &lt;a href="https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html">&lt;code>PutRecord&lt;/code>&lt;/a> API. The following command adds a record to the stream:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis put-record \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --stream-name kinesis-es-local-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --data &amp;#39;{ &amp;#34;target&amp;#34;: &amp;#34;barry&amp;#34; }&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --partition-key partition&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-If you are using aws cli v2, you can add &lt;code>--cli-binary-format raw-in-base64-out&lt;/code> to the above command
+For users using AWS CLI v2, consider adding &lt;code>--cli-binary-format raw-in-base64-out&lt;/code> to the command mentioned above.
 &lt;/div>
-&lt;/p>
-&lt;p>Or directly into the Firehose delivery stream:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal firehose put-record --delivery-stream-name activity-to-elasticsearch-local --record &amp;#39;{ &amp;#34;Data&amp;#34;: &amp;#34;eyJ0YXJnZXQiOiAiSGVsbG8gd29ybGQifQ==&amp;#34; }&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RecordId&amp;#34;: &amp;#34;00333086-7581-48a2-bc7c-8ac1ed97ed3d&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>If we now check the entries we made in Elasticsearch (we will use curl for simplicity). Note to replace the url with the &amp;ldquo;Endpoint&amp;rdquo; field of our &lt;code>create-elasticsearch-domain&lt;/code> operation at the beginning.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -s http://es-local.us-east-1.es.localhost.localstack.cloud:443/activity/_search | jq &amp;#39;.hits.hits&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_index&amp;#34;: &amp;#34;activity&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_type&amp;#34;: &amp;#34;activity&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_id&amp;#34;: &amp;#34;f38e2c49-d101-46aa-9ce2-0d2ea8fcd133&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_score&amp;#34;: 1,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_source&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;target&amp;#34;: &amp;#34;Hello world&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_index&amp;#34;: &amp;#34;activity&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_type&amp;#34;: &amp;#34;activity&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_id&amp;#34;: &amp;#34;d2f1c125-b3b0-4c7c-ba90-8acf4075a682&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_score&amp;#34;: 1,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_source&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;target&amp;#34;: &amp;#34;barry&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>If you get a similar output, you have correctly set up a Firehose delivery stream!
-Also checkout the specified S3 bucket to check if your backup is working correctly.&lt;/p></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
+&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/firehose/latest/APIReference/API_PutRecord.html">&lt;code>PutRecord&lt;/code>&lt;/a> API to add data to the Firehose delivery stream. The following command adds a record to the stream:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal firehose put-record \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --delivery-stream-name activity-to-elasticsearch-local \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --record &amp;#39;{ &amp;#34;Data&amp;#34;: &amp;#34;eyJ0YXJnZXQiOiAiSGVsbG8gd29ybGQifQ==&amp;#34; }&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To review the entries in Elasticsearch, you can employ &lt;code>cURL&lt;/code> for simplicity. Remember to replace the URL with the &lt;code>Endpoint&lt;/code> field from the initial &lt;code>create-elasticsearch-domain&lt;/code> operation.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -s http://es-local.us-east-1.es.localhost.localstack.cloud:443/activity/_search | jq &amp;#39;.hits.hits&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You will get an output similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_index&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;activity&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;activity&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;f38e2c49-d101-46aa-9ce2-0d2ea8fcd133&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_score&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_source&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;target&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Hello world&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_index&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;activity&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;activity&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;d2f1c125-b3b0-4c7c-ba90-8acf4075a682&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_score&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_source&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;target&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;barry&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you receive a comparable output, your Firehose delivery stream setup is accurate! Additionally, take a look at the designated S3 bucket to ensure the backup process is functioning correctly.&lt;/p>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use Kinesis Data Firehose in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/sample-fuzzy-movie-search-lambda-kinesis-elasticsearch">Search application with Lambda, Kinesis, Firehose, ElasticSearch, S3&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/serverless-streaming-data-pipeline">Streaming Data Pipeline with Kinesis, Tinybird, CloudWatch, Lambda&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) platform that lets you run code in your preferred programming language on the AWS ecosystem. AWS Lambda automatically scales your code to meet demand and handles server provisioning, management, and maintenance. AWS Lambda allows you to break down your application into smaller, independent functions that integrate seamlessly with AWS services.&lt;/p>
 &lt;p>LocalStack supports Lambda via the Community &amp;amp; Pro/Team offering, allowing you to use the Lambda API to create, deploy, and test your Lambda functions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_lambda/">Lambda coverage page&lt;/a>, which provides information on the extent of Lambda&amp;rsquo;s integration with LocalStack.&lt;/p>
