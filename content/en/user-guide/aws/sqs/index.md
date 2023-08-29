@@ -8,25 +8,31 @@ aliases:
 
 ## Introduction
 
-Simple Queue Service (SQS) is a managed messaging service offered by AWS. It allows you to decouple different components of your applications by enabling asynchronous communication through message queues. SQS allows you to reliably send, store, and receive messages with support for standard and FIFO queues.
+Simple Queue Service (SQS) is a managed messaging service offered by AWS.
+It allows you to decouple different components of your applications by enabling asynchronous communication through message queues.
+SQS allows you to reliably send, store, and receive messages with support for standard and FIFO queues.
 
-LocalStack supports SQS via the Community offering, allowing you to use the SQS APIs in your local environment to use a hosted queue to integrate and decouple distributed systems. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sqs/), which provides information on the extent of SQS's integration with LocalStack.
+LocalStack supports SQS via the Community offering, allowing you to use the SQS APIs in your local environment to integrate and decouple distributed systems via hosted queues.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_sqs/), which provides information on the extent of SQS's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to SQS and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create a SQS queue, retrieve queue attributes and URLs, and receive and delete messages from the queue.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create an SQS queue, retrieve queue attributes and URLs, and receive and delete messages from the queue.
 
 ### Create a queue
 
-To create an SQS queue, use the [`CreateQueue`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html) API. Run the following command to create a queue named `localstack-queue`:
+To create an SQS queue, use the [`CreateQueue`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_CreateQueue.html) API.
+Run the following command to create a queue named `localstack-queue`:
 
 {{< command >}}
 $ awslocal sqs create-queue --queue-name localstack-queue
 {{< / command >}}
 
-You can list all queues in your account using the [`ListQueues`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html) API. Run the following command to list all queues in your account:
+You can list all queues in your account using the [`ListQueues`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html) API.
+Run the following command to list all queues in your account:
 
 {{< command >}}
 $ awslocal sqs list-queues
@@ -42,7 +48,8 @@ You will see the following output:
 }
 ```
 
-You can query queue attributes with the [`GetQueueAttributes`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html) API. You need to pass the `queue-url` and `attribute-names` parameters.
+You can query queue attributes with the [`GetQueueAttributes`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_GetQueueAttributes.html) API.
+You need to pass the `queue-url` and `attribute-names` parameters.
 
 Run the following command to retrieve the queue attributes:
 
@@ -52,7 +59,8 @@ $ awslocal sqs get-queue-attributes --queue-url http://localhost:4566/0000000000
 
 ### Sending and receiving messages from the queue
 
-You can send a message to the SQS queue which will be queued and a consumer can pick it up. To send a message to a SQS queue, you can use the [`SendMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html) API.
+You can send a message to the SQS queue which will be queued and a consumer can pick it up.
+To send a message to a SQS queue, you can use the [`SendMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html) API.
 
 Run the following command to send a message to the queue:
 
@@ -60,7 +68,8 @@ Run the following command to send a message to the queue:
 $ awslocal sqs send-message --queue-url http://localhost:4566/000000000000/localstack-queue --message-body "Hello World"
 {{< / command >}}
 
-It will return the MD5 hash of the Message Body and a Message ID. You will see the following output:
+It will return the MD5 hash of the Message Body and a Message ID.
+You will see the following output:
 
 ```bash
 {
@@ -69,7 +78,8 @@ It will return the MD5 hash of the Message Body and a Message ID. You will see t
 }
 ```
 
-You can receive messages from the queue using the [`ReceiveMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html) API. Run the following command to receive messages from the queue:
+You can receive messages from the queue using the [`ReceiveMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ReceiveMessage.html) API.
+Run the following command to receive messages from the queue:
 
 {{< command >}}
 $ awslocal sqs receive-message --queue-url http://localhost:4566/000000000000/localstack-queue
@@ -79,7 +89,8 @@ You will see the Message ID, MD5 hash of the Message Body, Receipt Handle, and t
 
 ### Delete a message from the queue
 
-To delete a message from the queue, you can use the [`DeleteMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html) API. You need to pass the `queue-url` and `receipt-handle` parameters.
+To delete a message from the queue, you can use the [`DeleteMessage`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteMessage.html) API.
+You need to pass the `queue-url` and `receipt-handle` parameters.
 
 Run the following command to delete a message from the queue:
 
@@ -87,7 +98,8 @@ Run the following command to delete a message from the queue:
 $ awslocal sqs delete-message --queue-url http://localhost:4566/000000000000/localstack-queue --receipt-handle <receipt-handle>
 {{< / command >}}
 
-Replace `<receipt-handle>` with the receipt handle you received in the previous step. If you have sent multiple messages to the queue, you can purge the queue using the [`PurgeQueue`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html) API.
+Replace `<receipt-handle>` with the receipt handle you received in the previous step.
+If you have sent multiple messages to the queue, you can purge the queue using the [`PurgeQueue`](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html) API.
 
 Run the following command to purge the queue:
 
@@ -97,7 +109,8 @@ $ awslocal sqs purge-queue --queue-url http://localhost:4566/000000000000/locals
 
 ## SQS Query API
 
-The [SQS Query API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html), provides SQS Queue URLs as endpoints, enabling direct HTTP requests to the queues. LocalStack extends support for the Query API.
+The [SQS Query API](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html), provides SQS Queue URLs as endpoints, enabling direct HTTP requests to the queues.
+LocalStack extends support for the Query API.
 
 With LocalStack, you can conveniently test SQS Query API calls without the need to sign or include `AUTHPARAMS` in your HTTP requests.
 
@@ -125,7 +138,8 @@ You will see the following output:
 
 Adding the `Accept: application/json` header will make the server return JSON:
 
-To receive JSON responses from the server, include the `Accept: application/json` header in your request. Here's an example using the `cURL` command:
+To receive JSON responses from the server, include the `Accept: application/json` header in your request.
+Here's an example using the `cURL` command:
 
 {{< command >}}
 curl -H "Accept: application/json" "http://localhost:4566/000000000000/my-queue?Action=SendMessage&MessageBody=hello%2Fworld" 
@@ -161,35 +175,47 @@ You can control the format of the generated Queue URLs by setting the environmen
 
 ### Enabling `PurgeQueue` errors
 
-In AWS, there is a restriction that allows only one call to the `PurgeQueue` operation every 60 seconds. You can refer to the [`PurgeQueue` API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html) for more details.
+In AWS, there is a restriction that allows only one call to the `PurgeQueue` operation every 60 seconds.
+You can refer to the [`PurgeQueue` API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_PurgeQueue.html) for more details.
 
-By default, LocalStack disables this behavior. However, if you want to enable the retry delay for `PurgeQueue` in LocalStack, you can start it with the `SQS_DELAY_PURGE_RETRY=1` environment variable.
+By default, LocalStack disables this behavior.
+However, if you want to enable the retry delay for `PurgeQueue` in LocalStack, you can start it with the `SQS_DELAY_PURGE_RETRY=1` environment variable.
 
 ### Enabling `QueueDeletedRecently` errors
 
-In AWS, there is a restriction that prevents the creation of a queue with the same name within 60 seconds after it has been deleted. You can find more information about this behavior in the [`DeleteQueue` API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
+In AWS, there is a restriction that prevents the creation of a queue with the same name within 60 seconds after it has been deleted.
+You can find more information about this behavior in the [`DeleteQueue` API Reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_DeleteQueue.html).
 
-By default, LocalStack disables this behavior. However, if you want to enable the delay for creating a recently deleted queue in LocalStack, you can start it with the `SQS_DELAY_RECENTLY_DELETED=1` environment variable.
+By default, LocalStack disables this behavior.
+However, if you want to enable the delay for creating a recently deleted queue in LocalStack, you can start it with the `SQS_DELAY_RECENTLY_DELETED=1` environment variable.
 
 ### Disable CloudWatch Metrics Reporting
 
-When working with SQS messages, actions like sending, receiving, and deleting them will automatically trigger CloudWatch metrics. This feature, known as [CloudWatch metrics for Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html), is enabled by default but can be deactivated if needed.
+When working with SQS messages, actions like sending, receiving, and deleting them will automatically trigger CloudWatch metrics.
+This feature, known as [CloudWatch metrics for Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-available-cloudwatch-metrics.html), is enabled by default but can be deactivated if needed.
 
-Disabling CloudWatch metrics can enhance the performance of SQS message operations. However, it's important to note that deactivation will also disable any integration with CloudWatch, including the triggering of alarms based on metrics.
+Disabling CloudWatch metrics can enhance the performance of SQS message operations.
+However, it's important to note that deactivation will also disable any integration with CloudWatch, including the triggering of alarms based on metrics.
 
-By default, metrics related to `Approximate*` messages are sent to CloudWatch once every minute. You can customize the reporting interval (in seconds) by setting the `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL` variable to the desired value, such as `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL=120`.
+By default, metrics related to `Approximate*` messages are sent to CloudWatch once every minute.
+You can customize the reporting interval (in seconds) by setting the `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL` variable to the desired value, such as `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL=120`.
 
 If you wish to disable all CloudWatch metrics for SQS, including the `Approximate*` metrics, you can set the `SQS_DISABLE_CLOUDWATCH_METRICS` variable to `1`.
 
 ## Developer endpoints
 
-LocalStack's SQS implementation offers additional endpoints for developers located at `/_aws/sqs`. These endpoints provide the ability to inspect queues without causing any side effects. This can be particularly useful when you need to examine the content of queues without executing a `ReceiveMessage` operation, which would normally remove messages from the queue.
+LocalStack's SQS implementation offers additional endpoints for developers located at `/_aws/sqs`.
+These endpoints provide the ability to inspect queues without causing any side effects.
+This can be particularly useful when you need to examine the content of queues without executing a `ReceiveMessage` operation, which would normally remove messages from the queue.
 
 ### Peeking into queues
 
-The `/_aws/sqs/messages` endpoint provides access to all messages within a queue without triggering the visibility timeout or modifying access metrics. This endpoint is particularly useful in scenarios such as tests, where you need to wait until a specific message arrives in the queue.
+The `/_aws/sqs/messages` endpoint provides access to all messages within a queue without triggering the visibility timeout or modifying access metrics.
+This endpoint is particularly useful in scenarios such as tests, where you need to wait until a specific message arrives in the queue.
 
-The `/_aws/sqs/messages` endpoint is fully compatible with the `ReceiveMessage` operation from the SQS API. By default, it returns all messages in the queue along with their attributes and system attributes. The endpoint ignores any additional parameters from the `ReceiveMessage` operation, except for the `QueueUrl`.
+The `/_aws/sqs/messages` endpoint is fully compatible with the `ReceiveMessage` operation from the SQS API.
+By default, it returns all messages in the queue along with their attributes and system attributes.
+The endpoint ignores any additional parameters from the `ReceiveMessage` operation, except for the `QueueUrl`.
 
 You can call the `/_aws/sqs/messages` endpoint in two different ways:
 
@@ -415,7 +441,8 @@ An example response is shown below:
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing SQS queues. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **SQS** under the **App Integration** section.
+The LocalStack Web Application provides a Resource Browser for managing SQS queues.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **SQS** under the **App Integration** section.
 
 <img src="sqs-resource-browser.png" alt="SQS Resource Browser" title="SQS Resource Browser" width="900" />
 
