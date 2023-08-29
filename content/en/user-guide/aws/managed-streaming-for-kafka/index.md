@@ -100,8 +100,8 @@ To use LocalStack MSK, you can download and utilize the Kafka command line inter
 To download Apache Kafka, execute the following commands.
 
 {{< command >}}
-wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
-tar -xzf kafka_2.12-2.2.1.tgz
+$ wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
+$ tar -xzf kafka_2.12-2.2.1.tgz
 {{< / command >}}
 
 Navigate to the **kafka_2.12-2.2.1** directory.
