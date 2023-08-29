@@ -7050,6 +7050,66 @@ For more information regarding the configuration of LocalStack, please check the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">volumes&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;host&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;sourcePath&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;/host/path&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;test-volume&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic File System (EFS)</title><link>/user-guide/aws/elastic-file-system/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-file-system/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>EFS (Elastic File System) is a fully managed file storage service provided by Amazon Web Services (AWS). EFS offers scalable and shared file storage that can be accessed by multiple EC2 instances and on-premises servers simultaneously. EFS utilizes the Network File System protocol to allow it to be used as a data source for various applications and workloads.&lt;/p>
+&lt;p>LocalStack supports EFS via the Pro/Team offering, allowing you to use the EFS APIs in your local environment to create local file systems, lifecycle configurations, and file system policies. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_efs/">API coverage page&lt;/a>, which provides information on the extent of EFS&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for functionalities like creating mount targets, configuring access points, and generating tags. LocalStack uses Moto to emulate the EFS APIs, and efforts are underway to incorporate support for these features in upcoming updates.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Elastic File System and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a file system, apply an IAM resource-based policy, and create a lifecycle configuration using the AWS CLI.&lt;/p>
+&lt;h3 id="create-a-filesystem">Create a filesystem&lt;/h3>
+&lt;p>To create a new, empty file system you can use the &lt;a href="https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateFileSystem">&lt;code>CreateFileSystem&lt;/code>&lt;/a> API. Run the following command to create a new file system:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal efs create-file-system \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --performance-mode generalPurpose \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --throughput-mode bursting \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --encrypted \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --tags Key=Name,Value=my-file-system&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationToken&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;53465731-0032-4cef-92f5-8aefe7c7b91e&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FileSystemId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;fs-34feac549e66b814&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FileSystemArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:elasticfilesystem:us-east-1:000000000000:file-system/fs-34feac549e66b814&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationTime&amp;#34;&lt;/span>: 1692808338.424,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;LifeCycleState&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;available&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;PerformanceMode&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;generalPurpose&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Encrypted&amp;#34;&lt;/span>: true,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ThroughputMode&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;bursting&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Tags&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Key&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Value&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;my-file-system&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can also describe the locally available file systems using the &lt;a href="https://docs.aws.amazon.com/efs/latest/ug/API_DescribeFileSystems.html">&lt;code>DescribeFileSystems&lt;/code>&lt;/a> API. Run the following command to describe the local file systems available:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal efs describe-file-systems&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can alternatively pass the &lt;code>--file-system-id&lt;/code> parameter to the &lt;code>describe-file-system&lt;/code> command to retrieve information about a specific file system in AWS CLI.&lt;/p>
+&lt;h3 id="put-file-system-policy">Put file system policy&lt;/h3>
+&lt;p>You can apply an EFS &lt;code>FileSystemPolicy&lt;/code> to an EFS file system using the &lt;a href="https://docs.aws.amazon.com/efs/latest/ug/API_PutFileSystemPolicy.html">&lt;code>PutFileSystemPolicy&lt;/code>&lt;/a> API. Run the following command to apply a policy to the file system created in the previous step:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal efs put-file-system-policy \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --file-system-id &amp;lt;FILE_SYSTEM_ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy &amp;#34;{\&amp;#34;Version\&amp;#34;:\&amp;#34;2012-10-17\&amp;#34;,\&amp;#34;Id\&amp;#34;:\&amp;#34;ExamplePolicy01\&amp;#34;,\&amp;#34;Statement\&amp;#34;:[{\&amp;#34;Sid\&amp;#34;:\&amp;#34;ExampleSatement01\&amp;#34;,\&amp;#34;Effect\&amp;#34;:\&amp;#34;Allow\&amp;#34;,\&amp;#34;Principal\&amp;#34;:{\&amp;#34;AWS\&amp;#34;:\&amp;#34;*\&amp;#34;},\&amp;#34;Action\&amp;#34;:[\&amp;#34;elasticfilesystem:ClientMount\&amp;#34;,\&amp;#34;elasticfilesystem:ClientWrite\&amp;#34;],\&amp;#34;Resource\&amp;#34;:\&amp;#34;arn:aws:elasticfilesystem:us-east-1:000000000000:file-system/fs-34feac549e66b814\&amp;#34;}]}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can list the file system policies using the &lt;a href="https://docs.aws.amazon.com/efs/latest/ug/API_DescribeFileSystemPolicy.html">&lt;code>DescribeFileSystemPolicy&lt;/code>&lt;/a> API. Run the following command to list the file system policies:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal efs describe-file-system-policy \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --file-system-id &amp;lt;FILE_SYSTEM_ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Replace &lt;code>&amp;lt;FILE_SYSTEM_ID&amp;gt;&lt;/code> with the ID of the file system you want to list the policies for. The output will return the &lt;code>FileSystemPolicy&lt;/code> for the specified EFS file system.&lt;/p>
+&lt;h3 id="create-a-lifecycle-configuration">Create a lifecycle configuration&lt;/h3>
+&lt;p>You can create a lifecycle configuration for an EFS file system using the &lt;a href="https://docs.aws.amazon.com/efs/latest/ug/API_PutLifecycleConfiguration.html">&lt;code>PutLifecycleConfiguration&lt;/code>&lt;/a> API. Run the following command to create a lifecycle configuration for the file system created in the previous step:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal efs put-lifecycle-configuration \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --file-system-id &amp;lt;FILE_SYSTEM_ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --lifecycle-policies &amp;#34;{\&amp;#34;TransitionToIA\&amp;#34;:\&amp;#34;AFTER_30_DAYS\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;LifecyclePolicies&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TransitionToIA&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;AFTER_30_DAYS&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Kubernetes Service (EKS)</title><link>/user-guide/aws/elastic-kubernetes-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-kubernetes-service/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Elastic Kubernetes Service (EKS) is a managed Kubernetes service that makes it easy to run Kubernetes on AWS without installing, operating, and maintaining your own Kubernetes control plane or worker nodes. Kubernetes is an open-source system for automating containerized applications&amp;rsquo; deployment, scaling, and management.&lt;/p>
@@ -10044,34 +10104,4 @@ SageMaker is a fairly comprehensive API - for now, only a subset of the function
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal servicediscovery list-instances \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --service-id &amp;lt;service-id&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The output will consist of the resource ID, and you can further use the &lt;a href="https://docs.aws.amazon.com/cloud-map/latest/api/API_DiscoverInstances.html">&lt;code>DiscoverInstances&lt;/code>&lt;/a> API. This API allows you to query the DNS records associated with the service and perform various operations.&lt;/p>
-&lt;p>To explore the DNS records of your service and perform other operations, refer to the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/index.html">AWS CLI documentation&lt;/a> for comprehensive instructions and examples.&lt;/p></description></item><item><title>User-Guide: Simple Email Service (SES)</title><link>/user-guide/aws/ses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ses/</guid><description>
-&lt;h2 id="sent-emails">Sent Emails&lt;/h2>
-&lt;p>LocalStack keeps track of all sent emails for retrospection.
-The sent messages can be retrieved in following ways:&lt;/p>
-&lt;ul>
-&lt;li>Filesystem: All messages are saved to the state directory (see &lt;a href="/references/filesystem/">filesystem layout&lt;/a>).
-The files are saved as JSON in the &lt;code>ses/&lt;/code> subdirectory and organised by message ID.&lt;/li>
-&lt;li>API endpoint: LocalStack provides a service endpoint (&lt;code>/_aws/ses&lt;/code>) which can be used to return in-memory saved messages.
-A &lt;code>GET&lt;/code> call returns all messages.
-Query parameters &lt;code>id&lt;/code> and &lt;code>email&lt;/code> can be used to filter by message ID and message source respectively.
-A &lt;code>DELETE&lt;/code> call clears all messages from the memory.
-The query parameter &lt;code>id&lt;/code> can be used to delete only a specific message.&lt;/li>
-&lt;/ul>
-&lt;h2 id="smtp-integration">SMTP Integration&lt;/h2>
-&lt;p>LocalStack Pro ships with support for sending SES messages through an actual SMTP email server.&lt;/p>
-&lt;p>Please refer to the &lt;a href="/references/configuration/#emails">Configuration&lt;/a> guide for instructions on how to configure the connection parameters of your SMTP server (&lt;code>SMTP_HOST&lt;/code>/&lt;code>SMTP_USER&lt;/code>/&lt;code>SMTP_PASS&lt;/code>).&lt;/p>
-&lt;p>Once the SMTP server has been configured, the SES user interface in the Web app can be used to create a new email account (e.g., &lt;code>user1@yourdomain.com&lt;/code>).
-Emails can be sent via the command line (or SES client SDK):
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ses send-email \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Hint&lt;/h4>
-&lt;p>If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>awslocal ses verify-email-identity --email-address user1@yourdomain.com
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;h2 id="user-interface">User Interface&lt;/h2>
-&lt;p>&lt;a href="https://app.localstack.cloud">LocalStack Web app&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
-&lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item></channel></rss>
+&lt;p>To explore the DNS records of your service and perform other operations, refer to the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/index.html">AWS CLI documentation&lt;/a> for comprehensive instructions and examples.&lt;/p></description></item></channel></rss>
