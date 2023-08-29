@@ -37,7 +37,7 @@ The following output would be retrieved:
 
 ### Create a backup plan
 
-You can create a backup plan which specifies the resources to backup, the backup vault to store the backups in, and the schedule for creating backups. You can specify the backup plan in a `backup-plan.json` file:
+You can create a backup plan which specifies the backup vault to store the backups in and the schedule for creating backups. You can specify the backup plan in a `backup-plan.json` file:
 
 ```json
 {
