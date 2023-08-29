@@ -6275,7 +6275,79 @@ distribution beside these shown in this example. They were omited here for brevi
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
-&lt;/div></description></item><item><title>User-Guide: CloudWatch</title><link>/user-guide/aws/cloudwatch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudwatch/</guid><description>
+&lt;/div></description></item><item><title>User-Guide: CloudTrail</title><link>/user-guide/aws/cloudtrail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudtrail/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>CloudTrail is a service provided by Amazon Web Services (AWS) that enables you to track and monitor all activities and events within your AWS environment. It records API calls and actions made on your AWS resources, offering an audit trail that helps you understand changes, diagnose issues, and maintain compliance.&lt;/p>
+&lt;p>LocalStack supports CloudTrail via the Pro/Team offering, allowing you to use the CloudTrail APIs in your local environment to create and manage Event history and trails. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudtrail/">API coverage page&lt;/a>, which provides information on the extent of CloudTrail&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to CloudTrail and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to enable S3 object logging to CloudTrail using AWS CLI.&lt;/p>
+&lt;h3 id="create-a-bucket">Create a bucket&lt;/h3>
+&lt;p>Before you create a trail, you need to create an S3 bucket where CloudTrail can deliver the log data. You can use the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html">&lt;code>mb&lt;/code>&lt;/a> command to create a bucket:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://my-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-trail">Create a trail&lt;/h3>
+&lt;p>You can create a trail which would allow the delivery of events to the S3 bucket we created earlier. You can use the &lt;a href="https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_CreateTrail.html">&lt;code>CreateTrail&lt;/code>&lt;/a> API to create a trail. Run the following command to create a trail:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudtrail create-trail \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name MyTrail \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --s3-bucket-name my-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="enable-logging-and-configure-event-selectors">Enable logging and configure event selectors&lt;/h3>
+&lt;p>You can now enable logging for your trail. You can use the &lt;a href="https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_StartLogging.html">&lt;code>StartLogging&lt;/code>&lt;/a> API to enable logging for your trail. Run the following command to enable logging:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudtrail start-logging --name MyTrail&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can further configure event selectors for the trail. In this example, we will configure the trail to log all S3 object level events. You can use the &lt;a href="https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_PutEventSelectors.html">&lt;code>PutEventSelectors&lt;/code>&lt;/a> API to configure event selectors for your trail. Run the following command to configure event selectors:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudtrail put-event-selectors \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --trail-name MyTrail \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --event-selectors &amp;#39;[{&amp;#34;ReadWriteType&amp;#34;: &amp;#34;All&amp;#34;, &amp;#34;IncludeManagementEvents&amp;#34;:true, &amp;#34;DataResources&amp;#34;: [{&amp;#34;Type&amp;#34;: &amp;#34;AWS::S3::Object&amp;#34;, &amp;#34;Values&amp;#34;: [&amp;#34;arn:aws:s3:::my-bucket/&amp;#34;]}]}]&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can verify if your configuration is correct by using the &lt;a href="https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_GetEventSelectors.html">&lt;code>GetEventSelectors&lt;/code>&lt;/a> API. Run the following command to verify your configuration:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudtrail get-event-selectors \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --trail-name MyTrail&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;TrailARN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:cloudtrail:us-east-1:000000000000:trail/MyTrail&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;EventSelectors&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ReadWriteType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;All&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;IncludeManagementEvents&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DataResources&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;AWS::S3::Object&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Values&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:s3:::my-bucket/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="test-the-configuration">Test the configuration&lt;/h3>
+&lt;p>You can now test the configuration by creating an object in the S3 bucket. You can use the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html">&lt;code>cp&lt;/code>&lt;/a> command to copy an object in the S3 bucket:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#34;hello world&amp;#34; &amp;gt; /tmp/hello-world
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/hello-world s3://my-bucket/hello-world
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls s3://my-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can verify that the object was created in the S3 bucket. You can also verify that the object level event was logged by CloudTrail using the &lt;a href="https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_LookupEvents.html">&lt;code>LookupEvents&lt;/code>&lt;/a> API. Run the following command to verify the event:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudtrail lookup-events \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --lookup-attributes AttributeKey=EventName,AttributeValue=PutObject \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --max-results 1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Events&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;EventId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;218785bf-3ec4-4bdd-a055-57eca773294f&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;EventName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;PutObject&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ReadOnly&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;false&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;CloudTrailEvent&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;{\&amp;#34;eventVersion\&amp;#34;: \&amp;#34;1.08\&amp;#34;, ... {\&amp;#34;bucketName\&amp;#34;: \&amp;#34;my-bucket\&amp;#34;, \&amp;#34;key\&amp;#34;: \&amp;#34;hello-world\&amp;#34;} ...}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing CloudTrail&amp;rsquo;s Event History &amp;amp; Trails. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>CloudTrail&lt;/strong> under the &lt;strong>Management/Governance&lt;/strong> section.&lt;/p>
+&lt;img src="cloudtrail-resource-browser.png" alt="CloudTrail Resource Browser" title="CloudTrail Resource Browser" width="900" />
+&lt;br>
+&lt;br>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Trail&lt;/strong>: Create a new CloudTrail trail, by specifying the name of the trail, the S3 bucket where the logs should be stored, and other optional parameters.&lt;/li>
+&lt;li>&lt;strong>View Trail&lt;/strong>: View the details of a CloudTrail trail, including the name, ARN, S3 bucket, and other parameters.&lt;/li>
+&lt;li>&lt;strong>View Event History&lt;/strong>: View the event history of a CloudTrail trail, including the Event Id, Event time, Event source, and other parameters.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: CloudWatch</title><link>/user-guide/aws/cloudwatch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudwatch/</guid><description>
 &lt;p>CloudWatch is a comprehensive monitoring and observability service that Amazon Web Services (AWS) provides. It allows you to collect and track metrics, collect and monitor log files, and set alarms. CloudWatch provides valuable insights into your AWS resources, applications, and services, enabling you to troubleshoot issues, optimize performance, and make informed decisions.&lt;/p>
 &lt;p>LocalStack supports CloudWatch via its Community offering, allowing you to leverage CloudWatch functionalities on your local machine. With LocalStack, you can create and manage CloudWatch resources, such as custom metrics, alarms, and log groups, for local development and testing purposes. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudwatch/">API coverage page&lt;/a>, which provides information on the extent of CloudWatch&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
@@ -10002,146 +10074,4 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;/div>
 &lt;h2 id="user-interface">User Interface&lt;/h2>
 &lt;p>&lt;a href="https://app.localstack.cloud">LocalStack Web app&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
-&lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item><item><title>User-Guide: Simple Notification Service (SNS)</title><link>/user-guide/aws/sns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sns/</guid><description>
-&lt;p>Simple Notification Service (SNS) is a serverless messaging service that can distribute a massive number of messages to multiple subscribers and can be used to send messages to mobile devices, email addresses, and HTTP(s) endpoints. SNS employs the Publish/Subscribe, an asynchronous messaging pattern that decouples services that produce events from services that process events.&lt;/p>
-&lt;p>LocalStack supports SNS via the Community offering, allowing you to use the SNS APIs in your local environment to coordinate the delivery of messages to subscribing endpoints or clients. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_sns/">API coverage page&lt;/a>, which provides information on the extent of SNS&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>This guide is intended for users who wish to get more acquainted with SNS over LocalStack. It assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script).&lt;/p>
-&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an SNS topic, publish messages, and subscribe to the topic.&lt;/p>
-&lt;h3 id="create-an-sns-topic">Create an SNS topic&lt;/h3>
-&lt;p>To create an SNS topic, use the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html">&lt;code>CreateTopic&lt;/code>&lt;/a> API. Run the following command to create a topic named &lt;code>localstack-topic&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-topic --name localstack-topic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can set the SNS topic attribute using the SNS topic you created previously by using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_SetTopicAttributes.html">&lt;code>SetTopicAttributes&lt;/code>&lt;/a> API. Run the following command to set the &lt;code>DisplayName&lt;/code> attribute for the topic:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns set-topic-attributes \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic-arn arn:aws:sns:us-east-1:000000000000:localstack-topic \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-name DisplayName \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-value MyTopicDisplayName&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can list all the SNS topics using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">&lt;code>ListTopics&lt;/code>&lt;/a> API. Run the following command to list all the SNS topics:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-topics&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="get-attributes-and-publish-messages-to-sns-topic">Get attributes and publish messages to SNS topic&lt;/h3>
-&lt;p>You can get attributes for a single SNS topic using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_GetTopicAttributes.html">&lt;code>GetTopicAttributes&lt;/code>&lt;/a> API. Run the following command to get the attributes for the SNS topic:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns get-topic-attributes \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic-arn arn:aws:sns:us-east-1:000000000000:localstack-topic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can change the &lt;code>topic-arn&lt;/code> to the ARN of the SNS topic you created previously.&lt;/p>
-&lt;p>To publish messages to the SNS topic, create a new file named &lt;code>messages.txt&lt;/code> in your current directory and add some content. Run the following command to publish messages to the SNS topic using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html">&lt;code>Publish&lt;/code>&lt;/a> API:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns publish \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:localstack-topic&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message file://message.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="subscribing-to-sns-topic-and-setting-subscription-attributes">Subscribing to SNS topic and setting subscription attributes&lt;/h3>
-&lt;p>You can subscribe to the SNS topic using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html">&lt;code>Subscribe&lt;/code>&lt;/a> API. Run the following command to subscribe to the SNS topic:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns subscribe \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic-arn arn:aws:sns:us-east-1:000000000000:localstack-topic \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --protocol email \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --notification-endpoint test@gmail.com&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can configure the SNS Subscription attributes, using the &lt;code>SubscriptionArn&lt;/code> from the previous step. Run the following command to set the &lt;code>RawMessageDelivery&lt;/code> attribute for the subscription:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns set-subscription-attributes \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --subscription-arn arn:aws:sns:us-east-1:000000000000:test-topic:b6f5e924-dbb3-41c9-aa3b-589dbae0cfff \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-name RawMessageDelivery --attribute-value true&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can list all the SNS subscriptions using the &lt;a href="https://docs.aws.amazon.com/sns/latest/api/API_ListSubscriptions.html">&lt;code>ListSubscriptions&lt;/code>&lt;/a> API. Run the following command to list all the SNS subscriptions:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns list-subscriptions&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="accessing-published-platform-messages">Accessing published Platform Messages&lt;/h2>
-&lt;p>For testing purposes, LocalStack retains all messages published to a platform endpoint in memory, making it easy to retrieve them. To learn more about SNS mobile push notifications, refer to the &lt;a href="https://docs.aws.amazon.com/sns/latest/dg/sns-mobile-application-as-subscriber.html">AWS documentation on SNS mobile push notifications&lt;/a>.&lt;/p>
-&lt;p>You can access these messages in JSON format through the &lt;code>GET /_aws/sns/platform-endpoint-messages&lt;/code>. To retrieve specific messages, you can use query parameters to filter by &lt;code>accountId&lt;/code>, &lt;code>region&lt;/code>, and &lt;code>endpointArn&lt;/code>.&lt;/p>
-&lt;h3 id="query-parameters">Query parameters&lt;/h3>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Parameter&lt;/th>
-&lt;th>Required&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>accountId&lt;/code>&lt;/td>
-&lt;td>No&lt;/td>
-&lt;td>The AWS Account ID from which the messages have been published. If not specified, it will use the default &lt;code>000000000000&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>region&lt;/code>&lt;/td>
-&lt;td>No&lt;/td>
-&lt;td>The AWS region from which the messages have been published. If not specified, it will use the default &lt;code>us-east-1&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>endpointArn&lt;/code>&lt;/td>
-&lt;td>No&lt;/td>
-&lt;td>The target &lt;code>EndpointArn&lt;/code> to which the messages have been published. If specified, the response will contain only messages sent to this target. Otherwise, it will return all endpoints with their messages.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h3 id="response-format-and-attributes">Response format and attributes&lt;/h3>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Attribute&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>platform_endpoint_messages&lt;/code>&lt;/td>
-&lt;td>Contains endpoints ARN as field names. Each endpoint will have its messages in an Array.&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>region&lt;/code>&lt;/td>
-&lt;td>The region of the endpoints and messages.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;br>
-&lt;p>In this example, we will create a platform endpoint in SNS and publish a message to it. Run the following commands to create a platform endpoint:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-platform-application --name app-test --platform APNS --attributes {}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;PlatformApplicationArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:app/APNS/app-test&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-platform-endpoint --platform-application-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:app/APNS/app-test&amp;#34; --token my-fake-token
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EndpointArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Publish a message to the platform endpoint:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns publish --target-arn &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34; --message &amp;#39;{&amp;#34;APNS_PLATFORM&amp;#34;: &amp;#34;{\&amp;#34;aps\&amp;#34;: {\&amp;#34;content-available\&amp;#34;: 1}}&amp;#34;}&amp;#39; --message-structure json
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MessageId&amp;#34;: &amp;#34;ed501a7a-caab-45aa-a941-2fcc64b5c227&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Retrieve the messages published to the platform endpoint using &lt;code>cURL&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34; | jq .
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;platform_endpoint_messages&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TargetArn&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000:endpoint/APNS/app-test/c25f353e-856b-4b02-a725-6bde35e6e944&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Message&amp;#34;: &amp;#34;{\&amp;#34;APNS_PLATFORM\&amp;#34;: \&amp;#34;{\\\&amp;#34;aps\\\&amp;#34;: {\\\&amp;#34;content-available\\\&amp;#34;: 1}}\&amp;#34;}&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MessageAttributes&amp;#34;: null,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MessageStructure&amp;#34;: &amp;#34;json&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Subject&amp;#34;: null
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;region&amp;#34;: &amp;#34;us-east-1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>With those same filters, you can reset the saved messages at &lt;code>DELETE /_aws/sns/platform-endpoint-messages&lt;/code>. Run the following command to reset the saved messages:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -X &amp;#34;DELETE&amp;#34; &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#34;http://localhost:4566/_aws/sns/platform-endpoint-messages&amp;#34; | jq .
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;platform_endpoint_messages&amp;#34;: {},
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;region&amp;#34;: &amp;#34;us-east-1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
-&lt;p>The LocalStack Web Application provides a Resource Browser for managing SNS topics. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>SNS&lt;/strong> under the &lt;strong>App Integration&lt;/strong> section.&lt;/p>
-&lt;img src="sns-resource-browser.png" alt="SNS Resource Browser" title="SNS Resource Browser" width="900" />
-&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Create Topic&lt;/strong>: Create a new SNS topic by specifying a topic name, attributes, and tags.&lt;/li>
-&lt;li>&lt;strong>View Details and Subscription&lt;/strong>: View details and subscription of an SNS topic by selecting the topic name and navigating to the &lt;strong>Details&lt;/strong> and &lt;strong>Subscriptions&lt;/strong> tabs.&lt;/li>
-&lt;li>&lt;strong>Create Subscription&lt;/strong>: Create a new subscription for an SNS topic by selecting the topic name, navigating to the &lt;strong>Subscriptions&lt;/strong> tab, and clicking the &lt;strong>Create Subscription&lt;/strong> button. Fill in the required details such as protocol, endpoint, and attributes, delivery policy, return subscription ARN, and click &lt;strong>Create&lt;/strong>.&lt;/li>
-&lt;li>&lt;strong>Delete Topic&lt;/strong>: Delete an SNS topic by selecting the topic name and clicking the &lt;strong>Action&lt;/strong> button, followed by &lt;strong>Delete Selected&lt;/strong>.&lt;/li>
-&lt;/ul>
-&lt;h2 id="examples">Examples&lt;/h2>
-&lt;p>The following code snippets and sample applications provide practical examples of how to use SNS in LocalStack for various use cases:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/localstack/shipment-list-demo">Full-Stack application with AWS Lambda, DynamoDB &amp;amp; S3 for shipment validation&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo">Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/loan-broker-stepfunctions-lambda-app">Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://github.com/localstack/serverless-image-resizer">Serverless Image Resizer with AWS Lambda, S3, SNS, and SES&lt;/a>&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item></channel></rss>
