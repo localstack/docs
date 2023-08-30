@@ -196,7 +196,7 @@ The following output would be retrieved:
 
 ## GraphQL Resolvers
 
-These resolver types are available in [AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/tutorials.html) and can be configured to interact with various data sources and services. LocalStack Pro supports the following resolver types:
+These data sources are available in [AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/tutorials.html) and can be configured to interact with various AWS and external services. LocalStack Pro supports the following data source types:
 
 | Resolver Type         | Description                                                            |
 | --------------------- | ---------------------------------------------------------------------- |
