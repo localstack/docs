@@ -2596,7 +2596,7 @@ We are actively working on addressing this limitation in the upcoming releases.
 &lt;/div>
 &lt;p>Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.&lt;/p>
 &lt;p>&lt;img src="pods-persistence.png" alt="Persistence versus Cloud Pods">&lt;/p>
-&lt;div class="alert alert-info" role="alert">
+&lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Hint&lt;/h4>
 To quickly see cloud pods in action, we prepared a small sample application that uses cloud pods to inject its state into a running LocalStack container. &lt;a href="https://app.localstack.cloud/quickstart/demo4">Cloud Pod Thumbnail Sample App&lt;/a>
 &lt;/div>
@@ -4591,6 +4591,12 @@ To retrieve the MQTT endpoint, use the &lt;a href="https://docs.aws.amazon.com/i
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpointAddress&amp;#34;: &amp;#34;localhost.localstack.cloud:4510&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>This endpoint can then be used with any MQTT client to publish and subscribe to topics.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Hint&lt;/h4>
+LocalStack lazy-loads services by default.
+The MQTT broker may not be automatically available on a fresh launch of LocalStack.
+You should make a &lt;code>DescribeEndpoint&lt;/code> call to ensure the broker is running.
+&lt;/div>
 &lt;h2 id="lifecycle-events">Lifecycle Events&lt;/h2>
 &lt;p>LocalStack also publishes the &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/life-cycle-events.html">lifecycle events&lt;/a> to the standard endpoints.&lt;/p>
 &lt;ul>
@@ -5344,7 +5350,7 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;div class="alert alert-info" role="alert">
+&lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Hint&lt;/h4>
 &lt;p>If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>awslocal ses verify-email-identity --email-address user1@yourdomain.com
