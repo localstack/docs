@@ -4,9 +4,12 @@ linkTitle: DynamoDB
 description: Get started with DynamoDB on LocalStack
 ---
 
-DynamoDB is a fully managed NoSQL database service provided by AWS. It offers a flexible and highly scalable way to store and retrieve data, making it suitable for a wide range of applications. DynamoDB provides a fast and scalable key-value datastore with support for replication, automatic scaling, data encryption at rest, and on-demand backup, among other capabilities.
+DynamoDB is a fully managed NoSQL database service provided by AWS.
+It offers a flexible and highly scalable way to store and retrieve data, making it suitable for a wide range of applications.
+DynamoDB provides a fast and scalable key-value datastore with support for replication, automatic scaling, data encryption at rest, and on-demand backup, among other capabilities.
 
-LocalStack supports DynamoDB via the Community offering, allowing you to use the DynamoDB APIs in your local environment to manage key-value and document data models. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodb/), which provides information on the extent of DynamoDB's integration with LocalStack.
+LocalStack supports DynamoDB via the Community offering, allowing you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_dynamodb/), which provides information on the extent of DynamoDB's integration with LocalStack.
 
 {{< alert title="Note">}}
 DynamoDB on LocalStack is powered by [DynamoDB Local](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html).
@@ -16,11 +19,13 @@ DynamoDB on LocalStack is powered by [DynamoDB Local](https://docs.aws.amazon.co
 
 This guide is designed for users new to DynamoDB and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create DynamoDB table, along with its replicas, and put an item into the table using the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create DynamoDB table, along with its replicas, and put an item into the table using the AWS CLI.
 
 ### Create a DynamoDB table
 
-You can create a DynamoDB table using the [`CreateTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) API. Execute the following command to create a table named `global01` with a primary key `id`:
+You can create a DynamoDB table using the [`CreateTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) API.
+Execute the following command to create a table named `global01` with a primary key `id`:
 
 {{< command >}}
 $ awslocal dynamodb create-table \
@@ -62,7 +67,8 @@ The following output would be retrieved:
 
 ### Create replicas
 
-You can create replicas of a DynamoDB table using the [`UpdateTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateTable.html) API. Execute the following command to create replicas in `ap-south-1` and `us-west-1` regions:
+You can create replicas of a DynamoDB table using the [`UpdateTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateTable.html) API.
+Execute the following command to create replicas in `ap-south-1` and `us-west-1` regions:
 
 {{< command >}}
 $ awslocal dynamodb update-table \
@@ -97,7 +103,9 @@ The following output would be retrieved:
 }
 ```
 
-You can now operate on the table in the replicated regions as well. You can use the [`ListTables`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ListTables.html) API to list the tables in the replicated regions. Run the following command to list the tables in the `eu-central-1` region:
+You can now operate on the table in the replicated regions as well.
+You can use the [`ListTables`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ListTables.html) API to list the tables in the replicated regions.
+Run the following command to list the tables in the `eu-central-1` region:
 
 {{< command >}}
 $ awslocal dynamodb list-tables \
@@ -116,7 +124,8 @@ The following output would be retrieved:
 
 ### Insert an item
 
-You can insert an item into a DynamoDB table using the [`PutItem`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html) API. Execute the following command to insert an item into the `global01` table:
+You can insert an item into a DynamoDB table using the [`PutItem`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html) API.
+Execute the following command to insert an item into the `global01` table:
 
 {{< command >}}
 $ awslocal dynamodb put-item \
@@ -125,7 +134,8 @@ $ awslocal dynamodb put-item \
     --region eu-central-1
 {{< /command >}}
 
-You can now query the number of items in the table using the [`DescribeTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html) API. Run the following command to query the number of items in the `global01` table from a different region:
+You can now query the number of items in the table using the [`DescribeTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html) API.
+Run the following command to query the number of items in the `global01` table from a different region:
 
 {{< command >}}
 $ awslocal dynamodb describe-table \
@@ -142,16 +152,22 @@ The following output would be retrieved:
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing DynamoDB tables and items. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **DynamoDB** under the **Database** section.
+The LocalStack Web Application provides a Resource Browser for managing DynamoDB tables and items.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **DynamoDB** under the **Database** section.
 
 <img src="dynamodb-resource-browser.png" alt="DynamoDB Resource Browser" title="DynamoDB Resource Browser" width="900" />
 
 The Resource Browser allows you to perform the following actions:
 
-- **Create Table**: Create a new DynamoDB table by clicking on the **Create Table** button. You can specify the table name, table class, key schema and other attributes of the table.
-- **Edit Table**: Edit an existing DynamoDB table by clicking on the **Edit Table** button. You can modify the table name, key schema and other attributes of the table.
-- **View items**: View the items in a DynamoDB table by clicking on the **Items** button. You can also add, edit and delete items in the table. You can also switch to scan or query mode to view the items in the table.
-- **Run PartiQL**: Run a PartiQL query against a DynamoDB table by clicking on the **PartiQL** button. You can add your query in the editor and click on the **Execute** button to execute the query.
+- **Create Table**: Create a new DynamoDB table by clicking on the **Create Table** button.
+You can specify the table name, table class, key schema and other attributes of the table.
+- **Edit Table**: Edit an existing DynamoDB table by clicking on the **Edit Table** button.
+You can modify the table name, key schema and other attributes of the table.
+- **View items**: View the items in a DynamoDB table by clicking on the **Items** button.
+You can also add, edit and delete items in the table.
+You can also switch to scan or query mode to view the items in the table.
+- **Run PartiQL**: Run a PartiQL query against a DynamoDB table by clicking on the **PartiQL** button.
+You can add your query in the editor and click on the **Execute** button to execute the query.
 - **Delete Table**: Delete an existing DynamoDB table by selecting the DynamoDB table and clicking **Actions** and then **Remove Selected**.
 
 ## Examples
@@ -174,10 +190,13 @@ The following code snippets and sample applications provide practical examples o
 
 LocalStack provides support for global tables (Version 2019), which are tables that exist within the same account and are replicated across various regions.
 
-However, legacy global tables (Version 2017) are not supported by LocalStack. Operations such as `CreateGlobalTable`, `UpdateGlobalTable`, and `DescribeGlobalTable` will not replicate globally.
+However, legacy global tables (Version 2017) are not supported by LocalStack.
+Operations such as `CreateGlobalTable`, `UpdateGlobalTable`, and `DescribeGlobalTable` will not replicate globally.
 
 ### Replication 
 
-- Removing the original table region from the replication set while retaining the replicas is currently not feasible. Deleting the original table will result in the removal of all replicas as well.
-- DynamoDB Streams are exclusively supported for original tables and not for replicated ones. More information can be found in [our public GitHub issue tracker](https://github.com/localstack/localstack/issues/7405).
+- Removing the original table region from the replication set while retaining the replicas is currently not feasible.
+Deleting the original table will result in the removal of all replicas as well.
+- DynamoDB Streams are exclusively supported for original tables and not for replicated ones.
+More information can be found in [our public GitHub issue tracker](https://github.com/localstack/localstack/issues/7405).
 - Batch operations such as `BatchWriteItem`, `BatchGetItem`, etc. are currently not supported for replicated tables.
