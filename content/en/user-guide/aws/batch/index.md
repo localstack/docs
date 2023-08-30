@@ -30,6 +30,11 @@ For LocalStack the service role just has to exist, however when [enforcing IAM p
 
 {{< command >}}
 $ awslocal iam create-role --role-name myrole  --assume-role-policy-document "{}"
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "Role": {
         "Path": "/",
@@ -40,7 +45,7 @@ $ awslocal iam create-role --role-name myrole  --assume-role-policy-document "{}
         "AssumeRolePolicyDocument": {}
     }
 }
-{{< / command >}}
+```
 
 ###  Create the compute environment
 
@@ -51,11 +56,16 @@ $ awslocal batch create-compute-environment \
     --compute-environment-name myenv \
     --type UNMANAGED \
     --service-role <role-arn>
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "computeEnvironmentName": "myenv",
     "computeEnvironmentArn": "arn:aws:batch:us-east-1:000000000000:compute-environment/myenv"
 }
-{{< / command >}}
+```
 
 Note: even though we have specified an unmanaged compute environment, no compute resources need to be provisioned for this to work.
 Your tasks run individually in new docker containers alongside the LocalStack container.
@@ -66,6 +76,11 @@ First fetch the ARN of the compute environment you created in the previous step
 
 {{< command >}}
 $ awslocal batch describe-compute-environments --compute-environments myenv
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "computeEnvironments": [
         {
@@ -79,7 +94,7 @@ $ awslocal batch describe-compute-environments --compute-environments myenv
         }
     ]
 }
-{{< / command >}}
+```
 
 Then use the ARN to create the job queue using this compute environment
 
@@ -89,11 +104,16 @@ $ awslocal batch create-job-queue \
     --priority 1 \
     --compute-environment-order order=0,computeEnvironment=arn:aws:batch:us-east-1:000000000000:compute-environment/myenv \
     --state ENABLED
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "jobQueueName": "myqueue",
     "jobQueueArn": "arn:aws:batch:us-east-1:000000000000:job-queue/myqueue"
 }
-{{< / command >}}
+```
 
 ###  Create a job definition
 
@@ -107,12 +127,17 @@ $ awslocal batch register-job-definition \
     --job-definition-name myjobdefn \
     --type container \
     --container-properties '{"image":"busybox","vcpus":1,"memory":128,"command":["sleep","30"]}'
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "jobDefinitionName": "myjobdefn",
     "jobDefinitionArn": "arn:aws:batch:us-east-1:000000000000:job-definition/myjobdefn:1",
     "revision": 1
 }
-{{< / command >}}
+```
 
 ###  Submit a job to the job queue
 
@@ -127,11 +152,16 @@ $ awslocal batch submit-job \
     --job-queue myqueue \
     --job-definition myjobdefn \
     --container-overrides '{"command":["sh", "-c", "sleep 5; pwd"]}'
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "jobName": "myjob",
     "jobId": "23027eb6-cce0-4365-a412-36917a2dfd03"
 }
-{{< / command >}}
+```
 
 ## Limitations 
 
