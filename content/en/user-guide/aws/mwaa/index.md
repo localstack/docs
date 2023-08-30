@@ -116,11 +116,11 @@ $ awslocal s3 cp requirements.txt s3://my-mwaa-bucket/requirements.txt
 {{< /command >}}
 
 After the upload, the environment will be automatically updated, and your Apache Airflow setup will be equipped with the new dependencies.
-It's important to note that, unlike [AWS](https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html), LocalStack doesn't install any provider packages by default.
+It is important to note that, unlike [AWS](https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html), LocalStack does not install any provider packages by default.
 Therefore, you must follow the above steps to install any required provider packages.
 
 ## Connections
 
-When incorporating connections to other AWS services within your DAGs, it's crucial to specify either the internal Docker IP address of the LocalStack container or utilize `host.docker.internal`.
+When incorporating connections to other AWS services within your DAGs, it is crucial to specify either the internal Docker IP address of the LocalStack container or utilize `host.docker.internal`.
 LocalStack currently does not use the credentials and region from `aws_conn_id`.
 This information must be explicitly passed in operators, hooks, and sensors.
