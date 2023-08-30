@@ -4985,60 +4985,7 @@ The following step is optional and may not be required, depending on the operati
 &lt;p>Run the following command to list your MSK clusters&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka list-clusters --region us-east-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>From the list of clusters, pick the &lt;code>ClusterARN&lt;/code> of the cluster you want deleted and run the command&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka delete-cluster --cluster-arn ClusterArn&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Managed Workflows for Apache Airflow (MWAA)</title><link>/user-guide/aws/mwaa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mwaa/</guid><description>
-&lt;p>LocalStack supports &lt;a href="https://aws.amazon.com/managed-workflows-for-apache-airflow/">Managed Workflows for Apache Airflow&lt;/a>, which allow setup and operation of data pipelines.&lt;/p>
-&lt;h2 id="creating-and-accessing-environments">Creating and accessing environments&lt;/h2>
-&lt;p>First create an S3 bucket which will be used for Airflow resources.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://my-mwaa-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Next create the environment with the bucket ARN as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mwaa create-environment --dag-s3-path /dags \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --execution-role-arn arn:aws:iam::000000000000:role/airflow-role \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --network-configuration {} \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --source-bucket-arn arn:aws:s3:::my-mwaa-bucket \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --airflow-version 2.2.2 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --airflow-configuration-options agent.code=007,agent.name=bond \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name my-mwaa-env&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>LocalStack will create the Airflow environment and print the Airflow UI URL and access credentials in the logs:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>2022-11-30T17:58:36.533 DEBUG --- [functhread13] l.services.mwaa.provider : Airflow available at http://localhost.localstack.cloud:4510 with username=localstack and password=localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>LocalStack supports following versions of Apache Airflow:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>1.10.12&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.0.2&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.2.2&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.4.3&lt;/code>&lt;/li>
-&lt;li>&lt;code>2.5.1&lt;/code> (default)&lt;/li>
-&lt;/ul>
-&lt;h2 id="airflow-configuration-options">Airflow configuration options&lt;/h2>
-&lt;p>Configuration options can be passed to Airflow environments using the &lt;code>AirflowConfigurationOptions&lt;/code> argument.
-The options are transformed as follows and then passed to Airflow as environment variables.&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>agent.code&lt;/code>:&lt;code>007&lt;/code> → &lt;code>AIRFLOW__AGENT__CODE:007&lt;/code>&lt;/li>
-&lt;li>&lt;code>agent.name&lt;/code>:&lt;code>bond&lt;/code> → &lt;code>AIRFLOW__AGENT__NAME:bond&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;h2 id="adding-or-updating-dags">Adding or updating DAGs&lt;/h2>
-&lt;p>To add DAGs to Airflow, upload them to the S3 bucket at the path configured by the &lt;code>DagS3Path&lt;/code> argument.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp sample_dag.py s3://my-mwaa-bucket/dags&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="installing-custom-plugins">Installing custom plugins&lt;/h2>
-&lt;p>You can install custom plugins to leverage Airflow operators, interfaces or hooks.
-LocalStack supports plugins packaged as per AWS specifications as described &lt;a href="https://docs.aws.amazon.com/mwaa/latest/userguide/configuring-dag-import-plugins.html#configuring-dag-plugins-test-create">here&lt;/a>.&lt;/p>
-&lt;p>The plugins should be uploaded to S3 bucket configured for the MWAA environment at the &lt;code>/plugins.zip&lt;/code> path, like so:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp plugins.zip s3://my-mwaa-bucket/plugins.zip&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="installing-python-dependencies">Installing Python dependencies&lt;/h2>
-&lt;p>LocalStack makes it possible to install Python dependencies for Apache Airflow in your environments.
-First, create a &lt;code>requirements.txt&lt;/code> file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-txt" data-lang="txt">&lt;span style="display:flex;">&lt;span>boto3==1.17.54
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>boto==2.49.0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>botocore==1.20.54
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Next, upload the file to the S3 bucket configured for use by the MWAA environment.
-The file must be uploaded to &lt;code>/requirements.txt&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp requirements.txt s3://my-mwaa-bucket/requirements.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The environment will be updated and will be ready for use with new dependencies.&lt;/p>
-&lt;p>&lt;a href="https://docs.aws.amazon.com/mwaa/latest/userguide/connections-packages.html">Unlike production AWS&lt;/a>, LocalStack does not install any provider packages.
-These must be installed using the above steps.&lt;/p>
-&lt;h2 id="connections">Connections&lt;/h2>
-&lt;p>When using connections to other AWS services within DAGs, please specify either the internal Docker IP address of the LocalStack container or &lt;code>host.docker.internal&lt;/code>.&lt;/p>
-&lt;p>LocalStack currently does not use the credentials and region from &lt;code>aws_conn_id&lt;/code>.
-This information must be explicitly passed in operators, hooks and sensors.&lt;/p></description></item><item><title>User-Guide: Neptune</title><link>/user-guide/aws/neptune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/neptune/</guid><description>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka delete-cluster --cluster-arn ClusterArn&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Neptune</title><link>/user-guide/aws/neptune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/neptune/</guid><description>
 &lt;p>The Neptune API provides a graph database to store nodes and edges that can be accessed via Apache TinkerPop and Gremlin queries.&lt;/p>
 &lt;p>For example, you can create a Neptune cluster like this:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
