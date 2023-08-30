@@ -17,7 +17,7 @@ Cloud Pods are a mechanism that allows you to take a snapshot of the state in yo
 
 ![Persistence versus Cloud Pods](pods-persistence.png)
 
-{{< alert title="Hint" color="info">}}
+{{< alert title="Hint" color="success">}}
 To quickly see cloud pods in action, we prepared a small sample application that uses cloud pods to inject its state into a running LocalStack container. [Cloud Pod Thumbnail Sample App](https://app.localstack.cloud/quickstart/demo4)
 {{< /alert >}}
 

@@ -34,7 +34,7 @@ $ awslocal ses send-email \
     --destination 'ToAddresses=recipient1@example.com'
 {{< / command >}}
 
-{{< alert title="Hint" color="info" >}}
+{{< alert title="Hint" color="success" >}}
 If you receive a "Email address not verified message", simply call
 ```sh
 awslocal ses verify-email-identity --email-address user1@yourdomain.com
