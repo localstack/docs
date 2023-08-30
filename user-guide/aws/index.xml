@@ -10154,59 +10154,39 @@ Redshift is essentially mocked in LocalStack alongside the node type. Hence whil
 &lt;/li>
 &lt;/ol>
 &lt;p>To get started with a more extensive example, please refer to the &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-redshift-crawler">Glue Crawler Redshift Integration (JDBC)&lt;/a> sample project.&lt;/p></description></item><item><title>User-Guide: Relational Database Service (RDS)</title><link>/user-guide/aws/rds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/rds/</guid><description>
-&lt;p>LocalStack supports a basic version of the &lt;a href="https://aws.amazon.com/rds/">Relational Database Service (RDS)&lt;/a> for testing.&lt;/p>
-&lt;h2 id="supported-db-engines">Supported DB engines&lt;/h2>
-&lt;p>Currently, it is possible to spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases on the local machine.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Some configuration of the RDS clusters and instances have currently only CRUD functionality. E.g., the &lt;code>storage-encrypted&lt;/code> flag is returned as it is set, but there is no support for actual storage encryption yet.
-&lt;/div>
-&lt;h3 id="postgres-engine">Postgres Engine&lt;/h3>
-&lt;p>When creating an RDS DB cluster or instance with &lt;code>postgres&lt;/code>/&lt;code>aurora-postgresql&lt;/code> DB engine and a specific &lt;code>EngineVersion&lt;/code>, LocalStack will install and provision the respective Postgres version on demand.&lt;/p>
-&lt;p>Currently, major versions between 10 and 15 can be chosen - when selecting a major version outside of this range, the default version 11 is used as fallback.&lt;/p>
-&lt;p>Please be aware that the minor version cannot be freely selected - the latest available version will be installed in the docker environment.&lt;/p>
-&lt;p>In order to disable installation of custom versions, you may configure the environment variable &lt;code>RDS_PG_CUSTOM_VERSIONS=0&lt;/code>, in which case always the default Postgres version 11 will be used.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-The &lt;code>describe-db-cluster&lt;/code> and &lt;code>describe-db-instances&lt;/code> calls will still return the &lt;code>engine-version&lt;/code> as it was defined for the creation, but the actual installed postgres engine could be different. This is important, e.g., when using a terraform configuration, as it should not detect changes in that case.
-&lt;/div>
-&lt;p>DB instances and DB cluster with Postgres engine support the creation and restoring of snapshots.&lt;/p>
-&lt;h3 id="mariadb-engine">MariaDB Engine&lt;/h3>
-&lt;p>MariaDB will be installed as OS package in LocalStack. Currently, it is not possible to freely select a specific version.&lt;/p>
-&lt;p>Snapshots are currently not supported for MariaDB.&lt;/p>
-&lt;h3 id="mysql-engine">MySQL Engine&lt;/h3>
-&lt;p>By default, a MariaDB installation is used when requesting a MySQL engine type.&lt;/p>
-&lt;p>If you wish to use a real MySQL version, you can do so by setting the environment variable &lt;code>RDS_MYSQL_DOCKER=1&lt;/code>. With this feature enabled, MySQL community server will be started in a new Docker container when requesting the MySQL engine. The &lt;code>engine-version&lt;/code> will be used as the tag for the image, meaning you can freely select the desired MySQL version that is listed on the &lt;a href="https://hub.docker.com/_/mysql">official MySQL Docker Hub&lt;/a>.&lt;/p>
-&lt;p>In case you want to use a special image, you can also set the environment variable &lt;code>MYSQL_IMAGE=&amp;lt;my-image:tag&amp;gt;&lt;/code>.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Please be aware that MySQL images for &lt;code>arm64&lt;/code> are only available for newer versions. Please check the &lt;a href="https://hub.docker.com/_/mysql">MySQL Docker Hub repository&lt;/a> for details on the availability.
-&lt;/div>
-&lt;p>Please note that the &lt;code>MasterUserPassword&lt;/code> defined for the database cluster/instance will be used as the &lt;code>MYSQL_ROOT_PASSWORD&lt;/code> environment for user &lt;code>root&lt;/code> in the MySQL container. The user for &lt;code>MasterUserName&lt;/code> will use the same password, and will have full access to the defined database.&lt;/p>
-&lt;p>DB Snapshots are currently not supported for MySQL.&lt;/p>
-&lt;h3 id="mssql-engine">MSSQL Engine&lt;/h3>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-&lt;p>In order to use MSSQL databases, you need to explicitly accept the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by setting &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> in the LocalStack container environment.&lt;/p>
-&lt;p>Please note that MSSQL does not yet have official support for &lt;code>arm64&lt;/code>.&lt;/p>
-&lt;/div>
-&lt;p>For the MSSQL engine, the database server is started in a new docker container using the &lt;code>latest&lt;/code> image.&lt;/p>
-&lt;p>DB Snapshots are currently not supported for MSSQL.&lt;/p>
-&lt;h2 id="end-to-end-example-postgres">End-to-end example (Postgres)&lt;/h2>
-&lt;p>The local RDS service also supports the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">RDS Data API&lt;/a>, which allows executing data queries against RDS clusters over a JSON/REST interface.&lt;/p>
-&lt;p>Below is a simple example that illustrates (1) creation of an RDS cluster, (2) creation of a SecretsManager secret with the DB password, and (3) running a simple &lt;code>SELECT 123&lt;/code> query via the RDS Data API.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-cluster --db-cluster-identifier db1 --engine aurora-postgresql --database-name test --master-username myuser --master-user-password mypassword
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DBCluster&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Endpoint&amp;#34;: &amp;#34;localhost:4510&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Port&amp;#34;: 4510, # may vary
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DBClusterArn&amp;#34;: &amp;#34;arn:aws:rds:us-east-1:000000000000:cluster:db1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; mycreds.json
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>RDS (Relational Database Service) is a managed database service provided by Amazon Web Services (AWS) that allows users to setup, operate, and scale relational databases in the cloud. RDS allows you to deploy and manage various relational database engines like MySQL, PostgreSQL, MariaDB, and Microsoft SQL Server. RDS handles routine database tasks such as provisioning, patching, backup, recovery, and scaling.&lt;/p>
+&lt;p>LocalStack supports RDS via the Pro/Team offering, allowing you to use the RDS APIs in your local environment to create and manage RDS clusters and instances for testing &amp;amp; integration purposes. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_rds/">API coverage page&lt;/a>, which provides information on the extent of RDS&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to RDS and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate the following with the AWS CLI:&lt;/p>
+&lt;ol>
+&lt;li>Creating an RDS cluster.&lt;/li>
+&lt;li>Generating a &lt;code>SecretsManager&lt;/code> secret containing the database password.&lt;/li>
+&lt;li>Executing a basic &lt;code>SELECT 123 query&lt;/code> through the RDS Data API.&lt;/li>
+&lt;/ol>
+&lt;p>LocalStack&amp;rsquo;s RDS implementation also supports the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">RDS Data API&lt;/a>, which allows executing data queries against RDS clusters over a JSON/REST interface.&lt;/p>
+&lt;h3 id="create-an-rds-cluster">Create an RDS cluster&lt;/h3>
+&lt;p>To create an RDS cluster, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html">&lt;code>CreateDBCluster&lt;/code>&lt;/a> API. The following command creates a new cluster with the name &lt;code>db1&lt;/code> and the engine &lt;code>aurora-postgresql&lt;/code>. The cluster will be created with a single instance, which will be used as the master instance. The instance will be created with the default username &lt;code>test&lt;/code> and password &lt;code>test&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-cluster \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-cluster-identifier db1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine aurora-postgresql \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database-name test \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-username myuser \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-user-password mypassword&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBCluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;localhost:4510&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">4510&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">#&lt;/span> &lt;span style="color:#a40000">may&lt;/span> &lt;span style="color:#a40000">vary&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:rds:us-east-1:000000000000:cluster:db1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-secretsmanager-secret">Create a SecretsManager secret&lt;/h3>
+&lt;p>To create a &lt;code>SecretsManager&lt;/code> secret, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateSecret.html">&lt;code>CreateSecret&lt;/code>&lt;/a> API. Before creating the secret, you need to create a JSON file containing the credentials for the database. The following command creates a file called &lt;code>mycreds.json&lt;/code> with the credentials for the database.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; mycreds.json
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;engine&amp;#34;: &amp;#34;aurora-postgresql&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;username&amp;#34;: &amp;#34;myuser&amp;#34;,
@@ -10215,105 +10195,154 @@ Please be aware that MySQL images for &lt;code>arm64&lt;/code> are only availabl
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;dbname&amp;#34;: &amp;#34;test&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;port&amp;#34;: &amp;#34;4510&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal secretsmanager create-secret \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Run the following command to create the secret:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal secretsmanager create-secret \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name dbpass \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --secret-string file://mycreds.json
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ARN&amp;#34;: &amp;#34;arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;dbpass&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VersionId&amp;#34;: &amp;#34;fffa1f4a-2381-4a2b-a977-4869d59a16c0&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds-data execute-statement --database test --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX --include-result-metadata --sql &amp;#39;SELECT 123&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;columnMetadata&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;arrayBaseColumnType&amp;#34;: 0,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;isAutoIncrement&amp;#34;: false,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;isCaseSensitive&amp;#34;: false,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;isCurrency&amp;#34;: false,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;isSigned&amp;#34;: true,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;label&amp;#34;: &amp;#34;?column?&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;?column?&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;nullable&amp;#34;: 0,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;precision&amp;#34;: 10,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;scale&amp;#34;: 0,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;schemaName&amp;#34;: &amp;#34;&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;tableName&amp;#34;: &amp;#34;&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;type&amp;#34;: 4,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;typeName&amp;#34;: &amp;#34;int4&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;numberOfRecordsUpdated&amp;#34;: 0,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;records&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;longValue&amp;#34;: 123
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can also use other clients like &lt;code>psql&lt;/code> to interact with the database. The hostname and port of your created instance can be found in the output from above or by running &lt;code>awslocal rds describe-db-instances&lt;/code>.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>psql -d test -U test -p 4513 -h localhost -W
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Password: &amp;lt;enter &amp;#34;test&amp;#34;&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="default-usernames-and-passwords">Default usernames and passwords&lt;/h2>
-&lt;p>Please consider the following notes regarding default usernames/passwords and database names:&lt;/p>
-&lt;ul>
-&lt;li>The default for &lt;code>master-username&lt;/code> and &lt;code>db-name&lt;/code> is &amp;ldquo;test&amp;rdquo;. The default &lt;code>master-user-password&lt;/code> is &amp;ldquo;test&amp;rdquo; - except for MSSQL DBs, which uses &amp;ldquo;Test123!&amp;rdquo; as the default master password.&lt;/li>
-&lt;li>You can use any &lt;code>master-username&lt;/code>, except &amp;ldquo;postgres&amp;rdquo;, for creating a new RDS instance. The user will automatically be created.&lt;/li>
-&lt;li>The user &amp;ldquo;postgres&amp;rdquo; is special, and it is not possible to create a new RDS instance with this user name.&lt;/li>
-&lt;li>Do not use &lt;code>db-name&lt;/code> &amp;ldquo;postgres&amp;rdquo; as it is already in use by LocalStack.&lt;/li>
-&lt;/ul>
-&lt;h2 id="iam-authentication-support">IAM Authentication Support&lt;/h2>
-&lt;p>IAM auth token can be used to connect to RDS. This feature is currently only supported for Postgres in LocalStack.&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --secret-string file://mycreds.json&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ARN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;dbpass&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;VersionId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;fffa1f4a-2381-4a2b-a977-4869d59a16c0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="execute-a-query">Execute a query&lt;/h3>
+&lt;p>To execute a query, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html">&lt;code>ExecuteStatement&lt;/code>&lt;/a> API. The following command executes a query against the database. The query returns the value &lt;code>123&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds-data execute-statement \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database test \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --include-result-metadata --sql &amp;#39;SELECT 123&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Make sure to replace the &lt;code>secret-arn&lt;/code> with the ARN from the secret you just created in the previous step, and check that the &lt;code>resource-arn&lt;/code> matches the &lt;code>cluster-arn&lt;/code> that you have created before.&lt;/p>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;columnMetadata&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;arrayBaseColumnType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;isAutoIncrement&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;isCaseSensitive&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;isCurrency&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;isSigned&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;label&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;?column?&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;?column?&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;nullable&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;precision&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">10&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;scale&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;schemaName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;tableName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">4&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;typeName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;int4&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;numberOfRecordsUpdated&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;records&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;longValue&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">123&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Alternative clients, such as &lt;code>psql&lt;/code>, can also be employed to interact with the database. You can retrieve the hostname and port of your created instance either from the preceding output or by using the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html">&lt;code>DescribeDbInstances&lt;/code>&lt;/a> API.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>psql -d test -U test -p 4513 -h localhost -W&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="supported-db-engines">Supported DB engines&lt;/h2>
+&lt;p>Presently, you can spin up PostgreSQL, MariaDB, MySQL, and MSSQL (SQL Server) databases directly on your local machine, using LocalStack&amp;rsquo;s RDS implementation. However, certain configurations of RDS clusters and instances currently offer only CRUD functionality. For instance, the &lt;code>storage-encrypted&lt;/code> flag is returned as configured, but active support for actual storage encryption is not yet available.&lt;/p>
+&lt;h3 id="postgresql-engine">PostgreSQL Engine&lt;/h3>
+&lt;p>When you establish an RDS DB cluster or instance using the &lt;code>postgres&lt;/code>/&lt;code>aurora-postgresql&lt;/code> DB engine along with a specified &lt;code>EngineVersion&lt;/code>, LocalStack will dynamically install and configure the corresponding PostgreSQL version as required. Presently, you have the option to choose major versions ranging from 10 to 15. If you select a major version beyond this range, the system will automatically default to version 11.&lt;/p>
+&lt;p>It&amp;rsquo;s important to note that the selection of minor versions is not available. The latest major version will be installed within the Docker environment. If you wish to prevent the installation of customized versions, adjusting the &lt;code>RDS_PG_CUSTOM_VERSIONS&lt;/code> environment variable to &lt;code>0&lt;/code> will enforce the use of the default PostgreSQL version 11.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Please be aware that the IAM authentication is not verified at this point, which means that any DB user that is granted the role &lt;code>rds_iam&lt;/code> will receive a valid token and will be able to connect to the database.
+While the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBClusters.html">&lt;code>DescribeDbCluster&lt;/code>&lt;/a> and &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html">&lt;code>DescribeDbInstances&lt;/code>&lt;/a> APIs will still reflect the initially defined &lt;code>engine-version&lt;/code>, the actual installed PostgreSQL engine might differ. This can have implications, particularly when employing a Terraform configuration, where unexpected changes should be avoided.
 &lt;/div>
-&lt;h3 id="using-iam-example">Using IAM example&lt;/h3>
-&lt;p>The following example showcases the IAM authentication flow for RDS Postgres:&lt;/p>
+&lt;p>Instances and clusters with the PostgreSQL engine have the capability to both create and restore snapshots.&lt;/p>
+&lt;h3 id="mariadb-engine">MariaDB Engine&lt;/h3>
+&lt;p>MariaDB will be set up as an operating system package within LocalStack. However, currently, the option to choose a particular version is not available. As of now, snapshots are not supported for MariaDB.&lt;/p>
+&lt;h3 id="mysql-engine">MySQL Engine&lt;/h3>
+&lt;p>When choosing a MySQL engine type, the default installation will be MariaDB. If you prefer to utilize an actual MySQL version, you can achieve this by setting the environment variable &lt;code>RDS_MYSQL_DOCKER=1&lt;/code>. When this feature is enabled, the MySQL community server will be launched in a new Docker container upon requesting the MySQL engine.&lt;/p>
+&lt;p>The &lt;code>engine-version&lt;/code> will serve as the tag for the Docker image, allowing you to freely select the desired MySQL version from those available on the &lt;a href="https://hub.docker.com/_/mysql">official MySQL Docker Hub&lt;/a>. If you have a specific image in mind, you can also use the environment variable &lt;code>MYSQL_IMAGE=&amp;lt;my-image:tag&amp;gt;&lt;/code>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The &lt;code>arm64&lt;/code> MySQL images are limited to newer versions. For more information about availability, check the &lt;a href="https://hub.docker.com/_/mysql">MySQL Docker Hub repository&lt;/a>.
+&lt;/div>
+&lt;p>It&amp;rsquo;s essential to understand that the &lt;code>MasterUserPassword&lt;/code> you define for the database cluster/instance will be used as the &lt;code>MYSQL_ROOT_PASSWORD&lt;/code> environment variable for the &lt;code>root&lt;/code> user within the MySQL container. The user specified in &lt;code>MasterUserName&lt;/code> will use the same password and will have complete access to the database. As of now, snapshots are not supported for MySQL.&lt;/p>
+&lt;h3 id="microsoft-sql-server-engine">Microsoft SQL Server Engine&lt;/h3>
+&lt;p>To utilize MSSQL databases, it&amp;rsquo;s necessary to expressly agree to the terms of the &lt;a href="https://hub.docker.com/_/microsoft-mssql-server">Microsoft SQL Server End-User Licensing Agreement (EULA)&lt;/a> by configuring &lt;code>MSSQL_ACCEPT_EULA=Y&lt;/code> within the LocalStack container environment. The &lt;code>arm64&lt;/code> architecture is not currently officially supported for MSSQL.&lt;/p>
+&lt;p>For the MSSQL engine, the database server is initiated in a fresh Docker container using the &lt;code>latest&lt;/code> image. As of now, snapshots are not supported for MSSQL.&lt;/p>
+&lt;h2 id="default-usernames-and-passwords">Default Usernames and Passwords&lt;/h2>
+&lt;p>The following details concern default usernames, passwords, and database names for local RDS clusters created by LocalStack:&lt;/p>
 &lt;ul>
-&lt;li>create a DB instance, and retrieve the host and port for the instance&lt;/li>
-&lt;li>connect to the DB using the master username and password. Then create a new user and grant it the role &lt;code>rds_iam&lt;/code>:
+&lt;li>The default values for &lt;code>master-username&lt;/code> and &lt;code>db-name&lt;/code> are both &lt;strong>test&lt;/strong>. For the &lt;code>master-user-password&lt;/code>, the default is &lt;strong>test&lt;/strong>, except for MSSQL databases, which employ &lt;strong>Test123!&lt;/strong> as the default master password.&lt;/li>
+&lt;li>When setting up a new RDS instance, you have the flexibility to utilize any &lt;code>master-username&lt;/code>, with the exception of &lt;strong>postgres&lt;/strong>. The system will automatically generate the user.&lt;/li>
+&lt;li>It&amp;rsquo;s important to remember that the username &lt;strong>postgres&lt;/strong> has special significance, preventing the creation of a new RDS instance under this particular name.&lt;/li>
+&lt;li>For clarity, please avoid using the &lt;code>db-name&lt;/code> &lt;strong>postgres&lt;/strong>, as it is already allocated for use by LocalStack.&lt;/li>
+&lt;/ul>
+&lt;h2 id="iam-authentication-support">IAM Authentication Support&lt;/h2>
+&lt;p>IAM authentication tokens can be employed to establish connections with RDS. As of now, this functionality is supported for PostgreSQL within LocalStack. However, IAM authentication is not yet validated at this stage. Consequently, any database user assigned the &lt;code>rds_iam&lt;/code> role will obtain a valid token, thereby gaining the ability to connect to the database.&lt;/p>
+&lt;p>In this example, you will be able to verify the IAM authentication process for RDS Postgres:&lt;/p>
+&lt;ol>
+&lt;li>Establish a database instance and obtain the corresponding host and port information.&lt;/li>
+&lt;li>Connect to the database using the master username and password. Subsequently, generate a new user and assign the &lt;code>rds_iam&lt;/code> role as follows:
 &lt;ul>
 &lt;li>&lt;code>CREATE USER &amp;lt;username&amp;gt; WITH LOGIN&lt;/code>&lt;/li>
 &lt;li>&lt;code>GRANT rds_iam TO &amp;lt;username&amp;gt;&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>generate a token for the &lt;code>&amp;lt;username&amp;gt;&lt;/code> via the &lt;code>generate-db-auth-token&lt;/code> command&lt;/li>
-&lt;li>connect to the DB with the user you have a created and the token generated in the previous step as password&lt;/li>
-&lt;/ul>
+&lt;li>Create a token for the &lt;code>&amp;lt;username&amp;gt;&lt;/code> using the &lt;code>generate-db-auth-token&lt;/code> command.&lt;/li>
+&lt;li>Connect to the database utilizing the user you generated and the token obtained in the previous step as the password.&lt;/li>
+&lt;/ol>
+&lt;h3 id="create-a-database-instance">Create a database instance&lt;/h3>
+&lt;p>The following command creates a new database instance with the name &lt;code>mydb&lt;/code> and the engine &lt;code>postgres&lt;/code>. The database will be created with a single instance, which will be used as the master instance.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>MASTER_USER=hello
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>MASTER_PW=&amp;#39;MyPassw0rd!&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>DB_NAME=test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-instance --master-username $MASTER_USER --master-user-password $MASTER_PW --db-instance-identifier mydb --engine postgres --db-name $DB_NAME --enable-iam-database-authentication --db-instance-class db.t3.small
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PORT=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r &amp;#34;.DBInstances[0].Endpoint.Port&amp;#34;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>HOST=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r &amp;#34;.DBInstances[0].Endpoint.Address&amp;#34;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c &amp;#39;CREATE USER myiam WITH LOGIN&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c &amp;#39;GRANT rds_iam TO myiam&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>TOKEN=$(awslocal rds generate-db-auth-token --username myiam --hostname $HOST --port $PORT)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-instance \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-username $MASTER_USER \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-user-password $MASTER_PW \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-instance-identifier mydb \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine postgres \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-name $DB_NAME \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --enable-iam-database-authentication \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-instance-class db.t3.small&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="connect-to-the-database">Connect to the database&lt;/h3>
+&lt;p>You can retrieve the hostname and port of your created instance either from the preceding output or by using the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html">&lt;code>DescribeDbInstances&lt;/code>&lt;/a> API. Run the following command to retrieve the host and port of the instance:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PORT=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r &amp;#34;.DBInstances[0].Endpoint.Port&amp;#34;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>HOST=$(awslocal rds describe-db-instances --db-instance-identifier mydb | jq -r &amp;#34;.DBInstances[0].Endpoint.Address&amp;#34;)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Next, you can connect to the database using the master username and password:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c &amp;#39;CREATE USER myiam WITH LOGIN&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$MASTER_PW psql -d $DB_NAME -U $MASTER_USER -p $PORT -h $HOST -w -c &amp;#39;GRANT rds_iam TO myiam&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-token">Create a token&lt;/h3>
+&lt;p>You can create a token for the user you generated using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/rds/generate-db-auth-token.html">&lt;code>generate-db-auth-token&lt;/code>&lt;/a> command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>TOKEN=$(awslocal rds generate-db-auth-token --username myiam --hostname $HOST --port $PORT)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can now connect to the database utilizing the user you generated and the token obtained in the previous step as the password:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>PGPASSWORD=$TOKEN psql -d $DB_NAME -U myiam -w -p $PORT -h $HOST&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="global-database-support">Global Database Support&lt;/h2>
-&lt;p>LocalStack supports &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html">Aurora Global Database&lt;/a>, with some limitations:&lt;/p>
+&lt;p>LocalStack extends support for &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html">Aurora Global Database&lt;/a> with certain limitations:&lt;/p>
 &lt;ul>
-&lt;li>
-&lt;p>When creating a global database, there will only be one local database created.
-All clusters and instances that belong to the global database will point to the same endpoint.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Consequently, clusters that have been removed from a global database cannot be used as a standalone-cluster, like on AWS.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Persistence for global databases is currently not supported.&lt;/p>
-&lt;/li>
+&lt;li>Creating a global database will result in the generation of a single local database. All clusters and instances associated with the global database will share a common endpoint.&lt;/li>
+&lt;li>It&amp;rsquo;s important to note that clusters removed from a global database lose their ability to function as standalone clusters, differing from their intended behavior on AWS.&lt;/li>
+&lt;li>At present, the capability for persistence within global databases is not available.&lt;/li>
+&lt;/ul>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing RDS instances and clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>RDS&lt;/strong> under the &lt;strong>Database&lt;/strong> section.&lt;/p>
+&lt;img src="rds-resource-browser.png" alt="RDS Resource Browser" title="RDS Resource Browser" width="900" />
+&lt;br>
+&lt;br>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Instance&lt;/strong>: Create a new RDS instance by specifying the instance name, engine, DBInstance Class &amp;amp; Identifier, and other parameters.&lt;/li>
+&lt;li>&lt;strong>Create Cluster&lt;/strong>: Create a new RDS cluster by specifying the database name, engine, DBCluster Identifier, and other parameters.&lt;/li>
+&lt;li>&lt;strong>View Instance &amp;amp; Cluster&lt;/strong>: View an existing RDS instance or cluster by clicking the instance/cluster name.&lt;/li>
+&lt;li>&lt;strong>Edit Instance &amp;amp; Cluster&lt;/strong>: Edit an existing RDS instance or cluster by clicking the instance/cluster name and clicking the &lt;strong>EDIT INSTANCE&lt;/strong> or &lt;strong>EDIT CLUSTER&lt;/strong> button.&lt;/li>
+&lt;li>&lt;strong>Remove Instance &amp;amp; Cluster&lt;/strong>: Remove an existing RDS instance or cluster by clicking the instance/cluster name and clicking the &lt;strong>ACTIONS&lt;/strong> followed by &lt;strong>Remove Selected&lt;/strong> button.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use RDS in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/appsync-graphql-api-sample">AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/amazon-rds-init-cdk">Amazon RDS initialization using CDK, Lambda, ECR, and Secrets Manager&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack-samples/sample-serverless-rds-proxy-demo/">Serverless RDS Proxy with API Gateway, Lambda, and Aurora RDS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/rds-db-queries">Running queries against an RDS database&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample">Running cloud integration tests against LocalStack&amp;rsquo;s RDS with Testcontainers&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
 &lt;p>The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.&lt;/p>
 &lt;p>The example below illustrates the creation of a hosted zone &lt;code>example.com&lt;/code>, registration of an A record named &lt;code>test.example.com&lt;/code> that points to &lt;code>1.2.3.4&lt;/code>, and finally querying the DNS record by using the &lt;code>dig&lt;/code> command against the DNS server running on &lt;code>localhost&lt;/code> (inside the LocalStack container, on port &lt;code>53&lt;/code>):
