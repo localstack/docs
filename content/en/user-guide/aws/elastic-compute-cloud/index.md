@@ -9,23 +9,30 @@ aliases:
 
 ## Introduction
 
-EC2 (Elastic Compute Cloud) is a fundamental service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources. EC2 enables users to effortlessly launch and manage virtual servers, commonly referred to as instances. Users can create diverse computing environments tailored to specific needs by encompassing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.
+EC2 (Elastic Compute Cloud) is a fundamental service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
+EC2 enables users to effortlessly launch and manage virtual servers, commonly referred to as instances.
+Users can create diverse computing environments tailored to specific needs by encompassing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.
 
-LocalStack supports a mock implementation of EC2 via the Community offering while a fully-emulated implementation is available in the Pro/Team offering, allowing you to use the EC2 APIs in your local environment to create and manage your EC2 instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/), which provides information on the extent of EC2's integration with LocalStack.
+LocalStack supports a mock implementation of EC2 via the Community offering while a fully-emulated implementation is available in the Pro/Team offering, allowing you to use the EC2 APIs in your local environment to create and manage your EC2 instances.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/), which provides information on the extent of EC2's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to EC2 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.
+Start your LocalStack container using your preferred method.
+We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.
 
 {{< alert title="Note" >}}
-Docker Desktop on macOS doesn't expose the bridge network hence SSH access to the instance is not possible. You can however follow the steps below to test the setup of the EC2 instance. You also need to use LocalStack Pro/Team to test the setup of the EC2 instance, since it uses [Docker backend](#docker-backend) to emulate EC2 instances.
+Docker Desktop on macOS does not expose the bridge network hence SSH access to the instance is not possible.
+You can however follow the steps below to test the setup of the EC2 instance.
+You also need to use LocalStack Pro/Team to test the setup of the EC2 instance, since it uses [Docker backend](#docker-backend) to emulate EC2 instances.
 {{< /alert >}}
 
 ### Create a Key Pair
 
-To create a key pair, you can use the [`CreateKeyPair`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html) API. Run the following command to create the key pair and pipe the output to a file named `key.pem`:
+To create a key pair, you can use the [`CreateKeyPair`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html) API.
+Run the following command to create the key pair and pipe the output to a file named `key.pem`:
 
 {{< command >}}
 $ awslocal ec2 create-key-pair \
@@ -42,7 +49,9 @@ $ chmod 400 key.pem
 
 ### Add rules to your security group
 
-Currently, LocalStack only supports the `default` security group. You can add rules to the security group using the [`AuthorizeSecurityGroupIngress`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AuthorizeSecurityGroupIngress.html) API. Run the following command to add a rule to allow inbound traffic on port 8000:
+Currently, LocalStack only supports the `default` security group.
+You can add rules to the security group using the [`AuthorizeSecurityGroupIngress`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AuthorizeSecurityGroupIngress.html) API.
+Run the following command to add a rule to allow inbound traffic on port 8000:
 
 {{< command >}}
 $ awslocal ec2 authorize-security-group-ingress \
@@ -56,7 +65,8 @@ The above command will enable rules in the security group to allow incoming traf
 
 ### Run an EC2 instance
 
-You can fetch the Security Group ID using the [`DescribeSecurityGroups`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html) API. Run the following command to fetch the Security Group ID:
+You can fetch the Security Group ID using the [`DescribeSecurityGroups`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSecurityGroups.html) API.
+Run the following command to fetch the Security Group ID:
 
 {{< command >}}
 $ awslocal ec2 describe-security-groups
@@ -89,7 +99,8 @@ apt install python3 -y
 python3 -m http.server 8000
 ```
 
-You can now run an EC2 instance using the [`RunInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API. Run the following command to run an EC2 instance by adding the appropriate Security Group ID that we fetched in the previous step:
+You can now run an EC2 instance using the [`RunInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html) API.
+Run the following command to run an EC2 instance by adding the appropriate Security Group ID that we fetched in the previous step:
 
 {{< command >}}
 $ awslocal ec2 run-instances \
@@ -103,7 +114,8 @@ $ awslocal ec2 run-instances \
 
 ### Test the Python Web Server
 
-You can now open the LocalStack logs to find the IP address of the locally emulated EC2 instance. Run the following command to open the LocalStack logs:
+You can now open the LocalStack logs to find the IP address of the locally emulated EC2 instance.
+Run the following command to open the LocalStack logs:
 
 {{< command >}}
 $ localstack logs
@@ -116,7 +128,8 @@ You should see the following output:
 2023-08-16T17:18:29.702  INFO --- [   asgi_gw_0] l.s.ec2.vmmanager.docker   : Instance i-b07acefd77a3c415f port mappings (container -> host): {'8000/tcp': 29043, '22/tcp': 12862}
 ```
 
-You can now use the IP address to test the Python Web Server. Run the following command to test the Python Web Server:
+You can now use the IP address to test the Python Web Server.
+Run the following command to test the Python Web Server:
 
 {{< command >}}
 $ curl 172.17.0.4:8000
@@ -134,10 +147,12 @@ You should see the following output:
 ```
 
 {{< alert title="Note" >}}
-Similar to the setup in production AWS, the user data content is stored at `/var/lib/cloud/instances/<instance_id>/user-data.txt` within the instance. Any execution of this data is recorded in the `/var/log/cloud-init-output.log` file.
+Similar to the setup in production AWS, the user data content is stored at `/var/lib/cloud/instances/<instance_id>/user-data.txt` within the instance.
+Any execution of this data is recorded in the `/var/log/cloud-init-output.log` file.
 {{< /alert >}}
 
-You can also setup an SSH connection to the locally emulated EC2 instance using the IP address. Run the following command to setup an SSH connection:
+You can also setup an SSH connection to the locally emulated EC2 instance using the IP address.
+Run the following command to setup an SSH connection:
 
 {{< command >}}
 $ ssh -p 22 -i test.pem 172.17.0.4
@@ -145,11 +160,16 @@ $ ssh -p 22 -i test.pem 172.17.0.4
 
 ## Docker backend
 
-LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances. The Docker backend employs the [Docker Engine](https://docs.docker.com/engine/) to simulate EC2 instances. All restrictions associated with containers are also applicable to EC2 instances managed by the Docker manager. 
+LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances.
+The Docker backend employs the [Docker Engine](https://docs.docker.com/engine/) to simulate EC2 instances.
+All restrictions associated with containers are also applicable to EC2 instances managed by the Docker manager.
 
-These restrictions encompass elements like root access and networking. In order for LocalStack to function seamlessly, access to the Docker socket is essential, which can be facilitated by attaching the socket file during the launch process.
 
-Instances encompass the mounted Docker socket (`/var/run/docker.sock`), which facilitates scenarios involving Docker-in-Docker. This setup makes it feasible to engage in use cases that require interactions with Docker within the instances themselves.
+These restrictions encompass elements like root access and networking.
+In order for LocalStack to function seamlessly, access to the Docker socket is essential, which can be facilitated by attaching the socket file during the launch process.
+
+Instances encompass the mounted Docker socket (`/var/run/docker.sock`), which facilitates scenarios involving Docker-in-Docker.
+This setup makes it feasible to engage in use cases that require interactions with Docker within the instances themselves.
 
 ### Operations
 
@@ -167,9 +187,11 @@ The Docker backend supports the following operations:
 
 ### Base Images
 
-LocalStack utilizes a specific naming convention for recognition and management of its associated containers and images. Containers are designated with the name format `localstack-ec2.<InstanceId>`, while images are tagged using the format `localstack-ec2/<AmiName>:<AmiId>`.
+LocalStack utilizes a specific naming convention for recognition and management of its associated containers and images.
+Containers are designated with the name format `localstack-ec2.<InstanceId>`, while images are tagged using the format `localstack-ec2/<AmiName>:<AmiId>`.
 
-Within the Docker backend, Docker images following the aforementioned naming pattern are treated as Amazon Machine Images (AMIs). For instance, you can associate the Ubuntu Focal image as `ami-000001` using the command below:
+Within the Docker backend, Docker images following the aforementioned naming pattern are treated as Amazon Machine Images (AMIs).
+For instance, you can associate the Ubuntu Focal image as `ami-000001` using the command below:
 
 {{< command >}}
 $ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
@@ -181,11 +203,14 @@ Such Docker-backed AMIs bear the resource tag `ec2_vm_manager:docker` and can be
 $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< /command >}}
 
-It's important to note that all other AMIs are **mocked** and originate from the community edition of LocalStack. Attempting to launch Dockerized instances using these specific AMIs will result in an `InvalidAMIID.NotFound` error.
+It's important to note that all other AMIs are mocked and originate from the community edition of LocalStack.
+Attempting to launch Dockerized instances using these specific AMIs will result in an `InvalidAMIID.NotFound` error.
 
 ### Configuration
 
-You can also use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to convey supplementary flags to Docker during the initiation of containerized instances. This allows for adjustments such as commencing the container in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`, and more. Keep in mind that these modifications apply to all instances launched within the LocalStack session.
+You can also use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) LocalStack configuration variable to convey supplementary flags to Docker during the initiation of containerized instances.
+This allows for adjustments such as commencing the container in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`, and more.
+Keep in mind that these modifications apply to all instances launched within the LocalStack session.
 
 ## Networking
 
@@ -193,9 +218,12 @@ You can also use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) Local
 LocalStack daemon is deprecated and will be removed in an upcoming major release.
 {{< /alert >}}
 
-LocalStack allocates distinct private IP addresses to Dockerized instances. To make use of this feature, it's essential to run the LocalStack daemon process on the host. This daemon process is responsible for handling the creation and administration of networking on the host system.
+LocalStack allocates distinct private IP addresses to Dockerized instances.
+To make use of this feature, it's essential to run the LocalStack daemon process on the host.
+This daemon process is responsible for handling the creation and administration of networking on the host system.
 
-Before using this command, ensure you've logged in to your `localstack` CLI (using `localstack login`) via your LocalStack Web Application credentials. To confirm, execute `localstack --help` and check if `daemons` is among the available commands.
+Before using this command, ensure you've logged in to your `localstack` CLI (using `localstack login`) via your LocalStack Web Application credentials.
+To confirm, execute `localstack --help` and check if `daemons` is among the available commands.
 
 {{< command >}}
 $ pip install localstack[runtime]
@@ -209,11 +237,15 @@ The SSH access address for the instance is displayed in the logs during the inst
 2022-03-21T14:46:49.540  INFO  Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705, 172.17.0.4:22
 ```
 
-The LocalStack daemon is supported on Linux and macOS operating systems. If the LocalStack daemon is inactive, the instance can only be accessed at `127.0.0.1` along with an available port on the host.
+The LocalStack daemon is supported on Linux and macOS operating systems.
+If the LocalStack daemon is inactive, the instance can only be accessed at `127.0.0.1` along with an available port on the host.
 
-To make additional ports available to the host system, you can modify the default security group and incorporate the needed ingress ports. It's important to note that security group ingress rules are applied only during the creation of the Dockerized instance. Modifying a security group will not open any ports for a running instance.
+To make additional ports available to the host system, you can modify the default security group and incorporate the needed ingress ports.
+It's important to note that security group ingress rules are applied only during the creation of the Dockerized instance.
+Modifying a security group will not open any ports for a running instance.
 
-The system supports up to 32 ingress ports. This constraint is in place to prevent the host from exhausting available ports.
+The system supports up to 32 ingress ports.
+This constraint is in place to prevent the host from exhausting available ports.
 
 {{< command >}}
 $ awslocal ec2 authorize-security-group-ingress \
@@ -232,7 +264,8 @@ The port mapping details are provided in the logs during the instance initializa
 
 ## Resource Browser
 
-The LocalStack Web Application provides a Resource Browser for managing EC2 instances. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **EC2** under the **Compute** section.
+The LocalStack Web Application provides a Resource Browser for managing EC2 instances.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **EC2** under the **Compute** section.
 
 <img src="ec2-resource-browser.png" alt="EC2 Resource Browser" title="EC2 Resource Browser" width="900" />
 <br>
