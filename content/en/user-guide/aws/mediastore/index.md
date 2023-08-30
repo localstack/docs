@@ -22,6 +22,11 @@ The response contains the `Endpoint` value which should be used in subsequent re
 
 {{< command >}}
 $ awslocal mediastore create-container --container-name mycontainer
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "Container": {
         "Endpoint": "http://mediastore-mycontainer.mediastore.localhost.localstack.cloud:4566",
@@ -30,7 +35,7 @@ $ awslocal mediastore create-container --container-name mycontainer
         "Name": "mycontainer"
     }
 }
-{{< / command >}}
+```
 
 ### Upload an asset
 
@@ -44,11 +49,16 @@ $ awslocal mediastore-data put-object \
     --body myfile.txt \
     --path /myfolder/myfile.txt \
     --content-type binary/octet-stream
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "ContentSHA256": "",
     "ETag": "\"111d787cdcfcc358fd15684131f586d8\""
 }
-{{< / command >}}
+```
 
 ### Download an asset
 
@@ -60,6 +70,11 @@ $ awslocal mediastore-data get-object \
     --endpoint http://mediastore-mycontainer.mediastore.localhost.localstack.cloud:4566 \
     --path /myfolder/myfile.txt \
     /tmp/out.txt
+{{< / command >}}
+
+You should see the following output:
+
+```bash
 {
     "ContentLength": "716",
     "ContentType": "binary/octet-stream",
@@ -67,7 +82,7 @@ $ awslocal mediastore-data get-object \
     "LastModified": "2023-08-11T08:43:20+00:00",
     "StatusCode": 200
 }
-{{< / command >}}
+```
 
 ## Troubleshooting
 
