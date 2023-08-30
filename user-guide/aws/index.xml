@@ -6914,70 +6914,151 @@ by &lt;code>mongosh&lt;/code>:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test-company&amp;gt; exit&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>For more information on how to use MongoDB with &lt;code>mongosh&lt;/code> please refer to
 the &lt;a href="https://www.mongodb.com/docs/">MongoDB documentation&lt;/a>.&lt;/p></description></item><item><title>User-Guide: DynamoDB</title><link>/user-guide/aws/dynamodb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/dynamodb/</guid><description>
-&lt;p>DynamoDB on LocalStack is powered by &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html">DynamoDB Local&lt;/a>.&lt;/p>
-&lt;h2 id="global-tables">Global tables&lt;/h2>
-&lt;p>LocalStack has support for global tables (version 2019).
-These are tables belonging to the same account and replicated across different regions.&lt;/p>
+&lt;p>DynamoDB is a fully managed NoSQL database service provided by AWS.
+It offers a flexible and highly scalable way to store and retrieve data, making it suitable for a wide range of applications.
+DynamoDB provides a fast and scalable key-value datastore with support for replication, automatic scaling, data encryption at rest, and on-demand backup, among other capabilities.&lt;/p>
+&lt;p>LocalStack supports DynamoDB via the Community offering, allowing you to use the DynamoDB APIs in your local environment to manage key-value and document data models.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_dynamodb/">API coverage page&lt;/a>, which provides information on the extent of DynamoDB&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-LocalStack does not support legacy global tables (version 2017).
-Operations like &lt;code>CreateGlobalTable&lt;/code>, &lt;code>UpdateGlobalTable&lt;/code>, &lt;code>DescribeGlobalTable&lt;/code> etc. will not emulate global replications.
+DynamoDB on LocalStack is powered by &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html">DynamoDB Local&lt;/a>.
 &lt;/div>
-&lt;p>Following example illustrates the use of global tables:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>Create a table
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb create-table \
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to DynamoDB and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how to create DynamoDB table, along with its replicas, and put an item into the table using the AWS CLI.&lt;/p>
+&lt;h3 id="create-a-dynamodb-table">Create a DynamoDB table&lt;/h3>
+&lt;p>You can create a DynamoDB table using the &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html">&lt;code>CreateTable&lt;/code>&lt;/a> API.
+Execute the following command to create a table named &lt;code>global01&lt;/code> with a primary key &lt;code>id&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb create-table \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --table-name global01 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --key-schema AttributeName=id,KeyType=HASH \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-definitions AttributeName=id,AttributeType=S \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --billing-mode PAY_PER_REQUEST \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --region ap-south-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>Create replicas
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb update-table \
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TableDescription&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AttributeDefinitions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AttributeName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AttributeType&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;S&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TableName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;global01&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;KeySchema&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AttributeName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;KeyType&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;HASH&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TableStatus&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationDateTime&amp;#34;&lt;/span>: 1693244562.147,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TableArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:dynamodb:ap-south-1:000000000000:table/global01&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TableId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;6bc6dd46-98d8-486a-aed8-6ef66a35df7c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-replicas">Create replicas&lt;/h3>
+&lt;p>You can create replicas of a DynamoDB table using the &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateTable.html">&lt;code>UpdateTable&lt;/code>&lt;/a> API.
+Execute the following command to create replicas in &lt;code>ap-south-1&lt;/code> and &lt;code>us-west-1&lt;/code> regions:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb update-table \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --table-name global01 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replica-updates &amp;#39;[{&amp;#34;Create&amp;#34;: {&amp;#34;RegionName&amp;#34;: &amp;#34;eu-central-1&amp;#34;}}, {&amp;#34;Create&amp;#34;: {&amp;#34;RegionName&amp;#34;: &amp;#34;us-west-1&amp;#34;}}]&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --region ap-south-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>Table can be operated on in all replicated regions
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb list-tables --region eu-central-1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TableNames&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;global01&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb put-item --table-name global01 --item &amp;#39;{&amp;#34;id&amp;#34;:{&amp;#34;S&amp;#34;:&amp;#34;foo&amp;#34;}}&amp;#39; --region eu-central-1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb describe-table --table-name global01 --query &amp;#39;Table.ItemCount&amp;#39; --region ap-south-1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>Get all replicas
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb describe-table --table-name global01 --query &amp;#39;Table.Replicas&amp;#39; --region us-west-1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>[
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegionName&amp;#34;: &amp;#34;ap-south-1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ReplicaStatus&amp;#34;: &amp;#34;ACTIVE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegionName&amp;#34;: &amp;#34;eu-central-1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ReplicaStatus&amp;#34;: &amp;#34;ACTIVE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-It is currently not possible to remove the original table region from the replication set while keeping the replicas.
-Deleting the original table will also remove all the replicas.
-&lt;/div>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-DynamoDB Streams are only supported for original tables and not for replicated tables.
-Please see &lt;a href="https://github.com/localstack/localstack/issues/7405">https://github.com/localstack/localstack/issues/7405&lt;/a> for more information.
-&lt;/div>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-Batch operations (&lt;code>BatchWriteItem&lt;/code>, &lt;code>BatchGetItem&lt;/code>, etc.) are currently not supported on replicated tables.
-&lt;/div>
-&lt;!--
-## SSE specifications
-## Kinesis streams
---></description></item><item><title>User-Guide: Elastic Compute Cloud (EC2)</title><link>/user-guide/aws/elastic-compute-cloud/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-compute-cloud/</guid><description>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TableDescription&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AttributeDefinitions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AttributeName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AttributeType&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;S&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Replicas&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;RegionName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;eu-central-1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ReplicaStatus&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;RegionName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;us-west-1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ReplicaStatus&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can now operate on the table in the replicated regions as well.
+You can use the &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ListTables.html">&lt;code>ListTables&lt;/code>&lt;/a> API to list the tables in the replicated regions.
+Run the following command to list the tables in the &lt;code>eu-central-1&lt;/code> region:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb list-tables \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --region eu-central-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TableNames&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;global01&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="insert-an-item">Insert an item&lt;/h3>
+&lt;p>You can insert an item into a DynamoDB table using the &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html">&lt;code>PutItem&lt;/code>&lt;/a> API.
+Execute the following command to insert an item into the &lt;code>global01&lt;/code> table:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb put-item \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --table-name global01 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --item &amp;#39;{&amp;#34;id&amp;#34;:{&amp;#34;S&amp;#34;:&amp;#34;foo&amp;#34;}}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --region eu-central-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can now query the number of items in the table using the &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html">&lt;code>DescribeTable&lt;/code>&lt;/a> API.
+Run the following command to query the number of items in the &lt;code>global01&lt;/code> table from a different region:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb describe-table \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --table-name global01 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query &amp;#39;Table.ItemCount&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --region ap-south-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing DynamoDB tables and items.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>DynamoDB&lt;/strong> under the &lt;strong>Database&lt;/strong> section.&lt;/p>
+&lt;img src="dynamodb-resource-browser.png" alt="DynamoDB Resource Browser" title="DynamoDB Resource Browser" width="900" />
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Table&lt;/strong>: Create a new DynamoDB table by clicking on the &lt;strong>Create Table&lt;/strong> button.
+You can specify the table name, table class, key schema and other attributes of the table.&lt;/li>
+&lt;li>&lt;strong>Edit Table&lt;/strong>: Edit an existing DynamoDB table by clicking on the &lt;strong>Edit Table&lt;/strong> button.
+You can modify the table name, key schema and other attributes of the table.&lt;/li>
+&lt;li>&lt;strong>View items&lt;/strong>: View the items in a DynamoDB table by clicking on the &lt;strong>Items&lt;/strong> button.
+You can also add, edit and delete items in the table.
+You can also switch to scan or query mode to view the items in the table.&lt;/li>
+&lt;li>&lt;strong>Run PartiQL&lt;/strong>: Run a PartiQL query against a DynamoDB table by clicking on the &lt;strong>PartiQL&lt;/strong> button.
+You can add your query in the editor and click on the &lt;strong>Execute&lt;/strong> button to execute the query.&lt;/li>
+&lt;li>&lt;strong>Delete Table&lt;/strong>: Delete an existing DynamoDB table by selecting the DynamoDB table and clicking &lt;strong>Actions&lt;/strong> and then &lt;strong>Remove Selected&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use IAM in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/serverless-api-ecs-apigateway-sample">Serverless Container-based APIs with Amazon ECS &amp;amp; API Gateway&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/shipment-list-demo">Full-Stack application with AWS Lambda, DynamoDB &amp;amp; S3 for shipment validation&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/step-up-auth-sample">Step-up Authentication using Amazon Cognito&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample">Serverless microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo">Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/aws-sdk-js-notes-app">Note-Taking application using AWS SDK for JavaScript&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/appsync-graphql-api-sample">AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/loan-broker-stepfunctions-lambda-app">Loan Broker application with AWS Step Functions, DynamoDB, Lambda, SQS, and SNS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/sqs-fargate-ddb-cdk-go">Messaging Processing application with SQS, DynamoDB, and Fargate&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;h3 id="global-tables">Global tables&lt;/h3>
+&lt;p>LocalStack provides support for global tables (Version 2019), which are tables that exist within the same account and are replicated across various regions.&lt;/p>
+&lt;p>However, legacy global tables (Version 2017) are not supported by LocalStack.
+Operations such as &lt;code>CreateGlobalTable&lt;/code>, &lt;code>UpdateGlobalTable&lt;/code>, and &lt;code>DescribeGlobalTable&lt;/code> will not replicate globally.&lt;/p>
+&lt;h3 id="replication">Replication&lt;/h3>
+&lt;ul>
+&lt;li>Removing the original table region from the replication set while retaining the replicas is currently not feasible.
+Deleting the original table will result in the removal of all replicas as well.&lt;/li>
+&lt;li>DynamoDB Streams are exclusively supported for original tables and not for replicated ones.
+More information can be found in &lt;a href="https://github.com/localstack/localstack/issues/7405">our public GitHub issue tracker&lt;/a>.&lt;/li>
+&lt;li>Batch operations such as &lt;code>BatchWriteItem&lt;/code>, &lt;code>BatchGetItem&lt;/code>, etc. are currently not supported for replicated tables.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Elastic Compute Cloud (EC2)</title><link>/user-guide/aws/elastic-compute-cloud/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-compute-cloud/</guid><description>
 &lt;p>LocalStack Pro supports the Docker backend for running instances.&lt;/p>
 &lt;p>The Docker backend uses the &lt;a href="https://docs.docker.com/engine/">Docker Engine&lt;/a> to emulate EC2 instances.
 All limitations that apply to containers apply to EC2 instances backed by the Docker manager, including root access and networking.
