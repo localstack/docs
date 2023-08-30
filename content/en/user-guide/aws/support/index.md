@@ -20,9 +20,9 @@ This guide is designed for users new to Support and assumes basic knowledge of t
 
 Start your LocalStack container using your preferred method. We will demonstrate how you can create a case in the mock Support Center using the AWS CLI.
 
-### Create a case
+### Create a support case
 
-To create a case, you can use the [`CreateCase`](https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/CreateCase) API. The following example creates a case with the subject "Test case" and the description "This is a test case" in the category "General guidance".
+To create a support case, you can use the [`CreateCase`](https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/CreateCase) API. The following example creates a case with the subject "Test case" and the description "This is a test case" in the category "General guidance".
 
 {{< command >}}
 $ awslocal support create-case \
@@ -74,9 +74,9 @@ The following output would be retrieved:
 }
 ```
 
-### Resolve a case
+### Resolve a support case
 
-To resolve a case, you can use the [`ResolveCase`](https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCase) API. The following example resolves the case created in the previous step.
+To resolve a support case, you can use the [`ResolveCase`](https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCase) API. The following example resolves the case created in the previous step.
 
 {{< command >}}
 $ awslocal support resolve-case \
