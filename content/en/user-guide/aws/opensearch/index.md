@@ -123,8 +123,8 @@ However, it's important to be aware that it can introduce unexpected complicatio
 
 OpenSearch will be organized in your state directory as follows:
 
-```bash
-localstack@machine % tree -L 4 ./volume/state
+{{< command >}}
+$ tree -L 4 ./volume/state
 ./volume/state
 ├── opensearch
 │   └── arn:aws:es:us-east-1:000000000000:domain
@@ -136,7 +136,7 @@ localstack@machine % tree -L 4 ./volume/state
 │       │   ├── backup
 │       │   ├── data
 │       │   └── tmp
-```
+{{< /command >}}
 
 ## Advanced Security Options
 
