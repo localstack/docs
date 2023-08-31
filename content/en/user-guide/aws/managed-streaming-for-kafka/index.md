@@ -47,17 +47,15 @@ $ awslocal kafka create-cluster \
 
 The output of the command looks similar to this:
 
-{{< command >}}
+```bash
 {
     "ClusterArn": "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25",
     "ClusterName": "EventsCluster",
     "State": "CREATING"
 }
-{{< / command >}}
+```
 
-Describing the MSK cluster can be achieved by running the following command. Replace the ClusterArn with your own.
-
-You can describe the cluster using the [`DescribeCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster) API. Run the following command, replacing `ClusterArn` with the Amazon Resource Name (ARN) you obtained above when you created cluster.
+The cluster creation process might take a few minutes. You can describe the cluster using the [`DescribeCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster) API. Run the following command, replacing `ClusterArn` with the Amazon Resource Name (ARN) you obtained above when you created cluster.
 
 {{< command >}}
 $ awslocal kafka describe-cluster \
@@ -66,7 +64,7 @@ $ awslocal kafka describe-cluster \
 
 The output of the command looks similar to this:
 
-{{< command >}}
+```bash
 {
     "ClusterInfo": {
         "BrokerNodeGroupInfo": {
@@ -90,8 +88,7 @@ The output of the command looks similar to this:
         "ZookeeperConnectString": "localhost:4510"
     }
 }
-
-{{< / command >}}
+```
 
 ### Create a Kafka topic
 
@@ -104,16 +101,7 @@ $ wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
 $ tar -xzf kafka_2.12-2.2.1.tgz
 {{< / command >}}
 
-Navigate to the **kafka_2.12-2.2.1** directory.
-
-The cluster creation process might take a few minutes. To check if the cluster you created is ready, use the [`DescribeCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster) API. Run the following command by replacing `ClusterArn` with the Amazon Resource Name (ARN) you obtained earlier when you created the cluster.
-
-{{< command >}}
-$ awslocal kafka describe-cluster \
-    --cluster-arn "arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster"
-{{< / command >}}
-
-You are almost there! Now, execute the following command, replacing `ZookeeperConnectString` with the value you saved after running the `DescribeCluster` command.
+Navigate to the **kafka_2.12-2.2.1** directory. Execute the following command, replacing `ZookeeperConnectString` with the value you saved after running the [`DescribeCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster) API:
 
 {{< command >}}
 $ bin/kafka-topics.sh \
@@ -126,9 +114,9 @@ $ bin/kafka-topics.sh \
 
 After executing the command, your output should resemble the following:
 
-{{< command >}}
+```bash
 Created topic LocalMSKTopic.
-{{< / command >}}
+```
 
 ### Interacting with the topic
 
@@ -141,14 +129,14 @@ The following step is optional and may not be required, depending on the operati
 {{< /alert >}}
 
 {{< command >}}
-cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks
+$ cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks
 {{< / command >}}
 
 While you are still in the `bin` folder of the Apache Kafka installation on the client machine, create a text file named `client.properties` with the following contents:
 
-{{< command >}}
+```txt
 ssl.truststore.location=/tmp/kafka.client.truststore.jks
-{{< / command >}}
+```
 
 Run the following command, replacing `ClusterArn` with the Amazon Resource Name (ARN) you have.
 
@@ -159,11 +147,11 @@ $ awslocal kafka get-bootstrap-brokers \
 
 To proceed with the following commands, save the value associated with the string named `BootstrapBrokerStringTls` from the JSON result obtained from the previous command. It should look like this:
 
-{{< command >}}
+```bash
 {
     "BootstrapBrokerString": "localhost:4511"
 }
-{{< / command >}}
+```
 
 Now, navigate to the bin folder and run the next command, replacing `BootstrapBrokerStringTls` with the value you obtained:
 
@@ -206,7 +194,7 @@ $ awslocal lambda create-event-source-mapping \
 
 Upon successful completion of the operation to create the Lambda Event Source Mapping, you can expect the following response:
 
-{{< command >}}
+```bash
 {
     "UUID": "9c353a2b-bc1a-48b5-95a6-04baf67f01e4",
     "StartingPosition": "LATEST",
@@ -222,7 +210,7 @@ Upon successful completion of the operation to create the Lambda Event Source Ma
         "LocalMSKTopic"
     ]
 }
-{{< / command >}}
+```
 
 With the event source mapping feature, LocalStack offers an automated process for spawning Lambda functions whenever a message is published to the designated Kafka topic. 
 
