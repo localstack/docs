@@ -233,7 +233,7 @@ You can use the `kafka-console-producer.sh` client script to publish messages to
 You can delete the local MSK cluster using the [`DeleteCluster`](https://docs.aws.amazon.com/cli/latest/reference/kafka/delete-cluster.html) API. To do so, you must first obtain the ARN of the cluster you want to delete. Run the following command to list all the clusters in the region:
 
 {{< command >}}
-awslocal kafka list-clusters --region us-east-1
+$ awslocal kafka list-clusters --region us-east-1
 {{< / command >}}
 
 To initiate the deletion of a cluster, select the corresponding `ClusterARN` from the list of clusters, and then execute the following command:
