@@ -25,10 +25,10 @@ Start your LocalStack container using your preferred method. We will demonstrate
 
 You can create a Cost Category definition using the [`CreateCostCategoryDefinition`](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateCostCategoryDefinition.html)) API. The following example creates a Cost Category definition using an empty rule condition of type "REGULAR":
 
-{{ <command>}}
+{{< command >}}
 $ awslocal ce create-cost-category-definition --name test \
     --rule-version "CostCategoryExpression.v1" --rules '[{"Value": "test", "Rule": {}, "Type": "REGULAR"}]'
-{{ </command>}}
+{{< /command >}}
 
 The following output would be retrieved:
 
@@ -40,10 +40,10 @@ The following output would be retrieved:
 
 You can describe the Cost Category definition using the [`DescribeCostCategoryDefinition`](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DescribeCostCategoryDefinition.html) API. Run the following command:
 
-{{ <command>}}
+{{< command >}}
 $ awslocal ce describe-cost-category-definition \
     --cost-category-arn arn:aws:ce::000000000000:costcategory/test
-{{ </command>}}
+{{< /command >}}
 
 The following output would be retrieved:
 
@@ -68,7 +68,7 @@ The following output would be retrieved:
 
 You can add an alert subscription to a cost anomaly detection monitor to define subscribers using the [`CreateAnomalySubscription`](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateAnomalySubscription.html) API. The following example creates a cost anomaly subscription:
 
-{{ <command>}}
+{{< command >}}
 $ awslocal ce create-anomaly-subscription --anomaly-subscription '{
     "AccountId": "12345",
     "SubscriptionName": "sub1",
@@ -77,7 +77,7 @@ $ awslocal ce create-anomaly-subscription --anomaly-subscription '{
     "Subscribers": [],
     "Threshold": 111
 }'
-{{ </command>}}
+{{< /command >}}
 
 The following output would be retrieved:
 
@@ -89,9 +89,9 @@ The following output would be retrieved:
 
 You can retrieve the cost anomaly subscriptions using the [`GetAnomalySubscriptions`](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalySubscriptions.html) API. Run the following command:
 
-{{ <command>}}
+{{< command >}}
 $ awslocal ce get-anomaly-subscriptions
-{{ </command>}}
+{{< /command >}}
 
 The following output would be retrieved:
 
@@ -115,12 +115,12 @@ The following output would be retrieved:
 
 You can create a new cost anomaly detection subscription with the requested type and monitor specification using the [`CreateAnomalyMonitor`](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateAnomalyMonitor.html) API. The following example creates a cost anomaly monitor:
 
-{{ <command>}}
+{{< command >}}
 $ awslocal ce create-anomaly-monitor --anomaly-monitor '{
     "MonitorName": "mon5463",
     "MonitorType": "DIMENSIONAL"
 }'
-{{ </command>}}
+{{< /command >}}
 
 The following output would be retrieved:
 
@@ -132,9 +132,9 @@ The following output would be retrieved:
 
 You can retrieve the cost anomaly monitors using the [`GetAnomalyMonitors`](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalyMonitors.html) API. Run the following command:
 
-{{ <command>}}
+{{< command >}}
 $ awslocal ce get-anomaly-monitors
-{{ </command>}}
+{{< /command >}}
 
 The following output would be retrieved:
 
