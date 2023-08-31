@@ -6388,33 +6388,36 @@ When utilizing the Community Edition, any resources within the stack that are no
 &lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item><item><title>User-Guide: CloudFront</title><link>/user-guide/aws/cloudfront/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudfront/</guid><description>
-&lt;p>LocalStack Pro supports creation of local CloudFront distributions, which allows you to transparently access your applications and file artifacts via CloudFront URLs like &lt;code>https://abc123.cloudfront.net&lt;/code>.&lt;/p>
-&lt;p>For example, take the following simple example which creates an S3 bucket, puts a small text file &lt;code>hello.txt&lt;/code> to the bucket, and then creates a CloudFront distribution which makes the file accessible via a &lt;code>https://abc123.cloudfront.net/hello.txt&lt;/code> proxy URL (where &lt;code>abc123&lt;/code> is a placeholder for the real distribution ID):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://abc123
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;Hello World&amp;#39; &amp;gt; /tmp/hello.txt
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/hello.txt s3://abc123/hello.txt --acl public-read
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>domain=$(awslocal cloudfront create-distribution \
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>CloudFront is a content delivery network (CDN) service provided by Amazon Web Services (AWS). CloudFront distributes its web content, videos, applications, and APIs with low latency and high data transfer speeds. CloudFront APIs allow you to configure distributions, customize cache behavior, secure content with access controls, and monitor the CDN&amp;rsquo;s performance through real-time metrics.&lt;/p>
+&lt;p>LocalStack supports CloudFront via the Pro/Team offering, allowing you to use the CloudFront APIs in your local environment to create local CloudFront distributions to transparently access your applications and file artifacts. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudfront/">API coverage page&lt;/a>, which provides information on the extent of CloudFront&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is intended for users who wish to get more acquainted with CloudFront over LocalStack. It assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script).&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how you can create an S3 bucket, put a text file named &lt;code>hello.txt&lt;/code> to the bucket, and then create a CloudFront distribution which makes the file accessible via a &lt;code>https://abc123.cloudfront.net/hello.txt&lt;/code> proxy URL (where &lt;code>abc123&lt;/code> is a placeholder for the real distribution ID).&lt;/p>
+&lt;p>To get started, create an S3 bucket using the &lt;code>mb&lt;/code> command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://abc123&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can now go ahead, create a new text file named &lt;code>hello.txt&lt;/code> and upload it to the bucket:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;Hello World&amp;#39; &amp;gt; /tmp/hello.txt
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/hello.txt s3://abc123/hello.txt --acl public-read&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After uploading the file to S3, you can create a CloudFront distribution using the &lt;a href="https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_CreateDistribution.html">&lt;code>CreateDistribution&lt;/code>&lt;/a> API call. Run the following command to create a distribution with the default settings:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>domain=$(awslocal cloudfront create-distribution \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --origin-domain-name abc123.s3.amazonaws.com | jq -r &amp;#39;.Distribution.DomainName&amp;#39;)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -k https://$domain/hello.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
+For CloudFront to function properly, ensure your local DNS setup is correctly configured. Refer to the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
 &lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-In the code example above, the last command (&lt;code>curl https://$domain/hello.txt&lt;/code>) may temporarily fail with a warning message &lt;code>Could not resolve host&lt;/code>. This is due to the fact that operating systems use different DNS caching strategies, and it may take some time for the CloudFront distribution&amp;rsquo;s DNS name (e.g., &lt;code>abc123.cloudfront.net&lt;/code>) to become available in the system. Usually after a few retries the command should work, though. Note that a similar behavior can also be observed in the real AWS - CloudFront DNS names can also take up to 10-15 minutes to propagate across the network.
-&lt;/div>
+&lt;p>In the example provided above, be aware that the final command (&lt;code>curl https://$domain/hello.txt&lt;/code>) might encounter a temporary failure accompanied by a warning message &lt;code>Could not resolve host&lt;/code>. This can occur because different operating systems adopt diverse DNS caching strategies, causing a delay in the availability of the CloudFront distribution&amp;rsquo;s DNS name (e.g., &lt;code>abc123.cloudfront.net&lt;/code>) within the system. Typically, after a few retries, the command should succeed. It&amp;rsquo;s worth noting that similar behavior can be observed in the actual AWS environment, where CloudFront DNS names may take up to 10-15 minutes to propagate across the network.&lt;/p>
 &lt;h2 id="using-custom-urls">Using custom URLs&lt;/h2>
-&lt;p>LocalStack Pro supports the use of an alternate domain name, also known as a CNAME or as a custom domain name, to access your applications and file artifacts instead of using the domain name that CloudFront generates for your distribution.&lt;/p>
-&lt;p>To do so, the custom domain name must be set up in your local DNS server first. You can further add the desired domain name as an alias for the target distribution. To achieve this, you will need to provide the &lt;code>Aliases&lt;/code> field in the &lt;code>--distribution-config&lt;/code> option while creating or updating a distribution. The format of this structure is similar to what is used in &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options">AWS CloudFront options&lt;/a>.&lt;/p>
-&lt;p>The following example shows two domains being specified as &lt;code>Aliases&lt;/code> for a distribution.
-Please consider that a full configuration would require other values relevant to the
-distribution beside these shown in this example. They were omited here for brevity.&lt;/p>
+&lt;p>LocalStack Pro supports using an alternate domain name, also referred to as a &lt;code>CNAME&lt;/code> or custom domain name, to access your applications and file artifacts instead of relying on the domain name generated by CloudFront for your distribution.&lt;/p>
+&lt;p>To set up the custom domain name, you must configure it in your local DNS server. Once that is done, you can designate the desired domain name as an alias for the target distribution. To achieve this, you&amp;rsquo;ll need to provide the &lt;code>Aliases&lt;/code> field in the &lt;code>--distribution-config&lt;/code> option when creating or updating a distribution. The format of this structure is similar to the one used in &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options">AWS CloudFront options&lt;/a>.&lt;/p>
+&lt;p>In the given example, two domains are specified as &lt;code>Aliases&lt;/code> for a distribution. Please note that a complete configuration would entail additional values relevant to the distribution, which have been omitted here for brevity.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>--distribution-config {...&amp;#39;Aliases&amp;#39;:&amp;#39;{&amp;#39;Quantity&amp;#39;:2, &amp;#39;Items&amp;#39;: [&amp;#39;custom.domain.one&amp;#39;, &amp;#39;customDomain.two&amp;#39;]}&amp;#39;...}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
-&lt;/div></description></item><item><title>User-Guide: CloudTrail</title><link>/user-guide/aws/cloudtrail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudtrail/</guid><description>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use CloudFront in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/step-up-auth-sample">Step-up Authentication using Amazon Cognito&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: CloudTrail</title><link>/user-guide/aws/cloudtrail/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudtrail/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>CloudTrail is a service provided by Amazon Web Services (AWS) that enables you to track and monitor all activities and events within your AWS environment. It records API calls and actions made on your AWS resources, offering an audit trail that helps you understand changes, diagnose issues, and maintain compliance.&lt;/p>
 &lt;p>LocalStack supports CloudTrail via the Pro/Team offering, allowing you to use the CloudTrail APIs in your local environment to create and manage Event history and trails. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudtrail/">API coverage page&lt;/a>, which provides information on the extent of CloudTrail&amp;rsquo;s integration with LocalStack.&lt;/p>
@@ -6794,7 +6797,108 @@ You can then register users against that local pool, using the same API calls as
 &lt;p>In order to make requests against the secured API Gateway endpoint, use the local Cognito API to retrieve identity credentials which can be sent along as &lt;code>Authentication&lt;/code> HTTP headers (where &lt;code>test-1234567&lt;/code> is the name of the access key ID generated by Cognito):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>Authentication: AWS4-HMAC-SHA256 Credential=test-1234567/20190821/us-east-1/cognito-idp/aws4_request ...
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="further-reading">Further reading&lt;/h2>
-&lt;p>For a more detailed example, please check out our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt">sample repository&lt;/a>.&lt;/p></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
+&lt;p>For a more detailed example, please check out our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt">sample repository&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Cost Explorer</title><link>/user-guide/aws/cost-explorer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cost-explorer/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Cost Explorer is a service provided by Amazon Web Services (AWS) that enables you to visualize, analyze, and manage your AWS spending and usage. Cost Explorer offers options to filter and group data by dimensions such as service, region, instance type, and more. With Cost Explorer, you can forecast costs, track budget progress, and set up alerts to receive notifications when spending exceeds predefined thresholds.&lt;/p>
+&lt;p>LocalStack supports Cost Explorer via the Pro/Team offering, allowing you to use the Cost Explorer APIs in your local environment to create and manage cost category definition, cost anomaly monitors &amp;amp; subscriptions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ce/">API coverage page&lt;/a>, which provides information on the extent of Cost Explorer&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack&amp;rsquo;s Cost Explorer implementation cannot programmatically query your cost and usage data, or provide aggregated data such as total monthly costs or total daily usage. However, you can use the integrations to mock the Cost Explorer APIs and test your workflow locally.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Cost Explorer and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to mock the Cost Explorer APIs with the AWS CLI.&lt;/p>
+&lt;h3 id="create-a-cost-category-definition">Create a Cost Category definition&lt;/h3>
+&lt;p>You can create a Cost Category definition using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateCostCategoryDefinition.html">&lt;code>CreateCostCategoryDefinition&lt;/code>&lt;/a>) API. The following example creates a Cost Category definition using an empty rule condition of type &amp;ldquo;REGULAR&amp;rdquo;:&lt;/p>
+&lt;p>{{ &lt;command>}}
+$ awslocal ce create-cost-category-definition &amp;ndash;name test &lt;br>
+&amp;ndash;rule-version &amp;ldquo;CostCategoryExpression.v1&amp;rdquo; &amp;ndash;rules &amp;lsquo;[{&amp;ldquo;Value&amp;rdquo;: &amp;ldquo;test&amp;rdquo;, &amp;ldquo;Rule&amp;rdquo;: {}, &amp;ldquo;Type&amp;rdquo;: &amp;ldquo;REGULAR&amp;rdquo;}]&amp;rsquo;
+{{ &lt;/command>}}&lt;/p>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CostCategoryArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:costcategory/test&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can describe the Cost Category definition using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DescribeCostCategoryDefinition.html">&lt;code>DescribeCostCategoryDefinition&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
+&lt;p>{{ &lt;command>}}
+$ awslocal ce describe-cost-category-definition &lt;br>
+&amp;ndash;cost-category-arn arn:aws:ce::000000000000:costcategory/test
+{{ &lt;/command>}}&lt;/p>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CostCategory&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CostCategoryArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:costcategory/test&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;RuleVersion&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;CostCategoryExpression.v1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Rules&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Value&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Rule&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Type&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;REGULAR&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-cost-anomaly-subscription">Create a cost anomaly subscription&lt;/h3>
+&lt;p>You can add an alert subscription to a cost anomaly detection monitor to define subscribers using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateAnomalySubscription.html">&lt;code>CreateAnomalySubscription&lt;/code>&lt;/a> API. The following example creates a cost anomaly subscription:&lt;/p>
+&lt;p>{{ &lt;command>}}
+$ awslocal ce create-anomaly-subscription &amp;ndash;anomaly-subscription &amp;lsquo;{
+&amp;ldquo;AccountId&amp;rdquo;: &amp;ldquo;12345&amp;rdquo;,
+&amp;ldquo;SubscriptionName&amp;rdquo;: &amp;ldquo;sub1&amp;rdquo;,
+&amp;ldquo;Frequency&amp;rdquo;: &amp;ldquo;DAILY&amp;rdquo;,
+&amp;ldquo;MonitorArnList&amp;rdquo;: [],
+&amp;ldquo;Subscribers&amp;rdquo;: [],
+&amp;ldquo;Threshold&amp;rdquo;: 111
+}&amp;rsquo;
+{{ &lt;/command>}}&lt;/p>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SubscriptionArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:anomalysubscription/70644961&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can retrieve the cost anomaly subscriptions using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalySubscriptions.html">&lt;code>GetAnomalySubscriptions&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
+&lt;p>{{ &lt;command>}}
+$ awslocal ce get-anomaly-subscriptions
+{{ &lt;/command>}}&lt;/p>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AnomalySubscriptions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SubscriptionArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:anomalysubscription/70644961&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AccountId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;12345&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MonitorArnList&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Subscribers&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Threshold&amp;#34;&lt;/span>: 111.0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Frequency&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;DAILY&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SubscriptionName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;sub1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-cost-anomaly-monitor">Create a cost anomaly monitor&lt;/h3>
+&lt;p>You can create a new cost anomaly detection subscription with the requested type and monitor specification using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateAnomalyMonitor.html">&lt;code>CreateAnomalyMonitor&lt;/code>&lt;/a> API. The following example creates a cost anomaly monitor:&lt;/p>
+&lt;p>{{ &lt;command>}}
+$ awslocal ce create-anomaly-monitor &amp;ndash;anomaly-monitor &amp;lsquo;{
+&amp;ldquo;MonitorName&amp;rdquo;: &amp;ldquo;mon5463&amp;rdquo;,
+&amp;ldquo;MonitorType&amp;rdquo;: &amp;ldquo;DIMENSIONAL&amp;rdquo;
+}&amp;rsquo;
+{{ &lt;/command>}}&lt;/p>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MonitorArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:anomalymonitor/22570ff3&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can retrieve the cost anomaly monitors using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalyMonitors.html">&lt;code>GetAnomalyMonitors&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
+&lt;p>{{ &lt;command>}}
+$ awslocal ce get-anomaly-monitors
+{{ &lt;/command>}}&lt;/p>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AnomalyMonitors&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MonitorArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:anomalymonitor/22570ff3&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MonitorName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;mon5463&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MonitorType&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;DIMENSIONAL&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
 &lt;p>LocalStack Pro supports a basic version of &lt;a href="https://aws.amazon.com/documentdb/">Amazon DocumentDB&lt;/a> for testing.
 LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it
 can be accessed from localhost. When defining a port to access the container, an available port on the host machine will be selected, that means there
@@ -10327,108 +10431,4 @@ Note that this configuration is a sample, and you can tailor it to fit your need
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
-&lt;/div></description></item><item><title>User-Guide: Service Discovery</title><link>/user-guide/aws/servicediscovery/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/servicediscovery/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Service Discovery simplifies the management and discovery of services by locating and connecting to the components and resources that make up their applications. Service Discovery allows for a centralized mechanism for dynamically registering, tracking, and resolving service instances, allowing seamless communication between services. Service discovery uses Cloud Map API actions to manage HTTP and DNS namespaces for services, enabling automatic registration and discovery of services running in the cluster.&lt;/p>
-&lt;p>LocalStack supports Resource Groups via the Pro/Team offering, allowing you to use the Service Discovery APIs in your local environment to monitor and manage your services across various environments and network topologies. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_servicediscovery/">API coverage page&lt;/a>, which provides information on the extent of Service Discovery&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;h2 id="getting-started">Getting Started&lt;/h2>
-&lt;p>This guide is designed for users new to Service Discovery and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
-&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an ECS service containing a Fargate task that uses Service Discovery with the AWS CLI.&lt;/p>
-&lt;h3 id="create-a-cloud-map-service-discovery-namespace">Create a Cloud Map service discovery namespace&lt;/h3>
-&lt;p>To set up a private Cloud Map service discovery namespace, you can utilize the &lt;a href="https://docs.aws.amazon.com/cloud-map/latest/api/API_CreatePrivateDnsNamespace.html">&lt;code>CreatePrivateDnsNamespace&lt;/code>&lt;/a> API. This API allows you to define a custom name for your namespace and specify the VPC ID where your services will be located. Before proceeding, make sure to create the required VPC.&lt;/p>
-&lt;p>To create the private Cloud Map service discovery namespace, execute the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal servicediscovery create-private-dns-namespace \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name tutorial \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --vpc &amp;lt;vpc-id&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Ensure that you replace &lt;code>&amp;lt;vpc-id&amp;gt;&lt;/code> with the actual ID of the VPC you intend to use for the namespace. Upon running this command, you will receive an output containing an &lt;code>OperationId&lt;/code>. This identifier can be used to check the status of the operation.&lt;/p>
-&lt;p>To verify the status of the operation, execute the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal servicediscovery get-operation \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --operation-id &amp;lt;operation-id&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The output will consist of a &lt;code>NAMESPACE&lt;/code> ID, which you will need to create a service within the namespace.&lt;/p>
-&lt;h3 id="create-a-cloud-map-service">Create a Cloud Map service&lt;/h3>
-&lt;p>After creating the private Cloud Map service discovery namespace, you can proceed to create a service within that namespace using the &lt;a href="https://docs.aws.amazon.com/cloud-map/latest/api/API_CreateService.html">&lt;code>CreateService&lt;/code>&lt;/a> API. This service represents a specific component or resource in your application.&lt;/p>
-&lt;p>To create a service within the namespace, execute the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal servicediscovery create-service \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name myapplication \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --dns-config &amp;#34;NamespaceId=&amp;#34;&amp;lt;Namespace-ID&amp;gt;&amp;#34;,DnsRecords=[{Type=&amp;#34;A&amp;#34;,TTL=&amp;#34;300&amp;#34;}]&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --health-check-custom-config FailureThreshold=1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Upon successful execution, the output will provide you with the Service ID and the Amazon Resource Name (ARN) of the newly created service. These identifiers will be useful for further operations or integrations.&lt;/p>
-&lt;h3 id="create-an-ecs-cluster">Create an ECS cluster&lt;/h3>
-&lt;p>To integrate the service you created earlier with an ECS (Elastic Container Service) service, you can follow the steps below.&lt;/p>
-&lt;p>Start by creating an ECS cluster using the &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateCluster.html">&lt;code>CreateCluster&lt;/code>&lt;/a> API. Execute the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecs create-cluster \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-name tutorial&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="register-a-task-definition">Register a task definition&lt;/h3>
-&lt;p>Next, you will register a task definition that&amp;rsquo;s compatible with Fargate. Create a file named &lt;code>fargate-task.json&lt;/code> and add the following content:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;family&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;tutorial-task-def&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;networkMode&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;awsvpc&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;containerDefinitions&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;sample-app&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;image&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;httpd:2.4&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;portMappings&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;containerPort&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">80&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;hostPort&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">80&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;protocol&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;tcp&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;essential&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;entryPoint&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;sh&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;-c&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;command&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;/bin/sh -c \&amp;#34;echo &amp;#39;&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;Amazon ECS Sample App&amp;lt;/title&amp;gt; &amp;lt;style&amp;gt;body {margin-top: 40px; background-color: #333;} &amp;lt;/style&amp;gt; &amp;lt;/head&amp;gt;&amp;lt;body&amp;gt; &amp;lt;div style=color:white;text-align:center&amp;gt; &amp;lt;h1&amp;gt;Amazon ECS Sample App&amp;lt;/h1&amp;gt; &amp;lt;h2&amp;gt;Congratulations!&amp;lt;/h2&amp;gt; &amp;lt;p&amp;gt;Your application is now running on a container in Amazon ECS.&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&amp;#39; &amp;gt; /usr/local/apache2/htdocs/index.html &amp;amp;&amp;amp; httpd-foreground\&amp;#34;&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;requiresCompatibilities&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FARGATE&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;cpu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;256&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;memory&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;512&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Register the task definition using the &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_RegisterTaskDefinition.html">&lt;code>RegisterTaskDefinition&lt;/code>&lt;/a> API. Execute the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecs register-task-definition \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-input-json file://fargate-task.json&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="create-an-ecs-service">Create an ECS service&lt;/h3>
-&lt;p>To create an ECS service, you will need to retrieve the &lt;code>securityGroups&lt;/code> and &lt;code>subnets&lt;/code> associated with the VPC used to create the Cloud Map namespace. You can obtain this information by using the &lt;a href="https://docs.aws.amazon.com/vpc/latest/APIReference/API_DescribeVpcs.html">&lt;code>DescribeVpcs&lt;/code>&lt;/a> API. Execute the following command to retrieve the details of all VPCs:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-vpcs&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The output will include a list of VPCs. Locate the VPC that was used to create the Cloud Map namespace and make a note of its &lt;code>VpcId&lt;/code> value.&lt;/p>
-&lt;p>Next, execute the following commands to retrieve the &lt;code>securityGroups&lt;/code> and &lt;code>subnets&lt;/code> associated with the VPC:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-security-groups --filters Name=vpc-id,Values=vpc-&amp;lt;ID&amp;gt; --query &amp;#39;SecurityGroups[*].[GroupId, GroupName]&amp;#39; --output text
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-subnets --filters Name=vpc-id,Values=vpc-&amp;lt;ID&amp;gt; --query &amp;#39;Subnets[*].[SubnetId, CidrBlock]&amp;#39; --output text&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Replace &lt;code>&amp;lt;VpcId&amp;gt;&lt;/code> with the actual VpcId value of the VPC you identified earlier. Make a note of the &lt;code>GroupId&lt;/code> and &lt;code>SubnetId&lt;/code> values.&lt;/p>
-&lt;p>Create a new file named &lt;code>ecs-service-discovery.json&lt;/code> and add the following content to it:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;cluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;tutorial&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;serviceName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ecs-service-discovery&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;taskDefinition&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;tutorial-task-def&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;serviceRegistries&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;registryArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#a40000">&amp;lt;ARN_OF_THE_SERVICE_DISCOVERY&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;launchType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;FARGATE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;platformVersion&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;LATEST&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;networkConfiguration&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;awsvpcConfiguration&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;assignPublicIp&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ENABLED&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;securityGroups&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;sg-*&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">],&lt;/span> &lt;span style="color:#8f5902;font-style:italic">// Add the security group IDs here
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;subnets&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;subnet-*&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">]&lt;/span> &lt;span style="color:#8f5902;font-style:italic">// Add the subnet IDs here
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;desiredCount&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Create your ECS service using the &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/APIReference/API_CreateService.html">&lt;code>CreateService&lt;/code>&lt;/a> API. Execute the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecs create-service \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-input-json file://ecs-service-discovery.json&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="verify-the-service">Verify the service&lt;/h3>
-&lt;p>You can use the Service Discovery service ID to verify that the service was created successfully. Execute the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal servicediscovery list-instances \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --service-id &amp;lt;service-id&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The output will consist of the resource ID, and you can further use the &lt;a href="https://docs.aws.amazon.com/cloud-map/latest/api/API_DiscoverInstances.html">&lt;code>DiscoverInstances&lt;/code>&lt;/a> API. This API allows you to query the DNS records associated with the service and perform various operations.&lt;/p>
-&lt;p>To explore the DNS records of your service and perform other operations, refer to the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/servicediscovery/index.html">AWS CLI documentation&lt;/a> for comprehensive instructions and examples.&lt;/p></description></item></channel></rss>
+&lt;/div></description></item></channel></rss>

@@ -3521,34 +3521,7 @@ To disable a policy type, you can run:
 &lt;p>To delete an organization, you can run:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations delete-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;/li>
-&lt;/ol></description></item><item><title>User-Guide: CloudFront</title><link>/user-guide/aws/cloudfront/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudfront/</guid><description>
-&lt;p>LocalStack Pro supports creation of local CloudFront distributions, which allows you to transparently access your applications and file artifacts via CloudFront URLs like &lt;code>https://abc123.cloudfront.net&lt;/code>.&lt;/p>
-&lt;p>For example, take the following simple example which creates an S3 bucket, puts a small text file &lt;code>hello.txt&lt;/code> to the bucket, and then creates a CloudFront distribution which makes the file accessible via a &lt;code>https://abc123.cloudfront.net/hello.txt&lt;/code> proxy URL (where &lt;code>abc123&lt;/code> is a placeholder for the real distribution ID):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://abc123
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;Hello World&amp;#39; &amp;gt; /tmp/hello.txt
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/hello.txt s3://abc123/hello.txt --acl public-read
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>domain=$(awslocal cloudfront create-distribution \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --origin-domain-name abc123.s3.amazonaws.com | jq -r &amp;#39;.Distribution.DomainName&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -k https://$domain/hello.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
-&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-In the code example above, the last command (&lt;code>curl https://$domain/hello.txt&lt;/code>) may temporarily fail with a warning message &lt;code>Could not resolve host&lt;/code>. This is due to the fact that operating systems use different DNS caching strategies, and it may take some time for the CloudFront distribution&amp;rsquo;s DNS name (e.g., &lt;code>abc123.cloudfront.net&lt;/code>) to become available in the system. Usually after a few retries the command should work, though. Note that a similar behavior can also be observed in the real AWS - CloudFront DNS names can also take up to 10-15 minutes to propagate across the network.
-&lt;/div>
-&lt;h2 id="using-custom-urls">Using custom URLs&lt;/h2>
-&lt;p>LocalStack Pro supports the use of an alternate domain name, also known as a CNAME or as a custom domain name, to access your applications and file artifacts instead of using the domain name that CloudFront generates for your distribution.&lt;/p>
-&lt;p>To do so, the custom domain name must be set up in your local DNS server first. You can further add the desired domain name as an alias for the target distribution. To achieve this, you will need to provide the &lt;code>Aliases&lt;/code> field in the &lt;code>--distribution-config&lt;/code> option while creating or updating a distribution. The format of this structure is similar to what is used in &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-distribution.html#options">AWS CloudFront options&lt;/a>.&lt;/p>
-&lt;p>The following example shows two domains being specified as &lt;code>Aliases&lt;/code> for a distribution.
-Please consider that a full configuration would require other values relevant to the
-distribution beside these shown in this example. They were omited here for brevity.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>--distribution-config {...&amp;#39;Aliases&amp;#39;:&amp;#39;{&amp;#39;Quantity&amp;#39;:2, &amp;#39;Items&amp;#39;: [&amp;#39;custom.domain.one&amp;#39;, &amp;#39;customDomain.two&amp;#39;]}&amp;#39;...}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-In order for CloudFront to be fully functional, your local DNS setup needs to be properly configured. See the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
-&lt;/div></description></item><item><title>User-Guide: CodeCommit</title><link>/user-guide/aws/codecommit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/codecommit/</guid><description>
+&lt;/ol></description></item><item><title>User-Guide: CodeCommit</title><link>/user-guide/aws/codecommit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/codecommit/</guid><description>
 &lt;p>LocalStack Pro contains basic support for CodeCommit code repositories. The CodeCommit API can be used to create Git repositories, clone these repos to local folders, push commits with changes, etc.&lt;/p>
 &lt;p>A simple example has been added in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/codecommit-git-repo">this Github repository&lt;/a>. The sample creates an Git repository via the AWS CodeCommit API locally, commits and pushes a test file to the repository, and then checks out the file in a fresh clone of the repository.&lt;/p>
 &lt;p>Please note that CodeCommit is a fairly large API and currently not all methods are supported yet, but we are actively extending the implementation on an ongoing basis.&lt;/p></description></item><item><title>User-Guide: Cognito</title><link>/user-guide/aws/cognito/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cognito/</guid><description>
