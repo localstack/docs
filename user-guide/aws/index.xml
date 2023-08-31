@@ -9604,124 +9604,138 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;h3 id="filter-log-events">Filter Log Events&lt;/h3>
 &lt;p>Similary, you can use filter-pattern to filter logs, like here:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item><item><title>User-Guide: Managed Streaming for Kafka (MSK)</title><link>/user-guide/aws/managed-streaming-for-kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/managed-streaming-for-kafka/</guid><description>
-&lt;p>LocalStack supports a basic version of &lt;a href="https://aws.amazon.com/msk/">Managed Streaming for Kafka (MSK)&lt;/a> for testing. This allows you to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic.&lt;/p>
-&lt;h2 id="create-a-local-msk-cluster">Create a local MSK Cluster&lt;/h2>
-&lt;h3 id="prerequisites">Prerequisites&lt;/h3>
-&lt;ul>
-&lt;li>Java 8&lt;/li>
-&lt;/ul>
-&lt;p>To create a local MSK cluster, the following create-cluster example creates an MSK cluster named EventsCluster with three broker nodes. A JSON file named &lt;code>brokernodegroupinfo.json&lt;/code> specifies the three subnets over which you want yout local Amazon MSK to distribute the broker nodes. This example doesn&amp;rsquo;t specify the monitoring level, so the cluster gets the DEFAULT level.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Managed Streaming for Apache Kafka (MSK) is a fully managed Apache Kafka service that allows you to build and run applications that process streaming data. MSK offers a centralized platform to facilitate seamless communication between various AWS services and applications through event-driven architectures, facilitating data ingestion, processing, and analytics for various applications. MSK also features automatic scaling and built-in monitoring, allowing users to build robust, high-throughput data pipelines.&lt;/p>
+&lt;p>LocalStack supports Managed Streaming for Kafka via the Pro/Team offering, allowing you to use the MSK APIs in your local environment to spin up Kafka clusters on the local machine, create topics for exchanging messages, and define event source mappings that trigger Lambda functions when messages are received on a certain topic. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kafka/">API coverage page&lt;/a>, which provides information on the extent of MSK&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Managed Streaming for Kafka and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to configure an MSK Cluster locally, create a Kafka topic, and produce and consume messages.&lt;/p>
+&lt;h3 id="create-a-local-msk-cluster">Create a local MSK Cluster&lt;/h3>
+&lt;p>To set up a local MSK (Managed Streaming for Apache Kafka) cluster, you can use the &lt;a href="https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#CreateCluster">&lt;code>CreateCluster&lt;/code>&lt;/a> API to create a cluster named &lt;code>EventsCluster&lt;/code> with three broker nodes.&lt;/p>
+&lt;p>In this process, you&amp;rsquo;ll need a JSON file named &lt;code>brokernodegroupinfo.json&lt;/code> which specifies the three subnets where you want your local Amazon MSK to distribute the broker nodes. Create the file and add the following content to it:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;InstanceType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;kafka.m5.xlarge&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;BrokerAZDistribution&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;DEFAULT&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ClientSubnets&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;subnet-0123456789111abcd&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;subnet-0123456789222abcd&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;subnet-0123456789333abcd&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Run the following command to create the cluster:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kafka create-cluster \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-name &amp;#34;EventsCluster&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --broker-node-group-info file://brokernodegroupinfo.json \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --kafka-version &amp;#34;2.2.1&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --number-of-broker-nodes 3&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The brokernodegroupinfo.json contains the following info:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;InstanceType&amp;#34;: &amp;#34;kafka.m5.xlarge&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerAZDistribution&amp;#34;: &amp;#34;DEFAULT&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClientSubnets&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;subnet-01&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;subnet-02&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;subnet-03&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-The output of the command looks similar to this:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClusterArn&amp;#34;: &amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClusterName&amp;#34;: &amp;#34;EventsCluster&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;CREATING&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>Describing the MSK cluster can be achieved by running the following command. Replace the ClusterArn with your own.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka describe-cluster --cluster-arn &amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The expected output is something like the following&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClusterInfo&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerNodeGroupInfo&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerAZDistribution&amp;#34;: &amp;#34;DEFAULT&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClientSubnets&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;subnet-01&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;subnet-02&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;subnet-03&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;InstanceType&amp;#34;: &amp;#34;kafka.m5.xlarge&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClusterArn&amp;#34;: &amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClusterName&amp;#34;: &amp;#34;EventsCluster&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CreationTime&amp;#34;: &amp;#34;2022-06-29T02:45:16.848000Z&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CurrentBrokerSoftwareInfo&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;KafkaVersion&amp;#34;: &amp;#34;2.5.0&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CurrentVersion&amp;#34;: &amp;#34;K5OWSPKW0IK7LM&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;NumberOfBrokerNodes&amp;#34;: 3,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;ACTIVE&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ZookeeperConnectString&amp;#34;: &amp;#34;localhost:4510&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="create-a-kafka-topic">Create a kafka topic&lt;/h2>
-&lt;p>In this step of using LocalStack MSK, we&amp;rsquo;ll download and use the Kafka command line interface (CLI) to create a topic that produces and consumes data.&lt;/p>
-&lt;p>Run the following command to download Apache Kafka.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tar -xzf kafka_2.12-2.2.1.tgz&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Now, &lt;strong>Go to the kafka_2.12-2.2.1 directory.&lt;/strong>&lt;/p>
-&lt;p>The cluster creation can take a few minutes. To find out whether the cluster you created is ready, run the following command, replacing &lt;code>ClusterArn&lt;/code> with the Amazon Resource Name (ARN) that you obtained above when you created then Cluster.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka describe-cluster --cluster-arn &amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Run the following command, replacing &lt;code>ZookeeperConnectString&lt;/code> with the value that you saved after you ran the describe-cluster command.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>bin/kafka-topics.sh --create --zookeeper localhost:4510 --replication-factor 1 --partitions 1 --topic LocalMSKTopic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Your output should be similar to this one&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Created topic LocalMSKTopic.&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="interacting-with-the-topic">Interacting with the topic&lt;/h2>
-&lt;p>In this example we use the JVM truststore to talk to the MSK cluster. To do this, first create a folder named &lt;code>/tmp&lt;/code> on the client machine. Then, go to the bin folder of the Apache Kafka installation and run the following command, replacing &lt;code>java_home&lt;/code> with the path of your &lt;code>java_home&lt;/code>. In this instance, the &lt;code>java_home&lt;/code> is &lt;code> /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home&lt;/code>.&lt;/p>
+&lt;p>The output of the command looks similar to this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ClusterArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ClusterName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;EventsCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;State&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;CREATING&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The cluster creation process might take a few minutes. You can describe the cluster using the &lt;a href="https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster">&lt;code>DescribeCluster&lt;/code>&lt;/a> API. Run the following command, replacing &lt;code>ClusterArn&lt;/code> with the Amazon Resource Name (ARN) you obtained above when you created cluster.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kafka describe-cluster \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-arn &amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The output of the command looks similar to this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ClusterInfo&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;BrokerNodeGroupInfo&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;BrokerAZDistribution&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;DEFAULT&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ClientSubnets&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;subnet-01&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;subnet-02&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;subnet-03&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;InstanceType&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;kafka.m5.xlarge&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ClusterArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster/b154d18a-8ecb-4691-96b2-50348357fc2f-25&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ClusterName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;EventsCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationTime&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2022-06-29T02:45:16.848000Z&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CurrentBrokerSoftwareInfo&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;KafkaVersion&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2.5.0&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CurrentVersion&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;K5OWSPKW0IK7LM&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;NumberOfBrokerNodes&amp;#34;&lt;/span>: 3,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;State&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ZookeeperConnectString&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;localhost:4510&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-kafka-topic">Create a Kafka topic&lt;/h3>
+&lt;p>To use LocalStack MSK, you can download and utilize the Kafka command line interface (CLI) to create a topic for producing and consuming data.&lt;/p>
+&lt;p>To download Apache Kafka, execute the following commands.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>tar -xzf kafka_2.12-2.2.1.tgz&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Navigate to the &lt;strong>kafka_2.12-2.2.1&lt;/strong> directory. Execute the following command, replacing &lt;code>ZookeeperConnectString&lt;/code> with the value you saved after running the &lt;a href="https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster">&lt;code>DescribeCluster&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>bin/kafka-topics.sh \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --create \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zookeeper localhost:4510 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replication-factor 1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --partitions 1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic LocalMSKTopic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After executing the command, your output should resemble the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>Created topic LocalMSKTopic.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="interacting-with-the-topic">Interacting with the topic&lt;/h3>
+&lt;p>You can now utilize the JVM truststore to establish communication with the MSK cluster. Create a folder named &lt;code>/tmp&lt;/code> on the client machine, and navigate to the bin folder of the Apache Kafka installation.&lt;/p>
+&lt;p>Run the following command, replacing &lt;code>java_home&lt;/code> with the path of your &lt;code>java_home&lt;/code>. For this instance, the java_home path is &lt;code>/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 The following step is optional and may not be required, depending on the operating system environment being used.
 &lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>While still in the bin folder of the Apache Kafka installation on the client machine, create a text file named &lt;code>client.properties&lt;/code> with the following contents.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>ssl.truststore.location=/tmp/kafka.client.truststore.jks&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Run the following command, replacing &lt;code>ClusterArn&lt;/code> with the Amazon Resource Name (ARN).&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka get-bootstrap-brokers --cluster-arn ClusterArn&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>From the JSON result of the command, save the value associated with the string named &amp;ldquo;&lt;code>BootstrapBrokerStringTls&lt;/code>&amp;rdquo; because you need it in the following commands.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BootstrapBrokerString&amp;#34;: &amp;#34;localhost:4511&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Run the following command in the bin folder, replacing &lt;code>BootstrapBrokerStringTls&lt;/code> with the value that you obtained when you ran the previous command.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>./kafka-console-producer.sh --broker-list BootstrapBrokerStringTls --producer.config client.properties --topic LocalMSKTopic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Enter any message that you want, and press Enter. Repeat this step two or three times. Every time you enter a line and press Enter, that line is sent to your Apache Kafka cluster as a separate message.&lt;/p>
-&lt;p>Keep the connection to the client machine open, and then open a second, separate connection to that machine in a new window.&lt;/p>
-&lt;p>In the following command, replace &lt;code>BootstrapBrokerStringTls&lt;/code> with the value that you saved earlier. Then, go to the bin folder and run the command using your second connection to the client machine.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>./kafka-console-consumer.sh --bootstrap-server BootstrapBrokerStringTls --consumer.config client.properties --topic LocalMSKTopic --from-beginning&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You start seeing the messages you entered earlier when you used the console producer command. These messages are TLS encrypted in transit.&lt;/p>
-&lt;p>Enter more messages in the producer window, and watch them appear in the consumer window.&lt;/p>
-&lt;h2 id="local-msk-and-lambdas">Local MSK and Lambdas&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cp java_home/lib/security/cacerts /tmp/kafka.client.truststore.jks&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>While you are still in the &lt;code>bin&lt;/code> folder of the Apache Kafka installation on the client machine, create a text file named &lt;code>client.properties&lt;/code> with the following contents:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-txt" data-lang="txt">&lt;span style="display:flex;">&lt;span>ssl.truststore.location=/tmp/kafka.client.truststore.jks
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Run the following command, replacing &lt;code>ClusterArn&lt;/code> with the Amazon Resource Name (ARN) you have.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kafka get-bootstrap-brokers \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-arn ClusterArn&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To proceed with the following commands, save the value associated with the string named &lt;code>BootstrapBrokerStringTls&lt;/code> from the JSON result obtained from the previous command. It should look like this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;BootstrapBrokerString&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;localhost:4511&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now, navigate to the bin folder and run the next command, replacing &lt;code>BootstrapBrokerStringTls&lt;/code> with the value you obtained:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>./kafka-console-producer.sh \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --broker-list BootstrapBrokerStringTls \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --producer.config client.properties \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic LocalMSKTopic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To send messages to your Apache Kafka cluster, enter any desired message and press Enter. You can repeat this process twice or thrice, sending each line as a separate message to the Kafka cluster.&lt;/p>
+&lt;p>Keep the connection to the client machine open, and open a separate connection to the same machine in a new window.&lt;/p>
+&lt;p>In this new connection, navigate to the &lt;code>bin&lt;/code> folder and run a command, replacing &lt;code>BootstrapBrokerStringTls&lt;/code> with the value you saved earlier. This command will allow you to interact with the Apache Kafka cluster using the saved value for secure communication.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>./kafka-console-consumer.sh \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --bootstrap-server BootstrapBrokerStringTls \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --consumer.config client.properties \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic LocalMSKTopic \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from-beginning&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should start seeing the messages you entered earlier when you used the console producer command. These messages are TLS encrypted in transit. Enter more messages in the producer window, and watch them appear in the consumer window.&lt;/p>
 &lt;h3 id="adding-a-local-msk-trigger">Adding a local MSK trigger&lt;/h3>
-&lt;p>The following example uses the Lambda Event Source Mapping API to map a Lambda function named my-kafka-function to a Kafka topic named LocalMSKTopic. The topic&amp;rsquo;s starting position is set to LATEST.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal lambda create-event-source-mapping \
+&lt;p>You can add a Lambda Event Source Mapping API to create a mapping between a Lambda function, named &lt;code>my-kafka-function&lt;/code>, and a Kafka topic called &lt;code>LocalMSKTopic&lt;/code>. The configuration for this mapping sets the starting position of the topic to &lt;code>LATEST&lt;/code>.&lt;/p>
+&lt;p>Run the following command to use the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html">&lt;code>CreateEventSourceMapping&lt;/code>&lt;/a> API by specifying the Event Source ARN, the topic name, the starting position, and the Lambda function name.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-event-source-mapping \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --event-source-arn arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topics LocalMSKTopic \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --starting-position LATEST \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name my-kafka-function&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The following response is to be expected&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UUID&amp;#34;: &amp;#34;9c353a2b-bc1a-48b5-95a6-04baf67f01e4&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StartingPosition&amp;#34;: &amp;#34;LATEST&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BatchSize&amp;#34;: 100,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ParallelizationFactor&amp;#34;: 1,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EventSourceArn&amp;#34;: &amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;FunctionArn&amp;#34;: &amp;#34;arn:aws:lambda:us-east-1:000000000000:function:my-kafka-function&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;LastModified&amp;#34;: &amp;#34;2021-11-21T20:55:49.438914+01:00&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;LastProcessingResult&amp;#34;: &amp;#34;OK&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;Enabled&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StateTransitionReason&amp;#34;: &amp;#34;User action&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Topics&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;LocalMSKTopic&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Using this event source mapping, LocalStack will automatically spawn Lambda functions for each message that gets published to the target Kafka topic. You can use the &lt;code>kafka-console-producer.sh&lt;/code> client script (see above) to publish messages to the topic, and then observe the LocalStack log output to see how Lambda function are executed (in Docker containers) as new messages arrive.&lt;/p>
+&lt;p>Upon successful completion of the operation to create the Lambda Event Source Mapping, you can expect the following response:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;UUID&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;9c353a2b-bc1a-48b5-95a6-04baf67f01e4&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;StartingPosition&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;LATEST&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;BatchSize&amp;#34;&lt;/span>: 100,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ParallelizationFactor&amp;#34;&lt;/span>: 1,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;EventSourceArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FunctionArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:lambda:us-east-1:000000000000:function:my-kafka-function&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;LastModified&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2021-11-21T20:55:49.438914+01:00&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;LastProcessingResult&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;OK&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;State&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Enabled&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;StateTransitionReason&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;User action&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Topics&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;LocalMSKTopic&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>With the event source mapping feature, LocalStack offers an automated process for spawning Lambda functions whenever a message is published to the designated Kafka topic.&lt;/p>
+&lt;p>You can use the &lt;code>kafka-console-producer.sh&lt;/code> client script to publish messages to the topic. By doing so, you can closely monitor the execution of Lambda functions within Docker containers as new messages arrive by simply observing the LocalStack log output.&lt;/p>
 &lt;h2 id="delete-the-local-msk-cluster">Delete the local MSK cluster&lt;/h2>
-&lt;p>Run the following command to list your MSK clusters&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka list-clusters --region us-east-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>From the list of clusters, pick the &lt;code>ClusterARN&lt;/code> of the cluster you want deleted and run the command&lt;/p>
+&lt;p>You can delete the local MSK cluster using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/kafka/delete-cluster.html">&lt;code>DeleteCluster&lt;/code>&lt;/a> API. To do so, you must first obtain the ARN of the cluster you want to delete. Run the following command to list all the clusters in the region:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kafka list-clusters --region us-east-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To initiate the deletion of a cluster, select the corresponding &lt;code>ClusterARN&lt;/code> from the list of clusters, and then execute the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kafka delete-cluster --cluster-arn ClusterArn&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Managed Workflows for Apache Airflow (MWAA)</title><link>/user-guide/aws/mwaa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mwaa/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Managed Workflows for Apache Airflow (MWAA) is a fully managed service by AWS that simplifies the deployment, management, and scaling of Apache Airflow workflows in the cloud.
