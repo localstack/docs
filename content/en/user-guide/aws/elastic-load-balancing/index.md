@@ -29,11 +29,11 @@ $ docker run --rm -itd -p 5678:80 ealen/echo-server
 Firstly, we will specify the subnet and vpc in which the load balancer will be created, you can use the following command to retrieve the subnet ID and vpc ID. In this example, we will use the subnet and vpc in the `us-east-1f` availability zone.
 
 {{< command >}}
-$ subnet_info=$(awslocal ec2 describe-subnets \ 
-    --filters Name=availability-zone,Values=us-east-1f \
-    | jq -r '.Subnets[] | select(.AvailabilityZone == "us-east-1f") \
-    | {SubnetId: .SubnetId, VpcId: .VpcId}')
+$ subnet_info=$(awslocal ec2 describe-subnets --filters Name=availability-zone,Values=us-east-1f \
+    | jq -r '.Subnets[] | select(.AvailabilityZone == "us-east-1f") | {SubnetId: .SubnetId, VpcId: .VpcId}')
+
 $ subnet_id=$(echo $subnet_info | jq -r '.SubnetId')
+
 $ vpc_id=$(echo $subnet_info | jq -r '.VpcId')
 {{< /command >}}
 
@@ -59,8 +59,7 @@ $ targetGroup=$(awslocal elbv2 create-target-group --name example-target-group \
 To register a target, you can use the [`RegisterTargets`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_RegisterTargets.html) API. The following command registers the target with the target group created in the previous step:
 
 {{< command >}}
-$ awslocal elbv2 register-targets --targets \
-    Id=127.0.0.1,Port=5678,AvailabilityZone=all \
+$ awslocal elbv2 register-targets --targets Id=127.0.0.1,Port=5678,AvailabilityZone=all \
     --target-group-arn $targetGroup
 {{< /command >}}
 
