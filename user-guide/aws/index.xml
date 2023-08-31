@@ -4838,7 +4838,10 @@ For example:&lt;/p>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item><item><title>User-Guide: Athena</title><link>/user-guide/aws/athena/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/athena/</guid><description>
-&lt;p>LocalStack Pro ships with built-in support for &lt;a href="https://aws.amazon.com/athena">Athena&lt;/a>, Amazon&amp;rsquo;s serverless data warehouse and analytics platform. Athena uses &lt;a href="https://prestodb.github.io/">Presto&lt;/a> under the covers, and your Athena instance will be automatically configured with a Hive metastore that connects seamlessly to the LocalStack S3 API. That is, you can easily connect your local S3 buckets and query data directly from S3 via the powerful Athena query API.&lt;/p>
+&lt;p>LocalStack Pro ships with built-in support for &lt;a href="https://aws.amazon.com/athena">Athena&lt;/a>, Amazon&amp;rsquo;s serverless data warehouse and analytics platform.
+Athena uses &lt;a href="https://prestodb.github.io">Presto&lt;/a>/&lt;a href="https://trino.io">Trino&lt;/a> under the covers, and your Athena instance will be automatically configured with a Hive metastore that connects seamlessly to the LocalStack S3 API.
+That is, you can easily connect your local S3 buckets and query data directly from S3 via the powerful Athena query API.&lt;/p>
+&lt;h2 id="basic-query-execution">Basic Query Execution&lt;/h2>
 &lt;p>The following commands illustrate how to use Athena from the command line (assuming you have &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> installed):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena start-query-execution --query-string &amp;#39;SELECT 1, 2, 3&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -4856,44 +4859,26 @@ For example:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Rows&amp;#34;: [
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Data&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col0&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col2&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col0&amp;#34; },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col1&amp;#34; },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col2&amp;#34; }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Data&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VarCharValue&amp;#34;: &amp;#34;1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VarCharValue&amp;#34;: &amp;#34;2&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VarCharValue&amp;#34;: &amp;#34;3&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;1&amp;#34; },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;2&amp;#34; },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;3&amp;#34; }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ResultSetMetadata&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ColumnInfo&amp;#34;: [
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col0&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col2&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col0&amp;#34;, &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col1&amp;#34;, &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col2&amp;#34;, &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
@@ -4902,8 +4887,61 @@ For example:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In order to use the Athena API, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when pulling the dependencies for the first time.
-&lt;/div></description></item><item><title>User-Guide: AWS Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
+In order to use the Athena API, some additional dependencies have to be fetched from the network (including Presto, Hive, and other tools). These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when using Athena for the first time.
+&lt;/div>
+&lt;h2 id="delta-lake-tables">Delta Lake Tables&lt;/h2>
+&lt;p>LocalStack Athena supports &lt;a href="https://delta.io">Delta Lake&lt;/a>, an open-source storage framework that extends Parquet data files with a file-based transaction log for ACID transactions and scalable metadata handling.&lt;/p>
+&lt;p>To illustrate this feature, we take a sample published in the &lt;a href="https://aws.amazon.com/blogs/big-data/crawl-delta-lake-tables-using-aws-glue-crawlers">AWS blog&lt;/a>.&lt;/p>
+&lt;p>The Delta Lake files used in this sample are available in a public S3 bucket under &lt;code>s3://aws-bigdata-blog/artifacts/delta-lake-crawler/sample_delta_table&lt;/code>.
+For your convenience, we have prepared the test files in a downloadable ZIP file &lt;a href="https://localstack-assets.s3.amazonaws.com/aws-sample-athena-delta-lake.zip">here&lt;/a>.
+We start by downloading and extracting this ZIP file:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir /tmp/delta-lake-sample; cd /tmp/delta-lake-sample
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>wget https://localstack-assets.s3.amazonaws.com/aws-sample-athena-delta-lake.zip
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>unzip aws-sample-athena-delta-lake.zip; rm aws-sample-athena-delta-lake.zip&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We can then create an S3 bucket in LocalStack using the &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> command line, and upload the files to the bucket:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 sync /tmp/delta-lake-sample s3://test&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Next, we create the table definitions in Athena:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena start-query-execution \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query-string &amp;#34;CREATE EXTERNAL TABLE test (product_id string, product_name string, \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> price bigint, currency string, category string, updated_at double) \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> LOCATION &amp;#39;s3://test/&amp;#39; TBLPROPERTIES (&amp;#39;table_type&amp;#39;=&amp;#39;DELTA&amp;#39;)&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Please note that this query may take some time to finish executing. You can observe the output in the LocalStack container (ideally with &lt;code>DEBUG=1&lt;/code> enabled) to follow the steps of the query execution.&lt;/p>
+&lt;p>Finally, we can now run a &lt;code>SELECT&lt;/code> query to extract data from the Delta Lake table we&amp;rsquo;ve just created:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>queryId=$(awslocal athena start-query-execution --query-string &amp;#34;SELECT * from deltalake.default.test&amp;#34; | jq -r .QueryExecutionId)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena get-query-results --query-execution-id $queryId&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>The query should yield a result similar to the output below:&lt;/p>
+&lt;pre tabindex="0">&lt;code>...
+&amp;#34;Rows&amp;#34;: [
+{
+&amp;#34;Data&amp;#34;: [
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;product_id&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;product_name&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;price&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;currency&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;category&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;updated_at&amp;#34; }
+]
+},
+{
+&amp;#34;Data&amp;#34;: [
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;00005&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;USB charger&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;50&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;INR&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;Electronics&amp;#34; },
+{ &amp;#34;VarCharValue&amp;#34;: &amp;#34;1653462374.9975588&amp;#34; }
+]
+},
+...
+...
+&lt;/code>&lt;/pre>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The &lt;code>SELECT&lt;/code> statement above currently requires us to prefix the database/table name with &lt;code>deltalake.&lt;/code> - this will be further improved in a future iteration, for better parity with AWS.
+&lt;/div>
+&lt;h2 id="iceberg-tables">Iceberg Tables&lt;/h2>
+&lt;p>The LocalStack Athena implementation also supports &lt;a href="https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html">Iceberg tables&lt;/a> - more details and samples will be provided here soon.&lt;/p></description></item><item><title>User-Guide: AWS Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>AWS Amplify is a JavaScript-based development framework with libraries, UI components, and a standard CLI interface for building and deploying web and mobile applications. With Amplify, developers can build and host static websites, single-page applications, and full-stack serverless web applications using an abstraction layer over popular AWS services like DynamoDB, Cognito, AppSync, Lambda, S3, and more.&lt;/p>
 &lt;p>LocalStack supports AWS Amplify via a lightweight wrapper script called &lt;code>amplifylocal&lt;/code> and an Amplify CLI Plugin. &lt;code>amplifylocal&lt;/code> enables developers to use the Amplify JS library against LocalStack&amp;rsquo;s emulated APIs, as a drop-in replacement for the standard &lt;code>amplify&lt;/code> CLI command. The Amplify CLI plugin allows the &lt;code>amplify&lt;/code> CLI tool to create resources directly on your local machine.&lt;/p>
