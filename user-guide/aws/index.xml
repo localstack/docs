@@ -6830,19 +6830,15 @@ LocalStack&amp;rsquo;s Cost Explorer implementation cannot programmatically quer
 &lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to mock the Cost Explorer APIs with the AWS CLI.&lt;/p>
 &lt;h3 id="create-a-cost-category-definition">Create a Cost Category definition&lt;/h3>
 &lt;p>You can create a Cost Category definition using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateCostCategoryDefinition.html">&lt;code>CreateCostCategoryDefinition&lt;/code>&lt;/a>) API. The following example creates a Cost Category definition using an empty rule condition of type &amp;ldquo;REGULAR&amp;rdquo;:&lt;/p>
-&lt;p>{{ &lt;command>}}
-$ awslocal ce create-cost-category-definition &amp;ndash;name test &lt;br>
-&amp;ndash;rule-version &amp;ldquo;CostCategoryExpression.v1&amp;rdquo; &amp;ndash;rules &amp;lsquo;[{&amp;ldquo;Value&amp;rdquo;: &amp;ldquo;test&amp;rdquo;, &amp;ldquo;Rule&amp;rdquo;: {}, &amp;ldquo;Type&amp;rdquo;: &amp;ldquo;REGULAR&amp;rdquo;}]&amp;rsquo;
-{{ &lt;/command>}}&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ce create-cost-category-definition --name test \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --rule-version &amp;#34;CostCategoryExpression.v1&amp;#34; --rules &amp;#39;[{&amp;#34;Value&amp;#34;: &amp;#34;test&amp;#34;, &amp;#34;Rule&amp;#34;: {}, &amp;#34;Type&amp;#34;: &amp;#34;REGULAR&amp;#34;}]&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The following output would be retrieved:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CostCategoryArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:costcategory/test&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can describe the Cost Category definition using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_DescribeCostCategoryDefinition.html">&lt;code>DescribeCostCategoryDefinition&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
-&lt;p>{{ &lt;command>}}
-$ awslocal ce describe-cost-category-definition &lt;br>
-&amp;ndash;cost-category-arn arn:aws:ce::000000000000:costcategory/test
-{{ &lt;/command>}}&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ce describe-cost-category-definition \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cost-category-arn arn:aws:ce::000000000000:costcategory/test&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The following output would be retrieved:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CostCategory&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
@@ -6860,24 +6856,20 @@ $ awslocal ce describe-cost-category-definition &lt;br>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-cost-anomaly-subscription">Create a cost anomaly subscription&lt;/h3>
 &lt;p>You can add an alert subscription to a cost anomaly detection monitor to define subscribers using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateAnomalySubscription.html">&lt;code>CreateAnomalySubscription&lt;/code>&lt;/a> API. The following example creates a cost anomaly subscription:&lt;/p>
-&lt;p>{{ &lt;command>}}
-$ awslocal ce create-anomaly-subscription &amp;ndash;anomaly-subscription &amp;lsquo;{
-&amp;ldquo;AccountId&amp;rdquo;: &amp;ldquo;12345&amp;rdquo;,
-&amp;ldquo;SubscriptionName&amp;rdquo;: &amp;ldquo;sub1&amp;rdquo;,
-&amp;ldquo;Frequency&amp;rdquo;: &amp;ldquo;DAILY&amp;rdquo;,
-&amp;ldquo;MonitorArnList&amp;rdquo;: [],
-&amp;ldquo;Subscribers&amp;rdquo;: [],
-&amp;ldquo;Threshold&amp;rdquo;: 111
-}&amp;rsquo;
-{{ &lt;/command>}}&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ce create-anomaly-subscription --anomaly-subscription &amp;#39;{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;AccountId&amp;#34;: &amp;#34;12345&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SubscriptionName&amp;#34;: &amp;#34;sub1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Frequency&amp;#34;: &amp;#34;DAILY&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MonitorArnList&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Subscribers&amp;#34;: [],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Threshold&amp;#34;: 111
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The following output would be retrieved:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SubscriptionArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:anomalysubscription/70644961&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can retrieve the cost anomaly subscriptions using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalySubscriptions.html">&lt;code>GetAnomalySubscriptions&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
-&lt;p>{{ &lt;command>}}
-$ awslocal ce get-anomaly-subscriptions
-{{ &lt;/command>}}&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ce get-anomaly-subscriptions&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The following output would be retrieved:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AnomalySubscriptions&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
@@ -6894,20 +6886,16 @@ $ awslocal ce get-anomaly-subscriptions
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-cost-anomaly-monitor">Create a cost anomaly monitor&lt;/h3>
 &lt;p>You can create a new cost anomaly detection subscription with the requested type and monitor specification using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateAnomalyMonitor.html">&lt;code>CreateAnomalyMonitor&lt;/code>&lt;/a> API. The following example creates a cost anomaly monitor:&lt;/p>
-&lt;p>{{ &lt;command>}}
-$ awslocal ce create-anomaly-monitor &amp;ndash;anomaly-monitor &amp;lsquo;{
-&amp;ldquo;MonitorName&amp;rdquo;: &amp;ldquo;mon5463&amp;rdquo;,
-&amp;ldquo;MonitorType&amp;rdquo;: &amp;ldquo;DIMENSIONAL&amp;rdquo;
-}&amp;rsquo;
-{{ &lt;/command>}}&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ce create-anomaly-monitor --anomaly-monitor &amp;#39;{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MonitorName&amp;#34;: &amp;#34;mon5463&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;MonitorType&amp;#34;: &amp;#34;DIMENSIONAL&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The following output would be retrieved:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;MonitorArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ce::000000000000:anomalymonitor/22570ff3&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can retrieve the cost anomaly monitors using the &lt;a href="https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetAnomalyMonitors.html">&lt;code>GetAnomalyMonitors&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
-&lt;p>{{ &lt;command>}}
-$ awslocal ce get-anomaly-monitors
-{{ &lt;/command>}}&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ce get-anomaly-monitors&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The following output would be retrieved:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AnomalyMonitors&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
