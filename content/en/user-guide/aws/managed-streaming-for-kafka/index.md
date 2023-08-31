@@ -197,7 +197,7 @@ You can add a Lambda Event Source Mapping API to create a mapping between a Lamb
 Run the following command to use the [`CreateEventSourceMapping`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html) API by specifying the Event Source ARN, the topic name, the starting position, and the Lambda function name.
 
 {{< command >}}
-awslocal lambda create-event-source-mapping \
+$ awslocal lambda create-event-source-mapping \
   --event-source-arn arn:aws:kafka:us-east-1:000000000000:cluster/EventsCluster \
   --topics LocalMSKTopic \
   --starting-position LATEST \
