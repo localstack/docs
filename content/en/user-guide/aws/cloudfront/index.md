@@ -15,7 +15,7 @@ LocalStack supports CloudFront via the Pro/Team offering, allowing you to use th
 
 This guide is intended for users who wish to get more acquainted with CloudFront over LocalStack. It assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script).
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can create an S3 bucket, puts a text file named `hello.txt` to the bucket, and then creates a CloudFront distribution which makes the file accessible via a `https://abc123.cloudfront.net/hello.txt` proxy URL (where `abc123` is a placeholder for the real distribution ID).
+Start your LocalStack container using your preferred method. We will demonstrate how you can create an S3 bucket, put a text file named `hello.txt` to the bucket, and then create a CloudFront distribution which makes the file accessible via a `https://abc123.cloudfront.net/hello.txt` proxy URL (where `abc123` is a placeholder for the real distribution ID).
 
 To get started, create an S3 bucket using the `mb` command:
 
