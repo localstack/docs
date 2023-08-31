@@ -26,8 +26,7 @@ Start your LocalStack container using your preferred method. We will demonstrate
 You can create a Cost Category definition using the [`CreateCostCategoryDefinition`](https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CreateCostCategoryDefinition.html)) API. The following example creates a Cost Category definition using an empty rule condition of type "REGULAR":
 
 {{ <command>}}
-$ awslocal ce create-cost-category-definition \
-    --name test \
+$ awslocal ce create-cost-category-definition --name test \
     --rule-version "CostCategoryExpression.v1" --rules '[{"Value": "test", "Rule": {}, "Type": "REGULAR"}]'
 {{ </command>}}
 
