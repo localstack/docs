@@ -4628,43 +4628,7 @@ id="tabs-11-02" role="tabpanel" aria-labelled-by="tabs-11-02-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating two test tables in ledger - &amp;#34;Vehicle&amp;#34; and &amp;#34;VehicleRegistration&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Running a query that joins data from the two tables
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v2&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v3&amp;#39;}}]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Redshift</title><link>/user-guide/aws/redshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/redshift/</guid><description>
-&lt;p>Redshift is a cloud-based data warehouse solution which allows end users to aggregate huge volumes of data &amp;amp; parallel processing of data. Redshift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data. The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.&lt;/p>
-&lt;p>A basic version of Redshift is available in LocalStack Pro - see the supported APIs are available over our &lt;a href="/user-guide/aws/feature-coverage/">feature coverage page&lt;/a>.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to make a basic usage of Redshift over LocalStack. This guide is intended for users who wish to get more acquainted with SNS, and assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Create a cluster named &lt;code>mysamplecluster&lt;/code> using the &lt;code>awslocal&lt;/code> CLI:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift create-cluster --cluster-identifier mysamplecluster --master-username masteruser --master-user-password secret1 --node-type ds2.xlarge --cluster-type single-node&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Redshift is essentially mocked in LocalStack alongside the node type. Hence while developing and testing locally, you can use any node type.
-&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Check the Redshift cluster creation progress by running the following command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift describe-clusters --cluster-identifier mysamplecluster&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Get all the information about all cluster security groups in the account:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift describe-cluster-security-groups&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Get all the general cluster properties:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift describe-clusters&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Associate a cluster with a cluster security group:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift modify-cluster --cluster-identifier mysamplecluster --cluster-security-groups mysamplesecuritygroup&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Delete a cluster without specifying a final snapshot:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift delete-cluster --cluster-identifier mysamplecluster --skip-final-cluster-snapshot&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;p>To get started with a more extensive example, please refer to the &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-redshift-crawler">Glue Crawler Redshift Integration (JDBC)&lt;/a> sample project.&lt;/p></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
 &lt;p>The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.&lt;/p>
 &lt;p>The example below illustrates the creation of a hosted zone &lt;code>example.com&lt;/code>, registration of an A record named &lt;code>test.example.com&lt;/code> that points to &lt;code>1.2.3.4&lt;/code>, and finally querying the DNS record by using the &lt;code>dig&lt;/code> command against the DNS server running on &lt;code>localhost&lt;/code> (inside the LocalStack container, on port &lt;code>53&lt;/code>):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name example.com --caller-reference r1 | jq -r &amp;#39;.HostedZone.Id&amp;#39;)
