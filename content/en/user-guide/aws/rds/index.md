@@ -25,7 +25,9 @@ LocalStack's RDS implementation also supports the [RDS Data API](https://docs.aw
 
 ### Create an RDS cluster
 
-To create an RDS cluster, you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html) API. The following command creates a new cluster with the name `db1` and the engine `aurora-postgresql`. The cluster will be created with a single instance, which will be used as the master instance. The instance will be created with the default username `test` and password `test`.
+To create an RDS cluster, you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html) API. 
+The following command creates a new cluster with the name `db1` and the engine `aurora-postgresql`. 
+Instances for the cluster must be added manually.
 
 {{< command >}}
 $ awslocal rds create-db-cluster \
@@ -49,6 +51,17 @@ You should see the following output:
     }
 }
 ```
+
+To add an instance you can run:
+
+{{< command >}}
+$ awslocal rds create-db-instance \
+    --db-instance-identifier db1-instance \
+    --db-cluster-identifier db1 \
+    --engine aurora-postgresql \
+    --db-instance-class db.t3.large
+{{< / command >}}
+
 
 ### Create a SecretsManager secret
 
@@ -87,7 +100,11 @@ You should see the following output:
 
 ### Execute a query
 
-To execute a query, you can use the [`ExecuteStatement`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html) API. The following command executes a query against the database. The query returns the value `123`.
+To execute a query, you can use the [`ExecuteStatement`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html) API. 
+
+Make sure to replace the `secret-arn` with the ARN from the secret you just created in the previous step, and check that the `resource-arn` matches the `cluster-arn` that you have created before.
+
+The following command executes a query against the database. The query returns the value `123`.
 
 {{< command >}}
 $ awslocal rds-data execute-statement \
@@ -97,7 +114,6 @@ $ awslocal rds-data execute-statement \
     --include-result-metadata --sql 'SELECT 123'
 {{< / command >}}
 
-Make sure to replace the `secret-arn` with the ARN from the secret you just created in the previous step, and check that the `resource-arn` matches the `cluster-arn` that you have created before.
 
 You should see the following output:
 
