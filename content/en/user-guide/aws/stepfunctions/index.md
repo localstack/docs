@@ -5,9 +5,9 @@ description: >
     Get started with Step Functions on LocalStack
 ---
 
-Step Functions is a serverless workflow engine that integrates with AWS Lambda and other AWS services. Step Functions allows you to define workflows using Amazon States Language, a JSON-based structured language, to provide the necessary configurations and run the workflow. Step Functions allow you to define standard workflows and express workflows for long-running and high-volume event processing.
+Step Functions is a serverless workflow engine that enables the orchestrating of multiple AWS services. It provides a JSON-based structured language called Amazon States Language (ASL) which allows to specify how to manage a sequence of tasks and actions that compose the application's workflow. Thus making it easier to build and maintain complex and distributed applications. Step Functions allows for the definition of both standard and express workflows for long-running and high-volume event processing.
 
-LocalStack supports Step Functions via the Community offering, allowing you to use the Step Functions APIs in your local environment to create, execute, update, and delete state machines locally. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_stepfunctions/), which provides information on the extent of Step Function's integration with LocalStack.
+LocalStack provides Step Functions support via the Community offering. You can use the Step Functions API to create, execute, update, and delete state machines. The supported APIs are available over our [feature coverage page]({{< ref "feature-coverage" >}}).
 
 ## Getting started
 
@@ -21,26 +21,54 @@ You can create a state machine using the [`CreateStateMachine`](https://docs.aws
 
 {{< command >}}
 $ awslocal stepfunctions create-state-machine \
-     --name "WaitMachine" \
-     --definition '{
-        "StartAt": "WaitExecution",
-        "States": {
-            "WaitExecution": {
-            "Type": "Wait",
-            "Seconds": 10,
-            "End": true
+    --name "CreateAndListBuckets" \
+    --definition '{
+        "Comment": "Create bucket and list buckets",
+        "StartAt": "CreateBucket",
+            "States": {
+            "CreateBucket": {
+                "Type": "Task",
+                "Resource": "arn:aws:states:::aws-sdk:s3:createBucket",
+                "Parameters": {
+                    "Bucket": "new-sfn-bucket"
+                },
+                "Next": "ListBuckets"
+            },
+            "ListBuckets": {
+                "Type": "Task",
+                "Resource": "arn:aws:states:::aws-sdk:s3:listBuckets",
+                "End": true
             }
         }
-     }' \
-     --role-arn "arn:aws:iam::000000000000:role/stepfunctions-role"
+    }' \
+    --role-arn "arn:aws:iam::000000000000:role/stepfunctions-role"
 {{< /command >}}
 
 The output of the above command is the ARN of the state machine:
 
 ```json
 {
-     "stateMachineArn": "arn:aws:states:<AWS_REGION>:000000000000:stateMachine:WaitMachine",
-     "creationDate": "<DATE>"
+    "stateMachineArn": "arn:aws:states:<AWS_REGION>:000000000000:stateMachine:CreateAndListBuckets",
+    "creationDate": "<DATE>"
+}
+```
+
+You can retrieve the details of a state machine using the [`DescribeStateMachine`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeStateMachine.html) API. Run the following command to describe the state machine:
+
+{{< command >}}
+$ awslocal stepfunctions describe-state-machine --state-machine-arn "arn:aws:states:us-east-1:000000000000:stateMachine:CreateAndListBuckets"
+{{< /command >}}
+
+The output of the above command is the execution ARN:
+```json
+{
+    "stateMachineArn": "arn:aws:states:<REGION>:000000000000:stateMachine:CreateAndListBuckets",
+    "name": "CreateAndListBuckets",
+    "status": "ACTIVE",
+    "definition": "{\n            \"Comment\": \"Create bucket and list buckets\",\n            \"StartAt\": \"CreateBucket\",\n            \"States\": {\n                \"CreateBucket\": {\n                    \"Type\": \"Task\",\n                    \"Resource\": \"arn:aws:states:::aws-sdk:s3:createBucket\",\n                    \"Parameters\": {\n                        \"BucketName\": \"new-sfn-demo-bucket\"\n                    },\n                    \"Next\": \"ListBuckets\"\n                },\n                \"ListBuckets\": {\n                    \"Type\": \"Task\",\n                    \"Resource\": \"arn:aws:states:::aws-sdk:s3:listBuckets\",\n                    \"End\": true\n                }\n            }\n        }",
+    "roleArn": "arn:aws:iam::000000000000:role/stepfunctions-role",
+    "type": "STANDARD",
+    "creationDate": "<DATE>"
 }
 ```
 
@@ -54,12 +82,14 @@ The output of the above command is a list of state machines:
 
 ```json
 {
-	"stateMachines": [{
-		"stateMachineArn": "arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine",
-		"name": "WaitMachine",
-		"type": "STANDARD",
-		"creationDate": "<DATE>"
-	}]
+    "stateMachines": [
+        {
+            "stateMachineArn": "arn:aws:states:<REGION>:000000000000:stateMachine:CreateAndListBuckets",
+            "name": "CreateAndListBuckets",
+            "type": "STANDARD",
+            "creationDate": "<DATE>"
+        }
+    ]
 }
 ```
 
@@ -69,33 +99,39 @@ You can execute the state machine using the [`StartExecution`](https://docs.aws.
 
 {{< command >}}
 $ awslocal stepfunctions start-execution \
-     --state-machine-arn "arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine"
+    --state-machine-arn "arn:aws:states:us-east-1:000000000000:stateMachine:CreateAndListBuckets"
 {{< /command >}}
 
 The output of the above command is the execution ARN:
-
 ```json
 {
-     "executionArn": "arn:aws:states:us-east-1:000000000000:execution:WaitMachine:<ID>",
-     "startDate": "<DATE>"
+    "executionArn": "arn:aws:states:<REGION>:000000000000:execution:CreateAndListBuckets:<ID>",
+    "startDate": "<DATE>"
 }
 ```
 
+### Check the execution status
 To check the status of the execution, you can use the [`DescribeExecution`](https://docs.aws.amazon.com/step-functions/latest/apireference/API_DescribeExecution.html) API. Run the following command to describe the execution:
 
 {{< command >}}
 $ awslocal stepfunctions describe-execution \
-     --execution-arn "arn:aws:states:us-east-1:000000000000:execution:WaitMachine:<ID>"
+        --execution-arn "arn:aws:states:<REGION>:000000000000:execution:CreateAndListBuckets:<ID>"
 {{< /command >}}
 
 The output of the above command is the execution status:
 
 ```json
 {
-     "executionArn": "arn:aws:states:us-east-1:000000000000:execution:WaitMachine:32174130-4587-4314-ad63-86c6242523b2",
-     "stateMachineArn": "arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine",
-     ...
-     }
+    "executionArn": "arn:aws:states:<REGION>:000000000000:execution:CreateAndListBuckets:<ID>",
+    "stateMachineArn": "arn:aws:states:<REGION>:000000000000:stateMachine:CreateAndListBuckets",
+    "name": "<EXECUTION-NAME",
+    "status": "SUCCEEDED",
+    "startDate": "<DATE>",
+    "stopDate": "<DATE>",
+    "input": "{}",
+    "inputDetails": {"included": true},
+    "output": "{\"Buckets\":[{\"Name\":\"new-sfn-bucket\",\"CreationDate\":\"<DATE\"}],\"Owner\":{\"DisplayName\":\"webfile\",\"ID\":\"<ID>\"}}",
+    "outputDetails": {"included": true}
 }
 ```
 
@@ -105,8 +141,8 @@ You can update the state machine definition using the [`UpdateStateMachine`](htt
 
 {{< command >}}
 $ awslocal stepfunctions update-state-machine \
-     --state-machine-arn "arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine" \
-     --definition file://path/to/your/statemachine.json
+     --state-machine-arn "arn:aws:states:us-east-1:000000000000:stateMachine:CreateAndListBuckets" \
+     --definition file://path/to/your/statemachine.json \
      --role-arn "arn:aws:iam::000000000000:role/stepfunctions-role"
 {{< /command >}}
 
@@ -114,7 +150,7 @@ You can delete the state machine using the [`DeleteStateMachine`](https://docs.a
 
 {{< command >}}
 $ awslocal stepfunctions delete-state-machine \
-     --state-machine-arn "arn:aws:states:us-east-1:000000000000:stateMachine:WaitMachine"
+     --state-machine-arn "arn:aws:states:us-east-1:000000000000:stateMachine:CreateAndListBuckets"
 {{< /command >}}
 
 ## Resource Browser
