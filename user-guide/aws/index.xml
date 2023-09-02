@@ -10268,7 +10268,9 @@ We will demonstrate how to create a RedShift cluster and database while using a 
 &lt;/ol>
 &lt;p>LocalStack&amp;rsquo;s RDS implementation also supports the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html">RDS Data API&lt;/a>, which allows executing data queries against RDS clusters over a JSON/REST interface.&lt;/p>
 &lt;h3 id="create-an-rds-cluster">Create an RDS cluster&lt;/h3>
-&lt;p>To create an RDS cluster, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html">&lt;code>CreateDBCluster&lt;/code>&lt;/a> API. The following command creates a new cluster with the name &lt;code>db1&lt;/code> and the engine &lt;code>aurora-postgresql&lt;/code>. The cluster will be created with a single instance, which will be used as the master instance. The instance will be created with the default username &lt;code>test&lt;/code> and password &lt;code>test&lt;/code>.&lt;/p>
+&lt;p>To create an RDS cluster, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html">&lt;code>CreateDBCluster&lt;/code>&lt;/a> API.
+The following command creates a new cluster with the name &lt;code>db1&lt;/code> and the engine &lt;code>aurora-postgresql&lt;/code>.
+Instances for the cluster must be added manually.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-cluster \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-cluster-identifier db1 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine aurora-postgresql \
@@ -10285,7 +10287,13 @@ We will demonstrate how to create a RedShift cluster and database while using a 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-secretsmanager-secret">Create a SecretsManager secret&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To add an instance you can run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds create-db-instance \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-instance-identifier db1-instance \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-cluster-identifier db1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine aurora-postgresql \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-instance-class db.t3.large&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-secretsmanager-secret">Create a SecretsManager secret&lt;/h3>
 &lt;p>To create a &lt;code>SecretsManager&lt;/code> secret, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateSecret.html">&lt;code>CreateSecret&lt;/code>&lt;/a> API. Before creating the secret, you need to create a JSON file containing the credentials for the database. The following command creates a file called &lt;code>mycreds.json&lt;/code> with the credentials for the database.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt; &amp;#39;EOF&amp;#39; &amp;gt; mycreds.json
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -10308,13 +10316,14 @@ We will demonstrate how to create a RedShift cluster and database while using a 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;VersionId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;fffa1f4a-2381-4a2b-a977-4869d59a16c0&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="execute-a-query">Execute a query&lt;/h3>
-&lt;p>To execute a query, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html">&lt;code>ExecuteStatement&lt;/code>&lt;/a> API. The following command executes a query against the database. The query returns the value &lt;code>123&lt;/code>.&lt;/p>
+&lt;p>To execute a query, you can use the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_ExecuteStatement.html">&lt;code>ExecuteStatement&lt;/code>&lt;/a> API.&lt;/p>
+&lt;p>Make sure to replace the &lt;code>secret-arn&lt;/code> with the ARN from the secret you just created in the previous step, and check that the &lt;code>resource-arn&lt;/code> matches the &lt;code>cluster-arn&lt;/code> that you have created before.&lt;/p>
+&lt;p>The following command executes a query against the database. The query returns the value &lt;code>123&lt;/code>.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal rds-data execute-statement \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database test \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-arn arn:aws:rds:us-east-1:000000000000:cluster:db1 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --include-result-metadata --sql &amp;#39;SELECT 123&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Make sure to replace the &lt;code>secret-arn&lt;/code> with the ARN from the secret you just created in the previous step, and check that the &lt;code>resource-arn&lt;/code> matches the &lt;code>cluster-arn&lt;/code> that you have created before.&lt;/p>
 &lt;p>You should see the following output:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;columnMetadata&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
