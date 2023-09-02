@@ -36,7 +36,7 @@ Run the following command to create the key pair and pipe the output to a file n
 
 {{< command >}}
 $ awslocal ec2 create-key-pair \
-    --key-name foobar \
+    --key-name my-key \
     --query 'KeyMaterial' \
     --output text | tee key.pem
 {{< /command >}}
@@ -45,6 +45,11 @@ You can assign necessary permissions to the key pair file using the following co
 
 {{< command >}}
 $ chmod 400 key.pem
+{{< /command >}}
+
+Alternatively, we can import an existing keypair, for example if you have an SSH public key in your home directory under `~/.ssh/id_rsa.pub`:
+{{< command >}}
+$ awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub
 {{< /command >}}
 
 ### Add rules to your security group
@@ -107,7 +112,7 @@ $ awslocal ec2 run-instances \
     --image-id ami-ff0fea8310f3 \
     --count 1 \
     --instance-type t3.nano \
-    --key-name foobar \
+    --key-name my-key \
     --security-group-ids '<SECURITY_GROUP_ID>' \
     --user-data file://./user_script.sh
 {{< /command >}}
@@ -155,12 +160,7 @@ Any execution of this data is recorded in the `/var/log/cloud-init-output.log` f
 
 You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.
 
-First, we need to create or import an SSH keypair. For example, you can use an existing SSH public key in your home directory under `~/.ssh/id_rsa.pub`:
-{{< command >}}
-$ awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub
-{{< /command >}}
-
-When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
+This section assumes that you have created or imported an SSH keypair named `my-key` (see [instructions above](#create-a-key-pair)). When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
 {{< command >}}
 $ awslocal ec2 run-instances --key-name my-key ...
 {{< /command >}}
