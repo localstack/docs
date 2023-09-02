@@ -108,7 +108,7 @@ $ awslocal ec2 run-instances \
     --count 1 \
     --instance-type t3.nano \
     --key-name foobar \
-    --security-group-ids <SECURITY_GROUP_ID> \
+    --security-group-ids '<SECURITY_GROUP_ID>' \
     --user-data file://./user_script.sh
 {{< /command >}}
 
@@ -151,11 +151,23 @@ Similar to the setup in production AWS, the user data content is stored at `/var
 Any execution of this data is recorded in the `/var/log/cloud-init-output.log` file.
 {{< /alert >}}
 
-You can also setup an SSH connection to the locally emulated EC2 instance using the IP address.
-Run the following command to setup an SSH connection:
+### Connecting via SSH
 
+You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.
+
+First, we need to create or import an SSH keypair. For example, you can use an existing SSH public key in your home directory under `~/.ssh/id_rsa.pub`:
 {{< command >}}
-$ ssh -p 22 -i test.pem 172.17.0.4
+$ awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub
+{{< /command >}}
+
+When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
+{{< command >}}
+$ awslocal ec2 run-instances --key-name my-key ...
+{{< /command >}}
+
+Once the instance is up and running, we can use the `ssh` command to set up an SSH connection. Assuming the instance is available under `127.0.0.1:12862` (as per the LocalStack log output), use this command:
+{{< command >}}
+$ ssh -p 12862 -i ~/.ssh/id_rsa root@127.0.0.1
 {{< /command >}}
 
 ## Docker backend
@@ -261,6 +273,44 @@ The port mapping details are provided in the logs during the instance initializa
 ```bash
 2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
 ```
+
+## Attaching EBS Block Devices to EC2 Instances
+
+A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage. This section illustrates how this functionality can be achieved with EC2 Docker instances in LocalStack.
+
+{{< alert title="Note" >}}
+This feature is disabled by default, please configure `EC2_MOUNT_BLOCK_DEVICES=1` in your LocalStack environment to enable it.
+{{< /alert >}}
+
+First, we create a user data script `init.sh` which creates an ext3 file system on the block device `/ebs-dev/sda1` and mounts it under `/ebs-mounted`:
+{{< command >}}
+$ cat > init.sh <<EOF
+#!/bin/bash
+set -eo
+mkdir -p /ebs-mounted
+mkfs -t ext3 /ebs-dev/sda1
+mount -o loop /ebs-dev/sda1 /ebs-mounted
+touch /ebs-mounted/my-test-file
+EOF
+{{< /command >}}
+
+We can then start an EC2 instance, specifying a block device mapping under the device name `/ebs-dev/sda1`, and pointing to our `init.sh` user data script:
+{{< command >}}
+$ awslocal ec2 run-instances --image-id ami-ff0fea8310f3 --count 1 --instance-type t3.nano \
+    --block-device-mapping '{"DeviceName":"/ebs-dev/sda1","Ebs":{"VolumeSize":10}}' \
+    --user-data file://init.sh
+{{< /command >}}
+
+Please note that, whereas real AWS uses GB for volume sizes, we use MB as the unit for `VolumeSize` in the command above (to avoid creating huge files locally). Also, by default block device images are limited to 1GB in size, but this can be customized by setting the `EC2_EBS_MAX_VOLUME_SIZE` config variable (defaults to `1000`).
+
+Once the instance is successfully started and initialized, we can first determine the container ID via `docker ps`, and then list the contents of the mounted filesystem `/ebs-mounted`, which should contain our test file named `my-test-file`:
+{{< command >}}
+$ docker ps
+CONTAINER ID   IMAGE                  PORTS           NAMES
+5c60cf72d84a   ...:ami-ff0fea8310f3   19419->22/tcp   localstack-ec2...
+$ docker exec 5c60cf72d84a ls /ebs-mounted
+my-test-file
+{{< /command >}}
 
 ## Resource Browser
 
