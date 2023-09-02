@@ -52,7 +52,7 @@ You should see the following output:
 }
 ```
 
-To add an instance you can run:
+To add an instance you can run the following command:
 
 {{< command >}}
 $ awslocal rds create-db-instance \
@@ -61,7 +61,6 @@ $ awslocal rds create-db-instance \
     --engine aurora-postgresql \
     --db-instance-class db.t3.large
 {{< / command >}}
-
 
 ### Create a SecretsManager secret
 
@@ -113,7 +112,6 @@ $ awslocal rds-data execute-statement \
     --secret-arn arn:aws:secretsmanager:us-east-1:000000000000:secret:dbpass-cfnAX \
     --include-result-metadata --sql 'SELECT 123'
 {{< / command >}}
-
 
 You should see the following output:
 
