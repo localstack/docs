@@ -26,7 +26,7 @@ In the following, we provide a step-by-step guide for installing Crossplane in a
 
 As a prerequisite, we need the following:
 * LocalStack running in local Docker
-* A Kubernetes cluster: We can use the embedded Kubernetes cluster that ships with modern versions of Docker Desktop (can be easily enabled in the Docker settings)
+* A Kubernetes cluster: We can use the [embedded Kubernetes cluster](https://docs.docker.com/desktop/kubernetes) that ships with modern versions of Docker Desktop (can be easily enabled in the Docker settings)
 * The [`helm`](https://helm.sh) and [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) command-line clients installed
 
 We first install Crossplane via `helm`:
@@ -43,10 +43,11 @@ $ curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/instal
 $ sudo mv kubectl-crossplane /usr/local/bin
 {{</command>}}
 
-TO confirm that the installation was successful, you can run these commands, which should yield output similar to the following:
+To confirm that the installation was successful, we can run these `kubectl` commands, which should yield output similar to the following:
 {{<command>}}
 $ kubectl crossplane --version
 v1.13.2
+
 $ kubectl get crds | grep crossplane
 compositions.apiextensions.crossplane.io                     2023-09-03T11:30:36Z
 configurations.pkg.crossplane.io                             2023-09-03T11:30:36Z
@@ -55,7 +56,7 @@ configurations.pkg.crossplane.io                             2023-09-03T11:30:36
 
 ### Step 2: Installing the Crossplane AWS Provider
 
-Once the basic Crossplane installation is running properly, we can proceed with installing the AWS Provider.
+Once the basic Crossplane installation is running properly, we can proceed with installing the AWS provider.
 Newer versions of Crossplane promote the use of [provider families](https://docs.upbound.io/providers/provider-families), which are collections of providers for different groups of resources.
 For example, there is a separate provider for each individual AWS service (like S3, SQS, Lambda, etc), and in addition provider family provides shared resources for common configuration of all services (e.g., credentials, etc).
 
@@ -161,7 +162,7 @@ EOF
 {{</command>}}
 
 If everything is wired up correctly, you should now see some activity in the LocalStack log outputs, where Crossplane starts deploying the S3 bucket against LocalStack.
-After some time, the bucket should be transitioning into `ready` status within Crossplane:
+After some time, the bucket should be transitioning into `ready` state within Crossplane:
 {{<command>}}
 $ kubectl get buckets
 NAME                     READY   SYNCED   EXTERNAL-NAME            AGE
@@ -174,7 +175,7 @@ $ awslocal s3 ls
 2023-09-03 15:18:47 crossplane-test-bucket
 {{</command>}}
 
-We can repeat the same exercise for creating a local SQS queue:
+We can repeat the same exercise for creating a local SQS queue named `crossplane-test-queue`:
 {{<command>}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: sqs.aws.upbound.io/v1beta1
@@ -188,7 +189,7 @@ spec:
 EOF
 {{</command>}}
 
-After some time, the queue should transition into status `ready` in Crossplane:
+After some time, the queue should transition into `ready` state in Crossplane:
 {{<command>}}
 $ kubectl get queues
 NAME                    READY   SYNCED   EXTERNAL-NAME                                                         AGE
@@ -214,7 +215,7 @@ Please refer to the additional reading material to learn and explore more advanc
 
 ## Further Reading
 
-* Kubernetes on Docker Desktop: https://docs.docker.com/desktop/kubernetes/
+* Kubernetes on Docker Desktop: https://docs.docker.com/desktop/kubernetes
 * Kubernetes getting started guide: https://kubernetes.io/docs/setup
 * Crossplane user docs: https://docs.crossplane.io
 * Crossplane AWS provider family: https://marketplace.upbound.io/providers/upbound/provider-family-aws
