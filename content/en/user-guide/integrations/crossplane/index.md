@@ -26,10 +26,12 @@ In the following, we provide a step-by-step guide for installing Crossplane in a
 
 As a prerequisite, we need the following:
 * LocalStack running in local Docker
-* A Kubernetes cluster: We can use the [embedded Kubernetes cluster](https://docs.docker.com/desktop/kubernetes) that ships with modern versions of Docker Desktop (can be easily enabled in the Docker settings)
+* A local Kubernetes cluster:
+  * We can use the [embedded Kubernetes cluster](https://docs.docker.com/desktop/kubernetes) that ships with modern versions of Docker Desktop (can be easily enabled in the Docker settings)
+  * Alternatively, you can [create a local EKS cluster](https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service/#create-an-embedded-kubernetes-cluster) in LocalStack directly, which will spin up a light-weight embedded `k3d` Kubernetes cluster in your Docker environment
 * The [`helm`](https://helm.sh) and [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) command-line clients installed
 
-We first install Crossplane via `helm`:
+Once your `kubectl` is configured to point to the local Kubernetes cluster, we first install Crossplane via `helm`:
 {{<command>}}
 $ helm repo add crossplane-stable https://charts.crossplane.io/stable
 $ helm repo update
@@ -60,7 +62,41 @@ Once the basic Crossplane installation is running properly, we can proceed with 
 Newer versions of Crossplane promote the use of [provider families](https://docs.upbound.io/providers/provider-families), which are collections of providers for different groups of resources.
 For example, there is a separate provider for each individual AWS service (like S3, SQS, Lambda, etc), and in addition provider family provides shared resources for common configuration of all services (e.g., credentials, etc).
 
-In the following, we first install a secret to define the test credentials for the AWS provider. Please note that you can copy/paste the entire multi-line command below in your terminal:
+In the following, we first install the AWS provider for S3.
+Please note that you can copy/paste the entire multi-line command below into your terminal:
+{{<command>}}
+$ cat <<EOF | kubectl apply -f -
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-s3
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-s3:v0.40.0
+EOF
+{{</command>}}
+
+We also install the AWS provider for SQS:
+{{<command>}}
+$ cat <<EOF | kubectl apply -f -
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-sqs
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-sqs:v0.40.0
+EOF
+{{</command>}}
+
+After some time, the providers should get into healthy state, which can be confirmed via `kubectl get providers`:
+{{<command>}}
+$ kubectl get providers
+NAME                          INSTALLED   HEALTHY   PACKAGE                                               AGE
+upbound-provider-family-aws   True        True      xpkg.upbound.io/upbound/provider-family-aws:v0.40.0   2m
+provider-aws-s3               True        True      xpkg.upbound.io/upbound/provider-aws-s3:v0.40.0       2m
+provider-aws-sqs              True        True      xpkg.upbound.io/upbound/provider-aws-sqs:v0.40.0      2m
+{{</command>}}
+
+Next, we install a secret to define the test credentials for the AWS provider:
 {{<command>}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: v1
@@ -75,7 +111,7 @@ stringData:
 EOF
 {{</command>}}
 
-Next, we create an AWS  `ProviderConfig` that references the secret created above, and defines a static `endpoint` pointing to the LocalStack URL `http://host.docker.internal:4566`:
+Finally, we create an AWS  `ProviderConfig` that references the secret created above, and defines a static `endpoint` pointing to the LocalStack URL `http://host.docker.internal:4566`:
 {{<command>}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: aws.upbound.io/v1beta1
@@ -110,39 +146,6 @@ The endpoint `http://host.docker.internal:4566` in the listing above assumes tha
 {{<alert title="Note">}}
 The Crossplane AWS provider currently requires us to specify the list of `services` for which the local `endpoint` is used as the target URL. Please make sure to extend this list accordingly if you're working with additional LocalStack services.
 {{</alert>}}
-
-Next, we continue by installing the AWS provider for S3 ...
-{{<command>}}
-$ cat <<EOF | kubectl apply -f -
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-aws-s3
-spec:
-  package: xpkg.upbound.io/upbound/provider-aws-s3:v0.40.0
-EOF
-{{</command>}}
-
-... as well as the AWS provider for SQS:
-{{<command>}}
-$ cat <<EOF | kubectl apply -f -
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-aws-sqs
-spec:
-  package: xpkg.upbound.io/upbound/provider-aws-sqs:v0.40.0
-EOF
-{{</command>}}
-
-After some time, the providers should get into healthy state, which can be confirmed via `kubectl get providers`:
-{{<command>}}
-$ kubectl get providers
-NAME                          INSTALLED   HEALTHY   PACKAGE                                               AGE
-upbound-provider-family-aws   True        True      xpkg.upbound.io/upbound/provider-family-aws:v0.40.0   2m
-provider-aws-s3               True        True      xpkg.upbound.io/upbound/provider-aws-s3:v0.40.0       2m
-provider-aws-sqs              True        True      xpkg.upbound.io/upbound/provider-aws-sqs:v0.40.0      2m
-{{</command>}}
 
 ### Step 3: Deploying sample resources in LocalStack
 
@@ -217,6 +220,7 @@ Please refer to the additional reading material to learn and explore more advanc
 
 * Kubernetes on Docker Desktop: https://docs.docker.com/desktop/kubernetes
 * Kubernetes getting started guide: https://kubernetes.io/docs/setup
+* EKS Kubernetes clusters on LocalStack: https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service
 * Crossplane user docs: https://docs.crossplane.io
 * Crossplane AWS provider family: https://marketplace.upbound.io/providers/upbound/provider-family-aws
 * Crossplane AWS provider source code: https://github.com/upbound/provider-aws
