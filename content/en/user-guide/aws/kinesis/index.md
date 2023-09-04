@@ -97,7 +97,7 @@ $ awslocal lambda invoke \
 You can create a Kinesis Stream using the [`CreateStream`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_CreateStream.html) API. Run the following command to create a Kinesis Stream named `lambda-stream`:
 
 {{< command >}}
-awslocal kinesis create-stream \
+$ awslocal kinesis create-stream \
   --stream-name lambda-stream \
   --shard-count 1
 {{< / command >}}
