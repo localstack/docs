@@ -9244,26 +9244,106 @@ The Resource Browser allows you to perform the following actions:
 &lt;p>LocalStack&amp;rsquo;s KMS implementation is equipped to facilitate &lt;a href="https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html">multi-region keys&lt;/a>, but there&amp;rsquo;s a distinct behavior compared to AWS KMS. Unlike AWS KMS, the replication of multi-region key replicas in LocalStack KMS isn&amp;rsquo;t automatically synchronized with their corresponding primary key. Consequently, adjustments made to the primary key&amp;rsquo;s settings won&amp;rsquo;t propagate automatically to the replica.&lt;/p>
 &lt;h3 id="key-aliases">Key aliases&lt;/h3>
 &lt;p>While AWS KMS conveniently establishes &lt;a href="https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html">aliases&lt;/a>, LocalStack follows suit by supporting these pre-configured aliases. However, it&amp;rsquo;s important to note that in LocalStack, these aliases come into picture after the initial access attempt. Until that point, they are not visible.&lt;/p></description></item><item><title>User-Guide: Kinesis</title><link>/user-guide/aws/kinesis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis/</guid><description>
-&lt;p>AWS Kinesis is a data streaming service, which enables your application to ingest, buffer, and process data in real-time.
-Kinesis in LocalStack Community is powered by &lt;a href="https://github.com/etspaceman/kinesis-mock">Kinesis Mock&lt;/a> and has an &lt;a href="/user-guide/aws/feature-coverage/">extensively supported API&lt;/a>.&lt;/p>
-&lt;h2 id="quickstart">Quickstart&lt;/h2>
-&lt;p>Trying to run the example applications from the &lt;a href="https://docs.aws.amazon.com/streams/latest/dev/examples.html">official AWS developer guide&lt;/a> against LocalStack is a great place to start.
-Assuming you have &lt;code>awslocal&lt;/code> installed you can also try out the following commands:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream --stream-name samplestream --shard-count 1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis list-streams
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StreamNames&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;samplestream&amp;#34;
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Kinesis is a platform provided by Amazon Web Services (AWS) that enables your application to ingest, buffer, and process data in real-time. Kinesis is suitable for applications that require processing and deriving insights from data streams such as logs, metrics, user interactions, and IoT sensor readings. Kinesis offers three main services: Kinesis Data Streams, Kinesis Data Firehose, and Kinesis Data Analytics. In this page, we take a look at Kinesis Data Streams which allows you to capture and store real-time data streams.&lt;/p>
+&lt;p>LocalStack supports Kinesis via the Community offering, allowing you to use the Kinesis APIs in your local environment from setting up data streams and configuring data processing to building real-time analytics applications. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_kinesis/">API coverage page&lt;/a>, which provides information on the extent of Kinesis&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Kinesis and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create a Lambda function to consume events from a Kinesis stream with the AWS CLI.&lt;/p>
+&lt;h3 id="create-a-lambda-function">Create a Lambda function&lt;/h3>
+&lt;p>You need to create a Lambda function that receives a Kinesis event input and processes the messages that it contains. Create a file named &lt;code>index.mjs&lt;/code> with the following content:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">console&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">log&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;Loading function&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">export&lt;/span> &lt;span style="color:#204a87;font-weight:bold">const&lt;/span> &lt;span style="color:#000">handler&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span> &lt;span style="color:#000;font-weight:bold">=&amp;gt;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Records&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">forEach&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">record&lt;/span> &lt;span style="color:#000;font-weight:bold">=&amp;gt;&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">let&lt;/span> &lt;span style="color:#000">payload&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">Buffer&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">from&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">record&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">kinesis&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">data&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;base64&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">).&lt;/span>&lt;span style="color:#000">toString&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;ascii&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">console&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">log&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;Decoded payload:&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">payload&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can create a Lambda function using the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html">&lt;code>CreateFunction&lt;/code>&lt;/a> API. Run the following command to create a Lambda function named &lt;code>ProcessKinesisRecords&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zip function.zip index.mjs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name ProcessKinesisRecords \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb://function.zip \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler index.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs18.x \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-kinesis-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FunctionName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ProcessKinesisRecords&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;FunctionArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:lambda:us-east-1:000000000000:function:ProcessKinesisRecords&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Runtime&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;nodejs18.x&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Role&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/lambda-kinesis-role&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Handler&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;index.handler&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="invoke-the-lambda-function">Invoke the Lambda function&lt;/h3>
+&lt;p>Create a file named &lt;code>input.txt&lt;/code> with the following JSON content:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Records&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;kinesis&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;kinesisSchemaVersion&amp;#34;: &amp;#34;1.0&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;partitionKey&amp;#34;: &amp;#34;1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;sequenceNumber&amp;#34;: &amp;#34;49590338271490256608559692538361571095921575989136588898&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;data&amp;#34;: &amp;#34;SGVsbG8sIHRoaXMgaXMgYSB0ZXN0Lg==&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;approximateArrivalTimestamp&amp;#34;: 1545084650.987
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;eventSource&amp;#34;: &amp;#34;aws:kinesis&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;eventVersion&amp;#34;: &amp;#34;1.0&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;eventID&amp;#34;: &amp;#34;shardId-000000000006:49590338271490256608559692538361571095921575989136588898&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;eventName&amp;#34;: &amp;#34;aws:kinesis:record&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;invokeIdentityArn&amp;#34;: &amp;#34;arn:aws:iam::000000000000:role/lambda-kinesis-role&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;awsRegion&amp;#34;: &amp;#34;us-east-1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;eventSourceARN&amp;#34;: &amp;#34;arn:aws:kinesis:us-east-1:000000000000:stream/lambda-stream&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis put-record --stream-name samplestream --data &amp;#39;{&amp;#34;symbol&amp;#34;:&amp;#34;TEST&amp;#34;,&amp;#34;sampleno&amp;#34;:42}&amp;#39; --partition-key test1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ShardId&amp;#34;: &amp;#34;shardId-000000000001&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SequenceNumber&amp;#34;: &amp;#34;49622467803485029265018102167378141645049970239670845458&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EncryptionType&amp;#34;: &amp;#34;NONE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The JSON contains a sample Kinesis event. You can use the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">&lt;code>Invoke&lt;/code>&lt;/a> API to invoke the Lambda function with the Kinesis event as input. Execute the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name ProcessKinesisRecords \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload file://input.txt outputfile.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-kinesis-stream">Create a Kinesis Stream&lt;/h3>
+&lt;p>You can create a Kinesis Stream using the &lt;a href="https://docs.aws.amazon.com/kinesis/latest/APIReference/API_CreateStream.html">&lt;code>CreateStream&lt;/code>&lt;/a> API. Run the following command to create a Kinesis Stream named &lt;code>lambda-stream&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --stream-name lambda-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --shard-count 1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can retrieve the Stream ARN using the &lt;a href="https://docs.aws.amazon.com/kinesis/latest/APIReference/API_DescribeStream.html">&lt;code>DescribeStream&lt;/code>&lt;/a> API. Execute the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis describe-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --stream-name lambda-stream&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;StreamDescription&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Shards&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ShardId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;shardId-000000000000&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;HashKeyRange&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;StartingHashKey&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;EndingHashKey&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;340282366920938463463374607431768211455&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">]&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;StreamARN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:kinesis:us-east-1:000000000000:stream/lambda-stream&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;StreamName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;lambda-stream&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;StreamStatus&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can save the &lt;code>StreamARN&lt;/code> value for later use.&lt;/p>
+&lt;h3 id="add-an-event-source-in-lambda">Add an Event Source in Lambda&lt;/h3>
+&lt;p>You can add an Event Source to your Lambda function using the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_CreateEventSourceMapping.html">&lt;code>CreateEventSourceMapping&lt;/code>&lt;/a> API. Run the following command to add the Kinesis Stream as an Event Source to your Lambda function:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-event-source-mapping \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name ProcessKinesisRecords \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --event-source arn:aws:kinesis:us-east-1:000000000000:stream/lambda-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --batch-size 100 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --starting-position LATEST&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="test-the-event-source-mapping">Test the Event Source mapping&lt;/h3>
+&lt;p>You can test the event source mapping by adding a record to the Kinesis Stream using the &lt;a href="https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html">&lt;code>PutRecord&lt;/code>&lt;/a> API. Run the following command to add a record to the Kinesis Stream:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis put-record \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --stream-name lambda-stream \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --partition-key 1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --data &amp;#34;Hello, this is a test.&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can fetch the CloudWatch logs for your Lambda function reading records from the stream, using AWS CLI or LocalStack Resource Browser.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>Regardless of which provider you&amp;rsquo;re working with, Kinesis can be further configured with the following environment variables:&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -9274,27 +9354,43 @@ Assuming you have &lt;code>awslocal&lt;/code> installed you can also try out the
 &lt;tbody>
 &lt;tr>
 &lt;td>&lt;code>KINESIS_ERROR_PROBABILITY&lt;/code>&lt;/td>
-&lt;td>Decimal value between &lt;code>0.0&lt;/code> (default) and &lt;code>1.0&lt;/code>. Typically, it is difficult to know beforehand whether your application can handle the throughput and whether it can deal with backpressure. By setting this environment variable the application will randomly inject &lt;code>ProvisionedThroughputException&lt;/code>. While this won&amp;rsquo;t tell you whether your application can handle sufficient throughput, it does help you to test whether your application can handle exceptions gracefully.&lt;/td>
+&lt;td>Decimal value between &lt;code>0.0&lt;/code> (default) and &lt;code>1.0&lt;/code>. This environment variable enables you to inject &lt;code>ProvisionedThroughputException&lt;/code> at random intervals in your application. While this won&amp;rsquo;t provide insight into your application&amp;rsquo;s overall throughput handling, it aids in testing your application&amp;rsquo;s exception-handling capabilities.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>KINESIS_SHARD_LIMIT&lt;/code>&lt;/td>
-&lt;td>Integer value (default: &lt;code>100&lt;/code>) or &lt;code>Infinity&lt;/code> (to disable). This variable can help you to test whether your application adheres to the allocated shard limit. This behavior can only be disabled by explicitly setting the environment variable as &lt;code>KINESIS_SHARD_LIMIT=Infinity&lt;/code>&lt;/td>
+&lt;td>Integer value (default: &lt;code>100&lt;/code>) or &lt;code>Infinity&lt;/code> (to disable). Use this variable to assess whether your application conforms to the assigned shard limit. Disabling this behavior requires explicitly setting &lt;code>KINESIS_SHARD_LIMIT=Infinity&lt;/code>.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>KINESIS_LATENCY&lt;/code>&lt;/td>
-&lt;td>Integer value of milliseconds (default: &lt;code>500&lt;/code>) or &lt;code>0&lt;/code> (to disable). Especially important for testing latency-critical applications. Since latency cannot be tested with the local Kinesis service, you can use this variable to introduce artificial latency into your AWS calls. This behavior can only be disabled by explicitly setting the environment variable as &lt;code>KINESIS_LATENCY=0&lt;/code>.&lt;/td>
+&lt;td>Integer value in milliseconds (default: &lt;code>500&lt;/code>) or &lt;code>0&lt;/code> (to disable). Particularly useful for testing latency-sensitive applications. Since local Kinesis service lacks latency simulation, you can introduce artificial latency into your AWS calls using this variable. To disable this behavior, set &lt;code>KINESIS_LATENCY=0&lt;/code>.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>KINESIS_INITIALIZE_STREAMS&lt;/code>&lt;/td>
-&lt;td>&lt;strong>Deprecated.&lt;/strong> A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. For instance, &lt;code>KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1&lt;/code>. In multi-account setups, the streams will be created for all accounts.&lt;/td>
+&lt;td>&lt;strong>Deprecated.&lt;/strong> Comma-delimited string with stream names, corresponding shard counts, and an optional region for initialization during startup. If no region is provided, the default region is used. For example, &lt;code>KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1&lt;/code>. In multi-account setups, the specified streams will be created for all accounts.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing Kinesis Streams &amp;amp; Kafka Clusters. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>Kinesis&lt;/strong> under the &lt;strong>Analytics&lt;/strong> section.&lt;/p>
+&lt;img src="kinesis-resource-browser.png" alt="Kinesis Resource Browser" title="Kinesis Resource Browser" width="900" />
+&lt;br>
+&lt;br>
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create Stream&lt;/strong>: Create a Kinesis Stream by specifying the &lt;strong>Stream Name&lt;/strong>, &lt;strong>Shard Count&lt;/strong>, and &lt;strong>Stream Mode&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Create Cluster&lt;/strong>: Create a Kafka Cluster by specifying the &lt;strong>Cluster Name&lt;/strong>, &lt;strong>Kafka Version&lt;/strong>, &lt;strong>Number Of Broker Nodes&lt;/strong>, &lt;strong>Instance Type&lt;/strong>, and more.&lt;/li>
+&lt;li>&lt;strong>View Streams &amp;amp; Clusters&lt;/strong>: Click on any of the listed resources to view its details by clicking on the desired Stream &amp;amp; Cluster.&lt;/li>
+&lt;li>&lt;strong>Edit Streams &amp;amp; Clusters&lt;/strong>: Click on any listed resources to edit its details by clicking on the desired Stream &amp;amp; Cluster.&lt;/li>
+&lt;li>&lt;strong>Delete Streams &amp;amp; Clusters&lt;/strong>: Select any listed resources to delete them by clicking the &lt;strong>Actions&lt;/strong> button and selecting &lt;strong>Remove Selected&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use Kinesis in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/sample-fuzzy-movie-search-lambda-kinesis-elasticsearch">Search application with Lambda, Kinesis, Firehose, ElasticSearch, S3&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/serverless-streaming-data-pipeline">Streaming Data Pipeline with Kinesis, Tinybird, CloudWatch, Lambda&lt;/a>&lt;/li>
+&lt;/ul>
 &lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;p>In multi-account setups, each AWS account launches a separate instance of Kinesis Mock.
-This is very resource intensive when a large number of AWS accounts are used.&lt;/p>
-&lt;p>This will be addressed in a future update.
-Follow up with &lt;a href="https://github.com/etspaceman/kinesis-mock/issues/377">this Kinesis Mock issue&lt;/a> to keep track of this feature.&lt;/p></description></item><item><title>User-Guide: Kinesis Data Analytics</title><link>/user-guide/aws/kinesis-analytics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-analytics/</guid><description>
+&lt;p>In multi-account setups, each AWS account launches a separate instance of Kinesis Mock, which is very resource intensive when a large number of AWS accounts are used. An &lt;a href="https://github.com/etspaceman/kinesis-mock/issues/377">open Kinesis Mock issue&lt;/a> is being used to keep track of this feature.&lt;/p></description></item><item><title>User-Guide: Kinesis Data Analytics</title><link>/user-guide/aws/kinesis-analytics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis-analytics/</guid><description>
 &lt;p>Kinesis Data Analytics is a service offered by Amazon Web Services (AWS) that enables you to process and analyze streaming data in real-time.
 Kinesis Data Analytics allows you to apply transformations, filtering, and enrichment to streaming data using standard SQL syntax.
 You can also run Java or Scala programs against streaming sources to perform various operations on the data using Apache Flink.&lt;/p>

@@ -2950,58 +2950,7 @@ Note that only a single backend can be configured, meaning that you will get a s
 &lt;li>By default, AWS only sets the &lt;code>Endpoint&lt;/code> attribute of the cluster status once the cluster is up.
 LocalStack will return the endpoint immediately, but keep &lt;code>Processing = &amp;quot;true&amp;quot;&lt;/code> until the cluster has been started.&lt;/li>
 &lt;li>The &lt;code>CustomEndpointOptions&lt;/code> allows arbitrary endpoint URLs, which is not allowed in AWS&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Kinesis</title><link>/user-guide/aws/kinesis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/kinesis/</guid><description>
-&lt;p>AWS Kinesis is a data streaming service, which enables your application to ingest, buffer, and process data in real-time.
-Kinesis in LocalStack Community is powered by &lt;a href="https://github.com/etspaceman/kinesis-mock">Kinesis Mock&lt;/a> and has an &lt;a href="/user-guide/aws/feature-coverage/">extensively supported API&lt;/a>.&lt;/p>
-&lt;h2 id="quickstart">Quickstart&lt;/h2>
-&lt;p>Trying to run the example applications from the &lt;a href="https://docs.aws.amazon.com/streams/latest/dev/examples.html">official AWS developer guide&lt;/a> against LocalStack is a great place to start.
-Assuming you have &lt;code>awslocal&lt;/code> installed you can also try out the following commands:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis create-stream --stream-name samplestream --shard-count 1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis list-streams
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;StreamNames&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;samplestream&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kinesis put-record --stream-name samplestream --data &amp;#39;{&amp;#34;symbol&amp;#34;:&amp;#34;TEST&amp;#34;,&amp;#34;sampleno&amp;#34;:42}&amp;#39; --partition-key test1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ShardId&amp;#34;: &amp;#34;shardId-000000000001&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SequenceNumber&amp;#34;: &amp;#34;49622467803485029265018102167378141645049970239670845458&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EncryptionType&amp;#34;: &amp;#34;NONE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>Regardless of which provider you&amp;rsquo;re working with, Kinesis can be further configured with the following environment variables:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Variable&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>KINESIS_ERROR_PROBABILITY&lt;/code>&lt;/td>
-&lt;td>Decimal value between &lt;code>0.0&lt;/code> (default) and &lt;code>1.0&lt;/code>. Typically, it is difficult to know beforehand whether your application can handle the throughput and whether it can deal with backpressure. By setting this environment variable the application will randomly inject &lt;code>ProvisionedThroughputException&lt;/code>. While this won&amp;rsquo;t tell you whether your application can handle sufficient throughput, it does help you to test whether your application can handle exceptions gracefully.&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>KINESIS_SHARD_LIMIT&lt;/code>&lt;/td>
-&lt;td>Integer value (default: &lt;code>100&lt;/code>) or &lt;code>Infinity&lt;/code> (to disable). This variable can help you to test whether your application adheres to the allocated shard limit. This behavior can only be disabled by explicitly setting the environment variable as &lt;code>KINESIS_SHARD_LIMIT=Infinity&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>KINESIS_LATENCY&lt;/code>&lt;/td>
-&lt;td>Integer value of milliseconds (default: &lt;code>500&lt;/code>) or &lt;code>0&lt;/code> (to disable). Especially important for testing latency-critical applications. Since latency cannot be tested with the local Kinesis service, you can use this variable to introduce artificial latency into your AWS calls. This behavior can only be disabled by explicitly setting the environment variable as &lt;code>KINESIS_LATENCY=0&lt;/code>.&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>KINESIS_INITIALIZE_STREAMS&lt;/code>&lt;/td>
-&lt;td>&lt;strong>Deprecated.&lt;/strong> A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. For instance, &lt;code>KINESIS_INITIALIZE_STREAMS=my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1&lt;/code>. In multi-account setups, the streams will be created for all accounts.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;p>In multi-account setups, each AWS account launches a separate instance of Kinesis Mock.
-This is very resource intensive when a large number of AWS accounts are used.&lt;/p>
-&lt;p>This will be addressed in a future update.
-Follow up with &lt;a href="https://github.com/etspaceman/kinesis-mock/issues/377">this Kinesis Mock issue&lt;/a> to keep track of this feature.&lt;/p></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Lambda</title><link>/user-guide/aws/lambda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/lambda/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>AWS Lambda is a Serverless Function as a Service (FaaS) platform that lets you run code in your preferred programming language on the AWS ecosystem. AWS Lambda automatically scales your code to meet demand and handles server provisioning, management, and maintenance. AWS Lambda allows you to break down your application into smaller, independent functions that integrate seamlessly with AWS services.&lt;/p>
 &lt;p>LocalStack supports Lambda via the Community &amp;amp; Pro/Team offering, allowing you to use the Lambda API to create, deploy, and test your Lambda functions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_lambda/">Lambda coverage page&lt;/a>, which provides information on the extent of Lambda&amp;rsquo;s integration with LocalStack.&lt;/p>
