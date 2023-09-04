@@ -167,7 +167,7 @@ $ awslocal ec2 run-instances --key-name my-key ...
 
 Once the instance is up and running, we can use the `ssh` command to set up an SSH connection. Assuming the instance is available under `127.0.0.1:12862` (as per the LocalStack log output), use this command:
 {{< command >}}
-$ ssh -p 12862 -i ~/.ssh/id_rsa root@127.0.0.1
+$ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< /command >}}
 {{< alert title="Hint" color="info">}}
 If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
