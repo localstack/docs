@@ -12,15 +12,12 @@ const genFrontMatter = (answers) => {
 
         // Write a paragraph with 3-4 lines about the AWS service
 
-        LocalStack supports ${answers.title ? answers.title : '<Untitled>'} via the Community/Pro/Team offering, allowing 
-        you to use the ${answers.title ? answers.title : '<Untitled>'} APIs in your local environment. The supported APIs 
-        are available on our API Coverage Page (link the page), which provides information on the extent 
-        of ${answers.title ? answers.title : '<Untitled>'} integration with LocalStack.
+        LocalStack supports ${answers.title ? answers.title : '<Untitled>'} via the Community/Pro/Team offering, allowing you to use the ${answers.title ? answers.title : '<Untitled>'} APIs in your local environment.
+        The supported APIs are available on our API Coverage Page (link the page), which provides information on the extent of ${answers.title ? answers.title : '<Untitled>'} integration with LocalStack.
 
         ## Getting started
 
-        This guide is designed for users new to ${answers.title ? answers.title : '<Untitled>'} and assumes basic 
-        knowledge of the AWS CLI and our awslocal wrapper script.
+        This guide is designed for users new to ${answers.title ? answers.title : '<Untitled>'} and assumes basic knowledge of the AWS CLI and our awslocal wrapper script.
         
         // Provide a short tutorial to use ${answers.title ? answers.title : '<Untitled>'} with AWS CLI/awslocal
 
@@ -35,13 +32,11 @@ const genFrontMatter = (answers) => {
         // Provide a short description of the Resource Browser and how it can be used with ${answers.title ? answers.title : '<Untitled>'}
 
         The LocalStack Web Application provides a Resource Browser for ${answers.title ? answers.title : '<Untitled>'}.
-        You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating 
-        to the Resources section, and then clicking on ${answers.title ? answers.title : '<Untitled>'}.
+        You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the Resources section, and then clicking on ${answers.title ? answers.title : '<Untitled>'}.
 
         ## Examples
 
-        The following code snippets and sample applications provide practical examples of how 
-        to use ${answers.title ? answers.title : '<Untitled>'} in LocalStack for various use cases:
+        The following code snippets and sample applications provide practical examples of how to use ${answers.title ? answers.title : '<Untitled>'} in LocalStack for various use cases:
 
         // Link the examples from Developer Hub & Pro/Terraform/Pulumi samples
         // Provide a short description of each example
