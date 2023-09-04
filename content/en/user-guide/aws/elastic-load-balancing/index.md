@@ -26,7 +26,7 @@ $ docker run --rm -itd -p 5678:80 ealen/echo-server
 
 ### Create a load balancer
 
-Firstly, we will specify the subnet and vpc in which the load balancer will be created, you can use the following command to retrieve the subnet ID and vpc ID. In this example, we will use the subnet and vpc in the `us-east-1f` availability zone.
+To specify the subnet and VPC in which the load balancer will be created, you can use the [`DescribeSubnets`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeSubnets.html) API to retrieve the subnet ID and VPC ID. In this example, we will use the subnet and VPC in the `us-east-1f` availability zone.
 
 {{< command >}}
 $ subnet_info=$(awslocal ec2 describe-subnets --filters Name=availability-zone,Values=us-east-1f \
@@ -37,7 +37,7 @@ $ subnet_id=$(echo $subnet_info | jq -r '.SubnetId')
 $ vpc_id=$(echo $subnet_info | jq -r '.VpcId')
 {{< /command >}}
 
-Now, to create a load balancer, you can use the [`CreateLoadBalancer`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateLoadBalancer.html) API. The following command creates an Application Load Balancer named `example-lb`:
+To create a load balancer, you can use the [`CreateLoadBalancer`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateLoadBalancer.html) API. The following command creates an Application Load Balancer named `example-lb`:
 
 {{< command >}}
 $ loadBalancer=$(awslocal elbv2 create-load-balancer --name example-lb \
@@ -73,7 +73,7 @@ $ listenerArn=$(awslocal elbv2 create-listener \
         --load-balancer-arn $loadBalancer | jq -r '.Listeners[]|.ListenerArn')
 {{< /command >}}
 
-Now, to create a rule for the listener, you can use the [`CreateRule`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateRule.html) API. The following command creates a rule for the listener created above:
+To create a rule for the listener, you can use the [`CreateRule`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateRule.html) API. The following command creates a rule for the listener created above:
 
 {{< command >}}
 $ listenerRule=$(awslocal elbv2 create-rule \
@@ -86,7 +86,7 @@ $ listenerRule=$(awslocal elbv2 create-rule \
 
 ### Send a request to the load balancer
 
-Finally, we issue an HTTP request to the `DNSName` parameter of `CreateLoadBalancer` operation, and `Port` parameter of `CreateListener` command with the following command:
+Finally, you can issue an HTTP request to the `DNSName` parameter of `CreateLoadBalancer` operation, and `Port` parameter of `CreateListener` command with the following command:
 
 {{< command >}}
 $ curl example-lb.elb.localhost.localstack.cloud:4566
@@ -131,6 +131,12 @@ The following output will be retrieved:
   }
 }
 ```
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use ELB in LocalStack for various use cases:
+
+- [Setting up Elastic Load Balancing (ELB) Application Load Balancers using LocalStack, deployed via the Serverless framework](https://docs.localstack.cloud/tutorials/elb-load-balancing/)
 
 ## Limitations
 
