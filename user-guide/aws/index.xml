@@ -7535,11 +7535,13 @@ You also need to use LocalStack Pro/Team to test the setup of the EC2 instance, 
 &lt;p>To create a key pair, you can use the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html">&lt;code>CreateKeyPair&lt;/code>&lt;/a> API.
 Run the following command to create the key pair and pipe the output to a file named &lt;code>key.pem&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 create-key-pair \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --key-name foobar \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --key-name my-key \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query &amp;#39;KeyMaterial&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --output text | tee key.pem&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can assign necessary permissions to the key pair file using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod 400 key.pem&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Alternatively, we can import an existing keypair, for example if you have an SSH public key in your home directory under &lt;code>~/.ssh/id_rsa.pub&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
 &lt;h3 id="add-rules-to-your-security-group">Add rules to your security group&lt;/h3>
 &lt;p>Currently, LocalStack only supports the &lt;code>default&lt;/code> security group.
 You can add rules to the security group using the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AuthorizeSecurityGroupIngress.html">&lt;code>AuthorizeSecurityGroupIngress&lt;/code>&lt;/a> API.
@@ -7579,8 +7581,8 @@ Run the following command to run an EC2 instance by adding the appropriate Secur
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --image-id ami-ff0fea8310f3 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --count 1 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --instance-type t3.nano \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --key-name foobar \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --security-group-ids &amp;lt;SECURITY_GROUP_ID&amp;gt; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --key-name my-key \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --security-group-ids &amp;#39;&amp;lt;SECURITY_GROUP_ID&amp;gt;&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --user-data file://./user_script.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="test-the-python-web-server">Test the Python Web Server&lt;/h3>
 &lt;p>You can now open the LocalStack logs to find the IP address of the locally emulated EC2 instance.
@@ -7605,9 +7607,17 @@ Run the following command to test the Python Web Server:&lt;/p>
 Similar to the setup in production AWS, the user data content is stored at &lt;code>/var/lib/cloud/instances/&amp;lt;instance_id&amp;gt;/user-data.txt&lt;/code> within the instance.
 Any execution of this data is recorded in the &lt;code>/var/log/cloud-init-output.log&lt;/code> file.
 &lt;/div>
-&lt;p>You can also setup an SSH connection to the locally emulated EC2 instance using the IP address.
-Run the following command to setup an SSH connection:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>ssh -p 22 -i test.pem 172.17.0.4&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="connecting-via-ssh">Connecting via SSH&lt;/h3>
+&lt;p>You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.&lt;/p>
+&lt;p>This section assumes that you have created or imported an SSH keypair named &lt;code>my-key&lt;/code> (see &lt;a href="#create-a-key-pair">instructions above&lt;/a>). When running the EC2 instance, make sure to pass the &lt;code>--key-name&lt;/code> parameter to the command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --key-name my-key ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Once the instance is up and running, we can use the &lt;code>ssh&lt;/code> command to set up an SSH connection. Assuming the instance is available under &lt;code>127.0.0.1:12862&lt;/code> (as per the LocalStack log output), use this command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>ssh -p 12862 -i key.pem root@127.0.0.1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Hint&lt;/h4>
+If the &lt;code>ssh&lt;/code> command throws an error like &amp;ldquo;Identity file not accessible&amp;rdquo; or &amp;ldquo;bad permissions&amp;rdquo;, then please make sure that the key file has a restrictive &lt;code>0400&lt;/code> permission as illustrated &lt;a href="#create-a-key-pair">here&lt;/a>.
+&lt;/div>
+&lt;/p>
 &lt;h2 id="docker-backend">Docker backend&lt;/h2>
 &lt;p>LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances.
 The Docker backend employs the &lt;a href="https://docs.docker.com/engine/">Docker Engine&lt;/a> to simulate EC2 instances.
@@ -7700,7 +7710,33 @@ This constraint is in place to prevent the host from exhausting available ports.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --group-names default&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The port mapping details are provided in the logs during the instance initialization process.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2022-12-20T19:43:44.544 INFO Instance i-1d6327abf04e31be6 port mappings &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>container -&amp;gt; host&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;8080/tcp&amp;#39;&lt;/span>: 51747, &lt;span style="color:#4e9a06">&amp;#39;22/tcp&amp;#39;&lt;/span>: 55705&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="attaching-ebs-block-devices-to-ec2-instances">Attaching EBS Block Devices to EC2 Instances&lt;/h2>
+&lt;p>A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage. This section illustrates how this functionality can be achieved with EC2 Docker instances in LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+This feature is disabled by default, please configure &lt;code>EC2_MOUNT_BLOCK_DEVICES=1&lt;/code> in your LocalStack environment to enable it.
+&lt;/div>
+&lt;p>First, we create a user data script &lt;code>init.sh&lt;/code> which creates an ext3 file system on the block device &lt;code>/ebs-dev/sda1&lt;/code> and mounts it under &lt;code>/ebs-mounted&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;gt; init.sh &amp;lt;&amp;lt;EOF
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#!/bin/bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>set -eo
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir -p /ebs-mounted
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkfs -t ext3 /ebs-dev/sda1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mount -o loop /ebs-dev/sda1 /ebs-mounted
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch /ebs-mounted/my-test-file
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>We can then start an EC2 instance, specifying a block device mapping under the device name &lt;code>/ebs-dev/sda1&lt;/code>, and pointing to our &lt;code>init.sh&lt;/code> user data script:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --image-id ami-ff0fea8310f3 --count 1 --instance-type t3.nano \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --block-device-mapping &amp;#39;{&amp;#34;DeviceName&amp;#34;:&amp;#34;/ebs-dev/sda1&amp;#34;,&amp;#34;Ebs&amp;#34;:{&amp;#34;VolumeSize&amp;#34;:10}}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --user-data file://init.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;p>Please note that, whereas real AWS uses GB for volume sizes, we use MB as the unit for &lt;code>VolumeSize&lt;/code> in the command above (to avoid creating huge files locally). Also, by default block device images are limited to 1GB in size, but this can be customized by setting the &lt;code>EC2_EBS_MAX_VOLUME_SIZE&lt;/code> config variable (defaults to &lt;code>1000&lt;/code>).&lt;/p>
+&lt;p>Once the instance is successfully started and initialized, we can first determine the container ID via &lt;code>docker ps&lt;/code>, and then list the contents of the mounted filesystem &lt;code>/ebs-mounted&lt;/code>, which should contain our test file named &lt;code>my-test-file&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker ps
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CONTAINER ID IMAGE PORTS NAMES
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>5c60cf72d84a ...:ami-ff0fea8310f3 19419-&amp;gt;22/tcp localstack-ec2...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker exec 5c60cf72d84a ls /ebs-mounted
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>my-test-file&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
 &lt;p>The LocalStack Web Application provides a Resource Browser for managing EC2 instances.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>EC2&lt;/strong> under the &lt;strong>Compute&lt;/strong> section.&lt;/p>
 &lt;img src="ec2-resource-browser.png" alt="EC2 Resource Browser" title="EC2 Resource Browser" width="900" />
