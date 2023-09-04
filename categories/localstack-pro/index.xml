@@ -3997,43 +3997,7 @@ For more information regarding the configuration of LocalStack, please check the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">volumes&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=[{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;host&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;sourcePath&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;/host/path&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>, &lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;test-volume&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">}]&lt;/span>,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Load Balancing</title><link>/user-guide/aws/elastic-load-balancing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-load-balancing/</guid><description>
-&lt;p>LocalStack Pro supports Elastic Load Balancing operations for both version 1 and 2.&lt;/p>
-&lt;p>Application load balancers also support request forwarding to IP address and Lambda targets.&lt;/p>
-&lt;h3 id="ip-targets">IP Targets&lt;/h3>
-&lt;p>This example illustrates a load balancer configured for an IP target.&lt;/p>
-&lt;p>Start an HTTP server which will serve as the target of our load balancer.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker run --rm -itd -p 5678:80 ealen/echo-server&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Create the load balancer, target group and register the target, which is the above Docker container in this case.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>subnet=$(awslocal ec2 describe-subnets --filters Name=availability-zone,Values=us-east-1f | jq -r &amp;#39;.Subnets[].SubnetId&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>loadBalancer=$(awslocal elbv2 create-load-balancer --name example-lb --subnets $subnet \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq -r &amp;#39;.LoadBalancers[]|.LoadBalancerArn&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>targetGroup=$(awslocal elbv2 create-target-group --name example-target-group --protocol HTTP --target-type ip \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq -r &amp;#39;.TargetGroups[].TargetGroupArn&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elbv2 register-targets --targets Id=127.0.0.1,Port=5678,AvailabilityZone=all --target-group-arn $targetGroup&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Create a listener and a rule so that incoming requests are forwarded to the target.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>listenerArn=$(awslocal elbv2 create-listener \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --default-actions &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;forward&amp;#34;,&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;&amp;#39;$targetGroup&amp;#39;&amp;#34;,&amp;#34;ForwardConfig&amp;#34;:{&amp;#34;TargetGroups&amp;#34;:[{&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;&amp;#39;$targetGroup&amp;#39;&amp;#34;,&amp;#34;Weight&amp;#34;:11}]}}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --load-balancer-arn $loadBalancer | jq -r &amp;#39;.Listeners[]|.ListenerArn&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>listenerRule=$(awslocal elbv2 create-rule \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --conditions Field=path-pattern,Values=/ \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --priority 1 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --actions &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;forward&amp;#34;,&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;&amp;#39;$targetGroup&amp;#39;&amp;#34;,&amp;#34;ForwardConfig&amp;#34;:{&amp;#34;TargetGroups&amp;#34;:[{&amp;#34;TargetGroupArn&amp;#34;:&amp;#34;&amp;#39;$targetGroup&amp;#39;&amp;#34;,&amp;#34;Weight&amp;#34;:11}]}}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --listener-arn $listenerArn \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | jq -r &amp;#39;.Rules[].RuleArn&amp;#39;)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Finally, we issue an HTTP request to the &lt;code>DNSName&lt;/code> parameter of &lt;code>CreateLoadBalancer&lt;/code> operation, and &lt;code>Port&lt;/code> parameter of &lt;code>CreateListener&lt;/code> command.
-In the above example, these parameters are filtered using &lt;code>jq&lt;/code>.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl example-lb.elb.localhost.localstack.cloud:4566
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;host&amp;#34;:{&amp;#34;hostname&amp;#34;:&amp;#34;...&amp;#34;},&amp;#34;http&amp;#34;:{&amp;#34;method&amp;#34;:&amp;#34;GET&amp;#34;,&amp;#34;baseUrl&amp;#34;:&amp;#34;&amp;#34;,&amp;#34;originalUrl&amp;#34;:&amp;#34;/&amp;#34;,&amp;#34;protocol&amp;#34;:&amp;#34;http&amp;#34;},...}}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="limitations">Limitations&lt;/h3>
-&lt;ul>
-&lt;li>The Aplication Load Balancer currently supports only the &lt;code>forward&lt;/code> and &lt;code>redirect&lt;/code> action types.&lt;/li>
-&lt;li>When opting for Route53 CNAMEs to direct requests towards the ALBs, it&amp;rsquo;s important to remember that explicit configuration of the &lt;code>Host&lt;/code> header to match the resource record might be necessary while making calls.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Elastic MapReduce (EMR)</title><link>/user-guide/aws/elastic-mapreduce/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-mapreduce/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic MapReduce (EMR)</title><link>/user-guide/aws/elastic-mapreduce/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-mapreduce/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Amazon EMR (Elastic MapReduce) is a fully managed big data processing service that allows developers to effortlessly create, deploy, and manage big data applications. EMR supports various big data processing frameworks, including Hadoop MapReduce, Apache Spark, Apache Hive, and Apache Pig. Developers can leverage these frameworks and their rich ecosystem of tools and libraries to perform complex data transformations, machine learning tasks, and real-time data processing.&lt;/p>
 &lt;p>LocalStack Pro supports EMR and allows developers to run data analytics workloads locally. EMR utilizes various tools in the &lt;a href="https://hadoop.apache.org/">Hadoop&lt;/a> and &lt;a href="https://spark.apache.org">Spark&lt;/a> ecosystem, and your EMR instance is automatically configured to connect seamlessly to LocalStack&amp;rsquo;s S3 API. LocalStack also supports EMR Serverless to create applications and job runs, to run your Spark/PySpark jobs locally.&lt;/p>
