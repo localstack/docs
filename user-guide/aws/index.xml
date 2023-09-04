@@ -4750,67 +4750,174 @@ Assuming you have &lt;a href="/user-guide/integrations/aws-cli/">&lt;code>awsloc
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-id function:events-example:BLUE \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-name scaling-policy --policy-type TargetTrackingScaling \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --target-tracking-scaling-policy-configuration &amp;#39;{ &amp;#34;TargetValue&amp;#34;: 50.0, &amp;#34;PredefinedMetricSpecification&amp;#34;: { &amp;#34;PredefinedMetricType&amp;#34;: &amp;#34;predefinedmetric&amp;#34; }}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: AppSync</title><link>/user-guide/aws/appsync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/appsync/</guid><description>
-&lt;p>Basic support for AppSync is included in LocalStack Pro. The local AppSync API allows you to spin up local GraphQL APIs and directly expose your data sources (e.g., DynamoDB tables) to external clients.&lt;/p>
-&lt;h2 id="example-appsync-api-with-dynamodb-data-source">Example AppSync API with DynamoDB data source&lt;/h2>
-&lt;p>For example, you can create a DynamoDB table &lt;code>&amp;quot;posts&amp;quot;&lt;/code> with a key attribute &lt;code>id&lt;/code>, and define a GraphQL schema in a file &lt;code>schema.graphql&lt;/code> like this:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>schema {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> query: Query
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>type Query {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> getPosts: [Post!]!
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>type Post {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> id: DDBString!
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>type DDBString {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> S: String!
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&amp;hellip; and then use the AppSync API (or CloudFormation) to create the following entities:&lt;/p>
-&lt;ol>
-&lt;li>a GraphQL API&lt;/li>
-&lt;li>a data source of type &lt;code>AMAZON_DYNAMODB&lt;/code> that references the &lt;code>&amp;quot;posts&amp;quot;&lt;/code> DynamoDB table&lt;/li>
-&lt;li>a request mapping template with a content like this:&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;version&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2017-02-28&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;operation&amp;#34;&lt;/span> &lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Scan&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="4">
-&lt;li>a response mapping template with a content like this:&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">$util&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">toJson&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">$context&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Items&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once things have been wired up properly, and assuming the ID of your GraphQL API is &lt;code>&amp;quot;api123&amp;quot;&lt;/code>, you should be able to run the following GraphQL query to retrieve all items from the &lt;code>&amp;quot;posts&amp;quot;&lt;/code> DynamoDB table:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -d &amp;#39;{&amp;#34;query&amp;#34;:&amp;#34;query {getPosts{id{S}}}&amp;#34;}&amp;#39; http://localhost:4605/graphql/api123&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>For more details, please refer to the self-contained sample published in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/appsync-graphql-api">this Github repository&lt;/a>.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>AppSync is a managed service provided by Amazon Web Services (AWS) that enables you to create serverless GraphQL APIs to query databases, microservices, and other APIs. AppSync allows you to define your data models and business logic using a declarative approach, and connect to various data sources, including other AWS services, relational databases, and custom data sources.&lt;/p>
+&lt;p>LocalStack supports AppSync via the Pro/Team offering, allowing you to use the AppSync APIs in your local environment to connect your applications and services to data and events. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_appsync/">API coverage page&lt;/a>, which provides information on the extent of AppSync&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to AppSync and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an AppSync API with a DynamoDB data source using the AWS CLI.&lt;/p>
+&lt;h3 id="create-a-dynamodb-table">Create a DynamoDB table&lt;/h3>
+&lt;p>You can create a DynamoDB table using the &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html">&lt;code>CreateTable&lt;/code>&lt;/a> API. Execute the following command to create a table named &lt;code>DynamoDBNotesTable&lt;/code> with a primary key named &lt;code>NoteId&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb create-table \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --table-name DynamoDBNotesTable \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-definitions AttributeName=NoteId,AttributeType=S \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --key-schema AttributeName=NoteId,KeyType=HASH \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --billing-mode PAY_PER_REQUEST&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>After the table is created, you can use the &lt;a href="https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_ListTables.html">&lt;code>ListTables&lt;/code>&lt;/a> API. Run the following command to list all tables in your running LocalStack container:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb list-tables&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;TableNames&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;DynamoDBNotesTable&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-graphql-api">Create a GraphQL API&lt;/h3>
+&lt;p>You can create a GraphQL API using the &lt;a href="https://docs.aws.amazon.com/appsync/latest/APIReference/API_CreateGraphqlApi.html">&lt;code>CreateGraphqlApi&lt;/code>&lt;/a> API. Execute the following command to create a GraphQL API named &lt;code>NotesApi&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync create-graphql-api \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name NotesApi \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --authentication-type API_KEY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;graphqlApi&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;NotesApi&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;apiId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;014d18d0c2b149ee8b66f39173&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;authenticationType&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;API_KEY&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:appsync:us-east-1:000000000000:apis/014d18d0c2b149ee8b66f39173&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;uris&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;GRAPHQL&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566/graphql/014d18d0c2b149ee8b66f39173&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;REALTIME&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ws://localhost:4510/graphql/014d18d0c2b149ee8b66f39173&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;tags&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;xrayEnabled&amp;#34;&lt;/span>: &lt;span style="color:#204a87">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can now create an API key for your GraphQL API using the &lt;a href="https://docs.aws.amazon.com/appsync/latest/APIReference/API_CreateApiKey.html">&lt;code>CreateApiKey&lt;/code>&lt;/a> API. Execute the following command to create an API key for your GraphQL API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync create-api-key \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --api-id 014d18d0c2b149ee8b66f39173&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;apiKey&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;id&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;31d94a05&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;expires&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">1693551600&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-graphql-schema">Create a GraphQL schema&lt;/h3>
+&lt;p>Create a file named &lt;code>schema.graphql&lt;/code> with the following content:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-graphql" data-lang="graphql">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">type&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Note&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">NoteId&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">ID&lt;/span>&lt;span style="color:#000;font-weight:bold">!&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">title&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">content&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">type&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">PaginatedNotes&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">notes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#000">Note&lt;/span>&lt;span style="color:#000;font-weight:bold">!]!&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">nextToken&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">type&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Query&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">allNotes&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">limit&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Int&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">nextToken&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">PaginatedNotes&lt;/span>&lt;span style="color:#000;font-weight:bold">!&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">getNote&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">NoteId&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">ID&lt;/span>&lt;span style="color:#000;font-weight:bold">!):&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Note&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">type&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Mutation&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">saveNote&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">NoteId&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">ID&lt;/span>&lt;span style="color:#000;font-weight:bold">!,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">title&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">!,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">content&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">String&lt;/span>&lt;span style="color:#000;font-weight:bold">!):&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Note&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">deleteNote&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">NoteId&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">ID&lt;/span>&lt;span style="color:#000;font-weight:bold">!):&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Note&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">type&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Schema&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">query&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Query&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">mutation&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Mutation&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can start the schema creation process using the &lt;a href="https://docs.aws.amazon.com/appsync/latest/APIReference/API_StartSchemaCreation.html">&lt;code>StartSchemaCreation&lt;/code>&lt;/a> API. Execute the following command to start the schema creation process:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync start-schema-creation \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --api-id 014d18d0c2b149ee8b66f39173 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --definition file://schema.graphql&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-data-source">Create a data source&lt;/h3>
+&lt;p>You can create a data source using the &lt;a href="https://docs.aws.amazon.com/appsync/latest/APIReference/API_CreateDataSource.html">&lt;code>CreateDataSource&lt;/code>&lt;/a> API. Execute the following command to create a data source named &lt;code>DynamoDBNotesTable&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync create-data-source \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name AppSyncDB \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --api-id 014d18d0c2b149ee8b66f39173 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --type AMAZON_DYNAMODB \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --dynamodb-config tableName=DynamoDBNotesTable,awsRegion=us-east-1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;dataSource&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;dataSourceArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:appsync:us-east-1:000000000000:apis/014d18d0c2b149ee8b66f39173/datasources/AppSyncDB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;AppSyncDB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;AMAZON_DYNAMODB&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;dynamodbConfig&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;tableName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;DynamoDBNotesTable&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;awsRegion&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-resolver">Create a resolver&lt;/h3>
+&lt;p>You can create a resolver using the &lt;a href="https://github.com/localstack/docs/pull/782">&lt;code>CreateResolver&lt;/code>&lt;/a> API. You can create a custom &lt;code>request-mapping-template.vtl&lt;/code> and &lt;code>response-mapping-template.vtl&lt;/code> file to use as a mapping template to use for requests and responses respectively. Execute the following command to create a VTL resolver attached to the &lt;code>PaginatedNotes.notes&lt;/code> field:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync create-resolver \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --api-id 014d18d0c2b149ee8b66f39173 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --type Query \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --field PaginatedNotes.notes \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --data-source-name AppSyncDB \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --request-mapping-template file://request-mapping-template.vtl \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --response-mapping-template file://response-mapping-template.vtl&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="custom-graphql-api-ids">Custom GraphQL API IDs&lt;/h2>
-&lt;p>It is possible to use a predefined ID when creating GraphQL APIs by setting the tag &lt;code>_custom_id_&lt;/code>.
-For example:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync create-graphql-api --name my-api --authentication-type API_KEY --tags _custom_id_=faceb00c
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;graphqlApi&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;my-api&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;apiId&amp;#34;: &amp;#34;faceb00c&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;authenticationType&amp;#34;: &amp;#34;API_KEY&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;arn&amp;#34;: &amp;#34;arn:aws:appsync:us-east-1:000000000000:apis/my-api&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;uris&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;GRAPHQL&amp;#34;: &amp;#34;http://localhost:4566/graphql/faceb00c&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;REALTIME&amp;#34;: &amp;#34;ws://localhost:4510/graphql/faceb00c&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;tags&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;_custom_id_&amp;#34;: &amp;#34;faceb00c&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="graphql-resolvers">GraphQL Resolvers&lt;/h2>
-&lt;p>LocalStack currently provides support for the following &lt;a href="https://docs.aws.amazon.com/appsync/latest/devguide/tutorials.html">AppSync resolver types&lt;/a>:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>AMAZON_DYNAMODB&lt;/code> - for accessing DynamoDB tables&lt;/li>
-&lt;li>&lt;code>RELATIONAL_DATABASE&lt;/code> - for accessing RDS database tables&lt;/li>
-&lt;li>&lt;code>AWS_LAMBDA&lt;/code> - for retrieving data from Lambda function invocations&lt;/li>
-&lt;li>&lt;code>HTTP&lt;/code> - for calling HTTP endpoints to fetch data&lt;/li>
-&lt;li>&lt;code>NONE&lt;/code> - for pass-through resolver mapping templates that return the incoming payload&lt;/li>
-&lt;/ul>
-&lt;h2 id="graphql-endpoints">GraphQL Endpoints&lt;/h2>
+&lt;p>You can employ a pre-defined ID during the creation of GraphQL APIs by utilizing the special tag &lt;code>_custom_id_&lt;/code>. For example, the following command will create a GraphQL API with the ID &lt;code>faceb00c&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal appsync create-graphql-api \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name my-api \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --authentication-type API_KEY \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --tags _custom_id_=faceb00c&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;graphqlApi&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;my-api&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;apiId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;faceb00c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;authenticationType&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;API_KEY&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:appsync:us-east-1:000000000000:apis/my-api&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;uris&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;GRAPHQL&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566/graphql/faceb00c&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;REALTIME&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ws://localhost:4510/graphql/faceb00c&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;tags&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;_custom_id_&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;faceb00c&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="graphql-data-sources">GraphQL Data sources&lt;/h2>
+&lt;p>LocalStack supports the following data source types types and services:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Resolver Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>AMAZON_DYNAMODB&lt;/code>&lt;/td>
+&lt;td>Provides access to DynamoDB tables.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>RELATIONAL_DATABASE&lt;/code>&lt;/td>
+&lt;td>Provides access to RDS database tables.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>AWS_LAMBDA&lt;/code>&lt;/td>
+&lt;td>Allows retrieval of data from Lambda function invocations.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>HTTP&lt;/code>&lt;/td>
+&lt;td>Enables calling HTTP endpoints to fetch data.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>NONE&lt;/code>&lt;/td>
+&lt;td>Used for pass-through resolver mapping templates returning input data.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="graphql-resolvers">GraphQL resolvers&lt;/h2>
+&lt;p>LocalStack&amp;rsquo;s AppSync offers support for both unit and pipeline resolvers, as detailed in the &lt;a href="https://docs.aws.amazon.com/appsync/latest/devguide/resolver-components.html">AWS resolvers documentation&lt;/a>. Unit resolvers consist of request and response mapping templates, facilitating the transformation of requests to and from data sources.&lt;/p>
+&lt;p>Pipeline resolvers, on the other hand, invoke AppSync functions that wraps the AppSync data sources. Unit resolvers are written in the Velocity templating language (VTL), while pipeline resolvers can be written in either VTL or JavaScript.&lt;/p>
+&lt;h2 id="configuring-graphql-endpoints">Configuring GraphQL Endpoints&lt;/h2>
 &lt;p>There are three configurable strategies that govern how GraphQL API endpoints are created. The strategy can be configured via the &lt;code>GRAPHQL_ENDPOINT_STRATEGY&lt;/code> environment variable.&lt;/p>
 &lt;table>
 &lt;thead>
@@ -4824,20 +4931,41 @@ For example:&lt;/p>
 &lt;tr>
 &lt;td>&lt;code>domain&lt;/code>&lt;/td>
 &lt;td>&lt;code>&amp;lt;api-id&amp;gt;.appsync-api.localhost.localstack.cloud:4566&lt;/code>&lt;/td>
-&lt;td>This will be the default strategy in the future that uses the &lt;code>localhost.localstack.cloud&lt;/code> domain to route to your localhost&lt;/td>
+&lt;td>This strategy, slated to be the future default, uses the &lt;code>localhost.localstack.cloud&lt;/code> domain to route to your localhost.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>path&lt;/code>&lt;/td>
 &lt;td>&lt;code>localhost:4566/appsync-api/&amp;lt;api-id&amp;gt;/graphql&lt;/code>&lt;/td>
-&lt;td>An alternative that can be useful if you cannot resolve LocalStack&amp;rsquo;s localhost domain&lt;/td>
+&lt;td>An alternative strategy that can be beneficial if you&amp;rsquo;re unable to resolve LocalStack&amp;rsquo;s &lt;code>localhost&lt;/code> domain.&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>&lt;code>legacy&lt;/code>&lt;/td>
 &lt;td>&lt;code>localhost:4566/graphql/&amp;lt;api-id&amp;gt;&lt;/code>&lt;/td>
-&lt;td>The old shape of the endpoint, which is currently the default but will be phased out&lt;/td>
+&lt;td>This strategy represents the old endpoint format, which is currently the default but will eventually be phased out.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>User-Guide: Athena</title><link>/user-guide/aws/athena/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/athena/</guid><description>
+&lt;/table>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing AppSync APIs, Data Sources, Schema, Query, Types, Resolvers, Functions and API keys. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>AppSync&lt;/strong> under the &lt;strong>App Integration&lt;/strong> section.&lt;/p>
+&lt;img src="appsync-resource-browser.png" alt="AppSync Resource Browser" title="AppSync Resource Browser" width="900" />
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create API&lt;/strong>: Create a new GraphQL API by clicking &lt;strong>Create API&lt;/strong> and providing a name for the API, Authentication Type, and optional tags among other parameters.&lt;/li>
+&lt;li>&lt;strong>Edit API&lt;/strong>: Click on the GraphQL API name and click &lt;strong>Edit API&lt;/strong> to edit the GraphQL API, by updating the parameters before clicking &lt;strong>Submit&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Create Data Source&lt;/strong>: Click on the GraphQL API name and click &lt;strong>Data Source&lt;/strong>. Click on &lt;strong>Create Data Source&lt;/strong> to create a new data source for the GraphQL API, by providing a name for the data source, data source type, and Service Role ARN before clicking &lt;strong>Submit&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Edit Data Source&lt;/strong>: Click on the GraphQL API name and click &lt;strong>Data Source&lt;/strong>. Click on the data source name and click &lt;strong>Edit Data Source&lt;/strong> to edit the data source, by updating the parameters before clicking &lt;strong>Submit&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Create Types&lt;/strong>: Click on the GraphQL API name and click &lt;strong>Types&lt;/strong>. Click on &lt;strong>Create Type&lt;/strong> to create a type definition, in GraphQL Schema Definition Language (SDL) format, before clicking &lt;strong>Submit&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Create API Key&lt;/strong>: Click on the GraphQL API name and click &lt;strong>API Keys&lt;/strong>. Click on &lt;strong>Create API Key&lt;/strong> to create an API key for the GraphQL API, by providing a description for the API key and its expiration time before clicking &lt;strong>Submit&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>View and edit Schema&lt;/strong>: Click on the GraphQL API name and click &lt;strong>Schema&lt;/strong>. You can view the GraphQL schema, and edit the GraphQL schema, in GraphQL Schema Definition Language (SDL) format, before clicking &lt;strong>Update&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Query&lt;/strong>: Click on the GraphQL API name and click &lt;strong>Query&lt;/strong>. You can query the GraphQL API by providing the GraphQL query and variables, including the operation and API key, before clicking &lt;strong>Execute&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Attach Resolver&lt;/strong>: Click on the GraphQL API name and click &lt;strong>Resolvers&lt;/strong>. Click on &lt;strong>Attach Resolver&lt;/strong> to attach a resolver to a field, by providing the field name, data source name, Request Mapping Template, Response Mapping Template, among other parameters, before clicking &lt;strong>Submit&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>Create Function&lt;/strong>: Click on the GraphQL API name and click &lt;strong>Functions&lt;/strong>. Click on &lt;strong>Create Function&lt;/strong> to create a function, by providing a name for the function, data source name, and Function Version, Request Mapping Template, Response Mapping Template, among other parameters, before clicking &lt;strong>Submit&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use AppSync in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/appsync-graphql-api-sample">AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Athena</title><link>/user-guide/aws/athena/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/athena/</guid><description>
 &lt;p>LocalStack Pro ships with built-in support for &lt;a href="https://aws.amazon.com/athena">Athena&lt;/a>, Amazon&amp;rsquo;s serverless data warehouse and analytics platform.
 Athena uses &lt;a href="https://prestodb.github.io">Presto&lt;/a>/&lt;a href="https://trino.io">Trino&lt;/a> under the covers, and your Athena instance will be automatically configured with a Hive metastore that connects seamlessly to the LocalStack S3 API.
 That is, you can easily connect your local S3 buckets and query data directly from S3 via the powerful Athena query API.&lt;/p>
