@@ -7,7 +7,7 @@ description: >
 
 ## Introduction
 
-LocalStack provides local cloud services, such as [OpenSearch]({{< ref "opensearch" >}}) or [Elasticsearch]({{< ref "elasticsearch" >}}), which utilize external software bound to specific ports.
+LocalStack provides local cloud services, such as [OpenSearch]({{< ref "opensearch" >}}) or [Elasticsearch]({{< ref "elasticsearch" >}}), which might utilize external software bound to specific ports.
 This documentation discusses two approaches to access these external services within LocalStack and explores the concept of an _external service port range_.
 
 ## Proxy Functionality for External Services
@@ -46,3 +46,4 @@ $ GATEWAY_LISTEN=0.0.0.0:4766 EXTERNAL_SERVICE_PORTS_START=4710 EXTERNAL_SERVICE
 {{< /command >}}
 
 By customizing the `GATEWAY_LISTEN` and `EXTERNAL_SERVICE_PORTS_START`/`EXTERNAL_SERVICE_PORTS_END` values for each instance, you can ensure that they operate on distinct port ranges, preventing any conflicts and enabling smooth execution of multiple LocalStack instances.
+Please make sure to set `MAIN_CONTAINER_NAME` for following usages of the LocalStack CLI to specify which instance of LocalStack you want to address with the specific CLI command.
