@@ -169,7 +169,9 @@ Once the instance is up and running, we can use the `ssh` command to set up an S
 {{< command >}}
 $ ssh -p 12862 -i ~/.ssh/id_rsa root@127.0.0.1
 {{< /command >}}
-
+{{< alert title="Hint" color="info">}}
+If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
+{{< /alert >}}
 ## Docker backend
 
 LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances.
