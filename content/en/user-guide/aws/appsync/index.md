@@ -163,6 +163,20 @@ The following output would be retrieved:
 }
 ```
 
+### Create a resolver
+
+You can create a resolver using the [`CreateResolver`](https://github.com/localstack/docs/pull/782) API. You can create a custom `request-mapping-template.vtl` and `response-mapping-template.vtl` file to use as a mapping template to use for requests and responses respectively. Execute the following command to create a VTL resolver attached to the `PaginatedNotes.notes` field:
+
+{{< command >}}
+$ awslocal appsync create-resolver \
+    --api-id 014d18d0c2b149ee8b66f39173 \
+    --type Query \
+    --field PaginatedNotes.notes \
+    --data-source-name AppSyncDB \
+    --request-mapping-template file://request-mapping-template.vtl \
+    --response-mapping-template file://response-mapping-template.vtl
+{{< /command >}}
+
 ## Custom GraphQL API IDs
 
 You can employ a pre-defined ID during the creation of GraphQL APIs by utilizing the special tag `_custom_id_`. For example, the following command will create a GraphQL API with the ID `faceb00c`:
@@ -194,17 +208,23 @@ The following output would be retrieved:
 }
 ```
 
-## GraphQL Resolvers
+## GraphQL Data sources
 
-These data sources are available in [AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/tutorials.html) and can be configured to interact with various AWS and external services. LocalStack Pro supports the following data source types:
+LocalStack supports the following data source types types and services:
 
-| Data source         | Description                                                            |
+| Resolver Type         | Description                                                            |
 | --------------------- | ---------------------------------------------------------------------- |
 | `AMAZON_DYNAMODB`     | Provides access to DynamoDB tables.                                    |
 | `RELATIONAL_DATABASE` | Provides access to RDS database tables.                                |
 | `AWS_LAMBDA`          | Allows retrieval of data from Lambda function invocations.             |
 | `HTTP`                | Enables calling HTTP endpoints to fetch data.                          |
 | `NONE`                | Used for pass-through resolver mapping templates returning input data. |
+
+## GraphQL resolvers
+
+LocalStack's AppSync offers support for both unit and pipeline resolvers, as detailed in the [AWS resolvers documentation](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-components.html). Unit resolvers consist of request and response mapping templates, facilitating the transformation of requests to and from data sources.
+
+Pipeline resolvers, on the other hand, invoke AppSync functions that wraps the AppSync data sources. Unit resolvers are written in the Velocity templating language (VTL), while pipeline resolvers can be written in either VTL or JavaScript.
 
 ## Configuring GraphQL Endpoints
 
