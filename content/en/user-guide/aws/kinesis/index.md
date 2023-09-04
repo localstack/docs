@@ -149,7 +149,7 @@ $ awslocal lambda create-event-source-mapping \
 You can test the event source mapping by adding a record to the Kinesis Stream using the [`PutRecord`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html) API. Run the following command to add a record to the Kinesis Stream:
 
 {{< command >}}
-awslocal kinesis put-record \
+$ awslocal kinesis put-record \
     --stream-name lambda-stream \
     --partition-key 1 \
     --data "Hello, this is a test."
