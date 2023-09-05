@@ -16,7 +16,7 @@ aliases:
 
 Crossplane offers a native [AWS provider](https://github.com/upbound/provider-aws) which can be used to create and manage AWS cloud resources via the Crossplane platform.
 For example, it can be used to create S3 buckets, SQS queues, Lambda functions, among many other resources.
-At the time of writing, the Crossplane AWS provider supports a comprehensive set of some [900+ resource types](https://marketplace.upbound.io/providers/upbound/provider-aws).
+Crossplane AWS provider supports a comprehensive set of some [900+ resource types](https://marketplace.upbound.io/providers/upbound/provider-aws).
 
 ## Tutorial: Creating AWS resources in LocalStack via Crossplane
 
