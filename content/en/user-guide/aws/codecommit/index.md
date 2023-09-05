@@ -9,19 +9,25 @@ aliases:
 
 ## Introduction
 
-CodeCommit is a managed source control service by AWS that enables developers to store and collaborate on their code repositories. With CodeCommit, you can host private Git repositories with integrations to other AWS services. You can also use standard Git commands or CodeCommit APIs (using AWS CLI or SDKs) to manage your repositories. CodeCommit also uses identity-based policies, which can be attached to IAM users, groups, and roles, ensuring secure and granular access control.
+CodeCommit is a managed source control service by AWS that enables developers to store and collaborate on their code repositories.
+With CodeCommit, you can host private Git repositories with integrations to other AWS services.
+You can also use standard Git commands or CodeCommit APIs (using AWS CLI or SDKs) to manage your repositories.
+CodeCommit also uses identity-based policies, which can be attached to IAM users, groups, and roles, ensuring secure and granular access control.
 
-LocalStack supports CodeCommit via the Pro/Team offering, allowing you to use the CodeCommit APIs in your local environment to create new repositories, push your commits, and manage the repositories. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_codecommit/), which provides information on the extent of CodeCommit's integration with LocalStack.
+LocalStack supports CodeCommit via the Pro/Team offering, allowing you to use the CodeCommit APIs in your local environment to create new repositories, push your commits, and manage the repositories.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_codecommit/), which provides information on the extent of CodeCommit's integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to CodeCommit and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Start your LocalStack container using your preferred method. We will demonstrate how you can create a CodeCommit repository, clone a repository, and push a commit to the repository.
+Start your LocalStack container using your preferred method.
+We will demonstrate how you can create a CodeCommit repository, clone a repository, and push a commit to the repository.
 
 ### Create a repository
 
-You can use the [`CreateRepository`](https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateRepository.html) API to create a repository. You need to specify the repository name, repository description, and tags. 
+You can use the [`CreateRepository`](https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateRepository.html) API to create a repository.
+You need to specify the repository name, repository description, and tags.
 
 Run the following command to create a new repository named `localstack-repo`:
 
@@ -51,7 +57,9 @@ If successful, the command will return the following output:
 
 ### Clone a repository
 
-Next, you can clone the CodeCommit repository to a local directory. To do so, you can use the [`git clone`](https://git-scm.com/docs/git-clone) command. The repository URL is the `cloneUrlHttp` value returned by the `CreateRepository` API.
+Next, you can clone the CodeCommit repository to a local directory.
+To do so, you can use the [`git clone`](https://git-scm.com/docs/git-clone) command.
+The repository URL is the `cloneUrlHttp` value returned by the `CreateRepository` API.
 
 Run the following command to clone the repository to a local directory named `localstack-repo`:
 
@@ -59,11 +67,15 @@ Run the following command to clone the repository to a local directory named `lo
 $ git clone git://localhost:4510/localstack-repo
 {{< /command >}}
 
-You will notice that the repository is empty. This is because we have not pushed any commits to the repository yet.
+You will notice that the repository is empty.
+This is because we have not pushed any commits to the repository yet.
 
 ### Push a commit
 
-Create a new file named `README.md` in the `localstack-repo` directory. Add some content to the file and save it. You can use [`git add`](https://git-scm.com/docs/git-add) to add the file to the staging area, followed by [`git commit`](https://git-scm.com/docs/git-commit) with a commit message, to commit the file to the repository. Then, you can use [`git commit`](https://git-scm.com/docs/git-commit) to commit the file to the repository.
+Create a new file named `README.md` in the `localstack-repo` directory.
+Add some content to the file and save it.
+You can use [`git add`](https://git-scm.com/docs/git-add) to add the file to the staging area, followed by [`git commit`](https://git-scm.com/docs/git-commit) with a commit message, to commit the file to the repository.
+Then, you can use [`git commit`](https://git-scm.com/docs/git-commit) to commit the file to the repository.
 
 Run the following command to push the file to the repository:
 
