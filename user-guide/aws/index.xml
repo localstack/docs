@@ -6872,9 +6872,61 @@ For CloudFront to function properly, ensure your local DNS setup is correctly co
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cloudwatch-metrics-aws">Creating Cloudwatch metric alarms&lt;/a> to demonstrate a simple example for creating CloudWatch metric alarm based on the metrics of a failing Lambda function.&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/event-driven-architecture-with-amazon-sns-fifo">Event-driven architecture with Amazon SNS FIFO, DynamoDB, Lambda, and S3&lt;/a> to deploy a recruiting agency application with a job listings website and view the CloudWatch logs.&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: CodeCommit</title><link>/user-guide/aws/codecommit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/codecommit/</guid><description>
-&lt;p>LocalStack Pro contains basic support for CodeCommit code repositories. The CodeCommit API can be used to create Git repositories, clone these repos to local folders, push commits with changes, etc.&lt;/p>
-&lt;p>A simple example has been added in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/codecommit-git-repo">this Github repository&lt;/a>. The sample creates an Git repository via the AWS CodeCommit API locally, commits and pushes a test file to the repository, and then checks out the file in a fresh clone of the repository.&lt;/p>
-&lt;p>Please note that CodeCommit is a fairly large API and currently not all methods are supported yet, but we are actively extending the implementation on an ongoing basis.&lt;/p></description></item><item><title>User-Guide: Cognito</title><link>/user-guide/aws/cognito/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cognito/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>CodeCommit is a managed source control service by AWS that enables developers to store and collaborate on their code repositories.
+With CodeCommit, you can host private Git repositories with integrations to other AWS services.
+You can also use standard Git commands or CodeCommit APIs (using AWS CLI or SDKs) to manage your repositories.
+CodeCommit also uses identity-based policies, which can be attached to IAM users, groups, and roles, ensuring secure and granular access control.&lt;/p>
+&lt;p>LocalStack supports CodeCommit via the Pro/Team offering, allowing you to use the CodeCommit APIs in your local environment to create new repositories, push your commits, and manage the repositories.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_codecommit/">API coverage page&lt;/a>, which provides information on the extent of CodeCommit&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to CodeCommit and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how you can create a CodeCommit repository, clone a repository, and push a commit to the repository.&lt;/p>
+&lt;h3 id="create-a-repository">Create a repository&lt;/h3>
+&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/codecommit/latest/APIReference/API_CreateRepository.html">&lt;code>CreateRepository&lt;/code>&lt;/a> API to create a repository.
+You need to specify the repository name, repository description, and tags.&lt;/p>
+&lt;p>Run the following command to create a new repository named &lt;code>localstack-repo&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal codecommit create-repository \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --repository-name localstack-repo \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --repository-description &amp;#34;A demo repository to showcase LocalStack&amp;#39;s CodeCommit&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --tags Team=LocalStack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If successful, the command will return the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;repositoryMetadata&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;repositoryId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;REPOSITORY_ID&amp;gt;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;repositoryName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;localstack-repo&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;repositoryDescription&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;A demo repository to showcase LocalStack&amp;#39;s CodeCommit&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;lastModifiedDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;TIMESTAMP&amp;gt;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;creationDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;&amp;lt;TIMESTAMP&amp;gt;&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;cloneUrlHttp&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;git://localhost:4510/localstack-repo&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;cloneUrlSsh&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;git://localhost:4510/localstack-repo&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:codecommit:us-east-1:000000000000:localstack-repo&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="clone-a-repository">Clone a repository&lt;/h3>
+&lt;p>Next, you can clone the CodeCommit repository to a local directory.
+To do so, you can use the &lt;a href="https://git-scm.com/docs/git-clone">&lt;code>git clone&lt;/code>&lt;/a> command.
+The repository URL is the &lt;code>cloneUrlHttp&lt;/code> value returned by the &lt;code>CreateRepository&lt;/code> API.&lt;/p>
+&lt;p>Run the following command to clone the repository to a local directory named &lt;code>localstack-repo&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git clone git://localhost:4510/localstack-repo&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You will notice that the repository is empty.
+This is because we have not pushed any commits to the repository yet.&lt;/p>
+&lt;h3 id="push-a-commit">Push a commit&lt;/h3>
+&lt;p>Create a new file named &lt;code>README.md&lt;/code> in the &lt;code>localstack-repo&lt;/code> directory.
+Add some content to the file and save it.
+You can use &lt;a href="https://git-scm.com/docs/git-add">&lt;code>git add&lt;/code>&lt;/a> to add the file to the staging area, followed by &lt;a href="https://git-scm.com/docs/git-commit">&lt;code>git commit&lt;/code>&lt;/a> with a commit message, to commit the file to the repository.
+Then, you can use &lt;a href="https://git-scm.com/docs/git-commit">&lt;code>git commit&lt;/code>&lt;/a> to commit the file to the repository.&lt;/p>
+&lt;p>Run the following command to push the file to the repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git add README.md
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git commit -m &amp;#34;Add README.md&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git push&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>If successful, this command returns output similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>To git://localhost:4510/localstack-repo
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> * &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>new branch&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> main -&amp;gt; main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>You can find a sample application illustrating the usage of the CodeCommit APIs locally in the &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/codecommit-git-repo">LocalStack Pro Samples&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Cognito</title><link>/user-guide/aws/cognito/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cognito/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Cognito is a managed identity service provided by AWS that is used for securing user authentication, authorization, and managing user identities in web and mobile applications. Cognito enables developers to add user sign-up, sign-in, and access control functionalities to their applications. Cognito supports various authentication methods, including social identity providers, SAML-based identity providers, and custom authentication flows.&lt;/p>
 &lt;p>LocalStack supports Cognito via the Pro/Team offering, allowing you to use the Cognito APIs in your local environment to manage authentication and access control for your local application and resources. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cognito-identity/">Cognito Identity coverage page&lt;/a> and &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cognito-idp/">Cognito User Pools coverage page&lt;/a>, which provides information on the extent of Cognito&amp;rsquo;s integration with LocalStack.&lt;/p>
