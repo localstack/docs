@@ -4966,57 +4966,59 @@ Assuming you have &lt;a href="/user-guide/integrations/aws-cli/">&lt;code>awsloc
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/appsync-graphql-api-sample">AppSync GraphQL APIs for DynamoDB and RDS Aurora PostgreSQL&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Athena</title><link>/user-guide/aws/athena/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/athena/</guid><description>
-&lt;p>LocalStack Pro ships with built-in support for &lt;a href="https://aws.amazon.com/athena">Athena&lt;/a>, Amazon&amp;rsquo;s serverless data warehouse and analytics platform.
-Athena uses &lt;a href="https://prestodb.github.io">Presto&lt;/a>/&lt;a href="https://trino.io">Trino&lt;/a> under the covers, and your Athena instance will be automatically configured with a Hive metastore that connects seamlessly to the LocalStack S3 API.
-That is, you can easily connect your local S3 buckets and query data directly from S3 via the powerful Athena query API.&lt;/p>
-&lt;h2 id="basic-query-execution">Basic Query Execution&lt;/h2>
-&lt;p>The following commands illustrate how to use Athena from the command line (assuming you have &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> installed):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena start-query-execution --query-string &amp;#39;SELECT 1, 2, 3&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;QueryExecutionId&amp;#34;: &amp;#34;c9f453ad&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena list-query-executions
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;QueryExecutionIds&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;c9f453ad&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena get-query-results --query-execution-id c9f453ad
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ResultSet&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Rows&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Data&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col0&amp;#34; },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col1&amp;#34; },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;_col2&amp;#34; }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Data&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;1&amp;#34; },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;2&amp;#34; },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#34;VarCharValue&amp;#34;: &amp;#34;3&amp;#34; }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ResultSetMetadata&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ColumnInfo&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col0&amp;#34;, &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col1&amp;#34;, &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;_col2&amp;#34;, &amp;#34;Type&amp;#34;: &amp;#34;integer&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UpdateCount&amp;#34;: 0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Athena is an interactive query service provided by Amazon Web Services (AWS) that enables you to analyze data stored in S3 using standard SQL queries.
+Athena allows users to create ad-hoc queries to perform data analysis, filter, aggregate, and join datasets stored in S3.
+It supports various file formats, such as JSON, Parquet, and CSV, making it compatible with a wide range of data sources.&lt;/p>
+&lt;p>LocalStack supports Athena via the Pro/Team offering, allowing you to configure the Athena APIs with a Hive metastore that can connect to the S3 API and query your data directly in your local environment.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_athena/">API coverage page&lt;/a>, which provides information on the extent of Athena&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Athena and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how to create an Athena table and run a query against it in addition to reading the results with the AWS CLI.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In order to use the Athena API, some additional dependencies have to be fetched from the network (including Presto, Hive, and other tools). These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when using Athena for the first time.
+To utilize the Athena API, LocalStack will download additional dependencies.
+This involves getting a Docker image of around 1.5GB, containing Presto, Hive, and other tools.
+These components are retrieved automatically when you initiate the service.
+To ensure a smooth initial setup, ensure you&amp;rsquo;re connected to a stable internet connection while fetching these components for the first time.
 &lt;/div>
+&lt;h3 id="create-an-s3-bucket">Create an S3 bucket&lt;/h3>
+&lt;p>You can create an S3 bucket using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html">&lt;code>mb&lt;/code>&lt;/a> command.
+Run the following command to create a bucket named &lt;code>athena-bucket&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://athena-bucket&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can create some sample data using the following commands:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#34;Name,Service&amp;#34; &amp;gt; data.csv
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#34;LocalStack,Athena&amp;#34; &amp;gt;&amp;gt; data.csv&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can upload the data to your bucket using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html">&lt;code>cp&lt;/code>&lt;/a> command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp data.csv s3://athena-bucket/data/&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-an-athena-table">Create an Athena table&lt;/h3>
+&lt;p>You can create an Athena table using the &lt;a href="https://docs.aws.amazon.com/athena/latest/APIReference/API_CreateTable.html">&lt;code>CreateTable&lt;/code>&lt;/a> API
+Run the following command to create a table named &lt;code>athena_table&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena start-query-execution \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query-string &amp;#34;create external table tbl01 (name STRING, surname STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY &amp;#39;,&amp;#39; LOCATION &amp;#39;s3://athena-bucket/data/&amp;#39;;&amp;#34; --result-configuration &amp;#34;OutputLocation=s3://athena-bucket/output/&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The following output would be retrieved:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;QueryExecutionId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;593acab7&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can retrieve information about the query execution using the &lt;a href="https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html">&lt;code>GetQueryExecution&lt;/code>&lt;/a> API.
+Run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena get-query-execution --query-execution-id 593acab7&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Replace &lt;code>593acab7&lt;/code> with the &lt;code>QueryExecutionId&lt;/code> returned by the &lt;a href="https://docs.aws.amazon.com/athena/latest/APIReference/API_StartQueryExecution.html">&lt;code>StartQueryExecution&lt;/code>&lt;/a> API.&lt;/p>
+&lt;h3 id="get-output-of-the-query">Get output of the query&lt;/h3>
+&lt;p>You can get the output of the query using the &lt;a href="https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html">&lt;code>GetQueryResults&lt;/code>&lt;/a> API.
+Run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena get-query-results --query-execution-id 593acab7&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can now read the data from the &lt;code>tbl01&lt;/code> table and retrieve the data from S3 that was mentioned in your table creation statement.
+Run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena start-query-execution \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query-string &amp;#34;select * from tbl01;&amp;#34; --result-configuration &amp;#34;OutputLocation=s3://athena-bucket/output/&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can retrieve the execution details similarly using the &lt;a href="https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryExecution.html">&lt;code>GetQueryExecution&lt;/code>&lt;/a> API using the &lt;code>QueryExecutionId&lt;/code> returned by the previous step.&lt;/p>
+&lt;p>You can copy the &lt;code>ResultConfiguration&lt;/code> from the output and use it to retrieve the results of the query.
+Run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cp s3://athena-bucket/output/593acab7.csv .
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat 593acab7.csv&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Replace &lt;code>593acab7.csv&lt;/code> with the path to the file that was present in the &lt;code>ResultConfiguration&lt;/code> of the previous step.
+You can also use the &lt;a href="https://docs.aws.amazon.com/athena/latest/APIReference/API_GetQueryResults.html">&lt;code>GetQueryResults&lt;/code>&lt;/a> API to retrieve the results of the query.&lt;/p>
 &lt;h2 id="delta-lake-tables">Delta Lake Tables&lt;/h2>
 &lt;p>LocalStack Athena supports &lt;a href="https://delta.io">Delta Lake&lt;/a>, an open-source storage framework that extends Parquet data files with a file-based transaction log for ACID transactions and scalable metadata handling.&lt;/p>
 &lt;p>To illustrate this feature, we take a sample published in the &lt;a href="https://aws.amazon.com/blogs/big-data/crawl-delta-lake-tables-using-aws-glue-crawlers">AWS blog&lt;/a>.&lt;/p>
@@ -5034,7 +5036,8 @@ We start by downloading and extracting this ZIP file:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query-string &amp;#34;CREATE EXTERNAL TABLE test (product_id string, product_name string, \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> price bigint, currency string, category string, updated_at double) \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> LOCATION &amp;#39;s3://test/&amp;#39; TBLPROPERTIES (&amp;#39;table_type&amp;#39;=&amp;#39;DELTA&amp;#39;)&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;p>Please note that this query may take some time to finish executing. You can observe the output in the LocalStack container (ideally with &lt;code>DEBUG=1&lt;/code> enabled) to follow the steps of the query execution.&lt;/p>
+&lt;p>Please note that this query may take some time to finish executing.
+You can observe the output in the LocalStack container (ideally with &lt;code>DEBUG=1&lt;/code> enabled) to follow the steps of the query execution.&lt;/p>
 &lt;p>Finally, we can now run a &lt;code>SELECT&lt;/code> query to extract data from the Delta Lake table we&amp;rsquo;ve just created:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>queryId=$(awslocal athena start-query-execution --query-string &amp;#34;SELECT * from deltalake.default.test&amp;#34; | jq -r .QueryExecutionId)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal athena get-query-results --query-execution-id $queryId&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
@@ -5069,7 +5072,24 @@ We start by downloading and extracting this ZIP file:&lt;/p>
 The &lt;code>SELECT&lt;/code> statement above currently requires us to prefix the database/table name with &lt;code>deltalake.&lt;/code> - this will be further improved in a future iteration, for better parity with AWS.
 &lt;/div>
 &lt;h2 id="iceberg-tables">Iceberg Tables&lt;/h2>
-&lt;p>The LocalStack Athena implementation also supports &lt;a href="https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html">Iceberg tables&lt;/a> - more details and samples will be provided here soon.&lt;/p></description></item><item><title>User-Guide: AWS Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
+&lt;p>The LocalStack Athena implementation also supports &lt;a href="https://docs.aws.amazon.com/athena/latest/ug/querying-iceberg-creating-tables.html">Iceberg tables&lt;/a> - more details and samples will be provided here soon.&lt;/p>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for Athena query execution, writing SQL queries, and visualizing query results.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>Athena&lt;/strong> under the &lt;strong>Analytics&lt;/strong> section.&lt;/p>
+&lt;img src="athena-resource-browser.png" alt="Athena Resource Browser" title="Athena Resource Browser" width="900" />
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>View Databases&lt;/strong>: View the databases available in your Athena instance by clicking on the &lt;strong>Databases&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>View Catalogs&lt;/strong>: View the catalogs available in your Athena instance by clicking on the &lt;strong>Catalogs&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>Edit Catalogs&lt;/strong>: Edit the catalogs available in your Athena instance by clicking on the &lt;strong>Catalog name&lt;/strong>, editing the catalog, and then clicking on the &lt;strong>Submit&lt;/strong> button.&lt;/li>
+&lt;li>&lt;strong>Create Catalogs&lt;/strong>: Create a new catalog by clicking on the &lt;strong>Create Catalog&lt;/strong> button, entering the catalog details, and then clicking on the &lt;strong>Submit&lt;/strong> button.&lt;/li>
+&lt;li>&lt;strong>Run SQL Queries&lt;/strong>: Run SQL queries by clicking on the &lt;strong>SQL&lt;/strong> button, entering the query, and then clicking on the &lt;strong>Execute&lt;/strong> button.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use Athena in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/query-data-s3-athena-glue-sample">Query data in S3 Bucket with Amazon Athena, Glue Catalog &amp;amp; CloudFormation&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: AWS Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>AWS Amplify is a JavaScript-based development framework with libraries, UI components, and a standard CLI interface for building and deploying web and mobile applications. With Amplify, developers can build and host static websites, single-page applications, and full-stack serverless web applications using an abstraction layer over popular AWS services like DynamoDB, Cognito, AppSync, Lambda, S3, and more.&lt;/p>
 &lt;p>LocalStack supports AWS Amplify via a lightweight wrapper script called &lt;code>amplifylocal&lt;/code> and an Amplify CLI Plugin. &lt;code>amplifylocal&lt;/code> enables developers to use the Amplify JS library against LocalStack&amp;rsquo;s emulated APIs, as a drop-in replacement for the standard &lt;code>amplify&lt;/code> CLI command. The Amplify CLI plugin allows the &lt;code>amplify&lt;/code> CLI tool to create resources directly on your local machine.&lt;/p>
