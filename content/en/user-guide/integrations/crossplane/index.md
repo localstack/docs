@@ -29,6 +29,8 @@ In the following, we provide a step-by-step guide for installing Crossplane in a
   * Alternatively, you can [create a local EKS cluster](https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service/#create-an-embedded-kubernetes-cluster) in LocalStack directly, which will spin up a light-weight embedded `k3d` Kubernetes cluster in your Docker environment
 * The [`helm`](https://helm.sh) and [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl) command-line clients installed
 
+## Installing Crossplane in local Kubernetes
+
 Once your `kubectl` is configured to point to the local Kubernetes cluster, we first install Crossplane via `helm`:
 {{<command>}}
 $ helm repo add crossplane-stable https://charts.crossplane.io/stable
