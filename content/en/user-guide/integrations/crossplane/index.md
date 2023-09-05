@@ -62,7 +62,7 @@ Newer versions of Crossplane promote the use of [provider families](https://docs
 For example, there is a separate provider for each individual AWS service (like S3, SQS, Lambda, etc), and in addition provider family provides shared resources for common configuration of all services (e.g., credentials, etc).
 
 In the following, we first install the AWS provider for S3.
-Please note that you can copy/paste the entire multi-line command below into your terminal:
+Note that you can copy/paste the entire multi-line command below into your terminal:
 {{<command>}}
 $ cat <<EOF | kubectl apply -f -
 apiVersion: pkg.crossplane.io/v1
