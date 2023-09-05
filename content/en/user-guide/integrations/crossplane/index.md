@@ -218,7 +218,7 @@ $ awslocal sqs list-queues<disable-copy>
 The Crossplane AWS provider is a great way to manage AWS resources, and by leveraging the `endpoint` configuration of the provider, we can seamlessly run resource deployments against LocalStack.
 
 In this tutorial, we have provided an end-to-end walkthrough of how to provision two simple resources - an S3 bucket, and an SQS queue. Crossplane supports a vast range of additional AWS resource types, as well as advanced operations like updating, deleting, or composing resources.
-Please refer to the additional reading material to learn and explore more advanced features.
+You can refer to the additional reading material to learn and explore more advanced features.
 
 ## Further Reading
 
