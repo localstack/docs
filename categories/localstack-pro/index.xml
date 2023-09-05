@@ -3783,32 +3783,7 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;li>&lt;strong>Terminate Instance&lt;/strong>: Terminate an EC2 instance by selecting the Instance ID, and clicking on the &lt;strong>ACTIONS&lt;/strong> button followed by clicking on &lt;strong>Terminate Selected&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>Start Instance&lt;/strong>: Start a stopped EC2 instance by selecting the Instance ID, and clicking on the &lt;strong>ACTIONS&lt;/strong> button followed by clicking on &lt;strong>Start Selected&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>Stop Instance&lt;/strong>: Stop a running EC2 instance by selecting the Instance ID, and clicking on the &lt;strong>ACTIONS&lt;/strong> button followed by clicking on &lt;strong>Stop Selected&lt;/strong>.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Elastic Container Registry (ECR)</title><link>/user-guide/aws/elastic-container-registry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-container-registry/</guid><description>
-&lt;p>A basic version of Elastic Container Registry (ECR) is available to store application images. ECR is often used in combination with other APIs that deploy containerized apps, like ECS or EKS.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository --repository-name repo1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repository&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repositoryArn&amp;#34;: &amp;#34;arn:aws:ecr:us-east-1:000000000000:repository/repo1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;registryId&amp;#34;: &amp;#34;abc898c8&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repositoryName&amp;#34;: &amp;#34;repo1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repositoryUri&amp;#34;: &amp;#34;localhost:4510/repo1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can then build and tag a new Docker image, and push it to the repository URL (&lt;code>localhost:4510/repo1&lt;/code> in the example above):
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat Dockerfile
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>FROM nginx
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ENV foo=bar&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker build -t localhost:4510/repo1 .
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Successfully built e2cfb3cf012d
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Successfully tagged localhost:4510/repo1:latest&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker push localhost:4510/repo1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The push refers to repository [localhost:4510/repo1]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>318be7aea8fc: Pushed
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fe08d5d042ab: Pushed
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>f2cb0ecef392: Pushed
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>latest: digest: sha256:4dd893a43df24c8f779a5ab343b7ef172fb147c69ed5e1278d95b97fe0f584a5 size: 948
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/elastic-container-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-container-service/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/elastic-container-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-container-service/</guid><description>
 &lt;p>LocalStack Pro version provides a basic support for creating and deploying containerized apps using &lt;a href="https://aws.amazon.com/ecs">Amazon ECS&lt;/a>. LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.&lt;/p>
 &lt;p>By default, the &lt;strong>ECS Fargate&lt;/strong> launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">

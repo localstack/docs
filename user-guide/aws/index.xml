@@ -7770,31 +7770,108 @@ You can access the Resource Browser by opening the LocalStack Web Application in
 &lt;li>&lt;strong>Start Instance&lt;/strong>: Start a stopped EC2 instance by selecting the Instance ID, and clicking on the &lt;strong>ACTIONS&lt;/strong> button followed by clicking on &lt;strong>Start Selected&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>Stop Instance&lt;/strong>: Stop a running EC2 instance by selecting the Instance ID, and clicking on the &lt;strong>ACTIONS&lt;/strong> button followed by clicking on &lt;strong>Stop Selected&lt;/strong>.&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Elastic Container Registry (ECR)</title><link>/user-guide/aws/elastic-container-registry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-container-registry/</guid><description>
-&lt;p>A basic version of Elastic Container Registry (ECR) is available to store application images. ECR is often used in combination with other APIs that deploy containerized apps, like ECS or EKS.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository --repository-name repo1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repository&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repositoryArn&amp;#34;: &amp;#34;arn:aws:ecr:us-east-1:000000000000:repository/repo1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;registryId&amp;#34;: &amp;#34;abc898c8&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repositoryName&amp;#34;: &amp;#34;repo1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repositoryUri&amp;#34;: &amp;#34;localhost:4510/repo1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can then build and tag a new Docker image, and push it to the repository URL (&lt;code>localhost:4510/repo1&lt;/code> in the example above):
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat Dockerfile
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>FROM nginx
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>ENV foo=bar&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker build -t localhost:4510/repo1 .
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Successfully built e2cfb3cf012d
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Successfully tagged localhost:4510/repo1:latest&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker push localhost:4510/repo1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>The push refers to repository [localhost:4510/repo1]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>318be7aea8fc: Pushed
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>fe08d5d042ab: Pushed
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>f2cb0ecef392: Pushed
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>latest: digest: sha256:4dd893a43df24c8f779a5ab343b7ef172fb147c69ed5e1278d95b97fe0f584a5 size: 948
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/elastic-container-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-container-service/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Elastic Container Registry (ECR) is a fully managed container registry service provided by Amazon Web Services.
+ECR enables you to store, manage, and deploy Docker container images to build, store, and deploy containerized applications.
+ECR integrates with other AWS services, such as Lambda, ECS, and EKS.&lt;/p>
+&lt;p>LocalStack supports Elastic Container Registry via the Pro/Team offering, allowing you to use the ECR APIs in your local environment to build &amp;amp; push Docker images to a local ECR registry.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ecr/">API coverage page&lt;/a>, which provides information on the extent of ECR&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Elastic Container Registry and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to build and push a Docker image to a local ECR repository.&lt;/p>
+&lt;h3 id="create-a-docker-image">Create a Docker image&lt;/h3>
+&lt;p>To get started, create a Docker image for a simple web application that can be used in an ECS task definition.
+Create a new file named &lt;code>Dockerfile&lt;/code> (with no file extension) in your project directory.
+This file will contain the instructions for building the Docker image.
+Add the following content to the file:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-Dockerfile" data-lang="Dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">FROM&lt;/span>&lt;span style="color:#4e9a06"> public.ecr.aws/docker/library/ubuntu:18.04&lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Install dependencies&lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">RUN&lt;/span> apt-get update &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> apt-get -y install apache2&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Install apache and write hello world message&lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">RUN&lt;/span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;Hello World!&amp;#39;&lt;/span> &amp;gt; /var/www/html/index.html&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#8f5902;font-style:italic"># Configure apache&lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">RUN&lt;/span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;. /etc/apache2/envvars&amp;#39;&lt;/span> &amp;gt; /root/run_apache.sh &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;mkdir -p /var/run/apache2&amp;#39;&lt;/span> &amp;gt;&amp;gt; /root/run_apache.sh &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#4e9a06">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;mkdir -p /var/lock/apache2&amp;#39;&lt;/span> &amp;gt;&amp;gt; /root/run_apache.sh &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#4e9a06">\ &lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span> &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;/usr/sbin/apache2 -D FOREGROUND&amp;#39;&lt;/span> &amp;gt;&amp;gt; /root/run_apache.sh &lt;span style="color:#ce5c00;font-weight:bold">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#4e9a06">\ &lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span> chmod &lt;span style="color:#0000cf;font-weight:bold">755&lt;/span> /root/run_apache.sh&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">EXPOSE&lt;/span>&lt;span style="color:#4e9a06"> 80&lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">CMD&lt;/span> /root/run_apache.sh&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can now build the Docker image from the &lt;code>Dockerfile&lt;/code> using the `docker CLI:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker build -t localstack-ecr-image .&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can run the following command to verify that the image was built successfully:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker images&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You will see output similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>REPOSITORY TAG IMAGE ID CREATED SIZE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>..
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localstack-ecr-image latest 38883941b8fa &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> minute ago 185MB
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-an-ecr-repository">Create an ECR repository&lt;/h3>
+&lt;p>To push the Docker image to ECR, you first need to create a repository.
+You can create an ECR repository using the &lt;a href="https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_CreateRepository.html">&lt;code>CreateRepository&lt;/code>&lt;/a> API.
+Run the following command to create a repository named &lt;code>localstack-ecr-repository&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --repository-name localstack-ecr-repository \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --image-scanning-configuration scanOnPush=true&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You will see an output similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;repository&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;repositoryArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ecr:us-east-1:000000000000:repository/localstack-ecr-repository&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;registryId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;000000000000&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;repositoryName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;localstack-ecr-repository&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;repositoryUri&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;localhost.localstack.cloud:4510/localstack-ecr-repository&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;createdAt&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-07-24T16:58:36+05:30&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;imageTagMutability&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;MUTABLE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;imageScanningConfiguration&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;scanOnPush&amp;#34;&lt;/span>: &lt;span style="color:#204a87">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;encryptionConfiguration&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;encryptionType&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;AES256&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You will need the &lt;code>repositoryUri&lt;/code> value to push the Docker image to the repository.&lt;/p>
+&lt;h3 id="push-the-docker-image-to-the-repository">Push the Docker image to the repository&lt;/h3>
+&lt;p>To push the Docker image to the repository, you first need to tag the image with the &lt;code>repositoryUri&lt;/code>.
+Run the following command to tag the image:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker tag localstack-ecr-image localhost:4510/localstack-ecr-repository&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can now push the image to the repository using the &lt;code>docker&lt;/code> CLI:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker push localhost.localstack.cloud:4510/localstack-ecr-repository&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The image will take a few seconds to push to the repository.
+You can run the following command to verify that the image was pushed successfully:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecr list-images --repository-name localstack-ecr-repository&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You will see an output similar to the following:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;imageIds&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;imageDigest&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;sha256:1cbc853c42983362817b5eecac80b1389c0a5cf9cfd1e711d9d0a1f5a7a36d43&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;imageTag&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;latest&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for managing ECR repositories and images.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>ECR&lt;/strong> under the &lt;strong>Compute&lt;/strong> section.&lt;/p>
+&lt;img src="ecr-resource-browser.png" alt="ECR Resource Browser" title="ECR Resource Browser" width="900" />
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create repository&lt;/strong>: Create a new ECR repository by clicking the &lt;strong>Create&lt;/strong> button, and specify the &lt;strong>Registry Id&lt;/strong>, &lt;strong>Repository Name&lt;/strong>, &lt;strong>Tags&lt;/strong>, and other options.&lt;/li>
+&lt;li>&lt;strong>View repository&lt;/strong>: View the details of an ECR repository by clicking on the repository name.
+You can also view the push commands to push an image to the repository by clicking the &lt;strong>View Push Commands&lt;/strong> button.&lt;/li>
+&lt;li>&lt;strong>Delete repository&lt;/strong>: Delete an ECR repository by selecting the ECR repository, clicking the &lt;strong>Actions&lt;/strong> button, and then clicking &lt;strong>Remove Selected&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use ECR in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/amazon-rds-init-cdk">Amazon RDS initialization using CDK, Lambda, ECR, and Secrets Manager&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image">Lambda Container Images with ECR&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/ecs-ecr-container-app">Pushing Docker images to ECR and running them locally on ECS&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Elastic Container Service (ECS)</title><link>/user-guide/aws/elastic-container-service/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-container-service/</guid><description>
 &lt;p>LocalStack Pro version provides a basic support for creating and deploying containerized apps using &lt;a href="https://aws.amazon.com/ecs">Amazon ECS&lt;/a>. LocalStack offers the basic APIs locally, including creation of ECS task definitions, services, and tasks.&lt;/p>
 &lt;p>By default, the &lt;strong>ECS Fargate&lt;/strong> launch type is assumed, i.e., the local Docker engine is used for deployment of applications, and there is no need to create and manage EC2 virtual machines to run the containers.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
