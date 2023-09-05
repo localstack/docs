@@ -152,7 +152,7 @@ You can use the temporary credentials in your applications for temporary access.
 
 ### Get caller identity
 
-You can get the caller identity and session token using the [`GetCallerIdentity`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html) API.
+You can get the caller identity to identify the principal your current credentials are valid for using the [`GetCallerIdentity`](https://docs.aws.amazon.com/STS/latest/APIReference/API_GetCallerIdentity.html) API.
 Run the following command to get the caller identity for the credentials set in your environment:
 
 {{< command >}}
