@@ -147,7 +147,7 @@ The endpoint `http://host.docker.internal:4566` in the listing above assumes tha
 The Crossplane AWS provider currently requires us to specify the list of `services` for which the local `endpoint` is used as the target URL. Please make sure to extend this list accordingly if you're working with additional LocalStack services.
 {{</alert>}}
 
-### Step 3: Deploying sample resources in LocalStack
+### Deploying sample resources in LocalStack
 
 After the Crossplane AWS provider is properly installed and configured, we can proceed with creating some local resources.
 
