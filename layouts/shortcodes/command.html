@@ -10,7 +10,7 @@
 {{ $options = . }}
 {{ end }}
 {{ $highlighted := highlight $inner "text" $options }}
-{{ $highlighted := replaceRE `###DISABLE_COPY###(?s)(.*?)###DISABLE_COPY_END###` "<span class=\"disable-copy\">$1</span>" $highlighted | safeHTML}}
+{{ $highlighted := replaceRE `###DISABLE_COPY###(?s)(.*?)###DISABLE_COPY_END###` "<div class=\"disable-copy\">$1</div>" $highlighted | safeHTML}}
 {{ with .Get "wrapper" }}
   <div class="{{ . }}">
 {{ end }}
