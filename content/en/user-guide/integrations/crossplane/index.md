@@ -55,7 +55,7 @@ configurations.pkg.crossplane.io                             2023-09-03T11:30:36
 ...</disable-copy>
 {{</command>}}
 
-### Step 2: Installing the Crossplane AWS Provider
+### Installing the Crossplane AWS Provider
 
 Once the basic Crossplane installation is running properly, we can proceed with installing the AWS provider.
 Newer versions of Crossplane promote the use of [provider families](https://docs.upbound.io/providers/provider-families), which are collections of providers for different groups of resources.
