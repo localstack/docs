@@ -63,7 +63,8 @@
 &lt;p>Let&amp;rsquo;s check the S3 buckets in our Cloud Pod:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls s3://test/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 2022-10-04 22:33:54 12 hello-world&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 2022-10-04 22:33:54 12 hello-world&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Optional: You can make the Cloud Pod available to users outside your organization by making it public:&lt;/p>
@@ -1478,7 +1479,8 @@ then build a &lt;code>FatJar&lt;/code>, unzip it, and mount it into the Lambda D
 &lt;p>First, create a watchman wrapper by using
 &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice/bin/watchman.sh">one of our examples&lt;/a>&lt;/p>
 &lt;p>Don&amp;rsquo;t forget to adjust permissions:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod +x bin/watchman.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod +x bin/watchman.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Now configure your build tool to unzip the FatJar to some folder, which will be
 then mounted to LocalStack. We are using &lt;code>Gradle&lt;/code> build tool to unpack the
 &lt;code>FatJar&lt;/code> into the &lt;code>build/hot&lt;/code> folder:&lt;/p>
@@ -2345,7 +2347,8 @@ then add the following configuration:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler myindex.handler \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs14.x \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 150 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Now to debug your lambda function, click on the &lt;code>Debug&lt;/code> icon with
 &lt;code>Attach to Remote Node.js&lt;/code> configuration selected, and then invoke your
 lambda function:&lt;/p>
@@ -2432,9 +2435,11 @@ To use systemd-resolved and the LocalStack domain resolution, try the following 
 This makes LocalStack bind port 53 on 127.0.0.1, whereas systemd-resolved binds its stub resolver to 127.0.0.53:53, which prevents a conflict.
 Once LocalStack is started, you can test the DNS server using &lt;code>dig @127.0.0.1 s3.amazonaws.com&lt;/code> versus &lt;code>dig @127.0.0.53 s3.amazonaws.com&lt;/code>, the former should return an A record &lt;code>127.0.0.1&lt;/code>, the latter the real AWS DNS result.&lt;/p>
 &lt;p>Run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>To revert, please run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved --revert&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved --revert&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 You need sudo privileges to execute this command.
@@ -2500,7 +2505,8 @@ Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (lik
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; Query time: 16 msec
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; SERVER: 127.0.0.53#53(127.0.0.53)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; WHEN: Fr Jän 14 11:23:12 CET 2022
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; MSG SIZE rcvd: 90&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; MSG SIZE rcvd: 90&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>If the the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
 If not, please check the configuration of your router / DNS if the Rebind Protection is active or &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#system-dns-configuration">enable the LocalStack DNS on your system&lt;/a>.&lt;/p>
 &lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
@@ -3210,9 +3216,11 @@ Assuming you have &lt;a href="/user-guide/integrations/aws-cli/">&lt;code>awsloc
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EngineType&amp;#34;: &amp;#34;ACTIVEMQ&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;HostInstanceType&amp;#34;: &amp;#34;mq.t2.micro&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Tags&amp;#34;: {}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Since the broker is now actively listening, we can send a message to a sample queue using curl.
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -XPOST -d &amp;#34;body=message&amp;#34; http://admin:admin@localhost:4513/api/message\?destination\=queue://orders.input&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -XPOST -d &amp;#34;body=message&amp;#34; http://admin:admin@localhost:4513/api/message\?destination\=queue://orders.input&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h2 id="localstack-limitations-and-differences-to-aws">Localstack limitations and differences to AWS&lt;/h2>
 &lt;p>Only basic functionality is supported right now, main limitations are the following:&lt;/p>
 &lt;ul>
@@ -3317,11 +3325,13 @@ Note that you also need to install the &lt;code>@aws-amplify/cli&lt;/code> packa
 &lt;ol>
 &lt;li>
 &lt;p>Create a new local AWS Organization with the feature set flag set to &lt;code>ALL&lt;/code>:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organization --feature-set ALL&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organization --feature-set ALL&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>You can now run the &lt;code>describe-organization&lt;/code> command to see the details of your organization:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations describe-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations describe-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>You can now create an AWS account that would be a member of your organization:
@@ -3329,15 +3339,18 @@ Note that you also need to install the &lt;code>@aws-amplify/cli&lt;/code> packa
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --email example@example.com \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --account-name &amp;#34;Test Account&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 Since LocalStack essentially mocks AWS, the account creation is instantaneous. You can now run the &lt;code>list-accounts&lt;/code> command to see the details of your organization:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-accounts&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-accounts&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>You can also remove a member account from your organization:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations remove-account-from-organization --account-id &amp;lt;ACCOUNT_ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations remove-account-from-organization --account-id &amp;lt;ACCOUNT_ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>To close an account in your organization, you can run the &lt;code>close-account&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations close-account --account-id 000000000000&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations close-account --account-id 000000000000&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>You can use organizational units (OUs) to group accounts together to administer as a single unit. To create an OU, you can run:
@@ -3347,7 +3360,8 @@ Since LocalStack essentially mocks AWS, the account creation is instantaneous. Y
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --child-type ORGANIZATIONAL_UNIT
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations create-organizational-unit \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --parent-id &amp;lt;PARENT-ID&amp;gt; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name New-Child-OU&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name New-Child-OU&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Before you can create and attach a policy to your organization, you must enable a policy type. To enable a policy type, you can run:
@@ -3357,15 +3371,18 @@ Since LocalStack essentially mocks AWS, the account creation is instantaneous. Y
 To disable a policy type, you can run:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations disable-policy-type \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --root-id &amp;lt;ROOT-ID&amp;gt; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-type BACKUP_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --policy-type BACKUP_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>To view the policies that are attached to your organization, you can run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-policies --filter SERVICE_CONTROL_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations list-policies --filter SERVICE_CONTROL_POLICY&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>To delete an organization, you can run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations delete-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal organizations delete-organization&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;/ol></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
 &lt;p>LocalStack Pro supports a basic version of &lt;a href="https://aws.amazon.com/documentdb/">Amazon DocumentDB&lt;/a> for testing.
@@ -3472,7 +3489,8 @@ the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.
 &lt;/li>
 &lt;/ul>
 &lt;p>To obtain detailed information about the cluster, we use the &lt;code>describe-db-cluster&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal docdb describe-db-clusters --db-cluster-identifier test-docdb-cluster&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal docdb describe-db-clusters --db-cluster-identifier test-docdb-cluster&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusters&amp;#34;: &lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -3572,7 +3590,8 @@ Run the following command to create the key pair and pipe the output to a file n
 &lt;p>You can assign necessary permissions to the key pair file using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod 400 key.pem&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Alternatively, we can import an existing keypair, for example if you have an SSH public key in your home directory under &lt;code>~/.ssh/id_rsa.pub&lt;/code>:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 import-key-pair --key-name my-key --public-key-material file://~/.ssh/id_rsa.pub&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h3 id="add-rules-to-your-security-group">Add rules to your security group&lt;/h3>
 &lt;p>Currently, LocalStack only supports the &lt;code>default&lt;/code> security group.
 You can add rules to the security group using the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AuthorizeSecurityGroupIngress.html">&lt;code>AuthorizeSecurityGroupIngress&lt;/code>&lt;/a> API.
@@ -3641,7 +3660,8 @@ Any execution of this data is recorded in the &lt;code>/var/log/cloud-init-outpu
 &lt;h3 id="connecting-via-ssh">Connecting via SSH&lt;/h3>
 &lt;p>You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.&lt;/p>
 &lt;p>This section assumes that you have created or imported an SSH keypair named &lt;code>my-key&lt;/code> (see &lt;a href="#create-a-key-pair">instructions above&lt;/a>). When running the EC2 instance, make sure to pass the &lt;code>--key-name&lt;/code> parameter to the command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --key-name my-key ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --key-name my-key ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Once the instance is up and running, we can use the &lt;code>ssh&lt;/code> command to set up an SSH connection. Assuming the instance is available under &lt;code>127.0.0.1:12862&lt;/code> (as per the LocalStack log output), use this command:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>ssh -p 12862 -i key.pem root@127.0.0.1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-info" role="alert">
@@ -3755,18 +3775,21 @@ This feature is disabled by default, please configure &lt;code>EC2_MOUNT_BLOCK_D
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkfs -t ext3 /ebs-dev/sda1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mount -o loop /ebs-dev/sda1 /ebs-mounted
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>touch /ebs-mounted/my-test-file
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>We can then start an EC2 instance, specifying a block device mapping under the device name &lt;code>/ebs-dev/sda1&lt;/code>, and pointing to our &lt;code>init.sh&lt;/code> user data script:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --image-id ami-ff0fea8310f3 --count 1 --instance-type t3.nano \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --block-device-mapping &amp;#39;{&amp;#34;DeviceName&amp;#34;:&amp;#34;/ebs-dev/sda1&amp;#34;,&amp;#34;Ebs&amp;#34;:{&amp;#34;VolumeSize&amp;#34;:10}}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --user-data file://init.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --user-data file://init.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Please note that, whereas real AWS uses GB for volume sizes, we use MB as the unit for &lt;code>VolumeSize&lt;/code> in the command above (to avoid creating huge files locally). Also, by default block device images are limited to 1GB in size, but this can be customized by setting the &lt;code>EC2_EBS_MAX_VOLUME_SIZE&lt;/code> config variable (defaults to &lt;code>1000&lt;/code>).&lt;/p>
 &lt;p>Once the instance is successfully started and initialized, we can first determine the container ID via &lt;code>docker ps&lt;/code>, and then list the contents of the mounted filesystem &lt;code>/ebs-mounted&lt;/code>, which should contain our test file named &lt;code>my-test-file&lt;/code>:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker ps
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CONTAINER ID IMAGE PORTS NAMES
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>5c60cf72d84a ...:ami-ff0fea8310f3 19419-&amp;gt;22/tcp localstack-ec2...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker exec 5c60cf72d84a ls /ebs-mounted
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>my-test-file&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>my-test-file&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h2 id="resource-browser">Resource Browser&lt;/h2>
 &lt;p>The LocalStack Web Application provides a Resource Browser for managing EC2 instances.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>EC2&lt;/strong> under the &lt;strong>Compute&lt;/strong> section.&lt;/p>
@@ -3854,14 +3877,16 @@ You will see a response similar to the following:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Then use the returned port number (&lt;code>4510&lt;/code>) to connect to the Redis instance:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 ping
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PONG
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 set foo bar
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>OK
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 get foo
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;bar&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;bar&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>We also support the &lt;code>create-replication-group&lt;/code> API which supports the replication groups in ElastiCache clusters. With the API, you can now have a Redis cluster, a Redis replication group with cluster mode disabled, and a Redis replication group with cluster mode enabled.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -3874,15 +3899,18 @@ Redis requires at least 3+ nodes to form a Redis replication group with cluster 
 &lt;ol>
 &lt;li>
 &lt;p>Create a vault with the &lt;code>create-vault&lt;/code> command using the &lt;code>awslocal&lt;/code> CLI:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier create-vault --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier create-vault --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Get the details of the vault using the &lt;code>describe-vault&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier describe-vault --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier describe-vault --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>List out the current and previous processes, called Jobs, to monitor the requests sent to the Glacier API:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier list-jobs --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier list-jobs --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Initiate a job of the specified type to get the details of the individual inventory items inside a Vault using the &lt;code>initiate-job&lt;/code> command:
@@ -3909,11 +3937,13 @@ JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/
 &lt;/li>
 &lt;li>
 &lt;p>The data download process can be verified through the List Jobs command to check progress. Once the Job is complete the data can be downloaded to the current location using the following command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-id &amp;lt;JOB-ID&amp;gt; &amp;lt;OUTPUT-FILE-NAME.OUTPUT-FILE-TYPE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-id &amp;lt;JOB-ID&amp;gt; &amp;lt;OUTPUT-FILE-NAME.OUTPUT-FILE-TYPE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Delete the archive using the &lt;code>delete-archive&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier delete-archive --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --archive-id &amp;lt;ARCHIVE-ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier delete-archive --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --archive-id &amp;lt;ARCHIVE-ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;/ol></description></item><item><title>User-Guide: Glue</title><link>/user-guide/aws/glue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/glue/</guid><description>
 &lt;p>The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.&lt;/p>
@@ -3933,11 +3963,13 @@ In order to run Glue jobs, some additional dependencies have to be fetched from 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db1&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h2 id="running-scripts-with-scala-and-pyspark">Running Scripts with Scala and PySpark&lt;/h2>
 &lt;p>Assuming we would like to deploy a simple PySpark script &lt;code>job.py&lt;/code> in the local folder, we can first copy the script to an S3 bucket:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://glue-test
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp job.py s3://glue-test/job.py&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp job.py s3://glue-test/job.py&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Next, we can create a job definition:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-job --name job1 --role arn:aws:iam::000000000000:role/glue-role \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --command &amp;#39;{&amp;#34;Name&amp;#34;: &amp;#34;pythonshell&amp;#34;, &amp;#34;ScriptLocation&amp;#34;: &amp;#34;s3://glue-test/job.py&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -3954,7 +3986,8 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Attempt&amp;#34;: 1,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;JobRunState&amp;#34;: &amp;#34;SUCCEEDED&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>For a more detailed example illustrating how to run a local Glue PySpark job, please refer to this &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-etl-jobs">sample repository&lt;/a>.&lt;/p>
 &lt;h2 id="importing-athena-tables-into-glue-data-catalog">Importing Athena Tables into Glue Data Catalog&lt;/h2>
 &lt;p>The Glue data catalog is integrated with Athena, and the database/table definitions can be imported via the &lt;code>import-catalog-to-glue&lt;/code> API.&lt;/p>
@@ -3963,7 +3996,8 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">CREATE&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">EXTERNAL&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">TABLE&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">db2&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">table1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">a1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87">Date&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">a2&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">STRING&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">a3&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87">INT&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">LOCATION&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;s3://test/table1&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">CREATE&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">EXTERNAL&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">TABLE&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">db2&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">table2&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">a1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87">Date&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">a2&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">STRING&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">a3&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87">INT&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">LOCATION&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#39;s3://test/table2&amp;#39;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then this command will import these DB/table definitions into the Glue data catalog:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue import-catalog-to-glue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue import-catalog-to-glue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>&amp;hellip; and finally they will be available in Glue:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-databases
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -3995,7 +4029,8 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CreateTime&amp;#34;: ...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h2 id="crawlers">Crawlers&lt;/h2>
 &lt;p>Glue crawlers allow extracting metadata from structured data sources.&lt;/p>
 &lt;p>LocalStack Glue currently supports S3 targets (configurable via &lt;code>S3Targets&lt;/code>), as well as JDBC targets (configurable via &lt;code>JdbcTargets&lt;/code>). Support for other target types is in our pipeline and will be added soon.&lt;/p>
@@ -4007,11 +4042,13 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Jan/day=1/file.csv
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Jan/day=2/file.csv
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=1/file.csv
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=2/file.csv&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp /tmp/file.csv s3://test/table1/year=2021/month=Feb/day=2/file.csv&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Then we can create and trigger the crawler:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-database --database-input &amp;#39;{&amp;#34;Name&amp;#34;:&amp;#34;db1&amp;#34;}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler --name c1 --database-name db1 --role arn:aws:iam::000000000000:role/glue-role --targets &amp;#39;{&amp;#34;S3Targets&amp;#34;: [{&amp;#34;Path&amp;#34;: &amp;#34;s3://test/table1&amp;#34;}]}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler --name c1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler --name c1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Finally, we can query the table and partitions metadata that has been created by the crawler:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-tables --database-name db1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -4026,7 +4063,8 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Values&amp;#34;: [&amp;#34;2021&amp;#34;, &amp;#34;Jan&amp;#34;, &amp;#34;1&amp;#34;],
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db1&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TableName&amp;#34;: &amp;#34;table1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h3 id="jdbc-crawler-example">JDBC Crawler Example&lt;/h3>
 &lt;p>When using JDBC crawlers, you can point your crawler towards a Redshift database created in LocalStack.&lt;/p>
 &lt;p>Below is a rough outline of the steps required to get the integration for the JDBC crawler working. We can first create the local Redshift cluster via:
@@ -4036,7 +4074,8 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Address&amp;#34;: &amp;#34;localhost.localstack.cloud&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Port&amp;#34;: 4510
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Then we can use any JDBC or Postgres client to create a table &lt;code>mytable1&lt;/code> in the Redshift database, and fill the table with some data.&lt;/p>
 &lt;p>Next, we&amp;rsquo;re creating the Glue database, the JDBC connection, as well as the crawler:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-database --database-input &amp;#39;{&amp;#34;Name&amp;#34;:&amp;#34;gluedb1&amp;#34;}&amp;#39;
@@ -4052,7 +4091,8 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-crawler --name c1
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;READY&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Once the crawler has finished running and is back in &lt;code>READY&lt;/code> state, the Glue table within the &lt;code>gluedb1&lt;/code> DB should have been populated and can be queried via the API.&lt;/p>
 &lt;h2 id="schema-registry">Schema Registry&lt;/h2>
 &lt;p>The Glue Schema Registry allows you to centrally discover, control, and evolve data stream schemas.
@@ -4416,7 +4456,8 @@ id="tabs-11-02" role="tabpanel" aria-labelled-by="tabs-11-02-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @localhost test.example.com
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test.example.com. 300 IN A 1.2.3.4&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test.example.com. 300 IN A 1.2.3.4&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the &lt;code>DNS_ADDRESS&lt;/code> configuration variable).
@@ -4434,7 +4475,8 @@ Using the built-in DNS capabilities requires privileged access for the LocalStac
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @127.0.0.1 localhost.localstack.cloud
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localhost.localstack.cloud. 300 IN A 5.6.7.8&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item><item><title>User-Guide: SageMaker</title><link>/user-guide/aws/sagemaker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sagemaker/</guid><description>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localhost.localstack.cloud. 300 IN A 5.6.7.8&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p></description></item><item><title>User-Guide: SageMaker</title><link>/user-guide/aws/sagemaker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sagemaker/</guid><description>
 &lt;p>LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them.&lt;/p>
 &lt;h2 id="model-training">Model Training&lt;/h2>
 &lt;p>A basic training example using the &lt;code>sagemaker.tensorflow.TensorFlow&lt;/code> class is provided in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/sagemaker-ml-jobs">this Github repository&lt;/a>. Essentially, the code boils down to these core lines:&lt;/p>
@@ -4493,7 +4535,8 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ses send-email \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Hint&lt;/h4>
 &lt;p>If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call&lt;/p>

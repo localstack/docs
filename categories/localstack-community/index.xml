@@ -1406,7 +1406,8 @@ then build a &lt;code>FatJar&lt;/code>, unzip it, and mount it into the Lambda D
 &lt;p>First, create a watchman wrapper by using
 &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice/bin/watchman.sh">one of our examples&lt;/a>&lt;/p>
 &lt;p>Don&amp;rsquo;t forget to adjust permissions:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod +x bin/watchman.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod +x bin/watchman.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Now configure your build tool to unzip the FatJar to some folder, which will be
 then mounted to LocalStack. We are using &lt;code>Gradle&lt;/code> build tool to unpack the
 &lt;code>FatJar&lt;/code> into the &lt;code>build/hot&lt;/code> folder:&lt;/p>
@@ -2140,7 +2141,8 @@ then add the following configuration:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler myindex.handler \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs14.x \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 150 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Now to debug your lambda function, click on the &lt;code>Debug&lt;/code> icon with
 &lt;code>Attach to Remote Node.js&lt;/code> configuration selected, and then invoke your
 lambda function:&lt;/p>
@@ -2892,7 +2894,8 @@ Note that only a single backend can be configured, meaning that you will get a s
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol>
 &lt;li>
 &lt;p>Run docker compose:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker-compose up -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker-compose up -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Create the Elasticsearch domain:
@@ -2928,21 +2931,25 @@ Note that only a single backend can be configured, meaning that you will get a s
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Enabled&amp;#34;: false
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>If the &lt;code>Processing&lt;/code> status is true, it means that the cluster is not yet healthy. You can run &lt;code>describe-elasticsearch-domain&lt;/code> to receive the status:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain --domain-name mylogs-2&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal es describe-elasticsearch-domain --domain-name mylogs-2&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Check the cluster health endpoint and create indices:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/_cluster/health
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;cluster_name&amp;#34;:&amp;#34;es-docker-cluster&amp;#34;,&amp;#34;status&amp;#34;:&amp;#34;green&amp;#34;,&amp;#34;timed_out&amp;#34;:false,&amp;#34;number_of_nodes&amp;#34;:1,&amp;#34;number_of_data_nodes&amp;#34;:1,&amp;#34;active_primary_shards&amp;#34;:0,&amp;#34;active_shards&amp;#34;:0,&amp;#34;relocating_shards&amp;#34;:0,&amp;#34;initializing_shards&amp;#34;:0,&amp;#34;unassigned_shards&amp;#34;:0,&amp;#34;delayed_unassigned_shards&amp;#34;:0,&amp;#34;number_of_pending_tasks&amp;#34;:0,&amp;#34;number_of_in_flight_fetch&amp;#34;:0,&amp;#34;task_max_waiting_in_queue_millis&amp;#34;:0,&amp;#34;active_shards_percent_as_number&amp;#34;:100.0}[~]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;cluster_name&amp;#34;:&amp;#34;es-docker-cluster&amp;#34;,&amp;#34;status&amp;#34;:&amp;#34;green&amp;#34;,&amp;#34;timed_out&amp;#34;:false,&amp;#34;number_of_nodes&amp;#34;:1,&amp;#34;number_of_data_nodes&amp;#34;:1,&amp;#34;active_primary_shards&amp;#34;:0,&amp;#34;active_shards&amp;#34;:0,&amp;#34;relocating_shards&amp;#34;:0,&amp;#34;initializing_shards&amp;#34;:0,&amp;#34;unassigned_shards&amp;#34;:0,&amp;#34;delayed_unassigned_shards&amp;#34;:0,&amp;#34;number_of_pending_tasks&amp;#34;:0,&amp;#34;number_of_in_flight_fetch&amp;#34;:0,&amp;#34;task_max_waiting_in_queue_millis&amp;#34;:0,&amp;#34;active_shards_percent_as_number&amp;#34;:100.0}[~]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Create an example index:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -X PUT mylogs-2.us-east-1.es.localhost.localstack.cloud:4566/my-index
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;acknowledged&amp;#34;:true,&amp;#34;shards_acknowledged&amp;#34;:true,&amp;#34;index&amp;#34;:&amp;#34;my-index&amp;#34;}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;acknowledged&amp;#34;:true,&amp;#34;shards_acknowledged&amp;#34;:true,&amp;#34;index&amp;#34;:&amp;#34;my-index&amp;#34;}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;/li>
 &lt;/ol>
 &lt;h2 id="differences-to-aws">Differences to AWS&lt;/h2>
@@ -3218,14 +3225,17 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-name &amp;#34;kinesis_test&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-pattern &amp;#34;&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination-arn $kinesis_arn \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn &amp;#34;arn:aws:iam::000000000000:role/kinesis_role&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn &amp;#34;arn:aws:iam::000000000000:role/kinesis_role&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Next, we can add a log event, that will be forwarded to kinesis.
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>timestamp=$(($(date +&amp;#39;%s * 1000 + %-N / 1000000&amp;#39;)))
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-log-events --log-group-name test --log-stream-name test --log-events &amp;#34;[{\&amp;#34;timestamp\&amp;#34;: ${timestamp} , \&amp;#34;message\&amp;#34;: \&amp;#34;hello from cloudwatch\&amp;#34;}]&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-log-events --log-group-name test --log-stream-name test --log-events &amp;#34;[{\&amp;#34;timestamp\&amp;#34;: ${timestamp} , \&amp;#34;message\&amp;#34;: \&amp;#34;hello from cloudwatch\&amp;#34;}]&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Now we can retrieve the data. In our example, there will only be one record. The data record is base64 encoded and compressed in gzip format:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>shard_iterator=$(awslocal kinesis get-shard-iterator --stream-name logtest --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON | jq -r .ShardIterator)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>record=$(awslocal kinesis get-records --limit 10 --shard-iterator $shard_iterator | jq -r &amp;#39;.Records[0].Data&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo $record | base64 -d | zcat&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo $record | base64 -d | zcat&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h2 id="filter-pattern-pro-only">Filter Pattern (Pro only)&lt;/h2>
 &lt;p>&lt;a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html">Filter patterns&lt;/a> can be used to select certain logs only.&lt;/p>
 &lt;p>LocalStack currently supports simple json-property filter.&lt;/p>
@@ -3243,7 +3253,8 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-name my-filter \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-transformations \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> metricName=MyMetric,metricNamespace=MyNamespace,metricValue=1,defaultValue=0&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> metricName=MyMetric,metricNamespace=MyNamespace,metricValue=1,defaultValue=0&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Next, we can insert some values:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>timestamp=$(($(date +&amp;#39;%s * 1000 + %-N / 1000000&amp;#39;)))
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs put-log-events --log-group-name test-filter \
@@ -3251,15 +3262,18 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --log-events \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#39;&amp;#34;{\&amp;#34;foo\&amp;#34;:\&amp;#34;bar\&amp;#34;, \&amp;#34;hello\&amp;#34;: \&amp;#34;world\&amp;#34;}&amp;#34;&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#34;my test event&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#39;&amp;#34;{\&amp;#34;foo\&amp;#34;:\&amp;#34;nomatch\&amp;#34;}&amp;#34;&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> timestamp=$timestamp,message=&amp;#39;&amp;#34;{\&amp;#34;foo\&amp;#34;:\&amp;#34;nomatch\&amp;#34;}&amp;#34;&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Now we can check that the metric was indeed created:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>end=$(date +%s)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>awslocal cloudwatch get-metric-statistics --namespace MyNamespace \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --metric-name MyMetric --statistics Sum --period 3600 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --start-time 1659621274 --end-time $end&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --start-time 1659621274 --end-time $end&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h3 id="filter-log-events">Filter Log Events&lt;/h3>
 &lt;p>Similary, you can use filter-pattern to filter logs, like here:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item><item><title>User-Guide: Simple Email Service (SES)</title><link>/user-guide/aws/ses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ses/</guid><description>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p></description></item><item><title>User-Guide: Simple Email Service (SES)</title><link>/user-guide/aws/ses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ses/</guid><description>
 &lt;h2 id="sent-emails">Sent Emails&lt;/h2>
 &lt;p>LocalStack keeps track of all sent emails for retrospection.
 The sent messages can be retrieved in following ways:&lt;/p>
@@ -3280,7 +3294,8 @@ Emails can be sent via the command line (or SES client SDK):
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ses send-email \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Hint&lt;/h4>
 &lt;p>If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call&lt;/p>
@@ -3318,7 +3333,8 @@ For example, you could send a &lt;code>SendMessage&lt;/code> command using a &lt
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl &amp;#34;http://localhost:4566/000000000000/sample-queue?Action=SendMessage&amp;amp;MessageBody=hello%2Fworld&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;?xml version=&amp;#39;1.0&amp;#39; encoding=&amp;#39;utf-8&amp;#39;?&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;SendMessageResponse xmlns=&amp;#34;http://queue.amazonaws.com/doc/2012-11-05/&amp;#34;&amp;gt;&amp;lt;SendMessageResult&amp;gt;&amp;lt;MD5OfMessageBody&amp;gt;c6be4e95a26409675447367b3e79f663&amp;lt;/MD5OfMessageBody&amp;gt;&amp;lt;MessageId&amp;gt;466144ab-1d03-4ec5-8d70-97535b2957fb&amp;lt;/MessageId&amp;gt;&amp;lt;/SendMessageResult&amp;gt;&amp;lt;ResponseMetadata&amp;gt;&amp;lt;RequestId&amp;gt;JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF&amp;lt;/RequestId&amp;gt;&amp;lt;/ResponseMetadata&amp;gt;&amp;lt;/SendMessageResponse&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;SendMessageResponse xmlns=&amp;#34;http://queue.amazonaws.com/doc/2012-11-05/&amp;#34;&amp;gt;&amp;lt;SendMessageResult&amp;gt;&amp;lt;MD5OfMessageBody&amp;gt;c6be4e95a26409675447367b3e79f663&amp;lt;/MD5OfMessageBody&amp;gt;&amp;lt;MessageId&amp;gt;466144ab-1d03-4ec5-8d70-97535b2957fb&amp;lt;/MessageId&amp;gt;&amp;lt;/SendMessageResult&amp;gt;&amp;lt;ResponseMetadata&amp;gt;&amp;lt;RequestId&amp;gt;JU40AF5GORK0WSR75MOY3VNQ1KZ3TAI7S5KAJYGK9C5P4W4XKMGF&amp;lt;/RequestId&amp;gt;&amp;lt;/ResponseMetadata&amp;gt;&amp;lt;/SendMessageResponse&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Adding the &lt;code>Accept: application/json&lt;/code> header will make the server return JSON:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>curl -H &amp;#34;Accept: application/json&amp;#34; &amp;#34;http://localhost:4566/000000000000/my-queue?Action=SendMessage&amp;amp;MessageBody=hello%2Fworld&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{&amp;#34;SendMessageResponse&amp;#34;: {&amp;#34;SendMessageResult&amp;#34;: {&amp;#34;MD5OfMessageBody&amp;#34;: &amp;#34;c6be4e95a26409675447367b3e79f663&amp;#34;, &amp;#34;MessageId&amp;#34;: &amp;#34;748297f2-4abd-4ec2-afc0-4d1a497fe604&amp;#34;}, &amp;#34;ResponseMetadata&amp;#34;: {&amp;#34;RequestId&amp;#34;: &amp;#34;XEA5L5AX16RTPET25U3TIRIASN6KNIT820WIT3EY7RCH7164W68T&amp;#34;}}}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>

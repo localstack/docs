@@ -1,4 +1,187 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – kubernetes</title><link>/tags/kubernetes/</link><description>Recent content in kubernetes on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>References: LocalStack on Kubernetes</title><link>/references/localstack-on-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/localstack-on-kubernetes/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – kubernetes</title><link>/tags/kubernetes/</link><description>Recent content in kubernetes on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Crossplane</title><link>/user-guide/integrations/crossplane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/crossplane/</guid><description>
+&lt;img src="logo-crossplane.svg" width="500px" alt="Crossplane logo">
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>&lt;a href="https://www.crossplane.io">Crossplane&lt;/a> is a cloud-native control plane framework, which offers an extensible backend that enables orchestrating applications and infrastructure via declarative APIs and resource definitions.&lt;/p>
+&lt;p>Crossplane offers a native &lt;a href="https://github.com/upbound/provider-aws">AWS provider&lt;/a> which can be used to create and manage AWS cloud resources via the Crossplane platform.
+For example, it can be used to create S3 buckets, SQS queues, Lambda functions, among many other resources.
+Crossplane AWS provider supports a comprehensive set of some &lt;a href="https://marketplace.upbound.io/providers/upbound/provider-aws">900+ resource types&lt;/a>.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>In the following, we provide a step-by-step guide for installing Crossplane in a local test environment, and creating AWS resources (S3 bucket, SQS queue) in LocalStack via Crossplane.&lt;/p>
+&lt;h3 id="prerequisites">Prerequisites&lt;/h3>
+&lt;ul>
+&lt;li>LocalStack running in local Docker&lt;/li>
+&lt;li>A local Kubernetes cluster:
+&lt;ul>
+&lt;li>We can use the &lt;a href="https://docs.docker.com/desktop/kubernetes">embedded Kubernetes cluster&lt;/a> that ships with modern versions of Docker Desktop (can be easily enabled in the Docker settings)&lt;/li>
+&lt;li>Alternatively, you can &lt;a href="https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service/#create-an-embedded-kubernetes-cluster">create a local EKS cluster&lt;/a> in LocalStack directly, which will spin up a light-weight embedded &lt;code>k3d&lt;/code> Kubernetes cluster in your Docker environment&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>The &lt;a href="https://helm.sh">&lt;code>helm&lt;/code>&lt;/a> and &lt;a href="https://kubernetes.io/docs/tasks/tools/#kubectl">&lt;code>kubectl&lt;/code>&lt;/a> command-line clients installed&lt;/li>
+&lt;/ul>
+&lt;h2 id="installing-crossplane-in-local-kubernetes">Installing Crossplane in local Kubernetes&lt;/h2>
+&lt;p>Once your &lt;code>kubectl&lt;/code> is configured to point to the local Kubernetes cluster, we first install Crossplane via &lt;code>helm&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>helm repo add crossplane-stable https://charts.crossplane.io/stable
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>helm repo update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>helm install crossplane crossplane-stable/crossplane --namespace crossplane-system --create-namespace&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>The installation may take a few minutes. In parallel, we can install the &lt;code>crossplane&lt;/code> command-line extensions for &lt;code>kubectl&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | bash
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="disable-copy">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>sudo mv kubectl-crossplane /usr/local/bin&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+To confirm that the installation was successful, we can run these &lt;code>kubectl&lt;/code> commands, which should yield output similar to the following:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl crossplane --version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="disable-copy">v1.13.2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl get crds | grep crossplane
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="disable-copy">compositions.apiextensions.crossplane.io 2023-09-03T11:30:36Z
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>configurations.pkg.crossplane.io 2023-09-03T11:30:36Z
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;h3 id="installing-the-crossplane-aws-provider">Installing the Crossplane AWS Provider&lt;/h3>
+&lt;p>Once the basic Crossplane installation is running properly, we can proceed with installing the AWS provider.
+Newer versions of Crossplane promote the use of &lt;a href="https://docs.upbound.io/providers/provider-families">provider families&lt;/a>, which are collections of providers for different groups of resources.
+For example, there is a separate provider for each individual AWS service (like S3, SQS, Lambda, etc), and in addition provider family provides shared resources for common configuration of all services (e.g., credentials, etc).&lt;/p>
+&lt;p>In the following, we first install the AWS provider for S3.
+Note that you can copy/paste the entire multi-line command below into your terminal:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: pkg.crossplane.io/v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kind: Provider
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>metadata:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: provider-aws-s3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>spec:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> package: xpkg.upbound.io/upbound/provider-aws-s3:v0.40.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>We also install the AWS provider for SQS:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: pkg.crossplane.io/v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kind: Provider
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>metadata:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: provider-aws-sqs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>spec:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> package: xpkg.upbound.io/upbound/provider-aws-sqs:v0.40.0
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>After some time, the providers should get into healthy state, which can be confirmed via &lt;code>kubectl get providers&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl get providers&lt;span class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME INSTALLED HEALTHY PACKAGE AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>upbound-provider-family-aws True True xpkg.upbound.io/upbound/provider-family-aws:v0.40.0 2m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>provider-aws-s3 True True xpkg.upbound.io/upbound/provider-aws-s3:v0.40.0 2m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>provider-aws-sqs True True xpkg.upbound.io/upbound/provider-aws-sqs:v0.40.0 2m
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>Next, we install a secret to define the test credentials for the AWS provider:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kind: Secret
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>metadata:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: localstack-aws-secret
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stringData:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> creds: |
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [default]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> aws_access_key_id = test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> aws_secret_access_key = test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>Finally, we create an AWS &lt;code>ProviderConfig&lt;/code> that references the secret created above, and defines a static &lt;code>endpoint&lt;/code> pointing to the LocalStack URL &lt;code>http://host.docker.internal:4566&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: aws.upbound.io/v1beta1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kind: ProviderConfig
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>metadata:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: default
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>spec:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> credentials:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> source: Secret
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> secretRef:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: localstack-aws-secret
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> namespace: default
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> key: creds
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> endpoint:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> hostnameImmutable: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>TODO: add more services to this list, as needed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> services: [iam, s3, sqs, sts]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> url:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> type: Static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> static: http://host.docker.internal:4566
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> skip_credentials_validation: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> skip_metadata_api_check: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> skip_requesting_account_id: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> s3_use_path_style: true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The endpoint &lt;code>http://host.docker.internal:4566&lt;/code> in the listing above assumes that you are running Kubernetes in the local Docker engine, and that LocalStack is up and running and available on default port &lt;code>4566&lt;/code>.
+&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The Crossplane AWS provider currently requires us to specify the list of &lt;code>services&lt;/code> for which the local &lt;code>endpoint&lt;/code> is used as the target URL. Please make sure to extend this list accordingly if you&amp;rsquo;re working with additional LocalStack services.
+&lt;/div>
+&lt;h3 id="deploying-sample-resources-in-localstack">Deploying sample resources in LocalStack&lt;/h3>
+&lt;p>After the Crossplane AWS provider is properly installed and configured, we can proceed with creating some local resources.&lt;/p>
+&lt;p>First, we create an S3 bucket named &lt;code>crossplane-test-bucket&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: s3.aws.upbound.io/v1beta1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kind: Bucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>metadata:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: crossplane-test-bucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>spec:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> forProvider:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> region: us-east-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>If everything is wired up correctly, you should now see some activity in the LocalStack log outputs, where Crossplane starts deploying the S3 bucket against LocalStack.
+After some time, the bucket should be transitioning into &lt;code>ready&lt;/code> state within Crossplane:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl get buckets&lt;span class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY SYNCED EXTERNAL-NAME AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>crossplane-test-bucket True True crossplane-test-bucket 30s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>&amp;hellip; and the bucket it should also be visible when querying the local S3 buckets in LocalStack via &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls&lt;span class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-09-03 15:18:47 crossplane-test-bucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>We can repeat the same exercise for creating a local SQS queue named &lt;code>crossplane-test-queue&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: sqs.aws.upbound.io/v1beta1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>kind: Queue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>metadata:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: crossplane-test-queue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>spec:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> forProvider:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: crossplane-test-queue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> region: us-east-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>After some time, the queue should transition into &lt;code>ready&lt;/code> state in Crossplane:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl get queues&lt;span class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>NAME READY SYNCED EXTERNAL-NAME AGE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>crossplane-test-queue True True http://host.docker.internal:4566/000000000000/crossplane-test-queue 40s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>&amp;hellip; and the queue should be visible when listing the SQS queues in LocalStack:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs list-queues&lt;span class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;QueueUrls&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;http://localhost:4566/000000000000/crossplane-test-queue&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;h3 id="summary">Summary&lt;/h3>
+&lt;p>The Crossplane AWS provider is a great way to manage AWS resources, and by leveraging the &lt;code>endpoint&lt;/code> configuration of the provider, we can seamlessly run resource deployments against LocalStack.&lt;/p>
+&lt;p>In this tutorial, we have provided an end-to-end walkthrough of how to provision two simple resources - an S3 bucket, and an SQS queue. Crossplane supports a vast range of additional AWS resource types, as well as advanced operations like updating, deleting, or composing resources.
+You can refer to the additional reading material to learn and explore more advanced features.&lt;/p>
+&lt;h2 id="further-reading">Further Reading&lt;/h2>
+&lt;ul>
+&lt;li>Kubernetes on Docker Desktop: &lt;a href="https://docs.docker.com/desktop/kubernetes">https://docs.docker.com/desktop/kubernetes&lt;/a>&lt;/li>
+&lt;li>Kubernetes getting started guide: &lt;a href="https://kubernetes.io/docs/setup">https://kubernetes.io/docs/setup&lt;/a>&lt;/li>
+&lt;li>EKS Kubernetes clusters on LocalStack: &lt;a href="https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service">https://docs.localstack.cloud/user-guide/aws/elastic-kubernetes-service&lt;/a>&lt;/li>
+&lt;li>Crossplane user docs: &lt;a href="https://docs.crossplane.io">https://docs.crossplane.io&lt;/a>&lt;/li>
+&lt;li>Crossplane AWS provider family: &lt;a href="https://marketplace.upbound.io/providers/upbound/provider-family-aws">https://marketplace.upbound.io/providers/upbound/provider-family-aws&lt;/a>&lt;/li>
+&lt;li>Crossplane AWS provider source code: &lt;a href="https://github.com/upbound/provider-aws">https://github.com/upbound/provider-aws&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>References: LocalStack on Kubernetes</title><link>/references/localstack-on-kubernetes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/localstack-on-kubernetes/</guid><description>
 &lt;p>LocalStack can be deployed on &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> using the &lt;a href="http://helm.localstack.cloud/">LocalStack Helm chart&lt;/a>.&lt;/p>
 &lt;h2 id="helm-chart">Helm Chart&lt;/h2>
 &lt;p>To deploy LocalStack in your &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> cluster, you can use &lt;a href="https://helm.sh/">Helm&lt;/a>.&lt;/p>

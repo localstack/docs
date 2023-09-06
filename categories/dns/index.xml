@@ -76,9 +76,11 @@ To use systemd-resolved and the LocalStack domain resolution, try the following 
 This makes LocalStack bind port 53 on 127.0.0.1, whereas systemd-resolved binds its stub resolver to 127.0.0.53:53, which prevents a conflict.
 Once LocalStack is started, you can test the DNS server using &lt;code>dig @127.0.0.1 s3.amazonaws.com&lt;/code> versus &lt;code>dig @127.0.0.53 s3.amazonaws.com&lt;/code>, the former should return an A record &lt;code>127.0.0.1&lt;/code>, the latter the real AWS DNS result.&lt;/p>
 &lt;p>Run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>To revert, please run:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved --revert&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack dns systemd-resolved --revert&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 You need sudo privileges to execute this command.
@@ -144,7 +146,8 @@ Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (lik
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; Query time: 16 msec
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; SERVER: 127.0.0.53#53(127.0.0.53)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; WHEN: Fr Jän 14 11:23:12 CET 2022
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; MSG SIZE rcvd: 90&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; MSG SIZE rcvd: 90&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>If the the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
 If not, please check the configuration of your router / DNS if the Rebind Protection is active or &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#system-dns-configuration">enable the LocalStack DNS on your system&lt;/a>.&lt;/p>
 &lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
@@ -157,7 +160,8 @@ If not, please check the configuration of your router / DNS if the Rebind Protec
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @localhost test.example.com
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test.example.com. 300 IN A 1.2.3.4&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test.example.com. 300 IN A 1.2.3.4&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the &lt;code>DNS_ADDRESS&lt;/code> configuration variable).
@@ -175,4 +179,5 @@ Using the built-in DNS capabilities requires privileged access for the LocalStac
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @127.0.0.1 localhost.localstack.cloud
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localhost.localstack.cloud. 300 IN A 5.6.7.8&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localhost.localstack.cloud. 300 IN A 5.6.7.8&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p></description></item></channel></rss>

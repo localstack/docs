@@ -58,7 +58,8 @@ then build a &lt;code>FatJar&lt;/code>, unzip it, and mount it into the Lambda D
 &lt;p>First, create a watchman wrapper by using
 &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice/bin/watchman.sh">one of our examples&lt;/a>&lt;/p>
 &lt;p>Don&amp;rsquo;t forget to adjust permissions:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod +x bin/watchman.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>chmod +x bin/watchman.sh&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Now configure your build tool to unzip the FatJar to some folder, which will be
 then mounted to LocalStack. We are using &lt;code>Gradle&lt;/code> build tool to unpack the
 &lt;code>FatJar&lt;/code> into the &lt;code>build/hot&lt;/code> folder:&lt;/p>
@@ -657,7 +658,8 @@ then add the following configuration:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler myindex.handler \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs14.x \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 150 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Now to debug your lambda function, click on the &lt;code>Debug&lt;/code> icon with
 &lt;code>Attach to Remote Node.js&lt;/code> configuration selected, and then invoke your
 lambda function:&lt;/p>

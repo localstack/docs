@@ -217,7 +217,7 @@ We use &lt;code>localhost.localstack.cloud&lt;/code> as the recommended endpoint
 &lt;h2 id="conclusion">Conclusion&lt;/h2>
 &lt;p>In this tutorial, we have seen how to use LocalStack to create an S3 bucket and configure it to serve a static website. We have also seen how you can use Terraform to provision AWS infrastructure in an emulated local environment using LocalStack. You can use the &lt;a href="https://app.localstack.cloud">LocalStack App&lt;/a> to view the created buckets and files on the LocalStack Resource dashboard for S3 and upload more files or perform other operations on the bucket. Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without creating any real AWS resources.&lt;/p>
 &lt;p>The code for this tutorial can be found in our &lt;a href="https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website">LocalStack Terraform samples over GitHub&lt;/a>. Further documentation for S3 is available on our &lt;a href="/user-guide/aws/s3/">S3 documentation&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Terraform</title><link>/user-guide/integrations/terraform/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/terraform/</guid><description>
-&lt;img src="logo-terraform-main.svg" width="600px" alt="terraform logo">
+&lt;img src="logo-terraform-main.svg" width="600px" alt="Terraform logo">
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>Terraform allows you to automate the management of AWS resources such as containers, lambda functions and so on by declaring them in the HashiCorp Configuration Language (HCL).
 On this page we discuss how Terraform and LocalStack can be used together.
@@ -236,11 +236,13 @@ Apart from some information Terraform expects there are basically only two thing
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="using-the-tflocal-script">Using the &lt;code>tflocal&lt;/code> script&lt;/h2>
 &lt;p>We provide &lt;code>tflocal&lt;/code>, a thin wrapper script around the &lt;code>terraform&lt;/code> command line client. &lt;code>tflocal&lt;/code> takes care of automatically configuring the local service endpoints, which allows you to easily deploy your unmodified Terraform scripts against LocalStack.&lt;/p>
 &lt;p>You can install the &lt;code>tflocal&lt;/code> command via &lt;code>pip&lt;/code> (requires a local Python installation):
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install terraform-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install terraform-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;p>Once installed, the &lt;code>tflocal&lt;/code> command should be available, with the same interface as the &lt;code>terraform&lt;/code> command line:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>tflocal --help
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: terraform [global options] &amp;lt;subcommand&amp;gt; [args]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Alternatively, you can also manually configure the local endpoints in the &lt;code>provider&lt;/code> section of your Terraform script - see further below.
@@ -250,7 +252,8 @@ Alternatively, you can also manually configure the local endpoints in the &lt;co
 &lt;p>All you need to do is to initialize Terraform:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>tflocal init&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>&amp;hellip; and then provision s3 bucket specified in the configuration:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>tflocal apply&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>tflocal apply&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
 &lt;h2 id="manual-configuration">Manual Configuration&lt;/h2>
 &lt;p>As an alternative to using the &lt;code>tflocal&lt;/code> script, you may also manually configure the local service endpoints and credentials. We&amp;rsquo;ll walk through the detailed steps in the following sections.&lt;/p>
 &lt;h3 id="general-configuration">General Configuration&lt;/h3>
