@@ -1,0 +1,49 @@
+name: Update LocalStack CLI Manual
+
+on:
+  schedule:
+    - cron: 0 0 1 */3 * # every 3 months
+  workflow_dispatch:
+    inputs:
+        targetBranch:
+          required: false
+          type: string
+          default: 'main'
+
+jobs:
+  update-cli-manual:
+    name: Update CLI manual 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout docs
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: docs
+          ref: ${{ github.event.inputs.targetBranch || 'main' }}
+
+      - name: Set up Python 3.10
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install Python 
+        run: |
+          pip3 install localstack
+
+      - name: Run the script 
+        run: |
+          python3 scripts/cli_manual_automation.py
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v5
+        with:
+          path: docs
+          title: "Update CLI manual Docs"
+          branch: "cli-manual-auto-updates"
+          author: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
+          committer: "LocalStack Bot <localstack-bot@users.noreply.github.com>"
+          commit-message: "update generated cli manual docs"
+          token: ${{ secrets.PRO_ACCESS_TOKEN }}
+          reviewers: HarshCasper
