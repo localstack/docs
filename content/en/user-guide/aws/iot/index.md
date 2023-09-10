@@ -22,7 +22,7 @@ This guide is for users that are new to IoT and assumes a basic knowledge of the
 
 Start LocalStack using your preferred method.
 
-LocalStack ships an MQTT (Message Queuing Telemetry Transport) broker powered by [Mosquitto](https://mosquitto.org/) which supports both pure MQTT and MQTT-over-WSS (WebSockets Secure) protocols.
+LocalStack ships an Message Queuing Telemetry Transport (MQTT) broker powered by [Mosquitto](https://mosquitto.org/) which supports both pure MQTT and MQTT-over-WSS (WebSockets Secure) protocols.
 To retrieve the MQTT endpoint, use the [`DescribeEndpoint`](https://docs.aws.amazon.com/iot/latest/apireference/API_DescribeEndpoint.html) operation.
 
 {{< command >}}
@@ -62,12 +62,94 @@ $ mqtt publish \
 
 This message will be pushed to all subscribers of this topic, including the one in the first terminal.
 
-## Using Authentication
+## Authentication
 
-LocalStack IoT maintains its own root certificate authority which is refreshed at every run.
-The root CA certificate can be retrieved from the internal endpoint `/_aws/iot/LocalStackIoTRootCA.pem`.
+LocalStack IoT maintains its own root certificate authority which is regenerated at every run.
+The root CA certificate can be retrieved from <http://local.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem>.
 
-When using the AWS IoT SDKs
+{{< alert title="Note">}}
+AWS provides its root CA certificate at <https://www.amazontrust.com/repository/AmazonRootCA1.pem>.
+For more information, see [this](https://docs.aws.amazon.com/iot/latest/developerguide/server-authentication.html#server-authentication-certs).
+{{< /alert >}}
+
+When connecting to the endpoints, you will need to provide this root CA certificate for authentication.
+This is illustrated below with Python [AWS IoT SDK](https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html), 
+
+```py
+import awscrt
+import boto3
+from awsiot import mqtt_connection_builder
+
+region = 'eu-central-1'
+iot_client = boto3.client('iot', region=region)
+endpoint = aws_client.iot.describe_endpoint()["endpointAddress"]
+endpoint, port = endpoint.split(':')
+
+event_loop_group = io.EventLoopGroup(1)
+host_resolver = io.DefaultHostResolver(event_loop_group)
+client_bootstrap = io.ClientBootstrap(event_loop_group, host_resolver)
+
+credentials_provider = awscrt.auth.AwsCredentialsProvider.new_default_chain(
+    client_bootstrap=client_bootstrap
+)
+
+client_id = 'example-client'
+
+# Path to root CA certificate downloaded from `/_aws/iot/LocalStackIoTRootCA.pem`
+ca_filepath = '...'
+
+mqtt_over_wss = mqtt_connection_builder.websockets_with_default_aws_signing(
+    region=region,
+    credentials_provider=credentials_provider,
+    client_bootstrap=client_bootstrap,
+    client_id=client_id,
+    endpoint=endpoint,
+    port=port,
+    ca_filepath=ca_filepath,
+)
+
+mqtt_over_wss.connect().result()
+mqtt_over_wss.subscribe(...)
+```
+
+If you are using pure MQTT, you also need to set the client-side X509 certificates and Application Layer Protocol Negotiation (ALPN) for a successful mutual TLS (mTLS) authentication.
+This is not required for MQTT-over-WSS since it does not use mTLS.
+
+AWS IoT SDKs automatically set the ALPN when the endpoint port is 443.
+However, because LocalStack does not use this port, this must be done manually.
+For details on how ALPN works with AWS, see [this page](https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html).
+
+The client certificate and key can be retrieved using `CreateKeysAndCertificate` operation.
+The certificate is signed by the LocalStack root CA.
+
+```py
+result = iot_client.create_keys_and_certificate(setAsActive=True)
+
+# Path to file with saved content `result["certificatePem"]`
+cert_file = '...'  
+
+# Path to file with saved content `result["keyPair"]["PrivateKey"]`
+priv_key_file = '...'  
+
+tls_ctx_options = awscrt.io.TlsContextOptions.create_client_with_mtls_from_path(
+    cert_file, priv_key_file
+)
+tls_ctx_options.alpn_list = ["x-amzn-mqtt-ca"]
+
+mqtt = mqtt_connection_builder._builder(
+    tls_ctx_options,
+    cert_filepath=cert_file,
+    pri_key_filepath=priv_key_file,
+    client_bootstrap=client_bootstrap,
+    client_id=client_id,
+    endpoint=endpoint,
+    port=port,
+    ca_filepath=ca_filepath,
+)
+
+mqtt.connect().result()
+mqtt.subscribe(...)
+```
 
 
 ## Lifecycle Events
@@ -81,12 +163,13 @@ LocalStack publishes the [lifecycle events](https://docs.aws.amazon.com/iot/late
 
 Currently the `principalIdentifier` and `sessionIdentifier` fields in event payload contain dummy values.
 
-## Registry Events for Things
+## Registry Events
 
 LocalStack can publish the [registry events](https://docs.aws.amazon.com/iot/latest/developerguide/registry-events.html), if [you enable it](https://docs.aws.amazon.com/iot/latest/developerguide/iot-events.html#iot-events-enable).
 
 {{< command >}}
-$ awslocal iot update-event-configurations --event-configurations '{"THING":{"Enabled": true}}'
+$ awslocal iot update-event-configurations \
+        --event-configurations '{"THING":{"Enabled": true}}'
 {{< / command >}}
 
 You can then subscribe or use topic rules on the follow topics:
