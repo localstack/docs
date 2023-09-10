@@ -76,8 +76,7 @@ If you're working with .NET and LocalStack, you have a few options. In addition 
 
 ### How it Works
 
-- Instead of manually setting the endpoint configurations when initializing a client, `LocalStack.NET` offers methods that handle these details.
-- The library aims to reduce the boilerplate required to set up LocalStack clients in .NET.
+Instead of manually setting the endpoint configurations when initializing a client, `LocalStack.NET` offers methods that handle these details. The library aims to reduce the boilerplate required to set up LocalStack clients in .NET.
 
 ### Example Usage
 
@@ -106,8 +105,8 @@ var sessionOptions = new SessionOptions();
 var configOptions = new ConfigOptions();
 
 ISession session = SessionStandalone.Init()
-                                .WithSessionOptions(sessionOptions)
-                                .WithConfigurationOptions(configOptions).Create();
+    .WithSessionOptions(sessionOptions)
+    .WithConfigurationOptions(configOptions).Create();
 
 var amazonS3Client = session.CreateClientByImplementation<AmazonS3Client>();
 ```
