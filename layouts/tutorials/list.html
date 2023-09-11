@@ -14,9 +14,7 @@
             {{ partial "sidebar.html" . }}
           </aside>
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
-            {{ partial "page-meta-links.html" . }}
-            {{ partial "toc.html" . }}
-            {{ partial "taxonomy_terms_clouds.html" . }}
+            {{ partial "developer-hub/filters-sidebar.html" . }}
           </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
             {{ partial "version-banner.html" . }}
@@ -52,23 +50,48 @@
                   {{ else }}
                   {{/* Otherwise we show a nice formatted list of subpages with page descriptions */}}
                   <hr class="panel-line">
+                    <div class="row">
                       {{ range $pages }}
                           {{ $manualLink := cond (isset .Params "manuallink") .Params.manualLink ( cond (isset .Params "manuallinkrelref") (relref . .Params.manualLinkRelref) .RelPermalink) }}
-                          <div class="entry">
-                            <div class="row">
-                              <div class="col">
-                                <h5>
-                                    <a href="{{ $manualLink }}"{{ with .Params.manualLinkTitle }} title="{{ . }}"{{ end }}{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}>{{- .Title -}}</a>
-                                </h5>
-                                <p>{{ .Description | markdownify }}</p>
-                              </div>
+                          {{$services := cond (ne (len .Params.Services) 0)  (printf " service-%s" (delimit .Params.Services " service-")) "" }}
+                          {{$deployment := cond (ne (len .Params.Deployment) 0)  (printf " deployment-%s" (delimit .Params.Deployment " deployment-")) "" }}
+                          {{$platform := cond (ne (len .Params.Platform) 0)  (printf " platform-%s" (delimit .Params.Platform " platform-")) "" }}
+                          {{$className := print $services $deployment $platform}}
+                          <div class="entry col-12 col-sm-6 col-lg-4 filters-card{{$className}}"
+                            data-services='{{cond (ne (len .Params.Services) 0) (delimit .Params.Services ",") ""}}'
+                            data-deployments='{{cond (ne (len .Params.Deployment) 0) (delimit .Params.Deployment ",") ""}}'
+                            data-platforms='{{cond (ne (len .Params.Platform) 0) (delimit .Params.Platform ",") ""}}'
+                          >
+                          <div class="card h-100">
+                            <div>
+                            {{ $image := .Page.Resources.GetMatch (printf "*%s*" (.Params.leadimage)) }}
+                            {{ with $image }}
+                            <img class="card-img" src="{{ .RelPermalink }}"/>
+                            {{end}}
                             </div>
+                            <div class="card-body d-flex flex-column">
+                            <h5>
+                                <a href="{{ $manualLink }}"{{ with .Params.manualLinkTitle }} title="{{ . }}"{{ end }}{{ with .Params.manualLinkTarget }} target="{{ . }}"{{ if eq . "_blank" }} rel="noopener"{{ end }}{{ end }}>{{- .Title -}}</a>
+                            </h5>
+                            <p>{{ .Description | markdownify }}</p>
+                            <div class="reading-time-in-card text-muted mt-auto">
+                              {{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) }}
+                                {{ partial "reading-time.html" . }}
+                              {{ end }}
+                            </div>
+                            </div>
+                          </div>
+                          </div>
+                          <div id="no-results" class="col-xs-12 flex-grow-1 text-center" style="display: none;">
+                            No tutorials available with the selected filters.
+                            <a href="javascript:void(0)" class="clear-filters-btn" >Clear filters</a>
                           </div>
                       {{ end }}
                   {{ end }}
+                </div>
               </div>
-              
-                
+
+
                 {{ if (and (not .Params.hide_feedback) (.Site.Params.ui.feedback.enable) (.Site.GoogleAnalytics)) }}
                     {{ partial "feedback.html" .Site.Params.ui.feedback }}
                     <br />
@@ -93,4 +116,15 @@
       margin: 0;
     }
   </style>
+  <script>
+    var filtersConfig = {
+      data: {
+        services: {{.Site.Data.developerhub.services}},
+        deployments: {{.Site.Data.developerhub.deployments}},
+        platforms: {{.Site.Data.developerhub.platforms}},
+      },
+      hasCloudPod: false,
+    };
+  </script>
+  <script src="{{ "js/filters-sidebar-script.js" | relURL }}"></script>
 </html>

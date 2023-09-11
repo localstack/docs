@@ -5,13 +5,30 @@ weight: 5
 description: >
   With LocalStack Cloud Pods, you can create persistent state snapshots to enable next-generation state management and team collaboration features for your local development environment. Learn how you can create reproducible machine learning applications & samples using Cloud Pods in LocalStack.
 type: tutorials
+teaser: ""
+services:
+- lmb
+- s3
+platform:
+- python
+deployment:
+- awscli
+tags:
+- Cloud Pods
+- Machine Learning
+- S3
+- Lambda
+- Lambda Layers
+- Reproducible
+pro: true
+leadimage: "reproducible-machine-learning-cloud-pods-featured-image.png"
 ---
 
 [LocalStack Cloud Pods]({{< ref "user-guide/tools/cloud-pods" >}}) enable you to create persistent state snapshots of your LocalStack instance, which can then be versioned, shared, and restored. It allows next-generation state management and team collaboration for your local cloud development environment, which you can utilize to create persistent shareable cloud sandboxes. Cloud Pods works directly with the [LocalStack CLI]({{< ref "getting-started/installation#localstack-cli" >}}) to save, merge, and restore snapshots of your LocalStack state. You can always tear down your LocalStack instance and restore it from a snapshot at any point in time.
 
 Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using [Community Cloud Pods]({{< ref "user-guide/tools/cloud-pods/community" >}}), you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags, and push them to the LocalStack platform for storage and collaboration.
 
-In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. We will rely on Cloud Pods to create a reproducible sample by using: 
+In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. We will rely on Cloud Pods to create a reproducible sample by using:
 
 - S3 to create a bucket to host our training data
 - Lambda to create a function to train and save the model to an S3 bucket
@@ -91,9 +108,9 @@ def load_digits(*, n_class=10, return_X_y=False, as_frame=False):
 
 The above code uses the `boto3` library to download the data file from an S3 bucket. The file is then loaded into a NumPy array using the `numpy.loadtxt` function, and the target values (i.e. the labels corresponding to each image) are extracted from the last column of the array. The images are then reshaped into 2-dimensional arrays, and the function has been configured to return only a subset of the available classes by filtering the target values. Finally, the function returns an object containing the data, target values, and metadata.
 
-Let us now define a `handler` function that would be executed by the Lambda every time a trigger event occurs. 
+Let us now define a `handler` function that would be executed by the Lambda every time a trigger event occurs.
 In this case, we would like to use the above function to load the dataset and train a model using the [Support Vector Machine (SVM)](https://scikit-learn.org/stable/modules/svm.html) algorithm.
- 
+
 ```python
 def handler(event, context):
 
@@ -119,14 +136,14 @@ def handler(event, context):
     buffer = io.BytesIO()
     dump(clf, buffer)
     s3_client.put_object(Body=buffer.getvalue(), Bucket="pods-test", Key="model.joblib")
-    
+
     # Save the test-set to the S3 bucket
     numpy.save('test-set.npy', X_test)
     with open('test-set.npy', 'rb') as f:
         s3_client.put_object(Body=f, Bucket="pods-test", Key="test-set.npy")
 ```
 
-First, we loaded the images and flattened them into 1-dimensional arrays. Then, we created a training and a test set using the `train_test_split` function from the `sklearn.model_selection` module. 
+First, we loaded the images and flattened them into 1-dimensional arrays. Then, we created a training and a test set using the `train_test_split` function from the `sklearn.model_selection` module.
 
 We trained an SVM classifier on the training set using the `fit` method. Finally, we uploaded the trained model, together with the test set, to an S3 bucket for later usage.
 
@@ -283,6 +300,6 @@ LocalStack Cloud Pods also feature different merge strategies to merge the state
 
 ## Conclusion
 
-In conclusion, LocalStack Cloud Pods facilitate collaboration and debugging among team members by allowing the sharing of local cloud infrastructure and instance state. These Cloud Pods can be used to create reproducible environments for various purposes, including machine learning. By using Cloud Pods, teams can work together to create a reproducible environment for their application and share it with other team members. Additionally, Cloud Pods can be used to pre-seed continuous integration (CI) pipelines with the necessary instance state to bootstrap testing environments or to troubleshoot failures in the CI pipeline. 
+In conclusion, LocalStack Cloud Pods facilitate collaboration and debugging among team members by allowing the sharing of local cloud infrastructure and instance state. These Cloud Pods can be used to create reproducible environments for various purposes, including machine learning. By using Cloud Pods, teams can work together to create a reproducible environment for their application and share it with other team members. Additionally, Cloud Pods can be used to pre-seed continuous integration (CI) pipelines with the necessary instance state to bootstrap testing environments or to troubleshoot failures in the CI pipeline.
 
 For more information about LocalStack Cloud Pods, refer to the documentation provided. The code for this tutorial, including a Makefile to execute it step-by-step, is available in the [LocalStack Pro samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/reproducible-ml) on GitHub.

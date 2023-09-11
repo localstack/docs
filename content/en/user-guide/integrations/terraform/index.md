@@ -8,7 +8,7 @@ aliases:
   - /integrations/terraform/
 ---
 
-<img src="logo-terraform-main.svg" width="600px" alt="terraform logo">
+<img src="logo-terraform-main.svg" width="600px" alt="Terraform logo">
 
 ## Overview
 

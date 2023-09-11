@@ -23,8 +23,9 @@ There are three options when running LocalStack:
 They all can be summarised as:
 
 1. get your proxy's custom certificate into the system certificate store, and
-2. configure [`requests`](https://pypi.python.org/pypi/requests) to use the custom certificate, and
-3. configure [`curl`](https://curl.se/) to use the custom certificate.
+2. configure [`requests`](https://pypi.python.org/pypi/requests) to use the custom certificate,
+3. configure [`curl`](https://curl.se/) to use the custom certificate, and 
+4. configure [`node.js`](https://nodejs.org/) to use the custom certificate.
 
 ## Creating a custom docker image
 
@@ -41,6 +42,7 @@ COPY <your custom certificate.crt> /usr/local/share/ca-certificates/cert-bundle.
 RUN update-ca-certificates
 ENV CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
 ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
 ```
 
 and build the image:
@@ -93,6 +95,7 @@ Then run LocalStack with the environment variables
 
 * `REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`, and
 * `CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt`, and
+* `NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt`
 
 and follow the instructions fn the [init hooks documentation]({{< ref "init-hooks" >}}) for configuring LocalStack to use the hook directory as a `boot` hook.
 
@@ -107,20 +110,26 @@ On linux the custom certificate should be added to your `ca-certificates` bundle
 # update-ca-certificates
 {{< / command >}}
 
-Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE` and `CURL_CA_BUNDLE`:
+Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`, and `NODE_EXTRA_CA_CERTS``:
 
 {{< command >}}
-$ CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
+$ NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
+  CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+  REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+  localstack start --host
 {{< / command >}}
 
 ### macOS
 
 On macOS the custom certificate should be added to your keychain. See [this Apple support article](https://support.apple.com/en-gb/guide/keychain-access/kyca2431/mac) for more information.
 
-Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE` and `CURL_CA_BUNDLE`:
+Then run LocalStack with the environment variables `REQUESTS_CA_BUNDLE`, `CURL_CA_BUNDLE`, and `NODE_EXTRA_CA_CERTS``:
 
 {{< command >}}
-$ CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt localstack start --host
+$ NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt \
+  CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+  REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+  localstack start --host
 {{< / command >}}
 
 ### Windows

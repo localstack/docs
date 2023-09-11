@@ -24,7 +24,7 @@ You can mount individual files, stage directories, or the entire init directory 
 └── localstack
     └── init
         ├── boot.d           <-- executed in the container before localstack starts
-        ├── ready.d          <-- executed when localstack becomes ready (currently equivalent to `/docker-entrypoint-initaws.d`)
+        ├── ready.d          <-- executed when localstack becomes ready
         ├── shutdown.d       <-- executed when localstack shuts down
         └── start.d          <-- executed when localstack starts up
 ```
@@ -107,7 +107,7 @@ which returns either `true` or `false`.
 ## Usage example
 
 A common use case for init hooks is pre-seeding LocalStack with custom state.
-If you have more complex state, [Cloud Pods]({{< ref `cloud-pods` >}}) may be a good option to look into!
+If you have more complex state, [Cloud Pods]({{< ref `user-guide/tools/cloud-pods` >}}) may be a good option to look into!
 But for simple state, for example if you want to have a certain S3 bucket or DynamoDB table created when starting LocalStack, init hooks can be very useful.
 
 To execute aws cli commands when LocalStack becomes ready,

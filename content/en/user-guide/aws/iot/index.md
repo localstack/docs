@@ -25,6 +25,12 @@ $ awslocal iot describe-endpoint
 
 This endpoint can then be used with any MQTT client to publish and subscribe to topics.
 
+{{< alert title="Hint" color="success" >}}
+LocalStack lazy-loads services by default.
+The MQTT broker may not be automatically available on a fresh launch of LocalStack.
+You should make a `DescribeEndpoint` call to ensure the broker is running.
+{{< /alert >}}
+
 ## Lifecycle Events
 
 LocalStack also publishes the [lifecycle events](https://docs.aws.amazon.com/iot/latest/developerguide/life-cycle-events.html) to the standard endpoints.

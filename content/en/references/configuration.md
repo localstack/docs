@@ -111,6 +111,8 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `EC2_DOCKER_FLAGS` | `--privileged` | Additional flags passed to Docker when launching containerized instances. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
 | `EC2_DOWNLOAD_DEFAULT_IMAGES` | `0`\|`1` (default) | At startup, LocalStack Pro downloads latest Ubuntu images from Docker Hub for use as AMIs. This can be disabled for security reasons. |
+| `EC2_MOUNT_BLOCK_DEVICES` | `1`\|`0` (default) | Whether to create and mount user-specified EBS block devices into EC2 container instances. |
+| `EC2_EBS_MAX_VOLUME_SIZE` | `1000` (default) | Maximum size (in MBs) of user-specified EBS block devices mounted into EC2 container instances. |
 
 ### EKS
 
@@ -187,7 +189,7 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 | `BUCKET_MARKER_LOCAL` | `__local__` (default) | Optional bucket name for running lambdas locally.<br> **Still supported in new provider but default changed to `hot-reload`.** |
 | `LAMBDA_CODE_EXTRACT_TIME` | `25` (default) | Time in seconds to wait at max while extracting Lambda code. By default, it is 25 seconds for limiting the execution time to avoid client/network timeout issues. <br> **Removed in new provider because function creation happens asynchronously.**|
 | `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to.<br> **Still supported in new provider.** |
-| `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function.<br> **Currently not supported in new provider.** |
+| `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function.<br> **Supported in new provider since LocalStack 2.2.** |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, user, platform and privileged mode.<br> **Still supported in new provider.** |
 | `LAMBDA_CONTAINER_REGISTRY` | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.<br> **Replaced by `LAMBDA_RUNTIME_IMAGE_MAPPING` in new provider.** |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. Only applicable when using docker-reuse executor.<br> **Still supported in new provider.** |
@@ -341,17 +343,14 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | **Deprecated.** Local directory for saving persistent data. This option is deprecated since LocalStack v1 and will be ignored. Please use `PERSISTENCE`. Using this option will set `PERSISTENCE=1` as a deprecation path. The state will be stored in your LocalStack volume in the `state/` directory |
 | `HOST_TMP_FOLDER` | `/some/path` | **Deprecated.** Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
 | `TMPDIR`| `/tmp` (default)| **Deprecated.** Temporary folder on the host running the CLI and inside the LocalStack container .|
-| `SERVICES` | `kinesis,lambda,sqs`,`serverless`| **Deprecated.** Only works with `EAGER_SERVICE_LOADING=1`. Comma-separated list of [AWS CLI service names][1] or shorthands to start. Per default, all services are loaded and started on the first request for that service. |
-| `<SERVICE>_BACKEND` | | **Deprecated.** Custom endpoint URL to use for a specific service, where <SERVICE> is the uppercase service name.
+| `<SERVICE>_BACKEND` | | **Deprecated.** Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name.
 | `<SERVICE>_PORT_EXTERNAL` | `4567` | **Deprecated.** Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
 | `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | **Deprecated.** Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. Use `LOCALSTACK_HOST` instead. |
 | `HOSTNAME_EXTERNAL` | `localhost` (default) | **Deprecated.** Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client. Use `LOCALSTACK_HOST` instead. |
 | `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| **Deprecated.** Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
 | `EDGE_PORT` | `4566` (default)| **Deprecated.** Port number for the edge service, the main entry point for all API invocations. |
 | `EDGE_FORWARD_URL` | | **Deprecated.** Optional target URL to forward all edge requests to (e.g., for distributed deployments)
-| `USE_LIGHT_IMAGE` | `1` (default) | **Deprecated.** Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
 | `INIT_SCRIPTS_PATH` | `/some/path` | **Deprecated.** Specify the path to the initializing files with extensions `.sh` that are found default in `/docker-entrypoint-initaws.d`. |
-| `LEGACY_IAM_PROVIDER` | `0` (default)\|`1` | **Deprecated.** Enables the pre-1.0 legacy IAM provider |
 | `KMS_PROVIDER` | `moto` (default), `local-kms` | **Deprecated.** `local-kms` provider is deprecated and marked for removal. |
 | `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | **Deprecated.** Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
 | `ES_MULTI_CLUSTER` | `0`\|`1` | **Deprecated.** Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |

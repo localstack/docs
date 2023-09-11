@@ -64,6 +64,26 @@ $ awslocal lambda create-function \
 In the old Lambda provider, you could create a function with any arbitrary string as the role, such as `r1`. However, the new provider requires the role ARN to be in the format `arn:aws:iam::000000000000:role/lambda-role` and validates it using an appropriate regex. However, it currently does not check whether the role exists.
 {{< /alert >}}
 
+### Invoke the Function
+
+To invoke the Lambda function, you can use the [`Invoke` API](https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html). Run the following command to invoke the function:
+
+{{< tabpane text=true persistLang=false >}}
+  {{% tab header="AWS CLI v1" lang="shell" %}}
+  {{< command >}}
+  $ awslocal lambda invoke --function-name localstack-lambda-url-example \
+    --payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
+  {{< /command >}}
+  {{% /tab %}}
+  {{% tab header="AWS CLI v2" lang="shell" %}}
+  {{< command >}}
+  $ awslocal lambda invoke --function-name localstack-lambda-url-example \
+    --cli-binary-format raw-in-base64-out \
+    --payload '{"body": "{\"num1\": \"10\", \"num2\": \"10\"}" }' output.txt
+  {{< /command >}}
+  {{% /tab %}}
+{{< /tabpane >}}
+
 ### Create a Function URL
 
 With the Function URL property, there is now a new way to call a Lambda Function via HTTP API call using the [`CreateFunctionURLConfig` API](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunctionUrlConfig.html). To create a URL for invoking the function, run the following command:
@@ -153,11 +173,11 @@ If your Lambda function references a layer in real AWS, you can integrate it int
 To grant access to your layer, run the following command:
 
 {{< command >}}
-$ aws lambda add-layer-version-permission
-  --layer-name test-layer
-  --version-number 1
-  --statement-id layerAccessFromLocalStack
-  --principal 886468871268
+$ aws lambda add-layer-version-permission \
+  --layer-name test-layer \
+  --version-number 1 \
+  --statement-id layerAccessFromLocalStack \
+  --principal 886468871268 \
   --action lambda:GetLayerVersion
 {{< / command >}}
 
@@ -198,7 +218,7 @@ The following configuration options from the old provider are discontinued in th
 * The `LAMBDA_STAY_OPEN_MODE` is now the default behavior and can be removed. Instead, use the `LAMBDA_KEEPALIVE_MS` option to configure how long containers should be kept running in between invocations.
 * The `LAMBDA_REMOTE_DOCKER` option is not used anymore since the new provider automatically copies zip files and configures hot reloading.
 * The `LAMBDA_CODE_EXTRACT_TIME` option is no longer used because function creation is now asynchronous.
-* The `LAMBDA_DOCKER_DNS`, `HOSTNAME_FROM_LAMBDA`, `LAMBDA_FALLBACK_URL`, `SYNCHRONOUS_KINESIS_EVENTS`, `SYNCHRONOUS_SNS_EVENTS` and `LAMBDA_FORWARD_URL` options are currently not supported.
+* The `HOSTNAME_FROM_LAMBDA`, `LAMBDA_FALLBACK_URL`, `SYNCHRONOUS_KINESIS_EVENTS`, `SYNCHRONOUS_SNS_EVENTS` and `LAMBDA_FORWARD_URL` options are currently not supported.
 * The `LAMBDA_CONTAINER_REGISTRY` option is not used anymore. Instead, use the more flexible `LAMBDA_RUNTIME_IMAGE_MAPPING` option to customize individual runtimes.
 * The `LAMBDA_XRAY_INIT` option is no longer needed because the X-Ray daemon is always initialized.
 
@@ -209,6 +229,7 @@ However, the new provider still supports the following configuration options:
 * The `LAMBDA_DOCKER_NETWORK` option.
 * The `LAMBDA_DOCKER_FLAGS` option.
 * The `LAMBDA_REMOVE_CONTAINERS` option.
+* The `LAMBDA_DOCKER_DNS` option since LocalStack 2.2.
 
 ## Examples
 
