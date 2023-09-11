@@ -8,8 +8,8 @@ description: Get started with Amazon Simple Email Service (SES) on LocalStack
 
 Simple Email Service (SES) is an emailing service that can be integrated with other cloud-based services.
 
-LocalStack supports SES v1 in the Community edition, with SES v2 and SMTP integration supported in the Pro edition.
-The full list of supported APIs can be found on the [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ses/).
+LocalStack supports SES v1 in the Community edition, while the Pro edition also supports SES v2 and SMTP integration.
+The full list of supported APIs can be found on the API coverage pages: [SES v1](https://docs.localstack.cloud/references/coverage/coverage_ses/) and [SES v2](https://docs.localstack.cloud/references/coverage/coverage_sesv2/)
 
 ## Getting Started
 
@@ -34,6 +34,11 @@ $ awslocal ses list-identities
 }
 {{< /command >}}
 
+{{< alert title="Note" >}}
+On AWS, verifying email identities or domain identities require additional steps like changing DNS configuration or clicking verification links respectively.
+In LocalStack, verifying identities require no additional steps.
+{{< /alert >}}
+
 Next, emails can be sent using the `SendEmail` operation.
 
 {{< command >}}
@@ -53,7 +58,7 @@ On LocalStack Pro, you can enable [SMTP Integration](#smtp-integration) to send 
 ## Sent Emails
 
 LocalStack keeps track of all sent emails for retrospection.
-The sent messages can be retrieved in following ways:
+Sent messages can be retrieved in following ways:
 - **API endpoint:** LocalStack provides a service endpoint (`/_aws/ses`) which can be used to return in-memory saved messages.
     A `GET` call returns all messages.
     Query parameters `id` and `email` can be used to filter by message ID and message source respectively.
@@ -95,7 +100,10 @@ LocalStack Pro ships with support for sending emails via an SMTP email server.
 
 Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).
 
-> Hint
+{{< alert title="Hint" color="success">}}
+If you do not have access to a proper SMTP server, you can use tools like [MailDev](https://github.com/maildev/maildev) or [smtp4dev](https://github.com/rnwood/smtp4dev).
+These run as Docker containers on your local machine.
+{{< /alert >}}
 
 
 ## Resource Browser
