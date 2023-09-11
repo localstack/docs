@@ -1,196 +1,202 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 3
+weight: 10
+hide_readingtime: true
 description: >
   Basic installation guide to get started with LocalStack on your local machine.
 cascade:
   type: docs
 ---
 
-This installation guide provides the basic instructions to install LocalStack for the first time, and assumes you are already familiar with the Docker and Python packaging ecosystems.
+## LocalStack CLI
 
-## How to install LocalStack
+The quickest way get started with LocalStack is by using the LocalStack CLI. It allows you to start LocalStack from your command line.
+Please make sure that you have a working [`docker` environment](https://docs.docker.com/get-docker/) on your machine before moving on.
 
-The first thing when getting started with LocalStack is to choose your preferred way of starting and managing your LocalStack instance.
-
-LocalStack currently provides the following options:
-
-- [LocalStack CLI]({{< ref "#localstack-cli" >}})\
-  The easiest way to start and manage LocalStack - either on your machine, in a Docker container on your machine, or even on a remote Docker host.
-
-- [LocalStack Cockpit]({{< ref "#localstack-cockpit" >}})\
-  Get a desktop experience and work with your local LocalStack instance via the UI.
-
-- [Docker]({{< ref "#docker" >}})\
-  Use the `docker` CLI to manually start the LocalStack Docker container.
-
-- [Docker-Compose]({{< ref "#docker-compose" >}})\
-  Use `docker-compose` to configure and start your LocalStack Docker container.
-
-- [Helm]({{< ref "#helm" >}})\
-  Use `helm` to create a LocalStack deployment in a Kubernetes cluster.
-
-LocalStack runs inside a Docker container, and the above options are different ways to start and manage the LocalStack Docker container. The LocalStack CLI is the easiest way to get started, and we recommend using it for your first steps with LocalStack. For a comprehensive overview of the LocalStack images, check out our [Docker images documentation]({{< ref "docker-images" >}}).
-
-### LocalStack CLI
-
-The LocalStack CLI aims to simplify starting and managing LocalStack. It provides convenience features to start LocalStack on your local machine, as a Docker container on your machine, or even on a remote Docker host. In addition you can easily check the status or open a shell in your LocalStack instance if you want to take a deep-dive.
-
-#### Prerequisites
-
-Please make sure to install the following tools on your machine before moving ahead:
-
-- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.10 is supported)
-- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
-- [`docker`](https://docs.docker.com/get-docker/)
-
-#### Installation
-
-Download the latest LocalStack release:
-
-{{< tabpane >}}
-{{< tab header="macOS brew" lang="shell" >}}
-brew install localstack
-{{< /tab >}}
-{{< tab header="macOS/Linux PyPI" lang="shell" >}}
-python3 -m pip install localstack
-{{< /tab >}}
-{{< tab header="Windows" lang="shell" >}}
-python -m pip install localstack
-{{< /tab >}}
-{{< /tabpane >}}
-
-{{< alert title="Note" >}}
-To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
-
-{{< command >}} 
-$ python3 -m pip install localstack==<version>
+{{< tabpane text=true >}}
+{{< tab header="MacOS" >}}
+You can install the LocalStack CLI using Brew directly from our official LocalStack tap:
+{{< command >}}
+$ brew install localstack/tap/localstack-cli
 {{< / command >}}
+<details>
+<summary>Alternative: Binary Download</summary>
+<p>
+Alternatively, you can just download the respective binary for your architecture directly:<br>
+{{< cli-binary-download os="macos" >}}
+</p>
+<p>
+Then extract the LocalStack CLI from the terminal:
+{{< command >}}
+$ sudo tar xvzf ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-darwin-*-onefile.tar.gz -C /usr/local/bin
+{{< / command >}}
+</p>
+</details>
+<details>
+<summary>Alternative: Python</summary>
+You can also install the LocalStack CLI directly in your Python environment.<br>
+Please make sure to install the following tools on your machine before moving ahead:
+{{% markdown %}}
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.11 is supported)
+- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
 
-Here `<version>` depicts the particular LocalStack version that you would like to download and use.
-{{< /alert >}}
+Afterwards you can install the LocalStack CLI in your Python environment with:
+{{< command >}}
+$ python3 -m pip install --upgrade localstack
+{{< / command >}}
+{{% /markdown %}}
 
 {{< alert title="Important" color="danger" >}}
 Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
 If you have problems with permissions in MacOS X Sierra, install with `python3 -m pip install --user localstack`.
 {{< /alert >}}
+</details>
+{{< /tab >}}
 
-Afterwards you should be able to use the LocalStack CLI in your terminal:
 
+
+{{< tab header="Linux" >}}
+<p>
+You can just download the respective binary for your architecture directly:<br>
+{{< cli-binary-download os="linux" >}}
+</p>
+<p>
+Then extract the LocalStack CLI from the terminal:
 {{< command >}}
-$ localstack --help
-Usage: localstack [OPTIONS] COMMAND [ARGS]...
-
-  The LocalStack Command Line Interface (CLI)
-
-Options:
-...
+$ sudo tar xvzf ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-linux-*-onefile.tar.gz -C /usr/local/bin
 {{< / command >}}
+</p>
 
-#### Updates
-
-The LocalStack CLI also allows you to easily update the different components of LocalStack. To check the various options available for updating, run:
-
+<details>
+<summary>Alternative: Homebrew on Linux</summary>
+Alternatively, if you are using <a href="https://docs.brew.sh/Homebrew-on-Linux">Homebrew for Linux</a>, you can install the LocalStack CLI directly from our official LocalStack tap:
 {{< command >}}
-$ localstack update --help
-
-Usage: localstack update [OPTIONS] COMMAND [ARGS]...
-
-  Update LocalStack components
-
-Options:
-  --help  Show this message and exit.
-
-Commands:
-  all             Update all LocalStack components
-  docker-images   Update container images LocalStack depends on
-  localstack-cli  Update LocalStack CLI tools
+$ brew install localstack/tap/localstack-cli
 {{< / command >}}
+</details>
 
-You can decide to update the CLI itself, the LocalStack Docker images, or all at once:
+<details>
+<summary>Alternative: Python</summary>
+You can also install the LocalStack CLI directly in your PYthon environment.<br>
+Please make sure to install the following tools on your machine before moving ahead:
+{{% markdown %}}
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.11 is supported)
+- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
 
+Afterwards you can install the LocalStack CLI in your Python environment with:
 {{< command >}}
-$ # Update all components
-$ localstack update all
-$ # Only update the LocalStack docker images
-$ localstack update docker-images
-$ # Only update the LocalStack CLI
-$ localstack update localstack-cli
+$ python3 -m pip install --upgrade localstack
 {{< / command >}}
-
-#### Starting LocalStack with the LocalStack CLI
-
-By default, LocalStack is started inside a Docker container by running:
-
-{{< command >}}
-$ localstack start
-{{< / command >}}
-
-{{< alert title="Notes" >}}
-- This command loads all services provided by LocalStack, they will however be started on the first request reaching this service.
-
-- By default, LocalStack uses the image tagged `latest` that is cached on your machine, and will **not** pull the latest image automatically from Docker Hub (i.e., the image needs to be pulled manually if needed).
-
-- The default image `localstack/localstack` in DockerHub refers to the community version of LocalStack. The `localstack/localstack-pro` image refers to the Pro version of LocalStack. Previously we maintained `localstack-light` and `localstack-full` images which has been deprecated and will be removed with the LocalStack 2.0 release.
-
-- When an [API key]({{< ref "api-key" >}}) is set in your environment, `localstack start` will attempt to start LocalStack with the `localstack/localtack-pro` image.
-  A successful key activation is required to start LocalStack Pro but can be disabled by setting `ACTIVATE_PRO=0`.
+{{% /markdown %}}
+{{< alert title="Important" color="danger" >}}
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
 {{< /alert >}}
+</details>
+{{< /tab >}}
+
+
+
+{{< tab header="Windows" >}}
+You can just download the respective binary for your architecture directly: 
+{{< cli-binary-download os="windows" >}}<br/>
+Then extract the archive and execute the binary using Powershell.
+
+<details>
+<summary>Alternative: Python</summary>
+You can also install the LocalStack CLI directly in your Python environment.<br>
+Please make sure to install the following tools on your machine before moving ahead:
+{{% markdown %}}
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.11 is supported)
+- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
+
+Afterwards you can install the LocalStack CLI in your Python environment with:
+{{< command >}}
+$ python3 -m pip install --upgrade localstack
+{{< / command >}}
+{{% /markdown %}}
+
+{{< alert title="Important" color="danger" >}}
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
+{{< /alert >}}
+</details>
+{{< /tab >}}
+
+
+
+{{< tab header="Other" >}}
+If you cannot use one of our prebuilt binary releases of LocalStack, you can install the LocalStack CLI in a Python environment.<br>
+Please make sure to install the following tools on your machine before moving ahead:
+{{% markdown %}}
+- [`python`](https://docs.python.org/3/using/index.html) (Python 3.7 up to 3.11 is supported)
+- [`pip`](https://pip.pypa.io/en/stable/installation/) (Python package manager)
+
+Afterwards you can install the LocalStack CLI in your Python environment with:
+{{< command >}}
+$ python3 -m pip install --upgrade localstack
+{{< / command >}}
+{{% /markdown %}}
+
+{{< alert title="Note" >}}
+To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
+{{< command >}} 
+$ python3 -m pip install localstack==<version>
+{{< / command >}}
+{{% markdown %}}
+Here `<version>` depicts the particular LocalStack version that you would like to download and use.
+{{% /markdown %}}
+{{< /alert >}}
+
+{{< alert title="Important" color="danger" >}}
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
+{{< /alert >}}
+{{< /tab >}}
+{{< /tabpane >}}
+
+To verify that the LocalStack CLI was installed correctly, you can check the version in your terminal:
+{{< command >}}
+$ localstack --version
+{{< localstack-latest-version >}}
+{{< / command >}}
+
+You are all set!
+To use all of LocalStack's features we recommend to [get a LocalStack account and set up your api key]({{< ref "api-key" >}}).
+Afterwards, check out our [Quickstart guide]({{< ref "quickstart" >}}) to start your local cloud!
+
+## Alternatives
+Besides using the CLI, there are other ways of starting and managing your LocalStack instance:
+
+- [LocalStack Cockpit]({{< ref "#localstack-cockpit" >}})\
+  Get a desktop experience and work with your local LocalStack instance via the UI.
+
+- [LocalStack Docker Extension]({{< ref "#localstack-docker-extension" >}})\
+  Use the LocalStack extension for Docker Desktop to work with your LocalStack instance.
+
+- [Docker-Compose]({{< ref "#docker-compose" >}})\
+  Use `docker-compose` to configure and start your LocalStack Docker container.
+
+- [Docker]({{< ref "#docker" >}})\
+  Use the `docker` CLI to manually start the LocalStack Docker container.
+
+- [Helm]({{< ref "#helm" >}})\
+  Use `helm` to create a LocalStack deployment in a Kubernetes cluster.
+
+LocalStack runs inside a Docker container, and the above options are different ways to start and manage the LocalStack Docker container.
+For a comprehensive overview of the LocalStack images, check out our [Docker images documentation]({{< ref "docker-images" >}}).
 
 ### LocalStack Cockpit
 
+Download our desktop client at [localstack.cloud/products/cockpit](https://localstack.cloud/products/cockpit/).
 See [LocalStack Cockpit]({{< ref "cockpit" >}}).
 
-### Docker
+### LocalStack Docker Extension
 
-To use LocalStack without the [LocalStack CLI]({{< ref "#localstack-cli" >}}), you have the option of running the LocalStack Docker container by yourself. This method requires more manual steps and configuration, but it gives you more control over the container settings and environment variables.
-
-#### Prerequisites
-
-Please make sure that you have a working [`docker` environment](https://docs.docker.com/get-docker/) on your machine before moving on.
-You can check if `docker` is correctly configured on your machine by executing `docker info` in your terminal. If it does not report an error (but shows information on your Docker system), you're good to go.
-
-#### Starting LocalStack with Docker
-
-You can start the Docker container simply by executing the following `docker run` command:
-
-{{< tabpane >}}
-{{< tab header="Community" lang="shell" >}}
-docker run \
-  --rm -it \
-  -p 4566:4566 \
-  -p 4510-4559:4510-4559 \
-  localstack/localstack
-{{< /tab >}}
-{{< tab header="Pro" lang="shell" >}}
-docker run \
-  --rm -it \
-  -p 4566:4566 \
-  -p 4510-4559:4510-4559 \
-  -e LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:- } \
-  localstack/localstack-pro{{< /tab >}}
-{{< /tabpane >}}
-
-{{< alert title="Notes" >}}
-- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version. If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
-
-- If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup. Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
-
-- This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
-
-- This command does not bind all ports that are potentially used by LocalStack, nor does it mount any volumes.
-  When using Docker to manually start LocalStack, you will have to configure the container on your own (see [docker-compose-pro.yml](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml) and [Configuration]({{< ref "configuration" >}})).
-  This could be seen as the "expert mode" of starting LocalStack.
-  If you are looking for a simpler method of starting LocalStack, please use the [LocalStack CLI]({{< ref "#localstack-cli" >}}).
-
-- To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
-
-- To configure an API key, refer to the [API Key](https://docs.localstack.cloud/getting-started/api-key/) documentation.
-{{< /alert >}}
+Install our [official Docker Desktop extension](https://hub.docker.com/extensions/localstack/localstack-docker-desktop) to manage LocalStack.
+See [LocalStack Docker Extension]({{< ref "localstack-docker-extension" >}}).
 
 ### Docker-Compose
 
+To use LocalStack without the [LocalStack CLI]({{< ref "#localstack-cli" >}}), you have the option of running the LocalStack Docker container by yourself.
 If you want to manually manage your Docker container, it's usually a good idea to use [`docker-compose`](https://docs.docker.com/compose/reference/) in order to simplify your container configuration.
 
 #### Prerequisites
@@ -200,7 +206,8 @@ If you want to manually manage your Docker container, it's usually a good idea t
 
 #### Starting LocalStack with Docker-Compose
 
-You can start LocalStack with [Docker Compose](https://docs.docker.com/compose/) by configuring a `docker-compose.yml` file. Currently, `docker-compose` version 1.9.0+ is supported.
+You can start LocalStack with [Docker Compose](https://docs.docker.com/compose/) by configuring a `docker-compose.yml` file.
+Currently, `docker-compose` version 1.9.0+ is supported.
 
 {{< tabpane >}}
 {{< tab header="Community" lang="yml" >}}
@@ -251,27 +258,83 @@ $ docker-compose up
 {{< / command >}}
 
 {{< alert title="Notes" >}}
-- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version. If you want to use a specific version, set the appropriate localstack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
+- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
+  If you want to use a specific version, set the appropriate localstack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
 
-- If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in the `docker-compose.yml` file. Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
+- If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in the `docker-compose.yml` file.
+  Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
 
 - Mounting the Docker socket `/var/run/docker.sock` as a volume is required for the Lambda service. Check out the [Lambda providers]({{< ref "user-guide/aws/lambda" >}}) documentation for more information.
 
-- To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
+- To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker.
+  For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
-- If using the Docker default bridge network using `network_mode: bridge`, container name resolution will not work inside your containers. Please consider removing it, if this functionality is needed.
+- If using the Docker default bridge network using `network_mode: bridge`, container name resolution will not work inside your containers.
+  Please consider removing it, if this functionality is needed.
 
 - To configure an API key, refer to the [API Key](https://docs.localstack.cloud/getting-started/api-key/) documentation.
 {{< /alert >}}
 
-Please note that there are a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, and environment variables). We recommend using the LocalStack CLI to validate your configuration, which will print warning messages in case it detects any potential misconfigurations:
+Please note that there are a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, and environment variables).
+We recommend using the LocalStack CLI to validate your configuration, which will print warning messages in case it detects any potential misconfigurations:
 
 {{< command >}}
 $ localstack config validate
 ...
 {{< / command >}}
+
+### Docker
+
+You can also just directly start the LocalStack container using the Docker CLI instead of [Docker-Compose]({{< ref "#docker-compose" >}}).
+This method requires more manual steps and configuration, but it gives you more control over the container settings.
+
+#### Prerequisites
+
+Please make sure that you have a working [`docker` environment](https://docs.docker.com/get-docker/) on your machine before moving on.
+You can check if `docker` is correctly configured on your machine by executing `docker info` in your terminal.
+If it does not report an error (but shows information on your Docker system), you're good to go.
+
+#### Starting LocalStack with Docker
+
+You can start the Docker container simply by executing the following `docker run` command:
+
+{{< tabpane >}}
+{{< tab header="Community" lang="shell" >}}
+docker run \
+  --rm -it \
+  -p 4566:4566 \
+  -p 4510-4559:4510-4559 \
+  localstack/localstack
+{{< /tab >}}
+{{< tab header="Pro" lang="shell" >}}
+docker run \
+  --rm -it \
+  -p 4566:4566 \
+  -p 4510-4559:4510-4559 \
+  -e LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:- } \
+  localstack/localstack-pro{{< /tab >}}
+{{< /tabpane >}}
+
+{{< alert title="Notes" >}}
+- This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
+  If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
+
+- If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup.
+  Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
+
+- This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
+
+- This command does not bind all ports that are potentially used by LocalStack, nor does it mount any volumes.
+  When using Docker to manually start LocalStack, you will have to configure the container on your own (see [docker-compose-pro.yml](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml) and [Configuration]({{< ref "configuration" >}})).
+  This could be seen as the "expert mode" of starting LocalStack.
+  If you are looking for a simpler method of starting LocalStack, please use the [LocalStack CLI]({{< ref "#localstack-cli" >}}).
+
+- To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
+
+- To configure an API key, refer to the [API Key](https://docs.localstack.cloud/getting-started/api-key/) documentation.
+{{< /alert >}}
 
 ### Helm
 
@@ -292,7 +355,30 @@ $ helm upgrade --install localstack localstack-repo/localstack
 
 The Helm charts are not maintained in the main repository, but in a [separate one](https://github.com/localstack/helm-charts).
 
-### Troubleshooting
+
+## Updating
+
+The LocalStack CLI allows you to easily update the different components of LocalStack.
+To check the various options available for updating, run:
+{{< command >}}
+$ localstack update --help
+Usage: localstack update [OPTIONS] COMMAND [ARGS]...
+
+  Update different LocalStack components.
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  all             Update all LocalStack components
+  docker-images   Update docker images LocalStack depends on
+  localstack-cli  Update LocalStack CLI
+{{< / command >}}
+
+Updating the LocalStack CLI itself (`localstack update localstack-cli` and `localstack update all`) is currently only supported if you installed the CLI in a Python environment.
+If you have installed the CLI with Brew or directly as a binary, please simply perform the installation commands again to update to the latest version.
+
+## Troubleshooting
 
 - The LocalStack CLI installation is successful, but I cannot execute `localstack` on my terminal.
 
@@ -313,7 +399,9 @@ The Helm charts are not maintained in the main repository, but in a [separate on
   $ localstack logs 
   {{< / command >}}
   
-  AWS requests are now logged uniformly in the INFO log level (set by default or when `DEBUG=0`). The shape is `AWS <service>.<operation> => <http-status> (<error type>)`. Requests to HTTP endpoints are logged in a similar way:
+  AWS requests are now logged uniformly in the INFO log level (set by default or when `DEBUG=0`).
+  The shape is `AWS <service>.<operation> => <http-status> (<error type>)`.
+  Requests to HTTP endpoints are logged in a similar way:
   
   ```sh
   2022-09-12T10:39:21.165  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS s3.ListBuckets => 200
@@ -324,13 +412,15 @@ The Helm charts are not maintained in the main repository, but in a [separate on
 
 - How should I share the LocalStack logs to discover issues?
 
-  You can now share the LocalStack logs with us to help us discover issues. To share the logs, run our diagnostic endpoint:
+  You can now share the LocalStack logs with us to help us discover issues.
+  To share the logs, run our diagnostic endpoint:
 
   {{< command >}}
   $ curl -s localhost:4566/_localstack/diagnose | gzip -cf > diagnose.json.gz
   {{< / command >}}
 
-  Ensure that the diagnostic endpoint is run after you have tried reproducing the affected task. After running the task, run the diagnostic endpoint and share the archive file with your team members or LocalStack Support.
+  Ensure that the diagnostic endpoint is run after you have tried reproducing the affected task.
+  After running the task, run the diagnostic endpoint and share the archive file with your team members or LocalStack Support.
 
 ## What's next?
 

@@ -127,8 +127,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -223,8 +223,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -331,7 +331,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -487,7 +487,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -571,7 +571,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -667,8 +667,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -680,14 +680,14 @@
       "autoScalingGroupProvider, name": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_capacity_providers",
             "test": "test_capacity_providers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..StackResourceDetail.PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -696,7 +696,7 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_cluster_default_name",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_cluster_default_name",
             "test": "test_cluster_default_name",
             "response": "200",
             "error": "",
@@ -710,37 +710,37 @@
       "clusterName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_capacity_providers",
             "test": "test_capacity_providers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..StackResourceDetail.PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
             "test": "test_cluster_capacity_providers",
             "response": "200",
             "error": "",
@@ -750,7 +750,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_delete_cluster_status",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_delete_cluster_status",
             "test": "test_delete_cluster_status",
             "response": "200",
             "error": "",
@@ -760,17 +760,47 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -780,7 +810,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "200",
             "error": "",
@@ -790,7 +820,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -800,7 +830,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -810,7 +840,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -820,7 +850,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -830,18 +860,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -850,17 +880,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
             "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -870,7 +900,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -880,7 +910,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
             "test": "test_task_produces_logs",
             "response": "200",
             "error": "",
@@ -890,7 +920,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -900,7 +930,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -910,7 +940,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_tag_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_tag_task_definition",
             "test": "test_tag_task_definition",
             "response": "200",
             "error": "",
@@ -923,52 +953,52 @@
       }
     },
     "CreateService": {
-      "cluster, deploymentConfiguration, desiredCount, enableECSManagedTags, healthCheckGracePeriodSeconds, launchType, loadBalancers, networkConfiguration, serviceName, tags, taskDefinition": {
+      "cluster, deploymentConfiguration, desiredCount, enableECSManagedTags, healthCheckGracePeriodSeconds, launchType, loadBalancers, networkConfiguration, serviceName, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       },
-      "cluster, deploymentConfiguration, desiredCount, launchType, loadBalancers, networkConfiguration, serviceName, tags, taskDefinition": {
+      "cluster, deploymentConfiguration, desiredCount, launchType, loadBalancers, networkConfiguration, serviceName, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       },
-      "cluster, desiredCount, launchType, networkConfiguration, serviceName, serviceRegistries, tags, taskDefinition": {
+      "cluster, desiredCount, launchType, networkConfiguration, serviceName, serviceRegistries, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       },
       "cluster, desiredCount, launchType, networkConfiguration, serviceName, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -982,7 +1012,17 @@
       "cluster, desiredCount, serviceName, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -998,54 +1038,54 @@
       "cluster, service, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..attachments..details..value', '$..clusterArn', '$..containerInstanceArn', '$..containers..imageDigest', '$..containers..memory', '$..containers..networkInterfaces', '$..containers..runtimeId', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..taskArn', '$..taskDefinitionArn', '$..version', '$..attachments..id', '$..containers..containerArn', '$..containers..image']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
@@ -1054,14 +1094,14 @@
       "capacityProvider": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_capacity_providers",
             "test": "test_capacity_providers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..StackResourceDetail.PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -1070,37 +1110,37 @@
       "cluster": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_capacity_providers",
             "test": "test_capacity_providers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..StackResourceDetail.PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
             "test": "test_cluster_capacity_providers",
             "response": "200",
             "error": "",
@@ -1110,7 +1150,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_delete_cluster_status",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_delete_cluster_status",
             "test": "test_delete_cluster_status",
             "response": "200",
             "error": "",
@@ -1120,18 +1160,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
-            "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1140,7 +1170,27 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "200",
             "error": "",
@@ -1150,7 +1200,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -1160,7 +1210,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -1170,7 +1220,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -1180,7 +1230,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -1190,18 +1240,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1210,17 +1260,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
             "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -1230,7 +1280,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -1240,7 +1290,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
             "test": "test_task_produces_logs",
             "response": "200",
             "error": "",
@@ -1250,17 +1300,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
-            "test": "test_update_service_creates_new_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..attachments..details..value', '$..clusterArn', '$..containerInstanceArn', '$..containers..imageDigest', '$..containers..memory', '$..containers..networkInterfaces', '$..containers..runtimeId', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..taskArn', '$..taskDefinitionArn', '$..version', '$..attachments..id', '$..containers..containerArn', '$..containers..image']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -1270,7 +1310,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_tag_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_tag_task_definition",
             "test": "test_tag_task_definition",
             "response": "200",
             "error": "",
@@ -1286,7 +1326,17 @@
       "cluster, force, service": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -1296,11 +1346,25 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..attachments..details..value', '$..clusterArn', '$..containerInstanceArn', '$..containers..imageDigest', '$..containers..memory', '$..containers..networkInterfaces', '$..containers..runtimeId', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..taskArn', '$..taskDefinitionArn', '$..version', '$..attachments..id', '$..containers..containerArn', '$..containers..image']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
+      "cluster, service": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1312,37 +1376,67 @@
       "taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -1352,7 +1446,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -1362,7 +1456,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -1372,7 +1466,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -1382,7 +1476,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -1392,18 +1486,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1412,17 +1506,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
             "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -1432,7 +1526,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -1442,7 +1536,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -1452,7 +1546,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -1462,7 +1556,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_undefined_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_undefined_task_definition",
             "test": "test_describe_undefined_task_definition",
             "response": "200",
             "error": "",
@@ -1472,7 +1566,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_tag_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_tag_task_definition",
             "test": "test_tag_task_definition",
             "response": "200",
             "error": "",
@@ -1488,14 +1582,14 @@
       "capacityProviders": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_capacity_providers",
             "test": "test_capacity_providers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..StackResourceDetail.PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }
@@ -1504,37 +1598,37 @@
       "clusters": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_capacity_providers",
             "test": "test_capacity_providers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..StackResourceDetail.PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_delete_cluster_status",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_delete_cluster_status",
             "test": "test_delete_cluster_status",
             "response": "200",
             "error": "",
@@ -1544,17 +1638,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
-            "test": "test_create_service_run_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
@@ -1570,17 +1654,7 @@
       "cluster, services": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
-            "test": "test_servicediscovery_ecs_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
@@ -1590,18 +1664,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
-            "test": "test_ecs_alb_apigateway_integration",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
-            "test": "test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1610,7 +1674,37 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "test": "test_ecs_alb_apigateway_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -1620,7 +1714,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -1636,7 +1730,7 @@
       "taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
@@ -1646,7 +1740,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_undefined_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_undefined_task_definition",
             "test": "test_describe_undefined_task_definition",
             "response": "400",
             "error": "ClientException",
@@ -1662,7 +1756,17 @@
       "cluster, tasks": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
@@ -1672,17 +1776,27 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
@@ -1692,17 +1806,67 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "test": "test_ecs_task_multiple",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "200",
             "error": "",
@@ -1712,7 +1876,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "test": "test_ecs_task_overrides",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -1722,7 +1896,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "test": "test_start_and_stop_task[run_task]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -1732,7 +1916,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "test": "test_start_and_stop_task[start_task]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -1742,7 +1936,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "test": "test_start_task_definition_multiple_times",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -1752,18 +1956,38 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "test": "test_start_task_definition_with_cap_drop",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1772,17 +1996,37 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
             "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "test": "test_start_task_state_stopped",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "test": "test_subscribe_ecs_events",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -1792,7 +2036,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "test": "test_task_mount_host_volume",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -1802,7 +2056,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "test": "test_task_produces_logs",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
             "test": "test_task_produces_logs",
             "response": "200",
             "error": "",
@@ -1812,7 +2076,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "test": "test_update_service_creates_new_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..attachments..details..value', '$..clusterArn', '$..containerInstanceArn', '$..containers..imageDigest', '$..containers..memory', '$..containers..networkInterfaces', '$..containers..runtimeId', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..taskArn', '$..taskDefinitionArn', '$..version', '$..attachments..id', '$..containers..containerArn', '$..containers..image']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -1822,7 +2096,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "test": "test_describe_tasks_list_tasks",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -1836,7 +2120,7 @@
       "tasks": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -1852,7 +2136,7 @@
       "cluster": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -1865,10 +2149,24 @@
       }
     },
     "ListServices": {
+      "- (without any parameters)": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_list_services_no_default_cluster",
+            "test": "test_list_services_no_default_cluster",
+            "response": "400",
+            "error": "ClusterNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "cluster": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
             "test": "test_cluster_capacity_providers",
             "response": "200",
             "error": "",
@@ -1878,7 +2176,37 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -1888,7 +2216,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "200",
             "error": "",
@@ -1898,7 +2226,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -1908,7 +2236,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -1918,7 +2246,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -1928,7 +2256,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -1938,18 +2266,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1958,17 +2286,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
             "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -1978,7 +2306,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -1988,7 +2316,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
             "test": "test_task_produces_logs",
             "response": "200",
             "error": "",
@@ -1998,7 +2326,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -2008,7 +2336,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -2018,7 +2346,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_tag_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_tag_task_definition",
             "test": "test_tag_task_definition",
             "response": "200",
             "error": "",
@@ -2034,7 +2362,7 @@
       "resourceArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_tag_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_tag_task_definition",
             "test": "test_tag_task_definition",
             "response": "200",
             "error": "",
@@ -2050,37 +2378,27 @@
       "familyPrefix": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
-            "test": "test_create_service_run_task",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
@@ -2096,7 +2414,7 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -2110,7 +2428,7 @@
       "cluster": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
@@ -2120,7 +2438,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
             "test": "test_cluster_capacity_providers",
             "response": "200",
             "error": "",
@@ -2130,7 +2448,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
@@ -2140,7 +2468,27 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -2150,7 +2498,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "200",
             "error": "",
@@ -2160,7 +2508,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -2170,7 +2518,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -2180,7 +2528,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -2190,7 +2538,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -2200,18 +2548,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2220,17 +2568,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
             "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -2240,7 +2588,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -2250,7 +2598,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
             "test": "test_task_produces_logs",
             "response": "200",
             "error": "",
@@ -2260,7 +2608,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -2270,7 +2618,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -2280,7 +2628,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_tag_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_tag_task_definition",
             "test": "test_tag_task_definition",
             "response": "200",
             "error": "",
@@ -2294,37 +2642,57 @@
       "cluster, serviceName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "test": "test_describe_service_with_task_definition",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -2334,14 +2702,14 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..attachments..details..value', '$..clusterArn', '$..containerInstanceArn', '$..containers..imageDigest', '$..containers..memory', '$..containers..networkInterfaces', '$..containers..runtimeId', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..taskArn', '$..taskDefinitionArn', '$..version', '$..attachments..id', '$..containers..containerArn', '$..containers..image']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
@@ -2350,17 +2718,17 @@
       "capacityProviders, cluster, defaultCapacityProviderStrategy": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_capacity_providers",
             "test": "test_capacity_providers",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..StackResourceDetail.DriftInformation', '$..StackResourceDetail.Metadata', '$..StackResourceDetail.PhysicalResourceId']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestClustersCrud::test_cluster_capacity_providers",
             "test": "test_cluster_capacity_providers",
             "response": "200",
             "error": "",
@@ -2376,7 +2744,7 @@
       "cluster, instanceIdentityDocument": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -2392,35 +2760,85 @@
       "containerDefinitions, cpu, executionRoleArn, family, memory, networkMode, requiresCompatibilities": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       },
       "containerDefinitions, cpu, executionRoleArn, family, memory, networkMode, requiresCompatibilities, taskRoleArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "test": "test_start_task_definition_with_cap_drop",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "test": "test_start_task_state_stopped",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       },
       "containerDefinitions, cpu, family, memory": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "200",
             "error": "",
@@ -2430,7 +2848,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
             "test": "test_task_produces_logs",
             "response": "200",
             "error": "",
@@ -2444,7 +2862,7 @@
       "containerDefinitions, cpu, family, memory, networkMode, requiresCompatibilities": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -2454,7 +2872,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "400",
             "error": "ClientException",
@@ -2468,21 +2886,21 @@
       "containerDefinitions, cpu, family, memory, networkMode, requiresCompatibilities, taskRoleArn": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       },
       "containerDefinitions, family": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -2492,7 +2910,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -2502,7 +2920,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -2512,7 +2930,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -2522,7 +2940,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -2532,8 +2950,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2542,27 +2960,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -2572,7 +2970,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -2582,7 +2980,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_undefined_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_undefined_task_definition",
             "test": "test_describe_undefined_task_definition",
             "response": "200",
             "error": "",
@@ -2592,7 +2990,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_tag_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_tag_task_definition",
             "test": "test_tag_task_definition",
             "response": "200",
             "error": "",
@@ -2606,7 +3004,7 @@
       "containerDefinitions, family, volumes": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -2619,10 +3017,34 @@
       }
     },
     "RunTask": {
+      "cluster, count, enableExecuteCommand, launchType, networkConfiguration, taskDefinition": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
       "cluster, count, launchType, overrides, propagateTags, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "200",
             "error": "",
@@ -2636,7 +3058,7 @@
       "cluster, count, launchType, propagateTags, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
             "test": "test_task_produces_logs",
             "response": "200",
             "error": "",
@@ -2647,68 +3069,152 @@
           }
         ]
       },
+      "cluster, enableExecuteCommand, launchType, networkConfiguration, taskDefinition": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "test": "test_start_task_definition_with_cap_drop",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "test": "test_start_task_state_stopped",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
       "cluster, group, launchType, networkConfiguration, startedBy, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..attachments..details..value', '$..clusterArn', '$..containerInstanceArn', '$..containers..imageDigest', '$..containers..memory', '$..containers..networkInterfaces', '$..containers..runtimeId', '$..group', '$..overrides.containerOverrides', '$..overrides.inferenceAcceleratorOverrides', '$..taskArn', '$..taskDefinitionArn', '$..version', '$..attachments..id', '$..containers..containerArn', '$..containers..image']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "400",
+            "error": "ClusterNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "test": "test_ecs_alb_apigateway_integration",
+            "response": "400",
+            "error": "ClusterNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "400",
+            "error": "ClusterNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "500",
+            "error": "InternalError",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "test": "test_ecs_alb_apigateway_integration",
+            "response": "500",
+            "error": "InternalError",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "500",
+            "error": "InternalError",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
           }
         ]
       },
       "cluster, group, launchType, startedBy, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
       "cluster, overrides, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -2722,7 +3228,7 @@
       "cluster, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -2732,7 +3238,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -2742,8 +3248,8 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
-            "test": "test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2752,27 +3258,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
-            "test": "test_start_task_state_stopped",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -2782,7 +3268,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -2792,7 +3278,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -2806,7 +3292,7 @@
       "taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -2822,7 +3308,7 @@
       "cluster, containerInstances, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -2838,7 +3324,27 @@
       "cluster, task": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[False]",
+            "test": "test_create_task_with_ssm_parameter[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_ssm_parameter[True]",
+            "test": "test_create_task_with_ssm_parameter[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
             "test": "test_describe_service_with_task_definition",
             "response": "200",
             "error": "",
@@ -2848,7 +3354,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "200",
             "error": "",
@@ -2858,7 +3364,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -2868,7 +3374,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
             "test": "test_start_and_stop_task[run_task]",
             "response": "200",
             "error": "",
@@ -2878,7 +3384,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[start_task]",
             "test": "test_start_and_stop_task[start_task]",
             "response": "200",
             "error": "",
@@ -2888,7 +3394,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_multiple_times",
             "test": "test_start_task_definition_multiple_times",
             "response": "200",
             "error": "",
@@ -2898,18 +3404,18 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
             "test": "test_start_task_definition_with_cap_drop",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_failed",
-            "test": "test_start_task_state_failed",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_docker_flags",
+            "test": "test_start_task_docker_flags",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -2918,17 +3424,17 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_state_stopped",
             "test": "test_start_task_state_stopped",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": false,
+            "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_subscribe_ecs_events",
             "test": "test_subscribe_ecs_events",
             "response": "200",
             "error": "",
@@ -2938,7 +3444,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_mount_host_volume",
             "test": "test_task_mount_host_volume",
             "response": "200",
             "error": "",
@@ -2948,7 +3454,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_task_produces_logs",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
             "test": "test_task_produces_logs",
             "response": "200",
             "error": "",
@@ -2958,7 +3464,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -2968,7 +3474,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
@@ -2978,7 +3484,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
             "test": "test_ecs_task_multiple",
             "response": "500",
             "error": "InternalError",
@@ -2994,7 +3500,7 @@
       "resourceArn, tags": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTasksCrud::test_tag_task_definition",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_tag_task_definition",
             "test": "test_tag_task_definition",
             "response": "200",
             "error": "",
@@ -3010,7 +3516,7 @@
       "cluster, settings": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
             "test": "test_ecs_task_overrides",
             "response": "200",
             "error": "",
@@ -3026,41 +3532,111 @@
       "cluster, desiredCount, service": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestServiceCrud::test_create_delete_service",
+            "test": "test_create_delete_service",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..deploymentController', '$..enableECSManagedTags', '$..enableExecuteCommand', '$..placementConstraints', '$..propagateTags', '$..deployments', '$..status']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
             "test": "test_servicediscovery_ecs_integration",
             "response": "400",
-            "error": "ServiceNotFoundException",
+            "error": "ServerException",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "400",
+            "error": "ServerException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
+            "test": "test_servicediscovery_ecs_integration",
+            "response": "400",
+            "error": "ClusterNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
             "test": "test_ecs_alb_apigateway_integration",
             "response": "400",
-            "error": "ServiceNotFoundException",
+            "error": "ServerException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "test": "test_ecs_alb_apigateway_integration",
+            "response": "400",
+            "error": "ServerException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_ecs.py::test_ecs_alb_apigateway_integration",
+            "test": "test_ecs_alb_apigateway_integration",
+            "response": "400",
+            "error": "ClusterNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
             "test": "test_create_service_run_task",
             "response": "400",
-            "error": "ServiceNotFoundException",
+            "error": "ServerException",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "400",
+            "error": "ServerException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_service_run_task",
+            "test": "test_create_service_run_task",
+            "response": "400",
+            "error": "ClusterNotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       },
       "cluster, desiredCount, service, taskDefinition": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",
@@ -3074,7 +3650,7 @@
       "cluster, forceNewDeployment, service": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_update_service_creates_new_deployment",
             "test": "test_update_service_creates_new_deployment",
             "response": "200",
             "error": "",

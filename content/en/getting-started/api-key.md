@@ -1,6 +1,6 @@
 ---
 title: "API Key"
-weight: 5
+weight: 20
 categories: ["LocalStack Pro & Enterprise"]
 description: >
   Configure your API key to start LocalStack
@@ -32,8 +32,8 @@ LocalStack expects your API key to be present in the environment variable `LOCAL
 export LOCALSTACK_API_KEY=<YOUR_API_KEY>
 localstack start -d
 {{< /tab >}}
-{{< tab header="Windows" lang="shell" >}}
-$env:LOCALSTACK_API_KEY=<YOUR_API_KEY> localstack start -d
+{{< tab header="Windows" lang="powershell" >}}
+$env:LOCALSTACK_API_KEY="<YOUR_API_KEY>"; localstack start -d
 {{< /tab >}}
 {{< /tabpane >}}
 

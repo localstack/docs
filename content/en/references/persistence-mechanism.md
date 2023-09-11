@@ -8,7 +8,7 @@ aliases:
 ---
 
 By default, LocalStack is an ephemeral environment, meaning that, once you terminate your LocalStack instance, all state will be discarded.
-Persistence is a LocalStack Pro feature that can save and restore the state of LocalStack including all AWS resources and their data.
+**Persistence is a LocalStack Pro feature** that can save and restore the state of LocalStack including all AWS resources and their data.
 
 LocalStack has two distinct persistence mechanisms
 
@@ -16,7 +16,7 @@ LocalStack has two distinct persistence mechanisms
 * **Cloud Pods**: a way to store, distribute, inspect, and version snapshots.
 
 This document is concerned with snapshot-based persistence.
-To learn more about cloud pods and their use cases, please refer to our documentation on [**Cloud pods**]({{< ref "cloud-pods">}}).
+To learn more about cloud pods and their use cases, please refer to our documentation on [**Cloud pods**]({{< ref "user-guide/tools/cloud-pods">}}).
 
 ## Snapshot-based persistence
 
@@ -58,6 +58,9 @@ You can select a particular save strategy by setting `SNAPSHOT_SAVE_STRATEGY=<st
   This strategy minimizes the chance for data loss, but also has significant performance implications. The service has to be locked during snapshotting, meaning that any requests to the particular AWS service will be blocked until the snapshot is complete.  In many cases this is just a few milliseconds, but can become significant in some services.
 * **`ON_SHUTDOWN`**: the state of all services are saved during the shutdown phase of LocalStack.
   This strategy has zero performance impact, but is not good when you want to minimize the chance for data loss. Should LocalStack for some reason not shut down properly or is terminated before it can finalize the snapshot, you may be left with an incomplete state on disk.
+* **`SCHEDULED`**: (**default**): saves at regular intervals the state of all the services that have been modified since the last snapshot.
+  By default, the flush interval is 15 seconds. It can be configured via the `SNAPSHOT_FLUSH_INTERVAL` configuration variable.
+  This is a compromise between `ON_REQUEST` and `ON_SHUTDOWN` in terms of performance and reliability.
 * **`SCHEDULED`**: (**default**) every 15 seconds, the state of all services that have been modified since the last snapshot are saved.
   This is a compromise between `ON_REQUEST` and `ON_SHUTDOWN` in terms of performance and reliability.
 * **`MANUAL`**: turns off automatic snapshotting and gives you control through the internal state endpoints.
@@ -81,6 +84,18 @@ For example, a snapshot for a particular service (e.g., `s3`) can be triggered b
 The service name refers to the AWS service code.
 ```console
 curl -X POST http://localhost:4566/_localstack/state/s3/save
+```
+
+It is also possible to take and load a snapshot of all the services at once. We provide the following endpoints:
+
+* `POST /_localstack/state/save`
+* `POST /_localstack/state/load`
+
+The response streams line by line the service that has been saved/loaded and the status of the operation.
+```console
+curl -X POST localhost:4566/_localstack/state/save
+{"service": "sqs", "status": "ok"}
+{"service": "s3", "status": "ok"}
 ```
 
 ## Service coverage

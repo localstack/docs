@@ -5,6 +5,22 @@ weight: 2
 description: >
   Learn how to create and deploy Lambda functions using container images in LocalStack. This tutorial guides you through packaging your code and dependencies into a Docker image, creating a local Elastic Container Registry (ECR) in LocalStack, and deploying the Lambda container image.
 type: tutorials
+teaser: ""
+services:
+- ecr
+- lmb
+platform:
+- python
+deployment:
+- awscli
+tags:
+- Lambda
+- ECR
+- Docker
+- Container
+- Container Image
+pro: true
+leadimage: "lambda-ecr-container-images-featured-image.png"
 ---
 
 [Lambda](https://aws.amazon.com/lambda/) is a powerful serverless compute system that enables you to break down your application into smaller, independent functions. These functions can be deployed as individual units within the AWS ecosystem. Lambda offers seamless integration with various AWS services and supports multiple programming languages for different runtime environments. To deploy Lambda functions programmatically, you have two options: [uploading a ZIP file containing your code and dependencies](https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-zip.html) or [packaging your code in a container image](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-images.html) and deploying it through Elastic Container Registry (ECR).
@@ -64,10 +80,10 @@ CMD [ "handler.handler" ]
 If your Lambda function has additional dependencies, create a file named `requirements.txt` in the same directory as the Dockerfile. List the required libraries in this file. You can install these dependencies in the `Dockerfile` under the `${LAMBDA_TASK_ROOT}` directory.
 {{< /alert >}}
 
-With the Dockerfile prepared, you can now build the container image using the following command:
+With the Dockerfile prepared, you can now build the container image using the following command, to check if everything works as intended:
 
 {{< command >}}
-$ docker build -t localstack-lambda-container-image .
+$ docker build .
 {{< / command >}}
 
 By executing these steps, you have defined the Dockerfile that instructs Docker on how to build the container image for your Lambda function. The resulting image will contain your function code and any specified dependencies.
@@ -141,11 +157,16 @@ By running this command, you can confirm that the image is now in the ECR reposi
 
 To deploy the container image as a Lambda function, we will create a new Lambda function using the `create-function` command. Run the following command to create the function:
 
+{{< alert title="Note" color="primary">}}
+Before creating the lambda function, please double check under which architecture you have built your image. If your image is built as arm64, you need to specify the lambda architecture when deploying or set `LAMBDA_IGNORE_ARCHTIECTURE=1` when starting LocalStack.
+More information can be found [in our documentation regarding ARM support.]({{< ref "arm64-support" >}})
+{{< /alert >}}
+
 {{< command >}}
 $ awslocal lambda create-function \
     --function-name localstack-lambda-container-image \
     --package-type Image \
-    --code ImageUri="localstack-lambda-container-image" \
+    --code ImageUri="localhost.localstack.cloud:4510/localstack-lambda-container-image" \
     --role arn:aws:iam::000000000000:role/lambda-role \
     --handler handler.handler
 {
@@ -183,7 +204,7 @@ $ awslocal lambda create-function \
 
 The command provided includes several flags to create the Lambda function. Here's an explanation of each flag:
 
-- `ImageUri`: Specifies the image URI of the container image you pushed to the ECR repository (`localstack-lambda-container-image` in this case).
+- `ImageUri`: Specifies the image URI of the container image you pushed to the ECR repository (`localhost.localstack.cloud:4510/localstack-lambda-container-image` in this case. Use the return `repositoryUri` from the create-repository command).
 - `package-type`: Sets the package type to Image to indicate that the Lambda function will be created using a container image.
 - `function-name`: Specifies the name of the Lambda function you want to create.
 - `runtime`: Defines the runtime environment for the Lambda function. In this case, it's specified as provided, indicating that the container image will provide the runtime.

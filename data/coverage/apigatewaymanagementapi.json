@@ -6,11 +6,11 @@
       "DeleteConnection": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -18,11 +18,11 @@
       "GetConnection": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -33,18 +33,70 @@
         "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     }
   ],
   "details": {
+    "DeleteConnection": {
+      "ConnectionId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_apigatewaymanagementapi",
+            "test": "test_apigatewaymanagementapi",
+            "response": "204",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetConnection": {
+      "ConnectionId": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_apigatewaymanagementapi",
+            "test": "test_apigatewaymanagementapi",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_apigatewaymanagementapi",
+            "test": "test_apigatewaymanagementapi",
+            "response": "410",
+            "error": "GoneException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "PostToConnection": {
       "ConnectionId, Data": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_api[AWS_PROXY-False-False]",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_apigatewaymanagementapi",
+            "test": "test_apigatewaymanagementapi",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_api[AWS_PROXY-False-False]",
             "test": "test_websocket_api[AWS_PROXY-False-False]",
             "response": "200",
             "error": "",
@@ -54,7 +106,7 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_api[AWS_PROXY-False-True]",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_api[AWS_PROXY-False-True]",
             "test": "test_websocket_api[AWS_PROXY-False-True]",
             "response": "200",
             "error": "",
@@ -64,24 +116,34 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_api[AWS_PROXY-False-False]",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_response_templates",
+            "test": "test_websocket_response_templates",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_api[AWS_PROXY-False-False]",
             "test": "test_websocket_api[AWS_PROXY-False-False]",
             "response": "410",
             "error": "GoneException",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/integration/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_api[AWS_PROXY-False-True]",
+            "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_websocket_apis.py::TestWebSockets::test_websocket_api[AWS_PROXY-False-True]",
             "test": "test_websocket_api[AWS_PROXY-False-True]",
             "response": "410",
             "error": "GoneException",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "internal"
+            "origin": "external"
           }
         ]
       }

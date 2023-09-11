@@ -168,6 +168,7 @@ def main(
             service = impl_details.setdefault(row["service"], {})
             # update all operations that are available in community
             if row["is_implemented"] == "True":
+                service.setdefault(row["operation"], {"implemented": True})
                 service[row["operation"]]["pro"] = False
 
     services = sorted(impl_details.keys())

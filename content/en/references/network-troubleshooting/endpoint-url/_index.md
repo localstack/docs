@@ -108,7 +108,7 @@ networks:
 
 ### Wildcard DNS access
 
-{{<alert title="Pro only" color="alert">}}
+{{<alert title="Note">}}
 The Wildcard DNS access feature is part of [LocalStack's Pro/Team offering](https://localstack.cloud/pricing) and requires an API key to be configured.
 {{</alert>}}
 

@@ -3,11 +3,19 @@
 {{ $inner := trim .Inner "\n " }}
 {{/* We encapsulate, for each line, the prefix (if present) in custom prefix tags so we find it after highlighting */}}
 {{ $inner = replaceRE `(?m)^ *((?:\$|#) )` "###CUSTOM_PREFIX###$1###CUSTOM_PREFIX_END###" $inner}}
+{{ $inner := replaceRE `\<disable-copy\>(?s)(.*?)\<\/disable-copy\>` "###DISABLE_COPY###$1###DISABLE_COPY_END###" $inner }}
 {{/* We need to set a default for the highlighting options here */}}
 {{ $options := "" }}
 {{ with .Get 0 }}
 {{ $options = . }}
 {{ end }}
 {{ $highlighted := highlight $inner "text" $options }}
+{{ $highlighted := replaceRE `###DISABLE_COPY###(?s)(.*?)###DISABLE_COPY_END###` "<div class=\"disable-copy\">$1</div>" $highlighted | safeHTML}}
+{{ with .Get "wrapper" }}
+  <div class="{{ . }}">
+{{ end }}
 {{/* Now we replace the custom prefixes with a span that contains the prefix, which is not selectable by users */}}
 {{- replaceRE `###CUSTOM_PREFIX###((?:\$|#)\s)###CUSTOM_PREFIX_END###` "<span class=\"command-prefix\">$1</span>" $highlighted | safeHTML -}}
+{{ with .Get "wrapper" }}
+  </div>
+{{ end }}

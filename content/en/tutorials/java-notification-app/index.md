@@ -5,6 +5,27 @@ weight: 3
 description: >
   Build a Java Spring Boot application to configure Simple Email Service (SES) to send messages using AWS Java SDK in LocalStack. Learn how to configure Simple Queue Service (SQS) & Simple Notification Service (SNS) using CloudFormation templates deployed locally.
 type: tutorials
+teaser: ""
+services:
+- ses
+- sqs
+- sns
+- clf
+platform:
+- java
+deployment:
+- aws-java-sdk
+- CloudFormation
+tags:
+- Java
+- Spring Boot
+- AWS Java SDK
+- Simple Email Service
+- Simple Queue Service
+- Simple Notification Service
+- CloudFormation
+pro: true
+leadimage: "java-notification-app-featured-image.png"
 ---
 
 Java is a popular platform for cloud applications that use Amazon Web Services.
@@ -626,6 +647,6 @@ You can also navigate to the MailHog via the user-interface: [`localhost:8025`](
 In this tutorial, we have demonstrated, how you can:
 
 - Use CloudFormation to provision infrastructure for SNS & SQS subscriptions on LocalStack
-- Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages. 
+- Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages.
 
 Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the email messages sent by SES. The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).

@@ -15,44 +15,42 @@ These options can be passed to LocalStack as environment variables like so:
 $ DEBUG=1 localstack start
 {{< / command >}}
 
+You can also use [Profiles](#profiles).
+
 ## Core
 
 Options that affect the core LocalStack system.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to.|
-| `EDGE_PORT` | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
-| `HOSTNAME`| `localhost` (default) | Name of the host to expose the services internally. For framework-internal communication, e.g., services are started in different containers using docker-compose.|
-| `HOSTNAME_EXTERNAL` | `localhost` (default) | Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client.|
-| `DEBUG` | `0`\|`1`| Flag to increase log level and print more verbose logs (useful for troubleshooting issues)|
+| `DEBUG` | `0` (default) \|`1`| Flag to increase log level and print more verbose logs (useful for troubleshooting issues)|
 | `IMAGE_NAME`| `localstack/localstack` (default), `localstack/localstack:0.11.0` | Specific name and tag of LocalStack Docker image to use.|
-| `USE_LIGHT_IMAGE` | `1` (default) | *Deprecated*. Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
-| `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [filesystem layout]({{< ref "filesystem" >}}). |
-| `PERSISTENCE` | `0` (default) | Enable persistence. See [persistence mechanism]({{< ref "persistence-mechanism" >}}) and [filesystem layout]({{< ref "filesystem" >}}). |
+| `GATEWAY_LISTEN`| `127.0.0.1:4566` (default in host mode), `0.0.0.0:4566` (default in Docker mode) | Configures the bind addresses of LocalStack. It has the form `<ip address>:<port>(,<ip address>:<port>)*`. |
+| `LOCALSTACK_HOST`| `localhost.localstack.cloud:4566` (default) | This is interpolated into URLs and addresses that are returned by LocalStack. It has the form `<hostname>:<port>`. |
+| `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
+| `PERSISTENCE` | `0` (default) | Enable persistence. See [Persistence Mechanism]({{< ref "persistence-mechanism" >}}) and [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `PERSIST_ALL` | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
-| `INIT_SCRIPTS_PATH` | `/some/path` | *Deprecated*. Specify the path to the initializing files with extensions `.sh` that are found default in `/etc/localstack/init/ready.d`. |
 | `LS_LOG` | `trace`, `trace-internal`, `debug`, `info`, `warn`, `error`, `warning`| Specify the log level. Currently overrides the `DEBUG` configuration. `trace` for detailed request/response, `trace-internal` for internal calls, too. |
-| `EXTERNAL_SERVICE_PORTS_START` | `4510` (default) | Start of [the external service port range]({{< ref "external-ports" >}}) (included). |
-| `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of [the external service port range]({{< ref "external-ports" >}}) (excluded). |
+| `EXTERNAL_SERVICE_PORTS_START` | `4510` (default) | Start of the [External Service Port Range]({{< ref "external-ports" >}}) (inclusive). |
+| `EXTERNAL_SERVICE_PORTS_END` | `4560` (default) | End of the [External Service Port Range]({{< ref "external-ports" >}}) (exclusive). |
 | `EAGER_SERVICE_LOADING` | `0` (default) | Boolean that toggles lazy loading of services. If eager loading is enabled, services are started at LocalStack startup rather than their first use. Eager loading significantly increases LocalStack startup time. |
 | `ALLOW_NONSTANDARD_REGIONS` | `0` (default) | Allows the use of non-standard AWS regions. By default, LocalStack only accepts [standard AWS regions](https://docs.aws.amazon.com/general/latest/gr/rande.html). |
 | `PARITY_AWS_ACCESS_KEY_ID` | `0` (default) | Enables the use production-like access key IDs. By default, LocalStack issues keys with `LSIA...` and `LKIA...` prefix, and will reject keys that start with `ASIA...` or `AKIA...`. |
 
 [1]: http://docs.aws.amazon.com/cli/latest/reference/#available-services
 
-### CLI
+## CLI
 
 These options are applicable when using the CLI to start LocalStack.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `LOCALSTACK_VOLUME_DIR` | `~/.cache/localstack/volume` (on Linux) | The location on the host of the LocalStack volume directory mount. See [filesystem layout]({{< ref "filesystem#using-the-cli" >}}) |
+| `LOCALSTACK_VOLUME_DIR` | `~/.cache/localstack/volume` (on Linux) | The location on the host of the LocalStack volume directory mount. See [Filesystem Layout]({{< ref "filesystem#using-the-cli" >}}) |
 | `CONFIG_PROFILE` | | The configuration profile to load. See [Profiles]({{< ref "#profiles" >}}) |
 | `CONFIG_DIR` | `~/.localstack` | The path where LocalStack can find configuration profiles and other CLI-specific configuration |
 
-### Docker
+## Docker
 
 Options to configure how LocalStack interacts with Docker.
 
@@ -105,7 +103,7 @@ This section covers configuration options that are specific to certain AWS servi
 | Variable | Example Values | Description |
 | - | - | - |
 | `ECS_REMOVE_CONTAINERS` | `0`\|`1` (default) | Remove Docker containers associated with ECS tasks after execution. Disabling this and dumping container logs might help with troubleshooting failing ECS tasks. |
-
+| `ECS_DOCKER_FLAGS` | `--privileged`, `--dns 1.2.3.4` | Additional flags passed to Docker when creating ECS task containers. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
 
 ### EC2
 
@@ -113,6 +111,8 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `EC2_DOCKER_FLAGS` | `--privileged` | Additional flags passed to Docker when launching containerized instances. Same restrictions as `LAMBDA_DOCKER_FLAGS`. |
 | `EC2_DOWNLOAD_DEFAULT_IMAGES` | `0`\|`1` (default) | At startup, LocalStack Pro downloads latest Ubuntu images from Docker Hub for use as AMIs. This can be disabled for security reasons. |
+| `EC2_MOUNT_BLOCK_DEVICES` | `1`\|`0` (default) | Whether to create and mount user-specified EBS block devices into EC2 container instances. |
+| `EC2_EBS_MAX_VOLUME_SIZE` | `1000` (default) | Maximum size (in MBs) of user-specified EBS block devices mounted into EC2 container instances. |
 
 ### EKS
 
@@ -123,23 +123,15 @@ This section covers configuration options that are specific to certain AWS servi
 
 ### Elasticsearch
 
-{{< alert title="Warning" color="warning" >}}
-While the ElasticSearch API is actively maintained, the configuration variables for ElasticSearch have been deprecated.
-Please use the [OpenSearch configuration variables](#opensearch) instead.
-The OpenSearch configuration variables are used to manage both, OpenSearch and ElasticSearch clusters.
+{{< alert title="Note">}}
+The OpenSearch configuration variables are used to manage both OpenSearch and ElasticSearch clusters.
+See [here](#opensearch).
 {{< /alert >}}
-
-| Variable | Example Values | Description |
-| - | - | - |
-| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | *Deprecated*. Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
-| `ES_MULTI_CLUSTER` | `0`\|`1` | *Deprecated*. Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
-| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | *Deprecated*. Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 
 ### IAM
 | Variable | Example Values | Description |
 | - | - | - |
 | `ENFORCE_IAM` | `0` (default)\|`1` | Enable IAM policy evaluation and enforcement. If this is disabled (the default), IAM policies will have no effect to your requests. |
-| `LEGACY_IAM_PROVIDER` | `0` (default)\|`1` | (deprecated) Enable the pre-1.0 legacy IAM provider |
 | `IAM_SOFT_MODE` | `0` (default)\|`1` | Enable IAM soft mode. This leads to policy evaluation without actually denying access. Needs `ENFORCE_IAM` enabled as well. For more information, see [Identity and Access Management]({{< ref "iam" >}}).|
 
 ### Kinesis
@@ -162,7 +154,7 @@ Please consult the page [Lambda providers]({{< ref "user-guide/aws/lambda" >}}) 
 | Variable| Example Values | Description |
 | - | - | - |
 | `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Magic S3 bucket name for [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}). The S3Key points to the source code on the local file system. |
-| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, ulimits, user, platform, and privileged mode. |
+| `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, DNS servers, labels, ulimits, user, platform, and privileged mode. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
 | `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
 | `LAMBDA_IGNORE_ARCHITECTURE` | `0` (default) | Whether to ignore the AWS architectures (x86_64 or arm64) configured for the lambda function. Set to `1` to run cross-platform compatible lambda functions natively (i.e., Docker selects architecture). |
@@ -197,7 +189,7 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 | `BUCKET_MARKER_LOCAL` | `__local__` (default) | Optional bucket name for running lambdas locally.<br> **Still supported in new provider but default changed to `hot-reload`.** |
 | `LAMBDA_CODE_EXTRACT_TIME` | `25` (default) | Time in seconds to wait at max while extracting Lambda code. By default, it is 25 seconds for limiting the execution time to avoid client/network timeout issues. <br> **Removed in new provider because function creation happens asynchronously.**|
 | `LAMBDA_DOCKER_NETWORK` | | Optional Docker network for the container running your lambda function. This configuration value also applies to ECS containers. Needs to be set to the network the LocalStack container is connected to.<br> **Still supported in new provider.** |
-| `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function.<br> **Currently not supported in new provider.** |
+| `LAMBDA_DOCKER_DNS` | | Optional DNS server for the container running your lambda function.<br> **Supported in new provider since LocalStack 2.2.** |
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, labels, user, platform and privileged mode.<br> **Still supported in new provider.** |
 | `LAMBDA_CONTAINER_REGISTRY` | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.<br> **Replaced by `LAMBDA_RUNTIME_IMAGE_MAPPING` in new provider.** |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. Only applicable when using docker-reuse executor.<br> **Still supported in new provider.** |
@@ -285,55 +277,6 @@ Please check with your SMTP email service provider for the following settings.
 | `SMTP_PASS` |  | Login password for the SMTP server if required. |
 | `SMTP_EMAIL` | `sender@example.com` | Origin email address. Required for Cognito only. |
 
-
-## Provider
-
-Some of the services can be configured to switch to a particular provider:
-
-| Variable| Valid options | Notes |
-| - | - | - |
-| `KINESIS_PROVIDER` |  *Deprecated*. `kinesis-mock` (default) and `kinesalite` | |
-| `KMS_PROVIDER` |  *Deprecated*. `moto` (default) and `local-kms` | |
-
-## Profiles
-
-LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory. A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory. Here is an example of what configuration profiles might look like:
-
-```sh
-% tree ~/.localstack
-/home/username/.localstack
-├── default.env
-├── dev.env
-└── pro.env
-```
-
-Here is an example of what a specific environment profile looks like
-
-```sh
-% cat ~/.localstack/pro-debug.env
-LOCALSTACK_API_KEY=XXXXX
-DEBUG=1
-DEVELOP=1
-```
-
-You can load a profile by either setting the `env` variable `CONFIG_PROFILE=<profile>` or the `--profile=<profile>` CLI flag when using the CLI. Let's take an example to load the `dev.env` profile file if it exists:
-
-{{< command >}}
-python -m localstack.cli.main --profile=dev start
-{{< / command >}}
-
-If no profile is specified, the `default.env` profile will be loaded. While explicitly specified, the environment variables will always overwrite the profile.
-
-To display the config environment variables, you can use the following command:
-
-{{< command >}}
-python -m localstack.cli.main --profile=dev config show
-{{< / command >}}
-
-{{< alert title="Note" >}}
-The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup. You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups. For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
-{{< /alert >}}
-
 ## Persistence
 
 To learn more about these configuration options, see [Persistence]({{< ref "persistence-mechanism" >}}).
@@ -342,18 +285,16 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 | - | - | - |
 | `SNAPSHOT_SAVE_STRATEGY` | `ON_SHUTDOWN`\|`ON_REQUEST`\|`SCHEDULED`\|`MANUAL` | Strategy that governs when LocalStack should make state snapshots |
 | `SNAPSHOT_LOAD_STRATEGY` | `ON_STARTUP`\|`ON_REQUEST`\|`MANUAL` | Strategy that governs when LocalStack restores state snapshots |
+| `SNAPSHOT_FLUSH_INTERVAL` | 15 (default) | The interval (in seconds) between persistence snapshots. It only applies to a `SCHEDULED` save strategy (see [Persistence Mechanism]({{< ref "persistence-mechanism" >}}))|
 
 ## Miscellaneous
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SKIP_INFRA_DOWNLOADS` | | *Deprecated*. Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
 | `SKIP_SSL_CERT_DOWNLOAD` | | Whether to skip downloading the SSL certificate for localhost.localstack.cloud
 | `CUSTOM_SSL_CERT_PATH` | `/var/lib/localstack/custom/server.test.pem` | Defines the absolute path to a custom SSL certificate for localhost.localstack.cloud
 | `IGNORE_ES_DOWNLOAD_ERRORS` | | Whether to ignore errors (e.g., network/SSL) when downloading Elasticsearch plugins
 | `OVERRIDE_IN_DOCKER` | | Overrides the check whether LocalStack is executed within a docker container. If set to `true`, LocalStack assumes it runs in a docker container. Should not be set unless necessary.
-| `EDGE_FORWARD_URL` | | *Deprecated*. Optional target URL to forward all edge requests to (e.g., for distributed deployments)
-| `MOCK_UNIMPLEMENTED` | | *Deprecated*. Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 | `DISABLE_EVENTS` | `1` | Whether to disable publishing LocalStack events
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
 | `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
@@ -368,10 +309,6 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 | `DEVELOP_PORT` | | Port number for debugpy server
 | `WAIT_FOR_DEBUGGER` | | Forces LocalStack to wait for a debugger to start the services
 
-Additionally, the following *read-only* environment variables are available:
-
-* `LOCALSTACK_HOSTNAME`: Name of the host where LocalStack services are available. Use this     hostname as endpoint (e.g., `http://${LOCALSTACK_HOSTNAME}:4566`) in order to **access the services from within your Lambda functions** (e.g., to store an item to DynamoDB or S3 from a Lambda).
-
 
 ## DNS
 
@@ -384,6 +321,7 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | `DNS_RESOLVE_IP` | 127.0.0.1 | IP address the DNS integration should return as A record for modified queries. This will override any automatic detection of the proper response IP.
 | `DNS_LOCAL_NAME_PATTERNS` | | Names which should be resolved to the LocalStack IP, as python-compatible regex.
 
+
 ## LocalStack Pro
 
 | Variable             | Example Values | Description |
@@ -393,22 +331,76 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | `LOG_LICENSE_ISSUES` | 1 (default)    | Whether to log issues with the license activation to the console.
 
 
-## Read-only
-
-| Variable | Usage Example | Description |
-| - | - | - |
-| `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). |
-
 ## Deprecated
+
+These configurations are deprecated and will be removed in the upcoming major version.
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `USE_SSL` | `false` (default) | Whether to use https://... URLs with SSL encryption. Deprecated as of version 0.11.3. Each service endpoint now supports multiplexing HTTP/HTTPS traffic over the same port. |
-| `DEFAULT_REGION` | | *Deprecated*. AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
-| `USE_SINGLE_REGION` | | *Deprecated*. Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
-| `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | Local directory for saving persistent data. This option is deprecated since LocalStack v1 and will be ignored. Please use `PERSISTENCE`. Using this option will set `PERSISTENCE=1` as a deprecation path. The state will be stored in your LocalStack volume in the `state/` directory |
-| `HOST_TMP_FOLDER` | `/some/path` | Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
-| `TMPDIR`| `/tmp` (default)| Temporary folder on the host running the CLI and inside the LocalStack container .|
-| `SERVICES` | `kinesis,lambda,sqs`,`serverless`| Only works with `EAGER_SERVICE_LOADING=1`. Comma-separated list of [AWS CLI service names][1] or shorthands to start. Per default, all services are loaded and started on the first request for that service. |
-| `<SERVICE>_BACKEND` | | Custom endpoint URL to use for a specific service, where <SERVICE> is the uppercase service name.
-| `<SERVICE>_PORT_EXTERNAL` | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
+| `USE_SSL` | `false` (default) | **Deprecated.** Whether to use https://... URLs with SSL encryption. Deprecated as of version 0.11.3. Each service endpoint now supports multiplexing HTTP/HTTPS traffic over the same port. |
+| `DEFAULT_REGION` | | **Deprecated.** AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
+| `USE_SINGLE_REGION` | | **Deprecated.** Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
+| `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | **Deprecated.** Local directory for saving persistent data. This option is deprecated since LocalStack v1 and will be ignored. Please use `PERSISTENCE`. Using this option will set `PERSISTENCE=1` as a deprecation path. The state will be stored in your LocalStack volume in the `state/` directory |
+| `HOST_TMP_FOLDER` | `/some/path` | **Deprecated.** Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
+| `TMPDIR`| `/tmp` (default)| **Deprecated.** Temporary folder on the host running the CLI and inside the LocalStack container .|
+| `<SERVICE>_BACKEND` | | **Deprecated.** Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name.
+| `<SERVICE>_PORT_EXTERNAL` | `4567` | **Deprecated.** Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
+| `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | **Deprecated.** Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. Use `LOCALSTACK_HOST` instead. |
+| `HOSTNAME_EXTERNAL` | `localhost` (default) | **Deprecated.** Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client. Use `LOCALSTACK_HOST` instead. |
+| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| **Deprecated.** Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
+| `EDGE_PORT` | `4566` (default)| **Deprecated.** Port number for the edge service, the main entry point for all API invocations. |
+| `EDGE_FORWARD_URL` | | **Deprecated.** Optional target URL to forward all edge requests to (e.g., for distributed deployments)
+| `INIT_SCRIPTS_PATH` | `/some/path` | **Deprecated.** Before 1.0, this was used to configure the path to the initializing files with extensions `.sh` that were found in `/docker-entrypoint-initaws.d`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
+| `KMS_PROVIDER` | `moto` (default), `local-kms` | **Deprecated.** `local-kms` provider is deprecated and marked for removal. |
+| `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | **Deprecated.** Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
+| `ES_MULTI_CLUSTER` | `0`\|`1` | **Deprecated.** Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
+| `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | **Deprecated.** Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
+| `SKIP_INFRA_DOWNLOADS` | | **Deprecated.** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
+| `MOCK_UNIMPLEMENTED` | | **Deprecated.** Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
+
+
+## Profiles
+
+LocalStack supports configuration profiles which are stored in the `~/.localstack` config directory.
+A configuration profile is a set of environment variables stored in an `.env` file in the LocalStack config directory.
+
+Here is an example of what configuration profiles might look like:
+
+{{< command >}}
+$ tree ~/.localstack
+/home/username/.localstack
+├── default.env
+├── dev.env
+└── pro.env
+{{< / command >}}
+
+Here is an example of what a specific environment profile looks like
+
+{{< command >}}
+$ cat ~/.localstack/pro-debug.env
+LOCALSTACK_API_KEY=XXXXX
+DEBUG=1
+DEVELOP=1
+{{< / command >}}
+
+You can load a profile by either setting the `env` variable `CONFIG_PROFILE=<profile>` or the `--profile=<profile>` CLI flag when using the CLI.
+Let's take an example to load the `dev.env` profile file if it exists:
+
+{{< command >}}
+$ python -m localstack.cli.main --profile=dev start
+{{< / command >}}
+
+If no profile is specified, the `default.env` profile will be loaded.
+While explicitly specified, the environment variables will always overwrite the profile.
+
+To display the config environment variables, you can use the following command:
+
+{{< command >}}
+$ python -m localstack.cli.main --profile=dev config show
+{{< / command >}}
+
+{{< alert title="Note" >}}
+The `CONFIG_PROFILE` is a CLI feature and cannot be used with a Docker/Docker Compose setup.
+You can look at [alternative means of setting environment variables](https://docs.docker.com/compose/environment-variables/set-environment-variables/) for your Docker Compose setups.
+For Docker setups, we recommend passing the environment variables directly to the `docker run` command.
+{{< /alert >}}

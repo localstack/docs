@@ -5,11 +5,28 @@ weight: 3
 description: >
   Learn how to configure Elastic Load Balancing (ELB) Application Load Balancers and set up Node.js Lambda functions as targets. This tutorial demonstrates how to forward requests to the target group for your Lambda function using the Serverless Framework and the `serverless-localstack` plugin to effortlessly deploy and manage your infrastructure locally with LocalStack.
 type: tutorials
+teaser: ""
+services:
+- elb
+- lmb
+platform:
+- javascript
+deployment:
+- serverless
+tags:
+- Elastic Load Balancing
+- Lambda
+- Serverless Framework
+- Node.js
+- JavaScript
+- serverless-localstack plugin
+pro: true
+leadimage: "elb-load-balancing-featured-image.png"
 ---
 
 [Elastic Load Balancer (ELB)](https://aws.amazon.com/elasticloadbalancing/) is a service that distributes incoming application traffic across multiple targets, such as EC2 instances, containers, IP addresses, and Lambda functions. ELBs can be physical hardware or virtual software components. They accept incoming traffic and distribute it across multiple targets in one or more Availability Zones. Using ELB, you can quickly scale your load balancer to accommodate changes in traffic over time, ensuring optimal performance for your application and workloads running on the AWS infrastructure.
 
-ELB provides three types of load balancers: [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html), [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html), [Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/introduction.html), and [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html). 
+ELB provides three types of load balancers: [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html), [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html), [Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/introduction.html), and [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html).
 
 In this tutorial we focus on the Application Load Balancer (ALB), which operates at the Application layer of the OSI model and is specifically designed for load balancing HTTP and HTTPS traffic for web applications. ALB works at the request level, allowing advanced load-balancing features for HTTP and HTTPS requests. It also enables you to register Lambda functions as targets. You can configure a listener rule that forwards requests to a target group for your Lambda function, triggering its execution to process the request.
 
