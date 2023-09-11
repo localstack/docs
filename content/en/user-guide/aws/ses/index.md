@@ -7,6 +7,7 @@ description: Get started with Amazon Simple Email Service (SES) on LocalStack
 ## Introduction
 
 Simple Email Service (SES) is an emailing service that can be integrated with other cloud-based services.
+It provides API to facilitate email templating, sending bulk emails and more.
 
 LocalStack supports SES v1 in the Community edition, while the Pro edition also supports SES v2 and SMTP integration.
 The full list of supported APIs can be found on the API coverage pages: [SES v1](https://docs.localstack.cloud/references/coverage/coverage_ses/) and [SES v2](https://docs.localstack.cloud/references/coverage/coverage_sesv2/)
@@ -103,6 +104,7 @@ Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide fo
 {{< alert title="Hint" color="success">}}
 If you do not have access to a proper SMTP server, you can use tools like [MailDev](https://github.com/maildev/maildev) or [smtp4dev](https://github.com/rnwood/smtp4dev).
 These run as Docker containers on your local machine.
+Make sure they run in the same Docker network as the LocalStack container.
 {{< /alert >}}
 
 
@@ -118,3 +120,8 @@ The Resource Browser allows you to perform following actions:
 - **Create Email Identity**: Create an email identity by clicking **Create Identity** and specifying the email address.
 - **View Sent Emails**: View all sent emails from an email identity by clicking the email address. You can the view the details of a sent email by selecting them from the list.
 - **Send Emails**: On selecting an email identity, click **Send Message** and specify destination fields (To, CC and BCC addresses) and the body (Plaintext, HTML) to send an email.
+
+## Limitations
+
+It is currently not possible to [receive emails via SES](https://docs.aws.amazon.com/ses/latest/dg/receiving-email.html) in LocalStack.
+Consequently, all operations related to Receipt Rules are currently mocked.
