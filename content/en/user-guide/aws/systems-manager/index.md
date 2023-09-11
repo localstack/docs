@@ -8,7 +8,7 @@ description: Get started with Systems Manager (SSM) on LocalStack
 
 Systems Manager (SSM) is a management service provided by Amazon Web Services that helps you effectively manage and control your infrastructure resources. SSM simplifies tasks related to system and application management, patching, configuration, and automation, allowing you to maintain the health and compliance of your environment.
 
-LocalStack supports SSM via the Community offering with some additional features in the Pro/Team offering, allowing you to use the SSM APIs in your local environment to run operational tasks on the Dockerised instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ssm/), which provides information on the extent of SSM's integration with LocalStack.
+LocalStack supports SSM via the Community offering with some additional features in the Pro/Team offering, allowing you to use the SSM APIs in your local environment to run operational tasks on the Dockerized instances. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ssm/), which provides information on the extent of SSM's integration with LocalStack.
 
 ## Getting started
 
