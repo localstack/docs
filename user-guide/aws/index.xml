@@ -10965,32 +10965,42 @@ The &lt;code>arm64&lt;/code> MySQL images are limited to newer versions. For mor
 &lt;li>&lt;a href="https://github.com/localstack-samples/sample-serverless-rds-proxy-demo/">Serverless RDS Proxy with API Gateway, Lambda, and Aurora RDS&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/rds-db-queries">Running queries against an RDS database&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample">Running cloud integration tests against LocalStack&amp;rsquo;s RDS with Testcontainers&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
-&lt;p>The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.&lt;/p>
-&lt;p>The example below illustrates the creation of a hosted zone &lt;code>example.com&lt;/code>, registration of an A record named &lt;code>test.example.com&lt;/code> that points to &lt;code>1.2.3.4&lt;/code>, and finally querying the DNS record by using the &lt;code>dig&lt;/code> command against the DNS server running on &lt;code>localhost&lt;/code> (inside the LocalStack container, on port &lt;code>53&lt;/code>):
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name example.com --caller-reference r1 | jq -r &amp;#39;.HostedZone.Id&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal route53 change-resource-record-sets --hosted-zone-id $zone_id --change-batch &amp;#39;Changes=[{Action=CREATE,ResourceRecordSet={Name=test.example.com,Type=A,ResourceRecords=[{Value=1.2.3.4}]}}]&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @localhost test.example.com
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test.example.com. 300 IN A 1.2.3.4&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the &lt;code>DNS_ADDRESS&lt;/code> configuration variable).
-&lt;/div>
-&lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
-&lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
-&lt;p>Customizing the internal LocalStack DNS name is not a common requirement - it should work out of the box for most use cases. However, in some cases you may want to customize the external resolution of this DNS name, for example if your LocalStack instance is running on a separate Docker network than your application code, or even on a different machine.&lt;/p>
-&lt;p>Assume we&amp;rsquo;d like to have all &lt;code>*.localhost.localstack.cloud&lt;/code> subdomains resolve to the address &lt;code>5.6.7.8&lt;/code> (i.e., if this is the IP where your LocalStack instance is accessible) when querying the built-in DNS server. We can utilize Route53 to that effect:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name localhost.localstack.cloud --caller-reference r1 | jq -r .HostedZone.Id)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal route53 change-resource-record-sets --hosted-zone-id $zone_id --change-batch &amp;#39;{&amp;#34;Changes&amp;#34;:[{&amp;#34;Action&amp;#34;:&amp;#34;CREATE&amp;#34;,&amp;#34;ResourceRecordSet&amp;#34;:{&amp;#34;Name&amp;#34;:&amp;#34;localhost.localstack.cloud&amp;#34;,&amp;#34;Type&amp;#34;:&amp;#34;A&amp;#34;,&amp;#34;ResourceRecords&amp;#34;:[{&amp;#34;Value&amp;#34;:&amp;#34;5.6.7.8&amp;#34;}]}},{&amp;#34;Action&amp;#34;:&amp;#34;CREATE&amp;#34;,&amp;#34;ResourceRecordSet&amp;#34;:{&amp;#34;Name&amp;#34;:&amp;#34;*.localhost.localstack.cloud&amp;#34;,&amp;#34;Type&amp;#34;:&amp;#34;A&amp;#34;,&amp;#34;ResourceRecords&amp;#34;:[{&amp;#34;Value&amp;#34;:&amp;#34;5.6.7.8&amp;#34;}]}}]}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @127.0.0.1 bucket1.s3.localhost.localstack.cloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localhost.localstack.cloud. 300 IN A 5.6.7.8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @127.0.0.1 localhost.localstack.cloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localhost.localstack.cloud. 300 IN A 5.6.7.8&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p></description></item></channel></rss>
+&lt;/ul></description></item><item><title>User-Guide: Resource Groups</title><link>/user-guide/aws/resourcegroups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/resourcegroups/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Resource Groups allow developers to organize and manage their AWS resources more efficiently.
+Resource Groups allow for a unified view of their resources allowing developers to perform specific actions, such as resource tagging, access control, and policy enforcement across multiple resources simultaneously.
+Resource Groups in AWS provide two types of queries that developers can use to build groups: Tag-based queries and CloudFormation stack-based queries.
+With Tag-based queries, developers can organize resources based on common attributes or characteristics, while CloudFormation stack-based queries allow developers to group resources that are deployed together as part of a CloudFormation stack.&lt;/p>
+&lt;p>LocalStack supports Resource Groups via the Community offering, allowing you to use the Resource Groups APIs in your local environment to group and categorize resources based on criteria such as tags, resource types, regions, or custom attributes.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_resource-groups/">API coverage page&lt;/a>, which provides information on the extent of Resource Group&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting Started&lt;/h2>
+&lt;p>This guide is designed for users new to Resource Groups and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how to create a Resource Group using the AWS CLI.
+We will use tag-based query to create a resource group.
+However, you can also use CloudFormation stack-based queries to create a resource group.&lt;/p>
+&lt;h3 id="create-a-resource-group">Create a Resource Group&lt;/h3>
+&lt;p>Resource Groups in AWS are built around the concept of queries, which serve as a fundamental component.
+The tag-based queries list the resource types in the format &lt;code>AWS::&amp;lt;service&amp;gt;::&amp;lt;resource&amp;gt;&lt;/code> (e.g. &lt;code>AWS::Lambda::Function&lt;/code> along with specified tags. A tag-based group is created based on a query of type &lt;code>TAG_FILTERS_1_0&lt;/code>.&lt;/p>
+&lt;p>Use the &lt;a href="https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_CreateGroup.html">&lt;code>CreateGroup&lt;/code>&lt;/a> API to create a Resource Group.
+Run the following command to create a Resource Group named &lt;code>my-resource-group&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal resource-groups create-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name my-resource-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-query &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;TAG_FILTERS_1_0&amp;#34;,&amp;#34;Query&amp;#34;:&amp;#34;{\&amp;#34;ResourceTypeFilters\&amp;#34;:[\&amp;#34;AWS::EC2::Instance\&amp;#34;],\&amp;#34;TagFilters\&amp;#34;:[{\&amp;#34;Key\&amp;#34;:\&amp;#34;Stage\&amp;#34;,\&amp;#34;Values\&amp;#34;:[\&amp;#34;Test\&amp;#34;]}]}&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can also specify &lt;code>AWS::AllSupported&lt;/code> as the &lt;code>ResourceTypeFilters&lt;/code> value to include all supported resource types in the group.&lt;/p>
+&lt;h3 id="update-a-resource-group">Update a Resource Group&lt;/h3>
+&lt;p>To update a Resource Group, use the &lt;a href="https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_UpdateGroup.html">&lt;code>UpdateGroup&lt;/code>&lt;/a> API.
+Execute the following command to update the Resource Group &lt;code>my-resource-group&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal resource-groups update-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --group-name my-resource-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --description &amp;#34;EC2 S3 buckets and RDS DBs that we are using for the test stage&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Furthermore, you can also update the query and tags associated with a Resource Group using the &lt;a href="https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_UpdateGroup.html">&lt;code>UpdateGroup&lt;/code>&lt;/a> API.
+Run the following command to update the query and tags of the Resource Group &lt;code>my-resource-group&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal resource-groups update-group-query \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --group-name my-resource-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-query &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;TAG_FILTERS_1_0&amp;#34;,&amp;#34;Query&amp;#34;:&amp;#34;{\&amp;#34;ResourceTypeFilters\&amp;#34;:[\&amp;#34;AWS::EC2::Instance\&amp;#34;,\&amp;#34;AWS::S3::Bucket\&amp;#34;,\&amp;#34;AWS::RDS::DBInstance\&amp;#34;],\&amp;#34;TagFilters\&amp;#34;:[{\&amp;#34;Key\&amp;#34;:\&amp;#34;Stage\&amp;#34;,\&amp;#34;Values\&amp;#34;:[\&amp;#34;Test\&amp;#34;]}]}&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="delete-a-resource-group">Delete a Resource Group&lt;/h3>
+&lt;p>To delete a Resource Group, use the &lt;a href="https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_DeleteGroup.html">&lt;code>DeleteGroup&lt;/code>&lt;/a> API.
+Run the following command to delete the Resource Group &lt;code>my-resource-group&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal resource-groups delete-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --group-name my-resource-group&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
