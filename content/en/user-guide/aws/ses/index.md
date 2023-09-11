@@ -54,8 +54,6 @@ On LocalStack Pro, you can enable [SMTP Integration](#smtp-integration) to send 
 
 LocalStack keeps track of all sent emails for retrospection.
 The sent messages can be retrieved in following ways:
-- **Filesystem:** All messages are saved to the state directory (see [filesystem layout]({{< ref "filesystem" >}})).
-    The files are saved as JSON in the `ses/` subdirectory and named by the message ID.
 - **API endpoint:** LocalStack provides a service endpoint (`/_aws/ses`) which can be used to return in-memory saved messages.
     A `GET` call returns all messages.
     Query parameters `id` and `email` can be used to filter by message ID and message source respectively.
@@ -85,21 +83,30 @@ $ curl --silent localhost.localstack.cloud:4566/_aws/ses?email=hello@example.com
     A `DELETE` call clears all messages from the memory.
     The query parameter `id` can be used to delete only a specific message.
     {{< command >}}
-    $ curl --silent -X DELETE localhost.localstack.cloud:4566/_aws/ses?id=dqxhhgoutkmylpbc-ffuqlkjs-ljld-fckp-hcph-wcsrkmxhhldk-pvadjc
+    $ curl -X DELETE localhost.localstack.cloud:4566/_aws/ses?id=dqxhhgoutkmylpbc-ffuqlkjs-ljld-fckp-hcph-wcsrkmxhhldk-pvadjc
     {{< /command >}}
+- **Filesystem:** All messages are saved to the state directory (see [filesystem layout]({{< ref "filesystem" >}})).
+    The files are saved as JSON in the `ses/` subdirectory and named by the message ID.
 
 
 ## SMTP Integration
 
-LocalStack Pro ships with support for sending SES messages through an actual SMTP email server.
+LocalStack Pro ships with support for sending emails via an SMTP email server.
 
 Please refer to the [Configuration]({{< ref "configuration#emails" >}}) guide for instructions on how to configure the connection parameters of your SMTP server (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`).
 
-Once the SMTP server has been configured, the SES user interface in the Web app can be used to create a new email account (e.g., `user1@yourdomain.com`).
+> Hint
 
 
-## User Interface
+## Resource Browser
 
-[LocalStack Web app](https://app.localstack.cloud) can be used to view the sent email messages, as illustrated in the screenshot below:
+LocalStack Web Application provides a resource browser for managing email identities and introspecing sent emails.
 
-![SES Web Interface](sesInterface.png)
+<img src="ses-resource-browser.png" alt="SES Resource Browser" title="SESE Resource Browser" width="900"/>
+<br/>
+<br/>
+
+The Resource Browser allows you to perform following actions:
+- **Create Email Identity**: Create an email identity by clicking **Create Identity** and specifying the email address.
+- **View Sent Emails**: View all sent emails from an email identity by clicking the email address. You can the view the details of a sent email by selecting them from the list.
+- **Send Emails**: On selecting an email identity, click **Send Message** and specify destination fields (To, CC and BCC addresses) and the body (Plaintext, HTML) to send an email.
