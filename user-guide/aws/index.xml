@@ -7130,7 +7130,68 @@ By default, LocalStack&amp;rsquo;s Cognito does not send actual email messages. 
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/cognito-jwt">Running Cognito authentication and user pools locally&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/serverless-api-ecs-apigateway-sample">Serverless Container-based APIs with ECS &amp;amp; API Gateway&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/step-up-auth-sample">Step-up Authentication using Cognito&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Cost Explorer</title><link>/user-guide/aws/cost-explorer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cost-explorer/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Config</title><link>/user-guide/aws/config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/config/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>AWS Config is a service provided by Amazon Web Services (AWS) that enables you to assess, audit, and manage the configuration state of your AWS resources.
+Config provides a comprehensive view of the resource configuration across your AWS environment, helping you ensure compliance with security policies, track changes, and troubleshoot operational issues.
+Config continuously records configuration changes and allows you to retain a historical record of these changes.&lt;/p>
+&lt;p>LocalStack supports Config via the Community offering, allowing you to use the Config APIs in your local environment to assesses resource configurations and notifies you of any non-compliant items to mitigate potential security risks.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_config/">API coverage page&lt;/a>, which provides information on the extent of Config&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Config and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how to specify the resource types you want Config to record and grant it the needful permissions to access an S3 bucket and SNS topic with the AWS CLI.&lt;/p>
+&lt;h3 id="create-an-s3-bucket-and-sns-topic">Create an S3 bucket and SNS topic&lt;/h3>
+&lt;p>The S3 bucket will be used to receive a configuration snapshot on request and configuration history.
+The SNS topic will be used to notify you when a configuration snapshot is available.
+You can create a new S3 bucket and SNS topic using the AWS CLI:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://config-test
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sns create-topic --name config-test-topic&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="create-a-new-configuration-recorder">Create a new configuration recorder&lt;/h3>
+&lt;p>You can now create a new configuration recorder to record configuration changes for specified resource types, using the &lt;a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutConfigurationRecorder.html">&lt;code>PutConfigurationRecorder&lt;/code>&lt;/a> API.
+Run the following command to create a new configuration recorder:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal configservice put-configuration-recorder \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --configuration-recorder name=default,roleARN=arn:aws:iam::000000000000:role/config-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>We have specified the &lt;code>roleARN&lt;/code> parameter to grant the configuration recorder the needful permissions to access the S3 bucket and SNS topic.
+In LocalStack, IAM roles are not enforced, so you can specify any role ARN you like.
+The &lt;code>name&lt;/code> parameter has been set to &lt;code>default&lt;/code>, and you can optionally specify a &lt;code>recordingGroup&lt;/code> parameter to specify the resource types you want to record.&lt;/p>
+&lt;h3 id="create-a-delivery-channel">Create a delivery channel&lt;/h3>
+&lt;p>You can now create a delivery channel object to deliver configuration information to an S3 bucket and an SNS topic.
+You have already created the S3 bucket and SNS topic, so you can now create the delivery channel object using the &lt;a href="https://docs.aws.amazon.com/config/latest/APIReference/API_PutDeliveryChannel.html">&lt;code>PutDeliveryChannel&lt;/code>&lt;/a> API.&lt;/p>
+&lt;p>We&amp;rsquo;re going to create a delivery channel with the following configuration.
+You can inline the JSON into the &lt;code>awslocal&lt;/code> command.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;default&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;s3BucketName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;config-test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;snsTopicARN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:sns:us-east-1:000000000000&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;configSnapshotDeliveryProperties&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;deliveryFrequency&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Twelve_Hours&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Run the following command to create the delivery channel:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal configservice put-delivery-channel \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --delivery-channel &amp;#39;{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;default&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;s3BucketName&amp;#34;: &amp;#34;config-test&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;snsTopicARN&amp;#34;: &amp;#34;arn:aws:sns:us-east-1:000000000000&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;configSnapshotDeliveryProperties&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;deliveryFrequency&amp;#34;: &amp;#34;Twelve_Hours&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="start-the-configuration-recorder">Start the configuration recorder&lt;/h3>
+&lt;p>You can now start recording configurations of the local AWS resources you have selected to record in your running LocalStack container.
+You can use the &lt;a href="https://docs.aws.amazon.com/config/latest/APIReference/API_StartConfigurationRecorder.html">&lt;code>StartConfigurationRecorder&lt;/code>&lt;/a> API to start the configuration recorder.
+Run the following command to start the configuration recorder:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal configservice start-configuration-recorder \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --configuration-recorder-name default&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can list the delivery channels and configuration recorders using the &lt;a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeDeliveryChannels.html">&lt;code>DescribeDeliveryChannels&lt;/code>&lt;/a> and &lt;a href="https://docs.aws.amazon.com/config/latest/APIReference/API_DescribeConfigurationRecorderStatus.html">&lt;code>DescribeConfigurationRecorderStatus&lt;/code>&lt;/a> APIs respectively.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal configservice describe-delivery-channels
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal configservice describe-configuration-recorder-status&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>AWS Config is currently mocked in LocalStack.
+You can create, read, update, and delete AWS Config resources (like delivery channels or configuration recorders),
+but LocalStack will currently not record any configuration changes to service resources.
+If you need this feature, please consider opening a &lt;a href="https://github.com/localstack/localstack/issues/new">feature request on GitHub&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Cost Explorer</title><link>/user-guide/aws/cost-explorer/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cost-explorer/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Cost Explorer is a service provided by Amazon Web Services (AWS) that enables you to visualize, analyze, and manage your AWS spending and usage. Cost Explorer offers options to filter and group data by dimensions such as service, region, instance type, and more. With Cost Explorer, you can forecast costs, track budget progress, and set up alerts to receive notifications when spending exceeds predefined thresholds.&lt;/p>
 &lt;p>LocalStack supports Cost Explorer via the Pro/Team offering, allowing you to use the Cost Explorer APIs in your local environment to create and manage cost category definition, cost anomaly monitors &amp;amp; subscriptions. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_ce/">API coverage page&lt;/a>, which provides information on the extent of Cost Explorer&amp;rsquo;s integration with LocalStack.&lt;/p>
@@ -10965,42 +11026,4 @@ The &lt;code>arm64&lt;/code> MySQL images are limited to newer versions. For mor
 &lt;li>&lt;a href="https://github.com/localstack-samples/sample-serverless-rds-proxy-demo/">Serverless RDS Proxy with API Gateway, Lambda, and Aurora RDS&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/rds-db-queries">Running queries against an RDS database&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample">Running cloud integration tests against LocalStack&amp;rsquo;s RDS with Testcontainers&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Resource Groups</title><link>/user-guide/aws/resourcegroups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/resourcegroups/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Resource Groups allow developers to organize and manage their AWS resources more efficiently.
-Resource Groups allow for a unified view of their resources allowing developers to perform specific actions, such as resource tagging, access control, and policy enforcement across multiple resources simultaneously.
-Resource Groups in AWS provide two types of queries that developers can use to build groups: Tag-based queries and CloudFormation stack-based queries.
-With Tag-based queries, developers can organize resources based on common attributes or characteristics, while CloudFormation stack-based queries allow developers to group resources that are deployed together as part of a CloudFormation stack.&lt;/p>
-&lt;p>LocalStack supports Resource Groups via the Community offering, allowing you to use the Resource Groups APIs in your local environment to group and categorize resources based on criteria such as tags, resource types, regions, or custom attributes.
-The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_resource-groups/">API coverage page&lt;/a>, which provides information on the extent of Resource Group&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;h2 id="getting-started">Getting Started&lt;/h2>
-&lt;p>This guide is designed for users new to Resource Groups and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
-&lt;p>Start your LocalStack container using your preferred method.
-We will demonstrate how to create a Resource Group using the AWS CLI.
-We will use tag-based query to create a resource group.
-However, you can also use CloudFormation stack-based queries to create a resource group.&lt;/p>
-&lt;h3 id="create-a-resource-group">Create a Resource Group&lt;/h3>
-&lt;p>Resource Groups in AWS are built around the concept of queries, which serve as a fundamental component.
-The tag-based queries list the resource types in the format &lt;code>AWS::&amp;lt;service&amp;gt;::&amp;lt;resource&amp;gt;&lt;/code> (e.g. &lt;code>AWS::Lambda::Function&lt;/code> along with specified tags. A tag-based group is created based on a query of type &lt;code>TAG_FILTERS_1_0&lt;/code>.&lt;/p>
-&lt;p>Use the &lt;a href="https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_CreateGroup.html">&lt;code>CreateGroup&lt;/code>&lt;/a> API to create a Resource Group.
-Run the following command to create a Resource Group named &lt;code>my-resource-group&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal resource-groups create-group \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name my-resource-group \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-query &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;TAG_FILTERS_1_0&amp;#34;,&amp;#34;Query&amp;#34;:&amp;#34;{\&amp;#34;ResourceTypeFilters\&amp;#34;:[\&amp;#34;AWS::EC2::Instance\&amp;#34;],\&amp;#34;TagFilters\&amp;#34;:[{\&amp;#34;Key\&amp;#34;:\&amp;#34;Stage\&amp;#34;,\&amp;#34;Values\&amp;#34;:[\&amp;#34;Test\&amp;#34;]}]}&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can also specify &lt;code>AWS::AllSupported&lt;/code> as the &lt;code>ResourceTypeFilters&lt;/code> value to include all supported resource types in the group.&lt;/p>
-&lt;h3 id="update-a-resource-group">Update a Resource Group&lt;/h3>
-&lt;p>To update a Resource Group, use the &lt;a href="https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_UpdateGroup.html">&lt;code>UpdateGroup&lt;/code>&lt;/a> API.
-Execute the following command to update the Resource Group &lt;code>my-resource-group&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal resource-groups update-group \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --group-name my-resource-group \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --description &amp;#34;EC2 S3 buckets and RDS DBs that we are using for the test stage&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Furthermore, you can also update the query and tags associated with a Resource Group using the &lt;a href="https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_UpdateGroup.html">&lt;code>UpdateGroup&lt;/code>&lt;/a> API.
-Run the following command to update the query and tags of the Resource Group &lt;code>my-resource-group&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal resource-groups update-group-query \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --group-name my-resource-group \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resource-query &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;TAG_FILTERS_1_0&amp;#34;,&amp;#34;Query&amp;#34;:&amp;#34;{\&amp;#34;ResourceTypeFilters\&amp;#34;:[\&amp;#34;AWS::EC2::Instance\&amp;#34;,\&amp;#34;AWS::S3::Bucket\&amp;#34;,\&amp;#34;AWS::RDS::DBInstance\&amp;#34;],\&amp;#34;TagFilters\&amp;#34;:[{\&amp;#34;Key\&amp;#34;:\&amp;#34;Stage\&amp;#34;,\&amp;#34;Values\&amp;#34;:[\&amp;#34;Test\&amp;#34;]}]}&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="delete-a-resource-group">Delete a Resource Group&lt;/h3>
-&lt;p>To delete a Resource Group, use the &lt;a href="https://docs.aws.amazon.com/resource-groups/latest/APIReference/API_DeleteGroup.html">&lt;code>DeleteGroup&lt;/code>&lt;/a> API.
-Run the following command to delete the Resource Group &lt;code>my-resource-group&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal resource-groups delete-group \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --group-name my-resource-group&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
