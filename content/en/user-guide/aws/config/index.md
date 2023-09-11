@@ -19,9 +19,9 @@ The supported APIs are available on our [API coverage page](https://docs.localst
 This guide is designed for users new to Config and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method.
-We will demonstrate how to specify the resource types you want Config to record and grant it the needful permissions to access a S3 bucket and SNS topic with the AWS CLI.
+We will demonstrate how to specify the resource types you want Config to record and grant it the needful permissions to access an S3 bucket and SNS topic with the AWS CLI.
 
-### Create a S3 bucket and SNS topic
+### Create an S3 bucket and SNS topic
 
 The S3 bucket will be used to receive a configuration snapshot on request and configuration history.
 The SNS topic will be used to notify you when a configuration snapshot is available.
