@@ -1,0 +1,51 @@
+{{$servicesData := site.Data.developerhub.services }}
+{{$services := cond (ne (len .services) 0)  (printf " service-%s" (delimit .services " service-")) "" }}
+{{$deployment := cond (ne (len .deployment) 0)  (printf " deployment-%s" (delimit .deployment " deployment-")) "" }}
+{{$platform := cond (ne (len .platform) 0)  (printf " platform-%s" (delimit .platform " platform-")) "" }}
+{{$level := cond (ne (len .complexity) 0)  (printf " level-%s" (delimit .complexity " level-")) "" }}
+{{$cloudpod := cond (eq (.cloudPods) true) " cloudpod-true" "" }}
+{{$className := print $services $deployment $platform $level $cloudpod}}
+<div
+    class='entry application-card filters-card col-xs-12 col-sm-6 col-md-4{{$className}}'
+    data-services='{{cond (ne (len .services) 0) (delimit .services ",") ""}}'
+    data-deployments='{{cond (ne (len .deployment) 0) (delimit .deployment ",") ""}}'
+    data-platforms='{{cond (ne (len .platform) 0) (delimit .platform ",") ""}}'
+    data-levels='{{cond (ne (len .complexity) 0) (delimit .complexity ",") ""}}'
+    data-slug="{{.title | urlize}}"
+    >
+    <div class="card h-100">
+        <div>
+        <img src="{{.teaser}}" >
+        </div>
+        <div class="card-body">
+            <h5 class="card-title d-flex align-items-center">
+                <a class="mr-2" href="{{ .url }}">
+                    {{ with .title }}{{ . }}{{end}}
+                </a>
+            </h5>
+            <div>
+                {{ range .services }}
+                <img
+                    src="/images/services/{{ . }}.svg"
+                    class="application-icon" data-toggle="tooltip" data-placement="top"
+                    title="{{index $servicesData .}}" aria-label="{{index $servicesData .}}"
+                />
+                {{ end }}
+                {{ with .pro }}
+                <img
+                src="/images/pro-badge.png" class="application-icon" data-toggle="tooltip"
+                data-placement="top" title="Localstack Pro" aria-label="Localstack Pro"
+                />
+                {{ end }}
+            </div>
+            <div>
+                {{ range .tags }}
+                <a class="badge badge-primary no-text-decoration" target="_blank" style="font-weight: normal;" href="/tags/{{ . }}">{{ . }}</a>
+                {{ end }}
+            </div>
+            <br>
+
+            <p class="card-text" style="font-weight: normal;">{{.description}}</p>
+        </div>
+    </div>
+</div>
