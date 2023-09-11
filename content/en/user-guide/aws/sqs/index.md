@@ -204,30 +204,31 @@ If you wish to disable all CloudWatch metrics for SQS, including the `Approximat
 
 ## Accessing queues from Lambdas or other containers
 
-Through the SQS Query API, Queue URLs become endpoints that can be called via HTTP.
-In fact, some SDKs like the Java SDK use the SQS Query API to interact with SQS.
-By default, Queue URLs point to `http://localhost:4566`, which can lead to issues when Lambdas or other containers attempt to call these queue URLs directly.
-These issues are because a Lambda function runs in another Docker container, and LocalStack is not available at `localhost` in that container.
-For example, users of the Java SDK often experience the following error when accessing an SQS queue from their Lambda:
-```
+Using the SQS Query API, Queue URLs act as accessible endpoints via HTTP. Several SDKs, such as the Java SDK, leverage the SQS Query API for SQS interaction.
+
+By default, Queue URLs are configured to point to `http://localhost:4566`. This configuration can pose problems when Lambdas or other containers attempt to make direct calls to these queue URLs. These issues arise due to the fact that a Lambda function operates within a separate Docker container, and LocalStack is not accessible at the `localhost` address within that container.
+
+For instance, users of the Java SDK often encounter the following error when trying to access an SQS queue from their Lambda functions:
+
+```bash
 2023-07-28 15:04:00 Unable to execute HTTP request: Connect to localhost:4566 [localhost/127.0.0.1] failed: Connection refused (Connection refused): com.amazonaws.SdkClientException
 2023-07-28 15:04:00 com.amazonaws.SdkClientException: Unable to execute HTTP request: Connect to localhost:4566 [localhost/127.0.0.1] failed: Connection refused (Connection refused)
 ...
 ```
 
-Here's what you can do:
+To address this issue, you can consider the steps documented below.
 
-### Lambdas
+### Lambda
 
-When using the SQS Query API from Lambdas, we recommend setting `SQS_ENDPOINT_STRATEGY=domain`.
-This creates queue URLs with `*.queue.localhost.localstack.cloud` as domain names.
-Our Lambda implementation resolves these URLs automatically to the LocalStack container, allowing your code to interact with the SQS service seamlessly.
+When utilizing the SQS Query API in Lambdas, we suggest configuring `SQS_ENDPOINT_STRATEGY=domain`. This configuration results in queue URLs using `*.queue.localhost.localstack.cloud` as their domain names. Our Lambda implementation automatically resolves these URLs to the LocalStack container, ensuring smooth interaction between your code and the SQS service.
 
 ### Other containers
 
-When your code runs in other containers, such as ECS tasks, or your own custom containers, we recommend setting up your own Docker network.
-First, overwrite the `LOCALSTACK_HOST` variable as described in our [network troubleshooting guide]({{< ref "endpoint-url" >}}), and make sure that your containers resolve `LOCALSTACK_HOST` to the LocalStak container within the Docker network.
-Then, we recommend using `SQS_ENDPOINT_STRATEGY=path`, which will generate queue URLs in the form of `http://<LOCALSTACK_HOST>/queue/...`.
+When your code run within different containers like ECS tasks or your custom ones, it's advisable to establish your Docker network setup. You can follow these steps:
+
+1.  Override the `LOCALSTACK_HOST` variable as outlined in our [network troubleshooting guide]({{< ref "endpoint-url" >}}).
+2.  Ensure that your containers can resolve `LOCALSTACK_HOST` to the LocalStack container within the Docker network.
+3.  We recommend employing `SQS_ENDPOINT_STRATEGY=path`, which generates queue URLs in the format `http://<LOCALSTACK_HOST>/queue/...`.
 
 ## Developer endpoints
 
