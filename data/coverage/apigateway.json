@@ -282,11 +282,11 @@
       "DeleteGatewayResponse": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -330,7 +330,7 @@
       "DeleteMethodResponse": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -393,8 +393,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -585,8 +585,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -702,11 +702,11 @@
       "GetGatewayResponses": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
-        "external_test_suite": true,
+        "internal_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -918,11 +918,11 @@
       "GetStages": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1288,13 +1288,13 @@
     },
     {
       "UpdateGatewayResponse": {
-        "implemented": false,
-        "availability": "",
-        "internal_test_suite": false,
+        "implemented": true,
+        "availability": "community",
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -1997,20 +1997,6 @@
           }
         ]
       },
-      "description, restApiId, stageDescription, stageName, variables": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
       "description, restApiId, stageName": {
         "ls_community": [
           {
@@ -2135,6 +2121,16 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$.invalid-request-body.Type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2571,6 +2567,16 @@
             "response": "201",
             "error": "",
             "snapshot_skipped": "['$.invalid-request-body.Type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4130,16 +4136,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayApi::test_create_proxy_resource_validation",
             "test": "test_create_proxy_resource_validation",
             "response": "400",
@@ -4465,20 +4461,6 @@
       }
     },
     "CreateRestApi": {
-      "apiKeySource, binaryMediaTypes, endpointConfiguration, name": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
       "apiKeySource, name": {
         "ls_community": [
           {
@@ -4501,20 +4483,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "apiKeySource, name, policy": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -4808,6 +4776,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayApiRequestValidator::test_request_validator_lifecycle",
             "test": "test_request_validator_lifecycle",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_crud",
+            "test": "test_gateway_response_crud",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
@@ -5814,6 +5812,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDocumentations::test_documentation_parts_and_versions",
             "test": "test_documentation_parts_and_versions",
             "response": "201",
@@ -6484,6 +6502,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestUsagePlans::test_usage_plan_crud",
             "test": "test_usage_plan_crud",
             "response": "201",
@@ -6561,16 +6589,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ],
@@ -7078,11 +7096,41 @@
       "deploymentId, restApiId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_apigateway.py::test_rest_api_serverless_ref_resolving",
-            "test": "test_rest_api_serverless_ref_resolving",
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
             "response": "202",
             "error": "",
-            "snapshot_skipped": "['$.put-ssm-param.Tier', '$.get-resources.items..resourceMethods.GET', '$.get-resources.items..resourceMethods.OPTIONS', '$..methodIntegration.cacheNamespace', '$.get-authorizers.items..authorizerResultTtlInSeconds']",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7183,6 +7231,16 @@
             "response": "404",
             "error": "NotFoundException",
             "snapshot_skipped": "['$.get-method-post.methodIntegration.connectionType']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_apigateway.py::test_rest_api_serverless_ref_resolving",
+            "test": "test_rest_api_serverless_ref_resolving",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "['$.put-ssm-param.Tier', '$.get-resources.items..resourceMethods.GET', '$.get-resources.items..resourceMethods.OPTIONS', '$..methodIntegration.cacheNamespace', '$.get-authorizers.items..authorizerResultTtlInSeconds']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -7394,6 +7452,52 @@
         ]
       }
     },
+    "DeleteGatewayResponse": {
+      "responseType, restApiId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_crud",
+            "test": "test_gateway_response_crud",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "DeleteIntegration": {
       "httpMethod, resourceId, restApiId": {
         "ls_community": [
@@ -7405,16 +7509,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -7431,16 +7525,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -7470,16 +7554,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayApi::test_method_lifecycle",
             "test": "test_method_lifecycle",
             "response": "404",
@@ -7487,22 +7561,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "DeleteMethodResponse": {
-      "httpMethod, resourceId, restApiId, statusCode": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "204",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -7641,16 +7699,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "202",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -8012,6 +8060,36 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayApiRequestValidator::test_request_validator_lifecycle",
             "test": "test_request_validator_lifecycle",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_crud",
+            "test": "test_gateway_response_crud",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
             "response": "202",
             "error": "",
             "snapshot_skipped": "",
@@ -8385,6 +8463,26 @@
             "response": "202",
             "error": "",
             "snapshot_skipped": "['$.invalid-request-body.Type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -8950,16 +9048,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "202",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayApi::test_list_and_delete_apis",
             "test": "test_list_and_delete_apis",
             "response": "404",
@@ -9358,13 +9446,23 @@
       "restApiId, stageName": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
             "response": "202",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "202",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -9858,23 +9956,23 @@
       "deploymentId, embed, restApiId": {
         "ls_community": [
           {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -9901,6 +9999,26 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -10538,6 +10656,72 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_crud",
+            "test": "test_gateway_response_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetGatewayResponses": {
+      "restApiId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_crud",
+            "test": "test_gateway_response_crud",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -10663,26 +10847,6 @@
             "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.resources.items..resourceMethods.ANY']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -10839,26 +11003,6 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -11068,16 +11212,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayApi::test_method_lifecycle",
             "test": "test_method_lifecycle",
             "response": "404",
@@ -11211,16 +11345,6 @@
             "snapshot_skipped": "['$.resources.items..resourceMethods.GET', '$.resources.items..resourceMethods.ANY']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -11626,26 +11750,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_event_rules_deployed",
             "test": "test_event_rules_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -13556,6 +13660,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDocumentations::test_documentation_parts_and_versions",
             "test": "test_documentation_parts_and_versions",
             "response": "200",
@@ -14178,26 +14302,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/test_serverless.py::TestServerless::test_event_rules_deployed",
             "test": "test_event_rules_deployed",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -14892,26 +14996,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -14994,6 +15078,16 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayApiRequestValidator::test_request_validator_lifecycle",
             "test": "test_request_validator_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_crud",
+            "test": "test_gateway_response_crud",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -15440,26 +15534,6 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_basic.py::TestAPIGateway::test_api_gateway_lambda_asynchronous_invocation",
             "test": "test_api_gateway_lambda_asynchronous_invocation",
             "response": "404",
@@ -15570,6 +15644,32 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
+          }
+        ]
+      }
+    },
+    "GetStages": {
+      "restApiId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -16063,6 +16163,26 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$.invalid-request-body.Type']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -16587,6 +16707,40 @@
       }
     },
     "PutGatewayResponse": {
+      "responseParameters, responseTemplates, responseType, restApiId, statusCode": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_crud",
+            "test": "test_gateway_response_crud",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      },
       "responseParameters, responseType, restApiId": {
         "ls_community": [
           {
@@ -16603,48 +16757,6 @@
       }
     },
     "PutIntegration": {
-      "connectionType, contentHandling, httpMethod, requestParameters, requestTemplates, resourceId, restApiId, timeoutInMillis, type": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
-      "connectionType, httpMethod, integrationHttpMethod, requestParameters, requestTemplates, resourceId, restApiId, timeoutInMillis, type": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
-      "connectionType, httpMethod, integrationHttpMethod, requestParameters, requestTemplates, resourceId, restApiId, timeoutInMillis, type, uri": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
       "connectionType, httpMethod, passthroughBehavior, requestParameters, requestTemplates, resourceId, restApiId, timeoutInMillis, type": {
         "ls_community": [
           {
@@ -17988,6 +18100,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestStages::test_create_update_stages",
             "test": "test_create_update_stages",
             "response": "201",
@@ -18195,16 +18327,6 @@
             "snapshot_skipped": "['$.get-resources.items..resourceMethods.ANY']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -19133,20 +19255,6 @@
           }
         ]
       },
-      "apiKeyRequired, authorizationType, httpMethod, requestModels, resourceId, restApiId": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
       "apiKeyRequired, authorizationType, httpMethod, requestParameters, resourceId, restApiId": {
         "ls_community": [
           {
@@ -19371,16 +19479,6 @@
             "snapshot_skipped": "['$..EncryptionType', '$..ChildShards']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -20114,6 +20212,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[False]",
+            "test": "test_create_delete_deployments[False]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestDeployments::test_create_delete_deployments[True]",
+            "test": "test_create_delete_deployments[True]",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..createdDate', '$..lastUpdatedDate']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_common.py::TestStages::test_create_update_stages",
             "test": "test_create_update_stages",
             "response": "201",
@@ -20389,16 +20507,6 @@
             "snapshot_skipped": "['$.get-method-post.methodIntegration.connectionType']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -21638,6 +21746,112 @@
             "test": "test_documentation_parts_and_versions",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "UpdateGatewayResponse": {
+      "patchOperations, responseType, restApiId": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "400",
+            "error": "ValidationException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "400",
+            "error": "BadRequestException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_gateway_response_validation",
+            "test": "test_gateway_response_validation",
+            "response": "404",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_api.py::TestApiGatewayGatewayResponse::test_update_gateway_response",
+            "test": "test_update_gateway_response",
+            "response": "404",
+            "error": "NotFoundException",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,

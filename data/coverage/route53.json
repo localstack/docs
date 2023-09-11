@@ -54,7 +54,7 @@
       "ChangeTagsForResource": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -358,7 +358,7 @@
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": true,
-        "snapshot_tested": false,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -690,7 +690,7 @@
       "ListTagsForResource": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": true,
+        "internal_test_suite": false,
         "external_test_suite": true,
         "terraform_test_suite": true,
         "aws_validated": false,
@@ -892,26 +892,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -966,28 +946,22 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
             "test": "test_resource_record_lifecycle_with_dns_resolution",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "ChangeTagsForResource": {
-      "AddTags, ResourceId, ResourceType": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
           }
@@ -1044,16 +1018,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -1104,16 +1068,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_create_hosted_zone",
             "test": "test_create_hosted_zone",
-            "response": "201",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_route53",
-            "test": "test_route53",
             "response": "201",
             "error": "",
             "snapshot_skipped": "",
@@ -1224,6 +1178,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
             "test": "test_resource_record_lifecycle_with_dns_resolution",
             "response": "201",
@@ -1303,16 +1267,6 @@
     "DeleteHostedZone": {
       "Id": {
         "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_id",
             "test": "test_create_record_set_via_id",
@@ -1426,6 +1380,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
             "test": "test_resource_record_lifecycle_with_dns_resolution",
             "response": "200",
@@ -1506,36 +1470,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_route53",
-            "test": "test_route53",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -1547,6 +1481,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -1628,26 +1572,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -1677,6 +1601,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..CallerReference', '$..HealthCheckConfig.EnableSNI', '$..HealthCheckConfig.FullyQualifiedDomainName', '$..HealthCheckConfig.IPAddress', '$..HealthCheckConfig.Port', '$..HealthCheckConfig.Type', '$..ttl']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2182,26 +2116,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           }
         ],
         "ls_pro": [
@@ -2256,6 +2170,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle",
+            "test": "test_resource_record_lifecycle",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..MaxItems', '$..ResourceRecordSets..Name', '$..ResourceRecordSets..ResourceRecords..Value', '$..ChangeInfo.Comment', '$..ChangeInfo.Status', '$..DelegationSet.Id', '$..DelegationSet.NameServers', '$..HostedZone.CallerReference']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_resource_record_lifecycle_with_dns_resolution",
             "test": "test_resource_record_lifecycle_with_dns_resolution",
             "response": "200",
@@ -2274,32 +2198,6 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_reusable_delegation_sets",
             "test": "test_reusable_delegation_sets",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      }
-    },
-    "ListTagsForResource": {
-      "ResourceId, ResourceType": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_bucket_exists",
-            "test": "test_bucket_exists",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/test_terraform.py::TestTerraform::test_security_groups",
-            "test": "test_security_groups",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
