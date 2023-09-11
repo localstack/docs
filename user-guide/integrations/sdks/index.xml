@@ -29,7 +29,7 @@ Setting the &lt;code>RegionEndpoint&lt;/code> to a constant like &lt;code>Region
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In case of issues resolving this DNS record, we can fallback to http://localhost:4566 in combination with the provider setting &lt;code>ForcePathStyle = true&lt;/code>. The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
+In case of issues resolving this DNS record, we can fallback to &lt;a href="http://localhost:4566">http://localhost:4566&lt;/a> in combination with the provider setting &lt;code>ForcePathStyle = true&lt;/code>. The S3 service endpoint is slightly different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
 &lt;/div>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-csharp" data-lang="csharp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">config&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">AmazonS3Config&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
@@ -38,10 +38,54 @@ In case of issues resolving this DNS record, we can fallback to http://localhost
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">s3client&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">AmazonS3Client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">config&lt;/span>&lt;span style="color:#000;font-weight:bold">);&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="resources">Resources&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="alternative-using-localstacknet">Alternative: Using LocalStack.NET&lt;/h2>
+&lt;p>If you&amp;rsquo;re working with .NET and LocalStack, you have a few options. In addition to the AWS SDK for .NET, there&amp;rsquo;s an alternative client library, &lt;code>LocalStack.NET&lt;/code>, which facilitates integration with LocalStack.&lt;/p>
+&lt;h3 id="overview-1">Overview&lt;/h3>
+&lt;p>&lt;code>LocalStack.NET&lt;/code> is a .NET client library developed to simplify the connection between .NET applications and LocalStack. It wraps around the AWS SDK for .NET and offers an alternative setup for creating LocalStack clients.&lt;/p>
+&lt;p>&lt;strong>LocalStack.NET Documentation:&lt;/strong> Comprehensive guide and examples &lt;a href="https://github.com/localstack-dotnet/localstack-dotnet-client">here&lt;/a>.&lt;/p>
+&lt;h3 id="how-it-works">How it Works&lt;/h3>
+&lt;p>Instead of manually setting the endpoint configurations when initializing a client, &lt;code>LocalStack.NET&lt;/code> offers methods that handle these details. The library aims to reduce the boilerplate required to set up LocalStack clients in .NET.&lt;/p>
+&lt;h3 id="example-usage">Example Usage&lt;/h3>
+&lt;h4 id="dependency-injection-approach">Dependency Injection Approach&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-csharp" data-lang="csharp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">public&lt;/span> &lt;span style="color:#204a87;font-weight:bold">void&lt;/span> &lt;span style="color:#000">ConfigureServices&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">IServiceCollection&lt;/span> &lt;span style="color:#000">services&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#8f5902;font-style:italic">// Add framework services.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">services&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">AddMvc&lt;/span>&lt;span style="color:#000;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">services&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">AddLocalStack&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Configuration&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">services&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">AddDefaultAWSOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Configuration&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">GetAWSOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">());&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">services&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">AddAwsService&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">IAmazonS3&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">amazonS3Client&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">serviceProvider&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">GetRequiredService&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">IAmazonS3&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;();&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="standalone-approach">Standalone Approach&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-csharp" data-lang="csharp">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">sessionOptions&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">SessionOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">configOptions&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#204a87;font-weight:bold">new&lt;/span> &lt;span style="color:#000">ConfigOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">ISession&lt;/span> &lt;span style="color:#000">session&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">SessionStandalone&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">Init&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">WithSessionOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">sessionOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">WithConfigurationOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">configOptions&lt;/span>&lt;span style="color:#000;font-weight:bold">).&lt;/span>&lt;span style="color:#000">Create&lt;/span>&lt;span style="color:#000;font-weight:bold">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">var&lt;/span> &lt;span style="color:#000">amazonS3Client&lt;/span> &lt;span style="color:#000;font-weight:bold">=&lt;/span> &lt;span style="color:#000">session&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>&lt;span style="color:#000">CreateClientByImplementation&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;lt;&lt;/span>&lt;span style="color:#000">AmazonS3Client&lt;/span>&lt;span style="color:#000;font-weight:bold">&amp;gt;();&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="benefits">Benefits&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>Consistent Client Configuration:&lt;/strong> &lt;code>LocalStack.NET&lt;/code> provides a standardized approach to initialize clients, eliminating the need for manual endpoint configurations.&lt;/li>
+&lt;li>&lt;strong>Tailored for .NET Developers:&lt;/strong> The library offers functionalities specifically developed to streamline integration of LocalStack with .NET applications.&lt;/li>
+&lt;li>&lt;strong>Adaptable Environment Transition:&lt;/strong> Switching between LocalStack and actual AWS services can be achieved with minimal configuration changes when leveraging &lt;code>LocalStack.NET&lt;/code>.&lt;/li>
+&lt;li>&lt;strong>Versatile .NET Compatibility:&lt;/strong> Supports a broad spectrum of .NET versions, from .NET Framework 4.6.1 and .NET Standard 2.0, up to recent .NET iterations such as .NET 7.0.&lt;/li>
+&lt;/ul>
+&lt;h3 id="considerations">Considerations:&lt;/h3>
+&lt;ul>
+&lt;li>Both the standard AWS SDK method and &lt;code>LocalStack.NET&lt;/code> provide ways to integrate with LocalStack using .NET. The choice depends on developer preferences and specific project needs.&lt;/li>
+&lt;li>&lt;code>LocalStack.NET&lt;/code> works alongside the AWS SDK, using it as a base and providing a more focused API for LocalStack interactions.&lt;/li>
+&lt;/ul>
+&lt;h2 id="resources">Resources&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://aws.amazon.com/sdk-for-net/">AWS SDK for .NET&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/aws/aws-sdk-net">Official repository of the AWS SDK for .NET&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack-dotnet/localstack-dotnet-client">LocalStack.NET Documentation&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: C++</title><link>/user-guide/integrations/sdks/cpp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/sdks/cpp/</guid><description>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>The &lt;a href="https://docs.aws.amazon.com/sdk-for-cpp">AWS SDK for C++&lt;/a>, like other AWS SDKs, lets you set the endpoint when creating resource clients,
