@@ -8,9 +8,19 @@ aliases:
   - /aws/sagemaker/
 ---
 
-LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them.
+## Introduction 
 
-## Model Training
+Amazon SageMaker is a fully managed service provided by Amazon Web Services (AWS) that provides the tools to build, train, and deploy machine-learning models in the cloud for predictive analytics applications. It streamlines the machine learning development process, reduces the time and effort required to build and deploy models, and offers the scalability and flexibility needed for large-scale machine learning projects in the AWS cloud.
+
+LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them. The supported APIs are available on our [Sagemaker coverage page](https://docs.localstack.cloud/references/coverage/coverage_sagemaker/), which provides information on the extent of Sagemaker integration with LocalStack.
+
+
+## Getting started
+
+This guide is designed for users new to Sagemaker and assumes basic knowledge of the AWS CLI and our awslocal wrapper script.
+
+
+### Model Training
 
 A basic training example using the `sagemaker.tensorflow.TensorFlow` class is provided in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/sagemaker-ml-jobs). Essentially, the code boils down to these core lines:
 ```python3
@@ -23,7 +33,7 @@ mnist_estimator.fit(inputs, logs=False)
 
 The code snippet above uploads the model training code to local S3, submits a new training job to the local SageMaker API, and finally puts the trained model back to an output S3 bucket. Please refer to the sample repo for more details.
 
-## Model Deployment and Inference
+### Model Deployment and Inference
 
 SageMaker supports the deployment and real-time inference of singular local ML models. An example for that is provided in our [PRO samples repository](https://github.com/localstack/localstack-pro-samples/tree/master/sagemaker-inference). As explained in the ReadMe of the sample, you will need to retrieve the image with your AWS account by connecting with [the provided ECR repository](https://github.com/aws/deep-learning-containers/blob/master/available_images.md):
 
@@ -59,3 +69,28 @@ def inference_model_boto3(run_id: str = "0"):
 {{< alert title="Note" >}}
 SageMaker is a fairly comprehensive API - for now, only a subset of the functionality is provided locally, but new features are being added on a regular basis.
 {{< /alert >}}
+
+
+## Resource Browser
+
+The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing Lambda resources. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Sagemaker** under the **Compute** section.
+
+The Resource Browser displays Models, Endpoint Configurations and Endpoint. You can click on individual resources to view their details.
+
+<img src="sagemaker-resource-browser.png" alt="Sagemaker Resource Browser" title="Lambda Resource Browser" width="900" />
+
+The Resource Browser allows you to perform the following actions:
+
+- **Create and Remove Models**: You can remove existing model and create a new model with the required configuration
+
+
+  <img src="sagemaker-create-model.png" alt="Sagemaker Resource Browser" title="Lambda Resource Browser" width="900" />
+
+
+- **Endpoint Configurations & Endpoints**: You can create endpoints from the resource browser that hosts your deployed machine learning model. You can also create endpoint configuration that specifies the type and number of instances that will be used to serve your model on an endpoint.
+
+## Examples 
+
+The following code snippets and sample applications provide practical examples of how to use Sagemaker in LocalStack for various use cases:
+
+- [MNIST handwritten digit recognition model running on a local SageMaker endpoint](https://github.com/localstack-samples/sample-mnist-digit-recognition-sagemaker) demonstrates how to use SageMaker on LocalStack. A simple web frontend allows users to draw a digit and submit it to a locally running SageMaker endpoint. The endpoint returns a prediction of the digit, which is then displayed in the web frontend. Request handling is performed by a Lambda function, accessible via a function URL, that uses the SageMaker SDK to invoke the endpoint.
