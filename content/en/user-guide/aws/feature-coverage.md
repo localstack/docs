@@ -735,7 +735,7 @@ In the coverage table below, the features are marked with their respective avail
 | SSH Public Keys                                                    | ⭐⭐⭐         | CRUD                |       |
 | Tags                                                               | \-             |                 |       |
 | Users                                                              | ⭐⭐⭐         | Emulated                |       |
-| [**X-Ray** (Pro)]({{< ref "xray-tracing" >}})                       | [Details 🔍]({{< ref "references/coverage/coverage_xray" >}}) |                 |       |
+| [**X-Ray** (Pro)]({{< ref "xray" >}})                              | [Details 🔍]({{< ref "references/coverage/coverage_xray" >}}) |                 |       |
 | Encryption Configs                                                 | \-             |                 |       |
 | Groups                                                             | \-           |                 |       |
 | Insights                                                           | \-             |                 |       |

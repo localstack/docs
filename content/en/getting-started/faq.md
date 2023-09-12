@@ -204,7 +204,7 @@ The easiest way to check if LocalStack Pro or Enterprise is activated is to chec
 $ curl localhost:4566/_localstack/health | jq
 {{< / command >}}
 
-If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack Pro or Enterprise has started successfully. If your API key is invalid, you will see an error message like this in the logs of LocalStack:
+If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack Pro or Enterprise has started successfully. If your API key is invalid, you will see an error message like this in the logs of LocalStack:
 
 ```bash
 Activation key "abc..."(10) is invalid or expired! Reason: ...

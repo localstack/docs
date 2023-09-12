@@ -81,7 +81,7 @@ The easiest way to check if LocalStack is activated is to query the health endpo
 $ curl localhost:4566/_localstack/health | jq
 {{< / command >}}
 
-If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "XRay-Tracing" >}}) -- is running, LocalStack has started successfully. You can also check the logs of the LocalStack container to see if the activation was successful.
+If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack has started successfully. You can also check the logs of the LocalStack container to see if the activation was successful.
 
 {{< command >}}
 [...] Successfully activated API key
