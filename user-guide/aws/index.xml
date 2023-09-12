@@ -9196,26 +9196,35 @@ JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/
 &lt;/p>
 &lt;/li>
 &lt;/ol></description></item><item><title>User-Guide: Glue</title><link>/user-guide/aws/glue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/glue/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.&lt;/p>
+&lt;p>LocalStack supports Glue via the Pro/Team offering, allowing you to use the Glue APIs in your local environment.
+The supported APIs are available on our &lt;a href="/references/coverage/coverage_glue/">API coverage page&lt;/a>, which provides information on the extent of Glue&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Glue and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how to create databases and table metadata in Glue, run Glue ETL jobs, import databases from Athena, and run Glue Crawlers with the AWS CLI.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-In order to run Glue jobs, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Spark, Presto, Hive and other tools. These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when pulling the dependencies for the first time.
+In order to run Glue jobs, some additional dependencies have to be fetched from the network, including a Docker image of apprx. 1.5GB which includes Spark, Presto, Hive and other tools.
+These dependencies are automatically fetched when you start up the service, so please make sure you&amp;rsquo;re on a decent internet connection when pulling the dependencies for the first time.
 &lt;/div>
-&lt;h2 id="creating-databases-and-table-metadata">Creating Databases and Table Metadata&lt;/h2>
+&lt;h3 id="creating-databases-and-table-metadata">Creating Databases and Table Metadata&lt;/h3>
 &lt;p>The commands below illustrate the creation of some very basic entries (databases, tables) in the Glue data catalog:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-database --database-input &amp;#39;{&amp;#34;Name&amp;#34;:&amp;#34;db1&amp;#34;}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-table --database db1 --table-input &amp;#39;{&amp;#34;Name&amp;#34;:&amp;#34;table1&amp;#34;}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-tables --database db1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TableList&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;table1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db1&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-tables --database db1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
-&lt;h2 id="running-scripts-with-scala-and-pyspark">Running Scripts with Scala and PySpark&lt;/h2>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;TableList&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;table1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DatabaseName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;db1&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="running-scripts-with-scala-and-pyspark">Running Scripts with Scala and PySpark&lt;/h3>
 &lt;p>Assuming we would like to deploy a simple PySpark script &lt;code>job.py&lt;/code> in the local folder, we can first copy the script to an S3 bucket:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://glue-test
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 cp job.py s3://glue-test/job.py&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -9224,22 +9233,20 @@ In order to run Glue jobs, some additional dependencies have to be fetched from 
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-job --name job1 --role arn:aws:iam::000000000000:role/glue-role \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --command &amp;#39;{&amp;#34;Name&amp;#34;: &amp;#34;pythonshell&amp;#34;, &amp;#34;ScriptLocation&amp;#34;: &amp;#34;s3://glue-test/job.py&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &amp;hellip; and finally start the job:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-job-run --job-name job1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;JobRunId&amp;#34;: &amp;#34;733b76d0&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-job-run --job-name job1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the job execution, until it becomes &lt;code>SUCCEEDED&lt;/code>:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-job-run --job-name job1 --run-id 733b76d0
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;JobRun&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Id&amp;#34;: &amp;#34;733b76d0&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Attempt&amp;#34;: 1,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;JobRunState&amp;#34;: &amp;#34;SUCCEEDED&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-job-run --job-name job1 --run-id &amp;lt;JobRunId&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
-&lt;p>For a more detailed example illustrating how to run a local Glue PySpark job, please refer to this &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-etl-jobs">sample repository&lt;/a>.&lt;/p>
-&lt;h2 id="importing-athena-tables-into-glue-data-catalog">Importing Athena Tables into Glue Data Catalog&lt;/h2>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;JobRun&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Id&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;733b76d0&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Attempt&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;JobRunState&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;SUCCEEDED&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For a more detailed example illustrating how to run a local Glue PySpark job, please refer to this &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-etl-jobs">sample repository&lt;/a>.&lt;/p>
+&lt;h3 id="importing-athena-tables-into-glue-data-catalog">Importing Athena Tables into Glue Data Catalog&lt;/h3>
 &lt;p>The Glue data catalog is integrated with Athena, and the database/table definitions can be imported via the &lt;code>import-catalog-to-glue&lt;/code> API.&lt;/p>
 &lt;p>Assume you are running the following Athena queries to create databases and table definitions:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sql" data-lang="sql">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">CREATE&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">DATABASE&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">db2&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -9248,43 +9255,47 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then this command will import these DB/table definitions into the Glue data catalog:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue import-catalog-to-glue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
-&lt;p>&amp;hellip; and finally they will be available in Glue:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-databases
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseList&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;db2&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Description&amp;#34;: &amp;#34;Database db2 imported from Athena&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TargetDatabase&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CatalogId&amp;#34;: &amp;#34;000000000000&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db2&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-tables --database-name db2
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TableList&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;table1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db2&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Description&amp;#34;: &amp;#34;Table db2.table1 imported from Athena&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CreateTime&amp;#34;: ...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;table2&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db2&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Description&amp;#34;: &amp;#34;Table db2.table2 imported from Athena&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;CreateTime&amp;#34;: ...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;h2 id="crawlers">Crawlers&lt;/h2>
+&lt;p>Afterwards, the databases and tables will be available in Glue.
+You can query the databases with the &lt;code>get-databases&lt;/code> operation:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-databases&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DatabaseList&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;db2&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Description&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Database db2 imported from Athena&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;TargetDatabase&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;CatalogId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;000000000000&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DatabaseName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;db2&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>And you can query the databases with the &lt;code>get-databases&lt;/code> operation:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-tables --database-name db2&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;TableList&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;table1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DatabaseName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;db2&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Description&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Table db2.table1 imported from Athena&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;CreateTime&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;table2&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DatabaseName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;db2&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Description&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Table db2.table2 imported from Athena&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;CreateTime&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="crawlers">Crawlers&lt;/h3>
 &lt;p>Glue crawlers allow extracting metadata from structured data sources.&lt;/p>
-&lt;p>LocalStack Glue currently supports S3 targets (configurable via &lt;code>S3Targets&lt;/code>), as well as JDBC targets (configurable via &lt;code>JdbcTargets&lt;/code>). Support for other target types is in our pipeline and will be added soon.&lt;/p>
-&lt;h3 id="s3-crawler-example">S3 Crawler Example&lt;/h3>
+&lt;p>LocalStack Glue currently supports S3 targets (configurable via &lt;code>S3Targets&lt;/code>), as well as JDBC targets (configurable via &lt;code>JdbcTargets&lt;/code>).
+Support for other target types is in our pipeline and will be added soon.&lt;/p>
+&lt;h4 id="s3-crawler-example">S3 Crawler Example&lt;/h4>
 &lt;p>The example below illustrates crawling tables and partition metadata from S3 buckets.&lt;/p>
 &lt;p>First, we create an S3 bucket with a couple of items:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://test
@@ -9299,91 +9310,207 @@ The returned &lt;code>JobRunId&lt;/code> can be used to query the status job the
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler --name c1 --database-name db1 --role arn:aws:iam::000000000000:role/glue-role --targets &amp;#39;{&amp;#34;S3Targets&amp;#34;: [{&amp;#34;Path&amp;#34;: &amp;#34;s3://test/table1&amp;#34;}]}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler --name c1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
-&lt;p>Finally, we can query the table and partitions metadata that has been created by the crawler:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-tables --database-name db1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TableList&amp;#34;: [{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;table1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;PartitionKeys&amp;#34;: [ ... ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-partitions --database-name db1 --table-name table1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Partitions&amp;#34;: [{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Values&amp;#34;: [&amp;#34;2021&amp;#34;, &amp;#34;Jan&amp;#34;, &amp;#34;1&amp;#34;],
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DatabaseName&amp;#34;: &amp;#34;db1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TableName&amp;#34;: &amp;#34;table1&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;h3 id="jdbc-crawler-example">JDBC Crawler Example&lt;/h3>
+&lt;p>Finally, we can query the table metadata that has been created by the crawler:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-tables --database-name db1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;TableList&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Name&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;table1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DatabaseName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;db1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;PartitionKeys&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span> &lt;span style="color:#a40000">...&lt;/span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can also query the created table partitions:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-partitions --database-name db1 --table-name table1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Partitions&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Values&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;2021&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Jan&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DatabaseName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;db1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;TableName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;table1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="jdbc-crawler-example">JDBC Crawler Example&lt;/h4>
 &lt;p>When using JDBC crawlers, you can point your crawler towards a Redshift database created in LocalStack.&lt;/p>
-&lt;p>Below is a rough outline of the steps required to get the integration for the JDBC crawler working. We can first create the local Redshift cluster via:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift create-cluster --cluster-identifier c1 --node-type dc1.large --master-username test --master-user-password test --db-name db1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Endpoint&amp;#34;: {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Address&amp;#34;: &amp;#34;localhost.localstack.cloud&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Port&amp;#34;: 4510
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;p>Then we can use any JDBC or Postgres client to create a table &lt;code>mytable1&lt;/code> in the Redshift database, and fill the table with some data.&lt;/p>
+&lt;p>Below is a rough outline of the steps required to get the integration for the JDBC crawler working.
+We can first create the local Redshift cluster via:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift create-cluster --cluster-identifier c1 --node-type dc1.large --master-username test --master-user-password test --db-name db1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+The output of this command contains the endpoint address of the created Redshift database:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Endpoint&amp;#34;&lt;/span>&lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Address&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;localhost.localstack.cloud&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">4510&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;span style="color:#a40000">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then we can use any JDBC or Postgres client to create a table &lt;code>mytable1&lt;/code> in the Redshift database, and fill the table with some data.&lt;/p>
 &lt;p>Next, we&amp;rsquo;re creating the Glue database, the JDBC connection, as well as the crawler:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-database --database-input &amp;#39;{&amp;#34;Name&amp;#34;:&amp;#34;gluedb1&amp;#34;}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-connection --connection-input \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {&amp;#34;Name&amp;#34;:&amp;#34;conn1&amp;#34;,&amp;#34;ConnectionType&amp;#34;:&amp;#34;JDBC&amp;#34;,&amp;#34;ConnectionProperties&amp;#34;:{&amp;#34;USERNAME&amp;#34;:&amp;#34;test&amp;#34;,&amp;#34;PASSWORD&amp;#34;:&amp;#34;test&amp;#34;,&amp;#34;JDBC_CONNECTION_URL&amp;#34;:&amp;#34;jdbc:redshift://localhost.localstack.cloud:4510/db1&amp;#34;}}&amp;#39;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler --name c1 --database-name gluedb1 --role arn:aws:iam::000000000000:role/glue-role --targets &amp;#39;{&amp;#34;JdbcTargets&amp;#34;:[{&amp;#34;ConnectionName&amp;#34;:&amp;#34;conn1&amp;#34;,&amp;#34;Path&amp;#34;:&amp;#34;db1/%/mytable1&amp;#34;}]}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler --name c1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-crawler --name c1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;RUNNING&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-crawler --name c1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;State&amp;#34;: &amp;#34;READY&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler --name c1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>Once the crawler has started, we have to wait until the &lt;code>State&lt;/code> turns to &lt;code>READY&lt;/code> when querying the current state:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-crawler --name c1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
 &lt;p>Once the crawler has finished running and is back in &lt;code>READY&lt;/code> state, the Glue table within the &lt;code>gluedb1&lt;/code> DB should have been populated and can be queried via the API.&lt;/p>
-&lt;h2 id="schema-registry">Schema Registry&lt;/h2>
+&lt;h3 id="schema-registry">Schema Registry&lt;/h3>
 &lt;p>The Glue Schema Registry allows you to centrally discover, control, and evolve data stream schemas.
 With the Schema Registry, you can manage and enforce schemas and schema compatibilities in your streaming applications.
 It integrates nicely with &lt;a href="../managed-streaming-for-kafka">Managed Streaming for Kafka (MSK)&lt;/a>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry. Support for other dataformats will be added in the future.
+Currently, LocalStack supports the AVRO dataformat for the Glue Schema Registry.
+Support for other dataformats will be added in the future.
 &lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-registry --registry-name demo-registry
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegistryArn&amp;#34;: &amp;#34;arn:aws:glue:us-east-1:000000000000:file-registry/demo-registry&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegistryName&amp;#34;: &amp;#34;demo-registry&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-schema --schema-name demo-schema --registry-id RegistryName=demo-registry --data-format AVRO --compatibility FORWARD \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --schema-definition &amp;#39;{&amp;#34;type&amp;#34;:&amp;#34;record&amp;#34;,&amp;#34;namespace&amp;#34;:&amp;#34;Demo&amp;#34;,&amp;#34;name&amp;#34;:&amp;#34;Person&amp;#34;,&amp;#34;fields&amp;#34;:[{&amp;#34;name&amp;#34;:&amp;#34;Name&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}]}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegistryName&amp;#34;: &amp;#34;demo-registry&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;RegistryArn&amp;#34;: &amp;#34;arn:aws:glue:us-east-1:000000000000:file-registry/demo-registry&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SchemaName&amp;#34;: &amp;#34;demo-schema&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SchemaArn&amp;#34;: &amp;#34;arn:aws:glue:us-east-1:000000000000:schema/demo-registry/demo-schema&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DataFormat&amp;#34;: &amp;#34;AVRO&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Compatibility&amp;#34;: &amp;#34;FORWARD&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SchemaCheckpoint&amp;#34;: 1,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;LatestSchemaVersion&amp;#34;: 1,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;NextSchemaVersion&amp;#34;: 2,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SchemaStatus&amp;#34;: &amp;#34;AVAILABLE&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SchemaVersionId&amp;#34;: &amp;#34;546d3220-6ab8-452c-bb28-0f1f075f90dd&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SchemaVersionStatus&amp;#34;: &amp;#34;AVAILABLE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue register-schema-version --schema-id SchemaName=demo-schema,RegistryName=demo-registry \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --schema-definition &amp;#39;{&amp;#34;type&amp;#34;:&amp;#34;record&amp;#34;,&amp;#34;namespace&amp;#34;:&amp;#34;Demo&amp;#34;,&amp;#34;name&amp;#34;:&amp;#34;Person&amp;#34;,&amp;#34;fields&amp;#34;:[{&amp;#34;name&amp;#34;:&amp;#34;Name&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}, {&amp;#34;name&amp;#34;:&amp;#34;Address&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}]}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;SchemaVersionId&amp;#34;: &amp;#34;ee38732b-b299-430d-a88b-4c429d9e1208&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VersionNumber&amp;#34;: 2,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Status&amp;#34;: &amp;#34;AVAILABLE&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can find a more advanced sample in our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-msk-schema-registry">localstack-pro-samples repository on GitHub&lt;/a>, which showcases the integration with AWS MSK and automatic schema registrations (including schema rejections based on the compatibilities).&lt;/p>
+&lt;p>You can create a schema registry with the following command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-registry --registry-name demo-registry&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>You can create a schema in the newly created registry with the &lt;code>create-schema&lt;/code> command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-schema --schema-name demo-schema --registry-id RegistryName=demo-registry --data-format AVRO --compatibility FORWARD \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --schema-definition &amp;#39;{&amp;#34;type&amp;#34;:&amp;#34;record&amp;#34;,&amp;#34;namespace&amp;#34;:&amp;#34;Demo&amp;#34;,&amp;#34;name&amp;#34;:&amp;#34;Person&amp;#34;,&amp;#34;fields&amp;#34;:[{&amp;#34;name&amp;#34;:&amp;#34;Name&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}]}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;RegistryName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;demo-registry&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;RegistryArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:glue:us-east-1:000000000000:file-registry/demo-registry&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SchemaName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;demo-schema&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SchemaArn&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:glue:us-east-1:000000000000:schema/demo-registry/demo-schema&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;DataFormat&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;AVRO&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Compatibility&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;FORWARD&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SchemaCheckpoint&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;LatestSchemaVersion&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;NextSchemaVersion&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SchemaStatus&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;AVAILABLE&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SchemaVersionId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;546d3220-6ab8-452c-bb28-0f1f075f90dd&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SchemaVersionStatus&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;AVAILABLE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Once the schema has been created, you can create a new version:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue register-schema-version --schema-id SchemaName=demo-schema,RegistryName=demo-registry \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --schema-definition &amp;#39;{&amp;#34;type&amp;#34;:&amp;#34;record&amp;#34;,&amp;#34;namespace&amp;#34;:&amp;#34;Demo&amp;#34;,&amp;#34;name&amp;#34;:&amp;#34;Person&amp;#34;,&amp;#34;fields&amp;#34;:[{&amp;#34;name&amp;#34;:&amp;#34;Name&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}, {&amp;#34;name&amp;#34;:&amp;#34;Address&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;string&amp;#34;}]}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SchemaVersionId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;ee38732b-b299-430d-a88b-4c429d9e1208&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;VersionNumber&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">2&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Status&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;AVAILABLE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can find a more advanced sample in our &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-msk-schema-registry">localstack-pro-samples repository on GitHub&lt;/a>, which showcases the integration with AWS MSK and automatic schema registrations (including schema rejections based on the compatibilities).&lt;/p>
+&lt;h2 id="resource-browser">Resource Browser&lt;/h2>
+&lt;p>The LocalStack Web Application provides a Resource Browser for Glue.
+You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the &lt;strong>Resources&lt;/strong> section, and then clicking on &lt;strong>Glue&lt;/strong> under the &lt;strong>Analytics&lt;/strong> section.&lt;/p>
+&lt;img src="glue-resource-browser.png" alt="Glue Resource Browser" title="Glue Resource Browser" width="900" />
+&lt;p>The Resource Browser allows you to perform the following actions:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Manage Databases&lt;/strong>: Create, view, and delete databases in your Glue catalog &lt;strong>Databases&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>Manage Tables&lt;/strong>: Create, view, edit, and delete tables in a database in your Glue catalog clicking on the &lt;strong>Tables&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>Manage Connections&lt;/strong>: Create, view, and delete Connections in your Glue catalog by clicking on the &lt;strong>Connections&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>Manage Crawlers&lt;/strong>: Create, view, and delete Crawlers in your Glue catalog by clicking on the &lt;strong>Crawlers&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>Manage Jobs&lt;/strong>: Create, view, and delete Jobs in your Glue catalog by clicking on the &lt;strong>Jobs&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>Manage Schema Registries&lt;/strong>: Create, view, and delete Schema Registries in your Glue catalog by clicking on the &lt;strong>Schema Registries&lt;/strong> tab.&lt;/li>
+&lt;li>&lt;strong>Manage Schemas&lt;/strong>: Create, view, and delete Schemas in your Glue catalog by clicking on the &lt;strong>Schemas&lt;/strong> tab.&lt;/li>
+&lt;/ul>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following Developer Hub applications are using Glue:
+&lt;div class="row">
+&lt;div
+class='entry application-card filters-card col-xs-12 col-sm-6 col-lg-4 service-s3 service-ath service-glu service-clf deployment-awscli level-intermediate'
+data-services='s3,ath,glu,clf'
+data-deployments='awscli'
+data-platforms=''
+data-levels='intermediate'
+data-slug="query-data-in-s3-bucket-with-amazon-athena-glue-catalog-cloudformation"
+>
+&lt;div class="card h-100">
+&lt;div>
+&lt;img src="https://raw.githubusercontent.com/localstack/query-data-s3-athena-glue-sample/main/images/architecture.png" >
+&lt;/div>
+&lt;div class="card-body">
+&lt;h5 class="card-title d-flex align-items-center">
+&lt;a class="mr-2" href="https://github.com/localstack/query-data-s3-athena-glue-sample">
+Query data in S3 Bucket with Amazon Athena, Glue Catalog &amp;amp; CloudFormation
+&lt;/a>
+&lt;/h5>
+&lt;div>
+&lt;img
+src="/images/services/s3.svg"
+class="application-icon" data-toggle="tooltip" data-placement="top"
+title="S3" aria-label="S3"
+/>
+&lt;img
+src="/images/services/ath.svg"
+class="application-icon" data-toggle="tooltip" data-placement="top"
+title="Athena" aria-label="Athena"
+/>
+&lt;img
+src="/images/services/glu.svg"
+class="application-icon" data-toggle="tooltip" data-placement="top"
+title="Glue" aria-label="Glue"
+/>
+&lt;img
+src="/images/services/clf.svg"
+class="application-icon" data-toggle="tooltip" data-placement="top"
+title="CloudFormation" aria-label="CloudFormation"
+/>
+&lt;img
+src="/images/pro-badge.png" class="application-icon" data-toggle="tooltip"
+data-placement="top" title="Localstack Pro" aria-label="Localstack Pro"
+/>
+&lt;/div>
+&lt;div>
+&lt;a class="badge badge-primary no-text-decoration" target="_blank" style="font-weight: normal;" href="/tags/big-data">big-data&lt;/a>
+&lt;a class="badge badge-primary no-text-decoration" target="_blank" style="font-weight: normal;" href="/tags/data-analytics">data-analytics&lt;/a>
+&lt;/div>
+&lt;br>
+&lt;p class="card-text" style="font-weight: normal;">Leverage Amazon Athena to run standard SQL to analyze a large amount of data in Amazon S3 buckets deployed using CloudFormation on LocalStack&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div id="no-results" class="col-xs-12 col-sm-12 flex-grow-1 text-center" style="display: none;">
+No applications available with the selected filters.
+&lt;a href="javascript:void(0)" class="clear-filters-btn" >Clear filters&lt;/a>
+&lt;/div>
+&lt;/div>&lt;/p>
+&lt;p>The following tutorials are using Glue:
+&lt;div class="row">
+&lt;div class="entry col-12 col-sm-6 col-lg-4 filters-card service-msk service-glu deployment-awscli platform-java"
+data-services='msk,glu'
+data-deployments='awscli'
+data-platforms='java'
+>
+&lt;div class="card h-100">
+&lt;div>
+&lt;img class="card-img" src="/tutorials/schema-evolution-glue-msk/schema-evolution-glue-msk-featured-image.png"/>
+&lt;/div>
+&lt;div class="card-body d-flex flex-column">
+&lt;h5>
+&lt;a href="/tutorials/schema-evolution-glue-msk/">Schema Evolution with Glue Schema Registry and Managed Streaming for Kafka (MSK) using LocalStack&lt;/a>
+&lt;/h5>
+&lt;p>Find incompatibilities early or even avoid them altogether when developing Kafka producers or consumers! Learn how to test data schema evolution by using Managed Streaming for Kafka (MSK) with the Glue Schema Registry in LocalStack.&lt;/p>
+&lt;div class="reading-time-in-card text-muted mt-auto">
+&lt;p class="reading-time">&lt;i class="fa-solid fa-clock" aria-hidden="true">&lt;/i>&amp;nbsp; 21 minute read &amp;nbsp;&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;div id="no-results" class="col-xs-12 flex-grow-1 text-center" style="display: none;">
+No tutorials available with the selected filters.
+&lt;a href="javascript:void(0)" class="clear-filters-btn" >Clear filters&lt;/a>
+&lt;/div>
+&lt;/div>&lt;/p>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use Glue in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-etl-jobs">localstack-pro-samples/glue-etl-jobs&lt;/a>
+&lt;ul>
+&lt;li>Simple demo application illustrating the use of the Glue API to run local ETL jobs using LocalStack.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/glue-redshift-crawler">localstack-pro-samples/glue-redshift-crawler&lt;/a>
+&lt;ul>
+&lt;li>Simple demo application illustrating the use of AWS Glue Crawler to populate the Glue metastore from a Redshift database.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="further-reading">Further Reading&lt;/h2>
 &lt;p>The AWS Glue API is a fairly comprehensive service - more details can be found in the official &lt;a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html">AWS Glue Developer Guide&lt;/a>.&lt;/p>
-&lt;h2 id="current-limitations">Current Limitations&lt;/h2>
+&lt;h2 id="limitations">Limitations&lt;/h2>
 &lt;p>Support for triggers is currently limited - the basic API endpoints are implemented, but triggers are currently still under development (more details coming soon).&lt;/p></description></item><item><title>User-Guide: Identity and Access Management (IAM)</title><link>/user-guide/aws/iam/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iam/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Identity and Access Management (IAM) is a web service provided by Amazon Web Services (AWS) that enables users to control access to AWS resources securely. IAM allows organizations to create and manage AWS users, groups, and roles, defining granular permissions to access specific AWS services and resources. By centralizing access control, administrators can enforce the principle of least privilege, ensuring users have only the necessary permissions for their tasks.&lt;/p>
