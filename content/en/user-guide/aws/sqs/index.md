@@ -69,7 +69,7 @@ $ awslocal sqs send-message --queue-url http://localhost:4566/000000000000/local
 {{< / command >}}
 
 It will return the MD5 hash of the Message Body and a Message ID.
-You will see the following output:
+You will see output similar to the following:
 
 ```bash
 {
@@ -117,7 +117,7 @@ With LocalStack, you can conveniently test SQS Query API calls without the need 
 For instance, you can use a basic `cURL` command to send a `SendMessage` command along with a MessageBody attribute:
 
 {{< command >}}
-$ curl "http://localhost:4566/000000000000/sample-queue?Action=SendMessage&MessageBody=hello%2Fworld"
+$ curl "http://localhost:4566/000000000000/localstack-queue?Action=SendMessage&MessageBody=hello%2Fworld"
 {{< / command >}}
 
 You will see the following output:
@@ -142,7 +142,7 @@ To receive JSON responses from the server, include the `Accept: application/json
 Here's an example using the `cURL` command:
 
 {{< command >}}
-curl -H "Accept: application/json" "http://localhost:4566/000000000000/my-queue?Action=SendMessage&MessageBody=hello%2Fworld" 
+$ curl -H "Accept: application/json" "http://localhost:4566/000000000000/localstack-queue?Action=SendMessage&MessageBody=hello%2Fworld"
 {{< / command >}}
 
 The response will be in JSON format:
