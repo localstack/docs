@@ -311,11 +311,11 @@ The Resource Browser allows you to perform the following actions:
 ## Examples
 
 The following Developer Hub applications are using Glue:
-
 {{< applications service_filter="glu">}}
-\
+
+
 The following tutorials are using Glue:
-- [Schema Evolution with Glue Schema Registry and Managed Streaming for Kafka (MSK) using LocalStack](/tutorials/schema-evolution-glue-msk)
+{{< tutorials "/tutorials/schema-evolution-glue-msk">}}
 
 The following code snippets and sample applications provide practical examples of how to use Glue in LocalStack for various use cases:
 

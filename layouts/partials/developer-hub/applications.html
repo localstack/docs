@@ -1,18 +1,14 @@
 <div class="row">
-    <div class="col-sm-12">
-    <div class="row">
-        {{ $filter_set := isset . "service_filter" }}
-        {{ range site.Data.developerhub.applications.applications }}
-            {{ if not $filter_set }}
-            {{ partial "developer-hub/application.html" .}}
-            {{ else if in .services $.service_filter}}
-            {{ partial "developer-hub/application.html" .}}
-            {{ end }}
+    {{ $filter_set := isset . "service_filter" }}
+    {{ range site.Data.developerhub.applications.applications }}
+        {{ if not $filter_set }}
+        {{ partial "developer-hub/application.html" .}}
+        {{ else if in .services $.service_filter}}
+        {{ partial "developer-hub/application.html" .}}
         {{ end }}
-        <div id="no-results" class="col-xs-12 flex-grow-1 text-center" style="display: none;">
-            No applications available with the selected filters.
-            <a href="javascript:void(0)" class="clear-filters-btn" >Clear filters</a>
-        </div>
-        </div>
+    {{ end }}
+    <div id="no-results" class="col-xs-12 col-sm-12 flex-grow-1 text-center" style="display: none;">
+        No applications available with the selected filters.
+        <a href="javascript:void(0)" class="clear-filters-btn" >Clear filters</a>
     </div>
 </div>
