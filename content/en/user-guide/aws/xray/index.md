@@ -10,8 +10,25 @@ aliases:
 
 ## Introduction
 
-AWS X-Ray is a distributed tracing service that helps to understand cross-service interactions and facilitates
-debugging of performance bottlenecks.
+[AWS X-Ray](https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html) is a distributed tracing service that
+helps to understand cross-service interactions and facilitates debugging of performance bottlenecks.
+
+Instrumented applications generate trace data by recording trace segments with information about the work tasks of an
+application, such as timestamps, tasks names, or metadata.
+AWS X-Rays supports different ways of [instrumenting your application](https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html) including
+the [AWS X-Ray SDK](https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html#xray-instrumenting-xray-sdk) and
+the [AWS Distro for OpenTelemetry (ADOT)](https://docs.aws.amazon.com/xray/latest/devguide/xray-instrumenting-your-app.html#xray-instrumenting-opentel).
+For AWS Lambda, the [Powertools for AWS](https://github.com/aws-powertools) provide an opinionated way to
+automatically configure ADOT for
+[Python](https://docs.powertools.aws.dev/lambda/python/latest/),
+[Java](https://docs.powertools.aws.dev/lambda/java/),
+[TypeScript](https://docs.powertools.aws.dev/lambda/typescript/latest/), and
+[.NET](https://docs.powertools.aws.dev/lambda/dotnet/).
+For example, the Python Powertools provide an `@tracer.capture_lambda_handler` annotation for automatically
+instrumenting Lambda handler functions.
+The [AWS X-Ray daemon](https://docs.aws.amazon.com/xray/latest/devguide/xray-daemon.html) is an application that gathers
+raw trace segment data from the X-Ray SDK and relays it to the AWS X-Ray API.
+The X-Ray API can then be used to retrieve traces originating from different application components.
 
 LocalStack supports X-Ray via the Pro/Team offering, allowing
 you to use the X-Ray APIs in your local environment.
@@ -23,33 +40,85 @@ which provides information on the extent of X-Ray integration with LocalStack.
 This guide is designed for users new to X-Ray and assumes basic
 knowledge of the AWS CLI and our `awslocal` wrapper script.
 
-// Provide a short tutorial to use the <Service Name> with AWS CLI/`awslocal`
+Run the following Bash command to create a minimal [trace segment](https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html#api-segmentdocuments-fields)
+and manually send it to the X-Ray API using [PutTraceSegments](https://docs.aws.amazon.com/xray/latest/api/API_PutTraceSegments.html).
+Notice that this trace ingestion typically happens in the background, for example by the X-Ray SDK and X-Ray daemon.
 
-// TODO: describe short tutorial
-For example, a Python Lambda function can be instrumented as follows (based on the example [here](https://docs.aws.amazon.com/lambda/latest/dg/python-tracing.html)):
+{{< command >}}
+START_TIME=$(date +%s)
+HEX_TIME=$(printf '%x\n' $START_TIME)
+GUID=$(dd if=/dev/random bs=12 count=1 2>/dev/null | od -An -tx1 | tr -d ' \t\n')
+TRACE_ID="1-$HEX_TIME-$GUID"
+END_TIME=$(($START_TIME+3))
+DOC=$(cat <<EOF
+{"trace_id": "$TRACE_ID", "id": "6226467e3f845502", "start_time": $START_TIME.37518, "end_time": $END_TIME.4042, "name": "test.elasticbeanstalk.com"}
+EOF
+)
+echo "Sending trace segment to X-Ray API: $DOC"
+awslocal xray put-trace-segments --trace-segment-documents "$DOC"
+<disable-copy>
+Sending trace segment to X-Ray API: {"trace_id": "1-6501ee11-056ec85fafff21f648e2d3ae", "id": "6226467e3f845502", "start_time": 1694625297.37518, "end_time": 1694625300.4042, "name": "test.elasticbeanstalk.com"}
+{
+"UnprocessedTraceSegments": []
+}
+</disable-copy>
+{{< /command >}}
 
-```python
-import boto3
-from aws_xray_sdk.core import xray_recorder
-from aws_xray_sdk.core import patch
-patch(['boto3'])
-s3_client = boto3.client('s3')
+You can now retrieve the trace summaries from the last 10 minutes using:
 
-def lambda_handler(event, context):
-    s3_client.create_bucket(Bucket='mybucket')
-    xray_recorder.begin_subsegment('my_code')
-    # your function code goes here...
-    xray_recorder.end_subsegment()
-```
+{{< command >}}
+EPOCH=$(date +%s)
+awslocal xray get-trace-summaries --start-time $(($EPOCH-600)) --end-time $(($EPOCH))
+<disable-copy>
+{
+    "TraceSummaries": [
+        {
+            "Id": "1-6501ee11-056ec85fafff21f648e2d3ae",
+            "Duration": 3,
+            "ResponseTime": 1,
+            "HasFault": false,
+            "HasError": false,
+            "HasThrottle": false,
+            "Http": {},
+            "Annotations": {},
+            "Users": [],
+            "ServiceIds": []
+        }
+    ],
+    "TracesProcessedCount": 1,
+    "ApproximateTime": 1694625413.0
+}
+</disable-copy>
+{{< /command >}}
 
-Running this code in Lambda on LocalStack will result in two trace segments being created in XRay - one from the instrumented `boto3` client when running `create_bucket(..)`, and one for the custom subsegment denoted `'my_code'`. You can use the regular XRay API calls (e.g., [`GetTraceSummaries`](https://docs.aws.amazon.com/xray/latest/api/API_GetTraceSummaries.html), [`BatchGetTraces`](https://docs.aws.amazon.com/xray/latest/api/API_BatchGetTraces.html)) to retrieve the details (timestamps, IDs, etc) of these segments.
+You can retrieve the full trace by providing the `TRACE_ID` (use the same terminal as for the first command): 
+
+{{< command >}}
+awslocal xray batch-get-traces --trace-ids $TRACE_ID
+<disable-copy>
+{
+    "Traces": [
+        {
+            "Id": "1-6501ee11-056ec85fafff21f648e2d3ae",
+            "Duration": 3,
+            "Segments": [
+                {
+                    "Id": "6226467e3f845502",
+                    "Document": "{\"trace_id\": \"1-6501ee11-056ec85fafff21f648e2d3ae\", \"id\": \"6226467e3f845502\", \"start_time\": 1694625297.37518, \"end_time\": 1694625300.4042, \"name\": \"test.elasticbeanstalk.com\"}"
+                }
+            ]
+        }
+    ],
+    "UnprocessedTraceIds": []
+}
+</disable-copy>
+{{< /command >}}
 
 ## Examples
 
-// share any examples for this <Service Name> across Dev Hub, Pro Samples, etc
+The following code snippets and sample applications provide practical examples of how to use X-Ray in LocalStack:
 
-// TODO: link to new pro sample
-You can also checkout another of our examples with Xray and Lambda, deployed via the Serverless framework, [`here`](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray)
+- [Lambda X-Ray](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray) shows how to instrument Lambda functions for X-Ray using Powertools and the X-Ray SDK.
 
 ## Limitations
 

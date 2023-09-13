@@ -241,7 +241,7 @@ The following code snippets and sample applications provide practical examples o
 - [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers) demonstrates how to use Lambda layers, which are reusable packages of code that can be shared across multiple functions.
 - [Lambda PHP/Bref](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-php-bref-cdk-app) shows how to use PHP/Bref with and without fpm, using the Serverless framework and AWS CDK.
 - [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image) demonstrates how to use Lambda functions packaged as container images, which can be built using Docker and pushed to a local ECR registry.
-- [Lambda XRay Tracing](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray) shows how to enable AWS X-Ray tracing for Lambda functions using the Serverless framework.
+- [Lambda X-Ray](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-xray) shows how to instrument Lambda functions for X-Ray using Powertools and the X-Ray SDK.
 
 ## Troubleshooting
 
