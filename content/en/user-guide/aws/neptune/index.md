@@ -1,28 +1,33 @@
 ---
 title: "Neptune"
 linkTitle: "Neptune"
-categories: ["LocalStack Pro"]
 description: >
-  Get started with Amazon Neptune on LocalStack
-aliases:
-  - /aws/neptune/
+  Get started with Neptune on LocalStack
 ---
 
 ## Introduction
 
-The Neptune API provides a graph database to store nodes and edges. 
-It allows to build and navigate relationships.
-General use cases include social networking, recommendations, or fraud detection. 
-Neptune can be queried using Apache TinkerPop Gremlin queries.
+Neptune is a fully managed, highly available, and scalable graph database service offered by AWS. 
+It is designed for storing and querying highly connected data for applications that require complex relationship modeling, such as social networks, recommendation engines, and fraud detection.
+Neptune supports popular graph query languages like Gremlin and SPARQL, making it compatible with a wide range of graph applications and tools.
 
-LocalStack supports Neptune via the Pro/Team offering, allowing you to use the Neptune APIs in your local environment. 
+LocalStack supports Neptune via the Pro/Team offering, allowing you to use the Neptune APIs in your local environment  to support both property graph and RDF graph models.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_neptune/), which provides information on the extent of Neptune's integration with LocalStack.
 
 ## Getting started
 
-This guide is designed for users new to Neptune and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
+This guide is designed for users new to Neptune and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script. 
 
-For example, you can create a Neptune cluster like this:
+Start your LocalStack container using your preferred method. We will demonstrate the following with AWS CLI & Python:
+
+- Creating a Neptune cluster.
+- Starting a connection to the Neptune cluster.
+- Running a Python script to create nodes and edges and query the graph database.
+
+### Create a Neptune cluster
+
+To create a Neptune cluster you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/neptune/latest/APIReference/API_CreateDBCluster.html) API. 
+Run the following command to create a Neptune cluster:
 
 {{< command >}}
 $ awslocal neptune create-db-cluster \
@@ -44,7 +49,10 @@ You should see the following output:
 }
 ```
 
-To add an instance you can run the following command:
+### Add an instance to the cluster
+
+To add an instance you can use the [`CreateDBInstance`](https://docs.aws.amazon.com/neptune/latest/APIReference/API_CreateDBInstance.html) API. 
+Run the following command to create a Neptune instance:
 
 {{< command >}}
 $ awslocal neptune create-db-instance \
@@ -56,10 +64,11 @@ $ awslocal neptune create-db-instance \
 
 In LocalStack the `Endpoint` for the `DBCluster` and the `Endpoint.Address` of the `DBInstance` will be the same and can be used to connect to the graph database.
 
+### Start a connection
 
 To start a connection you have to use the `ws` protocol.
 
-Here is an example that uses python and [gremlinpython](https://pypi.org/project/gremlinpython/) to connect to the database:
+Here is an example that uses Python and [`gremlinpython`](https://pypi.org/project/gremlinpython/) to connect to the database:
 
 ```python
 from gremlin_python.driver.driver_remote_connection import DriverRemoteConnection
@@ -110,6 +119,6 @@ if __name__ == '__main__':
 
 ## Examples 
 
-The following code snippets and sample applications provide practical examples of how to use ACM in LocalStack for various use cases:
+The following code snippets and sample applications provide practical examples of how to use Neptune in LocalStack for various use cases:
 
 - [Neptune Graph Database Demo](hhttps://github.com/localstack/localstack-pro-samples/tree/master/neptune-graph-db)
