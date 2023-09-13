@@ -135,7 +135,7 @@ The following output would be retrieved:
 ```bash
 {
     "Credentials": {
-        "AccessKeyId": "<ACCESS_KEY_ID>,
+        "AccessKeyId": "ACCESS_KEY_ID",
         "SecretAccessKey": "SECRET_ACCESS_KEY",
         "SessionToken": "SESSION_TOKEN",
         "Expiration": "TIMESTAMP",
