@@ -1,11 +1,7 @@
 ---
 title: "Glacier"
 linkTitle: "Glacier"
-categories: ["LocalStack Pro"]
-description: >
-  Get started with with Amazon S3 Glacier on LocalStack
-aliases:
-  - /aws/glacier/
+description: Get started with S3 Glacier on LocalStack
 ---
 
 ## Introduction
@@ -33,15 +29,14 @@ You can create a vault using the [`CreateVault`](https://docs.aws.amazon.com/ama
 Run the follow command to create a Glacier Vault named `sample-vault`.
 
 {{< command >}}
-   awslocal glacier create-vault --vault-name sample-vault --account-id -
+$ awslocal glacier create-vault --vault-name sample-vault --account-id -
 {{< /command >}}
-
 
 You can get the details from your vault using the [`DescribeVault`](https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-get.html) API.
 Run the following command to describe your vault.
 
 {{< command >}}
-   awslocal glacier describe-vault --vault-name sample-vault --account-id -
+$ awslocal glacier describe-vault --vault-name sample-vault --account-id -
 {{< /command >}}
 
 On successful creation of the Glacier vault, you will see the following output:
@@ -64,7 +59,7 @@ Download a random image from the internet and save it as `image.jpg`.
 Run the following command to upload the file to your Glacier vault:
 
 {{< command >}}
-   awslocal glacier upload-archive --vault-name sample-vault --account-id - --body image.jpg
+$ awslocal glacier upload-archive --vault-name sample-vault --account-id - --body image.jpg
 {{< /command >}}
 
 On successful upload of the Glacier archive, you will see the following output:
@@ -83,7 +78,7 @@ You can initiate the retrieval of an archive from a vault using the [`InitiateJo
 
 To download an archive, you will need to initiate an `archive-retrieval` job first to make the Archive available for download.
 {{< command >}}
-   awslocal glacier initiate-job --vault-name sample-vault  --account-id - --job-parameters '{"Type":"archive-retrieval","ArchiveId":"d41d8cd98f00b204e9800998ecf8427e"}'
+$ awslocal glacier initiate-job --vault-name sample-vault  --account-id - --job-parameters '{"Type":"archive-retrieval","ArchiveId":"d41d8cd98f00b204e9800998ecf8427e"}'
 {{< /command >}}
 
 On successful execution of the job, you will see the following output:
@@ -98,8 +93,9 @@ On successful execution of the job, you will see the following output:
 ### List the jobs
 
 You can list the current and previous processes, called Jobs, to monitor the requests sent to the Glacier API using the [`ListJobs`](https://docs.aws.amazon.com/amazonglacier/latest/dev/api-jobs-get.html) API.
+
 {{< command >}}
-   awslocal glacier list-jobs --vault-name sample-vault --account-id -
+$ awslocal glacier list-jobs --vault-name sample-vault --account-id -
 {{< /command >}}
 
 On successful execution of the command, you will see the following output:
@@ -133,10 +129,10 @@ Once the `ArchiveRetrieval` Job is complete, the data can be downloaded.
 You can use the `JobId` of the Job to download your archive with the following command:
 
 {{< command >}}
-   awslocal glacier get-job-output --vault-name sample-vault --account-id - --job-id 25CEOTJ7ZUR5Q7YY0B1O55AE4C3L1502EOHWMNY10IIYEBWEQB73D23S8BVYO9RTRTPLRK2LJLUCCRM52GDV87C9A4JW my-archive.jpg
+$ awslocal glacier get-job-output --vault-name sample-vault --account-id - --job-id 25CEOTJ7ZUR5Q7YY0B1O55AE4C3L1502EOHWMNY10IIYEBWEQB73D23S8BVYO9RTRTPLRK2LJLUCCRM52GDV87C9A4JW my-archive.jpg
 {{< /command >}}
 {{< alert title="Note" >}}
-   Please not that currently, this operation is only mocked, and will create an empty file named `my-archive.jpg`, not containing the contents of your archive. 
+Please not that currently, this operation is only mocked, and will create an empty file named `my-archive.jpg`, not containing the contents of your archive. 
 {{< /alert >}}
 
 ### Retrieve the inventory informations
@@ -145,7 +141,7 @@ You can also initiate the retrieval of the inventory of a vault using the same [
 
 Initiate a job of the specified type to get the details of the individual inventory items inside a Vault using the `initiate-job` command:
 {{< command >}}
-   awslocal glacier initiate-job --vault-name sample-vault  --account-id - --job-parameters '{"Type":"inventory-retrieval","ArchiveId":"d41d8cd98f00b204e9800998ecf8427e"}'
+$ awslocal glacier initiate-job --vault-name sample-vault  --account-id - --job-parameters '{"Type":"inventory-retrieval","ArchiveId":"d41d8cd98f00b204e9800998ecf8427e"}'
 {{< /command >}}
 
 On successful execution of the command, you will see the following output:
@@ -159,7 +155,8 @@ On successful execution of the command, you will see the following output:
 
 In the same fashion as the archive retrieval, you can now download the result of the inventory retrival job using `GetJobOutput` using the `JobId` from the result of the previous command:
 {{< command >}}
-   awslocal glacier get-job-output --vault-name sample-vault --account-id - --job-id P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F inventory.json
+$ awslocal glacier get-job-output \
+   --vault-name sample-vault --account-id - --job-id P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F inventory.json
 {{< /command >}}
 
 Inspecting the content of the `inventory.json` file, we can find an inventory of the vault:
@@ -186,9 +183,9 @@ You can delete a Glacier archive using the [`DeleteArchive`](https://docs.aws.am
 Run the following command to delete the previously created archive:
 
 {{< command >}}
-   awslocal glacier delete-archive --vault-name sample-vault --account-id - --archive-id d41d8cd98f00b204e9800998ecf8427e
+$ awslocal glacier delete-archive \
+      --vault-name sample-vault --account-id - --archive-id d41d8cd98f00b204e9800998ecf8427e
 {{< /command >}}
-
 
 ### Delete a vault
 
@@ -196,5 +193,5 @@ You can delete a Glacier vault with the [`DeleteVault`](https://docs.aws.amazon.
 
 Run the following command to delete the vault:
 {{< command >}}
-   awslocal glacier delete-vault --vault-name sample-vault --account-id -
+$ awslocal glacier delete-vault --vault-name sample-vault --account-id -
 {{< /command >}}
