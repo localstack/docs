@@ -3891,61 +3891,7 @@ You will see a response similar to the following:&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Redis requires at least 3+ nodes to form a Redis replication group with cluster mode enabled. Hence, if the user requests only 2 node groups, we transparently upgrade to 3 nodes behind the scenes, to avoid raising an error.
-&lt;/div></description></item><item><title>User-Guide: Glacier</title><link>/user-guide/aws/glacier/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/glacier/</guid><description>
-&lt;p>Glacier is a data storage service provided by Amazon Web Services to suit the long-term storage of archives and backup of infrequently accessed data. It offers various retrieval options, different levels of retrieval speed, and more. Glacier uses a Vault container to store your data, similar to how S3 stores data in Buckets. A Vault further holds the data in an Archive, which can contain text, images, video, and audio files. Glacier uses Jobs to retrieve, update, or delete the data in an Archive.&lt;/p>
-&lt;p>LocalStack provides Glacier support via our Pro offering. You can use the Glacier API to configure and set up data archive backup, restore and delete operations. The supported APIs are available over our &lt;a href="/user-guide/aws/feature-coverage/">feature coverage page&lt;/a>.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to make a basic usage of Glacier over LocalStack. This guide is intended for users who wish to get more acquainted with Glacier, and assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Create a vault with the &lt;code>create-vault&lt;/code> command using the &lt;code>awslocal&lt;/code> CLI:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier create-vault --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Get the details of the vault using the &lt;code>describe-vault&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier describe-vault --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>List out the current and previous processes, called Jobs, to monitor the requests sent to the Glacier API:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier list-jobs --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Initiate a job of the specified type to get the details of the individual inventory items inside a Vault using the &lt;code>initiate-job&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-parameters &amp;lt;JSON-CONFIGURATION-FILE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html">on the official AWS documentation&lt;/a>. The following setting can be used in case of Inventory retrieval: &lt;code>{ &amp;quot;Type&amp;quot;: &amp;quot;inventory-retrieval&amp;quot;, &amp;quot;ArchiveId&amp;quot;: &amp;lt;ARCHIVE-ID&amp;gt; }&lt;/code>. Archive ID can be got as an output of the Data Upload/List Jobs request.
-&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Use the &lt;code>upload-archive&lt;/code> command to upload an archive to a vault:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier upload-archive --account-id - --vault-name &amp;lt;VAULT_NAME&amp;gt; --body &amp;lt;FILE-TO-UPLOAD&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-Data upload to Glacier can accept only Individual files or Archives.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Download the required archive based on the Archive ID using the &lt;code>initiate-job&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-parameters &amp;lt;JSON-CONFIGURATION-FILE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html">on the official AWS documentation&lt;/a>. The following setting can be used in case of Inventory retrieval: &lt;code>{ &amp;quot;Type&amp;quot;: &amp;quot;archive-retrieval&amp;quot;, &amp;quot;ArchiveId&amp;quot;: &amp;lt;ARCHIVE-ID&amp;gt; }&lt;/code>. Archive ID can be got as an output of the Data Upload/List Jobs request.
-&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The data download process can be verified through the List Jobs command to check progress. Once the Job is complete the data can be downloaded to the current location using the following command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-id &amp;lt;JOB-ID&amp;gt; &amp;lt;OUTPUT-FILE-NAME.OUTPUT-FILE-TYPE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Delete the archive using the &lt;code>delete-archive&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier delete-archive --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --archive-id &amp;lt;ARCHIVE-ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;/ol></description></item><item><title>User-Guide: IoT</title><link>/user-guide/aws/iot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iot/</guid><description>
+&lt;/div></description></item><item><title>User-Guide: IoT</title><link>/user-guide/aws/iot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iot/</guid><description>
 &lt;p>LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs.
 Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.&lt;/p>
 &lt;h2 id="mqtt-broker">MQTT Broker&lt;/h2>

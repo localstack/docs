@@ -9142,60 +9142,127 @@ For more information, refer to the &lt;a href="https://docs.aws.amazon.com/fis/l
 &lt;li>At present, LocalStack does not consider &lt;a href="https://docs.aws.amazon.com/fis/latest/APIReference/API_ExperimentTemplate.html#fis-Type-ExperimentTemplate-roleArn">&lt;code>RoleARN&lt;/code>s&lt;/a>.
 In AWS, FIS executes actions based on permissions granted by the specified &lt;code>RoleARN&lt;/code>s.&lt;/li>
 &lt;/ol></description></item><item><title>User-Guide: Glacier</title><link>/user-guide/aws/glacier/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/glacier/</guid><description>
-&lt;p>Glacier is a data storage service provided by Amazon Web Services to suit the long-term storage of archives and backup of infrequently accessed data. It offers various retrieval options, different levels of retrieval speed, and more. Glacier uses a Vault container to store your data, similar to how S3 stores data in Buckets. A Vault further holds the data in an Archive, which can contain text, images, video, and audio files. Glacier uses Jobs to retrieve, update, or delete the data in an Archive.&lt;/p>
-&lt;p>LocalStack provides Glacier support via our Pro offering. You can use the Glacier API to configure and set up data archive backup, restore and delete operations. The supported APIs are available over our &lt;a href="/user-guide/aws/feature-coverage/">feature coverage page&lt;/a>.&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Glacier is a data storage service provided by Amazon Web Services to suit the long-term storage of archives and backup of infrequently accessed data.
+It offers various retrieval options, different levels of retrieval speed, and more.
+Glacier uses a Vault container to store your data, similar to how S3 stores data in Buckets.
+A Vault further holds the data in an Archive, which can contain text, images, video, and audio files.
+Glacier uses Jobs to retrieve the data in an Archive or list the inventory of a Vault.&lt;/p>
+&lt;p>LocalStack provides Glacier support via our Pro/Team offering, allowing you to use the Glacier APIs in your local environment to manage Vaults and Archives.
+You can use the Glacier API to configure and set up vaults where you can store archives and manage them.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_glacier/">API coverage page&lt;/a>, which provides information on the extent of Glacier&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>In this getting started guide, you&amp;rsquo;ll learn how to make a basic usage of Glacier over LocalStack. This guide is intended for users who wish to get more acquainted with Glacier, and assumes you have basic knowledge of the AWS CLI (and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script). First, start your LocalStack instance using your preferred method, then run the following commands:&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Create a vault with the &lt;code>create-vault&lt;/code> command using the &lt;code>awslocal&lt;/code> CLI:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier create-vault --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This guide is designed for users new to Glacier and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how to create a vault, upload an archive, initiate a job to get an inventory details or download an archive, and delete the archive and vault with the AWS CLI.&lt;/p>
+&lt;h3 id="create-a-vault">Create a vault&lt;/h3>
+&lt;p>You can create a vault using the &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-put.html">&lt;code>CreateVault&lt;/code>&lt;/a> API.
+Run the follow command to create a Glacier Vault named &lt;code>sample-vault&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier create-vault --vault-name sample-vault --account-id -&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can get the details from your vault using the &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-get.html">&lt;code>DescribeVault&lt;/code>&lt;/a> API.
+Run the following command to describe your vault.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier describe-vault --vault-name sample-vault --account-id -&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>On successful creation of the Glacier vault, you will see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;VaultARN&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:glacier:us-east-1:000000000000:vaults/sample-vault&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;VaultName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;sample-vault&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-09-11T15:07:28.000Z&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;LastInventoryDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-09-11T15:07:28.000Z&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;NumberOfArchives&amp;#34;&lt;/span>: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;SizeInBytes&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="upload-an-archive-to-a-vault">Upload an archive to a vault&lt;/h3>
+&lt;p>You can upload an archive or an individual file to a vault using the &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-post.html">&lt;code>UploadArchive&lt;/code>&lt;/a> API.
+Download a random image from the internet and save it as &lt;code>image.jpg&lt;/code>.
+Run the following command to upload the file to your Glacier vault:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier upload-archive --vault-name sample-vault --account-id - --body image.jpg&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>On successful upload of the Glacier archive, you will see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;location&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;/000000000000/vaults/sample-vault/archives/d41d8cd98f00b204e9800998ecf8427e&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;checksum&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;archiveId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;d41d8cd98f00b204e9800998ecf8427e&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="initiate-the-retrieval-of-an-archive-from-a-vault">Initiate the retrieval of an archive from a vault&lt;/h3>
+&lt;p>You can initiate the retrieval of an archive from a vault using the &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html">&lt;code>InitiateJob&lt;/code>&lt;/a> API.&lt;/p>
+&lt;p>To download an archive, you will need to initiate an &lt;code>archive-retrieval&lt;/code> job first to make the Archive available for download.
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --vault-name sample-vault --account-id - --job-parameters &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;archive-retrieval&amp;#34;,&amp;#34;ArchiveId&amp;#34;:&amp;#34;d41d8cd98f00b204e9800998ecf8427e&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Get the details of the vault using the &lt;code>describe-vault&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier describe-vault --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>On successful execution of the job, you will see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;location&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;//vaults/sample-vault/jobs/25CEOTJ7ZUR5Q7YY0B1O55AE4C3L1502EOHWMNY10IIYEBWEQB73D23S8BVYO9RTRTPLRK2LJLUCCRM52GDV87C9A4JW&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;25CEOTJ7ZUR5Q7YY0B1O55AE4C3L1502EOHWMNY10IIYEBWEQB73D23S8BVYO9RTRTPLRK2LJLUCCRM52GDV87C9A4JW&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="list-the-jobs">List the jobs&lt;/h3>
+&lt;p>You can list the current and previous processes, called Jobs, to monitor the requests sent to the Glacier API using the &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-jobs-get.html">&lt;code>ListJobs&lt;/code>&lt;/a> API.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier list-jobs --vault-name sample-vault --account-id -&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>On successful execution of the command, you will see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;JobList&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;JobId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;25CEOTJ7ZUR5Q7YY0B1O55AE4C3L1502EOHWMNY10IIYEBWEQB73D23S8BVYO9RTRTPLRK2LJLUCCRM52GDV87C9A4JW&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Action&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ArchiveRetrieval&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ArchiveId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;d41d8cd98f00b204e9800998ecf8427e&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;VaultARN&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:glacier:us-east-1:000000000000:vaults/sample-vault&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-09-11T15:25:54.000Z&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Completed&amp;#34;&lt;/span>: true,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;StatusCode&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Succeeded&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ArchiveSizeInBytes&amp;#34;&lt;/span>: 0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;InventorySizeInBytes&amp;#34;&lt;/span>: 10000,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CompletionDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-09-11T15:25:59.000Z&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Tier&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Standard&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="download-the-result-of-an-archive-retrieval">Download the result of an archive retrieval&lt;/h3>
+&lt;p>You can download the output of an &lt;code>ArchiveRetrieval&lt;/code> job with the &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-job-output-get.html">&lt;code>GetJobOutput&lt;/code>&lt;/a> API.&lt;/p>
+&lt;p>The data download process can be verified through the previous &lt;code>ListJobs&lt;/code> call to check progress.
+Once the &lt;code>ArchiveRetrieval&lt;/code> Job is complete, the data can be downloaded.
+You can use the &lt;code>JobId&lt;/code> of the Job to download your archive with the following command:&lt;/p>
+&lt;p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output --vault-name sample-vault --account-id - --job-id 25CEOTJ7ZUR5Q7YY0B1O55AE4C3L1502EOHWMNY10IIYEBWEQB73D23S8BVYO9RTRTPLRK2LJLUCCRM52GDV87C9A4JW my-archive.jpg&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Please not that currently, this operation is only mocked, and will create an empty file named &lt;code>my-archive.jpg&lt;/code>, not containing the contents of your archive.
+&lt;/div>
 &lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>List out the current and previous processes, called Jobs, to monitor the requests sent to the Glacier API:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier list-jobs --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
+&lt;h3 id="retrieve-the-inventory-informations">Retrieve the inventory informations&lt;/h3>
+&lt;p>You can also initiate the retrieval of the inventory of a vault using the same &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-initiate-job-post.html">&lt;code>InitiateJob&lt;/code>&lt;/a> API.&lt;/p>
 &lt;p>Initiate a job of the specified type to get the details of the individual inventory items inside a Vault using the &lt;code>initiate-job&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-parameters &amp;lt;JSON-CONFIGURATION-FILE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html">on the official AWS documentation&lt;/a>. The following setting can be used in case of Inventory retrieval: &lt;code>{ &amp;quot;Type&amp;quot;: &amp;quot;inventory-retrieval&amp;quot;, &amp;quot;ArchiveId&amp;quot;: &amp;lt;ARCHIVE-ID&amp;gt; }&lt;/code>. Archive ID can be got as an output of the Data Upload/List Jobs request.
-&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --vault-name sample-vault --account-id - --job-parameters &amp;#39;{&amp;#34;Type&amp;#34;:&amp;#34;inventory-retrieval&amp;#34;,&amp;#34;ArchiveId&amp;#34;:&amp;#34;d41d8cd98f00b204e9800998ecf8427e&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Use the &lt;code>upload-archive&lt;/code> command to upload an archive to a vault:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier upload-archive --account-id - --vault-name &amp;lt;VAULT_NAME&amp;gt; --body &amp;lt;FILE-TO-UPLOAD&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-Data upload to Glacier can accept only Individual files or Archives.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Download the required archive based on the Archive ID using the &lt;code>initiate-job&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier initiate-job --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-parameters &amp;lt;JSON-CONFIGURATION-FILE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-JSON Configuration Options can be found &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/glacier/initiate-job.html">on the official AWS documentation&lt;/a>. The following setting can be used in case of Inventory retrieval: &lt;code>{ &amp;quot;Type&amp;quot;: &amp;quot;archive-retrieval&amp;quot;, &amp;quot;ArchiveId&amp;quot;: &amp;lt;ARCHIVE-ID&amp;gt; }&lt;/code>. Archive ID can be got as an output of the Data Upload/List Jobs request.
-&lt;/div>
+&lt;p>On successful execution of the command, you will see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;location&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;//vaults/sample-vault/jobs/P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>In the same fashion as the archive retrieval, you can now download the result of the inventory retrival job using &lt;code>GetJobOutput&lt;/code> using the &lt;code>JobId&lt;/code> from the result of the previous command:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --vault-name sample-vault --account-id - --job-id P5972CSWFR803BHX48OD1A7JWNBFJUMYVWCMZWY55ZJPIJMG1XWFV9ISZPZH1X3LBF0UV3UG6ORETM0EHE5R86Z47B1F inventory.json&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>The data download process can be verified through the List Jobs command to check progress. Once the Job is complete the data can be downloaded to the current location using the following command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier get-job-output --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --job-id &amp;lt;JOB-ID&amp;gt; &amp;lt;OUTPUT-FILE-NAME.OUTPUT-FILE-TYPE&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Delete the archive using the &lt;code>delete-archive&lt;/code> command:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier delete-archive --account-id - --vault-name &amp;lt;VAULT-NAME&amp;gt; --archive-id &amp;lt;ARCHIVE-ID&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;/li>
-&lt;/ol></description></item><item><title>User-Guide: Glue</title><link>/user-guide/aws/glue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/glue/</guid><description>
+&lt;p>Inspecting the content of the &lt;code>inventory.json&lt;/code> file, we can find an inventory of the vault:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;VaultARN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:glacier:us-east-1:000000000000:vaults/sample-vault&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;InventoryDate&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2023-09-11T17:20:48.000Z&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ArchiveList&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ArchiveId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;d41d8cd98f00b204e9800998ecf8427e&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ArchiveDescription&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;CreationDate&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2023-09-11T15:13:41.000Z&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Size&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SHA256TreeHash&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="delete-an-archive">Delete an archive&lt;/h3>
+&lt;p>You can delete a Glacier archive using the &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-archive-delete.html">&lt;code>DeleteArchive&lt;/code>&lt;/a> API.&lt;/p>
+&lt;p>Run the following command to delete the previously created archive:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier delete-archive \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --vault-name sample-vault --account-id - --archive-id d41d8cd98f00b204e9800998ecf8427e&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="delete-a-vault">Delete a vault&lt;/h3>
+&lt;p>You can delete a Glacier vault with the &lt;a href="https://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-delete.html">&lt;code>DeleteVault&lt;/code>&lt;/a> API.&lt;/p>
+&lt;p>Run the following command to delete the vault:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glacier delete-vault --vault-name sample-vault --account-id -&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p></description></item><item><title>User-Guide: Glue</title><link>/user-guide/aws/glue/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/glue/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>The Glue API in LocalStack Pro allows you to run ETL (Extract-Transform-Load) jobs locally, maintaining table metadata in the local Glue data catalog, and using the Spark ecosystem (PySpark/Scala) to run data processing workflows.&lt;/p>
 &lt;p>LocalStack supports Glue via the Pro/Team offering, allowing you to use the Glue APIs in your local environment.
