@@ -33,7 +33,7 @@ In these directories, you can put either executable shell scripts or Python prog
 All except `boot.d` will be run in the same Python interpreter as LocalStack, which gives additional ways of configuring/extending LocalStack.
 
 Currently, known script extensions are `.sh`, and `.py`.
-Shell scripts have to be executable.
+Shell scripts have to be executable, and have to have a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) (usually `#!/bin/bash`).
 
 A script can be in one of four states: `UNKNOWN`, `RUNNING`, `SUCCESSFUL`, `ERROR`.
 Scripts are by default in the `UNKNOWN` state once they have been discovered.
@@ -148,3 +148,23 @@ DOCKER_FLAGS='-v /path/to/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh' 
 {{< /tabpane >}}
 
 Another use for init hooks can be seen when [adding custom TLS certificates to LocalStack]({{< ref "custom-tls-certificates#custom-tls-certificates-with-init-hooks" >}}).
+
+## Troubleshooting
+If you are having issues with your initialization hooks not being executed, please perform the following checks:
+- Do the scripts have a known file extensions (`.sh` or `.py`)?
+  - If not, rename the files to the matching file extension.
+- Is the script marked as executable?
+  - If not, set the executable flag on the file (`chmod +x ...`).
+- If it's a shell script, does it have a shebang (e.g., `#!/bin/bash`) as the first line in the file?
+  - If not, add the shebang header (usually `#!/bin/bash`) on top of your script file.
+- Is the script being listed in the logs when running LocalStack with `DEBUG=1`?
+  - The detected scripts are logged like this:
+    ```
+    ...
+    Init scripts discovered: {BOOT: [], START: [], READY: [Script(path='/etc/localstack/init/ready.d/setup.sh', stage=READY, state=UNKNOWN)], SHUTDOWN: []}
+    ...
+    Running READY script /etc/localstack/init/ready.d/setup.sh
+    ...
+    ```
+  - If your script does not show up in the list of discovered init scripts, please check your Docker volume mount.
+    Most likely the scripts are not properly mounted into the Docker container.
