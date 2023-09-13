@@ -1,24 +1,28 @@
 ---
 title: Elemental MediaStore
 linkTitle: Elemental MediaStore
-description: >
-  Get started with Elemental MediaStore on LocalStack
+description: Get started with Elemental MediaStore on LocalStack
 ---
 
 ## Introduction
 
-LocalStack supports Elemental MediaStore via the Pro/Team offering, allowing you to use the Elemental MediaStore APIs in your local environment.
-The supported APIs are available on our API Coverage Page, which provides information on the extent of Elemental MediaStore integration with LocalStack.
+MediaStore is a scalable and highly available object storage service designed specifically for media content. 
+It provides a reliable way to store, manage, and serve media assets, such as audio, video, and images, with low latency and high performance. 
+MediaStore seamlessly integrates with other AWS services like Elemental MediaConvert, Elemental MediaLive, Elemental MediaPackage, and CloudFront.
+
+LocalStack supports Elemental MediaStore via the Pro/Team offering, allowing you to use the Elemental MediaStore APIs as a high-performance storage solution for media content in your local environment.
+The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_mediastore/), which provides information on the extent of Elemental MediaStore integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to Elemental MediaStore and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
-We will walk through creating a container, uploading and downloading an asset.
+
+Start your LocalStack container using your preferred method. We will demonstrate how you can create a MediaStore container, upload an asset, and download the asset.
 
 ### Create a container
 
-A container can be created with the `create-container` command.
-The response contains the `Endpoint` value which should be used in subsequent requests.
+You can create a container using the [`CreateContainer`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_CreateContainer.html) API. 
+Run the following command to create a container and retrieve the the `Endpoint` value which should be used in subsequent requests:
 
 {{< command >}}
 $ awslocal mediastore create-container --container-name mycontainer
@@ -39,9 +43,10 @@ You should see the following output:
 
 ### Upload an asset
 
-In order to upload a file (in this case, `myfile.txt`) to the container, use the `put-object` method.
-This will upload the file to the path `/myfolder/myfile.txt` in the container.
-Here we pass the `endpoint` from the previous step.
+To upload a file named `myfile.txt` to the container, utilize the [`PutObject`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_PutObject.html) API. 
+This action will transfer the file to the specified path, `/myfolder/myfile.txt`, within the container. 
+Provide the `endpoint` obtained in the previous step for the operation to be successful. 
+Run the following command to upload the file:
 
 {{< command >}}
 $ awslocal mediastore-data put-object \
@@ -62,8 +67,10 @@ You should see the following output:
 
 ### Download an asset
 
-In order to fetch the file back from the container, use the `get-object` method.
-We specify the endpoint, path to download, and the output file (`/tmp/out.txt`), and the file is available at the output path.
+To retrieve the file from the container, utilize the [`GetObject`](https://docs.aws.amazon.com/mediastore/latest/apireference/API_GetObject.html) API. 
+In this process, you need to specify the endpoint, the path for downloading the file, and the location where the output file, such as `/tmp/out.txt`, will be stored. 
+The downloaded file will then be accessible at the specified output path. 
+Run the following command to download the file:
 
 {{< command >}}
 $ awslocal mediastore-data get-object \
@@ -86,5 +93,4 @@ You should see the following output:
 
 ## Troubleshooting
 
-The Elemental MediaStore service requires use of a custom HTTP/HTTPS endpoint.
-If you encounter any problems, please refer to our [Networking documentation]({{< ref "references/network-troubleshooting" >}}).
+The Elemental MediaStore service requires the use of a custom HTTP/HTTPS endpoint. In case you encounter any issues, please consult our [Networking documentation]({{< ref "references/network-troubleshooting" >}}) for assistance.
