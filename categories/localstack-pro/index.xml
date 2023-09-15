@@ -4191,35 +4191,7 @@ id="tabs-11-02" role="tabpanel" aria-labelled-by="tabs-11-02-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating two test tables in ledger - &amp;#34;Vehicle&amp;#34; and &amp;#34;VehicleRegistration&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Running a query that joins data from the two tables
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v2&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v3&amp;#39;}}]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Route 53</title><link>/user-guide/aws/route53/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/route53/</guid><description>
-&lt;p>The Route53 API in LocalStack Pro allows you to create hosted zones and to manage DNS entries (e.g., A records) which can then be queried via the built-in DNS server.&lt;/p>
-&lt;p>The example below illustrates the creation of a hosted zone &lt;code>example.com&lt;/code>, registration of an A record named &lt;code>test.example.com&lt;/code> that points to &lt;code>1.2.3.4&lt;/code>, and finally querying the DNS record by using the &lt;code>dig&lt;/code> command against the DNS server running on &lt;code>localhost&lt;/code> (inside the LocalStack container, on port &lt;code>53&lt;/code>):
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name example.com --caller-reference r1 | jq -r &amp;#39;.HostedZone.Id&amp;#39;)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal route53 change-resource-record-sets --hosted-zone-id $zone_id --change-batch &amp;#39;Changes=[{Action=CREATE,ResourceRecordSet={Name=test.example.com,Type=A,ResourceRecords=[{Value=1.2.3.4}]}}]&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @localhost test.example.com
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test.example.com. 300 IN A 1.2.3.4&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Using the built-in DNS capabilities requires privileged access for the LocalStack container (please also refer to the &lt;code>DNS_ADDRESS&lt;/code> configuration variable).
-&lt;/div>
-&lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
-&lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
-&lt;p>Customizing the internal LocalStack DNS name is not a common requirement - it should work out of the box for most use cases. However, in some cases you may want to customize the external resolution of this DNS name, for example if your LocalStack instance is running on a separate Docker network than your application code, or even on a different machine.&lt;/p>
-&lt;p>Assume we&amp;rsquo;d like to have all &lt;code>*.localhost.localstack.cloud&lt;/code> subdomains resolve to the address &lt;code>5.6.7.8&lt;/code> (i.e., if this is the IP where your LocalStack instance is accessible) when querying the built-in DNS server. We can utilize Route53 to that effect:
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zone_id=$(awslocal route53 create-hosted-zone --name localhost.localstack.cloud --caller-reference r1 | jq -r .HostedZone.Id)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal route53 change-resource-record-sets --hosted-zone-id $zone_id --change-batch &amp;#39;{&amp;#34;Changes&amp;#34;:[{&amp;#34;Action&amp;#34;:&amp;#34;CREATE&amp;#34;,&amp;#34;ResourceRecordSet&amp;#34;:{&amp;#34;Name&amp;#34;:&amp;#34;localhost.localstack.cloud&amp;#34;,&amp;#34;Type&amp;#34;:&amp;#34;A&amp;#34;,&amp;#34;ResourceRecords&amp;#34;:[{&amp;#34;Value&amp;#34;:&amp;#34;5.6.7.8&amp;#34;}]}},{&amp;#34;Action&amp;#34;:&amp;#34;CREATE&amp;#34;,&amp;#34;ResourceRecordSet&amp;#34;:{&amp;#34;Name&amp;#34;:&amp;#34;*.localhost.localstack.cloud&amp;#34;,&amp;#34;Type&amp;#34;:&amp;#34;A&amp;#34;,&amp;#34;ResourceRecords&amp;#34;:[{&amp;#34;Value&amp;#34;:&amp;#34;5.6.7.8&amp;#34;}]}}]}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @127.0.0.1 bucket1.s3.localhost.localstack.cloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localhost.localstack.cloud. 300 IN A 5.6.7.8
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig @127.0.0.1 localhost.localstack.cloud
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; ANSWER SECTION:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>localhost.localstack.cloud. 300 IN A 5.6.7.8&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p></description></item><item><title>User-Guide: SageMaker</title><link>/user-guide/aws/sagemaker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sagemaker/</guid><description>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: SageMaker</title><link>/user-guide/aws/sagemaker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/sagemaker/</guid><description>
 &lt;p>LocalStack Pro provides a local version of the SageMaker API, which allows running jobs to create machine learning models (e.g., using PyTorch) and to deploy them.&lt;/p>
 &lt;h2 id="model-training">Model Training&lt;/h2>
 &lt;p>A basic training example using the &lt;code>sagemaker.tensorflow.TensorFlow&lt;/code> class is provided in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/sagemaker-ml-jobs">this Github repository&lt;/a>. Essentially, the code boils down to these core lines:&lt;/p>
