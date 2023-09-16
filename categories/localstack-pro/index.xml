@@ -1516,7 +1516,36 @@ The handler is then referenced by the filename of your lambda code and the funct
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can also check out some of our &lt;a href="#deployment-configuration-examples">Deployment Configuration Examples&lt;/a>.&lt;/p>
 &lt;p>We can also quickly make sure that it works by invoking it with a simple payload:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;square&amp;#34;, &amp;#34;number&amp;#34;: 3}&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;ul class="nav nav-tabs" id="tabs-5" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active"
+id="tabs-05-00-tab" data-toggle="tab" href="#tabs-05-00" role="tab"
+aria-controls="tabs-05-00" aria-selected="false">
+AWS CLI v1
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link"
+id="tabs-05-01-tab" data-toggle="tab" href="#tabs-05-01" role="tab"
+aria-controls="tabs-05-01" aria-selected="false">
+AWS CLI v2
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-5-content">
+&lt;div class="tab-body tab-pane fade show active"
+id="tabs-05-00" role="tabpanel" aria-labelled-by="tabs-05-00-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;square&amp;#34;, &amp;#34;number&amp;#34;: 3}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-body tab-pane fade"
+id="tabs-05-01" role="tabpanel" aria-labelled-by="tabs-05-01-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-binary-format raw-in-base64-out \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;square&amp;#34;, &amp;#34;number&amp;#34;: 3}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
 &lt;p>The invocation returns itself returns:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;StatusCode&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">200&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
@@ -1612,9 +1641,38 @@ LocalStack&amp;rsquo;s Lambda container.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;hot-reload&amp;#34;,S3Key=&amp;#34;$(PWD)/dist&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler index.handler&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can quickly make sure that it works by invoking it with a simple payload:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-10" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active"
+id="tabs-10-00-tab" data-toggle="tab" href="#tabs-10-00" role="tab"
+aria-controls="tabs-10-00" aria-selected="false">
+AWS CLI v1
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link"
+id="tabs-10-01-tab" data-toggle="tab" href="#tabs-10-01" role="tab"
+aria-controls="tabs-10-01" aria-selected="false">
+AWS CLI v2
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-10-content">
+&lt;div class="tab-body tab-pane fade show active"
+id="tabs-10-00" role="tabpanel" aria-labelled-by="tabs-10-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name hello-world \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;test&amp;#34;}&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;test&amp;#34;}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-body tab-pane fade"
+id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name hello-world \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-binary-format raw-in-base64-out \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;test&amp;#34;}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
 &lt;p>The invocation returns itself returns:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;StatusCode&amp;#34;&lt;/span>: 200,
@@ -2216,7 +2274,36 @@ The handler is then referenced by the filename of your lambda code and the funct
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --timeout 150 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>We can quickly verify that it works by invoking it with a simple payload:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function --payload &amp;#39;{&amp;#34;message&amp;#34;: &amp;#34;Hello from LocalStack!&amp;#34;}&amp;#39; output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;ul class="nav nav-tabs" id="tabs-4" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active"
+id="tabs-04-00-tab" data-toggle="tab" href="#tabs-04-00" role="tab"
+aria-controls="tabs-04-00" aria-selected="false">
+AWS CLI v1
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link"
+id="tabs-04-01-tab" data-toggle="tab" href="#tabs-04-01" role="tab"
+aria-controls="tabs-04-01" aria-selected="false">
+AWS CLI v2
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-4-content">
+&lt;div class="tab-body tab-pane fade show active"
+id="tabs-04-00" role="tabpanel" aria-labelled-by="tabs-04-00-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;message&amp;#34;: &amp;#34;Hello from LocalStack!&amp;#34;}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-body tab-pane fade"
+id="tabs-04-01" role="tabpanel" aria-labelled-by="tabs-04-01-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-binary-format raw-in-base64-out \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;message&amp;#34;: &amp;#34;Hello from LocalStack!&amp;#34;}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
 &lt;h2 id="debugging-jvm-lambdas">Debugging JVM lambdas&lt;/h2>
 &lt;h3 id="configure-localstack-and-your-lambda-function-for-remote-jvm-debugging">Configure LocalStack and your Lambda function for remote JVM debugging&lt;/h3>
 &lt;p>Set &lt;code>LAMBDA_DOCKER_FLAGS&lt;/code> to export the &lt;code>5050&lt;/code> (you can use any other port of your choice) port which your IDE debugger will connect to.&lt;/p>
@@ -2352,7 +2439,36 @@ then add the following configuration:&lt;/p>
 &lt;p>Now to debug your lambda function, click on the &lt;code>Debug&lt;/code> icon with
 &lt;code>Attach to Remote Node.js&lt;/code> configuration selected, and then invoke your
 lambda function:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name func1 test.lambda.log --payload &amp;#39;{&amp;#34;hello&amp;#34;:&amp;#34;world&amp;#34;}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;ul class="nav nav-tabs" id="tabs-7" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active"
+id="tabs-07-00-tab" data-toggle="tab" href="#tabs-07-00" role="tab"
+aria-controls="tabs-07-00" aria-selected="false">
+AWS CLI v1
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link"
+id="tabs-07-01-tab" data-toggle="tab" href="#tabs-07-01" role="tab"
+aria-controls="tabs-07-01" aria-selected="false">
+AWS CLI v2
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-7-content">
+&lt;div class="tab-body tab-pane fade show active"
+id="tabs-07-00" role="tabpanel" aria-labelled-by="tabs-07-00-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name func1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;hello&amp;#34;:&amp;#34;world&amp;#34;}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-body tab-pane fade"
+id="tabs-07-01" role="tabpanel" aria-labelled-by="tabs-07-01-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name func1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-binary-format raw-in-base64-out \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;hello&amp;#34;:&amp;#34;world&amp;#34;}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
 &lt;h2 id="resources">Resources&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
