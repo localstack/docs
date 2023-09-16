@@ -184,9 +184,23 @@ $ awslocal lambda create-function --function-name my-cool-local-function \
 
 We can quickly verify that it works by invoking it with a simple payload:
 
+{{< tabpane text=true persistLang=false >}}
+{{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
-$ awslocal lambda invoke --function-name my-cool-local-function --payload '{"message": "Hello from LocalStack!"}' output.txt
+$ awslocal lambda invoke --function-name my-cool-local-function \
+    --payload '{"message": "Hello from LocalStack!"}' \
+    output.txt
 {{< /command >}}
+{{% /tab %}}
+{{% tab header="AWS CLI v2" lang="shell" %}}
+{{< command >}}
+$ awslocal lambda invoke --function-name my-cool-local-function \
+    --cli-binary-format raw-in-base64-out \
+    --payload '{"message": "Hello from LocalStack!"}' \
+    output.txt
+{{< /command >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 ## Debugging JVM lambdas
 
@@ -380,9 +394,23 @@ Now to debug your lambda function, click on the `Debug` icon with
 `Attach to Remote Node.js` configuration selected, and then invoke your
 lambda function:
 
+{{< tabpane text=true persistLang=false >}}
+{{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
-$ awslocal lambda invoke --function-name func1 test.lambda.log --payload '{"hello":"world"}'
+$ awslocal lambda invoke --function-name func1 \
+    --payload '{"hello":"world"}' \
+    output.txt
 {{< /command >}}
+{{% /tab %}}
+{{% tab header="AWS CLI v2" lang="shell" %}}
+{{< command >}}
+$ awslocal lambda invoke --function-name func1 \
+    --cli-binary-format raw-in-base64-out \
+    --payload '{"hello":"world"}' \
+    output.txt
+{{< /command >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 
 ## Resources

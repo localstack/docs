@@ -136,9 +136,23 @@ You can also check out some of our [Deployment Configuration Examples](#deployme
 
 We can also quickly make sure that it works by invoking it with a simple payload:
 
+{{< tabpane text=true persistLang=false >}}
+{{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
-$ awslocal lambda invoke --function-name my-cool-local-function --payload '{"action": "square", "number": 3}' output.txt
-{{< / command >}}
+$ awslocal lambda invoke --function-name my-cool-local-function \
+    --payload '{"action": "square", "number": 3}' \
+    output.txt
+{{< /command >}}
+{{% /tab %}}
+{{% tab header="AWS CLI v2" lang="shell" %}}
+{{< command >}}
+$ awslocal lambda invoke --function-name my-cool-local-function \
+    --cli-binary-format raw-in-base64-out \
+    --payload '{"action": "square", "number": 3}' \
+    output.txt
+{{< /command >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 The invocation returns itself returns:
 
@@ -297,11 +311,25 @@ awslocal lambda create-function \
 
 You can quickly make sure that it works by invoking it with a simple payload:
 
+{{< tabpane text=true persistLang=false >}}
+{{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
 $ awslocal lambda invoke \
     --function-name hello-world \
-    --payload '{"action": "test"}' output.txt
-{{< / command >}}
+    --payload '{"action": "test"}' \
+    output.txt
+{{< /command >}}
+{{% /tab %}}
+{{% tab header="AWS CLI v2" lang="shell" %}}
+{{< command >}}
+$ awslocal lambda invoke \
+    --function-name hello-world \
+    --cli-binary-format raw-in-base64-out \
+    --payload '{"action": "test"}' \
+    output.txt
+{{< /command >}}
+{{% /tab %}}
+{{< /tabpane >}}
 
 The invocation returns itself returns:
 
