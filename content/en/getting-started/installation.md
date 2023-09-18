@@ -14,6 +14,9 @@ cascade:
 The quickest way get started with LocalStack is by using the LocalStack CLI. It allows you to start LocalStack from your command line.
 Please make sure that you have a working [`docker` environment](https://docs.docker.com/get-docker/) on your machine before moving on.
 
+The CLI starts and manages the LocalStack docker container.
+For alternative methods of managing the LocalStack container, see our [alternative installation instructions]({{< ref "#alternatives" >}}).
+
 {{< tabpane text=true >}}
 {{< tab header="MacOS" >}}
 You can install the LocalStack CLI using Brew directly from our official LocalStack tap:
