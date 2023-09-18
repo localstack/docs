@@ -44,10 +44,14 @@ for file in parity_metrics/*.csv; do
       mv -- "$file" "$METRICS_RAW/community-integration-test-$org_file_name"
 done
 
+
 echo "Moving community metrics implementation details to $METRICS_IMPL..."
 mkdir -p $METRICS_IMPL
 mv community $METRICS_IMPL
 
+# TODO might change in the future
+echo "Deleting acceptance_parity_metrics for now (currently subset of parity_metrics)"
+rm -rf acceptance_parity_metrics
 
 echo "Resulting file structure:"
 tree $PARENT_FOLDER
