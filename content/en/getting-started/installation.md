@@ -26,7 +26,7 @@ $ brew install localstack/tap/localstack-cli
 <details>
 <summary>Alternative: Binary Download</summary>
 <p>
-Alternatively, you can just download the respective binary for your architecture directly:<br>
+Alternatively, you can download the respective binary for your architecture directly:<br>
 {{< cli-binary-download os="macos" >}}
 </p>
 <p>
@@ -61,7 +61,7 @@ If you have problems with permissions in MacOS X Sierra, install with `python3 -
 
 {{< tab header="Linux" >}}
 <p>
-You can just download the respective binary for your architecture directly:<br>
+You can download the respective binary for your architecture directly:<br>
 {{< cli-binary-download os="linux" >}}
 </p>
 <p>
@@ -101,7 +101,7 @@ Do not use `sudo` or the `root` user - LocalStack should be installed and starte
 
 
 {{< tab header="Windows" >}}
-You can just download the respective binary for your architecture directly: 
+You can download the respective binary for your architecture directly: 
 {{< cli-binary-download os="windows" >}}<br/>
 Then extract the archive and execute the binary using Powershell.
 
@@ -290,7 +290,7 @@ $ localstack config validate
 
 ### Docker
 
-You can also just directly start the LocalStack container using the Docker CLI instead of [Docker-Compose]({{< ref "#docker-compose" >}}).
+You can also directly start the LocalStack container using the Docker CLI instead of [Docker-Compose]({{< ref "#docker-compose" >}}).
 This method requires more manual steps and configuration, but it gives you more control over the container settings.
 
 #### Prerequisites
