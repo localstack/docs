@@ -30,9 +30,18 @@ Alternatively, you can download the respective binary for your architecture dire
 {{< cli-binary-download os="macos" >}}
 </p>
 <p>
+or use this <code>curl</code> command:
+</p>
+<p>
+{{< command >}}
+$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-darwin-amd64-onefile.tar.gz \
+    https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-darwin-amd64-onefile.tar.gz
+{{< / command >}}
+</p>
+<p>
 Then extract the LocalStack CLI from the terminal:
 {{< command >}}
-$ sudo tar xvzf ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-darwin-*-onefile.tar.gz -C /usr/local/bin
+$ sudo tar xvzf localstack-cli-{{< localstack-latest-version >}}-darwin-*-onefile.tar.gz -C /usr/local/bin
 {{< / command >}}
 </p>
 </details>
@@ -68,23 +77,23 @@ You can download the respective binary for your architecture directly:<br>
 or use this <code>curl</code> command:
 </p>
 <p>
-For `x86-64`:
+For <code>x86-64</code>:
 {{< command >}}
-$ curl -Lo ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz \
+$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz \
     https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz
 {{< / command >}}
 </p>
 <p>
-Or `ARM64`:
+Or <code>ARM64</code>:
 {{< command >}}
-$ curl -Lo ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz \
+$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz \
     https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz
 {{< / command >}}
 </p>
 <p>
 Then extract the LocalStack CLI from the terminal:
 {{< command >}}
-$ sudo tar xvzf ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-linux-*-onefile.tar.gz -C /usr/local/bin
+$ sudo tar xvzf localstack-cli-{{< localstack-latest-version >}}-linux-*-onefile.tar.gz -C /usr/local/bin
 {{< / command >}}
 </p>
 
