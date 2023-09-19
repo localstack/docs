@@ -27,6 +27,32 @@ IAM currently does not enforce cross-account access.
 Any ACLs, identity-based or resource-based policy attached to these operations or resources will be ignored.
 {{< /alert >}}
 
+### EC2 VPCs
+
+It is possible to peer VPCs that are in a different region or account than the requester.
+Ensure that the `PeerRegion` and `PeerOwnerId` arguments are correctly set when creating VPC peering connections.
+
+### KMS keys
+
+- `CreateGrant`
+- `Decrypt`
+- `DescribeKey`
+- `Encrypt`
+- `GenerateDataKey`
+- `GenerateDataKeyPair`
+- `GenerateDataKeyPairWithoutPlaintext`
+- `GenerateDataKeyWithoutPlaintext`
+- `GenerateMac`
+- `GetKeyRotationStatus`
+- `GetPublicKey`
+- `ListGrants`
+- `RetireGrant`
+- `RevokeGrant`
+- `Sign`
+- `Verify`
+- `VerifyMac`
+<!--    - ReEncrypt (NOT IMPLEMENTED IN LOCALSTACK) -->
+
 ### Lambda functions and layers
 
 - `AddLayerVersionPermission`
@@ -55,32 +81,15 @@ Any ACLs, identity-based or resource-based policy attached to these operations o
 - `UpdateAlias`
 - `UpdateFunctionCode`
 
-### SQS queues
+### S3 buckets
 
-On AWS, all operations except `AddPermission`, `CreateQueue`, `DeleteQueue`, `ListQueues`, `ListQueueTags`, `RemovePermission`, `SetQueueAttributes`, `TagQueue` and `UntagQueue` allow cross-account access.
+Like AWS, LocalStack S3 has a bucket namespace which is shared by all accounts.
+This means that the bucket name has to be globally unique.
 
-On LocalStack, all operations allow cross-account access.
+- `GetObject`
+- `ListObjects`
+- `PutObject`
 
-### KMS keys
-
-- `CreateGrant`
-- `Decrypt`
-- `DescribeKey`
-- `Encrypt`
-- `GenerateDataKey`
-- `GenerateDataKeyPair`
-- `GenerateDataKeyPairWithoutPlaintext`
-- `GenerateDataKeyWithoutPlaintext`
-- `GenerateMac`
-- `GetKeyRotationStatus`
-- `GetPublicKey`
-- `ListGrants`
-- `RetireGrant`
-- `RevokeGrant`
-- `Sign`
-- `Verify`
-- `VerifyMac`
-<!--    - ReEncrypt (NOT IMPLEMENTED IN LOCALSTACK) -->
 
 ### SNS topics
 
@@ -93,14 +102,11 @@ On LocalStack, all operations allow cross-account access.
 - `SetTopicAttributes`
 - `Subscribe`
 
-### S3 buckets
+### SQS queues
 
-Like AWS, LocalStack S3 has a bucket namespace which is shared by all accounts.
-This means that the bucket name has to be globally unique.
+On AWS, all operations except `AddPermission`, `CreateQueue`, `DeleteQueue`, `ListQueues`, `ListQueueTags`, `RemovePermission`, `SetQueueAttributes`, `TagQueue` and `UntagQueue` allow cross-account access.
 
-- `GetObject`
-- `ListObjects`
-- `PutObject`
+On LocalStack, all operations allow cross-account access.
 
 ## Cross-Region
 
