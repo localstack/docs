@@ -30,12 +30,14 @@ LocalStack expects your API key to be present in the environment variable `LOCAL
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
 export LOCALSTACK_API_KEY=<YOUR_API_KEY>
-localstack start -d
+localstack start
 {{< /tab >}}
 {{< tab header="Windows" lang="powershell" >}}
-$env:LOCALSTACK_API_KEY="<YOUR_API_KEY>"; localstack start -d
+$env:LOCALSTACK_API_KEY="<YOUR_API_KEY>"; localstack start
 {{< /tab >}}
 {{< /tabpane >}}
+
+You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
 
 The `localstack` CLI will detect the API key and properly pass it to the LocalStack container.
 

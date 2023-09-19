@@ -14,6 +14,9 @@ cascade:
 The quickest way get started with LocalStack is by using the LocalStack CLI. It allows you to start LocalStack from your command line.
 Please make sure that you have a working [`docker` environment](https://docs.docker.com/get-docker/) on your machine before moving on.
 
+The CLI starts and manages the LocalStack docker container.
+For alternative methods of managing the LocalStack container, see our [alternative installation instructions]({{< ref "#alternatives" >}}).
+
 {{< tabpane text=true >}}
 {{< tab header="MacOS" >}}
 You can install the LocalStack CLI using Brew directly from our official LocalStack tap:
@@ -23,13 +26,22 @@ $ brew install localstack/tap/localstack-cli
 <details>
 <summary>Alternative: Binary Download</summary>
 <p>
-Alternatively, you can just download the respective binary for your architecture directly:<br>
+Alternatively, you can download the respective binary for your architecture directly:<br>
 {{< cli-binary-download os="macos" >}}
+</p>
+<p>
+or use this <code>curl</code> command:
+</p>
+<p>
+{{< command >}}
+$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-darwin-amd64-onefile.tar.gz \
+    https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-darwin-amd64-onefile.tar.gz
+{{< / command >}}
 </p>
 <p>
 Then extract the LocalStack CLI from the terminal:
 {{< command >}}
-$ sudo tar xvzf ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-darwin-*-onefile.tar.gz -C /usr/local/bin
+$ sudo tar xvzf localstack-cli-{{< localstack-latest-version >}}-darwin-*-onefile.tar.gz -C /usr/local/bin
 {{< / command >}}
 </p>
 </details>
@@ -58,13 +70,30 @@ If you have problems with permissions in MacOS X Sierra, install with `python3 -
 
 {{< tab header="Linux" >}}
 <p>
-You can just download the respective binary for your architecture directly:<br>
+You can download the respective binary for your architecture directly:<br>
 {{< cli-binary-download os="linux" >}}
+</p>
+<p>
+or use this <code>curl</code> command:
+</p>
+<p>
+For <code>x86-64</code>:
+{{< command >}}
+$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz \
+    https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz
+{{< / command >}}
+</p>
+<p>
+Or <code>ARM64</code>:
+{{< command >}}
+$ curl -Lo localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz \
+    https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz
+{{< / command >}}
 </p>
 <p>
 Then extract the LocalStack CLI from the terminal:
 {{< command >}}
-$ sudo tar xvzf ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-linux-*-onefile.tar.gz -C /usr/local/bin
+$ sudo tar xvzf localstack-cli-{{< localstack-latest-version >}}-linux-*-onefile.tar.gz -C /usr/local/bin
 {{< / command >}}
 </p>
 
@@ -98,7 +127,7 @@ Do not use `sudo` or the `root` user - LocalStack should be installed and starte
 
 
 {{< tab header="Windows" >}}
-You can just download the respective binary for your architecture directly: 
+You can download the respective binary for your architecture directly: 
 {{< cli-binary-download os="windows" >}}<br/>
 Then extract the archive and execute the binary using Powershell.
 
@@ -287,7 +316,7 @@ $ localstack config validate
 
 ### Docker
 
-You can also just directly start the LocalStack container using the Docker CLI instead of [Docker-Compose]({{< ref "#docker-compose" >}}).
+You can also directly start the LocalStack container using the Docker CLI instead of [Docker-Compose]({{< ref "#docker-compose" >}}).
 This method requires more manual steps and configuration, but it gives you more control over the container settings.
 
 #### Prerequisites
