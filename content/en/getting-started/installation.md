@@ -68,14 +68,14 @@ You can download the respective binary for your architecture directly:<br>
 or use this <code>curl</code> command:
 </p>
 <p>
-For <i>amd64</i>:
+For `x86-64`:
 {{< command >}}
 $ curl -Lo ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz \
     https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-amd64-onefile.tar.gz
 {{< / command >}}
 </p>
 <p>
-Or <i>arm64</i>:
+Or `ARM64`:
 {{< command >}}
 $ curl -Lo ~/Downloads/localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz \
     https://github.com/localstack/localstack-cli/releases/download/v{{< localstack-latest-version >}}/localstack-cli-{{< localstack-latest-version >}}-linux-arm64-onefile.tar.gz
