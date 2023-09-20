@@ -23,8 +23,8 @@ Resources that can be accessed across multiple accounts are always identified by
 The full list of resources and operations that allow cross-account access are listed below.
 
 {{< alert title="Note">}}
-IAM currently does not enforce cross-account access.
-Any ACLs, identity-based or resource-based policy attached to these operations or resources will be ignored.
+LocalStack does not enforce IAM for cross-account access by default.
+Use the `ENFORCE_IAM` [configuration]({{< ref "configuration#iam" >}}) option to enable it.
 {{< /alert >}}
 
 ### EC2 VPCs
