@@ -7763,7 +7763,7 @@ Any execution of this data is recorded in the &lt;code>/var/log/cloud-init-outpu
 &lt;/p>
 &lt;p>Once the instance is up and running, we can use the &lt;code>ssh&lt;/code> command to set up an SSH connection. Assuming the instance is available under &lt;code>127.0.0.1:12862&lt;/code> (as per the LocalStack log output), use this command:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>ssh -p 12862 -i key.pem root@127.0.0.1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-info" role="alert">
+&lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Hint&lt;/h4>
 If the &lt;code>ssh&lt;/code> command throws an error like &amp;ldquo;Identity file not accessible&amp;rdquo; or &amp;ldquo;bad permissions&amp;rdquo;, then please make sure that the key file has a restrictive &lt;code>0400&lt;/code> permission as illustrated &lt;a href="#create-a-key-pair">here&lt;/a>.
 &lt;/div>
@@ -9851,24 +9851,119 @@ If we now add this to our policy (since it is an example let&amp;rsquo;s do it v
 &lt;li>&lt;a href="https://github.com/localstack/shipment-list-demo">Full-Stack application with AWS Lambda, DynamoDB &amp;amp; S3 for shipment validation&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/iam-policy-enforcement">Enforcement of IAM policies when working with local cloud APIs&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: IoT</title><link>/user-guide/aws/iot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iot/</guid><description>
-&lt;p>LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs.
-Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.&lt;/p>
-&lt;h2 id="mqtt-broker">MQTT Broker&lt;/h2>
-&lt;p>LocalStack ships with a built-in MQTT broker.
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>AWS IoT provides cloud services to manage IoT fleet and integrate them with other AWS services&lt;/p>
+&lt;p>LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs as well as an in-built MQTT broker.
+Common operations for creating and updating things, groups, policies, certificates and other entities are implemented with full CloudFormation support.
+The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_iot/">API coverage page&lt;/a>.&lt;/p>
+&lt;h2 id="getting-started">Getting Started&lt;/h2>
+&lt;p>This guide is for users that are new to IoT and assumes a basic knowledge of the AWS CLI and LocalStack &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper.&lt;/p>
+&lt;p>Start LocalStack using your preferred method.&lt;/p>
+&lt;p>LocalStack ships an Message Queuing Telemetry Transport (MQTT) broker powered by &lt;a href="https://mosquitto.org/">Mosquitto&lt;/a> which supports both pure MQTT and MQTT-over-WSS (WebSockets Secure) protocols.
 To retrieve the MQTT endpoint, use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_DescribeEndpoint.html">&lt;code>DescribeEndpoint&lt;/code>&lt;/a> operation.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iot describe-endpoint
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpointAddress&amp;#34;: &amp;#34;localhost.localstack.cloud:4510&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>This endpoint can then be used with any MQTT client to publish and subscribe to topics.&lt;/p>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Hint&lt;/h4>
 LocalStack lazy-loads services by default.
 The MQTT broker may not be automatically available on a fresh launch of LocalStack.
-You should make a &lt;code>DescribeEndpoint&lt;/code> call to ensure the broker is running.
+You should make a &lt;code>DescribeEndpoint&lt;/code> call to ensure the broker is running and identify the port.
 &lt;/div>
-&lt;h2 id="lifecycle-events">Lifecycle Events&lt;/h2>
-&lt;p>LocalStack also publishes the &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/life-cycle-events.html">lifecycle events&lt;/a> to the standard endpoints.&lt;/p>
+&lt;p>This endpoint can then be used with any MQTT client to publish and subscribe to topics.
+In this example, we will use the &lt;a href="https://hivemq.github.io/mqtt-cli/docs/installation/">Hive MQTT CLI&lt;/a>.&lt;/p>
+&lt;p>Run the following command to subscribe to an MQTT topic.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mqtt subscribe \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --host localhost.localstack.cloud \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --port 4510 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic climate&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In another terminal, publish a message to this topic.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mqtt publish \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --host localhost.localstack.cloud \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --port 4511 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic climate \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -m &amp;#34;temperature=30°C;humidity=60%&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This message will be pushed to all subscribers of this topic, including the one in the first terminal.&lt;/p>
+&lt;h2 id="authentication">Authentication&lt;/h2>
+&lt;p>LocalStack IoT maintains its own root certificate authority which is regenerated at every run.
+The root CA certificate can be retrieved from &lt;a href="http://local.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem">http://local.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem&lt;/a>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+AWS provides its root CA certificate at &lt;a href="https://www.amazontrust.com/repository/AmazonRootCA1.pem">https://www.amazontrust.com/repository/AmazonRootCA1.pem&lt;/a>.
+For more information, see &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/server-authentication.html#server-authentication-certs">this&lt;/a>.
+&lt;/div>
+&lt;p>When connecting to the endpoints, you will need to provide this root CA certificate for authentication.
+This is illustrated below with Python &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-sdks.html">AWS IoT SDK&lt;/a>,&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">awscrt&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">awsiot&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">mqtt_connection_builder&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">region&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;eu-central-1&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">iot_client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;iot&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">region&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">region&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">endpoint&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">aws_client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">iot&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">describe_endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">()[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;endpointAddress&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">port&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">endpoint&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">split&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;:&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">event_loop_group&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">io&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">EventLoopGroup&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">host_resolver&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">io&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">DefaultHostResolver&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event_loop_group&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">client_bootstrap&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">io&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">ClientBootstrap&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event_loop_group&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">host_resolver&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">credentials_provider&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">awscrt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">auth&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">AwsCredentialsProvider&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">new_default_chain&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client_bootstrap&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">client_bootstrap&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">client_id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;example-client&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Path to root CA certificate downloaded from `/_aws/iot/LocalStackIoTRootCA.pem`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">ca_filepath&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;...&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">mqtt_over_wss&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">mqtt_connection_builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">websockets_with_default_aws_signing&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">region&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">region&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">credentials_provider&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">credentials_provider&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client_bootstrap&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">client_bootstrap&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client_id&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">client_id&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">endpoint&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">port&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">port&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">ca_filepath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">ca_filepath&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">mqtt_over_wss&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">connect&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">mqtt_over_wss&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">subscribe&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you are using pure MQTT, you also need to set the client-side X509 certificates and Application Layer Protocol Negotiation (ALPN) for a successful mutual TLS (mTLS) authentication.
+This is not required for MQTT-over-WSS since it does not use mTLS.&lt;/p>
+&lt;p>AWS IoT SDKs automatically set the ALPN when the endpoint port is 443.
+However, because LocalStack does not use this port, this must be done manually.
+For details on how ALPN works with AWS, see &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html">this page&lt;/a>.&lt;/p>
+&lt;p>The client certificate and key can be retrieved using &lt;code>CreateKeysAndCertificate&lt;/code> operation.
+The certificate is signed by the LocalStack root CA.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">result&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">iot_client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create_keys_and_certificate&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">setAsActive&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">True&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Path to file with saved content `result[&amp;#34;certificatePem&amp;#34;]`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">cert_file&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;...&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic"># Path to file with saved content `result[&amp;#34;keyPair&amp;#34;][&amp;#34;PrivateKey&amp;#34;]`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">priv_key_file&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;...&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">tls_ctx_options&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">awscrt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">io&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">TlsContextOptions&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create_client_with_mtls_from_path&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">cert_file&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">priv_key_file&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">tls_ctx_options&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">alpn_list&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;x-amzn-mqtt-ca&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">mqtt&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">mqtt_connection_builder&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">_builder&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">tls_ctx_options&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">cert_filepath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">cert_file&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">pri_key_filepath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">priv_key_file&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client_bootstrap&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">client_bootstrap&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client_id&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">client_id&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">endpoint&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">endpoint&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">port&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">port&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">ca_filepath&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">ca_filepath&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">mqtt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">connect&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">mqtt&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">subscribe&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="lifecycle-events">Lifecycle Events&lt;/h2>
+&lt;p>LocalStack publishes the &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/life-cycle-events.html">lifecycle events&lt;/a> to the standard endpoints.&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>$aws/events/presence/connected/clientId&lt;/code>: when a client connects&lt;/li>
 &lt;li>&lt;code>$aws/events/presence/disconnected/clientId&lt;/code>: when a client disconnects&lt;/li>
@@ -9876,14 +9971,15 @@ You should make a &lt;code>DescribeEndpoint&lt;/code> call to ensure the broker 
 &lt;li>&lt;code>$aws/events/subscriptions/unsubscribed/clientId&lt;/code>: when a client unsubscribes from a topic&lt;/li>
 &lt;/ul>
 &lt;p>Currently the &lt;code>principalIdentifier&lt;/code> and &lt;code>sessionIdentifier&lt;/code> fields in event payload contain dummy values.&lt;/p>
-&lt;h2 id="registry-events-for-things">Registry Events for Things&lt;/h2>
+&lt;h2 id="registry-events">Registry Events&lt;/h2>
 &lt;p>LocalStack can publish the &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/registry-events.html">registry events&lt;/a>, if &lt;a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-events.html#iot-events-enable">you enable it&lt;/a>.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iot update-event-configurations --event-configurations &amp;#34;{\&amp;#34;THING\&amp;#34;:{\&amp;#34;Enabled\&amp;#34;: true}}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iot update-event-configurations \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --event-configurations &amp;#39;{&amp;#34;THING&amp;#34;:{&amp;#34;Enabled&amp;#34;: true}}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can then subscribe or use topic rules on the follow topics:&lt;/p>
 &lt;ul>
-&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/created&lt;/code>: when a new Thing is created&lt;/li>
-&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/updated&lt;/code>: when a Thing is updated&lt;/li>
-&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/deleted&lt;/code>: when a Thing is deleted&lt;/li>
+&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/created&lt;/code>: when a new thing is created&lt;/li>
+&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/updated&lt;/code>: when a thing is updated&lt;/li>
+&lt;li>&lt;code>$aws/events/thing/&amp;lt;thingName&amp;gt;/deleted&lt;/code>: when a thing is deleted&lt;/li>
 &lt;/ul>
 &lt;h2 id="topic-rules">Topic Rules&lt;/h2>
 &lt;p>It is also possible to use advanced features like SQL queries for IoT topic rules.&lt;/p>
