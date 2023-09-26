@@ -1,15 +1,14 @@
 ---
-title: "AWS Replicator Extension"
-linkTitle: "AWS Replicator Extension"
+title: "AWS Replicator"
+linkTitle: "AWS Replicator"
 weight: 1
-description: >
-  A LocalStack extension to replicate AWS resources into your local machine
+description: A LocalStack extension that replicates AWS resources into your LocalStack container
 ---
 
-AWS Replicator Extension is a LocalStack extension that allows you to replicate AWS resources into your local machine.
+AWS Replicator Extension is a LocalStack extension that allows you to replicate AWS resources into your LocalStack instance.
 
 {{<alert title="Note">}}
-This Extension is experimental and still under active development. Please report any issues or feature requests on our [GitHub repository](https://github.com/localstack/localstack-extensions).
+This Extension is experimental and still under active development. Report any issues or feature requests on our [GitHub repository](https://github.com/localstack/localstack-extensions).
 {{</alert>}}
 
 ## Installation

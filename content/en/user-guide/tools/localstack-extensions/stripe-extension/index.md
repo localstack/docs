@@ -1,6 +1,6 @@
 ---
-title: "Stripe Extension"
-linkTitle: "Stripe Extension"
+title: "Stripe"
+linkTitle: "Stripe"
 weight: 2
 description: >
   A LocalStack extension that provides a mocked version of Stripe as a service
