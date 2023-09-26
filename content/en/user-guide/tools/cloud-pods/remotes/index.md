@@ -13,8 +13,8 @@ Cloud Pod Remotes is a feature that is currently in beta.
 {{< /alert >}}
 
 A remote is the place where your Cloud Pods are stored.
-By default, we store the Cloud Pods' artifacts into the LocalStack platform.
-However, for various reason, e.g., data regulation and sovereignty, you might want to store Cloud Pods in a different location that is under your control.
+By default, we store the Cloud Pods' artifacts in the LocalStack platform.
+However, for various reasons, e.g., data regulation and sovereignty, you might want to store Cloud Pods in a different location that is under your control.
 
 We currently offer two alternative remotes:
 - S3 bucket remote storage;
@@ -23,7 +23,7 @@ We currently offer two alternative remotes:
 ## S3 bucket remote storage
 
 ## ORAS remote storage
-The ORAS remote allow users to save Cloud Pods in registries such as Docker Hub, Nexus, or ECS registries.
+The ORAS remote allows users to save Cloud Pods in registries such as Docker Hub, Nexus, or ECS registries.
 
 As an example, let us demonstrate how it is possible to leverage Docker Hub to store and retrieve Cloud Pods.
 
