@@ -4528,51 +4528,6 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;li>&lt;a href="https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample">Serverless Microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/aws-sdk-js-notes-app">Note-Taking application using AWS SDK for JavaScript, Amazon DynamoDB, Lambda, Cognito, API Gateway, and S3&lt;/a>&lt;/li>
 &lt;li>For Terraform samples, check out the &lt;a href="https://github.com/localstack/localstack-terraform-samples">LocalStack Terraform examples&lt;/a> repository&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Amazon MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
-&lt;p>Amazon MQ is a fully managed service for open-source message brokers.
-Basic support is included in LocalStack Pro, please refer to the &lt;a href="/user-guide/aws/feature-coverage/">feature-coverage&lt;/a> for more information.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>In the following, we outline basic MQ usage. Please also refer to the sample here: &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker">Localstack Pro Samples&lt;/a>.
-Assuming you have &lt;a href="/user-guide/integrations/aws-cli/">&lt;code>awslocal&lt;/code>&lt;/a> installed, you can try the following commands:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mq create-broker --broker-name test-broker --deployment-mode SINGLE_INSTANCE --engine-type ACTIVEMQ --engine-version=&amp;#39;5.16.6&amp;#39; --host-instance-type &amp;#39;mq.t2.micro&amp;#39; --auto-minor-version-upgrade --publicly-accessible --users=&amp;#39;{&amp;#34;ConsoleAccess&amp;#34;: true, &amp;#34;Groups&amp;#34;: [&amp;#34;testgroup&amp;#34;],&amp;#34;Password&amp;#34;: &amp;#34;QXwV*$iUM9USHnVv&amp;amp;!^7s3c@&amp;#34;, &amp;#34;Username&amp;#34;: &amp;#34;admin&amp;#34;}&amp;#39;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerArn&amp;#34;: &amp;#34;arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerId&amp;#34;: &amp;#34;b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Using the Describe-Broker endpoint, it is possible to get more detailed information about an instance. The ConsoleURL is especially handy, because it provides the address to the web console (accessible via the user &amp;ldquo;admin&amp;rdquo; and password &amp;ldquo;admin&amp;rdquo;).
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mq describe-broker --broker-id b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerArn&amp;#34;: &amp;#34;arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerId&amp;#34;: &amp;#34;b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerInstances&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ConsoleURL&amp;#34;: &amp;#34;http://localhost:4513&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Endpoints&amp;#34;: [
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stomp://localhost:4515&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;tcp://localhost:4514&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerName&amp;#34;: &amp;#34;test-broker&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerState&amp;#34;: &amp;#34;RUNNING&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Created&amp;#34;: &amp;#34;2022-10-17T07:14:21.065527Z&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DeploymentMode&amp;#34;: &amp;#34;SINGLE_INSTANCE&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EngineType&amp;#34;: &amp;#34;ACTIVEMQ&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;HostInstanceType&amp;#34;: &amp;#34;mq.t2.micro&amp;#34;,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Tags&amp;#34;: {}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;p>Since the broker is now actively listening, we can send a message to a sample queue using curl.
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -XPOST -d &amp;#34;body=message&amp;#34; http://admin:admin@localhost:4513/api/message\?destination\=queue://orders.input&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;h2 id="localstack-limitations-and-differences-to-aws">Localstack limitations and differences to AWS&lt;/h2>
-&lt;p>Only basic functionality is supported right now, main limitations are the following:&lt;/p>
-&lt;ul>
-&lt;li>Only ActiveMQ (version 5.16.6) is supported&lt;/li>
-&lt;li>Users are not actively enforced (but needed to make proper calls)&lt;/li>
-&lt;li>While it is possible to create configurations, they are not actively enforced in a broker&lt;/li>
-&lt;li>Persistence and Cloud Pods are not supported&lt;/li>
-&lt;li>Limited API coverage&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: AppConfig</title><link>/user-guide/aws/appconfig/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/appconfig/</guid><description>
 &lt;p>AppConfig is a service provided by Amazon Web Services (AWS) that simplifies the process of managing and deploying application configurations. AppConfig offers centralized management of configuration data and the ability to create, manage, and deploy configuration changes separately. It allows you to avoid deploying the service repeatedly for smaller changes, enables controlled deployments to applications and includes built-in validation checks &amp;amp; monitoring.&lt;/p>
 &lt;p>LocalStack supports AppConfig via the Pro/Team offering, allowing you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_appconfig/">API coverage page&lt;/a>, which provides information on the extent of AppConfig&amp;rsquo;s integration with LocalStack.&lt;/p>
@@ -11026,7 +10981,73 @@ Therefore, you must follow the above steps to install any required provider pack
 &lt;h2 id="connections">Connections&lt;/h2>
 &lt;p>When incorporating connections to other AWS services within your DAGs, it is crucial to specify either the internal Docker IP address of the LocalStack container or utilize &lt;code>host.docker.internal&lt;/code>.
 LocalStack currently does not use the credentials and region from &lt;code>aws_conn_id&lt;/code>.
-This information must be explicitly passed in operators, hooks, and sensors.&lt;/p></description></item><item><title>User-Guide: Neptune</title><link>/user-guide/aws/neptune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/neptune/</guid><description>
+This information must be explicitly passed in operators, hooks, and sensors.&lt;/p></description></item><item><title>User-Guide: MQ</title><link>/user-guide/aws/mq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/mq/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>MQ is a managed message broker service offered by Amazon Web Services (AWS). It facilitates the exchange of messages between various components of distributed applications, enabling reliable and scalable communication. AWS MQ supports popular messaging protocols like MQTT, AMQP, and STOMP, making it suitable for a wide range of messaging use cases.&lt;/p>
+&lt;p>LocalStack supports MQ via the Pro/Team offering, allowing you to use the MQ APIs to implement pub/sub messaging, request/response patterns, or distributed event-driven architectures in your local environment. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_mq/">API Coverage Page&lt;/a>, which provides information on the extent of MQ integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to MQ and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method. We will demonstrate how to create an MQ broker and send a message to a sample queue.&lt;/p>
+&lt;h3 id="create-a-broker">Create a broker&lt;/h3>
+&lt;p>You can create a broker using the &lt;a href="https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers.html#brokerspost">&lt;code>CreateBroker&lt;/code>&lt;/a> API. Run the following command to create a broker named &lt;code>test-broker&lt;/code> with the following configuration:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mq create-broker \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --broker-name test-broker \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --deployment-mode SINGLE_INSTANCE \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine-type ACTIVEMQ \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine-version=&amp;#39;5.16.6&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --host-instance-type &amp;#39;mq.t2.micro&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --auto-minor-version-upgrade \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --publicly-accessible \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --users=&amp;#39;{&amp;#34;ConsoleAccess&amp;#34;: true, &amp;#34;Groups&amp;#34;: [&amp;#34;testgroup&amp;#34;],&amp;#34;Password&amp;#34;: &amp;#34;QXwV*$iUM9USHnVv&amp;amp;!^7s3c@&amp;#34;, &amp;#34;Username&amp;#34;: &amp;#34;admin&amp;#34;}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerArn&amp;#34;: &amp;#34;arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerId&amp;#34;: &amp;#34;b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="describe-the-broker">Describe the broker&lt;/h3>
+&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/amazon-mq/latest/api-reference/brokers.html#brokersget">&lt;code>DescribeBroker&lt;/code>&lt;/a> API to get more detailed information about the broker. Run the following command to get information about the broker we created above:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal mq describe-broker --broker-id
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerArn&amp;#34;: &amp;#34;arn:aws:mq:us-east-1:000000000000:broker:test-broker:b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerId&amp;#34;: &amp;#34;b-f503abb7-66bc-47fb-b1a9-8d8c51ef6545&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerInstances&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ConsoleURL&amp;#34;: &amp;#34;http://localhost:4513&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Endpoints&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;stomp://localhost:4515&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;tcp://localhost:4514&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ],
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerName&amp;#34;: &amp;#34;test-broker&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;BrokerState&amp;#34;: &amp;#34;RUNNING&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Created&amp;#34;: &amp;#34;2022-10-17T07:14:21.065527Z&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;DeploymentMode&amp;#34;: &amp;#34;SINGLE_INSTANCE&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;EngineType&amp;#34;: &amp;#34;ACTIVEMQ&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;HostInstanceType&amp;#34;: &amp;#34;mq.t2.micro&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Tags&amp;#34;: {}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="send-a-message">Send a message&lt;/h3>
+&lt;p>Now that the broker is actively listening, we can use curl to send a message to a sample queue. Run the following command to send a message to the &lt;code>orders.input&lt;/code> queue:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -XPOST -d &amp;#34;body=message&amp;#34; http://admin:admin@localhost:4513/api/message\?destination\=queue://orders.input&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="examples">Examples&lt;/h2>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use MQ in LocalStack for various use cases:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/mq-broker">Demo application illustrating the use of MQ with LocalStack&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>Currently, our MQ emulation offers only fundamental capabilities, and it comes with certain limitations:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>ActiveMQ Version Limitation:&lt;/strong> Presently, only ActiveMQ version 5.16.6 is supported.&lt;/li>
+&lt;li>&lt;strong>IAM User Management:&lt;/strong> IAM Users are not actively enforced, although they are necessary for making correct calls within the system.&lt;/li>
+&lt;li>&lt;strong>Configuration Enforcement:&lt;/strong> While it is feasible to create configurations, they are not actively enforced within the broker.&lt;/li>
+&lt;li>&lt;strong>Persistence and Cloud Pods:&lt;/strong> LocalStack does not provide support for Persistence and Cloud Pods at this time.&lt;/li>
+&lt;li>&lt;strong>API Coverage:&lt;/strong> Please note that there is limited API coverage available as part of the current emulation capabilities.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Neptune</title><link>/user-guide/aws/neptune/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/neptune/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Neptune is a fully managed, highly available, and scalable graph database service offered by AWS.
 It is designed for storing and querying highly connected data for applications that require complex relationship modeling, such as social networks, recommendation engines, and fraud detection.
