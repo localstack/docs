@@ -14,7 +14,8 @@ Cloud Pod Remotes is a feature that is currently in beta (available in the Team 
 
 A remote is the place where your Cloud Pods are stored.
 By default, we store the Cloud Pods' artifacts in the LocalStack platform.
-However, for various reasons, e.g., data regulation and sovereignty, you might want to store Cloud Pods in a different location that is under your control.
+Although we provide the highest levels of security and isolation (incl. encryption in transit and at rest), there may be situations (e.g., due to data regulation and sovereignty) where your organization does not permit storing Cloud Pod assets in a remote storage infrastructure. 
+Hence, you may want to persist Cloud Pods in a different storage location that is on-premise and fully under your control.
 
 We currently offer two alternative remotes:
 - S3 bucket remote storage;
