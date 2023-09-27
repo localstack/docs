@@ -231,12 +231,14 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 | `S3_DIR` | | Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro. |
 | `S3_SKIP_SIGNATURE_VALIDATION`| `0` / `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. |
 | `S3_SKIP_KMS_KEY_VALIDATION` | `0` / `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
+| `PROVIDER_OVERRIDE_S3` | `v3` | Activate the new LocalStack-native S3 provider. |
 
 ### StepFunctions
 
 | Variable | Example Values | Description |
 | - | - | - |
 | `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
+| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | `v2` | Activate the new LocalStack-native StepFunctions provider. |
 
 ### SQS
 
@@ -357,7 +359,8 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `ES_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` (formerly `off`) | **Deprecated.** Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 | `SKIP_INFRA_DOWNLOADS` | | **Deprecated.** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions)
 | `MOCK_UNIMPLEMENTED` | | **Deprecated.** Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
-
+| `ACTIVATE_NEW_POD_CLIENT` | `0`\|`1` (default) | **Deprecated.** Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
+| `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated.** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
 
 ## Profiles
 
