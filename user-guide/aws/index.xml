@@ -5359,7 +5359,110 @@ To disable a policy type, you can run:
 &lt;li>&lt;strong>Assign Resources&lt;/strong>: Click the backup plan and then click the &lt;strong>Actions&lt;/strong> button followed by clicking the &lt;strong>Assign Resources&lt;/strong> button in the modal dialog. Specify the backup plan ID and resources to assign in the modal dialog, and click &lt;strong>Submit&lt;/strong> to assign the resources to the backup plan.&lt;/li>
 &lt;li>&lt;strong>Delete Vault&lt;/strong>: Delete a backup vault by clicking the &lt;strong>Backup Vault&lt;/strong> or selecting multiple vaults. Click the &lt;strong>Actions&lt;/strong> button followed by clicking the &lt;strong>Delete Vault&lt;/strong> button or &lt;strong>Remove Selected&lt;/strong> to delete an individual vault or multiple vaults respectively in the modal dialog.&lt;/li>
 &lt;li>&lt;strong>Delete Backup Plan&lt;/strong>: Delete a backup plan by clicking the &lt;strong>Backup Plan&lt;/strong> or selecting multiple plans. Click the &lt;strong>Actions&lt;/strong> button followed by clicking the &lt;strong>Delete Backup Plan&lt;/strong> button or &lt;strong>Remove Selected&lt;/strong> to delete an individual plan or multiple plans respectively in the modal dialog.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: CloudFormation</title><link>/user-guide/aws/cloudformation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudformation/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Batch</title><link>/user-guide/aws/batch/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/batch/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Batch is a cloud-based service provided by Amazon Web Services (AWS) that simplifies the process of running batch computing workloads on the AWS cloud infrastructure. Batch allows you to efficiently process large volumes of data and run batch jobs without the need to manage and provision underlying compute resources.&lt;/p>
+&lt;p>LocalStack supports AWS Batch via the Pro/Team offering, allowing you to use the Batch APIs to automate and scale computational tasks in your local environment while handling batch workloads. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_batch/">API Coverage Page&lt;/a>, which provides information on the extent of Batch integration with LocalStack.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to AWS Batch and assumes basic knowledge of the AWS CLI and our &lt;code>awslocal&lt;/code> wrapper script.&lt;/p>
+&lt;p>Start your LocalStack container using your preferred method.
+We will demonstrate how you create and run a Batch job by following these steps:&lt;/p>
+&lt;ol>
+&lt;li>Creating a service role for the compute environment.&lt;/li>
+&lt;li>Creating the compute environment.&lt;/li>
+&lt;li>Creating a job queue using the compute environment.&lt;/li>
+&lt;li>Creating a job definition.&lt;/li>
+&lt;li>Submitting a job to the job queue.&lt;/li>
+&lt;/ol>
+&lt;h3 id="create-a-service-role">Create a service role&lt;/h3>
+&lt;p>You can create a role using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html">&lt;code>CreateRole&lt;/code>&lt;/a> API. For LocalStack, the service role simply needs to exist. However, when &lt;a href="/user-guide/aws/iam/#enforcing-iam-policies">enforcing IAM policies&lt;/a>, it is necessary that the policy is valid.&lt;/p>
+&lt;p>Run the following command to create a role with an empty policy document:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iam create-role \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-name myrole \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --assume-role-policy-document &amp;#34;{}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Role&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Path&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;/&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;RoleName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;myrole&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;RoleId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;AROAQAAAAAAAMKIDGTHVC&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/myrole&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreateDate&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;2023-08-10T20:52:06.196000Z&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;AssumeRolePolicyDocument&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">{}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-the-compute-environment">Create the compute environment&lt;/h3>
+&lt;p>You can use the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/batch/create-compute-environment.html">&lt;code>CreateComputeEnvironment&lt;/code>&lt;/a> API to create a compute environment. Run the following command using the role ARN above (&lt;code>arn:aws:iam::000000000000:role/myrole&lt;/code>), to create the compute environment:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal batch create-compute-environment \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --compute-environment-name myenv \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --type UNMANAGED \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --service-role &amp;lt;role-arn&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;computeEnvironmentName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;myenv&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;computeEnvironmentArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:batch:us-east-1:000000000000:compute-environment/myenv&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+While an unmanaged compute environment has been specified, there is no need to provision any compute resources for this setup to function. Your tasks will run independently in new Docker containers, alongside the LocalStack container.
+&lt;/div>
+&lt;h3 id="create-a-job-queue">Create a job queue&lt;/h3>
+&lt;p>You can fetch the ARN using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/batch/describe-compute-environments.html">&lt;code>DescribeComputeEnvironments&lt;/code>&lt;/a> API. Run the following command to fetch the ARN of the compute environment:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal batch describe-compute-environments --compute-environments myenv&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;computeEnvironments&amp;#34;&lt;/span>: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;computeEnvironmentName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;myenv&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;computeEnvironmentArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:batch:us-east-1:000000000000:compute-environment/myenv&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ecsClusterArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ecs:us-east-1:000000000000:cluster/OnDemand_Batch_f2faa82c-8c31-466d-ab22-579925d810ac&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;type&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;UNMANAGED&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;status&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;VALID&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;statusReason&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;Compute environment is available&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;serviceRole&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:iam::000000000000:role/myrole&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use the ARN to create the job queue using &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/batch/create-job-queue.html">&lt;code>CreateJobQueue&lt;/code>&lt;/a> API. Run the following command to create the job queue:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal batch create-job-queue \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --job-queue-name myqueue \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --priority 1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --compute-environment-order order=0,computeEnvironment=arn:aws:batch:us-east-1:000000000000:compute-environment/myenv \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --state ENABLED&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobQueueName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;myqueue&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobQueueArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:batch:us-east-1:000000000000:job-queue/myqueue&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-job-definition">Create a job definition&lt;/h3>
+&lt;p>Now, you can define what occurs during a job run, or at least what transpires by default. In this example, you can execute the &lt;code>busybox&lt;/code> container from DockerHub and initiate the command: &lt;code>sleep 30&lt;/code> within it. It&amp;rsquo;s important to note that you can override this command when submitting the job.&lt;/p>
+&lt;p>Run the following command to create the job definition using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/batch/register-job-definition.html">&lt;code>RegisterJobDefinition&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal batch register-job-definition \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --job-definition-name myjobdefn \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --type container \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --container-properties &amp;#39;{&amp;#34;image&amp;#34;:&amp;#34;busybox&amp;#34;,&amp;#34;vcpus&amp;#34;:1,&amp;#34;memory&amp;#34;:128,&amp;#34;command&amp;#34;:[&amp;#34;sleep&amp;#34;,&amp;#34;30&amp;#34;]}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobDefinitionName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;myjobdefn&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobDefinitionArn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:batch:us-east-1:000000000000:job-definition/myjobdefn:1&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;revision&amp;#34;&lt;/span>: &lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="submit-a-job-to-the-job-queue">Submit a job to the job queue&lt;/h3>
+&lt;p>You can now run a compute job. This command runs a job on the queue that you have set up previously, overriding the container command to run: &lt;code>sh -c &amp;quot;sleep 5; pwd&amp;quot;&lt;/code>. This command simulates work being done in the container.&lt;/p>
+&lt;p>Run the following command to submit a job to the job queue using the &lt;a href="https://docs.aws.amazon.com/cli/latest/reference/batch/submit-job.html">&lt;code>SubmitJob&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal batch submit-job \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --job-name myjob \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --job-queue myqueue \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --job-definition myjobdefn \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --container-overrides &amp;#39;{&amp;#34;command&amp;#34;:[&amp;#34;sh&amp;#34;, &amp;#34;-c&amp;#34;, &amp;#34;sleep 5; pwd&amp;#34;]}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You should see the following output:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobName&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;myjob&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;jobId&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;23027eb6-cce0-4365-a412-36917a2dfd03&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;p>As mentioned in the example above, the creation of a compute environment does not entail the provisioning of EC2 or Fargate instances. Rather, it executes Batch jobs on the local Docker daemon, operating alongside LocalStack.&lt;/p></description></item><item><title>User-Guide: CloudFormation</title><link>/user-guide/aws/cloudformation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/cloudformation/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>CloudFormation is a service provided by Amazon Web Services (AWS) that allows you to define and provision infrastructure as code. It enables you to create, update, and manage resources in a repeatable and automated manner using declarative templates. With CloudFormation, you can use JSON or YAML templates to define your desired infrastructure state. You can specify resources, their configurations, dependencies, and relationships in these templates.&lt;/p>
 &lt;p>LocalStack supports CloudFormation, allowing you to use the CloudFormation APIs in your local environment to declaratively define your architecture on the AWS, including resources such as S3 Buckets, Lambda Functions, and much more. The &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_cloudformation/">API coverage page&lt;/a> and &lt;a href="#feature-coverage">feature coverage&lt;/a> provides information on the extent of CloudFormation&amp;rsquo;s integration with LocalStack.&lt;/p>
@@ -11235,71 +11338,4 @@ Run the following command to create a Neptune instance:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating two test tables in ledger - &amp;#34;Vehicle&amp;#34; and &amp;#34;VehicleRegistration&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Running a query that joins data from the two tables
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v2&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v3&amp;#39;}}]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: RedShift</title><link>/user-guide/aws/redshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/redshift/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>RedShift is a cloud-based data warehouse solution which allows end users to aggregate huge volumes of data and parallel processing of data.
-RedShift is fully managed by AWS and serves as a petabyte-scale service which allows users to create visualization reports and critically analyze collected data.
-The query results can be saved to an S3 Data Lake while additional analytics can be provided by Athena or SageMaker.&lt;/p>
-&lt;p>LocalStack supports RedShift via the Pro/Team offering, allowing you to use the RedShift APIs in your local environment to analyze structured and semi-structured data across local data warehouses and data lakes.
-The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_redshift/">API coverage page&lt;/a>, which provides information on the extent of RedShift&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;p>This guide is designed for users new to RedShift and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
-&lt;p>Start your LocalStack container using your preferred method.
-We will demonstrate how to create a RedShift cluster and database while using a Glue Crawler to populate the metadata store with the schema of the RedShift database tables using the AWS CLI.&lt;/p>
-&lt;h3 id="define-the-variables">Define the variables&lt;/h3>
-&lt;p>First, we will define the variables we will use throughout this guide. Export the following variables in your shell:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">REDSHIFT_CLUSTER_IDENTIFIER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;redshiftcluster&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">REDSHIFT_SCHEMA_NAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;public&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">REDSHIFT_DATABASE_NAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;db1&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">REDSHIFT_TABLE_NAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;sales&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">REDSHIFT_USERNAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;crawlertestredshiftusername&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">REDSHIFT_PASSWORD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;crawlertestredshiftpassword&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">GLUE_DATABASE_NAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;gluedb&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">GLUE_CONNECTION_NAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;glueconnection&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">GLUE_CRAWLER_NAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;gluecrawler&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The above variables will be used to create a RedShift cluster, database, table, and user. You will also create a Glue database, connection, and crawler to populate the Glue Data Catalog with the schema of the RedShift database tables.&lt;/p>
-&lt;h3 id="create-a-redshift-cluster-and-database">Create a RedShift cluster and database&lt;/h3>
-&lt;p>You can create a RedShift cluster using the &lt;a href="https://docs.aws.amazon.com/redshift/latest/APIReference/API_CreateCluster.html">&lt;code>CreateCluster&lt;/code>&lt;/a> API. The following command will create a RedShift cluster with the variables defined above:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal redshift create-cluster \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-identifier $REDSHIFT_CLUSTER_IDENTIFIER \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --db-name $REDSHIFT_DATABASE_NAME \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-username $REDSHIFT_USERNAME \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-user-password $REDSHIFT_PASSWORD \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --node-type n1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can fetch the status of the cluster using the &lt;a href="https://docs.aws.amazon.com/redshift/latest/APIReference/API_DescribeClusters.html">&lt;code>DescribeClusters&lt;/code>&lt;/a> API. Run the following command to extract the URL of the cluster:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>REDSHIFT_URL=$(awslocal redshift describe-clusters \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-identifier $REDSHIFT_CLUSTER_IDENTIFIER | jq -r &amp;#39;(.Clusters[0].Endpoint.Address) + &amp;#34;:&amp;#34; + (.Clusters[0].Endpoint.Port|tostring)&amp;#39;)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="create-a-glue-database-connection-and-crawler">Create a Glue database, connection, and crawler&lt;/h3>
-&lt;p>You can create a Glue database using the &lt;a href="https://docs.aws.amazon.com/glue/latest/webapi/API_CreateDatabase.html">&lt;code>CreateDatabase&lt;/code>&lt;/a> API. The following command will create a Glue database:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-database \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database-input &amp;#34;{\&amp;#34;Name\&amp;#34;: \&amp;#34;$GLUE_DATABASE_NAME\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can create a connection to the RedShift cluster using the &lt;a href="https://docs.aws.amazon.com/glue/latest/webapi/API_CreateConnection.html">&lt;code>CreateConnection&lt;/code>&lt;/a> API. The following command will create a Glue connection with the RedShift cluster:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-connection \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --connection-input &amp;#34;{\&amp;#34;Name\&amp;#34;:\&amp;#34;$GLUE_CONNECTION_NAME\&amp;#34;, \&amp;#34;ConnectionType\&amp;#34;: \&amp;#34;JDBC\&amp;#34;, \&amp;#34;ConnectionProperties\&amp;#34;: {\&amp;#34;USERNAME\&amp;#34;: \&amp;#34;$REDSHIFT_USERNAME\&amp;#34;, \&amp;#34;PASSWORD\&amp;#34;: \&amp;#34;$REDSHIFT_PASSWORD\&amp;#34;, \&amp;#34;JDBC_CONNECTION_URL\&amp;#34;: \&amp;#34;jdbc:redshift://$REDSHIFT_URL/$REDSHIFT_DATABASE_NAME\&amp;#34;}}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Finally, you can create a Glue crawler using the &lt;a href="https://docs.aws.amazon.com/glue/latest/webapi/API_CreateCrawler.html">&lt;code>CreateCrawler&lt;/code>&lt;/a> API. The following command will create a Glue crawler:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue create-crawler \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name $GLUE_CRAWLER_NAME \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database-name $GLUE_DATABASE_NAME \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --targets &amp;#34;{\&amp;#34;JdbcTargets\&amp;#34;: [{\&amp;#34;ConnectionName\&amp;#34;: \&amp;#34;$GLUE_CONNECTION_NAME\&amp;#34;, \&amp;#34;Path\&amp;#34;: \&amp;#34;$REDSHIFT_DATABASE_NAME/%/$REDSHIFT_TABLE_NAME\&amp;#34;}]}&amp;#34; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role r1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="create-table-in-redshift">Create table in RedShift&lt;/h3>
-&lt;p>You can create a table in RedShift using the &lt;a href="https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_TABLE_NEW.html">&lt;code>CreateTable&lt;/code>&lt;/a> API. The following command will create a table in RedShift:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>REDSHIFT_STATEMENT_ID=$(awslocal redshift-data execute-statement \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-identifier $REDSHIFT_CLUSTER_IDENTIFIER \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database $REDSHIFT_DATABASE_NAME \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --sql \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;create table $REDSHIFT_TABLE_NAME(salesid integer not null, listid integer not null, sellerid integer not null, buyerid integer not null, eventid integer not null, dateid smallint not null, qtysold smallint not null, pricepaid decimal(8,2), commission decimal(8,2), saletime timestamp)&amp;#34; | jq -r .Id)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can check the status of the statement using the &lt;a href="https://docs.aws.amazon.com/redshift-data/latest/APIReference/API_DescribeStatement.html">&lt;code>DescribeStatement&lt;/code>&lt;/a> API. The following command will check the status of the statement:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>wait &amp;#34;awslocal redshift-data describe-statement \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --id $REDSHIFT_STATEMENT_ID&amp;#34; &amp;#34;.Status&amp;#34; &amp;#34;FINISHED&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="run-the-crawler">Run the crawler&lt;/h3>
-&lt;p>You can run the crawler using the &lt;a href="https://docs.aws.amazon.com/glue/latest/webapi/API_StartCrawler.html">&lt;code>StartCrawler&lt;/code>&lt;/a> API. The following command will run the crawler:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue start-crawler \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name $GLUE_CRAWLER_NAME&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can wait for the crawler to finish using the &lt;a href="https://docs.aws.amazon.com/glue/latest/webapi/API_GetCrawler.html">&lt;code>GetCrawler&lt;/code>&lt;/a> API. The following command will wait for the crawler to finish:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>wait &amp;#34;awslocal glue get-crawler \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name $GLUE_CRAWLER_NAME&amp;#34; &amp;#34;.Crawler.State&amp;#34; &amp;#34;READY&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can finally retrieve the schema of the table using the &lt;a href="https://docs.aws.amazon.com/glue/latest/webapi/API_GetTable.html">&lt;code>GetTable&lt;/code>&lt;/a> API. The following command will retrieve the schema of the table:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal glue get-table \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --database-name $GLUE_DATABASE_NAME \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --name &amp;#34;${REDSHIFT_DATABASE_NAME}_${REDSHIFT_SCHEMA_NAME}_${REDSHIFT_TABLE_NAME}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
