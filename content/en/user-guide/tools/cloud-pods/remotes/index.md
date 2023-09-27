@@ -79,7 +79,8 @@ localstack pod load my-pod s3-storage-aws
 ```
 
 ## ORAS remote storage
-The ORAS remote allows users to save Cloud Pods in registries such as Docker Hub, Nexus, or ECS registries.
+The ORAS remote allows users to save Cloud Pods in OCI-compatible registries such as Docker Hub, Nexus, or ECS registries.
+ORAS is an acronym for _OCI Registry as Service_ - more details about this standard can be found [here](https://oras.land/).
 
 As an example, let us demonstrate how it is possible to leverage Docker Hub to store and retrieve Cloud Pods.
 
