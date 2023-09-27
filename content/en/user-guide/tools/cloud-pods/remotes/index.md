@@ -103,7 +103,7 @@ Finally, I can save a pod with the just-configured remote, where `my-pod` is the
 localstack pod save my-pod oras-remote
 ```
 
-Similarly, I could perform the opposite operation and load a Cloud Pod from `oras-remote` with the following command:
+Similarly, we can perform the reverse operation and load a Cloud Pod from `oras-remote` with the following command:
 
 ```shell
 localstack pod load my-pod oras-remote
