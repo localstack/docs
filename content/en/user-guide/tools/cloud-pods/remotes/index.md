@@ -97,7 +97,7 @@ Then, I can use the CLI to create a new remote called `oras-remote`.
 localstack pod remote add oras-remote oras://{oras_username}:{oras_password}@registry.hub.docker.com/<docker_hub_id>
 ```
 
-Finally, I can save a pod with the just-configured remote, where `my-pod` is the name of the Cloud Pod while `oras-remote` is the name of the remote itself.
+Finally, we can save a pod with the just-configured remote, where `my-pod` is the name of the Cloud Pod while `oras-remote` is the name of the remote itself.
 
 ```shell
 localstack pod save my-pod oras-remote
