@@ -60,7 +60,7 @@ $ localstack pod remote add s3-storage-aws 's3://ls-pods-bucket-test/?access_key
 Finally, we can use the usual `pod` CLI command to create a new pod that targets the created remote.
 
 ```bash
-localstack pod remote my-pod s3-storage-aws
+localstack pod save my-pod s3-storage-aws
 ```
 
 After issuing the command, we can verify that the S3 buckets now contains the pod artifacts by simply running:
@@ -74,7 +74,7 @@ aws s3 ls s3://ls-pods-bucket-test
 With the `pod load` command we can later load the same pod saved into this remote:
 
 ```bash
-localstack pod remote load s3-storage-aws
+localstack pod load my-pod s3-storage-aws
 ```
 
 ## ORAS remote storage
