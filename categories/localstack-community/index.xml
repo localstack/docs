@@ -3389,35 +3389,4 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;h3 id="filter-log-events">Filter Log Events&lt;/h3>
 &lt;p>Similary, you can use filter-pattern to filter logs, like here:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal logs filter-log-events --log-group-name test-filter --filter-pattern &amp;#34;{$.foo = \&amp;#34;bar\&amp;#34;}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p></description></item><item><title>User-Guide: Simple Email Service (SES)</title><link>/user-guide/aws/ses/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/ses/</guid><description>
-&lt;h2 id="sent-emails">Sent Emails&lt;/h2>
-&lt;p>LocalStack keeps track of all sent emails for retrospection.
-The sent messages can be retrieved in following ways:&lt;/p>
-&lt;ul>
-&lt;li>Filesystem: All messages are saved to the state directory (see &lt;a href="/references/filesystem/">filesystem layout&lt;/a>).
-The files are saved as JSON in the &lt;code>ses/&lt;/code> subdirectory and organised by message ID.&lt;/li>
-&lt;li>API endpoint: LocalStack provides a service endpoint (&lt;code>/_aws/ses&lt;/code>) which can be used to return in-memory saved messages.
-A &lt;code>GET&lt;/code> call returns all messages.
-Query parameters &lt;code>id&lt;/code> and &lt;code>email&lt;/code> can be used to filter by message ID and message source respectively.
-A &lt;code>DELETE&lt;/code> call clears all messages from the memory.
-The query parameter &lt;code>id&lt;/code> can be used to delete only a specific message.&lt;/li>
-&lt;/ul>
-&lt;h2 id="smtp-integration">SMTP Integration&lt;/h2>
-&lt;p>LocalStack Pro ships with support for sending SES messages through an actual SMTP email server.&lt;/p>
-&lt;p>Please refer to the &lt;a href="/references/configuration/#emails">Configuration&lt;/a> guide for instructions on how to configure the connection parameters of your SMTP server (&lt;code>SMTP_HOST&lt;/code>/&lt;code>SMTP_USER&lt;/code>/&lt;code>SMTP_PASS&lt;/code>).&lt;/p>
-&lt;p>Once the SMTP server has been configured, the SES user interface in the Web app can be used to create a new email account (e.g., &lt;code>user1@yourdomain.com&lt;/code>).
-Emails can be sent via the command line (or SES client SDK):
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ses send-email \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, ...&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Hint&lt;/h4>
-&lt;p>If you receive a &amp;ldquo;Email address not verified message&amp;rdquo;, simply call&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>awslocal ses verify-email-identity --email-address user1@yourdomain.com
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;h2 id="user-interface">User Interface&lt;/h2>
-&lt;p>&lt;a href="https://app.localstack.cloud">LocalStack Web app&lt;/a> can be used to view the sent email messages, as illustrated in the screenshot below:&lt;/p>
-&lt;p>&lt;img src="sesInterface.png" alt="SES Web Interface">&lt;/p></description></item></channel></rss>
+&lt;/p></description></item></channel></rss>
