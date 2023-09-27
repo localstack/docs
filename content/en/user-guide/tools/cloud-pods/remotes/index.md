@@ -52,7 +52,7 @@ A possible option is to obtain credentials via [AWS SSO CLI](https://github.com/
 
 Afterwards, we add a new remote that explicitly targets an S3 bucket.
 With the command below, we are creating a new remote called `s3-storage-aws` that will store the Cloud Pods' artifacts into a S3 bucket name `ls-pods-bucket-test`.
-The `access_key_id` and `secret_access_key` placeholder will make sure that the AWS credentials are correctly passed to the container.
+The `access_key_id` and `secret_access_key` placeholders will make sure that the AWS credentials are correctly passed to the container.
 
 ```bash
 $ localstack pod remote add s3-storage-aws 's3://ls-pods-bucket-test/?access_key_id={access_key_id}&secret_access_key={secret_access_key}'
