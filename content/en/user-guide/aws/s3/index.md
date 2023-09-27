@@ -124,15 +124,13 @@ http://localhost:4566/<bucket-name>/<key-name> # path-style request
 A **Virtual-Hosted style** request will have the `bucket` as part of the `Host` header of your request.
 In order for LocalStack to be able to parse the bucket name from your request, your endpoint needs to be prefixed with `s3.`, like `s3.localhost.localstack.cloud`.
 
-
 If your endpoint cannot be prefixed with `s3.`, you should configure your SDK to use **Path style** request instead, and make the bucket part of the path. 
-
 
 By default, most SDKs will try to use **Virtual-Hosted style** requests and prepend your endpoint with the bucket name.
 However, if the endpoint is not prefixed by `s3.`, LocalStack will not be able to understand the request and it will most likely result in an error.
-You can either change the endpoint to an S3-specific one, or configure your SDK to use **Path style** requests instead.
-[See our SDKs page to configure them to access LocalStack and S3](https://docs.localstack.cloud/user-guide/integrations/sdks/).
 
+You can either change the endpoint to an S3-specific one, or configure your SDK to use **Path style** requests instead.
+Check out our [SDK documentation](https://docs.localstack.cloud/user-guide/integrations/sdks/) to learn how you can configure language SDKs to access LocalStack and S3.
 
 If your endpoint is not prefixed with `s3.`, all requests are treated as **Path style** requests.
 Using the `s3.localhost.localstack.cloud` endpoint URL is recommended for all requests aimed at S3.
