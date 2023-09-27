@@ -21,7 +21,7 @@ We currently offer two alternative remotes:
 - S3 bucket remote storage;
 - [ORAS](https://oras.land/) (OCI Registry as Storage) remote storage.
 
-Our CLI has been expanded and now offers commands to create and delete remotes:
+Our Cloud Pods command-line interface (CLI) has been expanded and now offers commands to create and delete remotes:
 
 ```bash
 localstack pod remote --help
