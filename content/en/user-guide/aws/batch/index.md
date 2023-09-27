@@ -1,35 +1,38 @@
 ---
-title: AWS Batch
+title: Batch
 linkTitle: Batch
-categories: [" LocalStack Pro"]
-description: >
-  Get started with AWS Batch on LocalStack
+description: Get started with Batch on LocalStack
 ---
 
 ## Introduction
 
-LocalStack supports AWS Batch via the Community/Pro/Team offering, allowing you to use the AWS Batch APIs in your local environment.
-The supported APIs are available on our API Coverage Page, which provides information on the extent of AWS Batch integration with LocalStack.
+Batch is a cloud-based service provided by Amazon Web Services (AWS) that simplifies the process of running batch computing workloads on the AWS cloud infrastructure. Batch allows you to efficiently process large volumes of data and run batch jobs without the need to manage and provision underlying compute resources.
+
+LocalStack supports AWS Batch via the Pro/Team offering, allowing you to use the Batch APIs to automate and scale computational tasks in your local environment while handling batch workloads. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_batch/), which provides information on the extent of Batch integration with LocalStack.
 
 ## Getting started
 
 This guide is designed for users new to AWS Batch and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
 
 Start your LocalStack container using your preferred method.
-We will create and run an AWS Batch job by following these steps:
+We will demonstrate how you create and run a Batch job by following these steps:
 
-1. Create a service role for the compute environment
-2. Create the compute environment
-3. Create a job queue using the compute environment
-4. Create a job definition
-5. Submit a job to the job queue
+1. Creating a service role for the compute environment.
+2. Creating the compute environment.
+3. Creating a job queue using the compute environment.
+4. Creating a job definition.
+5. Submitting a job to the job queue.
 
 ### Create a service role
 
-For LocalStack the service role just has to exist, however when [enforcing IAM policies]({{< ref "user-guide/aws/iam#enforcing-iam-policies" >}}) the policy must be a valid one.
+You can create a role using the [`CreateRole`](https://docs.aws.amazon.com/cli/latest/reference/iam/create-role.html) API. For LocalStack, the service role simply needs to exist. However, when [enforcing IAM policies]({{< ref "user-guide/aws/iam#enforcing-iam-policies" >}}), it is necessary that the policy is valid.
+
+Run the following command to create a role with an empty policy document:
 
 {{< command >}}
-$ awslocal iam create-role --role-name myrole  --assume-role-policy-document "{}"
+$ awslocal iam create-role \
+    --role-name myrole  \
+    --assume-role-policy-document "{}"
 {{< / command >}}
 
 You should see the following output:
@@ -47,9 +50,9 @@ You should see the following output:
 }
 ```
 
-###  Create the compute environment
+### Create the compute environment
 
-Using the role ARN above (`arn:aws:iam::000000000000:role/myrole`), create the compute environment
+You can use the [`CreateComputeEnvironment`](https://docs.aws.amazon.com/cli/latest/reference/batch/create-compute-environment.html) API to create a compute environment. Run the following command using the role ARN above (`arn:aws:iam::000000000000:role/myrole`), to create the compute environment:
 
 {{< command >}}
 $ awslocal batch create-compute-environment \
@@ -67,12 +70,13 @@ You should see the following output:
 }
 ```
 
-Note: even though we have specified an unmanaged compute environment, no compute resources need to be provisioned for this to work.
-Your tasks run individually in new docker containers alongside the LocalStack container.
+{{<alert title="Note">}}
+While an unmanaged compute environment has been specified, there is no need to provision any compute resources for this setup to function. Your tasks will run independently in new Docker containers, alongside the LocalStack container.
+{{</alert>}}
 
-###  Create a job queue using the compute environment
+### Create a job queue
 
-First fetch the ARN of the compute environment you created in the previous step
+You can fetch the ARN using the [`DescribeComputeEnvironments`](https://docs.aws.amazon.com/cli/latest/reference/batch/describe-compute-environments.html) API. Run the following command to fetch the ARN of the compute environment:
 
 {{< command >}}
 $ awslocal batch describe-compute-environments --compute-environments myenv
@@ -96,7 +100,7 @@ You should see the following output:
 }
 ```
 
-Then use the ARN to create the job queue using this compute environment
+You can use the ARN to create the job queue using [`CreateJobQueue`](https://docs.aws.amazon.com/cli/latest/reference/batch/create-job-queue.html) API. Run the following command to create the job queue:
 
 {{< command >}}
 $ awslocal batch create-job-queue \
@@ -115,12 +119,11 @@ You should see the following output:
 }
 ```
 
-###  Create a job definition
+### Create a job definition
 
-Now we need to define what happens during a job run, or at least what happens by default.
+Now, you can define what occurs during a job run, or at least what transpires by default. In this example, you can execute the `busybox` container from DockerHub and initiate the command: `sleep 30` within it. It's important to note that you can override this command when submitting the job.
 
-In this example we will run the `busybox` container from DockerHub, and run the command: `sleep 30` inside it.
-We will override this command when we submit the job.
+Run the following command to create the job definition using the [`RegisterJobDefinition`](https://docs.aws.amazon.com/cli/latest/reference/batch/register-job-definition.html) API:
 
 {{< command >}}
 $ awslocal batch register-job-definition \
@@ -139,12 +142,11 @@ You should see the following output:
 }
 ```
 
-###  Submit a job to the job queue
+### Submit a job to the job queue
 
-Finally after all this setup, we can run a compute job.
+You can now run a compute job. This command runs a job on the queue that you have set up previously, overriding the container command to run: `sh -c "sleep 5; pwd"`. This command simulates work being done in the container. 
 
-This command runs a job on the queue that we set up previously, overriding the container command to run: `sh -c "sleep 5; pwd"`.
-This command simulates work being done in the container.
+Run the following command to submit a job to the job queue using the [`SubmitJob`](https://docs.aws.amazon.com/cli/latest/reference/batch/submit-job.html) API:
 
 {{< command >}}
 $ awslocal batch submit-job \
@@ -165,5 +167,4 @@ You should see the following output:
 
 ## Limitations 
 
-As stated in the example above, creating a compute environment does not create EC2 or Fargrate instances.
-Instead, it runs Batch jobs on the local Docker daemon, alongside LocalStack.
+As mentioned in the example above, the creation of a compute environment does not entail the provisioning of EC2 or Fargate instances. Rather, it executes Batch jobs on the local Docker daemon, operating alongside LocalStack.
