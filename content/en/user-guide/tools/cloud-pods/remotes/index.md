@@ -114,5 +114,5 @@ If not explicitly specified, all Cloud Pods commands target the LocalStack Platf
 Please note that the CLI needs to be properly authenticated against our Platform, and a Team/Enterprise subscription is required.
 
 The configuration for a custom remote is saved inside the LocalStack container.
-Therefore, if you want to share Cloud Pods within your team using a custom remote, each team member would need to have the same remote configuration.
+Therefore, if you want to share Cloud Pods within your team using a custom remote, each team member would need to define the same remote configuration.
 Once added, a remote is persisted across LocalStack restarts.
