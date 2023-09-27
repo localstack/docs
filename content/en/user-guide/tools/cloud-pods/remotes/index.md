@@ -21,7 +21,7 @@ We currently offer two alternative types of remotes:
 - S3 bucket remote storage;
 - [ORAS](https://oras.land/) (OCI Registry as Storage) remote storage.
 
-Our Cloud Pods command-line interface (CLI) has been expanded and now offers commands to create and delete remotes:
+Our Cloud Pods command-line interface (CLI) has been expanded and now offers commands to create, delete, and list remotes:
 
 ```bash
 localstack pod remote --help
@@ -35,9 +35,8 @@ Options:
 Commands:
   add     Add a remote
   delete  Delete a remote
+  list    List the available remotes
 ```
-
-Moreover, the `localstack pod remotes` command will show all the registered remotes.
 
 ## S3 bucket remote storage
 The S3 remote lets you store Cloud Pods assets into an existing S3 bucket in a real AWS account.
@@ -54,15 +53,15 @@ Afterwards, we add a new remote that explicitly targets an S3 bucket.
 With the command below, we are creating a new remote called `s3-storage-aws` that will store the Cloud Pods' artifacts into an S3 bucket named `ls-pods-bucket-test`.
 The `access_key_id` and `secret_access_key` placeholders will make sure that the AWS credentials are correctly passed to the container.
 
-```bash
+{{< command >}}
 $ localstack pod remote add s3-storage-aws 's3://ls-pods-bucket-test/?access_key_id={access_key_id}&secret_access_key={secret_access_key}'
-```
+{{< / command >}}
 
 Finally, we can use the usual `pod` CLI command to create a new pod that targets the created remote.
 
-```bash
-localstack pod save my-pod s3-storage-aws
-```
+{{< command >}}
+$ localstack pod save my-pod s3-storage-aws
+{{< / command >}}
 
 After issuing the command, we can verify that the S3 buckets now contains the pod artifacts by simply running:
 
@@ -74,9 +73,9 @@ aws s3 ls s3://ls-pods-bucket-test
 
 With the `pod load` command we can later load the same pod saved into this remote:
 
-```bash
-localstack pod load my-pod s3-storage-aws
-```
+{{< command >}}
+$ localstack pod load my-pod s3-storage-aws
+{{< / command >}}
 
 ## ORAS remote storage
 The ORAS remote allows users to save Cloud Pods in OCI-compatible registries such as Docker Hub, Nexus, or ECS registries.
@@ -94,21 +93,21 @@ export ORAS_PASSWORD=ILoveLocalStack1!
 
 Then, I can use the CLI to create a new remote called `oras-remote`.
 
-```shell
-localstack pod remote add oras-remote oras://{oras_username}:{oras_password}@registry.hub.docker.com/<docker_hub_id>
-```
+{{< command >}}
+$ localstack pod remote add oras-remote 'oras://{oras_username}:{oras_password}@registry.hub.docker.com/<docker_hub_id>'
+{{< / command >}}
 
 Finally, we can save a pod with the just-configured remote, where `my-pod` is the name of the Cloud Pod while `oras-remote` is the name of the remote itself.
 
-```shell
-localstack pod save my-pod oras-remote
-```
+{{< command >}}
+$ localstack pod save my-pod oras-remote
+{{< / command >}}
 
 Similarly, we can perform the reverse operation and load a Cloud Pod from `oras-remote` with the following command:
 
-```shell
-localstack pod load my-pod oras-remote
-```
+{{< command >}}
+$ localstack pod load my-pod oras-remote
+{{< / command >}}
 
 ### Miscellaneous
 If not explicitly specified, all Cloud Pods commands target the LocalStack Platform as storage remote by default. 
