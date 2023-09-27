@@ -40,7 +40,7 @@ Commands:
 Moreover, the `localstack pod remotes` command will show all the registered remotes.
 
 ## S3 bucket remote storage
-The S3 storage lets you store Cloud Pods into any arbitrary S3 bucket.
+The S3 remote lets you store Cloud Pods assets into an existing S3 bucket in a real AWS account.
 The first step is to export proper AWS credentials in the terminal session.
 
 ```bash
