@@ -113,6 +113,6 @@ localstack pod load my-pod oras-remote
 If not explicitly specified, all Cloud Pods commands target the LocalStack Platform as storage remote by default. 
 Please note that the CLI needs to be properly authenticated against our Platform, and a Team/Enterprise subscription is required.
 
-The configuration for a custom remote is saved inside the LocalStack container.
+The configurations for custom remotes are saved inside the [LocalStack volume directory](https://docs.localstack.cloud/references/filesystem/#localstack-volume-directory) and maintained by the LocalStack container itself.
 Therefore, if you want to share Cloud Pods within your team using a custom remote, each team member would need to define the same remote configuration.
 Once added, a remote is persisted across LocalStack restarts.
