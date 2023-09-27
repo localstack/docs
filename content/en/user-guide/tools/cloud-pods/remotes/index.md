@@ -9,7 +9,7 @@ aliases:
 ---
 
 {{< alert title="Beta">}}
-Cloud Pod Remotes is a feature that is currently in beta.
+Cloud Pod Remotes is a feature that is currently in beta (available in the Team product tier).
 {{< /alert >}}
 
 A remote is the place where your Cloud Pods are stored.
