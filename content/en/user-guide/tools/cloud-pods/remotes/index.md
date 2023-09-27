@@ -17,7 +17,7 @@ By default, we store the Cloud Pods' artifacts in the LocalStack platform.
 Although we provide the highest levels of security and isolation (incl. encryption in transit and at rest), there may be situations (e.g., due to data regulation and sovereignty) where your organization does not permit storing Cloud Pod assets in a remote storage infrastructure. 
 Hence, you may want to persist Cloud Pods in a different storage location that is on-premise and fully under your control.
 
-We currently offer two alternative remotes:
+We currently offer two alternative types of remotes:
 - S3 bucket remote storage;
 - [ORAS](https://oras.land/) (OCI Registry as Storage) remote storage.
 
