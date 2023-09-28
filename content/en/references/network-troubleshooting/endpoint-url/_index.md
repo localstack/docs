@@ -24,32 +24,23 @@ You can also use the `EDGE_PORT` [configuration variable]({{< ref "references/co
 
 {{< figure src="../images/4.svg" width="400" >}}
 
-Suppose your code is running inside an ECS container that LocalStack has created.
-
-{{< tabpane text=true >}}
-{{< tab header="Latest/2.3+" >}}
-The LocalStack instance is available at the domain <code>localhost.localstack.cloud</code>.
-If this does not work, consider opening the "Other" tab.
-{{< / tab >}}
-{{< tab header="Other" >}}
-To enable access to the LocalStack instance, it's advisable to start LocalStack in a <a href="https://docs.docker.com/network/bridge/">user-defined network</a>, and then set the <code>MAIN_DOCKER_NETWORK</code> environment variable to this network's name.
-This allows the code running inside the container to access the LocalStack instance using its hostname. For example:
+Suppose your code is running inside an ECS container that LocalStack has created. To enable access to the LocalStack instance, it's advisable to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and then set the `MAIN_DOCKER_NETWORK` environment variable to this network's name. This allows the code running inside the container to access the LocalStack instance using its hostname. For example:
 
 {{<tabpane>}}
 {{<tab header="CLI" lang="bash">}}
 # create the network
 docker network create my-network
-# launch LocalStack
+# launch localstack
 MAIN_DOCKER_NETWORK=my-network DOCKER_FLAGS="--network my-network" localstack start
-# then your code can access LocalStack at its container name (by default: localstack_main)
+# then your code can access localstack at its container name (by default: localstack_main)
 aws --endpoint-url http://localstack_main:4566 s3api list-buckets
 {{</tab>}}
 {{<tab header="Docker" lang="bash">}}
 # create the network
 docker network create my-network
-# launch LocalStack
+# launch localstack
 docker run --rm -it --network my-network -e MAIN_DOCKER_NETWORK=my-network <other flags> localstack/localstack[-pro]
-# then your code can access LocalStack at its container name (by default: localstack_main)
+# then your code can access localstack at its container name (by default: localstack_main)
 aws --endpoint-url http://localstack_main:4566 s3api list-buckets
 {{</tab>}}
 {{<tab header="docker-compose.yml" lang="yml">}}
@@ -69,9 +60,6 @@ networks:
 # endpoint url
 {{</tab>}}
 {{</tabpane>}}
-
-{{< / tab >}}
-{{< / tabpane >}}
 
 ## From your container
 
