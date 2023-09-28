@@ -75,7 +75,89 @@ networks:
 
 {{< figure src="../images/7.svg" width="400" >}}
 
-Suppose you're accessing AWS resources such as S3 in LocalStack by running your application code in a container. To facilitate access to LocalStack from within the container, it's recommended to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/) and set the MAIN_DOCKER_NETWORK environment variable to the network's name. Doing so enables the containerized code to connect to the LocalStack instance using its hostname. For instance:
+Suppose you're accessing AWS resources such as S3 in LocalStack by running your application code in a container.
+Your application container should be configured to use LocalStack as its DNS server.
+To do this:
+
+* add a user-managed docker network;
+* either determine your LocalStack container IP, or configure your LocalStack container to have a fixed known IP address;
+* set the DNS server of your application container to the IP address of the LocalStack container.
+
+{{% tabpane %}}
+{{< tab header="CLI" lang="bash" >}}
+# start localstack
+localstack start -d --network ls
+localstack wait
+
+# get the ip address of the LocalStack container
+docker inspect localstack_main | \
+	jq -r '.[0].NetworkSettings.Networks | to_entries | .[].value.IPAddress'
+# prints 172.27.0.2
+
+# run your application container
+docker run --rm -it --dns 172.27.0.2 --network ls <arguments> <image name>
+{{< / tab >}}
+{{< tab header="Docker" lang="bash" >}}
+# start localstack
+docker network create ls
+docker run --rm -it --network ls --name localstack_main <other flags> localstack/localstack[-pro]
+
+# get the ip address of the LocalStack container
+docker inspect localstack_main | \
+	jq -r '.[0].NetworkSettings.Networks | to_entries | .[].value.IPAddress'
+# prints 172.27.0.2
+
+# run your application container
+docker run --rm -it --dns 172.27.0.2 --network ls <arguments> <image name>
+{{< / tab >}}
+{{< tab header="docker-compose.yml" lang="yaml" >}}
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack
+    ports:
+      # Now only required if you need to access LocalStack from the host
+      - "127.0.0.1:4566:4566"            
+      # Now only required if you need to access LocalStack from the host
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - DEBUG=${DEBUG-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      ls:
+        # Set the container IP address in the 10.0.2.0/24 subnet
+        ipv4_address: 10.0.2.20
+
+  application:
+    image: ghcr.io/localstack/localstack-docker-debug:main
+    entrypoint: ""
+    command: ["sleep", "infinity"]
+    dns:
+      # Set the DNS server to be the LocalStack container
+      - 10.0.2.20
+    networks:
+      - ls
+
+networks:
+  ls:
+    ipam:
+      config:
+        # Specify the subnet range for IP address allocation
+        - subnet: 10.0.2.0/24
+{{< / tab >}}
+{{% / tabpane %}}
+
+
+<details>
+<summary>For LocalStack versions before 2.3.0</summary>
+To facilitate access to LocalStack from within the container, it's recommended to start LocalStack in a <a href="https://docs.docker.com/network/bridge/">user-defined network</a> and set the <code>MAIN_DOCKER_NETWORK</code> environment variable to the network's name.
+Doing so enables the containerized code to connect to the LocalStack instance using its hostname.
+For instance:
 
 {{<tabpane>}}
 {{<tab header="CLI" lang="bash">}}
@@ -186,6 +268,8 @@ To access LocalStack resources from the *application* container, you can make re
 For optimal configuration, we recommend using a private IP address range, such as 10.0.0.0/8, for your containers. This helps avoid conflicts with IP addresses assigned by Docker.
 Additionally, it's advisable to avoid using `X.X.X.1` as an IP address, as it is commonly reserved for the host within that subnet.
 {{</alert>}}
+
+</details>
 
 ## From a separate host
 
