@@ -24,7 +24,12 @@ For example, suppose you have created an OpenSearch cluster using LocalStack and
 
 Check out our documentation while [using the endpoint URL]({{<ref "endpoint-url#from-a-container-localstack-created" >}}).
 
-The Lambda service in LocalStack also supports the `HOSTNAME_FROM_LAMBDA` environment variable, which can be handy if LocalStack is reachable through a specific hostname. Suppose you're running LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/) using Docker, where the LocalStack container can be accessed from other containers in the network using its service name. In that case, you can set the `HOSTNAME_FROM_LAMBDA` environment variable to this value to help resolve any issues with lambda functions accessing resources created by LocalStack.
+<details>
+<summary>For LocalStack versions before 2.3.0</summary>
+The Lambda service in LocalStack also supports the <code>HOSTNAME_FROM_LAMBDA</code> environment variable, which can be handy if LocalStack is reachable through a specific hostname.
+Suppose you're running LocalStack in a <a href="https://docs.docker.com/network/bridge/">user-defined network</a> using Docker, where the LocalStack container can be accessed from other containers in the network using its service name.
+In that case, you can set the <code>HOSTNAME_FROM_LAMBDA</code> environment variable to this value to help resolve any issues with lambda functions accessing resources created by LocalStack.
+</details>
 
 ## From your container
 
