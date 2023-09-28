@@ -24,7 +24,15 @@ You can also use the `EDGE_PORT` [configuration variable]({{< ref "references/co
 
 {{< figure src="../images/4.svg" width="400" >}}
 
-Suppose your code is running inside an ECS container that LocalStack has created. To enable access to the LocalStack instance, it's advisable to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and then set the `MAIN_DOCKER_NETWORK` environment variable to this network's name. This allows the code running inside the container to access the LocalStack instance using its hostname. For example:
+Suppose your code is running inside an ECS container that LocalStack has created. 
+
+The LocalStack instance is available at the domain `localhost.localstack.cloud`.
+
+<details>
+<summary>For LocalStack versions before 2.3.0</summary>
+To enable access to the LocalStack instance, it's advisable to start LocalStack in a [user-defined network](https://docs.docker.com/network/bridge/), and then set the `MAIN_DOCKER_NETWORK` environment variable to this network's name.
+This allows the code running inside the container to access the LocalStack instance using its hostname.
+For example:
 
 {{<tabpane>}}
 {{<tab header="CLI" lang="bash">}}
@@ -60,6 +68,8 @@ networks:
 # endpoint url
 {{</tab>}}
 {{</tabpane>}}
+</details>
+
 
 ## From your container
 
