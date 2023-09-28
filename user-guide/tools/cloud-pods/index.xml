@@ -104,22 +104,21 @@
 &lt;li>Users are responsible for storing their saved states. Pro users can use our Cloud Pods platform to make storing and sharing their saved states easier.&lt;/li>
 &lt;li>Cloud Pods for Community users do not support versioning out of the box.&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: Cloud Pod Remotes</title><link>/user-guide/tools/cloud-pods/remotes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/remotes/</guid><description>
+&lt;p>A remote is the location where Cloud Pods are stored. By default, Cloud Pod artifacts are stored in the LocalStack platform. However, if your organization&amp;rsquo;s data regulations or sovereignty requirements prohibit storing Cloud Pod assets in a remote storage infrastructure, you have the option to persist Cloud Pods in an on-premises storage location under your complete control.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Beta&lt;/h4>
-Cloud Pod Remotes is a feature that is currently in beta (available in the Team product tier).
+Cloud Pod Remotes is a beta feature exclusively accessible within the Team product tier.
 &lt;/div>
-&lt;p>A remote is the place where your Cloud Pods are stored.
-By default, we store the Cloud Pods&amp;rsquo; artifacts in the LocalStack platform.
-Although we provide the highest levels of security and isolation (incl. encryption in transit and at rest), there may be situations (e.g., due to data regulation and sovereignty) where your organization does not permit storing Cloud Pod assets in a remote storage infrastructure.
-Hence, you may want to persist Cloud Pods in a different storage location that is on-premise and fully under your control.&lt;/p>
-&lt;p>We currently offer two alternative types of remotes:&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>LocalStack provides two types of alternative remotes:&lt;/p>
 &lt;ul>
-&lt;li>S3 bucket remote storage;&lt;/li>
+&lt;li>S3 bucket remote storage.&lt;/li>
 &lt;li>&lt;a href="https://oras.land/">ORAS&lt;/a> (OCI Registry as Storage) remote storage.&lt;/li>
 &lt;/ul>
-&lt;p>Our Cloud Pods command-line interface (CLI) has been expanded and now offers commands to create, delete, and list remotes:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>localstack pod remote --help
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack pod remote &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>OPTIONS&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span> COMMAND &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>ARGS&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>...
+&lt;p>Cloud Pods command-line interface (CLI) allows you to create, delete, and list remotes.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod remote --help
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack pod remote [OPTIONS] COMMAND [ARGS]...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Manage cloud pod remotes
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -130,44 +129,39 @@ Hence, you may want to persist Cloud Pods in a different storage location that i
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> add Add a remote
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> delete Delete a remote
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> list List the available remotes
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="s3-bucket-remote-storage">S3 bucket remote storage&lt;/h2>
-&lt;p>The S3 remote lets you store Cloud Pods assets into an existing S3 bucket in a real AWS account.
-The first step is to export proper AWS credentials in the terminal session.&lt;/p>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="s3-bucket-remote-storage">S3 bucket remote storage&lt;/h2>
+&lt;p>The S3 remote enables you to store Cloud Pod assets in an existing S3 bucket within an actual AWS account. The initial step is to export the necessary AWS credentials within the terminal session.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">AWS_ACCESS_KEY_ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">AWS_SECRET_ACCESS_KEY&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>...
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>A possible option is to obtain credentials via &lt;a href="https://github.com/synfinatic/aws-sso-cli">AWS SSO CLI&lt;/a>.&lt;/p>
-&lt;p>Afterwards, we add a new remote that explicitly targets an S3 bucket.
-With the command below, we are creating a new remote called &lt;code>s3-storage-aws&lt;/code> that will store the Cloud Pods&amp;rsquo; artifacts into an S3 bucket named &lt;code>ls-pods-bucket-test&lt;/code>.
-The &lt;code>access_key_id&lt;/code> and &lt;code>secret_access_key&lt;/code> placeholders will make sure that the AWS credentials are correctly passed to the container.&lt;/p>
+&lt;p>One option is to acquire credentials using &lt;a href="https://github.com/synfinatic/aws-sso-cli">AWS SSO CLI&lt;/a>.&lt;/p>
+&lt;p>Next, we establish a new remote specifically designed for an S3 bucket. By running the following command, we create a remote named &lt;code>s3-storage-aws&lt;/code> responsible for storing Cloud Pod artifacts in an S3 bucket called &lt;code>ls-pods-bucket-test&lt;/code>.&lt;/p>
+&lt;p>The &lt;code>access_key_id&lt;/code> and &lt;code>secret_access_key&lt;/code> placeholders ensure the correct transmission of AWS credentials to the container.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod remote add s3-storage-aws &amp;#39;s3://ls-pods-bucket-test/?access_key_id={access_key_id}&amp;amp;secret_access_key={secret_access_key}&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Finally, we can use the usual &lt;code>pod&lt;/code> CLI command to create a new pod that targets the created remote.&lt;/p>
+&lt;p>Lastly, you can utilize the standard &lt;code>pod&lt;/code> CLI command to generate a new Cloud Pod that points to the previously established remote.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save my-pod s3-storage-aws&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>After issuing the command, we can verify that the S3 buckets now contains the pod artifacts by simply running:&lt;/p>
+&lt;p>Once the command has been executed, you can confirm the presence of Cloud Pod artifacts in the S3 bucket by simply running:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>aws s3 ls s3://ls-pods-bucket-test
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-09-27 13:50:10 &lt;span style="color:#0000cf;font-weight:bold">83650&lt;/span> localstack-pod-my-pod-state-1.zip
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-09-27 13:50:11 &lt;span style="color:#0000cf;font-weight:bold">85103&lt;/span> localstack-pod-my-pod-version-1.zip
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>With the &lt;code>pod load&lt;/code> command we can later load the same pod saved into this remote:&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use the &lt;code>pod load&lt;/code> command to load the same pod that was previously saved in this remote:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load my-pod s3-storage-aws&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="oras-remote-storage">ORAS remote storage&lt;/h2>
-&lt;p>The ORAS remote allows users to save Cloud Pods in OCI-compatible registries such as Docker Hub, Nexus, or ECS registries.
-ORAS is an acronym for &lt;em>OCI Registry as Service&lt;/em> - more details about this standard can be found &lt;a href="https://oras.land/">here&lt;/a>.&lt;/p>
-&lt;p>As an example, let us demonstrate how it is possible to leverage Docker Hub to store and retrieve Cloud Pods.&lt;/p>
-&lt;p>At first, we need to configure the new remote with the LocalStack CLI.
-We are going to export two environment variables, &lt;code>ORAS_USERNAME&lt;/code> and &lt;code>ORAS_PASSWORD&lt;/code> that are needed to authenticate with DockerHub.&lt;/p>
+&lt;p>The ORAS remote enables users to store Cloud Pods in OCI-compatible registries like Docker Hub, Nexus, or ECS registries. ORAS stands for &amp;ldquo;OCI Registry as Service,&amp;rdquo; and you can find additional information about this standard &lt;a href="https://oras.land/">on the official website&lt;/a>.&lt;/p>
+&lt;p>For example, let&amp;rsquo;s illustrate how you can utilize Docker Hub to store and retrieve Cloud Pods.&lt;/p>
+&lt;p>To begin, you must configure the new remote using the LocalStack CLI. You&amp;rsquo;ll need to export two essential environment variables, &lt;code>ORAS_USERNAME&lt;/code> and &lt;code>ORAS_PASSWORD&lt;/code>, which are necessary for authenticating with Docker Hub.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ORAS_USERNAME&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>docker_hub_id
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">ORAS_PASSWORD&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>ILoveLocalStack1!
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then, I can use the CLI to create a new remote called &lt;code>oras-remote&lt;/code>.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can now use the CLI to create a new remote called &lt;code>oras-remote&lt;/code>.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod remote add oras-remote &amp;#39;oras://{oras_username}:{oras_password}@registry.hub.docker.com/&amp;lt;docker_hub_id&amp;gt;&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Finally, we can save a pod with the just-configured remote, where &lt;code>my-pod&lt;/code> is the name of the Cloud Pod while &lt;code>oras-remote&lt;/code> is the name of the remote itself.&lt;/p>
+&lt;p>Lastly, you can store a pod using the newly configured remote, where &lt;code>my-pod&lt;/code> represents the Cloud Pod&amp;rsquo;s name, and &lt;code>oras-remote&lt;/code> is the remote&amp;rsquo;s name.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save my-pod oras-remote&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Similarly, we can perform the reverse operation and load a Cloud Pod from &lt;code>oras-remote&lt;/code> with the following command:&lt;/p>
+&lt;p>Likewise, you can execute the reverse operation to load a Cloud Pod from &lt;code>oras-remote&lt;/code> using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod load my-pod oras-remote&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="miscellaneous">Miscellaneous&lt;/h3>
-&lt;p>If not explicitly specified, all Cloud Pods commands target the LocalStack Platform as storage remote by default.
-Please note that the CLI needs to be properly authenticated against our Platform, and a Team/Enterprise subscription is required.&lt;/p>
-&lt;p>The configurations for custom remotes are saved inside the &lt;a href="https://docs.localstack.cloud/references/filesystem/#localstack-volume-directory">LocalStack volume directory&lt;/a> and maintained by the LocalStack container itself.
-Therefore, if you want to share Cloud Pods within your team using a custom remote, each team member would need to define the same remote configuration.
-Once added, a remote is persisted across LocalStack restarts.&lt;/p></description></item><item><title>User-Guide: Cloud Pods CLI command reference</title><link>/user-guide/tools/cloud-pods/pods-cli/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/pods-cli/</guid><description>
+&lt;p>Unless explicitly specified, all Cloud Pods commands default to targeting the LocalStack Platform as the storage remote. It&amp;rsquo;s important to note that the CLI must be authenticated correctly with our Platform, and a Team/Enterprise subscription is mandatory.&lt;/p>
+&lt;p>Custom remote configurations are stored within the &lt;a href="https://docs.localstack.cloud/references/filesystem/#localstack-volume-directory">LocalStack volume directory&lt;/a> and are managed by the LocalStack container. Consequently, when sharing Cloud Pods among your team using a custom remote, each team member must define the identical remote configuration. Once added, a remote persists even after LocalStack restarts.&lt;/p></description></item><item><title>User-Guide: Cloud Pods CLI command reference</title><link>/user-guide/tools/cloud-pods/pods-cli/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/pods-cli/</guid><description>
 &lt;p>This reference provides descriptions and example commands for LocalStack Cloud Pods CLI (&lt;code>pod&lt;/code>) commands.&lt;/p>
 &lt;h2 id="syntax">Syntax&lt;/h2>
 &lt;p>Use the following syntax to run &lt;code>localstack pod&lt;/code> commands from your terminal window:&lt;/p>
