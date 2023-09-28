@@ -27,10 +27,10 @@ LocalStack does not enforce IAM for cross-account access by default.
 Use the `ENFORCE_IAM` [configuration]({{< ref "configuration#iam" >}}) option to enable it.
 {{< /alert >}}
 
-### EC2 VPCs
+### EC2 Peering
 
-It is possible to peer VPCs that are in a different region or account than the requester.
-Ensure that the `PeerRegion` and `PeerOwnerId` arguments are correctly set when creating VPC peering connections.
+It is possible to create peered VPCs and transit gateway peering attachments that are in a different region or account than the requester.
+Ensure that the `PeerRegion` and `PeerOwnerId` arguments are correctly set when creating these resources.
 
 ### KMS keys
 
