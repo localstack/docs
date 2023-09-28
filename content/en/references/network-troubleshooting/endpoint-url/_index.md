@@ -27,6 +27,7 @@ You can also use the `EDGE_PORT` [configuration variable]({{< ref "references/co
 Suppose your code is running inside an ECS container that LocalStack has created. 
 
 The LocalStack instance is available at the domain `localhost.localstack.cloud`.
+All subdomains of `localhost.localstack.cloud` also resolve to the LocalStack instance, e.g. API Gateway default URLs.
 
 <details>
 <summary>For LocalStack versions before 2.3.0</summary>
@@ -77,7 +78,10 @@ networks:
 
 Suppose you're accessing AWS resources such as S3 in LocalStack by running your application code in a container.
 Your application container should be configured to use LocalStack as its DNS server.
-To do this:
+Once this is done, the domain name `localhost.localstack.cloud` will resolve to the LocalStack container.
+All subdomains of `localhost.localstack.cloud` will also resolve to the LocalStack instance, e.g. API Gateway default URLs.
+
+To configure your application container:
 
 * add a user-managed docker network;
 * either determine your LocalStack container IP, or configure your LocalStack container to have a fixed known IP address;
