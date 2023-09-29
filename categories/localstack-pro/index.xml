@@ -2474,16 +2474,23 @@ id="tabs-07-01" role="tabpanel" aria-labelled-by="tabs-07-01-tab">
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice">Spring Cloud Function on LocalStack (Kotlin JVM)&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>User-Guide: DNS Server</title><link>/user-guide/tools/transparent-endpoint-injection/dns-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/transparent-endpoint-injection/dns-server/</guid><description>
-&lt;p>LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.&lt;/p>
-&lt;p>When the system starts up, the log output contains the IP address of the local DNS server. Typically, this address by default is either &lt;code>0.0.0.0&lt;/code> (see example below) or &lt;code>127.0.0.1&lt;/code> if LocalStack cannot bind to &lt;code>0.0.0.0&lt;/code> due to a conflicting service.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>Starting DNS servers (tcp/udp port 53 on 0.0.0.0)...
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>The DNS server can be configured to match your usecase using the &lt;code>DNS_ADDRESS&lt;/code> environment variable.&lt;/p>
-&lt;p>To bind the server to &lt;code>127.0.0.1&lt;/code>, you can set:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_ADDRESS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>127.0.0.1
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can disable the DNS server (which will prevent LocalStack from binding port 53) using:&lt;/p>
+&lt;p>All versions of LocalStack include a DNS server that resolves the domain name &lt;code>localhost.localstack.cloud&lt;/code> to the LocalStack container.
+This enables seamless connectivity from your container to LocalStack, or from created compute resources like Lambda, ECS or EC2 to LocalStack.
+In addition, LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.&lt;/p>
+&lt;p>When the system starts up, the log output contains the IP address of the local DNS server.
+If port 53 can be bound on the host, the LocalStack CLI will publish port 53 from the container to the host on IP address &lt;code>127.0.0.1&lt;/code>.
+Otherwise it will not publish port 53 to the host.
+Regardless of whether the port can be bound or not, the DNS server is bound to address &lt;code>0.0.0.0&lt;/code> of the LocalStack container so other containers within the same docker network can use the DNS server.
+See the &lt;a href="/references/network-troubleshooting/endpoint-url/#from-your-container">Network Troubleshooting guide&lt;/a> for more details.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>If you experience problems when running LocalStack and the DNS server is the issue, you can disable the DNS server using:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_ADDRESS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can also specify which exact URLs should be redirected to LocalStack by defining a hostname regex like:&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+We do not recommend this configuration since this disables resolving &lt;code>localhost.localstack.cloud&lt;/code> to the LocalStack container.
+&lt;/div>
+&lt;p>You can also specify which exact URLs should be redirected to LocalStack by defining a hostname regex like:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_LOCAL_NAME_PATTERNS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;.*(ecr|lambda).*.amazonaws.com&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Using this configuration, the LocalStack DNS server only redirects ECR and Lambda domains to LocalStack, and the rest will be resolved via &lt;code>$DNS_SERVER&lt;/code>. This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target LocalStack, whereas other services will target real AWS.&lt;/p>
 &lt;div class="alert alert-warning" role="alert">
@@ -2600,6 +2607,10 @@ LocalStack will not store or share any forwarded DNS requests, except maybe in t
 &lt;p>If you rely on your local network&amp;rsquo;s DNS, your router/DNS server might block requests due to the DNS Rebind Protection.
 This feature is enabled by default in pfSense, OPNSense, OpenWRT, AVM FritzBox, and potentially also other devices.
 Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (like OpenWRT).&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+If you are using the LocalStack DNS server, DNS rebind protection should not cause any issues.
+&lt;/div>
 &lt;p>You can check if your DNS setup works correctly by resolving a subdomain of &lt;code>localhost.localstack.cloud&lt;/code>:
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>dig test.localhost.localstack.cloud
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -2623,7 +2634,7 @@ Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (lik
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; WHEN: Fr Jän 14 11:23:12 CET 2022
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>;; MSG SIZE rcvd: 90&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/p>
-&lt;p>If the the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
+&lt;p>If the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
 If not, please check the configuration of your router / DNS if the Rebind Protection is active or &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#system-dns-configuration">enable the LocalStack DNS on your system&lt;/a>.&lt;/p>
 &lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
 &lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
