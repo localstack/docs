@@ -451,6 +451,11 @@ If you have installed the CLI with Brew or directly as a binary, please simply p
   Ensure that the diagnostic endpoint is run after you have tried reproducing the affected task.
   After running the task, run the diagnostic endpoint and share the archive file with your team members or LocalStack Support.
 
+- My application cannot reach LocalStack over the network
+
+  We have [extensive network troubleshooting documentation available]({{< ref "references/network-troubleshooting" >}}).
+  If this does not solve your problem then please reach out for [help and support]({{< ref "help-and-support" >}}).
+
 ## What's next?
 
 Now that you have LocalStack up and running, the following resources might be useful for your next steps:

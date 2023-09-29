@@ -27,9 +27,13 @@ localstack update localstack-cli
 
 ### Is using `localhost.localstack.cloud:4566` to set as the endpoint for AWS services recommended?
 
-`localhost.localstack.cloud` is the recommended endpoint - especially for S3, in order to enable host-based bucket endpoints. For most of the other services, it is fine to use `localhost:4566`. Users can rely on the `localhost.localstack.cloud` domain to be publicly resolvable, and we also publish an SSL certificate that is automatically used inside LocalStack, in order to enable HTTPS endpoints with valid certificates.
+`localhost.localstack.cloud` is the recommended endpoint - especially for S3, in order to enable host-based bucket endpoints.
+* When using this domain within LocalStack compute environments like Lambda, ECS or EC2, this domain name resolves to the LocalStack container via our DNS server available in version 2.3.
+* By configuring your environment, your applications can also use `localhost.localstack.cloud` to resolve to the LocalStack container via our DNS server.
+* In addition, we also publish an SSL certificate that is automatically used inside LocalStack, in order to enable HTTPS endpoints with valid certificates.
 
-Across our docs, we use `localhost:4566` instead of `localhost.localstack.cloud`, to provide a fallback option to users. The primary reason being that some users are behind a corporate firewall or an internet service provider that does not allow resolving `localhost.localstack.cloud` properly.
+Across our docs, we use `localhost:4566` instead of `localhost.localstack.cloud`, to provide a fallback option to users.
+The primary reason being that some users are behind a corporate firewall or an internet service provider that does not allow resolving `localhost.localstack.cloud` properly.
 
 ### How should I use the latest LocalStack Docker images?
 

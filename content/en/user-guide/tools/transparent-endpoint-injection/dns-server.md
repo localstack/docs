@@ -8,29 +8,27 @@ aliases:
   - /tools/local-endpoint-injection/dns-server/
 ---
 
-LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.
+All versions of LocalStack include a DNS server that resolves the domain name `localhost.localstack.cloud` to the LocalStack container.
+This enables seamless connectivity from your container to LocalStack, or from created compute resources like Lambda, ECS or EC2 to LocalStack.
+In addition, LocalStack Pro supports transparent execution mode, which means that your application code automatically accesses the LocalStack APIs as opposed to the real APIs on AWS.
 
-When the system starts up, the log output contains the IP address of the local DNS server. Typically, this address by default is either `0.0.0.0` (see example below) or `127.0.0.1` if LocalStack cannot bind to `0.0.0.0` due to a conflicting service.
-
-```text
-Starting DNS servers (tcp/udp port 53 on 0.0.0.0)...
-```
+When the system starts up, the log output contains the IP address of the local DNS server.
+If port 53 can be bound on the host, the LocalStack CLI will publish port 53 from the container to the host on IP address `127.0.0.1`.
+Otherwise it will not publish port 53 to the host.
+Regardless of whether the port can be bound or not, the DNS server is bound to address `0.0.0.0` of the LocalStack container so other containers within the same docker network can use the DNS server.
+See the [Network Troubleshooting guide]({{< ref "references/network-troubleshooting/endpoint-url#from-your-container" >}}) for more details.
 
 ## Configuration
 
-The DNS server can be configured to match your usecase using the `DNS_ADDRESS` environment variable.
-
-To bind the server to `127.0.0.1`, you can set:
-
-```bash
-DNS_ADDRESS=127.0.0.1
-```
-
-You can disable the DNS server (which will prevent LocalStack from binding port 53) using:
+If you experience problems when running LocalStack and the DNS server is the issue, you can disable the DNS server using:
 
 ```bash
 DNS_ADDRESS=0
 ```
+
+{{< alert title="Warning" color="warning" >}}
+We do not recommend this configuration since this disables resolving `localhost.localstack.cloud` to the LocalStack container.
+{{< / alert >}}
 
 You can also specify which exact URLs should be redirected to LocalStack by defining a hostname regex like:
 
@@ -212,6 +210,10 @@ If you rely on your local network's DNS, your router/DNS server might block requ
 This feature is enabled by default in pfSense, OPNSense, OpenWRT, AVM FritzBox, and potentially also other devices.
 Some of the vendors might allow upstream responses in the 127.0.0.0/8 range (like OpenWRT).
 
+{{< alert title="Note" >}}
+If you are using the LocalStack DNS server, DNS rebind protection should not cause any issues.
+{{< / alert >}}
+
 You can check if your DNS setup works correctly by resolving a subdomain of `localhost.localstack.cloud`:
 {{< command "hl_lines=16">}}
 $ dig test.localhost.localstack.cloud
@@ -237,7 +239,7 @@ localhost.localstack.cloud. 389	IN	A	127.0.0.1
 ;; MSG SIZE  rcvd: 90
 {{< /command >}}
 
-If the the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
+If the DNS resolves the subdomain to your localhost (127.0.0.1), your setup is working.
 If not, please check the configuration of your router / DNS if the Rebind Protection is active or [enable the LocalStack DNS on your system]({{< ref "dns-server#system-dns-configuration" >}}).
 
 ## Customizing internal endpoint resolution
