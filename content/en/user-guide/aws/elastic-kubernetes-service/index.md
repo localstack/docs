@@ -57,17 +57,20 @@ You can use the `docker` CLI to check that some containers have been created:
 
 {{< command >}}
 $ docker ps
+<disable-copy>
 CONTAINER ID   IMAGE                          COMMAND                  CREATED          STATUS          PORTS                                           NAMES
 ...
 b335f7f089e4   rancher/k3d-proxy:5.0.1-rc.1   "/bin/sh -c nginx-pr…"   1 minute ago   Up 1 minute   0.0.0.0:8081->80/tcp, 0.0.0.0:44959->6443/tcp   k3d-cluster1-serverlb
 f05770ec8523   rancher/k3s:v1.21.5-k3s2       "/bin/k3s server --t…"   1 minute ago   Up 1 minute
 ...
-{{</ command >}}
+</disable-copy>
+{{< / command >}}
 
 After successfully creating and initializing the cluster, we can easily find the server endpoint, using the [`DescribeCluster`](https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeCluster.html) API. Run the following command:
 
 {{< command >}}
 $ awslocal eks describe-cluster --name cluster1
+<disable-copy>
 {
     "cluster": {
         "name": "cluster1",
@@ -88,7 +91,8 @@ $ awslocal eks describe-cluster --name cluster1
         "clientRequestToken": "d188f578-b353-416b-b309-5d8c76ecc4e2"
     }
 }
-{{</ command >}}
+</disable-copy>
+{{< / command >}}
 
 ### Utilizing ECR Images within EKS
 
@@ -116,6 +120,7 @@ You can create a new ECR repository using the [`CreateRepository`](https://docs.
 
 {{< command >}}
 $ awslocal ecr create-repository --repository-name "fancier-nginx"
+<disable-copy>
 {
     "repository": {
         "repositoryArn": "arn:aws:ecr:us-east-1:000000000000:repository/fancier-nginx",
@@ -132,6 +137,7 @@ $ awslocal ecr create-repository --repository-name "fancier-nginx"
         }
     }
 }
+</disable-copy>
 {{< / command >}}
 
 {{< alert title="Note">}}
@@ -163,12 +169,14 @@ Now, let us set up the EKS cluster using the image pushed to local ECR.
 Next, we can configure `kubectl` to use the EKS cluster, using the [`UpdateKubeconfig`](https://docs.aws.amazon.com/eks/latest/APIReference/API_UpdateClusterConfig.html) API. Run the following command:
 
 {{< command >}}
-$ awslocal eks update-kubeconfig --name cluster1
-& kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
+$ awslocal eks update-kubeconfig --name cluster1 && \
+    kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
+<disable-copy>
 ...
 Added new context arn:aws:eks:us-east-1:000000000000:cluster/cluster1 to /home/localstack/.kube/config
 Switched to context "arn:aws:eks:us-east-1:000000000000:cluster/cluster1".
 ...
+</disable-copy>
 {{< / command >}}
 
 You can now go ahead and add a deployment configuration for the `fancier-nginx` image. 
@@ -262,10 +270,12 @@ You will be able to send a request to `nginx` via the load balancer port `8081` 
 
 {{< command >}}
 $ curl http://localhost:8081/test123
+<disable-copy>
 <html>
 ...
 <hr><center>nginx/1.21.6</center>
 ...
+</disable-copy>
 {{< / command >}}
 
 {{< alert title="Note" >}}
@@ -320,6 +330,7 @@ You can create an EKS Cluster configuration using the following command:
 
 {{< command >}}
 $ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config '{}'
+<disable-copy>
 {
     "cluster": {
         "name": "cluster1",
@@ -330,12 +341,20 @@ $ awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::0000000000
         ...
     }
 }
+</disable-copy>
+{{</ command >}}
+
+And check that it was created with:
+
+{{< command >}}
 $ awslocal eks list-clusters
+<disable-copy>
 {
     "clusters": [
         "cluster1"
     ]
 }
+</disable-copy>
 {{< / command >}}
 
 To interact with your Kubernetes cluster, configure your Kubernetes client (such as `kubectl` or other SDKs) to point to the `endpoint` provided in the `create-cluster` output mentioned earlier. However, depending on whether you're calling the Kubernetes API from your local machine or from within a Lambda function, you might need to use different endpoint URLs.
@@ -406,9 +425,13 @@ This approach enables us to access the two distinct services using the same path
 
 {{< command >}}
 $ curl http://eks-service-1.localhost.localstack.cloud:8081/v1
+<disable-copy>
 ... [output of service 1]
+</disable-copy>
 $ curl http://eks-service-2.localhost.localstack.cloud:8081/v1
+<disable-copy>
 ... [output of service 2]
+</disable-copy>
 {{< /command >}}
 
 It is important to note that the host names `eks-service-1.localhost.localstack.cloud` and `eks-service-2.localhost.localstack.cloud` both resolve to `127.0.0.1` (localhost). Consequently, you can utilize them to communicate with your service endpoints and distinguish between different services within the Kubernetes load balancer.
@@ -431,6 +454,7 @@ $ awslocal eks create-cluster \
   --role-arn arn:aws:iam::000000000000:role/eks-role \
   --resources-vpc-config '{}' \
   --tags '{"_volume_mount_":"/path/on/host:/path/on/node"}'
+<disable-copy>
 {
     "cluster": {
         "name": "cluster1",
@@ -444,6 +468,7 @@ $ awslocal eks create-cluster \
         ...
     }
 }
+</disable-copy>
 {{< / command >}}
 
 {{< alert title="Notes" >}}
