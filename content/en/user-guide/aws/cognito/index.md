@@ -84,17 +84,31 @@ $ client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_
 ### Using Predefined IDs for Pool Creation
 
 When creating Cognito user or identity pools, you have the flexibility to utilize a predefined ID by setting the tag `_custom_id_`. This feature proves particularly useful during the testing of authentication flows, especially when dealing with scenarios involving frequent restarts of LocalStack and the recreation of resources.
+Please note that a valid custom id must be in the format `<region>_<custom_pool_id>`.
 
 Run the following command to create a user pool with a predefined ID:
 
 {{< command >}}
-$ awslocal cognito-idp create-user-pool --pool-name p1 --user-pool-tags "_custom_id_=myid123"
+$ awslocal cognito-idp create-user-pool --pool-name p1 --user-pool-tags "_custom_id_=us-east-1_myid123"
 {
     "UserPool": {
         "Id": "myid123",
         "Name": "p1",
     ...
 {{< /command >}}
+
+You also have the possibility to create a Cognito user pool client with a predefined ID by specifying a `ClientName` with the specific format: `_custom_id_:<custom_client_id>`.
+
+{{< command >}}
+$ awslocal cognito-idp create-user-pool-client --user-pool-id us-east-1_myid123 --client-name _custom_id_:myclient123
+{
+    "UserPoolClient": {
+        "UserPoolId": "us-east-1_myid123",
+        "ClientName": "_custom_id_:myclient123",
+        "ClientId": "myclient123",
+    ...
+{{< /command >}}
+
 
 ### Signing up and confirming a user
 
