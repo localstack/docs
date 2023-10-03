@@ -9,7 +9,7 @@ function setupCodeBlockCopyButton() {
     const elem = $(this).closest('.code-container').find('code').clone();
     elem.find('.command-prefix').remove(); // removing prefix
     elem.find('.disable-copy').remove(); // removing text which shouldn't be copied
-    navigator.clipboard.writeText(elem.text());
+    navigator.clipboard.writeText(elem.text().trim());
     $(this).find('span').text('Copied!');
     setTimeout(() => {
       $(this).find('span').text('Copy');
