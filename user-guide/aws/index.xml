@@ -8189,13 +8189,16 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can use the &lt;code>docker&lt;/code> CLI to check that some containers have been created:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker ps
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>b335f7f089e4 rancher/k3d-proxy:5.0.1-rc.1 &amp;#34;/bin/sh -c nginx-pr…&amp;#34; 1 minute ago Up 1 minute 0.0.0.0:8081-&amp;gt;80/tcp, 0.0.0.0:44959-&amp;gt;6443/tcp k3d-cluster1-serverlb
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>f05770ec8523 rancher/k3s:v1.21.5-k3s2 &amp;#34;/bin/k3s server --t…&amp;#34; 1 minute ago Up 1 minute
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>After successfully creating and initializing the cluster, we can easily find the server endpoint, using the &lt;a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeCluster.html">&lt;code>DescribeCluster&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks describe-cluster --name cluster1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;cluster1&amp;#34;,
@@ -8215,7 +8218,8 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;clientRequestToken&amp;#34;: &amp;#34;d188f578-b353-416b-b309-5d8c76ecc4e2&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="utilizing-ecr-images-within-eks">Utilizing ECR Images within EKS&lt;/h3>
 &lt;p>You can now use ECR (Elastic Container Registry) images within your EKS environment.&lt;/p>
 &lt;h4 id="initial-configuration">Initial configuration&lt;/h4>
@@ -8231,6 +8235,7 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;p>To showcase this behavior, let&amp;rsquo;s go through a concise step-by-step guide that will lead us to the successful pulling of an image from local ECR. For the purpose of this guide, we will retag the &lt;code>nginx&lt;/code> image to be pushed to a local ECR repository under a different name, and then utilize it for a pod configuration.&lt;/p>
 &lt;p>You can create a new ECR repository using the &lt;a href="https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_CreateRepository.html">&lt;code>CreateRepository&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository --repository-name &amp;#34;fancier-nginx&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repository&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;repositoryArn&amp;#34;: &amp;#34;arn:aws:ecr:us-east-1:000000000000:repository/fancier-nginx&amp;#34;,
@@ -8246,7 +8251,8 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;encryptionType&amp;#34;: &amp;#34;AES256&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;p>When creating an ECR repository, a port from the &lt;a href="/references/external-ports/">external service port range&lt;/a> is dynamically assigned. As a result, the port can differ from the static value &lt;code>4510&lt;/code> used in the examples below.&lt;/p>
@@ -8260,12 +8266,14 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker push localhost.localstack.cloud:4510/fancier-nginx&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Now, let us set up the EKS cluster using the image pushed to local ECR.&lt;/p>
 &lt;p>Next, we can configure &lt;code>kubectl&lt;/code> to use the EKS cluster, using the &lt;a href="https://docs.aws.amazon.com/eks/latest/APIReference/API_UpdateClusterConfig.html">&lt;code>UpdateKubeconfig&lt;/code>&lt;/a> API. Run the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks update-kubeconfig --name cluster1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;amp; kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks update-kubeconfig --name cluster1 &amp;amp;&amp;amp; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> kubectl config use-context arn:aws:eks:us-east-1:000000000000:cluster/cluster1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Added new context arn:aws:eks:us-east-1:000000000000:cluster/cluster1 to /home/localstack/.kube/config
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Switched to context &amp;#34;arn:aws:eks:us-east-1:000000000000:cluster/cluster1&amp;#34;.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You can now go ahead and add a deployment configuration for the &lt;code>fancier-nginx&lt;/code> image.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>apiVersion: apps/v1
@@ -8333,10 +8341,12 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>EOF&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>You will be able to send a request to &lt;code>nginx&lt;/code> via the load balancer port &lt;code>8081&lt;/code> from the host:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl http://localhost:8081/test123
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;html&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;hr&amp;gt;&amp;lt;center&amp;gt;nginx/1.21.6&amp;lt;/center&amp;gt;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 You can customize the Load Balancer port by configuring &lt;code>EKS_LOADBALANCER_PORT&lt;/code> in your environment.
@@ -8372,6 +8382,7 @@ The &lt;code>ls-secret-tls&lt;/code> secret is created in the &lt;code>default&l
 &lt;img src="kubernetes.png" alt="Kubernetes in Docker" title="Kubernetes in Docker" width="450" />
 &lt;p>You can create an EKS Cluster configuration using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks create-cluster --name cluster1 --role-arn arn:aws:iam::000000000000:role/eks-role --resources-vpc-config &amp;#39;{}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;cluster1&amp;#34;,
@@ -8382,12 +8393,16 @@ The &lt;code>ls-secret-tls&lt;/code> secret is created in the &lt;code>default&l
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks list-clusters
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>And check that it was created with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal eks list-clusters
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;clusters&amp;#34;: [
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster1&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>To interact with your Kubernetes cluster, configure your Kubernetes client (such as &lt;code>kubectl&lt;/code> or other SDKs) to point to the &lt;code>endpoint&lt;/code> provided in the &lt;code>create-cluster&lt;/code> output mentioned earlier. However, depending on whether you&amp;rsquo;re calling the Kubernetes API from your local machine or from within a Lambda function, you might need to use different endpoint URLs.&lt;/p>
 &lt;p>For local machine interactions, use &lt;code>https://localhost:6443&lt;/code> as the endpoint URL. If you are accessing the Kubernetes API from within a Lambda function, you should use &lt;code>https://172.17.0.1:6443&lt;/code> as the endpoint URL, assuming that &lt;code>172.17.0.1&lt;/code> is the IP address of the Docker network bridge.&lt;/p>
 &lt;p>By using the appropriate endpoint URL based on your context, you can effectively communicate with your Kubernetes cluster and manage your resources as needed.&lt;/p>
@@ -8436,9 +8451,13 @@ The &lt;code>ls-secret-tls&lt;/code> secret is created in the &lt;code>default&l
 &lt;p>In the provided example, we define routing rules for two local endpoints. The first rule directs traffic to a service named &lt;code>service-1&lt;/code>, accessible under the path &lt;code>/v1&lt;/code>. Similarly, the second rule points to a service named &lt;code>service-2&lt;/code>, also accessible under the same path &lt;code>/v1&lt;/code>.&lt;/p>
 &lt;p>This approach enables us to access the two distinct services using the same path and port number, but with different host names. This host-based routing mechanism ensures that each service is uniquely identified based on its designated host name, allowing for a uniform and organized way of accessing multiple services within the EKS cluster.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl http://eks-service-1.localhost.localstack.cloud:8081/v1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>... [output of service 1]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl http://eks-service-2.localhost.localstack.cloud:8081/v1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>... [output of service 2]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>... [output of service 2]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>It is important to note that the host names &lt;code>eks-service-1.localhost.localstack.cloud&lt;/code> and &lt;code>eks-service-2.localhost.localstack.cloud&lt;/code> both resolve to &lt;code>127.0.0.1&lt;/code> (localhost). Consequently, you can utilize them to communicate with your service endpoints and distinguish between different services within the Kubernetes load balancer.&lt;/p>
 &lt;p>However, it might encounter issues in scenarios where you intend to run your Load Balancer (LB) on standard ports such as 80/443 since some of these ports may already be occupied on your local machine. For instance, by default, LocalStack allocates port 443 to expose APIs via the HTTPS endpoint (&lt;code>https://localhost.localstack.cloud&lt;/code>). Hence, it&amp;rsquo;s crucial to ensure that you expose your LB on a custom, non-standard port to prevent conflicts.&lt;/p>
 &lt;p>Additionally, note that LocalStack EKS employs &lt;a href="https://doc.traefik.io/traefik/providers/kubernetes-ingress">Traefik&lt;/a> as the Kubernetes ingress controller internally.&lt;/p>
@@ -8451,6 +8470,7 @@ The &lt;code>ls-secret-tls&lt;/code> secret is created in the &lt;code>default&l
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role-arn arn:aws:iam::000000000000:role/eks-role \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --resources-vpc-config &amp;#39;{}&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --tags &amp;#39;{&amp;#34;_volume_mount_&amp;#34;:&amp;#34;/path/on/host:/path/on/node&amp;#34;}&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;cluster&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;cluster1&amp;#34;,
@@ -8463,7 +8483,8 @@ The &lt;code>ls-secret-tls&lt;/code> secret is created in the &lt;code>default&l
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Notes&lt;/h4>
 Note that the tag was previously referred to as &lt;code>__k3d_volume_mount__&lt;/code>, but it has now been renamed to &lt;code>_volume_mount_&lt;/code>. As a result, the tag name &lt;code>__k3d_volume_mount__&lt;/code> is considered deprecated and will be removed in an upcoming release.
