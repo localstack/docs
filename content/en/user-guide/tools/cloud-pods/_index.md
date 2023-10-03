@@ -1,32 +1,26 @@
 ---
 title: "Cloud Pods"
 weight: 10
-categories: ["LocalStack Pro", "Tools", "Persistence"]
 description: >
   Cloud Pods provides a new way of collaborating in cloud application development workflows.
-aliases:
-  - /tools/cloud-pods/
 ---
 
-{{< alert title="Note">}}
-Please note that cloud pods may not be compatible across different versions of LocalStack.
-We are actively working on addressing this limitation in the upcoming releases.
-{{< /alert >}}
+## Introduction
 
 Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.
 
 ![Persistence versus Cloud Pods](pods-persistence.png)
 
-{{< alert title="Hint" color="success">}}
-To quickly see cloud pods in action, we prepared a small sample application that uses cloud pods to inject its state into a running LocalStack container. [Cloud Pod Thumbnail Sample App](https://app.localstack.cloud/quickstart/demo4)
-{{< /alert >}}
+## Cloud Pods & Persistence
 
-While the [Persistence]({{< ref "persistence-mechanism" >}}) feature ensures that the service state survives container restarts, Cloud Pods go beyond and allow more fine-grained control over your state.
+The [Persistence]({{< ref "persistence-mechanism" >}}) feature ensures that the service state persists across container restarts. In contrast, Cloud Pods provide more detailed control over your state.
 
-Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow you to take snapshots of your local instance (with the `save` command) and inject such snapshots into a running instance (with the `load` command) without requiring a restart.
+Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the `save` command and inject these snapshots into a running instance using the `load` command, all without needing to perform a full restart.
 
-In addition, we provide a remote storage backend that can be used to store the state of your running application and share it with your team members.
+In addition, LocalStack provides a remote storage backend that can be used to store the state of your running application and share it with your team members.
 
-You can interact with Cloud Pods via the Web UI, and to load and store the persistent state of pods, you can use the `localstack` [command-line interface (CLI)]({{< ref "pods-cli" >}}).
+## Getting started
+
+You can interact with Cloud Pods via the LocalStack Web Application. To save and load the persistent state of Cloud Pods, you can use the [Cloud Pods command-line interface (CLI)]({{< ref "pods-cli" >}}).
 
 ![Cloud Pods Web UI](pods-ui.png)
