@@ -7048,13 +7048,22 @@ By default, LocalStack&amp;rsquo;s Cognito does not send actual email messages. 
 &lt;p>You can proceed with adding a client to the pool we just created. You will require the ID of the newly created client for the subsequent steps. You can use the &lt;a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateUserPoolClient.html">&lt;code>CreateUserPoolClient&lt;/code>&lt;/a> for both client creation and extraction of the corresponding ID. Run the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>client_id=$(awslocal cognito-idp create-user-pool-client --user-pool-id $pool_id --client-name test-client | jq -rc &amp;#34;.UserPoolClient.ClientId&amp;#34;)&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="using-predefined-ids-for-pool-creation">Using Predefined IDs for Pool Creation&lt;/h3>
-&lt;p>When creating Cognito user or identity pools, you have the flexibility to utilize a predefined ID by setting the tag &lt;code>_custom_id_&lt;/code>. This feature proves particularly useful during the testing of authentication flows, especially when dealing with scenarios involving frequent restarts of LocalStack and the recreation of resources.&lt;/p>
+&lt;p>When creating Cognito user or identity pools, you have the flexibility to utilize a predefined ID by setting the tag &lt;code>_custom_id_&lt;/code>. This feature proves particularly useful during the testing of authentication flows, especially when dealing with scenarios involving frequent restarts of LocalStack and the recreation of resources.
+Please note that a valid custom id must be in the format &lt;code>&amp;lt;region&amp;gt;_&amp;lt;custom_pool_id&amp;gt;&lt;/code>.&lt;/p>
 &lt;p>Run the following command to create a user pool with a predefined ID:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp create-user-pool --pool-name p1 --user-pool-tags &amp;#34;_custom_id_=myid123&amp;#34;
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp create-user-pool --pool-name p1 --user-pool-tags &amp;#34;_custom_id_=us-east-1_myid123&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UserPool&amp;#34;: {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Id&amp;#34;: &amp;#34;myid123&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Name&amp;#34;: &amp;#34;p1&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You also have the possibility to create a Cognito user pool client with a predefined ID by specifying a &lt;code>ClientName&lt;/code> with the specific format: &lt;code>_custom_id_:&amp;lt;custom_client_id&amp;gt;&lt;/code>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cognito-idp create-user-pool-client --user-pool-id us-east-1_myid123 --client-name _custom_id_:myclient123
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UserPoolClient&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;UserPoolId&amp;#34;: &amp;#34;us-east-1_myid123&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClientName&amp;#34;: &amp;#34;_custom_id_:myclient123&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;ClientId&amp;#34;: &amp;#34;myclient123&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="signing-up-and-confirming-a-user">Signing up and confirming a user&lt;/h3>
 &lt;p>You can now use the &lt;a href="https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html">&lt;code>SignUp&lt;/code>&lt;/a> API to sign up a user. Run the following command:&lt;/p>
