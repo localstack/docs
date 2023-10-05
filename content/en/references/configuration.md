@@ -147,7 +147,7 @@ See [here](#opensearch).
 
 {{< alert title="Note" >}}
 New [Lambda]({{< ref "user-guide/aws/lambda" >}}) implementation active since LocalStack&nbsp;2.0 (Docker `latest` since 2023-03-23).
-Please consult the page [Lambda providers]({{< ref "user-guide/aws/lambda" >}}) for more information.
+Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to-lambda-v2" >}}) for more information.
 {{</alert>}}
 
 | Variable| Example Values | Description |
@@ -160,6 +160,7 @@ Please consult the page [Lambda providers]({{< ref "user-guide/aws/lambda" >}}) 
 | `LAMBDA_K8S_IMAGE_PREFIX` | `amazon/aws-lambda-` (default, pro) | Prefix for images that will be used to execute Lambda functions in Kubernetes. |
 | `LAMBDA_KEEPALIVE_MS` | `600000` (default 10min) | Time in milliseconds until lambda shuts down the execution environment after the last invocation has been processed. Set to `0` to immediately shut down the execution environment after an invocation. |
 | `LAMBDA_LIMITS_CONCURRENT_EXECUTIONS` | `1000` (default) | The maximum number of events that functions can process simultaneously in the current Region. See [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/lambda-service.html) |
+| `LAMBDA_LIMITS_CREATE_FUNCTION_REQUEST_SIZE` | `69905067` (default) | The maximum HTTP request size in bytes for the [CreateFunction](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) operation. Raising this limit enables the creation of larger Lambda functions without the need to upload the code to an S3 deployment bucket. |
 | `LAMBDA_REMOVE_CONTAINERS` | `1` (default) | Whether to remove any Lambda Docker containers. |
 | `LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT` | `10` (default) | How many seconds Lambda will wait for the runtime environment to start up. |
 | `LAMBDA_RUNTIME_EXECUTOR` | `docker` (default) | Where Lambdas will be executed. |
