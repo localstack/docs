@@ -54,10 +54,6 @@ $ targetGroup=$(awslocal elbv2 create-target-group --name example-target-group \
     | jq -r '.TargetGroups[].TargetGroupArn')
 {{< /command >}}
 
-{{< alert title="Note">}}
-Note that in some cases the `target type` ip can be the `Gateway` address of the docker container. You can find the gateway address by running `docker inspect <container_id>`.
-{{< /alert >}}
-
 ### Register a target
 
 To register a target, you can use the [`RegisterTargets`](https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_RegisterTargets.html) API. The following command registers the target with the target group created in the previous step:
@@ -66,6 +62,10 @@ To register a target, you can use the [`RegisterTargets`](https://docs.aws.amazo
 $ awslocal elbv2 register-targets --targets Id=127.0.0.1,Port=5678,AvailabilityZone=all \
     --target-group-arn $targetGroup
 {{< /command >}}
+
+{{< alert title="Note">}}
+Note that in some cases the `targets` parameter `Id` can be the `Gateway` address of the docker container. You can find the gateway address by running `docker inspect <container_id>`.
+{{< /alert >}}
 
 ### Create a listener and a rule
 
