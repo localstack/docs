@@ -8554,6 +8554,10 @@ Note that the tag was previously referred to as &lt;code>__k3d_volume_mount__&lt
 &lt;p>To register a target, you can use the &lt;a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_RegisterTargets.html">&lt;code>RegisterTargets&lt;/code>&lt;/a> API. The following command registers the target with the target group created in the previous step:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elbv2 register-targets --targets Id=127.0.0.1,Port=5678,AvailabilityZone=all \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --target-group-arn $targetGroup&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Note that in some cases the &lt;code>targets&lt;/code> parameter &lt;code>Id&lt;/code> can be the &lt;code>Gateway&lt;/code> address of the docker container. You can find the gateway address by running &lt;code>docker inspect &amp;lt;container_id&amp;gt;&lt;/code>.
+&lt;/div>
 &lt;h3 id="create-a-listener-and-a-rule">Create a listener and a rule&lt;/h3>
 &lt;p>We create a for the load balancer using the &lt;a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateListener.html">&lt;code>CreateListener&lt;/code>&lt;/a> API. The following command creates a listener for the load balancer created in the previous step:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>listenerArn=$(awslocal elbv2 create-listener \
