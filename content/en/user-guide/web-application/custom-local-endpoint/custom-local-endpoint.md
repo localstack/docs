@@ -1,7 +1,7 @@
 ---
 title: "Custom local endpoint"
 linkTitle: "Custom local endpoint"
-weight: 6
+weight: 7
 description: >
   Overview of the configurable custom local endpoint for the LocalStack Web Application
 aliases:
