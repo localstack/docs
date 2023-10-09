@@ -149,7 +149,47 @@ LocalStack Pro users cannot access the Cloud Pods Browser. Community &amp;amp; P
 &lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/mailhog/">MailHog&lt;/a>: Email testing server integrated with LocalStack.&lt;/li>
 &lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/httpbin-extension/">httpbin&lt;/a>: HTTP server with predefined responses.&lt;/li>
 &lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/diagnosis-viewer-extension/">Diagnostic Viewer&lt;/a>: View and analyze LocalStack diagnostic logs.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Custom local endpoint</title><link>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Export &amp; Import State</title><link>/user-guide/web-application/export-import-state/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/export-import-state/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>The LocalStack Web Application enables you to export your infrastructure state to a file and import it into another LocalStack instance. You can perform these import and export operations locally or by utilizing LocalStack&amp;rsquo;s storage backend, which can store the state as a Cloud Pod.&lt;/p>
+&lt;h2 id="local">Local&lt;/h2>
+&lt;p>The Local mode allows you to perform local exports and imports of your LocalStack instance&amp;rsquo;s state. This mode is handy when you need to export your LocalStack instance&amp;rsquo;s state and import it into another LocalStack instance that&amp;rsquo;s running on the same local machine.&lt;/p>
+&lt;img src="export-import-state-local.png" alt="LocalStack Export/Import State Local Mode" title="LocalStack Export/Import State Local Mode" width="900" />
+&lt;h3 id="export-the-state">Export the State&lt;/h3>
+&lt;p>To export the state, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>Navigate to the &lt;strong>Local&lt;/strong> tab within the &lt;a href="https://app.localstack.cloud/inst/default/state">Export/Import State&lt;/a> page.&lt;/li>
+&lt;li>Create AWS resources locally as needed.&lt;/li>
+&lt;li>Click on the &lt;strong>Export State&lt;/strong> button. This action will initiate the download of a ZIP file.&lt;/li>
+&lt;/ol>
+&lt;p>The downloaded ZIP file contains your container state, which can be injected into another LocalStack instance for further use.&lt;/p>
+&lt;h3 id="import-the-state">Import the State&lt;/h3>
+&lt;p>To import the state, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>Navigate to the &lt;strong>Local&lt;/strong> tab within the &lt;a href="https://app.localstack.cloud/inst/default/state">Export/Import State&lt;/a> page.&lt;/li>
+&lt;li>Upload the ZIP file that contains your container state. This action will restore your previously loaded AWS resources.&lt;/li>
+&lt;/ol>
+&lt;p>To confirm the successful injection of the container state, visit the respective &lt;a href="https://app.localstack.cloud/inst/default/resources">Resource Browser&lt;/a> for the services and verify the resources.&lt;/p>
+&lt;h2 id="cloud-pod-team">Cloud Pod (Team)&lt;/h2>
+&lt;p>Cloud Pod allows you to capture a snapshot of your LocalStack instance&amp;rsquo;s state. This snapshot can be injected into another LocalStack instance for various purposes. Additionally, you have the option to share the Cloud Pod with team members, enabling them to import the state into their respective LocalStack instances.&lt;/p>
+&lt;img src="export-import-state-cloud-pod.png" alt="LocalStack Export/Import State Cloud Pod Mode" title="LocalStack Export/Import State Cloud Pod Mode" width="900" />
+&lt;h3 id="export-the-state-1">Export the State&lt;/h3>
+&lt;p>To export the state, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>Navigate to the &lt;strong>Cloud Pod&lt;/strong> tab within the &lt;a href="https://app.localstack.cloud/inst/default/state">Export/Import State&lt;/a> page.&lt;/li>
+&lt;li>Create AWS resources locally as needed.&lt;/li>
+&lt;li>Enter the Pod name and toggle between the &lt;strong>New Pod&lt;/strong> and &lt;strong>Existing Pod&lt;/strong> options.&lt;/li>
+&lt;li>Click on &lt;strong>Create New Pod&lt;/strong>.&lt;/li>
+&lt;/ol>
+&lt;p>A new Cloud Pod will be created and will be available for import into another LocalStack instance. You can check out the list of available Cloud Pods in the &lt;a href="https://app.localstack.cloud/pods">Cloud Pod&lt;/a> page.&lt;/p>
+&lt;h2 id="import-the-state-1">Import the State&lt;/h2>
+&lt;p>To import the state, follow these steps:&lt;/p>
+&lt;ol>
+&lt;li>Navigate to the &lt;strong>Cloud Pod&lt;/strong> tab within the &lt;a href="https://app.localstack.cloud/inst/default/state">Export/Import State&lt;/a> page.&lt;/li>
+&lt;li>Choose the Cloud Pod from the drop-down list.&lt;/li>
+&lt;li>Click on &lt;strong>Load State From Pod&lt;/strong>.&lt;/li>
+&lt;/ol>
+&lt;p>To confirm the successful injection of the container state, visit the respective &lt;a href="https://app.localstack.cloud/inst/default/resources">Resource Browser&lt;/a> for the services and verify the resources.&lt;/p></description></item><item><title>User-Guide: Custom local endpoint</title><link>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</guid><description>
 &lt;p>You can configure the local endpoint URL under which LocalStack is accessible from the LocalStack Web UI. To configure your local endpoint URL, navigate to your &lt;a href="https://app.localstack.cloud/account/settings">Account settings&lt;/a>, to configure the local endpoint URL (defaults to &lt;a href="https://localhost.localstack.cloud">https://localhost.localstack.cloud&lt;/a>). Additionally, you can configure the local endpoint URL to view your resources if you are running LocalStack on a different machine (see instructions below).&lt;/p>
 &lt;h2 id="connecting-to-a-localstack-instance-on-a-different-machine">Connecting to a LocalStack instance on a different machine&lt;/h2>
 &lt;p>To ensure that the Web user interface can connect with your running LocalStack instance, you would need to configure the endpoint URL so that the server&amp;rsquo;s SSL certificate matches the hostname/IP address of the endpoint URL. This situation arises when users configure the endpoint URL to be something like &lt;code>https://myhost:4566&lt;/code> or use an IP address like &lt;code>https://1.2.3.4:4566&lt;/code>. Websites with an &lt;code>https://...&lt;/code> URL can only request other endpoints using HTTPS (i.e., not on &lt;code>http://&lt;/code>). Additionally, while requesting an HTTPS page, the SSL certificate must match the hostname (i.e., &lt;code>localhost.localstack.cloud&lt;/code> in our case).&lt;/p>
