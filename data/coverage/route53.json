@@ -116,7 +116,7 @@
         "availability": "community",
         "internal_test_suite": false,
         "external_test_suite": true,
-        "terraform_test_suite": true,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -871,7 +871,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_name",
@@ -881,7 +881,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_without_resource_record",
@@ -891,7 +891,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -972,6 +972,16 @@
       "CallerReference, HealthCheckConfig": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_health_check",
+            "test": "test_create_health_check",
+            "response": "201",
+            "error": "",
+            "snapshot_skipped": "['$..HealthCheckConfig.EnableSNI', '$..HealthCheckVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_crud_health_check",
             "test": "test_crud_health_check",
             "response": "201",
@@ -1029,7 +1039,7 @@
             "snapshot_skipped": "['$..HostedZone.CallerReference', '$..DelegationSet.Id', '$..HostedZone.Id']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
@@ -1115,7 +1125,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_hostedzone_optionaltrailingdot[without_trailing_dot]",
@@ -1125,7 +1135,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
@@ -1220,6 +1230,16 @@
       "HealthCheckId": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_health_check",
+            "test": "test_create_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HealthCheckConfig.EnableSNI', '$..HealthCheckVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_crud_health_check",
             "test": "test_crud_health_check",
             "response": "200",
@@ -1270,8 +1290,8 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_id",
             "test": "test_create_record_set_via_id",
-            "response": "400",
-            "error": "CommonServiceException",
+            "response": "200",
+            "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
@@ -1307,7 +1327,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_hostedzone_optionaltrailingdot[without_trailing_dot]",
@@ -1317,7 +1337,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_route53.py::test_hostedzone_with_comment",
@@ -1327,7 +1347,7 @@
             "snapshot_skipped": "['$..HostedZone.CallerReference', '$..DelegationSet.Id', '$..HostedZone.Id']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
@@ -1510,6 +1530,16 @@
       "HealthCheckId": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_health_check",
+            "test": "test_create_health_check",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HealthCheckConfig.EnableSNI', '$..HealthCheckVersion']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_crud_health_check",
             "test": "test_crud_health_check",
             "response": "200",
@@ -1655,7 +1685,7 @@
       }
     },
     "ListHostedZones": {
-      "DelegationSetId, Marker, MaxItems": {
+      "DelegationSetId, HostedZoneType, Marker, MaxItems": {
         "ls_community": [
           {
             "node_id": "LocalStack Community: tests/aws/services/apigateway/test_apigateway_basic.py::TestAPIGateway::test_api_gateway_handle_domain_name",
@@ -2063,7 +2093,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/route53/test_route53.py::TestRoute53::test_associate_vpc_with_hosted_zone",
@@ -2096,28 +2126,6 @@
     },
     "ListResourceRecordSets": {
       "HostedZoneId, MaxItems, StartRecordIdentifier, StartRecordName, StartRecordType": {
-        "ls_community": [
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_via_id",
-            "test": "test_create_record_set_via_id",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_route53.py::test_create_record_set_without_resource_record",
-            "test": "test_create_record_set_without_resource_record",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ],
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/route53/test_route53.py::TestRoute53::test_alias_lifecycle_with_dns_resolution",
