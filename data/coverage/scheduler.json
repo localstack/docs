@@ -6,11 +6,11 @@
       "CreateSchedule": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -18,11 +18,11 @@
       "CreateScheduleGroup": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -30,11 +30,11 @@
       "DeleteSchedule": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -42,11 +42,11 @@
       "DeleteScheduleGroup": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -54,11 +54,11 @@
       "GetSchedule": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -66,11 +66,11 @@
       "GetScheduleGroup": {
         "implemented": true,
         "availability": "community",
-        "internal_test_suite": false,
+        "internal_test_suite": true,
         "external_test_suite": false,
         "terraform_test_suite": false,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -148,6 +148,102 @@
     }
   ],
   "details": {
+    "CreateSchedule": {
+      "ClientToken, FlexibleTimeWindow, GroupName, Name, ScheduleExpression, Target": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/scheduler/test_scheduler.py::test_schedule_and_group",
+            "test": "test_schedule_and_group",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DriftInformation', '$..Metadata', '$..ActionAfterCompletion', '$..ScheduleExpressionTimezone']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "CreateScheduleGroup": {
+      "ClientToken, Name": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/scheduler/test_scheduler.py::test_schedule_and_group",
+            "test": "test_schedule_and_group",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DriftInformation', '$..Metadata', '$..ActionAfterCompletion', '$..ScheduleExpressionTimezone']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "DeleteSchedule": {
+      "ClientToken, GroupName, Name": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/scheduler/test_scheduler.py::test_schedule_and_group",
+            "test": "test_schedule_and_group",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DriftInformation', '$..Metadata', '$..ActionAfterCompletion', '$..ScheduleExpressionTimezone']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "DeleteScheduleGroup": {
+      "ClientToken, Name": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/scheduler/test_scheduler.py::test_schedule_and_group",
+            "test": "test_schedule_and_group",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DriftInformation', '$..Metadata', '$..ActionAfterCompletion', '$..ScheduleExpressionTimezone']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          }
+        ]
+      }
+    },
+    "GetSchedule": {
+      "GroupName, Name": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/scheduler/test_scheduler.py::test_schedule_and_group",
+            "test": "test_schedule_and_group",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DriftInformation', '$..Metadata', '$..ActionAfterCompletion', '$..ScheduleExpressionTimezone']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "GetScheduleGroup": {
+      "Name": {
+        "ls_community": [
+          {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resource_providers/scheduler/test_scheduler.py::test_schedule_and_group",
+            "test": "test_schedule_and_group",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DriftInformation', '$..Metadata', '$..ActionAfterCompletion', '$..ScheduleExpressionTimezone']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
     "ListSchedules": {
       "- (without any parameters)": {
         "ls_community": [
