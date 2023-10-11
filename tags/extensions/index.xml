@@ -1,5 +1,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – extensions</title><link>/tags/extensions/</link><description>Recent content in extensions on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/extensions/index.xml" rel="self" type="application/rss+xml"/><item><title>References: LocalStack Extensions</title><link>/references/localstack-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/localstack-extensions/</guid><description>
-&lt;p>LocalStack Extensions allow developers to extend and customize LocalStack. The feature and the API are currently experimental and may be subject to change.&lt;/p>
+&lt;p>LocalStack Extensions allow developers to extend and customize LocalStack.&lt;/p>
+&lt;p>Specific LocalStack Extensions are documented &lt;a href="/user-guide/tools/localstack-extensions/">here&lt;/a> and
+can be discovered on our &lt;a href="https://github.com/localstack/localstack-extensions">GitHub repository&lt;/a>.
+Our blogpost about &lt;a href="https://localstack.cloud/blog/2023-06-26-develop-your-cloudflare-workers-aws-apps-locally-with-localstack-miniflare/">LocalStack’s Cloudflare Extension&lt;/a>
+showcases LocalStack as a local cloud development platform beyond AWS emulation.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The feature and the API are currently experimental and may be subject to change.
+Please report any issues or feature requests on our &lt;a href="https://github.com/localstack/localstack-extensions">GitHub repository&lt;/a>.
+&lt;/div>
 &lt;h2 id="using-extensions">Using Extensions&lt;/h2>
 &lt;p>Extensions are a LocalStack Pro feature. To use and install extensions, use the CLI to first login to your account&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack login
@@ -13,17 +22,21 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Manage LocalStack extensions (beta)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -v, --verbose Print more output
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -h, --help Show this message and exit
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Commands:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dev Developer tools for developing LocalStack extensions
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> init Initialize the LocalStack extensions environment
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> install Install a LocalStack extension
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> list List installed extension
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> uninstall Remove a LocalStack extension&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>To install an extension, specify the name of the &lt;code>pip&lt;/code> dependency that contains the extension. For example, for the official Stripe extension, you can either use the package distributed on PyPI:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install localstack-extension-stripe&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can alternatively install it directly from our Git repository:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install &amp;#34;git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-stripe&amp;amp;subdirectory=stripe&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install localstack-extension-httpbin&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can alternatively install the latest development version directly from our Git repository:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install &amp;#34;git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-httpbin&amp;amp;subdirectory=httpbin&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="developing-extensions">Developing Extensions&lt;/h2>
+&lt;p>This section provides a brief overview of how to develop your own extensions.&lt;/p>
 &lt;h3 id="extensions-api">Extensions API&lt;/h3>
 &lt;p>LocalStack exposes a Python API for building extensions that can be found in the core codebase in &lt;a href="https://github.com/localstack/localstack/tree/master/localstack/extensions/api">&lt;code>localstack.extensions.api&lt;/code>&lt;/a>.&lt;/p>
 &lt;p>The basic interface to implement is as follows:&lt;/p>
@@ -100,13 +113,16 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">LOG&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">logging&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">getLogger&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">__name__&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">ReadyAnnouncerExtension&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">Extension&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">name&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my_ready_annoucer&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">name&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my_ready_announcer&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">on_platform_ready&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#3465a4">self&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">LOG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;my plugin is loaded and localstack is ready to roll!&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="package-your-extension">Package your Extension&lt;/h3>
-&lt;p>Your extensions need to be packaged as Python distributions with a &lt;code>setup.cfg&lt;/code> or &lt;code>setup.py&lt;/code> config. LocalStack uses the &lt;a href="https://github.com/localstack/plux">Plux&lt;/a> code loading framework to load your code from a Python &lt;a href="https://packaging.python.org/en/latest/specifications/entry-points/">entry point&lt;/a>.&lt;/p>
-&lt;p>You can either use Plux to discover the entrypoints from your code when
+&lt;p>Your extensions needs to be packaged as a Python distribution with a
+&lt;code>setup.cfg&lt;/code> or &lt;code>setup.py&lt;/code> config. LocalStack uses the
+&lt;a href="https://github.com/localstack/plux">Plux&lt;/a> code loading framework to load your
+code from a Python &lt;a href="https://packaging.python.org/en/latest/specifications/entry-points/">entry point&lt;/a>.
+You can either use Plux to discover the entrypoints from your code when
 building and publishing your distribution, or manually define them as in the
 example below.&lt;/p>
 &lt;p>A minimal &lt;code>setup.cfg&lt;/code> for the extension above could look like this:&lt;/p>
@@ -125,5 +141,55 @@ example below.&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">[options.entry_points]&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c4a000">localstack.extensions&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> my_ready_annoucer = localstack_annoucer.extension:ReadyAnnouncerExtension&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The entry point group is the Plux namespace &lt;code>locastack.extensions&lt;/code>, and the entry point name is the plugin name &lt;code>my_ready_announcer&lt;/code>. The object reference points to the plugin class.&lt;/p></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06"> my_ready_announcer = localstack_announcer.extension:ReadyAnnouncerExtension&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The entry point group is the Plux namespace &lt;code>locastack.extensions&lt;/code>, and the
+entry point name is the plugin name &lt;code>my_ready_announcer&lt;/code>. The object
+reference points to the plugin class.&lt;/p>
+&lt;h3 id="using-the-extensions-cli">Using the extensions CLI&lt;/h3>
+&lt;p>The extensions CLI has a set of developer commands that allow you to create new extensions, and toggle local dev mode for extensions.
+Extensions that are toggled for developer mode will be mounted into the localstack container so you don&amp;rsquo;t need to re-install them every time you change something.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-console" data-lang="console">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">Usage: localstack extensions dev [OPTIONS] COMMAND [ARGS]...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">&lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#000;font-style:italic"> Developer tools for developing Localstack extensions
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">&lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#000;font-style:italic">Options:
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic"> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">&lt;/span>&lt;span style="color:#a40000">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#000;font-style:italic">Commands:
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic"> disable Disables an extension on the host for developer mode.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic"> enable Enables an extension on the host for developer mode.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic"> list List LocalStack extensions for which dev mode is enabled.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic"> new Create a new LocalStack extension from the official extension...
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="creating-new-extensions">Creating new extensions&lt;/h4>
+&lt;p>First, create a new extension from a template:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions dev new
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>project_name [My LocalStack Extension]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>project_short_description [All the boilerplate you need to create a LocalStack extension.]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>project_slug [my-localstack-extension]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>module_name [my_localstack_extension]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>full_name [Jane Doe]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>email [jane@example.com]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>github_username [janedoe]:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>version [0.1.0]:&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>This will create a new Python project with the following layout:&lt;/p>
+&lt;pre tabindex="0">&lt;code>my-localstack-extension
+├── Makefile
+├── my_localstack_extension
+│ ├── extension.py
+│ └── __init__.py
+├── README.md
+├── setup.cfg
+└── setup.py
+&lt;/code>&lt;/pre>&lt;p>Then run &lt;code>make install&lt;/code> in the newly created project to make a distribution package.&lt;/p>
+&lt;h4 id="start-localstack-with-the-extension">Start LocalStack with the extension&lt;/h4>
+&lt;p>To start LocalStack with the extension in dev mode, first enable it by running:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions dev enable ./my-localstack-extension&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Then, start LocalStack with &lt;code>EXTENSION_DEV_MODE=1&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>EXTENSION_DEV_MODE=1 LOCALSTACK_API_KEY=... localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In the LocalStack logs you should then see something like:&lt;/p>
+&lt;pre tabindex="0">&lt;code>==================================================
+👷 LocalStack extension developer mode enabled 🏗
+- mounting extension /opt/code/extensions/my-localstack-extension
+Resuming normal execution, ...
+==================================================
+&lt;/code>&lt;/pre>&lt;p>Now, when you make changes to your extensions, you just need to restart LocalStack and the changes will be picked up by LocalStack automatically.&lt;/p></description></item></channel></rss>
