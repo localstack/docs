@@ -8,13 +8,309 @@ aliases:
   - /aws/qldb/
 ---
 
-The Quantum Ledger Database (QLDB) API supports queries over cryptographically verifiable data, stored in a journal of immutable transaction events. LocalStack allows to create local ledgers and journals, to perform `CREATE TABLE` statements, to insert data via `INSERT` statements, and to query data via `SELECT` statements.
+## Introduction
 
-QLDB uses the [Amazon ION data format](https://amzn.github.io/ion-docs), a data serialization format that represents a superset of JSON, with a number of additional features.
+Quantum Ledger Database (QLDB) is supported by LocalStack only in the Pro version.
 
-A simple QLDB example running on LocalStack is provided in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/qldb-ledger-queries). The sample consists of two simple scenarios: (1) to create and list tables via the `pyqldb` Python library, and (2) to insert data into two tables and perform a `JOIN` query that combines data from the two tables. The sample output is posted below:
+Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web 
+Services. It is designed to provide transparent, immutable, and cryptographically verifiable transaction 
+log functionality to applications. QLDB is particularly useful for applications that need a secure and scalable 
+way to maintain a complete and verifiable history of data changes over time. 
 
-```plaintext
+Some key features and aspects of AWS QLDB:
+
+**1. Ledger Database**: QLDB provides a ledger database, which is a centralized, immutable, and cryptographically verifiable journal of transactions.
+
+**2. Immutable and Append-Only**: Once data is written to the QLDB ledger, it is immutable. This means that transactions cannot be modified or deleted. New transactions are appended to the ledger.
+
+**3. Cryptographically Verifiable**: QLDB uses cryptographic hashing and digital signatures to ensure the integrity of data. Clients can verify the authenticity and integrity of the data in the ledger.
+
+**4. ACID Transactions**: QLDB supports ACID (Atomicity, Consistency, Isolation, Durability) transactions, ensuring that transactions are processed reliably and securely.
+
+**5. SQL-like Query Language**: QLDB supports PartiQL, which is a SQL-compatible query language. This allows developers familiar with SQL to query the data stored in the ledger.
+
+**6. Managed Service**: AWS QLDB is a fully managed service. AWS handles the operational aspects such as server provisioning, scaling, and maintenance, allowing developers to focus on building applications.
+
+**7. Integration with AWS Services**: QLDB can be integrated with other AWS services such as AWS Lambda, Amazon S3, and AWS Step Functions, enabling developers to create powerful and scalable applications.
+
+To learn more about QLDB please refer to the [official documentation](https://docs.aws.amazon.com/qldb/).
+To find out what operations are supported by the QLDB service on LocalStack, please check the [QLDB service coverage page]({{< ref "/references/coverage/coverage_qldb/index.md" >}} "QLDB service coverage page"). 
+
+## Getting started with QLDB on LocalStack
+
+These instructions will follow along with the [getting started guide](https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started.html) from the official documentation, but instead of using the console to
+perform all the operations, the LocalStack AWS CLI (management API only) and the QLDB shell (data API only) will be used.
+
+### Installing the QLDB shell
+
+QLDB supports PartiQL, a SQL-compatible query language, which allows you to query and manipulate data stored in QLDB. 
+You can write PartiQL statements to perform complex queries, aggregations, and transformations on your data.
+Amazon QLDB provides a command line shell for interaction with the transactional data API. With the QLDB shell,
+you can run PartiQL statements on ledger data.
+
+For instructions on how to use and install the latest version of the QLDB shell, see the [README.md](https://github.com/awslabs/amazon-qldb-shell/blob/main/README.md#installation) file on GitHub. 
+QLDB provides pre-built binary files for Linux, macOS, and Windows in the [Releases](https://github.com/awslabs/amazon-qldb-shell/releases) section of the repository.
+
+For macOS, the shell integrates with the `aws/tap` Homebrew tap. To install the shell on macOS using Homebrew, run the following commands.
+
+{{< command >}}
+$ xcode-select --install # Required to use Homebrew
+$ brew tap aws/tap # Add AWS as a Homebrew tap
+$ brew install qldbshell
+{{< / command >}}
+
+### Creating a new ledger
+
+{{< command >}}
+$ awslocal qldb create-ledger --name vehicle-registration --permissions-mode ALLOW_ALL
+{{< / command >}}
+```bash
+{
+    "Name": "vehicle-registration",
+    "Arn": "arn:aws:qldb:us-east-1:000000000000:ledger/vehicle-registration",
+    "State": "ACTIVE",
+    "CreationDateTime": 1696782718.0,
+    "PermissionsMode": "ALLOW_ALL",
+    "DeletionProtection": true
+}
+```
+
+{{< alert title="Note" >}}
+- Permissions mode – the following options are available:
+
+**Allow all** – A legacy permissions mode that enables access control with API-level granularity for ledgers.
+This mode disregards any table-level or command-level IAM permissions policies that you create for the ledger.
+
+**Standard** (Recommended) - A permissions mode that enables access control with finer granularity for ledgers, 
+tables, and PartiQL commands. It is recommended using this permissions mode to maximize the security of your 
+ledger data.
+By default, this mode denies all requests to run any PartiQL commands on any tables in this ledger. To allow PartiQL
+commands, you must create IAM permissions policies for specific table resources and PartiQL actions, in addition to
+the `SendCommand` API permission for the ledger.
+{{< /alert >}}
+
+
+The following command can be used directly to write PartiQL statements against a QLDB ledger:
+
+{{< command >}}
+$ qldb --qldb-session-endpoint http://localhost:4566 --ledger vehicle-registration
+{{< / command >}}
+
+The user can continue from here to create tables, populate and interrogate them.
+
+### Creating tables and sample data
+
+```bash
+qldb> CREATE TABLE VehicleRegistration
+{
+  information_schema: {
+    user_tables: [
+      {
+        name: "Vehicle",
+        status: "ACTIVE",
+        indexes: [
+        ]
+      },
+      {
+        name: "VehicleRegistration",
+        status: "ACTIVE",
+        indexes: [
+        ]
+      }
+    ]
+  },
+  Vehicle: [
+  ],
+  VehicleRegistration: [
+  ]
+}
+1 document in bag (read-ios: 0, server-time: 0ms, total-time: 31ms)
+```
+
+The `Vehicle` table was previously created. Now it's time to add some values:
+
+```bash
+qldb> INSERT INTO VehicleRegistration VALUE
+  {
+    'VIN' : 'KM8SRDHF6EU074761',
+    'RegNum' : 1722,
+    'State' : 'WA',
+    'City' : 'Kent',
+    'PendingPenaltyTicketAmount' : 130.75,
+    'Owners' : { 
+    'PrimaryOwner' : { 'PersonId': '294jJ3YUoH1IEEm8GSabOs' },
+    'SecondaryOwners' : [ 
+        { 'PersonId' : '1nmeDdLo3AhGswBtyM1eYh' },
+        { 'PersonId': 'IN7MvYtUjkp1GMZu0F6CG9' }
+        ]
+      },
+    'ValidFromDate' : `2017-09-14T`,
+    'ValidToDate' : `2020-06-25T`
+  }
+{
+documentId: "3TYR9BamzyqHWBjYOfHegE"
+}
+1 document in bag (read-ios: 0, server-time: 0ms, total-time: 894ms)
+```
+### Querying a table 
+
+The table can be interrogated based on the inserted registration number:
+
+```bash
+qldb> SELECT * FROM VehicleRegistration WHERE RegNum=1722
+  {
+    'VIN' : 'KM8SRDHF6EU074761',
+    'RegNum' : 1722,
+    'State' : 'WA',
+    'City' : 'Kent',
+    'PendingPenaltyTicketAmount' : 130.75,
+    'Owners' : { 
+    'PrimaryOwner' : { 'PersonId': '294jJ3YUoH1IEEm8GSabOs' },
+    'SecondaryOwners' : [ 
+        { 'PersonId' : '1nmeDdLo3AhGswBtyM1eYh' },
+        { 'PersonId': 'IN7MvYtUjkp1GMZu0F6CG9' }
+        ]
+      },
+    'ValidFromDate' : `2017-09-14T`,
+    'ValidToDate' : `2020-06-25T`
+  }
+1 document in bag (read-ios: 0, server-time: 0ms, total-time: 477ms)
+```
+
+### Modifying documents in a ledger
+
+Additional changes can be made to documents in the `vehicle-registration` ledger with more complex queries.
+Supposed the vehicle is sold and changes owners, this information needs to be updated with a new person ID.
+
+```bash
+qldb> UPDATE VehicleRegistration AS r SET r.Owners.PrimaryOwner.PersonId = '112233445566NO' WHERE r.VIN = 'KM8SRDHF6EU074761'
+{
+  documentId: "3TYR9BamzyqHWBjYOfHegE"
+}
+1 document in bag (read-ios: 0, server-time: 0ms, total-time: 62ms)
+
+qldb> SELECT r.Owners FROM VehicleRegistration AS r WHERE r.VIN = 'KM8SRDHF6EU074761'
+{
+    Owners: {
+    PrimaryOwner: {
+    PersonId: "112233445566NO"
+},
+    SecondaryOwners: [
+      {
+        PersonId: "1nmeDdLo3AhGswBtyM1eYh"
+      },
+      {
+        PersonId: "IN7MvYtUjkp1GMZu0F6CG9"
+      }
+    ]
+  }
+}
+1 document in bag (read-ios: 0, server-time: 0ms, total-time: 518ms)
+```
+
+### Viewing the revision history of a document
+
+After modifying the data in a document, the user can query the history of the entity.
+You can see all revisions of a document that you inserted, updated, and deleted by querying the built-in History function.
+First the unique `id` of the document must be found.
+
+```bash
+qldb> SELECT r_id FROM VehicleRegistration AS r BY r_id
+WHERE r.VIN = 'KM8SRDHF6EU074761'
+{
+  r_id: "3TYR9BamzyqHWBjYOfHegE"
+}
+1 document in bag (read-ios: 0, server-time: 0ms, total-time: 541ms)
+```
+
+Then, the `id` is used to query the history function.
+
+```bash
+qldb> SELECT h.data.VIN, h.data.City, h.data.Owners
+FROM history(VehicleRegistration) AS h
+WHERE h.metadata.id = '3TYR9BamzyqHWBjYOfHegE'
+{
+  VIN: "KM8SRDHF6EU074761",
+  City: "Kent",
+  Owners: {
+    PrimaryOwner: {
+      PersonId: "294jJ3YUoH1IEEm8GSabOs"
+    },
+    SecondaryOwners: [
+      {
+        PersonId: "1nmeDdLo3AhGswBtyM1eYh"
+      },
+      {
+        PersonId: "IN7MvYtUjkp1GMZu0F6CG9"
+      }
+    ]
+  }
+},
+{
+  VIN: "KM8SRDHF6EU074761",
+  City: "Kent",
+  Owners: {
+    PrimaryOwner: {
+      PersonId: "112233445566NO"
+    },
+    SecondaryOwners: [
+      {
+        PersonId: "1nmeDdLo3AhGswBtyM1eYh"
+      },
+      {
+        PersonId: "IN7MvYtUjkp1GMZu0F6CG9"
+      }
+    ]
+  }
+}
+2 documents in bag (read-ios: 0, server-time: 0ms, total-time: 544ms)
+```
+
+### Cleaning up resources
+
+Unused ledgers can be deleted. You'll notice that directly running the following command will lead to an error message.
+
+{{< command >}}
+$ awslocal qldb delete-ledger --name vehicle-registration
+{{< / command >}}
+
+
+```bash
+An error occurred (ResourcePreconditionNotMetException) when calling the DeleteLedger operation: Preventing deletion 
+of ledger vehicle-registration with DeletionProtection enabled
+```
+
+This can be adjusted using the `update-ledger` command in the AWS CLI:
+
+{{< command >}}
+$ awslocal qldb update-ledger --name vehicle-registration --no-deletion-protection
+{
+  "Name": "vehicle-registration",
+  "Arn": "arn:aws:qldb:us-east-1:000000000000:ledger/vehicle-registration",
+  "State": "ACTIVE",
+  "CreationDateTime": 1697038061.0,
+  "DeletionProtection": false
+}
+{{< / command >}}
+
+Now the `delete-ledger` command can be repeated without errors.
+
+### Exploring further
+
+Interacting with Amazon QLDB (Quantum Ledger Database) is typically done using language-specific software 
+development kits (SDKs) provided by AWS. These SDKs make it easier for developers to interact with QLDB and 
+perform operations such as managing ledgers, executing PartiQL queries, and processing the results.
+When interacting with QLDB, it's common to use a combination of SDKs and PartiQL queries to achieve specific data 
+processing tasks, ensuring flexibility and ease of development.
+
+A simple QLDB example running on LocalStack is provided in [this Github repository](https://github.com/localstack/localstack-pro-samples/tree/master/qldb-ledger-queries).
+The sample consists of two simple scenarios:
+1. to create and list tables via the `pyqldb` Python library
+2. to insert data into two tables and perform a `JOIN` query that combines data from the two tables.
+
+The sample will output:
+
+```
 Scenario 1: create and list tables in ledger
 -----------
 Creating new test ledger in QLDB API: ledger-test-1
