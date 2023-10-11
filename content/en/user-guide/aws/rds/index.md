@@ -25,6 +25,11 @@ LocalStack's RDS implementation also supports the [RDS Data API](https://docs.aw
 
 ### Create an RDS cluster
 
+{{< alert title="Note" >}}
+The `Endpoint` for cluster on Localstack currently follows the pattern `<host>:<port>` for legacy reasons, which is not in parity in AWS. 
+To force the correct pattern (e.g. returning only the host for the `Endpoint`) you can use the configuration `RDS_CLUSTER_ENDPOINT_HOST_ONLY=1` to start LocalStack.
+{{< /alert >}}
+
 To create an RDS cluster, you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html) API. 
 The following command creates a new cluster with the name `db1` and the engine `aurora-postgresql`. 
 Instances for the cluster must be added manually.
