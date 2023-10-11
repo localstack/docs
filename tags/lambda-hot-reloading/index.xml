@@ -78,10 +78,14 @@ id="tabs-02-01" role="tabpanel" aria-labelled-by="tabs-02-01-tab">
 &lt;li>&lt;strong>Hot reloading&lt;/strong>: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our &lt;a href="/user-guide/tools/lambda-tools/hot-reloading/">hot reloading documentation&lt;/a>.&lt;/li>
 &lt;li>&lt;strong>Remote debugging&lt;/strong>: LocalStack&amp;rsquo;s remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our &lt;a href="/user-guide/tools/lambda-tools/debugging/">debugging documentation&lt;/a>.&lt;/li>
 &lt;/ul>
-&lt;h2 id="lambda-layers">Lambda Layers&lt;/h2>
-&lt;p>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layers&lt;/a> lets you include additional code and dependencies in your Lambda functions. With LocalStack Pro/Team, you can deploy Lambda Layers locally to streamline your development and testing process.&lt;/p>
-&lt;p>To learn more about Lambda Layers, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS documentation on Lambda layers&lt;/a>. Here, we&amp;rsquo;ll focus specifically on how to create Lambda Layers locally in LocalStack Pro/Team.&lt;/p>
-&lt;h3 id="creating-and-invoking-a-lambda-layer-locally">Creating and invoking a Lambda Layer Locally&lt;/h3>
+&lt;h2 id="lambda-layers-pro">Lambda Layers (Pro)&lt;/h2>
+&lt;p>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layers&lt;/a> lets you include additional code and dependencies in your Lambda functions.
+With LocalStack Pro/Team, you can deploy Lambda Layers locally to streamline your development and testing process.
+Community users can still create, update, and list Lambda layers.
+However, the layers are not applied when invoking a Lambda function.&lt;/p>
+&lt;p>To learn more about Lambda Layers, refer to the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">AWS documentation on Lambda layers&lt;/a>.
+Here, we&amp;rsquo;ll focus specifically on how to use Lambda Layers locally in LocalStack Pro/Team.&lt;/p>
+&lt;h3 id="creating-and-using-a-lambda-layer-locally">Creating and using a Lambda Layer Locally&lt;/h3>
 &lt;p>To create a Lambda Layer locally, you can use the &lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html">&lt;code>PublishLayerVersion&lt;/code> API&lt;/a> in LocalStack. Here&amp;rsquo;s a simple example using Python:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir -p /tmp/python/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>echo &amp;#39;def util():&amp;#39; &amp;gt; /tmp/python/testlayer.py
