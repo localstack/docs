@@ -120,13 +120,17 @@ LocalStack provides various tools to help you develop, debug, and test your AWS 
 * **Hot reloading**: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our [hot reloading documentation]({{< ref "hot-reloading" >}}).
 * **Remote debugging**: LocalStack's remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our [debugging documentation]({{< ref "debugging" >}}).
 
-## Lambda Layers
+## Lambda Layers (Pro)
 
-[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) lets you include additional code and dependencies in your Lambda functions. With LocalStack Pro/Team, you can deploy Lambda Layers locally to streamline your development and testing process.
+[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) lets you include additional code and dependencies in your Lambda functions. 
+With LocalStack Pro/Team, you can deploy Lambda Layers locally to streamline your development and testing process.
+Community users can still create, update, and list Lambda layers.
+However, the layers are not applied when invoking a Lambda function.
 
-To learn more about Lambda Layers, refer to the [AWS documentation on Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html). Here, we'll focus specifically on how to create Lambda Layers locally in LocalStack Pro/Team.
+To learn more about Lambda Layers, refer to the [AWS documentation on Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+Here, we'll focus specifically on how to use Lambda Layers locally in LocalStack Pro/Team.
 
-### Creating and invoking a Lambda Layer Locally
+### Creating and using a Lambda Layer Locally
 
 To create a Lambda Layer locally, you can use the [`PublishLayerVersion` API](https://docs.aws.amazon.com/lambda/latest/dg/API_PublishLayerVersion.html) in LocalStack. Here's a simple example using Python:
 
