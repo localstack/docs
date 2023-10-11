@@ -1,74 +1,14 @@
 ---
-title: "LocalStack Extensions"
-linkTitle: "LocalStack Extensions"
-weight: 50
-description: >
-  Using LocalStack Extensions to extend and customize LocalStack
-categories: ["LocalStack Pro"]
+title: "Developing extensions"
 tags: ["extensions"]
-aliases:
-  - /developer-guide/localstack-extensions/
-  - /contributing/localstack-extensions/
+weight: 10
+description: >
+  How to develop your own extensions
 ---
 
-LocalStack Extensions allow developers to extend and customize LocalStack.
-
-Specific LocalStack Extensions are documented [here]({{< ref "user-guide/tools/localstack-extensions" >}}) and
-can be discovered on our [GitHub repository](https://github.com/localstack/localstack-extensions).
-Our blogpost about [LocalStack’s Cloudflare Extension](https://localstack.cloud/blog/2023-06-26-develop-your-cloudflare-workers-aws-apps-locally-with-localstack-miniflare/)
-showcases LocalStack as a local cloud development platform beyond AWS emulation.
-
-{{<alert title="Note">}}
-The feature and the API are currently experimental and may be subject to change.
-Please report any issues or feature requests on our [GitHub repository](https://github.com/localstack/localstack-extensions).
-{{</alert>}}
-
-## Using Extensions
-
-Extensions are a LocalStack Pro feature. To use and install extensions, use the CLI to first login to your account
-
-{{< command >}}
-$ localstack login
-Please provide your login credentials below
-Username: ...
-{{< / command >}}
-
-To get a list of all available commands in LocalStack Extensions, run:
-
-{{< command >}}
-$ localstack extensions --help
-
-Usage: localstack extensions [OPTIONS] COMMAND [ARGS]...
-
-  Manage LocalStack extensions (beta)
-
-Options:
-  -v, --verbose  Print more output
-  -h, --help     Show this message and exit
-
-Commands:
-  dev        Developer tools for developing LocalStack extensions
-  init       Initialize the LocalStack extensions environment
-  install    Install a LocalStack extension
-  list       List installed extension
-  uninstall  Remove a LocalStack extension
-{{< / command >}}
-
-To install an extension, specify the name of the `pip` dependency that contains the extension. For example, for the official Stripe extension, you can either use the package distributed on PyPI:
-
-{{< command >}}
-$ localstack extensions install localstack-extension-httpbin
-{{< / command >}}
-
-You can alternatively install the latest development version directly from our Git repository:
-
-{{< command >}}
-$ localstack extensions install "git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-httpbin&subdirectory=httpbin"
-{{< / command >}}
-
-## Developing Extensions
-
 This section provides a brief overview of how to develop your own extensions.
+
+## Overview
 
 ### Extensions API
 
@@ -157,10 +97,19 @@ class ReadyAnnouncerExtension(Extension):
     name = "my_ready_announcer"
 
     def on_platform_ready(self):
+        LOG.setLevel(logging.INFO)
     	LOG.info("my plugin is loaded and localstack is ready to roll!")
 ```
 
-### Package your Extension
+
+{{<alert title="Note">}}
+A note on importing LocalStack modules: since extensions run in the same Python process as the LocalStack runtime,
+you can also import other LocalStack modules outside the `localstack.extensions.api` module, and work with them.
+However, be aware that these modules are not part of our public API, and can change even with patch versions any time.
+Your extension may break in unexpected ways, and we cannot provide support for internal APIs. 
+{{</alert>}}
+
+### Packaging extensions
 
 Your extensions needs to be packaged as a Python distribution with a
 `setup.cfg` or `setup.py` config. LocalStack uses the
@@ -196,7 +145,7 @@ entry point name is the plugin name `my_ready_announcer`. The object
 reference points to the plugin class.
 
 
-### Using the extensions CLI
+### Using the extensions developer CLI
 
 The extensions CLI has a set of developer commands that allow you to create new extensions, and toggle local dev mode for extensions.
 Extensions that are toggled for developer mode will be mounted into the localstack container so you don't need to re-install them every time you change something.
@@ -216,19 +165,22 @@ Commands:
   new      Create a new LocalStack extension from the official extension...
 ```
 
-#### Creating new extensions
+## Creating your first extension
 
-First, create a new extension from a template:
+### Creating an extension from a template
+
+First, create a new extension from a template.
+To use `localstack extensions dev new`, you will also need to install [cookiecutter](https://github.com/cookiecutter/cookiecutter) via `pip install cookiecutter`.
 
 {{< command >}}
 $ localstack extensions dev new
-project_name [My LocalStack Extension]: 
-project_short_description [All the boilerplate you need to create a LocalStack extension.]: 
-project_slug [my-localstack-extension]: 
-module_name [my_localstack_extension]: 
-full_name [Jane Doe]: 
-email [jane@example.com]: 
-github_username [janedoe]: 
+project_name [My LocalStack Extension]:
+project_short_description [All the boilerplate you need to create a LocalStack extension.]:
+project_slug [my-localstack-extension]:
+module_name [my_localstack_extension]:
+full_name [Jane Doe]:
+email [jane@example.com]:
+github_username [janedoe]:
 version [0.1.0]:
 {{< / command >}}
 
@@ -248,7 +200,7 @@ my-localstack-extension
 
 Then run `make install` in the newly created project to make a distribution package.
 
-#### Start LocalStack with the extension
+### Start LocalStack with the extension
 
 To start LocalStack with the extension in dev mode, first enable it by running:
 
@@ -273,3 +225,14 @@ Resuming normal execution, ...
 ```
 
 Now, when you make changes to your extensions, you just need to restart LocalStack and the changes will be picked up by LocalStack automatically.
+
+## Advertise your extension
+
+Once your extension is ready to be used, release it on a public GitHub repository.
+To make your extension easily installable for everyone generate an extension badge for your extension on this page.
+The resulting badge should look like this <img src="https://localstack.cloud/gh/extension-badge.svg">.
+You can create a one-click installer for your extension using our [Extension Installer](https://app.localstack.cloud/extensions/remote).
+
+{{< figure src="extension-installer.png" >}}
+
+<!-- TODO: add screenshot of installer with a specific extension, currently doesn't work -->
