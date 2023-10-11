@@ -3,7 +3,7 @@ title: "LocalStack Desktop"
 weight: 8
 description: >
   Getting started with LocalStack Desktop application
-tags: ["desktop", "docker"]
+tags: ["desktop"]
 aliases:
   - /tools/localstack-desktop/
   - /user-guide/tools/localstack-desktop/
