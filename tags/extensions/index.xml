@@ -1,42 +1,146 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – extensions</title><link>/tags/extensions/</link><description>Recent content in extensions on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/extensions/index.xml" rel="self" type="application/rss+xml"/><item><title>References: LocalStack Extensions</title><link>/references/localstack-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/localstack-extensions/</guid><description>
-&lt;p>LocalStack Extensions allow developers to extend and customize LocalStack.&lt;/p>
-&lt;p>Specific LocalStack Extensions are documented &lt;a href="/user-guide/tools/localstack-extensions/">here&lt;/a> and
-can be discovered on our &lt;a href="https://github.com/localstack/localstack-extensions">GitHub repository&lt;/a>.
-Our blogpost about &lt;a href="https://localstack.cloud/blog/2023-06-26-develop-your-cloudflare-workers-aws-apps-locally-with-localstack-miniflare/">LocalStack’s Cloudflare Extension&lt;/a>
-showcases LocalStack as a local cloud development platform beyond AWS emulation.&lt;/p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – extensions</title><link>/tags/extensions/</link><description>Recent content in extensions on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/extensions/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Quickstart</title><link>/user-guide/extensions/quickstart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/quickstart/</guid><description>
+&lt;p>In this quickstart guide, we will install and use the official &lt;a href="https://github.com/localstack/localstack-extensions/tree/main/mailhog">MailHog extensions&lt;/a>.&lt;/p>
+&lt;h2 id="install-an-extension">Install an extension&lt;/h2>
+&lt;p>First, start up your LocalStack instance and navigate to our &lt;a href="https://app.localstack.cloud/inst/default/extensions/manage">Extension Manager App&lt;/a>.
+Then, click the &amp;ldquo;Install&amp;rdquo; button of the MailHog extension:&lt;/p>
+&lt;figure>
+&lt;img src="/user-guide/extensions/quickstart/install-extensions.png"/>
+&lt;/figure>
+&lt;p>You will be prompted to confirm that LocalStack will be restarted, and then the extension should become available.
+In your LocalStack logs you should see the MailHog extension logging some output:&lt;/p>
+&lt;pre tabindex="0">&lt;code>2023-10-11T19:10:54.708 INFO --- [ MainThread] l.extensions.platform : loaded 1 extensions
+2023-10-11T19:10:54.709 INFO --- [ MainThread] mailhog.extension : starting mailhog server
+2023-10-11T19:10:54.709 INFO --- [ MainThread] mailhog.extension : configuring SMTP host to internal mailhog smtp: localhost:25
+...
+2023-10-11T19:10:55.023 INFO --- [ MainThread] mailhog.extension : serving mailhog extension on host: http://mailhog.localhost.localstack.cloud:4566
+2023-10-11T19:10:55.023 INFO --- [ MainThread] mailhog.extension : serving mailhog extension on path: http://localhost:4566/mailhog/
+&lt;/code>&lt;/pre>&lt;h2 id="use-the-extension">Use the extension&lt;/h2>
+&lt;p>With MailHog, you can perform end-to-end testing of applications that send emails via SES.
+Let&amp;rsquo;s use the AWS CLI tool to send an email:&lt;/p>
+&lt;h3 id="send-an-email-through-ses">Send an Email through SES&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>aws --endpoint-url=http://localhost:4566 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ses verify-email-identity --email-address user1@yourdomain.com&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>aws --endpoint-url=http://localhost:4566 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ses send-email \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Hello from LocalStack to MailHog&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="open-the-extensions-ui">Open the extension&amp;rsquo;s UI&lt;/h3>
+&lt;p>Now, navigate in your browser to the MailHog UI in LocalStack: &lt;a href="http://mailhog.localhost.localstack.cloud:4566/">http://mailhog.localhost.localstack.cloud:4566/&lt;/a>&lt;/p>
+&lt;p>You should see the email there:&lt;/p>
+&lt;figure>
+&lt;img src="/user-guide/extensions/quickstart/mailhog.png"/>
+&lt;/figure>
+&lt;h2 id="next-steps">Next steps&lt;/h2>
+&lt;ul>
+&lt;li>We have a range of official extensions, and a growing ecosystem of third-party extensions.
+Check them out in our &lt;a href="https://app.localstack.cloud/extensions/library">Extensions Library&lt;/a>.&lt;/li>
+&lt;li>There are different ways of managing extensions, and automating the installation of extensions when using LocalStack in CI.
+You can find out more in our &lt;a href="/user-guide/extensions/managing-extensions/">Managing Extensions&lt;/a> guide.&lt;/li>
+&lt;li>You can also build your own extensions!
+Check out our guide on &lt;a href="/user-guide/extensions/developing-extensions/">Developing Extensions&lt;/a>.&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Managing extensions</title><link>/user-guide/extensions/managing-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/managing-extensions/</guid><description>
+&lt;p>You have different options to install and manage your LocalStack extensions depending on your environment and work style.&lt;/p>
+&lt;p>Extensions are managed through the LocalStack container, but stored in the &lt;a href="/references/filesystem/#localstack-volume">LocalStack volume&lt;/a> on your host.
+The next time you start up LocalStack, your extensions will still be there!&lt;/p>
+&lt;h2 id="using-the-extensions-manager-in-our-app">Using the extensions manager in our App&lt;/h2>
+&lt;p>The easiest way to manage official extensions is through our webapp and our &lt;a href="https://app.localstack.cloud/inst/default/extensions/manage">Extension Manager App&lt;/a>.
+Simply install and remove extensions from your specific LocalStack instance directly from the App.&lt;/p>
+&lt;p>If you have multiple instances of LocalStack, each instance has its own set of extensions,
+and our App allows you to manage extensions for each instance individually.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-The feature and the API are currently experimental and may be subject to change.
-Please report any issues or feature requests on our &lt;a href="https://github.com/localstack/localstack-extensions">GitHub repository&lt;/a>.
+When you install or uninstall extensions, LocalStack needs to be restarted.
+LocalStack will do this automatically for you!
+It re-starts the process inside the running container, not the container itself.
+However, you may lose LocalStack state if you do not use persistence.
 &lt;/div>
-&lt;h2 id="using-extensions">Using Extensions&lt;/h2>
-&lt;p>Extensions are a LocalStack Pro feature. To use and install extensions, use the CLI to first login to your account&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack login
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Please provide your login credentials below
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Username: ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>To get a list of all available commands in LocalStack Extensions, run:&lt;/p>
+&lt;figure>
+&lt;img src="/user-guide/extensions/managing-extensions/extensions-manager.png"/>
+&lt;/figure>
+&lt;h2 id="using-the-extensions-cli">Using the extensions CLI&lt;/h2>
+&lt;p>If you use LocalStack with the CLI, you can also use our &lt;code>localstack extensions&lt;/code> CLI command suite.
+To get a list of all available commands in LocalStack Extensions, run:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions --help
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack extensions [OPTIONS] COMMAND [ARGS]...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Manage LocalStack extensions (beta)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Manage LocalStack extensions (beta)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -v, --verbose Print more output
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -h, --help Show this message and exit
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-v, --verbose Print more output
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-h, --help Show this message and exit
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Commands:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dev Developer tools for developing LocalStack extensions
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> init Initialize the LocalStack extensions environment
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> install Install a LocalStack extension
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> list List installed extension
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> uninstall Remove a LocalStack extension&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dev Developer tools for developing LocalStack extensions
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>init Initialize the LocalStack extensions environment
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>install Install a LocalStack extension
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>list List installed extension
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>uninstall Remove a LocalStack extension&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>To install an extension, specify the name of the &lt;code>pip&lt;/code> dependency that contains the extension. For example, for the official Stripe extension, you can either use the package distributed on PyPI:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install localstack-extension-httpbin&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You can alternatively install the latest development version directly from our Git repository:&lt;/p>
+&lt;p>Extensions are just Python pip packages, and the &lt;code>install&lt;/code> command will accept anything that resolves to a valid pip package.
+For example, you can install the latest development version directly from our Git repository using the &lt;code>git+https&lt;/code> directive.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install &amp;#34;git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-httpbin&amp;amp;subdirectory=httpbin&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="developing-extensions">Developing Extensions&lt;/h2>
+&lt;p>If you have Python distribution as files on your local machine, for instance pip wheels or source distributions, then you can also install those via the &lt;code>file://&lt;/code> directive
+The file will be automatically mounted into the container and installed from there.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>pip install file://./my-extensions/dist/my-extension-0.0.1.dev0.tar.gz&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h2 id="automating-extensions-installation">Automating extensions installation&lt;/h2>
+&lt;p>When you are working in CI or with docker-compose, you may want to automate extension management.
+LocalStack provides two ways to do this:&lt;/p>
+&lt;h3 id="environment-variable">Environment variable&lt;/h3>
+&lt;p>The &lt;code>EXTENSION_AUTO_INSTALL&lt;/code> variable is interpreted by LocalStack at startup,
+to ensure that the extensions set in the variable value are installed when the container starts up.&lt;/p>
+&lt;p>The value is a comma-separated list of extensions directives that can also be specified in &lt;code>localstack extensions install&lt;/code>.
+If you want to use the &lt;code>file://&lt;/code> directive, the distribution file needs to be mounted into the container.&lt;/p>
+&lt;p>In a docker-compose file, this would look something like:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;3.8&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">container_name&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localstack_main&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack/localstack-pro&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">ports&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;127.0.0.1:4566:4566&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;127.0.0.1:4510-4559:4510-4559&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">environment&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DEBUG=1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">EXTENSION_AUTO_INSTALL=localstack-extension-mailhog,localstack-extension-httpbin&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;./volume:/var/lib/localstack&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="configuration-file">Configuration file&lt;/h3>
+&lt;p>LocalStack also supports configuration files to automatically install extensions.&lt;/p>
+&lt;p>Inside the container, LocalStack will resolve the file &lt;code>/etc/localstack/conf.d/extensions.txt&lt;/code>, and will install all extensions defined in this list.
+Since LocalStack extensions are essentially just Python pip packages, the &lt;code>extensions.txt&lt;/code> has the same format as a &lt;a href="https://pip.pypa.io/en/stable/reference/requirements-file-format/">pip requirements file&lt;/a>.&lt;/p>
+&lt;p>An example project could look something like this:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>extensions.txt&lt;/code>
+&lt;pre tabindex="0">&lt;code>localstack-extension-mailhog
+git+https://github.com/localstack/localstack-extensions/#egg=localstack-extension-aws-replicator&amp;amp;subdirectory=aws-replicator
+&lt;/code>&lt;/pre>&lt;/li>
+&lt;li>Project layout:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-console" data-lang="console">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">extension-install
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">├── conf.d
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">│ └── extensions.txt
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">└── docker-compose.yml
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;code>docker-compose.yaml&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">version&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;3.8&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">services&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">...&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;./volume:/var/lib/localstack&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;conf.d:/etc/localstack/conf.d&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;p>When LocalStack starts up, you should see it tries to install the extensions and all their dependencies.&lt;/p></description></item><item><title>User-Guide: Developing extensions</title><link>/user-guide/extensions/developing-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/developing-extensions/</guid><description>
 &lt;p>This section provides a brief overview of how to develop your own extensions.&lt;/p>
+&lt;h2 id="overview">Overview&lt;/h2>
 &lt;h3 id="extensions-api">Extensions API&lt;/h3>
 &lt;p>LocalStack exposes a Python API for building extensions that can be found in the core codebase in &lt;a href="https://github.com/localstack/localstack/tree/master/localstack/extensions/api">&lt;code>localstack.extensions.api&lt;/code>&lt;/a>.&lt;/p>
 &lt;p>The basic interface to implement is as follows:&lt;/p>
@@ -116,8 +220,17 @@ Please report any issues or feature requests on our &lt;a href="https://github.c
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">name&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my_ready_announcer&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">on_platform_ready&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#3465a4">self&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">LOG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">setLevel&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">logging&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">INFO&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">LOG&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">info&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;my plugin is loaded and localstack is ready to roll!&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="package-your-extension">Package your Extension&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+A note on importing LocalStack modules: since extensions run in the same Python process as the LocalStack runtime,
+you can also import other LocalStack modules outside the &lt;code>localstack.extensions.api&lt;/code> module, and work with them.
+However, be aware that these modules are not part of our public API, and can change even with patch versions any time.
+Your extension may break in unexpected ways, and we cannot provide support for internal APIs.
+&lt;/div>
+&lt;h3 id="packaging-extensions">Packaging extensions&lt;/h3>
 &lt;p>Your extensions needs to be packaged as a Python distribution with a
 &lt;code>setup.cfg&lt;/code> or &lt;code>setup.py&lt;/code> config. LocalStack uses the
 &lt;a href="https://github.com/localstack/plux">Plux&lt;/a> code loading framework to load your
@@ -145,7 +258,7 @@ example below.&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The entry point group is the Plux namespace &lt;code>locastack.extensions&lt;/code>, and the
 entry point name is the plugin name &lt;code>my_ready_announcer&lt;/code>. The object
 reference points to the plugin class.&lt;/p>
-&lt;h3 id="using-the-extensions-cli">Using the extensions CLI&lt;/h3>
+&lt;h3 id="using-the-extensions-developer-cli">Using the extensions developer CLI&lt;/h3>
 &lt;p>The extensions CLI has a set of developer commands that allow you to create new extensions, and toggle local dev mode for extensions.
 Extensions that are toggled for developer mode will be mounted into the localstack container so you don&amp;rsquo;t need to re-install them every time you change something.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-console" data-lang="console">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">Usage: localstack extensions dev [OPTIONS] COMMAND [ARGS]...
@@ -160,8 +273,10 @@ Extensions that are toggled for developer mode will be mounted into the localsta
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic"> enable Enables an extension on the host for developer mode.
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic"> list List LocalStack extensions for which dev mode is enabled.
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic"> new Create a new LocalStack extension from the official extension...
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="creating-new-extensions">Creating new extensions&lt;/h4>
-&lt;p>First, create a new extension from a template:&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="creating-your-first-extension">Creating your first extension&lt;/h2>
+&lt;h3 id="creating-an-extension-from-a-template">Creating an extension from a template&lt;/h3>
+&lt;p>First, create a new extension from a template.
+To use &lt;code>localstack extensions dev new&lt;/code>, you will also need to install &lt;a href="https://github.com/cookiecutter/cookiecutter">cookiecutter&lt;/a> via &lt;code>pip install cookiecutter&lt;/code>.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions dev new
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>project_name [My LocalStack Extension]:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>project_short_description [All the boilerplate you need to create a LocalStack extension.]:
@@ -181,7 +296,7 @@ Extensions that are toggled for developer mode will be mounted into the localsta
 ├── setup.cfg
 └── setup.py
 &lt;/code>&lt;/pre>&lt;p>Then run &lt;code>make install&lt;/code> in the newly created project to make a distribution package.&lt;/p>
-&lt;h4 id="start-localstack-with-the-extension">Start LocalStack with the extension&lt;/h4>
+&lt;h3 id="start-localstack-with-the-extension">Start LocalStack with the extension&lt;/h3>
 &lt;p>To start LocalStack with the extension in dev mode, first enable it by running:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions dev enable ./my-localstack-extension&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Then, start LocalStack with &lt;code>EXTENSION_DEV_MODE=1&lt;/code>&lt;/p>
@@ -192,4 +307,71 @@ Extensions that are toggled for developer mode will be mounted into the localsta
 - mounting extension /opt/code/extensions/my-localstack-extension
 Resuming normal execution, ...
 ==================================================
-&lt;/code>&lt;/pre>&lt;p>Now, when you make changes to your extensions, you just need to restart LocalStack and the changes will be picked up by LocalStack automatically.&lt;/p></description></item></channel></rss>
+&lt;/code>&lt;/pre>&lt;p>Now, when you make changes to your extensions, you just need to restart LocalStack and the changes will be picked up by LocalStack automatically.&lt;/p>
+&lt;h2 id="advertise-your-extension">Advertise your extension&lt;/h2>
+&lt;p>Once your extension is ready to be used, release it on a public GitHub repository.
+To make your extension easily installable for everyone generate an extension badge for your extension on this page.
+The resulting badge should look like this &lt;img src="https://localstack.cloud/gh/extension-badge.svg">.
+You can create a one-click installer for your extension using our &lt;a href="https://app.localstack.cloud/extensions/remote">Extension Installer&lt;/a>.&lt;/p>
+&lt;figure>
+&lt;img src="/user-guide/extensions/developing-extensions/extension-installer.png"/>
+&lt;/figure>
+&lt;!-- TODO: add screenshot of installer with a specific extension, currently doesn't work --></description></item><item><title>User-Guide: Official extensions</title><link>/user-guide/extensions/official-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/official-extensions/</guid><description>
+&lt;p>Here is the current list of extensions developed by the LocalStack team and their support status.
+You can always find an up-to-date list in our &lt;a href="https://app.localstack.cloud/extensions/library">Extension Library&lt;/a>.&lt;/p>
+&lt;!-- TODO: automate the creation of this table -->
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Extension&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>Install name&lt;/th>
+&lt;th>Version&lt;/th>
+&lt;th>Support status&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;a href="https://github.com/localstack/localstack-extensions/tree/main/aws-replicator">AWS replicator&lt;/a>&lt;/td>
+&lt;td>A LocalStack extension to replicate AWS resources into your local machine.&lt;/td>
+&lt;td>localstack-extension-aws-replicator&lt;/td>
+&lt;td>0.1.0&lt;/td>
+&lt;td>Experimental&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://github.com/localstack/localstack-extensions/tree/main/diagnosis-viewer">Diagnosis Viewer&lt;/a>&lt;/td>
+&lt;td>View the diagnostics endpoint directly in localstack.&lt;/td>
+&lt;td>localstack-extension-diagnosis-viewer&lt;/td>
+&lt;td>0.1.0&lt;/td>
+&lt;td>Stable&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://github.com/localstack/localstack-extensions/tree/main/httpbin">httpbin&lt;/a>&lt;/td>
+&lt;td>A simple HTTP Request &amp;amp; Response Service directly in LocalStack using httpbin.&lt;/td>
+&lt;td>localstack-extension-httpbin&lt;/td>
+&lt;td>0.1.0&lt;/td>
+&lt;td>Stable&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://github.com/localstack/localstack-extensions/tree/main/mailhog">MailHog&lt;/a>&lt;/td>
+&lt;td>Web and API based SMTP testing directly in LocalStack using MailHog.&lt;/td>
+&lt;td>localstack-extension-mailhog&lt;/td>
+&lt;td>0.1.0&lt;/td>
+&lt;td>Stable&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://github.com/localstack/localstack-extensions/tree/main/miniflare">Miniflare&lt;/a>&lt;/td>
+&lt;td>This extension makes Miniflare (dev environment for Cloudflare workers) available directly in LocalStack!&lt;/td>
+&lt;td>localstack-extension-miniflare&lt;/td>
+&lt;td>0.1.0&lt;/td>
+&lt;td>Experimental&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://github.com/localstack/localstack-extensions/tree/main/stripe">Stripe&lt;/a>&lt;/td>
+&lt;td>A LocalStack extension that provides a mocked version of Stripe as a service.&lt;/td>
+&lt;td>localstack-extension-stripe&lt;/td>
+&lt;td>0.1.0&lt;/td>
+&lt;td>Stable&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item></channel></rss>
