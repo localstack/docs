@@ -1,36 +1,28 @@
 ---
 title: "Cloud Pods Launchpad"
 weight: 10
-categories: ["LocalStack Pro", "Tools"]
-description: >
-  The LocalStack Cloud Pods Launchpad offers the easiest way of sharing and injecting cloud pods directly from your repositories or via a simple URL.
+description: Get started with Cloud Pods Launchpad to share and inject Cloud Pods into your LocalStack instance via a URL
 ---
 
-The LocalStack Cloud Pods Launchpad allows you to quickly share and inject cloud pods into a LocalStack instance.
-
+The LocalStack Cloud Pods Launchpad enables you to easily share and inject Cloud Pods into a LocalStack instance.
 
 ## Creating your sharable link
 
-Navigate to <https://app.localstack.cloud/launchpad> where you can create a sharable link for your pods.
+You can visit [Cloud Pods launchpad](https://app.localstack.cloud/launchpad) to generate a shareable link for your pods.
 
 ![Cloud Pods Launchpad Link Generator](link-generator.png)
 
-Enter a public URl to your pod in the first input field, and click on 'Generate Link'.
-The resulting link can be copied and shared with others.
-
-You can also copy the markdown snippet to quickly add a badge to your repository.
+Enter a public URL to your pod Cloud Pod the first input field, then click **Generate Link**. You can copy the resulting link and share it with others. Additionally, you have the option to copy a markdown snippet for quickly adding a badge to your repository.
 
 {{< alert title="Warning" color="warning" >}}
-Please consider that the launchpad takes an arbitrary URL as input and passes it onto your LocalStack instance to inject the pod. 
-This may lead to unintended side effects, as the URL that is passed to the launchpad is not validated in any way. 
+The Launchpad accepts any URL as input and directly passes it to your LocalStack instance for Cloud Pod injection. As a result, this process may carry the risk of unintended side effects, as there is no validation applied to the URL provided to the launchpad.
 
-We also display the URL on the UI, so please make sure that your trust the URL when using the launchpad.
+Furthermore, it's essential to exercise caution and only use URLs that you trust when utilizing the launchpad, as the URL is displayed in the user interface.
 {{< /alert >}}
-
 
 ## Adding a badge to your repository
 
-If you want to add a badge to your README that links to the Cloud Pod Launchpad, you can use the following markdown snippet:
+To add a badge to your README that links to the Cloud Pod Launchpad, you can include the following markdown snippet:
 
 ```markdown
 [![Launch LocalStack Cloudpod](https://localstack.cloud/gh/launch-pod-badge.svg)](https://app.localstack.cloud/launchpad?url=url_of_your_pod)
@@ -38,12 +30,9 @@ If you want to add a badge to your README that links to the Cloud Pod Launchpad,
 
 ![Cloud Pods Badge Demonstration](badge-demo.png)
 
-Please note that you have to add the `url_of_your_pod` as the `url` query parameter to the URL.
-For example if you are hosting the pod in the same repository, just use the URL pointing to the raw pod file.
-Additionally, you can use the [Link Generator]({{< ref "#creating-your-sharable-link" >}}) to create the sharable link for your pod and copy the markdown for your repo.
+You need to include the `url_of_your_pod` as the `url` query parameter in the URL. For instance, if your Cloud Pod is hosted within the same repository, simply use the URL that directs to the raw Cloud Pod file.
 
-Check out a proper example <a href="https://github.com/localstack/cloud-pod-badge" target="_blank">on this GitHub repository</a>.
-
+Additionally, you can utilize the [Link Generator]({{< ref "#creating-your-sharable-link" >}}) to generate a sharable link for your pod and copy the corresponding markdown snippet for your repository. Check out a proper example <a href="https://github.com/localstack/cloud-pod-badge" target="_blank">on th Cloud Pod badge GitHub repository</a>.
 
 ## Troubleshooting common problems
 
@@ -51,24 +40,20 @@ In this section we present an overview of common problems and how to solve them.
 
 ### LocalStack is not running
 
-In case your LocalStack instance is not running, you will see the following error message:
+If your LocalStack instance is not running, you will encounter the following error message:
 
 ![Cloud Pods Launchpad Error LocalStack not running](ls-not-running.png)
 
-Please start up your LocalStack instance and try again.
-Find out more about how to start LocalStack in the [Getting Started]({{< ref "getting-started" >}}) section.
+Start your LocalStack instance and attempt the operation once more. For detailed instructions on starting LocalStack, refer to the [Getting Started]({{< ref "getting-started" >}}) section.
 
 ### Failed to load metadata
 
-In case the launchpad fails to load the metadata of your pod, you will see the following error message:
+If the launchpad encounters difficulties while loading the metadata of your pod, you will receive the following error message:
 
 ![Cloud Pods Launchpad Error failed to load metadata](metadata-load-failed.png)
 
-This can happen if the pod is not available anymore or if the URL is not valid.
-Please check the URL and try again.
+This can occur when the pod is no longer accessible or if the URL provided is invalid. Review the URL and attempt the operation once more.
 
 ### Failed to inject pod
 
-In case the launchpad fails to inject the pod into your LocalStack instance, you will see 'Pod injection failed' in the log message.
-This may be due to a couple of reasons, like version mismatch.
-Please check out your LocalStack logs for more information.
+If the launchpad is unable to successfully inject the pod into your LocalStack instance, you will encounter a `Pod injection failed` message in the log. This issue may arise from various factors, such as version disparities. For further insights and information, please review your LocalStack logs.

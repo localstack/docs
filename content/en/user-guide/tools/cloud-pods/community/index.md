@@ -1,9 +1,13 @@
 ---
 title: "Community Cloud Pods"
-weight: 4
+weight: 99
 description: >
   Get started with LocalStack Community Cloud Pods to to save and load your container state at will
 ---
+
+{{< alert title="Note" >}}
+With the release of LocalStack 2.3, we have officially marked Community Cloud Pods as **deprecated**. In our upcoming 3.0 release, we will be removing Community Cloud Pods entirely. Moving forward, Cloud Pods will only be accessible to Pro/Team users. We understand this may affect some users and we are open to feedback, through our [GitHub Issues](https://github.com/localstack/localstack) or [Discuss Forum](https://discuss.localstack.cloud/).
+{{< /alert >}}
 
 LocalStack supports Community Cloud Pods to give our community users a limited Cloud Pods experience. Using Community Cloud Pods, you get two commands: `save` and `load` to save the container state in a Cloud Pod and dump it into their running LocalStack container at any given time, respectively.
 

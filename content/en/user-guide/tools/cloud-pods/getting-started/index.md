@@ -1,103 +1,131 @@
 ---
-title: "Getting started with the Cloud Pods CLI"
+title: "Getting started with the Cloud Pods"
 weight: 3
-categories: ["LocalStack Pro", "Tools", "Persistence", "CLI"]
-description: >
-  LocalStack provides a command line tool to manage the state of your instance via Cloud Pods.
-aliases:
-  - /tools/cloud-pods/getting-started/
+description: Get started with Cloud Pods to manage the state of your LocalStack instance state
 ---
 
-With the LocalStack Cloud Pods command-line interface (CLI), the `pod` command, you can create cloud pods and manage them from a terminal. The Cloud Pods CLI is ideal in the following situations:
+Using the LocalStack Cloud Pods command-line interface (CLI) via the `pod` command enables you to create and manage cloud pods directly from your terminal. The Cloud Pods CLI is particularly useful in these scenarios:
 
-- Taking a snapshot of your running LocalStack instance.
-- Sharing your snapshot across teams with LocalStack Team features.
-- Injecting snapshots into a running instance without a restart.
+-   Saving a snapshot of your active and running LocalStack instance.
+-   Sharing your snapshots with teams using LocalStack's collaboration features.
+-   Pulling snapshots to a running instance without needing to restart it.
 
 ## Installation
 
-LocalStack Cloud Pods CLI is directly available with the LocalStack installation, and no further installation is required to get started. If you are a Pro user, we recommend you to export the `LOCALSTACK_API_KEY` as an environment variable to allow you to use the full spectrum of LocalStack Cloud Pods feature. 
+The LocalStack Cloud Pods CLI is included in the [LocalStack CLI installation](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), so there's no need for additional installations to begin using it. If you're a licensed user, we suggest setting the `LOCALSTACK_API_KEY` as an environment variable. This enables you to access the complete range of LocalStack Cloud Pods features.
 
-This tutorial is intended for licensed users. The Community users can replicate a similar workflow by leveraging the `save` and `load` commands available to them. For more details, look at our [Community Cloud Pods guide]({{< ref "community" >}}).
+You can access the Cloud Pods CLI by running the `pod` command from your terminal.
 
-## Basic example
+{{< command >}}
+$ localstack pod --help
+Usage: localstack pod [OPTIONS] COMMAND [ARGS]...
+<disable-copy>
+  Manage the state of your instance via Cloud Pods.
 
-In this tutorial, you'll learn how to make a basic usage of LocalStack Cloud Pods CLI. This tutorial is intended for Pro users who wish to get more acquainted with Cloud Pods CLI. It assumes you have basic knowledge of:
+Options:
+  -h, --help  Show this message and exit.
 
-- LocalStack
-- `awscli` commands 
-- Understanding of Cloud Pods workflow 
+Commands:
+  delete    Delete a Cloud Pod
+  inspect
+  list      List all available Cloud Pods
+  load
+  remote    Manage cloud pod remotes
+  save      Create a new Cloud Pod
+  versions
+</disable-copy>
+{{< / command >}}
 
-By the end of this tutorial, you would be able to create a snapshot of your running LocalStack instance, commit it and would be able to push this to your LocalStack account.
+## Getting started
 
-### Procedure
+This guide is designed for users new to Cloud Pods and assumes basic knowledge of the LocalStack CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-To get started, start your LocalStack instance with your `LOCALSTACK_API_KEY` configured as an environment variable: 
+Start your LocalStack container using your preferred method. We will demonstrate how you can save a snapshot of your active LocalStack instance into your LocalStack account, and pull it to a running instance.
 
-1. Use the `awslocal` CLI to create AWS resources inside your running LocalStack instance.
+### Create AWS resources
+
+You can use the `awslocal` CLI to create new AWS resources within your active LocalStack instance. For example, you can create an S3 bucket and add data to it using the `awslocal` CLI:
+
+{{< command >}}
+$ awslocal s3 mb s3://test
+$ echo "hello world" > /tmp/hello-world
+$ awslocal s3 cp /tmp/hello-world s3://test/hello-world
+$ awslocal s3 ls s3://test/
+{{< / command >}}
+
+### Save your Cloud Pod state
+
+You can now your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument. This action will save the pod and register it with the LocalStack Web Application:
    
-   As an example, we will create a S3 bucket using the `awslocal` CLI and enter some data inside it:
+{{< command >}}
+$ localstack pod save s3-test
+<disable-copy>
+Cloud Pod `s3-test` successfully created ✅
+Version: 1
+Remote: platform
+Services: s3
+</disable-copy>
+{{< / command >}}
 
-   {{< command >}}
-   $ awslocal s3 mb s3://test
-   $ echo "hello world" > /tmp/hello-world
-   $ awslocal s3 cp /tmp/hello-world s3://test/hello-world
-   $ awslocal s3 ls s3://test/
-   {{< / command >}}
+Optionally, you can include a message with the saved Cloud Pod using the `--message` flag.
 
-2. Save your Pod state using the `save` command by specifying the desired name as the first argument. This command will save the pod and register it to the remote platform. Optionally you can attach a message to the saved Cloud Pod with the `--message` flag:
-   
-   {{< command >}}
-   $ localstack pod save <pod-name> --message "<description-message>"
-   {{< / command >}}
+You can access the list of available Cloud Pods for both you and your organization by utilizing the `list` command:
 
-3. Check the list of Cloud Pods available to you and your organization using the `list` command:
+{{< command >}}
+$ localstack pod list
+<disable-copy>
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
+┃ Name                      ┃ Max Version ┃ Last Change ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
+│ s3-test                   │ 1           │ n/a         │
+└───────────────────────────┴─────────────┴─────────────┘
+</disable-copy>
+{{< / command >}}
 
-   {{< command >}}
-   $ localstack pod list
-    ┏━━━━━━━━━━━━━━┳━━━━━━━━━━━┓
-    ┃ local/remote ┃ Name      ┃
-    ┡━━━━━━━━━━━━━━╇━━━━━━━━━━━┩
-    │ local+remote │ pod-name  │
-    └──────────────┴───────────┘
-   {{< / command >}}
+### Inspect the contents of a Cloud Pod
 
 4. Optional: You can inspect the contents of a Cloud Pod using the `inspect` command: 
 
-   {{< command >}}
-   $ localstack pod inspect --name <pod-name>
-    - 000000000000
-        - S3
-        - global
-            - listBuckets
-            - Buckets
-                - 0
-                - Name = test
-                - CreationDate = 2022-10-04T17:03:47.000Z
-            - Owner
-                - DisplayName = webfile
-                - ID = bcaf1ffd86f41161ca5fb16fd081034f
-   {{< / command >}}
+{{< command >}}
+$ localstack pod inspect s3-test --format json
+<disable-copy>
+{
+    "000000000000": {
+        "S3": {
+            "global": {
+                "listBuckets": {
+                    "Buckets": [
+                        {
+                            "Name": "test",
+                            "CreationDate": "2023-10-03T07:19:31.000Z"
+                        }
+                    ],
+                }
+            }
+        }
+    }
+}
+</disable-copy>
+{{< / command >}}
 
-5. On an alternate machine, start LocalStack with the API key configured, and pull the Cloud Pod we created previously using `load` command with the Cloud Pod name as the first argument:
+### Pull your Pod state
 
-   {{< command >}}
-   $ localstack pod load <pod-name>
+ On a separate machine, start LocalStack while ensuring the API key is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
 
-   Done.
-   {{< / command >}}
+{{< command >}}
+$ localstack pod load s3-test
+<disable-copy>
+Cloud Pod s3-test successfully loaded
+</disable-copy>
+{{< / command >}}
 
-   Let's check the S3 buckets in our Cloud Pod: 
-   {{< command >}}
-   $ awslocal s3 ls s3://test/
+Let's examine the S3 buckets within our Cloud Pod:
 
-   2022-10-04 22:33:54         12 hello-world
-   {{< / command >}}
+{{< command >}}
+$ awslocal s3 ls s3://test/
+<disable-copy>
+2022-10-04 22:33:54         12 hello-world
+</disable-copy>
+{{< / command >}}
 
-6. Optional: You can make the Cloud Pod available to users outside your organization by making it public:
-
-   {{< command >}}
-   $ localstack pod save <pod-name> --visibility public
-   {{< / command >}}
-
-For a more detailed manual, refer to our [command-line interface (CLI) guide]({{< ref "pods-cli" >}}). To check your Pods on the LocalStack Web user interface, navigate to [Cloud Pods page](https://app.localstack.cloud/pods).
+For comprehensive instructions, navigate to our [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}). To access your Cloud Pods through the LocalStack Web Application, simply go to the [Cloud Pods page](https://app.localstack.cloud/pods).
