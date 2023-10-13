@@ -246,21 +246,15 @@ This sample demonstrates how we can take an existing Web application, without an
 &lt;h3 id="localstack-configurations">LocalStack configurations&lt;/h3>
 &lt;p>You can manage and use your profiles via configurations and create new configurations for your LocalStack container.&lt;/p>
 &lt;img src="localstack-docker-extension-configuration-profile.png" title="Create your configuration profiles within LocalStack's Extension to affect the state of LocalStack" width="900" /></description></item><item><title>User-Guide: Cloud Pods</title><link>/user-guide/tools/cloud-pods/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/cloud-pods/</guid><description>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Please note that cloud pods may not be compatible across different versions of LocalStack.
-We are actively working on addressing this limitation in the upcoming releases.
-&lt;/div>
+&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Cloud Pods are a mechanism that allows you to take a snapshot of the state in your current LocalStack instance, persist it to a storage backend, and easily share it with your team members.&lt;/p>
 &lt;p>&lt;img src="pods-persistence.png" alt="Persistence versus Cloud Pods">&lt;/p>
-&lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Hint&lt;/h4>
-To quickly see cloud pods in action, we prepared a small sample application that uses cloud pods to inject its state into a running LocalStack container. &lt;a href="https://app.localstack.cloud/quickstart/demo4">Cloud Pod Thumbnail Sample App&lt;/a>
-&lt;/div>
-&lt;p>While the &lt;a href="/references/persistence-mechanism/">Persistence&lt;/a> feature ensures that the service state survives container restarts, Cloud Pods go beyond and allow more fine-grained control over your state.&lt;/p>
-&lt;p>Instead of simply restoring a state when restarting LocalStack, Cloud Pods allow you to take snapshots of your local instance (with the &lt;code>save&lt;/code> command) and inject such snapshots into a running instance (with the &lt;code>load&lt;/code> command) without requiring a restart.&lt;/p>
-&lt;p>In addition, we provide a remote storage backend that can be used to store the state of your running application and share it with your team members.&lt;/p>
-&lt;p>You can interact with Cloud Pods via the Web UI, and to load and store the persistent state of pods, you can use the &lt;code>localstack&lt;/code> &lt;a href="/user-guide/tools/cloud-pods/pods-cli/">command-line interface (CLI)&lt;/a>.&lt;/p>
+&lt;h2 id="cloud-pods--persistence">Cloud Pods &amp;amp; Persistence&lt;/h2>
+&lt;p>The &lt;a href="/references/persistence-mechanism/">Persistence&lt;/a> feature ensures that the service state persists across container restarts. In contrast, Cloud Pods provide more detailed control over your state.&lt;/p>
+&lt;p>Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the &lt;code>save&lt;/code> command and inject these snapshots into a running instance using the &lt;code>load&lt;/code> command, all without needing to perform a full restart.&lt;/p>
+&lt;p>In addition, LocalStack provides a remote storage backend that can be used to store the state of your running application and share it with your team members.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>You can interact with Cloud Pods via the LocalStack Web Application. To save and load the persistent state of Cloud Pods, you can use the &lt;a href="/user-guide/tools/cloud-pods/pods-cli/">Cloud Pods command-line interface (CLI)&lt;/a>.&lt;/p>
 &lt;p>&lt;img src="pods-ui.png" alt="Cloud Pods Web UI">&lt;/p></description></item><item><title>User-Guide: Lambda Tools</title><link>/user-guide/tools/lambda-tools/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/lambda-tools/</guid><description>
 &lt;p>Lambdas are awesome!&lt;/p></description></item><item><title>User-Guide: Transparent Endpoint Injection</title><link>/user-guide/tools/transparent-endpoint-injection/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/transparent-endpoint-injection/</guid><description>
 &lt;p>In the community (open source) edition, the application code needs to configure each AWS SDK client instance with the target &lt;code>endpoint URL&lt;/code> to point to the APIs on &lt;code>localhost&lt;/code> or, in the case of Lambdas running in the context of LocalStack, the &lt;code>endpoint URL&lt;/code> should point to &lt;code>http://${LOCALSTACK_HOSTNAME}:${EDGE_PORT}&lt;/code>.&lt;/p>
