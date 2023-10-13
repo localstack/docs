@@ -53,7 +53,7 @@ $ awslocal s3 cp /tmp/hello-world s3://test/hello-world
 $ awslocal s3 ls s3://test/
 {{< / command >}}
 
-### Save your Pod state
+### Save your Cloud Pod state
 
 You can now your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument. This action will save the pod and register it with the LocalStack Web Application:
    
