@@ -3,10 +3,6 @@ title: "LocalStack Desktop"
 weight: 8
 description: >
   Getting started with the LocalStack Desktop application
-tags: ["desktop"]
-aliases:
-  - /tools/localstack-desktop/
-  - /user-guide/tools/localstack-desktop/
 ---
 
 LocalStack Desktop is a desktop client that allows users to easily control and interact their LocalStack instance. With LocalStack Desktop, users can start and stop their LocalStack instance with a single click, create a new container, view logs, interact with LocalStack container via cli and use our resource browser.
