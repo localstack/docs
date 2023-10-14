@@ -7,7 +7,7 @@ description: >
 
 ## Introduction
 
-Former2 allows you to generate Infrastructure-as-Code (IaC) outputs using your pre-existing AWS resources. It uses the AWS JavaScript SDK to make relevant API calls, scans your infrastructure, and provides you with a resource list. You can then select the resources for which you want to generate IaC outputs. Former2 currently supports the following outputs:
+[Former2](https://github.com/iann0036/former2) allows you to generate Infrastructure-as-Code (IaC) outputs using your pre-existing AWS resources. It uses the AWS JavaScript SDK to make relevant API calls, scans your infrastructure, and provides you with a resource list. You can then select the resources for which you want to generate IaC outputs. Former2 currently supports the following outputs:
 
 -   [CloudFormation](https://aws.amazon.com/cloudformation/)
 -   [Terraform](https://www.terraform.io/)
@@ -33,13 +33,13 @@ You can use the publicly hosted [Former2 Web Application](https://former2.com/) 
 
 Alternatively, you can [download and install](https://github.com/iann0036/former2-helper) the extension yourself.
 
-### Create local AWS resources
+### Create local resources
 
 Start your LocalStack container using your preferred method with the following environment variables, depending on the browser you are using:
 
-- Google Chrome: `EXTRA_CORS_ALLOWED_ORIGINS=chrome-extension://fhejmeojlbhfhjndnkkleooeejklmigi`
-- Mozilla Firefox: `EXTRA_CORS_ALLOWED_ORIGINS=moz-extension://853c673f-1bd8-4226-a5ff-f1473f7b3d90`
-- Microsoft Edge: `EXTRA_CORS_ALLOWED_ORIGINS=extension://okkjnfohglnomdbpimkcdkiojbeiedof`
+- **Google Chrome**: `EXTRA_CORS_ALLOWED_ORIGINS=chrome-extension://fhejmeojlbhfhjndnkkleooeejklmigi`
+- **Mozilla Firefox**: `EXTRA_CORS_ALLOWED_ORIGINS=moz-extension://853c673f-1bd8-4226-a5ff-f1473f7b3d90`
+- **Microsoft Edge**: `EXTRA_CORS_ALLOWED_ORIGINS=extension://okkjnfohglnomdbpimkcdkiojbeiedof`
 
 You can create local AWS resources using the AWS CLI and the `awslocal` wrapper script. For example, you can create a new S3 bucket, SQS queue, and DynamoDB table using the following commands:
 
@@ -90,20 +90,31 @@ $ awslocal dynamodb list-tables
 
 Navigate to the Former2 setup dashboard. Open the [**Credentials**](https://former2.com/#section-setup-credentials) tab and enter your IAM credentials. For LocalStack, you can just configure the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables as `test` and `test` respectively.
 
-![](former2-credentials.png)
+<img src="former2-credentials.png" alt="Enter test credentials on on Former2 Dashboard" title="Enter test credentials on on Former2 Dashboard" width="900" />
+<br><br>
 
-Click on [**Continue to Parameters**] and include your own CloudFormation stack parameters by adding them below. Click on [**Continue to Settings**] and navigate to **Custom Endpoints**. Toggle the **Use LocalStack Endpoint** switch to enable the LocalStack endpoint URL (`http://localhost:4566`). Click on **Go to Dashboard** to complete the setup.
+Click on [**Continue to Parameters**](https://former2.com/#section-setup-parameters) and include your own CloudFormation stack parameters by adding them below. Click on [**Continue to Settings**](https://former2.com/#section-setup-settings) and navigate to **Custom Endpoints**. Toggle the **Use LocalStack Endpoint** switch to enable the LocalStack endpoint URL (`http://localhost:4566`). Click on [**Go to Dashboard**](https://former2.com/#section-dashboard) to complete the setup.
+
+<img src="former2-localstack-endpoint.png" alt="LocalStack endpoint toggle on Former2 Dashboard" title="LocalStack endpoint toggle on Former2 Dashboard" width="900" />
+<br><br>
+
 
 You can now click on **Scan Account** button on the top-right corner of the dashboard to scan your LocalStack instance for resources. Once the scan is complete, you can select the resources you want to generate IaC outputs for. 
 
-### Generate IaC outputs
+### Generate IaC output
 
 Navigate to [S3](https://former2.com/#section-storage-s3), [DynamoDB](https://former2.com/#section-database-dynamodb), and [SQS](https://former2.com/#section-applicationintegration-sqs) to verify that the resources you created earlier are listed.
 
-![](former2-s3.png)
+<img src="former2-s3.png" alt="S3 Console on Former2 Dashboard" title="S3 Console on Former2 Dashboard" width="900" />
+<br><br>
+
 
 You can select the resources you want to generate IaC outputs for and click on **Add Selected**. Finally, you can click on **Generate** on the top-left corner of the dashboard to generate the IaC outputs.
 
-![](former2-cloudformation-output.png)
+
+
+<img src="former2-cloudformation-output.png" alt="CloudFormation Output on Former2 Dashboard" title="CloudFormation Output on Former2 Dashboard" width="900" />
+<br><br>
+
 
 You can also choose to generate the IaC outputs in a different format by clicking on the various options available on the left-hand side of the dashboard.
