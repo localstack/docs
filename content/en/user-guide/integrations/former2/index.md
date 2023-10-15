@@ -88,7 +88,7 @@ $ awslocal dynamodb list-tables
 
 ### Configure Former2
 
-Navigate to the Former2 setup dashboard. Open the [**Credentials**](https://former2.com/#section-setup-credentials) tab and enter your IAM credentials. For LocalStack, you can just configure the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables as `test` and `test` respectively.
+Navigate to the Former2 setup dashboard. Open the [**Credentials**](https://former2.com/#section-setup-credentials) tab and enter your IAM credentials. For LocalStack, you can just configure the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables as `test` and `test`, respectively.
 
 <img src="former2-credentials.png" alt="Enter test credentials on on Former2 Dashboard" title="Enter test credentials on on Former2 Dashboard" width="900" />
 <br><br>
