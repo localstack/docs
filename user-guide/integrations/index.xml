@@ -2937,4 +2937,86 @@ The Lambda integration with self-managed Kafka clusters is also a LocalStack Pro
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># add a &amp;#34;Review in Gitpod&amp;#34; button to the pull request&amp;#39;s description&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">addBadge&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>After adding the configuration, you can start your development &amp;amp; testing by creating &lt;a href="https://www.gitpod.io/docs/getting-started/#start-your-first-workspace">your workspace in GitPod&lt;/a>. Upon creation, you will be able to see the LocalStack container running in the background (you can use &lt;code>localstack status&lt;/code> to check the status of the container).&lt;/p>
-&lt;p>For a simple demonstration, check out the &lt;a href="https://github.com/Gitpod-Samples/localstack-gitpod-demo">LocalStack GitPod demo&lt;/a> repository. Check out our &lt;a href="https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/">in-depth walkthrough over the demo&lt;/a> on our blog!&lt;/p></description></item><item><title>User-Guide: Language SDKs</title><link>/user-guide/integrations/sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/sdks/</guid><description/></item></channel></rss>
+&lt;p>For a simple demonstration, check out the &lt;a href="https://github.com/Gitpod-Samples/localstack-gitpod-demo">LocalStack GitPod demo&lt;/a> repository. Check out our &lt;a href="https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/">in-depth walkthrough over the demo&lt;/a> on our blog!&lt;/p></description></item><item><title>User-Guide: Former2</title><link>/user-guide/integrations/former2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/former2/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>&lt;a href="https://github.com/iann0036/former2">Former2&lt;/a> allows you to generate Infrastructure-as-Code (IaC) outputs using your pre-existing AWS resources. It uses the AWS JavaScript SDK to make relevant API calls, scans your infrastructure, and provides you with a resource list. You can then select the resources for which you want to generate IaC outputs. Former2 currently supports the following outputs:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://aws.amazon.com/cloudformation/">CloudFormation&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.terraform.io/">Terraform&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/cloudtools/troposphere">Troposphere&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html">CDK V1 (Cfn Primitives) &amp;amp; CDK V2 (Cfn Primitives)&lt;/a> (TypeScript, Python, Java, C#)&lt;/li>
+&lt;li>&lt;a href="https://developer.hashicorp.com/terraform/cdktf">CDK for Terraform&lt;/a> (TypeScript)&lt;/li>
+&lt;li>&lt;a href="https://www.pulumi.com/docs/get-started/aws/">Pulumi&lt;/a> (TypeScript)&lt;/li>
+&lt;li>&lt;a href="https://diagrams.mingrammer.com/">Diagrams&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>With Former2, you can scan the resources within your LocalStack instance and produce Infrastructure-as-Code (IaC) outputs. These outputs enable you to redeploy your resources while spinning a new LocalStack instance or deploy them to a live Amazon Web Services (AWS) environment.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to Former2 and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script. We will demonstrate how you can create local AWS resources using LocalStack, and import a CloudFormation output via Former2.&lt;/p>
+&lt;h3 id="install-former2">Install Former2&lt;/h3>
+&lt;p>You can use the publicly hosted &lt;a href="https://former2.com/">Former2 Web Application&lt;/a> or a &lt;a href="https://github.com/iann0036/former2/blob/master/HOSTING.md">self-hosted version&lt;/a> to generate IaC outputs. For this guide, we will use the publicly hosted version. You would also need a Former2 Helper extension/add-on for your preferred web browser:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://chrome.google.com/webstore/detail/former2-helper/fhejmeojlbhfhjndnkkleooeejklmigi">Google Chrome&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://addons.mozilla.org/en-US/firefox/addon/former2-helper/">Mozilla Firefox&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://microsoftedge.microsoft.com/addons/detail/okkjnfohglnomdbpimkcdkiojbeiedof">Microsoft Edge&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>Alternatively, you can &lt;a href="https://github.com/iann0036/former2-helper">download and install&lt;/a> the extension yourself.&lt;/p>
+&lt;h3 id="create-local-resources">Create local resources&lt;/h3>
+&lt;p>Start your LocalStack container using your preferred method with the following environment variables, depending on the browser you are using:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Google Chrome&lt;/strong>: &lt;code>EXTRA_CORS_ALLOWED_ORIGINS=chrome-extension://fhejmeojlbhfhjndnkkleooeejklmigi&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Mozilla Firefox&lt;/strong>: &lt;code>EXTRA_CORS_ALLOWED_ORIGINS=moz-extension://853c673f-1bd8-4226-a5ff-f1473f7b3d90&lt;/code>&lt;/li>
+&lt;li>&lt;strong>Microsoft Edge&lt;/strong>: &lt;code>EXTRA_CORS_ALLOWED_ORIGINS=extension://okkjnfohglnomdbpimkcdkiojbeiedof&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>You can create local AWS resources using the AWS CLI and the &lt;code>awslocal&lt;/code> wrapper script. For example, you can create a new S3 bucket, SQS queue, and DynamoDB table using the following commands:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://my-bucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs create-queue --queue-name my-queue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb create-table \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --table-name my-table \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-definitions AttributeName=id,AttributeType=S \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --key-schema AttributeName=id,KeyType=HASH \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can verify that the resources were created successfully by running the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack logs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-10-14T15:31:08.852 INFO --- [ asgi_gw_0] localstack.request.aws : AWS s3.CreateBucket =&amp;gt; 200
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-10-14T15:31:09.356 INFO --- [ asgi_gw_0] localstack.request.aws : AWS sqs.CreateQueue =&amp;gt; 200
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-10-14T15:31:12.920 INFO --- [ asgi_gw_0] botocore.credentials : Found credentials in environment variables.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-10-14T15:31:13.332 INFO --- [ asgi_gw_0] localstack.utils.bootstrap : Execution of &amp;#34;require&amp;#34; took 2028.25ms
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-10-14T15:31:13.712 INFO --- [ asgi_gw_0] localstack.request.aws : AWS dynamodb.CreateTable =&amp;gt; 200
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 ls
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>2023-10-14 21:01:08 my-bucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs list-queues
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;QueueUrls&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;http://localhost:4566/000000000000/my-queue&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal dynamodb list-tables
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;TableNames&amp;#34;: [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;my-table&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="configure-former2">Configure Former2&lt;/h3>
+&lt;p>Navigate to the Former2 setup dashboard. Open the &lt;a href="https://former2.com/#section-setup-credentials">&lt;strong>Credentials&lt;/strong>&lt;/a> tab and enter your IAM credentials. For LocalStack, you can just configure the &lt;code>AWS_ACCESS_KEY_ID&lt;/code> and &lt;code>AWS_SECRET_ACCESS_KEY&lt;/code> environment variables as &lt;code>test&lt;/code> and &lt;code>test&lt;/code>, respectively.&lt;/p>
+&lt;img src="former2-credentials.png" alt="Enter test credentials on Former2 Dashboard" title="Enter test credentials on Former2 Dashboard" width="900" />
+&lt;br>&lt;br>
+&lt;p>Click on &lt;a href="https://former2.com/#section-setup-parameters">&lt;strong>Continue to Parameters&lt;/strong>&lt;/a> and include your own CloudFormation stack parameters by adding them below. Click on &lt;a href="https://former2.com/#section-setup-settings">&lt;strong>Continue to Settings&lt;/strong>&lt;/a> and navigate to &lt;strong>Custom Endpoints&lt;/strong>. Toggle the &lt;strong>Use LocalStack Endpoint&lt;/strong> switch to enable the LocalStack endpoint URL (&lt;code>http://localhost:4566&lt;/code>). Click on &lt;a href="https://former2.com/#section-dashboard">&lt;strong>Go to Dashboard&lt;/strong>&lt;/a> to complete the setup.&lt;/p>
+&lt;img src="former2-localstack-endpoint.png" alt="LocalStack endpoint toggle on Former2 Dashboard" title="LocalStack endpoint toggle on Former2 Dashboard" width="900" />
+&lt;br>&lt;br>
+&lt;p>You can now click on &lt;strong>Scan Account&lt;/strong> button on the top-right corner of the dashboard to scan your LocalStack instance for resources. Once the scan is complete, you can select the resources you want to generate IaC outputs for.&lt;/p>
+&lt;h3 id="generate-iac-output">Generate IaC output&lt;/h3>
+&lt;p>Navigate to &lt;a href="https://former2.com/#section-storage-s3">S3&lt;/a>, &lt;a href="https://former2.com/#section-database-dynamodb">DynamoDB&lt;/a>, and &lt;a href="https://former2.com/#section-applicationintegration-sqs">SQS&lt;/a> to verify that the resources you created earlier are listed.&lt;/p>
+&lt;img src="former2-s3.png" alt="S3 Console on Former2 Dashboard" title="S3 Console on Former2 Dashboard" width="900" />
+&lt;br>&lt;br>
+&lt;p>You can select the resources you want to generate IaC outputs for and click on &lt;strong>Add Selected&lt;/strong>. Finally, you can click on &lt;strong>Generate&lt;/strong> on the top-left corner of the dashboard to generate the IaC outputs.&lt;/p>
+&lt;img src="former2-cloudformation-output.png" alt="CloudFormation Output on Former2 Dashboard" title="CloudFormation Output on Former2 Dashboard" width="900" />
+&lt;br>&lt;br>
+&lt;p>You can also choose to generate the IaC outputs in a different format by clicking on the various options available on the left-hand side of the dashboard.&lt;/p></description></item><item><title>User-Guide: Language SDKs</title><link>/user-guide/integrations/sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/sdks/</guid><description/></item></channel></rss>
