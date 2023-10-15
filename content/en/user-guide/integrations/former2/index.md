@@ -90,7 +90,7 @@ $ awslocal dynamodb list-tables
 
 Navigate to the Former2 setup dashboard. Open the [**Credentials**](https://former2.com/#section-setup-credentials) tab and enter your IAM credentials. For LocalStack, you can just configure the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables as `test` and `test`, respectively.
 
-<img src="former2-credentials.png" alt="Enter test credentials on on Former2 Dashboard" title="Enter test credentials on on Former2 Dashboard" width="900" />
+<img src="former2-credentials.png" alt="Enter test credentials on Former2 Dashboard" title="Enter test credentials on Former2 Dashboard" width="900" />
 <br><br>
 
 Click on [**Continue to Parameters**](https://former2.com/#section-setup-parameters) and include your own CloudFormation stack parameters by adding them below. Click on [**Continue to Settings**](https://former2.com/#section-setup-settings) and navigate to **Custom Endpoints**. Toggle the **Use LocalStack Endpoint** switch to enable the LocalStack endpoint URL (`http://localhost:4566`). Click on [**Go to Dashboard**](https://former2.com/#section-dashboard) to complete the setup.
