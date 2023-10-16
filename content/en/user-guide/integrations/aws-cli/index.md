@@ -2,33 +2,35 @@
 title: "AWS Command Line Interface"
 weight: 2
 description: >
-  How to use the AWS Command Line Interface (CLI) with LocalStack.
-aliases:
-  - /integrations/aws-cli/
+  Use AWS Command Line Interface (CLI) to create local AWS resources with LocalStack
 ---
 
-## Overview
+## Introduction
 
-The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) is a unified tool to manage AWS services from the command line.
-All CLI commands that access [services that are implemented in LocalStack]({{< ref "feature-coverage" >}}) can be run against LocalStack.
+The [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/) is a unified tool for creating and managing AWS services via a command line interface. All CLI commands applicable to services implemented within [LocalStack]({{< ref "references/coverage/" >}}) can be executed when operating against LocalStack.
 
-There are two CLI alternatives:
+You can use the AWS CLI with LocalStack using either of the following approaches:
 
 * [AWS CLI]({{<ref "#aws-cli" >}})
 * [LocalStack AWS CLI]({{<ref "#localstack-aws-cli-awslocal">}})
 
 ## AWS CLI
 
-Use the below command to install `aws`, if not installed already.
+You can install `aws` by using the following command if it's not already installed.
 
 {{< command >}}
 $ pip install awscli
 {{< / command >}}
 
-### Setting up local region and credentials to run LocalStack
+You can configure the AWS CLI to redirect AWS API requests to LocalStack using two approaches:
 
-Configure AWS test environment variables and add the `--endpoint-url=<localstack-url>` flag to your `aws` CLI invocations.
-For example:
+- [Configuring an endpoint URL](#configuring-an-endpoint-url)
+- [Configuring a custom profile](#configuring-a-custom-profile)
+
+### Configuring an endpoint URL
+
+You can use AWS CLI with an endpoint URL by configuring test environment variables and include the `--endpoint-url=<localstack-url>` flag in your `aws` CLI commands. For example:
+
 {{< command >}}
 $ export AWS_ACCESS_KEY_ID="test"
 $ export AWS_SECRET_ACCESS_KEY="test"
@@ -37,41 +39,59 @@ $ export AWS_DEFAULT_REGION="us-east-1"
 $ aws --endpoint-url=http://localhost:4566 kinesis list-streams
 {{< / command >}}
 
-Create a configuration profile. The configuration file will be created under `~/.aws` directory and in the example below, using the `default` profile:
+{{< alert title="Note">}}
+To enable the creation of pre-signed URLs for S3 buckets, please set both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to the value "test." Our pre-signed URL signature verification algorithm validates the pre-signed URL and its expiration.
+{{< /alert >}}
+
+### Configuring a custom profile
+
+You can configure a custom profile to use with LocalStack. Add the following profile to your AWS configuration file (by default, this file is at `~/.aws/config`):
+
+```bash
+[profile localstack]
+region=us-east-1
+output=json
+endpoint_url = http://localhost:4566
+```
+
+Add the following profile to your AWS credentials file (by default, this file is at `~/.aws/credentials`):
+
+```bash
+[localstack]
+aws_access_key_id=test
+aws_secret_access_key=test
+```
+
+You can now use the `localstack` profile with the `aws` CLI:
 
 {{< command >}}
-$ aws configure --profile default
+$ aws s3 mb s3://test --profile localstack
+$ aws s3 ls --profile localstack
 {{< / command >}}
 
 {{< alert title="Note">}}
-Please use `test` as value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to make pre-signed URLs for S3 buckets work.
-Our pre-signed URL signature verification algorithm validates the pre-signed URL and its expiration.
+Alternatively, you can also set the `AWS_PROFILE=localstack` environment variable, in which case the `--profile localstack` parameter can be omitted in the commands above.
 {{< /alert >}}
 
-Verify the current configuration:
+## LocalStack AWS CLI (`awslocal`)
 
-{{< command >}}
-aws configure list
-{{< / command >}}
-
-## LocalStack AWS CLI (awslocal)
-
-`awslocal` is a thin wrapper and a drop-in replacement for the `aws` command that runs commands directly against LocalStack (no need to specify `--endpoint-url` anymore).
-The source code can be found on GitHub: https://github.com/localstack/awscli-local
-
+`awslocal` serves as a thin wrapper and a substitute for the standard `aws` command, enabling you to run AWS CLI commands within the LocalStack environment without specifying the `--endpoint-url` parameter or a profile.
 
 ### Installation
 
-You can install the `awslocal` command via `pip`:
+Install the `awslocal` command using the following command:
 
 {{< command >}}
 $ pip install awscli-local[ver1]
 {{< / command >}}
 
-Note that the command above also installs the latest version of the underlying AWS CLI version 1 (`awscli`) package. Use this command if you prefer to manage your own version of `awscli` (e.g., `v1`/`v2`) and install the wrapper script only:
+{{< alert title="Note" >}}
+The above command installs the most recent version of the underlying AWS CLI version 1 (`awscli`) package. If you would rather manage your own `awscli` version (e.g., `v1` or `v2`) and only install the wrapper script, you can use the following command:
+
 {{< command >}}
 $ pip install awscli-local
 {{< / command >}}
+{{< /alert >}}
 
 {{< alert title="Note" >}}
 Automatic installation of AWS CLI version 2 is currently not supported yet (at the time of writing there is no official pypi package for `v2` available), but the `awslocal` technically also works with AWS CLI v2 (see [this section]({{< ref "#limitations" >}}) for more details).
@@ -79,29 +99,19 @@ Automatic installation of AWS CLI version 2 is currently not supported yet (at t
 
 ### Usage
 
-The `awslocal` command has the same usage as the `aws` command.
-For detailed usage, please refer to the man pages of `aws help`.
+The `awslocal` command shares identical usage with the standard `aws` command. For comprehensive usage instructions, refer to the manual pages by running `awslocal help`.
 
 {{< command >}}
 awslocal kinesis list-streams
 {{< / command >}}
 
-### Configurations
+### Configuration
 
-You can use the following environment variables for configuration:
-
-| Variable | Description |
-| -------- | ----------- |
-| `LOCALSTACK_HOST` | Set the hostname for the localstack instance. Useful when you have localstack is bound to another interface (i.e. docker-machine). |
-| `USE_SSL` | Whether to use `https` endpoint URLs (required if LocalStack has been started with `USE_SSL=true` enabled). Defaults to `false`. |
-| `DEFAULT_REGION` | *Deprecated*. Set the default region. Overrides `AWS_DEFAULT_REGION` environment variable. |
-
-Verify the current configuration:
-
-{{< command >}}
-awslocal configure list
-{{< / command >}}
-
+| Variable Name       | Description                                      |
+|---------------------|--------------------------------------------------|
+| AWS_ENDPOINT_URL    | The endpoint URL to connect to (takes precedence over USE_SSL/LOCALSTACK_HOST) |
+| LOCALSTACK_HOST    | (deprecated) A variable defining where to find LocalStack (default: localhost:4566) |
+| USE_SSL             | (deprecated) Whether to use SSL when connecting to LocalStack (default: False) |
 
 ### Limitations
 
