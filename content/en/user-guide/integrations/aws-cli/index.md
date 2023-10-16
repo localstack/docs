@@ -69,6 +69,10 @@ $ aws s3 mb s3://test --profile localstack
 $ aws s3 ls --profile localstack
 {{< / command >}}
 
+{{< alert title="Note">}}
+Alternatively, you can also set the `AWS_PROFILE=localstack` environment variable, in which case the `--profile localstack` parameter can be omitted in the commands above.
+{{< /alert >}}
+
 ## LocalStack AWS CLI (`awslocal`)
 
 `awslocal` serves as a thin wrapper and a substitute for the standard `aws` command, enabling you to run AWS CLI commands within the LocalStack environment without specifying the `--endpoint-url` parameter or a profile.
@@ -103,11 +107,11 @@ awslocal kinesis list-streams
 
 ### Configuration
 
-| Variable         | Description                                                                                                   |
-| ---------------- | ------------------------------------------------------------------------------------------------------------- |
-| `LOCALSTACK_HOST` | Specifies the hostname for the LocalStack instance, particularly useful when LocalStack is bound to a different network interface, such as a docker-machine. |
-| `USE_SSL`         | Determines whether to use `https` endpoint URLs, which is required when LocalStack has been initiated with `USE_SSL=true`. The default value is `false`. |
-| `DEFAULT_REGION`  | *Deprecated*. This variable previously set the default region but is no longer recommended. It overrides the `AWS_DEFAULT_REGION` environment variable. |
+| Variable Name       | Description                                      |
+|---------------------|--------------------------------------------------|
+| AWS_ENDPOINT_URL    | The endpoint URL to connect to (takes precedence over USE_SSL/LOCALSTACK_HOST) |
+| LOCALSTACK_HOST    | (deprecated) A variable defining where to find LocalStack (default: localhost:4566) |
+| USE_SSL             | (deprecated) Whether to use SSL when connecting to LocalStack (default: False) |
 
 ### Limitations
 
