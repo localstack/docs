@@ -12,7 +12,7 @@ description: >
 LocalStack supports Terraform via the [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) through [custom service endpoints](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack). You can configure Terraform to use LocalStack in two ways:
 
 -   Using the [`tflocal` wrapper script](https://github.com/localstack/terraform-local) to automatically configure the service endpoints for you.
--   Manually configure the service endpoints in your Terraform configuration with additional maintenance.
+-   Manually configuring the service endpoints in your Terraform configuration with additional maintenance.
 
 In this guide, we will demonstrate how you can create local AWS resources using Terraform and LocalStack, by using the `tflocal` wrapper script and a manual configuration example.
 
