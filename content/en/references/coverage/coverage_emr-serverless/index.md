@@ -1,5 +1,5 @@
 ---
-title: "emr-serverless"
+title: "EMR (EMR Serverless)"
 linkTitle: "emr-serverless"
 description: >
   Implementation details for API emr-serverless

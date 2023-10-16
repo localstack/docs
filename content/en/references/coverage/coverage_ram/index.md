@@ -1,5 +1,5 @@
 ---
-title: "ram"
+title: "ram (Resource Access Manager)"
 linkTitle: "ram"
 description: >
   Implementation details for API ram

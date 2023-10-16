@@ -1,5 +1,5 @@
 ---
-title: "scheduler"
+title: "scheduler (EventBridge Scheduler)"
 linkTitle: "scheduler"
 description: >
   Implementation details for API scheduler

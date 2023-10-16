@@ -1,5 +1,5 @@
 ---
-title: "sso-admin"
+title: "sso-admin (IAM Identity Center (successor to Single Sign-On))"
 linkTitle: "sso-admin"
 description: >
   Implementation details for API sso-admin
