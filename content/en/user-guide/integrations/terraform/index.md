@@ -1,86 +1,98 @@
 ---
 title: "Terraform"
-tags: ["terraform", "infrastructure-as-code"]
 weight: 5
 description: >
   Use the Terraform Infrastructure as Code framework with LocalStack
-aliases:
-  - /integrations/terraform/
 ---
 
-<img src="logo-terraform-main.svg" width="600px" alt="Terraform logo">
+## Introduction
 
-## Overview
+[Terraform](https://terraform.io/) is an Infrastructure-as-Code (IaC) framework developed by HashiCorp. It enables users to define and provision infrastructure using a high-level configuration language. Terraform uses HashiCorp Configuration Language (HCL) as its configuration syntax. HCL is a domain-specific language designed for writing configurations that define infrastructure elements and their relationships.
 
-Terraform allows you to automate the management of AWS resources such as containers, lambda functions and so on by declaring them in the HashiCorp Configuration Language (HCL).
-On this page we discuss how Terraform and LocalStack can be used together.
-If you are adapting an existing configuration, you might be able to skip certain steps at your own discretion.
+LocalStack supports Terraform via the [AWS provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) through [custom service endpoints](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack). You can configure Terraform to use LocalStack in two ways:
 
-## Example
+-   Using the [`tflocal` wrapper script](https://github.com/localstack/terraform-local) to automatically configure the service endpoints for you.
+-   Manually configuring the service endpoints in your Terraform configuration with additional maintenance.
 
-If you have not done so yet, [install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started).
+In this guide, we will demonstrate how you can create local AWS resources using Terraform and LocalStack, by using the `tflocal` wrapper script and a manual configuration example.
 
-Using Terraform with LocalStack requires little extra configuration.
-Apart from some information Terraform expects there are basically only two things to take care of in the configuration.
+## `tflocal` wrapper script
 
-Before we start changing the configuration, create and change into a new directory for this sample
+`tflocal` is a small wrapper script to run Terraform against LocalStack. `tflocal` script uses the [Terraform Override mechanism](https://www.terraform.io/language/files/override) and creates a temporary file `localstack_providers_override.tf` to configure the endpoints for the AWS `provider` section. The endpoints for all services are configured to point to the LocalStack API (`http://localhost:4566` by default). It allows you to easily deploy your unmodified Terraform scripts against LocalStack.
 
-{{< command >}}
-$ mkdir terraform_quickstart && cd terraform_quickstart
-{{< / command >}}
+### Create a Terraform configuration
 
-Inside this directory, create a file called `main.tf`. The following changes go into this file.
+Create a new file named `main.tf` and add a minimal S3 bucket configuration to it. The following contents should be added in the `main.tf` file:
 
-Now we are adding a minimal S3 bucket configuration to the `main.tf` file:
 ```hcl
 resource "aws_s3_bucket" "test-bucket" {
   bucket = "my-bucket"
 }
-
 ```
 
-## Using the `tflocal` script
+### Install the `tflocal` wrapper script
 
-We provide `tflocal`, a thin wrapper script around the `terraform` command line client. `tflocal` takes care of automatically configuring the local service endpoints, which allows you to easily deploy your unmodified Terraform scripts against LocalStack.
+To install the `tflocal` command, you can use `pip` (assuming you have a local Python installation):
 
-You can install the `tflocal` command via `pip` (requires a local Python installation):
 {{< command >}}
 $ pip install terraform-local
 {{< / command >}}
 
-Once installed, the `tflocal` command should be available, with the same interface as the `terraform` command line:
+After installation, you can use the `tflocal` command, which has the same interface as the `terraform` command line.
+
 {{< command >}}
 $ tflocal --help
+<disable-copy>
 Usage: terraform [global options] <subcommand> [args]
 ...
+<disable-copy>
 {{< / command >}}
 
-{{< alert title="Note">}}
-Alternatively, you can also manually configure the local endpoints in the `provider` section of your Terraform script - see further below.
-{{< /alert >}}
+### Deploy the Terraform configuration
 
-### Deployment
-
-After starting LocalStack you can now deploy the S3 bucket via `tflocal` and interact with the (still empty) S3 bucket via `awslocal`!
-
-All you need to do is to initialize Terraform:
+Start your LocalStack container using your preferred method. Initialize Terraform using the following command:
 
 {{< command >}}
 $ tflocal init
 {{< / command >}}
 
-... and then provision s3 bucket specified in the configuration:
+You can now provision the S3 bucket specified in the configuration:
+
 {{< command >}}
 $ tflocal apply
 {{< / command >}}
 
+### Configuration
+
+| Environment Variable     | Description |
+|--------------------------|-------------|
+| `TF_CMD`                 | Terraform command to call (default: `terraform`) |
+| `LOCALSTACK_HOSTNAME`    | Host name of the target LocalStack instance |
+| `EDGE_PORT`              | Port number of the target LocalStack instance |
+| `S3_HOSTNAME`            | Special hostname to be used to connect to LocalStack S3 (default: `s3.localhost.localstack.cloud`) |
+| `USE_EXEC`               | Whether to use `os.exec` instead of `subprocess.Popen` (try using this in case of I/O issues) |
+| `<SERVICE>_ENDPOINT`     | Setting a custom service endpoint, e.g., `COGNITO_IDP_ENDPOINT=http://example.com` |
+| `AWS_DEFAULT_REGION`     | The AWS region to use (default: `us-east-1`, or determined from local credentials if `boto3` is installed) |
+| `CUSTOMIZE_ACCESS_KEY`   | Enables you to override the static AWS Access Key ID. |
+| `AWS_ACCESS_KEY_ID`      | AWS Access Key ID to use for multi-account setups (default: `test` -> account ID: `000000000000`) |
+
+{{< alert title="Note" >}}
+While using `CUSTOMIZE_ACCESS_KEY`, following cases are taking precedence over each other from top to bottom:
+1.  If the `AWS_ACCESS_KEY_ID` environment variable is set.
+2.  If `access_key` is configured in the Terraform AWS provider.
+3.  If the `AWS_PROFILE` environment variable is set and properly configured.
+4.  If the `AWS_DEFAULT_PROFILE` environment variable is set and configured.
+5.  If credentials for the `default` profile are configured.
+6.  If none of the above settings are present, it falls back to using the default `AWS_ACCESS_KEY_ID` mock value.
+{{< /alert >}}
+
 ## Manual Configuration
 
-As an alternative to using the `tflocal` script, you may also manually configure the local service endpoints and credentials. We'll walk through the detailed steps in the following sections.
+Instead of using the `tflocal` script, you have the option to manually configure the local service endpoints and credentials. The following sections will provide detailed steps for this manual configuration.
 
 ### General Configuration
 
-First, we have to specify mock credentials for the AWS provider:
+To begin, you need to define mock credentials for the AWS provider. Specify the following in your `main.tf` file:
 
 ```hcl
 provider "aws" {
@@ -93,8 +105,7 @@ provider "aws" {
 
 ### Request Management
 
-Second, we need to avoid issues with routing and authentication (as we do not need it).
-Therefore we need to supply some general parameters:
+Next, to prevent routing and authentication issues (which are unnecessary in this context), you should provide some general parameters:
 
 ```hcl
 provider "aws" {
@@ -115,8 +126,7 @@ provider "aws" {
 
 ### Services
 
-Additionally, we have to point the individual services to LocalStack.
-In case of S3, this looks like the following snippet, in this case we opted to use the virtual hosted-style endpoint.
+Furthermore, it's necessary to configure the individual services to use LocalStack. For S3, this configuration resembles the following snippet, where we've chosen to use the virtual hosted-style endpoint:
 
 ```hcl
   endpoints {
@@ -125,13 +135,13 @@ In case of S3, this looks like the following snippet, in this case we opted to u
 ```
 
 {{< alert title="Note">}}
-In case of issues resolving this DNS record, we can fallback to `http://localhost:4566` in combination with the provider setting `s3_use_path_style = true`. The S3 service endpoint is slightly
-different from the other service endpoints, because AWS is deprecating path-style based access for hosting buckets.
+If there are any difficulties resolving this DNS record, you can utilize `http://localhost:4566` as a fallback option in combination with setting `s3_use_path_style = true` in the provider. It's worth noting that the S3 service endpoint differs slightly from the other service endpoints due to AWS deprecating path-style based access for hosting buckets.
 {{< /alert >}}
 
 ### Final Configuration
 
-The final (minimal) configuration to deploy an S3 bucket thus looks like this
+The final minimal configuration for deploying an S3 bucket via a `main.tf` file should resemble the following:
+
 ```hcl
 provider "aws" {
 
@@ -156,8 +166,7 @@ resource "aws_s3_bucket" "test-bucket" {
 
 ### Endpoint Configuration
 
-Below is a configuration example with additional service endpoints. 
-Again, these provider configurations should no longer be required if you use the `tflocal` script (see above).
+Here's a configuration example with additional service endpoints. Please note that these provider configurations may not be necessary if you use the `tflocal` script (as described above). You can save the following configuration in a file named `provider.tf` and include it in your Terraform configuration.
 
 ```hcl
 provider "aws" {
@@ -197,10 +206,9 @@ provider "aws" {
 }
 ```
 
-## Further Reading
+## Examples
 
-For more examples, you can take a look at our [Terraform sample](https://github.com/localstack/localstack-pro-samples/tree/master/terraform-resources) or the [Terraform LocalStack section](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/custom-service-endpoints#localstack).
-
-### Community Resources
-
-* [LocalStack with Terraform and Docker for running AWS locally. 2021-07-04](https://dev.to/mrwormhole/localstack-with-terraform-and-docker-for-running-aws-locally-3a6d)
+- [Serverless Container-based APIs with Amazon ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
+- [Full-Stack application with AWS Lambda, DynamoDB & S3 for shipment validation](https://github.com/localstack/shipment-list-demo)
+- [Search application with Lambda, Kinesis, Firehose, ElasticSearch, S3](https://github.com/localstack/sample-fuzzy-movie-search-lambda-kinesis-elasticsearch)
+- [LocalStack Terraform Samples](https://github.com/localstack/localstack-terraform-samples)
