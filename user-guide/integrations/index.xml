@@ -1,76 +1,87 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – Integrations</title><link>/user-guide/integrations/</link><description>Recent content in Integrations on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/user-guide/integrations/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: AWS Command Line Interface</title><link>/user-guide/integrations/aws-cli/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/aws-cli/</guid><description>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;p>The &lt;a href="https://aws.amazon.com/cli/">AWS Command Line Interface (CLI)&lt;/a> is a unified tool to manage AWS services from the command line.
-All CLI commands that access &lt;a href="/user-guide/aws/feature-coverage/">services that are implemented in LocalStack&lt;/a> can be run against LocalStack.&lt;/p>
-&lt;p>There are two CLI alternatives:&lt;/p>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>The &lt;a href="https://aws.amazon.com/cli/">AWS Command Line Interface (CLI)&lt;/a> is a unified tool for creating and managing AWS services via a command line interface. All CLI commands applicable to services implemented within &lt;a href="/references/coverage/">LocalStack&lt;/a> can be executed when operating against LocalStack.&lt;/p>
+&lt;p>You can use the AWS CLI with LocalStack using either of the following approaches:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="#aws-cli">AWS CLI&lt;/a>&lt;/li>
 &lt;li>&lt;a href="#localstack-aws-cli-awslocal">LocalStack AWS CLI&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="aws-cli">AWS CLI&lt;/h2>
-&lt;p>Use the below command to install &lt;code>aws&lt;/code>, if not installed already.&lt;/p>
+&lt;p>You can install &lt;code>aws&lt;/code> by using the following command if it&amp;rsquo;s not already installed.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install awscli&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="setting-up-local-region-and-credentials-to-run-localstack">Setting up local region and credentials to run LocalStack&lt;/h3>
-&lt;p>Configure AWS test environment variables and add the &lt;code>--endpoint-url=&amp;lt;localstack-url&amp;gt;&lt;/code> flag to your &lt;code>aws&lt;/code> CLI invocations.
-For example:
+&lt;p>You can configure the AWS CLI to redirect AWS API requests to LocalStack using two approaches:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="#configuring-an-endpoint-url">Configuring an endpoint URL&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#configuring-a-custom-profile">Configuring a custom profile&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="configuring-an-endpoint-url">Configuring an endpoint URL&lt;/h3>
+&lt;p>You can use AWS CLI with an endpoint URL by configuring test environment variables and include the &lt;code>--endpoint-url=&amp;lt;localstack-url&amp;gt;&lt;/code> flag in your &lt;code>aws&lt;/code> CLI commands. For example:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_ACCESS_KEY_ID=&amp;#34;test&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_SECRET_ACCESS_KEY=&amp;#34;test&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_DEFAULT_REGION=&amp;#34;us-east-1&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws --endpoint-url=http://localhost:4566 kinesis list-streams&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;p>Create a configuration profile. The configuration file will be created under &lt;code>~/.aws&lt;/code> directory and in the example below, using the &lt;code>default&lt;/code> profile:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws configure --profile default&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Please use &lt;code>test&lt;/code> as value for &lt;code>AWS_ACCESS_KEY_ID&lt;/code> and &lt;code>AWS_SECRET_ACCESS_KEY&lt;/code> to make pre-signed URLs for S3 buckets work.
-Our pre-signed URL signature verification algorithm validates the pre-signed URL and its expiration.
+To enable the creation of pre-signed URLs for S3 buckets, please set both &lt;code>AWS_ACCESS_KEY_ID&lt;/code> and &lt;code>AWS_SECRET_ACCESS_KEY&lt;/code> to the value &amp;ldquo;test.&amp;rdquo; Our pre-signed URL signature verification algorithm validates the pre-signed URL and its expiration.
 &lt;/div>
-&lt;p>Verify the current configuration:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>aws configure list&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h2 id="localstack-aws-cli-awslocal">LocalStack AWS CLI (awslocal)&lt;/h2>
-&lt;p>&lt;code>awslocal&lt;/code> is a thin wrapper and a drop-in replacement for the &lt;code>aws&lt;/code> command that runs commands directly against LocalStack (no need to specify &lt;code>--endpoint-url&lt;/code> anymore).
-The source code can be found on GitHub: &lt;a href="https://github.com/localstack/awscli-local">https://github.com/localstack/awscli-local&lt;/a>&lt;/p>
+&lt;h3 id="configuring-a-custom-profile">Configuring a custom profile&lt;/h3>
+&lt;p>You can configure a custom profile to use with LocalStack. Add the following profile to your AWS configuration file (by default, this file is at &lt;code>~/.aws/config&lt;/code>):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>profile localstack&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">region&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>us-east-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">output&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>json
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">endpoint_url&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> http://localhost:4566
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add the following profile to your AWS credentials file (by default, this file is at &lt;code>~/.aws/credentials&lt;/code>):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>localstack&lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">aws_access_key_id&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">test&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">aws_secret_access_key&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">test&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can now use the &lt;code>localstack&lt;/code> profile with the &lt;code>aws&lt;/code> CLI:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws s3 mb s3://test --profile localstack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>aws s3 ls --profile localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Alternatively, you can also set the &lt;code>AWS_PROFILE=localstack&lt;/code> environment variable, in which case the &lt;code>--profile localstack&lt;/code> parameter can be omitted in the commands above.
+&lt;/div>
+&lt;h2 id="localstack-aws-cli-awslocal">LocalStack AWS CLI (&lt;code>awslocal&lt;/code>)&lt;/h2>
+&lt;p>&lt;code>awslocal&lt;/code> serves as a thin wrapper and a substitute for the standard &lt;code>aws&lt;/code> command, enabling you to run AWS CLI commands within the LocalStack environment without specifying the &lt;code>--endpoint-url&lt;/code> parameter or a profile.&lt;/p>
 &lt;h3 id="installation">Installation&lt;/h3>
-&lt;p>You can install the &lt;code>awslocal&lt;/code> command via &lt;code>pip&lt;/code>:&lt;/p>
+&lt;p>Install the &lt;code>awslocal&lt;/code> command using the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install awscli-local[ver1]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Note that the command above also installs the latest version of the underlying AWS CLI version 1 (&lt;code>awscli&lt;/code>) package. Use this command if you prefer to manage your own version of &lt;code>awscli&lt;/code> (e.g., &lt;code>v1&lt;/code>/&lt;code>v2&lt;/code>) and install the wrapper script only:
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>The above command installs the most recent version of the underlying AWS CLI version 1 (&lt;code>awscli&lt;/code>) package. If you would rather manage your own &lt;code>awscli&lt;/code> version (e.g., &lt;code>v1&lt;/code> or &lt;code>v2&lt;/code>) and only install the wrapper script, you can use the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install awscli-local&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
+&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Automatic installation of AWS CLI version 2 is currently not supported yet (at the time of writing there is no official pypi package for &lt;code>v2&lt;/code> available), but the &lt;code>awslocal&lt;/code> technically also works with AWS CLI v2 (see &lt;a href="#limitations">this section&lt;/a> for more details).
 &lt;/div>
 &lt;h3 id="usage">Usage&lt;/h3>
-&lt;p>The &lt;code>awslocal&lt;/code> command has the same usage as the &lt;code>aws&lt;/code> command.
-For detailed usage, please refer to the man pages of &lt;code>aws help&lt;/code>.&lt;/p>
+&lt;p>The &lt;code>awslocal&lt;/code> command shares identical usage with the standard &lt;code>aws&lt;/code> command. For comprehensive usage instructions, refer to the manual pages by running &lt;code>awslocal help&lt;/code>.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal kinesis list-streams&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="configurations">Configurations&lt;/h3>
-&lt;p>You can use the following environment variables for configuration:&lt;/p>
+&lt;h3 id="configuration">Configuration&lt;/h3>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>Variable&lt;/th>
+&lt;th>Variable Name&lt;/th>
 &lt;th>Description&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>&lt;code>LOCALSTACK_HOST&lt;/code>&lt;/td>
-&lt;td>Set the hostname for the localstack instance. Useful when you have localstack is bound to another interface (i.e. docker-machine).&lt;/td>
+&lt;td>AWS_ENDPOINT_URL&lt;/td>
+&lt;td>The endpoint URL to connect to (takes precedence over USE_SSL/LOCALSTACK_HOST)&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>&lt;code>USE_SSL&lt;/code>&lt;/td>
-&lt;td>Whether to use &lt;code>https&lt;/code> endpoint URLs (required if LocalStack has been started with &lt;code>USE_SSL=true&lt;/code> enabled). Defaults to &lt;code>false&lt;/code>.&lt;/td>
+&lt;td>LOCALSTACK_HOST&lt;/td>
+&lt;td>(deprecated) A variable defining where to find LocalStack (default: localhost:4566)&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>&lt;code>DEFAULT_REGION&lt;/code>&lt;/td>
-&lt;td>&lt;em>Deprecated&lt;/em>. Set the default region. Overrides &lt;code>AWS_DEFAULT_REGION&lt;/code> environment variable.&lt;/td>
+&lt;td>USE_SSL&lt;/td>
+&lt;td>(deprecated) Whether to use SSL when connecting to LocalStack (default: False)&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>Verify the current configuration:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>awslocal configure list&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="limitations">Limitations&lt;/h3>
 &lt;p>Please note that there is a known limitation for using the &lt;code>cloudformation package ...&lt;/code> command with the AWS CLI v2.
 The problem is that the AWS CLI v2 is &lt;a href="https://github.com/aws/aws-cli/issues/4947">not available as a package on pypi.org&lt;/a>, but is instead shipped as a binary package that cannot be easily patched from &lt;code>awslocal&lt;/code>.
