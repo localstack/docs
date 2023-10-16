@@ -30,14 +30,14 @@ Install the [LocalStack VSCode Extension](https://marketplace.visualstudio.com/i
 You can now open the Python handler function under `app/hello_world.py`. Click the CodeLens **Deploy Lambda function**, select the `template.yaml`, and choose a stack name such as `my-stack`.
 
 
-<img src="deploy-lambda-function.gif" alt="CloudFormation Output on Former2 Dashboard" title="CloudFormation Output on Former2 Dashboard" width="700" />
+<img src="deploy-lambda-function.gif" alt="Deploying Lambda function via the VS Code Extension" title="Deploying Lambda function via the VS Code Extension" width="700" />
 <br><br>
 
 
 Click the CodeLens **Invoke Lambda function** and pick the stack name `my-stack` and the function `hello-world-function`.
 
 
-<img src="invoke-lambda-function.gif" alt="CloudFormation Output on Former2 Dashboard" title="CloudFormation Output on Former2 Dashboard" width="700" />
+<img src="invoke-lambda-function.gif" alt="Invoking Lambda function via the VS Code Extension" title="Invoking Lambda function via the VS Code Extension" width="700" />
 <br>
 
 ## Limitations
