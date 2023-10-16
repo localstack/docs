@@ -10574,6 +10574,7 @@ id="tabs-02-01" role="tabpanel" aria-labelled-by="tabs-02-01-tab">
 &lt;ul>
 &lt;li>&lt;strong>Hot reloading&lt;/strong>: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our &lt;a href="/user-guide/tools/lambda-tools/hot-reloading/">hot reloading documentation&lt;/a>.&lt;/li>
 &lt;li>&lt;strong>Remote debugging&lt;/strong>: LocalStack&amp;rsquo;s remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our &lt;a href="/user-guide/tools/lambda-tools/debugging/">debugging documentation&lt;/a>.&lt;/li>
+&lt;li>&lt;strong>Lambda VS Code Extension&lt;/strong>: LocalStack&amp;rsquo;s Lambda VS Code Extension supports deploying and invoking Python Lambda functions through AWS SAM or AWS CloudFormation. To get started with the Lambda VS Code Extension, see our &lt;a href="/user-guide/tools/lambda-tools/lambda-vscode-extension/">Lambda VS Code Extension documentation&lt;/a>.&lt;/li>
 &lt;/ul>
 &lt;h2 id="lambda-layers-pro">Lambda Layers (Pro)&lt;/h2>
 &lt;p>&lt;a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layers&lt;/a> lets you include additional code and dependencies in your Lambda functions.
@@ -10675,40 +10676,40 @@ Here, we&amp;rsquo;ll focus specifically on how to use Lambda Layers locally in 
 &lt;h3 id="docker-not-available">Docker not available&lt;/h3>
 &lt;p>In the old Lambda provider, Lambda functions were executed within the LocalStack container using the local executor mode. This mode was used as a fallback if the Docker socket was unavailable in the LocalStack container. However, many users inadvertently used the local executor mode instead of the intended Docker executor mode, which caused unexpected behavior.&lt;/p>
 &lt;p>If you encounter the following error message, you may be using the local executor mode:&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-11" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-12" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-shell"
-id="tabs-11-00-tab" data-toggle="tab" href="#tabs-11-00" role="tab"
-onclick="persistLang(&amp;#34;shell&amp;#34;);"aria-controls="tabs-11-00" aria-selected="false">
+id="tabs-12-00-tab" data-toggle="tab" href="#tabs-12-00" role="tab"
+onclick="persistLang(&amp;#34;shell&amp;#34;);"aria-controls="tabs-12-00" aria-selected="false">
 LocalStack Logs
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-11-01-tab" data-toggle="tab" href="#tabs-11-01" role="tab"
-aria-controls="tabs-11-01" aria-selected="false">
+id="tabs-12-01-tab" data-toggle="tab" href="#tabs-12-01" role="tab"
+aria-controls="tabs-12-01" aria-selected="false">
 AWS CLI
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link"
-id="tabs-11-02-tab" data-toggle="tab" href="#tabs-11-02" role="tab"
-aria-controls="tabs-11-02" aria-selected="false">
+id="tabs-12-02-tab" data-toggle="tab" href="#tabs-12-02" role="tab"
+aria-controls="tabs-12-02" aria-selected="false">
 SAM
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-11-content">
+&lt;div class="tab-content" id="tabs-12-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-11-00" role="tabpanel" aria-labelled-by="tabs-11-00-tab">
+id="tabs-12-00" role="tabpanel" aria-labelled-by="tabs-12-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Lambda &lt;span style="color:#4e9a06">&amp;#39;arn:aws:lambda:us-east-1:000000000000:function:my-function:$LATEST&amp;#39;&lt;/span> changed to failed. Reason: Docker not available
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>raise DockerNotAvailable&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Docker not available&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-11-01" role="tabpanel" aria-labelled-by="tabs-11-01-tab">
+id="tabs-12-01" role="tabpanel" aria-labelled-by="tabs-12-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>An error occurred &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>ResourceConflictException&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> when calling the Invoke operation &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>reached max retries: 0&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>: The operation cannot be performed at this time. The &lt;span style="color:#204a87;font-weight:bold">function&lt;/span> is currently in the following state: Failed&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-11-02" role="tabpanel" aria-labelled-by="tabs-11-02-tab">
+id="tabs-12-02" role="tabpanel" aria-labelled-by="tabs-12-02-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>Error: Failed to create/update the stack: sam-app, Waiter StackCreateComplete failed: Waiter encountered a terminal failure state: For expression &lt;span style="color:#4e9a06">&amp;#34;Stacks[].StackStatus&amp;#34;&lt;/span> we matched expected path: &lt;span style="color:#4e9a06">&amp;#34;CREATE_FAILED&amp;#34;&lt;/span> at least once&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;/div>

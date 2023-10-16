@@ -784,4 +784,29 @@ id="tabs-07-01" role="tabpanel" aria-labelled-by="tabs-07-01-tab">
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice">Spring Cloud Function on LocalStack (Kotlin JVM)&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>User-Guide: Lambda VSCode Extension</title><link>/user-guide/tools/lambda-tools/lambda-vscode-extension/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/lambda-tools/lambda-vscode-extension/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>&lt;a href="https://github.com/localstack/localstack-vscode-extension">LocalStack Lambda VSCode Extension&lt;/a> supports deploying and invoking Python Lambda functions through &lt;a href="https://github.com/aws/serverless-application-model">AWS SAM&lt;/a> or &lt;a href="https://aws.amazon.com/cloudformation/resources/templates/">AWS CloudFormation&lt;/a>.&lt;/p>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://code.visualstudio.com/">VS Code&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/localstack/aws-sam-cli-local">&lt;code>samlocal&lt;/code>&lt;/a> command line wrapper around the &lt;a href="https://github.com/aws/aws-sam-cli">AWS SAM CLI&lt;/a> for use with &lt;a href="https://github.com/localstack/localstack">LocalStack&lt;/a>.&lt;/li>
+&lt;li>&lt;a href="https://docs.localstack.cloud/getting-started/">LocalStack&lt;/a> running in the background.&lt;/li>
+&lt;/ul>
+&lt;h2 id="getting-started">Getting Started&lt;/h2>
+&lt;p>You can use a &lt;a href="https://github.com/joe4dev/lambda-python">sample project&lt;/a> to get started with the extension. The sample project contains a simple Lambda function and a SAM template. Clone the repository and open the project in VSCode.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>git clone https://github.com/joe4dev/lambda-python.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cd lambda-python
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>code .&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Install the &lt;a href="https://marketplace.visualstudio.com/items?itemName=localstack.localstack">LocalStack VSCode Extension&lt;/a> as recommended by the project.&lt;/p>
+&lt;p>You can now open the Python handler function under &lt;code>app/hello_world.py&lt;/code>. Click the CodeLens &lt;strong>Deploy Lambda function&lt;/strong>, select the &lt;code>template.yaml&lt;/code>, and choose a stack name such as &lt;code>my-stack&lt;/code>.&lt;/p>
+&lt;img src="deploy-lambda-function.gif" alt="Deploying Lambda function via the VS Code Extension" title="Deploying Lambda function via the VS Code Extension" width="700" />
+&lt;br>&lt;br>
+&lt;p>Click the CodeLens &lt;strong>Invoke Lambda function&lt;/strong> and pick the stack name &lt;code>my-stack&lt;/code> and the function &lt;code>hello-world-function&lt;/code>.&lt;/p>
+&lt;img src="invoke-lambda-function.gif" alt="Invoking Lambda function via the VS Code Extension" title="Invoking Lambda function via the VS Code Extension" width="700" />
+&lt;br>
+&lt;h2 id="limitations">Limitations&lt;/h2>
+&lt;ul>
+&lt;li>The CodeLens for &lt;strong>Deploy Lambda function&lt;/strong> always appears at the first line of each Python file.&lt;/li>
+&lt;li>&lt;strong>Invoke Lambda function&lt;/strong> currently only works in the region &lt;code>us-east-1&lt;/code> and with an empty payload.&lt;/li>
 &lt;/ul></description></item></channel></rss>
