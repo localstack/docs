@@ -107,7 +107,7 @@ $ custodian run -s . \
     --profile localstack
 {{< / command >}}
 
-You can access the CloudWatch metrics over the [LocalStack Web Application](https://app.localstack.cloud/inst/default/resources/cloudwatch).
+You can access the CloudWatch metrics in the [LocalStack Web Application](https://app.localstack.cloud/inst/default/resources/cloudwatch).
 
 ## Further reading
 
