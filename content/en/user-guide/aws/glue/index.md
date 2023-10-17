@@ -303,7 +303,8 @@ To illustrate this feature, we take a closer look at a Glue sample job that crea
 
 First, we define the PySpark job in a file named `job.py` (see below).
 The job first creates a database `db1` and table `table1`, then inserts data into the table via both a dataframe and an `INSERT INTO` query, and finally fetches the inserted rows via a `SELECT` query:
-```
+
+```python
 from awsglue.context import GlueContext
 from pyspark import SparkContext, SparkConf
 
@@ -345,7 +346,7 @@ $ awslocal glue start-job-run --job-name job1
 {{< / command >}}
 
 The execution of the Glue job can take a few moments - once the job has finished executing, you should see a log line with the query results in the LocalStack container logs, similar to the output below:
-```
+```text
 2023-10-17 12:59:20,088 INFO scheduler.DAGScheduler: Job 15 finished: collect at /private/tmp/script-90e5371e.py:28, took 0,158257 s
 SQL result: ['{"name":"test1","key":123}', '{"name":"test2","key":456}']
 ```
