@@ -1,14 +1,14 @@
 ---
 title: "Stack Insights"
-tags: ["LocalStack Pro", "Stack Insights"] 
-weight: 3
+tags: ["LocalStack Pro", "Stack Insights"]
+weight: 140
 description: >
   Stack Insights enable users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.
 aliases:
  - /user-guide/tools/analytics-dashboard/
 ---
 
-LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall. Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account. 
+LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall. Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.
 
 You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.
 

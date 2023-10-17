@@ -1,6 +1,6 @@
 ---
 title: "Extensions Library"
-weight: 5
+weight: 110
 description: Extend LocalStack by adding new services and features as extensions
 ---
 
