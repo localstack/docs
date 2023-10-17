@@ -350,6 +350,15 @@ The execution of the Glue job can take a few moments - once the job has finished
 SQL result: ['{"name":"test1","key":123}', '{"name":"test2","key":456}']
 ```
 
+In order to see the logs above, make sure to enable `DEBUG=1` in the LocalStack container environment.
+Alternatively, you can also retrieve the job logs programmatically via the CloudWatch Logs API - for example, using the job run ID `c9471f40` from above:
+{{< command >}}
+$ awslocal logs get-log-events --log-group-name /aws-glue/jobs/logs-v2 --log-stream-name c9471f40
+<disable-copy>
+{ "events": [ ... ] }
+</disable-copy>
+{{< command >}}
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for Glue.
