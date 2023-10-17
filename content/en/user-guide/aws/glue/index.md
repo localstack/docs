@@ -358,7 +358,7 @@ $ awslocal logs get-log-events --log-group-name /aws-glue/jobs/logs-v2 --log-str
 <disable-copy>
 { "events": [ ... ] }
 </disable-copy>
-{{< command >}}
+{{< / command >}}
 
 ## Resource Browser
 
