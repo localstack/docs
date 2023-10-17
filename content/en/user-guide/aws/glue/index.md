@@ -291,6 +291,65 @@ You should see the following output:
 
 You can find a more advanced sample in our [localstack-pro-samples repository on GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/glue-msk-schema-registry), which showcases the integration with AWS MSK and automatic schema registrations (including schema rejections based on the compatibilities).
 
+### Delta Lake Tables
+
+LocalStack Glue supports [Delta Lake](https://delta.io), an open-source storage framework that extends Parquet data files with a file-based transaction log for ACID transactions and scalable metadata handling.
+
+{{< alert title="Note">}}
+Please note that Delta Lake tables are only [supported for Glue versions `3.0` and `4.0`](https://docs.aws.amazon.com/glue/latest/dg/aws-glue-programming-etl-format-delta-lake.html).
+{{< /alert >}}
+
+To illustrate this feature, we take a closer look at a Glue sample job that creates a Delta Lake table, puts some data into it, and then queries data from the table.
+
+First, we define the PySpark job in a file named `job.py` (see below).
+The job first creates a database `db1` and table `table1`, then inserts data into the table via both a dataframe and an `INSERT INTO` query, and finally fetches the inserted rows via a `SELECT` query:
+```
+from awsglue.context import GlueContext
+from pyspark import SparkContext, SparkConf
+
+conf = SparkConf()
+conf.set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
+conf.set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
+glue_context = GlueContext(SparkContext.getOrCreate(conf=conf))
+spark = glue_context.spark_session
+
+# create database and table
+spark.sql("CREATE DATABASE db1")
+spark.sql("CREATE TABLE db1.table1 (name string, key long) USING delta PARTITIONED BY (key) LOCATION 's3a://test/data/'")
+
+# create dataframe and write to table in S3
+df = spark.createDataFrame([("test1", 123)], ["name", "key"])
+df.write.format("delta").options(path="s3a://test/data/") \
+    .mode("append").partitionBy("key").saveAsTable("db1.table1")
+
+# insert data via 'INSERT' query
+spark.sql("INSERT INTO db1.table1 (name, key) VALUES ('test2', 456)")
+
+# get and print results, to run assertions further below
+result = spark.sql("SELECT * FROM db1.table1")
+print("SQL result:", result.toJSON().collect())
+```
+
+We can now run the following commands to create and start the Glue job:
+{{< command >}}
+$ awslocal s3 mb s3://test
+$ awslocal s3 cp job.py s3://test/job.py
+$ awslocal glue create-job --name job1 --role arn:aws:iam::000000000000:role/test \
+  --glue-version 4.0 --command '{"Name": "pythonshell", "ScriptLocation": "s3://test/job.py"}'
+$ awslocal glue start-job-run --job-name job1
+<disable-copy>
+{
+    "JobRunId": "c9471f40"
+}
+</disable-copy>
+{{< / command >}}
+
+The execution of the Glue job can take a few moments - once the job has finished executing, you should see a log line with the query results in the LocalStack container logs, similar to the output below:
+```
+2023-10-17 12:59:20,088 INFO scheduler.DAGScheduler: Job 15 finished: collect at /private/tmp/script-90e5371e.py:28, took 0,158257 s
+SQL result: ['{"name":"test1","key":123}', '{"name":"test2","key":456}']
+```
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for Glue.
