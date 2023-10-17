@@ -87,7 +87,7 @@ You should see the following output:
 2023-10-16 21:06:13,961: custodian.policy:INFO policy:my-first-policy action:stop resources:1 execution_time:0.10
 ```
 
-You can navigate to the LocalStack logs to verify that the EC2 instance was stopped successfully:
+You can then navigate to the LocalStack logs to verify that the EC2 instance was stopped successfully:
 
 ```bash
 2023-10-16T15:36:13.583  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS sts.GetCallerIdentity => 200
