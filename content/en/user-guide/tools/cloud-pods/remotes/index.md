@@ -1,5 +1,5 @@
 ---
-title: "Cloud Pod Remotes"
+title: "Remotes"
 weight: 5
 description: The reference guide for LocalStack Cloud Pods remotes and how to get started on using them!
 ---

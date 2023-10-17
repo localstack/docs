@@ -1,5 +1,5 @@
 ---
-title: "Cloud Pods CLI command reference"
+title: "CLI command reference"
 weight: 4
 description: >
   Reference guide for LocalStack Cloud Pods CLI commands and how to get started on using them!

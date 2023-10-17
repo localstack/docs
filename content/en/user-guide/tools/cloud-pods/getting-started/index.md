@@ -1,5 +1,5 @@
 ---
-title: "Getting started with the Cloud Pods"
+title: "Getting started"
 weight: 3
 description: Get started with Cloud Pods to manage the state of your LocalStack instance state
 ---
@@ -84,7 +84,7 @@ $ localstack pod list
 
 ### Inspect the contents of a Cloud Pod
 
-4. Optional: You can inspect the contents of a Cloud Pod using the `inspect` command: 
+You can inspect the contents of a Cloud Pod using the `inspect` command: 
 
 {{< command >}}
 $ localstack pod inspect s3-test --format json
@@ -110,7 +110,7 @@ $ localstack pod inspect s3-test --format json
 
 ### Pull your Pod state
 
- On a separate machine, start LocalStack while ensuring the API key is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
+On a separate machine, start LocalStack while ensuring the API key is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
 
 {{< command >}}
 $ localstack pod load s3-test
@@ -119,7 +119,7 @@ Cloud Pod s3-test successfully loaded
 </disable-copy>
 {{< / command >}}
 
-Let's examine the S3 buckets within our Cloud Pod:
+You can examine the S3 buckets within the Cloud Pod:
 
 {{< command >}}
 $ awslocal s3 ls s3://test/
@@ -128,4 +128,4 @@ $ awslocal s3 ls s3://test/
 </disable-copy>
 {{< / command >}}
 
-For comprehensive instructions, navigate to our [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}). To access your Cloud Pods through the LocalStack Web Application, simply go to the [Cloud Pods page](https://app.localstack.cloud/pods).
+For comprehensive instructions, navigate to our [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}). To access your Cloud Pods through the LocalStack Web Application, navigate to the [Cloud Pods browser](https://app.localstack.cloud/pods).
