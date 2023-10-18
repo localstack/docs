@@ -110,7 +110,7 @@ To push the Docker image to the repository, you first need to tag the image with
 Run the following command to tag the image:
 
 {{< command >}}
-$ docker tag localstack-ecr-image localhost:4510/localstack-ecr-repository
+$ docker tag localstack-ecr-image localhost.localstack.cloud:4510/localstack-ecr-repository
 {{< / command >}}
 
 You can now push the image to the repository using the `docker` CLI:
