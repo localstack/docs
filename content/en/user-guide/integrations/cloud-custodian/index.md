@@ -80,6 +80,10 @@ $ custodian run \
     --profile localstack
 {{< / command >}}
 
+{{< alert title="Note">}}
+Alternatively, you can also set the `AWS_PROFILE=localstack` environment variable, in which case the `--profile localstack` parameter can be omitted in the commands above.
+{{< /alert >}}
+
 You should see the following output:
 
 ```sh
