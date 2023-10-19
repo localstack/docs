@@ -467,6 +467,50 @@ An example response is shown below:
 }
 ```
 
+#### Show invisible or delayed messages
+
+The developer endpoint also supports showing invisible and delayed messages via the query arguments `ShowInvisible` and `ShowDelayed`.
+
+{{< tabpane >}}
+{{< tab header="cURL" lang="bash" >}}
+curl -H "Accept: application/json" \
+    "http://localhost:4566/_aws/sqs/messages?ShowInvisible=true&ShowDelayed=true&QueueUrl=http://queue.localhost.localstack.cloud:4566/000000000000/my-queue"
+{{< /tab >}}
+{{< tab header="Python Requests" lang="python" >}}
+import requests
+
+response = requests.get(
+    "http://localhost:4566/_aws/sqs/messages",
+    params={"QueueUrl": queue_url, "ShowInvisible": True, "ShowDelayed": True},
+    headers={"Accept": "application/json"},
+)
+print(response.text)
+{{< /tab >}}
+{{< / tabpane >}}
+
+This will also include messages that currently have an active visibility timeout or were delayed and are not actually in the queue yet.
+Here's an example:
+
+```json
+[
+    {
+        "MessageId": "1c4187cc-f2c9-4f1c-9702-4a3bfaaa4817",
+        "MD5OfBody": "a06498de7fb4bd539c8895748f03175d",
+        "Body": "message-3",
+        "Attribute": [
+            {"Name": "SenderId", "Value": "000000000000"},
+            {"Name": "SentTimestamp", "Value": "1697494407799"},
+            {"Name": "ApproximateReceiveCount", "Value": "0"},
+            {"Name": "ApproximateFirstReceiveTimestamp", "Value": "0"},
+            {"Name": "IsVisible", "Value": "true"},   <--
+            {"Name": "IsDelayed", "Value": "false"},  <--
+        ],
+        "ReceiptHandle": "SQS/BACKDOOR/ACCESS",
+    },
+  ...
+]
+```
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing SQS queues.
