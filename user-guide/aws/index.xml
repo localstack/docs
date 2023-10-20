@@ -11439,18 +11439,246 @@ Run the following command to create a Neptune instance:&lt;/p>
 &lt;p>The &lt;code>CustomEndpointOptions&lt;/code> in LocalStack offers the flexibility to utilize arbitrary endpoint URLs, a feature that diverges from the constraints imposed by AWS.&lt;/p>
 &lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
 &lt;p>If you encounter difficulties resolving subdomains while employing the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY=domain&lt;/code> (the default setting), it&amp;rsquo;s advisable to investigate whether your DNS configuration might be obstructing rebind queries. For further insights on addressing this issue, refer to the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
-&lt;p>The Quantum Ledger Database (QLDB) API supports queries over cryptographically verifiable data, stored in a journal of immutable transaction events. LocalStack allows to create local ledgers and journals, to perform &lt;code>CREATE TABLE&lt;/code> statements, to insert data via &lt;code>INSERT&lt;/code> statements, and to query data via &lt;code>SELECT&lt;/code> statements.&lt;/p>
-&lt;p>QLDB uses the &lt;a href="https://amzn.github.io/ion-docs">Amazon ION data format&lt;/a>, a data serialization format that represents a superset of JSON, with a number of additional features.&lt;/p>
-&lt;p>A simple QLDB example running on LocalStack is provided in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/qldb-ledger-queries">this Github repository&lt;/a>. The sample consists of two simple scenarios: (1) to create and list tables via the &lt;code>pyqldb&lt;/code> Python library, and (2) to insert data into two tables and perform a &lt;code>JOIN&lt;/code> query that combines data from the two tables. The sample output is posted below:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-plaintext" data-lang="plaintext">&lt;span style="display:flex;">&lt;span>Scenario 1: create and list tables in ledger
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-----------
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating new test ledger in QLDB API: ledger-test-1
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating two test tables in ledger
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Retrieved list of tables in ledger ledger-test-1: [&amp;#39;foobar1&amp;#39;, &amp;#39;foobar2&amp;#39;]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-----------
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Scenario 2: create ledger tables and run join query
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>-----------
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Creating two test tables in ledger - &amp;#34;Vehicle&amp;#34; and &amp;#34;VehicleRegistration&amp;#34;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Running a query that joins data from the two tables
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Query result: [{&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v1&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v2&amp;#39;}}, {&amp;#39;Vehicle&amp;#39;: {&amp;#39;id&amp;#39;: &amp;#39;v3&amp;#39;}}]
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Quantum Ledger Database (QLDB) is supported by LocalStack only in the Pro version.&lt;/p>
+&lt;p>Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web
+Services. It is designed to provide transparent, immutable, and cryptographically verifiable
+transaction
+log functionality to applications. QLDB is particularly useful for applications that need a secure
+and scalable
+way to maintain a complete and verifiable history of data changes over time.&lt;/p>
+&lt;p>To learn more about QLDB please refer to
+the &lt;a href="https://docs.aws.amazon.com/qldb/">official documentation&lt;/a>.
+To find out what operations are supported by the QLDB service on LocalStack, please check
+the &lt;a href="/references/coverage/coverage_qldb/" title="QLDB
+service coverage page">QLDB service coverage page&lt;/a>.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>These instructions will follow along with
+the &lt;a href="https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started.html">getting started guide&lt;/a>
+from the official documentation, but instead of using the console to
+perform all the operations, the LocalStack AWS CLI (management API only) and the QLDB shell (data
+API only) will be used.&lt;/p>
+&lt;h3 id="installing-the-qldb-shell">Installing the QLDB shell&lt;/h3>
+&lt;p>QLDB supports PartiQL, a SQL-compatible query language, which allows you to query and manipulate
+data stored in QLDB.
+You can write PartiQL statements to perform complex queries, aggregations, and transformations on
+your data.
+Amazon QLDB provides a command line shell for interaction with the transactional data API. With the
+QLDB shell,
+you can run PartiQL statements on ledger data.&lt;/p>
+&lt;p>For instructions on how to use and install the latest version of the QLDB shell, see
+the &lt;a href="https://github.com/awslabs/amazon-qldb-shell/blob/main/README.md#installation">README.md&lt;/a> file
+on GitHub.
+QLDB provides pre-built binary files for Linux, macOS, and Windows in
+the &lt;a href="https://github.com/awslabs/amazon-qldb-shell/releases">Releases&lt;/a> section of the repository.&lt;/p>
+&lt;h3 id="creating-a-new-ledger">Creating a new ledger&lt;/h3>
+&lt;p>QLDB provides ledger databases, which are centralized, immutable, and cryptographically verifiable
+journals of transactions.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal qldb create-ledger --name vehicle-registration --permissions-mode ALLOW_ALL&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;vehicle-registration&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:qldb:us-east-1:000000000000:ledger/vehicle-registration&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;State&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationDateTime&amp;#34;&lt;/span>: 1696782718.0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;PermissionsMode&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ALLOW_ALL&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;DeletionProtection&amp;#34;&lt;/span>: &lt;span style="color:#204a87">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;ul>
+&lt;li>Permissions mode – the following options are available in AWS:&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Allow all&lt;/strong> – A legacy permissions mode that enables access control with API-level granularity for
+ledgers.
+This mode disregards any table-level or command-level IAM permissions policies that you create for
+the ledger.&lt;/p>
+&lt;p>&lt;strong>Standard&lt;/strong> (Recommended) - A permissions mode that enables access control with finer granularity
+for ledgers,
+tables, and PartiQL commands. It is recommended using this permissions mode to maximize the security
+of your
+ledger data.
+By default, this mode denies all requests to run any PartiQL commands on any tables in this ledger.
+To allow PartiQL
+commands, you must create IAM permissions policies for specific table resources and PartiQL actions,
+in addition to
+the &lt;code>SendCommand&lt;/code> API permission for the ledger.&lt;/p>
+&lt;/div>
+&lt;p>The following command can be used directly to write PartiQL statements against a QLDB ledger:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>qldb --qldb-session-endpoint http://localhost:4566 --ledger vehicle-registration&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The user can continue from here to create tables, populate and interrogate them.&lt;/p>
+&lt;h3 id="creating-tables-and-sample-data">Creating tables and sample data&lt;/h3>
+&lt;p>PartiQL is a query language designed for processing structured data, allowing you to perform
+various data manipulation tasks using familiar SQL-like syntax.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>qldb&amp;gt; CREATE TABLE VehicleRegistration&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> information_schema: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> user_tables: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> name: &lt;span style="color:#4e9a06">&amp;#34;VehicleRegistration&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> status: &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> indexes: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Vehicle: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> VehicleRegistration: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> document in bag &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>read-ios: 0, server-time: 0ms, total-time: 31ms&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;code>VehicleRegistration&lt;/code> table was created. Now it&amp;rsquo;s time to add some items:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>qldb&amp;gt; INSERT INTO VehicleRegistration VALUE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;VIN&amp;#39; : &amp;#39;KM8SRDHF6EU074761&amp;#39;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;RegNum&amp;#39; : 1722,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;State&amp;#39; : &amp;#39;WA&amp;#39;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;City&amp;#39; : &amp;#39;Kent&amp;#39;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;PendingPenaltyTicketAmount&amp;#39; : 130.75,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;Owners&amp;#39; : {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;PrimaryOwner&amp;#39; : { &amp;#39;PersonId&amp;#39;: &amp;#39;294jJ3YUoH1IEEm8GSabOs&amp;#39; },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;SecondaryOwners&amp;#39; : [
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#39;PersonId&amp;#39; : &amp;#39;1nmeDdLo3AhGswBtyM1eYh&amp;#39; },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &amp;#39;PersonId&amp;#39;: &amp;#39;IN7MvYtUjkp1GMZu0F6CG9&amp;#39; }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;ValidFromDate&amp;#39; : `2017-09-14T`,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#39;ValidToDate&amp;#39; : `2020-06-25T`
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>documentId: &lt;span style="color:#4e9a06">&amp;#34;3TYR9BamzyqHWBjYOfHegE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> document in bag &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>read-ios: 0, server-time: 0ms, total-time: 894ms&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="querying-a-table">Querying a table&lt;/h3>
+&lt;p>The table can be interrogated based on the inserted registration number:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>qldb&amp;gt; SELECT * FROM VehicleRegistration WHERE RegNum=1722&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;VIN&amp;#39;&lt;/span> : &lt;span style="color:#4e9a06">&amp;#39;KM8SRDHF6EU074761&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;RegNum&amp;#39;&lt;/span> : 1722,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;State&amp;#39;&lt;/span> : &lt;span style="color:#4e9a06">&amp;#39;WA&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;City&amp;#39;&lt;/span> : &lt;span style="color:#4e9a06">&amp;#39;Kent&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;PendingPenaltyTicketAmount&amp;#39;&lt;/span> : 130.75,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;Owners&amp;#39;&lt;/span> : &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;PrimaryOwner&amp;#39;&lt;/span> : &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;PersonId&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;294jJ3YUoH1IEEm8GSabOs&amp;#39;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;SecondaryOwners&amp;#39;&lt;/span> : &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;PersonId&amp;#39;&lt;/span> : &lt;span style="color:#4e9a06">&amp;#39;1nmeDdLo3AhGswBtyM1eYh&amp;#39;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;PersonId&amp;#39;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#39;IN7MvYtUjkp1GMZu0F6CG9&amp;#39;&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;ValidFromDate&amp;#39;&lt;/span> : &lt;span style="color:#4e9a06">`&lt;/span>2017-09-14T&lt;span style="color:#4e9a06">`&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#39;ValidToDate&amp;#39;&lt;/span> : &lt;span style="color:#4e9a06">`&lt;/span>2020-06-25T&lt;span style="color:#4e9a06">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> document in bag &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>read-ios: 0, server-time: 0ms, total-time: 477ms&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="modifying-documents-in-a-ledger">Modifying documents in a ledger&lt;/h3>
+&lt;p>Additional changes can be made to documents in the &lt;code>vehicle-registration&lt;/code> ledger with more complex
+queries.
+Supposed the vehicle is sold and changes owners, this information needs to be updated with a new
+person ID.&lt;/p>
+&lt;p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>qldb&amp;gt; UPDATE VehicleRegistration AS r SET r.Owners.PrimaryOwner.PersonId = &amp;#39;112233445566NO&amp;#39; WHERE r.VIN = &amp;#39;KM8SRDHF6EU074761&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+The command will return the updated document ID.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> documentId: &lt;span style="color:#4e9a06">&amp;#34;3TYR9BamzyqHWBjYOfHegE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> document in bag &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>read-ios: 0, server-time: 0ms, total-time: 62ms&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The next step is to check on the updates made to the &lt;code>PersonId&lt;/code> field of the &lt;code>PrimaryOwner&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>qldb&amp;gt; SELECT r.Owners FROM VehicleRegistration AS r WHERE r.VIN = &amp;#39;KM8SRDHF6EU074761&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Owners: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PrimaryOwner: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;112233445566NO&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> SecondaryOwners: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;1nmeDdLo3AhGswBtyM1eYh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;IN7MvYtUjkp1GMZu0F6CG9&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> document in bag &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>read-ios: 0, server-time: 0ms, total-time: 518ms&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="viewing-the-revision-history-of-a-document">Viewing the revision history of a document&lt;/h3>
+&lt;p>After modifying the data in a document, the user can query the history of the entity.
+You can see all revisions of a document that you inserted, updated, and deleted by querying the
+built-in History function.
+First the unique &lt;code>id&lt;/code> of the document must be found.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>qldb&amp;gt; SELECT r_id FROM VehicleRegistration AS r BY r_id WHERE r.VIN = &amp;#39;KM8SRDHF6EU074761&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>r_id: &lt;span style="color:#4e9a06">&amp;#34;3TYR9BamzyqHWBjYOfHegE&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span> document in bag &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>read-ios: 0, server-time: 0ms, total-time: 541ms&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then, the &lt;code>id&lt;/code> is used to query the history function.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>qldb&amp;gt; SELECT h.data.VIN, h.data.City, h.data.Owners FROM history(VehicleRegistration) AS h WHERE h.metadata.id = &amp;#39;3TYR9BamzyqHWBjYOfHegE&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> VIN: &lt;span style="color:#4e9a06">&amp;#34;KM8SRDHF6EU074761&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> City: &lt;span style="color:#4e9a06">&amp;#34;Kent&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Owners: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PrimaryOwner: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;294jJ3YUoH1IEEm8GSabOs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> SecondaryOwners: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;1nmeDdLo3AhGswBtyM1eYh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;IN7MvYtUjkp1GMZu0F6CG9&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> VIN: &lt;span style="color:#4e9a06">&amp;#34;KM8SRDHF6EU074761&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> City: &lt;span style="color:#4e9a06">&amp;#34;Kent&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Owners: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PrimaryOwner: &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;112233445566NO&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> SecondaryOwners: &lt;span style="color:#ce5c00;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;1nmeDdLo3AhGswBtyM1eYh&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> PersonId: &lt;span style="color:#4e9a06">&amp;#34;IN7MvYtUjkp1GMZu0F6CG9&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#0000cf;font-weight:bold">2&lt;/span> documents in bag &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>read-ios: 0, server-time: 0ms, total-time: 544ms&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="cleaning-up-resources">Cleaning up resources&lt;/h3>
+&lt;p>Unused ledgers can be deleted. You&amp;rsquo;ll notice that directly running the following command will lead
+to an error message.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal qldb delete-ledger --name vehicle-registration&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>An error occurred &lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>ResourcePreconditionNotMetException&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span> when calling the DeleteLedger operation: Preventing deletion
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>of ledger vehicle-registration with DeletionProtection enabled
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This can be adjusted using the &lt;code>update-ledger&lt;/code> command in the AWS CLI to remove the deletion protection of the ledger:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal qldb update-ledger --name vehicle-registration --no-deletion-protection&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Name&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;vehicle-registration&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;Arn&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;arn:aws:qldb:us-east-1:000000000000:ledger/vehicle-registration&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;State&amp;#34;&lt;/span>: &lt;span style="color:#4e9a06">&amp;#34;ACTIVE&amp;#34;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;CreationDateTime&amp;#34;&lt;/span>: 1697038061.0,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;DeletionProtection&amp;#34;&lt;/span>: &lt;span style="color:#204a87">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Now the &lt;code>delete-ledger&lt;/code> command can be repeated without errors.&lt;/p>
+&lt;h3 id="examples">Examples&lt;/h3>
+&lt;p>Interacting with Amazon QLDB (Quantum Ledger Database) is typically done using language-specific
+software
+development kits (SDKs) provided by AWS. These SDKs make it easier for developers to interact with
+QLDB and
+perform operations such as managing ledgers, executing PartiQL queries, and processing the results.
+When interacting with QLDB, it&amp;rsquo;s common to use a combination of SDKs and PartiQL queries to achieve
+specific data
+processing tasks, ensuring flexibility and ease of development.&lt;/p>
+&lt;p>A simple QLDB example running on LocalStack is provided
+in &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/qldb-ledger-queries">this Github repository&lt;/a>
+.
+The sample consists of two simple scenarios:&lt;/p>
+&lt;ol>
+&lt;li>Create and list tables via the &lt;code>pyqldb&lt;/code> Python library.&lt;/li>
+&lt;li>Insert data into two tables and perform a &lt;code>JOIN&lt;/code> query that combines data from the two tables.&lt;/li>
+&lt;/ol></description></item></channel></rss>
