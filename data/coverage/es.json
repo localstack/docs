@@ -117,8 +117,8 @@
         "internal_test_suite": true,
         "external_test_suite": true,
         "terraform_test_suite": false,
-        "aws_validated": true,
-        "snapshot_tested": true,
+        "aws_validated": false,
+        "snapshot_tested": false,
         "snapshot_skipped": ""
       }
     },
@@ -664,6 +664,16 @@
       "DomainName": {
         "ls_community": [
           {
+            "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_elasticsearch.py::test_cfn_handle_elasticsearch_domain",
+            "test": "test_cfn_handle_elasticsearch_domain",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/firehose/test_firehose.py::TestFirehoseIntegration::test_kinesis_firehose_elasticsearch_s3_backup",
             "test": "test_kinesis_firehose_elasticsearch_s3_backup",
             "response": "200",
@@ -672,26 +682,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/note_taking/test_note_taking.py::TestNoteTakingScenario::test_validate_infra_setup",
-            "test": "test_validate_infra_setup",
-            "response": "409",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "['$..Tags', '$..get_resources.items', '$..rootResourceId', '$..Table.DeletionProtectionEnabled', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Community: tests/aws/scenario/note_taking/test_note_taking.py::TestNoteTakingScenario::test_validate_infra_setup",
-            "test": "test_validate_infra_setup",
-            "response": "500",
-            "error": "InternalError",
-            "snapshot_skipped": "['$..Tags', '$..get_resources.items', '$..rootResourceId', '$..Table.DeletionProtectionEnabled', '$..Table.ProvisionedThroughput.LastDecreaseDateTime', '$..Table.ProvisionedThroughput.LastIncreaseDateTime', '$..Table.Replicas']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
           }
         ]
       }
