@@ -1,45 +1,77 @@
 ---
 title: "CircleCI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"] 
+linkTitle: "CircleCI"
 weight: 4
 description: >
-  Use LocalStack in [Circle CI](https://circleci.com/)
-aliases:
-  - /ci/circle-ci/
+  Use LocalStack in CircleCI
 ---
 
-This guide describes how to start and use LocalStack in your CircleCI pipelines.
+[Circle CI](https://circleci.com) is a continuous integration and continuous delivery (CI/CD) platform which uses a configuration file (usually named `.circleci/config.yml`) to define the build, test, and deployment workflows. LocalStack supports CircleCI out of the box and can be easily integrated into your pipeline to run your tests against a local cloud emulator.
 
-## Setting up your CircleCI job
+## Getting started
 
-LocalStack is an official partner of [Circle CI](https://circleci.com/) and can easily be integrated into your pipeline by using the [official CircleCI Orb](https://circleci.com/developer/orbs/orb/localstack/platform).\
-The [Orb's documentation](https://circleci.com/developer/orbs/orb/localstack/platform) features examples, as well as a description of the available commands.
+This guide is designed for users new to CircleCI and assumes basic knowledge of YAML and LocalStack tooling. To create a CircleCI job that uses LocalStack, follow these steps:
 
-When using the official CircleCI Orb, using LocalStack in your pipeline is as easy as adding the Orb to your pipeline and executing the startup command.\
-The following example CircleCI config (`.circleci/config.yml`) starts LocalStack, creates a new S3 bucket, and prints a nice message in the end:
-```yaml
+- Under the "Projects" tab, find your project and click "Set Up Project"
+- You'll be prompted to add a configuration. You can add the configuration manually or choose a starter pipeline.
+- If you choose the starter CI pipeline, a sample `config.yml` file is created and committed to a `circleci-project-setup` branch in your repo.
+- You can add the following configuration to the `config.yml` file to start LocalStack and run your tests against it.
+
+```yml
 version: 2.1
+
 orbs:
-  localstack: localstack/platform@1.0
+  python: circleci/python@2.0.3
+
 jobs:
-  run-integration-tests:
-    executor: localstack/default
+  example-job:
+    machine:
+      image: ubuntu-2004:2022.04.1
+
     steps:
-      - localstack/startup
+      - checkout
+
       - run:
-          command: awslocal s3 mb s3://test-bucket
+          name: Start LocalStack
+          command: |
+            pip3 install localstack awscli-local[ver1]
+            docker pull localstack/localstack
+            localstack start -d                     
+
+            echo "Waiting for LocalStack startup..."  
+            localstack wait -t 30                     
+            echo "Startup complete"
+            
       - run:
-          command: echo "Execute your tests here :)"
+          name: Run AWS CLI commands against LocalStack
+          command: |
+            awslocal s3 mb s3://test-bucket
+            awslocal sqs create-queue --queue-name test-queue
+            awslocal sns create-topic --name test-topic
+
 workflows:
-  integration-test:
+  version: 2
+  build:
     jobs:
-      - run-integration-tests
+      - example-job
 ```
 
-## Configuring an API key
+The above CircleCI job does the following:
 
-You can easily enable LocalStack Pro by adding your API key to the project's environment variables. The LocalStack Orb will automatically pick it up and activate the Pro features.
+- Defines a job called `example-job` that installs the `localstack` CLI and `awslocal` wrapper script to execute AWS CLI commands against LocalStack.
+- Pulls the LocalStack Docker image depending on the product tier via the `localstack` CLI (For Community, the image is `localstack/localstack`, while for Pro+ it is `localstack/localstack-pro`).
+- Starts LocalStack in the background and waits for it to become ready. After 30 seconds, the job will execute basic AWS CLI commands against LocalStack.
 
-Just go to the project settings in CircleCI, click on `Environment Variables` in the sidebar and add your API key:
+## Configuring a CI key
 
-![Adding the LocalStack API key in CircleCI](circleci-env-config.png)
+To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features. 
+
+Go to the [API Key Settings](https://app.localstack.cloud/account/apikeys) page and copy your CI key. To add the CI key to your CircleCI project, follow these steps:
+
+- Click on **Project Settings**.
+- Select **Environment Variables** from the left side menu.
+- Click **Add Environment Variable**.
+- Name your environment variable `LOCALSTACK_API_KEY`.
+- Paste your CI key into the input field.
+
+<img src="circleci-env-config.png" width="800px" alt="Adding the LocalStack CI key in CircleCI" />
