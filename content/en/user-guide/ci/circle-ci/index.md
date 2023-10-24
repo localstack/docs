@@ -105,7 +105,7 @@ The above CircleCI job does the following:
 
 ## Configuring a CI key
 
-To enable LocalStack Pro, you need to add your LocalStack CI key to the project's environment variables. The LocalStack will automatically pick it up and activate the licensed features. 
+To enable LocalStack Pro, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features. 
 
 Go to the [API Key Settings](https://app.localstack.cloud/account/apikeys) page and copy your CI key. To add the CI key to your CircleCI project, follow these steps:
 
