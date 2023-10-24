@@ -14,7 +14,7 @@ This guide demonstrates how you can use your new LocalStack licenses and go over
 
 ## Getting your API key
 
-To get started, you need to have a LocalStack license. If you don't have one, you can [sign up for a free trial](https://localstack.cloud/pricing/) without any credit card required. The free trial will last 14 days, and you can use it to test all the features of LocalStack. After a free trial, you can find your API key in the [LocalStack Web app](https://app.localstack.cloud) in the [**Account Settings** → **API Keys** section](https://app.localstack.cloud/account/apikeys).
+To get started, you need to have a LocalStack license. If you don't have one, you can [sign up for a free trial](https://localstack.cloud/pricing/) without any credit card required. The free trial will last 14 days, and you can use it to test all the features of LocalStack. You can find your API key in the [LocalStack Web Application](https://app.localstack.cloud) in the [**Account Settings** → **API Keys** section](https://app.localstack.cloud/account/apikeys).
 
 {{< alert title="Important" color="danger" >}}
 - Avoid sharing your API key with anyone. Ensure that you do not commit it to any source code management systems (like Git repositories).
