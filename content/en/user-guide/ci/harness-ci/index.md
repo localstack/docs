@@ -52,7 +52,7 @@ stages:
                     connectorRef: docker_hub
                     image: curlimages/curl:7.83.1
                     shell: Sh
-                    command: until curl --fail --silent --max-time 1 http://localstack:4566/health; do sleep 2; done
+                    command: until curl --fail --silent --max-time 1 http://localstack:4566/_localstack/health; do sleep 2; done
 ```
 
 To run the pipeline, click **Save** and then **Run Pipeline**. You will be able to see LocalStack Service Dependency logs that verify that the LocalStack Container is healthy and running.
