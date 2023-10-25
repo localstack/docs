@@ -130,3 +130,7 @@ LocalStack's KMS implementation is equipped to facilitate [multi-region keys](ht
 ### Key aliases 
 
 While AWS KMS conveniently establishes [aliases](https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html), LocalStack follows suit by supporting these pre-configured aliases. However, it's important to note that in LocalStack, these aliases come into picture after the initial access attempt. Until that point, they are not visible.
+
+### Key specs 
+
+In AWS KMS, [SM2](https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-sm:~:text=the%20message%20digest.-,SM2%20key%20spec%20(China%20Regions%20only),-The%20SM2%20key) is a supported key spec for asymmetric keys. However, LocalStack's KMS implementation doesn't support this key spec.
