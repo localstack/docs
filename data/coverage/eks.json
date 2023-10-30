@@ -55,8 +55,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -66,11 +66,11 @@
       "CreateNodegroup": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -103,8 +103,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -114,11 +114,11 @@
       "DeleteNodegroup": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -187,8 +187,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
         "snapshot_skipped": ""
@@ -210,11 +210,11 @@
       "DescribeNodegroup": {
         "implemented": true,
         "availability": "pro",
-        "internal_test_suite": false,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
-        "aws_validated": false,
-        "snapshot_tested": false,
+        "internal_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
+        "aws_validated": true,
+        "snapshot_tested": true,
         "snapshot_skipped": ""
       }
     },
@@ -259,8 +259,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -295,8 +295,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -379,8 +379,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -403,8 +403,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
-        "terraform_test_suite": true,
+        "external_test_suite": false,
+        "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -435,7 +435,7 @@
             "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_create_app_in_k3s_cluster",
@@ -445,6 +445,20 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
+      "clientRequestToken, name, resourcesVpcConfig, roleArn, tags, version": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
           }
         ]
@@ -461,7 +475,23 @@
             "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "CreateNodegroup": {
+      "clientRequestToken, clusterName, labels, launchTemplate, nodeRole, nodegroupName, scalingConfig, subnets": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -477,7 +507,17 @@
             "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/eks/test_eks.py::TestK3SCluster::test_cluster_default_version",
@@ -503,7 +543,23 @@
             "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DeleteNodegroup": {
+      "clusterName, nodegroupName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -517,6 +573,16 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -553,6 +619,32 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..cluster.certificateAuthority', '$..cluster.endpoint', '$..cluster.kubernetesNetworkConfig', '$..cluster.logging', '$..cluster.platformVersion', '$..cluster.resourcesVpcConfig.clusterSecurityGroupId', '$..cluster.resourcesVpcConfig.vpcId', '$..cluster.status', '$..cluster.tags', '$..cluster.version', '$..fargateProfile..labels']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          }
+        ]
+      }
+    },
+    "DescribeNodegroup": {
+      "clusterName, nodegroupName": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_eks.py::test_eksctl_stack",
+            "test": "test_eksctl_stack",
+            "response": "404",
+            "error": "ResourceNotFoundException",
+            "snapshot_skipped": "['$..SecurityGroup', '$..ServiceRoleARN', '$..NodeGroupId']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
