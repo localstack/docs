@@ -61,8 +61,6 @@ You can select a particular save strategy by setting `SNAPSHOT_SAVE_STRATEGY=<st
 * **`SCHEDULED`**: (**default**): saves at regular intervals the state of all the services that have been modified since the last snapshot.
   By default, the flush interval is 15 seconds. It can be configured via the `SNAPSHOT_FLUSH_INTERVAL` configuration variable.
   This is a compromise between `ON_REQUEST` and `ON_SHUTDOWN` in terms of performance and reliability.
-* **`SCHEDULED`**: (**default**) every 15 seconds, the state of all services that have been modified since the last snapshot are saved.
-  This is a compromise between `ON_REQUEST` and `ON_SHUTDOWN` in terms of performance and reliability.
 * **`MANUAL`**: turns off automatic snapshotting and gives you control through the internal state endpoints.
 
 ### Load Strategies
