@@ -58,10 +58,8 @@ You can select a particular save strategy by setting `SNAPSHOT_SAVE_STRATEGY=<st
   This strategy minimizes the chance for data loss, but also has significant performance implications. The service has to be locked during snapshotting, meaning that any requests to the particular AWS service will be blocked until the snapshot is complete.  In many cases this is just a few milliseconds, but can become significant in some services.
 * **`ON_SHUTDOWN`**: the state of all services are saved during the shutdown phase of LocalStack.
   This strategy has zero performance impact, but is not good when you want to minimize the chance for data loss. Should LocalStack for some reason not shut down properly or is terminated before it can finalize the snapshot, you may be left with an incomplete state on disk.
-* **`SCHEDULED`**: (**default**): saves at regular intervals the state of all the services that have been modified since the last snapshot.
+* **`SCHEDULED`** (**default**): saves at regular intervals the state of all the services that have been modified since the last snapshot.
   By default, the flush interval is 15 seconds. It can be configured via the `SNAPSHOT_FLUSH_INTERVAL` configuration variable.
-  This is a compromise between `ON_REQUEST` and `ON_SHUTDOWN` in terms of performance and reliability.
-* **`SCHEDULED`**: (**default**) every 15 seconds, the state of all services that have been modified since the last snapshot are saved.
   This is a compromise between `ON_REQUEST` and `ON_SHUTDOWN` in terms of performance and reliability.
 * **`MANUAL`**: turns off automatic snapshotting and gives you control through the internal state endpoints.
 
