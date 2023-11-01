@@ -2,6 +2,8 @@
 title: "Getting started"
 weight: 3
 description: Get started with Cloud Pods to manage the state of your LocalStack instance state
+aliases:
+  - /user-guide/cloud-pods/getting-started/
 ---
 
 Using the LocalStack Cloud Pods command-line interface (CLI) via the `pod` command enables you to create and manage cloud pods directly from your terminal. The Cloud Pods CLI is particularly useful in these scenarios:

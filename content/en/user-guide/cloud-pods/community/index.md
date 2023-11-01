@@ -3,6 +3,8 @@ title: "Community Cloud Pods"
 weight: 99
 description: >
   Get started with LocalStack Community Cloud Pods to to save and load your container state at will
+aliases:
+  - /user-guide/cloud-pods/community/
 ---
 
 {{< alert title="Note" >}}

@@ -88,7 +88,7 @@ Now that you’ve seen how to deploy a local AWS infrastructure for your sample 
 $ localstack stop
 {{< / command >}}
 
-LocalStack is ephemeral in nature and will not persist any data across restarts. LocalStack runs inside a Docker container and once it is spinned down, all the locally created resources are removed automatically. To persist data across restarts, consider looking at our [persistence mechanism documentation]({{< ref "references/persistence-mechanism" >}}) or [Cloud Pods]({{< ref "user-guide/tools/cloud-pods" >}}), our next generation state management utility.
+LocalStack is ephemeral in nature and will not persist any data across restarts. LocalStack runs inside a Docker container and once it is spinned down, all the locally created resources are removed automatically. To persist data across restarts, consider looking at our [persistence mechanism documentation]({{< ref "references/persistence-mechanism" >}}) or [Cloud Pods]({{< ref "user-guide/cloud-pods" >}}), our next generation state management utility.
 
 ## Next Steps
 

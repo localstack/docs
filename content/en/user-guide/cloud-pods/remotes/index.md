@@ -2,6 +2,8 @@
 title: "Remotes"
 weight: 5
 description: The reference guide for LocalStack Cloud Pods remotes and how to get started on using them!
+aliases:
+  - /user-guide/cloud-pods/remotes/
 ---
 
 A remote is the location where Cloud Pods are stored. By default, Cloud Pod artifacts are stored in the LocalStack platform. However, if your organization's data regulations or sovereignty requirements prohibit storing Cloud Pod assets in a remote storage infrastructure, you have the option to persist Cloud Pods in an on-premises storage location under your complete control.
