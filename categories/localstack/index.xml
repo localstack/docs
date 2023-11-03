@@ -3,10 +3,10 @@
 The choice of access key ID will affect &lt;a href="/references/multi-account-setups/">multi-account namespacing&lt;/a>.
 Values of secret access keys are currently ignored by LocalStack.&lt;/p>
 &lt;p>Access key IDs can be one of following patterns:&lt;/p>
-&lt;h3 id="accounts-ids">Accounts IDs&lt;/h3>
+&lt;h2 id="accounts-ids">Accounts IDs&lt;/h2>
 &lt;p>You can specify a 12-digit number which will be taken by LocalStack as the account ID.
 For example, &lt;code>112233445566&lt;/code>.&lt;/p>
-&lt;h3 id="structured-access-key-id">Structured access key ID&lt;/h3>
+&lt;h2 id="structured-access-key-id">Structured access key ID&lt;/h2>
 &lt;p>You can specify a structured key like &lt;code>LSIAQAAAAAAVNCBMPNSG&lt;/code> (which translates to account ID &lt;code>000000000042&lt;/code>).
 This must be at least 20 characters in length and must be decodable to an account ID.&lt;/p>
 &lt;p>By default, LocalStack will only accept access keys that start with the &lt;code>LSIA...&lt;/code> or &lt;code>LKIA...&lt;/code> prefix.
@@ -18,9 +18,10 @@ To disable this safeguard, set the &lt;code>PARITY_AWS_ACCESS_KEY_ID&lt;/code> c
 Disabling the access key safeguard and using production access key IDs may cause accidental connections to AWS.
 We strongly recommend leaving it on.
 &lt;/div>
-&lt;h3 id="alphanumeric-string">Alphanumeric string&lt;/h3>
+&lt;p>Please refer to the &lt;a href="/user-guide/aws/iam/">IAM docs&lt;/a> to learn how to create access keys in LocalStack.&lt;/p>
+&lt;h2 id="alphanumeric-string">Alphanumeric string&lt;/h2>
 &lt;p>You can also specify an arbitrary alphanumeric access key ID like &lt;code>test&lt;/code> or &lt;code>foobar123&lt;/code>.
-In all such cases, the account ID will be evalutated to &lt;code>000000000000&lt;/code>.&lt;/p></description></item><item><title>References: Cross-Account and Cross-Region Access</title><link>/references/cross-account-access/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/cross-account-access/</guid><description>
+In all such cases, the account ID will be evaluated to &lt;code>000000000000&lt;/code>.&lt;/p></description></item><item><title>References: Cross-Account and Cross-Region Access</title><link>/references/cross-account-access/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/references/cross-account-access/</guid><description>
 &lt;p>LocalStack automatically namespaces all resources based on the account ID and, in some cases, the region.
 However, there are certain resource types that can be accessed across multiple accounts or regions.
 This document provides information to help design such setups.&lt;/p>
@@ -29,8 +30,43 @@ This document provides information to help design such setups.&lt;/p>
 Cross-account support in LocalStack is being actively developed.
 Please report any issues on our &lt;a href="https://github.com/localstack/localstack/issues/new/choose">GitHub issue tracker&lt;/a>.
 &lt;/div>
+&lt;p>Cross-account/cross-region access happens when a client attempts to access a resource in another account or region than what it is configured with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>#
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>Create a queue in one account and region
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=111111111111 awslocal sqs create-queue \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --queue-name my-queue \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --region ap-south-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;QueueUrl&amp;#34;: &amp;#34;http://sqs.ap-south-1.localhost.localstack.cloud:443/111111111111/my-queue&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>Set some attributes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=111111111111 awslocal sqs set-queue-attributes \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attributes VisibilityTimeout=60 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --queue-url http://sqs.ap-south-1.localhost.localstack.cloud:443/111111111111/my-queue \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --region ap-south-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>Retrieve the queue attribute from another account and region.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix"># &lt;/span>The required information for LocalStack to locate the queue is available in the queue URL.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>#
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>AWS_ACCESS_KEY_ID=222222222222 awslocal sqs get-queue-attributes \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --attribute-names VisibilityTimeout \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --region eu-central-1 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --queue-url http://sqs.ap-south-1.localhost.localstack.cloud:443/111111111111/my-queue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Attributes&amp;#34;: {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;VisibilityTimeout&amp;#34;: &amp;#34;60&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="cross-account">Cross-Account&lt;/h2>
-&lt;p>Resources that can be accessed across multiple accounts are always identified by their Amazon Resource Names (ARNs).
+&lt;p>Resources that can be accessed across accounts are identified by their Amazon Resource Names (ARNs) or other schemes such as SQS Queue URLs.
 The full list of resources and operations that allow cross-account access are listed below.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
