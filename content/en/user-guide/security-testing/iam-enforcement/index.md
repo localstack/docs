@@ -2,7 +2,7 @@
 title: "IAM Policy Enforcement"
 linkTitle: "IAM Policy Enforcement"
 weight: 1
-description: Get started with IAM Security Enforcement in LocalStack
+description: Enforce IAM policies in LocalStack to test your policies
 ---
 
 ## Introduction
@@ -16,7 +16,7 @@ This guide is designed for users new to IAM Policy Enforcement and assumes basic
 Start your LocalStack container with the `DEBUG=1` and `ENFORCE_IAM=1` environment variables set:
 
 {{< command >}}
-$ DEBUG=1 ENFORCE_IAM=1 localstack start
+$ ENFORCE_IAM=1 localstack start
 {{< /command >}}
 
 We will demonstrate IAM Policy Enforcement, by creating a user and obtaining the access/secret keys. We will make an attempt to create a bucket using the user’s credentials, which inevitably fails due to insufficient permissions. 
