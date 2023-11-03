@@ -25,11 +25,6 @@ LocalStack's RDS implementation also supports the [RDS Data API](https://docs.aw
 
 ### Create an RDS cluster
 
-{{< alert title="Note" >}}
-The `Endpoint` for cluster on Localstack currently follows the pattern `<host>:<port>` for legacy reasons, which is not in parity in AWS. 
-To force the correct pattern (e.g. returning only the host for the `Endpoint`) you can use the configuration `RDS_CLUSTER_ENDPOINT_HOST_ONLY=1` to start LocalStack.
-{{< /alert >}}
-
 To create an RDS cluster, you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html) API. 
 The following command creates a new cluster with the name `db1` and the engine `aurora-postgresql`. 
 Instances for the cluster must be added manually.
@@ -49,7 +44,7 @@ You should see the following output:
 {
     "DBCluster": {
         ...
-        "Endpoint": "localhost:4510",
+        "Endpoint": "localhost",
         "Port": 4510,  # may vary
         "DBClusterArn": "arn:aws:rds:us-east-1:000000000000:cluster:db1",
         ...
@@ -179,7 +174,7 @@ MariaDB will be set up as an operating system package within LocalStack. However
 
 ### MySQL Engine
 
-When choosing a MySQL engine type, the default installation will be MariaDB. If you prefer to utilize an actual MySQL version, you can achieve this by setting the environment variable `RDS_MYSQL_DOCKER=1`. When this feature is enabled, the MySQL community server will be launched in a new Docker container upon requesting the MySQL engine. 
+A MySQL community server will be launched in a new Docker container upon requesting the MySQL engine. 
 
 The `engine-version` will serve as the tag for the Docker image, allowing you to freely select the desired MySQL version from those available on the [official MySQL Docker Hub](https://hub.docker.com/_/mysql). If you have a specific image in mind, you can also use the environment variable `MYSQL_IMAGE=<my-image:tag>`.
 

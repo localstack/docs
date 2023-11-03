@@ -41,7 +41,7 @@ You should see the following output:
 {
     "DBCluster": {
         ...
-        "Endpoint": "localhost:4510",
+        "Endpoint": "localhost",
         "Port": 4510,  # may vary
         "DBClusterArn": "arn:aws:rds:us-east-1:000000000000:cluster:my-neptune-db",
         ...
