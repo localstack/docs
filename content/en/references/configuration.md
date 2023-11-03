@@ -219,9 +219,9 @@ The old lambda provider is temporarily available in Localstack&nbsp;v2 using `PR
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `RDS_CLUSTER_ENDPOINT_HOST_ONLY` | `0` (default) / `1` | Whether the cluster endpoint returns the host only (which is AWS parity). If set to `0` it will return `<host>:<port>`. |
+| `RDS_CLUSTER_ENDPOINT_HOST_ONLY` | `1` (default) / `0` | Whether the cluster endpoint returns the host only (which is AWS parity). If set to `0` it will return `<host>:<port>`. |
 | `RDS_PG_CUSTOM_VERSIONS`         | `0` / `1` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
-| `RDS_MYSQL_DOCKER`               | `0` (default) / `1` | Whether to enable MySQL engines (instead of MariaDB). Will run the MySQL cluster/instances in a new docker container. |
+| `RDS_MYSQL_DOCKER`               | `1` (default) / `0` | Whether to disable MySQL engines (and use MariaDB instead). MySQL engine for cluster/instances will start in a new docker container. If you have troubles running MySQL in docker, you can disable the feature. |
 | `MYSQL_IMAGE`                    | `mysql:8.0`       | Defines a specific MySQL image that should be used when spinning up the MySQL engine. Only available if `RDS_MYSQL_DOCKER` is enabled. |
 | `MSSQL_IMAGE`                    | `mcr.microsoft.com/mssql/server:2022-latest` | Defines a specific image that should be used when spinning up a SQL server engine. |
 
