@@ -1,17 +1,17 @@
 ---
-title: LocalStack on Kubernetes
+title: Kubernetes
+linktitle: Kubernetes
 weight: 50
-categories: ["LocalStack Community", "LocalStack Pro"]
-tags:
-- kubernetes
-- k8s
-description: >
-  Running LocalStack on Kubernetes
+description: Running LocalStack on Kubernetes
+aliases:
+  - /references/localstack-on-kubernetes/
 ---
 
-LocalStack can be deployed on [Kubernetes](https://kubernetes.io/) using the [LocalStack Helm chart](http://helm.localstack.cloud/).
+## Introduction
 
-## Helm Chart
+[Kubernetes](https://kubernetes.io/) is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications. LocalStack can be deployed on [Kubernetes](https://kubernetes.io/) using the [LocalStack Helm chart](http://helm.localstack.cloud/).
+
+## Getting started
 
 To deploy LocalStack in your [Kubernetes](https://kubernetes.io/) cluster, you can use [Helm](https://helm.sh/).
 
@@ -38,7 +38,7 @@ The following command allows you to download and install all the charts from thi
 $ helm repo add localstack https://localstack.github.io/helm-charts
 {{< /command >}}
 
-### Use Helm
+### Using Helm
 
 After you have installed the Helm client, you can deploy a Helm chart into a Kubernetes cluster.
 
@@ -50,9 +50,9 @@ Some useful Helm client commands are:
 -   Install a chart: `helm install <name> localstack/<chart>`
 -   Upgrade your application: `helm upgrade`
 
-## Sample repository (`l8k`)
+## LocalStack on Kubernetes (`l8k`)
 
-The [`localstack-on-k8s](https://github.com/localstack/localstack-on-k8s) sample repository that illustrates running LocalStack on Kubernetes (k8s).
+The [`localstack-on-k8s`](https://github.com/localstack/localstack-on-k8s) sample repository illustrates running LocalStack on Kubernetes (k8s).
 
 ### Prerequisites
 
@@ -66,7 +66,7 @@ This sample requires the following tools installed on your machine:
 * [`kubectl`](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [Serverless](https://www.npmjs.com/package/serverless)
 
-### Installation
+### Clone the sample repository
 
 Clone the repository:
 
@@ -90,10 +90,12 @@ After initialization, your `kubectl` command-line should be automatically config
 
 {{< command >}}
 $ kubectl config current-context
+<disable-copy>
 k3d-ls-cluster
+</disable-copy>
 {{< /command >}}
 
-### Deploy a sample application
+### Deploy the sample application
 
 Once LocalStack is installed in the Kubernetes cluster, we can deploy the sample app on the LocalStack instance:
 
