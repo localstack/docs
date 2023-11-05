@@ -2,7 +2,7 @@
 title: "Ephemeral Previews"
 linkTitle: "Ephemeral Previews"
 weight: 2
-description: Create an Ephemeral Preview to deploy your cloud infrastructure alongside your application changes before merging them into production
+description: Create an Ephemeral Preview to deploy your application changes before merging them into production
 ---
 
 ## Introduction

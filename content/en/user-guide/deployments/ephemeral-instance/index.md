@@ -7,7 +7,7 @@ description: Create an Ephemeral Instance in the cloud using the LocalStack Web 
 
 ## Introduction
 
-LocalStack Ephemeral Instance allows you to run an LocalStack instance in the cloud. You can interact with these remote instances via the LocalStack Web Application, or by configuring your integrations and developer tools with the endpoint URL of the remote instance. These instances are terminated after 90 minutes.
+LocalStack Ephemeral Instance allows you to run an LocalStack instance in the cloud. You can interact with these remote instances via the LocalStack Web Application, or by configuring your integrations and developer tools with the endpoint URL of the remote instance.
 
 ## Getting started
 
@@ -53,3 +53,18 @@ $ aws --endpoint-url=<EPHEMERAL_INSTANCE_ENDPOINT_URL> s3 ls
 {{< /command >}}
 
 You can further use integrations, such as [CDK](https://docs.localstack.cloud/user-guide/integrations/aws-cdk/), [SAM CLI](https://docs.localstack.cloud/user-guide/integrations/aws-sam/), and [Terraform](https://docs.localstack.cloud/user-guide/integrations/terraform/), to interact with the Ephemeral Instance. In these integrations, you can change the `LOCALSTACK_HOSTNAME` environment variable to the endpoint URL of the Ephemeral Instance.
+
+### Remove the Ephemeral Instance
+
+You can delete the Ephemeral Instance by clicking on the **Remove** button in the **LocalStack Instance Management** page. These instances are automatically terminated after 90 minutes, in case you don`t remove them manually.
+
+## Load Cloud Pod into an Ephmeral Instance
+
+You can load a Cloud Pod into an Ephemeral Instance to seed your pre-existing cloud resources into a freshly created Ephemeral Instance. You can further use AWS CLI or other integrations to interact with these resources, along with using other features of the LocalStack Web Application.
+
+To load a pre-defined Cloud Pod, navigate to the **Cloud Pods Details** for the specific Cloud Pod and click on the **Browse Version** button. Clicking on the button will open a modal where you will be asked to confirm that this will start a new LocalStack instance and load the selected Cloud Pod version.
+
+<img src="cloud-pod-details-page.png" alt="Cloud Pod Details page" title="Cloud Pod Details page" width="800" />
+<br><br>
+
+Click **Continue** to start the Ephemeral Instance and load the Cloud Pod. You will be able to see the Ephemeral Instance on the sidebar. You can copy the endpoint URL of the Ephemeral Instance and use it to manage your cloud resources.
