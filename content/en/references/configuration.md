@@ -341,8 +341,6 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | Variable | Example Values | Description |
 | - | - | - |
 | `USE_SSL` | `false` (default) | **Deprecated.** Whether to use https://... URLs with SSL encryption. Deprecated as of version 0.11.3. Each service endpoint now supports multiplexing HTTP/HTTPS traffic over the same port. |
-| `DEFAULT_REGION` | | **Deprecated.** AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
-| `USE_SINGLE_REGION` | | **Deprecated.** Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
 | `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | **Deprecated.** Local directory for saving persistent data. This option is deprecated since LocalStack v1 and will be ignored. Please use `PERSISTENCE`. Using this option will set `PERSISTENCE=1` as a deprecation path. The state will be stored in your LocalStack volume in the `state/` directory |
 | `HOST_TMP_FOLDER` | `/some/path` | **Deprecated.** Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
 | `TMPDIR`| `/tmp` (default)| **Deprecated.** Temporary folder on the host running the CLI and inside the LocalStack container .|
