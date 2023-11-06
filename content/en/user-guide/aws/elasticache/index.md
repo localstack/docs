@@ -111,6 +111,7 @@ In the ElastiCache resource browser you can:
 
 ## Limitations
 
+<!-- TODO@viren FIX THIS!! -->
 LocalStack currently supports Redis single-node and cluster mode, but not memcached.
 Moreover, LocalStack emulation support for ElastiCache is mostly centered around starting/stopping Redis servers.
 Resource necessary to operate a cluster, like parameter groups, security groups, subnets groups, etc. are mocked, but have no effect on the functioning of the Redis servers.
