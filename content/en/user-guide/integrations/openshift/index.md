@@ -44,7 +44,7 @@ After successful deployment, you can see the **localstack-dev-spaces** pod in th
 - Exposed services along with the service port and the pod port.
 - Exposed routes for your deployed pods on the cluster.
 
-<img src="localstack-dev-spaces.png" alt="LocalStack Dev Spaces" title="LocalStack Dev Spaces" width="900" />
+<img src="localstack-dev-spaces.png" alt="LocalStack Dev Spaces Deployment" title="LocalStack Dev Spaces Deployment" width="900" />
 <br><br>
 
 ### Creating AWS resources on OpenShift
