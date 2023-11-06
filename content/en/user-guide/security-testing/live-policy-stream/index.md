@@ -58,6 +58,16 @@ Policy:
 }
 ```
 
+## IAM Live Policy Streaming on Web App
 
+The LocalStack Web Application provides IAM Policy Stream UI for you to try out and explore the required permissions for your AWS API calls. 
 
+You can access IAM Policy Stream on Web App by opening the LocalStack Web Application in your browser, navigating to the IAM Policy Stream section, and then clicking on `Enable` to start seeing the policy stream.
 
+<img src="live-policy-stream-enable.png" alt="Live Policy Stream UI" title="Live Policy Stream UI" width="800" />
+
+<p></p>
+
+Next we will invoke some aws api calls in our terminal: `awslocal sqs list-queues` and see the corresponding policy generated on the Web UI as the following: 
+
+<img src="policy-generate.png" alt="Live Policy Stream UI" title="Live Policy Stream UI" width="800" />
