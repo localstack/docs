@@ -92,7 +92,7 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "localstack_main"
+    container_name: "localstack-main"
     image: localstack/localstack-pro
     ports:
       - "127.0.0.1:4566:4566"

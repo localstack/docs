@@ -244,7 +244,7 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack-main}"
     image: localstack/localstack
     ports:
       - "127.0.0.1:4566:4566"            # LocalStack Gateway
@@ -261,7 +261,7 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack-main}"
     image: localstack/localstack-pro  # required for Pro
     ports:
       - "127.0.0.1:4566:4566"            # LocalStack Gateway

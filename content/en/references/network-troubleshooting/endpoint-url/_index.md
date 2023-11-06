@@ -41,16 +41,16 @@ For example:
 docker network create my-network
 # launch localstack
 MAIN_DOCKER_NETWORK=my-network DOCKER_FLAGS="--network my-network" localstack start
-# then your code can access localstack at its container name (by default: localstack_main)
-aws --endpoint-url http://localstack_main:4566 s3api list-buckets
+# then your code can access localstack at its container name (by default: localstack-main)
+aws --endpoint-url http://localstack-main:4566 s3api list-buckets
 {{</tab>}}
 {{<tab header="Docker" lang="bash">}}
 # create the network
 docker network create my-network
 # launch localstack
 docker run --rm -it --network my-network -e MAIN_DOCKER_NETWORK=my-network <other flags> localstack/localstack[-pro]
-# then your code can access localstack at its container name (by default: localstack_main)
-aws --endpoint-url http://localstack_main:4566 s3api list-buckets
+# then your code can access localstack at its container name (by default: localstack-main)
+aws --endpoint-url http://localstack-main:4566 s3api list-buckets
 {{</tab>}}
 {{<tab header="docker-compose.yml" lang="yml">}}
 services:
@@ -94,7 +94,7 @@ localstack start -d --network ls
 localstack wait
 
 # get the ip address of the LocalStack container
-docker inspect localstack_main | \
+docker inspect localstack-main | \
 	jq -r '.[0].NetworkSettings.Networks | to_entries | .[].value.IPAddress'
 # prints 172.27.0.2
 
@@ -104,10 +104,10 @@ docker run --rm -it --dns 172.27.0.2 --network ls <arguments> <image name>
 {{< tab header="Docker" lang="bash" >}}
 # start localstack
 docker network create ls
-docker run --rm -it --network ls --name localstack_main <other flags> localstack/localstack[-pro]
+docker run --rm -it --network ls --name localstack-main <other flags> localstack/localstack[-pro]
 
 # get the ip address of the LocalStack container
-docker inspect localstack_main | \
+docker inspect localstack-main | \
 	jq -r '.[0].NetworkSettings.Networks | to_entries | .[].value.IPAddress'
 # prints 172.27.0.2
 
@@ -119,7 +119,7 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack-main}"
     image: localstack/localstack
     ports:
       # Now only required if you need to access LocalStack from the host
@@ -171,7 +171,7 @@ docker network create my-network
 DOCKER_FLAGS="--network my-network" localstack start
 # launch your container
 docker run --rm it --network my-network <image name>
-# then your code can access localstack at its container name (by default: localstack_main)
+# then your code can access localstack at its container name (by default: localstack-main)
 {{</tab>}}
 {{<tab header="Docker" lang="bash">}}
 # create the network
@@ -180,7 +180,7 @@ docker network create my-network
 docker run --rm -it --network my-network <other flags> localstack/localstack[-pro]
 # launch your container
 docker run --rm it --network my-network <image name>
-# then your code can access localstack at its container name (by default: localstack_main)
+# then your code can access localstack at its container name (by default: localstack-main)
 {{</tab>}}
 {{<tab header="docker-compose.yml" lang="yml">}}
 services:
