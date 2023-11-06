@@ -2996,7 +2996,55 @@ The Lambda integration with self-managed Kafka clusters is also a LocalStack Pro
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># add a &amp;#34;Review in Gitpod&amp;#34; button to the pull request&amp;#39;s description&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">addBadge&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">true&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>After adding the configuration, you can start your development &amp;amp; testing by creating &lt;a href="https://www.gitpod.io/docs/getting-started/#start-your-first-workspace">your workspace in GitPod&lt;/a>. Upon creation, you will be able to see the LocalStack container running in the background (you can use &lt;code>localstack status&lt;/code> to check the status of the container).&lt;/p>
-&lt;p>For a simple demonstration, check out the &lt;a href="https://github.com/Gitpod-Samples/localstack-gitpod-demo">LocalStack GitPod demo&lt;/a> repository. Check out our &lt;a href="https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/">in-depth walkthrough over the demo&lt;/a> on our blog!&lt;/p></description></item><item><title>User-Guide: Former2</title><link>/user-guide/integrations/former2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/former2/</guid><description>
+&lt;p>For a simple demonstration, check out the &lt;a href="https://github.com/Gitpod-Samples/localstack-gitpod-demo">LocalStack GitPod demo&lt;/a> repository. Check out our &lt;a href="https://localstack.cloud/blog/2022-09-26-localstack-x-gitpod-run-cloud-applications-with-localstack-and-gitpod/">in-depth walkthrough over the demo&lt;/a> on our blog!&lt;/p></description></item><item><title>User-Guide: OpenShift</title><link>/user-guide/integrations/openshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/openshift/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>OpenShift is a container orchestration platform as a service designed to simplify the deployment, scaling, and management of containerized applications. Built on Kubernetes, OpenShift provides a comprehensive set of tools and features that facilitate the orchestration, automation, and monitoring of containerized workloads.&lt;/p>
+&lt;p>With OpenShift, you can deploy LocalStack on a managed Kubernetes cluster, as a cloud sandbox that emulates various AWS services &amp;amp; APIs. This guide demonstrates how you can deploy LocalStack on OpenShift using Devfile. You can use the deployed LocalStack container to create AWS resources that you can use for local development and testing purposes.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Warning&lt;/h4>
+Creating shared/hosted LocalStack instances may have some licensing implications. For example, a valid license might be necessary for each user who interacts with the instance. If you have any questions or uncertainties regarding the licensing implications, we encourage you to &lt;a href="https://localstack.cloud/contact">contact us&lt;/a> for further details.
+&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack on OpenShift can be used in conjunction with the &lt;a href="https://hub.docker.com/r/localstack/localstack">LocalStack Community image&lt;/a>. However, specific features such as execution of Lambda functions as OpenShift pods and other container workloads is only available in the &lt;a href="https://hub.docker.com/r/localstack/localstack-pro">LocalStack Pro image&lt;/a>.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to LocalStack and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script. As a general prerequisite, you should have access to the &lt;a href="https://docs.openshift.com/container-platform/4.14/web_console/web-console-overview.html">OpenShift Web Console&lt;/a>.&lt;/p>
+&lt;p>We will demonstrate how you can create local AWS resources using LocalStack using the AWS CLI. Instead of running LocalStack locally, you will deploy it on OpenShift and use the exposed endpoint to interact with the LocalStack container.&lt;/p>
+&lt;h3 id="setting-up-localstack-on-openshift">Setting up LocalStack on OpenShift&lt;/h3>
+&lt;p>You can deploy LocalStack via the &lt;strong>Developer&lt;/strong> perspective in the OpenShift Web Console. Navigate to the &lt;strong>+Add&lt;/strong> view to deploy LocalStack using a Devfile.&lt;/p>
+&lt;img src="openshift-developer-view.png" alt="OpenShift Developer perspective" title="OpenShift Developer perspective" width="900" />
+&lt;br>&lt;br>
+&lt;p>To deploy LocalStack on OpenShift, click on &lt;strong>Import from Git&lt;/strong> in the &lt;strong>Git Repository&lt;/strong> tile. In the Git section, enter the following Git repository URL to import the Devfile and Helm charts which contains the configuration for LocalStack: &lt;a href="https://github.com/localstack/localstack-dev-spaces">&lt;strong>https://github.com/localstack/localstack-dev-spaces&lt;/strong>&lt;/a>.&lt;/p>
+&lt;p>OpenShift Web Console will automatically detect the Devfile and display the import strategy. A unique application name will be generated to the application grouping to label your resources. A unique name will also be provided to the component that will be used to name associated resources. You can edit these values if you want.&lt;/p>
+&lt;p>Click on &lt;strong>Create&lt;/strong> to deploy LocalStack on OpenShift.&lt;/p>
+&lt;h3 id="viewing-the-localstack-deployment">Viewing the LocalStack deployment&lt;/h3>
+&lt;p>You can see the build status of the LocalStack deployment in the &lt;strong>Topology&lt;/strong> view.&lt;/p>
+&lt;img src="openshift-topology-view.png" alt="OpenShift Topology view" title="OpenShift Topology view" width="900" />
+&lt;br>&lt;br>
+&lt;p>After successful deployment, you can see the &lt;strong>localstack-dev-spaces&lt;/strong> pod in the &lt;strong>Topology&lt;/strong> view. Click on the pod to view the details. You will be able to see the following details:&lt;/p>
+&lt;ul>
+&lt;li>Running pods along with the status and logs.&lt;/li>
+&lt;li>Builds for your existing pods and an option to create new builds.&lt;/li>
+&lt;li>Exposed services along with the service port and the pod port.&lt;/li>
+&lt;li>Exposed routes for your deployed pods on the cluster.&lt;/li>
+&lt;/ul>
+&lt;img src="localstack-dev-spaces.png" alt="LocalStack Dev Spaces Deployment" title="LocalStack Dev Spaces Deployment" width="900" />
+&lt;br>&lt;br>
+&lt;h3 id="creating-aws-resources-on-openshift">Creating AWS resources on OpenShift&lt;/h3>
+&lt;p>Click on the &lt;strong>localstack-dev-spaces&lt;/strong> pod to view the details. You will be able to see the exposed route for the LocalStack container. Copy the route URL and use it to interact with the LocalStack container.&lt;/p>
+&lt;p>To create an S3 bucket and an SQS queue, run the following commands:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export AWS_ENDPOINT_URL=&amp;#39;&amp;lt;localstack-route-url&amp;gt;&amp;#39;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal s3 mb s3://my-bucket
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal sqs create-queue --queue-name my-queue&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>In the above commands, replace &lt;code>&amp;lt;localstack-route-url&amp;gt;&lt;/code> with the route URL of the LocalStack container. The &lt;code>AWS_ENDPOINT_URL&lt;/code> environment variable is used to specify the endpoint URL of the LocalStack container.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+By default, the endpoint URL for &lt;code>awslocal&lt;/code> is &lt;code>http://localhost:4566&lt;/code>. Since we are running LocalStack on OpenShift, we need to specify the route URL of the LocalStack container. You can swap &lt;code>awslocal&lt;/code> with the AWS CLI, by specifying the additional &lt;code>--endpoint-url&lt;/code> parameter.
+&lt;/div>
+&lt;p>You can further use integrations, such as &lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cdk/">CDK&lt;/a>, &lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-sam/">SAM CLI&lt;/a>, and &lt;a href="https://docs.localstack.cloud/user-guide/integrations/terraform/">Terraform&lt;/a>, to interact with the Ephemeral Instance. In these integrations, you can change the &lt;code>AWS_ENDPOINT_URL&lt;/code> environment variable to the endpoint URL of the Ephemeral Instance.&lt;/p>
+&lt;h3 id="deleting-the-localstack-deployment">Deleting the LocalStack deployment&lt;/h3>
+&lt;p>To delete the LocalStack deployment, click on the &lt;strong>localstack-dev-spaces&lt;/strong> pod in the &lt;strong>Topology&lt;/strong> view. Click on the &lt;strong>Actions&lt;/strong> menu and select &lt;strong>Delete Deployment&lt;/strong>.&lt;/p></description></item><item><title>User-Guide: Former2</title><link>/user-guide/integrations/former2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/former2/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>&lt;a href="https://github.com/iann0036/former2">Former2&lt;/a> allows you to generate Infrastructure-as-Code (IaC) outputs using your pre-existing AWS resources. It uses the AWS JavaScript SDK to make relevant API calls, scans your infrastructure, and provides you with a resource list. You can then select the resources for which you want to generate IaC outputs. Former2 currently supports the following outputs:&lt;/p>
 &lt;ul>
