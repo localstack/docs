@@ -9,7 +9,7 @@ aliases:
 
 ## Introduction
 
-[Kubernetes](https://kubernetes.io/) is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications. LocalStack can be deployed on [Kubernetes](https://kubernetes.io/) using the [LocalStack Helm chart](http://helm.localstack.cloud/).
+[Kubernetes](https://kubernetes.io) is an open-source container orchestration platform that simplifies the deployment, scaling, and management of containerized applications. LocalStack can be deployed on Kubernetes using the [LocalStack Helm chart](http://helm.localstack.cloud).
 
 ## Getting started
 
