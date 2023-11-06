@@ -54,7 +54,7 @@ Click on the **localstack-dev-spaces** pod to view the details. You will be able
 To create an S3 bucket and an SQS queue, run the following commands:
 
 {{< command >}}
-$ export AWS_ENDPOINT_URL=<localstack-route-url>
+$ export AWS_ENDPOINT_URL='<localstack-route-url>'
 $ awslocal s3 mb s3://my-bucket
 $ awslocal sqs create-queue --queue-name my-queue
 {{< /command >}}
