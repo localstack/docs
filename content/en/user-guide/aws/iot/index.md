@@ -55,7 +55,7 @@ In another terminal, publish a message to this topic.
 {{< command >}}
 $ mqtt publish \
         --host localhost.localstack.cloud \
-        --port 4511 \
+        --port 4510 \
         --topic climate \
         -m "temperature=30°C;humidity=60%"
 {{< /command >}}
