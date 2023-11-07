@@ -474,7 +474,7 @@ The developer endpoint also supports showing invisible and delayed messages via 
 {{< tabpane >}}
 {{< tab header="cURL" lang="bash" >}}
 curl -H "Accept: application/json" \
-    "http://localhost:4566/_aws/sqs/messages?ShowInvisible=true&ShowDelayed=true&QueueUrl=http://queue.localhost.localstack.cloud:4566/000000000000/my-queue"
+    "http://localhost:4566/_aws/sqs/messages?ShowInvisible=true&ShowDelayed=true&QueueUrl=http://TODO.queue.localhost.localstack.cloud:4566/000000000000/my-queue"
 {{< /tab >}}
 {{< tab header="Python Requests" lang="python" >}}
 import requests
