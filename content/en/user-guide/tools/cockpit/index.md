@@ -7,6 +7,9 @@ description: >
 aliases:
   - /get-started/cockpit/
 ---
+{{< alert title="Warning" color="warning" >}}
+LocalStack Cockpit is now deprecated, use the [LocalStack Desktop](https://docs.localstack.cloud/user-guide/tools/localstack-desktop/) application instead.
+{{< /alert >}}
 
 LocalStack Cockpit is a desktop client that allows users to easily control and manage their LocalStack instance. With LocalStack Cockpit, users can start and stop their LocalStack instance with a single click, view the current status of their instance, and access quick links to LocalStack documentation and other resources. 
 Cockpit also provides instant insights into the runtime and environment information, as well as the status of available services and log information. In addition, users can directly manage and use their LocalStack profiles through the app.
