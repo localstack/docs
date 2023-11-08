@@ -40,9 +40,9 @@ If you wish to run multiple instances of LocalStack simultaneously, it is essent
 Here's how you can achieve this using the LocalStack CLI:
 
 {{< command >}}
-$ GATEWAY_LISTEN=0.0.0.0:4566 EXTERNAL_SERVICE_PORTS_START=4510 EXTERNAL_SERVICE_PORTS_END=4559 MAIN_CONTAINER_NAME=localstack-main_1 localstack start
-$ GATEWAY_LISTEN=0.0.0.0:4666 EXTERNAL_SERVICE_PORTS_START=4610 EXTERNAL_SERVICE_PORTS_END=4659 MAIN_CONTAINER_NAME=localstack-main_2 localstack start
-$ GATEWAY_LISTEN=0.0.0.0:4766 EXTERNAL_SERVICE_PORTS_START=4710 EXTERNAL_SERVICE_PORTS_END=4759 MAIN_CONTAINER_NAME=localstack-main_3 localstack start
+$ GATEWAY_LISTEN=0.0.0.0:4566 EXTERNAL_SERVICE_PORTS_START=4510 EXTERNAL_SERVICE_PORTS_END=4559 MAIN_CONTAINER_NAME=localstack-main-1 localstack start
+$ GATEWAY_LISTEN=0.0.0.0:4666 EXTERNAL_SERVICE_PORTS_START=4610 EXTERNAL_SERVICE_PORTS_END=4659 MAIN_CONTAINER_NAME=localstack-main-2 localstack start
+$ GATEWAY_LISTEN=0.0.0.0:4766 EXTERNAL_SERVICE_PORTS_START=4710 EXTERNAL_SERVICE_PORTS_END=4759 MAIN_CONTAINER_NAME=localstack-main-3 localstack start
 {{< /command >}}
 
 By customizing the `GATEWAY_LISTEN` and `EXTERNAL_SERVICE_PORTS_START`/`EXTERNAL_SERVICE_PORTS_END` values for each instance, you can ensure that they operate on distinct port ranges, preventing any conflicts and enabling smooth execution of multiple LocalStack instances.
