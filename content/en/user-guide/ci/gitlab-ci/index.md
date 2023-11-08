@@ -20,8 +20,8 @@ We recommend taking the following steps:
 - Add GitLab CI variables using the keyword variables to include `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`.
 - Create a service using the keyword `services` and reference `docker:20.10.16-dind` to pull the latest Docker image and assign an alias for the container (`docker` in our case). Use the `command` option to disable TLS with `--tls=false`.
 - Install LocalStack and/or AWS-related dependencies to define the commands that should be run before all builds.
-- In the `before_script` section, add commands to set up the `LOCALSTACK_HOSTNAME` and `HOSTNAME_EXTERNAL` environment variables and append `localhost.localstack.cloud` to `/etc/hosts` using the IP address of the `docker` service.
-- In the script section, pull the `localstack/localstack` Docker image, start LocalStack in detached mode, and run your LocalStack-related tests.
+- In the `script` section, append `localhost.localstack.cloud` to `/etc/hosts` using the IP address of the `docker` service.
+- In the `script` section, pull the `localstack/localstack` Docker image, start LocalStack in detached mode, and run your LocalStack-related tests.
 
 The following example Gitlab CI job config (`.gitlab-ci.yml`) executes these steps, creates a new S3 bucket, copies some content to the bucket, and checks the content of the bucket:
 
@@ -39,8 +39,6 @@ test:
     AWS_DEFAULT_REGION: us-east-1
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
-    LOCALSTACK_HOSTNAME: localhost.localstack.cloud
-    HOSTNAME_EXTERNAL: localhost.localstack.cloud
 
   services:
     - name: docker:20.10.16-dind
@@ -61,6 +59,13 @@ test:
     - aws --endpoint http://localhost.localstack.cloud:4566 s3 cp /tmp/hello-world s3://test/hello-world
     - aws --endpoint http://localhost.localstack.cloud:4566 s3 ls s3://test/
 ```
+
+<details>
+<summary>For LocalStack versions before 3.0.0</summary>
+Under test>variables, add:<br>
+LOCALSTACK_HOSTNAME: localhost.localstack.cloud<br>
+HOSTNAME_EXTERNAL: localhost.localstack.cloud.
+</details>
 
 {{< alert title="Note">}}
 While working with a Docker-in-Docker (`dind`) setup, the Docker runner requires `privileged` mode. You must always use `privileged = true` in your GitLab CI's `config.toml` file while setting up LocalStack in GitLab CI runners. For more information, see [GitLab CI Docker-in-Docker](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor) documentation.
