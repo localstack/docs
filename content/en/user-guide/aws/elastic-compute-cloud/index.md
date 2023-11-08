@@ -228,33 +228,14 @@ Keep in mind that these modifications apply to all instances launched within the
 
 ## Networking
 
-{{< alert title="Note" >}}
-LocalStack daemon is deprecated and will be removed in an upcoming major release.
-{{< /alert >}}
-
-LocalStack allocates distinct private IP addresses to Dockerized instances.
-To make use of this feature, it's essential to run the LocalStack daemon process on the host.
-This daemon process is responsible for handling the creation and administration of networking on the host system.
-
-Before using this command, ensure you've logged in to your `localstack` CLI (using `localstack login`) via your LocalStack Web Application credentials.
-To confirm, execute `localstack --help` and check if `daemons` is among the available commands.
-
-{{< command >}}
-$ pip install localstack[runtime]
-$ export LOCALSTACK_API_KEY=...
-$ localstack daemons start
-{{< /command >}}
-
-The SSH access address for the instance is displayed in the logs during the instance initialization process.:
+Network addresses for Dockerized instances are allocated by the Docker daemon.
+These addresses are printed in the logs while the instance is being initialized.
 
 ```bash
-2022-03-21T14:46:49.540  INFO  Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705, 172.17.0.4:22
+2022-03-21T14:46:49.540  INFO  Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705
 ```
 
-The LocalStack daemon is supported on Linux and macOS operating systems.
-If the LocalStack daemon is inactive, the instance can only be accessed at `127.0.0.1` along with an available port on the host.
-
-To make additional ports available to the host system, you can modify the default security group and incorporate the needed ingress ports.
+To be able to access the instance at additional ports from the host system, you can modify the default security group and incorporate the needed ingress ports.
 It's important to note that security group ingress rules are applied only during the creation of the Dockerized instance.
 Modifying a security group will not open any ports for a running instance.
 
