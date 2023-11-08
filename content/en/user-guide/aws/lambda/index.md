@@ -196,7 +196,12 @@ The Resource Browser allows you to perform the following actions:
 
 ## Migrating to Lambda v2
 
-As part of the [LocalStack 2.0 release](https://discuss.localstack.cloud/t/new-lambda-implementation-in-localstack-2-0/258), the Lambda provider has been migrated to `v2` (formerly known as `asf`). With the new implementation, the following changes have been introduced:
+{{< alert title="Note" >}}
+The legacy Lambda implementation has been removed since LocalStack&nbsp;3.0 (Docker `latest` since 2023-11-09).
+{{</alert>}}
+
+As part of the [LocalStack 2.0 release](https://discuss.localstack.cloud/t/new-lambda-implementation-in-localstack-2-0/258), the Lambda provider has been migrated to `v2` (formerly known as `asf`).
+With the new implementation, the following changes have been introduced:
 
 - To run Lambda functions in LocalStack, mount the Docker socket into the LocalStack container. Add the following Docker volume mount to your LocalStack startup configuration: `/var/run/docker.sock:/var/run/docker.sock`. You can find an example of this configuration in our official [`docker-compose.yml` file](https://docs.localstack.cloud/getting-started/installation/#starting-localstack-with-docker-compose).
 - The `v2` provider discontinues Lambda Executor Modes such as `LAMBDA_EXECUTOR=local`. Previously, this mode was used as a fallback when the Docker socket was unavailable in the LocalStack container, but many users unintentionally used it instead of the configured `LAMBDA_EXECUTOR=docker`. The new provider now behaves similarly to the old `docker-reuse` executor and does not require such configuration.
