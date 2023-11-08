@@ -28,7 +28,7 @@ To retrieve the MQTT endpoint, use the [`DescribeEndpoint`](https://docs.aws.ama
 {{< command >}}
 $ awslocal iot describe-endpoint
 {
-    "endpointAddress": "localhost.localstack.cloud:4510"
+    "endpointAddress": "000000000000.iot.eu-central-1.localhost.localstack.cloud:4510"
 }
 {{< / command >}}
 
@@ -45,7 +45,7 @@ Run the following command to subscribe to an MQTT topic.
 
 {{< command >}}
 $ mqtt subscribe \
-        --host localhost.localstack.cloud \
+        --host 000000000000.iot.eu-central-1.localhost.localstack.cloud \
         --port 4510 \
         --topic climate
 {{< /command >}}
@@ -54,8 +54,8 @@ In another terminal, publish a message to this topic.
 
 {{< command >}}
 $ mqtt publish \
-        --host localhost.localstack.cloud \
-        --port 4511 \
+        --host 000000000000.iot.eu-central-1.localhost.localstack.cloud \
+        --port 4510 \
         --topic climate \
         -m "temperature=30°C;humidity=60%"
 {{< /command >}}
