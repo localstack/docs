@@ -217,8 +217,10 @@ Such Docker-backed AMIs bear the resource tag `ec2_vm_manager:docker` and can be
 $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
 {{< /command >}}
 
-It's important to note that all other AMIs are mocked and originate from the community edition of LocalStack.
+{{< alert title="Note" >}}
+All other AMIs that do not have the above tag are mocked and originate from the community edition of LocalStack.
 Attempting to launch Dockerized instances using these specific AMIs will result in an `InvalidAMIID.NotFound` error.
+{{< /alert >}}
 
 ### Configuration
 
@@ -236,8 +238,11 @@ These addresses are printed in the logs while the instance is being initialized.
 ```
 
 To be able to access the instance at additional ports from the host system, you can modify the default security group and incorporate the needed ingress ports.
-It's important to note that security group ingress rules are applied only during the creation of the Dockerized instance.
+
+{{< alert title="Note" >}}
+Security group ingress rules are applied only during the creation of the Dockerized instance.
 Modifying a security group will not open any ports for a running instance.
+{{< /alert >}}
 
 The system supports up to 32 ingress ports.
 This constraint is in place to prevent the host from exhausting available ports.
