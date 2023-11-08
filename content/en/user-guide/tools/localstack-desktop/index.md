@@ -16,7 +16,7 @@ To install LocalStack Desktop, **Docker** is the only prerequisite.
 
 ## Features
 
-LocalStack Desktop helps users to interact with their LocalStack instance with a simple and intuitive UI. Some of the features of LocalStack Desktop includes the ability to : Control LocalStack, Interact with LocalStack, get LocalStack insights and use the Resource browser.
+LocalStack Desktop helps users to interact with their LocalStack instance with a simple and intuitive UI. Some of the features of LocalStack Desktop includes the ability to: Control LocalStack, Interact with LocalStack, get LocalStack insights and use the Resource browser.
 
 ### Control LocalStack
 
