@@ -18,7 +18,7 @@ Suppose you have LocalStack installed on your machine and want to access it usin
 Additionally, if you bind a domain name to `localhost`, ensure that you are not subject to [DNS rebind protection]({{< ref "user-guide/tools/transparent-endpoint-injection/dns-server#dns-rebind-protection" >}}).
 {{</alert>}}
 
-You can also use the `EDGE_PORT` [configuration variable]({{< ref "references/configuration" >}}) to change the exposed port if necessary.
+You can also use the `GATEWAY_LISTEN` [configuration variable]({{< ref "references/configuration" >}}) to change the exposed port if necessary.
 
 ## From a container LocalStack created
 
@@ -217,7 +217,7 @@ LocalStack must listen to the address of the host, or `0.0.0.0`.
 
 {{<tabpane>}}
 {{<tab header="CLI" lang="bash">}}
-EDGE_BIND_HOST="0.0.0.0" localstack start
+GATEWAY_LISTEN="0.0.0.0" localstack start
 {{</tab>}}
 {{<tab header="Docker" lang="bash">}}
 # this command exposes ports on all interfaces by default

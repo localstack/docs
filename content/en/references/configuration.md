@@ -25,8 +25,9 @@ Options that affect the core LocalStack system.
 | - | - | - |
 | `DEBUG` | `0` (default) \|`1`| Flag to increase log level and print more verbose logs (useful for troubleshooting issues)|
 | `IMAGE_NAME`| `localstack/localstack` (default), `localstack/localstack:0.11.0` | Specific name and tag of LocalStack Docker image to use.|
-| `GATEWAY_LISTEN`| `127.0.0.1:4566` (default in host mode), `0.0.0.0:4566` (default in Docker mode) | Configures the bind addresses of LocalStack. It has the form `<ip address>:<port>(,<ip address>:<port>)*`. |
+| `GATEWAY_LISTEN`| `0.0.0.0:4566` (default in Docker mode) `127.0.0.1:4566` (default in host mode) | Configures the bind addresses of LocalStack. It has the form `<ip address>:<port>(,<ip address>:<port>)*`. LocalStack Pro adds port `443`. |
 | `LOCALSTACK_HOST`| `localhost.localstack.cloud:4566` (default) | This is interpolated into URLs and addresses that are returned by LocalStack. It has the form `<hostname>:<port>`. |
+| `USE_SSL` | `0` (default) | Whether to return URLs using HTTP (`0`) or HTTPS (`1`). |
 | `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `PERSISTENCE` | `0` (default) | Enable persistence. See [Persistence Mechanism]({{< ref "persistence-mechanism" >}}) and [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `MAIN_CONTAINER_NAME` | `localstack_main` (default) | Specify the main docker container name |
@@ -308,16 +309,10 @@ These configurations are deprecated and will be removed in the upcoming major ve
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `USE_SSL` | `false` (default) | **Deprecated.** Whether to use https://... URLs with SSL encryption. Deprecated as of version 0.11.3. Each service endpoint now supports multiplexing HTTP/HTTPS traffic over the same port. |
 | `DATA_DIR`| blank (disabled/default), `/tmp/localstack/data` | **Deprecated.** Local directory for saving persistent data. This option is deprecated since LocalStack v1 and will be ignored. Please use `PERSISTENCE`. Using this option will set `PERSISTENCE=1` as a deprecation path. The state will be stored in your LocalStack volume in the `state/` directory |
 | `HOST_TMP_FOLDER` | `/some/path` | **Deprecated.** Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
 | `TMPDIR`| `/tmp` (default)| **Deprecated.** Temporary folder on the host running the CLI and inside the LocalStack container .|
 | `<SERVICE>_BACKEND` | | **Deprecated.** Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name.
-| `<SERVICE>_PORT_EXTERNAL` | `4567` | **Deprecated.** Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
-| `LOCALSTACK_HOSTNAME` | `http://${LOCALSTACK_HOSTNAME}:4566` | **Deprecated.** Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. Use `LOCALSTACK_HOST` instead. |
-| `HOSTNAME_EXTERNAL` | `localhost` (default) | **Deprecated.** Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client. Use `LOCALSTACK_HOST` instead. |
-| `EDGE_BIND_HOST` | `127.0.0.1` (default), `0.0.0.0` (docker)| **Deprecated.** Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
-| `EDGE_PORT` | `4566` (default)| **Deprecated.** Port number for the edge service, the main entry point for all API invocations. |
 | `EDGE_FORWARD_URL` | | **Deprecated.** Optional target URL to forward all edge requests to (e.g., for distributed deployments)
 | `INIT_SCRIPTS_PATH` | `/some/path` | **Deprecated.** Before 1.0, this was used to configure the path to the initializing files with extensions `.sh` that were found in `/docker-entrypoint-initaws.d`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
 | `ES_CUSTOM_BACKEND` | `http://elasticsearch:9200` | **Deprecated.** Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
