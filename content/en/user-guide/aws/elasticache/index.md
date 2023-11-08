@@ -128,8 +128,8 @@ In the ElastiCache resource browser you can:
 LocalStack currently supports Redis single-node and cluster mode, but not memcached.
 Moreover, LocalStack emulation support for ElastiCache is mostly centered around starting/stopping Redis servers.
 
-Resource necessary to operate a cluster, like parameter groups, security groups, subnets groups, etc. are mocked, but have no effect on the functioning of the Redis servers.
+Resources necessary to operate a cluster, like parameter groups, security groups, subnets groups, etc. are mocked, but have no effect on the functioning of the Redis servers.
 
-LocalStack currently doesn't support ElastiCache snapshots, users, user groups, service updates, global replication groups, migrations or tests.
+LocalStack currently doesn't support ElastiCache snapshots, failovers, users/passwords, service updates, replication scaling, SSL, migrations, service integration (like CloudWatch/Kinesis log delivery, SNS notifications) or tests.
 
 You can find a detailed list of covered API methods on the [ElastiCache coverage page]({{< ref "coverage_elasticache" >}}).
