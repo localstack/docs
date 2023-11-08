@@ -57,6 +57,7 @@ services:
       - "4566:4566"            # LocalStack Gateway
       - "4510-4559:4510-4559"  # external services port range
     environment:
+      - GATEWAY_LISTEN=0.0.0.0:4566
       - EXTERNAL_SERVICE_PORTS_START=4510
       - EXTERNAL_SERVICE_PORTS_END=4559
       - MAIN_CONTAINER_NAME=localstack-main-1
@@ -72,6 +73,7 @@ services:
       - "4666:4666"            # LocalStack Gateway
       - "4610-4659:4610-4659"  # external services port range
     environment:
+      - GATEWAY_LISTEN=0.0.0.0:4666
       - EXTERNAL_SERVICE_PORTS_START=4610
       - EXTERNAL_SERVICE_PORTS_END=4659
       - MAIN_CONTAINER_NAME=localstack-main-2
@@ -87,6 +89,7 @@ services:
       - "4766:4766"            # LocalStack Gateway
       - "4710-4759:4710-4759"  # external services port range
     environment:
+      - GATEWAY_LISTEN=0.0.0.0:4766
       - EXTERNAL_SERVICE_PORTS_START=4710
       - EXTERNAL_SERVICE_PORTS_END=4759
       - MAIN_CONTAINER_NAME=localstack-main-3
