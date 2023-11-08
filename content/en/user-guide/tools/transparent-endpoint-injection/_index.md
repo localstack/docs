@@ -8,10 +8,21 @@ aliases:
   - /tools/local-endpoint-injection/
 ---
 
-In the community (open source) edition, the application code needs to configure each AWS SDK client instance with the target `endpoint URL` to point to the APIs on `localhost` or, in the case of Lambdas running in the context of LocalStack, the `endpoint URL` should point to `http://${LOCALSTACK_HOSTNAME}:${EDGE_PORT}`.
+In the community (open source) edition,
+the application code needs to configure the `endpoint URL` of each AWS SDK client instance to target LocalStack
+using the environment variable `AWS_ENDPOINT_URL` available within Lambda functions in LocalStack.
+For example, a Python boto3 client can be configured as follows:
 
-The Pro version provides two options for transparently making your application logic speak to the local APIs instead of real AWS (without having to change your production code):
-1. integrated DNS server
-2. patched AWS SDKs (**deprecated**)
+```python
+client = boto3.client("lambda", endpoint_url=os.environ['AWS_ENDPOINT_URL'])
+```
 
-More details can be found in the subsections below.
+For [supported AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat) 
+(including boto3 since [1.28.0](https://github.com/boto/boto3/blob/develop/CHANGELOG.rst#L892)), this configuration happens automatically without any custom code changes.
+
+
+In LocalStack Pro,
+no application code changes are required to let your application connect to local cloud APIs instead of real AWS because
+LocalStack provides an integrated DNS server that resolves AWS API calls to target LocalStack.
+
+More details can be found in the subsection below.
