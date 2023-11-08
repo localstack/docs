@@ -20,11 +20,13 @@ LocalStack supports ElastiCache via the Pro offering, allowing you to use the El
 The supported APIs are available on our API Coverage Page,
 which provides information on the extent of ElastiCache integration with LocalStack.
 
+
 ## Getting started
 
 This guide is designed for users new to ElastiCache and assumes basic knowledge of the AWS CLI and our `awslocal` wrapper script.
 
-### Create a single-node Redis cluster
+
+### Single cache cluster
 
 After starting LocalStack Pro, you can create a cluster with the following command.
 
@@ -36,26 +38,19 @@ $ awslocal elasticache create-cache-cluster \
   --num-cache-nodes 1
 {{< /command>}}
 
-You should see LocalStack responding with something like:
-```json
+Wait for it to be available, then you can use the cluster endpoint for Redis operations.
+
+{{< command >}}
+$ awslocal elasticache describe-cache-clusters --show-cache-node-info | jq '.CacheClusters[0].CacheNodes[0].Endpoint'
 {
-    "CacheCluster": {
-        "CacheClusterId": "my-redis-cluster",
-        "ConfigurationEndpoint": {
-            "Address": "localhost",
-            "Port": 4510
-        },
-        ...
+  "Address": "localhost.localstack.cloud",
+  "Port": 4510
 }
-```
+{{< /command >}}
 
-### Interact with the cache cluster
+The cache cluster uses a random port of the [external service port range]({{< ref "external-ports" >}}).
+Use this port number to connect to the Redis instance like so:
 
-By default, the cache cluster (in this case the Redis server) is exposed on a random port of the [external service port range]({{< ref "external-ports" >}}).
-You can see the port in the ``ConfigurationEndpoint`` directive returned by the `create-cache-cluster` command.
-You can also get the port by calling `awslocal elasticache describe-cache-clusters`.
-
-Use the returned port number (in this case `4510` - but it will be a random port within the range) to connect to the Redis instance:
 {{< command >}}
 $ redis-cli -p 4510 ping
 PONG
@@ -65,33 +60,53 @@ $ redis-cli -p 4510 get foo
 "bar"
 {{< / command >}}
 
-### Replication group
 
-We also support the `create-replication-group` API which supports the replication groups in ElastiCache clusters.
-With the API, you can now have a Redis cluster, a Redis replication group with cluster mode disabled, and a Redis replication group with cluster mode enabled.
+### Replication groups in non-cluster mode
 
-You can create a replication group as follows:
+{{< command >}}
+$ awslocal elasticache create-replication-group \
+  --replication-group-id my-redis-replication-group \
+  --replication-group-description 'my replication group' \
+  --engine redis \
+  --cache-node-type cache.t2.micro \
+  --num-cache-clusters 3
+{{< /command >}}
+
+Wait for it to be available. When running the following command, you should see one node group when running:
+
+{{< command >}}
+$ awslocal elasticache describe-replication-groups --replication-group-id my-redis-replication-group
+{{< /command >}}
+
+To retrieve the primary endpoint:
+
+{{< command >}}
+$ awslocal elasticache describe-replication-groups --replication-group-id my-redis-replication-group \
+  | jq ".ReplicationGroups[0].NodeGroups[0].PrimaryEndpoint"
+{{< /command >}}
+
+
+### Replication groups in cluster mode
+
+The cluster mode is enabled by using `--num-node-groups` and `--replicas-per-node-group`:
 
 {{< command >}}
 $ awslocal elasticache create-replication-group \
   --engine redis \
-  --replication-group-id my-redis-replication-group \
-  --primary-cluster-id my-primary-redis-cluster \
-  --automatic-failover-enabled \
-  --cache-node-type cache.m5.large \
-  --num-cache-clusters 2 \
-  --replication-group-description 'my replication group'
-{{< / command >}}
+  --replication-group-id my-clustered-redis-replication-group \
+  --replication-group-description 'my clustered replication group' \
+  --cache-node-type cache.t2.micro \
+  --num-node-groups 2 \
+  --replicas-per-node-group 2
+{{< /command >}}
 
-In the LocalStack log output, you should be able to see that Redis starts in the cluster mode (`Running mode=cluster`):
-```
-2023-09-11T15:19:20.527  INFO --- [functhread27] l.s.elasticache.redis      : 813:M 11 Sep 2023 15:19:20.527 * Running mode=cluster, port=4511.
-```
+Note that the group nodes do not have a primary endpoint. Instead they have a `ConfigurationEndpoint`, which you can connect to using `redis-cli -c` where `-c` is for cluster mode.
 
-{{< alert title="Note">}}
-Redis requires at least three or more nodes to form a Redis replication group with cluster mode enabled.
-Hence, if the user requests only two node groups, we transparently upgrade to three nodes automatically to avoid raising an error.
-{{< /alert >}}
+{{< command >}}
+$ awslocal elasticache describe-replication-groups --replication-group-id my-clustered-redis-replication-group \
+    | jq ".ReplicationGroups[0].ConfigurationEndpoint"
+{{< /command >}}
+
 
 ## Resource browser
 
@@ -108,12 +123,13 @@ In the ElastiCache resource browser you can:
   {{< img src="elasticache-resource-browser-create.png" alt="Create a ElastiCache cluster in the resource browser" >}}
 
 
-
 ## Limitations
 
-<!-- TODO@viren FIX THIS!! -->
 LocalStack currently supports Redis single-node and cluster mode, but not memcached.
 Moreover, LocalStack emulation support for ElastiCache is mostly centered around starting/stopping Redis servers.
+
 Resource necessary to operate a cluster, like parameter groups, security groups, subnets groups, etc. are mocked, but have no effect on the functioning of the Redis servers.
+
 LocalStack currently doesn't support ElastiCache snapshots, users, user groups, service updates, global replication groups, migrations or tests.
+
 You can find a detailed list of covered API methods on the [ElastiCache coverage page]({{< ref "coverage_elasticache" >}}).
