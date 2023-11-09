@@ -26,7 +26,7 @@ Start your LocalStack container using your preferred method. We will demonstrate
 
 ### Create a Neptune cluster
 
-To create a Neptune cluster you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/neptune/latest/APIReference/API_CreateDBCluster.html) API. 
+To create a Neptune cluster you can use the [`CreateDBCluster`](https://docs.aws.amazon.com/neptune/latest/userguide/api-clusters.html#CreateDBCluster) API. 
 Run the following command to create a Neptune cluster:
 
 {{< command >}}
@@ -51,7 +51,7 @@ You should see the following output:
 
 ### Add an instance to the cluster
 
-To add an instance you can use the [`CreateDBInstance`](https://docs.aws.amazon.com/neptune/latest/APIReference/API_CreateDBInstance.html) API. 
+To add an instance you can use the [`CreateDBInstance`](https://docs.aws.amazon.com/neptune/latest/userguide/api-instances.html#CreateDBInstance) API. 
 Run the following command to create a Neptune instance:
 
 {{< command >}}

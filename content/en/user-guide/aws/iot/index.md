@@ -65,7 +65,7 @@ This message will be pushed to all subscribers of this topic, including the one 
 ## Authentication
 
 LocalStack IoT maintains its own root certificate authority which is regenerated at every run.
-The root CA certificate can be retrieved from <http://local.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem>.
+The root CA certificate can be retrieved from <http://localhost.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem>.
 
 {{< alert title="Note">}}
 AWS provides its root CA certificate at <https://www.amazontrust.com/repository/AmazonRootCA1.pem>.
