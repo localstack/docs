@@ -120,6 +120,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `EKS_LOADBALANCER_PORT` | `8081` (default) | Local port on which the Kubernetes load balancer is exposed on the host. |
 | `EKS_K3S_IMAGE_TAG` | `v1.22.6-k3s1` (default) | Custom tag of the `k8s/rancher` image used to spin up Kubernetes clusters locally. |
 
+### ElastiCache
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `PROVIDER_OVERRIDE_ELASTICACHE` | `legacy` | Use the legacy ElastiCache provider. |
+
 ### Elasticsearch
 
 {{< alert title="Note">}}
@@ -215,7 +221,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | - | - | - |
 | `SQS_DELAY_PURGE_RETRY` | `0` (default) | Used to toggle PurgeQueueInProgress errors when making more than one PurgeQueue call within 60 seconds. |
 | `SQS_DELAY_RECENTLY_DELETED` | `0` (default) | Used to toggle QueueDeletedRecently errors when re-creating a queue within 60 seconds of deleting it. |
-| `SQS_ENDPOINT_STRATEGY`| `domain`\|`path`\|`off` | Configures the format of Queue URLs (see [SQS Queue URLs]({{< ref "sqs#queue-urls" >}})) |
+| `SQS_ENDPOINT_STRATEGY`| `standard` (default) \| `domain` \| `path` \| `off` | Configures the format of Queue URLs (see [SQS Queue URLs]({{< ref "sqs#queue-urls" >}})) |
 | `SQS_DISABLE_CLOUDWATCH_METRICS` | `0` (default) | Disables the CloudWatch Metrics for SQS when set to `1` |
 | `SQS_CLOUDWATCH_METRICS_REPORT_INTERVAL` | `60` (default) | Configures the report interval (in seconds) for `Approximate*` metrics that are sent to CloudWatch periodically. Sending will be disabled if `SQS_DISABLE_CLOUDWATCH_METRICS=1` |
 
