@@ -83,10 +83,10 @@ ports:
        …
 ```
 
-Furthermore, use either the default name `localstack_main` for the container, or alternatively configure the environment variable `MAIN_CONTAINER_NAME` to point to the correct name.
+Furthermore, use either the default name `localstack-main` for the container, or alternatively configure the environment variable `MAIN_CONTAINER_NAME` to point to the correct name.
 
 ```yaml
-container_name: localstack_main
+container_name: localstack-main
 ```
 
 Ensure that `127.0.0.1` is configured as the target DNS server for the `bigdata` container:
