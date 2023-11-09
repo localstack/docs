@@ -314,8 +314,8 @@ These configurations are deprecated and will be removed in the upcoming major ve
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `SKIP_INFRA_DOWNLOADS` | | **Deprecated.** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
 | `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated.** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
+| `SKIP_INFRA_DOWNLOADS` | | **Deprecated.** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
 | `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated.** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
 
 ## Legacy
@@ -327,14 +327,14 @@ These configurations have already been removed and **won't have any effect** on 
 | - | - | - |
 | `DATA_DIR`| 2.0.0 | **Legacy.** Local directory for saving persistent data. Use `PERSISTENCE` instead. |
 | `HOST_TMP_FOLDER` | 2.0.0 | **Legacy.** Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
+| `INIT_SCRIPTS_PATH` | 2.0.0 | **Legacy.** Before 1.0, this was used to configure the path to the initializing files with extensions `.sh` that were found in `/docker-entrypoint-initaws.d`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
 | `TMPDIR`| 2.0.0 | **Legacy.** Temporary folder on the host running the CLI and inside the LocalStack container .|
 | `<SERVICE>_BACKEND` | 3.0.0 | **Legacy.** Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name.
-| `INIT_SCRIPTS_PATH` | 2.0.0 | **Legacy.** Before 1.0, this was used to configure the path to the initializing files with extensions `.sh` that were found in `/docker-entrypoint-initaws.d`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
-| `ES_CUSTOM_BACKEND` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
-| `ES_MULTI_CLUSTER` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
-| `ES_ENDPOINT_STRATEGY` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
-| `MOCK_UNIMPLEMENTED` | 3.0.0 | **Legacy.** Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 | `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | **Legacy.** Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
+| `ES_CUSTOM_BACKEND` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
+| `ES_ENDPOINT_STRATEGY` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
+| `ES_MULTI_CLUSTER` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
+| `MOCK_UNIMPLEMENTED` | 3.0.0 | **Legacy.** Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 
 ## Profiles
 
