@@ -206,8 +206,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
-| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | `v2` | Activate the new LocalStack-native StepFunctions provider. |
+| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | `legacy` / `v2` (default) | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
 
 ### SQS
 
@@ -327,6 +326,7 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `MOCK_UNIMPLEMENTED` | | **Deprecated.** Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
 | `ACTIVATE_NEW_POD_CLIENT` | `0`\|`1` (default) | **Deprecated.** Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
 | `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated.** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
+| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
 
 ## Profiles
 
