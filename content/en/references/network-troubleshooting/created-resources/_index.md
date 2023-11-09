@@ -6,17 +6,19 @@ tags:
 - networking
 ---
 
-If you have created a resource using LocalStack, such as an OpenSearch cluster or RDS database, you may need to access it from your application. Typically, these resources are accessible through a URL or a hostname provided by LocalStack. While the environment variable `HOSTNAME_EXTERNAL` can often control the returned hostname, this approach may only work for some cases. This guide will explore different scenarios and provide detailed instructions on accessing resources created by LocalStack under different scenarios.
-
-{{<alert title="Note">}}
-An additional environment variable is available: `LOCALSTACK_HOSTNAME`. It is primarily used for communication within LocalStack and should not be used. We are currently working on streamlining the configuration under different scenarios.
-{{</alert>}}
+If you have created a resource using LocalStack, such as an OpenSearch cluster or RDS database, you may need to access it from your application.
+Typically, these resources are accessible through a URL or a hostname provided by LocalStack.
+By default, LocalStack returns the hostname `localhost.localstack.cloud`, which resolves to LocalStack using DNS.
+For special environments (e.g., proxies), the [configuration]({{< ref "configuration" >}}) `LOCALSTACK_HOST` customizes the URLs returned by LocalStack.
+This guide will explore different scenarios and provide detailed instructions on accessing resources created by LocalStack under different scenarios.
 
 ## From your host
 
 {{< figure src="../images/3.svg" width="400" >}}
 
-For example, suppose you have created an OpenSearch cluster using LocalStack and want to access it from the same computer. In such a case, you can set the `HOSTNAME_EXTERNAL` environment variable to specify the desired hostname that will be returned. Check out the [service-specific documentation]({{<ref "user-guide/aws/feature-coverage">}}) for more details.
+For example, suppose you have created an OpenSearch cluster using LocalStack and want to access it from the same computer.
+In such a case, you can set the `LOCALSTACK_HOST` environment variable to specify the desired hostname and port that will be returned.
+Check out the [service-specific documentation]({{<ref "user-guide/aws/feature-coverage">}}) for more details.
 
 ## From a container LocalStack created
 

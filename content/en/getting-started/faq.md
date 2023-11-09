@@ -117,23 +117,10 @@ sudo sysctl -w net.ipv4.ip_forward=1
 
 ### Why can't my other Docker containers reach LocalStack?
 
-Using LocalStack inside a Docker network with multiple other containers can lead to connectivity issues from/to those containers. For example, a container which attempts to deploy a stack and interact with the services directly, from within the same Docker network.
+Using LocalStack inside a Docker network with multiple other containers can lead to connectivity issues from/to those containers.
+For example, a container which attempts to deploy a stack and interact with the services directly, from within the same Docker network.
 
-To resolve this, set `HOSTNAME_EXTERNAL` for correct response values for endpoints. Use network aliases to ensure resolution of `localhost.localstack.cloud` to the correct container:
-
-```yaml
-...
-    networks:
-      default:
-        aliases:
-          - localhost.localstack.cloud
-  sdkstack:
-    image: ubuntu
-    command: ["bash", "-c", "apt update && apt install -y curl && sleep 5 && curl -v http://localhost.localstack.cloud:4566/_localstack/health"]
-...
-```
-
-Note the missing `network: bridge` here! The default bridge network does not support DNS name resolution.
+Refer to our [network troubleshooting guide]({{< ref "references/network-troubleshooting" >}}) covering several scenarios.
 
 ### How to resolve the pull rate limit issue for LocalStack's Docker image?
 

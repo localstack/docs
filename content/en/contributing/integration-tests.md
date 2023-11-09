@@ -147,16 +147,14 @@ region=eu-central-1
 -   Use the client `fixtures` and other fixtures for resource creation instead of methods from `aws_stack.py`
     -   While using the environment variable `TEST_TARGET=AWS_CLOUD`, the boto client will be automatically configured to target AWS instead of LocalStack.
 -   Configure your AWS profile/credentials:
-    -   When running the test, set the environment variable `AWS_PROFILE` to the profile name you chose in the previous step. Eexample: `AWS_PROFILE=ls-sandbox`
+    -   When running the test, set the environment variable `AWS_PROFILE` to the profile name you chose in the previous step. Example: `AWS_PROFILE=ls-sandbox`
 -   Ensure that all resources are cleaned up even when the test fails and even when other fixture cleanup operations fail!
 -   Testing against AWS might require additional roles and policies.
 
 Here is how a useful environment configuration for testing against AWS could look like:
 
 ```bash
-EDGE_BIND_HOST=0.0.0.0;
-DEBUG=1;
-DNS_ADDRESS=0;
+DEBUG=1;  # enables debug logging
 TEST_DISABLE_RETRIES_AND_TIMEOUTS=1;
 TEST_TARGET=AWS_CLOUD;
 AWS_DEFAULT_REGION=us-east-1;

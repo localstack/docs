@@ -37,11 +37,10 @@ client = boto3.client("lambda")
 ...
 ```
 
-Alternatively, if you prefer to (or need to) set the endpoints directly, you can use the `$LOCALSTACK_HOSTNAME` environment variable which is available when executing user code (e.g., Lambda functions, ECS containers) in LocalStack:
+Alternatively, if you prefer to (or need to) set the endpoints directly, you can use the environment variable `AWS_ENDPOINT_URL`,  which is available when executing user code (e.g., Lambda functions) in LocalStack:
 ```python3
 import os
-endpoint_url = f"http://{os.getenv("LOCALSTACK_HOSTNAME")}:{os.getenv("EDGE_PORT")}"
-client = boto3.client("lambda", endpoint_url=endpoint_url)
+client = boto3.client("lambda", endpoint_url=os.getenv("AWS_ENDPOINT_URL"))
 ...
 ```
 

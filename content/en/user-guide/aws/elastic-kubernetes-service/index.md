@@ -100,12 +100,13 @@ You can now use ECR (Elastic Container Registry) images within your EKS environm
 
 #### Initial configuration
 
-To modify the return value of resource URIs for most services, including ECR, you can utilize the `HOSTNAME_EXTERNAL` variable in the [configuration]({{< ref "configuration" >}}). By default, ECR returns a `repositoryUri` starting with `localhost`, such as: `localhost:<port>/<repository-name>`. However, if you set the `HOSTNAME_EXTERNAL` to `localhost.localstack.cloud`, the ECR will provide a `repositoryUri` like `localhost.localstack.cloud:<port>/<repository_name>`.
+To modify the return value of resource URIs for most services, including ECR, you can utilize the `LOCALSTACK_HOST` variable in the [configuration]({{< ref "configuration" >}}).
+By default, ECR returns a `repositoryUri` starting with `localhost.localstack.cloud`, such as: `localhost.localstack.cloud:<port>/<repository-name>`.
 
 {{< alert title="Notes" >}}
 In this section, we assume that `localhost.localstack.cloud` resolves in your environment, and LocalStack is connected to a non-default bridge network. For more information, refer to the article about [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}).
 
-If the domain `localhost.localstack.cloud` does not resolve on your host, you can still proceed without setting `HOSTNAME_EXTERNAL`. However it is suggested to use `localhost.localstack.cloud` as the registry in your pod configuration. 
+If the domain `localhost.localstack.cloud` does not resolve on your host, you can still proceed by setting `LOCALSTACK_HOST=localhost` (not recommended). 
 
 LocalStack will take care of the DNS resolution of `localhost.localstack.cloud` within ECR itself, allowing you to use the `localhost:<port>/<repository_name>` URI for tagging and pushing the image on your host.
 {{< / alert >}}

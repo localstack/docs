@@ -47,8 +47,7 @@ $ cdklocal --help
 
 The following environment variables can be configured:
 
-* `EDGE_PORT`: Port under which LocalStack edge service is accessible (default: `4566`)
-* `LOCALSTACK_HOSTNAME`: Target host under which LocalStack edge service is accessible (default: `localhost`)
+* `AWS_ENDPOINT_URL`: The endpoint URL (i.e., protocol, host, and port) to connect to LocalStack (default: `http://localhost:4566`)
 * `LAMBDA_MOUNT_CODE`: Whether to use local Lambda code mounting (via setting `hot-reload` S3 bucket name)
 
 
