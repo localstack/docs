@@ -41,7 +41,7 @@ $ awslocal elasticache create-cache-cluster \
 Wait for it to be available, then you can use the cluster endpoint for Redis operations.
 
 {{< command >}}
-$ awslocal elasticache describe-cache-clusters --show-cache-node-info | jq '.CacheClusters[0].CacheNodes[0].Endpoint'
+$ awslocal elasticache describe-cache-clusters --show-cache-node-info --query "CacheClusters[0].CacheNodes[0].Endpoint"
 {
   "Address": "localhost.localstack.cloud",
   "Port": 4510
@@ -82,7 +82,7 @@ To retrieve the primary endpoint:
 
 {{< command >}}
 $ awslocal elasticache describe-replication-groups --replication-group-id my-redis-replication-group \
-  | jq ".ReplicationGroups[0].NodeGroups[0].PrimaryEndpoint"
+  --query "ReplicationGroups[0].NodeGroups[0].PrimaryEndpoint"
 {{< /command >}}
 
 
@@ -104,7 +104,7 @@ Note that the group nodes do not have a primary endpoint. Instead they have a `C
 
 {{< command >}}
 $ awslocal elasticache describe-replication-groups --replication-group-id my-clustered-redis-replication-group \
-    | jq ".ReplicationGroups[0].ConfigurationEndpoint"
+    --query "ReplicationGroups[0].ConfigurationEndpoint"
 {{< /command >}}
 
 
