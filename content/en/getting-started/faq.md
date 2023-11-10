@@ -46,6 +46,25 @@ The diagnose endpoint is only available if you run LocalStack with `DEBUG=1`.
 
 You can access LocalStack from an alternative computer, by exposing port `4566` to the public network interface (`0.0.0.0` instead of `127.0.0.1`) in your `docker-compose.yml` configuration. However, we do not recommend using this setup - for security reasons, as it exposes your local computer to potential attacks from the outside world.
 
+### How to resolve Git Bash issues with LocalStack?
+
+If you're using Git Bash with LocalStack, you might encounter some issues.
+This is due to the automatic conversion of POSIX paths to Windows paths when command-line options start with a slash.
+For instance, `"/usr/bin/bash.exe"` would be converted to `"C:\Program Files\Git\usr\bin\bash.exe"`.  
+This conversion can cause problems when it's not needed, such as with `"--name /test/parameter/new"`.  
+To prevent this, you can temporarily set the `MSYS_NO_PATHCONV` environment variable.
+Another workaround is to double the first slash in your command to prevent the POSIX-to-Windows path conversion.
+
+```bash
+#set the environment variable
+MSYS_NO_PATHCONV=1 aws ssm put-parameter --name "/test/parameter/new" --type String --value "test"
+aws ssm get-parameter --name "/test/parameter/new"
+
+# double the first slash
+aws ssm put-parameter --name "//test/parameter/new" --type String --value "test"
+aws ssm get-parameter --name "/test/parameter/new"
+```
+
 ### How to fix LocalStack CLI (Python) UTF-8 encoding issue under Windows?
 
 If you are using LocalStack CLI under Windows, you might run into encoding issues. To fix this, set the following environment variables:  
