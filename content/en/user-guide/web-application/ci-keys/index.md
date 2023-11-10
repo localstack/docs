@@ -19,6 +19,8 @@ To give a developer access to LocalStack and advanced features assign a license 
 CI keys are managed on the 'CI Keys' page.
 CI keys are not assigned to a specific developer but are attributed to a specific CI pipeline or project.
 
+<img src="ci-keys.png" alt="A screenshot of the LocalStack web app. The screenshot shows the page to manage CI keys" title="CI keys page" width="900" />
+
 The top of the page shows the consumption of CI tokens in the current period.
 A period lasts one month and the counter is reset at the start of each period.
 The start and end dates of the current period are shown next to the graph.
@@ -26,6 +28,6 @@ The start and end dates of the current period are shown next to the graph.
 The number of CI keys in a workspace is not limited, but all API keys count towards the same quota.
 
 For easier tracking, we recommend to use a separate CI key for each project or CI pipeline.
-To create a CI key, enter a descriptive name in the form field and press the 'create key' button.
+To create a CI key, enter a descriptive name in the form field and press the 'Generate CI Key' button.
 
 Existing CI keys can be renamed, rotated or deleted by selecting the action from the list.

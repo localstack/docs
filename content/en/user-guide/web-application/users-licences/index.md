@@ -59,7 +59,7 @@ The benefits of this new systems are:
 ### Migrating Users to Auth Tokens and Licenses
 To migrate users from legacy API keys, assign a license to them in the 'Workspace Members' list.
 The list also shows the legacy API key that is currently assigned to them.
-If a user already has a legacy API key assigned, assigning a license to them will not require an additional license.
+If a user already has a legacy API key assigned, assigning a license to them will not consume an additional license.
 A user holding both a legacy API key and a license is only counted once when the number of used licenses is computed.
 
 If a user uses an API key that was not assigned to them, then it might be necessary to first remove the API key before a license can be assigned.

@@ -522,7 +522,7 @@ services:
       - DEBUG=1
       - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN-}
       - SMTP_HOST=smtp:1025
     volumes:
       - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
@@ -538,7 +538,7 @@ services:
 The above `docker-compose` file will start LocalStack and pull the MailHog image to start the SMTP server (if it doesn't exist yet!) on port `8025`. You can start LocalStack using the following command:
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<your-api-key> docker-compose up -d
+$ LOCALSTACK_AUTH_TOKEN=<your-auth-token> docker-compose up -d
 {{< / command >}}
 
 Once LocalStack is started, we can deploy the CloudFormation stack (which might take a few moments):

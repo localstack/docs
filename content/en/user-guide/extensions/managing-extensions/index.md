@@ -1,6 +1,6 @@
 ---
 title: "Managing extensions"
-tags: ["extensions"] 
+tags: ["extensions"]
 weight: 5
 description: >
   How to manage LocalStack extensions in your LocalStack environment
@@ -99,7 +99,7 @@ services:
       - "127.0.0.1:4510-4559:4510-4559"
     environment:
       - DEBUG=1
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN-}
       - EXTENSION_AUTO_INSTALL=localstack-extension-mailhog,localstack-extension-httpbin
     volumes:
       - "./volume:/var/lib/localstack"
@@ -130,7 +130,7 @@ An example project could look something like this:
 * `docker-compose.yaml`
     ```yaml
     version: "3.8"
-    
+
     services:
       localstack:
         ...

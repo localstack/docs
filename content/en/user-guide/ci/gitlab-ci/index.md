@@ -1,6 +1,6 @@
 ---
 title: "GitLab CI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"] 
+tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 7
 description: >
   Use LocalStack in [GitLab CI](https://docs.gitlab.com/ee/ci/)
@@ -71,9 +71,9 @@ HOSTNAME_EXTERNAL: localhost.localstack.cloud.
 While working with a Docker-in-Docker (`dind`) setup, the Docker runner requires `privileged` mode. You must always use `privileged = true` in your GitLab CI's `config.toml` file while setting up LocalStack in GitLab CI runners. For more information, see [GitLab CI Docker-in-Docker](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-executor) documentation.
 {{< /alert >}}
 
-## Configuring an API key
+## Configuring a CI key
 
-You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your API key to the repository's environment variables. Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section. Select the **Add Variable** button and fill in the necessary details. After you create a variable, you can use it in the `.gitlab-ci.yml` file.
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the repository's environment variables. Go to your project's **Settings > CI/CD**  and expand the  **Variables**  section. Select the **Add Variable** button and fill in the necessary details. After you create a variable, you can use it in the `.gitlab-ci.yml` file.
 
 However Variables set in the GitLab UI are not passed down to service containers. We need to assign them to variables in the UI, and then re-assign them in our `.gitlab-ci.yml`:
 
@@ -94,4 +94,4 @@ test:
 ...
 ```
 
-You can check the logs of the LocalStack container to see if the activation was successful. If the API key activation fails, LocalStack container will exit with an error code.
+You can check the logs of the LocalStack container to see if the activation was successful. If the CI key activation fails, LocalStack container will exit with an error code.

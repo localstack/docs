@@ -26,19 +26,19 @@ When you restart LocalStack, you can resume your work from where you left off.
 
 {{< tabpane >}}
 {{< tab header="LocalStack CLI" lang="bash" >}}
-LOCALSTACK_API_KEY=... PERSISTENCE=1 localstack start
+LOCALSTACK_AUTH_TOKEN=... PERSISTENCE=1 localstack start
 {{< /tab >}}
 {{< tab header="Docker Compose" lang="yaml" >}}
     ...
     image: localstack/localstack-pro
     environment:
-      - LOCALSTACK_API_KEY=...
+      - LOCALSTACK_AUTH_TOKEN=...
       - PERSISTENCE=1
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
 {{< /tab >}}
 {{< tab header="Docker" lang="bash" >}}
-docker run -e LOCALSTACK_API_KEY=... -e PERSISTENCE=1 -v ./volume:/var/lib/localstack -p 4566:4566 localstack/localstack-pro
+docker run -e LOCALSTACK_AUTH_TOKEN=... -e PERSISTENCE=1 -v ./volume:/var/lib/localstack -p 4566:4566 localstack/localstack-pro
 {{< /tab >}}
 {{< /tabpane >}}
 

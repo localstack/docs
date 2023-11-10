@@ -12,7 +12,7 @@ LocalStack allows for transparent collection of execution events, in order to pr
 
 You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.
 
-To get started, the `LOCALSTACK_API_KEY` environment variable needs to be configured. The system will start making your events accessible on the LocalStack [Web Application dashboard](https://app.localstack.cloud/dashboard).
+To get started, the `LOCALSTACK_AUTH_TOKEN` environment variable needs to be configured. The system will start making your events accessible on the LocalStack [Web Application dashboard](https://app.localstack.cloud/dashboard).
 
 {{< alert title="Information" color="success" >}}
 Your privacy matters to us! We only collect anonymized and sanitized data.
@@ -24,7 +24,7 @@ The data is only used to provide you with insights into the usage of LocalStack 
 
 <img src="stack-insights-getting-started.png" width="600px" alt="Stack Insights">
 
-<br>To get started with this feature, log in to your [LocalStack account](https://app.localstack.cloud/) and start a [LocalStack instance on your local machine]({{< ref "getting-started/api-key" >}}). The LocalStack Dashboard will show the Stacks widget, which holds most of the vital information of recent and currently running stacks.
+<br>To get started with this feature, log in to your [LocalStack account](https://app.localstack.cloud/) and start a [LocalStack instance on your local machine]({{< ref "getting-started/auth-tokenss" >}}). The LocalStack Dashboard will show the Stacks widget, which holds most of the vital information of recent and currently running stacks.
 
 The Stack widget will also display the number of API calls, services employed and the runtime duration for each spin-up. All the spin-ups are timestamped; hence you can easily navigate the stacks and check the number of API calls that succeeded and failed.
 

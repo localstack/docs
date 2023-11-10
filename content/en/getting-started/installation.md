@@ -60,7 +60,7 @@ $ python3 -m pip install --upgrade localstack
 {{% /markdown %}}
 
 {{< alert title="Important" color="danger" >}}
-Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 If you have problems with permissions in MacOS X Sierra, install with `python3 -m pip install --user localstack`.
 {{< /alert >}}
 </details>
@@ -119,7 +119,7 @@ $ python3 -m pip install --upgrade localstack
 {{< / command >}}
 {{% /markdown %}}
 {{< alert title="Important" color="danger" >}}
-Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 {{< /alert >}}
 </details>
 {{< /tab >}}
@@ -127,7 +127,7 @@ Do not use `sudo` or the `root` user - LocalStack should be installed and starte
 
 
 {{< tab header="Windows" >}}
-You can download the respective binary for your architecture directly: 
+You can download the respective binary for your architecture directly:
 {{< cli-binary-download os="windows" >}}<br/>
 Then extract the archive and execute the binary using Powershell.
 
@@ -146,7 +146,7 @@ $ python3 -m pip install --upgrade localstack
 {{% /markdown %}}
 
 {{< alert title="Important" color="danger" >}}
-Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 {{< /alert >}}
 </details>
 {{< /tab >}}
@@ -168,7 +168,7 @@ $ python3 -m pip install --upgrade localstack
 
 {{< alert title="Note" >}}
 To download a specific version of LocalStack, check out our [release page](https://github.com/localstack/localstack) and download it in the following manner:
-{{< command >}} 
+{{< command >}}
 $ python3 -m pip install localstack==<version>
 {{< / command >}}
 {{% markdown %}}
@@ -177,7 +177,7 @@ Here `<version>` depicts the particular LocalStack version that you would like t
 {{< /alert >}}
 
 {{< alert title="Important" color="danger" >}}
-Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user. 
+Do not use `sudo` or the `root` user - LocalStack should be installed and started entirely under a local non-root user.
 {{< /alert >}}
 {{< /tab >}}
 {{< /tabpane >}}
@@ -189,7 +189,7 @@ $ localstack --version
 {{< / command >}}
 
 You are all set!
-To use all of LocalStack's features we recommend to [get a LocalStack account and set up your api key]({{< ref "api-key" >}}).
+To use all of LocalStack's features we recommend to [get a LocalStack account and set up your auth token]({{< ref "auth-token" >}}).
 Afterwards, check out our [Quickstart guide]({{< ref "quickstart" >}}) to start your local cloud!
 
 ## Alternatives
@@ -272,7 +272,7 @@ services:
     environment:
       - DEBUG=${DEBUG-}
       - PERSISTENCE=${PERSISTENCE-}
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # required for Pro
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN-}  # required for Pro
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
@@ -290,7 +290,7 @@ $ docker-compose up
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version, set the appropriate localstack image tag at `services.localstack.image` in the `docker-compose.yml` file (for example `localstack/localstack:<version>`).
 
-- If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in the `docker-compose.yml` file.
+- If you are using LocalStack with an [auth token]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in the `docker-compose.yml` file.
   Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
@@ -303,7 +303,7 @@ $ docker-compose up
 - If using the Docker default bridge network using `network_mode: bridge`, container name resolution will not work inside your containers.
   Please consider removing it, if this functionality is needed.
 
-- To configure an API key, refer to the [API Key](https://docs.localstack.cloud/getting-started/api-key/) documentation.
+- To configure an auth token, refer to the [auth token](https://docs.localstack.cloud/getting-started/auth-token/) documentation.
 {{< /alert >}}
 
 Please note that there are a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, and environment variables).
@@ -342,7 +342,7 @@ docker run \
   --rm -it \
   -p 4566:4566 \
   -p 4510-4559:4510-4559 \
-  -e LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY:- } \
+  -e LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:- } \
   localstack/localstack-pro{{< /tab >}}
 {{< /tabpane >}}
 
@@ -350,7 +350,7 @@ docker run \
 - This command pulls the current nightly build from the `master` branch (if you don't have the image locally) and **not** the latest supported version.
   If you want to use a specific version of LocalStack, use the appropriate tag: `docker run --rm -it -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack:<tag>`. Check-out the [LocalStack releases](https://github.com/localstack/localstack/releases) to know more about specific LocalStack versions.
 
-- If you are using LocalStack with an [API key]({{< ref "api-key" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup.
+- If you are using LocalStack with an [auth token]({{< ref "auth-token" >}}), you need to specify the image tag as `localstack/localstack-pro` in your Docker setup.
   Going forward, `localstack/localstack-pro` image will contain our Pro-supported services and APIs.
 
 - This command reuses the image if it's already on your machine, i.e. it will **not** pull the latest image automatically from Docker Hub.
@@ -362,7 +362,7 @@ docker run \
 
 - To facilitate interoperability, configuration variables can be prefixed with `LOCALSTACK_` in docker. For instance, setting `LOCALSTACK_PERSISTENCE=1` is equivalent to `PERSISTENCE=1`.
 
-- To configure an API key, refer to the [API Key](https://docs.localstack.cloud/getting-started/api-key/) documentation.
+- To configure an auth token, refer to the [auth token]({{< ref "auth-token" >}}) documentation.
 {{< /alert >}}
 
 ### Helm
@@ -425,13 +425,13 @@ If you have installed the CLI with Brew or directly as a binary, please simply p
   You can now avail logging output and error reporting using LocalStack logs. To access the logs, run the following command:
 
   {{< command >}}
-  $ localstack logs 
+  $ localstack logs
   {{< / command >}}
-  
+
   AWS requests are now logged uniformly in the INFO log level (set by default or when `DEBUG=0`).
   The shape is `AWS <service>.<operation> => <http-status> (<error type>)`.
   Requests to HTTP endpoints are logged in a similar way:
-  
+
   ```sh
   2022-09-12T10:39:21.165  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS s3.ListBuckets => 200
   2022-09-12T10:39:41.315  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS s3.CreateBucket => 200

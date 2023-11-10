@@ -66,6 +66,6 @@ After configuring the base details for your Identity Provider (IdP), the followi
 For each new member that joins your org, you can specify user roles and permissions that should be assigned to them.
 -   **Default User Role**:  The Role that should be assigned to users of your organization signing up via SSO. In most cases, this should be a Member.
 -   **Default User Permissions**: Use this to define which permissions should be assigned to users of your organization signing up via SSO.
-    -   Tip: In order to enable self-serve API keys (i.e., allowing your users to generate their own API keys), make sure to select the **Allow the member to issue an API Key for her/himself** permission.
+    -   Tip: In order to enable self-serve licences (i.e., allowing your users to request their own license), make sure to select the **Allow member to issue a license for themselves (or a legacy API key)** permission.
 
 <img src="roles-permissions.png" width="600px" alt="User Roles and Permissions">

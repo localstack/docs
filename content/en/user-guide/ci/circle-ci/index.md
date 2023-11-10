@@ -1,6 +1,10 @@
 ---
 title: "CircleCI"
+<<<<<<< HEAD
 linkTitle: "CircleCI"
+=======
+tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
+>>>>>>> 8b966bb74 (updated API key to auth token, fixed web app links)
 weight: 4
 description: >
   Use LocalStack in CircleCI

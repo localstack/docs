@@ -9,7 +9,7 @@ aliases:
 
 ## Overview
 
-For API Key activations, we track the timestamp and the API key. We need to do this to make CI credits work. It is tracked regardless of whether the user disables event tracking since we collect this in the backend, not the client.
+For license activations, we track the timestamp and the licensing credentials. We need to do this to make CI credits work. It is tracked regardless of whether the user disables event tracking since we collect this in the backend, not the client.
 
 ## LocalStack usage statistics
 
@@ -20,7 +20,7 @@ For Pro users, most of the information is collected to populate the [Stack Insig
 The current usage event collection on the client side includes:
 
 - A randomly generated ID pertaining to the session
-- The API Key (if any)
+- The auth token or legacyAPI key (if any)
 - A randomly generated machine ID is kept throughout the session but deleted once the LocalStack cache directory is removed
 - The operating system (mostly Linux since LocalStack typically runs in our Debian container)
 - The LocalStack version being used
@@ -58,7 +58,7 @@ The AWS API call metadata includes:
 
 Here is an example of AWS API call metadata:
 
-```json 
+```json
 {
   "name": "aws_request",
   "metadata": {
@@ -83,7 +83,7 @@ For the community version, we only track service, operation, status code, and ho
 
 ### CLI invocations
 
-We collect an anonymized event if a CLI command was invoked, but do not collect any of the parameter values. This event is not connected to the session or the API key.
+We collect an anonymized event if a CLI command was invoked, but do not collect any of the parameter values. This event is not connected to the session or the auth token.
 
 Here is an example of a CLI invocation event:
 
@@ -109,7 +109,7 @@ We collect the usage of particular features in an anonymized and aggregated way.
 - If you use init scripts, we collect the stage, how many scripts are being executed, and how long they took
 - Nothing else at the moment, but we may track additional features
 
-## What we are not collecting? 
+## What we are not collecting?
 
 - Specific LocalStack configuration values
 - Content or file names of files being uploaded to S3

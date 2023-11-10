@@ -310,7 +310,7 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | Variable             | Example Values | Description |
 |----------------------|----------------| - |
 | `ACTIVATE_PRO`       | 1 (default)    | Whether pro should be activated or not. This is set to true by default if using the `localstack/localstack-pro` container image. If set to `1`, LocalStack will fail to start if the license key activation did not work. If set to `0`, an attempt is made to start LocalStack without pro features.
-| `LOCALSTACK_API_KEY` |                | API key to activate LocalStack Pro.
+| `LOCALSTACK_AUTH_TOKEN` |                | AUTH_TOKEN to activate LocalStack Pro.
 | `LOG_LICENSE_ISSUES` | 1 (default)    | Whether to log issues with the license activation to the console.
 
 
@@ -362,7 +362,7 @@ Here is an example of what a specific environment profile looks like
 
 {{< command >}}
 $ cat ~/.localstack/pro-debug.env
-LOCALSTACK_API_KEY=XXXXX
+LOCALSTACK_AUTH_TOKEN=XXXXX
 DEBUG=1
 DEVELOP=1
 {{< / command >}}

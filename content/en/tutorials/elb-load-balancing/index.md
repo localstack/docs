@@ -264,7 +264,7 @@ With these resource definitions, you have completed the configuration of your Se
 Now that we have completed the initial setup let's run LocalStack's AWS emulation on our local machine. Start LocalStack by running the following command:
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
+$ LOCALSTACK_AUTH_TOKEN=<your-auth-token> localstack start -d
 {{< / command >}}
 
 This command launches LocalStack in the background, enabling you to use the AWS services locally. Now, let's deploy our Serverless project and verify the resources created in LocalStack. Run the following command:

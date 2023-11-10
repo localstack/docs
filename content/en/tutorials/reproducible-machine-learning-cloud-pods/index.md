@@ -28,7 +28,7 @@ leadimage: "reproducible-machine-learning-cloud-pods-featured-image.png"
 
 Cloud Pods is supported by both [LocalStack Pro](https://app.localstack.cloud/) and [LocalStack Community](https://github.com/localstack/localstack). Using [Community Cloud Pods]({{< ref "user-guide/tools/cloud-pods/community" >}}), you get a limited experience saving and loading your LocalStack state in a Cloud Pod, only with the AWS services emulated in the Community Edition. With LocalStack Pro, you can utilize an extended CLI that allows you to inspect your Cloud Pods, version them using tags, and push them to the LocalStack platform for storage and collaboration.
 
-In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/api-key" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. We will rely on Cloud Pods to create a reproducible sample by using:
+In this tutorial, we will use [LocalStack Pro]({{< ref "getting-started/auth-token" >}}) to train a simple machine-learning model that recognizes handwritten digits on an image. We will rely on Cloud Pods to create a reproducible sample by using:
 
 - S3 to create a bucket to host our training data
 - Lambda to create a function to train and save the model to an S3 bucket
@@ -174,7 +174,7 @@ To perform inference on the test set, we will download both the trained SVN mode
 Before creating our Lambda functions, let us start LocalStack to use emulated S3 and Lambda services to deploy and train our model. Let's start LocalStack:
 
 {{< command >}}
-$ DEBUG=1 LOCALSTACK_API_KEY=<your-api-key> localstack start -d
+$ DEBUG=1 LOCALSTACK_AUTH_TOKEN=<your-auth-token> localstack start -d
 {{< / command >}}
 
 We have specified `DEBUG=1` to get the printed LocalStack logs from our Lambda invocation in the console. We can now create an S3 bucket to upload our Lambda functions and the dataset:
@@ -282,7 +282,7 @@ $ localstack pod save --name <pod_name> --visibility public
 The above command does not create a new version and requires a version already registered with the platform.
 {{< /alert >}}
 
-You can also attach an optional message and a list of services to a Cloud Pod using the `--message` and `--services` flags. You can check all the Cloud Pods in your organization over the [LocalStack Web Application](https://app.localstack.cloud/cloudpods). Now that we have created a Cloud Pod, we can ask one of our team members to start LocalStack and load the Cloud Pod using the `load` command.
+You can also attach an optional message and a list of services to a Cloud Pod using the `--message` and `--services` flags. You can check all the Cloud Pods in your organization over the [LocalStack Web Application](https://app.localstack.cloud/pods). Now that we have created a Cloud Pod, we can ask one of our team members to start LocalStack and load the Cloud Pod using the `load` command.
 
 {{< command >}}
 $ localstack pod load reproducible-ml

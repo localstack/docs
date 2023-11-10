@@ -12,7 +12,7 @@ Using the LocalStack Cloud Pods command-line interface (CLI) via the `pod` comma
 
 ## Installation
 
-The LocalStack Cloud Pods CLI is included in the [LocalStack CLI installation](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), so there's no need for additional installations to begin using it. If you're a licensed user, we suggest setting the `LOCALSTACK_API_KEY` as an environment variable. This enables you to access the complete range of LocalStack Cloud Pods features.
+The LocalStack Cloud Pods CLI is included in the [LocalStack CLI installation](https://docs.localstack.cloud/getting-started/installation/#localstack-cli), so there's no need for additional installations to begin using it. If you're a licensed user, we suggest setting the `LOCALSTACK_AUTH_TOKEN` as an environment variable. This enables you to access the complete range of LocalStack Cloud Pods features.
 
 You can access the Cloud Pods CLI by running the `pod` command from your terminal.
 
@@ -56,7 +56,7 @@ $ awslocal s3 ls s3://test/
 ### Save your Cloud Pod state
 
 You can now your Pod state using the `save` command, specifying the desired Cloud Pod name as the first argument. This action will save the pod and register it with the LocalStack Web Application:
-   
+
 {{< command >}}
 $ localstack pod save s3-test
 <disable-copy>
@@ -110,7 +110,11 @@ $ localstack pod inspect s3-test --format json
 
 ### Pull your Pod state
 
+<<<<<<< HEAD
 On a separate machine, start LocalStack while ensuring the API key is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
+=======
+ On a separate machine, start LocalStack while ensuring the auth token is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
+>>>>>>> 8b966bb74 (updated API key to auth token, fixed web app links)
 
 {{< command >}}
 $ localstack pod load s3-test

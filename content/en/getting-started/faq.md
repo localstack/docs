@@ -3,7 +3,7 @@ title: "Frequently Asked Questions"
 linkTitle: "FAQ"
 weight: 40
 description: >
-  This page answers the frequently asked questions about LocalStack Pro, Enterprise, and Community Editions. 
+  This page answers the frequently asked questions about LocalStack Pro, Enterprise, and Community Editions.
 cascade:
   type: docs
 hide_readingtime: true
@@ -74,7 +74,7 @@ For additional known issues related to Git Bash, you can refer to the following 
 
 ### How to fix LocalStack CLI (Python) UTF-8 encoding issue under Windows?
 
-If you are using LocalStack CLI under Windows, you might run into encoding issues. To fix this, set the following environment variables:  
+If you are using LocalStack CLI under Windows, you might run into encoding issues. To fix this, set the following environment variables:
 Set the system locale (language for non-Unicode programs) to UTF-8 to avoid Unicode errors.
 
 Follow these steps:
@@ -93,8 +93,8 @@ A company proxy can lead to connection issues. To allow access to the `localstac
 
 ```yaml
 ...
-environment: 
-- HTTP_PROXY = 
+environment:
+- HTTP_PROXY =
 - NO_PROXY = .s3.localhost.localstack.cloud,127.0.0.1,*.localhost
 ...
 ```
@@ -135,7 +135,7 @@ You might be able to connect to the internet, but your Docker container can't co
 
 More details can be found on [official docker documentation](https://docs.docker.com/network/bridge/#enable-forwarding-from-docker-containers-to-the-outside-world).
 
-Solution for this is enabling the IP forwarding: 
+Solution for this is enabling the IP forwarding:
 
 ```bash
 sudo sysctl -w net.ipv4.ip_forward=1
@@ -175,7 +175,7 @@ For example, these options may interfere with the functionality of AppSync funct
 We advise you to exercise caution.
 {{< /alert >}}
 
-You can change the LocalStack `volume` folder to use the WSL Linux file system instead of the Windows host folder.  
+You can change the LocalStack `volume` folder to use the WSL Linux file system instead of the Windows host folder.
 To do so, you need to change the [`docker-compose.yml`](https://github.com/localstack/localstack/blob/master/docker-compose-pro.yml) file and add the following lines:
 
 {{< tabpane text=true >}}
@@ -213,7 +213,7 @@ For more details visit [Docker WSL documentation](https://docs.docker.com/deskto
 
 ## LocalStack Platform FAQs
 
-### How do I check if my API key is valid and activated?
+### How do I check if my license is valid and activated?
 
 The easiest way to check if LocalStack Pro or Enterprise is activated is to check the health endpoint of LocalStack for a list of the running services:
 
@@ -221,13 +221,13 @@ The easiest way to check if LocalStack Pro or Enterprise is activated is to chec
 $ curl localhost:4566/_localstack/health | jq
 {{< / command >}}
 
-If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack Pro or Enterprise has started successfully. If your API key is invalid, you will see an error message like this in the logs of LocalStack:
+If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack Pro or Enterprise has started successfully. If your auth token is invalid, you will see an error message like this in the logs of LocalStack:
 
 ```bash
-Activation key "abc..."(10) is invalid or expired! Reason: ...
+license activation failed! Reason: ...
 ```
 
-If this error occurs, something is wrong with your API key or license. Make sure your API key is set correctly (check for typos!) and your license is valid. If the API key still does not work, please [contact us](https://localstack.cloud/contact/).
+If this error occurs, something is wrong with your auth token or license. Make sure your auth token is set correctly (check for typos!) and your license is valid. If the auth token still does not work, please [contact us](https://localstack.cloud/contact/).
 
 ### How are CI credits in LocalStack calculated?
 
@@ -269,7 +269,7 @@ Some corporate DNS servers might filter requests to certain domains. Contact you
 
 We take security seriously and respond to any emergency vulnerabilities as soon as possible. Our cloud provider (AWS) handles most of the infrastructure maintenance for us. We also use Infrastructure-as-Code scripts to ensure that our infrastructure configuration is consistent and recoverable in case of a disaster.
 
-### How does LocalStack ensure the security of its containers and images? 
+### How does LocalStack ensure the security of its containers and images?
 
 Our software assets are regularly checked for vulnerabilities, such as code issues and outdated dependencies. We use Dependabot to scan our GitHub repositories, and Trivy as well as Snyk (among other security tools) to scan our Docker images.
 

@@ -1,6 +1,6 @@
 ---
 title: "SSO for Azure AD"
-tags: ["LocalStack Pro", "SSO"] 
+tags: ["LocalStack Pro", "SSO"]
 weight: 5
 description: >
   Configuring Azure AD for Single Sign-on in LocalStack Enterprise
@@ -26,7 +26,7 @@ To configure SSO with an Azure AD Enterprise application, we provide a simple st
 
     <img src="azure-step-4.png" alt="Azure AD Fourth Configuration Step">
 
-5. Navigate to our web application, or follow this <a href="https://app.localstack.cloud/account/sso">link</a>, and:
+5. Navigate to our web application, or follow this <a href="https://app.localstack.cloud/workspace/sso">link</a>, and:
 
   * Create a new Identity provider
   * Enter a name for you Identity provider, and choose SAML as the provider type.

@@ -481,7 +481,7 @@ public void startConsumer() {
 Now that the initial coding is done, we can give it a try. Let's start LocalStack:
 
 ```bash
-LOCALSTACK_API_KEY=<your-api-key> localstack start -d
+LOCALSTACK_AUTH_TOKEN=<your-auth-token> localstack start -d
 ```
 
 Once LocalStack is started, we can create a new Kafka cluster using `awslocal`:
