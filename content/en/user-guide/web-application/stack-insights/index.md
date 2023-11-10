@@ -24,7 +24,7 @@ The data is only used to provide you with insights into the usage of LocalStack 
 
 <img src="stack-insights-getting-started.png" width="600px" alt="Stack Insights">
 
-<br>To get started with this feature, log in to your [LocalStack account](https://app.localstack.cloud/) and start a [LocalStack instance on your local machine]({{< ref "getting-started/auth-tokenss" >}}). The LocalStack Dashboard will show the Stacks widget, which holds most of the vital information of recent and currently running stacks.
+<br>To get started with this feature, log in to your [LocalStack account](https://app.localstack.cloud/) and start a [LocalStack instance on your local machine]({{< ref "getting-started/auth-token" >}}). The LocalStack Dashboard will show the Stacks widget, which holds most of the vital information of recent and currently running stacks.
 
 The Stack widget will also display the number of API calls, services employed and the runtime duration for each spin-up. All the spin-ups are timestamped; hence you can easily navigate the stacks and check the number of API calls that succeeded and failed.
 
