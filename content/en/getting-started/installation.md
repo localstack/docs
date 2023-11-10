@@ -303,7 +303,7 @@ $ docker-compose up
 - If using the Docker default bridge network using `network_mode: bridge`, container name resolution will not work inside your containers.
   Please consider removing it, if this functionality is needed.
 
-- To configure an auth token, refer to the [auth token](https://docs.localstack.cloud/getting-started/auth-token/) documentation.
+- To configure an auth token, refer to the [auth token]({{< ref "auth-token" >}}) documentation.
 {{< /alert >}}
 
 Please note that there are a few pitfalls when configuring your stack manually via docker-compose (e.g., required container name, Docker network, volume mounts, and environment variables).

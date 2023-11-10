@@ -37,7 +37,7 @@ In this tutorial we focus on the Application Load Balancer (ALB), which operates
 - LocalStack Pro
 - [Serverless framework](https://www.serverless.com/framework/docs/getting-started/)
 - [Node.js & `npm`](https://nodejs.org/en/download/)
-- [`awslocal`](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
 - `cURL` & `jq`
 
 ## Setup a Serverless project
