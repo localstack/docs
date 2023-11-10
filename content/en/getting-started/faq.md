@@ -65,6 +65,8 @@ aws ssm put-parameter --name "//test/parameter/new" --type String --value "test"
 aws ssm get-parameter --name "/test/parameter/new"
 ```
 
+For additional known issues related to Git Bash, you can refer to the following link: [Git Bash Known Issues](https://github.com/git-for-windows/build-extra/blob/main/ReleaseNotes.md#known-issues)
+
 ### How to fix LocalStack CLI (Python) UTF-8 encoding issue under Windows?
 
 If you are using LocalStack CLI under Windows, you might run into encoding issues. To fix this, set the following environment variables:  
