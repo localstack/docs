@@ -205,10 +205,9 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `S3_DIR` | | Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro. |
 | `S3_SKIP_SIGNATURE_VALIDATION`| `0` / `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. |
 | `S3_SKIP_KMS_KEY_VALIDATION` | `0` / `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
-| `PROVIDER_OVERRIDE_S3` | `v3` | Activate the new LocalStack-native S3 provider. |
+| `PROVIDER_OVERRIDE_S3` | `legacy_v2` / `v3` (default) | The new LocalStack-native S3 provider (v3) is active by default since LocalStack 3.0. |
 
 ### StepFunctions
 
@@ -318,6 +317,7 @@ These configurations are deprecated and will be removed in the upcoming major ve
 | `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated.** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
 | `SKIP_INFRA_DOWNLOADS` | | **Deprecated.** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
 | `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated.** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
+| `S3_DIR` | | **Deprecated.** This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 
 ## Legacy
 
