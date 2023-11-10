@@ -286,10 +286,14 @@ To install LocalStack Desktop, &lt;strong>Docker&lt;/strong> is the only prerequ
 &lt;p>In contrast, Cloud Pods provide more detailed control over your state. Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the &lt;code>save&lt;/code> command and inject these snapshots into a running instance using the &lt;code>load&lt;/code> command, all without needing to perform a full restart.&lt;/p>
 &lt;img src="cloud-pods-persistence.png" alt="Cloud Pods v/s Persistence" title="Cloud Pods v/s Persistence" width="800" /></description></item><item><title>User-Guide: Lambda Tools</title><link>/user-guide/tools/lambda-tools/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/lambda-tools/</guid><description>
 &lt;p>Lambdas are awesome!&lt;/p></description></item><item><title>User-Guide: Transparent Endpoint Injection</title><link>/user-guide/tools/transparent-endpoint-injection/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/transparent-endpoint-injection/</guid><description>
-&lt;p>In the community (open source) edition, the application code needs to configure each AWS SDK client instance with the target &lt;code>endpoint URL&lt;/code> to point to the APIs on &lt;code>localhost&lt;/code> or, in the case of Lambdas running in the context of LocalStack, the &lt;code>endpoint URL&lt;/code> should point to &lt;code>http://${LOCALSTACK_HOSTNAME}:${EDGE_PORT}&lt;/code>.&lt;/p>
-&lt;p>The Pro version provides two options for transparently making your application logic speak to the local APIs instead of real AWS (without having to change your production code):&lt;/p>
-&lt;ol>
-&lt;li>integrated DNS server&lt;/li>
-&lt;li>patched AWS SDKs (&lt;strong>deprecated&lt;/strong>)&lt;/li>
-&lt;/ol>
-&lt;p>More details can be found in the subsections below.&lt;/p></description></item></channel></rss>
+&lt;p>In the community (open source) edition,
+the application code needs to configure the &lt;code>endpoint URL&lt;/code> of each AWS SDK client instance to target LocalStack
+using the environment variable &lt;code>AWS_ENDPOINT_URL&lt;/code> available within Lambda functions in LocalStack.
+For example, a Python boto3 client can be configured as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;lambda&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000">os&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">environ&lt;/span>&lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;AWS_ENDPOINT_URL&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">])&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>For &lt;a href="https://docs.aws.amazon.com/sdkref/latest/guide/feature-ss-endpoints.html#ss-endpoints-sdk-compat">supported AWS SDKs&lt;/a>
+(including boto3 since &lt;a href="https://github.com/boto/boto3/blob/develop/CHANGELOG.rst#L892">1.28.0&lt;/a>), this configuration happens automatically without any custom code changes.&lt;/p>
+&lt;p>In LocalStack Pro,
+no application code changes are required to let your application connect to local cloud APIs instead of real AWS because
+LocalStack provides an integrated DNS server that resolves AWS API calls to target LocalStack.&lt;/p>
+&lt;p>More details can be found in the subsection below.&lt;/p></description></item></channel></rss>

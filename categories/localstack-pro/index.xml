@@ -2372,7 +2372,7 @@ Also, it configures the DNS route to exclusively (and only) route the following 
 &lt;ol>
 &lt;li>
 &lt;p>Find out the bridge interface and container IP of your LocalStack container.
-Use &lt;code>docker inspect localstack_main&lt;/code> to get the IP address and network, then &lt;code>docker inspect network&lt;/code> to get the interface name.
+Use &lt;code>docker inspect localstack-main&lt;/code> to get the IP address and network, then &lt;code>docker inspect network&lt;/code> to get the interface name.
 If the interface name is not mentioned, it is usually the first 12 characters of the network ID prefixed with &lt;code>br-&lt;/code>, like &lt;code>br-0ae393d3345e&lt;/code>.
 If you use the default bridge network, it is usually &lt;code>docker0&lt;/code>.&lt;/p>
 &lt;/li>
@@ -2432,50 +2432,7 @@ If you are using the LocalStack DNS server, DNS rebind protection should not cau
 If not, please check the configuration of your router / DNS if the Rebind Protection is active or &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#system-dns-configuration">enable the LocalStack DNS on your system&lt;/a>.&lt;/p>
 &lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
 &lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
-&lt;p>Please refer to the steps in the &lt;a href="/user-guide/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item><item><title>User-Guide: Patched AWS SDKs for Lambdas (Deprecated)</title><link>/user-guide/tools/transparent-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/transparent-endpoint-injection/patched-sdks/</guid><description>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-Patched AWS SDKs for Lambdas are &lt;strong>deprecated&lt;/strong> and only used by the old lambda provider.
-The new lambda provider (active since LocalStack 2.0) uses DNS-based domain resolution (except for the Ruby runtime).&lt;br>
-Please refer to &lt;a href="/user-guide/aws/lambda/">Lambda providers&lt;/a> for more details about the new Lambda implementation.
-&lt;/div>
-&lt;p>The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
-This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.&lt;/p>
-&lt;p>Assuming you had a Python Lambda handler that attempts to list all S3 buckets. In the past, you had to manually configure the &lt;code>endpoint_url&lt;/code> parameter on the boto3 client (and potentially use environment switches for dev/prod in your test code):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;s3&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_buckets&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>With the patched AWS SDKs, it now becomes possible to deploy your unmodified production code to LocalStack, simply creating a boto3 client with default settings. The invocations of the boto3 client will be automatically forwarded to the local APIs:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;s3&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_buckets&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-This functionality only works when using the SDKs provided by the Lambda execution environment itself.
-If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">DNS based transparent execution&lt;/a> if enabled, since those SDK versions will not be patched.
-&lt;/div>
-&lt;p>This feature works by patching the AWS SDKs in the docker images, which provide the execution environment for Lambdas within LocalStack.&lt;/p>
-&lt;p>The main advantage of this mode is, that no DNS magic is involved, and SSL certificate checks do not have to be disabled.&lt;/p>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>If you want to disable this behavior, and use the DNS server to resolve the endpoints for AWS, you can disable this behavior by using:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">TRANSPARENT_LOCAL_ENDPOINTS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="supported-runtimes">Supported Runtimes&lt;/h2>
-&lt;p>Currently, LocalStack supports patching the SDKs for the following runtimes:&lt;/p>
-&lt;ul>
-&lt;li>Python (using boto3)&lt;/li>
-&lt;li>NodeJS&lt;/li>
-&lt;li>Ruby&lt;/li>
-&lt;li>Java&lt;/li>
-&lt;/ul>
-&lt;p>Also, these patched SDKs are only available in the following Lambda execution modes:&lt;/p>
-&lt;ul>
-&lt;li>docker&lt;/li>
-&lt;li>docker-reuse&lt;/li>
-&lt;/ul>
-&lt;p>This feature is currently not supported for custom Lambda container images.&lt;/p></description></item><item><title>User-Guide: LocalSurf</title><link>/user-guide/tools/localsurf/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localsurf/</guid><description>
+&lt;p>Please refer to the steps in the &lt;a href="/user-guide/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item><item><title>User-Guide: LocalSurf</title><link>/user-guide/tools/localsurf/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/localsurf/</guid><description>
 &lt;p>LocalSurf is a Chrome browser plugin to repoint AWS service calls to &lt;a href="https://localstack.cloud/">LocalStack&lt;/a>. While developing and testing AWS cloud Web applications locally with LocalStack, we need to make the browser connect to the local endpoint (&lt;code>http://localhost:4566&lt;/code>) instead of the AWS production servers (&lt;code>*.amazonaws.com&lt;/code>). LocalSurf enables you to use the production code without changes, and have the browser make requests to LocalStack instead of AWS directly by explicitly setting the &lt;a href="https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/specifying-endpoints.html">&lt;code>endpoint&lt;/code> attribute&lt;/a> in the &lt;a href="https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Endpoint.html">AWS JavaScript SDK&lt;/a>.&lt;/p>
 &lt;blockquote>
 &lt;p>This plugin is experimental and still under active development. Please report any issues or feature requests on our &lt;a href="https://github.com/localstack/local-surf">GitHub repository&lt;/a>.&lt;/p>
@@ -3024,7 +2981,7 @@ Amazon DocumentDB does not and vice versa.
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterIdentifier&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test-docdb-cluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterParameterGroup&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;default.docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Status&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;available&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost:39045&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;MultiAZ&amp;#34;: &lt;/span>&lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Engine&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;: &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">39045&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -3107,7 +3064,7 @@ the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterIdentifier&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test-docdb-cluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterParameterGroup&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;default.docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Status&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;available&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost:39045&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;MultiAZ&amp;#34;: &lt;/span>&lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Engine&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;: &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">39045&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -3335,32 +3292,25 @@ For instance, you can associate the Ubuntu Focal image as &lt;code>ami-000001&lt
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Such Docker-backed AMIs bear the resource tag &lt;code>ec2_vm_manager:docker&lt;/code> and can be listed using the subsequent command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>It&amp;rsquo;s important to note that all other AMIs are mocked and originate from the community edition of LocalStack.
-Attempting to launch Dockerized instances using these specific AMIs will result in an &lt;code>InvalidAMIID.NotFound&lt;/code> error.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+All other AMIs that do not have the above tag are mocked and originate from the community edition of LocalStack.
+Attempting to launch Dockerized instances using these specific AMIs will result in an &lt;code>InvalidAMIID.NotFound&lt;/code> error.
+&lt;/div>
 &lt;h3 id="configuration">Configuration&lt;/h3>
 &lt;p>You can also use the &lt;a href="/references/configuration/#ec2">&lt;code>EC2_DOCKER_FLAGS&lt;/code>&lt;/a> LocalStack configuration variable to convey supplementary flags to Docker during the initiation of containerized instances.
 This allows for adjustments such as commencing the container in privileged mode using &lt;code>--privileged&lt;/code> or specifying an alternate CPU platform with &lt;code>--platform&lt;/code>, and more.
 Keep in mind that these modifications apply to all instances launched within the LocalStack session.&lt;/p>
 &lt;h2 id="networking">Networking&lt;/h2>
+&lt;p>Network addresses for Dockerized instances are allocated by the Docker daemon.
+These addresses are printed in the logs while the instance is being initialized.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2022-03-21T14:46:49.540 INFO Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To be able to access the instance at additional ports from the host system, you can modify the default security group and incorporate the needed ingress ports.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-LocalStack daemon is deprecated and will be removed in an upcoming major release.
+Security group ingress rules are applied only during the creation of the Dockerized instance.
+Modifying a security group will not open any ports for a running instance.
 &lt;/div>
-&lt;p>LocalStack allocates distinct private IP addresses to Dockerized instances.
-To make use of this feature, it&amp;rsquo;s essential to run the LocalStack daemon process on the host.
-This daemon process is responsible for handling the creation and administration of networking on the host system.&lt;/p>
-&lt;p>Before using this command, ensure you&amp;rsquo;ve logged in to your &lt;code>localstack&lt;/code> CLI (using &lt;code>localstack login&lt;/code>) via your LocalStack Web Application credentials.
-To confirm, execute &lt;code>localstack --help&lt;/code> and check if &lt;code>daemons&lt;/code> is among the available commands.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install localstack[runtime]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>export LOCALSTACK_API_KEY=...
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack daemons start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The SSH access address for the instance is displayed in the logs during the instance initialization process.:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2022-03-21T14:46:49.540 INFO Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705, 172.17.0.4:22
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The LocalStack daemon is supported on Linux and macOS operating systems.
-If the LocalStack daemon is inactive, the instance can only be accessed at &lt;code>127.0.0.1&lt;/code> along with an available port on the host.&lt;/p>
-&lt;p>To make additional ports available to the host system, you can modify the default security group and incorporate the needed ingress ports.
-It&amp;rsquo;s important to note that security group ingress rules are applied only during the creation of the Dockerized instance.
-Modifying a security group will not open any ports for a running instance.&lt;/p>
 &lt;p>The system supports up to 32 ingress ports.
 This constraint is in place to prevent the host from exhausting available ports.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 authorize-security-group-ingress \
@@ -3484,55 +3434,51 @@ The supported APIs are available on our API Coverage Page,
 which provides information on the extent of ElastiCache integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to ElastiCache and assumes basic knowledge of the AWS CLI and our &lt;code>awslocal&lt;/code> wrapper script.&lt;/p>
-&lt;h3 id="create-a-single-node-redis-cluster">Create a single-node Redis cluster&lt;/h3>
+&lt;h3 id="single-cache-cluster">Single cache cluster&lt;/h3>
 &lt;p>After starting LocalStack Pro, you can create a cluster with the following command.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elasticache create-cache-cluster \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cache-cluster-id my-redis-cluster \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cache-node-type cache.t2.micro \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine redis \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --num-cache-nodes 1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>You should see LocalStack responding with something like:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;CacheCluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;CacheClusterId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;my-redis-cluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ConfigurationEndpoint&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Address&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">4510&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="interact-with-the-cache-cluster">Interact with the cache cluster&lt;/h3>
-&lt;p>By default, the cache cluster (in this case the Redis server) is exposed on a random port of the &lt;a href="/references/external-ports/">external service port range&lt;/a>.
-You can see the port in the &lt;code>ConfigurationEndpoint&lt;/code> directive returned by the &lt;code>create-cache-cluster&lt;/code> command.
-You can also get the port by calling &lt;code>awslocal elasticache describe-cache-clusters&lt;/code>.&lt;/p>
-&lt;p>Use the returned port number (in this case &lt;code>4510&lt;/code> - but it will be a random port within the range) to connect to the Redis instance:
+&lt;p>Wait for it to be available, then you can use the cluster endpoint for Redis operations.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elasticache describe-cache-clusters --show-cache-node-info --query &amp;#34;CacheClusters[0].CacheNodes[0].Endpoint&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Address&amp;#34;: &amp;#34;localhost.localstack.cloud&amp;#34;,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;Port&amp;#34;: 4510
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The cache cluster uses a random port of the &lt;a href="/references/external-ports/">external service port range&lt;/a>.
+Use this port number to connect to the Redis instance like so:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 ping
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>PONG
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 set foo bar
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>OK
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>redis-cli -p 4510 get foo
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;#34;bar&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
-&lt;h3 id="replication-group">Replication group&lt;/h3>
-&lt;p>We also support the &lt;code>create-replication-group&lt;/code> API which supports the replication groups in ElastiCache clusters.
-With the API, you can now have a Redis cluster, a Redis replication group with cluster mode disabled, and a Redis replication group with cluster mode enabled.&lt;/p>
-&lt;p>You can create a replication group as follows:&lt;/p>
+&lt;h3 id="replication-groups-in-non-cluster-mode">Replication groups in non-cluster mode&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elasticache create-replication-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replication-group-id my-redis-replication-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replication-group-description &amp;#39;my replication group&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine redis \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cache-node-type cache.t2.micro \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --num-cache-clusters 3&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Wait for it to be available. When running the following command, you should see one node group when running:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elasticache describe-replication-groups --replication-group-id my-redis-replication-group&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>To retrieve the primary endpoint:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elasticache describe-replication-groups --replication-group-id my-redis-replication-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query &amp;#34;ReplicationGroups[0].NodeGroups[0].PrimaryEndpoint&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="replication-groups-in-cluster-mode">Replication groups in cluster mode&lt;/h3>
+&lt;p>The cluster mode is enabled by using &lt;code>--num-node-groups&lt;/code> and &lt;code>--replicas-per-node-group&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elasticache create-replication-group \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine redis \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replication-group-id my-redis-replication-group \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --primary-cluster-id my-primary-redis-cluster \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --automatic-failover-enabled \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cache-node-type cache.m5.large \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --num-cache-clusters 2 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replication-group-description &amp;#39;my replication group&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>In the LocalStack log output, you should be able to see that Redis starts in the cluster mode (&lt;code>Running mode=cluster&lt;/code>):&lt;/p>
-&lt;pre tabindex="0">&lt;code>2023-09-11T15:19:20.527 INFO --- [functhread27] l.s.elasticache.redis : 813:M 11 Sep 2023 15:19:20.527 * Running mode=cluster, port=4511.
-&lt;/code>&lt;/pre>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Redis requires at least three or more nodes to form a Redis replication group with cluster mode enabled.
-Hence, if the user requests only two node groups, we transparently upgrade to three nodes automatically to avoid raising an error.
-&lt;/div>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replication-group-id my-clustered-redis-replication-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replication-group-description &amp;#39;my clustered replication group&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cache-node-type cache.t2.micro \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --num-node-groups 2 \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --replicas-per-node-group 2&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Note that the group nodes do not have a primary endpoint. Instead they have a &lt;code>ConfigurationEndpoint&lt;/code>, which you can connect to using &lt;code>redis-cli -c&lt;/code> where &lt;code>-c&lt;/code> is for cluster mode.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal elasticache describe-replication-groups --replication-group-id my-clustered-redis-replication-group \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --query &amp;#34;ReplicationGroups[0].ConfigurationEndpoint&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h2 id="resource-browser">Resource browser&lt;/h2>
 &lt;p>The LocalStack Web Application provides a Resource Browser for managing ElastiCache resources.
 You can access the Resource Browser by opening the LocalStack Web Application in your browser and navigating to the Resources section, then clicking on ElastiCache.&lt;/p>
@@ -3550,10 +3496,10 @@ alt="Create a ElastiCache cluster in the resource browser"/> &lt;/li>
 &lt;/ul>
 &lt;h2 id="limitations">Limitations&lt;/h2>
 &lt;p>LocalStack currently supports Redis single-node and cluster mode, but not memcached.
-Moreover, LocalStack emulation support for ElastiCache is mostly centered around starting/stopping Redis servers.
-Resource necessary to operate a cluster, like parameter groups, security groups, subnets groups, etc. are mocked, but have no effect on the functioning of the Redis servers.
-LocalStack currently doesn&amp;rsquo;t support ElastiCache snapshots, users, user groups, service updates, global replication groups, migrations or tests.
-You can find a detailed list of covered API methods on the &lt;a href="/references/coverage/coverage_elasticache/">ElastiCache coverage page&lt;/a>.&lt;/p></description></item><item><title>User-Guide: IoT</title><link>/user-guide/aws/iot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iot/</guid><description>
+Moreover, LocalStack emulation support for ElastiCache is mostly centered around starting/stopping Redis servers.&lt;/p>
+&lt;p>Resources necessary to operate a cluster, like parameter groups, security groups, subnets groups, etc. are mocked, but have no effect on the functioning of the Redis servers.&lt;/p>
+&lt;p>LocalStack currently doesn&amp;rsquo;t support ElastiCache snapshots, failovers, users/passwords, service updates, replication scaling, SSL, migrations, service integration (like CloudWatch/Kinesis log delivery, SNS notifications) or tests.&lt;/p>
+&lt;p>You can find a detailed list of covered API methods on the &lt;a href="/references/coverage/coverage_elasticache/">ElastiCache coverage page&lt;/a>.&lt;/p></description></item><item><title>User-Guide: IoT</title><link>/user-guide/aws/iot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/iot/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>AWS IoT provides cloud services to manage IoT fleet and integrate them with other AWS services&lt;/p>
 &lt;p>LocalStack Pro supports IoT Core, IoT Data, IoT Analytics and related APIs as well as an in-built MQTT broker.
@@ -3566,7 +3512,7 @@ The supported APIs are available on our &lt;a href="https://docs.localstack.clou
 To retrieve the MQTT endpoint, use the &lt;a href="https://docs.aws.amazon.com/iot/latest/apireference/API_DescribeEndpoint.html">&lt;code>DescribeEndpoint&lt;/code>&lt;/a> operation.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal iot describe-endpoint
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpointAddress&amp;#34;: &amp;#34;localhost.localstack.cloud:4510&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;endpointAddress&amp;#34;: &amp;#34;000000000000.iot.eu-central-1.localhost.localstack.cloud:4510&amp;#34;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Hint&lt;/h4>
@@ -3578,19 +3524,19 @@ You should make a &lt;code>DescribeEndpoint&lt;/code> call to ensure the broker 
 In this example, we will use the &lt;a href="https://hivemq.github.io/mqtt-cli/docs/installation/">Hive MQTT CLI&lt;/a>.&lt;/p>
 &lt;p>Run the following command to subscribe to an MQTT topic.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mqtt subscribe \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --host localhost.localstack.cloud \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --host 000000000000.iot.eu-central-1.localhost.localstack.cloud \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --port 4510 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic climate&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>In another terminal, publish a message to this topic.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mqtt publish \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --host localhost.localstack.cloud \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --host 000000000000.iot.eu-central-1.localhost.localstack.cloud \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --port 4510 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --topic climate \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -m &amp;#34;temperature=30°C;humidity=60%&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>This message will be pushed to all subscribers of this topic, including the one in the first terminal.&lt;/p>
 &lt;h2 id="authentication">Authentication&lt;/h2>
 &lt;p>LocalStack IoT maintains its own root certificate authority which is regenerated at every run.
-The root CA certificate can be retrieved from &lt;a href="http://local.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem">http://local.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem&lt;/a>.&lt;/p>
+The root CA certificate can be retrieved from &lt;a href="http://localhost.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem">http://localhost.localstack.cloud:4566/_aws/iot/LocalStackIoTRootCA.pem&lt;/a>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 AWS provides its root CA certificate at &lt;a href="https://www.amazontrust.com/repository/AmazonRootCA1.pem">https://www.amazontrust.com/repository/AmazonRootCA1.pem&lt;/a>.

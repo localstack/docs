@@ -103,7 +103,7 @@ Also, it configures the DNS route to exclusively (and only) route the following 
 &lt;ol>
 &lt;li>
 &lt;p>Find out the bridge interface and container IP of your LocalStack container.
-Use &lt;code>docker inspect localstack_main&lt;/code> to get the IP address and network, then &lt;code>docker inspect network&lt;/code> to get the interface name.
+Use &lt;code>docker inspect localstack-main&lt;/code> to get the IP address and network, then &lt;code>docker inspect network&lt;/code> to get the interface name.
 If the interface name is not mentioned, it is usually the first 12 characters of the network ID prefixed with &lt;code>br-&lt;/code>, like &lt;code>br-0ae393d3345e&lt;/code>.
 If you use the default bridge network, it is usually &lt;code>docker0&lt;/code>.&lt;/p>
 &lt;/li>
@@ -163,47 +163,4 @@ If you are using the LocalStack DNS server, DNS rebind protection should not cau
 If not, please check the configuration of your router / DNS if the Rebind Protection is active or &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#system-dns-configuration">enable the LocalStack DNS on your system&lt;/a>.&lt;/p>
 &lt;h2 id="customizing-internal-endpoint-resolution">Customizing internal endpoint resolution&lt;/h2>
 &lt;p>The DNS name &lt;code>localhost.localstack.cloud&lt;/code> (and any subdomains like &lt;code>mybucket.s3.localhost.localstack.cloud&lt;/code>) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.&lt;/p>
-&lt;p>Please refer to the steps in the &lt;a href="/user-guide/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item><item><title>User-Guide: Patched AWS SDKs for Lambdas (Deprecated)</title><link>/user-guide/tools/transparent-endpoint-injection/patched-sdks/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/transparent-endpoint-injection/patched-sdks/</guid><description>
-&lt;div class="alert alert-warning" role="alert">
-&lt;h4 class="alert-heading">Warning&lt;/h4>
-Patched AWS SDKs for Lambdas are &lt;strong>deprecated&lt;/strong> and only used by the old lambda provider.
-The new lambda provider (active since LocalStack 2.0) uses DNS-based domain resolution (except for the Ruby runtime).&lt;br>
-Please refer to &lt;a href="/user-guide/aws/lambda/">Lambda providers&lt;/a> for more details about the new Lambda implementation.
-&lt;/div>
-&lt;p>The Lambda runtime in LocalStack uses patched AWS SDKs, which are configured to target the local APIs instead of the real AWS.
-This behavior is enabled by default for most Lambda runtimes when using LocalStack Pro.&lt;/p>
-&lt;p>Assuming you had a Python Lambda handler that attempts to list all S3 buckets. In the past, you had to manually configure the &lt;code>endpoint_url&lt;/code> parameter on the boto3 client (and potentially use environment switches for dev/prod in your test code):&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;s3&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_buckets&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>With the patched AWS SDKs, it now becomes possible to deploy your unmodified production code to LocalStack, simply creating a boto3 client with default settings. The invocations of the boto3 client will be automatically forwarded to the local APIs:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">handler&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">event&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">context&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;s3&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87">print&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_buckets&lt;/span>&lt;span style="color:#000;font-weight:bold">())&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-This functionality only works when using the SDKs provided by the Lambda execution environment itself.
-If you choose to ship your own SDKs with your Lambda or using a layer, it will fallback to the &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">DNS based transparent execution&lt;/a> if enabled, since those SDK versions will not be patched.
-&lt;/div>
-&lt;p>This feature works by patching the AWS SDKs in the docker images, which provide the execution environment for Lambdas within LocalStack.&lt;/p>
-&lt;p>The main advantage of this mode is, that no DNS magic is involved, and SSL certificate checks do not have to be disabled.&lt;/p>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>If you want to disable this behavior, and use the DNS server to resolve the endpoints for AWS, you can disable this behavior by using:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">TRANSPARENT_LOCAL_ENDPOINTS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="supported-runtimes">Supported Runtimes&lt;/h2>
-&lt;p>Currently, LocalStack supports patching the SDKs for the following runtimes:&lt;/p>
-&lt;ul>
-&lt;li>Python (using boto3)&lt;/li>
-&lt;li>NodeJS&lt;/li>
-&lt;li>Ruby&lt;/li>
-&lt;li>Java&lt;/li>
-&lt;/ul>
-&lt;p>Also, these patched SDKs are only available in the following Lambda execution modes:&lt;/p>
-&lt;ul>
-&lt;li>docker&lt;/li>
-&lt;li>docker-reuse&lt;/li>
-&lt;/ul>
-&lt;p>This feature is currently not supported for custom Lambda container images.&lt;/p></description></item></channel></rss>
+&lt;p>Please refer to the steps in the &lt;a href="/user-guide/aws/route53/">Route53 docs&lt;/a> for more details on how the internal DNS name can be customized.&lt;/p></description></item></channel></rss>
