@@ -55,15 +55,20 @@ This conversion can cause problems when it's not needed, such as with `"--name /
 To prevent this, you can temporarily set the `MSYS_NO_PATHCONV` environment variable.
 Another workaround is to double the first slash in your command to prevent the POSIX-to-Windows path conversion.
 
-```bash
-#set the environment variable
-MSYS_NO_PATHCONV=1 aws ssm put-parameter --name "/test/parameter/new" --type String --value "test"
-aws ssm get-parameter --name "/test/parameter/new"
+This will lead to issues with Git Bash
+{{< command >}}
+$ aws ssm get-parameter --name "/test/parameter/new"
+{{< / command >}}
 
-# double the first slash
-aws ssm put-parameter --name "//test/parameter/new" --type String --value "test"
-aws ssm get-parameter --name "/test/parameter/new"
-```
+Option 1: Set the environment variable
+{{< command >}}
+$ MSYS_NO_PATHCONV=1 aws ssm put-parameter --name "/test/parameter/new" --type String --value "test"
+{{< / command >}}
+
+Option 2: Double the first slash
+{{< command >}}
+$ aws ssm put-parameter --name "//test/parameter/new" --type String --value "test"
+{{< / command >}}
 
 For additional known issues related to Git Bash, you can refer to the following link: [Git Bash Known Issues](https://github.com/git-for-windows/build-extra/blob/main/ReleaseNotes.md#known-issues)
 
