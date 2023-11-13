@@ -60,13 +60,13 @@ will be added only upon successful calls:
 The `DYNAMODB_ERROR_PROBABILITY` behaves the same as with Kinesis, returning a `ProvisionedThroughputExceededException` response from the DynamoDB service.
 This field also takes a decimal value between 0.0(default) and 1.0.
 
-Start LocalStack defining 0.8 value for the `DYNAMODB_ERROR_PROBABILITY`:
+Start LocalStack, defining a 0.8 value for the `DYNAMODB_ERROR_PROBABILITY`:
 
 ```bash
 $ DYNAMODB_ERROR_PROBABILITY=0.8 localstack start
 ```
 
-We can proceed to create a table:
+We can now proceed to create a table:
 
 ```bash
 $ awslocal dynamodb create-table \
@@ -76,7 +76,7 @@ $ awslocal dynamodb create-table \
         --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 ```
 
-And can start adding items:
+And we can start adding items:
 
 ```bash
 awslocal dynamodb put-item \

@@ -278,3 +278,74 @@ $ awslocal dynamodb scan --table-name Products
     "ConsumedCapacity": null
 }
 ```
+
+## Adding latency
+
+The LocalStack FIS service is also capable of adding latency by using the following experiment template:
+
+```bash
+{
+  "description": "template for testing delays in API calls",
+  "actions": {
+    "latency": {
+      "actionId": "localstack:generic:api-error",
+      "parameters": {
+        "latency": "4"
+      }
+    }
+  },
+  "stopConditions": [
+    {
+      "source": "none"
+    }
+  ],
+  "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
+}
+```
+
+Let's add this experiment definition to a JSON file and create an experiment template via the FIS service:
+
+```bash
+$ awslocal fis create-experiment-template --cli-input-json file://latency-experiment.json
+{
+    "experimentTemplate": {
+        "id": "966f5632-4e2c-4567-b99c-436c333e523f",
+        "description": "template for testing delays in API calls",
+        "actions": {
+            "latency": {
+                "actionId": "localstack:generic:api-error",
+                "parameters": {
+                    "latency": "4"
+                }
+            }
+        },
+        "stopConditions": [
+            {
+                "source": "none"
+            }
+        ],
+        "creationTime": 1699619228.208613,
+        "lastUpdateTime": 1699619228.208613,
+        "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
+    }
+}
+
+$ awslocal fis start-experiment --experiment-template-id 966f5632-4e2c-4567-b99c-436c333e523f
+```
+
+With the experiment active, we can try using the same sample stack to better understand what happens when there's a 4 second delay on 
+each service call:
+
+```bash
+ curl --location 'http://12345.execute-api.localhost.localstack.cloud:4566/dev/productApi' \
+                                                           --header 'Content-Type: application/json' \
+                                                           --data '{
+                                                         "id": "prod-1088",
+                                                         "name": "Super Widget",
+                                                         "price": "29.99",
+                                                         "description": "A versatile widget that can be used for a variety of purposes. Durable, reliable, and affordable."
+                                                       }
+                                                       '
+An error occurred (InternalError) when calling the GetResources operation (reached max retries: 4): Failing as per Fault Injection Simulator configuration⏎
+```
+

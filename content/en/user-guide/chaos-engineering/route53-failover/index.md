@@ -19,7 +19,7 @@ This guide is designed for users new to the Route53 and FIS services and assumes
 [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. To read extensively about the FIS service, please
 refer to the dedicated [documentation page](/user-guide/aws/fis/) and [here](/user-guide/aws/route53/) for Route53.
 
-In this simple example we have an AWS-based architecture with an active-primary and passive-standby setup. Route53 
+In this example we have an AWS-based architecture with an active-primary and passive-standby setup. Route53 
 directs traffic to the primary region, which handles product-related requests via API Gateway and Lambda functions, 
 with data stored in a DynamoDB. In case of primary region failure, Route53 switches to the standby region, which 
 is kept in sync through a replication Lambda function. We can better visualize it with the diagram:
@@ -38,19 +38,19 @@ $ docker compose up
 
 ## Creating the resources 
 
-In order to get started, we need to deploy the same set of services in both regions, `us-east-1` and `eu-central-1`. The resources 
+In order to get started, we need to deploy the same set of services in both regions, `us-west-1` and `us-east-1`. The resources 
 defined in the `init-resources.sh` file will be created at the start of the LocalStack container, using `initialization hooks` 
 and the `awslocal` CLI tool.
 
 Our goal is to ensure that our system has a backup in case there’s a regional outage for the primary availability zone 
-(`us-east-1`). Let's zoom in on that region and check the resilience mechanisms that are already in place:
+(`us-west-1`). Let's zoom in on that region and check the resilience mechanisms that are already in place:
 
 {{< figure src="route53-failover-2.png" >}}
 
-- The primary API Gateway has a health check endpoint that only returns a 200 HTTP status code, just so we make sure it’s still there.
+- The primary API Gateway has a health check endpoint that only returns a 200 HTTP status code, just to make sure it’s still there.
 - Synchronizing data across different regions can be done through AWS-native solutions like DynamoDB Streams and AWS Lambda, where changes 
 to the primary table trigger a Lambda function that replicates the changes to the secondary table. This setup is critical 
-for achieving high availability and disaster recovery objectives
+for achieving high availability and disaster recovery objectives.
 
 
 ## Configuring Route53
@@ -67,7 +67,7 @@ We’re going to retrieve the hosted zone ID, based on its name:
 $ HOSTED_ZONE_ID=$(awslocal route53 create-hosted-zone --name $HOSTED_ZONE_NAME --caller-reference foo | jq -r .HostedZone.Id)
 ```
 
-And let’s also define the health check ID for the `us-east-1` API Gateway:
+And let’s also define the health check ID for the `us-west-1` API Gateway:
 
 ```bash
 $ HEALTH_CHECK_ID=$(awslocal route53 create-health-check --caller-reference foobar --health-check-config '{
@@ -175,81 +175,66 @@ test.hello-localstack.com. 300	IN	CNAME	12345.execute-api.localhost.localstack.c
 
 Our setup is ready to go. Now it’s time for a little chaos.
 
-To simulate a regional outage for the `us-east-1` region, specifically targeting Lambda functions using AWS FIS, we create an
-experiment that stops the invocation of these functions. This can be achieved by disabling the Lambda invocation API call, 
-which would replicate the effect of an outage. With the primary Lambda functions non-operational, Route 53 health checks would fail,
-triggering the predefined failover policy to redirect traffic to the equivalent Lambda functions in the secondary region,
-ensuring continuity of service.
+To simulate a regional outage for the `us-west-1` region, we create an
+experiment that completely stops the invocation of services in this region, including the healthcheck function. 
+With the primary region non-operational, Route 53 health checks would fail, triggering the predefined failover 
+policy to redirect traffic to the equivalent services in the secondary region, ensuring continuity of service.
 
 ```bash
-$ cat experiment-lambda.json
+$ cat region-outage-experiment.json 
 {
-        "actions": {
-                "Some test action": {
-                        "actionId": "localstack:generic:api-error",
-                        "parameters": {
-                                "service": "lambda",
-                                "operation": "Invoke",
-                                "percentage": "100",
-                                "exception": "Internal Server Error",
-                                "errorCode": "500"
-                        }
-                }
-        },
-        "description": "Template for error return on Lambda invoke.",
-        "stopConditions": [{
-                "source": "none"
-        }],
-        "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
-}
+  "description": "template for internal server error for few regions i.e. us-west-1",
+  "actions": {
+    "regionUnavailable-us-west-1": {
+      "actionId": "localstack:generic:api-error",
+      "parameters": {
+        "region": "us-west-1",
+        "errorCode": "503"
+      }
+    }
+  },
+  "stopConditions": [],
+  "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
+}⏎                                             
 ```
 
-This JSON snippet defines an AWS FIS experiment template that, when executed, will inject a 100% failure rate for 
-the 'Invoke' operation on Lambda services, simulating an 'Internal Server Error' with a 500 error code.
+This FIS experiment template is designed to simulate an `Service Unavailable` error (503 error code) in the "us-west-1" region.
 Let's create the experiment template:
 
 ```bash
-$ awslocal fis create-experiment-template --cli-input-json file://experiment-lambda.json --region us-east-1
+$ awslocal fis create-experiment-template --cli-input-json file://region-outage-experiment.json
 ```
 
-Notice the region flag. This experiment template is created in the specified region and it will only affect the Lambda functions
-within that region.
+After the creation of the experiment template, we can use its ID to start the experiment.
 
 ```bash
 awslocal fis start-experiment --experiment-template-id 6cd0d0e2-b48d-4337-9eec-6e740764c2cc
 {
     "experiment": {
-        "id": "4aee16de-3f3f-4675-8b92-31bb14ed4b7e",
-        "experimentTemplateId": "6cd0d0e2-b48d-4337-9eec-6e740764c2cc",
+        "id": "651b5196-b244-4a8b-8ab6-d7b9e13998a0",
+        "experimentTemplateId": "d3a1a31b-c52e-49ec-8387-8f5eb75a11df",
         "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole",
         "state": {
             "status": "running"
         },
         "actions": {
-            "Some test action": {
+            "regionUnavailable-us-east-1": {
                 "actionId": "localstack:generic:api-error",
                 "parameters": {
-                    "service": "lambda",
-                    "operation": "Invoke",
-                    "percentage": "100",
-                    "exception": "Internal Server Error",
-                    "errorCode": "500"
+                    "region": "us-west-1",
+                    "errorCode": "503"
                 }
             }
         },
-        "stopConditions": [
-            {
-                "source": "none"
-            }
-        ],
-        "creationTime": 1699357415.300655,
-        "startTime": 1699357415.300655
+        "stopConditions": [],
+        "creationTime": 1699902569.439826,
+        "startTime": 1699902569.439826
     }
 }
 ```
 
 Once the experiment is started Route 53 will detect the failure through its health check mechanism and,
-according to its failover configuration, will automatically reroute the traffic to the standby region.
+according to the failover configuration, will automatically reroute the traffic to the standby region.
 We can verify that using the `dig` command:
 
 ```bash
@@ -264,7 +249,7 @@ test.hello-localstack.com. 300	IN	CNAME	67890.execute-api.localhost.localstack.c
  .....
 
 ```
-Now our hosted zone name is pointing to the secondary API Gateway endpoint, meaning services in `eu-central-1` will be used.
+Now our hosted zone name is pointing to the secondary API Gateway endpoint, meaning services in `us-east-1` will be used.
 
 With a very simple Python script we can emulate a backend handling of this switch:
 
@@ -306,7 +291,7 @@ except Exception as e:
 This script resolves a CNAME record for 'test.hello-localstack.com' using a specified local DNS server, constructs a 
 URL with the resolved domain, makes an HTTP GET request to that URL, and prints the response or error encountered.
 
-If we run it, the Product object with the specified ID will be retrieved using the `eu-central-1` DynamoDB:
+If we run it, the Product object with the specified ID will be retrieved using the `us-east-1` DynamoDB:
 
 ```bash
 $ python3 dns-resolver.py
