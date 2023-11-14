@@ -154,7 +154,12 @@ def main(
         # check pro implementation details first
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
-            service = impl_details.setdefault(row["service"], {})
+            service_name = row["service"]
+            if service_name == "sqs-query":
+                # we currently have "sqs" + "sqs-query" endpoints because of different protocols
+                # the resulting coverage should not care about this though
+                continue
+            service = impl_details.setdefault(service_name, {})
             service[row["operation"]] = {
                 "implemented": True if row["is_implemented"] == "True" else False,
                 "pro": True,
@@ -165,6 +170,11 @@ def main(
     ) as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
+            service_name = row["service"]
+            if service_name == "sqs-query":
+                # we currently have "sqs" + "sqs-query" endpoints because of different protocols
+                # the resulting coverage should not care about this though
+                continue
             service = impl_details.setdefault(row["service"], {})
             # update all operations that are available in community
             if row["is_implemented"] == "True":
@@ -187,11 +197,16 @@ def main(
         if service in ["neptune", "docdb"]:
             check_service = "rds"
 
+        services_of_interest = [check_service]
+        if service == "sqs":
+            # also collect all metrics for "sqs-query" and add to the service
+            services_of_interest.append("sqs-query")
+        
         # now check the actual recorded test data and map the information
         recorded_metrics = aggregate_recorded_raw_data(
             base_dir=path_to_raw_metrics,
             operations=impl_details.get(service),
-            service_of_interest=check_service,
+            services_of_interest=services_of_interest,
         )
 
         create_data_templates_for_service(
@@ -227,7 +242,7 @@ def _init_metric_recorder(operations_dict: dict):
 
 
 def aggregate_recorded_raw_data(
-    base_dir: str, operations: dict, service_of_interest: str
+    base_dir: str, operations: dict, services_of_interest: list[str]
 ):
     """
     collects all the raw metric data and maps them in a dict with information about the service, and a "details"
@@ -279,7 +294,7 @@ def aggregate_recorded_raw_data(
             csv_dict_reader = csv.DictReader(csv_obj)
             for metric in csv_dict_reader:
                 service = metric.get("service")
-                if service != service_of_interest:
+                if service not in services_of_interest:
                     continue
                 
                 node_id = metric.get("node_id") or metric.get("test_node_id")
