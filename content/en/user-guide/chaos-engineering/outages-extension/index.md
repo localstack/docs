@@ -70,7 +70,21 @@ $ tflocal plan
 $ tflocal apply
 ```
 
-{{< figure src="outages-1.png" >}}
+```bash
+Apply complete! Resources: 57 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+api_id = "3eed6d1d"
+api_invoke_url = "https://3eed6d1d.execute-api.us-east-1.amazonaws.com"
+api_invoke_url_foodstore_foods = "https://3eed6d1d.execute-api.us-east-1.amazonaws.com/foodstore/foods/{foodId}"
+api_invoke_url_petstore_pets = "https://3eed6d1d.execute-api.us-east-1.amazonaws.com/petstore/domestic/pets/{petId}"
+api_test_page = <sensitive>
+container_security_group = "sg-db749514a062de41c"
+ecs_cluster_name = "arn:aws:ecs:us-east-1:000000000000:cluster/ecs-cluster"
+private_dns_namespace = "60bfac90"
+vpc_id = "vpc-f9d6b124"
+```
 
 Now let's apply some new changes to some of the resources, by increasing the number of tasks from the specified `task_definition`
 that we want the ECS service to run and maintain, from 3 to 5. Let's say we also want to upgrade the `openapi` specification version that
