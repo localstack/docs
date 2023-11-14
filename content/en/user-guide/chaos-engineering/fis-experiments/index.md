@@ -15,14 +15,14 @@ and monitoring their effects, enabling developers to proactively prepare for rea
 
 This guide is designed for users new to the Fault Injection Simulator and assumes basic knowledge of the AWS CLI and our
 [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. To read extensively about the FIS service, please
-refer to the dedicated [documentation page](/user-guide/aws/fis/).
+refer to the dedicated [documentation page](https://docs.localstack.cloud/user-guide/aws/fis/).
 
 
 In this example of utilizing AWS Fault Injection Simulator (FIS) to cause controlled outages to a DynamoDB database we will
 demonstrate testing software behavior and error handling. This kind of test helps to ensure that the software can handle 
 database downtime gracefully by implementing strategies such as queuing requests to prevent data loss. This proactive error
 handling ensures that the system can maintain its operations despite partial failures. You can follow along with the full solution
-in this GitHub [repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/FIS-experiments).
+in this GitHub [repository]().
 
 Start LocalStack using the `docker-compose.yml` file from the repository and make sure you provide your API key as an environment
 variable:

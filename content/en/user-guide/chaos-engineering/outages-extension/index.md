@@ -15,7 +15,7 @@ verifying the reliability of infrastructure as code (IaC) and automated provisio
 ## Getting started
 
 In this example we will be using a popular IaC tool, Terraform, to define our desired infrastructure in a declarative manner.
-To follow along, please refer to this use-case dedicated [repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/extension-outages).
+To follow along, please refer to this use-case dedicated [repository]().
 
 To get started with observing Terraform's behavior during partial outages, you would begin by writing a basic Terraform 
 configuration file that defines the required cloud resources, such as virtual machines, networks, or databases on AWS. 

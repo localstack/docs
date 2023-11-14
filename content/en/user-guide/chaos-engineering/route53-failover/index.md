@@ -17,7 +17,7 @@ It's a strategic safeguard, integral for maintaining seamless user experiences u
 
 This guide is designed for users new to the Route53 and FIS services and assumes basic knowledge of the AWS CLI and our
 [`awslocal`](https://github.com/localstack/awscli-local) wrapper script. To read extensively about the FIS service, please
-refer to the dedicated [documentation page](/user-guide/aws/fis/) and [here](/user-guide/aws/route53/) for Route53.
+refer to the dedicated [documentation page](https://docs.localstack.cloud/user-guide/aws/fis/) and [here](https://docs.localstack.cloud/user-guide/aws/route53/) for Route53.
 
 In this example we have an AWS-based architecture with an active-primary and passive-standby setup. Route53 
 directs traffic to the primary region, which handles product-related requests via API Gateway and Lambda functions, 

@@ -15,7 +15,7 @@ architecture remains robust under adverse conditions with minimal upfront config
 
 This guide is designed for demonstrating the `DYNAMODB_ERROR_PROBABILITY` and `KINESIS_ERROR_PROBABILITY` configuration flags 
 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
-To find out more about all the configuration possibilities please refer to the dedicated [documentation page](/references/configuration/).
+To find out more about all the configuration possibilities please refer to the dedicated [documentation page](https://docs.localstack.cloud/references/configuration/).
 
 ## Kinesis Error Probability
 
