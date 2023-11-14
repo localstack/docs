@@ -2,7 +2,7 @@
 title: "Route53 Failover with FIS"
 linkTitle: "Route53 Failover with FIS"
 weight: 1
-description: Leveraging Route 53 with AWS FIS to architect a robust, self-healing infrastructure that ensures seamless failover and traffic management in response to simulated disruptions.
+description: Integrate FIS with Route 53 to create a resilient, self-repairing infrastructure, which manages traffic effectively during simulated disruptions.
 ---
 
 ## Introduction

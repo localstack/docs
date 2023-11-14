@@ -1,48 +1,44 @@
 ---
 title: "Subsequent Configurations"
 linkTitle: "Subsequent Configurations"
-weight: 1
-description: Configuring LocalStack for chaos engineering via environment variables.
+weight: 4
+description: Set up LocalStack for chaos engineering using environment variables.
 ---
 
 ## Introduction
 
-Injecting controlled chaos into your development environment can significantly bolster the resilience of your services. 
-With LocalStack, users have the option to introduce a few intentional errors into their workflows, specifically targeting
-the Kinesis and DynamoDB services. By simply configuring environment variables you can simulate disruptions. This minimal 
-setup allows you to observe and strengthen the response mechanisms of these critical AWS services, ensuring your 
-architecture remains robust under adverse conditions with minimal upfront configuration.
+LocalStack allows users to inject intentional errors, particularly in Kinesis and DynamoDB. You can introduce controlled chaos into your development environment enhance to enhance service resilience. By configuring environment variables, you can simulate disruptions. This simple setup helps improve the response mechanisms of these key AWS services, ensuring robust architecture under challenging conditions with minimal initial configuration.
 
-This guide is designed for demonstrating the `DYNAMODB_ERROR_PROBABILITY` and `KINESIS_ERROR_PROBABILITY` configuration flags 
-and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
-To find out more about all the configuration possibilities please refer to the dedicated [documentation page](https://docs.localstack.cloud/references/configuration/).
+This guide demonstrates the `DYNAMODB_ERROR_PROBABILITY` and `KINESIS_ERROR_PROBABILITY` configuration flags. The guide assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 ## Kinesis Error Probability
 
-By using `KINESIS_ERROR_PROBABILITY`, the user can define random injections of `ProvisionedThroughputExceededException` errors into Kinesis API responses.
-This field take a decimal value between 0.0(default) and 1.0.
+The `KINESIS_ERROR_PROBABILITY` setting allows users to introduce `ProvisionedThroughputExceededException` errors randomly into Kinesis API responses. The value for this setting ranges from 0.0 (default) to 1.0.
 
-Let's start LocalStack defining a 50% change of Kinesis returning a `ProvisionedThroughputExceededException` response.
+To demonstrate, set up LocalStack with `KINESIS_ERROR_PROBABILITY` at 0.5, indicating a 50% chance of receiving a `ProvisionedThroughputExceededException` from Kinesis.
 
-```bash
+{{< command >}}
 $ KINESIS_ERROR_PROBABILITY=0.5 localstack start
-```
+{{< /command >}}
 
-After, we need to create a Kinesis stream using the AWS CLI, using the `create-stream` command. Here's an example that 
-creates a Kinesis stream named ProductsStream with a specified number of shards:
+Next, create a Kinesis stream using the AWS CLI with the [`CreateStream`](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_CreateStream.html) API. For example, to create a stream named "ProductsStream" with one shard, use:
 
-```bash
-$ awslocal kinesis create-stream --stream-name ProductsStream --shard-count 1
-```
+{{< command >}}
+$ awslocal kinesis create-stream \
+        --stream-name ProductsStream \
+        --shard-count 1
+{{< /command >}}
 
-Let's assume we have a convert Product JSON into a Base64-encoded string. Now, let's put this record into the stream:
+Assuming you have a product JSON converted into a Base64-encoded string, you can add this record to the stream like so:
 
-```bash
-$ awslocal kinesis put-record --stream-name ProductsStream --partition-key "12345" --data "eyJwcm9kdWN0SWQiOiIxMjMiLCJwcm9kdWN0TmFtZSI6IlN1cGVyV2lkZ2V0IiwicHJvZHVjdFByaWNlIjoiMTk5Ljk5In0="
-```
+{{< command >}}
+$ awslocal kinesis put-record \
+        --stream-name ProductsStream \
+        --partition-key "12345" \
+        --data "eyJwcm9kdWN0SWQiOiIxMjMiLCJwcm9kdWN0TmFtZSI6IlN1cGVyV2lkZ2V0IiwicHJvZHVjdFByaWNlIjoiMTk5Ljk5In0="
+{{< /command >}}
 
-After repeating this operation with similar values, we can observe the logs and notice that our configuration works as expected, however, the records 
-will be added only upon successful calls:
+After performing similar operations repeatedly, you can check the logs to verify that the configuration is working as intended. Remember, records will only be added during successful calls.
 
 ```bash
 2023-11-09T23:33:49.867  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS kinesis.CreateStream => 200
@@ -57,16 +53,15 @@ will be added only upon successful calls:
 
 ## DynamoDB Error Probability
 
-The `DYNAMODB_ERROR_PROBABILITY` behaves the same as with Kinesis, returning a `ProvisionedThroughputExceededException` response from the DynamoDB service.
-This field also takes a decimal value between 0.0(default) and 1.0.
+The `DYNAMODB_ERROR_PROBABILITY` setting, similar to the Kinesis configuration, allows for random `ProvisionedThroughputExceededException` responses from the DynamoDB service. It also accepts a decimal value between 0.0 (default) and 1.0.
 
-Start LocalStack, defining a 0.8 value for the `DYNAMODB_ERROR_PROBABILITY`:
+To start LocalStack with a high error probability for DynamoDB, set `DYNAMODB_ERROR_PROBABILITY` to 0.8:
 
-```bash
+{{< command >}}
 $ DYNAMODB_ERROR_PROBABILITY=0.8 localstack start
-```
+{{< /command >}}
 
-We can now proceed to create a table:
+Next, create a DynamoDB table using the AWS CLI with the [`CreateTable`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_CreateTable.html) API. For example, to create a table named "Products" with a primary key of "ProductId", use:
 
 ```bash
 $ awslocal dynamodb create-table \
@@ -76,7 +71,7 @@ $ awslocal dynamodb create-table \
         --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1
 ```
 
-And we can start adding items:
+You can add items to the table using the [`PutItem`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_PutItem.html) API. For example, to add a product with an ID of "123", a name of "SuperWidget", and a price of "199.99", use:
 
 ```bash
 awslocal dynamodb put-item \
@@ -88,8 +83,7 @@ awslocal dynamodb put-item \
         }'
 ```
 
-Now the logs will look a little different. We can observe a more aggressive exception throwing behaviour, before the underlying `boto3`
-retry mechanism kicks in:
+The logs will now show a higher frequency of `ProvisionedThroughputExceededException` errors, followed by successful attempts due to the `boto3` retry mechanism:
 
 ```bash
 2023-11-09T23:59:12.836  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS dynamodb.CreateTable => 200
@@ -109,4 +103,4 @@ retry mechanism kicks in:
 2023-11-10T00:00:01.606  INFO --- [   asgi_gw_1] localstack.request.aws     : AWS dynamodb.PutItem => 200
 ```
 
-Because of the retry mechanism, all items will make it to the DynamoDB table.
+Despite these errors, the retry mechanism ensures that all items are eventually added to the DynamoDB table.

@@ -2,7 +2,7 @@
 title: "Fault Injection Simulator Experiments"
 linkTitle: "Fault Injection Simulator Experiments"
 weight: 1
-description: Perform controlled experiments on your AWS infrastructure, allowing you to simulate faults and observe their impact to build more resilient applications.
+description: Conduct experiments on your AWS infrastructure to simulate faults and understand their effects, enhancing application resilience.
 ---
 
 ## Introduction

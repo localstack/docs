@@ -2,7 +2,7 @@
 title: "Outages Extension"
 linkTitle: "Outages Extension"
 weight: 1 
-description: Simulating service outages to evaluate the resilience of infrastructure provisioning is a core practice of chaos engineering, testing the system's deployment robustness and recovery from anomalies.
+description: Use chaos engineering techniques to mimic service outages by testing your infrastructure's ability to deploy robustly and recover from unexpected events.
 ---
 
 ## Introduction
