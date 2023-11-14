@@ -87,6 +87,12 @@ This section covers configuration options that are specific to certain AWS servi
 | `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
 | `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
 
+### DocumentDB
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `DOCDB_PROXY_CONTAINER` | `0` (default) \|`1` | Whether the DocumentDB starts the MongoDB container proxied over LocalStack container. When enabled lambdas can use the `LOCALSTACK_HOSTNAME` env to connect to the DocumentDB. By default the container starts without proxy as standalone container. |
+
 ### DynamoDB
 
 | Variable | Example Values | Description |

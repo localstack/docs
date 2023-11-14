@@ -8,9 +8,11 @@ description: >
 
 LocalStack Pro supports a basic version of [Amazon DocumentDB](https://aws.amazon.com/documentdb/) for testing.
 LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it
-can be accessed from localhost. When defining a port to access the container, an available port on the host machine will be selected, that means there
-is no pre-defined port range.
-By default, a master user named `test` will be instantiated without a password.
+can be accessed from localhost. 
+
+When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
+
+Using the flag `DOCDB_PROXY_CONTAINER=1` the default behavior changes and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `LOCALSTACK_HOSTNAME` to connect to the instance.
 
 {{< alert title="Information" color="success">}}
 MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability, flexibility, and performance for modern application development.
@@ -19,8 +21,9 @@ non-relational databases, also known as NoSQL databases.
 {{< /alert>}}
 
 DocumentDB currently uses the default configuration of the
-latest [MongoDB Docker image](https://hub.docker.com/_/mongo). It automatically creates a database
-named `test` upon cluster creation.
+latest [MongoDB Docker image](https://hub.docker.com/_/mongo). 
+
+When the `MasterUsername` and `MasterUserPassword` are set for the creation for the DocumentDB cluster or instance, the container will be started with the correspoding ENVs `MONGO_INITDB_ROOT_USERNAME` respectively `MONGO_INITDB_ROOT_PASSWORD`. 
 
 
 {{< alert title="Note" >}}
@@ -161,6 +164,8 @@ $ awslocal docdb describe-db-clusters --db-cluster-identifier test-docdb-cluster
 }
 ```
 
+### Connect to DocumentDB using mongosh
+
 Interacting with the databases is done using `mongosh`, which is an official command-line shell and
 interactive MongoDB shell provided by MongoDB.
 It is designed to provide a modern and enhanced user experience for interacting with MongoDB
@@ -222,3 +227,80 @@ test-company> exit
 
 For more information on how to use MongoDB with `mongosh` please refer to
 the [MongoDB documentation](https://www.mongodb.com/docs/).
+
+### Connect to DocumentDB using Node.js Lambda
+
+{{< alert title="Important" color="success">}}
+You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to use the `LOCALSTACK_HOSTNAME` in lambda to connect to the instance.
+{{< /alert>}}
+
+The code snippet is a Node.js lambda.
+In this sample we assume that we have a secret where the DocumentDB credentials are stored.
+* The secret arn is passed as env `SECRET_NAME`.
+* The Lambda reads the connection details and connects to the running DocumentDB, which runs in proxied docker container. 
+* As we run inside lambda, we change the host to the `LOCALSTACK_HOSTNAME` to connect to the container.
+* A helper function makes sure the username and password are encoded correctly for the connection URI.
+* We run some sample commands to verify the connection works.
+
+{{< command >}}
+const AWS = require('aws-sdk');
+const { MongoClient } = require('mongodb');
+
+const secretsManager = new AWS.SecretsManager();
+const secretName = process.env.SECRET_NAME;
+
+function customURIEncode(str) {
+  // encode also characters that encodeURIComponent does not encode
+  return encodeURIComponent(str)
+    .replace(/!/g, '%21')
+    .replace(/~/g, '%7E')
+    .replace(/\*/g, '%2A')
+    .replace(/'/g, '%27')
+    .replace(/\(/g, '%28')
+    .replace(/\)/g, '%29');
+}
+
+exports.handler = async (event) => {
+  try {
+    // Retrieve secret
+    const secretValue = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
+    const { username, password, host, port } = JSON.parse(secretValue.SecretString);
+    var host_name = host;
+    const user = customURIEncode(username);
+    const pwd = customURIEncode(password);
+
+    if(process.env.LOCALSTACK_HOSTNAME !== undefined){
+        host_name = process.env.LOCALSTACK_HOSTNAME;
+    }
+    // choose any database
+    const dbname = "mydb";
+
+    // retryWrites is by default true, but not supported by AWS DocumentDB
+    const uri = `mongodb://${user}:${pwd}@${host_name}:${port}/?retryWrites=false`;
+    
+    // Connect to DocumentDB
+    const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    const db = client.db(dbname);
+    
+    // Insert data
+    const collection = db.collection('your_collection');
+    await collection.insertOne({ key: 'value' });
+
+    // Query data
+    const result = await collection.findOne({ key: 'value' });
+    await client.close();
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result),
+    };
+  } catch (error) {
+    console.error('Error: ', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
+};
+
+{{< /command >}}
