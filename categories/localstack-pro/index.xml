@@ -2954,9 +2954,9 @@ To disable a policy type, you can run:
 &lt;/ol></description></item><item><title>User-Guide: DocumentDB (DocDB)</title><link>/user-guide/aws/docdb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/docdb/</guid><description>
 &lt;p>LocalStack Pro supports a basic version of &lt;a href="https://aws.amazon.com/documentdb/">Amazon DocumentDB&lt;/a> for testing.
 LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it
-can be accessed from localhost. When defining a port to access the container, an available port on the host machine will be selected, that means there
-is no pre-defined port range.
-By default, a master user named &lt;code>test&lt;/code> will be instantiated without a password.&lt;/p>
+can be accessed from localhost.&lt;/p>
+&lt;p>When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.&lt;/p>
+&lt;p>Using the flag &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> the default behavior changes and the container will be started as proxied container. Meaning a port from the &lt;a href="/references/external-ports/">pre-defined port&lt;/a> range will be chosen, and when using lambda, you can use &lt;code>LOCALSTACK_HOSTNAME&lt;/code> to connect to the instance.&lt;/p>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Information&lt;/h4>
 MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability, flexibility, and performance for modern application development.
@@ -2964,8 +2964,8 @@ It belongs to the family of
 non-relational databases, also known as NoSQL databases.
 &lt;/div>
 &lt;p>DocumentDB currently uses the default configuration of the
-latest &lt;a href="https://hub.docker.com/_/mongo">MongoDB Docker image&lt;/a>. It automatically creates a database
-named &lt;code>test&lt;/code> upon cluster creation.&lt;/p>
+latest &lt;a href="https://hub.docker.com/_/mongo">MongoDB Docker image&lt;/a>.&lt;/p>
+&lt;p>When the &lt;code>MasterUsername&lt;/code> and &lt;code>MasterUserPassword&lt;/code> are set for the creation for the DocumentDB cluster or instance, the container will be started with the correspoding ENVs &lt;code>MONGO_INITDB_ROOT_USERNAME&lt;/code> respectively &lt;code>MONGO_INITDB_ROOT_PASSWORD&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Because LocalStack utilizes a MongoDB container to provide DocumentDB storage, LocalStack may not
@@ -3088,7 +3088,8 @@ the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Interacting with the databases is done using &lt;code>mongosh&lt;/code>, which is an official command-line shell and
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="connect-to-documentdb-using-mongosh">Connect to DocumentDB using mongosh&lt;/h3>
+&lt;p>Interacting with the databases is done using &lt;code>mongosh&lt;/code>, which is an official command-line shell and
 interactive MongoDB shell provided by MongoDB.
 It is designed to provide a modern and enhanced user experience for interacting with MongoDB
 databases.&lt;/p>
@@ -3130,7 +3131,80 @@ by &lt;code>mongosh&lt;/code>:&lt;/p>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>employees
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>test-company&amp;gt; exit&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>For more information on how to use MongoDB with &lt;code>mongosh&lt;/code> please refer to
-the &lt;a href="https://www.mongodb.com/docs/">MongoDB documentation&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Elastic Compute Cloud (EC2)</title><link>/user-guide/aws/elastic-compute-cloud/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-compute-cloud/</guid><description>
+the &lt;a href="https://www.mongodb.com/docs/">MongoDB documentation&lt;/a>.&lt;/p>
+&lt;h3 id="connect-to-documentdb-using-nodejs-lambda">Connect to DocumentDB using Node.js Lambda&lt;/h3>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Important&lt;/h4>
+You need to set &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> when starting LocalStack to be able to use the &lt;code>LOCALSTACK_HOSTNAME&lt;/code> in lambda to connect to the instance.
+&lt;/div>
+&lt;p>The code snippet is a Node.js lambda.
+In this sample we assume that we have a secret where the DocumentDB credentials are stored.&lt;/p>
+&lt;ul>
+&lt;li>The secret arn is passed as env &lt;code>SECRET_NAME&lt;/code>.&lt;/li>
+&lt;li>The Lambda reads the connection details and connects to the running DocumentDB, which runs in proxied docker container.&lt;/li>
+&lt;li>As we run inside lambda, we change the host to the &lt;code>LOCALSTACK_HOSTNAME&lt;/code> to connect to the container.&lt;/li>
+&lt;li>A helper function makes sure the username and password are encoded correctly for the connection URI.&lt;/li>
+&lt;li>We run some sample commands to verify the connection works.&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>const AWS = require(&amp;#39;aws-sdk&amp;#39;);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const { MongoClient } = require(&amp;#39;mongodb&amp;#39;);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const secretsManager = new AWS.SecretsManager();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const secretName = process.env.SECRET_NAME;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>function customURIEncode(str) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // encode also characters that encodeURIComponent does not encode
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> return encodeURIComponent(str)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .replace(/!/g, &amp;#39;%21&amp;#39;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .replace(/~/g, &amp;#39;%7E&amp;#39;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .replace(/\*/g, &amp;#39;%2A&amp;#39;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .replace(/&amp;#39;/g, &amp;#39;%27&amp;#39;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .replace(/\(/g, &amp;#39;%28&amp;#39;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .replace(/\)/g, &amp;#39;%29&amp;#39;);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>exports.handler = async (event) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> try {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Retrieve secret
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const secretValue = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const { username, password, host, port } = JSON.parse(secretValue.SecretString);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var host_name = host;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const user = customURIEncode(username);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const pwd = customURIEncode(password);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> if(process.env.LOCALSTACK_HOSTNAME !== undefined){
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> host_name = process.env.LOCALSTACK_HOSTNAME;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // choose any database
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const dbname = &amp;#34;mydb&amp;#34;;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // retryWrites is by default true, but not supported by AWS DocumentDB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const uri = `mongodb://${user}:${pwd}@${host_name}:${port}/?retryWrites=false`;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Connect to DocumentDB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const db = client.db(dbname);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Insert data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const collection = db.collection(&amp;#39;your_collection&amp;#39;);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> await collection.insertOne({ key: &amp;#39;value&amp;#39; });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Query data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const result = await collection.findOne({ key: &amp;#39;value&amp;#39; });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> await client.close();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> return {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> statusCode: 200,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: JSON.stringify(result),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } catch (error) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> console.error(&amp;#39;Error: &amp;#39;, error);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> return {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> statusCode: 500,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: JSON.stringify({ error: error.message }),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Elastic Compute Cloud (EC2)</title><link>/user-guide/aws/elastic-compute-cloud/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/elastic-compute-cloud/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>EC2 (Elastic Compute Cloud) is a fundamental service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
 EC2 enables users to effortlessly launch and manage virtual servers, commonly referred to as instances.
