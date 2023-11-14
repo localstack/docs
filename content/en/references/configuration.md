@@ -91,7 +91,7 @@ This section covers configuration options that are specific to certain AWS servi
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `DOCDB_PROXY_CONTAINER` | `0` (default) \|`1` | Whether the DocumentDB starts the MongoDB container proxied over LocalStack container. When enabled lambdas can use the `LOCALSTACK_HOSTNAME` env to connect to the DocumentDB. By default the container starts without proxy as standalone container. |
+| `DOCDB_PROXY_CONTAINER` | `0` (default) \|`1` | Whether the DocumentDB starts the MongoDB container proxied over LocalStack container. When enabled lambda functions can use the `LOCALSTACK_HOSTNAME` env to connect to the DocumentDB. By default the container starts without proxy as standalone container. |
 
 ### DynamoDB
 
