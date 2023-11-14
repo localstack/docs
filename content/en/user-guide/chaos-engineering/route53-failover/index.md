@@ -7,181 +7,166 @@ description: Integrate FIS with Route 53 to create a resilient, self-repairing i
 
 ## Introduction
 
-Harnessing Route53's health checks and automated traffic redirection not only fortifies your architecture but also 
-ensures continuity of service during regional outages. This approach embodies resilience, automatically rerouting users
-to a healthy secondary zone if the primary region falters, thereby upholding system availability and responsiveness.
-It's a strategic safeguard, integral for maintaining seamless user experiences under adverse conditions.
-
+LocalStack allows you to integrate & test [Fault Injection Simulator (FIS)](https://docs.localstack.cloud/user-guide/aws/fis/) with [Route53](https://docs.localstack.cloud/user-guide/aws/route53/) to automatically divert users to a healthy secondary zone if the primary region fails, ensuring system availability and responsiveness. Route53's health checks and traffic redirection enhance architecture resilience and ensure service continuity during regional outages, crucial for uninterrupted user experiences.
 
 ## Getting started
 
-This guide is designed for users new to the Route53 and FIS services and assumes basic knowledge of the AWS CLI and our
-[`awslocal`](https://github.com/localstack/awscli-local) wrapper script. To read extensively about the FIS service, please
-refer to the dedicated [documentation page](https://docs.localstack.cloud/user-guide/aws/fis/) and [here](https://docs.localstack.cloud/user-guide/aws/route53/) for Route53.
+This guide is designed for users new to the Route53 and FIS services. The general prerequisites for this guide are:
 
-In this example we have an AWS-based architecture with an active-primary and passive-standby setup. Route53 
-directs traffic to the primary region, which handles product-related requests via API Gateway and Lambda functions, 
-with data stored in a DynamoDB. In case of primary region failure, Route53 switches to the standby region, which 
-is kept in sync through a replication Lambda function. We can better visualize it with the diagram:
+-  LocalStack Pro with a [LocalStack API key](https://docs.localstack.cloud/getting-started/api-key/)
+-  [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal).
+- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
+- [Python-3](https://www.python.org/downloads/)
+- `dig`
 
-{{< figure src="route53-failover-1.png" >}}
+### Application Architecture
 
+In this AWS architecture example, there's an active-primary and passive-standby configuration. Route53 routes traffic to the primary region, which processes product-related requests through API Gateway and Lambda functions, with data stored in DynamoDB. If the primary region fails, Route53 redirects to the standby region, maintained in sync by a replication Lambda function.
 
-Start LocalStack using the `docker-compose.yml` file from the repository and make sure you provide your API key as an environment
-variable:
+The following diagram shows the architecture that this application builds and deploys:
+
+{{< figure src="route53-failover-1.png" width="800">}}
+
+Initiate LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your API key as an environment variable during this process.
 
 {{< command >}}
 $ LOCALSTACK_API_KEY=<YOUR_LOCALSTACK_API_KEY>
 $ docker compose up
 {{< /command >}}
 
+### Creating the resources 
 
-## Creating the resources 
+To begin, deploy the same services in both `us-west-1` and `us-east-1` regions. The resources specified in the `init-resources.sh` file will be created when the LocalStack container starts, using Initialization Hooks and the `awslocal` CLI tool.
 
-In order to get started, we need to deploy the same set of services in both regions, `us-west-1` and `us-east-1`. The resources 
-defined in the `init-resources.sh` file will be created at the start of the LocalStack container, using `initialization hooks` 
-and the `awslocal` CLI tool.
+The objective is to have a backup system in case of a regional outage in the primary availability zone (`us-west-1`). We'll focus on this region to examine the existing resilience mechanisms.
 
-Our goal is to ensure that our system has a backup in case there’s a regional outage for the primary availability zone 
-(`us-west-1`). Let's zoom in on that region and check the resilience mechanisms that are already in place:
+{{< figure src="route53-failover-2.png" width="800">}}
 
-{{< figure src="route53-failover-2.png" >}}
+-   The primary API Gateway includes a health check endpoint that returns a 200 HTTP status code, serving as a basic check for its availability.
+-   Data synchronization across regions can be achieved with AWS-native tools like DynamoDB Streams and AWS Lambda. Here, any changes to the primary table trigger a Lambda function, replicating these changes to a secondary table. This configuration is essential for high availability and disaster recovery.
 
-- The primary API Gateway has a health check endpoint that only returns a 200 HTTP status code, just to make sure it’s still there.
-- Synchronizing data across different regions can be done through AWS-native solutions like DynamoDB Streams and AWS Lambda, where changes 
-to the primary table trigger a Lambda function that replicates the changes to the secondary table. This setup is critical 
-for achieving high availability and disaster recovery objectives.
+### Configuring a Route53 hosted zone
 
+Let's begin by setting up a hosted zone in Route53 named `hello-localstack.com` and retrieved the hosted zone ID:
 
-## Configuring Route53
-
-Let’s get started. First, we need to define a hosted zone for Route53, let’s call it “hello-localstack.com”:
-
-```bash
+{{< command >}}
 $ HOSTED_ZONE_NAME=hello-localstack.com
-```
-
-We’re going to retrieve the hosted zone ID, based on its name:
-
-```bash
 $ HOSTED_ZONE_ID=$(awslocal route53 create-hosted-zone --name $HOSTED_ZONE_NAME --caller-reference foo | jq -r .HostedZone.Id)
-```
+{{< /command >}}
 
-And let’s also define the health check ID for the `us-west-1` API Gateway:
+Then, define the health check ID for the API Gateway available in the `us-west-1` region:
 
-```bash
-$ HEALTH_CHECK_ID=$(awslocal route53 create-health-check --caller-reference foobar --health-check-config '{
-    "FullyQualifiedDomainName": "12345.execute-api.localhost.localstack.cloud",
-    "Port": 4566,
-    "ResourcePath": "/dev/healthcheck",
-    "Type": "HTTP",
-    "RequestInterval": 10
-}' | jq -r .HealthCheck.Id)
-```
+{{< command >}}
+$ HEALTH_CHECK_ID=$(
+    awslocal route53 create-health-check \
+        --caller-reference foobar \
+        --health-check-config '{
+            "FullyQualifiedDomainName": "12345.execute-api.localhost.localstack.cloud",
+            "Port": 4566,
+            "ResourcePath": "/dev/healthcheck",
+            "Type": "HTTP",
+            "RequestInterval": 10
+        }' | jq -r .HealthCheck.Id
+)
+{{< /command >}}
 
-This command is pretty self-explanatory, it creates a local Route 53 health check for an HTTP endpoint 
-(**`12345.execute-api.localhost.localstack.cloud:4566/dev/healthcheck`**) with a request interval of 10 seconds, and 
-retrieves the ID of the HealthCheck JSON object that is returned. When creating or updating AWS resources, the caller reference 
-identifier helps prevent accidental duplication of resources in case the request is submitted multiple times.
+This command creates a Route 53 health check for an HTTP endpoint (`12345.execute-api.localhost.localstack.cloud:4566/dev/healthcheck`) with a 10-second request interval and captures the health check's ID. The caller reference identifier in AWS resource creation or updates prevents accidental duplication if requests are repeated.
 
-We want to update the DNS records in the Route53 hosted zone specified by **`$HOSTED_ZONE_ID`**. It adds two new CNAME 
-records: one for `12345.$HOSTED_ZONE_NAME` pointing to `12345.execute-api.localhost.localstack.cloud` and another 
-for `67890.$HOSTED_ZONE_NAME` pointing to `67890.execute-api.localhost.localstack.cloud`. The TTL (Time to Live) 
-for these records is set to 60 seconds:
+To update DNS records in the specified Route53 hosted zone (`$HOSTED_ZONE_ID`), add two CNAME records: `12345.$HOSTED_ZONE_NAME` pointing to `12345.execute-api.localhost.localstack.cloud`, and `67890.$HOSTED_ZONE_NAME` pointing to `67890.execute-api.localhost.localstack.cloud`. Set a TTL (Time to Live) of 60 seconds for these records.
 
-```bash
-$ awslocal route53 change-resource-record-sets --hosted-zone $HOSTED_ZONE_ID --change-batch '{
-                                             "Changes": [
-                                                 {
-                                                     "Action": "CREATE",
-                                                     "ResourceRecordSet": {
-                                                         "Name": "12345.'$HOSTED_ZONE_NAME'",
-                                                         "Type": "CNAME",
-                                                         "TTL": 60,
-                                                         "ResourceRecords": [{"Value": "12345.execute-api.localhost.localstack.cloud"}]
-                                                     }
-                                                 },
-                                                 {
-                                                     "Action": "CREATE",
-                                                     "ResourceRecordSet": {
-                                                         "Name": "67890.'$HOSTED_ZONE_NAME'",
-                                                         "Type": "CNAME",
-                                                         "TTL": 60,
-                                                         "ResourceRecords": [{"Value": "67890.execute-api.localhost.localstack.cloud"}]
-                                                     }
-                                                 }
-                                             ]}'
-```
+{{< command >}}
+$ awslocal route53 change-resource-record-sets \
+    --hosted-zone $HOSTED_ZONE_ID \
+    --change-batch '{
+        "Changes": [
+            {
+                "Action": "CREATE",
+                "ResourceRecordSet": {
+                    "Name": "12345.'$HOSTED_ZONE_NAME'",
+                    "Type": "CNAME",
+                    "TTL": 60,
+                    "ResourceRecords": [
+                        {"Value": "12345.execute-api.localhost.localstack.cloud"}
+                    ]
+                }
+            },
+            {
+                "Action": "CREATE",
+                "ResourceRecordSet": {
+                    "Name": "67890.'$HOSTED_ZONE_NAME'",
+                    "Type": "CNAME",
+                    "TTL": 60,
+                    "ResourceRecords": [
+                        {"Value": "67890.execute-api.localhost.localstack.cloud"}
+                    ]
+                }
+            }
+        ]
+    }'
+{{< /command >}}
 
-Lastly, we can update the DNS records in Route53 hosted zone specified by **`$HOSTED_ZONE_ID`**. We’re creating two 
-CNAME records for the subdomain `test.$HOSTED_ZONE_NAME`. The first record has the alias target set to
-`12345.$HOSTED_ZONE_NAME` and is associated with the health check we previously created, marked as the primary 
-(failover) target. The second record has the alias target set to `67890.$HOSTED_ZONE_NAME` and is marked as the secondary 
-failover target:
+Finally, we'll update the DNS records in the Route53 hosted zone identified by **`$HOSTED_ZONE_ID`**. We're adding two CNAME records for the subdomain `test.$HOSTED_ZONE_NAME`. The first record points to `12345.$HOSTED_ZONE_NAME` and is linked with the earlier created health check, designated as the primary failover target. The second record points to `67890.$HOSTED_ZONE_NAME` and is set as the secondary failover target.
 
-```bash
-$ awslocal route53 change-resource-record-sets --hosted-zone-id $HOSTED_ZONE_ID --change-batch '{
-                                             "Changes": [
-                                                 {
-                                                     "Action": "CREATE",
-                                                     "ResourceRecordSet": {
-                                                         "Name": "test.'$HOSTED_ZONE_NAME'",
-                                                         "Type": "CNAME",
-                                                         "SetIdentifier": "12345",
-                                                         "AliasTarget": {
-                                                             "HostedZoneId": "'$HOSTED_ZONE_ID'",
-                                                             "DNSName": "12345.'$HOSTED_ZONE_NAME'",
-                                                             "EvaluateTargetHealth": true
-                                                         },
-                                                         "HealthCheckId": "'$HEALTH_CHECK_ID'",
-                                                         "Failover": "PRIMARY"
-                                                     }
-                                                 },
-                                                 {
-                                                     "Action": "CREATE",
-                                                     "ResourceRecordSet": {
-                                                         "Name": "test.'$HOSTED_ZONE_NAME'",
-                                                         "Type": "CNAME",
-                                                         "SetIdentifier": "67890",
-                                                         "AliasTarget": {
-                                                             "HostedZoneId": "'$HOSTED_ZONE_ID'",
-                                                             "DNSName": "67890.'$HOSTED_ZONE_NAME'",
-                                                             "EvaluateTargetHealth": true
-                                                         },
-                                                         "Failover": "SECONDARY"
-                                                     }
-                                                 }
-                                             ]}'
-```
+{{< command >}}
+$ awslocal route53 change-resource-record-sets \
+    --hosted-zone-id $HOSTED_ZONE_ID \
+    --change-batch '{
+        "Changes": [
+            {
+                "Action": "CREATE",
+                "ResourceRecordSet": {
+                    "Name": "test.'$HOSTED_ZONE_NAME'",
+                    "Type": "CNAME",
+                    "SetIdentifier": "12345",
+                    "AliasTarget": {
+                        "HostedZoneId": "'$HOSTED_ZONE_ID'",
+                        "DNSName": "12345.'$HOSTED_ZONE_NAME'",
+                        "EvaluateTargetHealth": true
+                    },
+                    "HealthCheckId": "'$HEALTH_CHECK_ID'",
+                    "Failover": "PRIMARY"
+                }
+            },
+            {
+                "Action": "CREATE",
+                "ResourceRecordSet": {
+                    "Name": "test.'$HOSTED_ZONE_NAME'",
+                    "Type": "CNAME",
+                    "SetIdentifier": "67890",
+                    "AliasTarget": {
+                        "HostedZoneId": "'$HOSTED_ZONE_ID'",
+                        "DNSName": "67890.'$HOSTED_ZONE_NAME'",
+                        "EvaluateTargetHealth": true
+                    },
+                    "Failover": "SECONDARY"
+                }
+            }
+        ]
+    }'
+{{< /command >}}
 
-This has been the minimum failover configuration where traffic is directed to different endpoints based on health 
-check status. Now we can verify that the CNAME record of **`test.hello-localstack.com`** points 
-to **`[12345.execute-api.localhost.localstack.cloud](http://12345.execute-api.localhost.localstack.cloud)`** , by using 
-the following `dig` command:
+This setup represents the basic failover configuration where traffic is redirected to different endpoints based on their health check status. To confirm that the CNAME record for `test.hello-localstack.com` points to `12345.execute-api.localhost.localstack.cloud`, you can use the following `dig` command:
 
-```bash
+{{< command >}}
 $ dig @localhost test.hello-localstack.com CNAME
-                                             
+<disable-copy>                                        
 .....
 ;; QUESTION SECTION:
 ;test.hello-localstack.com.	IN	CNAME
 
 ;; ANSWER SECTION:
 test.hello-localstack.com. 300	IN	CNAME	12345.execute-api.localhost.localstack.cloud.
- .....
-```
+.....
+</disable-copy>
+{{< /command >}}
 
-## Controlled outage
+### Creating a controlled outage
 
-Our setup is ready to go. Now it’s time for a little chaos.
+Our setup is now complete and ready for testing. To mimic a regional outage in the `us-west-1` region, we'll conduct an experiment that halts all service invocations in this region, including the health check function. Once the primary region becomes non-functional, Route 53's health checks will fail. This failure will activate the failover policy, redirecting traffic to the corresponding services in the secondary region, thus maintaining service continuity.
 
-To simulate a regional outage for the `us-west-1` region, we create an
-experiment that completely stops the invocation of services in this region, including the healthcheck function. 
-With the primary region non-operational, Route 53 health checks would fail, triggering the predefined failover 
-policy to redirect traffic to the equivalent services in the secondary region, ensuring continuity of service.
-
-```bash
-$ cat region-outage-experiment.json 
+{{< command >}}
+$ cat region-outage-experiment.json
+<disable-copy>
 {
   "description": "template for internal server error for few regions i.e. us-west-1",
   "actions": {
@@ -195,20 +180,21 @@ $ cat region-outage-experiment.json
   },
   "stopConditions": [],
   "roleArn": "arn:aws:iam:000000000000:role/ExperimentRole"
-}⏎                                             
-```
+}
+</disable-copy>               
+{{< /command >}}
 
-This FIS experiment template is designed to simulate an `Service Unavailable` error (503 error code) in the "us-west-1" region.
-Let's create the experiment template:
+This Fault Injection Simulator (FIS) experiment template is set up to mimic a `Service Unavailable` (503 error) in the `us-west-1` region. To create the experiment template, use the following command:
 
-```bash
+{{< command >}}
 $ awslocal fis create-experiment-template --cli-input-json file://region-outage-experiment.json
-```
+{{< /command >}}
 
-After the creation of the experiment template, we can use its ID to start the experiment.
+Once the template is created, start the experiment using its ID:
 
-```bash
-awslocal fis start-experiment --experiment-template-id 6cd0d0e2-b48d-4337-9eec-6e740764c2cc
+{{< command >}}
+$ awslocal fis start-experiment --experiment-template-id <EXPERIMENT_TEMPLATE_ID>
+<disable-copy>
 {
     "experiment": {
         "id": "651b5196-b244-4a8b-8ab6-d7b9e13998a0",
@@ -231,27 +217,27 @@ awslocal fis start-experiment --experiment-template-id 6cd0d0e2-b48d-4337-9eec-6
         "startTime": 1699902569.439826
     }
 }
-```
+</disable-copy>
+{{< /command >}}
 
-Once the experiment is started Route 53 will detect the failure through its health check mechanism and,
-according to the failover configuration, will automatically reroute the traffic to the standby region.
-We can verify that using the `dig` command:
+Replace `<EXPERIMENT_TEMPLATE_ID>` with the ID of the experiment template created in the previous step. When the experiment is active, Route 53's health checks will detect the failure and redirect traffic to the standby region as per the failover setup. Confirm this redirection with:
 
-```bash
+{{< command >}}
 $ dig @localhost test.hello-localstack.com CNAME
-                                             
+<disable-copy>                                        
 .....
 ;; QUESTION SECTION:
 ;test.hello-localstack.com.	IN	CNAME
 
 ;; ANSWER SECTION:
 test.hello-localstack.com. 300	IN	CNAME	67890.execute-api.localhost.localstack.cloud.
- .....
+.....
+</disable-copy>
+{{< /command >}}
 
-```
-Now our hosted zone name is pointing to the secondary API Gateway endpoint, meaning services in `us-east-1` will be used.
+This indicates that the hosted zone name now points to the secondary API Gateway, and `us-east-1` services are in use.
 
-With a very simple Python script we can emulate a backend handling of this switch:
+A Python script can simulate backend handling of this switch:
 
 ```python
 import dns.resolver
@@ -262,7 +248,6 @@ dns_resolver_ip = '127.0.0.1'
 
 # Domain to resolve
 domain_to_resolve = 'test.hello-localstack.com'
-
 
 # Resolve the CNAME record using the specified DNS server
 resolver = dns.resolver.Resolver(configure=False)
@@ -288,29 +273,19 @@ except Exception as e:
     print(f"Error: {e}")
 ```
 
-This script resolves a CNAME record for 'test.hello-localstack.com' using a specified local DNS server, constructs a 
-URL with the resolved domain, makes an HTTP GET request to that URL, and prints the response or error encountered.
+Running the script will resolve the CNAME record for 'test.hello-localstack.com', make an HTTP request to the resolved URL, and print the response, which fetches a Product object from DynamoDB in the `us-east-1` region.
 
-If we run it, the Product object with the specified ID will be retrieved using the `us-east-1` DynamoDB:
-
-```bash
+{{< command >}}
 $ python3 dns-resolver.py
-
+<disable-copy>
 {"price":"29.99","name":"Super Widget","description":"A versatile widget that can be used for a variety of purposes.
  Durable, reliable, and affordable.","id":"prod-1088"}
+</disable-copy>
+{{< /command >}}
 
-```
-
-And if we check the LocalStack logs, they will clearly indicate which API Gateway has been called, based on the resolved
-domain:
+The LocalStack logs will confirm which API Gateway was called based on the resolved domain.
 
 ```bash
 2023-11-07T11:59:28.292 DEBUG --- [   asgi_gw_9] l.s.l.i.version_manager    : > {resource: /productApi,path: /productApi,httpMethod: GET,headers: {Host=67890.execute-api.localhost.localstack.cloud:4566,
- User-Agent=python-requests/2.31.0, accept-encoding=gzip, deflate, accept=*/*, Connection=keep-alive, x-localstack-tgt-api=apigateway ....
- 
+User-Agent=python-requests/2.31.0, accept-encoding=gzip, deflate, accept=*/*, Connection=keep-alive, x-localstack-tgt-api=apigateway .... 
 ```
-
-
-
-
-
