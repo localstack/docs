@@ -55,7 +55,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -283,7 +283,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -307,7 +307,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -331,7 +331,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -355,7 +355,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": false,
@@ -403,7 +403,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -487,7 +487,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -583,7 +583,7 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": false,
         "snapshot_tested": false,
@@ -3961,7 +3961,7 @@
       }
     },
     "RunTask": {
-      "cluster, count, enableExecuteCommand, launchType, networkConfiguration, taskDefinition": {
+      "clientToken, cluster, count, enableExecuteCommand, launchType, networkConfiguration, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_create_task_with_secrets[False]",
@@ -3985,7 +3985,7 @@
           }
         ]
       },
-      "cluster, count, launchType, overrides, propagateTags, taskDefinition": {
+      "clientToken, cluster, count, launchType, overrides, propagateTags, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
@@ -3999,7 +3999,7 @@
           }
         ]
       },
-      "cluster, count, launchType, propagateTags, taskDefinition": {
+      "clientToken, cluster, count, launchType, propagateTags, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_task_produces_logs",
@@ -4013,7 +4013,7 @@
           }
         ]
       },
-      "cluster, enableExecuteCommand, launchType, networkConfiguration, taskDefinition": {
+      "clientToken, cluster, enableExecuteCommand, launchType, networkConfiguration, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_task_definition_with_cap_drop",
@@ -4037,7 +4037,7 @@
           }
         ]
       },
-      "cluster, group, launchType, networkConfiguration, startedBy, taskDefinition": {
+      "clientToken, cluster, group, launchType, networkConfiguration, startedBy, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/apigateway/test_http_apis.py::TestHttpApis::test_servicediscovery_ecs_integration",
@@ -4121,7 +4121,7 @@
           }
         ]
       },
-      "cluster, group, launchType, startedBy, taskDefinition": {
+      "clientToken, cluster, group, launchType, startedBy, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_describe_service_with_task_definition",
@@ -4135,7 +4135,7 @@
           }
         ]
       },
-      "cluster, overrides, taskDefinition": {
+      "clientToken, cluster, overrides, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_overrides",
@@ -4149,7 +4149,7 @@
           }
         ]
       },
-      "cluster, taskDefinition": {
+      "clientToken, cluster, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_start_and_stop_task[run_task]",
@@ -4223,7 +4223,7 @@
           }
         ]
       },
-      "taskDefinition": {
+      "clientToken, taskDefinition": {
         "ls_pro": [
           {
             "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTasksCrud::test_describe_tasks_list_tasks",
@@ -4422,6 +4422,16 @@
             "test": "test_describe_tasks_list_tasks",
             "response": "200",
             "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/ecs/test_ecs.py::TestTaskExecution::test_ecs_task_multiple",
+            "test": "test_ecs_task_multiple",
+            "response": "500",
+            "error": "InternalError",
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
