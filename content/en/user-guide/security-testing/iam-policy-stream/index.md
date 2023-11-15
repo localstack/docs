@@ -73,7 +73,7 @@ The LocalStack Web Application includes an IAM Policy Stream dashboard, which al
 
 To use this feature, open the LocalStack Web Application in your browser, go to the IAM Policy Stream section, and click on **Enable** to view the **Summary Policy** and **Output**.
 
-<img src="live-policy-stream-enable.png" alt="Live Policy Stream UI" title="Live Policy Stream UI" width="800" class="img-fluid shadow rounded" />
+<img src="live-policy-stream-enable.png" alt="IAM Policy Stream UI" title="IAM Policy Stream UI" width="800" class="img-fluid shadow rounded" />
 <br><br>
 
 Run the following command in your terminal to generate a corresponding policy in the IAM Policy Stream dashboard:
@@ -84,4 +84,4 @@ $ awslocal sns create-topic --name test-topic
 
 You will see the following output in the IAM Policy Stream dashboard:
 
-<img src="policy-generate.png" alt="IAM Policy Stream UI" title="Live Policy Stream UI" width="800" class="img-fluid shadow rounded" />
+<img src="policy-generate.png" alt="IAM Policy Stream UI" title="IAM Policy Stream UI" width="800" class="img-fluid shadow rounded" />
