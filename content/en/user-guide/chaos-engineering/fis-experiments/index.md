@@ -357,13 +357,3 @@ An error occurred (InternalError) when calling the GetResources operation (reach
 </disable-copy>
 {{< /command >}}
 
-## Web Application
-
-LocalStack Web Application provides a dashboard for conducting FIS experiments in user stacks. This control panel offers various FIS experiment options, which includes:
-
--   **500 Internal Error**: This experiment randomly terminates incoming requests, returning an 'internal error' with a response code of 500.
--   **Service Unavailable**: This test causes all calls to specified services to receive a 503 'service unavailable' response.
--   **AWS Region Unavailable**: This experiment simulates regional outages and failovers by disabling entire AWS regions.
--   **Latency**: This test introduces specified latency to every API call, useful for simulating network latency or degraded network performance.
-
-{{< figure src="FIS-Dashboard.png" width="900" >}}
