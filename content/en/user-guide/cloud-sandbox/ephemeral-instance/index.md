@@ -2,7 +2,7 @@
 title: "Ephemeral Instances"
 linkTitle: "Ephemeral Instances"
 weight: 1
-description: Create an Ephemeral Instance in the cloud using the LocalStack Web Application!
+description: Create an Ephemeral Instance in the cloud using the LocalStack Web Application
 ---
 
 ## Introduction

@@ -2,7 +2,7 @@
 title: "Application Preview"
 linkTitle: "Application Preview"
 weight: 2
-description: Create an Application Preview to deploy your application changes in an Ephemeral Instance!
+description: Create an Application Preview to deploy your application changes in an Ephemeral Instance
 ---
 
 ## Introduction
