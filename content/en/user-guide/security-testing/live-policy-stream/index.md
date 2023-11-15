@@ -7,7 +7,7 @@ description: Generate a stream of IAM policies as requests are coming into Local
 
 ## Introduction
 
-The Live Policy Policy Stream generates a steady stream of policies along with their corresponding principals or resources. When a request is made, it initially shows the principal or resource to which the policy is to be connected. This is typically a service resource for resource-based policies, or an IAM principal for other cases. Subsequently, it displays the suggested policy. This feature aids in identifying the correct permissions for cloud applications and can help spot logical errors, such as unexpected actions in a policy.
+The IAM Policy Stream generates a steady stream of policies along with their corresponding principals or resources. When a request is made, it initially shows the principal or resource to which the policy is to be connected. This is typically a service resource for resource-based policies, or an IAM principal for other cases. Subsequently, it displays the suggested policy. This feature aids in identifying the correct permissions for cloud applications and can help spot logical errors, such as unexpected actions in a policy.
 
 ## Getting started
 
