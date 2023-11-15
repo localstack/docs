@@ -11,7 +11,7 @@ The IAM Policy Stream generates a steady stream of policies along with their cor
 
 ## Getting started
 
-This guide is designed for users who are new to the Live Policy Stream. It assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script).
+This guide is designed for users who are new to the IAM Policy Stream. It assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script).
 
 ### Start your LocalStack container
 
