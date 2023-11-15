@@ -7,7 +7,7 @@ description: Generate a stream of IAM policies as requests are coming into Local
 
 ## Introduction
 
-The IAM Policy Stream generates a steady stream of policies along with their corresponding principals or resources. When a request is made, it initially shows the principal or resource to which the policy is to be connected. This is typically a service resource for resource-based policies, or an IAM principal for other cases. Subsequently, it displays the suggested policy. This feature aids in identifying the correct permissions for cloud applications and can help spot logical errors, such as unexpected actions in a policy.
+The IAM Policy Stream generates a steady stream of policies along with their corresponding principals or resources. When a request is made, it initially displays the principal or resource to which the policy will be attached. This is typically a service resource for resource-based policies, or an IAM principal for other cases. Subsequently, it displays the suggested policy. This feature aids in identifying the correct permissions for cloud applications and can help spot logical errors, such as unexpected actions in a policy.
 
 ## Getting started
 
@@ -19,9 +19,9 @@ To experiment with the IAM Policy Stream, initiate LocalStack using these flags:
 
 1.  Enable debugging: `DEBUG=1`
 2.  Set your LocalStack API key: `LOCALSTACK_API_KEY=<Your_API_Key>`
-3.  Activate IAM enforcement: `ENFORCE_IAM=1`
+3.  Set the IAM Soft Mode: `IAM_SOFT_MODE=1`
 
-To utilize the IAM Policy Stream without enforcing IAM policies, set `IAM_SOFT_MODE=1`. You can execute the following command in your terminal to start your LocalStack container:
+You can execute the following command in your terminal to start your LocalStack container:
 
 {{< command >}}
 $ DEBUG=1 IAM_SOFT_MODE=1 localstack start
@@ -70,6 +70,10 @@ The LocalStack Web Application includes an IAM Policy Stream dashboard, which al
 2.  Offers a real-time summary policy, merging all individual policies into one consolidated policy.
 3.  Includes a feature to activate or deactivate this functionality on-the-fly for performance tuning.
 4.  Presents an option to reset the stream, facilitating a clean slate to generate new policies.
+
+{{< alert title="Note" >}}
+You don't need to set additional configuration variables, such as `DEBUG=1` or `IAM_SOFT_MODE=1`, when using the IAM Policy Stream with Web Application. However, it won't enforce policies or print IAM-related logs in the LocalStack container.
+{{< /alert >}}
 
 To use this feature, open the LocalStack Web Application in your browser, go to the IAM Policy Stream section, and click on **Enable** to view the **Summary Policy** and **Output**.
 

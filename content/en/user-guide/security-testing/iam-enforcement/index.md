@@ -7,7 +7,7 @@ description: Enforce IAM policies in LocalStack to test your policies
 
 ## Introduction
 
-IAM Policy Enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS. The environment configuration `ENFORCE_IAM=1` is required while starting LocalStack to enable this feature. In LocalStack, IAM enforcement is disabled, and all APIs can be accessed without authentication.
+IAM Policy Enforcement feature can be used to test your security policies and create a more realistic environment that more closely resembles real AWS. The environment configuration `ENFORCE_IAM=1` is required while starting LocalStack to enable this feature. Per default, IAM enforcement is disabled, and all APIs can be accessed without authentication.
 
 ## Getting started
 

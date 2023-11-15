@@ -122,4 +122,4 @@ Re-run the Lambda [`CreateFunction`](https://docs.aws.amazon.com/lambda/latest/d
 
 Enabling `IAM_SOFT_MODE=1` allows you to review the logs and assess whether your requests would have been denied or granted while executing your entire stack without disruptions. 
 
-You can avoid the need for redeployment to address each missing permission individually, streamlining the debugging process and enhancing the efficiency of your IAM configurations.
+Using this, you can avoid the need for redeployment to address each missing permission individually, streamlining the debugging process and enhancing the efficiency of your IAM configurations.
