@@ -344,6 +344,11 @@ These configurations have already been removed and **won't have any effect** on 
 | `REQUIRE_PRO` | 2.0.0 | 0 (default) | Whether to require license activation to succeed to start LocalStack. If set to 0 (default) LocalStack will start as community version if the license cannot be activated. |
 | `LEGACY_DIRECTORIES` | 2.0.0 | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `LEGACY_INIT_DIR` | 2.0.0 |  |  |
+| `SYNCHRONOUS_API_GATEWAY_EVENTS` | 2.0.0 | `1` (default) / `0` | Whether or not to handle API Gateway Lambda event sources as synchronous invocations. |
+| `SYNCHRONOUS_DYNAMODB_EVENTS` | 2.0.0 | `1` (default) / `0` | Whether or not to handle DynamoDB Lambda event sources as synchronous invocations. |
+| `SYNCHRONOUS_SQS_EVENTS` | 2.0.0 | `1`  / `0` (default) | Whether or not to handle SQS Lambda event sources as synchronous invocations. |
+| `SYNCHRONOUS_SNS_EVENTS` | 2.0.0 | `1`  / `0` (default) | Whether or not to handle SNS Lambda event sources as synchronous invocations. |
+| `LEGACY_EDGE_PROXY` | 3.0.0 | |  |
 | `<SERVICE>_BACKEND` | 3.0.0 | ? |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | ? |  Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
 | `ES_CUSTOM_BACKEND` | 3.0.0 | `http://elasticsearch:9200` |  Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
@@ -354,6 +359,7 @@ These configurations have already been removed and **won't have any effect** on 
 | `LOCALSTACK_HOSTNAME` | 3.0.0 | `http://${LOCALSTACK_HOSTNAME}:4566` | Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. Use `LOCALSTACK_HOST` instead. |
 | `EDGE_BIND_HOST` | 3.0.0 | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
 | `EDGE_PORT` | 3.0.0 | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
+| `EDGE_PORT_HTTP` | 3.0.0 | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
 | `EDGE_FORWARD_URL` | 3.0.0 | |  Optional target URL to forward all edge requests to (e.g., for distributed deployments) |
 | `DEFAULT_REGION` | 3.0.0 | | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
 | `USE_SINGLE_REGION` | 3.0.0 | |  Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
