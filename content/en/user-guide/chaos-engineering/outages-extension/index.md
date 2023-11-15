@@ -2,73 +2,47 @@
 title: "Outages Extension"
 linkTitle: "Outages Extension"
 weight: 1 
-description: Use chaos engineering techniques to mimic service outages by testing your infrastructure's ability to deploy robustly and recover from unexpected events.
+description: Use LocalStack Outages Extension to mimic service outages by testing your infrastructure's ability to deploy robustly and recover from unexpected events.
 ---
 
 ## Introduction
 
-Causing outages to certain services and observing the system's recovery process when incomplete infrastructure is provided
-is generally a good approach to test infrastructure provisioning resilience. This tests the system's deployment mechanisms and its
-ability to cope with and recover from infrastructure anomalies, which is a crucial aspect of chaos engineering aimed at
-verifying the reliability of infrastructure as code (IaC) and automated provisioning processes.
+LocalStack Outages Extension can simulate outages for any AWS region or service. You can install and use the Outages Extension through [LocalStack Extension mechanism](https://docs.localstack.cloud/user-guide/extensions/) to test infrastructure resilience by intentionally causing service outages and observing the system's recovery in scenarios with incomplete infrastructure is an effective approach. This method evaluates the system's deployment mechanisms and its ability to handle and recover from infrastructure anomalies, a critical aspect of chaos engineering.
 
 ## Getting started
 
-In this example we will be using a popular IaC tool, Terraform, to define our desired infrastructure in a declarative manner.
-To follow along, please refer to this use-case dedicated [repository]().
+This guide is designed for users who are new to Outages Extension. For this particular example, we'll be using a Terraform configuration file from a [sample application repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/extension-outages). We'll simulate partial outages by interrupting specific services, such as halting an ECS instance creation or disrupting a database service. By closely watching Terraform's responses and the status of AWS resources, you'll learn how Terraform manages these disruptions.
 
-To get started with observing Terraform's behavior during partial outages, you would begin by writing a basic Terraform 
-configuration file that defines the required cloud resources, such as virtual machines, networks, or databases on AWS. 
-Of course, you can structure your configuration with variables and modules to keep it maintainable and readable. 
+The general prerequisites for this guide are:
 
-The configuration file used in this example belongs to a sample application repository, but for the sake of focusing strictly
-on infrastructure, we will use it in a stand-alone approach.
+- LocalStack Pro with [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli) & [LocalStack API key](https://docs.localstack.cloud/getting-started/api-key/)
+- [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
+- [Terraform](https://www.terraform.io/downloads.html) and [`tflocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/terraform/#tflocal-wrapper-script).
 
-Once your configuration is ready, apply it to initiate the provisioning process. During this process, we intentionally cause 
-outages to specific services, for example, by stopping an ECS instance creation or disrupting a database service. By monitoring
-the Terraform output and the state of AWS resources, you can observe how Terraform handles these interruptions—whether it 
-retries operations, rolls back changes, or fails partially—and how it logs such events. 
+### Installing the extension
 
-This exercise provides valuable insights into the resilience of your infrastructure provisioning under adverse conditions 
-and helps you refine your Terraform scripts for better fault tolerance and error handling in real-world scenarios.
+To install the LocalStack Outages Extension, first set up your LocalStack API key in your environment. Once the API key is configured, use the command below to install the extension:
 
-## Installing the extension
-
-In order to use the Outages Extension, a Pro license is necessary. There are two ways you can employ the actions of this extension:
-- By using the configuration flag `EXTENSION_AUTO_INSTALL=localstack-extension-outages` at the container startup. You can use this 
- by including it in your docker run (or docker-compose file) as an environment variable.
-
-- By explicitly installing the extension:
-
-Before installing the extension, make sure you're logged into LocalStack. If not, log in using the following command:
-
-```bash
-$ localstack login
-```
-
-Initialize the extensions' folder:
-
-```bash
-$ localstack extensions init
-```
-
-You can then install the extension using the command:
-
-```bash
+{{< command >}}
 $ localstack extensions install localstack-extension-outages
-```
+{{< /command >}}
 
-## Running Terraform
+Alternatively, you can enable automatic installation of the extension by setting the environment variable `EXTENSION_AUTO_INSTALL=localstack-extension-outages` when you start the LocalStack container. This can be done by including it in your `docker` command line interface (CLI) or in your `docker-compose` configuration as an environment variable.
 
-First we run out first iteration of our infrastructure and make sure everything works. The Terraform configuration file
-can be run independently of the application, but that means the application will not be available. To fully run the whole stack
-you can refer to the sample [repository](https://github.com/localstack-samples/sample-terraform-ecs-apigateway).
+Follow our [Managing Extensions documentation](https://docs.localstack.cloud/user-guide/extensions/managing-extensions/) for more information on how to install & manage extensions.
 
-```bash
+### Running Terraform
+
+To get started, initialize & apply the Terraform configuration using the `tflocal` CLI to create the local resources. The Terraform configuration file operates independently of the application, meaning the application won't be available during this phase. To deploy the entire stack, including the application, refer to the [sample repository](https://github.com/localstack-samples/sample-terraform-ecs-apigateway).
+
+{{< command >}}
 $ tflocal init
 $ tflocal plan
 $ tflocal apply
-```
+{{< /command >}}
+
+The following output would be retrieved:
 
 ```bash
 Apply complete! Resources: 57 added, 0 changed, 0 destroyed.
@@ -86,32 +60,30 @@ private_dns_namespace = "60bfac90"
 vpc_id = "vpc-f9d6b124"
 ```
 
-Now let's apply some new changes to some of the resources, by increasing the number of tasks from the specified `task_definition`
-that we want the ECS service to run and maintain, from 3 to 5. Let's say we also want to upgrade the `openapi` specification version that
-API Gateway uses, from 3.0.1 to 3.1.0.
-We run the Terraform `plan` command, but before `apply` an outage affecting the ECS and API Gateway V2 services occurs. To simulate this
-we run the following command:
+Next, you can update certain resources. This includes increasing the number of tasks in the `task_definition` for the ECS service from 3 to 5 and upgrading the `openapi` specification version used by API Gateway from 3.0.1 to 3.1.0.
+
+### Simulating outages
+
+After running the Terraform `plan` command to preview these changes, you can simulate an outage affecting the ECS and API Gateway V2 services before applying the changes. To do this, execute the following command:
+
+{{< command >}}
+$ curl --location --request POST 'http://outages.localhost.localstack.cloud:4566/outages' \
+     --header 'Content-Type: application/json' \
+     --data-raw '[
+         {
+             "service": "ecs",
+             "region": "us-east-1"
+         },
+         {
+             "service": "apigatewayv2",
+             "region": "us-east-1"
+         }
+     ]'
+{{< /command >}}
+
+In the LocalStack logs, you'll notice that during the periods between successful calls, the controlled outages are marked by a `ServiceUnavailableException` accompanied by a 503 HTTP status code. These exceptions specifically affect the targeted AWS APIs.
 
 ```bash
-curl --location --request POST 'http://outages.localhost.localstack.cloud:4566/outages' \
-                                                             --header 'Content-Type: application/json' \
-                                                             --data '
-                                                         [
-                                                         {
-                                                         "service": "ecs",
-                                                         "region": "us-east-1"
-                                                         },
-                                                         {
-                                                         "service": "apigatewayv2",
-                                                         "region": "us-east-1"
-                                                         }
-                                                         ]'
-```
-
-We can observe the LocalStack logs to see that between the successful calls, the controlled outages appear with a `ServiceUnavailableException` with
-a 503 HTTP status code, affecting the specified AWS APIs.
-
-```
 2023-11-09T21:53:31.801  INFO --- [   asgi_gw_9] localstack.request.aws     : AWS ec2.GetTransitGatewayRouteTableAssociations => 200
 2023-11-09T21:53:31.824  INFO --- [   asgi_gw_2] localstack.request.aws     : AWS apigatewayv2.GetVpcLink => 503 (ServiceUnavailableException)
 2023-11-09T21:53:31.828  INFO --- [   asgi_gw_6] localstack.request.aws     : AWS servicediscovery.ListTagsForResource => 200
@@ -131,48 +103,57 @@ a 503 HTTP status code, affecting the specified AWS APIs.
 2023-11-09T21:53:33.889  INFO --- [   asgi_gw_7] localstack.request.aws     : AWS ecs.DescribeTaskDefinition => 503 (ServiceUnavailableException)
 ```
 
-Now, depending on each infrastructure provisioning tool and provider, there will be retries to apply the changes to these resources, or
-the action would fail. This is where the infrastructure team needs to observe this behaviour, process the information and plan ahead in case
-this situation ever occurs in production.
+During infrastructure provisioning, depending on the tool and provider used, attempts may be made to reapply changes to resources following a failure, or the action might simply fail.
 
-An entire region can also be take down just by running the following command:
+### Simulating shutdowns
 
-```bash
-curl --location --request POST 'http://outages.localhost.localstack.cloud:4566/outages' \
-                                                             --header 'Content-Type: application/json' \
-                                                             --data '
-                                                         [
-                                                         {
-                                                         "service": "*",
-                                                         "region": "us-east-1"
-                                                         }
-                                                         ]'
-```
+To simulate the shutdown of an entire region, execute the following command:
 
-Outages may be stopped by using empty list in the configuration. The following request will clear the current configuration:
+{{< command >}}
+$ curl --location --request POST 'http://outages.localhost.localstack.cloud:4566/outages' \
+     --header 'Content-Type: application/json' \
+     --data-raw '[
+         {
+             "service": "*",
+             "region": "us-east-1"
+         }
+     ]'
+{{< /command >}}
 
-```bash
-curl --location --request POST 'http://outages.localhost.localstack.cloud:4566/outages' \
---header 'Content-Type: application/json' \
---data '[]'
-```
+### Other operations
 
-To retrieve the current configuration, make the following GET call:
-```bash
-curl --location --request GET 'http://outages.localhost.localstack.cloud:4566/outages'
-```
+To stop outages, submit an empty list in the configuration using the following `POST` request:
 
-To add a new service/region rule pair to the configuration, make a PATCH call as follows:
-```bash
-curl --location --request PATCH 'http://outages.localhost.localstack.cloud:4566/outages' \
---header 'Content-Type: application/json' \
---data '[{"service": "transcribe", "region": "us-west-1"}]'
-```
+{{< command >}}
+$ curl --location --request POST 'http://outages.localhost.localstack.cloud:4566/outages' \
+     --header 'Content-Type: application/json' \
+     --data-raw '[]'
+{{< /command >}}
 
-To remove a service/region rule pair from the configuration, make a DELETE call as follows:
+To view the current configuration, use this `GET` request:
 
-```bash
-curl --location --request DELETE 'http://outages.localhost.localstack.cloud:4566/outages' \
---header 'Content-Type: application/json' \
---data '[{"service": "transcribe", "region": "us-west-1"}]'
-```
+{{< command >}}
+$ curl --location --request GET 'http://outages.localhost.localstack.cloud:4566/outages'
+{{< /command >}}
+
+To add a new service/region rule to the configuration, use a `PATCH` request as shown below:
+
+{{< command >}}
+$ curl --location --request PATCH 'http://outages.localhost.localstack.cloud:4566/outages' \
+     --header 'Content-Type: application/json' \
+     --data-raw '[{"service": "transcribe", "region": "us-west-1"}]'
+{{< /command >}}
+
+To remove a service/region rule from the configuration, execute a `DELETE` request as follows:
+
+{{< command >}}
+$ curl --location --request DELETE 'http://outages.localhost.localstack.cloud:4566/outages' \
+     --header 'Content-Type: application/json' \
+     --data-raw '[{"service": "transcribe", "region": "us-west-1"}]'
+{{< /command >}}
+
+### Conclusion
+
+By closely watching Terraform's responses and the status of cloud resources, you'll learn how Terraform manages these disruptions. It's important to note how it attempts to retry operations, whether it rolls back changes or faces partial failures, and how it logs these incidents.
+
+This is crucial for understanding the resilience of your infrastructure provisioning against challenging conditions. It also aids in enhancing your IaC configurations, ensuring they are more robust and effective in handling faults and errors in real-life situations.

@@ -11,17 +11,17 @@ LocalStack allows you to integrate & test [Fault Injection Simulator (FIS)](http
 
 ## Getting started
 
-This guide is designed for users new to the Route53 and FIS services. The general prerequisites for this guide are:
+This guide is designed for users new to the Route53 and FIS services. In this example, there's an active-primary and passive-standby configuration. Route53 routes traffic to the primary region, which processes product-related requests through API Gateway and Lambda functions, with data stored in DynamoDB. If the primary region fails, Route53 redirects to the standby region, maintained in sync by a replication Lambda function.
 
--  LocalStack Pro with a [LocalStack API key](https://docs.localstack.cloud/getting-started/api-key/)
--  [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal).
+The general prerequisites for this guide are:
+
+- LocalStack Pro with a [LocalStack API key](https://docs.localstack.cloud/getting-started/api-key/)
+- [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Python-3](https://www.python.org/downloads/)
 - `dig`
 
 ### Application Architecture
-
-In this AWS architecture example, there's an active-primary and passive-standby configuration. Route53 routes traffic to the primary region, which processes product-related requests through API Gateway and Lambda functions, with data stored in DynamoDB. If the primary region fails, Route53 redirects to the standby region, maintained in sync by a replication Lambda function.
 
 The following diagram shows the architecture that this application builds and deploys:
 
