@@ -2,46 +2,50 @@
 title: "Live Policy Stream"
 linkTitle: "Live Policy Stream"
 weight: 3
-description: Generate a live stream of policies as requests are coming into LocalStack
+description: Generate a stream of IAM policies as requests are coming into LocalStack using Live Policy Stream.
 ---
 
 ## Introduction
 
-Live Policy Stream produces a continuous flow of policies and the associated principals or resources. With each request, it starts by displaying the principal or resource that the policy should be linked to. This will either be a service resource in the case of resource-based policies, or an IAM principal in other scenarios. Following that, it presents the recommended policy.
-
+The Live Policy Policy Stream generates a steady stream of policies along with their corresponding principals or resources. When a request is made, it initially shows the principal or resource to which the policy is to be connected. This is typically a service resource for resource-based policies, or an IAM principal for other cases. Subsequently, it displays the suggested policy. This feature aids in identifying the correct permissions for cloud applications and can help spot logical errors, such as unexpected actions in a policy.
 
 ## Getting started
 
-To test Live Policy Stream, start localstack with following flags enabled:
+This guide is designed for users who are new to the Live Policy Stream. It assumes you have basic knowledge of the AWS CLI (and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script).
 
-```
-DEBUG=1
-LOCALSTACK_API_KEY=<...>
-ENFORCE_IAM=1
-```
-If we want to use the policy stream feature, but without the enforcement, we need to set `IAM_SOFT_MODE=1`.
+### Start your LocalStack container
 
-Here is the command you can run in your terminal 
+To experiment with the IAM Policy Stream, initiate LocalStack using these flags:
 
-```
-DEBUG=1 ENFORCE_IAM=1 IAM_SOFT_MODE=1 localstack start
-```
+1.  Enable debugging: `DEBUG=1`
+2.  Set your LocalStack API key: `LOCALSTACK_API_KEY=<Your_API_Key>`
+3.  Activate IAM enforcement: `ENFORCE_IAM=1`
 
-Now open a new terminal window tab and run the following to enable live policy stream:
+To utilize the IAM Policy Stream without enforcing IAM policies, set `IAM_SOFT_MODE=1`. You can execute the following command in your terminal to start your LocalStack container:
 
-```
-localstack aws iam stream
-```
+{{< command >}}
+$ DEBUG=1 ENFORCE_IAM=1 IAM_SOFT_MODE=1 localstack start
+{{< /command >}}
 
-In another tab, we will create aws resources and see required policies needed for it. In the following example we are creating sns topic
+### Enable IAM Policy Stream
 
-```
-awslocal sns create-topic --name test-topic
-```
+To enable the IAM Policy Stream, open a new terminal window or tab and run the following command:
 
-On the other tab the necessary policy will be generated. You can attach this policy to the IAM role which can then create the resource: 
+{{< command >}}
+$ localstack aws iam stream
+{{< /command >}}
 
-```
+### Create AWS Resources
+
+In a separate terminal tab, we will create AWS resources to observe the necessary policies for them. In this example, we are creating an SNS topic using the following command:
+
+{{< command >}}
+$ awslocal sns create-topic --name test-topic
+{{< /command >}}
+
+In the other tab, the required policy will be generated. This policy can then be attached to an IAM role, enabling it to create the resource.
+
+```bash
 Attached to identity: "arn:aws:iam::000000000000:root"
 
 Policy:
@@ -58,16 +62,26 @@ Policy:
 }
 ```
 
-## IAM Live Policy Streaming on Web App
+## Web Application
 
-The LocalStack Web Application provides IAM Policy Stream UI for you to try out and explore the required permissions for your AWS API calls. 
+The LocalStack Web Application includes an IAM Policy Stream dashboard, which allows you to discover the necessary permissions for AWS API calls. The Web Application provides the following features:
 
-You can access IAM Policy Stream on Web App by opening the LocalStack Web Application in your browser, navigating to the IAM Policy Stream section, and then clicking on `Enable` to start seeing the policy stream.
+1.  Provides a live display of API calls and the specific policies each call generates.
+2.  Offers a real-time summary policy, merging all individual policies into one consolidated policy.
+3.  Includes a feature to activate or deactivate this functionality on-the-fly for performance tuning.
+4.  Presents an option to reset the stream, facilitating a clean slate to generate new policies.
 
-<img src="live-policy-stream-enable.png" alt="Live Policy Stream UI" title="Live Policy Stream UI" width="800" />
+To use this feature, open the LocalStack Web Application in your browser, go to the IAM Policy Stream section, and click on **Enable** to view the **Summary Policy** and **Output**.
 
-<p></p>
+<img src="live-policy-stream-enable.png" alt="Live Policy Stream UI" title="Live Policy Stream UI" width="800" class="img-fluid shadow rounded" />
+<br><br>
 
-Next we will invoke some aws api calls in our terminal: `awslocal sqs list-queues` and see the corresponding policy generated on the Web UI as the following: 
+Run the following command in your terminal to generate a corresponding policy in the IAM Policy Stream dashboard:
 
-<img src="policy-generate.png" alt="Live Policy Stream UI" title="Live Policy Stream UI" width="800" />
+{{< command >}}
+$ awslocal sns create-topic --name test-topic
+{{< /command >}}
+
+You will see the following output in the IAM Policy Stream dashboard:
+
+<img src="policy-generate.png" alt="Live Policy Stream UI" title="Live Policy Stream UI" width="800" class="img-fluid shadow rounded" />
