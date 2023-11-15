@@ -2,7 +2,7 @@
 title: "IAM Policy Stream"
 linkTitle: "IAM Policy Stream"
 weight: 3
-description: Generate a stream of IAM policies as requests are coming into LocalStack using Live Policy Stream.
+description: Generate a stream of IAM policies as requests are coming into LocalStack using IAM Policy Stream.
 ---
 
 ## Introduction
