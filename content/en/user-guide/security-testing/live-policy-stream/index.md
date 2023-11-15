@@ -84,4 +84,4 @@ $ awslocal sns create-topic --name test-topic
 
 You will see the following output in the IAM Policy Stream dashboard:
 
-<img src="policy-generate.png" alt="Live Policy Stream UI" title="Live Policy Stream UI" width="800" class="img-fluid shadow rounded" />
+<img src="policy-generate.png" alt="IAM Policy Stream UI" title="Live Policy Stream UI" width="800" class="img-fluid shadow rounded" />
