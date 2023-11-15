@@ -11,7 +11,11 @@ description: Use LocalStack Outages Extension to mimic service outages by testin
 
 ## Getting started
 
-This guide is designed for users who are new to Outages Extension. For this particular example, we'll be using a Terraform configuration file from a [sample application repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/extension-outages). We'll simulate partial outages by interrupting specific services, such as halting an ECS instance creation or disrupting a database service. By closely watching Terraform's responses and the status of AWS resources, you'll learn how Terraform manages these disruptions.
+This guide is designed for users who are new to Outages Extension. We'll simulate partial outages by interrupting specific services, such as halting an ECS instance creation or disrupting a database service. By closely watching Terraform's responses and the status of AWS resources, you'll learn how Terraform manages these disruptions.
+
+For this particular example, we'll be using a Terraform configuration file from a [sample application repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/extension-outages). Clone the repository, and follow the instructions below to get started.
+
+### Prerequisites
 
 The general prerequisites for this guide are:
 
@@ -19,6 +23,13 @@ The general prerequisites for this guide are:
 - [AWS CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/) with the [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
 - [Terraform](https://www.terraform.io/downloads.html) and [`tflocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/terraform/#tflocal-wrapper-script).
+
+Start LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your API key as an environment variable during this process.
+
+{{< command >}}
+$ LOCALSTACK_API_KEY=<YOUR_LOCALSTACK_API_KEY>
+$ docker compose up
+{{< /command >}}
 
 ### Installing the extension
 

@@ -13,6 +13,10 @@ LocalStack allows you to integrate & test [Fault Injection Simulator (FIS)](http
 
 This guide is designed for users new to the Route53 and FIS services. In this example, there's an active-primary and passive-standby configuration. Route53 routes traffic to the primary region, which processes product-related requests through API Gateway and Lambda functions, with data stored in DynamoDB. If the primary region fails, Route53 redirects to the standby region, maintained in sync by a replication Lambda function.
 
+For this particular example, we'll be using a [sample application repository](https://github.com/localstack-samples/samples-chaos-engineering/tree/main/route53-failover). Clone the repository, and follow the instructions below to get started.
+
+### Prerequisites
+
 The general prerequisites for this guide are:
 
 - LocalStack Pro with a [LocalStack API key](https://docs.localstack.cloud/getting-started/api-key/)
@@ -21,18 +25,18 @@ The general prerequisites for this guide are:
 - [Python-3](https://www.python.org/downloads/)
 - `dig`
 
-### Application Architecture
-
-The following diagram shows the architecture that this application builds and deploys:
-
-{{< figure src="route53-failover-1.png" width="800">}}
-
-Initiate LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your API key as an environment variable during this process.
+Start LocalStack by using the `docker-compose.yml` file from the repository. Ensure to set your API key as an environment variable during this process.
 
 {{< command >}}
 $ LOCALSTACK_API_KEY=<YOUR_LOCALSTACK_API_KEY>
 $ docker compose up
 {{< /command >}}
+
+### Application Architecture
+
+The following diagram shows the architecture that this application builds and deploys:
+
+{{< figure src="route53-failover-1.png" width="800">}}
 
 ### Creating the resources 
 
