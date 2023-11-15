@@ -24,7 +24,7 @@ To experiment with the IAM Policy Stream, initiate LocalStack using these flags:
 To utilize the IAM Policy Stream without enforcing IAM policies, set `IAM_SOFT_MODE=1`. You can execute the following command in your terminal to start your LocalStack container:
 
 {{< command >}}
-$ DEBUG=1 ENFORCE_IAM=1 IAM_SOFT_MODE=1 localstack start
+$ DEBUG=1 IAM_SOFT_MODE=1 localstack start
 {{< /command >}}
 
 ### Enable IAM Policy Stream
