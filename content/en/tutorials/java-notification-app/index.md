@@ -41,7 +41,11 @@ For this tutorial, you will need:
 
 - [LocalStack Pro](https://localstack.cloud/pricing/) to emulate the AWS services (SNS, SQS, SES, etc) locally
   - Don't worry, if you don't have a subscription yet, you can just get a trial license for free.
+<<<<<<< HEAD
 - [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
+=======
+- [awslocal](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
+>>>>>>> 6a2182110 (fix broken links)
 - [Docker](https://docker.io/)
 - Java 11+
 - Maven 3+

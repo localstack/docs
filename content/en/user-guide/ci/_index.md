@@ -1,14 +1,12 @@
 ---
-title: "LocalStack in CI"
-linkTitle: "LocalStack in CI"
+title: "Continuous Integration"
+linkTitle: "Continuous Integration"
 weight: 3
 description: >
-  Using LocalStack in your Continuous Integration (CI) workflows
+  Run LocalStack in your CI environment to test your application against a high-fidelity cloud emulator
 cascade:
   type: docs
 slug: ci
-aliases:
-  - /ci/
 ---
 
 LocalStack enables organizations to automate their application testing and integration process through DevOps practices, such as continuous integration (CI). To meet your organizational needs, LocalStack lets you move away from complicated AWS testing and staging environments by enabling a key component of testing and delivering cloud-native applications.
@@ -21,7 +19,11 @@ Let's assume that your team has an automated CI workflow into which you want to 
 
 {{< figure src="localstack-in-ci.svg" alt="An example CI/CD workflow using LocalStack" width="90%">}}
 
-The CI build is triggered by pushing code to a version control repository, like GitHub. The CI runner starts LocalStack and executes the test suite. You can also use the same Infrastructure-as-Code (IaC) configuration that you use to set up AWS in your production environment to set up LocalStack in the CI environment. You can also pre-seed state into the local AWS services (e.g., DynamoDB entries or S3 files) provided by LocalStack in your CI environment via [Cloud Pods]({{< ref "user-guide/tools/cloud-pods" >}}).
+<<<<<<< HEAD
+The CI build is triggered by pushing code to a version control repository, like GitHub. The CI runner starts LocalStack and executes the test suite. You can also use the same Infrastructure-as-Code (IaC) configuration that you use to set up AWS in your production environment to set up LocalStack in the CI environment. You can also pre-seed state into the local AWS services (e.g., DynamoDB entries or S3 files) provided by LocalStack in your CI environment via [Cloud Pods]({{< ref "user-guide/cloud-pods" >}}).
+=======
+The CI build is triggered by pushing code to a version control repository, like GitHub. The CI runner starts LocalStack and executes the test suite. You can also use the same Infrastructure-as-Code (IaC) configuration that you use to set up AWS in your production environment to set up LocalStack in the CI environment. You can also pre-seed state into the local AWS services (e.g., DynamoDB entries or S3 files) provided by LocalStack in your CI environment via [Cloud Pods]({{< ref "user-guide/cloud-pods/" >}}).
+>>>>>>> 6a2182110 (fix broken links)
 
 After a successful test run, you can execute the more expensive AWS CodeBuild pipeline for deploying your application. You can enrich the test reports created by your testing framework with traces and analytics generated inside LocalStack.
 

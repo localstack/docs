@@ -3,6 +3,8 @@ title: "Cloud Pods"
 weight: 10
 description: >
   Cloud Pods provides a new way of collaborating in cloud application development workflows.
+aliases:
+  - /user-guide/cloud-pods/
 ---
 
 ## Introduction
