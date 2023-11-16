@@ -14,7 +14,6 @@ To get started, you need to have a LocalStack license. If you don't have one, yo
 
 You can assign licenses to users on the [Users & Licenses](https://app.localstack.cloud/workspace/members) page or you can check your assigned license on the [My License](https://app.localstack.cloud/workspace/my-license) page.
 
-
 {{< alert title="Important" color="danger" >}}
 - Avoid sharing your auth token with anyone. Ensure that you do not commit it to any source code management systems (like Git repositories).
 - If you push an auth token to a public repository, it has potentially been exposed and might remain in the history (even if you try to rewrite it).
@@ -95,7 +94,7 @@ Otherwise, check our collected most [common activation issues](#common-activatio
 Since LocalStack v2.0.0, the image `localstack/localstack-pro` requires a successful license activation to start.
 If the license activation fails, LocalStack will quit with an error messages that may look something like this:
 
-```
+```bash
 ===============================================
 License activation failed! 🔑❌
 
