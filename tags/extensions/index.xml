@@ -1,45 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – extensions</title><link>/tags/extensions/</link><description>Recent content in extensions on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/extensions/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Quickstart</title><link>/user-guide/extensions/quickstart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/quickstart/</guid><description>
-&lt;p>In this quickstart guide, we will install and use the official &lt;a href="https://github.com/localstack/localstack-extensions/tree/main/mailhog">MailHog extensions&lt;/a>.&lt;/p>
-&lt;h2 id="install-an-extension">Install an extension&lt;/h2>
-&lt;p>First, start up your LocalStack instance and navigate to our &lt;a href="https://app.localstack.cloud/inst/default/extensions/manage">Extension Manager App&lt;/a>.
-Then, click the &amp;ldquo;Install&amp;rdquo; button of the MailHog extension:&lt;/p>
-&lt;figure>
-&lt;img src="/user-guide/extensions/quickstart/install-extensions.png"/>
-&lt;/figure>
-&lt;p>You will be prompted to confirm that LocalStack will be restarted, and then the extension should become available.
-In your LocalStack logs you should see the MailHog extension logging some output:&lt;/p>
-&lt;pre tabindex="0">&lt;code>2023-10-11T19:10:54.708 INFO --- [ MainThread] l.extensions.platform : loaded 1 extensions
-2023-10-11T19:10:54.709 INFO --- [ MainThread] mailhog.extension : starting mailhog server
-2023-10-11T19:10:54.709 INFO --- [ MainThread] mailhog.extension : configuring SMTP host to internal mailhog smtp: localhost:25
-...
-2023-10-11T19:10:55.023 INFO --- [ MainThread] mailhog.extension : serving mailhog extension on host: http://mailhog.localhost.localstack.cloud:4566
-2023-10-11T19:10:55.023 INFO --- [ MainThread] mailhog.extension : serving mailhog extension on path: http://localhost:4566/mailhog/
-&lt;/code>&lt;/pre>&lt;h2 id="use-the-extension">Use the extension&lt;/h2>
-&lt;p>With MailHog, you can perform end-to-end testing of applications that send emails via SES.
-Let&amp;rsquo;s use the AWS CLI tool to send an email:&lt;/p>
-&lt;h3 id="send-an-email-through-ses">Send an Email through SES&lt;/h3>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>aws --endpoint-url=http://localhost:4566 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ses verify-email-identity --email-address user1@yourdomain.com&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>aws --endpoint-url=http://localhost:4566 \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ses send-email \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --from user1@yourdomain.com \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --message &amp;#39;Body={Text={Data=&amp;#34;Hello from LocalStack to MailHog&amp;#34;}},Subject={Data=Test Email}&amp;#39; \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --destination &amp;#39;ToAddresses=recipient1@example.com&amp;#39;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="open-the-extensions-ui">Open the extension&amp;rsquo;s UI&lt;/h3>
-&lt;p>Now, navigate in your browser to the MailHog UI in LocalStack: &lt;a href="http://mailhog.localhost.localstack.cloud:4566/">http://mailhog.localhost.localstack.cloud:4566/&lt;/a>&lt;/p>
-&lt;p>You should see the email there:&lt;/p>
-&lt;figure>
-&lt;img src="/user-guide/extensions/quickstart/mailhog.png"/>
-&lt;/figure>
-&lt;h2 id="next-steps">Next steps&lt;/h2>
-&lt;ul>
-&lt;li>We have a range of official extensions, and a growing ecosystem of third-party extensions.
-Check them out in our &lt;a href="https://app.localstack.cloud/extensions/library">Extensions Library&lt;/a>.&lt;/li>
-&lt;li>There are different ways of managing extensions, and automating the installation of extensions when using LocalStack in CI.
-You can find out more in our &lt;a href="/user-guide/extensions/managing-extensions/">Managing Extensions&lt;/a> guide.&lt;/li>
-&lt;li>You can also build your own extensions!
-Check out our guide on &lt;a href="/user-guide/extensions/developing-extensions/">Developing Extensions&lt;/a>.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Managing extensions</title><link>/user-guide/extensions/managing-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/managing-extensions/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – extensions</title><link>/tags/extensions/</link><description>Recent content in extensions on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/tags/extensions/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Managing extensions</title><link>/user-guide/extensions/managing-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/managing-extensions/</guid><description>
 &lt;p>You have different options to install and manage your LocalStack extensions depending on your environment and work style.&lt;/p>
 &lt;p>Extensions are managed through the LocalStack container, but stored in the &lt;a href="/references/filesystem/#localstack-volume">LocalStack volume&lt;/a> on your host.
 The next time you start up LocalStack, your extensions will still be there!&lt;/p>
