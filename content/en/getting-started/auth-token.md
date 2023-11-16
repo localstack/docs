@@ -1,11 +1,8 @@
 ---
 title: "Auth Token"
 weight: 20
-categories: ["LocalStack Pro & Enterprise"]
 description: >
   Configure your auth token to start LocalStack
-aliases:
-  - /get-started/pro/
 ---
 
 LocalStack uses auth tokens to to authenticate users and to activate your LocalStack license.

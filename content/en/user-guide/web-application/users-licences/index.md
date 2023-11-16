@@ -1,6 +1,5 @@
 ---
 title: "Managing Users and Licenses"
-tags: ["LocalStack Pro", "Accounts"]
 weight: 30
 description: >
   Invite new users and manage a user's license and legacy API key.
