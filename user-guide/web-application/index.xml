@@ -1,70 +1,107 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Web Application</title><link>/user-guide/web-application/</link><description>Recent content in LocalStack Web Application on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/user-guide/web-application/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Accounts</title><link>/user-guide/web-application/accounts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/accounts/</guid><description>
-&lt;p>To start using LocalStack&amp;rsquo;s Web Application, you must create an account. With a LocalStack account, you can sign-up for a license and use your API keys to access our advanced features. These include &lt;a href="/references/coverage/">AWS services&lt;/a> marked under &lt;strong>Pro&lt;/strong>, &lt;a href="/user-guide/web-application/stack-insights/">Stack Insights&lt;/a>, &lt;a href="/user-guide/tools/cloud-pods/">Cloud Pods&lt;/a>, and more!&lt;/p>
-&lt;h2 id="creating-an-account">Creating an account&lt;/h2>
-&lt;p>To create an account for LocalStack, visit &lt;a href="https://app.localstack.cloud/sign-up">&lt;strong>app.localstack.cloud/sign-up&lt;/strong>&lt;/a>. You can sign up with your email address or one of our supported social identity providers (such as GitHub).&lt;/p>
-&lt;img src="signup.PNG" width="550px" alt="Sign Up Form">
-&lt;h2 id="account-types">Account Types&lt;/h2>
-&lt;p>You can choose between an &lt;strong>individual account&lt;/strong> or a &lt;strong>company account&lt;/strong>. When you sign up for LocalStack, you will automatically sign up for an individual account. These accounts are intended for non-company entities, such as individual developers.&lt;/p>
-&lt;p>To switch to a company account, you can do so from your &lt;a href="https://app.localstack.cloud/account">&lt;strong>app.localstack.cloud/account&lt;/strong>&lt;/a> section. Click on the toggle to switch to a company account. You will be prompted to add the following information about your organization:&lt;/p>
+&lt;p>A LocalStack account is required to access features in the web app, and to access any of our paid offerings.&lt;/p>
+&lt;h2 id="creating-an-account">Creating an Account&lt;/h2>
+&lt;p>Visit &lt;a href="https://app.localstack.cloud/sign-up">&lt;strong>app.localstack.cloud/sign-up&lt;/strong>&lt;/a> to create a user account for LocalStack.
+You can sign up with your email address or one of our supported social identity providers (such as GitHub).&lt;/p>
+&lt;p>The Terms and Conditions can be found at &lt;a href="https://app.localstack.cloud/terms" target="_blank">&lt;a href="https://app.localstack.cloud/terms">https://app.localstack.cloud/terms&lt;/a>&lt;/a> and our privacy policy can be found at &lt;a href="https://app.localstack.cloud/privacy" target="_blank">&lt;a href="https://app.localstack.cloud/privacy">https://app.localstack.cloud/privacy&lt;/a>&lt;/a>&lt;/p>
+&lt;img src="signup.PNG" width="550px" alt="A screenshot of the sign up form" title="Sign-up form">
+&lt;h2 id="updating-account-info-and-settings">Updating Account Info and Settings&lt;/h2>
+&lt;p>To update your account info, password and settings select the corresponding entry from the sidebar under the &amp;lsquo;Account&amp;rsquo; menu entry.&lt;/p>
+&lt;img src="account.png" alt="A screenshot of the 'Account Information' page with the 'Account' section highlighted in the navigation sidebar on the left." title="Account Settings" width="900"></description></item><item><title>User-Guide: Workspaces</title><link>/user-guide/web-application/workspaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/workspaces/</guid><description>
+&lt;p>In LocalStack, a workspace allows you to collaborate with members of your organization and it encapsulates user and license management, subscriptions and billing, as well as access to shared resources and features like Cloud Pods or Stack Insights.&lt;/p>
+&lt;p>A workspace represents the base organizational unit in the web application.
+Users can be invited to join a workspace, and an admin can manage their license and permissions inside a workspace.&lt;/p>
+&lt;img src="workspace.png" alt="A screenshot of the LocalStack web application. The section labeled 'Workspace' in the sidebar on the left is highlighted and shows sub menu entries like 'Workspace Info', 'Auth Token', Users &amp;amp; Licenses', 'Subscriptions'." title="Workspace section in sidebar" width="900" /></description></item><item><title>User-Guide: Auth Token</title><link>/user-guide/web-application/auth-token/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/auth-token/</guid><description>
+&lt;p>The auth token is a personal token that is used to authenticate a user outside the webapp, especially when using the LocalStack emulator.
+The auth token is used to retrieve a user&amp;rsquo;s license and to unlock advanced functionality. The auth token replaces the (now legacy) developer API keys.&lt;/p>
+&lt;p>The auth token does not change (unless rotated by the user) also when a license is assigned or removed.&lt;/p>
+&lt;h2 id="setting-the-auth-token">Setting the Auth Token&lt;/h2>
+&lt;p>The auth token needs to be set as an environment variable in the user&amp;rsquo;s dev environment.
+The token itself, as well as detailed instruction on how to set it, can be found on the &lt;a href=https://app.localstack.cloud/workspace/auth-token>Auth Token&lt;/a> page under the &amp;lsquo;Workspace&amp;rsquo; menu.&lt;/p>
+&lt;h2 id="rotating-the-auth-token">Rotating the Auth Token&lt;/h2>
+&lt;p>Your personal auth token gives you full access to the associated workspace and LocalStack license.
+Auth tokens should be treated as secrets and never be shared or checked into source control management systems (SCMs) like for example git.&lt;/p>
+&lt;p>If you suspect your personal auth token to be compromised, or if it becomes known to a third party, you should reset it immediately.
+By resetting a token, the previous token will stop working immediately and can no longer be used to access a license or workspace.
+Previous tokens cannot be restored.&lt;/p>
+&lt;p>To rotate the auth token, select the &amp;lsquo;Reset Auth Token&amp;rsquo; action from the &lt;a href=https://app.localstack.cloud/workspace/auth-token>Auth Token&lt;a/> page.&lt;/p></description></item><item><title>User-Guide: Managing Users and Licenses</title><link>/user-guide/web-application/users-licences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/users-licences/</guid><description>
+&lt;p>Within a workspace, users and their associated licenses are managed on the &lt;a href="https://app.localstack.cloud/workspace/members">Users &amp;amp; Licenses&lt;/a> page.
+This page allows to manage users and assign licenses to them.&lt;/p>
+&lt;img src="users-licences.png" alt="Illustrative screenshot of the LocalStack web app showing the page 'Users &amp; Licenses'" title="Users &amp; Licences" width="900" />
+&lt;h2 id="managing-users">Managing Users&lt;/h2>
+&lt;h3 id="inviting-users-to-the-workspace">Inviting Users to the Workspace&lt;/h3>
+&lt;p>New and existing LocalStack users can be invited to a workspace in the &amp;lsquo;Invite Users&amp;rsquo; section.
+To invite a user, provide the user&amp;rsquo;s name and email address.
+If the invitee does not have a LocalStack account yet, an invitation to create an account will be sent to the provided email address.
+The user&amp;rsquo;s name is used as placeholder for easier managing and will be replaced by the actual username once the account is created.&lt;/p>
+&lt;h3 id="removing-users">Removing Users&lt;/h3>
+&lt;p>A user can be removed from a workspace by clicking the user entry in the list to show the user&amp;rsquo;s details.
+This users detail view also shows the &amp;lsquo;Remove User from Workspace&amp;rsquo; button.
+Removed users can be shown by enabling the &amp;lsquo;Show Removed&amp;rsquo; toggle on the top right hand corner of the &amp;lsquo;Workspace Members&amp;rsquo; section.
+Removed users can be reinvited into a workspace with the &amp;lsquo;Resend Invitation&amp;rsquo; button.&lt;/p>
+&lt;h3 id="managing-user-permissions">Managing User Permissions&lt;/h3>
+&lt;p>User permissions can be managed by clicking the user in the list.
+This will expand the users detailed settings where a predefined role or advanced permissions can be set.&lt;/p>
+&lt;h2 id="managing-licenses">Managing Licenses&lt;/h2>
+&lt;p>A license is required to use advanced features of LocalStack.
+Licenses are contained in subscriptions and plans.
+The section &amp;lsquo;Licenses&amp;rsquo; lists the active plan/subscription in the workspace and also shows how many licenses (and legacy API keys) are currently in use.&lt;/p>
+&lt;p>To assign a license to a user, find the user entry in the &amp;lsquo;Workspace Members&amp;rsquo; list, and click the &amp;lsquo;Assign License&amp;rsquo; button.
+This button will be greyed out (disabled) if there are no licenses left.&lt;/p>
+&lt;p>To unassign a user&amp;rsquo;s license, again, find the user in the list and click the &amp;lsquo;x&amp;rsquo; next to the license badge.&lt;/p>
+&lt;p>Changes to licenses take effect immediately and require no further action of the user.&lt;/p>
+&lt;h2 id="moving-from-legacy-api-keys-to-licenses">Moving from legacy API Keys to Licenses&lt;/h2>
+&lt;p>In the past, access to LocalStack and advanced features was granted to individual developers by providing them with a (now legacy) API key.&lt;/p>
+&lt;p>With the recent change, now the recommended way is to assign a &amp;rsquo;license&amp;rsquo; to a user instead.
+Instead of using the legacy API key, the user sets up their personal auth token to access LocalStack advanced features.
+Upon authentication, the the auth token is used to identify the user and to retrieve and activate an assigned license.&lt;/p>
+&lt;p>The benefits of this new systems are:&lt;/p>
 &lt;ul>
-&lt;li>Company Name&lt;/li>
-&lt;li>Country&lt;/li>
-&lt;li>Tax ID&lt;/li>
+&lt;li>Auth tokens are longer and more secure (more bits of entropy)&lt;/li>
+&lt;li>A user can freely rotate their auth token (if needed) without any changes to their license.&lt;/li>
+&lt;li>An admin can manage users&amp;rsquo;s licenses, not requiring any configuration change of the user.
+Previously users had to manually update their (legacy) API key.&lt;/li>
 &lt;/ul>
-&lt;p>The above information is required if you are acting on behalf of a company.&lt;/p>
-&lt;img src="indcomp.PNG" width="800px" alt="Switch for Individual and Company Account"></description></item><item><title>User-Guide: Teams</title><link>/user-guide/web-application/teams/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/teams/</guid><description>
-&lt;p>Teams on LocalStack allow you to collaborate with members of your organization. You can invite other users to your team and assign them different roles and permissions. It includes advanced role settings such as purchasing subscriptions, managing payment methods, and more, which can be adjusted by the team administrator. You can purchase a plan with multiple seats for your team, which allows you to distribute the API keys among your team members.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Organizations/Teams are used interchangeably within our Web Application.
-&lt;/div>
-&lt;h4 id="inviting-team-members">Inviting Team Members&lt;/h4>
-&lt;p>To invite team members, navigate to the &lt;a href="https://app.localstack.cloud/account/members">&lt;strong>app.localstack.cloud/account/members&lt;/strong>&lt;/a> section of your profile. You will be prompted to enter the &lt;strong>User Name&lt;/strong> and &lt;strong>Email Address&lt;/strong> of the team member you wish to invite. Once you have entered the details, click on the plus symbol (&lt;code>+&lt;/code>) to invite them to your team.&lt;/p>
-&lt;img src="teammembers.PNG" width="800px" alt="Inviting Team Members">
-&lt;h4 id="member-roles--api-keys">Member Roles &amp;amp; API Keys&lt;/h4>
-&lt;p>After a team member has been invited, you can assign them different roles and permissions. You can also assign them an API key, which will allow them to access the LocalStack Web Application and the Pro CLI (command line interface).&lt;/p>
-&lt;img src="memberroles.PNG" width="900px" alt="Editing team member settings">
-&lt;p>To access the API key, the members must navigate to the &lt;a href="https://app.localstack.cloud/account/apikeys">&lt;strong>app.localstack.cloud/account/apikeys&lt;/strong>&lt;/a> section of their profile.&lt;/p></description></item><item><title>User-Guide: Stack Insights</title><link>/user-guide/web-application/stack-insights/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/stack-insights/</guid><description>
-&lt;p>LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall. Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.&lt;/p>
-&lt;p>You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.&lt;/p>
-&lt;p>To get started, the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable needs to be configured. The system will start making your events accessible on the LocalStack &lt;a href="https://app.localstack.cloud/dashboard">Web Application dashboard&lt;/a>.&lt;/p>
-&lt;div class="alert alert-success" role="alert">
-&lt;h4 class="alert-heading">Information&lt;/h4>
-Your privacy matters to us! We only collect anonymized and sanitized data.
-No sensitive information about your application is ever collected or exposed.
-The data is only used to provide you with insights into the usage of LocalStack and to help us improve the product.
-&lt;/div>
-&lt;h2 id="getting-started">Getting started&lt;/h2>
-&lt;img src="stack-insights-getting-started.png" width="600px" alt="Stack Insights">
-&lt;p>&lt;br>To get started with this feature, log in to your &lt;a href="https://app.localstack.cloud/">LocalStack account&lt;/a> and start a &lt;a href="/getting-started/api-key/">LocalStack instance on your local machine&lt;/a>. The LocalStack Dashboard will show the Stacks widget, which holds most of the vital information of recent and currently running stacks.&lt;/p>
-&lt;p>The Stack widget will also display the number of API calls, services employed and the runtime duration for each spin-up. All the spin-ups are timestamped; hence you can easily navigate the stacks and check the number of API calls that succeeded and failed.&lt;/p>
-&lt;h2 id="detailed-stack-information">Detailed Stack information&lt;/h2>
-&lt;img src="detailed-stack-information.png" width="600px" alt="Detailed Stack Insights">
-&lt;p>&lt;br>You can click on the individual stack to display detailed information. This includes the number of API calls, service invocations, the user agent (&lt;code>aws-cli&lt;/code>, &lt;code>terraform&lt;/code> etc.) and the particular service called in the specific spin-up. You can also use the slide toggle to pick up a particular time duration during which the user made specific API calls.
-Please note that stack insights are only collected if the LocalStack sessions runs for less than 24 hours.&lt;/p>
-&lt;h2 id="list-of-events-during-stack-lifetime">List of events during Stack lifetime&lt;/h2>
-&lt;img src="stack-lifetime-events.png" width="600px" alt="Stack Lifetime Events">
-&lt;p>&lt;br>You can also check the list of events during the entire Stack life-time, which includes the Service, operation, Status Code, Server time and the User-agent.&lt;/p>
-&lt;h2 id="configuration">Configuration&lt;/h2>
-&lt;p>You can disable event reporting on your LocalStack client by setting the environment variable &lt;code>DISABLE_EVENTS=1&lt;/code>.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-Brave blocks &lt;code>localhost&lt;/code> requests due to security by default via shields.
-While some sites need access to &lt;code>localhost&lt;/code> / &lt;code>127.0.0.1&lt;/code> to work correctly, an easy option to allow a user to enable this is manually enabling via the site via &lt;code>brave://settings/content/insecureContent&lt;/code>.
-&lt;/div></description></item><item><title>User-Guide: Resource Browser</title><link>/user-guide/web-application/resource-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/resource-browser/</guid><description>
-&lt;p>The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building &amp;amp; testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine. The Resource Browser can be operated only if a LocalStack container is running on your local machine and the local endpoint URL, which can be configured in the &lt;a href="https://app.localstack.cloud/account/settings">account settings&lt;/a> of the web application, points to the URL under which LocalStack is accessible.&lt;/p>
+&lt;h3 id="migrating-users-to-auth-tokens-and-licenses">Migrating Users to Auth Tokens and Licenses&lt;/h3>
+&lt;p>To migrate users from legacy API keys, assign a license to them in the &amp;lsquo;Workspace Members&amp;rsquo; list.
+The list also shows the legacy API key that is currently assigned to them.
+If a user already has a legacy API key assigned, assigning a license to them will not consume an additional license.
+A user holding both a legacy API key and a license is only counted once when the number of used licenses is computed.&lt;/p>
+&lt;p>If a user uses an API key that was not assigned to them, then it might be necessary to first remove the API key before a license can be assigned.&lt;/p>
+&lt;p>Once the license is assigned to the user, and the user set up their system to use the new auth token, their legacy API key can be deleted from the workspace.
+A user can find their personal auth token either in the &amp;lsquo;Auth Token&amp;rsquo; or in the &amp;lsquo;Getting Started&amp;rsquo; section of the web app.&lt;/p>
+&lt;h3 id="sunsetting-legacy-api-keys">Sunsetting legacy API keys&lt;/h3>
+&lt;p>In this transition period we continue to support legacy API keys.
+We will gradually phase them out over the next months, helping customers to smoothly transition over to the new license management.&lt;/p></description></item><item><title>User-Guide: CI Keys</title><link>/user-guide/web-application/ci-keys/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/ci-keys/</guid><description>
+&lt;p>The use of LocalStack in CI or other machine environments requires the use of a CI key.
+Each start in a CI or other machine environment consumes 1 CI token.
+A quota of these CI tokens is included in paid LocalStack plans.&lt;/p>
+&lt;p>CI keys are not intended to be used by individual developers.
+To give a developer access to LocalStack and advanced features assign a license to them on the &lt;a href=https://app.localstack.cloud/workspace/members>Users &amp;amp; Licenses&lt;/a> page.&lt;/p>
+&lt;h2 id="managing-ci-keys">Managing CI keys&lt;/h2>
+&lt;p>CI keys are managed on the &amp;lsquo;CI Keys&amp;rsquo; page.
+CI keys are not assigned to a specific developer but are attributed to a specific CI pipeline or project.&lt;/p>
+&lt;img src="ci-keys.png" alt="A screenshot of the LocalStack web app. The screenshot shows the page to manage CI keys" title="CI keys page" width="900" />
+&lt;p>The top of the page shows the consumption of CI tokens in the current period.
+A period lasts one month and the counter is reset at the start of each period.
+The start and end dates of the current period are shown next to the graph.&lt;/p>
+&lt;p>The number of CI keys in a workspace is not limited, but all API keys count towards the same quota.&lt;/p>
+&lt;p>For easier tracking, we recommend to use a separate CI key for each project or CI pipeline.
+To create a CI key, enter a descriptive name in the form field and press the &amp;lsquo;Generate CI Key&amp;rsquo; button.&lt;/p>
+&lt;p>Existing CI keys can be renamed, rotated or deleted by selecting the action from the list.&lt;/p></description></item><item><title>User-Guide: Resource Browser</title><link>/user-guide/web-application/resource-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/resource-browser/</guid><description>
+&lt;p>The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building &amp;amp; testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine.&lt;/p>
 &lt;img src="resource-browser.png" alt="LocalStack Web Application's Resource Browsers outlining various local AWS services" title="Resource Browser" width="900" />
 &lt;div class="alert alert-warning" role="alert">
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 &lt;ul>
-&lt;li>If you encounter a &lt;code>Network Failure&lt;/code> error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the local endpoint URL is not configured correctly. To resolve this issue, ensure that your LocalStack container is running or your &lt;a href="https://app.localstack.cloud/account/settings">local endpoint URL is configured correctly&lt;/a>.&lt;/li>
+&lt;li>If you encounter a &lt;code>Network Failure&lt;/code> error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the instance is not reachable at the endpoint specified in the instance bookmark.&lt;/li>
 &lt;/ul>
 &lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 &lt;ul>
 &lt;li>
-&lt;p>An AWS region dropdown menu in the dashboard is located on the top right of the navigation bar, beside the notifications icon. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.&lt;/p>
+&lt;p>An AWS region dropdown menu in the dashboard is located on the top right of the page. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>The Resource Browser provide an experience similar to the AWS Management Console. However, the Resource Browser is not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console. We recommend using our &lt;a href="https://docs.localstack.cloud/user-guide/integrations/">integrations&lt;/a> to create your resources, with the Resource Browser being used for quick viewing and management of your resources.&lt;/p>
@@ -106,7 +143,22 @@ While some sites need access to &lt;code>localhost&lt;/code> / &lt;code>127.0.0.
 &lt;li>&lt;a href="https://app.localstack.cloud/resources/stepfunctions">Step Functions&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://app.localstack.cloud/resources/ssm">Systems Manager&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://app.localstack.cloud/resources/timestream">TimestreamDB&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Cloud Pods Browser</title><link>/user-guide/web-application/cloud-pods-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/cloud-pods-browser/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Custom local endpoint</title><link>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</guid><description>
+&lt;p>To connect the LocalStack web app to a LocalStack instance running on a custom local endpoint, configure the endpoint in the instance bookmarks on the &lt;a href="https://app.localstack.cloud/instances">LocalStack Instances&lt;/a> page.&lt;/p>
+&lt;h2 id="connecting-to-a-localstack-instance-on-a-different-machine">Connecting to a LocalStack instance on a different machine&lt;/h2>
+&lt;p>To ensure that the Web user interface can connect with your running LocalStack instance, you would need to configure the endpoint URL so that the server&amp;rsquo;s SSL certificate matches the hostname/IP address of the endpoint URL. This situation arises when users configure the endpoint URL to be something like &lt;code>https://myhost:4566&lt;/code> or use an IP address like &lt;code>https://1.2.3.4:4566&lt;/code>. Websites with an &lt;code>https://...&lt;/code> URL can only request other endpoints using HTTPS (i.e., not on &lt;code>http://&lt;/code>). Additionally, while requesting an HTTPS page, the SSL certificate must match the hostname (i.e., &lt;code>localhost.localstack.cloud&lt;/code> in our case).&lt;/p>
+&lt;p>To navigate this, we recommend you create a local TCP proxy server. The proxy server could listen on &lt;code>127.0.0.1:4566&lt;/code> and forward all requests to your target endpoint where the LocalStack instance is running. You could leave the configuration in the Web user interface to use the default value, &lt;code>https://localhost.localstack.cloud:4566&lt;/code>. We recommend &lt;a href="https://manpages.ubuntu.com/manpages/trusty/man1/simpleproxy.1.html">simpleproxy&lt;/a> or &lt;a href="https://github.com/abhinavsingh/proxy.py">proxy.py&lt;/a> as a way to implement this.&lt;/p>
+&lt;p>An alternate workaround would be to re-point &lt;code>localhost.localstack.cloud&lt;/code> to the IP address of your target machine by adding an entry to &lt;code>/etc/hosts&lt;/code>. This is especially useful if you&amp;rsquo;re accessing the LocalStack Web UI on a macOS/Linux-based machine.&lt;/p></description></item><item><title>User-Guide: Extensions Library</title><link>/user-guide/web-application/extensions-library/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/extensions-library/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>LocalStack extensions allows you to extend and customize LocalStack. A LocalStack extension is a Python application that runs together with LocalStack within the LocalStack container.&lt;/p>
+&lt;p>LocalStack extensions are available to licensed users, and the list of available extensions can be found in the &lt;a href="https://app.localstack.cloud/extensions/library">Extensions Library&lt;/a>.&lt;/p>
+&lt;img src="extensions-library-ui.png" alt="LocalStack Extensions Library" title="LocalStack Extensions Library" width="900" />
+&lt;h2 id="installing-an-extension">Installing an Extension&lt;/h2>
+&lt;p>To install an extension using the LocalStack Extensions Library, you can navigate to the &lt;a href="https://app.localstack.cloud/extensions/library">&lt;strong>app.localstack.cloud/extensions/library&lt;/strong>&lt;/a> and click on the &lt;strong>Go to Instance&lt;/strong> button to open the list of available instances. If you are running your LocalStack instance locally, you can click on the &lt;strong>Default&lt;/strong> option.&lt;/p>
+&lt;p>You will be redirected to the LocalStack instance page, where you can directly click the &lt;strong>Install&lt;/strong> button to install the Extension. The installation process will take a few seconds, and &lt;strong>will restart your LocalStack instance&lt;/strong>. Click &lt;strong>Continue&lt;/strong> to proceed.&lt;/p>
+&lt;h2 id="managing-extensions">Managing Extensions&lt;/h2>
+&lt;p>You can further manage the installed extensions by navigating to the &lt;strong>Extensions&lt;/strong> tab in the LocalStack Instance page. You can remove an Extension by clicking the &lt;strong>Remove&lt;/strong> button.&lt;/p>
+&lt;img src="extensions-library-management.png" alt="Installed LocalStack Extensions Library" title="Installed LocalStack Extensions Library" width="900" /></description></item><item><title>User-Guide: Cloud Pods Browser</title><link>/user-guide/web-application/cloud-pods-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/cloud-pods-browser/</guid><description>
 &lt;p>&lt;a href="https://app.localstack.cloud/pods">The Cloud Pods Browser&lt;/a> lets you access and manage all your Cloud Pods. The Cloud Pods Browser is a feature of our LocalStack Web Application that is exclusive to &lt;strong>LocalStack Team &amp;amp; Enterprise users&lt;/strong>.&lt;/p>
 &lt;p>With Cloud Pods, you can have individual or shared ownership of a snapshot of your LocalStack instance.
 The LocalStack CLI allows you to create new Cloud Pods and configure their &lt;a href="https://docs.localstack.cloud/user-guide/tools/cloud-pods/pods-cli/#save">visibility settings&lt;/a>.&lt;/p>
@@ -129,27 +181,7 @@ LocalStack Pro users cannot access the Cloud Pods Browser. Community &amp;amp; P
 &lt;h2 id="save-a-cloud-pod">Save a Cloud Pod&lt;/h2>
 &lt;p>Users do not need to upload their Cloud Pod to the LocalStack Web Application since the Cloud Pods CLI automatically uploads pods via the &lt;code>save&lt;/code> operation. Similarly, the Cloud Pods CLI automatically injects the Cloud Pod into a running LocalStack container via the &lt;code>load&lt;/code> operation after specifying the Cloud Pod&amp;rsquo;s name. You can alternatively select a Cloud Pod on the Cloud Pods Browser and inject it into a running LocalStack container.&lt;/p>
 &lt;img src="cloud-pod-inject.png" alt="Inject a Cloud Pod through the Cloud Pods Browser" title="Inject a Cloud Pod through the Cloud Pods Browser" width="900" />
-&lt;p>We use a secure storage mechanism to store Cloud Pods on the LocalStack Web Application. When you push a Cloud Pod, it is stored securely in our storage backend in AWS, with each user/organization receiving a dedicated, isolated S3 bucket. Pushing and pulling a Cloud Pod from our Web Application is facilitated by using secure S3 pre-signed URLs for the Cloud Pods CLI to interact directly with the S3 bucket, rather than piping the state files through our LocalStack Platform APIs.&lt;/p></description></item><item><title>User-Guide: Extensions Library</title><link>/user-guide/web-application/extensions-library/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/extensions-library/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>LocalStack extensions allows you to extend and customize LocalStack. A LocalStack extension is a Python application that runs together with LocalStack within the LocalStack container.&lt;/p>
-&lt;p>LocalStack extensions are available to licensed users, and the list of available extensions can be found in the &lt;a href="https://app.localstack.cloud/extensions/library">Extensions Library&lt;/a>.&lt;/p>
-&lt;img src="extensions-library-ui.png" alt="LocalStack Extensions Library" title="LocalStack Extensions Library" width="900" />
-&lt;h2 id="installing-an-extension">Installing an Extension&lt;/h2>
-&lt;p>To install an extension using the LocalStack Extensions Library, you can navigate to the &lt;a href="https://app.localstack.cloud/extensions/library">&lt;strong>app.localstack.cloud/extensions/library&lt;/strong>&lt;/a> and click on the &lt;strong>Go to Instance&lt;/strong> button to open the list of available instances. If you are running your LocalStack instance locally, you can click on the &lt;strong>Default&lt;/strong> option.&lt;/p>
-&lt;p>You will be redirected to the LocalStack instance page, where you can directly click the &lt;strong>Install&lt;/strong> button to install the Extension. The installation process will take a few seconds, and &lt;strong>will restart your LocalStack instance&lt;/strong>. Click &lt;strong>Continue&lt;/strong> to proceed.&lt;/p>
-&lt;h2 id="managing-extensions">Managing Extensions&lt;/h2>
-&lt;p>You can further manage the installed extensions by navigating to the &lt;strong>Extensions&lt;/strong> tab in the LocalStack Instance page. You can remove an Extension by clicking the &lt;strong>Remove&lt;/strong> button.&lt;/p>
-&lt;img src="extensions-library-management.png" alt="Installed LocalStack Extensions Library" title="Installed LocalStack Extensions Library" width="900" />
-&lt;h3 id="supported-extensions">Supported Extensions&lt;/h3>
-&lt;p>The following extensions are currently available in the extensions Library:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/aws-replicator-extension/">AWS Replicator&lt;/a>: Replicate AWS resources into your local machine.&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/stripe-extension/">Stripe&lt;/a>: Mocked version of Stripe for testing purposes.&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/miniflare-extension/">Miniflare&lt;/a>: Local serverless execution environment for Cloudflare Workers.&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/mailhog/">MailHog&lt;/a>: Email testing server integrated with LocalStack.&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/httpbin-extension/">httpbin&lt;/a>: HTTP server with predefined responses.&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/tools/localstack-extensions/diagnosis-viewer-extension/">Diagnostic Viewer&lt;/a>: View and analyze LocalStack diagnostic logs.&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Export &amp; Import State</title><link>/user-guide/web-application/export-import-state/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/export-import-state/</guid><description>
+&lt;p>We use a secure storage mechanism to store Cloud Pods on the LocalStack Web Application. When you push a Cloud Pod, it is stored securely in our storage backend in AWS, with each user/organization receiving a dedicated, isolated S3 bucket. Pushing and pulling a Cloud Pod from our Web Application is facilitated by using secure S3 pre-signed URLs for the Cloud Pods CLI to interact directly with the S3 bucket, rather than piping the state files through our LocalStack Platform APIs.&lt;/p></description></item><item><title>User-Guide: Export &amp; Import State</title><link>/user-guide/web-application/export-import-state/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/export-import-state/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>The LocalStack Web Application enables you to export your infrastructure state to a file and import it into another LocalStack instance. You can perform these import and export operations locally or by utilizing LocalStack&amp;rsquo;s storage backend, which can store the state as a Cloud Pod.&lt;/p>
 &lt;h2 id="local">Local&lt;/h2>
@@ -189,12 +221,34 @@ LocalStack Pro users cannot access the Cloud Pods Browser. Community &amp;amp; P
 &lt;li>Choose the Cloud Pod from the drop-down list.&lt;/li>
 &lt;li>Click on &lt;strong>Load State From Pod&lt;/strong>.&lt;/li>
 &lt;/ol>
-&lt;p>To confirm the successful injection of the container state, visit the respective &lt;a href="https://app.localstack.cloud/inst/default/resources">Resource Browser&lt;/a> for the services and verify the resources.&lt;/p></description></item><item><title>User-Guide: Custom local endpoint</title><link>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/custom-local-endpoint/custom-local-endpoint/</guid><description>
-&lt;p>You can configure the local endpoint URL under which LocalStack is accessible from the LocalStack Web UI. To configure your local endpoint URL, navigate to your &lt;a href="https://app.localstack.cloud/account/settings">Account settings&lt;/a>, to configure the local endpoint URL (defaults to &lt;a href="https://localhost.localstack.cloud">https://localhost.localstack.cloud&lt;/a>). Additionally, you can configure the local endpoint URL to view your resources if you are running LocalStack on a different machine (see instructions below).&lt;/p>
-&lt;h2 id="connecting-to-a-localstack-instance-on-a-different-machine">Connecting to a LocalStack instance on a different machine&lt;/h2>
-&lt;p>To ensure that the Web user interface can connect with your running LocalStack instance, you would need to configure the endpoint URL so that the server&amp;rsquo;s SSL certificate matches the hostname/IP address of the endpoint URL. This situation arises when users configure the endpoint URL to be something like &lt;code>https://myhost:4566&lt;/code> or use an IP address like &lt;code>https://1.2.3.4:4566&lt;/code>. Websites with an &lt;code>https://...&lt;/code> URL can only request other endpoints using HTTPS (i.e., not on &lt;code>http://&lt;/code>). Additionally, while requesting an HTTPS page, the SSL certificate must match the hostname (i.e., &lt;code>localhost.localstack.cloud&lt;/code> in our case).&lt;/p>
-&lt;p>To navigate this, we recommend you create a local TCP proxy server. The proxy server could listen on &lt;code>127.0.0.1:4566&lt;/code> and forward all requests to your target endpoint where the LocalStack instance is running. You could leave the configuration in the Web user interface to use the default value, &lt;code>https://localhost.localstack.cloud:4566&lt;/code>. We recommend &lt;a href="https://manpages.ubuntu.com/manpages/trusty/man1/simpleproxy.1.html">simpleproxy&lt;/a> or &lt;a href="https://github.com/abhinavsingh/proxy.py">proxy.py&lt;/a> as a way to implement this.&lt;/p>
-&lt;p>An alternate workaround would be to re-point &lt;code>localhost.localstack.cloud&lt;/code> to the IP address of your target machine by adding an entry to &lt;code>/etc/hosts&lt;/code>. This is especially useful if you&amp;rsquo;re accessing the LocalStack Web UI on a macOS/Linux-based machine.&lt;/p></description></item><item><title>User-Guide: Single-Sign On</title><link>/user-guide/web-application/single-sign-on/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/single-sign-on/</guid><description>
+&lt;p>To confirm the successful injection of the container state, visit the respective &lt;a href="https://app.localstack.cloud/inst/default/resources">Resource Browser&lt;/a> for the services and verify the resources.&lt;/p></description></item><item><title>User-Guide: Stack Insights</title><link>/user-guide/web-application/stack-insights/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/stack-insights/</guid><description>
+&lt;p>LocalStack allows for transparent collection of execution events, in order to provide usage analytics and insights into the testing process overall. Stack Insights enable LocalStack users to report AWS API usage telemetry of LocalStack runs to their LocalStack account.&lt;/p>
+&lt;p>You can see which APIs are being used, which clients of integrations use particular services and API operations, which services cause the most API errors, and much more using Stack Insights. The Stacks widget and detailed Stack information is part of our Pro plan, while the graphical representation currently falls under our Team preview.&lt;/p>
+&lt;p>To get started, the &lt;code>LOCALSTACK_AUTH_TOKEN&lt;/code> environment variable needs to be configured. The system will start making your events accessible on the LocalStack &lt;a href="https://app.localstack.cloud/dashboard">Web Application dashboard&lt;/a>.&lt;/p>
+&lt;div class="alert alert-success" role="alert">
+&lt;h4 class="alert-heading">Information&lt;/h4>
+Your privacy matters to us! We only collect anonymized and sanitized data.
+No sensitive information about your application is ever collected or exposed.
+The data is only used to provide you with insights into the usage of LocalStack and to help us improve the product.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;img src="stack-insights-getting-started.png" width="600px" alt="Stack Insights">
+&lt;p>&lt;br>To get started with this feature, log in to your &lt;a href="https://app.localstack.cloud/">LocalStack account&lt;/a> and start a &lt;a href="/getting-started/auth-token/">LocalStack instance on your local machine&lt;/a>. The LocalStack Dashboard will show the Stacks widget, which holds most of the vital information of recent and currently running stacks.&lt;/p>
+&lt;p>The Stack widget will also display the number of API calls, services employed and the runtime duration for each spin-up. All the spin-ups are timestamped; hence you can easily navigate the stacks and check the number of API calls that succeeded and failed.&lt;/p>
+&lt;h2 id="detailed-stack-information">Detailed Stack information&lt;/h2>
+&lt;img src="detailed-stack-information.png" width="600px" alt="Detailed Stack Insights">
+&lt;p>&lt;br>You can click on the individual stack to display detailed information. This includes the number of API calls, service invocations, the user agent (&lt;code>aws-cli&lt;/code>, &lt;code>terraform&lt;/code> etc.) and the particular service called in the specific spin-up. You can also use the slide toggle to pick up a particular time duration during which the user made specific API calls.
+Please note that stack insights are only collected if the LocalStack sessions runs for less than 24 hours.&lt;/p>
+&lt;h2 id="list-of-events-during-stack-lifetime">List of events during Stack lifetime&lt;/h2>
+&lt;img src="stack-lifetime-events.png" width="600px" alt="Stack Lifetime Events">
+&lt;p>&lt;br>You can also check the list of events during the entire Stack life-time, which includes the Service, operation, Status Code, Server time and the User-agent.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>You can disable event reporting on your LocalStack client by setting the environment variable &lt;code>DISABLE_EVENTS=1&lt;/code>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Brave blocks &lt;code>localhost&lt;/code> requests due to security by default via shields.
+While some sites need access to &lt;code>localhost&lt;/code> / &lt;code>127.0.0.1&lt;/code> to work correctly, an easy option to allow a user to enable this is manually enabling via the site via &lt;code>brave://settings/content/insecureContent&lt;/code>.
+&lt;/div></description></item><item><title>User-Guide: Single-Sign On</title><link>/user-guide/web-application/single-sign-on/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/single-sign-on/</guid><description>
 &lt;p>LocalStack Enterprise allows to enable custom Single-Sign On (SSO) Identity providers, to facilitate the process of quickly onboarding team members from your organization.&lt;/p>
 &lt;p>In order to configure SSO access, first sign in to the LocalStack Web application under &lt;a href="https://app.localstack.cloud/">app.localstack.cloud&lt;/a>.
 In your profile settings, navigate to the Single Sign-on tab which will list existing SSO Identity Providers (if any exist).&lt;/p>
@@ -244,7 +298,7 @@ The SAML metadata file can be specified either via URL or via a file upload.&lt;
 &lt;li>&lt;strong>Default User Role&lt;/strong>: The Role that should be assigned to users of your organization signing up via SSO. In most cases, this should be a Member.&lt;/li>
 &lt;li>&lt;strong>Default User Permissions&lt;/strong>: Use this to define which permissions should be assigned to users of your organization signing up via SSO.
 &lt;ul>
-&lt;li>Tip: In order to enable self-serve API keys (i.e., allowing your users to generate their own API keys), make sure to select the &lt;strong>Allow the member to issue an API Key for her/himself&lt;/strong> permission.&lt;/li>
+&lt;li>Tip: In order to enable self-serve licences (i.e., allowing your users to request their own license), make sure to select the &lt;strong>Allow member to issue a license for themselves (or a legacy API key)&lt;/strong> permission.&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>

@@ -12,7 +12,7 @@ With the AWS Java SDK, Java developers can build applications that work with var
 &lt;li>Don&amp;rsquo;t worry, if you don&amp;rsquo;t have a subscription yet, you can just get a trial license for free.&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docker.io/">Docker&lt;/a>&lt;/li>
 &lt;li>Java 11+&lt;/li>
 &lt;li>Maven 3+&lt;/li>
@@ -447,7 +447,7 @@ You can also use the pre-defined clients from the &lt;a href="https://mvnreposit
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DEBUG=1&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">DOCKER_HOST=unix:///var/run/docker.sock&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN-}&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#000">SMTP_HOST=smtp:1025&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;${TMPDIR:-/tmp}/localstack:/tmp/localstack&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -459,7 +459,7 @@ You can also use the pre-defined clients from the &lt;a href="https://mvnreposit
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;1025&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;8025:8025&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The above &lt;code>docker-compose&lt;/code> file will start LocalStack and pull the MailHog image to start the SMTP server (if it doesn&amp;rsquo;t exist yet!) on port &lt;code>8025&lt;/code>. You can start LocalStack using the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_API_KEY=&amp;lt;your-api-key&amp;gt; docker-compose up -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_AUTH_TOKEN=&amp;lt;your-auth-token&amp;gt; docker-compose up -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Once LocalStack is started, we can deploy the CloudFormation stack (which might take a few moments):&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal cloudformation deploy \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --template-file src/main/resources/email-infra.yml \

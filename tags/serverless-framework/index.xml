@@ -9,7 +9,7 @@
 &lt;li>LocalStack Pro&lt;/li>
 &lt;li>&lt;a href="https://www.serverless.com/framework/docs/getting-started/">Serverless framework&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://nodejs.org/en/download/">Node.js &amp;amp; &lt;code>npm&lt;/code>&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal">&lt;code>awslocal&lt;/code>&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a>&lt;/li>
 &lt;li>&lt;code>cURL&lt;/code> &amp;amp; &lt;code>jq&lt;/code>&lt;/li>
 &lt;/ul>
 &lt;h2 id="setup-a-serverless-project">Setup a Serverless project&lt;/h2>
@@ -180,7 +180,7 @@
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>With these resource definitions, you have completed the configuration of your Serverless project. Now you can create your local AWS infrastructure on LocalStack and deploy your Application Load Balancers with the two Lambda functions as targets.&lt;/p>
 &lt;h2 id="creating-the-infrastructure-on-localstack">Creating the infrastructure on LocalStack&lt;/h2>
 &lt;p>Now that we have completed the initial setup let&amp;rsquo;s run LocalStack&amp;rsquo;s AWS emulation on our local machine. Start LocalStack by running the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_API_KEY=&amp;lt;your-api-key&amp;gt; localstack start -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_AUTH_TOKEN=&amp;lt;your-auth-token&amp;gt; localstack start -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>This command launches LocalStack in the background, enabling you to use the AWS services locally. Now, let&amp;rsquo;s deploy our Serverless project and verify the resources created in LocalStack. Run the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>npm run deploy&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>This command deploys your Serverless project using the &amp;ldquo;local&amp;rdquo; stage. The output will resemble the following:&lt;/p>

@@ -6,7 +6,7 @@
 &lt;h2 id="prerequisites">Prerequisites&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://localstack.cloud/pricing/">LocalStack Pro&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docker.io/">Docker&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://curl.se/download.html">&lt;code>cURL&lt;/code>&lt;/a>&lt;/li>
 &lt;/ul>
@@ -15,8 +15,8 @@
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">FROM&lt;/span>&lt;span style="color:#4e9a06"> nginx&lt;/span>&lt;span style="color:#a40000">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">ENV&lt;/span> &lt;span style="color:#000">foo&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>bar
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;code>Dockerfile&lt;/code> uses the official &lt;code>nginx&lt;/code> image from Docker Hub, which allows us to serve the default index page. Before building our Docker image, we need to start LocalStack and create an ECR repository to push our Docker image. To start LocalStack with the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable, run the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_API_KEY=&amp;lt;your-api-key&amp;gt; localstack start -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;code>Dockerfile&lt;/code> uses the official &lt;code>nginx&lt;/code> image from Docker Hub, which allows us to serve the default index page. Before building our Docker image, we need to start LocalStack and create an ECR repository to push our Docker image. To start LocalStack with the &lt;code>LOCALSTACK_AUTH_TOKEN&lt;/code> environment variable, run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_AUTH_TOKEN=&amp;lt;your-auth-token&amp;gt; localstack start -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Next, we will create an ECR repository to push our Docker image. We will use the &lt;code>awslocal&lt;/code> CLI to create the repository.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository --repository-name &amp;lt;REPOSITORY_NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Replace &lt;code>&amp;lt;REPOSITORY_NAME&amp;gt;&lt;/code> with your desired repository name. The output of this command will contain the &lt;code>repositoryUri&lt;/code> value that we&amp;rsquo;ll need in the next step:&lt;/p>

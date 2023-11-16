@@ -7,7 +7,7 @@
 &lt;p>Before diving into this tutorial, make sure you have the following prerequisites:&lt;/p>
 &lt;ul>
 &lt;li>LocalStack Pro&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal">&lt;code>awslocal&lt;/code> CLI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.python.org/downloads/">Python&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docker.io/">Docker&lt;/a>&lt;/li>
 &lt;/ul>
@@ -38,8 +38,8 @@ If your Lambda function has additional dependencies, create a file named &lt;cod
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker build .&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>By executing these steps, you have defined the Dockerfile that instructs Docker on how to build the container image for your Lambda function. The resulting image will contain your function code and any specified dependencies.&lt;/p>
 &lt;h2 id="publishing-the-image-to-ecr">Publishing the image to ECR&lt;/h2>
-&lt;p>Now that the initial setup is complete let&amp;rsquo;s explore how to leverage LocalStack&amp;rsquo;s AWS emulation by pushing our image to ECR and deploying the Lambda container image. Start LocalStack by executing the following command. Make sure to replace &lt;code>&amp;lt;your-api-key&amp;gt;&lt;/code> with your actual API key:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_API_KEY=&amp;lt;your-api-key&amp;gt; DEBUG=1 localstack start -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Now that the initial setup is complete let&amp;rsquo;s explore how to leverage LocalStack&amp;rsquo;s AWS emulation by pushing our image to ECR and deploying the Lambda container image. Start LocalStack by executing the following command. Make sure to replace &lt;code>&amp;lt;your-auth-token&amp;gt;&lt;/code> with your actual auth token:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_AUTH_TOKEN=&amp;lt;your-auth-token&amp;gt; DEBUG=1 localstack start -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Once the LocalStack container is running, we can create a new ECR repository to store our container image. Use the &lt;code>awslocal&lt;/code> CLI to achieve this. Run the following command to create the repository, replacing &lt;code>localstack-lambda-container-image&lt;/code> with the desired name for your repository:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository --repository-name localstack-lambda-container-image
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>{
@@ -154,7 +154,7 @@ More information can be found &lt;a href="/references/arm64-support/">in our doc
 &lt;h2 id="prerequisites">Prerequisites&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://localstack.cloud/pricing/">LocalStack Pro&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a>&lt;/li>
+&lt;li>&lt;a href="/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">awslocal&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docker.io/">Docker&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://curl.se/download.html">&lt;code>cURL&lt;/code>&lt;/a>&lt;/li>
 &lt;/ul>
@@ -163,8 +163,8 @@ More information can be found &lt;a href="/references/arm64-support/">in our doc
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">FROM&lt;/span>&lt;span style="color:#4e9a06"> nginx&lt;/span>&lt;span style="color:#a40000">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">&lt;/span>&lt;span style="color:#204a87;font-weight:bold">ENV&lt;/span> &lt;span style="color:#000">foo&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>bar
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;code>Dockerfile&lt;/code> uses the official &lt;code>nginx&lt;/code> image from Docker Hub, which allows us to serve the default index page. Before building our Docker image, we need to start LocalStack and create an ECR repository to push our Docker image. To start LocalStack with the &lt;code>LOCALSTACK_API_KEY&lt;/code> environment variable, run the following command:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_API_KEY=&amp;lt;your-api-key&amp;gt; localstack start -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The &lt;code>Dockerfile&lt;/code> uses the official &lt;code>nginx&lt;/code> image from Docker Hub, which allows us to serve the default index page. Before building our Docker image, we need to start LocalStack and create an ECR repository to push our Docker image. To start LocalStack with the &lt;code>LOCALSTACK_AUTH_TOKEN&lt;/code> environment variable, run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_AUTH_TOKEN=&amp;lt;your-auth-token&amp;gt; localstack start -d&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Next, we will create an ECR repository to push our Docker image. We will use the &lt;code>awslocal&lt;/code> CLI to create the repository.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ecr create-repository --repository-name &amp;lt;REPOSITORY_NAME&amp;gt;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Replace &lt;code>&amp;lt;REPOSITORY_NAME&amp;gt;&lt;/code> with your desired repository name. The output of this command will contain the &lt;code>repositoryUri&lt;/code> value that we&amp;rsquo;ll need in the next step:&lt;/p>
