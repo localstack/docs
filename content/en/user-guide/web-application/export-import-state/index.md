@@ -1,12 +1,12 @@
 ---
 title: "Export & Import State"
-weight: 6
+weight: 130
 description: Export and import the state of the current infrastructure state into a file or a LocalStack instance respectively!
 ---
 
 ## Introduction
 
-The LocalStack Web Application enables you to export your infrastructure state to a file and import it into another LocalStack instance. You can perform these import and export operations locally or by utilizing LocalStack's storage backend, which can store the state as a Cloud Pod. 
+The LocalStack Web Application enables you to export your infrastructure state to a file and import it into another LocalStack instance. You can perform these import and export operations locally or by utilizing LocalStack's storage backend, which can store the state as a Cloud Pod.
 
 ## Local
 
@@ -18,7 +18,7 @@ The Local mode allows you to perform local exports and imports of your LocalStac
 
 To export the state, follow these steps:
 
-1. Navigate to the **Local** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page. 
+1. Navigate to the **Local** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page.
 2. Create AWS resources locally as needed.
 3. Click on the **Export State** button. This action will initiate the download of a ZIP file.
 
@@ -43,7 +43,7 @@ Cloud Pod allows you to capture a snapshot of your LocalStack instance's state. 
 
 To export the state, follow these steps:
 
-1. Navigate to the **Cloud Pod** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page. 
+1. Navigate to the **Cloud Pod** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page.
 2. Create AWS resources locally as needed.
 3. Enter the Pod name and toggle between the **New Pod** and **Existing Pod** options.
 4. Click on **Create New Pod**.
@@ -54,7 +54,7 @@ A new Cloud Pod will be created and will be available for import into another Lo
 
 To import the state, follow these steps:
 
-1. Navigate to the **Cloud Pod** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page. 
+1. Navigate to the **Cloud Pod** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page.
 2. Choose the Cloud Pod from the drop-down list.
 3. Click on **Load State From Pod**.
 

@@ -12,7 +12,7 @@ Suppose you're attempting to access LocalStack, but you're relying on transparen
 
 {{< figure src="../images/2.svg" width="400" >}}
 
-If you're using LocalStack with an [API key]({{<ref "getting-started/api-key">}}), then you can utilize the [DNS server]({{<ref "user-guide/tools/transparent-endpoint-injection/dns-server">}}) to perform requests to LocalStack as if it were AWS.
+If you're using LocalStack with an [auth token]({{<ref "getting-started/auth-token">}}), then you can utilize the [DNS server]({{<ref "user-guide/tools/transparent-endpoint-injection/dns-server">}}) to perform requests to LocalStack as if it were AWS.
 You need to make two changes:
 
 * Publish port 53 from the LocalStack docker container to your host.

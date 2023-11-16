@@ -1,6 +1,6 @@
 ---
 title: "Extensions Library"
-weight: 5
+weight: 110
 description: Extend LocalStack by adding new services and features as extensions
 ---
 
@@ -23,14 +23,3 @@ You will be redirected to the LocalStack instance page, where you can directly c
 You can further manage the installed extensions by navigating to the **Extensions** tab in the LocalStack Instance page. You can remove an Extension by clicking the **Remove** button.
 
 <img src="extensions-library-management.png" alt="Installed LocalStack Extensions Library" title="Installed LocalStack Extensions Library" width="900" />
-
-### Supported Extensions
-
-The following extensions are currently available in the extensions Library:
-
--   [AWS Replicator](https://docs.localstack.cloud/user-guide/tools/localstack-extensions/aws-replicator-extension/): Replicate AWS resources into your local machine.
--   [Stripe](https://docs.localstack.cloud/user-guide/tools/localstack-extensions/stripe-extension/): Mocked version of Stripe for testing purposes.
--   [Miniflare](https://docs.localstack.cloud/user-guide/tools/localstack-extensions/miniflare-extension/): Local serverless execution environment for Cloudflare Workers.
--   [MailHog](https://docs.localstack.cloud/user-guide/tools/localstack-extensions/mailhog/): Email testing server integrated with LocalStack.
--   [httpbin](https://docs.localstack.cloud/user-guide/tools/localstack-extensions/httpbin-extension/): HTTP server with predefined responses.
--   [Diagnostic Viewer](https://docs.localstack.cloud/user-guide/tools/localstack-extensions/diagnosis-viewer-extension/): View and analyze LocalStack diagnostic logs.

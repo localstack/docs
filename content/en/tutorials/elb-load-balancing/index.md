@@ -37,7 +37,7 @@ In this tutorial we focus on the Application Load Balancer (ALB), which operates
 - LocalStack Pro
 - [Serverless framework](https://www.serverless.com/framework/docs/getting-started/)
 - [Node.js & `npm`](https://nodejs.org/en/download/)
-- [`awslocal`](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
 - `cURL` & `jq`
 
 ## Setup a Serverless project
@@ -264,7 +264,7 @@ With these resource definitions, you have completed the configuration of your Se
 Now that we have completed the initial setup let's run LocalStack's AWS emulation on our local machine. Start LocalStack by running the following command:
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
+$ LOCALSTACK_AUTH_TOKEN=<your-auth-token> localstack start -d
 {{< / command >}}
 
 This command launches LocalStack in the background, enabling you to use the AWS services locally. Now, let's deploy our Serverless project and verify the resources created in LocalStack. Run the following command:

@@ -34,7 +34,7 @@ leadimage: "lambda-ecr-container-images-featured-image.png"
 Before diving into this tutorial, make sure you have the following prerequisites:
 
 - LocalStack Pro
-- [`awslocal` CLI](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
 - [Python](https://www.python.org/downloads/)
 - [Docker](https://docker.io/)
 
@@ -90,10 +90,10 @@ By executing these steps, you have defined the Dockerfile that instructs Docker 
 
 ## Publishing the image to ECR
 
-Now that the initial setup is complete let's explore how to leverage LocalStack's AWS emulation by pushing our image to ECR and deploying the Lambda container image. Start LocalStack by executing the following command. Make sure to replace `<your-api-key>` with your actual API key:
+Now that the initial setup is complete let's explore how to leverage LocalStack's AWS emulation by pushing our image to ECR and deploying the Lambda container image. Start LocalStack by executing the following command. Make sure to replace `<your-auth-token>` with your actual auth token:
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<your-api-key> DEBUG=1 localstack start -d
+$ LOCALSTACK_AUTH_TOKEN=<your-auth-token> DEBUG=1 localstack start -d
 {{< / command >}}
 
 Once the LocalStack container is running, we can create a new ECR repository to store our container image. Use the `awslocal` CLI to achieve this. Run the following command to create the repository, replacing `localstack-lambda-container-image` with the desired name for your repository:

@@ -1,6 +1,6 @@
 ---
 title: "Drone CI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"] 
+tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 5
 description: >
   Use LocalStack in [Drone CI](https://drone.io/)
@@ -40,9 +40,9 @@ steps:
   - until curl -s http://localstack:4566/_localstack/health; do echo -n . && sleep 1; done
 ```
 
-## Configuring an API key
+## Configuring a CI key
 
-You can easily enable LocalStack Pro by by using the `localstack/localstack-pro` image and adding your API key to Drone Repository secrets. You can manage them from your repository settings screen. Navigate to your Repository secrets on your Drone repository and add the LocalStack API key as `localstack_api_key`. Here is an example:
+You can easily enable LocalStack Pro by by using the `localstack/localstack-pro` image and adding your API key to Drone Repository secrets. You can manage them from your repository settings screen. Navigate to your Repository secrets on your Drone repository and add the LocalStack CI key as `localstack_ci_key`. Here is an example:
 
 ```yml
 services:
@@ -50,5 +50,5 @@ services:
   image: localstack/localstack-pro
   environment:
     LOCALSTACK_API_KEY:
-      from_secret: localstack_api_key
+      from_secret: localstack_ci_key
 ```

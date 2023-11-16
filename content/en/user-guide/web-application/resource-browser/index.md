@@ -1,21 +1,21 @@
 ---
 title: "Resource Browser"
 tags: ["LocalStack Pro"]
-weight: 4
+weight: 100
 description: >
     The Resource Browser allows you to view and manage your local AWS resources through the LocalStack Web Application.
 ---
 
-The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building & testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine. The Resource Browser can be operated only if a LocalStack container is running on your local machine and the local endpoint URL, which can be configured in the [account settings](https://app.localstack.cloud/account/settings) of the web application, points to the URL under which LocalStack is accessible.
+The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building & testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine.
 
 <img src="resource-browser.png" alt="LocalStack Web Application's Resource Browsers outlining various local AWS services" title="Resource Browser" width="900" />
 
 {{< alert title="Warning" color="warning">}}
-- If you encounter a `Network Failure` error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the local endpoint URL is not configured correctly. To resolve this issue, ensure that your LocalStack container is running or your [local endpoint URL is configured correctly](https://app.localstack.cloud/account/settings).
+- If you encounter a `Network Failure` error message while accessing the Resource Browser, it is likely that the LocalStack container is not running or the instance is not reachable at the endpoint specified in the instance bookmark.
 {{< /alert >}}
 
 {{<alert title="Note">}}
-- An AWS region dropdown menu in the dashboard is located on the top right of the navigation bar, beside the notifications icon. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.
+- An AWS region dropdown menu in the dashboard is located on the top right of the page. You can select your desired region to ensure that you can view your resources. If you cannot view resources that you have recently created, you should verify that you are checking the resources in the correct region.
 
 - The Resource Browser provide an experience similar to the AWS Management Console. However, the Resource Browser is not a replacement for the AWS Management Console and only replicate some of the features of the AWS Management Console. We recommend using our [integrations](https://docs.localstack.cloud/user-guide/integrations/) to create your resources, with the Resource Browser being used for quick viewing and management of your resources.
 

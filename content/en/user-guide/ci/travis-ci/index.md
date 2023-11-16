@@ -1,6 +1,6 @@
 ---
 title: "Travis CI"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"] 
+tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 6
 description: >
   Use LocalStack in [Travis CI](https://www.travis-ci.com/)
@@ -48,13 +48,13 @@ script:
   - echo "Execute your tests here :)"
 ```
 
-## Configuring an API key
+## Configuring a CI key
 
-You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your API key to the project's environment variables. The LocalStack CLI will automatically pick it up and activate the Pro features.
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key to the project's environment variables. The LocalStack CLI will automatically pick it up and activate the Pro features.
 
-Just go to the project settings in Travis CI (`More options` → `Settings`), scroll down to the `Environment Variables` section, and add your API key:
+Just go to the project settings in Travis CI (`More options` → `Settings`), scroll down to the `Environment Variables` section, and add your CI key:
 
-![Adding the LocalStack API key in Travis CI](travis-ci-env-config.png)
+![Adding the LocalStack CI key in Travis CI](travis-ci-env-config.png)
 
 Here is an example:
 

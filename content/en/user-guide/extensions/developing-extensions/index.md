@@ -106,7 +106,7 @@ class ReadyAnnouncerExtension(Extension):
 A note on importing LocalStack modules: since extensions run in the same Python process as the LocalStack runtime,
 you can also import other LocalStack modules outside the `localstack.extensions.api` module, and work with them.
 However, be aware that these modules are not part of our public API, and can change even with patch versions any time.
-Your extension may break in unexpected ways, and we cannot provide support for internal APIs. 
+Your extension may break in unexpected ways, and we cannot provide support for internal APIs.
 {{</alert>}}
 
 ### Packaging extensions
@@ -212,7 +212,7 @@ $ localstack extensions dev enable ./my-localstack-extension
 Then, start LocalStack with `EXTENSION_DEV_MODE=1`
 
 {{< command >}}
-$ EXTENSION_DEV_MODE=1 LOCALSTACK_API_KEY=... localstack start
+$ EXTENSION_DEV_MODE=1 LOCALSTACK_AUTH_TOKEN=... localstack start
 {{< / command >}}
 
 In the LocalStack logs you should then see something like:

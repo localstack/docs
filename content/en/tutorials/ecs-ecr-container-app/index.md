@@ -33,7 +33,7 @@ ECS tasks can pull container images from ECR repositories and are customizable u
 ## Prerequisites
 
 -   [LocalStack Pro](https://localstack.cloud/pricing/)
--   [awslocal](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
+-   [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
 -   [Docker](https://docker.io/)
 -   [`cURL`](https://curl.se/download.html)
 
@@ -47,10 +47,10 @@ FROM nginx
 ENV foo=bar
 ```
 
-The `Dockerfile` uses the official `nginx` image from Docker Hub, which allows us to serve the default index page. Before building our Docker image, we need to start LocalStack and create an ECR repository to push our Docker image. To start LocalStack with the `LOCALSTACK_API_KEY` environment variable, run the following command:
+The `Dockerfile` uses the official `nginx` image from Docker Hub, which allows us to serve the default index page. Before building our Docker image, we need to start LocalStack and create an ECR repository to push our Docker image. To start LocalStack with the `LOCALSTACK_AUTH_TOKEN` environment variable, run the following command:
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
+$ LOCALSTACK_AUTH_TOKEN=<your-auth-token> localstack start -d
 {{< / command >}}
 
 Next, we will create an ECR repository to push our Docker image. We will use the `awslocal` CLI to create the repository.
