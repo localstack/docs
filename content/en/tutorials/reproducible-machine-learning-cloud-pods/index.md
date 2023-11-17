@@ -44,11 +44,7 @@ We will then create a Cloud Pod to save the state of our LocalStack instance and
 For this tutorial, you will need the following:
 
 - [LocalStack Pro](https://localstack.cloud/pricing/)
-<<<<<<< HEAD
 - [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
-=======
-- [`awslocal` CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
->>>>>>> 6a2182110 (fix broken links)
 - [Optical recognition of handwritten digits dataset](https://archive.ics.uci.edu/ml/datasets/Optical+Recognition+of+Handwritten+Digits)
 
 If you don't have a subscription to LocalStack Pro, you can request a trial license upon sign-up. For this tutorial to work, you must have the LocalStack CLI installed, which must be version 1.3 or higher. The Cloud Pods CLI is shipped with the LocalStack CLI, so you don't need to install it separately.
