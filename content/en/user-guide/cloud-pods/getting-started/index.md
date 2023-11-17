@@ -86,7 +86,7 @@ $ localstack pod list
 
 ### Inspect the contents of a Cloud Pod
 
-You can inspect the contents of a Cloud Pod using the `inspect` command: 
+You can inspect the contents of a Cloud Pod using the `inspect` command:
 
 {{< command >}}
 $ localstack pod inspect s3-test --format json
@@ -112,11 +112,7 @@ $ localstack pod inspect s3-test --format json
 
 ### Pull your Pod state
 
-<<<<<<< HEAD
-On a separate machine, start LocalStack while ensuring the API key is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
-=======
  On a separate machine, start LocalStack while ensuring the auth token is properly configured. Then, retrieve the previously created Cloud Pod by employing the `load` command, specifying the Cloud Pod name as the first argument:
->>>>>>> 8b966bb74 (updated API key to auth token, fixed web app links)
 
 {{< command >}}
 $ localstack pod load s3-test
