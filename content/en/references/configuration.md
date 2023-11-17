@@ -334,23 +334,24 @@ These configurations have already been removed and **won't have any effect** on 
 | `PORT_WEB_UI` | 0.12.8 | |  |
 | `LEGACY_PERSISTENCE` | 1.0.0 | `true` (default) | Whether to enable legacy persistence mechanism based on API calls record & replay. Only relevant for Community version, not relevant for advanced persistence mechanism in Pro. |
 | `PERSISTENCE_SINGLE_FILE` | 1.0.0 | `true` (default)| Specify if persistence files should be combined (only relevant for legacy persistence in Community version, not relevant for advanced persistence in Pro version). |
-| `DATA_DIR`| 2.0.0 | ? |  Local directory for saving persistent data. Use `PERSISTENCE` instead. |
+| `DATA_DIR`| 2.0.0 | blank (disabled/default), `/tmp/localstack/data` |  Local directory for saving persistent data. Use `PERSISTENCE` instead. |
 | `DISABLE_TERM_HANDLER` | 2.0.0 |  | Whether to disable signal passing to LocalStack when running in docker. Enabling this will prevent an orderly shutdown when running inside LS in docker.
-| `HOST_TMP_FOLDER` | 2.0.0 | ? |  Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
-| `INIT_SCRIPTS_PATH` | 2.0.0 | ? | Before 1.0, this was used to configure the path to the initializing files with extensions `.sh` that were found in `/docker-entrypoint-initaws.d`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
+| `HOST_TMP_FOLDER` | 2.0.0 | `/some/path` |  Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
+| `INIT_SCRIPTS_PATH` | 2.0.0 | `/some/path` | Before 1.0, this was used to configure the path to the initializing files with extensions `.sh` that were found in `/docker-entrypoint-initaws.d`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
 | `LEGACY_DIRECTORIES` | 2.0.0 | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `LEGACY_INIT_DIR` | 2.0.0 |  |  |
 | `MULTI_ACCOUNTS` | 2.0.0 | `0` (default) | Enable multi-accounts (preview) |
 | `REQUIRE_PRO` | 2.0.0 | 0 (default) | Whether to require license activation to succeed to start LocalStack. If set to 0 (default) LocalStack will start as community version if the license cannot be activated. |
+| `SQS_PROVIDER` | 2.0.0 |  `moto` (default) and `elasticmq` | |
 | `SYNCHRONOUS_API_GATEWAY_EVENTS` | 2.0.0 | `1` (default) / `0` | Whether or not to handle API Gateway Lambda event sources as synchronous invocations. |
 | `SYNCHRONOUS_DYNAMODB_EVENTS` | 2.0.0 | `1` (default) / `0` | Whether or not to handle DynamoDB Lambda event sources as synchronous invocations. |
 | `SYNCHRONOUS_SQS_EVENTS` | 2.0.0 | `1`  / `0` (default) | Whether or not to handle SQS Lambda event sources as synchronous invocations. |
 | `SYNCHRONOUS_SNS_EVENTS` | 2.0.0 | `1`  / `0` (default) | Whether or not to handle SNS Lambda event sources as synchronous invocations. |
-| `TMPDIR`| 2.0.0 | ? |  Temporary folder on the host running the CLI and inside the LocalStack container .|
+| `TMPDIR`| 2.0.0 | `/tmp` (default) |  Temporary folder on the host running the CLI and inside the LocalStack container .|
 | `USE_LIGHT_IMAGE` | 2.0.0 | `1` (default) | Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
-| `<SERVICE>_BACKEND` | 3.0.0 | ? |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
+| `<SERVICE>_BACKEND` | 3.0.0 | |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
-| `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | ? |  Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
+| `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | `0`\|`1` (default) |  Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
 | `DEFAULT_REGION` | 3.0.0 | | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
 | `EDGE_BIND_HOST` | 3.0.0 | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
 | `EDGE_FORWARD_URL` | 3.0.0 | | Optional target URL to forward all edge requests to (e.g., for distributed deployments) |
@@ -360,6 +361,7 @@ These configurations have already been removed and **won't have any effect** on 
 | `ES_ENDPOINT_STRATEGY` | 3.0.0 | `path`\|`domain`\|`port` (formerly `off`) |  Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
 | `ES_MULTI_CLUSTER` | 3.0.0 | `0`\|`1` |  Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
 | `HOSTNAME_EXTERNAL` | 3.0.0 | `localhost` (default) |  Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client. Use `LOCALSTACK_HOST` instead.  |
+| `KINESIS_INITIALIZE_STREAMS` | 3.0.0 | `"my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1"` | A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. Only works with the `kinesis-mock` `KINESIS_PROVIDER`. |
 | `KINESIS_PROVIDER` | 3.0.0 | `kinesis-mock` (default) and `kinesalite` | |
 | `KMS_PROVIDER` | 3.0.0 | `moto` (default), `local-kms` | `local-kms` has been removed. |
 | `LAMBDA_CODE_EXTRACT_TIME` | 3.0.0 | `25` (default) | Time in seconds to wait at max while extracting Lambda code. By default, it is 25 seconds for limiting the execution time to avoid client/network timeout issues. <br> **Removed in new provider because function creation happens asynchronously.**|
@@ -378,15 +380,11 @@ These configurations have already been removed and **won't have any effect** on 
 | `LAMBDA_XRAY_INIT` | 3.0.0 | `1` / `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times).<br> **the X-Ray daemon is now always initialized.** |
 | `LEGACY_EDGE_PROXY` | 3.0.0 | |  |
 | `LOCALSTACK_HOSTNAME` | 3.0.0 | `http://${LOCALSTACK_HOSTNAME}:4566` | Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. Use `LOCALSTACK_HOST` instead. |
-| `MOCK_UNIMPLEMENTED` | 3.0.0 | ? |  Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods |
+| `MOCK_UNIMPLEMENTED` | 3.0.0 | |  Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods |
 | `PERSIST_ALL` | 3.0.0 | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `SYNCHRONOUS_KINESIS_EVENTS` | 3.0.0 | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations. |
 | `USE_SINGLE_REGION` | 3.0.0 | |  Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
-| `LEGACY_IAM_PROVIDER` | 0.0.0 | `0` (default)\|`1` | Enables the pre-1.0 legacy IAM provider |
-| `SQS_PROVIDER` | 0.0.0 |  `moto` (default) and `elasticmq` |
-| `S3_MOUNT` | 0.0.0 | | Configure a global parent directory that contains all buckets as sub-directories (`S3_MOUNT=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_MOUNT=/path/to/root/bucket1:bucket1`) |
-| `KINESIS_INITIALIZE_STREAMS` | 0.0.0 | `"my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1"` | A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. Only works with the `kinesis-mock` `KINESIS_PROVIDER`. |
-
+<!-- | `LEGACY_IAM_PROVIDER` | 0.0.0 | `0` (default)\|`1` | Enables the pre-1.0 legacy IAM provider | -->
 
 
 ## Profiles
