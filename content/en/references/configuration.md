@@ -165,6 +165,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable| Example Values | Description |
 | - | - | - |
 | `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Magic S3 bucket name for [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}). The S3Key points to the source code on the local file system. |
+| `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`.|
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, DNS servers, labels, ulimits, user, platform, and privileged mode. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
 | `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
@@ -316,12 +317,12 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 
 These configurations are deprecated and **will be removed in the next major version**.
 
-| Variable | Deprecated since | Example Values | Description |
-| - | - | - | - |
-| `BIGDATA_MONO_CONTAINER` | 0.0.0 | `0`\|`1` (default) | Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
-| `SKIP_INFRA_DOWNLOADS` | 0.0.0 | | Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
-| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | 3.0.0 | `default` | This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
-| `S3_DIR` | 3.0.0 | | This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
+| Variable | Example Values | Description |
+| - | - | - |
+| `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated since 0.0.0** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
+| `SKIP_INFRA_DOWNLOADS` | | **Deprecated since 0.0.0** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
+| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated since 3.0.0** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
+| `S3_DIR` || **Deprecated since 3.0.0** This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 
 ## Legacy
 
@@ -381,7 +382,6 @@ These configurations have already been removed and **won't have any effect** on 
 | `PERSIST_ALL` | 3.0.0 | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `SYNCHRONOUS_KINESIS_EVENTS` | 3.0.0 | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations. |
 | `USE_SINGLE_REGION` | 3.0.0 | |  Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
-
 | `LEGACY_IAM_PROVIDER` | 0.0.0 | `0` (default)\|`1` | Enables the pre-1.0 legacy IAM provider |
 | `SQS_PROVIDER` | 0.0.0 |  `moto` (default) and `elasticmq` |
 | `S3_MOUNT` | 0.0.0 | | Configure a global parent directory that contains all buckets as sub-directories (`S3_MOUNT=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_MOUNT=/path/to/root/bucket1:bucket1`) |
