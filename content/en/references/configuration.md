@@ -87,7 +87,6 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
 | `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
-| `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated since 0.0.0** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
 
 ### DocumentDB
 
@@ -198,7 +197,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `OPENSEARCH_CUSTOM_BACKEND` | `http://opensearch:9200` | URL to a custom OpenSearch backend cluster. If this is set to a valid URL, then LocalStack will not create OpenSearch cluster instances, but instead forward all domains to the given backend (see [Custom Opensearch Backends]({{< ref "opensearch#custom-opensearch-backends" >}})). |
 | `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
 | `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [Opensearch Endpoints]({{< ref "opensearch#endpoints" >}})). |
-| `SKIP_INFRA_DOWNLOADS` | | **Deprecated since 0.0.0** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
+| `SKIP_INFRA_DOWNLOADS` | | **Deprecated since 1.3.0** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
 
 ### RDS
 
@@ -347,6 +346,7 @@ These configurations have already been removed and **won't have any effect** on 
 | `<SERVICE>_BACKEND` | 3.0.0 | |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
 | `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
 | `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | `0`\|`1` (default) |  Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
+| `BIGDATA_MONO_CONTAINER` | 3.0.0 |`0`\|`1` (default) | Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
 | `DEFAULT_REGION` | 3.0.0 | | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
 | `EDGE_BIND_HOST` | 3.0.0 | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
 | `EDGE_FORWARD_URL` | 3.0.0 | | Optional target URL to forward all edge requests to (e.g., for distributed deployments) |
