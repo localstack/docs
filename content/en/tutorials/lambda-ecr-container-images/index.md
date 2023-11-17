@@ -34,11 +34,8 @@ leadimage: "lambda-ecr-container-images-featured-image.png"
 Before diving into this tutorial, make sure you have the following prerequisites:
 
 - LocalStack Pro
-<<<<<<< HEAD
 - [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
-=======
 - [`awslocal` CLI](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
->>>>>>> 6a2182110 (fix broken links)
 - [Python](https://www.python.org/downloads/)
 - [Docker](https://docker.io/)
 
