@@ -218,7 +218,7 @@ The following configuration options from the old provider are discontinued in th
 * The `LAMBDA_STAY_OPEN_MODE` is now the default behavior and can be removed. Instead, use the `LAMBDA_KEEPALIVE_MS` option to configure how long containers should be kept running in between invocations.
 * The `LAMBDA_REMOTE_DOCKER` option is not used anymore since the new provider automatically copies zip files and configures hot reloading.
 * The `LAMBDA_CODE_EXTRACT_TIME` option is no longer used because function creation is now asynchronous.
-* The `HOSTNAME_FROM_LAMBDA`, `LAMBDA_FALLBACK_URL`, `SYNCHRONOUS_KINESIS_EVENTS`, `SYNCHRONOUS_SNS_EVENTS` and `LAMBDA_FORWARD_URL` options are currently not supported.
+* The `LAMBDA_FALLBACK_URL`, `SYNCHRONOUS_KINESIS_EVENTS`, `SYNCHRONOUS_SNS_EVENTS` and `LAMBDA_FORWARD_URL` options are currently not supported.
 * The `LAMBDA_CONTAINER_REGISTRY` option is not used anymore. Instead, use the more flexible `LAMBDA_RUNTIME_IMAGE_MAPPING` option to customize individual runtimes.
 * The `LAMBDA_XRAY_INIT` option is no longer needed because the X-Ray daemon is always initialized.
 
