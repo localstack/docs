@@ -379,7 +379,6 @@ These configurations have already been removed and **won't have any effect** on 
 | `PERSIST_ALL` | 3.0.0 | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
 | `SYNCHRONOUS_KINESIS_EVENTS` | 3.0.0 | `1` (default) / `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations. |
 | `USE_SINGLE_REGION` | 3.0.0 | |  Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
-<!-- | `LEGACY_IAM_PROVIDER` | 0.0.0 | `0` (default)\|`1` | Enables the pre-1.0 legacy IAM provider | -->
 
 
 ## Profiles
