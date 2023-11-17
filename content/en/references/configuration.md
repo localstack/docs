@@ -17,6 +17,8 @@ $ DEBUG=1 localstack start
 
 You can also use [Profiles](#profiles).
 
+Configurations marked as **Deprecated** will be removed in the next major version. You can find previously removed configuration variables under [Legacy](#legacy).
+
 ## Core
 
 Options that affect the core LocalStack system.
@@ -85,6 +87,7 @@ This section covers configuration options that are specific to certain AWS servi
 | - | - | - |
 | `BIGDATA_DOCKER_NETWORK` | | Network the bigdata should be connected to. The LocalStack container has to be connected to that network as well. Per default, the bigdata container will be connected to a network LocalStack is also connected to.
 | `BIGDATA_DOCKER_FLAGS` | | Additional flags for the bigdata container. Same restrictions as `LAMBDA_DOCKER_FLAGS`.
+| `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated since 0.0.0** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
 
 ### DocumentDB
 
@@ -195,6 +198,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | `OPENSEARCH_CUSTOM_BACKEND` | `http://opensearch:9200` | URL to a custom OpenSearch backend cluster. If this is set to a valid URL, then LocalStack will not create OpenSearch cluster instances, but instead forward all domains to the given backend (see [Custom Opensearch Backends]({{< ref "opensearch#custom-opensearch-backends" >}})). |
 | `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
 | `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [Opensearch Endpoints]({{< ref "opensearch#endpoints" >}})). |
+| `SKIP_INFRA_DOWNLOADS` | | **Deprecated since 0.0.0** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
 
 ### RDS
 
@@ -210,6 +214,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 
 | Variable | Example Values | Description |
 | - | - | - |
+| `S3_DIR` || **Deprecated since 3.0.0** This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 | `S3_SKIP_SIGNATURE_VALIDATION`| `0` / `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. |
 | `S3_SKIP_KMS_KEY_VALIDATION` | `0` / `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
 | `PROVIDER_OVERRIDE_S3` | `legacy_v2` / `v3` (default) | The new LocalStack-native S3 provider (v3) is active by default since LocalStack 3.0. |
@@ -219,6 +224,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable | Example Values | Description |
 | - | - | - |
 | `PROVIDER_OVERRIDE_STEPFUNCTIONS` | `legacy` / `v2` (default) | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
+| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated since 3.0.0** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
 
 ### SQS
 
@@ -312,17 +318,6 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | `LOCALSTACK_AUTH_TOKEN` |                | AUTH_TOKEN to activate LocalStack Pro.
 | `LOG_LICENSE_ISSUES` | 1 (default)    | Whether to log issues with the license activation to the console.
 
-
-## Deprecated
-
-These configurations are deprecated and **will be removed in the next major version**.
-
-| Variable | Example Values | Description |
-| - | - | - |
-| `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated since 0.0.0** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
-| `SKIP_INFRA_DOWNLOADS` | | **Deprecated since 0.0.0** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
-| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated since 3.0.0** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
-| `S3_DIR` || **Deprecated since 3.0.0** This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 
 ## Legacy
 
