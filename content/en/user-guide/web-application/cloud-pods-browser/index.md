@@ -30,7 +30,7 @@ To view the version history of a Cloud Pod, click on the Cloud Pod's name in the
 
 <img src="cloud-pods-version-history.png" alt="LocalStack Web Application's Cloud Pods Browser outlining the versions of the Clod Pod" title="Cloud Pods Browser displaying the version history of the Cloud Pod" width="900" />
 
-To create a new version of a Cloud Pod, refer to the [Cloud Pods CLI](https://docs.localstack.cloud/user-guide/tools/cloud-pods/pods-cli/) documentation.
+To create a new version of a Cloud Pod, refer to the [Cloud Pods CLI](https://docs.localstack.cloud/user-guide/cloud-pods/pods-cli/) documentation.
 
 ## Save a Cloud Pod
 
