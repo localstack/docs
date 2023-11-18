@@ -2,28 +2,31 @@
 title: "Auth Token"
 weight: 20
 description: >
-  Configure your auth token to start LocalStack
+  Configure your Auth Token to start LocalStack
 ---
 
-LocalStack uses auth tokens to to authenticate users and to activate your LocalStack license.
-You can find your auth token on the [Getting Started page in the web app](https://app.localstack.cloud/getting-started) or on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token)
+## Introduction
+
+The Auth Token is a personal identifier used for user authentication outside the LocalStack Web Application, particularly in conjunction with the LocalStack core cloud emulator. Its primary functions are to retrieve the user's license and enable access to advanced features, effectively replacing the older developer API keys.
+
+The Auth Token remains unchanged unless manually rotated by the user, regardless of any license assignment changes. You can locate your Auth Token on the [Getting Started page](https://app.localstack.cloud/getting-started) or the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) in the web app.
 
 ## Managing your License
 
-To get started, you need to have a LocalStack license. If you don't have one, you can [sign up for a free trial](https://localstack.cloud/pricing/) without any credit card required. The free trial will last 14 days, and you can use it to test all the features of LocalStack.
+To begin using LocalStack, a license is required. If you don't already have a license, you can opt for a free 14-day trial by [signing up here](https://localstack.cloud/pricing/), with no credit card required. This trial allows full access to all LocalStack features.
 
-You can assign licenses to users on the [Users & Licenses](https://app.localstack.cloud/workspace/members) page or you can check your assigned license on the [My License](https://app.localstack.cloud/workspace/my-license) page.
+For license management, assign licenses to users via the [Users & Licenses page](https://app.localstack.cloud/workspace/members). To view your own assigned license, visit the [My License page](https://app.localstack.cloud/workspace/my-license).
 
 {{< alert title="Important" color="danger" >}}
-- Avoid sharing your auth token with anyone. Ensure that you do not commit it to any source code management systems (like Git repositories).
-- If you push an auth token to a public repository, it has potentially been exposed and might remain in the history (even if you try to rewrite it).
-- If you accidentally publish your auth token, you can rotate it on the [Auth Token](https://app.localstack.cloud/workspace/auth-token) page
-- Use in CI or other machine environments requires a CI key. Check out our [CI documentation]({{< ref "user-guide/ci" >}}) to see the proper way to handle secrets in your CI environment to store your CI key securely.
+-   It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
+-   Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
+-   In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
+-   For use in Continuous Integration (CI) or automated test environments, a CI key is necessary. Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
 {{< /alert >}}
 
 ### Starting LocalStack via CLI
 
-LocalStack expects your auth token to be present in the environment variable `LOCALSTACK_AUTH_TOKEN`. You can define the `LOCALSTACK_AUTH_TOKEN` environment variable before or while starting LocalStack using the `localstack` CLI.
+LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain your Auth Token. You should set the `LOCALSTACK_AUTH_TOKEN` environment variable either before or during the startup of LocalStack using the `localstack` command-line interface (CLI).
 
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
@@ -35,17 +38,17 @@ $env:LOCALSTACK_AUTH_TOKEN="<YOUR_AUTH_TOKEN>"; localstack start
 {{< /tab >}}
 {{< /tabpane >}}
 
-You can optionally run your LocalStack container in background mode by adding the `-d` flag to the `localstack start` command.
+You have the option to run your LocalStack container in the background by appending the `-d` flag to the `localstack start` command.
 
-The `localstack` CLI will detect the auth token and properly pass it to the LocalStack container.
+The `localstack` CLI automatically detects the Auth Token and appropriately conveys it to the LocalStack container.
 
 {{< alert title="Note" >}}
-If you are using LocalStack with an auth token, you need to pull the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image) that includes the Pro services and several other advanced features.
+If you're using LocalStack with an Auth Token, it's necessary to download the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image), which includes Pro services and several advanced features.
 {{< /alert >}}
 
 ### Starting LocalStack via Docker
 
-To start LocalStack using Docker, you have to specify the auth token using the `-e` flag for environment variables:
+To start LocalStack via Docker, you need to provide the Auth Token using the `-e` flag, which is used for setting environment variables.
 
 {{< command "hl_lines=5" >}}
 $ docker run \
@@ -67,21 +70,21 @@ environment:
   - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN- }
 ```
 
-You can set the auth token manually, or you can use the `export` command to set the auth token in your current shell session. The auth token will be passed into your LocalStack container, such that the key activation can take place.
+You can manually set the Auth Token, or use the `export` command to establish the Auth Token in your current shell session. This ensures the Auth Token is transmitted to your LocalStack container, enabling key activation.
 
 ## Licensing-related configuration
 
-If you want to make sure that LocalStack is only started if you can activate LocalStack Pro or Enterprise, or if you wish to suppress licensing-related error messages, take a look at our [configuration guide]({{< ref "configuration.md#localstack-pro">}}) regarding LocalStack Pro.
+To ensure that LocalStack only starts when you can activate LocalStack Pro or Enterprise, or if you want to avoid licensing-related error messages, refer to our [configuration guide](https://docs.localstack.cloud/references/configuration/#localstack-pro) about LocalStack Pro.
 
 ## Checking license activation
 
-The easiest way to check if LocalStack is activated is to query the health endpoint for a list of the running services:
+The simplest method to verify if LocalStack is active is by querying the health endpoint for a list of running services:
 
 {{< command >}}
 $ curl localhost:4566/_localstack/health | jq
 {{< / command >}}
 
-If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) -- is running, LocalStack has started successfully. You can also check the logs of the LocalStack container to see if the activation was successful.
+If you see a Pro-only service, like [XRay](https://docs.localstack.cloud/user-guide/aws/xray), listed as running, it indicates that LocalStack has started successfully. Another way to confirm this is by checking the logs of the LocalStack container for a message indicating successful license activation:
 
 {{< command >}}
 [...] Successfully activated license
@@ -89,10 +92,17 @@ If a Pro-only [service]({{< ref "aws" >}}) -- like [XRay]({{< ref "xray" >}}) --
 
 Otherwise, check our collected most [common activation issues](#common-activation-issues).
 
+## Rotating the Auth Token
+
+Your personal Auth Token provides full access to your workspace and LocalStack license. It's important to treat auth tokens as confidential, avoiding sharing or storing them in source control management systems (SCMs) like Git.
+
+If you believe your Auht Token has been compromised or becomes known to someone else, reset it without delay. When you reset a token, the old one is immediately deactivated, losing its ability to access your license or workspace. It's not possible to restore previous tokens.
+
+To rotate your Auth Token, go to the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) and select the **Reset Auth Token** option.
+
 ## Common activation issues
 
-Since LocalStack v2.0.0, the image `localstack/localstack-pro` requires a successful license activation to start.
-If the license activation fails, LocalStack will quit with an error messages that may look something like this:
+Starting from version 2.0.0, the `localstack/localstack-pro` image in LocalStack demands a successful license activation for startup. If the activation of the license is unsuccessful, LocalStack will exit and display error messages.
 
 ```bash
 ===============================================
@@ -107,13 +117,13 @@ Due to this error, Localstack has quit. LocalStack pro features can only be used
 - If you want to continue using LocalStack without pro features you can set `ACTIVATE_PRO=0`.
 ```
 
-There are several reasons a key activation can fail:
-* Missing credentials: Using `localstack/localstack-pro` requires per default to have an auth token or legacy API key set.
-* Invalid license: there is no valid license associated with your user account, for example because the license has expired.
-* License server cannot be reached: LocalStack will try to perform an offline license activation if the license server cannot be reached, but will require a re-activation every 24 hours.
+Key activation in LocalStack can fail for several reasons:
 
-If you are using the `localstack/localstack-pro` image, but cannot activate your license, we recommend falling back to the community version `localstack/localstack`.
-If that is not an option, you can set `ACTIVATE_PRO=0` which will attempt to start LocalStack without pro features.
+-   **Missing Credentials:** Using the `localstack/localstack-pro` image typically requires an Auth Token or a legacy API key.
+-   **Invalid License:** This occurs if there's no valid license linked to your account, possibly due to expiration.
+-   **License Server Unreachable:** LocalStack attempts offline activation if the license server is inaccessible, but this necessitates re-activation every 24 hours.
+
+If you're using the `localstack/localstack-pro` image but are unable to activate your license, consider switching to the community version, `localstack/localstack`. If switching isn't feasible, setting `ACTIVATE_PRO=0` will try to start LocalStack without the Pro features.
 
 Navigate to our [FAQ page]({{< ref "faq" >}}) if your are having troubles with the LocalStack license activation.
 If you have any further problems concerning your license activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).
