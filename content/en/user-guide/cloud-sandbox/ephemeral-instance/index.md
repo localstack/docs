@@ -9,6 +9,10 @@ description: Create an Ephemeral Instance in the cloud using the LocalStack Web 
 
 LocalStack Ephemeral Instance allows you to run an LocalStack instance in the cloud. You can interact with these remote instances via the LocalStack Web Application, or by configuring your integrations and developer tools with the endpoint URL of the remote instance.
 
+{{< alert title="Note">}}
+Ephemeral Instance is currently in **private beta**. If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+{{< /alert >}}
+
 ## Getting started
 
 This guide is designed for users new to Ephemeral Instance and assumes basic knowledge of the LocalStack Web Application. In this guide, we will create an Ephemeral Instance and interact with it via the LocalStack Web Application and the AWS CLI.
