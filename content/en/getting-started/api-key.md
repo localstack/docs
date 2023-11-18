@@ -10,6 +10,8 @@ aliases:
 
 {{< alert title="Important" color="danger" >}}
 API Keys are being phased out for LocalStack activation, with a transition to Auth Tokens. Auth Tokens simplify license management and eliminate the need for developers to modify their setup when there are changes to licenses. Refer to our [Auth Token documentation]({{< ref "auth-token" >}}) for more information.
+
+To use LocalStack in CI environments **CI keys** are still used and are the only way to activate LocalStack in these contexts.
 {{< /alert >}}
 
 The LocalStack API key is a unique identifier to activate your LocalStack license needed to start LocalStack Pro.
