@@ -583,8 +583,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": true,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -632,7 +632,7 @@
         "availability": "pro",
         "internal_test_suite": true,
         "external_test_suite": true,
-        "terraform_test_suite": false,
+        "terraform_test_suite": true,
         "aws_validated": true,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -679,8 +679,8 @@
         "implemented": true,
         "availability": "pro",
         "internal_test_suite": false,
-        "external_test_suite": false,
-        "terraform_test_suite": false,
+        "external_test_suite": true,
+        "terraform_test_suite": true,
         "aws_validated": false,
         "snapshot_tested": false,
         "snapshot_skipped": ""
@@ -964,14 +964,14 @@
       "CopyTagsToSnapshot, DBClusterIdentifier, DBClusterParameterGroupName, DBSubnetGroupName, DatabaseName, Engine, EngineVersion, MasterUserPassword, MasterUsername, Port, ServerlessV2ScalingConfiguration, VpcSecurityGroupIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_validate_initial_setup",
@@ -981,7 +981,21 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
+          }
+        ]
+      },
+      "DBClusterIdentifier, DBClusterParameterGroupName, DBSubnetGroupName, Engine, MasterUserPassword, MasterUsername, StorageEncrypted, VpcSecurityGroupIds": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -995,7 +1009,7 @@
             "snapshot_skipped": "['$..Parameters', '$..DBInstances..AllocatedStorage', '$..DBInstances..AvailabilityZone', '$..DBInstances..DBName', '$..DBInstances..DBSubnetGroup', '$..DBInstances..DbInstancePort', '$..DBInstances..DomainMemberships', '$..DBInstances..EnabledCloudwatchLogsExports', '$..DBInstances..EngineVersion', '$..DBInstances..KmsKeyId', '$..DBInstances..LicenseModel', '$..DBInstances..MasterUsername', '$..DBInstances..MonitoringInterval', '$..DBInstances..OptionGroupMemberships..OptionGroupName', '$..DBInstances..PendingModifiedValues', '$..DBInstances..PerformanceInsightsEnabled', '$..DBInstances..PromotionTier', '$..DBInstances..StatusInfos', '$..DBInstances..StorageEncrypted', '$..DBInstances..StorageType', '$..DBInstances..DbiResourceId', '$..DBInstances..VpcSecurityGroups..VpcSecurityGroupId', '$..DBClusters..AssociatedRoles', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..KmsKeyId', '$..DBClusters..LatestRestorableTime', '$..DBClusters..MasterUsername', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
@@ -1009,7 +1023,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
@@ -1027,31 +1041,17 @@
           }
         ]
       },
-      "DBClusterIdentifier, DBSubnetGroupName, Engine, MasterUserPassword, MasterUsername, StorageEncrypted, VpcSecurityGroupIds": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          }
-        ]
-      },
       "DBClusterIdentifier, DBSubnetGroupName, Engine, StorageEncrypted, VpcSecurityGroupIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -1289,7 +1289,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_create_aurora_postgres",
@@ -1511,7 +1511,7 @@
             "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/docdb/test_docdb.py::TestDocDB::test_create_query_db",
@@ -1595,11 +1595,11 @@
           }
         ]
       },
-      "DBClusterIdentifier, Engine, MasterUserPassword, MasterUsername, Port": {
+      "DBClusterIdentifier, Engine, MasterUserPassword, MasterUsername, ScalingConfiguration": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/docdb/test_docdb.py::TestDocDB::test_create_query_db_with_port",
-            "test": "test_create_query_db_with_port",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_db_cluster_scaling",
+            "test": "test_db_cluster_scaling",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1609,11 +1609,11 @@
           }
         ]
       },
-      "DBClusterIdentifier, Engine, MasterUserPassword, MasterUsername, ScalingConfiguration": {
+      "DBClusterIdentifier, Engine, Port": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_db_cluster_scaling",
-            "test": "test_db_cluster_scaling",
+            "node_id": "LocalStack Pro: tests/aws/services/docdb/test_docdb.py::TestDocDB::test_create_query_db_with_port",
+            "test": "test_create_query_db_with_port",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
@@ -1692,23 +1692,13 @@
       "DBClusterParameterGroupName, DBParameterGroupFamily, Description": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -1729,7 +1719,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
@@ -1739,6 +1729,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/docdb/test_docdb.py::TestDocDB::test_create_query_db",
+            "test": "test_create_query_db",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -1789,7 +1789,7 @@
             "snapshot_skipped": "['$..Parameters', '$..DBInstances..AllocatedStorage', '$..DBInstances..AvailabilityZone', '$..DBInstances..DBName', '$..DBInstances..DBSubnetGroup', '$..DBInstances..DbInstancePort', '$..DBInstances..DomainMemberships', '$..DBInstances..EnabledCloudwatchLogsExports', '$..DBInstances..EngineVersion', '$..DBInstances..KmsKeyId', '$..DBInstances..LicenseModel', '$..DBInstances..MasterUsername', '$..DBInstances..MonitoringInterval', '$..DBInstances..OptionGroupMemberships..OptionGroupName', '$..DBInstances..PendingModifiedValues', '$..DBInstances..PerformanceInsightsEnabled', '$..DBInstances..PromotionTier', '$..DBInstances..StatusInfos', '$..DBInstances..StorageEncrypted', '$..DBInstances..StorageType', '$..DBInstances..DbiResourceId', '$..DBInstances..VpcSecurityGroups..VpcSecurityGroupId', '$..DBClusters..AssociatedRoles', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..KmsKeyId', '$..DBClusters..LatestRestorableTime', '$..DBClusters..MasterUsername', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsMysql::test_data_api[False]",
@@ -2005,7 +2005,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
@@ -2019,20 +2019,6 @@
             "snapshot_skipped": "['$..ActivityStreamStatus', '$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..CertificateDetails', '$..StorageThroughput', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..Endpoint.HostedZoneId', '$..LatestRestorableTime', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..AllocatedStorage', '$..StorageType', '$..AvailabilityZone', '$..ActivityStreamStatus', '$..AvailabilityZones', '$..BackupRetentionPeriod', '$..ClusterCreateTime', '$..CopyTagsToSnapshot', '$..CrossAccountClone', '$..DeletionProtection', '$..EarliestRestorableTime', '$..EngineMode', '$..HostedZoneId', '$..HttpEndpointEnabled', '$..LatestRestorableTime', '$..PreferredBackupWindow', '$..PreferredMaintenanceWindow', '$..ReadReplicaIdentifiers', '$..DBClusterMembers..IsClusterWriter', '$..DBClusterParameterGroup', '$..Port']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "AllocatedStorage, DBInstanceClass, DBInstanceIdentifier, DBName, DBParameterGroupName, Engine, MasterUserPassword, MasterUsername": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "external"
           }
         ]
@@ -2179,20 +2165,6 @@
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          }
-        ]
-      },
-      "AllocatedStorage, DBInstanceClass, DBInstanceIdentifier, DBName, Engine, MasterUserPassword, MasterUsername": {
-        "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_instance_deployment",
-            "test": "test_db_instance_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DbAddress']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -2355,6 +2327,20 @@
           }
         ]
       },
+      "AllocatedStorage, DBInstanceClass, DBInstanceIdentifier, Engine, EngineVersion, MasterUserPassword, MasterUsername, PubliclyAccessible": {
+        "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_describe_db_instance_filters",
+            "test": "test_describe_db_instance_filters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
+          }
+        ]
+      },
       "AllocatedStorage, DBInstanceClass, DBInstanceIdentifier, Engine, MasterUserPassword, MasterUsername, Port": {
         "ls_pro": [
           {
@@ -2469,21 +2455,21 @@
             "snapshot_skipped": "['$..Parameters', '$..DBInstances..AllocatedStorage', '$..DBInstances..AvailabilityZone', '$..DBInstances..DBName', '$..DBInstances..DBSubnetGroup', '$..DBInstances..DbInstancePort', '$..DBInstances..DomainMemberships', '$..DBInstances..EnabledCloudwatchLogsExports', '$..DBInstances..EngineVersion', '$..DBInstances..KmsKeyId', '$..DBInstances..LicenseModel', '$..DBInstances..MasterUsername', '$..DBInstances..MonitoringInterval', '$..DBInstances..OptionGroupMemberships..OptionGroupName', '$..DBInstances..PendingModifiedValues', '$..DBInstances..PerformanceInsightsEnabled', '$..DBInstances..PromotionTier', '$..DBInstances..StatusInfos', '$..DBInstances..StorageEncrypted', '$..DBInstances..StorageType', '$..DBInstances..DbiResourceId', '$..DBInstances..VpcSecurityGroups..VpcSecurityGroupId', '$..DBClusters..AssociatedRoles', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..KmsKeyId', '$..DBClusters..LatestRestorableTime', '$..DBClusters..MasterUsername', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
       "AutoMinorVersionUpgrade, DBClusterIdentifier, DBInstanceClass, DBInstanceIdentifier, Engine": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -2504,14 +2490,14 @@
       "DBClusterIdentifier, DBInstanceClass, DBInstanceIdentifier, Engine": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_create_aurora_postgres",
@@ -2690,14 +2676,14 @@
       "DBClusterIdentifier, DBInstanceClass, DBInstanceIdentifier, Engine, PromotionTier": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_validate_initial_setup",
@@ -2707,7 +2693,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
@@ -2744,34 +2730,14 @@
       "DBParameterGroupFamily, DBParameterGroupName, Description": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_instance_deployment",
-            "test": "test_db_instance_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DbAddress']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_secretsmanager_target_attachment_maridab",
@@ -2801,7 +2767,7 @@
             "snapshot_skipped": "['$..Parameters', '$..DBInstances..AllocatedStorage', '$..DBInstances..AvailabilityZone', '$..DBInstances..DBName', '$..DBInstances..DBSubnetGroup', '$..DBInstances..DbInstancePort', '$..DBInstances..DomainMemberships', '$..DBInstances..EnabledCloudwatchLogsExports', '$..DBInstances..EngineVersion', '$..DBInstances..KmsKeyId', '$..DBInstances..LicenseModel', '$..DBInstances..MasterUsername', '$..DBInstances..MonitoringInterval', '$..DBInstances..OptionGroupMemberships..OptionGroupName', '$..DBInstances..PendingModifiedValues', '$..DBInstances..PerformanceInsightsEnabled', '$..DBInstances..PromotionTier', '$..DBInstances..StatusInfos', '$..DBInstances..StorageEncrypted', '$..DBInstances..StorageType', '$..DBInstances..DbiResourceId', '$..DBInstances..VpcSecurityGroups..VpcSecurityGroupId', '$..DBClusters..AssociatedRoles', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..KmsKeyId', '$..DBClusters..LatestRestorableTime', '$..DBClusters..MasterUsername', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsCrud::test_copy_db_parameter_groups",
@@ -2874,13 +2840,13 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_db_instance_already_exists",
-            "test": "test_db_instance_already_exists",
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_describe_db_instance_filters",
+            "test": "test_describe_db_instance_filters",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..ActivityStreamStatus', '$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..CertificateDetails', '$..StorageThroughput', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..Endpoint.HostedZoneId', '$..LatestRestorableTime', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..DBName']",
+            "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -3084,14 +3050,14 @@
       "DBSubnetGroupDescription, DBSubnetGroupName, SubnetIds": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_secretsmanager_target_attachment_maridab",
@@ -3101,7 +3067,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
@@ -3111,7 +3077,7 @@
             "snapshot_skipped": "['$..Parameters', '$..DBInstances..AllocatedStorage', '$..DBInstances..AvailabilityZone', '$..DBInstances..DBName', '$..DBInstances..DBSubnetGroup', '$..DBInstances..DbInstancePort', '$..DBInstances..DomainMemberships', '$..DBInstances..EnabledCloudwatchLogsExports', '$..DBInstances..EngineVersion', '$..DBInstances..KmsKeyId', '$..DBInstances..LicenseModel', '$..DBInstances..MasterUsername', '$..DBInstances..MonitoringInterval', '$..DBInstances..OptionGroupMemberships..OptionGroupName', '$..DBInstances..PendingModifiedValues', '$..DBInstances..PerformanceInsightsEnabled', '$..DBInstances..PromotionTier', '$..DBInstances..StatusInfos', '$..DBInstances..StorageEncrypted', '$..DBInstances..StorageType', '$..DBInstances..DbiResourceId', '$..DBInstances..VpcSecurityGroups..VpcSecurityGroupId', '$..DBClusters..AssociatedRoles', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..KmsKeyId', '$..DBClusters..LatestRestorableTime', '$..DBClusters..MasterUsername', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsCrud::test_db_subnet_group",
@@ -3131,7 +3097,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsCrud::test_db_subnet_group",
@@ -3155,7 +3121,7 @@
             "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
@@ -3195,7 +3161,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
@@ -3211,7 +3177,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_docdb.py::test_docdb_cluster",
@@ -3221,27 +3187,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
-            "test": "test_db_cluster_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
-            "test": "test_create_misc_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/docdb/test_docdb.py::TestDocDB::test_create_query_db",
@@ -3271,42 +3217,22 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_failover",
-            "test": "test_failover",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
-            "test": "test_rds_lambda",
-            "response": "400",
-            "error": "InvalidDBClusterStateFault",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_failover",
-            "test": "test_failover",
-            "response": "400",
-            "error": "InvalidDBClusterStateFault",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
       "DBClusterIdentifier, SkipFinalSnapshot": {
         "ls_pro": [
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
+            "test": "test_rds_lambda",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/appsync/test_appsync.py::TestAppSync::test_rds_data_source",
             "test": "test_rds_data_source",
@@ -3316,6 +3242,26 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
+            "test": "test_db_cluster_deployment",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
+            "test": "test_create_misc_resources",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune.py::TestNeptune::test_create_cluster_with_tags",
@@ -3668,6 +3614,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_failover",
+            "test": "test_failover",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_promote_secondary_headless",
             "test": "test_promote_secondary_headless",
             "response": "200",
@@ -3678,6 +3634,16 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
+            "test": "test_rds_lambda",
+            "response": "400",
+            "error": "InvalidDBClusterStateFault",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_create_aurora_v2_cluster_delete_instances",
             "test": "test_create_aurora_v2_cluster_delete_instances",
             "response": "400",
@@ -3686,6 +3652,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_failover",
+            "test": "test_failover",
+            "response": "400",
+            "error": "InvalidDBClusterStateFault",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       }
@@ -3747,7 +3723,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_docdb.py::test_docdb_cluster",
@@ -3757,7 +3733,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_query",
@@ -3767,7 +3743,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsCrud::test_db_cluster_parameter_groups",
@@ -3822,14 +3798,14 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_instance_deployment",
-            "test": "test_db_instance_deployment",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
+            "test": "test_rds_lambda",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..DbAddress']",
+            "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_secretsmanager_target_attachment_maridab",
@@ -3839,7 +3815,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_query",
@@ -3879,7 +3855,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
@@ -3889,17 +3865,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "400",
-            "error": "CommonServiceException",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_query",
@@ -3909,7 +3875,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_query",
@@ -3919,7 +3885,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
@@ -4043,6 +4009,16 @@
             "snapshot_skipped": "['$..ActivityStreamStatus', '$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..CertificateDetails', '$..StorageThroughput', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..Endpoint.HostedZoneId', '$..LatestRestorableTime', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..DBName']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_describe_db_instance_filters",
+            "test": "test_describe_db_instance_filters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -4442,16 +4418,6 @@
       "DBParameterGroupName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_query",
             "test": "test_query",
             "response": "200",
@@ -4459,7 +4425,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsCrud::test_copy_db_parameter_groups",
@@ -4495,7 +4461,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_secretsmanager_target_attachment_maridab",
@@ -4505,7 +4471,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
@@ -4515,7 +4481,7 @@
             "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_query",
@@ -4525,7 +4491,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsCrud::test_db_subnet_group",
@@ -4545,7 +4511,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
@@ -4561,7 +4527,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
@@ -4684,14 +4650,14 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_docdb.py::test_docdb_cluster",
@@ -4701,7 +4667,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
@@ -4728,13 +4694,13 @@
       "DBClusterParameterGroupName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -4765,16 +4731,6 @@
             "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/docdb/test_docdb.py::TestDocDB::test_create_query_db",
-            "test": "test_create_query_db",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -5038,23 +4994,13 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "404",
             "error": "DBClusterParameterGroupNotFoundFault",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
-            "response": "404",
-            "error": "DBClusterParameterGroupNotFoundFault",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -5075,6 +5021,16 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/docdb/test_docdb.py::TestDocDB::test_create_query_db",
+            "test": "test_create_query_db",
+            "response": "404",
+            "error": "DBClusterParameterGroupNotFoundFault",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -5390,22 +5346,22 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_docdb.py::test_docdb_cluster",
+            "test": "test_docdb_cluster",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
+            "aws_validated": false,
             "snapshot_tested": false,
             "origin": "internal"
           },
@@ -5417,26 +5373,6 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
-            "test": "test_db_cluster_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
-            "test": "test_create_misc_resources",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
-            "aws_validated": true,
-            "snapshot_tested": true,
             "origin": "external"
           },
           {
@@ -5488,16 +5424,6 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_validate_initial_setup",
-            "test": "test_validate_initial_setup",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "external"
           }
         ]
       },
@@ -5512,6 +5438,16 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
@@ -5551,7 +5487,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
@@ -5561,7 +5497,17 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
+            "test": "test_create_misc_resources",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
@@ -5572,6 +5518,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
+            "test": "test_describe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Parameters', '$..DBInstances..AllocatedStorage', '$..DBInstances..AvailabilityZone', '$..DBInstances..DBName', '$..DBInstances..DBSubnetGroup', '$..DBInstances..DbInstancePort', '$..DBInstances..DomainMemberships', '$..DBInstances..EnabledCloudwatchLogsExports', '$..DBInstances..EngineVersion', '$..DBInstances..KmsKeyId', '$..DBInstances..LicenseModel', '$..DBInstances..MasterUsername', '$..DBInstances..MonitoringInterval', '$..DBInstances..OptionGroupMemberships..OptionGroupName', '$..DBInstances..PendingModifiedValues', '$..DBInstances..PerformanceInsightsEnabled', '$..DBInstances..PromotionTier', '$..DBInstances..StatusInfos', '$..DBInstances..StorageEncrypted', '$..DBInstances..StorageType', '$..DBInstances..DbiResourceId', '$..DBInstances..VpcSecurityGroups..VpcSecurityGroupId', '$..DBClusters..AssociatedRoles', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..KmsKeyId', '$..DBClusters..LatestRestorableTime', '$..DBClusters..MasterUsername', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
@@ -5921,7 +5877,47 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_validate_initial_setup",
+            "test": "test_validate_initial_setup",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_rds_lambda",
+            "test": "test_rds_lambda",
+            "response": "404",
+            "error": "DBClusterNotFoundFault",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_cluster_deployment",
+            "test": "test_db_cluster_deployment",
+            "response": "404",
+            "error": "DBClusterNotFoundFault",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
+            "test": "test_create_misc_resources",
+            "response": "404",
+            "error": "DBClusterNotFoundFault",
+            "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_create_aurora_v2_cluster_delete_instances",
@@ -5952,6 +5948,16 @@
             "aws_validated": false,
             "snapshot_tested": false,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_failover",
+            "test": "test_failover",
+            "response": "404",
+            "error": "DBClusterNotFoundFault",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ]
       },
@@ -6038,44 +6044,14 @@
             "origin": "external"
           },
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_instance_deployment",
-            "test": "test_db_instance_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DbAddress']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_secretsmanager.py::test_secretsmanager_target_attachment_maridab",
@@ -6085,7 +6061,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
@@ -6145,50 +6121,20 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
       "DBInstanceIdentifier": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_instance_deployment",
-            "test": "test_db_instance_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DbAddress']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -6199,7 +6145,17 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
+            "test": "test_describe",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..Parameters', '$..DBInstances..AllocatedStorage', '$..DBInstances..AvailabilityZone', '$..DBInstances..DBName', '$..DBInstances..DBSubnetGroup', '$..DBInstances..DbInstancePort', '$..DBInstances..DomainMemberships', '$..DBInstances..EnabledCloudwatchLogsExports', '$..DBInstances..EngineVersion', '$..DBInstances..KmsKeyId', '$..DBInstances..LicenseModel', '$..DBInstances..MasterUsername', '$..DBInstances..MonitoringInterval', '$..DBInstances..OptionGroupMemberships..OptionGroupName', '$..DBInstances..PendingModifiedValues', '$..DBInstances..PerformanceInsightsEnabled', '$..DBInstances..PromotionTier', '$..DBInstances..StatusInfos', '$..DBInstances..StorageEncrypted', '$..DBInstances..StorageType', '$..DBInstances..DbiResourceId', '$..DBInstances..VpcSecurityGroups..VpcSecurityGroupId', '$..DBClusters..AssociatedRoles', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..KmsKeyId', '$..DBClusters..LatestRestorableTime', '$..DBClusters..MasterUsername', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..ReaderEndpoint']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
@@ -6339,6 +6295,16 @@
             "snapshot_skipped": "['$..ActivityStreamStatus', '$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..CertificateDetails', '$..StorageThroughput', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..Endpoint.HostedZoneId', '$..LatestRestorableTime', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..DBName']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_describe_db_instance_filters",
+            "test": "test_describe_db_instance_filters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "external"
           },
           {
@@ -6709,7 +6675,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
@@ -6744,6 +6710,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_describe_db_instance_filters",
+            "test": "test_describe_db_instance_filters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
+            "origin": "external"
           }
         ]
       }
@@ -6751,16 +6727,6 @@
     "DescribeDBParameterGroups": {
       "- (without any parameters)": {
         "ls_pro": [
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
             "test": "test_describe",
@@ -6796,33 +6762,13 @@
       "DBParameterGroupName": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_instance_deployment",
-            "test": "test_db_instance_deployment",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "['$..DbAddress']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/cloudformation/resources/test_rds.py::test_db_proxy",
-            "test": "test_db_proxy",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": false,
-            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -7003,6 +6949,16 @@
             "snapshot_skipped": "['$..ActivityStreamStatus', '$..AssociatedRoles', '$..BackupTarget', '$..CACertificateIdentifier', '$..CustomerOwnedIpEnabled', '$..DBSubnetGroup', '$..DomainMemberships', '$..MonitoringInterval', '$..CertificateDetails', '$..StorageThroughput', '$..NetworkType', '$..PendingModifiedValues', '$..PerformanceInsightsEnabled', '$..Endpoint.HostedZoneId', '$..LatestRestorableTime', '$..PubliclyAccessible', '$..AutoMinorVersionUpgrade', '$..OptionGroupName', '$..DbInstancePort', '$..LicenseModel', '$..InstanceCreateTime', '$..StatusInfos', '$..EnabledCloudwatchLogsExports', '$..DBName']",
             "aws_validated": true,
             "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds.py::TestRdsPostgres::test_describe_db_instance_filters",
+            "test": "test_describe_db_instance_filters",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": false,
             "origin": "internal"
           },
           {
@@ -7418,23 +7374,13 @@
       "- (without any parameters)": {
         "ls_pro": [
           {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
+            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_docdb_connection",
+            "test": "test_docdb_connection",
             "response": "200",
             "error": "",
             "snapshot_skipped": "",
             "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "external"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py::TestRdsNeptuneDocDB::test_scenario_validate_infra",
-            "test": "test_scenario_validate_infra",
-            "response": "200",
-            "error": "",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
+            "snapshot_tested": true,
             "origin": "internal"
           },
           {
@@ -7445,7 +7391,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/cloudformation/test_api.py::TestAPI::test_create_misc_resources",
@@ -7455,7 +7401,7 @@
             "snapshot_skipped": "['$..HomeRegion', '$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterParameterGroup', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DatabaseName', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..EngineVersion', '$..DBClusters..EngineVersion', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/neptune/test_neptune_cfn.py::TestNeptuneCfn::test_describe",
@@ -7485,7 +7431,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
@@ -7501,7 +7447,7 @@
             "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBClusterMembers..PromotionTier', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers', '$..DBClusters..TagList']",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       },
@@ -7536,6 +7482,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_failover",
+            "test": "test_failover",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_promote_secondary_headless",
@@ -7886,6 +7842,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_failover",
+            "test": "test_failover",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..DBClusters..ActivityStreamStatus', '$..DBClusters..AssociatedRoles', '$..DBClusters..AutoMinorVersionUpgrade', '$..DBClusters..AvailabilityZones', '$..DBClusters..BackupRetentionPeriod', '$..DBClusters..ClusterCreateTime', '$..DBClusters..CopyTagsToSnapshot', '$..DBClusters..CrossAccountClone', '$..DBClusters..DBSubnetGroup', '$..DBClusters..DeletionProtection', '$..DBClusters..DomainMemberships', '$..DBClusters..EarliestRestorableTime', '$..DBClusters..EngineMode', '$..DBClusters..GlobalWriteForwardingRequested', '$..DBClusters..HostedZoneId', '$..DBClusters..HttpEndpointEnabled', '$..DBClusters..LatestRestorableTime', '$..DBClusters..NetworkType', '$..DBClusters..PreferredBackupWindow', '$..DBClusters..PreferredMaintenanceWindow', '$..DBClusters..ReadReplicaIdentifiers']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Pro: tests/aws/services/rds/test_rds_global.py::TestGlobalClusterCDK::test_promote_secondary_headless",

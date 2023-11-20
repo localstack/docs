@@ -391,7 +391,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": false,
+        "external_test_suite": true,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -631,7 +631,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[11]",
@@ -641,7 +641,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[12]",
@@ -651,7 +651,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources",
@@ -661,7 +661,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_all_types_of_key_id_can_be_used_for_encryption",
@@ -901,7 +901,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_all_types_of_key_id_can_be_used_for_encryption",
@@ -1228,7 +1228,7 @@
             "test": "test_copy_object_kms",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..VersionId', '$..ContentLanguage', '$..BucketKeyEnabled']",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -1244,8 +1244,38 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_copy_object_in_place_with_encryption",
+            "test": "test_s3_copy_object_in_place_with_encryption",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ServerSideEncryption', '$..SSEKMSKeyId', '$..ETag']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_bucket_key_default",
             "test": "test_s3_sse_bucket_key_default",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ETag']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key",
+            "test": "test_s3_sse_validate_kms_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key_state",
+            "test": "test_s3_sse_validate_kms_key_state",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ETag']",
@@ -1711,7 +1741,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_get_put_list_key_policies",
@@ -1781,7 +1811,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[11]",
@@ -1791,7 +1821,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[12]",
@@ -1801,7 +1831,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_deploy_stack_with_kms",
@@ -1811,7 +1841,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_kms_key_disabled",
@@ -1821,7 +1851,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           }
         ]
       }
@@ -1995,7 +2025,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[11]",
@@ -2005,7 +2035,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[12]",
@@ -2015,7 +2045,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources",
@@ -2025,7 +2055,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_all_types_of_key_id_can_be_used_for_encryption",
@@ -2240,6 +2270,26 @@
             "origin": "external"
           },
           {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key_state",
+            "test": "test_s3_sse_validate_kms_key_state",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ETag']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key_state",
+            "test": "test_s3_sse_validate_kms_key_state",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ETag']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_get_key_does_not_exist",
             "test": "test_get_key_does_not_exist",
             "response": "400",
@@ -2318,6 +2368,36 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key",
+            "test": "test_s3_sse_validate_kms_key",
+            "response": "400",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key",
+            "test": "test_s3_sse_validate_kms_key",
+            "response": "400",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key",
+            "test": "test_s3_sse_validate_kms_key",
+            "response": "400",
+            "error": "NotFoundException",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "internal"
           }
         ],
         "ls_pro": [
@@ -2365,7 +2445,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_cant_use_disabled_or_deleted_keys",
@@ -2386,6 +2466,16 @@
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key_state",
+            "test": "test_s3_sse_validate_kms_key_state",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ETag']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
           }
         ]
       }
@@ -2401,7 +2491,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[11]",
@@ -2411,7 +2501,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[12]",
@@ -2421,7 +2511,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources",
@@ -2431,7 +2521,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_deploy_stack_with_kms",
@@ -2441,7 +2531,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_kms_key_disabled",
@@ -2451,7 +2541,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_key_rotation_status",
@@ -2477,7 +2567,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[11]",
@@ -2487,7 +2577,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[12]",
@@ -2497,7 +2587,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources",
@@ -2507,7 +2597,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_deploy_stack_with_kms",
@@ -2517,7 +2607,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_disable_and_enable_key",
@@ -3628,6 +3718,16 @@
         ],
         "ls_pro": [
           {
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
             "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_fault_action",
             "test": "test_api_injection_fault_action",
             "response": "200",
@@ -3711,6 +3811,16 @@
             "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_injection_parametrized_service",
             "test": "test_api_injection_parametrized_service",
             "response": "400",
+            "error": "InternalError",
+            "snapshot_skipped": "",
+            "aws_validated": false,
+            "snapshot_tested": false,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Pro: tests/aws/services/fis/test_fis.py::TestFis::test_api_failure_with_latency",
+            "test": "test_api_failure_with_latency",
+            "response": "500",
             "error": "InternalError",
             "snapshot_skipped": "",
             "aws_validated": false,
@@ -3903,7 +4013,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[11]",
@@ -3913,7 +4023,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_cdk.py::TestCdkInit::test_cdk_bootstrap[12]",
@@ -3923,7 +4033,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_cfn_with_kms_resources",
@@ -3933,7 +4043,7 @@
             "snapshot_skipped": "",
             "aws_validated": true,
             "snapshot_tested": true,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_deploy_stack_with_kms",
@@ -3943,7 +4053,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_kms.py::test_kms_key_disabled",
@@ -3953,7 +4063,7 @@
             "snapshot_skipped": "",
             "aws_validated": false,
             "snapshot_tested": false,
-            "origin": "external"
+            "origin": "internal"
           },
           {
             "node_id": "LocalStack Community: tests/aws/services/kms/test_kms.py::TestKMS::test_cant_delete_deleted_key",
@@ -4684,7 +4794,7 @@
             "test": "test_copy_object_kms",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..VersionId', '$..ContentLanguage', '$..BucketKeyEnabled']",
+            "snapshot_skipped": "['$..ServerSideEncryption']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
@@ -4702,6 +4812,26 @@
           {
             "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_bucket_key_default",
             "test": "test_s3_sse_bucket_key_default",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "['$..ETag']",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key",
+            "test": "test_s3_sse_validate_kms_key",
+            "response": "200",
+            "error": "",
+            "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key_state",
+            "test": "test_s3_sse_validate_kms_key_state",
             "response": "200",
             "error": "",
             "snapshot_skipped": "['$..ETag']",
@@ -4735,6 +4865,16 @@
             "response": "400",
             "error": "KMSInvalidStateException",
             "snapshot_skipped": "",
+            "aws_validated": true,
+            "snapshot_tested": true,
+            "origin": "external"
+          },
+          {
+            "node_id": "LocalStack Community: tests/aws/services/s3/test_s3.py::TestS3::test_s3_sse_validate_kms_key_state",
+            "test": "test_s3_sse_validate_kms_key_state",
+            "response": "400",
+            "error": "KMSInvalidStateException",
+            "snapshot_skipped": "['$..ETag']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "external"
