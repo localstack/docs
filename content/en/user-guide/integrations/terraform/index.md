@@ -66,16 +66,16 @@ $ tflocal apply
 
 | Environment Variable     | Default value                    | Description |
 | ------------------------ | -------------------------------- | ----------- |
-| `TF_CMD`                 | terraform                        | Terraform command to call |
+| `TF_CMD`                 | `terraform`                        | Terraform command to call |
 | `AWS_ENDPOINT_URL`       | -                                | Hostname and port of the target LocalStack instance |
-| `LOCALSTACK_HOSTNAME`    | localhost                        | **(Deprecated)** Host name of the target LocalStack instance |
-| `EDGE_PORT`              | 4566                             | **(Deprecated)** Port number of the target LocalStack instance |
-| `S3_HOSTNAME`            | s3.localhost.localstack.cloud    | Special hostname to be used to connect to LocalStack S3 |
+| `LOCALSTACK_HOSTNAME`    | `localhost`                        | **(Deprecated)** Host name of the target LocalStack instance |
+| `EDGE_PORT`              | `4566`                             | **(Deprecated)** Port number of the target LocalStack instance |
+| `S3_HOSTNAME`            | `s3.localhost.localstack.cloud`    | Special hostname to be used to connect to LocalStack S3 |
 | `USE_EXEC`               | -                                | Whether to use `os.exec` instead of `subprocess.Popen` (try using this in case of I/O issues) |
 | `<SERVICE>_ENDPOINT`     | -                                | Setting a custom service endpoint, e.g., `COGNITO_IDP_ENDPOINT=http://example.com` |
-| `AWS_DEFAULT_REGION`     | us-east-1                        | The AWS region to use (determined from local credentials if `boto3` is installed) |
+| `AWS_DEFAULT_REGION`     | `us-east-1`                        | The AWS region to use (determined from local credentials if `boto3` is installed) |
 | `CUSTOMIZE_ACCESS_KEY`   | -                                | Enables you to override the static AWS Access Key ID |
-| `AWS_ACCESS_KEY_ID`      | test (accountId: 000000000000)   | AWS Access Key ID to use for multi-account setups |
+| `AWS_ACCESS_KEY_ID`      | `test` (`accountId`: 000000000000)   | AWS Access Key ID to use for multi-account setups |
 
 {{< alert title="Note" >}}
 While using `CUSTOMIZE_ACCESS_KEY`, following cases are taking precedence over each other from top to bottom:
