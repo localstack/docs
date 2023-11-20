@@ -17,6 +17,8 @@ $ DEBUG=1 localstack start
 
 You can also use [Profiles](#profiles).
 
+Configurations marked as **Deprecated** will be removed in the next major version. You can find previously removed configuration variables under [Legacy](#legacy).
+
 ## Core
 
 Options that affect the core LocalStack system.
@@ -27,8 +29,7 @@ Options that affect the core LocalStack system.
 | `IMAGE_NAME`| `localstack/localstack` (default), `localstack/localstack:0.11.0` | Specific name and tag of LocalStack Docker image to use.|
 | `GATEWAY_LISTEN`| `0.0.0.0:4566` (default in Docker mode) `127.0.0.1:4566` (default in host mode) | Configures the bind addresses of LocalStack. It has the form `<ip address>:<port>(,<ip address>:<port>)*`. LocalStack Pro adds port `443`. |
 | `LOCALSTACK_HOST`| `localhost.localstack.cloud:4566` (default) | This is interpolated into URLs and addresses that are returned by LocalStack. It has the form `<hostname>:<port>`. |
-| `USE_SSL` | `0` (default) | Whether to return URLs using HTTP (`0`) or HTTPS (`1`). |
-| `LEGACY_DIRECTORIES` | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
+| `USE_SSL` | `0` (default) | Whether to return URLs using HTTP (`0`) or HTTPS (`1`). Changed with 3.0.0. In earlier versions this was toggling SSL support on or off. |
 | `PERSISTENCE` | `0` (default) | Enable persistence. See [Persistence Mechanism]({{< ref "persistence-mechanism" >}}) and [Filesystem Layout]({{< ref "filesystem" >}}). |
 | `MAIN_CONTAINER_NAME` | `localstack-main` (default) | Specify the main docker container name |
 | `LS_LOG` | `trace`, `trace-internal`, `debug`, `info`, `warn`, `error`, `warning`| Specify the log level. Currently overrides the `DEBUG` configuration. `trace` for detailed request/response, `trace-internal` for internal calls, too. |
@@ -155,7 +156,6 @@ See [here](#opensearch).
 | `KINESIS_SHARD_LIMIT` | `100` (default), `Infinity` (to disable) | Integer value , causing the Kinesis API to start throwing exceptions to mimic the default shard limit. |
 | `KINESIS_ON_DEMAND_STREAM_COUNT_LIMIT` | `10` (default), `Infinity` (to disable) | Integer value , causing the Kinesis API to start throwing exceptions to mimic the default on demand stream count limit. |
 | `KINESIS_LATENCY` | `500` (default), `0` (to disable)| Integer value of milliseconds, causing the Kinesis API to delay returning a response in order to mimic latency from a live AWS call. |
-| `KINESIS_INITIALIZE_STREAMS` | `"my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1"` | A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. Only works with the `kinesis-mock` `KINESIS_PROVIDER`. |
 
 ### Lambda
 
@@ -167,6 +167,7 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable| Example Values | Description |
 | - | - | - |
 | `BUCKET_MARKER_LOCAL` | `hot-reload` (default) | Magic S3 bucket name for [Hot Reloading]({{< ref "user-guide/tools/lambda-tools/hot-reloading" >}}). The S3Key points to the source code on the local file system. |
+| `HOSTNAME_FROM_LAMBDA` | `localstack` | Endpoint host under which APIs are accessible from Lambda containers (optional). This can be useful in docker-compose stacks to use the local container hostname if neither IP address nor container name of the main container are available (e.g., in CI). Often used in combination with `LAMBDA_DOCKER_NETWORK`.|
 | `LAMBDA_DOCKER_FLAGS` | `-e KEY=VALUE`, `-v host:container`, `-p host:container`, `--add-host domain:ip` | Additional flags passed to Docker `run`\|`create` commands. Supports environment variables, ports, volume mounts, extra hosts, networks, DNS servers, labels, ulimits, user, platform, and privileged mode. |
 | `LAMBDA_DOCKER_NETWORK` | `bridge` (Docker default) | [Docker network driver](https://docs.docker.com/network/) for the Lambda and ECS containers. Needs to be set to the network the LocalStack container is connected to. Limitation: `host` mode currently not supported. |
 | `LAMBDA_DOWNLOAD_AWS_LAYERS` | `1` (default, pro) | Whether to download public Lambda layers from AWS through a LocalStack proxy when creating or updating functions. |
@@ -194,16 +195,17 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 | Variable | Example Values | Description |
 | - | - | - |
 | `OPENSEARCH_CUSTOM_BACKEND` | `http://opensearch:9200` | URL to a custom OpenSearch backend cluster. If this is set to a valid URL, then LocalStack will not create OpenSearch cluster instances, but instead forward all domains to the given backend (see [Custom Opensearch Backends]({{< ref "opensearch#custom-opensearch-backends" >}})). |
-| `OPENSEARCH_MULTI_CLUSTER` | `0`\|`1` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
+| `OPENSEARCH_MULTI_CLUSTER` | `1`\| `0` | When activated, LocalStack will spawn one OpenSearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `OPENSEARCH_CUSTOM_BACKEND` is set. |
 | `OPENSEARCH_ENDPOINT_STRATEGY` | `path`\|`domain`\|`port` | Governs how domain endpoints are created to access a cluster (see [Opensearch Endpoints]({{< ref "opensearch#endpoints" >}})). |
+| `SKIP_INFRA_DOWNLOADS` | `1` \| `0` (default) | **Deprecated since 1.3.0** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
 
 ### RDS
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `RDS_CLUSTER_ENDPOINT_HOST_ONLY` | `1` (default) / `0` | Whether the cluster endpoint returns the host only (which is AWS parity). If set to `0` it will return `<host>:<port>`. |
-| `RDS_PG_CUSTOM_VERSIONS`         | `0` / `1` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
-| `RDS_MYSQL_DOCKER`               | `1` (default) / `0` | Whether to disable MySQL engines (and use MariaDB instead). MySQL engine for cluster/instances will start in a new docker container. If you have troubles running MySQL in docker, you can disable the feature. |
+| `RDS_CLUSTER_ENDPOINT_HOST_ONLY` | `1` (default) \| `0` | Whether the cluster endpoint returns the host only (which is AWS parity). If set to `0` it will return `<host>:<port>`. |
+| `RDS_PG_CUSTOM_VERSIONS`         | `0` \| `1` (default) | Whether to install and use custom Postgres versions for RDS (or alternatively, use default version 11). |
+| `RDS_MYSQL_DOCKER`               | `1` (default) \| `0` | Whether to disable MySQL engines (and use MariaDB instead). MySQL engine for cluster/instances will start in a new docker container. If you have troubles running MySQL in docker, you can disable the feature. |
 | `MYSQL_IMAGE`                    | `mysql:8.0`       | Defines a specific MySQL image that should be used when spinning up the MySQL engine. Only available if `RDS_MYSQL_DOCKER` is enabled. |
 | `MSSQL_IMAGE`                    | `mcr.microsoft.com/mssql/server:2022-latest` | Defines a specific image that should be used when spinning up a SQL server engine. |
 
@@ -211,15 +213,17 @@ Please consult the [migration guide]({{< ref "user-guide/aws/lambda#migrating-to
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `S3_SKIP_SIGNATURE_VALIDATION`| `0` / `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. |
-| `S3_SKIP_KMS_KEY_VALIDATION` | `0` / `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
-| `PROVIDER_OVERRIDE_S3` | `legacy_v2` / `v3` (default) | The new LocalStack-native S3 provider (v3) is active by default since LocalStack 3.0. |
+| `S3_DIR` || **Deprecated since 3.0.0** This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
+| `S3_SKIP_SIGNATURE_VALIDATION`| `0` \| `1` (default) | Used to toggle validation of S3 pre-signed URL request signature. Set to `0` to validate. |
+| `S3_SKIP_KMS_KEY_VALIDATION` | `0` \| `1` (default) | Used to toggle validation of provided KMS key in S3 operations. |
+| `PROVIDER_OVERRIDE_S3` | `legacy_v2` \| `v3` (default) | The new LocalStack-native S3 provider (v3) is active by default since LocalStack 3.0. |
 
 ### StepFunctions
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | `legacy` / `v2` (default) | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
+| `PROVIDER_OVERRIDE_STEPFUNCTIONS` | `legacy` \| `v2` (default) | The new LocalStack-native StepFunctions provider (v2) is active by default since LocalStack 3.0. |
+| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated since 3.0.0** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. <br> **Removed in new provider.** |
 
 ### SQS
 
@@ -308,40 +312,75 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 ## LocalStack Pro
 
 | Variable             | Example Values | Description |
-|----------------------|----------------| - |
+|----------------------|----------------|-------------|
 | `ACTIVATE_PRO`       | 1 (default)    | Whether pro should be activated or not. This is set to true by default if using the `localstack/localstack-pro` container image. If set to `1`, LocalStack will fail to start if the license key activation did not work. If set to `0`, an attempt is made to start LocalStack without pro features.
 | `LOCALSTACK_AUTH_TOKEN` |                | AUTH_TOKEN to activate LocalStack Pro.
 | `LOG_LICENSE_ISSUES` | 1 (default)    | Whether to log issues with the license activation to the console.
 
-
-## Deprecated
-
-These configurations are deprecated and will be removed in the upcoming major version.
-
-| Variable | Example Values | Description |
-| - | - | - |
-| `BIGDATA_MONO_CONTAINER` | `0`\|`1` (default) | **Deprecated.** Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
-| `SKIP_INFRA_DOWNLOADS` | | **Deprecated.** Whether to skip downloading additional infrastructure components (e.g., specific Elasticsearch versions) |
-| `STEPFUNCTIONS_LAMBDA_ENDPOINT` | `default` | **Deprecated.** This is only supported for the `legacy` provider. URL to use as the Lambda service endpoint in Step Functions. By default this is the LocalStack Lambda endpoint. Use default to select the original AWS Lambda endpoint. |
-| `S3_DIR` | | **Deprecated.** This is only supported for the `legacy_v2` provider. Configure a global parent directory that contains all buckets as sub-directories (`S3_DIR=/path/to/root`) or an individual directory that will get mounted as special bucket names (`S3_DIR=/path/to/root/bucket1:bucket1`). Only available for Localstack Pro.
 
 ## Legacy
 
 These configurations have already been removed and **won't have any effect** on newer versions of LocalStack.
 **Please remove them from your configuration.**
 
-| Variable | Removed in | Description |
-| - | - | - |
-| `DATA_DIR`| 2.0.0 | **Legacy.** Local directory for saving persistent data. Use `PERSISTENCE` instead. |
-| `HOST_TMP_FOLDER` | 2.0.0 | **Legacy.** Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
-| `INIT_SCRIPTS_PATH` | 2.0.0 | **Legacy.** Before 1.0, this was used to configure the path to the initializing files with extensions `.sh` that were found in `/docker-entrypoint-initaws.d`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
-| `TMPDIR`| 2.0.0 | **Legacy.** Temporary folder on the host running the CLI and inside the LocalStack container .|
-| `<SERVICE>_BACKEND` | 3.0.0 | **Legacy.** Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name.
-| `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | **Legacy.** Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
-| `ES_CUSTOM_BACKEND` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
-| `ES_ENDPOINT_STRATEGY` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
-| `ES_MULTI_CLUSTER` | 3.0.0 | **Legacy.** Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
-| `MOCK_UNIMPLEMENTED` | 3.0.0 | **Legacy.** Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods
+<!-- Note on ordering: The list is ordered first by version (descending) and then by Variable name (ascending). -->
+
+| Variable | Removed in | Example Values | Description |
+| - | - | - | - |
+| `<SERVICE>_BACKEND` | 3.0.0 | `http://localhost:7577` |  Custom endpoint URL to use for a specific service, where `<SERVICE>` is the uppercase service name. |
+| `<SERVICE>_PORT_EXTERNAL` | 3.0.0 | `4567` | Port number to expose a specific service externally . `SQS_PORT_EXTERNAL`, e.g. , is used when returning queue URLs from the SQS service to the client. |
+| `ACTIVATE_NEW_POD_CLIENT` | 3.0.0 | `0`\|`1` (default) |  Whether to use the new Cloud Pods client leveraging LocalStack container's APIs. |
+| `BIGDATA_MONO_CONTAINER` | 3.0.0 |`0`\|`1` (default) | Whether to spin Big Data services inside the LocalStack main container. Glue jobs breaks when using `BIGDATA_MONO_CONTAINER=0`. | 
+| `DEFAULT_REGION` | 3.0.0 | `us-east-1` (default) | AWS region to use when talking to the API (needs to be activated via `USE_SINGLE_REGION=1`). LocalStack now has full multi-region support. |
+| `EDGE_BIND_HOST` | 3.0.0 | `127.0.0.1` (default), `0.0.0.0` (docker)| Address the edge service binds to. Use `GATEWAY_LISTEN` instead. |
+| `EDGE_FORWARD_URL` | 3.0.0 | `http://10.0.10.5678` | Optional target URL to forward all edge requests to (e.g., for distributed deployments) |
+| `EDGE_PORT` | 3.0.0 | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
+| `EDGE_PORT_HTTP` | 3.0.0 | `4566` (default)| Port number for the edge service, the main entry point for all API invocations. |
+| `ES_CUSTOM_BACKEND` | 3.0.0 | `http://elasticsearch:9200` |  Use [`OPENSEARCH_CUSTOM_BACKEND`](#opensearch) instead. URL to a custom elasticsearch backend cluster. If this is set to a valid URL, then localstack will not create elasticsearch cluster instances, but instead forward all domains to the given backend (see [Custom Elasticsearch Backends]({{< ref "elasticsearch#custom-elasticsearch-backends" >}})). |
+| `ES_ENDPOINT_STRATEGY` | 3.0.0 | `path`\|`domain`\|`port` (formerly `off`) |  Use [`OPENSEARCH_ENDPOINT_STRATEGY`](#opensearch) instead. Governs how domain endpoints are created to access a cluster (see [Elasticsearch Endpoints]({{< ref "elasticsearch#endpoints" >}})) |
+| `ES_MULTI_CLUSTER` | 3.0.0 | `0`\|`1` |  Use [`OPENSEARCH_MULTI_CLUSTER`](#opensearch) instead. When activated, LocalStack will spawn one Elasticsearch cluster per domain. Otherwise all domains will share a single cluster instance. This is ignored if `ES_CUSTOM_BACKEND` is set. |
+| `HOSTNAME_EXTERNAL` | 3.0.0 | `localhost` (default) |  Name of the host to expose the services externally. This host is used, e.g., when returning queue URLs from the SQS service to the client. Use `LOCALSTACK_HOST` instead.  |
+| `KINESIS_INITIALIZE_STREAMS` | 3.0.0 | `"my-first-stream:1,my-other-stream:2:us-west-2,my-last-stream:1"` | A comma-delimited string of stream names, its corresponding shard count and an optional region to initialize during startup. If the region is not provided, the default region is used. Only works with the `kinesis-mock` `KINESIS_PROVIDER`. |
+| `KINESIS_PROVIDER` | 3.0.0 | `kinesis-mock` (default) and `kinesalite` | |
+| `KMS_PROVIDER` | 3.0.0 | `moto` (default), `local-kms` | `local-kms` has been removed. |
+| `LAMBDA_CODE_EXTRACT_TIME` | 3.0.0 | `25` (default) | Time in seconds to wait at max while extracting Lambda code. By default, it is 25 seconds for limiting the execution time to avoid client/network timeout issues. <br> **Removed in new provider because function creation happens asynchronously.**|
+| `LAMBDA_CONTAINER_REGISTRY` | 3.0.0 | `lambci/lambda` (default) | An alternative docker registry from where to pull lambda execution containers.<br> **Replaced by `LAMBDA_RUNTIME_IMAGE_MAPPING` in new provider.** |
+| `LAMBDA_EXECUTOR` | 3.0.0 |  | Method to use for executing Lambda functions. For `docker` and `docker-reuse`, if LocalStack itself is started inside Docker, then the `docker` command needs to be available inside the container (usually requires to run the container in privileged mode). More information in Lambda Executor Modes.<br> **Removed in new provider. Mount the Docker socket or see [migration guide]({{< ref "user-guide/aws/lambda" >}}).** |
+| | | `docker` (default) | Run each function invocation in a separate Docker container. |
+| | | `local` (fallback) | Run Lambda functions in a temporary directory on the local machine. |
+| | | `docker-reuse` | Create one Docker container per function and reuse it across invocations. |
+| `LAMBDA_FALLBACK_URL` | 3.0.0 | | Fallback URL to use when a non-existing Lambda is invoked. Either records invocations in DynamoDB (value `dynamodb://<table_name>`) or forwards invocations as a POST request (value `http(s)://...`).<br> **Removed in new provider.** |
+| `LAMBDA_FORWARD_URL` | 3.0.0 | | URL used to forward all Lambda invocations (useful to run Lambdas via an external service). <br> **Removed in new provider.** |
+| `LAMBDA_JAVA_OPTS` | 3.0.0 | `-Xmx512M` | Allow passing custom JVM options to Java Lambdas executed in Docker. Use `_debug_port_` placeholder to configure the debug port, e.g., `-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=_debug_port_`.<br> **Currently not supported in new provider but possible via custom entrypoint.** |
+| `LAMBDA_REMOTE_DOCKER` | 3.0.0 | | determines whether Lambda code is copied or mounted into containers.<br> **Removed in new provider because zip file copying is used by default and hot reloading automatically configures mounting.** |
+| | | `true` (default) | your Lambda function definitions will be passed to the container by copying the zip file (potentially slower). It allows for remote execution, where the host and the client are not on the same machine.|
+| | | `false` | your Lambda function definitions will be passed to the container by mounting a volume (potentially faster). This requires to have the Docker client and the Docker host on the same machine. |
+| `LAMBDA_STAY_OPEN_MODE` | 3.0.0 | `1` (default) | Usage of the stay-open mode of Lambda containers. Only applicable if `LAMBDA_EXECUTOR=docker-reuse`. Set to `0` if you want to use [Hot Reloading]({{< ref "hot-reloading" >}}).<br> **Removed in new provider because stay-open mode is the default behavior. `LAMBDA_KEEPALIVE_MS` can be used to configure how long containers should be kept running in-between invocations.** |
+| `LAMBDA_XRAY_INIT` | 3.0.0 | `1` \| `0` (default) | Whether to fully initialize XRay daemon for Lambda containers (may increase Lambda startup times).<br> **the X-Ray daemon is now always initialized.** |
+| `LEGACY_EDGE_PROXY` | 3.0.0 | `1` \| `0` (default) | Whether to use the legacy edge proxy or the newer Gateway/HandlerChain framework.  |
+| `LOCALSTACK_HOSTNAME` | 3.0.0 | `http://${LOCALSTACK_HOSTNAME}:4566` | Name of the host where LocalStack services are available. Use this hostname as endpoint in order to access the services from within your Lambda functions (e.g., to store an item to DynamoDB or S3 from a Lambda). This option is read-only. Use `LOCALSTACK_HOST` instead. |
+| `MOCK_UNIMPLEMENTED` | 3.0.0 | `1` \| `0` (default)  |  Whether to return mocked success responses (instead of 501 errors) for currently unimplemented API methods |
+| `PERSIST_ALL` | 3.0.0 | `true` (default) | Whether to persist all resources (including user code like Lambda functions), or only "light-weight" resources (e.g., SQS queues, or Cognito users). Can be set to `false` to reduce storage size of `DATA_DIR` folders or Cloud Pods. |
+| `SYNCHRONOUS_KINESIS_EVENTS` | 3.0.0 | `1` (default) \| `0` | Whether or not to handle Kinesis Lambda event sources as synchronous invocations. |
+| `USE_SINGLE_REGION` | 3.0.0 | `1` \| `0` (default) |  Whether to use the legacy single-region mode, defined via `DEFAULT_REGION`. |
+| `DATA_DIR`| 2.0.0 | blank (disabled/default), `/tmp/localstack/data` |  Local directory for saving persistent data. Use `PERSISTENCE` instead. |
+| `DISABLE_TERM_HANDLER` | 2.0.0 | `""` (default) \| `1` | Whether to disable signal passing to LocalStack when running in docker. Enabling this will prevent an orderly shutdown when running inside LS in docker. Setting this to anything else than an empty string will disable it.
+| `HOST_TMP_FOLDER` | 2.0.0 | `/some/path` |  Temporary folder on the host that gets mounted as `$TMPDIR/localstack` into the LocalStack container. Required only for Lambda volume mounts when using `LAMBDA_REMOTE_DOCKER=false.` |
+| `INIT_SCRIPTS_PATH` | 2.0.0 | `/some/path` | Before 1.0, this was used to configure the path to the initializing files with extensions `.sh` that were found in `/docker-entrypoint-initaws.d`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
+| `LEGACY_DIRECTORIES` | 2.0.0 | `0` (default) | Use legacy method of managing internal filesystem layout. See [Filesystem Layout]({{< ref "filesystem" >}}). |
+| `LEGACY_INIT_DIR` | 2.0.0 | `1` \| `0`(default) | Used with `INIT_SCRIPTS_PATH`. This has been replaced by the [init-hook system](https://docs.localstack.cloud/references/init-hooks/). |
+| `MULTI_ACCOUNTS` | 2.0.0 | `0` (default) | Enable multi-accounts (preview) |
+| `REQUIRE_PRO` | 2.0.0 | 0 (default) | Whether to require license activation to succeed to start LocalStack. If set to 0 (default) LocalStack will start as community version if the license cannot be activated. |
+| `SQS_PROVIDER` | 2.0.0 |  `moto` (default) and `elasticmq` | |
+| `SYNCHRONOUS_API_GATEWAY_EVENTS` | 2.0.0 | `1` (default) \| `0` | Whether or not to handle API Gateway Lambda event sources as synchronous invocations. |
+| `SYNCHRONOUS_DYNAMODB_EVENTS` | 2.0.0 | `1` (default) \| `0` | Whether or not to handle DynamoDB Lambda event sources as synchronous invocations. |
+| `SYNCHRONOUS_SQS_EVENTS` | 2.0.0 | `1`  \| `0` (default) | Whether or not to handle SQS Lambda event sources as synchronous invocations. |
+| `SYNCHRONOUS_SNS_EVENTS` | 2.0.0 | `1`  \| `0` (default) | Whether or not to handle SNS Lambda event sources as synchronous invocations. |
+| `TMPDIR`| 2.0.0 | `/tmp` (default) |  Temporary folder on the host running the CLI and inside the LocalStack container .|
+| `USE_LIGHT_IMAGE` | 2.0.0 | `1` (default) | Whether to use the light-weight Docker image. Overwritten by `IMAGE_NAME`.|
+| `LEGACY_PERSISTENCE` | 1.0.0 | `true` (default) | Whether to enable legacy persistence mechanism based on API calls record & replay. Only relevant for Community version, not relevant for advanced persistence mechanism in Pro. |
+| `PERSISTENCE_SINGLE_FILE` | 1.0.0 | `true` (default)| Specify if persistence files should be combined (only relevant for legacy persistence in Community version, not relevant for advanced persistence in Pro version). |
+| `PORT_WEB_UI` | 0.12.8 | `8080` (default) | Port for the legacy Web UI. Replaced by our [Web Application](https://app.localstack.cloud) |
 
 ## Profiles
 
