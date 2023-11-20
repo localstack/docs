@@ -5,7 +5,7 @@ weight: 40
 description: A CI key is used to access LocalStack in CI or other machine environments.
 ---
 
-LocalStack requires a **CI Key** for use in Continuous Integration (CI) or similar machine environments. Each instance start in a CI or comparable environment uses one CI token.
+LocalStack requires a **CI Key** for use in Continuous Integration (CI) or similar machine environments. Each instance startup in a CI or comparable environment consumes one CI token.
 
 CI Keys are administered on the [CI Keys page](https://app.localstack.cloud/workspace/ci-keys) of the LocalStack Web Application. These keys are linked to specific CI pipelines or projects, rather than individual developers.
 
