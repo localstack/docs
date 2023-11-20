@@ -1,26 +1,23 @@
 ---
-title: "API Key"
-weight: 20
-categories: ["LocalStack Pro & Enterprise"]
+title: "API Key (Deprecated)"
+linkTitle: "API Key (Deprecated)"
+weight: 200
 description: >
   Configure your API key to start LocalStack
 aliases:
   - /get-started/pro/
+  - /getting-started/api-key/
 ---
 
 {{< alert title="Important" color="danger" >}}
-API Keys are being phased out for LocalStack activation, with a transition to Auth Tokens. Auth Tokens simplify license management and eliminate the need for developers to modify their setup when there are changes to licenses. Refer to our [Auth Token documentation]({{< ref "auth-token" >}}) for more information.
-
-To use LocalStack in CI environments **CI keys** are still used and are the only way to activate LocalStack in these contexts.
+-   LocalStack is transitioning from API Keys to Auth Tokens for activation. Auth Tokens streamline license management and remove the need for developers to adjust their setup when license changes occur.
+-   For detailed information and guidance on migrating your LocalStack setup to Auth Tokens, please consult our [Auth Token documentation]({{< ref "auth-token" >}}).
+-   API Keys will remain functional for LocalStack Pro and Enterprise users until the next major release. Following this release, LocalStack Pro and Enterprise will exclusively use Auth Tokens.
 {{< /alert >}}
 
 The LocalStack API key is a unique identifier to activate your LocalStack license needed to start LocalStack Pro.
 You can find your API key in the [LocalStack Web app](https://app.localstack.cloud/account/apikeys).
 This guide demonstrates how you can use your new LocalStack licenses and go over some best practices regarding the usage, activation, and safety of your LocalStack API key.
-
-## Getting your API key
-
-To get started, you need to have a LocalStack license. If you don't have one, you can [sign up for a free trial](https://localstack.cloud/pricing/) without any credit card required. The free trial will last 14 days, and you can use it to test all the features of LocalStack. You can find your API key in the [LocalStack Web Application](https://app.localstack.cloud) in the [**Account Settings** → **API Keys** section](https://app.localstack.cloud/account/apikeys).
 
 {{< alert title="Important" color="danger" >}}
 - Avoid sharing your API key with anyone. Ensure that you do not commit it to any source code management systems (like Git repositories).
@@ -122,6 +119,3 @@ There are several reasons a key activation can fail:
 
 If you are using the `localstack/localstack-pro` image, but cannot activate your license key, we recommend falling back to the community version `localstack/localstack`.
 If that is not an option, you can set `ACTIVATE_PRO=0` which will attempt to start LocalStack without pro features.
-
-Navigate to our [FAQ page]({{< ref "faq" >}}) if your are having troubles with the LocalStack API key activation.
-If you have any further problems concerning your API key activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).

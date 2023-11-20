@@ -9,7 +9,13 @@ description: >
 
 The Auth Token is a personal identifier used for user authentication outside the LocalStack Web Application, particularly in conjunction with the LocalStack core cloud emulator. Its primary functions are to retrieve the user's license and enable access to advanced features, effectively replacing the older developer API keys.
 
-The Auth Token remains unchanged unless manually rotated by the user, regardless of any license assignment changes. You can locate your Auth Token on the [Getting Started page](https://app.localstack.cloud/getting-started) or the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) in the web app.
+The Auth Token remains unchanged unless manually rotated by the user, regardless of any license assignment changes. You can locate your Auth Token on the [Getting Started page](https://app.localstack.cloud/getting-started) or the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) in the LocalStack Web Application.
+
+{{< alert title="Important" color="danger" >}}
+-   Previously, API keys were required to activate the LocalStack core cloud emulator. These API keys are now being replaced by Auth Tokens.
+-   Currently, LocalStack supports both API Keys and Auth Tokens. However, API Keys will be discontinued in the upcoming major release of LocalStack.
+-   To update your LocalStack configuration, replace your API Key with an Auth Token. Use the `LOCALSTACK_AUTH_TOKEN` environment variable in place of `LOCALSTACK_API_KEY`.
+{{< /alert >}}
 
 ## Managing your License
 
