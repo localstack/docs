@@ -102,7 +102,7 @@ Otherwise, check our collected most [common activation issues](#common-activatio
 
 Your personal Auth Token provides full access to your workspace and LocalStack license. It's important to treat auth tokens as confidential, avoiding sharing or storing them in source control management systems (SCMs) like Git.
 
-If you believe your Auht Token has been compromised or becomes known to someone else, reset it without delay. When you reset a token, the old one is immediately deactivated, losing its ability to access your license or workspace. It's not possible to restore previous tokens.
+If you believe your Auth Token has been compromised or becomes known to someone else, reset it without delay. When you reset a token, the old one is immediately deactivated, losing its ability to access your license or workspace. It is not possible to restore previous tokens.
 
 To rotate your Auth Token, go to the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) and select the **Reset Auth Token** option.
 
