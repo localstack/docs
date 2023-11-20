@@ -195,7 +195,7 @@ Afterwards, check out our [Quickstart guide]({{< ref "quickstart" >}}) to start 
 ## Alternatives
 Besides using the CLI, there are other ways of starting and managing your LocalStack instance:
 
-- [LocalStack Cockpit]({{< ref "#localstack-cockpit" >}})\
+- [LocalStack Desktop]({{< ref "#localstack-desktop" >}})\
   Get a desktop experience and work with your local LocalStack instance via the UI.
 
 - [LocalStack Docker Extension]({{< ref "#localstack-docker-extension" >}})\
@@ -213,10 +213,10 @@ Besides using the CLI, there are other ways of starting and managing your LocalS
 LocalStack runs inside a Docker container, and the above options are different ways to start and manage the LocalStack Docker container.
 For a comprehensive overview of the LocalStack images, check out our [Docker images documentation]({{< ref "docker-images" >}}).
 
-### LocalStack Cockpit
+### LocalStack Desktop
 
-Download our desktop client at [localstack.cloud/products/cockpit](https://localstack.cloud/products/cockpit/).
-See [LocalStack Cockpit]({{< ref "cockpit" >}}).
+Download our desktop client at [app.localstack.cloud/download](https://app.localstack.cloud/download).
+See [LocalStack Desktop]({{< ref "localstack-desktop" >}}).
 
 ### LocalStack Docker Extension
 
