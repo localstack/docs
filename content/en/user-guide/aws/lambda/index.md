@@ -230,6 +230,7 @@ However, the new provider still supports the following configuration options:
 * The `LAMBDA_DOCKER_FLAGS` option.
 * The `LAMBDA_REMOVE_CONTAINERS` option.
 * The `LAMBDA_DOCKER_DNS` option since LocalStack 2.2.
+* The `HOSTNAME_FROM_LAMBDA` option since LocalStack 3.0.
 
 ## Examples
 
