@@ -85,20 +85,6 @@ def merge_pdfs(file_list, output_filename):
         merger.write(out_file)
 
 
-def read_file_list(filename):
-    """
-    Reads a list of filenames from a given text file.
-
-    Parameters:
-    filename (str): The filename of the text file to read.
-
-    Returns:
-    list: A list of filenames read from the file.
-    """
-    with open(filename, "r") as file:
-        return [line.strip() for line in file]
-
-
 def delete_folders(folder_list):
     """
     Deletes a list of folders.
