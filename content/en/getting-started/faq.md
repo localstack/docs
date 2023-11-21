@@ -16,13 +16,13 @@ hide_readingtime: true
 If the LocalStack CLI version is heavily outdated, it might lead to issues with container startup and debug commands. If you are using an older version of LocalStack, you can update it by running the following command:
 
 {{< command >}}
-pip install --upgrade localstack localstack-ext
+$ pip install --upgrade localstack localstack-ext
 {{< / command >}}
 
 If you are running a newer version of LocalStack, you can check the version by running the following command:
 
 {{< command >}}
-localstack update localstack-cli
+$ localstack update localstack-cli
 {{< / command >}}
 
 ### Is using `localhost.localstack.cloud:4566` to set as the endpoint for AWS services recommended?
@@ -97,36 +97,6 @@ environment:
 - HTTP_PROXY =
 - NO_PROXY = .s3.localhost.localstack.cloud,127.0.0.1,*.localhost
 ...
-```
-
-### How to troubleshoot the DNS issue for LocalStack's BigData image?
-
-Occasionally, users have wrong configuration of their `docker-compose.yml` or `ENV` variables. ´Some Glue scripts depend on the local DNS setup. To resolve DNS issues, set TCP port `53` in LocalStack's `docker-compose.yml` file:
-
-```yaml
-ports:
-       - "53:53"
-       …
-```
-
-Furthermore, use either the default name `localstack-main` for the container, or alternatively configure the environment variable `MAIN_CONTAINER_NAME` to point to the correct name.
-
-```yaml
-container_name: localstack-main
-```
-
-Ensure that `127.0.0.1` is configured as the target DNS server for the `bigdata` container:
-
-```yaml
-docker inspect localstack_bigdata --format '{{ .HostConfig.Dns }}'
-
-Output: [127.0.0.1]
-```
-
-You can test it by attempting to resolve an S3 hostname, which should then internally get routed to the LocalStack API endpoints.
-
-```bash
-docker exec -it localstack_bigdata curl -vk https://test.s3.amazonaws.com
 ```
 
 ### Why is it that LocalStack is unable to connect to internet?
