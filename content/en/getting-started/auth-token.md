@@ -49,7 +49,7 @@ You have the option to run your LocalStack container in the background by append
 The `localstack` CLI automatically detects the Auth Token and appropriately conveys it to the LocalStack container.
 
 {{< alert title="Note" >}}
-If you're using LocalStack with an Auth Token, it's necessary to download the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image), which includes Pro services and several advanced features.
+If you are using LocalStack with an Auth Token, it's necessary to download the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image), which includes Pro services and several advanced features.
 {{< /alert >}}
 
 ### Starting LocalStack via Docker
@@ -80,17 +80,35 @@ You can manually set the Auth Token, or use the `export` command to establish th
 
 ## Licensing-related configuration
 
-To ensure that LocalStack only starts when you can activate LocalStack Pro or Enterprise, or if you want to avoid licensing-related error messages, refer to our [configuration guide](https://docs.localstack.cloud/references/configuration/#localstack-pro) about LocalStack Pro.
+To ensure that LocalStack only starts when you can activate LocalStack Pro/Team/Enterprise, set `ACTIVATE_PRO=1` in your environment. This is set to `true` by default if using the `localstack/localstack-pro` container image. If set to 1, LocalStack will fail to start if the license key activation did not work. If set to 0, an attempt is made to start LocalStack without any licensed features. 
+
+To avoid logging any licensing-related error messages, set `LOG_LICENSE_ISSUES=0` in your environment. Refer to our [configuration guide](https://docs.localstack.cloud/references/configuration/#localstack-pro) for more information.
 
 ## Checking license activation
 
 The simplest method to verify if LocalStack is active is by querying the health endpoint for a list of running services:
 
 {{< command >}}
-$ curl localhost:4566/_localstack/health | jq
+$ curl http://localhost:4566/_localstack/info | jq
 {{< / command >}}
 
-If you see a Pro-only service, like [XRay](https://docs.localstack.cloud/user-guide/aws/xray), listed as running, it indicates that LocalStack has started successfully. Another way to confirm this is by checking the logs of the LocalStack container for a message indicating successful license activation:
+The following output would be retrieved:
+
+```bash
+{
+  "version": "3.0.0:6dd3f3d",
+  "edition": "pro",
+  "is_license_activated": true,
+  "session_id": "7132da5f-a380-44ca-8897-6f0fdfd7b1c9",
+  "machine_id": "0c49752c",
+  "system": "linux",
+  "is_docker": true,
+  "server_time_utc": "2023-11-21T05:41:33",
+  "uptime": 161
+}
+````
+
+You can notice the `edition` field is set to `pro` and the `is_license_activated` field is set to `true`. Another way to confirm this is by checking the logs of the LocalStack container for a message indicating successful license activation:
 
 {{< command >}}
 [...] Successfully activated license
