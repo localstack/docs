@@ -11,20 +11,7 @@ You can sign up with your email address or one of our supported social identity 
 &lt;p>In LocalStack, a workspace allows you to collaborate with members of your organization and it encapsulates user and license management, subscriptions and billing, as well as access to shared resources and features like Cloud Pods or Stack Insights.&lt;/p>
 &lt;p>A workspace represents the base organizational unit in the web application.
 Users can be invited to join a workspace, and an admin can manage their license and permissions inside a workspace.&lt;/p>
-&lt;img src="workspace.png" alt="A screenshot of the LocalStack web application. The section labeled 'Workspace' in the sidebar on the left is highlighted and shows sub menu entries like 'Workspace Info', 'Auth Token', Users &amp;amp; Licenses', 'Subscriptions'." title="Workspace section in sidebar" width="900" /></description></item><item><title>User-Guide: Auth Token</title><link>/user-guide/web-application/auth-token/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/auth-token/</guid><description>
-&lt;p>The auth token is a personal token that is used to authenticate a user outside the webapp, especially when using the LocalStack emulator.
-The auth token is used to retrieve a user&amp;rsquo;s license and to unlock advanced functionality. The auth token replaces the (now legacy) developer API keys.&lt;/p>
-&lt;p>The auth token does not change (unless rotated by the user) also when a license is assigned or removed.&lt;/p>
-&lt;h2 id="setting-the-auth-token">Setting the Auth Token&lt;/h2>
-&lt;p>The auth token needs to be set as an environment variable in the user&amp;rsquo;s dev environment.
-The token itself, as well as detailed instruction on how to set it, can be found on the &lt;a href=https://app.localstack.cloud/workspace/auth-token>Auth Token&lt;/a> page under the &amp;lsquo;Workspace&amp;rsquo; menu.&lt;/p>
-&lt;h2 id="rotating-the-auth-token">Rotating the Auth Token&lt;/h2>
-&lt;p>Your personal auth token gives you full access to the associated workspace and LocalStack license.
-Auth tokens should be treated as secrets and never be shared or checked into source control management systems (SCMs) like for example git.&lt;/p>
-&lt;p>If you suspect your personal auth token to be compromised, or if it becomes known to a third party, you should reset it immediately.
-By resetting a token, the previous token will stop working immediately and can no longer be used to access a license or workspace.
-Previous tokens cannot be restored.&lt;/p>
-&lt;p>To rotate the auth token, select the &amp;lsquo;Reset Auth Token&amp;rsquo; action from the &lt;a href=https://app.localstack.cloud/workspace/auth-token>Auth Token&lt;a/> page.&lt;/p></description></item><item><title>User-Guide: Managing Users and Licenses</title><link>/user-guide/web-application/users-licences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/users-licences/</guid><description>
+&lt;img src="workspace.png" alt="A screenshot of the LocalStack web application. The section labeled 'Workspace' in the sidebar on the left is highlighted and shows sub menu entries like 'Workspace Info', 'Auth Token', Users &amp;amp; Licenses', 'Subscriptions'." title="Workspace section in sidebar" width="900" /></description></item><item><title>User-Guide: Managing Users and Licenses</title><link>/user-guide/web-application/users-licences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/users-licences/</guid><description>
 &lt;p>Within a workspace, users and their associated licenses are managed on the &lt;a href="https://app.localstack.cloud/workspace/members">Users &amp;amp; Licenses&lt;/a> page.
 This page allows to manage users and assign licenses to them.&lt;/p>
 &lt;img src="users-licences.png" alt="Illustrative screenshot of the LocalStack web app showing the page 'Users &amp; Licenses'" title="Users &amp; Licences" width="900" />
@@ -76,27 +63,7 @@ A user holding both a legacy API key and a license is only counted once when the
 A user can find their personal auth token either in the &amp;lsquo;Auth Token&amp;rsquo; or in the &amp;lsquo;Getting Started&amp;rsquo; section of the web app.&lt;/p>
 &lt;h3 id="sunsetting-legacy-api-keys">Sunsetting legacy API keys&lt;/h3>
 &lt;p>In this transition period we continue to support legacy API keys.
-We will gradually phase them out over the next months, helping customers to smoothly transition over to the new license management.&lt;/p></description></item><item><title>User-Guide: CI Keys</title><link>/user-guide/web-application/ci-keys/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/ci-keys/</guid><description>
-&lt;p>The use of LocalStack in CI or other machine environments requires the use of a CI key.
-Each start in a CI or other machine environment consumes 1 CI token.
-A quota of these CI tokens is included in paid LocalStack plans.&lt;/p>
-&lt;p>CI keys are not intended to be used by individual developers.
-To give a developer access to LocalStack and advanced features assign a license to them on the &lt;a href=https://app.localstack.cloud/workspace/members>Users &amp;amp; Licenses&lt;/a> page.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-We recently introduced auth tokens to replace &lt;em>developer&lt;/em> API keys. &lt;strong>CI keys&lt;/strong> are unaffected by this transition and are still the only way to activate a LocalStack instance for use in CI or other automated contexts.
-&lt;/div>
-&lt;h2 id="managing-ci-keys">Managing CI keys&lt;/h2>
-&lt;p>CI keys are managed on the &amp;lsquo;CI Keys&amp;rsquo; page.
-CI keys are not assigned to a specific developer but are attributed to a specific CI pipeline or project.&lt;/p>
-&lt;img src="ci-keys.png" alt="A screenshot of the LocalStack web app. The screenshot shows the page to manage CI keys" title="CI keys page" width="900" />
-&lt;p>The top of the page shows the consumption of CI tokens in the current period.
-A period lasts one month and the counter is reset at the start of each period.
-The start and end dates of the current period are shown next to the graph.&lt;/p>
-&lt;p>The number of CI keys in a workspace is not limited, but all API keys count towards the same quota.&lt;/p>
-&lt;p>For easier tracking, we recommend to use a separate CI key for each project or CI pipeline.
-To create a CI key, enter a descriptive name in the form field and press the &amp;lsquo;Generate CI Key&amp;rsquo; button.&lt;/p>
-&lt;p>Existing CI keys can be renamed, rotated or deleted by selecting the action from the list.&lt;/p></description></item><item><title>User-Guide: Resource Browser</title><link>/user-guide/web-application/resource-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/resource-browser/</guid><description>
+We will gradually phase them out over the next months, helping customers to smoothly transition over to the new license management.&lt;/p></description></item><item><title>User-Guide: Resource Browser</title><link>/user-guide/web-application/resource-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/web-application/resource-browser/</guid><description>
 &lt;p>The LocalStack Resource Browser allow you to view, manage, and deploy AWS resources locally while building &amp;amp; testing their cloud applications locally. It provides an internal, integrated experience, similar to the AWS Management Console, to manage the ephemeral resources locally in a LocalStack container on your local machine.&lt;/p>
 &lt;img src="resource-browser.png" alt="LocalStack Web Application's Resource Browsers outlining various local AWS services" title="Resource Browser" width="900" />
 &lt;div class="alert alert-warning" role="alert">

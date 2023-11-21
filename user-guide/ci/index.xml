@@ -9,6 +9,10 @@
 &lt;li>&lt;strong>Stack Insights&lt;/strong>: Displays a log of AWS API usage telemetry in your application stack, allowing you to examine the most frequently used services and API calls.&lt;/li>
 &lt;/ul>
 &lt;p>CI Analytics integrates with all of the popular CI/CD tools, including GitHub Actions, GitLab CI, CircleCI, to gather pipeline metrics that track the performance and results of your cloud infrastructure deployments. CI Analytics is available as part of the LocalStack Enterprise plan.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+CI Analytics is currently in &lt;strong>private beta&lt;/strong>. If you&amp;rsquo;d like to try it out, please &lt;a href="https://www.localstack.cloud/demo">contact us&lt;/a> to request access.
+&lt;/div>
 &lt;h2 id="key-concepts">Key Concepts&lt;/h2>
 &lt;ul>
 &lt;li>&lt;strong>CI Project&lt;/strong>: It represents an application executing builds and tests in a Continuous Integration (CI) pipeline. This corresponds to a repository or CI workflow on platforms like GitHub or GitLab.&lt;/li>
@@ -409,4 +413,15 @@ by selecting &lt;strong>Optional Configuration&lt;/strong> to add an environment
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">image&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">localstack/localstack-pro&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">envVariables&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">LOCALSTACK_API_KEY&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">&amp;lt;+secrets.getValue(&amp;#34;localstack-ci-key&amp;#34;)&amp;gt;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: CI Keys</title><link>/user-guide/ci/ci-keys/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/ci/ci-keys/</guid><description>
+&lt;p>LocalStack requires a &lt;strong>CI Key&lt;/strong> for use in Continuous Integration (CI) or similar machine environments. Each instance startup in a CI or comparable environment consumes one CI token.&lt;/p>
+&lt;p>CI Keys are administered on the &lt;a href="https://app.localstack.cloud/workspace/ci-keys">CI Keys page&lt;/a> of the LocalStack Web Application. These keys are linked to specific CI pipelines or projects, rather than individual developers.&lt;/p>
+&lt;img src="ci-keys.png" alt="A screenshot of the LocalStack web app. The screenshot shows the page to manage CI keys" title="CI keys page" width="900" />
+&lt;p>CI Keys are not meant for individual developers. To grant a developer access to LocalStack and its advanced features, assign a license to them on the &lt;a href="https://app.localstack.cloud/workspace/members">Users &amp;amp; Licenses page&lt;/a>.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+We have recently introduced Auth Tokens to replace &lt;em>developer&lt;/em> API keys. However, this change does not affect &lt;strong>CI Keys&lt;/strong>, which remain the sole method for activating a LocalStack instance in Continuous Integration (CI) or other automated test environments.
+&lt;/div>
+&lt;h2 id="managing-ci-keys">Managing CI keys&lt;/h2>
+&lt;p>To create a new CI key, input a meaningful name in the provided field and click the &amp;lsquo;Generate CI Key&amp;rsquo; button. For better management, it&amp;rsquo;s advisable to use a distinct CI key for each project or CI pipeline. You can manage existing CI keys by renaming, rotating, or deleting them through the options available in the list.&lt;/p>
+&lt;p>The top section of the CI page displays the usage of CI tokens for the current period. Each period lasts one month, and the token count resets at the beginning of a new period. The dates for the current period are indicated near the usage graph. While there&amp;rsquo;s no limit to the number of CI keys a workspace can have, all the keys contribute to the same quota.&lt;/p></description></item></channel></rss>
