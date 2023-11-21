@@ -1,0 +1,36 @@
+name: Generate a PDF version of the docs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pdf:
+    name: Generate PDF
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+
+      - name: Install dependencies
+        run: |
+          npm install -g website2pdf
+          pip install PyPDF2
+
+      - name: Generate PDF
+        run: python3 scripts/generate_pdf_output.py
+
+      - name: Upload the PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: localstack_docs.pdf
+          path: ./localstack_docs.pdf
