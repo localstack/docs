@@ -17,6 +17,10 @@ CI Analytics is a feature of LocalStack Web Application that allows users to get
 
 CI Analytics integrates with all of the popular CI/CD tools, including GitHub Actions, GitLab CI, CircleCI, to gather pipeline metrics that track the performance and results of your cloud infrastructure deployments. CI Analytics is available as part of the LocalStack Enterprise plan.
 
+{{< alert title="Note">}}
+CI Analytics is currently in **private beta**. If you'd like to try it out, please [contact us](https://www.localstack.cloud/demo) to request access.
+{{< /alert >}}
+
 ## Key Concepts
 
 -   **CI Project**: It represents an application executing builds and tests in a Continuous Integration (CI) pipeline. This corresponds to a repository or CI workflow on platforms like GitHub or GitLab.

@@ -23,12 +23,6 @@ The CI build is triggered by pushing code to a version control repository, like 
 
 After a successful test run, you can execute the more expensive AWS CodeBuild pipeline for deploying your application. You can enrich the test reports created by your testing framework with traces and analytics generated inside LocalStack.
 
-## CI Credits
-
-A _CI key_ is a special type of API key that allows you to use LocalStack in your CI environment. Each key activation, i.e., each single startup of the LocalStack container in your CI environment, consumes one build credit. LocalStack Pro offers a limited number of build credits to help you start experimenting with larger CI settings. LocalStack Team is focused on using LocalStack on individual user machines, across teams, and in larger CI settings to help teams collaborate and use LocalStack extensively in CI.
-
-The Pro subscription is mainly intended for use on individual user machines. We recommend our Team plan if you intend to use LocalStack extensively for team collaboration and in CI environments.
-
 ## CI integrations
 
 The steps required for the integration differ slightly depending on your preferred CI platform. Please refer to the relevant sections CI keys settings page](https://app.localstack.cloud/workspace/ci-keys) in the [LocalStack Web app](https://app.localstack.cloud).
