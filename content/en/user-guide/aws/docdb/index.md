@@ -12,8 +12,6 @@ can be accessed from localhost.
 
 When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
 
-Using the flag `DOCDB_PROXY_CONTAINER=1` the default behavior changes and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `LOCALSTACK_HOSTNAME` to connect to the instance.
-
 {{< alert title="Information" color="success">}}
 MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability, flexibility, and performance for modern application development.
 It belongs to the family of
@@ -174,9 +172,9 @@ databases.
 
 {{< command >}}
 
-$ mongosh mongodb://localhost.localstack.cloud:39045
+$ mongosh mongodb://localhost:39045
 Current Mongosh Log ID:    64a70b795697bcd4865e1b9a
-Connecting to:        mongodb://localhost.localstack.cloud:
+Connecting to:        mongodb://localhost:
 39045/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.1
 Using MongoDB:        6.0.7
 Using Mongosh:        1.10.1
@@ -195,9 +193,9 @@ which is the cluster port that appears in the aforementioned description.
 To work with a specific database, the command is:
 
 {{< command >}}
-$ mongosh mongodb://localhost.localstack.cloud:39045/test-company
+$ mongosh mongodb://localhost:39045/test-company
 Current Mongosh Log ID:    64a71916fae7fdeeb8b43a73
-Connecting to:        mongodb://localhost.localstack.cloud:
+Connecting to:        mongodb://localhost:
 39045/test-company?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.1
 Using MongoDB:        6.0.7
 Using Mongosh:        1.10.1
@@ -232,7 +230,9 @@ the [MongoDB documentation](https://www.mongodb.com/docs/).
 ### Connect to DocumentDB using Node.js Lambda
 
 {{< alert title="Important" color="success">}}
-You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to use the `localhost.localstack.cloud` in lambda to connect to the instance.
+You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to use the returned `Endpoint`, which will be correctly resolved automatically.
+
+The flag `DOCDB_PROXY_CONTAINER=1` changes the default behavior and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `localhost.localstack.cloud` to connect to the instance.
 {{< /alert>}}
 
 In this sample we will use Node.js lambda function to connect to a DocumentDB. 
@@ -262,7 +262,7 @@ In your terminal run:
 $ mkdir resources
 $ cd resources
 $ mkdir node_modules
-$ npm install mongodb
+$ npm install mongodb@6.3.0
 {{< /command >}}
 
 Next, copy the following code into a new file named `index.js` in the `resources` folder:
@@ -280,7 +280,7 @@ const pwd = process.env.DOCDB_SECRET;
 exports.handler = async (event) => {
   try {
     // Get endpoint details using rds/docdb client:
-    var cluster_result = await docdb_client.describeDBClusters({DBClusterIdentifier: docdb_id}).promise();
+    const cluster_result = await docdb_client.describeDBClusters({DBClusterIdentifier: docdb_id}).promise();
     const cluster = cluster_result.DBClusters[0];
     const host = cluster.Endpoint;
     const port = cluster.Port;
@@ -328,7 +328,7 @@ Finally, we can create the `lambda` function using `awslocal`:
 $ awslocal lambda create-function \
   --function-name MyNodeLambda \
   --runtime nodejs16.x \
-  --role arn:aws:iam::000000000000:role/fakerole \
+  --role arn:aws:iam::000000000000:role/lambda-role \
   --handler index.handler \
   --zip-file fileb://function.zip \
   --environment Variables="{DOCDB_CLUSTER_ID=test-docdb,DOCDB_SECRET=S3cretPwd!}"
@@ -351,6 +351,8 @@ Secrets follow a [well-defined pattern](https://docs.aws.amazon.com/secretsmanag
 
 For the lambda function, you can pass the secret arn as `SECRET_NAME`.
 In the lambda, you can then retrieve the secret details like this:
+
+[This sample is a snippet from the scenario test https://github.com/localstack/localstack-ext/blob/master/tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py]: #
 
 {{< command >}}
 const AWS = require('aws-sdk');
