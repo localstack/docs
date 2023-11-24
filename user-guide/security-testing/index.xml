@@ -4,7 +4,7 @@
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>This guide is designed for users new to IAM Policy Enforcement and assumes basic knowledge of the AWS CLI and our &lt;a href="https://github.com/localstack/awscli-local">&lt;code>awslocal&lt;/code>&lt;/a> wrapper script.&lt;/p>
 &lt;p>Start your LocalStack container with the &lt;code>DEBUG=1&lt;/code> and &lt;code>ENFORCE_IAM=1&lt;/code> environment variables set:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>ENFORCE_IAM=1 localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>DEBUG=1 ENFORCE_IAM=1 localstack start&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>We will demonstrate IAM Policy Enforcement, by creating a user and obtaining the access/secret keys. We will make an attempt to create a bucket using the user’s credentials, which inevitably fails due to insufficient permissions.&lt;/p>
 &lt;p>Lastly, a policy is attached to the user, granting the necessary &lt;code>s3:CreateBucket&lt;/code> permission, thereby enabling the successful creation of the bucket.&lt;/p>
 &lt;h3 id="create-a-user">Create a user&lt;/h3>
