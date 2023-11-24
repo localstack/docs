@@ -7352,7 +7352,6 @@ LocalStack&amp;rsquo;s Cost Explorer implementation cannot programmatically quer
 LocalStack starts a MongoDB server, to handle DocumentDB storage, in a separate Docker container and adds port-mapping so that it
 can be accessed from localhost.&lt;/p>
 &lt;p>When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.&lt;/p>
-&lt;p>Using the flag &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> the default behavior changes and the container will be started as proxied container. Meaning a port from the &lt;a href="/references/external-ports/">pre-defined port&lt;/a> range will be chosen, and when using lambda, you can use &lt;code>LOCALSTACK_HOSTNAME&lt;/code> to connect to the instance.&lt;/p>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Information&lt;/h4>
 MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability, flexibility, and performance for modern application development.
@@ -7377,7 +7376,7 @@ Amazon DocumentDB does not and vice versa.
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterIdentifier&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test-docdb-cluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterParameterGroup&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;default.docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Status&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;available&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost.localstack.cloud&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;MultiAZ&amp;#34;: &lt;/span>&lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Engine&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;: &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">39045&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -7405,6 +7404,7 @@ Amazon DocumentDB.&lt;/li>
 &lt;/ul>
 &lt;p>Notice in the &lt;code>DBClusterMembers&lt;/code> field of the cluster description that there are no other databases
 created.
+As we did not specify a &lt;code>MasterUsername&lt;/code> or &lt;code>MasterUserPassword&lt;/code> for the creation of the database, the mongo-db will not set any credentials when starting the docker container.
 To create a new database, we can use the &lt;code>create-db-instance&lt;/code> command, like in this example:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal docdb create-db-instance --db-instance-identifier test-company
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>--db-instance-class db.r5.large --engine docdb --db-cluster-identifier test-docdb-cluster&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -7415,7 +7415,7 @@ To create a new database, we can use the &lt;code>create-db-instance&lt;/code> c
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Engine&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBInstanceStatus&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;creating&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>{&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Address&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Address&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost.localstack.cloud&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;: &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">50761&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>}&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;InstanceCreateTime&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;2022-10-28T04:27:35.917000+00:00&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -7460,7 +7460,7 @@ the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterIdentifier&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test-docdb-cluster&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;DBClusterParameterGroup&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;default.docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Status&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;available&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Endpoint&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;localhost.localstack.cloud&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;MultiAZ&amp;#34;: &lt;/span>&lt;span style="color:#204a87;font-weight:bold">false&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Engine&amp;#34;: &lt;/span>&lt;span style="color:#4e9a06">&amp;#34;docdb&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;Port&amp;#34;: &lt;/span>&lt;span style="color:#0000cf;font-weight:bold">39045&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -7486,7 +7486,7 @@ the &lt;a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline">&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="connect-to-documentdb-using-mongosh">Connect to DocumentDB using mongosh&lt;/h3>
 &lt;p>Interacting with the databases is done using &lt;code>mongosh&lt;/code>, which is an official command-line shell and
-interactive MongoDB shell provided by MongoDB.
+&lt;a href="https://www.mongodb.com/docs/mongodb-shell/">interactive MongoDB shell provided by MongoDB&lt;/a>.
 It is designed to provide a modern and enhanced user experience for interacting with MongoDB
 databases.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mongosh mongodb://localhost:39045
@@ -7531,17 +7531,100 @@ the &lt;a href="https://www.mongodb.com/docs/">MongoDB documentation&lt;/a>.&lt;
 &lt;h3 id="connect-to-documentdb-using-nodejs-lambda">Connect to DocumentDB using Node.js Lambda&lt;/h3>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Important&lt;/h4>
-You need to set &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> when starting LocalStack to be able to use the &lt;code>LOCALSTACK_HOSTNAME&lt;/code> in lambda to connect to the instance.
+&lt;p>You need to set &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> when starting LocalStack to be able to use the returned &lt;code>Endpoint&lt;/code>, which will be correctly resolved automatically.&lt;/p>
+&lt;p>The flag &lt;code>DOCDB_PROXY_CONTAINER=1&lt;/code> changes the default behavior and the container will be started as proxied container. Meaning a port from the &lt;a href="/references/external-ports/">pre-defined port&lt;/a> range will be chosen, and when using lambda, you can use &lt;code>localhost.localstack.cloud&lt;/code> to connect to the instance.&lt;/p>
 &lt;/div>
-&lt;p>The code snippet is a Node.js lambda.
-In this sample we assume that we have a secret where the DocumentDB credentials are stored.&lt;/p>
-&lt;ul>
-&lt;li>The secret arn is passed as env &lt;code>SECRET_NAME&lt;/code>.&lt;/li>
-&lt;li>The Lambda reads the connection details and connects to the running DocumentDB, which runs in proxied docker container.&lt;/li>
-&lt;li>As we run inside lambda, we change the host to the &lt;code>LOCALSTACK_HOSTNAME&lt;/code> to connect to the container.&lt;/li>
-&lt;li>A helper function makes sure the username and password are encoded correctly for the connection URI.&lt;/li>
-&lt;li>We run some sample commands to verify the connection works.&lt;/li>
-&lt;/ul>
+&lt;p>In this sample we will use a Node.js lambda function to connect to a DocumentDB.
+For the mongo-db connection we will use the &lt;code>mongodb&lt;/code> lib.
+Please note, that this sample is only for demo purpose, e.g., we will set the credentials as environment variables to the lambda function.&lt;/p>
+&lt;p>In a best-practise sample you would use a secret instead.
+We included a snippet at the very end.&lt;/p>
+&lt;h4 id="create-the-docdb-cluster-with-a-username-and-password">Create the DocDB Cluster with a username and password&lt;/h4>
+&lt;p>We assume you have a &lt;code>MasterUsername&lt;/code> and &lt;code>MasterUserPassword&lt;/code> set for DocDB e.g:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal docdb create-db-cluster --db-cluster-identifier test-docdb \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --engine docdb \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-user-password S3cretPwd! \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --master-username someuser&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;h4 id="prepare-the-lambda-function">Prepare the lambda function&lt;/h4>
+&lt;p>First, we create the zip required for the lambda function with the mongodb dependency.
+You will need &lt;a href="https://docs.npmjs.com/">&lt;code>npm&lt;/code>&lt;/a> in order to install the dependencies.
+In your terminal run:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir resources
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cd resources
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mkdir node_modules
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>npm install mongodb@6.3.0&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Next, copy the following code into a new file named &lt;code>index.js&lt;/code> in the &lt;code>resources&lt;/code> folder:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>const AWS = require(&amp;#39;aws-sdk&amp;#39;);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const RDS = AWS.RDS;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const { MongoClient } = require(&amp;#39;mongodb&amp;#39;);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const docdb_client = new RDS();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const docdb_id = process.env.DOCDB_CLUSTER_ID;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const pwd = process.env.DOCDB_SECRET;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>exports.handler = async (event) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> try {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Get endpoint details using rds/docdb client:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const cluster_result = await docdb_client.describeDBClusters({DBClusterIdentifier: docdb_id}).promise();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const cluster = cluster_result.DBClusters[0];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const host = cluster.Endpoint;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const port = cluster.Port;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const user = cluster.MasterUsername;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Connection URI
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const dbname = &amp;#34;mydb&amp;#34;;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // retryWrites is by default true, but not supported by AWS DocumentDB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const uri = `mongodb://${user}:${pwd}@${host}:${port}/?retryWrites=false`;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Connect to DocumentDB
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const client = await MongoClient.connect(uri);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const db = client.db(dbname);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Insert data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const collection = db.collection(&amp;#39;your_collection&amp;#39;);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> await collection.insertOne({ key: &amp;#39;value&amp;#39; });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Query data
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const result = await collection.findOne({ key: &amp;#39;value&amp;#39; });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> await client.close();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Return result
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> return {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> statusCode: 200,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: JSON.stringify(result),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } catch (error) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> return {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> statusCode: 500,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: JSON.stringify({ error: error.message }),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Now, you can zip the entire.
+Make sure you are inside &lt;code>resources&lt;/code> directory and run:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>zip -r function.zip .&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>Finally, we can create the &lt;code>lambda&lt;/code> function using &lt;code>awslocal&lt;/code>:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --function-name MyNodeLambda \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime nodejs16.x \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler index.handler \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zip-file fileb://function.zip \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --environment Variables=&amp;#34;{DOCDB_CLUSTER_ID=test-docdb,DOCDB_SECRET=S3cretPwd!}&amp;#34;&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>You can invoke the lambda by calling:
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name MyNodeLambda outfile&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/p>
+&lt;p>The &lt;code>outfile&lt;/code> contains the returned value, e.g.:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>{&lt;span style="color:#4e9a06">&amp;#34;statusCode&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">200&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;body&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;{\&amp;#34;_id\&amp;#34;:\&amp;#34;6560a21ca7771a02ef128c72\&amp;#34;,\&amp;#34;key\&amp;#34;:\&amp;#34;value\&amp;#34;}&amp;#34;&lt;/span>}&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="use-secret-to-connect-to-docdb">Use Secret To Connect to DocDB&lt;/h4>
+&lt;p>The best-practise for accessing databases is by using secrets.
+Secrets follow a &lt;a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_database_secret.html">well-defined pattern&lt;/a>.&lt;/p>
+&lt;p>For the lambda function, you can pass the secret arn as &lt;code>SECRET_NAME&lt;/code>.
+In the lambda, you can then retrieve the secret details like this:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>const AWS = require(&amp;#39;aws-sdk&amp;#39;);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>const { MongoClient } = require(&amp;#39;mongodb&amp;#39;);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
@@ -7564,34 +7647,21 @@ In this sample we assume that we have a secret where the DocumentDB credentials 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Retrieve secret
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const secretValue = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const { username, password, host, port } = JSON.parse(secretValue.SecretString);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> var host_name = host;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // make sure username and password are correctly encoded for the URI
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const user = customURIEncode(username);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const pwd = customURIEncode(password);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> if(process.env.LOCALSTACK_HOSTNAME !== undefined){
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> host_name = process.env.LOCALSTACK_HOSTNAME;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // choose any database
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const dbname = &amp;#34;mydb&amp;#34;;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // retryWrites is by default true, but not supported by AWS DocumentDB
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const uri = `mongodb://${user}:${pwd}@${host_name}:${port}/?retryWrites=false`;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Connect to DocumentDB
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const db = client.db(dbname);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const client = await MongoClient.connect(uri);
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Insert data
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const collection = db.collection(&amp;#39;your_collection&amp;#39;);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> await collection.insertOne({ key: &amp;#39;value&amp;#39; });
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // Query data
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> const result = await collection.findOne({ key: &amp;#39;value&amp;#39; });
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> await client.close();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> // ... interact with the mongo-db ...
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> return {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> statusCode: 200,
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> body: JSON.stringify(result),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> statusCode: 200
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } catch (error) {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> console.error(&amp;#39;Error: &amp;#39;, error);
