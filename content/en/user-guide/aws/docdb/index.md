@@ -12,8 +12,6 @@ can be accessed from localhost.
 
 When defining a port to access the container, an available port on the host machine will be selected, that means there is no pre-defined port range by default.
 
-Using the flag `DOCDB_PROXY_CONTAINER=1` the default behavior changes and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `LOCALSTACK_HOSTNAME` to connect to the instance.
-
 {{< alert title="Information" color="success">}}
 MongoDB is a popular open-source, document-oriented NoSQL database that provides high scalability, flexibility, and performance for modern application development.
 It belongs to the family of
@@ -47,7 +45,7 @@ $ awslocal docdb create-db-cluster --db-cluster-identifier test-docdb-cluster --
     "DBClusterIdentifier": "test-docdb-cluster",
     "DBClusterParameterGroup": "default.docdb",
     "Status": "available",
-    "Endpoint": "localhost",
+    "Endpoint": "localhost.localstack.cloud",
     "MultiAZ": false,
     "Engine": "docdb",
     "Port": 39045,
@@ -76,7 +74,8 @@ If we break down the previous command, we can identify:
   Amazon DocumentDB.
 
 Notice in the `DBClusterMembers` field of the cluster description that there are no other databases
-created.
+created. 
+As we did not specify a `MasterUsername` or `MasterUserPassword` for the creation of the database, the mongo-db will not set any credentials when starting the docker container.
 To create a new database, we can use the `create-db-instance` command, like in this example:
 
 {{< command >}}
@@ -91,7 +90,7 @@ $ awslocal docdb create-db-instance --db-instance-identifier test-company
     "Engine": "docdb",
     "DBInstanceStatus": "creating",
     "Endpoint": {
-      "Address": "localhost",
+      "Address": "localhost.localstack.cloud",
       "Port": 50761
     },
     "InstanceCreateTime": "2022-10-28T04:27:35.917000+00:00",
@@ -138,7 +137,7 @@ $ awslocal docdb describe-db-clusters --db-cluster-identifier test-docdb-cluster
       "DBClusterIdentifier": "test-docdb-cluster",
       "DBClusterParameterGroup": "default.docdb",
       "Status": "available",
-      "Endpoint": "localhost",
+      "Endpoint": "localhost.localstack.cloud",
       "MultiAZ": false,
       "Engine": "docdb",
       "Port": 39045,
@@ -167,7 +166,7 @@ $ awslocal docdb describe-db-clusters --db-cluster-identifier test-docdb-cluster
 ### Connect to DocumentDB using mongosh
 
 Interacting with the databases is done using `mongosh`, which is an official command-line shell and
-interactive MongoDB shell provided by MongoDB.
+[interactive MongoDB shell provided by MongoDB](https://www.mongodb.com/docs/mongodb-shell/).
 It is designed to provide a modern and enhanced user experience for interacting with MongoDB
 databases.
 
@@ -231,16 +230,129 @@ the [MongoDB documentation](https://www.mongodb.com/docs/).
 ### Connect to DocumentDB using Node.js Lambda
 
 {{< alert title="Important" color="success">}}
-You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to use the `LOCALSTACK_HOSTNAME` in lambda to connect to the instance.
+You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to use the returned `Endpoint`, which will be correctly resolved automatically.
+
+The flag `DOCDB_PROXY_CONTAINER=1` changes the default behavior and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `localhost.localstack.cloud` to connect to the instance.
 {{< /alert>}}
 
-The code snippet is a Node.js lambda.
-In this sample we assume that we have a secret where the DocumentDB credentials are stored.
-* The secret arn is passed as env `SECRET_NAME`.
-* The Lambda reads the connection details and connects to the running DocumentDB, which runs in proxied docker container. 
-* As we run inside lambda, we change the host to the `LOCALSTACK_HOSTNAME` to connect to the container.
-* A helper function makes sure the username and password are encoded correctly for the connection URI.
-* We run some sample commands to verify the connection works.
+In this sample we will use a Node.js lambda function to connect to a DocumentDB. 
+For the mongo-db connection we will use the `mongodb` lib.
+Please note, that this sample is only for demo purpose, e.g., we will set the credentials as environment variables to the lambda function.
+
+In a best-practise sample you would use a secret instead.
+We included a snippet at the very end.
+
+#### Create the DocDB Cluster with a username and password
+
+We assume you have a `MasterUsername` and `MasterUserPassword` set for DocDB e.g:
+{{< command >}}
+$ awslocal docdb create-db-cluster --db-cluster-identifier test-docdb \
+   --engine docdb \
+   --master-user-password S3cretPwd! \
+   --master-username someuser
+{{< /command >}}
+
+#### Prepare the lambda function
+
+First, we create the zip required for the lambda function with the mongodb dependency.
+You will need [`npm`](https://docs.npmjs.com/) in order to install the dependencies.
+In your terminal run:
+
+{{< command >}}
+$ mkdir resources
+$ cd resources
+$ mkdir node_modules
+$ npm install mongodb@6.3.0
+{{< /command >}}
+
+Next, copy the following code into a new file named `index.js` in the `resources` folder:
+
+{{< command >}}
+const AWS = require('aws-sdk');
+const RDS = AWS.RDS;
+const { MongoClient } = require('mongodb');
+
+const docdb_client = new RDS();
+
+const docdb_id = process.env.DOCDB_CLUSTER_ID;
+const pwd = process.env.DOCDB_SECRET;
+
+exports.handler = async (event) => {
+  try {
+    // Get endpoint details using rds/docdb client:
+    const cluster_result = await docdb_client.describeDBClusters({DBClusterIdentifier: docdb_id}).promise();
+    const cluster = cluster_result.DBClusters[0];
+    const host = cluster.Endpoint;
+    const port = cluster.Port;
+    const user = cluster.MasterUsername;
+
+    // Connection URI
+    const dbname = "mydb";
+    // retryWrites is by default true, but not supported by AWS DocumentDB
+    const uri = `mongodb://${user}:${pwd}@${host}:${port}/?retryWrites=false`;
+    
+    // Connect to DocumentDB
+    const client = await MongoClient.connect(uri);
+    const db = client.db(dbname);
+
+    // Insert data
+    const collection = db.collection('your_collection');
+    await collection.insertOne({ key: 'value' });
+
+    // Query data
+    const result = await collection.findOne({ key: 'value' });
+    await client.close();
+
+    // Return result
+    return {
+      statusCode: 200,
+      body: JSON.stringify(result),
+    };
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
+    };
+  }
+};
+{{< /command >}}
+
+Now, you can zip the entire. 
+Make sure you are inside `resources` directory and run:
+{{< command >}}
+$ zip -r function.zip .
+{{< /command >}}
+
+Finally, we can create the `lambda` function using `awslocal`:
+{{< command >}}
+$ awslocal lambda create-function \
+  --function-name MyNodeLambda \
+  --runtime nodejs16.x \
+  --role arn:aws:iam::000000000000:role/lambda-role \
+  --handler index.handler \
+  --zip-file fileb://function.zip \
+  --environment Variables="{DOCDB_CLUSTER_ID=test-docdb,DOCDB_SECRET=S3cretPwd!}"
+{{< /command >}}
+
+You can invoke the lambda by calling:
+{{< command >}}
+$ awslocal lambda invoke --function-name MyNodeLambda outfile
+{{< /command >}}
+
+The `outfile` contains the returned value, e.g.:
+```yaml
+{"statusCode":200,"body":"{\"_id\":\"6560a21ca7771a02ef128c72\",\"key\":\"value\"}"}
+````
+
+#### Use Secret To Connect to DocDB
+
+The best-practise for accessing databases is by using secrets. 
+Secrets follow a [well-defined pattern](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_database_secret.html).
+
+For the lambda function, you can pass the secret arn as `SECRET_NAME`.
+In the lambda, you can then retrieve the secret details like this:
+
+[This sample is a snippet from the scenario test https://github.com/localstack/localstack-ext/blob/master/tests/aws/scenario/rds_neptune_docdb/test_rds_neptune_docdb.py]: #
 
 {{< command >}}
 const AWS = require('aws-sdk');
@@ -265,34 +377,21 @@ exports.handler = async (event) => {
     // Retrieve secret
     const secretValue = await secretsManager.getSecretValue({ SecretId: secretName }).promise();
     const { username, password, host, port } = JSON.parse(secretValue.SecretString);
-    var host_name = host;
+
+    // make sure username and password are correctly encoded for the URI
     const user = customURIEncode(username);
     const pwd = customURIEncode(password);
-
-    if(process.env.LOCALSTACK_HOSTNAME !== undefined){
-        host_name = process.env.LOCALSTACK_HOSTNAME;
-    }
-    // choose any database
-    const dbname = "mydb";
 
     // retryWrites is by default true, but not supported by AWS DocumentDB
     const uri = `mongodb://${user}:${pwd}@${host_name}:${port}/?retryWrites=false`;
     
     // Connect to DocumentDB
-    const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    const db = client.db(dbname);
+    const client = await MongoClient.connect(uri);
+
+    // ... interact with the mongo-db ...
     
-    // Insert data
-    const collection = db.collection('your_collection');
-    await collection.insertOne({ key: 'value' });
-
-    // Query data
-    const result = await collection.findOne({ key: 'value' });
-    await client.close();
-
     return {
-      statusCode: 200,
-      body: JSON.stringify(result),
+      statusCode: 200
     };
   } catch (error) {
     console.error('Error: ', error);
