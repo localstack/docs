@@ -235,7 +235,7 @@ You need to set `DOCDB_PROXY_CONTAINER=1` when starting LocalStack to be able to
 The flag `DOCDB_PROXY_CONTAINER=1` changes the default behavior and the container will be started as proxied container. Meaning a port from the [pre-defined port]({{< ref "/references/external-ports" >}}) range will be chosen, and when using lambda, you can use `localhost.localstack.cloud` to connect to the instance.
 {{< /alert>}}
 
-In this sample we will use Node.js lambda function to connect to a DocumentDB. 
+In this sample we will use a Node.js lambda function to connect to a DocumentDB. 
 For the mongo-db connection we will use the `mongodb` lib.
 Please note, that this sample is only for demo purpose, e.g., we will set the credentials as environment variables to the lambda function.
 
