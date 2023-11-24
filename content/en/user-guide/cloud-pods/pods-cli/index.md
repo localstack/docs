@@ -289,6 +289,7 @@ Usage: pod remote delete [OPTIONS] NAME
 
 Options:
   --help  Show this message and exit.
+</disable-copy>
 {{< / command >}}
 
 #### `remote list`
@@ -301,5 +302,116 @@ Options:
                              output.
 
   --help                     Show this message and exit.
+</disable-copy>
+{{< / command >}}
+
+---
+
+# Local Commands
+
+In alternative to the commands in the `pod` group, we also offer a simple alternative to save and load the LocalStack state.
+The `state` group offers two command to export and import the state from the LocalStack container to/from a zip file from the host machine.
+
+## `state` syntax
+{{< command >}}
+<disable-copy>
+Usage: state [OPTIONS] COMMAND [ARGS]...
+
+  (Beta) Manage and manipulate the localstack state.
+
+  The state command group allows you to interact with LocalStack's state
+  backend.
+
+  Read more: https://docs.localstack.cloud/references/persistence-
+  mechanism/#snapshot-based-persistence
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  export  Export the state of LocalStack services
+  import  Import the state of LocalStack services
+  reset   Reset the state of LocalStack services
+
+</disable-copy>
+{{< / command >}}
+
+### `state export`
+
+{{< command >}}
+<disable-copy>
+Usage: state export [OPTIONS] [DESTINATION]
+
+  Save the current state of the LocalStack container to a file on the local
+  disk. This file can be restored at any point in time using the `localstack
+  state import` command. Please be aware that this might not be possible
+  when importing the state with a different version of LocalStack.
+
+  If you are looking for a managed solution to handle the state of your
+  LocalStack container, please check out the Cloud Pods feature:
+  https://docs.localstack.cloud/user-guide/tools/cloud-pods/
+
+  Use the DESTINATION argument to specify an absolute path for the exported
+  file or a filename in current working directory. If no destination is
+  specified, a file named `ls-state-export` will be saved in the current
+  working directory.
+
+  Examples:
+      localstack state export my-state
+      localstack state export /home/johndoe/my-state
+
+  You can also specify a subset of services to export. By default, the state
+  of all running services is exported.
+
+Options:
+  -s, --services TEXT  Comma-delimited list of services to reset. By default,
+                       the state of all running services is exported.
+
+  -f, --format [json]  The formatting style for the save command output.
+  --help               Show this message and exit.
+</disable-copy>
+{{< / command >}}
+
+### `state import`
+
+{{< command >}}
+<disable-copy>
+Usage: state import [OPTIONS] SOURCE
+
+  Load the state of LocalStack from a file into the running container. The
+  SOURCE file must have been generated from a previous `localstack state
+  export` command. Please be aware that it might not be possible to import a
+  state generated from a different version of LocalStack.
+
+  Examples:
+      localstack state import my-state
+      localstack state import /home/johndoe/my-state
+
+Options:
+  --help  Show this message and exit.
+</disable-copy>
+{{< / command >}}
+
+### `state reset`
+
+{{< command >}}
+<disable-copy>
+Usage: state reset [OPTIONS]
+
+  Reset the service states of the current LocalStack runtime.
+
+  This command invokes a reset of services in the currently running
+  LocalStack container. By default, all services are rest. The `services`
+  options allows to select a subset of services which should be reset.
+
+  This command tries to automatically discover the running LocalStack
+  instance. If LocalStack has not been started with `localstack start` (and
+  is not automatically discoverable), please set `LOCALSTACK_HOST`.
+
+Options:
+  -s, --services TEXT  Comma-delimited list of services to reset. By default,
+                       the state of all running services is reset.
+
+  --help               Show this message and exit.
 </disable-copy>
 {{< / command >}}
