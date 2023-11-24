@@ -188,9 +188,8 @@ Options:
 {{< / command >}}
 
 The `inspect` command simply lets the user inspect the content of a Cloud Pod. 
-The CLI manual for the `inspect` command is as follows:
 
-### list
+### `list`
 
 {{< command >}}
 <disable-copy>
@@ -217,8 +216,7 @@ Options:
 The `list` command lists all of the available Cloud Pods. 
 It shows all the pods available for a single user and its organization by default.
 
-
-### versions
+### `versions`
 
 {{< command >}}
 <disable-copy>
@@ -241,3 +239,67 @@ Options:
 
 The `versions` command lists all the available versions of a Cloud Pod. 
 The CLI manual for the `version` command is as follows:
+
+### `remote`
+
+The remote command lets you manage remotes different from the default one.
+It offers 3 commands, i,e.,: `add`, `delete`, and `list`.
+
+For more info about remote usage, check our [documentation](https://docs.localstack.cloud/user-guide/cloud-pods/remotes/).
+
+{{< command >}}
+<disable-copy>
+Usage: pod remote [OPTIONS] COMMAND [ARGS]...
+
+  Manage cloud pod remotes
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  add     Add a remote
+  delete  Delete a remote
+  list    Lists the available remotes
+</disable-copy>
+{{< / command >}}
+
+#### `remote add`
+
+{{< command >}}
+<disable-copy>
+Usage: pod remote add [OPTIONS] NAME URL
+
+  Add a new remote for Cloud Pods.
+
+  A remote is the place where your Cloud Pods are stored. By default, Cloud
+  Pods are store in the LocalStack platform.
+
+Options:
+  --help  Show this message and exit.
+</disable-copy>
+{{< / command >}}
+
+#### `remote delete`
+
+{{< command >}}
+<disable-copy>
+Usage: pod remote delete [OPTIONS] NAME
+
+  Remove a remote for Cloud Pods.
+
+Options:
+  --help  Show this message and exit.
+{{< / command >}}
+
+#### `remote list`
+{{< command >}}
+<disable-copy>
+Usage: pod remote list [OPTIONS]
+
+Options:
+  -f, --format [table|json]  The formatting style for the remotes command
+                             output.
+
+  --help                     Show this message and exit.
+</disable-copy>
+{{< / command >}}
