@@ -322,8 +322,7 @@ Usage: state [OPTIONS] COMMAND [ARGS]...
   The state command group allows you to interact with LocalStack's state
   backend.
 
-  Read more: https://docs.localstack.cloud/references/persistence-
-  mechanism/#snapshot-based-persistence
+  Read more: https://docs.localstack.cloud/references/persistence-mechanism/#snapshot-based-persistence
 
 Options:
   --help  Show this message and exit.
