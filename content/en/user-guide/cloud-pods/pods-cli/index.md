@@ -310,7 +310,7 @@ Options:
 # Local Commands
 
 In addition to the commands in the `pod` group, we also offer a simple alternative to save and load the LocalStack state.
-The `state` group offers two commands to export and import the state from the LocalStack container to/from a zip file from the host machine.
+The `state` group offers two commands to export and import the state of the LocalStack container to/from a zip file from the host machine.
 
 ## `state` syntax
 {{< command >}}
