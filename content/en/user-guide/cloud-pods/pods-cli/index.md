@@ -242,8 +242,8 @@ The CLI manual for the `version` command is as follows:
 
 ### `remote`
 
-The remote command lets you manage remotes different from the default one.
-It offers 3 commands, i,e.,: `add`, `delete`, and `list`.
+The `remote` command group lets you manage custom Cloud Pod remotes, to enable alternative storage backends in addition to the default LocalStack managed platform.
+It offers 3 commands: `add`, `delete`, and `list`.
 
 For more info about remote usage, check our [documentation](https://docs.localstack.cloud/user-guide/cloud-pods/remotes/).
 
