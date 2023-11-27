@@ -89,7 +89,7 @@
 &lt;p>This reference provides descriptions and example commands for LocalStack Cloud Pods CLI (&lt;code>pod&lt;/code>) commands.&lt;/p>
 &lt;h2 id="syntax">Syntax&lt;/h2>
 &lt;p>Use the following syntax to run &lt;code>localstack pod&lt;/code> commands from your terminal window:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod [OPTIONS] COMMAND [ARGS]&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod [OPTIONS] COMMAND [ARGS]...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>In the above syntax:&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>COMMAND&lt;/code> specifies the operation you want to perform with your Cloud Pods (&lt;code>save&lt;/code> or &lt;code>load&lt;/code>).&lt;/li>
@@ -97,86 +97,318 @@
 &lt;li>&lt;code>ARGS&lt;/code> specifies the command arguments.&lt;/li>
 &lt;/ul>
 &lt;h2 id="commands">Commands&lt;/h2>
-&lt;p>The following section lists the available commands for the Cloud Pods CLI.&lt;/p>
+&lt;p>The following section lists the available commands for the Cloud Pods CLI.
+You can have an overview of these command by typing &lt;code>localstack pod --help&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod [OPTIONS] COMMAND [ARGS]...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Manage the state of your instance via Cloud Pods.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Commands:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> delete Delete a Cloud Pod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> inspect Inspect the contents of a Cloud Pod This command shows the...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> list List all available Cloud Pods
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> load Load the state of a Cloud Pod into the application runtime/...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> remote Manage cloud pod remotes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> save Create a new Cloud Pod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> versions List all available versions for a Cloud Pod This command lists...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="save">&lt;code>save&lt;/code>&lt;/h3>
-&lt;p>The &lt;code>save&lt;/code> command allows you to save a new version of a Cloud Pod. For licensed users, it provides the option to either save the Cloud Pod locally or upload it to the LocalStack platform.&lt;/p>
-&lt;p>To save the state locally, simply provide a local file URI as an argument when using the &lt;code>save&lt;/code> command. Running the following command will create a file named &lt;code>my-pod&lt;/code> in the specified location on the disk:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save file://&amp;lt;path_to_disk&amp;gt;/my-pod&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The command mentioned above will produce a zip file named &lt;code>my-pod&lt;/code> and save it to the designated location on your disk. If you intend to utilize the Cloud Pods platform, you should specify the Cloud Pod&amp;rsquo;s name as an argument, as shown below:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod save [OPTIONS] NAME [REMOTE]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Save the current state of the LocalStack container in a Cloud Pod.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> A Cloud Pod can be registered and saved with different storage options,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> called remotes. By default, Cloud Pods are hosted in the LocalStack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> platform. However, users can decide to store their Cloud Pods in other
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> remotes, such as AWS S3 buckets or ORAS registries.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> An optional message can be attached to any Cloud Pod. Furthermore, one
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> could decide to export only a subset of services with the optional
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --service option.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> To use the LocalStack platform for storage, the desired Cloud Pod&amp;#39;s name will suffice, e.g.:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack pod save &amp;lt;pod_name&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Please be aware that each following save invocation with the same name
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> will result in a new version being created.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> To save a local copy of your state, you can use the &amp;#39;localstack state export&amp;#39; command.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -m, --message TEXT Add a comment describing this Cloud Pod&amp;#39;s
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -s, --services TEXT Comma-delimited list of services to push in
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> the Cloud Pod (all by default)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --visibility [public|private] Set the visibility of the Cloud Pod [`public`
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> or `private`]. Does not create a new version
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [json] The formatting style for the save command
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The &lt;code>save&lt;/code> command allows you to save a new version of a Cloud Pod targeting a specific remote.
+To save and load the state locally, you can use the command in the &lt;code>localstack state&lt;/code> group.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save my-pod&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>The above command generates a new version of &lt;code>my-pod&lt;/code> and uploads it on the LocalStack platform. When pushing an already existing pod, a new version is created and subsequently uploaded to the platform.&lt;/p>
+&lt;p>The above command generates a new version of &lt;code>my-pod&lt;/code> and uploads it on the LocalStack platform.
+When pushing an already existing pod, a new version is created and subsequently uploaded to the platform.&lt;/p>
 &lt;p>Users also have the option to select a specific subset of AWS services they want to include in the new Cloud Pod version using the &lt;code>--services&lt;/code> option.&lt;/p>
 &lt;p>Users who want to make a Cloud Pod accessible outside their organization can mark it as &lt;strong>public&lt;/strong> with the following command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save --name my-pod --visibility public&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The above command does not create a new version and requires a version already registered with the platform. The CLI manual for the &lt;code>save&lt;/code> command is as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save --help
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack pod save [OPTIONS] URL_OR_NAME [REMOTE]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -m, --message TEXT Add a comment describing this Cloud Pod&amp;#39;s version
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -s, --services TEXT Comma-delimited list of services to push in the Cloud Pod
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (all by default)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --visibility [public|private] Set the visibility of the Cloud Pod [`public` or `private`].
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Does not create a new version
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [json] The formatting style for the save command output.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -h, --help Show this message and exit.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="load">&lt;code>load&lt;/code>&lt;/h3>
-&lt;p>The &lt;code>load&lt;/code> command is the inverse operation of &lt;code>save&lt;/code>. It retrieves the content of a previously stored Cloud Pod from the local file system or the LocalStack platform and injects it into the LocalStack container.&lt;/p>
-&lt;p>The &lt;code>load&lt;/code> command takes an argument that can either be a URI or a Cloud Pods name. By default, the injecting state updates the container state at a service level. The CLI manual for the &lt;code>load&lt;/code> command is as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod save --help
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack pod load [OPTIONS] URL_OR_NAME [REMOTE]
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod load [OPTIONS] NAME [REMOTE]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Load the state of a Cloud Pod into the application runtime/ Users can
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> import Cloud Pods from different remotes, with the LocalStack platform
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> being the default one.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Loading the state of a Cloud Pod into LocalStack might cause some
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> conflicts with the current state of the container. By default, LocalStack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> will attempt a best-effort merging strategy between the current state and
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> the one from the Cloud Pod. For a service X present in both the current
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> state and the Cloud Pod, we will attempt to merge states across different
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> accounts and regions. If the service X has a state for the same account
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> and region both in the running container and the Cloud Pod, the latter
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> will be used. If a service Y is present in the running container but not
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> in the Cloud Pod, it will be left untouched. With `--merge overwrite`, the
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> state of the Cloud Pod will completely replace the state of the running
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> container.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> To load a local copy of a LocalStack state, you can use the &amp;#39;localstack state import&amp;#39; command.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --merge [overwrite|merge] The merge strategy to adopt when loading the Cloud Pod [default:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> merge]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -h, --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --merge [overwrite|merge] The merge strategy to adopt when loading the
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Cloud Pod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -y, --yes Automatic yes to prompts. Assume a positive
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> answer to all prompts and run non-interactively
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The &lt;code>load&lt;/code> command is the inverse operation of &lt;code>save&lt;/code>.
+It retrieves the content of a previously stored Cloud Pod a remote (by default, theLocalStack platform) and injects it into the LocalStack container.&lt;/p>
 &lt;h3 id="delete">&lt;code>delete&lt;/code>&lt;/h3>
-&lt;p>The &lt;code>delete&lt;/code> command let users delete a Cloud Pod stored in the remote platform. The CLI manual for the &lt;code>delete&lt;/code> command is as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod delete --help
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack pod delete [OPTIONS] NAME
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod delete [OPTIONS] NAME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Delete a Cloud Pod registered on the remote LocalStack platform.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> This command will remove all the versions of a Cloud Pod, and the
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> operation is not reversible.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -h, --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The &lt;code>delete&lt;/code> command let users delete a Cloud Pod stored in the remote platform.
+The CLI manual for the &lt;code>delete&lt;/code> command is as follows:&lt;/p>
 &lt;h3 id="inspect">&lt;code>inspect&lt;/code>&lt;/h3>
-&lt;p>The &lt;code>inspect&lt;/code> command simply lets the user inspect the content of a Cloud Pod. The CLI manual for the &lt;code>inspect&lt;/code> command is as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod delete --help
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack pod inspect [OPTIONS] NAME
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod inspect [OPTIONS] NAME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Inspect the contents of a Cloud Pod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> This command shows the content of a Cloud Pod. By default, it starts a
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> curses interface which allows an interactive inspection of the contents in
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> the Cloud Pod.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [curses|rich|json]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> The formatting style for the inspect command output.
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [default: curses]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -h, --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> The formatting style for the inspect command
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="list">list&lt;/h3>
-&lt;p>The &lt;code>list&lt;/code> command lists all of the available Cloud Pods. It shows all the pods available for a single user and its organization by default. The CLI manual for the &lt;code>list&lt;/code> command is as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod list --help
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack pod list [OPTIONS] [REMOTE]
+&lt;p>The &lt;code>inspect&lt;/code> command simply lets the user inspect the content of a Cloud Pod.&lt;/p>
+&lt;h3 id="list">&lt;code>list&lt;/code>&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>```
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod list [OPTIONS] [REMOTE]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> List all the Cloud Pods available for a single user, or for an entire
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> organization, if the user is part of one.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> With the --public flag, it lists the all the available public Cloud Pods.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> A public Cloud Pod is available across the boundary of a user ond/or
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> organization. In other words, any public Cloud Pod can be injected by any
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> other user holding a LocalStack Pro (or above) license.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -p, --public List all the available public Cloud Pods
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [table|json] The formatting style for the list pods command output. [default:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> table]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -h, --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [table|json] The formatting style for the list pods command
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="versions">versions&lt;/h3>
-&lt;p>The &lt;code>versions&lt;/code> command lists all the available versions of a Cloud Pod. The CLI manual for the &lt;code>version&lt;/code> command is as follows:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack pod versions --help
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: localstack pod versions [OPTIONS] NAME
+&lt;p>The &lt;code>list&lt;/code> command lists all of the available Cloud Pods.
+It shows all the pods available for a single user and its organization by default.&lt;/p>
+&lt;h3 id="versions">&lt;code>versions&lt;/code>&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod versions [OPTIONS] NAME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> List all available versions for a Cloud Pod
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> This command lists the versions available for a Cloud Pod. Each invocation
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> of the save command is going to create a new version for a named Cloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Pod, if a Pod with such name already does exist in the LocalStack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> platform.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [table|json] The formatting style for the version command output. [default:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> table]
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -h, --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [table|json] The formatting style for the version command
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The &lt;code>versions&lt;/code> command lists all the available versions of a Cloud Pod.
+The CLI manual for the &lt;code>version&lt;/code> command is as follows:&lt;/p>
+&lt;h3 id="remote">&lt;code>remote&lt;/code>&lt;/h3>
+&lt;p>The &lt;code>remote&lt;/code> command group lets you manage custom Cloud Pod remotes, to enable alternative storage backends in addition to the default LocalStack managed platform.
+It offers 3 commands: &lt;code>add&lt;/code>, &lt;code>delete&lt;/code>, and &lt;code>list&lt;/code>.&lt;/p>
+&lt;p>For more info about remote usage, check our &lt;a href="https://docs.localstack.cloud/user-guide/cloud-pods/remotes/">documentation&lt;/a>.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod remote [OPTIONS] COMMAND [ARGS]...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Manage cloud pod remotes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Commands:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> add Add a remote
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> delete Delete a remote
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> list Lists the available remotes
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h4 id="remote-add">&lt;code>remote add&lt;/code>&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod remote add [OPTIONS] NAME URL
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Add a new remote for Cloud Pods.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> A remote is the place where your Cloud Pods are stored. By default, Cloud
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Pods are store in the LocalStack platform.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h4 id="remote-delete">&lt;code>remote delete&lt;/code>&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod remote delete [OPTIONS] NAME
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Remove a remote for Cloud Pods.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h4 id="remote-list">&lt;code>remote list&lt;/code>&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: pod remote list [OPTIONS]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [table|json] The formatting style for the remotes command
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;hr>
+&lt;h1 id="local-commands">Local Commands&lt;/h1>
+&lt;p>In addition to the commands in the &lt;code>pod&lt;/code> group, we also offer a simple alternative to save and load the LocalStack state.
+The &lt;code>state&lt;/code> group offers two commands to export and import the state of the LocalStack container to/from a zip file from the host machine.&lt;/p>
+&lt;h2 id="state-syntax">&lt;code>state&lt;/code> syntax&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: state [OPTIONS] COMMAND [ARGS]...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (Beta) Manage and manipulate the localstack state.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> The state command group allows you to interact with LocalStack&amp;#39;s state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> backend.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Read more: https://docs.localstack.cloud/references/persistence-mechanism/#snapshot-based-persistence
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Commands:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> export Export the state of LocalStack services
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> import Import the state of LocalStack services
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> reset Reset the state of LocalStack services
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="state-export">&lt;code>state export&lt;/code>&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: state export [OPTIONS] [DESTINATION]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Save the current state of the LocalStack container to a file on the local
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> disk. This file can be restored at any point in time using the `localstack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> state import` command. Please be aware that this might not be possible
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> when importing the state with a different version of LocalStack.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> If you are looking for a managed solution to handle the state of your
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> LocalStack container, please check out the Cloud Pods feature:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> https://docs.localstack.cloud/user-guide/tools/cloud-pods/
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Use the DESTINATION argument to specify an absolute path for the exported
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> file or a filename in current working directory. If no destination is
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> specified, a file named `ls-state-export` will be saved in the current
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> working directory.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Examples:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack state export my-state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack state export /home/johndoe/my-state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> You can also specify a subset of services to export. By default, the state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> of all running services is exported.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -s, --services TEXT Comma-delimited list of services to reset. By default,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> the state of all running services is exported.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -f, --format [json] The formatting style for the save command output.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="state-import">&lt;code>state import&lt;/code>&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: state import [OPTIONS] SOURCE
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Load the state of LocalStack from a file into the running container. The
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> SOURCE file must have been generated from a previous `localstack state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> export` command. Please be aware that it might not be possible to import a
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> state generated from a different version of LocalStack.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Examples:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack state import my-state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> localstack state import /home/johndoe/my-state
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="state-reset">&lt;code>state reset&lt;/code>&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;div class="disable-copy">
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Usage: state reset [OPTIONS]
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Reset the service states of the current LocalStack runtime.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> This command invokes a reset of services in the currently running
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> LocalStack container. By default, all services are rest. The `services`
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> options allows to select a subset of services which should be reset.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> This command tries to automatically discover the running LocalStack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> instance. If LocalStack has not been started with `localstack start` (and
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> is not automatically discoverable), please set `LOCALSTACK_HOST`.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Options:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -s, --services TEXT Comma-delimited list of services to reset. By default,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> the state of all running services is reset.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --help Show this message and exit.
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;/div>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Remotes</title><link>/user-guide/cloud-pods/remotes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/cloud-pods/remotes/</guid><description>
 &lt;p>A remote is the location where Cloud Pods are stored. By default, Cloud Pod artifacts are stored in the LocalStack platform. However, if your organization&amp;rsquo;s data regulations or sovereignty requirements prohibit storing Cloud Pod assets in a remote storage infrastructure, you have the option to persist Cloud Pods in an on-premises storage location under your complete control.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
