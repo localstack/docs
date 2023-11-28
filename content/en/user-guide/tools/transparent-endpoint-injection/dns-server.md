@@ -219,7 +219,7 @@ Additionally, ensure that "Internet Sharing" is disabled in the system preferenc
 Search for "DNS servers" in the system preferences and add a new DNS server with the IP `127.0.0.1`.
 Updates in the system settings are automatically reflected in `/etc/resolv.conf` and should add such an entry such as `nameserver 127.0.0.1`.
 
-<img src="macs-dns-server-configuration.png" alt="macOS DNS server configuration" title="Configure DNS server in macOS system preferences" width="500" />
+<img src="../macos-dns-server-configuration.png" alt="macOS DNS server configuration" title="Configure DNS server in macOS system preferences" width="500" />
 
 ### Linux
 
