@@ -29,12 +29,15 @@ unless your router has [DNS rebind protection]({{< ref "dns-server#dns-rebind-pr
 
 ### Fallback DNS server
 
-If you want to use another upstream DNS resolver than Google (default `8.8.8.8`),
+If you want to use another upstream DNS resolver than your default system DNS resolver or Google DNS (`8.8.8.8` fallback if detection fails),
 specify the fallback DNS server where all non-redirected queries (i.e., not matching `DNS_LOCAL_NAME_PATTERNS`) will be forwarded to:
 
 ```bash
 DNS_SERVER=1.1.1.1
 ```
+
+By default, LocalStack attempts to detect the default system DNS resolver upon startup.
+If this detection fails, LocalStack uses Google DNS `8.8.8.8` as a fallback.
 
 ### Skip LocalStack DNS resolution
 
