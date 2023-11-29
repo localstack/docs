@@ -7,7 +7,7 @@ aliases:
   - /user-guide/cloud-pods/auto-load/
 ---
 
-Apart from loading Cloud Pods via either the [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}) or the web UI, you have the option to automatically load one or more Cloud Pods when the LocalStack container starts.
+Apart from loading Cloud Pods via either the [Command-Line Interface (CLI)]({{< ref "pods-cli" >}}) or the web UI, you have the option to automatically load one or more Cloud Pods when the LocalStack container starts.
 
 ## Using environmental variables
 
@@ -73,9 +73,9 @@ foo-pod
 bar-pod
 ```
 
-When mounting `init-pods.d` in the right location, LocalStack will first load `foo-pod` and `bar-pod` from `pod-list.txt` and then `my-state.pod.zip`.
+When mounting `init-pods.d` in the right location, LocalStack will first load `foo-pod` and `bar-pod` from `pod-list.txt`, followed finally by `my-state.pod.zip`.
 
-To correctly mount the volumes, the docker compose file will look something like this:
+To correctly mount `init-pods.d`, the docker compose file will look something like this:
 
 ```yaml
 version: "3.8"
