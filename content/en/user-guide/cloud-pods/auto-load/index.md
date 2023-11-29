@@ -7,11 +7,11 @@ aliases:
   - /user-guide/cloud-pods/auto-load/
 ---
 
-Apart from loading load Cloud Pods via either the [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}) or the web UI, you have the option to automatically load one or more Cloud Pods when the LocalStack container starts.
+Apart from loading Cloud Pods via either the [Command-Line Interface (CLI) Guide]({{< ref "pods-cli" >}}) or the web UI, you have the option to automatically load one or more Cloud Pods when the LocalStack container starts.
 
 ## Using environmental variables
 
-The simplest way to load a Cloud Pod automatically when the LocalStack container starts is to use the `AUTO_LOAD_POD` [configuration variable](https://docs.localstack.cloud/references/configuration/).
+The simplest way to load a Cloud Pod automatically at startup time is to use the `AUTO_LOAD_POD` [configuration variable](https://docs.localstack.cloud/references/configuration/).
 For instance, to load a Cloud Pod named `foo-pod`, you can start LocalStack as follows:
 
 {{< command >}}
@@ -19,7 +19,7 @@ $ AUTO_LOAD_POD=seed-pod localstack start
 {{< / command >}}
 
 `AUTO_LOAD_POD` accepts a comma-separated list of Cloud Pod names. 
-Therefore, we support the auto-load of multiple Cloud Pods, e.g.;
+Therefore, we also support the auto-load of multiple Cloud Pods, e.g.;
 
 {{< command >}}
 $ AUTO_LOAD_POD=foo-pod,bar-pod localstack start
@@ -51,10 +51,10 @@ services:
 ## Configuration file
 
 LocalStack also supports configuration files to automatically load Cloud Pods at startup time.
-//
+
 Inside the container, LocalStack will iterate over the content of the `/etc/localstack/init-pod.d` folder looking for two kinds of files: 
-`zip` files exported with the `localstack state export` command, 
-`txt` files in which each line is the name of a Cloud Pod.
+`zip` files exported with the `localstack state export` [command]({{< ref "pods-cli" >}}), 
+`txt` files in which each line correspond to the name of a Cloud Pod.
 
 As example, let us assume the following project layout:
 
@@ -73,7 +73,9 @@ foo-pod
 bar-pod
 ```
 
-The docker compose file will look something like this:
+When mounting `init-pods.d` in the right location, LocalStack will first load `foo-pod` and `bar-pod` from `pod-list.txt` and then `my-state.pod.zip`.
+
+To correctly mount the volumes, the docker compose file will look something like this:
 
 ```yaml
 version: "3.8"
