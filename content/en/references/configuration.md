@@ -306,7 +306,7 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 | - | - | - |
 | `DNS_ADDRESS` | `0.0.0.0` (default) | Address the LocalStack should bind the DNS server on (port 53 tcp/udp). Value `0` to disable.
 | `DNS_SERVER` | Default upstream DNS or `8.8.8.8` (default) | Fallback DNS server for queries not handled by LocalStack.
-| `DNS_RESOLVE_IP` | `127.0.0.1` (default) | IP address the DNS server should return as A record for queries handled by LocalStack.
+| `DNS_RESOLVE_IP` | `127.0.0.1` (default) | IP address the DNS server should return as A record for queries handled by LocalStack. If customized, this value will be returned in preference to the DNS server response.
 | `DNS_LOCAL_NAME_PATTERNS` | `.*(ecr\|lambda).*.amazonaws.com` (example) | Skiplist of hostnames that should *NOT* be resolved to the LocalStack container, as a comma-separated list of Python-flavored regex patterns.
 
 ## Transparent Endpoint Injection
