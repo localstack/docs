@@ -1,11 +1,12 @@
 ---
 title: "DNS Server"
 categories: ["LocalStack Pro", "Tools", "DNS"]
-weight: 6
+weight: 11
 description: >
-  Use LocalStack as DNS server to redirect AWS queries to LocalStack
+  Use LocalStack as DNS server to resolve AWS queries to LocalStack
 aliases:
   - /tools/local-endpoint-injection/dns-server/
+  - /tools/transparent-endpoint-injection/dns-server/
 ---
 
 LocalStack includes a DNS server that enables seamless connectivity to LocalStack from different environments using `localhost.localstack.cloud` (Community + Pro).
@@ -15,32 +16,16 @@ This configuration happens automatically for containers created by LocalStack, i
 Your container can be configured to use the DNS server as demonstrated in the [Network Troubleshooting guide]({{< ref "references/network-troubleshooting/endpoint-url#from-your-container" >}}).
 If you wish to use the DNS server on your host system, follow the instructions under [System DNS configuration]({{< ref "dns-server#system-dns-configuration" >}}).
 
-LocalStack Pro additionally offers [Transparent Endpoint Injection]({{< ref "transparent-endpoint-injection" >}}) (active by default),
+LocalStack Pro additionally offers [Transparent Endpoint Injection]({{< ref "/user-guide/tools/transparent-endpoint-injection" >}}) (active by default),
 which enables seamless connectivity to LocalStack without changing your application code targeting AWS.
 The DNS server resolves AWS domains such as `*.amazonaws.com` including subdomains to the LocalStack container.
 Therefore, your application seamlessly accesses the LocalStack APIs instead of the real AWS APIs.
-For local testing, you might need to disable SSL validation as explained under [Self-signed certificates]({{< ref "dns-server#self-signed-certificates" >}}).
 
 {{< alert title="Notes" >}}
-On your host machine, `localhost.localstack.cloud` resolves to `localhost` using a public DNS entry by LocalStack unless your router has [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}) enabled.
+On your host machine, `localhost.localstack.cloud` and any subdomains such as `mybucket.s3.localhost.localstack.cloud` resolve to `localhost` using a public DNS entry by LocalStack
+unless your router has [DNS rebind protection]({{< ref "dns-server#dns-rebind-protection" >}}) enabled.
 {{< / alert >}}
 
-
-## Configuration
-
-This section explains the most important configuration options summarized under [Configuration]({{< ref "configuration#dns" >}}).
-
-### Transparent endpoint injection (Pro)
-
-If you do not want Lambda functions to use the Transparent Endpoint Injection in LocalStack Pro, opt out using:
-
-```bash
-DISABLE_TRANSPARENT_ENDPOINT_INJECTION=1
-```
-
-This option disables DNS resolution of AWS domains to the LocalStack container and prevents Lambda from disabling SSL validation.
-If Transparent Endpoint Injection is _not_ used, the AWS SDK within Lambda functions might connect to the real AWS API.
-Transparent Endpoint Injection is only available in LocalStack Pro.
 
 ### Fallback DNS server
 
@@ -51,7 +36,7 @@ specify the fallback DNS server where all non-redirected queries (i.e., not matc
 DNS_SERVER=1.1.1.1
 ```
 
-### Custom redirects
+### Skip LocalStack DNS resolution
 
 If you want to resolve certain AWS URLs to AWS instead of LocalStack,
 specify a comma-separated list of skip patterns using Python-flavored regex such as:
@@ -86,48 +71,13 @@ We do not recommend disabling the DNS server since this disables resolving `loca
 
 This option is primarily used by [LocalStack developers]({{< ref "contributing/development-environment-setup" >}}) in host mode because binding port 53 requires root privileges and port 53 might be occupied.
 
+### LocalStack endpoints
 
-## Self-signed certificates
+If you operate behind an enterprise proxy and wish to customize the domain name returned by LocalStack services (e.g., SQS queue URL),
+check out the [Configuration]({{< ref "configuration#core" >}}) `LOCALSTACK_HOST`.
 
-With [Transparent Endpoint Injection]({{< ref "transparent-endpoint-injection" >}}) using DNS in LocalStack Pro, you may still have to configure your application's AWS SDK to accept self-signed certificates.
-This is a technical limitation caused by the SSL certificate validation mechanism, due to the fact that we are repointing AWS domain names (e.g., `*.amazonaws.com`) to `localhost.localstack.cloud`.
-For example, the following command will fail with an SSL error:
-
-{{< command >}}
-$ aws kinesis list-streams
-SSL validation failed for https://kinesis.us-east-1.amazonaws.com/ [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self signed certificate (_ssl.c:1076)
-{{< / command >}}
-
-whereas the following command works:
-
-{{< command >}}
-$ PYTHONWARNINGS=ignore aws --no-verify-ssl kinesis list-streams
-{
-    "StreamNames": []
-}
-{{< / command >}}
-
-Disabling SSL validation depends on the programming language and version of the AWS SDK used.
-For example, the [`boto3` AWS SDK for Python](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.client) provides a parameter `verify=False` to disable SSL verification.
-Similar parameters are available for most other [AWS SDKs](https://docs.aws.amazon.com/sdkref/latest/guide/version-support-matrix.html).
-
-For Node.js, you can set this environment variable in your application, to allow the AWS SDK to talk to the local APIs via SSL:
-
-```node.js
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
-```
-
-{{< alert title="Warning" color="warning">}}
-Disabling SSL validation may have undesired side effects and security implications.
-Make sure to use this only for local testing, and never in production.
-{{< /alert >}}
-
-
-## Customizing internal endpoint resolution
-
-The DNS name `localhost.localstack.cloud` (and any subdomains like `mybucket.s3.localhost.localstack.cloud`) is used internally in LocalStack to route requests, e.g., between a Lambda container and the LocalStack APIs.
-
-Please refer to the steps in the [Route53 docs]({{< ref "route53" >}}) for more details on how the internal DNS name can be customized.
+If you wish to customize internal LocalStack DNS routing of `localhost.localstack.cloud`,
+refer to the instructions in the [Route53 documentation]({{< ref "route53#customizing-internal-endpoint-resolution" >}}).
 
 
 ## DNS rebind protection
@@ -221,7 +171,7 @@ Additionally, ensure that "Internet Sharing" is disabled in the system preferenc
 Search for "DNS servers" in the system preferences and add a new DNS server with the IP `127.0.0.1`.
 Updates in the system settings are automatically reflected in `/etc/resolv.conf` and should add such an entry such as `nameserver 127.0.0.1`.
 
-<img src="../macos-dns-server-configuration.png" alt="macOS DNS server configuration" title="Configure DNS server in macOS system preferences" width="500" />
+<img src="macos-dns-server-configuration.png" alt="macOS DNS server configuration" title="Configure DNS server in macOS system preferences" width="500" />
 
 ### Linux
 
