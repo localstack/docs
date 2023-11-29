@@ -15,7 +15,8 @@ This configuration happens automatically for containers created by LocalStack, i
 Your container can be configured to use the DNS server as demonstrated in the [Network Troubleshooting guide]({{< ref "references/network-troubleshooting/endpoint-url#from-your-container" >}}).
 If you wish to use the DNS server on your host system, follow the instructions under [System DNS configuration]({{< ref "dns-server#system-dns-configuration" >}}).
 
-LocalStack Pro additionally offers a transparent execution mode (active by default), which enables seamless connectivity to LocalStack without changing your application code.
+LocalStack Pro additionally offers [Transparent Endpoint Injection]({{< ref "transparent-endpoint-injection" >}}) (active by default),
+which enables seamless connectivity to LocalStack without changing your application code targeting AWS.
 The DNS server resolves AWS domains such as `*.amazonaws.com` including subdomains to the LocalStack container.
 Therefore, your application seamlessly accesses the LocalStack APIs instead of the real AWS APIs.
 For local testing, you might need to disable SSL validation as explained under [Self-signed certificates]({{< ref "dns-server#self-signed-certificates" >}}).
@@ -31,15 +32,45 @@ This section explains the most important configuration options summarized under 
 
 ### Transparent endpoint injection (Pro)
 
-If you do not want Lambda functions to use the transparent endpoint execution mode in LocalStack Pro, opt out using:
+If you do not want Lambda functions to use the Transparent Endpoint Injection in LocalStack Pro, opt out using:
 
 ```bash
 DISABLE_TRANSPARENT_ENDPOINT_INJECTION=1
 ```
 
 This option disables DNS resolution of AWS domains to the LocalStack container and prevents Lambda from disabling SSL validation.
-With disabled transparent endpoint execution mode, the AWS SDK within Lambda functions might connect to the real AWS API.
-The transparent endpoint execution mode is only available in LocalStack Pro.
+If Transparent Endpoint Injection is _not_ used, the AWS SDK within Lambda functions might connect to the real AWS API.
+Transparent Endpoint Injection is only available in LocalStack Pro.
+
+### Fallback DNS server
+
+If you want to use another upstream DNS resolver than Google (default `8.8.8.8`),
+specify the fallback DNS server where all non-redirected queries (i.e., not matching `DNS_LOCAL_NAME_PATTERNS`) will be forwarded to:
+
+```bash
+DNS_SERVER=1.1.1.1
+```
+
+### Custom redirects
+
+If you want to resolve certain AWS URLs to AWS instead of LocalStack,
+specify a comma-separated list of skip patterns using Python-flavored regex such as:
+
+```bash
+DNS_LOCAL_NAME_PATTERNS='.*(ecr|lambda).*.amazonaws.com'
+```
+
+Using this configuration, the LocalStack DNS server resolves all AWS domains to LocalStack _except_ ECR and Lambda domains which will be resolved via the `DNS_SERVER` (i.e., the real DNS entry by default).
+For example, `https://123456789012.dkr.ecr.us-west-2.amazonaws.com` will be forwarded to the upstream DNS resolver and reach real AWS.
+This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target AWS, whereas other services will target LocalStack.
+The regex pattern follows Python flavored-regex and can be tested at [regex101.com](https://regex101.com/r/OzIsQa/1).
+
+[The regex101 link is maintained by Joel Scheuner (requires linking to GitHub or Google account).
+It redirects to the main page if the saved example would not work.]: #
+
+{{< alert title="Warning" color="warning">}}
+Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack. 
+{{< /alert >}}
 
 ### DNS Server bind address
 
@@ -55,40 +86,11 @@ We do not recommend disabling the DNS server since this disables resolving `loca
 
 This option is primarily used by [LocalStack developers]({{< ref "contributing/development-environment-setup" >}}) in host mode because binding port 53 requires root privileges and port 53 might be occupied.
 
-### Fallback DNS server
-
-If you want to use another upstream DNS resolver than Google (default `8.8.8.8`),
-specify the fallback DNS server where all non-redirected queries (i.e., not matching `DNS_LOCAL_NAME_PATTERNS`) will be forwarded to:
-
-```bash
-DNS_SERVER=1.1.1.1
-```
-
-### Custom redirects
-
-If you want to resolve only certain AWS URLs to LocalStack,
-specify a comma-separated list of hostname regex patterns such as:
-
-```bash
-DNS_LOCAL_NAME_PATTERNS='.*(ecr|lambda).*.amazonaws.com'
-```
-
-Using this configuration, the LocalStack DNS server only resolves ECR and Lambda domains to LocalStack, and the rest will be resolved via the `DNS_SERVER` (i.e., the real DNS entry by default).
-This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target LocalStack, whereas other services will target real AWS.
-The regex pattern follows Python flavored-regex and can be tested at [regex101.com](https://regex101.com/r/OzIsQa/1).
-
-[The regex101 link is maintained by Joel Scheuner (requires linking to GitHub or Google account).
-It redirects to the main page if the saved example would not work.]: #
-
-{{< alert title="Warning" color="warning">}}
-Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack. 
-{{< /alert >}}
-
 
 ## Self-signed certificates
 
-In the transparent execution mode using DNS in LocalStack Pro, you may still have to configure your application's AWS SDK to accept self-signed certificates.
-This is a technical limitation caused by the SSL certificate validation mechanism, due to the fact that we are repointing AWS domain names (e.g., `*.amazonaws.com`) to `localhost`.
+With [Transparent Endpoint Injection]({{< ref "transparent-endpoint-injection" >}}) using DNS in LocalStack Pro, you may still have to configure your application's AWS SDK to accept self-signed certificates.
+This is a technical limitation caused by the SSL certificate validation mechanism, due to the fact that we are repointing AWS domain names (e.g., `*.amazonaws.com`) to `localhost.localstack.cloud`.
 For example, the following command will fail with an SSL error:
 
 {{< command >}}
@@ -174,7 +176,7 @@ This is necessary if you want to test unmodified application code directly on yo
 
 {{< alert title="Warning" color="warning">}}
 Please be careful when changing the network configuration on your system, as this may have undesired side effects.
-Restore the default configuration after testing.
+Remember to save the default configuration and restore it after testing.
 {{< /alert >}}
 
 1. Expose the LocalStack DNS server:
