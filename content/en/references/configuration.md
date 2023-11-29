@@ -274,6 +274,7 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 | `SNAPSHOT_SAVE_STRATEGY` | `ON_SHUTDOWN`\|`ON_REQUEST`\|`SCHEDULED`\|`MANUAL` | Strategy that governs when LocalStack should make state snapshots |
 | `SNAPSHOT_LOAD_STRATEGY` | `ON_STARTUP`\|`ON_REQUEST`\|`MANUAL` | Strategy that governs when LocalStack restores state snapshots |
 | `SNAPSHOT_FLUSH_INTERVAL` | 15 (default) | The interval (in seconds) between persistence snapshots. It only applies to a `SCHEDULED` save strategy (see [Persistence Mechanism]({{< ref "persistence-mechanism" >}}))|
+| `AUTO_LOAD_POD` |  | Comma-separated list of Cloud Pods to be automatically loaded at startup time. |
 
 ## Miscellaneous
 
