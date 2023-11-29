@@ -1,5 +1,5 @@
 ---
-title: "Auto-Load Cloud Pods"
+title: "Auto-Load"
 weight: 99
 description: >
   How to load automatically Cloud Pods in LocalStack environment
