@@ -47,6 +47,9 @@ This option disables DNS resolution of AWS domains to the LocalStack container a
 If Transparent Endpoint Injection is _not_ used, the AWS SDK within Lambda functions might connect to the real AWS API.
 Transparent Endpoint Injection is only available in LocalStack Pro.
 
+Alternatively, specific AWS endpoints can be resolved to AWS while continuing to use Transparent Endpoint Injection.
+Refer to the [DNS server configuration]({{< ref "dns-server#configuration" >}}) for skipping selected domain name patterns.
+
 ## Self-signed certificates
 
 In LocalStack Pro and Lambda, Transparent Endpoint Injection automatically disables SSL certificate validation of the AWS SDK for the
