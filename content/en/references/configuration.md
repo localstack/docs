@@ -305,11 +305,16 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 
 | Variable | Example Values | Description |
 | - | - | - |
-| `DNS_ADDRESS` | 0.0.0.0 (default) | Address the LocalStack should bind the DNS server on (port 53 tcp/udp). Value `0` to disable.
-| `DNS_SERVER` | 8.8.8.8 (default) | Fallback DNS server for non-modified queries.
-| `DNS_RESOLVE_IP` | 127.0.0.1 | IP address the DNS integration should return as A record for modified queries. This will override any automatic detection of the proper response IP.
-| `DNS_LOCAL_NAME_PATTERNS` | | Names which should be resolved to the LocalStack IP, as python-compatible regex.
+| `DNS_ADDRESS` | `0.0.0.0` (default) | Address the LocalStack should bind the DNS server on (port 53 tcp/udp). Value `0` to disable.
+| `DNS_SERVER` | Default upstream DNS or `8.8.8.8` (default) | Fallback DNS server for queries not handled by LocalStack.
+| `DNS_RESOLVE_IP` | `127.0.0.1` (default) | IP address the DNS server should return as A record for queries handled by LocalStack. If customized, this value will be returned in preference to the DNS server response.
+| `DNS_LOCAL_NAME_PATTERNS` | `.*(ecr\|lambda).*.amazonaws.com` (example) | Skiplist of hostnames that should *NOT* be resolved to the LocalStack container, as a comma-separated list of Python-flavored regex patterns.
 
+## Transparent Endpoint Injection
+
+| Variable | Example Values | Description |
+| - | - | - |
+| `DISABLE_TRANSPARENT_ENDPOINT_INJECTION` | `0` (default in Pro) \| `1` | Whether to disable DNS resolution of AWS hostnames to the LocalStack container. Pro feature. (see [Transparent Endpoint Injection]({{< ref "user-guide/tools/transparent-endpoint-injection" >}}))
 
 ## LocalStack Pro
 
