@@ -6724,7 +6724,8 @@ When utilizing the Community Edition, any resources within the stack that are no
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>curl -k https://$domain/hello.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-For CloudFront to function properly, ensure your local DNS setup is correctly configured. Refer to the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">configuring the local DNS server&lt;/a> for details.
+If you wish to use CloudFront on system host, ensure your local DNS setup is correctly configured.
+Refer to the section on &lt;a href="/user-guide/tools/dns-server/#system-dns-configuration">System DNS configuration&lt;/a> for details.
 &lt;/div>
 &lt;p>In the example provided above, be aware that the final command (&lt;code>curl https://$domain/hello.txt&lt;/code>) might encounter a temporary failure accompanied by a warning message &lt;code>Could not resolve host&lt;/code>. This can occur because different operating systems adopt diverse DNS caching strategies, causing a delay in the availability of the CloudFront distribution&amp;rsquo;s DNS name (e.g., &lt;code>abc123.cloudfront.net&lt;/code>) within the system. Typically, after a few retries, the command should succeed. It&amp;rsquo;s worth noting that similar behavior can be observed in the actual AWS environment, where CloudFront DNS names may take up to 10-15 minutes to propagate across the network.&lt;/p>
 &lt;h2 id="using-custom-urls">Using custom URLs&lt;/h2>
@@ -8373,7 +8374,7 @@ LocalStack&amp;rsquo;s EFS implementation is limited and lacks support for funct
 By default, ECR returns a &lt;code>repositoryUri&lt;/code> starting with &lt;code>localhost.localstack.cloud&lt;/code>, such as: &lt;code>localhost.localstack.cloud:&amp;lt;port&amp;gt;/&amp;lt;repository-name&amp;gt;&lt;/code>.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Notes&lt;/h4>
-&lt;p>In this section, we assume that &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment, and LocalStack is connected to a non-default bridge network. For more information, refer to the article about &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.&lt;/p>
+&lt;p>In this section, we assume that &lt;code>localhost.localstack.cloud&lt;/code> resolves in your environment, and LocalStack is connected to a non-default bridge network. For more information, refer to the article about &lt;a href="/user-guide/tools/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.&lt;/p>
 &lt;p>If the domain &lt;code>localhost.localstack.cloud&lt;/code> does not resolve on your host, you can still proceed by setting &lt;code>LOCALSTACK_HOST=localhost&lt;/code> (not recommended).&lt;/p>
 &lt;p>LocalStack will take care of the DNS resolution of &lt;code>localhost.localstack.cloud&lt;/code> within ECR itself, allowing you to use the &lt;code>localhost:&amp;lt;port&amp;gt;/&amp;lt;repository_name&amp;gt;&lt;/code> URI for tagging and pushing the image on your host.&lt;/p>
 &lt;/div>
@@ -11492,7 +11493,7 @@ Run the following command to create a Neptune instance:&lt;/p>
 &lt;p>AWS typically populates the &lt;code>Endpoint&lt;/code> attribute of the cluster status only after the cluster is fully operational. In contrast, LocalStack provides the endpoint information immediately but retains &lt;code>Processing = &amp;quot;true&amp;quot;&lt;/code> until the cluster initialization is complete.&lt;/p>
 &lt;p>The &lt;code>CustomEndpointOptions&lt;/code> in LocalStack offers the flexibility to utilize arbitrary endpoint URLs, a feature that diverges from the constraints imposed by AWS.&lt;/p>
 &lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
-&lt;p>If you encounter difficulties resolving subdomains while employing the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY=domain&lt;/code> (the default setting), it&amp;rsquo;s advisable to investigate whether your DNS configuration might be obstructing rebind queries. For further insights on addressing this issue, refer to the section on &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
+&lt;p>If you encounter difficulties resolving subdomains while employing the &lt;code>OPENSEARCH_ENDPOINT_STRATEGY=domain&lt;/code> (the default setting), it&amp;rsquo;s advisable to investigate whether your DNS configuration might be obstructing rebind queries. For further insights on addressing this issue, refer to the section on &lt;a href="/user-guide/tools/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.&lt;/p></description></item><item><title>User-Guide: Quantum Ledger Database (QLDB)</title><link>/user-guide/aws/qldb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/qldb/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>Quantum Ledger Database (QLDB) is supported by LocalStack only in the Pro version.&lt;/p>
 &lt;p>Amazon Quantum Ledger Database is a fully managed ledger database service offered by Amazon Web

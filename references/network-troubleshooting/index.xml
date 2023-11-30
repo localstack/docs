@@ -7,7 +7,7 @@
 &lt;p>Suppose you have LocalStack installed on your machine and want to access it using the AWS CLI. To connect, you must expose port 4566 from your LocalStack instance and connect to &lt;code>localhost&lt;/code> or a domain name that points to &lt;code>localhost&lt;/code>. While the LocalStack CLI does this automatically, when running the Docker container directly or with docker compose, you must configure it manually. Check out the &lt;a href="/getting-started/installation/">getting started documentation&lt;/a> for more information.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Additionally, if you bind a domain name to &lt;code>localhost&lt;/code>, ensure that you are not subject to &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.
+If you bind a domain name to &lt;code>localhost&lt;/code>, ensure that you are not subject to &lt;a href="/user-guide/tools/dns-server/#dns-rebind-protection">DNS rebind protection&lt;/a>.
 &lt;/div>
 &lt;p>You can also use the &lt;code>GATEWAY_LISTEN&lt;/code> &lt;a href="/references/configuration/">configuration variable&lt;/a> to change the exposed port if necessary.&lt;/p>
 &lt;h2 id="from-a-container-localstack-created">From a container LocalStack created&lt;/h2>
@@ -310,14 +310,15 @@ id="tabs-11-02" role="tabpanel" aria-labelled-by="tabs-11-02-tab">
 &lt;figure>
 &lt;img src="../images/2.svg" width="400"/>
 &lt;/figure>
-&lt;p>If you&amp;rsquo;re using LocalStack with an &lt;a href="/getting-started/auth-token/">auth token&lt;/a>, then you can utilize the &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">DNS server&lt;/a> to perform requests to LocalStack as if it were AWS.
+&lt;p>If you&amp;rsquo;re using LocalStack with an &lt;a href="/getting-started/auth-token/">auth token&lt;/a>, then you can utilize the &lt;a href="/user-guide/tools/dns-server/">DNS server&lt;/a> to perform requests to LocalStack as if it were AWS.
 You need to make two changes:&lt;/p>
 &lt;ul>
 &lt;li>Publish port 53 from the LocalStack docker container to your host.&lt;/li>
 &lt;li>Configure your host to use the LocalStack DNS server by default.&lt;/li>
 &lt;/ul>
-&lt;p>For more details, see your &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/">DNS server documentation&lt;/a>.&lt;/p>
-&lt;p>For the community edition of LocalStack, you can employ your own DNS server to achieve a similar outcome, but it won&amp;rsquo;t be managed by LocalStack. Note that in both cases, SSL verification must be disabled. See the &lt;a href="/user-guide/tools/transparent-endpoint-injection/dns-server/#limitations">limitations of the DNS server&lt;/a> for more information.&lt;/p>
+&lt;p>For more details, see your &lt;a href="/user-guide/tools/dns-server/">DNS server documentation&lt;/a>.&lt;/p>
+&lt;p>For the community edition of LocalStack, you can employ your own DNS server to achieve a similar outcome, but it won&amp;rsquo;t be managed by LocalStack.
+Note that in both cases, SSL verification must be disabled.&lt;/p>
 &lt;h2 id="from-a-lambda-function">From a lambda function&lt;/h2>
 &lt;figure>
 &lt;img src="../images/5.svg" width="400"/>
