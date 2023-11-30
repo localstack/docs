@@ -2,9 +2,7 @@
 title: "Auto-Load"
 weight: 99
 description: >
-  How to load automatically Cloud Pods in LocalStack environment
-aliases:
-  - /user-guide/cloud-pods/auto-load/
+  How to load automatically Cloud Pods in LocalStack
 ---
 
 Apart from loading Cloud Pods via either the [Command-Line Interface (CLI)]({{< ref "pods-cli" >}}) or the web UI, you have the option to automatically load one or more Cloud Pods when the LocalStack container starts.
@@ -15,7 +13,7 @@ The simplest way to load a Cloud Pod automatically at startup time is to use the
 For instance, to load a Cloud Pod named `foo-pod`, you can start LocalStack as follows:
 
 {{< command >}}
-$ AUTO_LOAD_POD=seed-pod localstack start
+$ AUTO_LOAD_POD=foo-pod localstack start
 {{< / command >}}
 
 `AUTO_LOAD_POD` accepts a comma-separated list of Cloud Pod names. 
