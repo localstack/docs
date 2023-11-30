@@ -50,6 +50,11 @@ Transparent Endpoint Injection is only available in LocalStack Pro.
 Alternatively, specific AWS endpoints can be resolved to AWS while continuing to use Transparent Endpoint Injection.
 Refer to the [DNS server configuration]({{< ref "dns-server#configuration" >}}) for skipping selected domain name patterns.
 
+{{< alert title="Warning" color="warning">}}
+Use this configuration with caution because we generally do not recommend connecting to real AWS from within LocalStack.
+{{< /alert >}}
+
+
 ## Self-signed certificates
 
 In LocalStack Pro and Lambda, Transparent Endpoint Injection automatically disables SSL certificate validation of the AWS SDK for the
