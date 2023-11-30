@@ -6,7 +6,7 @@ description: >
   Use LocalStack as DNS server to resolve AWS queries to LocalStack
 aliases:
   - /tools/local-endpoint-injection/dns-server/
-  - /tools/transparent-endpoint-injection/dns-server/
+  - /user-guide/tools/transparent-endpoint-injection/dns-server/
 ---
 
 LocalStack includes a DNS server that enables seamless connectivity to LocalStack from different environments using `localhost.localstack.cloud` (Community + Pro).
