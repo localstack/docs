@@ -14,13 +14,15 @@ LocalStack Desktop is a desktop client that allows users to easily control and i
 You can download LocalStack Desktop from our [web application](https://app.localstack.cloud/download).
 To install LocalStack Desktop, **Docker** is the only prerequisite. 
 
+
 ## Features
 
 LocalStack Desktop helps users to interact with their LocalStack instance with a simple and intuitive UI. Some of the features of LocalStack Desktop includes the ability to: Control LocalStack, Interact with LocalStack, get LocalStack insights and use the Resource browser.
 
 ### Control LocalStack
 
-Using our Desktop application you will be able to start, stop, delete and create new containers with just a click. It also allows to set up a custom URL if you are using LocalStack outside of Docker or in Kubernetes.
+Using our Desktop application you will be able to start, stop, delete and create new containers with just a click. It also allows to set up a custom URL if you are using LocalStack outside of Docker or in Kubernetes. 
+In order to start a pro container, make sure to set the LOCALSTACK_AUTH_TOKEN environment variable.
 
 <p>
 <img src="localstack-desktop-containers.png" alt="LocalStack Desktop container creation" title="Create a container directly from LocalStack Desktop" width="900" />
