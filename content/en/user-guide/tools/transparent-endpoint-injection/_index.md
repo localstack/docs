@@ -6,6 +6,7 @@ description: >
   Transparently resolve your AWS calls to LocalStack
 aliases:
   - /tools/local-endpoint-injection/
+  - /user-guide/tools/transparent-endpoint-injection/patched-sdks/
 ---
 
 LocalStack Pro provides Transparent Endpoint Injection,
