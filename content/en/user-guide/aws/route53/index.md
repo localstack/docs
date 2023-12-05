@@ -8,17 +8,16 @@ description: Get started with Route 53 on LocalStack
 
 Route 53 is a highly scalable and reliable domain name system (DNS) web service provided by Amazon Web Services. Route 53 allows you to register domain names, and associate them with IP addresses or other resources. In addition to basic DNS functionality, Route 53 offers advanced features like health checks and DNS failover. Route 53 integrates seamlessly with other AWS services, such as route traffic to CloudFront distributions, S3 buckets configured for static website hosting, EC2 instances, and more.
 
-LocalStack supports Route53 via the Community offering, allowing you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries which can then be queried via the built-in DNS server. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack.
+LocalStack supports Route53 via the Community offering, allowing you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
+The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack.
+
+Our Pro offering integrates with our DNS server to respond to DNS queries with these domains.
 
 ## Getting started
 
 This guide is designed for users new to Route53 and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
 Start your LocalStack container using your preferred method. We will demonstrate how to create a hosted zone and query the DNS record with the AWS CLI.
-
-{{< alert title="Note">}}
-The built-in DNS capabilities requires privileged access for the LocalStack container. The `DNS_ADDRESS` configuration variable can be used to address the port the LocalStack should bind the DNS server on (port 53 tcp/udp). Default is `0.0.0.0` and you can add `0` to disable.
-{{< /alert >}}
 
 ### Create a hosted zone
 
@@ -59,7 +58,15 @@ The following output would be retrieved:
 }
 ```
 
-### Query DNS record
+## DNS resolution
+
+LocalStack Pro supports the ability to respond to DNS queries for your Route53 domain names, with our [integrated DNS server]({{< ref "user-guide/tools/dns-server/" >}}).
+
+{{< alert title="Note" >}}
+To follow the example below you must [configure your system DNS to use the LocalStack DNS server]({{< ref "user-guide/tools/dns-server/#system-dns-configuration" >}}).
+{{< / alert >}}
+
+### Query a DNS record
 
 You can query the DNS record using `dig` via the built-in DNS server by running the following command:
 
@@ -77,9 +84,11 @@ The following output would be retrieved:
 test.example.com.       300     IN      A       1.2.3.4
 ```
 
-## Customizing internal endpoint resolution
+### Customizing internal endpoint resolution
 
-The DNS name `localhost.localstack.cloud`, along with its subdomains like `mybucket.s3.localhost.localstack.cloud`, serves an internal routing purpose within LocalStack. It facilitates communication between a Lambda container and the LocalStack APIs.
+The DNS name `localhost.localstack.cloud`, along with its subdomains like `mybucket.s3.localhost.localstack.cloud`, serves an internal routing purpose within LocalStack.
+It facilitates communication between a LocalStack compute environment (such as a Lambda function) and the LocalStack APIs, as well as your containerised applications with the LocalStack APIs.
+For example configurations, see the [Network Troubleshooting guide]({{< ref "references/network-troubleshooting/endpoint-url/#from-your-container" >}}).
 
 For most use-cases, the default configuration of the internal LocalStack DNS name requires no modification. It functions seamlessly in typical scenarios. However, there are instances where adjusting the external resolution of this DNS name becomes necessary. For instance, this might be required when your LocalStack instance operates on a distinct Docker network compared to your application code or even on a separate machine.
 
