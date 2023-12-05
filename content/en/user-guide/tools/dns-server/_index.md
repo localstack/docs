@@ -30,7 +30,7 @@ unless your router has [DNS rebind protection]({{< ref "dns-server#dns-rebind-pr
 ### Fallback DNS server
 
 If you want to use another upstream DNS resolver than your default system DNS resolver or Google DNS (`8.8.8.8` fallback if detection fails),
-specify the fallback DNS server where all non-redirected queries (i.e., not matching `DNS_LOCAL_NAME_PATTERNS`) will be forwarded to:
+specify the fallback DNS server where all non-redirected queries (i.e., not matching `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM`) will be forwarded to:
 
 ```bash
 DNS_SERVER=1.1.1.1
@@ -45,7 +45,7 @@ If you want to resolve certain AWS URLs to AWS instead of LocalStack,
 specify a comma-separated list of skip patterns using Python-flavored regex such as:
 
 ```bash
-DNS_LOCAL_NAME_PATTERNS='.*(ecr|lambda).*.amazonaws.com'
+DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM='.*(ecr|lambda).*.amazonaws.com'
 ```
 
 Using this configuration, the LocalStack DNS server resolves all AWS domains to LocalStack _except_ ECR and Lambda domains which will be resolved via the `DNS_SERVER` (i.e., the real DNS entry by default).
