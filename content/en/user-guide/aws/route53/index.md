@@ -9,8 +9,9 @@ description: Get started with Route 53 on LocalStack
 Route 53 is a highly scalable and reliable domain name system (DNS) web service provided by Amazon Web Services. Route 53 allows you to register domain names, and associate them with IP addresses or other resources. In addition to basic DNS functionality, Route 53 offers advanced features like health checks and DNS failover. Route 53 integrates seamlessly with other AWS services, such as route traffic to CloudFront distributions, S3 buckets configured for static website hosting, EC2 instances, and more.
 
 LocalStack supports Route53 via the Community offering, allowing you to use the Route53 APIs in your local environment to create hosted zones and to manage DNS entries.
-Our Pro offering integrates with our DNS server to respond to DNS queries with these domains.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_route53/), which provides information on the extent of Route53's integration with LocalStack.
+
+Our Pro offering integrates with our DNS server to respond to DNS queries with these domains.
 
 ## Getting started
 
@@ -61,7 +62,15 @@ The following output would be retrieved:
 }
 ```
 
-### Query DNS record
+## DNS resolution
+
+LocalStack Pro supports the ability to respond to DNS queries for your Route53 domain names, with our [integrated DNS server]({{< ref "user-guide/tools/dns-server/" >}}).
+
+{{< alert title="Note" >}}
+To follow the example below you must [configure your system DNS to use the LocalStack DNS server]({{< ref "user-guide/tools/dns-server/#system-dns-configuration" >}}).
+{{< / alert >}}
+
+### Query a DNS record
 
 You can query the DNS record using `dig` via the built-in DNS server by running the following command:
 
@@ -79,9 +88,11 @@ The following output would be retrieved:
 test.example.com.       300     IN      A       1.2.3.4
 ```
 
-## Customizing internal endpoint resolution
+### Customizing internal endpoint resolution
 
-The DNS name `localhost.localstack.cloud`, along with its subdomains like `mybucket.s3.localhost.localstack.cloud`, serves an internal routing purpose within LocalStack. It facilitates communication between a Lambda container and the LocalStack APIs.
+The DNS name `localhost.localstack.cloud`, along with its subdomains like `mybucket.s3.localhost.localstack.cloud`, serves an internal routing purpose within LocalStack.
+It facilitates communication between a LocalStack compute environment (such as a Lambda function) and the LocalStack APIs, as well as your containerised applications with the LocalStack APIs.
+For example configurations, see the [Network Troubleshooting guide]({{< ref "references/network-troubleshooting/endpoint-url/#from-your-container" >}}).
 
 For most use-cases, the default configuration of the internal LocalStack DNS name requires no modification. It functions seamlessly in typical scenarios. However, there are instances where adjusting the external resolution of this DNS name becomes necessary. For instance, this might be required when your LocalStack instance operates on a distinct Docker network compared to your application code or even on a separate machine.
 
