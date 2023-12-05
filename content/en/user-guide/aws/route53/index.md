@@ -20,7 +20,9 @@ This guide is designed for users new to Route53 and assumes basic knowledge of t
 Start your LocalStack container using your preferred method. We will demonstrate how to create a hosted zone and query the DNS record with the AWS CLI.
 
 {{< alert title="Note">}}
-The built-in DNS capabilities requires privileged access for the LocalStack container. The `DNS_ADDRESS` configuration variable can be used to address the port the LocalStack should bind the DNS server on (port 53 tcp/udp). Default is `0.0.0.0` and you can add `0` to disable.
+When using the [LocalStack CLI]({{< ref "getting-started/installation#localstack-cli" >}}), the `DNS_ADDRESS` configuration variable can be used to configure the address the [LocalStack DNS server]({{< ref "user-guide/tools/dns-server/" >}}) binds to on the host.
+The default is `0.0.0.0`, but you use `127.0.0.1` to bind to `localhost` only.
+You can also set this variable to `0` to disable the DNS functionality, but we do not recommend this configuration as it disables internal functionality that relies on the DNS server being available within LocalStack.
 {{< /alert >}}
 
 ### Create a hosted zone
