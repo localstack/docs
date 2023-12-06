@@ -114,7 +114,7 @@ The defaults are:
 
 * Mac: `~/Library/Caches/localstack/volume`
 * Linux: `~/.cache/localstack/volume`
-* Windows: `%LOCALAPPDATA%/localstack/cache/volume`
+* Windows: `%LOCALAPPDATA%\cache\localstack\volume`
 
 ## Host mode
 
