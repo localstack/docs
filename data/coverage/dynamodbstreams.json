@@ -43,7 +43,7 @@
         "implemented": true,
         "availability": "community",
         "internal_test_suite": true,
-        "external_test_suite": true,
+        "external_test_suite": false,
         "terraform_test_suite": false,
         "aws_validated": true,
         "snapshot_tested": true,
@@ -204,7 +204,7 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -520,26 +520,6 @@
             "aws_validated": true,
             "snapshot_tested": false,
             "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_dynamodb_event_source_mapping",
-            "test": "test_dynamodb_event_source_mapping",
-            "response": "400",
-            "error": "ResourceNotFoundException",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
-          },
-          {
-            "node_id": "LocalStack Pro: tests/aws/services/iam/test_inter_service_enforcement.py::TestLambdaEventSourceMappings::test_dynamodb_event_source_mapping",
-            "test": "test_dynamodb_event_source_mapping",
-            "response": "500",
-            "error": "InternalError",
-            "snapshot_skipped": "",
-            "aws_validated": true,
-            "snapshot_tested": false,
-            "origin": "internal"
           }
         ]
       }
@@ -602,7 +582,7 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
@@ -758,16 +738,6 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/scenario/bookstore/test_bookstore.py::TestBookstoreApplication::test_opensearch_crud",
-            "test": "test_opensearch_crud",
-            "response": "500",
-            "error": "InternalError",
-            "snapshot_skipped": "['$..ClusterConfig.DedicatedMasterCount', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.DedicatedMasterType', '$..ClusterConfig.Options.DedicatedMasterCount', '$..ClusterConfig.Options.DedicatedMasterType', '$..DomainStatusList..EBSOptions.Iops', '$..SoftwareUpdateOptions', '$..OffPeakWindowOptions', '$..ChangeProgressDetails', '$..AutoTuneOptions.UseOffPeakWindow', '$..AutoTuneOptions.Options.UseOffPeakWindow', '$..ClusterConfig.MultiAZWithStandbyEnabled', '$..AdvancedSecurityOptions.AnonymousAuthEnabled', '$..AdvancedSecurityOptions.Options.AnonymousAuthEnabled', '$..DomainConfig.ClusterConfig.Options.WarmEnabled', '$..ClusterConfig.Options.ColdStorageOptions', '$..ClusterConfig.Options.MultiAZWithStandbyEnabled', '$..Processing', '$..ServiceSoftwareOptions.CurrentVersion', '$..ClusterConfig.DedicatedMasterEnabled', '$..ClusterConfig.InstanceType', '$..SnapshotOptions.Options.AutomatedSnapshotStartHour', '$..ClusterConfig.Options.DedicatedMasterEnabled', '$..ClusterConfig.Options.InstanceType', '$..AutoTuneOptions.State', '$..EBSOptions.Options.VolumeSize', '$..AdvancedOptions.\"rest.action.multi.allow_explicit_index\"', '$..AdvancedOptions.Options.\"rest.action.multi.allow_explicit_index\"', '$..Versions']",
-            "aws_validated": true,
-            "snapshot_tested": true,
-            "origin": "internal"
-          },
-          {
             "node_id": "LocalStack Community: tests/aws/services/cloudformation/resources/test_lambda.py::TestCfnLambdaIntegrations::test_cfn_lambda_dynamodb_source",
             "test": "test_cfn_lambda_dynamodb_source",
             "response": "500",
@@ -838,8 +808,8 @@
             "origin": "internal"
           },
           {
-            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_source_mapping",
-            "test": "test_dynamodb_event_source_mapping",
+            "node_id": "LocalStack Community: tests/aws/services/lambda_/test_lambda_integration_dynamodbstreams.py::TestDynamoDBEventSourceMapping::test_dynamodb_event_filter[item_to_put16-item_to_put26-filter6-1]",
+            "test": "test_dynamodb_event_filter[item_to_put16-item_to_put26-filter6-1]",
             "response": "500",
             "error": "InternalError",
             "snapshot_skipped": "['$..TableDescription.BillingModeSummary.LastUpdateToPayPerRequestDateTime', '$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.StreamSpecification', '$..TableDescription.TableStatus', '$..Records..dynamodb.NewImage.binary_key.B', '$..Records..dynamodb.SizeBytes', '$..Records..eventVersion']",
@@ -1008,7 +978,7 @@
             "test": "test_event_source_mapping_lifecycle",
             "response": "200",
             "error": "",
-            "snapshot_skipped": "['$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
+            "snapshot_skipped": "['$..TableDescription.DeletionProtectionEnabled', '$..TableDescription.ProvisionedThroughput.LastDecreaseDateTime', '$..TableDescription.ProvisionedThroughput.LastIncreaseDateTime', '$..TableDescription.TableStatus', '$..TableDescription.TableId', '$..UUID']",
             "aws_validated": true,
             "snapshot_tested": true,
             "origin": "internal"
