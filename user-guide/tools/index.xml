@@ -342,14 +342,14 @@ unless your router has &lt;a href="/user-guide/tools/dns-server/#dns-rebind-prot
 &lt;/div>
 &lt;h3 id="fallback-dns-server">Fallback DNS server&lt;/h3>
 &lt;p>If you want to use another upstream DNS resolver than your default system DNS resolver or Google DNS (&lt;code>8.8.8.8&lt;/code> fallback if detection fails),
-specify the fallback DNS server where all non-redirected queries (i.e., not matching &lt;code>DNS_LOCAL_NAME_PATTERNS&lt;/code>) will be forwarded to:&lt;/p>
+specify the fallback DNS server where all non-redirected queries (i.e., not matching &lt;code>DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM&lt;/code>) will be forwarded to:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_SERVER&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>1.1.1.1
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>By default, LocalStack attempts to detect the default system DNS resolver upon startup.
 If this detection fails, LocalStack uses Google DNS &lt;code>8.8.8.8&lt;/code> as a fallback.&lt;/p>
 &lt;h3 id="skip-localstack-dns-resolution">Skip LocalStack DNS resolution&lt;/h3>
 &lt;p>If you want to resolve certain AWS URLs to AWS instead of LocalStack,
 specify a comma-separated list of skip patterns using Python-flavored regex such as:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_LOCAL_NAME_PATTERNS&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;.*(ecr|lambda).*.amazonaws.com&amp;#39;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;.*(ecr|lambda).*.amazonaws.com&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Using this configuration, the LocalStack DNS server resolves all AWS domains to LocalStack &lt;em>except&lt;/em> ECR and Lambda domains which will be resolved via the &lt;code>DNS_SERVER&lt;/code> (i.e., the real DNS entry by default).
 For example, &lt;code>https://123456789012.dkr.ecr.us-west-2.amazonaws.com&lt;/code> will be forwarded to the upstream DNS resolver and reach real AWS.
 This can be used for hybrid setups, where certain API calls (e.g., ECR, Lambda) target AWS, whereas other services will target LocalStack.
