@@ -72,7 +72,7 @@ Now edit your stack configuration `Pulumi.dev.yaml` as follows:
 config:
   aws:accessKey: test
   aws:secretKey: test
-  aws:s3ForcePathStyle: 'true'
+  aws:s3UsePathStyle: 'true'
   aws:skipCredentialsValidation: 'true'
   aws:skipRequestingAccountId: 'true'
   aws:endpoints:
