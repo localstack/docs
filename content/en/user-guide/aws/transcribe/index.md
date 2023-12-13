@@ -122,7 +122,7 @@ The following input media formats are supported:
 - MPEG-1 Audio Layer-3 (MP3)
 - MPEG-4 Part 14 (MP4)
 - OGG
-- Matroska Video files (MKV)
+- Matroska files (MKV)
 - Waveform Audio File Format (WAV)
 
 ### Supported Languages
