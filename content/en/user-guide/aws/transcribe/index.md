@@ -1,5 +1,3 @@
-
-
 ---
 title: "Transcribe"
 linkTitle: "Transcribe"
