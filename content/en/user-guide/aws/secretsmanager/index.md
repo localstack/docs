@@ -25,7 +25,7 @@ We will demonstrate how to create a secret, get the secret value, and rotate the
 
 Before your create a secret, create a file named `secrets.json` and add the following content:
 
-{{ <command> }}
+{{<command>}}
 $ touch secrets.json
 $ cat > secrets.json << EOF
 {
@@ -33,43 +33,43 @@ $ cat > secrets.json << EOF
   "password": "password"
 }
 EOF
-{{ </command> }}
+{{</command>}}
 
 You can now create a secret using the [`CreateSecret`](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html) API.
 Execute the following command to create a secret named `test-secret`:
 
-{{ <command> }}
+{{<command>}}
 $ awslocal secretsmanager create-secret \
     --name test-secret \
     --description "LocalStack Secret" \
     --secret-string file://secrets.json
-{{ </command> }}
+{{</command>}}
 
 Upon successful execution, the output will provide you with the ARN of the newly created secret. This identifier will be useful for further operations or integrations.
 
 The following output would be retrieved:
 
-```bash
+{{<command>}}
 {
     "ARN": "arn:aws:secretsmanager:us-east-1:000000000000:secret:test-secret-pyfjVP",
     "Name": "test-secret",
     "VersionId": "a50c6752-3343-4eb0-acf3-35c74f00f707"
 }
-```
+{{</command>}}
 
 ### Describe the secret
 
 To retrieve the details of the secret you created earlier, you can use the [`DescribeSecret`](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_DescribeSecret.html) API.
 Execute the following command:
 
-{{ <command> }}
+{{<command>}}
 $ awslocal secretsmanager describe-secret \
     --secret-id test-secret
-{{ </command> }}
+{{</command>}}
 
 The following output would be retrieved:
 
-```bash
+{{<command>}}
 {
     "ARN": "arn:aws:secretsmanager:us-east-1:000000000000:secret:test-secret-pyfjVP",
     "Name": "test-secret",
@@ -82,29 +82,29 @@ The following output would be retrieved:
     },
     "CreatedDate": 1692882479.857329
 }
-```
+{{</command>}}
 
 You can also get a list of the secrets available in your local environment that have **Secret** in the name using the [`ListSecrets`](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_ListSecrets.html) API.
 Execute the following command:
 
-{{ <command> }}
+{{<command>}}
 $ awslocal secretsmanager list-secrets \
     --filters Key=name,Values=Secret
-{{ </command> }}
+{{</command>}}
 
 ### Get the secret value
 
 To retrieve the value of the secret you created earlier, you can use the [`GetSecretValue`](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html) API.
 Execute the following command:
 
-{{ <command> }}
+{{<command>}}
 $ awslocal secretsmanager get-secret-value \
     --secret-id test-secret
-{{ </command> }}
+{{</command>}}
 
 The following output would be retrieved:
  
-```bash
+{{<command>}}
 {
     "ARN": "arn:aws:secretsmanager:us-east-1:000000000000:secret:test-secret-pyfjVP",
     "Name": "test-secret",
@@ -115,16 +115,16 @@ The following output would be retrieved:
     ],
     "CreatedDate": 1692882479.857329
 }
-```
+{{</command>}}
 
 You can tag your secret using the [`TagResource`](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_TagResource.html) API.
 Execute the following command:
 
-{{ <command> }}
+{{<command>}}
 $ awslocal secretsmanager tag-resource \
     --secret-id test-secret \
     --tags Key=Environment,Value=Development
-{{ </command> }}
+{{</command>}}
 
 ### Rotate the secret
 
@@ -133,7 +133,7 @@ To rotate a secret, you need a Lambda function that can rotate the secret. You c
 Zip the Lambda function and create a Lambda function using the [`CreateFunction`](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateFunction.html) API.
 Execute the following command:
 
-{{ <command> }}
+{{<command>}}
 $ zip my-function.zip lambda_function.py
 $ awslocal lambda create-function \
     --function-name my-rotation-function \
@@ -141,7 +141,7 @@ $ awslocal lambda create-function \
     --zip-file fileb://my-function.zip \
     --handler my-handler \
     --role arn:aws:iam::000000000000:role/service-role/rotation-lambda-role
-{{ </command> }}
+{{</command>}}
 
 You can now set a resource policy on the Lambda function to allow Secrets Manager to invoke it using [`AddPermission`](https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html) API.
 
@@ -149,23 +149,23 @@ Please note that this is not required with the default LocalStack settings, sinc
 
 Execute the following command:
 
-{{ <command> }}
+{{<command>}}
 $ awslocal lambda add-permission \
     --function-name my-rotation-function \
     --action lambda:InvokeFunction \
     --statement-id SecretsManager \
     --principal secretsmanager.amazonaws.com
-{{ </command> }}
+{{</command>}}
 
 You can now create a rotation schedule for the secret using the [`RotateSecret`](https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_RotateSecret.html) API.
 Execute the following command:
 
-{{ <command> }}
+{{<command>}}
 $ awslocal secretsmanager rotate-secret \
     --secret-id MySecret \
     --rotation-lambda-arn arn:aws:lambda:us-east-1:000000000000:function:my-rotation-function \
     --rotation-rules "{\"ScheduleExpression\": \"cron(0 16 1,15 * ? *)\", \"Duration\": \"2h\"}"
-{{ </command> }}
+{{</command>}}
 
 ## Resource Browser
 
