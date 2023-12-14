@@ -98,8 +98,8 @@ services:
       - "127.0.0.1:4566:4566"
       - "127.0.0.1:4510-4559:4510-4559"
     environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
       - DEBUG=1
-      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN-}
       - EXTENSION_AUTO_INSTALL=localstack-extension-mailhog,localstack-extension-httpbin
     volumes:
       - "./volume:/var/lib/localstack"
