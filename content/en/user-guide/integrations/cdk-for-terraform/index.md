@@ -113,17 +113,24 @@ new AwsProvider(this, "aws", AWS_CONFIG);
 
 ## Quick Start
 
-To get started with CDKTF on LocalStack, we will set up a simple TypeScript stack to create some AWS resources. We will then deploy the stack to LocalStack, and verify that the resources have been created successfully. Before we start, make sure you have the following prerequisites:
+To get started with CDKTF on LocalStack, we will set up a simple stack to create some AWS resources. We will then deploy the stack to LocalStack, and verify that the resources have been created successfully. Before we start, make sure you have the following prerequisites:
 
 * LocalStack
 * [`cdktf`](https://www.npmjs.com/package/cdktf)
+
+For Python:
+* [`python`](https://www.python.org/downloads/)
+* [`pipenv`](https://pipenv.pypa.io/en/latest/installation/#installing-pipenv)
+
+For TypeScript:
 * [`tsc`](https://www.npmjs.com/package/typescript)
 
 Create a new directory named `cdktf-localstack` and initialize a new CDKTF project using the following command:
 
-{{< command >}}
+{{< tabpane >}}
+{{< tab header="Python" lang="py" >}}
 $ cdktf init
-
+...
 ? Do you want to continue with Terraform Cloud remote state management? No
 ? What template do you want to use? python
 
@@ -131,23 +138,73 @@ Initializing a project using the python template.
 ? Project Name sample-app
 ? Project Description A simple getting started project for cdktf.
 ? Do you want to start from an existing Terraform project? No
-? Do you want to send crash reports to the CDKTF team? See 
-https://www.terraform.io/cdktf/create-and-deploy/configuration-file#enable-crash-reporting-for-the-cli for more information
-Creating a virtualenv for this project...
+? Do you want to send crash reports to the CDKTF team? Refer to https://developer.hashicorp.com/terraform/cdktf/create-and-deploy/configuration-file#enable-crash-reporting-for-the-cli for more information no
+Note: You can always add providers using 'cdktf provider add' later on
+? What providers do you want to use? aws
 ...
-? What providers do you want to use?
-```
-{{< /command >}}
+{{< /tab >}}
+{{< tab header="TypeScript" lang="ts" >}}
+$ cdktf init
+...
+? Do you want to continue with Terraform Cloud remote state management? No
+? What template do you want to use? typescript
 
-Next, we can install the AWS provider for CDKTF, by running the following command:
+Initializing a project using the typescript template.
+? Project Name sample-app
+? Project Description A simple getting started project for cdktf.
+? Do you want to start from an existing Terraform project? No
+? Do you want to send crash reports to the CDKTF team? Refer to https://developer.hashicorp.com/terraform/cdktf/create-and-deploy/configuration-file#enable-crash-reporting-for-the-cli for more information no
+Note: You can always add providers using 'cdktf provider add' later on
+? What providers do you want to use? aws
+...
+{{< /tab >}}
+{{< /tabpane >}}
 
-{{< command >}}
+(Optional) If necessary, we can install the AWS provider separately for CDKTF, by running the following command:
+
+{{< tabpane >}}
+{{< tab header="Python" lang="py" >}}
+ $ pipenv install cdktf-cdktf-provider-aws
+{{< /tab >}}
+{{< tab header="TypeScript" lang="ts" >}}
 $ npm install @cdktf/provider-aws
-{{< /command >}}
+{{< /tab >}}
+{{< /tabpane >}}
 
-Navigate to `main.ts` and add the following code to import the AWS provider and create a new S3 bucket:
+Add the following code to import the AWS provider and create a new S3 bucket in the relevant file:
 
-```typescript
+{{< tabpane >}}
+{{< tab header="main.py" lang="py" >}}
+#!/usr/bin/env python
+from constructs import Construct
+from cdktf import App, TerraformStack
+from cdktf_cdktf_provider_aws.provider import AwsProvider
+from cdktf_cdktf_provider_aws.s3_bucket import S3Bucket
+
+
+class MyStack(TerraformStack):
+    def __init__(self, scope: Construct, id: str):
+        super().__init__(scope, id)
+
+        AwsProvider(self, "aws",
+            region="us-east-1",
+            s3_use_path_style=True,
+            endpoints=[
+                {
+                    "s3": "http://localhost:4566",
+                    "sts": "http://localhost:4566",
+                }
+            ]
+        )
+
+        S3Bucket(self, "bucket")
+
+app = App()
+MyStack(app, "cdktf-example-python")
+
+app.synth()
+{{< /tab >}}
+{{< tab header="main.ts" lang="ts" >}}
 import { Construct } from "constructs";
 import { App, TerraformStack } from "cdktf";
 import { AwsProvider } from "@cdktf/provider-aws/lib/provider";
@@ -175,15 +232,10 @@ class MyStack extends TerraformStack {
 const app = new App();
 new MyStack(app, "example");
 app.synth();
-```
+{{< /tab >}}
+{{< /tabpane >}}
 
-Run the following command to compile the TypeScript code to JavaScript:
-
-{{< command >}}
-$ npm run build
-{{< /command >}}
-
-Run the following command to deploy the CDKTF stack to LocalStack:
+Run the following command to compile and deploy the CDKTF stack to LocalStack:
 
 {{< command >}}
 $ cdktf synth && cdktf deploy
