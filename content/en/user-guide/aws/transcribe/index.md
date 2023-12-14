@@ -23,7 +23,7 @@ This guide is designed for users new to Transcribe and assumes basic knowledge o
 Start your LocalStack container using your preferred method. We will demonstrate how to create a transcription job and view the transcript in an S3 bucket using the AWS CLI.
 
 {{< alert title="Note" >}}
-This service offers limited support for aarch64/Apple Silicon platforms.
+This service offers limited support for aarch64/Apple Silicon platforms and provides transcription of audio files only.
 
 If you encounter errors like `cannot load library *.so`, we recommend trying the AMD64 build of LocalStack as an alternative solution. Run the following command to pull the AMD64 build of LocalStack:
 
@@ -122,7 +122,7 @@ The following input media formats are supported:
 - MPEG-1 Audio Layer-3 (MP3)
 - MPEG-4 Part 14 (MP4)
 - OGG
-- Matroska Video files (MKV)
+- Matroska files (MKV)
 - Waveform Audio File Format (WAV)
 
 ### Supported Languages
