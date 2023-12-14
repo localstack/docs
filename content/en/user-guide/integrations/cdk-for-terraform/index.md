@@ -31,8 +31,6 @@ AWS_CONFIG = {
     "region": "us-east-1",
     "endpoints": [
         {
-            "s3": "http://localhost:4566",
-            "sts": "http://localhost:4566",
             "apigateway": "http://localhost:4566",
             "apigatewayv2": "http://localhost:4566",
             "cloudformation": "http://localhost:4566",
