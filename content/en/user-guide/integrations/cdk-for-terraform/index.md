@@ -120,7 +120,7 @@ To get started with CDKTF on LocalStack, we will set up a simple stack to create
 
 For Python:
 * [`python`](https://www.python.org/downloads/)
-* [`pipenv`](https://pipenv.pypa.io/en/latest/installation/#installing-pipenv)
+* [`pipenv`](https://pipenv.pypa.io/en/latest/installation.html#installing-pipenv)
 
 For TypeScript:
 * [`tsc`](https://www.npmjs.com/package/typescript)
