@@ -32,13 +32,13 @@ LOCALSTACK_AUTH_TOKEN=... PERSISTENCE=1 localstack start
     ...
     image: localstack/localstack-pro
     environment:
-      - LOCALSTACK_AUTH_TOKEN=...
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
       - PERSISTENCE=1
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
 {{< /tab >}}
 {{< tab header="Docker" lang="bash" >}}
-docker run -e LOCALSTACK_AUTH_TOKEN=... -e PERSISTENCE=1 -v ./volume:/var/lib/localstack -p 4566:4566 localstack/localstack-pro
+docker run -e LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?} -e PERSISTENCE=1 -v ./volume:/var/lib/localstack -p 4566:4566 localstack/localstack-pro
 {{< /tab >}}
 {{< /tabpane >}}
 

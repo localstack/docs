@@ -234,17 +234,16 @@ services:
       - data01:/usr/share/opensearch/data
 
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack-main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
     image: localstack/localstack
     ports:
-      - "4566:4566"
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
     depends_on:
       - opensearch
     environment:
       - OPENSEARCH_CUSTOM_BACKEND=http://opensearch:9200
-      - DEBUG=${DEBUG- }
-      - PERSISTENCE=${PERSISTENCE- }
-      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEBUG=${DEBUG:-0}
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"

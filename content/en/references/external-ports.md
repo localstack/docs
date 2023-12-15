@@ -61,7 +61,6 @@ services:
       - EXTERNAL_SERVICE_PORTS_START=4510
       - EXTERNAL_SERVICE_PORTS_END=4559
       - MAIN_CONTAINER_NAME=localstack-main-1
-      - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
@@ -77,7 +76,6 @@ services:
       - EXTERNAL_SERVICE_PORTS_START=4610
       - EXTERNAL_SERVICE_PORTS_END=4659
       - MAIN_CONTAINER_NAME=localstack-main-2
-      - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
@@ -93,7 +91,6 @@ services:
       - EXTERNAL_SERVICE_PORTS_START=4710
       - EXTERNAL_SERVICE_PORTS_END=4759
       - MAIN_CONTAINER_NAME=localstack-main-3
-      - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"

@@ -289,6 +289,7 @@ To learn more about these configuration options, see [Persistence]({{< ref "pers
 | `OUTBOUND_HTTP_PROXY` | `http://10.10.1.3` | HTTP Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
 | `OUTBOUND_HTTPS_PROXY` | `https://10.10.1.3` | HTTPS Proxy used for downloads of runtime dependencies and connections outside LocalStack itself
 | `REQUESTS_CA_BUNDLE` | `/var/lib/localstack/lib/ca_bundle.pem` | CA Bundle to be used to verify HTTPS requests made by LocalStack
+| `DOCKER_HOST` | `unix:///var/run/docker.sock` (default) | Daemon socket to connect Docker. Used by the LocalStack dependency [Docker](https://docs.docker.com/engine/reference/commandline/cli/#environment-variables). |
 
 
 ## Debugging
@@ -322,9 +323,10 @@ To learn more about these configuration options, see [DNS Server]({{< ref "dns-s
 
 | Variable             | Example Values | Description |
 |----------------------|----------------|-------------|
-| `ACTIVATE_PRO`       | 1 (default)    | Whether pro should be activated or not. This is set to true by default if using the `localstack/localstack-pro` container image. If set to `1`, LocalStack will fail to start if the license key activation did not work. If set to `0`, an attempt is made to start LocalStack without pro features.
-| `LOCALSTACK_AUTH_TOKEN` |                | AUTH_TOKEN to activate LocalStack Pro.
-| `LOG_LICENSE_ISSUES` | 1 (default)    | Whether to log issues with the license activation to the console.
+| `ACTIVATE_PRO`       | `0` \| `1`&nbsp;(default)    | Whether Pro should be activated or not. This is set to true by default if using the `localstack/localstack-pro` container image. If set to `1`, LocalStack will fail to start if the license key activation did not work. If set to `0`, an attempt is made to start LocalStack without Pro features. |
+| `LOCALSTACK_AUTH_TOKEN` |             | [Auth token]({{< ref "auth-token" >}}) to activate LocalStack Pro. |
+| `LOCALSTACK_API_KEY` |                | **Deprecated since 3.0.0** [API key]({{< ref "api-key" >}}) to activate LocalStack Pro.<br/> **Use the `LOCALSTACK_AUTH_TOKEN` instead (except for [CI environments]({{< ref "user-guide/ci/" >}})).** |
+| `LOG_LICENSE_ISSUES` | `0` \| `1`&nbsp;(default)    | Whether to log issues with the license activation to the console. |
 
 
 ## Legacy
