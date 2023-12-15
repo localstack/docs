@@ -332,4 +332,6 @@ $ tflocal apply
 
 In this tutorial, we have seen how to use LocalStack to create an S3 bucket and configure it to serve a static website. We have also seen how you can use Terraform to provision AWS infrastructure in an emulated local environment using LocalStack. You can use the [LocalStack App](https://app.localstack.cloud) to view the created buckets and files on the LocalStack Resource dashboard for S3 and upload more files or perform other operations on the bucket. Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without creating any real AWS resources.
 
-The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website). Further documentation for S3 is available on our [S3 documentation]({{<ref "user-guide/aws/s3" >}}).
+The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website).
+Please make sure to adjust the paths for the html files in `main.tf`.
+Further documentation for S3 is available on our [S3 documentation]({{<ref "user-guide/aws/s3" >}}).
