@@ -88,7 +88,7 @@ To avoid logging any licensing-related error messages, set `LOG_LICENSE_ISSUES=0
 
 The simplest method to verify if LocalStack is active is by querying the health endpoint for a list of running services:
 
-{{< tabpane >}}
+{{< tabpane text=true >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
 
 {{< command >}}
@@ -104,6 +104,7 @@ $ Invoke-WebRequest -Uri http://localhost:4566/_localstack/info | ConvertFrom-Js
 
 {{< /tab >}}
 {{< /tabpane >}}
+
 
 The following output would be retrieved:
 
