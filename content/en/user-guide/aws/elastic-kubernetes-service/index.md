@@ -220,6 +220,10 @@ In the events, we can see that the pull from ECR was successful:
   Normal  Pulled     10s   kubelet            Successfully pulled image "localhost.localstack.cloud:4510/fancier-nginx:latest" in 2.412775896s
 ```
 
+{{< alert title="Note">}}
+To pull public Docker images from `registry.k8s.io`, you can configure `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=prod-registry-k8s-io-.*\.s3\.dualstack\..*\.amazonaws\.com` in your [configuration]({{< ref "configuration" >}}).
+{{< /alert >}}
+
 ### Configuring an Ingress for your services
 
 To make an EKS service externally accessible, it is necessary to create an Ingress configuration, which exposes the service on a specific path to the load balancer.
