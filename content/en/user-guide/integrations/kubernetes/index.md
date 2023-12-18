@@ -15,10 +15,6 @@ aliases:
 Creating shared/hosted LocalStack instances may have some licensing implications. For example, a valid license might be necessary for each user who interacts with the instance. If you have any questions or uncertainties regarding the licensing implications, we encourage you to [contact us](https://localstack.cloud/contact) for further details.
 {{< /alert >}}
 
-{{< alert title="Note" >}}
-LocalStack on Kubernetes can be used in conjunction with the [LocalStack Community image](https://hub.docker.com/r/localstack/localstack). However, specific features such as execution of Lambda functions as Kubernetes pods is only available in the [LocalStack Pro image](https://hub.docker.com/r/localstack/localstack-pro).
-{{< /alert >}}
-
 ## Getting started
 
 To deploy LocalStack in your [Kubernetes](https://kubernetes.io/) cluster, you can use [Helm](https://helm.sh/).
@@ -150,3 +146,39 @@ $ awslocal apigateway --endpoint-url=http://localhost:8081 get-rest-apis
 {{< /command >}}
 
 We can then use a browser to open the [Web UI](http://localhost:8081/archive-bucket/index.html), which should have been deployed to an S3 bucket inside LocalStack. The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.
+
+## Lambda on Kubernetes
+
+LocalStack on Kubernetes can be used in conjunction with the [LocalStack Community image](https://hub.docker.com/r/localstack/localstack). However, specific features such as execution of Lambda functions as Kubernetes pods is only available in the [LocalStack Pro image](https://hub.docker.com/r/localstack/localstack-pro).
+
+### Scaling Lambda Execution
+
+The Kubernetes Lambda Executor in LocalStack handles Lambda execution scaling by spawning new environments (running in pods) when no existing environment is available due to concurrent invocations. An environment shuts down if it remains inactive for 10 minutes, a duration customizable through the `LAMBDA_KEEPALIVE_MS` variable. All environments terminate when LocalStack stops running.
+
+### Lambda Scheduling Strategy
+
+For multiple Lambda functions, the executor schedules according to Kubernetes cluster defaults without specifying node affinity. Users can assign labels to lambda pods using the `LAMBDA_K8S_LABELS` variable (e.g., `LAMBDA_K8S_LABELS=key=value,key2=value2`). The [Helm Charts](https://github.com/localstack/helm-charts), facilitates such advanced configurations, ensuring flexibility in node affinity decisions.
+
+### Handling Lambda Execution Failure
+
+Lambda environments restart on initialization failure, and normal invocation errors, such as uncaught exceptions or timeouts, trigger a restart of internal infrastructure without terminating the pod. We are working to address initialization failure-related respawn loops, and we aim to fix this in upcoming releases.
+
+### Lambda Limitations and Configuration
+
+LocalStack enforces timeout configurations similar to AWS, using the `Timeout` function parameter. There are no intrinsic limits on the number of Lambdas, with configurable limits on concurrent executions set at 1000 by default (`LAMBDA_LIMITS_CONCURRENT_EXECUTIONS`).
+
+### Custom DNS for Lambda on Kubernetes
+
+As of the current version, custom DNS configuration for lambda on Kubernetes is not supported. This feature is slated for future releases and will be customizable through the `LAMBDA_DOCKER_DNS` configuration variable.
+
+### Customizing Lambda Runtime Behavior
+
+Users can customize Lambda runtime behavior by building custom images based on provided ones, pushing them to their registry, and specifying these images using the `LAMBDA_RUNTIME_IMAGE_MAPPING` configuration variable, as detailed in the [documentation](https://docs.localstack.cloud/references/configuration/#lambda).
+
+### Warm Start and Persistence
+
+Lambda on Kubernetes supports Warm Start and Persistence. Persistence has to be configured for the LocalStack pod. The `/var/lib/localstack` directory has to be persisted over LocalStack runs, in a volume for example.
+
+### Debugging Lambda on Kubernetes
+
+Debugging is currently not supported. Lambda Hot reloading will not function, as the bind mounting into pods cannot be done at runtime.
