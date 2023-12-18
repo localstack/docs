@@ -150,6 +150,10 @@ The following output would be retrieved:
 1
 ```
 
+{{< alert title="Note" >}}
+You can run DynamoDB in memory, which can greatly improve the performance of your database operations. However, this also means that the data will not be possible to persist on disk and will be lost even though persistence is enabled in LocalStack. To enable this feature, you need to set the environment variable `DYNAMODB_IN_MEMORY=1` while starting LocalStack.
+{{< /alert >}}
+
 ## Resource Browser
 
 The LocalStack Web Application provides a Resource Browser for managing DynamoDB tables and items.
