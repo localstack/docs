@@ -73,6 +73,23 @@ The file will be automatically mounted into the container and installed from the
 pip install file://./my-extensions/dist/my-extension-0.0.1.dev0.tar.gz
 {{< / command >}}
 
+### Specify the `LOCALSTACK_VOLUME_DIR`
+
+Extensions should be installed in the `LOCALSTACK_VOLUME_DIR`. The default directory on your host is currently `~/.cache/localstack`. If you decide to mount a different directory to `/var/lib/localstack` in your docker-compose file, as shown below, you must specify the `LOCALSTACK_VOLUME_DIR` before installing extensions.
+
+```yaml
+volumes:
+    - "/tmp/volume:/var/lib/localstack" # LOCALSTACK_VOLUME_DIR mount
+    - "/var/run/docker.sock:/var/run/docker.sock"
+```
+
+Here's how you can use `LOCALSTACK_VOLUME_DIR` in your commands:
+
+{{ <command> }}
+export LOCALSTACK_VOLUME_DIR=/tmp/volume
+localstack extensions install file:///tmp/my_files/my-extension-1.0.0.tar.gz
+{{ </command> }}
+
 ## Automating extensions installation
 
 When you are working in CI or with docker-compose, you may want to automate extension management.
