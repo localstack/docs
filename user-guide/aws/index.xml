@@ -7923,6 +7923,12 @@ Any execution of this data is recorded in the &lt;code>/var/log/cloud-init-outpu
 If the &lt;code>ssh&lt;/code> command throws an error like &amp;ldquo;Identity file not accessible&amp;rdquo; or &amp;ldquo;bad permissions&amp;rdquo;, then please make sure that the key file has a restrictive &lt;code>0400&lt;/code> permission as illustrated &lt;a href="#create-a-key-pair">here&lt;/a>.
 &lt;/div>
 &lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack does not clean up any Dockerized instances when shutting down.
+The Docker containers backing the EC2 instance continue running even after LocalStack is stopped.
+You need to explicitly call the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html">&lt;code>TerminateInstances&lt;/code>&lt;/a> API to stop and remove these containers before stopping the LocalStack.
+&lt;/div>
 &lt;h2 id="docker-backend">Docker backend&lt;/h2>
 &lt;p>LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances.
 The Docker backend employs the &lt;a href="https://docs.docker.com/engine/">Docker Engine&lt;/a> to simulate EC2 instances.
