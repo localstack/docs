@@ -88,6 +88,16 @@ For example, you can install the latest development version directly from our Gi
 &lt;p>If you have Python distribution as files on your local machine, for instance pip wheels or source distributions, then you can also install those via the &lt;code>file://&lt;/code> directive
 The file will be automatically mounted into the container and installed from there.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>pip install file://./my-extensions/dist/my-extension-0.0.1.dev0.tar.gz&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="specify-the-localstack_volume_dir">Specify the &lt;code>LOCALSTACK_VOLUME_DIR&lt;/code>&lt;/h3>
+&lt;p>Extensions should be installed in the &lt;code>LOCALSTACK_VOLUME_DIR&lt;/code>. The default directory on your host is currently &lt;code>~/.cache/localstack&lt;/code>. If you decide to mount a different directory to &lt;code>/var/lib/localstack&lt;/code> in your docker-compose file, as shown below, you must specify the &lt;code>LOCALSTACK_VOLUME_DIR&lt;/code> before installing extensions.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">volumes&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/tmp/volume:/var/lib/localstack&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#8f5902;font-style:italic"># LOCALSTACK_VOLUME_DIR mount&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Here&amp;rsquo;s how you can use &lt;code>LOCALSTACK_VOLUME_DIR&lt;/code> in your commands:&lt;/p>
+&lt;p>{{ &lt;command> }}
+export LOCALSTACK_VOLUME_DIR=/tmp/volume
+localstack extensions install file:///tmp/my_files/my-extension-1.0.0.tar.gz
+{{ &lt;/command> }}&lt;/p>
 &lt;h2 id="automating-extensions-installation">Automating extensions installation&lt;/h2>
 &lt;p>When you are working in CI or with docker-compose, you may want to automate extension management.
 LocalStack provides two ways to do this:&lt;/p>
