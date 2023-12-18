@@ -50,6 +50,10 @@ jobs:
 
 If you want to add further configuration for LocalStack, you can use the `env` section of your build step to set the configuration variables as described [here][2].
 
+{{< alert title="Note" >}}
+Deploying Lambdas targeting the `arm64` architecture on GitHub Actions can pose challenges. While the [`LAMBDA_IGNORE_ARCHITECTURE` configuration](https://docs.localstack.cloud/references/configuration/#lambda) is an option for cross-architecture compatible Lambdas, it may not be suitable for statically compiled Lambdas. To address this, users are recommended to leverage Docker's [`setup-qemu-action`](https://github.com/docker/setup-qemu-action) to enable emulation for the `arm64` architecture. It's important to note that using this approach may result in significantly slower build times.
+{{< /alert >}}
+
 ## Configuring a CI key
 
 You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key as a [Github Encrypted Secret][3] to store your CI key securely. You can set the `LOCALSTACK_API_KEY` environment variable to the value of the secret `LOCALSTACK_API_KEY`. You can set your secret at an environment, repository or organization level. Navigate to your repository **Settings**, click **Secrets**, and press **New Repository Secret**. Here is an example:
