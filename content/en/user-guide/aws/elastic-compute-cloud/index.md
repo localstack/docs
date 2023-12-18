@@ -172,6 +172,11 @@ $ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< alert title="Hint" color="success">}}
 If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
 {{< /alert >}}
+
+{{< alert title="Note">}}
+LocalStack does not clean up any Docker containers it has created. To terminate the EC2 instance, you will need to make a [`TerminateInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html) API call to stop the Docker container before stopping the LocalStack instance.
+{{< /alert >}}
+
 ## Docker backend
 
 LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances.
