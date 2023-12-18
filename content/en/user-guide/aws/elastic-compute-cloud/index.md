@@ -174,7 +174,9 @@ If the `ssh` command throws an error like "Identity file not accessible" or "bad
 {{< /alert >}}
 
 {{< alert title="Note">}}
-LocalStack does not clean up any Docker containers it has created. To terminate the EC2 instance, you will need to make a [`TerminateInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html) API call to stop the Docker container before stopping the LocalStack instance.
+LocalStack does not clean up any Dockerized instances when shutting down.
+The Docker containers backing the EC2 instance continue running even after LocalStack is stopped.
+You need to explicitly call the [`TerminateInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html) API to stop and remove these containers before stopping the LocalStack.
 {{< /alert >}}
 
 ## Docker backend
