@@ -15,20 +15,9 @@ LocalStack Docs is using the following technology stack:
 
 
 ### Clone the repo
-Clone this repository and initialize the Git submodules recursively (`themes/docsy` is a submodule that again has submodules for vendored assets like fontawesome).
-
-    git clone --recurse-submodules --depth 1 git@github.com:localstack/docs.git
-
-This performs a shallow clone, which leads to only the main branch being configured for your remote.
-To be able to pull/push from/to all branches, please run:
-
-    git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*" && git fetch
-
-or:
 
     git clone git@github.com:localstack/docs.git
     cd docs
-    git submodule update --init --recursive
 
 ### Install Hugo
 LocalStack Docs is based on the [Hugo static site generator](https://gohugo.io).
