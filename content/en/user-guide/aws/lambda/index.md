@@ -238,7 +238,7 @@ The following code snippets and sample applications provide practical examples o
 
 - [Lambda Hot Reloading](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-hot-reloading) shows how to use hot reloading to update function code and layers without having to redeploy them.
 - [Lambda Code Mounting and Debugging](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging) demonstrates how to debug Lambda functions locally using code mounting.
-- [Lambda Function URL](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-function-urls) shows how to use HTTP to invoke a Lambda function via its Function URL.
+- [Lambda Function URL](https://github.com/localstack-samples/localstack-pro-samples/tree/master/lambda-function-urls-javascript) shows how to use HTTP to invoke a Lambda function via its Function URL.
 - [Lambda Layers](https://github.com/localstack/localstack-pro-samples/blob/master/serverless-lambda-layers) demonstrates how to use Lambda layers, which are reusable packages of code that can be shared across multiple functions.
 - [Lambda PHP/Bref](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-php-bref-cdk-app) shows how to use PHP/Bref with and without fpm, using the Serverless framework and AWS CDK.
 - [Lambda Container Images](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-container-image) demonstrates how to use Lambda functions packaged as container images, which can be built using Docker and pushed to a local ECR registry.
