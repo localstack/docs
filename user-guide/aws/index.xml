@@ -255,7 +255,7 @@
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>&lt;a href="/tags/apigatewayv2/">&lt;strong>API Gateway v2&lt;/strong> (Pro)&lt;/a>&lt;/td>
+&lt;td>&lt;a href="/user-guide/aws/apigateway/">&lt;strong>API Gateway v2&lt;/strong> (Pro)&lt;/a>&lt;/td>
 &lt;td>&lt;a href="/references/coverage/coverage_apigatewayv2/">Details 🔍&lt;/a>&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
@@ -4293,9 +4293,35 @@
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>User-Guide: Amazon API Gateway</title><link>/user-guide/aws/apigateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/apigateway/</guid><description>
+&lt;/table></description></item><item><title>User-Guide: Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Amazon API Gateway is a managed service that enables developers to create, deploy, and manage APIs (Application Programming Interfaces). It allows easy creation of REST, HTTP, and WebSocket APIs to securely access data, business logic, or functionality from backend services like AWS Lambda functions or EC2 instances. API Gateway supports standard HTTP methods such as &lt;code>GET&lt;/code>, &lt;code>POST&lt;/code>, &lt;code>PUT&lt;/code>, &lt;code>PATCH&lt;/code>, and &lt;code>DELETE&lt;/code> and integrates with various AWS services, including Lambda, Cognito, CloudWatch, and X-Ray.&lt;/p>
+&lt;p>Amplify is a JavaScript-based development framework with libraries, UI components, and a standard CLI interface for building and deploying web and mobile applications. With Amplify, developers can build and host static websites, single-page applications, and full-stack serverless web applications using an abstraction layer over popular AWS services like DynamoDB, Cognito, AppSync, Lambda, S3, and more.&lt;/p>
+&lt;p>LocalStack supports Amplify via the Pro/Team offering, allowing you to use the Amplify APIs to build and test their Amplify applications locally. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_amplify/">API coverage page&lt;/a>, which provides information on the extent of Amplify&amp;rsquo;s integration with LocalStack.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The &lt;code>amplifylocal&lt;/code> CLI and the Amplify JS library have been deprecated and are no longer supported. We recommend using the Amplify CLI with the Amplify LocalStack Plugin instead.
+&lt;/div>
+&lt;h2 id="amplify-localstack-plugin">Amplify LocalStack Plugin&lt;/h2>
+&lt;p>&lt;a href="https://github.com/localstack/amplify-localstack">Amplify LocalStack Plugin&lt;/a> allows the &lt;code>amplify&lt;/code> CLI tool to create resources on your local machine instead of AWS. It achieves this by redirecting any requests to AWS to a LocalStack container running locally on your machine.&lt;/p>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;p>To install the Amplify LocalStack Plugin, install the &lt;a href="https://www.npmjs.com/package/amplify-localstack">amplify-localstack&lt;/a> package from the npm registry and add the plugin to your Amplify setup:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>npm install -g amplify-localstack
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify plugin add amplify-localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="configuration">Configuration&lt;/h3>
+&lt;p>You can configure the following environment variables to customize LocalStack&amp;rsquo;s behaviour:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>EDGE_PORT&lt;/code>: The port number under which the LocalStack edge service is accessible. The default value is &lt;code>4566&lt;/code>.&lt;/li>
+&lt;li>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>: It specifies the target host under which the LocalStack edge service is accessible. The default value is &lt;code>localhost.localstack.cloud&lt;/code>.&lt;/li>
+&lt;li>&lt;code>LOCALSTACK_ENDPOINT&lt;/code>: It allows you to set a custom endpoint directly. If set, it overrides the values set for &lt;code>EDGE_PORT&lt;/code> and &lt;code>LOCALSTACK_HOSTNAME&lt;/code>. The default value is &lt;code>https://localhost.localstack.cloud:4566&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;h3 id="usage">Usage&lt;/h3>
+&lt;p>After installing the plugin, you can deploy your resources to LocalStack using the &lt;code>amplify init&lt;/code> or &lt;code>amplify push&lt;/code> commands. The console will prompt you to select whether to deploy to LocalStack or AWS.&lt;/p>
+&lt;p>You can also add the parameter &lt;code>--use-localstack true&lt;/code> to your commands to avoid being prompted and automatically use LocalStack. Here is an example:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify init --use-localstack true
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify add api
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify push --use-localstack true&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: API Gateway</title><link>/user-guide/aws/apigateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/apigateway/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>API Gateway is a managed service that enables developers to create, deploy, and manage APIs (Application Programming Interfaces). It allows easy creation of REST, HTTP, and WebSocket APIs to securely access data, business logic, or functionality from backend services like AWS Lambda functions or EC2 instances. API Gateway supports standard HTTP methods such as &lt;code>GET&lt;/code>, &lt;code>POST&lt;/code>, &lt;code>PUT&lt;/code>, &lt;code>PATCH&lt;/code>, and &lt;code>DELETE&lt;/code> and integrates with various AWS services, including Lambda, Cognito, CloudWatch, and X-Ray.&lt;/p>
 &lt;p>LocalStack supports API Gateway V1 via the Community offering and API Gateway V2 via the Pro/Team offering, allowing you to use the API Gateway to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_apigatewayv2/">API coverage page&lt;/a>, which provides information on the extent of API Gateway V2&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -4519,7 +4545,7 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;/ul>
 &lt;p>You can also use the Resource Browser to check out the &lt;strong>Authorizers&lt;/strong>, &lt;strong>Models&lt;/strong>, &lt;strong>Request Validators&lt;/strong>, &lt;strong>API Keys&lt;/strong>, and &lt;strong>Usage Plans&lt;/strong>.&lt;/p>
 &lt;h2 id="examples">Examples&lt;/h2>
-&lt;p>The following code snippets and sample applications provide practical examples of how to use ACM in LocalStack for various use cases:&lt;/p>
+&lt;p>The following code snippets and sample applications provide practical examples of how to use API Gateway in LocalStack for various use cases:&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/apigw-custom-domain">API Gateway with Custom Domains over our LocalStack Pro samples&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets">Websockets via API Gateway V2&lt;/a>&lt;/li>
@@ -4528,33 +4554,7 @@ Setting the API Gateway ID via &lt;code>_custom_id_&lt;/code> works only on the 
 &lt;li>&lt;a href="https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample">Serverless Microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/aws-sdk-js-notes-app">Note-Taking application using AWS SDK for JavaScript, Amazon DynamoDB, Lambda, Cognito, API Gateway, and S3&lt;/a>&lt;/li>
 &lt;li>For Terraform samples, check out the &lt;a href="https://github.com/localstack/localstack-terraform-samples">LocalStack Terraform examples&lt;/a> repository&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Amplify</title><link>/user-guide/aws/amplify/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/amplify/</guid><description>
-&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>Amplify is a JavaScript-based development framework with libraries, UI components, and a standard CLI interface for building and deploying web and mobile applications. With Amplify, developers can build and host static websites, single-page applications, and full-stack serverless web applications using an abstraction layer over popular AWS services like DynamoDB, Cognito, AppSync, Lambda, S3, and more.&lt;/p>
-&lt;p>LocalStack supports Amplify via the Pro/Team offering, allowing you to use the Amplify APIs to build and test their Amplify applications locally. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_amplify/">API coverage page&lt;/a>, which provides information on the extent of Amplify&amp;rsquo;s integration with LocalStack.&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-The &lt;code>amplifylocal&lt;/code> CLI and the Amplify JS library have been deprecated and are no longer supported. We recommend using the Amplify CLI with the Amplify LocalStack Plugin instead.
-&lt;/div>
-&lt;h2 id="amplify-localstack-plugin">Amplify LocalStack Plugin&lt;/h2>
-&lt;p>&lt;a href="https://github.com/localstack/amplify-localstack">Amplify LocalStack Plugin&lt;/a> allows the &lt;code>amplify&lt;/code> CLI tool to create resources on your local machine instead of AWS. It achieves this by redirecting any requests to AWS to a LocalStack container running locally on your machine.&lt;/p>
-&lt;h3 id="installation">Installation&lt;/h3>
-&lt;p>To install the Amplify LocalStack Plugin, install the &lt;a href="https://www.npmjs.com/package/amplify-localstack">amplify-localstack&lt;/a> package from the npm registry and add the plugin to your Amplify setup:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>npm install -g amplify-localstack
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify plugin add amplify-localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;h3 id="configuration">Configuration&lt;/h3>
-&lt;p>You can configure the following environment variables to customize LocalStack&amp;rsquo;s behaviour:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>EDGE_PORT&lt;/code>: The port number under which the LocalStack edge service is accessible. The default value is &lt;code>4566&lt;/code>.&lt;/li>
-&lt;li>&lt;code>LOCALSTACK_HOSTNAME&lt;/code>: It specifies the target host under which the LocalStack edge service is accessible. The default value is &lt;code>localhost.localstack.cloud&lt;/code>.&lt;/li>
-&lt;li>&lt;code>LOCALSTACK_ENDPOINT&lt;/code>: It allows you to set a custom endpoint directly. If set, it overrides the values set for &lt;code>EDGE_PORT&lt;/code> and &lt;code>LOCALSTACK_HOSTNAME&lt;/code>. The default value is &lt;code>https://localhost.localstack.cloud:4566&lt;/code>.&lt;/li>
-&lt;/ul>
-&lt;h3 id="usage">Usage&lt;/h3>
-&lt;p>After installing the plugin, you can deploy your resources to LocalStack using the &lt;code>amplify init&lt;/code> or &lt;code>amplify push&lt;/code> commands. The console will prompt you to select whether to deploy to LocalStack or AWS.&lt;/p>
-&lt;p>You can also add the parameter &lt;code>--use-localstack true&lt;/code> to your commands to avoid being prompted and automatically use LocalStack. Here is an example:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify init --use-localstack true
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify add api
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>amplify push --use-localstack true&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: AppConfig</title><link>/user-guide/aws/appconfig/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/appconfig/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: AppConfig</title><link>/user-guide/aws/appconfig/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/aws/appconfig/</guid><description>
 &lt;p>AppConfig is a service provided by Amazon Web Services (AWS) that simplifies the process of managing and deploying application configurations. AppConfig offers centralized management of configuration data and the ability to create, manage, and deploy configuration changes separately. It allows you to avoid deploying the service repeatedly for smaller changes, enables controlled deployments to applications and includes built-in validation checks &amp;amp; monitoring.&lt;/p>
 &lt;p>LocalStack supports AppConfig via the Pro/Team offering, allowing you to use the AppConfig APIs in your local environment to define configurations for different environments and deploy them to your applications as needed. The supported APIs are available on our &lt;a href="https://docs.localstack.cloud/references/coverage/coverage_appconfig/">API coverage page&lt;/a>, which provides information on the extent of AppConfig&amp;rsquo;s integration with LocalStack.&lt;/p>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
