@@ -88,6 +88,14 @@ pip install -r requirements-dev.txt
 {{< /tab >}}
 {{< /tabpane >}}
 
+{{< alert title="Note" >}}
+If you are encountering issues with the installation of the packages, such as Pillow, ensure you use the same version as the Python Lambdas (3.9) for Pillow to work. If you're using <a href="https://github.com/pyenv/pyenv">pyenv</a>, install and activate Python 3.9 with the following commands:
+{{< command >}}
+$ pyenv install 3.9.0
+$ pyenv global 3.9.0
+{{< / command >}}
+{{< /alert >}}
+
 ### Setup the serverless image resizer
 
 This application enables serverless image resizing using [S3](https://docs.localstack.cloud/user-guide/aws/s3/), [SSM](https://docs.localstack.cloud/user-guide/aws/systems-manager/), [Lambda](https://docs.localstack.cloud/user-guide/aws/lambda/), [SNS](https://docs.localstack.cloud/user-guide/aws/sns/), and [SES](https://docs.localstack.cloud/user-guide/aws/ses/). A simple web interface allows users to upload and view resized images. A Lambda function generates S3 pre-signed URLs for direct uploads, while S3 bucket notifications trigger image resizing. Another Lambda function lists and provides pre-signed URLs for browser display. The application also handles Lambda failures through SNS and SES email notifications.
