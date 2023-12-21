@@ -72,7 +72,7 @@ In the coverage table below, the features are marked with their respective avail
 | Usage Plans                                                        | ⭐⭐⭐              | CRUD                |       |
 | Usage Plan Keys                                                    | ⭐⭐⭐              | CRUD                |       |
 | VPC Links                                                          | ⭐⭐⭐              | CRUD                |       |
-| [**API Gateway v2** (Pro)]({{< ref "apigatewayv2" >}})             | [Details 🔍]({{< ref "references/coverage/coverage_apigatewayv2" >}})     |                 |       |
+| [**API Gateway v2** (Pro)]({{< ref "apigateway" >}})             | [Details 🔍]({{< ref "references/coverage/coverage_apigatewayv2" >}})     |                 |       |
 | APIs                                                               | ⭐⭐⭐⭐            | Emulated                |       |
 | API Mappings                                                       | ⭐⭐⭐              | Emulated                |       |
 | Authorizers                                                        | ⭐⭐⭐⭐            | Emulated                |       |

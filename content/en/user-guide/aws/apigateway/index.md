@@ -1,21 +1,13 @@
 ---
-title: "Amazon API Gateway"
-linkTitle: "Amazon API Gateway"
-categories: ["LocalStack Community", "LocalStack Pro"]
-tags:
-- apigateway
-- apigatewayv2
-- apigateway-localstack
+title: "API Gateway"
+linkTitle: "API Gateway"
 description: >
-  Get started with Amazon API Gateway on LocalStack
-aliases:
-  - /aws/apigatewayv2/
-  - /user-guide/aws/awsapigatewayv2/
+  Get started with API Gateway on LocalStack
 ---
 
 ## Introduction
 
-Amazon API Gateway is a managed service that enables developers to create, deploy, and manage APIs (Application Programming Interfaces). It allows easy creation of REST, HTTP, and WebSocket APIs to securely access data, business logic, or functionality from backend services like AWS Lambda functions or EC2 instances. API Gateway supports standard HTTP methods such as `GET`, `POST`, `PUT`, `PATCH`, and `DELETE` and integrates with various AWS services, including Lambda, Cognito, CloudWatch, and X-Ray.
+API Gateway is a managed service that enables developers to create, deploy, and manage APIs (Application Programming Interfaces). It allows easy creation of REST, HTTP, and WebSocket APIs to securely access data, business logic, or functionality from backend services like AWS Lambda functions or EC2 instances. API Gateway supports standard HTTP methods such as `GET`, `POST`, `PUT`, `PATCH`, and `DELETE` and integrates with various AWS services, including Lambda, Cognito, CloudWatch, and X-Ray.
 
 LocalStack supports API Gateway V1 via the Community offering and API Gateway V2 via the Pro/Team offering, allowing you to use the API Gateway to create, deploy, and manage APIs on your local machine to invoke those exposed API endpoints. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_apigatewayv2/), which provides information on the extent of API Gateway V2's integration with LocalStack.
 
@@ -377,7 +369,7 @@ You can also use the Resource Browser to check out the **Authorizers**, **Models
 
 ## Examples
 
-The following code snippets and sample applications provide practical examples of how to use ACM in LocalStack for various use cases:
+The following code snippets and sample applications provide practical examples of how to use API Gateway in LocalStack for various use cases:
 
 - [API Gateway with Custom Domains over our LocalStack Pro samples](https://github.com/localstack/localstack-pro-samples/tree/master/apigw-custom-domain)
 - [Websockets via API Gateway V2](https://github.com/localstack/localstack-pro-samples/tree/master/serverless-websockets)
