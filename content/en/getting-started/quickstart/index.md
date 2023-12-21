@@ -49,16 +49,15 @@ You can start LocalStack using the `localstack` CLI. Start the LocalStack Pro co
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
 export LOCALSTACK_AUTH_TOKEN=<your-auth-token>
-EXTRA_CORS_ALLOWED_ORIGINS=* localstack start
+localstack start
 {{< /tab >}}
 {{< tab header="Windows" lang="powershell" >}}
 $env:LOCALSTACK_AUTH_TOKEN=<your-auth-token>
-$env:EXTRA_CORS_ALLOWED_ORIGINS="*"
 localstack start
 {{< /tab >}}
 {{< /tabpane >}}
 
-The `EXTRA_CORS_ALLOWED_ORIGINS` configuration variable allows our website to send requests to the LocalStack container. If you prefer running LocalStack in detached mode, you can add the `-d` flag to the `localstack start` command, and use Docker Desktop to view the logs.
+If you prefer running LocalStack in detached mode, you can add the `-d` flag to the `localstack start` command, and use Docker Desktop to view the logs.
 
 ## Instructions
 
@@ -255,7 +254,7 @@ Save these URLs for later use in the sample application.
 
 ### Run the sample AWS application
 
-To access the application, go to [**https://webapp.s3-website.localhost.localstack.cloud:4566**](https://webapp.s3-website.localhost.localstack.cloud:4566/) in your browser.
+To access the application, go to [**https://webapp.s3-website.localhost.localstack.cloud:4566/**](https://webapp.s3-website.localhost.localstack.cloud:4566/) in your browser.
 
 <img src="serverless-image-resizer-application.png" alt="Serverless image resizer application" title="Serverless image resizer application" width="800px" />
 
