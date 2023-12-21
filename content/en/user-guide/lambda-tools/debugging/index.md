@@ -1,11 +1,12 @@
 ---
 title: "Remote Debugging"
-weight: 5
+weight: 2
 categories: ["LocalStack Community", "LocalStack Pro"]
 description: >
   Attach a debugger to your Lambda functions from within your IDE
 aliases:
   - /tools/lambda-tools/debugging/
+  - /user-guide/tools/lambda-tools/debugging/
 ---
 
 # Overview
@@ -26,7 +27,7 @@ More examples and tooling support for local Lambda debugging (including support 
 
 Lambda functions debugging used to be a difficult task. LocalStack changes that
 with the same local code mounting functionality that also helps you
-to [iterate quickly over your function code]({{< ref "hot-reloading" >}}).
+to [iterate quickly over your function code]({{< ref "user-guide/lambda-tools" >}}).
 
 For a simple working example of this feature, you can refer to
 [our samples](https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging).

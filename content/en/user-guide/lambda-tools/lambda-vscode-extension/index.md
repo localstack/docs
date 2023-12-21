@@ -1,8 +1,10 @@
 ---
 title: "Lambda VSCode Extension"
-weight: 9
+weight: 3
 description: >
   Deploy and invoke Lambda functions in LocalStack directly from VSCode
+aliases:
+  - /user-guide/tools/lambda-tools/lambda-vscode-extension/
 ---
 
 ## Introduction
