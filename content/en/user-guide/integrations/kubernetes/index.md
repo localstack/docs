@@ -181,4 +181,4 @@ Lambda on Kubernetes supports Warm Start and Persistence. Persistence has to be 
 
 ### Debugging Lambda on Kubernetes
 
-Debugging is currently not supported. Lambda Hot reloading will not function, as the bind mounting into pods cannot be done at runtime.
+Debugging is currently not supported. Lambda hot-reloading will not function, as the bind mounting into pods cannot be done at runtime.
