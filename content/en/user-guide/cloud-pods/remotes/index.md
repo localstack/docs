@@ -49,8 +49,6 @@ export AWS_SECRET_ACCESS_KEY=...
 
 A possible option is to obtain credentials via [AWS SSO CLI](https://github.com/synfinatic/aws-sso-cli).
 
-One option is to acquire credentials using [AWS SSO CLI](https://github.com/synfinatic/aws-sso-cli).
-
 Next, we establish a new remote specifically designed for an S3 bucket. By running the following command, we create a remote named `s3-storage-aws` responsible for storing Cloud Pod artifacts in an S3 bucket called `ls-pods-bucket-test`. 
 
 The `access_key_id` and `secret_access_key` placeholders ensure the correct transmission of AWS credentials to the container.
