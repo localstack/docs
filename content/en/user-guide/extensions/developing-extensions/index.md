@@ -6,11 +6,11 @@ description: >
   How to develop your own extensions
 ---
 
+## Introduction
+
 This section provides a brief overview of how to develop your own extensions.
 
-## Overview
-
-### Extensions API
+## Extensions API
 
 LocalStack exposes a Python API for building extensions that can be found in the core codebase in [`localstack.extensions.api`](https://github.com/localstack/localstack/tree/master/localstack/extensions/api).
 
@@ -109,7 +109,7 @@ However, be aware that these modules are not part of our public API, and can cha
 Your extension may break in unexpected ways, and we cannot provide support for internal APIs.
 {{</alert>}}
 
-### Packaging extensions
+## Packaging extensions
 
 Your extensions needs to be packaged as a Python distribution with a
 `setup.cfg` or `setup.py` config. LocalStack uses the
@@ -145,7 +145,7 @@ entry point name is the plugin name `my_ready_announcer`. The object
 reference points to the plugin class.
 
 
-### Using the extensions developer CLI
+## Using the extensions developer CLI
 
 The extensions CLI has a set of developer commands that allow you to create new extensions, and toggle local dev mode for extensions.
 Extensions that are toggled for developer mode will be mounted into the localstack container so you don't need to re-install them every time you change something.
