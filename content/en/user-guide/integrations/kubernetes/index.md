@@ -149,7 +149,7 @@ We can then use a browser to open the [Web UI](http://localhost:8081/archive-buc
 
 ## Lambda on Kubernetes
 
-LocalStack on Kubernetes can be used in conjunction with the [LocalStack Community image](https://hub.docker.com/r/localstack/localstack). However, specific features such as execution of Lambda functions as Kubernetes pods are only available in the [LocalStack Pro image](https://hub.docker.com/r/localstack/localstack-pro).
+LocalStack on Kubernetes can be used in conjunction with the [LocalStack Community image](https://hub.docker.com/r/localstack/localstack). However, specific features such as execution of Lambda functions as Kubernetes pods are only available in the [LocalStack Pro image](https://hub.docker.com/r/localstack/localstack-pro). To configure LocalStack Lambdas to use Kubernetes Pods, you need to configure values in the [LocalStack Helm Chart](https://github.com/localstack/helm-charts/blob/ce47b1590605901650ab788556bc871efbd78b8d/charts/localstack/values.yaml#L178-L208).
 
 ### Scaling Lambda Execution
 
