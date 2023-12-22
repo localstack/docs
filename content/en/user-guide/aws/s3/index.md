@@ -211,6 +211,45 @@ $ awslocal s3api get-bucket-cors --bucket cors-bucket
 
 You can try again to upload files in your bucket from the [LocalStack Web Application](https://app.localstack.cloud) and it should work.
 
+## S3 Docker image
+
+LocalStack provides a Docker image for S3, which you can use to run S3 in a Docker container. The image is available on [Docker Hub](https://hub.docker.com/r/localstack/localstack) and can be pulled using the following command:
+
+{{< command >}}
+$ docker pull localstack/localstack:s3-latest
+{{< / command >}}
+
+The S3 Docker image only supports the S3 APIs and does not include other services like Lambda, DynamoDB, etc. You can run the S3 Docker image using any of the following commands:
+
+{{< tabpane >}}
+{{< tab header="LocalStack CLI" lang="shell" >}}
+IMAGE_NAME=localstack/localstack:s3-latest localstack start
+{{< /tab >}}
+{{< tab header="Docker Compose" lang="yml" >}}
+version: "3.8"
+
+services:
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
+    image: localstack/localstack:s3-latest
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+    environment:
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+{{< /tab >}}
+{{< tab header="Docker" lang="shell" >}}
+docker run \
+  --rm \
+  -p 4566:4566 \
+  localstack/localstack:s3-latest
+{{< /tab >}}
+{{< /tabpane >}}
+
+The S3 Docker image has similar parity with the S3 APIs supported by LocalStack Docker image. You can use similar [configuration options](https://docs.localstack.cloud/references/configuration/#s3) to alter the behaviour of the S3 Docker image, such as `DEBUG` or `S3_SKIP_SIGNATURE_VALIDATION`.
+
 ## Resource Browser
 
 The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing S3 buckets & configurations. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **S3** under the **Storage** section.
