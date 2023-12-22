@@ -159,17 +159,13 @@ The Kubernetes Lambda Executor in LocalStack handles Lambda execution scaling by
 
 For multiple Lambda functions, the executor schedules according to Kubernetes cluster defaults without specifying node affinity. Users can assign labels to lambda pods using the `LAMBDA_K8S_LABELS` variable (e.g., `LAMBDA_K8S_LABELS=key=value,key2=value2`). The [Helm Charts](https://github.com/localstack/helm-charts), facilitates such advanced configurations, ensuring flexibility in node affinity decisions.
 
-### Handling Lambda Execution Failure
-
-Lambda environments restart on initialization failure, and normal invocation errors, such as uncaught exceptions or timeouts, trigger a restart of internal infrastructure without terminating the pod. We are working to address initialization failure-related respawn loops, and we aim to fix this in upcoming releases.
-
 ### Lambda Limitations and Configuration
 
 LocalStack enforces timeout configurations similar to AWS, using the `Timeout` function parameter. There are no intrinsic limits on the number of Lambdas, with configurable limits on concurrent executions set at 1000 by default (`LAMBDA_LIMITS_CONCURRENT_EXECUTIONS`).
 
 ### Custom DNS for Lambda on Kubernetes
 
-As of the current version, custom DNS configuration for lambda on Kubernetes is not supported. This feature is slated for future releases and will be customizable through the `LAMBDA_DOCKER_DNS` configuration variable.
+You can setup custom DNS configuration for Lambda on Kubernetes is not supported through the `LAMBDA_DOCKER_DNS` configuration variable.
 
 ### Customizing Lambda Runtime Behavior
 
