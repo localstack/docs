@@ -242,7 +242,7 @@ services:
 {{< /tab >}}
 {{< tab header="Docker" lang="shell" >}}
 docker run \
-  --rm -it \
+  --rm \
   -p 4566:4566 \
   localstack/localstack:s3-latest
 {{< /tab >}}
