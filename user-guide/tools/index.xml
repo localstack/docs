@@ -1,30 +1,59 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Tools</title><link>/user-guide/tools/</link><description>Recent content in LocalStack Tools on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/user-guide/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: LocalStack Testing Tools</title><link>/user-guide/tools/testing-tools/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/testing-tools/</guid><description>
-&lt;h2 id="covered-topics">Covered Topics&lt;/h2>
-&lt;ul>
-&lt;li>&lt;a href="#jvm-testing-utils">JVM Testing Utils&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h2 id="jvm-testing-utils">JVM Testing Utils&lt;/h2>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Tools</title><link>/user-guide/tools/</link><description>Recent content in LocalStack Tools on Docs</description><generator>Hugo -- gohugo.io</generator><atom:link href="/user-guide/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Testing Utils</title><link>/user-guide/tools/testing-utils/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/testing-utils/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>LocalStack provides a set of tools to simplify application testing on LocalStack. These tools are available for Python and JVM (Java and Kotlin) and can be used to integrate with various unit testing frameworks and simplify the setup of AWS clients with LocalStack.&lt;/p>
+&lt;h2 id="python">Python&lt;/h2>
+&lt;p>This Python Testing Utils streamlines the integration of Localstack with your unit tests.&lt;/p>
+&lt;h3 id="installation">Installation&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>pip install localstack-utils&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="usage">Usage&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python3" data-lang="python3">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">time&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">boto3&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">unittest&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">localstack_utils.localstack&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">startup_localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">stop_localstack&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">TestKinesis&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">unittest&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">TestCase&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">setUp&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#3465a4">self&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">startup_localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">tearDown&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#3465a4">self&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">stop_localstack&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">return&lt;/span> &lt;span style="color:#204a87">super&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">tearDown&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">def&lt;/span> &lt;span style="color:#000">test_create_stream&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#3465a4">self&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">kinesis&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">boto3&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">client&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">service_name&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;kinesis&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">aws_access_key_id&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">aws_secret_access_key&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">kinesis&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">create_stream&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">StreamName&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;test&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">ShardCount&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">time&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">sleep&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">1&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000">kinesis&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">list_streams&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#3465a4">self&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">assertGreater&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#204a87">len&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">response&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">get&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;StreamNames&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000;font-weight:bold">[])),&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">0&lt;/span>&lt;span style="color:#000;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="jvm">JVM&lt;/h2>
 &lt;p>LocalStack provides &lt;a href="https://github.com/localstack/localstack-java-utils">Java Utils library&lt;/a>
 that integrates with JUnit and provides LocalStack-targeted AWS Clients.&lt;/p>
-&lt;h3 id="installation">Installation&lt;/h3>
-&lt;ul class="nav nav-tabs" id="tabs-0" role="tablist">
+&lt;h3 id="installation-1">Installation&lt;/h3>
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-xml"
-id="tabs-00-00-tab" data-toggle="tab" href="#tabs-00-00" role="tab"
-onclick="persistLang(&amp;#34;xml&amp;#34;);"aria-controls="tabs-00-00" aria-selected="false">
+id="tabs-01-00-tab" data-toggle="tab" href="#tabs-01-00" role="tab"
+onclick="persistLang(&amp;#34;xml&amp;#34;);"aria-controls="tabs-01-00" aria-selected="false">
 Maven
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-gradle"
-id="tabs-00-01-tab" data-toggle="tab" href="#tabs-00-01" role="tab"
-onclick="persistLang(&amp;#34;gradle&amp;#34;);"aria-controls="tabs-00-01" aria-selected="false">
+id="tabs-01-01-tab" data-toggle="tab" href="#tabs-01-01" role="tab"
+onclick="persistLang(&amp;#34;gradle&amp;#34;);"aria-controls="tabs-01-01" aria-selected="false">
 Gradle
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-0-content">
+&lt;div class="tab-content" id="tabs-1-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab">
+id="tabs-01-00" role="tabpanel" aria-labelled-by="tabs-01-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;dependency&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;groupId&amp;gt;&lt;/span>cloud.localstack&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/groupId&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;artifactId&amp;gt;&lt;/span>localstack-utils&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/artifactId&amp;gt;&lt;/span>
@@ -33,29 +62,29 @@ id="tabs-00-00" role="tabpanel" aria-labelled-by="tabs-00-00-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/dependency&amp;gt;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-00-01" role="tabpanel" aria-labelled-by="tabs-00-01-tab">
+id="tabs-01-01" role="tabpanel" aria-labelled-by="tabs-01-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-gradle" data-lang="gradle">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">testImplementation&lt;/span> &lt;span style="color:#f57900">group:&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;cloud.localstack&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#f57900">name:&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;localstack-utils&amp;#39;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">,&lt;/span> &lt;span style="color:#f57900">version:&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;0.2.15&amp;#39;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;h3 id="usage">Usage&lt;/h3>
-&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">
+&lt;h3 id="usage-1">Usage&lt;/h3>
+&lt;ul class="nav nav-tabs" id="tabs-2" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-java"
-id="tabs-01-00-tab" data-toggle="tab" href="#tabs-01-00" role="tab"
-onclick="persistLang(&amp;#34;java&amp;#34;);"aria-controls="tabs-01-00" aria-selected="false">
+id="tabs-02-00-tab" data-toggle="tab" href="#tabs-02-00" role="tab"
+onclick="persistLang(&amp;#34;java&amp;#34;);"aria-controls="tabs-02-00" aria-selected="false">
 Java
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-kotlin"
-id="tabs-01-01-tab" data-toggle="tab" href="#tabs-01-01" role="tab"
-onclick="persistLang(&amp;#34;kotlin&amp;#34;);"aria-controls="tabs-01-01" aria-selected="false">
+id="tabs-02-01-tab" data-toggle="tab" href="#tabs-02-01" role="tab"
+onclick="persistLang(&amp;#34;kotlin&amp;#34;);"aria-controls="tabs-02-01" aria-selected="false">
 Kotlin
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-1-content">
+&lt;div class="tab-content" id="tabs-2-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-01-00" role="tabpanel" aria-labelled-by="tabs-01-00-tab">
+id="tabs-02-00" role="tabpanel" aria-labelled-by="tabs-02-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.LocalstackTestRunner&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.ServiceName&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">;&lt;/span>
@@ -76,7 +105,7 @@ id="tabs-01-00" role="tabpanel" aria-labelled-by="tabs-01-00-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-01-01" role="tabpanel" aria-labelled-by="tabs-01-01-tab">
+id="tabs-02-01" role="tabpanel" aria-labelled-by="tabs-02-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">..&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.LocalstackTestRunner&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">cloud.localstack.ServiceName&lt;/span>
