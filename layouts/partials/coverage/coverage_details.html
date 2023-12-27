@@ -1,0 +1,46 @@
+This section gives an overview about the internal integration test suite and the specific test cases that recorded the API call.
+<p>
+<h3 id="howtoread">How to read the test details?</h3>
+<div>For each operation we put up a list of the related integration test cases.
+<br/>
+Those operation calls have been recorded during the exeuction of the outlined test cases.
+Some calls might be internal, i.e., they are not explicitly called in the test, but are triggered implicitly by the LocalStack framework.
+</div>
+<br/>
+<ul>
+    <li><b>Parameters:</b> The tests are ordered by the parameters used, which are highlighted in bold.</li>
+    <li><b>Test Details:</b> <a href="https://github.com/localstack/localstack">LocalStack Community</a> or <em>LocalStack Pro</em> indicates where the test originates. For each test you see:</li>
+        <ul>
+            <li>test name</li>
+            <li>status code returned (which is the expected one for the test case)</li>
+            <li>information about validation:</li>
+            <ul>
+                <li><span class="coverage-report-tag-aws-validated">AWS validated</span> the test is validated against AWS, meaning it run successfully against real AWS as well</li>
+                <li><span class="coverage-report-tag-snapshot">Snapshot Tested</span> this is a <a href="/contributing/parity-testing/">snapshot parity test</a>, meaning the responses are validated against AWS</li>
+            </ul>
+        </ul>
+</ul>
+</p>
+<br/>
+
+{{ range $op, $details_list := $.details }}
+<div class="card" >
+    <h3 class="card-header" id="{{ lower $op }}" style="scroll-margin-top: 5rem;">{{ $op }}</h3>
+    <div class="card-body">
+        {{ range $parameters, $detail := $details_list }}
+        <a href="#howtoread" title="how to interpret this data">Parameters: {{ $parameters }} </a>
+            <ul>
+            {{ with $ls_community := $detail.ls_community }}
+                <li>LocalStack Community</li>
+                {{ partial "coverage/coverage_details_test" $ls_community }}
+            {{ end }}
+            {{ with $ls_pro := $detail.ls_pro }}
+                <li>LocalStack Pro</li>
+                {{ partial "coverage/coverage_details_test" $ls_pro }}
+            {{ end }}
+            </ul>
+        {{ end }}
+    </div>
+</div>
+<br/>
+{{ end }}

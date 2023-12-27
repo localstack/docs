@@ -2,7 +2,7 @@
 title: "Self-managed Kafka cluster"
 tags: ["kafka", "self-managed"]
 categories: ["LocalStack Pro"]
-weight: 11
+weight: 12
 description: >
   Using LocalStack Lambda with a self-managed Kafka cluster
 aliases:
@@ -30,13 +30,13 @@ $ awslocal lambda create-function \
     --function-name fun1 \
     --handler lambda.handler \
     --runtime python3.8 \
-    --role r1 \
+    --role arn:aws:iam::000000000000:role/lambda-role \
     --zip-file fileb://lambda.zip
 {
     "FunctionName": "fun1",
     "FunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:fun1",
     "Runtime": "python3.8",
-    "Role": "r1",
+    "Role": "arn:aws:iam::000000000000:role/lambda-role",
     "Handler": "lambda.handler",
     "CodeSize": 294,
     "Description": "",

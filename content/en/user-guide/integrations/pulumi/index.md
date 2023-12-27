@@ -72,7 +72,7 @@ Now edit your stack configuration `Pulumi.dev.yaml` as follows:
 config:
   aws:accessKey: test
   aws:secretKey: test
-  aws:s3ForcePathStyle: 'true'
+  aws:s3UsePathStyle: 'true'
   aws:skipCredentialsValidation: 'true'
   aws:skipRequestingAccountId: 'true'
   aws:endpoints:
@@ -453,8 +453,9 @@ You can configure the integration between pulumi-local and LocalStack by adding 
 | --------------------- | ------------- | ------------|
 | `PULUMI_CMD`          | pulumi        | The Pulumi command that is being delegated to |
 | `PULUMI_STACK_NAME`   | localstack    | The Pulumi stack name used for looking up the stack file (`Pulumi.<stack>.yaml`) |
-| `LOCALSTACK_HOSTNAME` | localhost     | The name of the host LocalStack is reachable at |
-| `EDGE_PORT`           | 4566          | The port LocalStack is reachable at |
+| `AWS_ENDPOINT_URL`    | -             |Hostname and port of the target LocalStack instance |
+| `LOCALSTACK_HOSTNAME` | localhost     | **(Deprecated)** The name of the host LocalStack is reachable at |
+| `EDGE_PORT`           | 4566          | **(Deprecated)** The port LocalStack is reachable at |
 | `USE_SSL`             | 0             | A truthy (`1`, `true`) string that indicates whether to use SSL when connecting to LocalStack |
 
 

@@ -5,6 +5,21 @@ weight: 4
 description: >
   Host a static website using a Simple Storage Service (S3) bucket to serve static content by provisioning the infrastructure using Terraform in LocalStack. Learn how to configure S3 buckets locally for testing and integration, and make use of LocalStack's S3 API & `tflocal` CLI to provision infrastructure locally.
 type: tutorials
+teaser: ""
+services:
+- s3
+platform:
+- html
+deployment:
+- terraform
+tags:
+- S3
+- Terraform
+- S3-Website
+- Static-Website
+- tflocal CLI
+pro: false
+leadimage: "s3-static-website-terraform-featured-image.png"
 ---
 
 [AWS Simple Storage Service (S3)](https://aws.amazon.com/s3/) is a proprietary object storage solution that can store an unlimited number of objects for many use cases. S3 is a highly scalable, durable and reliable service that we can use for various use cases: hosting a static site, handling big data analytics, managing application logs, storing web assets and much more!
@@ -27,7 +42,7 @@ For this tutorial, you will need:
 
 We will create a simple static website using plain HTML to get started. To create a static website deployed over S3, we need to create an index document and a custom error document. We will name our index document `index.html` and our error document `error.html`. Optionally, you can create a folder called `assets` to store images and other assets.
 
-Let us create a directory named `s3-static-website-localstack` and a sub-directory named `www` to store our static website files. If you don't have an `index.html` file, you can use the following code to create one inside the `www` directory:
+Let's create a directory named `s3-static-website-localstack` where we'll store our static website files. If you don't have an `index.html` file, you can use the following code to create one:
 
 ```html
 <!DOCTYPE html>
@@ -43,7 +58,7 @@ Let us create a directory named `s3-static-website-localstack` and a sub-directo
 </html>
 ```
 
-S3 will serve this file when a user visits the root URL of your static website, serving as the default page. In a similar fashion, you can configure a custom error document that contains a user-friendly error message. Let us create a file named `error.html` in the `www` directory and add the following code:
+S3 will serve this file when a user visits the root URL of your static website, serving as the default page. In a similar fashion, you can configure a custom error document that contains a user-friendly error message. Let's create a file named `error.html` and add the following code:
 
 ```html
 <!DOCTYPE html>
@@ -62,13 +77,13 @@ S3 will return the above file content only for HTTP 4XX error codes. Some browse
 
 ## Hosting a static website using S3
 
-To create a static website using S3, we need to create a bucket, enable static website hosting, and upload the files to the bucket. We will use the `awslocal` CLI for these operations. Let us navigate to the root directory of our project and create a bucket named `testwebsite` using LocalStack's S3 API:
+To create a static website using S3, we need to create a bucket, enable static website hosting, and upload the files to the bucket. We will use the `awslocal` CLI for these operations. Navigate to the root directory of the project and create a bucket named `testwebsite` using LocalStack's S3 API:
 
 {{< command >}}
 $ awslocal s3api create-bucket --bucket testwebsite
 {{< / command >}}
 
-With the bucket created, we can now attach a policy to it to allow public access and its contents. Let us create a file named `bucket_policy.json` in the root directory and add the following code:
+With the bucket created, we can now attach a policy to it to allow public access and its contents. Let's create a file named `bucket_policy.json` in the root directory and add the following code:
 
 ```json
 {
@@ -85,7 +100,7 @@ With the bucket created, we can now attach a policy to it to allow public access
 }
 ```
 
-Let us now attach the policy to the bucket:
+Let's now attach the policy to the bucket:
 
 {{< command >}}
 $ awslocal s3api put-bucket-policy --bucket testwebsite --policy file://bucket_policy.json
@@ -97,10 +112,10 @@ With the policy attached, we can now sync the contents of our root directory to 
 $ awslocal s3 sync ./ s3://testwebsite
 {{< / command >}}
 
-Let us now enable static website hosting on the bucket and configure the index and error documents:
+We'll now enable static website hosting on the bucket and configure the index and error documents:
 
 {{< command >}}
-$ awslocal s3 website s3://testwebsite/ --index-document www/index.html --error-document www/error.html
+$ awslocal s3 website s3://testwebsite/ --index-document index.html --error-document error.html
 {{< / command >}}
 
 If you are deploying a static website using S3 on real AWS cloud, your S3 website endpoint will follow one of these two formats:
@@ -242,12 +257,12 @@ resource "aws_s3_bucket_policy" "s3_bucket" {
 }
 ```
 
-In the above code, we are setting the ACL of the bucket to `public-read` and setting the bucket policy to allow public access to the bucket. Pick up an appropriate policy based on your use case. Let us now use the `aws_s3_object` resource to upload the files to the bucket. Add the following code to the `main.tf` file:
+In the above code, we are setting the ACL of the bucket to `public-read` and setting the bucket policy to allow public access to the bucket. Pick up an appropriate policy based on your use case. Let's use the `aws_s3_object` resource to upload the files to the bucket. Add the following code to the `main.tf` file:
 
 ```hcl
 resource "aws_s3_object" "object_www" {
   depends_on   = [aws_s3_bucket.s3_bucket]
-  for_each     = fileset("${path.root}", "www/*.html")
+  for_each     = fileset("${path.root}", "*.html")
   bucket       = var.bucket_name
   key          = basename(each.value)
   source       = each.value
@@ -257,7 +272,7 @@ resource "aws_s3_object" "object_www" {
 }
 ```
 
-The above code uploads the files from the `www` directory to the bucket. We are also setting the ACL of the files to `public-read`. Optionally, if you have static assets like images, CSS, and JavaScript files, you can upload them to the bucket using the same `aws_s3_bucket_object` resource by adding the following code to the `main.tf` file:
+The above code uploads all our html files to the bucket. We are also setting the ACL of the files to `public-read`. Optionally, if you have static assets like images, CSS, and JavaScript files, you can upload them to the bucket using the same `aws_s3_bucket_object` resource by adding the following code to the `main.tf` file:
 
 ```hcl
 resource "aws_s3_object" "object_assets" {
@@ -317,4 +332,6 @@ $ tflocal apply
 
 In this tutorial, we have seen how to use LocalStack to create an S3 bucket and configure it to serve a static website. We have also seen how you can use Terraform to provision AWS infrastructure in an emulated local environment using LocalStack. You can use the [LocalStack App](https://app.localstack.cloud) to view the created buckets and files on the LocalStack Resource dashboard for S3 and upload more files or perform other operations on the bucket. Using LocalStack, you can perform various operations using emulated S3 buckets and other AWS services without creating any real AWS resources.
 
-The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website). Further documentation for S3 is available on our [S3 documentation]({{<ref "s3" >}}).
+The code for this tutorial can be found in our [LocalStack Terraform samples over GitHub](https://github.com/localstack/localstack-terraform-samples/tree/master/s3-static-website).
+Please make sure to adjust the paths for the html files in `main.tf`.
+Further documentation for S3 is available on our [S3 documentation]({{<ref "user-guide/aws/s3" >}}).

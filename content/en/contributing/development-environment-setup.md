@@ -17,8 +17,7 @@ Before you get started with contributing to LocalStack, make sure you’ve famil
 
 You will need the following tools for the local development of LocalStack.
 
-* [Python 3.10+](https://www.python.org/downloads/)
-* [Sasl](https://packages.debian.org/buster/libsasl2-2)
+* [Python 3.11+](https://www.python.org/downloads/)
 * `pip`
 * [`virtualenv`](https://pypi.org/project/virtualenv/)
 * [OpenJDK](https://openjdk.org/install/)
@@ -74,4 +73,3 @@ $ make docker-build
 * If `virtualenv` chooses system python installations before your pyenv installations, manually initialize `virtualenv` before running `make install`: `virtualenv -p ~/.pyenv/shims/python3.10 .venv` .
 * Terraform needs version <0.14 to work currently. Use `tfenv` (<https://github.com/tfutils/tfenv>) to manage terraform versions comfortable. Quick start: `tfenv install 0.13.7 && tfenv use 0.13.7`
 * Set env variable `LS_LOG='trace'` to print every `http` request sent to localstack and their responses. It is useful for debugging certain issues.
-* As per dev guide, it requires `libsasl2-dev`. The Arch based Distro equivalent is `libsasl`.

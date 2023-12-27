@@ -34,7 +34,7 @@ body > header {
             margin-top: 0 !important;
             height: auto;
             @media (max-width: 991.98px) {
-                .navbar-nav { 
+                .navbar-nav {
                     padding-bottom: 0 !important;
                 }
             }
@@ -167,6 +167,14 @@ body > header {
         background-image: url("/images/understanding.svg");
     }
 
+    & .card-tutorials .card-body {
+        background-image: url("/images/understanding.svg");
+    }
+
+    & .card-applications .card-body {
+        background-image: url("/images/aws.svg");
+    }
+
     & .card-title i {
         font-size: 85%;
     }
@@ -247,7 +255,7 @@ footer.footer-localstack {
 
 table {
     @extend .table-striped;
-    
+
     @extend .table-responsive;
 
     @extend .table;
@@ -255,14 +263,126 @@ table {
 
 @import "components/details";
 
-.coverage-report table tr td {
-    min-width: 20em;
+.coverage-report table thead,
+table tfoot {
+  position: sticky;
 }
 
-.coverage-report table .collapsing {
-    transition: none !important;
+.coverage-report table thead {
+  inset-block-start: 0;
+}
+
+.coverage-report table thead tr th {
+    border: 0px;
+}
+
+.coverage-report table thead tr {
+    // sticky header
+    background-color: white;
+    left: 0;
+    position: sticky;
+    z-index: 9999;
+}
+
+.coverage-report-header-2 {
+    background-color: rgba($blue-dark, .1);
+}
+
+.coverage-report-header-1 {
+    background-color: rgba($blue-dark, .2);
+}
+
+.coverage-operation-not-implemented {
+    color: $gray-500;
+}
+
+.coverage-operation-details-icon {
+    text-align: center;
+    color: rgba(100%, 0%, 0%, 0);
+
+}
+
+.coverage-operation-details-icon-unavail{
+    @extend .coverage-operation-details-icon;
+    text-shadow: 0 0 0 $gray-400;
+    font-size: 0.9em;
+}
+
+.coverage-shadow-overlay-green {
+    @extend .coverage-operation-details-icon;
+    text-shadow: 0 0 0 $lighter-green;
+}
+
+.coverage-report-tag {
+    border-radius: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.coverage-report-tag-aws-validated {
+    @extend .coverage-report-tag;
+    color: white;
+    background-color: $lighter-green;
+}
+
+.coverage-report-tag-snapshot {
+    @extend .coverage-report-tag;
+    color: white;
+    background-color: $green;
+}
+
+.coverage-report-tag-snapshot-partial {
+    @extend .coverage-report-tag;
+    color: white;
+    background-color: $dark-green;
+}
+
+.coverage-report-tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted $black; /* If you want dots under the hoverable text */
   }
 
+  /* Tooltip text */
+.coverage-report-tooltip .coverage-report-tooltiptext {
+    visibility: hidden;
+    background-color: $black;
+    color: #fff;
+    text-align: left;
+    padding: 5px;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+  }
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.coverage-report-tooltip:hover .coverage-report-tooltiptext {
+    visibility: visible;
+}
+
+.coverage-report-details-test li:before {
+    content: "\2714";
+    font-size: 0.8em;
+    padding-right: 5px;
+    color: rgba(100%, 0%, 0%, 0);
+    text-shadow: 0 0 0 #00ad00;
+}
+
+.coverage-report-details-test {
+    list-style: none;
+    padding: 0px;
+}
+
+.coverage-report-http-code {
+    color: $gray-600;
+    margin-left: 20px;
+    font-size: 0.9em;
+}
 
 #td-sidebar-menu {
     padding-top: 0.5rem
@@ -281,12 +401,21 @@ table {
     }
 }
 
-.td-breadcrumbs__single { 
+.td-breadcrumbs__single {
     visibility: hidden !important
 }
 
 #m-tutorials-li {
     .ul-2 {
+        display: none !important
+    }
+    label:before {
+        display: none !important
+    }
+}
+
+#m-referencescoverage-li {
+    .ul-3 {
         display: none !important
     }
     label:before {
@@ -306,6 +435,137 @@ table {
     }
 }
 
+#coverage-page + .section-index {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(20rem, 1fr) );
+    > .panel-line {
+            position: absolute;
+    }
+    > .entry {
+        border: 1px solid $primary;
+        padding: 1rem;
+        margin: 0.5rem;
+        > p {
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+#serviceNameCoverageInput {
+    width: 99%;
+    padding: 1rem;
+    margin: 0.5rem;
+    border: 2px solid $primary;
+    color: $primary;
+    font-size: 110%;
+    background-color: rgba($primary, .1);
+    border-radius: 2rem;
+}
+
+#serviceNameCoverageInput:focus{
+    background-color: rgba($primary, .2);
+    border: 3px solid $primary;
+    outline: none !important;
+}
+
 .feedback--title {
     margin-top: 3rem;
 }
+
+.no-text-decoration,.no-text-decoration:hover{
+  text-decoration: none !important;
+}
+.tooltip.show {
+  opacity: 1;
+}
+
+.filters-group{
+  margin-bottom: 25px;
+  h6{
+    font-weight: 600;
+  }
+  .custom-control{
+    &:not(:first-child){
+      margin-top: 4px;
+    }
+  }
+}
+
+.min-height-100vh{
+  min-height: 100vh;
+}
+
+.clear-filters-container{
+  display: flex;
+  font-size: 0.75rem;
+  color: $body-color;
+  transition: .3s ease;
+  &:hover{
+    color: $primary;
+  }
+  i{
+    font-size: 1rem;
+  }
+}
+
+.application-card{
+  .application-icon{
+    border-radius: 4px;
+    max-width: 30px;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+}
+
+.reading-time-in-card{
+  .reading-time{
+    margin-bottom: 0;
+  }
+}
+.td-content, body{
+  .code-container {
+    .code-copy-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: rgba(#2b1a5c, 0.8);
+      padding: 4px 10px;
+      color: #fff !important;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      opacity: 0;
+      &:hover,
+      &:active {
+        transition: 0.3s ease;
+        background-color: rgba(#2b1a5c, 1);
+      }
+      &:active {
+        transform: none;
+      }
+      i {
+        margin-right: 5px;
+      }
+    }
+    &:hover {
+      .code-copy-button {
+        transition: 0.3s ease;
+        opacity: 1;
+      }
+    }
+  }
+}
+.disable-copy-btn {
+  .code-copy-button{
+    display: none !important;
+  }
+}
+
+.disable-copy{
+  display: inline;
+}
+
+@import "modules/academy-styles.scss";

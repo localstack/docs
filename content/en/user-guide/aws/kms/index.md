@@ -1,74 +1,47 @@
 ---
 title: "Key Management Service (KMS)"
 linkTitle: "Key Management Service (KMS)"
-categories: ["LocalStack Community"]
 description: >
-  Get started with Amazon Key Management Service (KMS) on LocalStack
-aliases:
-  - /aws/kms/
+  Get started with Key Management Service (KMS) on LocalStack
 ---
 
-Key Management Service (KMS) is mainly about
-- Creation and management of cryptographic keys.
-- Use of these keys to encrypt / decrypt data or to sign messages and to verify signatures for signed ones.
+## Introduction
 
-We advise to consult [the official AWS KMS documentation](https://docs.aws.amazon.com/kms/latest/APIReference/Welcome.html) on all KMS operations.
+Key Management Service (KMS) is a managed service that allows users to handle encryption keys within the Amazon Web Services ecosystem. KMS allows users to create, control, and utilize keys to encrypt and decrypt data, as well as to sign and verify messages. KMS allows you to create, delete, list, and update aliases, friendly names for your KMS keys, and tag them for identification and automation. You can check [the official AWS documentation](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html) to understand the basic terms and concepts used in the KMS.
 
-Keys in KMS roughly fall into the 3 categories:
-- **Asymmetric encryption keys**: keys, that hold a pair of a private and a public key. Asymmetric keys can be used either for data encryption and decryption with [Encrypt](https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html) / [Decrypt](https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) or for creation and verification of digital signatures for messages with [Sign](https://docs.aws.amazon.com/kms/latest/APIReference/API_Sign.html) / [Verify](https://docs.aws.amazon.com/kms/latest/APIReference/API_Verify.html) operations. AWS does not allow the same asymmetric key to be used for both pairs of operations - when you create such a key, you have to specify in its [KeyUsage](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html#KMS-CreateKey-request-KeyUsage) parameter, which pair of operations the key will support.
-- **Symmetric encryption keys**: these keys consist of just one key. Symmetric keys **can not** be used to sign and to verify messages. They are only used to encrypt and to decrypt data.
-- **Hash-Based Message Authentication Code (HMAC) keys**: a special case of symmetric keys that are only used in the creation and verification of message authentication codes (MACs) with [GenerateMac](https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateMac.html) / [VerifyMac](https://docs.aws.amazon.com/kms/latest/APIReference/API_VerifyMac.html) operations. You can read more about the use of HMAC keys [on the official AWS page](https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html).
+LocalStack supports Resource Groups via the Community offering, allowing you to use the KMS APIs in your local environment to create, edit, and view symmetric and asymmetric KMS keys, including HMAC keys. The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_kms/), which provides information on the extent of KMS's integration with LocalStack.
 
-You can check [the official AWS reference page](https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-compare.html) to see what other operations are supported for each type of keys. When you know what operations you require, this reference can help to figure out what key types are suitable for your goals.
+## Getting started
 
-## Tutorial
+This guide is designed for users new to KMS and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local) wrapper script.
 
-Let's create a simple symmetric encryption key and use it to encrypt / decrypt something.
+Start your LocalStack container using your preferred method. We will demonstrate how to create a simple symmetric encryption key and use it to encrypt/decrypt data.
 
-A new key can be created in KMS with the following command:
+### Create a key
+
+To generate a new key within the KMS, you can use the [`CreateKey`](https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html) API. Execute the following command to create a new key:
 
 {{< command >}}
 $ awslocal kms create-key
 {{</ command >}}
 
-By default, this command creates a symmetric encryption key, so we do not even have to supply any additional arguments. In the output we want to pay attention to the ID of the newly created key, `010a4301-4205-4df8-ae52-4c2895d47326` in this case:
+By default, this command generates a symmetric encryption key, eliminating the need for any additional arguments. You can take a look at the `KeyId` of the freshly generated key in the output, and save it for future use.
 
-```sh
-{
-    "KeyMetadata": {
-        "AWSAccountId": "000000000000",
-        "KeyId": "010a4301-4205-4df8-ae52-4c2895d47326",
-        "Arn": "arn:aws:kms:us-east-1:000000000000:key/010a4301-4205-4df8-ae52-4c2895d47326",
-        "CreationDate": 1665432947.493433,
-        "Enabled": true,
-        "Description": "",
-        "KeyUsage": "ENCRYPT_DECRYPT",
-        "KeyState": "Enabled",
-        "Origin": "AWS_KMS",
-        "KeyManager": "CUSTOMER",
-        "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
-        "KeySpec": "SYMMETRIC_DEFAULT",
-        "EncryptionAlgorithms": [
-            "SYMMETRIC_DEFAULT"
-        ],
-        "MultiRegion": false
-    }
-}
-```
-
-If we lose the ID, we can always list IDs and [Amazon Resource Identifiers](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) (ARNs) of all the available keys this way:
+In case the key ID is misplaced, it is possible to retrieve a comprehensive list of IDs and [Amazon Resource Names](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) (ARNs) for all available keys through the following command:
 
 {{< command >}}
 $ awslocal kms list-keys
 {{</ command >}}
 
-If necessary, we can also check all the details about a key with a given key ID or ARN like this:
+Additionally, if needed, you can obtain extensive details about a specific key by providing its key ID or ARN using the subsequent command:
 
 {{< command >}}
-$ awslocal kms describe-key --key-id 010a4301-4205-4df8-ae52-4c2895d47326
+$ awslocal kms describe-key --key-id <KEY_ID>
 {{</ command >}}
 
-We can use the key now to encrypt something. Let's say, "*some important stuff*":
+### Encrypt the data
+
+You can now leverage the generated key for encryption purposes. For instance, let's consider encrypting "_some important stuff_". To do so, you can use the [`Encrypt`](https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html) API. Execute the following command to encrypt the data:
 
 {{< command >}}
 $ awslocal kms encrypt \
@@ -79,51 +52,85 @@ $ awslocal kms encrypt \
   | base64 --decode > my_encrypted_data
 {{</ command >}}
 
-Why do we require such a complicated command? The `Encrypt` Operation itself looks like this:
+You will notice that a new file named `my_encrypted_data` has been created in your current directory. This file contains the encrypted data, which can be decrypted using the same key.
 
-{{< command >}}
-$ awslocal kms encrypt \
-      --key-id 010a4301-4205-4df8-ae52-4c2895d47326 \
-      --plaintext "some important stuff"
-{{</ command >}}
+### Decrypt the data
 
-Its output has the following look:
+To decrypt the data, you can use the [`Decrypt`](https://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) API. You don't need to specify the `KEY_ID` while decrypting the file, since AWS includes the Key ID into the encrypted data. However, with asymmetric keys the `KEY_ID` has to be specified.
 
-```sh
-{
-    "CiphertextBlob": "MDA4NDk4ZDYtMGU1ZS00NjU3LWEyZTQtMDliYTcwNDgyMmJkxw1eaLVUeUZA7bZzp+k7VAAAAAAAAAAAAAAAAAAAAAAetG9/5Znpw83/4xhwObc6Fc2B73y1ZvIigwahKopT0Q==",
-    "KeyId": "arn:aws:kms:us-east-1:000000000000:key/010a4301-4205-4df8-ae52-4c2895d47326",
-    "EncryptionAlgorithm": "SYMMETRIC_DEFAULT"
-}
-```
-
-The value of the `CiphertextBlob` field is a Base64-encoded result of the encryption of our plaintext. To decrypt this with KMS, we must first get rid of this Base64-encoding. So to our `Encrypt` operation we add the `output` parameter, requesting the output to be in the text form instead of the default JSON. We also supply the `query` parameter, so the output only contains the value of the specified `CiphertextBlob` field. Then we feed the result to the `base64` tool, asking it to remove the Base64 encoding, producing a binary output. We save that output to a file for future use.
-
-{{< alert title="Warning" color="warning">}}
-Careful with the `CiphertextBlob` value for the `query` parameter - the AWS CLI doesn't check if the requested field is even if the output, so if you have a typo, the command will succeed, but the data sent to `base64` is going to be just a word `None`. It will lead to unexpected results later.
-{{< /alert >}}
-
-When we want to, we can decrypt our file using the same KMS key:
+Execute the following command to decrypt the data:
 
 {{< command >}}
 $ awslocal kms decrypt \
       --ciphertext-blob fileb://my_encrypted_data \
       --output text \
-      --query Plaintext
+      --query Plaintext \
   | base64 --decode
 {{</ command >}}
 
-Here we ask KMS to decrypt the contents of the binary file created during our previous `Encrypt` call. We do not have to specify the `key-id` while decrypting our file - when encrypting something with a symmetric key, AWS includes the key ID into the encrypted data, so can figure out itself which key to use for decryption. With asymmetric keys the `key-id` has to be specified, though.
-
-As with the previous `Encrypt` call, we have to get rid of the Base64-encoding to actually get our data, so we use the `output` and `query` parameters along with the `base64` tool here as well. If everything went fine, the output is going to be our original text:
+Similar to the previous `Encrypt` operation, to retrieve the actual data, it's necessary to decode the Base64-encoded output. To achieve this, employ the `output` and `query` parameters along with the `base64` tool as before. Upon successful execution, the output will correspond to our original text:
 
 ```sh
 some important stuff
 ```
 
-## Current differences between LocalStack KMS and AWS KMS
+## Resource Browser
 
-1. LocalStack KMS always performs symmetric key encryption - even if the requested key is an asymmetric one. LocalStack also has a format of encrypted data different from the one used in AWS. This would cause your decryption to fail if you create a key yourself outside LocalStack KMS, import it to KMS with the [ImportKeyMaterial](https://docs.aws.amazon.com/kms/latest/APIReference/API_ImportKeyMaterial.html) operation, encrypt something with LocalStack KMS and then try to decrypt it outside of LocalStack with your copy of the key. Less exotic setups should be fine. 
-2. In AWS KMS, keys have many possible [states](https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html). In LocalStack KMS, only `Enabled`, `Disabled` and `PendingDeletion` states exist.
-3. LocalStack KMS supports [multi-region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html), but, unlike in AWS KMS, multi-region key replicas are not synchronized with their primary key. So if you create a replica of a multi-regional key and then update some settings for the primary key, the replica won't get automatically updated.
-4. AWS KMS has [aliases](https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html), that are created automatically for KMS keys used by services like, for example, S3. While LocalStack supports those pre-created aliases, they are getting created on the first attempt to access such an alias and are not visible before such an attempt.   
+The LocalStack Web Application provides a Resource Browser for managing KMS keys. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **KMS** under the **Security Identity Compliance** section.
+
+<img src="kms-resource-browser.png" alt="KMS Resource Browser" title="KMS Resource Browser" width="900" />
+<br>
+<br>
+The Resource Browser allows you to perform the following actions:
+
+- **Create Key**: Create a new KMS key by specifying the **Policy**, **Key Usage**, **Tags**, **Multi Region**, **Customer Master Key Spec**, and more.
+- **Edit Key**: Edit an existing KMS key by specifying the **Description**, after clicking the key in the list and clicking **EDIT KEY**.
+- **View Key**: View the details of an existing KMS key by clicking the key in the list.
+- **Enable & Disable Key**: Select any listed keys to enable or disable them by clicking the **Actions** button and select **Enable Selected** or **Disable Selected**.
+- **Delete Key**: Select any listed keys to delete them by clicking the **Actions** button and selecting **Schedule Deletion**.
+
+## Custom IDs for KMS keys via tags
+
+You can assign custom IDs to KMS keys using the `_custom_id_` tag during key creation. This can be useful to pre-seed a test environment and use a static `KeyId` for your keys.
+
+Below is a simple example to create a key with a custom `KeyId` (note that the `KeyId` should have the format of a UUID):
+
+{{< command >}}
+$ awslocal kms create-key --tags '[{"TagKey":"_custom_id_","TagValue":"00000000-0000-0000-0000-000000000001"}]'
+{
+    "KeyMetadata": {
+        "AWSAccountId": "000000000000",
+        "KeyId": "00000000-0000-0000-0000-000000000001",
+    ....
+}
+{{< / command >}}
+
+## Limitations
+
+### Encryption data format
+
+In LocalStack's KMS implementation, the encryption process is uniformly symmetric, even when an asymmetric key is requested. Furthermore, LocalStack utilizes an encrypted data format distinct from that employed by AWS.
+
+This could lead to decryption failures if a key is manually generated outside the local KMS environment, imported to KMS using the [ImportKeyMaterial](https://docs.aws.amazon.com/kms/latest/APIReference/API_ImportKeyMaterial.html) API, utilized for encryption within local KMS, and later decryption is attempted externally using the self-generated key. However, conventional setups are likely to function seamlessly.
+
+### Key states
+
+In AWS KMS, cryptographic keys exhibit [multiple states](https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html). However, LocalStack's KMS implementation provides only a subset of these states
+
+- `Enabled`
+- `Disabled`
+- `Creating`
+- `PendingImport`
+- `PendingDeletion`
+
+### Multi-region keys 
+
+LocalStack's KMS implementation is equipped to facilitate [multi-region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html), but there's a distinct behavior compared to AWS KMS. Unlike AWS KMS, the replication of multi-region key replicas in LocalStack KMS isn't automatically synchronized with their corresponding primary key. Consequently, adjustments made to the primary key's settings won't propagate automatically to the replica.
+
+### Key aliases 
+
+While AWS KMS conveniently establishes [aliases](https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html), LocalStack follows suit by supporting these pre-configured aliases. However, it's important to note that in LocalStack, these aliases come into picture after the initial access attempt. Until that point, they are not visible.
+
+### Key specs 
+
+In AWS KMS, [SM2](https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-sm:~:text=the%20message%20digest.-,SM2%20key%20spec%20(China%20Regions%20only),-The%20SM2%20key) is a supported key spec for asymmetric keys. However, LocalStack's KMS implementation doesn't support this key spec.

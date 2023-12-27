@@ -1,8 +1,8 @@
 ---
 title: "Podman"
-weight: 30
+weight: 50
 description: >
-  Describes how to run LocalStack inside Podman.
+  Running LocalStack inside Podman
 tags: ["podman", "docker"]
 aliases:
   - /localstack/podman/
@@ -22,7 +22,7 @@ From the Podman docs:
 
 To run `localstack`, simply aliasing `alias docker=podman` is not enough, for the following reasons:
 - `localstack` is using [docker-py](https://pypi.org/project/docker/) which requires a connection to `/var/run/docker.sock`
-- `LAMBDA_EXECUTOR=docker` requires mounting `/var/run/docker.sock` into the container
+- Lambda requires mounting the Docker socket `/var/run/docker.sock` into the container (see [Lambda providers]({{< ref "user-guide/aws/lambda" >}})).
 
 Here are several options on running LocalStack using podman:
 

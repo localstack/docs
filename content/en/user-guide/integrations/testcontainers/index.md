@@ -40,7 +40,7 @@ with LocalStack.
 
 {{< tabpane >}}
 {{< tab header="NuGet" lang="shell">}}
-dotnet add package Testcontainers --version 2.4.0
+dotnet add package Testcontainers.LocalStack --version 3.0.0
 {{< /tab >}}
 {{< tab header="Go" lang="go">}}
 go get github.com/testcontainers/testcontainers-go/modules/localstack
@@ -49,12 +49,12 @@ go get github.com/testcontainers/testcontainers-go/modules/localstack
 <dependency>
     <groupId>org.testcontainers</groupId>
     <artifactId>localstack</artifactId>
-    <version>1.17.6</version>
+    <version>1.18.0</version>
     <scope>test</scope>
 </dependency>
 {{< /tab >}}
 {{< tab header="Java (Gradle)" lang="gradle">}}
-testImplementation 'org.testcontainers:localstack:1.17.6'
+testImplementation 'org.testcontainers:localstack:1.18.0'
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -62,23 +62,7 @@ testImplementation 'org.testcontainers:localstack:1.17.6'
 
 {{< tabpane >}}
 {{< tab header=".NET" lang="csharp">}}
-/* The current released version of Testcontainers for .NET does not include a
-LocalStack module. However, developers who want to use Testcontainers with
-LocalStack should not be discouraged, as the Testcontainers team has already
-developed a LocalStack module that will be included in the next release. In the
-meantime, developers can still use Testcontainers' generic builder to create a
-LocalStack container. */
-
-const string localStackImage = "localstack/localstack:1.4.0";
-
-const ushort localStackPort = 4566
-
-var localStackContainer = new ContainerBuilder()
-    .WithImage(localStackImage)
-    .WithPortBinding(localStackPort, true)
-    .WithWaitStrategy(Wait.ForUnixContainer().UntilHttpRequestIsSucceeded(request =>
-        request.ForPath("/_localstack/health").ForPort(localStackPort)))
-    .Build();
+var localStackContainer = new LocalStackBuilder().Build();
 
 await localStackContainer.StartAsync()
     .ConfigureAwait(false);
@@ -87,8 +71,7 @@ await localStackContainer.StartAsync()
 container, err := localstack.StartContainer(ctx, localstack.NoopOverrideContainerRequest)
 {{< /tab >}}
 {{< tab header="Java" lang="java">}}
-LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:1.4.0")
-    .withServices(LocalStackContainer.Service.S3);
+LocalStackContainer localstack = new LocalStackContainer(DockerImageName.parse("localstack/localstack:2.0.0"));
 {{< /tab >}}
 {{< /tabpane >}}
 
@@ -97,7 +80,7 @@ LocalStackContainer localstack = new LocalStackContainer("localstack/localstack:
 {{< tabpane >}}
 {{< tab header=".NET" lang="csharp">}}
 var config = new AmazonS3Config();
-config.ServiceURL = _localStackContainer.GetConnectionString();
+config.ServiceURL = localStackContainer.GetConnectionString();
 using var client = new AmazonS3Client(config);
 {{< /tab >}}
 {{< tab header="Go" lang="go">}}
@@ -145,7 +128,7 @@ func s3Client(ctx context.Context, l *localstack.LocalStackContainer) (*s3.Clien
 {{< /tab >}}
 {{< tab header="Java" lang="java">}}
 S3Client s3 = S3Client.builder()
-    .endpointOverride(localstack.getEndpointOverride(LocalStackContainer.Service.S3))
+    .endpointOverride(localstack.getEndpoint())
     .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(localstack.getAccessKey(), localstack.getSecretKey())))
     .region(Region.of(localstack.getRegion()))
     .build();
@@ -156,7 +139,7 @@ S3Client s3 = S3Client.builder()
 
 Some services like RDS require additional setup so that the correct port is exposed and accessible for the tests. The reserved ports on LocalStack are between `4510-4559`, depending on your use case you might need to expose several ports using `witExposedPorts`.
 
-Check the [pro-sample on how to use RDS with Testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample). 
+Check the [pro-sample on how to use RDS with Testcontainers for Java](https://github.com/localstack/localstack-pro-samples/tree/master/testcontainers-java-sample).
 
 The Testcontainer can be created like this:
 
@@ -166,10 +149,9 @@ The Testcontainer can be created like this:
   * In this sample we only map 5 ports, however, depending on your use case you may need to map ports up to 4559
 */
 @Rule
-public LocalStackContainer localstack = new LocalStackContainer(localstackImage)
+public LocalStackContainer localstack = new LocalStackContainer(DockerImageName("localstack/localstack:2.0.0"))
                                                     .withExposedPorts(4510, 4511, 4512, 4513, 4514) // TODO the port can have any value between 4510-4559, but LS starts from 4510
-                                                    .withEnv("LOCALSTACK_API_KEY", api_key) // TODO add your API key here
-                                                    .withServices(LocalStackContainer.EnabledService.named("rds"));
+                                                    .withEnv("LOCALSTACK_API_KEY", api_key); // TODO add your API key here
 
 ```
 

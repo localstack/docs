@@ -1,8 +1,8 @@
 ---
-title: "Initialization hooks"
-weight: 5
+title: "Initialization Hooks"
+weight: 50
 description: >
-  Write shell or Python scripts to customize or initialize your LocalStack instance.
+  Writing shell or Python scripts to customize or initialize your LocalStack instance
 aliases:
   - /localstack/init-hooks/
 ---
@@ -15,8 +15,8 @@ LocalStack has four well-known lifecycle phases or stages:
 * `READY`: LocalStack is ready to serve requests
 * `SHUTDOWN`: LocalStack is shutting down
 
-You can hook into each of these lifecycle phases using custom shell or python scripts.
-Each lifecycle phase has it's own directory in `/etc/localstack/init`.
+You can hook into each of these lifecycle phases using custom shell or Python scripts.
+Each lifecycle phase has its own directory in `/etc/localstack/init`.
 You can mount individual files, stage directories, or the entire init directory from your host into the container.
 
 ```plaintext
@@ -24,16 +24,16 @@ You can mount individual files, stage directories, or the entire init directory 
 └── localstack
     └── init
         ├── boot.d           <-- executed in the container before localstack starts
-        ├── ready.d          <-- executed when localstack becomes ready (currently equivalent to `/docker-entrypoint-initaws.d`)
+        ├── ready.d          <-- executed when localstack becomes ready
         ├── shutdown.d       <-- executed when localstack shuts down
         └── start.d          <-- executed when localstack starts up
 ```
 
-In these directories, you can put either executable shell scripts or python programs, which will be executed from within a Python process.
+In these directories, you can put either executable shell scripts or Python programs, which will be executed from within a Python process.
 All except `boot.d` will be run in the same Python interpreter as LocalStack, which gives additional ways of configuring/extending LocalStack.
 
 Currently, known script extensions are `.sh`, and `.py`.
-Shell scripts have to be executable.
+Shell scripts have to be executable, and have to have a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) (usually `#!/bin/bash`).
 
 A script can be in one of four states: `UNKNOWN`, `RUNNING`, `SUCCESSFUL`, `ERROR`.
 Scripts are by default in the `UNKNOWN` state once they have been discovered.
@@ -107,7 +107,7 @@ which returns either `true` or `false`.
 ## Usage example
 
 A common use case for init hooks is pre-seeding LocalStack with custom state.
-If you have more complex state, [Cloud Pods]({{< ref `cloud-pods` >}}) may be a good option to look into!
+If you have more complex state, [Cloud Pods]({{< ref `user-guide/cloud-pods` >}}) may be a good option to look into!
 But for simple state, for example if you want to have a certain S3 bucket or DynamoDB table created when starting LocalStack, init hooks can be very useful.
 
 To execute aws cli commands when LocalStack becomes ready,
@@ -129,13 +129,12 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
     image: localstack/localstack
     ports:
       - "127.0.0.1:4566:4566"
     environment:
       - DEBUG=1
-      - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
       - "/path/to/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh"  # ready hook
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
@@ -148,3 +147,23 @@ DOCKER_FLAGS='-v /path/to/init-aws.sh:/etc/localstack/init/ready.d/init-aws.sh' 
 {{< /tabpane >}}
 
 Another use for init hooks can be seen when [adding custom TLS certificates to LocalStack]({{< ref "custom-tls-certificates#custom-tls-certificates-with-init-hooks" >}}).
+
+## Troubleshooting
+If you are having issues with your initialization hooks not being executed, please perform the following checks:
+- Do the scripts have a known file extensions (`.sh` or `.py`)?
+  - If not, rename the files to the matching file extension.
+- Is the script marked as executable?
+  - If not, set the executable flag on the file (`chmod +x ...`).
+- If it's a shell script, does it have a shebang (e.g., `#!/bin/bash`) as the first line in the file?
+  - If not, add the shebang header (usually `#!/bin/bash`) on top of your script file.
+- Is the script being listed in the logs when running LocalStack with `DEBUG=1`?
+  - The detected scripts are logged like this:
+    ```
+    ...
+    Init scripts discovered: {BOOT: [], START: [], READY: [Script(path='/etc/localstack/init/ready.d/setup.sh', stage=READY, state=UNKNOWN)], SHUTDOWN: []}
+    ...
+    Running READY script /etc/localstack/init/ready.d/setup.sh
+    ...
+    ```
+  - If your script does not show up in the list of discovered init scripts, please check your Docker volume mount.
+    Most likely the scripts are not properly mounted into the Docker container.

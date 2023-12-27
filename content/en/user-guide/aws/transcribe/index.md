@@ -1,69 +1,49 @@
 ---
 title: "Transcribe"
 linkTitle: "Transcribe"
-categories: []
 description: Get started with Amazon Transcribe on LocalStack
-aliases:
-  - /aws/transcribe/
 ---
 
-LocalStack Community ships with an offline speech-to-text service powered by [Vosk](https://alphacephei.com/vosk/).
+## Introduction
 
-LocalStack requires an internet connection the first time a transcription job is created for a given language.
-This is to download and cache the language model.
-Subsequent transcriptions for the same language can be done offline.
-Language models are around 50 MiB each and saved to the cache directory (see [Filesystem Layout]({{< ref "filesystem" >}})).
+Transcribe is a service provided by Amazon Web Services (AWS) that offers automatic speech recognition (ASR) capabilities. It enables developers to convert spoken language into written text, making it valuable for a wide range of applications, from transcription services to voice analytics. 
 
-{{< alert title="Note" >}}
-This service has limited support for aarch64/Apple Silicon.
+LocalStack supports Transcribe via the Community offering, allowing you to use the Transcribe APIs for offline speech-to-text jobs in your local environment. The supported APIs are available on our [API Coverage Page](https://docs.localstack.cloud/references/coverage/coverage_transcribe/), which provides information on the extent of Transcribe integration with LocalStack.
+
+{{< alert title="Note">}}
+LocalStack's Transcribe relies on the offline speech-to-text service called [Vosk](https://alphacephei.com/vosk/). Therefore, LocalStack requires an internet connection during the initial creation of a transcription job for a specific language. This initial connection is required to download and cache the language model.
+
+Once the language model is cached, subsequent transcriptions for the same language can be performed offline. These language models typically have a size of around 50 MiB, and they are saved to the cache directory (for more details, refer to the [Filesystem Layout]({{< ref "filesystem" >}}) section).
 {{< /alert >}}
 
-## Supported Formats
+## Getting Started
 
-The following input media formats are supported:
+This guide is designed for users new to Transcribe and assumes basic knowledge of the AWS CLI and our [`awslocal`](https://github.com/localstack/awscli-local)  wrapper script.
 
-- Adaptive Multi-Rate (AMR)
-- Free Lossless Audio Codec (FLAC)
-- MPEG-1 Audio Layer-3 (MP3)
-- MPEG-4 Part 14 (MP4)
-- OGG
-- Matroska Video files (MKV)
-- Waveform Audio File Format (WAV)
+Start your LocalStack container using your preferred method. We will demonstrate how to create a transcription job and view the transcript in an S3 bucket using the AWS CLI.
 
-## Supported Languages
+{{< alert title="Note" >}}
+This service offers limited support for aarch64/Apple Silicon platforms.
 
-The following langauges and dialects are supported:
+If you encounter errors like `cannot load library *.so`, we recommend trying the AMD64 build of LocalStack as an alternative solution. Run the following command to pull the AMD64 build of LocalStack:
 
-| Language | Language Code |
-|----------|---------------|
-| German | `de-DE` |
-| English, British | `en-GB` |
-| English, Indian  | `en-IN` |
-| English, US | `en-US` |
-| Spanish | `es-ES` |
-| Farsi | `fa-IR` |
-| French | `fr-FR` |
-| Hindi | `hi-IN` |
-| Italian | `it-IT` |
-| Japan | `ja-JP` |
-| Dutch | `nl-NL` |
-| Portuguese | `pt-BR` |
-| Russian | `ru-RU` |
-| Turkish | `tr-TR` |
-| Vietnamese | `vi-VN` |
-| Chinese | `zh-CN` |
+{{< command >}}
+$ docker pull localstack/localstack:2.0.0 --platform amd64
+{{< /command >}}
+{{< /alert >}}
 
-## Transcribing Audio
+### Create an S3 bucket
 
-Create an S3 bucket and upload the audio file:
+You can create an S3 bucket using the [`mb`](https://docs.aws.amazon.com/cli/latest/reference/s3/mb.html) command. Run the following command to create a bucket named `foo` to upload a sample audio file named `example.wav`:
 
 {{< command >}}
 $ awslocal s3 mb s3://foo
-
 $ awslocal s3 cp ~/example.wav s3://foo/example.wav
 {{< / command >}}
 
-Create the transcription job:
+### Create a transcription job
+
+You can create a transcription job using the [`StartTranscriptionJob`](https://docs.aws.amazon.com/transcribe/latest/APIReference/API_StartTranscriptionJob.html) API. Run the following command to create a transcription job named `example` for the audio file `example.wav`:
 
 {{< command >}}
 $ awslocal transcribe start-transcription-job \
@@ -72,10 +52,11 @@ $ awslocal transcribe start-transcription-job \
     --language-code en-IN
 {{< / command >}}
 
-Jobs can be listed like so:
+You can list the transcription jobs using the [`ListTranscriptionJobs`](https://docs.aws.amazon.com/transcribe/latest/APIReference/API_ListTranscriptionJobs.html) API. Run the following command to list the transcription jobs:
 
 {{< command >}}
 $ awslocal transcribe list-transcription-jobs
+<disable-copy> 
 {
     "TranscriptionJobSummaries": [
         {
@@ -87,12 +68,16 @@ $ awslocal transcribe list-transcription-jobs
         }
     ]
 }
+</disable-copy>
 {{< / command >}}
 
-Once job is complete, the transcript can be retrieved from the S3 bucket:
+### View the transcript
+
+After the job is complete, the transcript can be retrieved from the S3 bucket using the [`GetTranscriptionJob`](https://docs.aws.amazon.com/transcribe/latest/APIReference/API_GetTranscriptionJob.html) API. Run the following command to get the transcript:
 
 {{< command >}}
 $ awslocal transcribe get-transcription-job --transcription-job example
+<disable-copy> 
 {
     "TranscriptionJob": {
         "TranscriptionJobName": "example",
@@ -110,9 +95,55 @@ $ awslocal transcribe get-transcription-job --transcription-job example
         "CompletionTime": "2022-08-17T14:04:57.400000+05:30",
     }
 }
-
+</disable-copy>
 $ awslocal s3 cp s3://foo/7844aaa5.json .
-
 $ jq .results.transcripts[0].transcript 7844aaa5.json
+<disable-copy>
 "it is just a question of getting rid of the illusion that we are separate from nature"
+</disable-copy>
 {{< / command >}}
+
+## Examples
+
+The following code snippets and sample applications provide practical examples of how to use Transcribe in LocalStack for various use cases:
+
+- [Serverless Transcription App using Transcribe, S3, Lambda, SQS, SES](https://github.com/localstack-samples/sample-serverless-transcribe)
+
+## Limitations
+
+Currently, our Transcribe emulation offers only supported formats and languages.
+
+### Supported Formats
+
+The following input media formats are supported:
+
+- Adaptive Multi-Rate (AMR)
+- Free Lossless Audio Codec (FLAC)
+- MPEG-1 Audio Layer-3 (MP3)
+- MPEG-4 Part 14 (MP4)
+- OGG
+- Matroska Video files (MKV)
+- Waveform Audio File Format (WAV)
+
+### Supported Languages
+
+The following langauges and dialects are supported:
+
+| Language         | Language Code |
+| ---------------- | ------------- |
+| German           | `de-DE`       |
+| English, British | `en-GB`       |
+| English, Indian  | `en-IN`       |
+| English, US      | `en-US`       |
+| Spanish          | `es-ES`       |
+| Farsi            | `fa-IR`       |
+| French           | `fr-FR`       |
+| Hindi            | `hi-IN`       |
+| Italian          | `it-IT`       |
+| Japan            | `ja-JP`       |
+| Dutch            | `nl-NL`       |
+| Portuguese       | `pt-BR`       |
+| Russian          | `ru-RU`       |
+| Turkish          | `tr-TR`       |
+| Vietnamese       | `vi-VN`       |
+| Chinese          | `zh-CN`       |

@@ -14,7 +14,7 @@ LocalStack has an extensive set of [integration tests](https://github.com/locals
 The following guiding principles apply to writing integration tests:
 
 -   Tests should pass when running against AWS:
-    -   Don't make assumptions about the time it takes to create resources. If you do asserts after creating resources, use `poll_condition` or `retry` to wait for the resource to be created.
+    -   Don't make assumptions about the time it takes to create resources. If you do asserts after creating resources, use `poll_condition`, `retry` or one of the waiters included in the boto3 library to wait for the resource to be created.
     -   Make sure your tests always clean up AWS resources, even if your test fails! Prefer existing factory fixtures (like `sqs_create_queue`). Introduce try/finally blocks if necessary.
 -   Tests should be runnable concurrently:
     -   Protect your tests against side effects. Example: never assert on global state that could be modified by a concurrently running test (like `assert len(sqs.list_queues()) == 1`; may not hold!).
@@ -28,7 +28,9 @@ The following guiding principles apply to writing integration tests:
 We use [pytest](https://docs.pytest.org) for our testing framework.
 Older tests were written using the unittest framework, but its use is discouraged.
 
-If your test matches the pattern `tests/integration/**/test_*.py` it will be picked up by the integration test suite.
+If your test matches the pattern `tests/integration/**/test_*.py` or `tests/aws/**/test_*.py` it will be picked up by the integration test suite.
+Any test targeting one or more AWS services should go into `tests/aws/**` in the corresponding service package.
+Every test in `tests/aws/**/test_*.py` must be marked by exactly one pytest marker, e.g. `@markers.aws.validated`.
 
 ### Functional-style tests
 
@@ -145,22 +147,21 @@ region=eu-central-1
 -   Use the client `fixtures` and other fixtures for resource creation instead of methods from `aws_stack.py`
     -   While using the environment variable `TEST_TARGET=AWS_CLOUD`, the boto client will be automatically configured to target AWS instead of LocalStack.
 -   Configure your AWS profile/credentials:
-    -   When running the test, set the environment variable `AWS_PROFILE` to the profile name you chose in the previous step. Eexample: `AWS_PROFILE=ls-sandbox`
+    -   When running the test, set the environment variable `AWS_PROFILE` to the profile name you chose in the previous step. Example: `AWS_PROFILE=ls-sandbox`
 -   Ensure that all resources are cleaned up even when the test fails and even when other fixture cleanup operations fail!
 -   Testing against AWS might require additional roles and policies.
 
 Here is how a useful environment configuration for testing against AWS could look like:
 
 ```bash
-EDGE_BIND_HOST=0.0.0.0;
-DEBUG=1;
-DNS_ADDRESS=0;
+DEBUG=1;  # enables debug logging
 TEST_DISABLE_RETRIES_AND_TIMEOUTS=1;
-LAMBDA_EXECUTOR=docker;
 TEST_TARGET=AWS_CLOUD;
 AWS_DEFAULT_REGION=us-east-1;
 AWS_PROFILE=ls-sandbox
 ```
+
+Once you're confident your test is reliably working against AWS you can add the pytest marker `@markers.aws.validated`.
 
 #### Create a snapshot test
 

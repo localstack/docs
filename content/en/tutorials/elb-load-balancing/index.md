@@ -3,34 +3,52 @@ title: "Setting up Elastic Load Balancing (ELB) Application Load Balancers using
 linkTitle: "Setting up Elastic Load Balancing (ELB) Application Load Balancers using LocalStack, deployed via the Serverless framework"
 weight: 3
 description: >
-  Set up Elastic Loading Balance (ELB) Application Load Balancers to configure Node.js Lambda functions as targets, to forward requests to the target group for your Lambda function using LocalStack. Learn how you can use Serverless framework to setup and deploy your infrastructure locally with LocalStack using the `serverless-localstack` plugin.
+  Learn how to configure Elastic Load Balancing (ELB) Application Load Balancers and set up Node.js Lambda functions as targets. This tutorial demonstrates how to forward requests to the target group for your Lambda function using the Serverless Framework and the `serverless-localstack` plugin to effortlessly deploy and manage your infrastructure locally with LocalStack.
 type: tutorials
+teaser: ""
+services:
+- elb
+- lmb
+platform:
+- javascript
+deployment:
+- serverless
+tags:
+- Elastic Load Balancing
+- Lambda
+- Serverless Framework
+- Node.js
+- JavaScript
+- serverless-localstack plugin
+pro: true
+leadimage: "elb-load-balancing-featured-image.png"
 ---
 
-AWS Elastic Load Balancer (ELB) distributes incoming application traffic across multiple targets, such as EC2 instances, containers, IP addresses, and Lambda functions. ELBs are either physical hardware or virtual software which accepts incoming traffic and distributes it across multiple targets in one or more Availability Zones. Using ELB, you can scale your load balancer per the traffic changes over time to scale to the needs of your application and the majority of workloads running on the AWS infrastructure.
+[Elastic Load Balancer (ELB)](https://aws.amazon.com/elasticloadbalancing/) is a service that distributes incoming application traffic across multiple targets, such as EC2 instances, containers, IP addresses, and Lambda functions. ELBs can be physical hardware or virtual software components. They accept incoming traffic and distribute it across multiple targets in one or more Availability Zones. Using ELB, you can quickly scale your load balancer to accommodate changes in traffic over time, ensuring optimal performance for your application and workloads running on the AWS infrastructure.
 
-ELB supports Application Load Balancer, Network Load Balancer, and Classic Load Balancer. Application Load Balancer (ALB) operates at the Application layer of the OSI model and supports load balancing of applications using HTTP and HTTPS requests. ALB operates at the request level and is used in web applications for advanced load balancing of HTTP and HTTPS traffic. Using ALB, you can register your Lambda functions as targets. A listener rule takes care of forwarding requests to the target group for your Lambda function, which is then invoked to process the request.
+ELB provides three types of load balancers: [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html), [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html), [Classic Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/introduction.html), and [Application Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html).
 
-[LocalStack Pro](https://localstack.cloud) supports the creation of ELB Application Load Balancers and configuring target groups, such as Lambda functions. In this tutorial, we will set up an ELB Application Load Balancer to configure Node.js Lambda functions as targets using the Serverless framework via our `serverless-localstack` plugin and setup ELB endpoints to forward requests to the target group for your Lambda functions.
+In this tutorial we focus on the Application Load Balancer (ALB), which operates at the Application layer of the OSI model and is specifically designed for load balancing HTTP and HTTPS traffic for web applications. ALB works at the request level, allowing advanced load-balancing features for HTTP and HTTPS requests. It also enables you to register Lambda functions as targets. You can configure a listener rule that forwards requests to a target group for your Lambda function, triggering its execution to process the request.
+
+[LocalStack Pro](https://localstack.cloud) extends support for ELB Application Load Balancers and the configuration of target groups, including Lambda functions. This tutorial will guide you through setting up an ELB Application Load Balancer to configure Node.js Lambda functions as targets. We will utilize the [Serverless framework](http://serverless.com/) along with the [`serverless-localstack` plugin](https://www.serverless.com/plugins/serverless-localstack) to simplify the setup. Additionally, we will demonstrate how to set up ELB endpoints to efficiently forward requests to the target group associated with your Lambda functions.
 
 ## Prerequisites
 
-- [LocalStack Pro](https://localstack.cloud/pricing/)
+- LocalStack Pro
 - [Serverless framework](https://www.serverless.com/framework/docs/getting-started/)
 - [Node.js & `npm`](https://nodejs.org/en/download/)
-- [`awslocal`](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
-
-If you don't have LocalStack Pro, you can [sign up for a free trial](https://localstack.cloud/pricing/).
+- [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
+- `cURL` & `jq`
 
 ## Setup a Serverless project
 
-Serverless framework is an open-source framework for building, packaging, and deploying serverless applications across multiple cloud providers and platforms. Using Serverless framework, you can set up your serverless development environment, define your applications as functions and events, and deploy your entire infrastructure to the cloud with a single command. You can use Serverless framework by installing `serverless` framework via `npm`:
+Serverless is an open-source framework that enables you to build, package, and deploy serverless applications seamlessly across various cloud providers and platforms. With the Serverless framework, you can easily set up your serverless development environment, define your applications as functions and events, and deploy your entire infrastructure to the cloud using a single command. To start using the Serverless framework, install the Serverless framework globally by executing the following command using `npm`:
 
 {{< command >}}
 $ npm install -g serverless
 {{< / command >}}
 
-After installation, you can verify the installation by running the following command:
+The above command installs the Serverless framework globally on your machine. After the installation is complete, you can verify it by running the following command:
 
 {{< command >}}
 $ serverless --version
@@ -40,29 +58,47 @@ Plugin: 6.2.2
 SDK: 4.3.2
 {{< / command >}}
 
-Let us now go ahead and create a new Serverless project using the `serverless` command:
+This command displays the version numbers of the Serverless framework's core, plugins, and SDK you installed. Now, let's proceed with creating a new Serverless project using the `serverless` command:
 
 {{< command >}}
 $ serverless create --template aws-nodejs --path serverless-elb
 {{< / command >}}
 
-We are using the `aws-nodejs` template to create our Serverless project. This template consists of a simple Node.js Lambda function that returns a message when invoked. The template also creates a `serverless.yml` file containing the project's configuration. 
+In this example, we use the `aws-nodejs` template to create our Serverless project. This template includes a simple Node.js Lambda function that returns a message when invoked. It also generates a `serverless.yml` file that contains the project's configuration.
 
-The `serverless.yml` file contains the configuration for the project, such as the name of the service, the provider, the functions, and example events that trigger the functions. If you need to set up your project using a different template, you can refer to the [Serverless templates](https://www.serverless.com/framework/docs/providers/aws/cli-reference/create/) documentation. We can now go ahead and configure our Serverless project to use LocalStack.
+The `serverless.yml` file is where you configure your project. It includes information such as the service name, the provider (AWS in this case), the functions, and example events that trigger those functions. If you prefer to set up your project using a different template, refer to the [Serverless templates documentation](https://www.serverless.com/framework/docs/providers/aws/cli-reference/create/) for more options.
+
+Now that we have created our Serverless project, we can proceed to configure it to use LocalStack.
 
 ## Configure Serverless project to use LocalStack
 
-To configure your Serverless project to use LocalStack, we need to install the `serverless-localstack` plugin. Before that, let us initialize our project and install some dependencies:
+To configure your Serverless project to use LocalStack, you need to install the `serverless-localstack` plugin. Before that, let's initialize the project and install some dependencies:
 
 {{< command >}}
 $ npm init -y
 $ npm install -D serverless serverless-localstack serverless-deployment-bucket
 {{< / command >}}
 
-The `serverless-localstack` plugin allows your Serverless project to redirect AWS API calls to LocalStack. The `serverless-deployment-bucket` plugin creates a deployment bucket in LocalStack, which stores the deployment artifacts to ensure that old deployment buckets don't linger around after a deployment. We can now set up the plugin by adding the following properties to our `serverless.yml` file:
+In the above commands, we use `npm init -y` to initialize a new Node.js project with default settings and then install the necessary dependencies, including `serverless`, `serverless-localstack`, and `serverless-deployment-bucket`, as dev dependencies.
+
+The `serverless-localstack` plugin enables your Serverless project to redirect AWS API calls to LocalStack, while the `serverless-deployment-bucket` plugin creates a deployment bucket in LocalStack. This bucket is responsible for storing the deployment artifacts and ensuring that old deployment buckets are properly cleaned up after each deployment.
+
+We have a `serverless.yml` file in the directory to define our Serverless project's configuration, which includes information such as the service name, the provider (AWS in this case), the functions, and example events that trigger those functions. To set up the plugins we installed earlier, you need to add the following properties to your `serverless.yml` file:
 
 ```yaml
-...
+service: serverless-elb
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+
+functions:
+  hello:
+    handler: handler.hello
+
 plugins:
   - serverless-deployment-bucket
   - serverless-localstack
@@ -73,9 +109,9 @@ custom:
       - local
 ```
 
-This sets up Serverless to use the LocalStack plugin but only for the stage **local**. To ensure that our Serverless project deploys only on LocalStack, not real AWS Cloud, we need to set a `--stage` flag with the `serverless deploy` command and set the flag variable to `local`. 
+To configure Serverless to use the LocalStack plugin specifically for the `local` stage and ensure that your Serverless project only deploys to LocalStack instead of the real AWS Cloud, you need to set the `--stage` flag when using the `serverless deploy` command and specify the flag variable as `local`.
 
-You can also configure `serverless deploy --stage local` as a `deploy` script in your `package.json` to allow you to run the `serverless deploy` command directly over your local infrastructure. The `package.json` file should look like this:
+Configure a `deploy` script in your `package.json` file to simplify the deployment process. It lets you run the `serverless deploy` command directly over your local infrastructure. Update your `package.json` file to include the following:
 
 ```json
 {
@@ -97,31 +133,17 @@ You can also configure `serverless deploy --stage local` as a `deploy` script in
 }
 ```
 
-You can give the above setup a run by deploying your Serverless project and checking the Lambda function that has been created via our existing Serverless project:
+With this configuration, you can now run the deployment script using:
 
 {{< command >}}
 $ npm run deploy
-$ awslocal lambda list-functions
-
-{
-    "Functions": [
-        {
-            "FunctionName": "serverless-elb-local-hello",
-            "FunctionArn": "arn:aws:lambda:us-east-1:000000000000:function:serverless-elb-local-hello",
-            "Runtime": "nodejs12.x",
-            "Role": "arn:aws:iam::000000000000:role/serverless-elb-local-us-east-1-lambdaRole",
-            "Handler": "handler.hello",
-            ...
-        }
-    ]
-}
 {{< / command >}}
 
-We can now create our target Lambda functions to work with Node.js runtime and configure ELB Application Load Balancers via our `serverless.yml` configuration.
+This will execute the `serverless deploy --stage local` command, deploying your Serverless project to LocalStack.
 
 ## Create Lambda functions & ELB Application Load Balancers
 
-Let us now create two Lambda functions, named `hello1` and `hello2`, which can run over Node.js 12.x runtime. Open `handler.js` and replace the existing code with the following:
+Now, let's create two Lambda functions named `hello1` and `hello2` that will run on the Node.js 12.x runtime. Open the `handler.js` file and replace the existing code with the following:
 
 ```js
 'use strict';
@@ -153,9 +175,9 @@ module.exports.hello2 = async (event) => {
 };
 ```
 
-In the above code, we have created `hello1` and `hello2` Lambda functions and created a response body for them, including the Base64 encoding status, status code, and headers. If you wish to include binary content in the response body, set the `isBase64Encoded` property to `true`. The load balancer requires retrieving the binary content to send it in the body of an HTTP response.
+We have defined the `hello1` and `hello2` Lambda functions in the updated code. Each function receives an event parameter and logs it to the console. The function then returns a response with a status code of 200 and a plain text body containing the respective `"Hello"` message. It's important to note that the `isBase64Encoded` property is not required for plain text responses. It is typically used when you need to include binary content in the response body and want to indicate that the content is Base64 encoded.
 
-Let us now move to the `serverless.yml` file and specify our deployment bucket and the functions we want to deploy. Our initial configuration in the `serverless.yml` file should look like this:
+Let us now configure the `serverless.yml` file to create an Application Load Balancer (ALB) and attach the Lambda functions to it.
 
 ```yaml
 service: serverless-elb
@@ -192,12 +214,11 @@ custom:
   localstack:
     stages:
       - local
-...
 ```
 
-In the above configuration, we specify our Lambda functions `hello1` and `hello2`, and specify an HTTP listener that forwards requests to the target group. We have also specified a `deploymentBucket` property, which stores the deployment artifacts. 
+In the above configuration, we specify the service name (`serverless-elb` in this case) and set the provider to AWS with the Node.js 12.x runtime. We include the necessary plugins, `serverless-localstack` and `serverless-deployment-bucket`, for LocalStack support and deployment bucket management. Next, we define the `hello1` and `hello2` functions with their respective handlers and event triggers. In this example, both functions are triggered by HTTP GET requests to the `/hello1` and `/hello2` paths.
 
-Let us now create a VPC, a subnet, an Application Load Balancer, and an HTTP listener on the load balancer, which redirects the traffic to the target group. We can do this by adding the following resources to our `serverless.yml` file:
+Lastly, let's create a VPC, a subnet, an Application Load Balancer, and an HTTP listener on the load balancer that redirects traffic to the target group. To do this, add the following resources to your `serverless.yml` file:
 
 ```yaml
 ...
@@ -236,21 +257,25 @@ resources:
         CidrBlock: 12.2.1.0/24
 ```
 
-With this, we have now completed our Serverless project's configuration. We can now create our local AWS infrastructure on LocalStack and deploy our Application Load Balancers with two Lambda functions as targets.
+With these resource definitions, you have completed the configuration of your Serverless project. Now you can create your local AWS infrastructure on LocalStack and deploy your Application Load Balancers with the two Lambda functions as targets.
 
 ## Creating the infrastructure on LocalStack
 
-Now that the initial setup is done, we can give LocalStack's AWS emulation a run on our local machine. Let's start LocalStack:
+Now that we have completed the initial setup let's run LocalStack's AWS emulation on our local machine. Start LocalStack by running the following command:
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<your-api-key> localstack start -d
+$ LOCALSTACK_AUTH_TOKEN=<your-auth-token> localstack start -d
 {{< / command >}}
 
-We can now deploy our Serverless project and check the created resources in LocalStack. We can do this by running the following command:
+This command launches LocalStack in the background, enabling you to use the AWS services locally. Now, let's deploy our Serverless project and verify the resources created in LocalStack. Run the following command:
 
 {{< command >}}
 $ npm run deploy
+{{< / command >}}
 
+This command deploys your Serverless project using the "local" stage. The output will resemble the following:
+
+```bash
 > serverless-elb@1.0.0 deploy
 > sls deploy --stage local
 
@@ -266,13 +291,12 @@ Skipping template validation: Unsupported in Localstack
 functions:
   hello1: test-elb-load-balancing-local-hello1 (157 kB)
   hello2: test-elb-load-balancing-local-hello2 (157 kB)
-{{< / command >}}
+```
 
-You can check the Lambda functions and the Application Load Balancer created in LocalStack by running the following commands:
+This output confirms the successful deployment of your Serverless service to the `local` stage in LocalStack. It also displays information about the deployed Lambda functions (`hello1` and `hello2`). You can run the following command to verify that the functions and the load balancers have been deployed:
 
 {{< command >}}
 $ awslocal lambda list-functions
-
 {
     "Functions": [
         {
@@ -310,7 +334,13 @@ $ awslocal elbv2 describe-load-balancers
 }
 {{< / command >}}
 
-The ALB endpoints for the two Lambda functions we created are accessible at `http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1` and `http://lb-test-1.elb.localhost.localstack.cloud:4566/hello2`. We can test this by running the following commands:
+
+The ALB endpoints for the two Lambda functions, hello1 and hello2, are accessible at the following URLs:
+
+- [`http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1`](http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1)
+- [`http://lb-test-1.elb.localhost.localstack.cloud:4566/hello2`](http://lb-test-1.elb.localhost.localstack.cloud:4566/hello2)
+
+To test these endpoints, you can use the curl command along with the jq tool for better formatting. Run the following commands:
 
 {{< command >}}
 $ curl http://lb-test-1.elb.localhost.localstack.cloud:4566/hello1 | jq
@@ -319,8 +349,10 @@ $ curl http://lb-test-1.elb.localhost.localstack.cloud:4566/hello2 | jq
 "Hello 2"
 {{< / command >}}
 
+Both commands send an HTTP GET request to the endpoints and uses `jq` to format the response. The expected outputs are `Hello 1` & `Hello 2`, representing the Lambda functions' response.
+
 ## Conclusion
 
-This tutorial shows how to create an Application Load Balancer with two Lambda functions as targets using LocalStack. We have also seen how to create, configure, and deploy a Serverless project with LocalStack serving as an emulated local AWS environment that allows you to develop and test your Cloud & Serverless applications with AWS locally. 
+In this tutorial, we have learned how to create an Application Load Balancer (ALB) with two Lambda functions as targets using LocalStack. We have also explored creating, configuring, and deploying a Serverless project with LocalStack. This enables developers to develop and test Cloud and Serverless applications locally conveniently.
 
-LocalStack also offers integrations with other popular tools such as Terraform, Pulumi, Serverless Application Model (SAM), and more. You can find more information about LocalStack integrations on our [Integration documentation]({{< ref "user-guide/integrations" >}}). You can find the code for this tutorial (including a `Makefile` to execute it step-by-step) in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/elb-load-balancing).
+LocalStack offers integrations with various popular tools such as Terraform, Pulumi, Serverless Application Model (SAM), and more. For more information about LocalStack integrations, you can refer to our [Integration documentation]({{< ref "user-guide/integrations">}}). To further explore and experiment with the concepts covered in this tutorial, you can access the code and resources on our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/elb-load-balancing) along with a `Makefile` for step-by-step execution.

@@ -1,12 +1,12 @@
 ---
 title: "Multi-Account Setups"
 linkTitle: "Multi-Account Setups"
-categories: ["LocalStack Pro"]
+categories: []
 tags: ["multi-tenant", "multi-account", "account-id", "namespaces"]
 aliases:
   - /aws/multi-account-setups/
   - /tools/multi-account-setups/
-weight: 5
+weight: 50
 description: >
   Using LocalStack in multi-tenant setups
 ---
@@ -16,20 +16,12 @@ Please note that multi-accounts may not work for use-cases that have cross-accou
 See [this issue](https://github.com/localstack/localstack/issues/7041) for more information.
 {{< /alert >}}
 
-LocalStack ships with multi-account support which allows namespacing based on AWS account ID and region name.
-
-The AWS account ID to be used must be sent as part of the request.
-There is no server-side configuration required.
+LocalStack ships with multi-account support which allows namespacing based on AWS account ID.
 
 LocalStack uses the value in the AWS Access Key ID field for the purpose of namespacing over account ID.
-This field can be configured in the AWS CLI in multiple ways: please refer to AWS CLI documentation [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence).
-This field must either contain a valid 12-digit or an alpha-numeric string.
-In the first case, the value is assumed to be the account ID.
-In the second case, the default account ID `000000000000` is used as fallback.
+For more information, see [Credentials]({{< ref "credentials" >}}).
 
-LocalStack will also ignore possible production AWS Access Key IDs (starting with `ASIA...` or `AKIA...`) and fallback to default.
-
-In the future LocalStack shall support proper access key IDs issued by the local IAM service, which will then be internally translated to corresponding account IDs.
+The Access Key ID field can be configured in the AWS CLI in multiple ways: please refer to [AWS CLI documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-precedence).
 
 ## Examples
 

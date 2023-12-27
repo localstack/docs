@@ -1,14 +1,14 @@
 ---
 title: "Single-Sign On"
-tags: ["LocalStack Pro", "SSO"] 
-weight: 5
+tags: ["LocalStack Pro", "SSO"]
+weight: 200
 description: >
   Configuring Custom Single-Sign On (SSO) Providers in LocalStack Enterprise
 ---
 
 LocalStack Enterprise allows to enable custom Single-Sign On (SSO) Identity providers, to facilitate the process of quickly onboarding team members from your organization.
 
-In order to configure SSO access, first sign in to the LocalStack Web application under [app.localstack.cloud](https://app.localstack.cloud/). 
+In order to configure SSO access, first sign in to the LocalStack Web application under [app.localstack.cloud](https://app.localstack.cloud/).
 In your profile settings, navigate to the Single Sign-on tab which will list existing SSO Identity Providers (if any exist).
 
 <img src="localstack-setting-sso.png" width="800px" alt="Adding SSO Identity providers in LocalStack Settings">
@@ -30,7 +30,7 @@ In the form illustrated below, you can then enter the main information for the n
 
 ## Configuring SSO using SAML
 
-When configuring SSO using SAML, you can configure the settings of the Identity Provider via a standard SAML metadata file (see illustration below). 
+When configuring SSO using SAML, you can configure the settings of the Identity Provider via a standard SAML metadata file (see illustration below).
 The SAML metadata file can be specified either via URL or via a file upload.
 
 Select **Enable IdP sign out flow** if you want your users to be logged out from our app and your SAML IdP when they log out from your our Web Application.
@@ -66,6 +66,6 @@ After configuring the base details for your Identity Provider (IdP), the followi
 For each new member that joins your org, you can specify user roles and permissions that should be assigned to them.
 -   **Default User Role**:  The Role that should be assigned to users of your organization signing up via SSO. In most cases, this should be a Member.
 -   **Default User Permissions**: Use this to define which permissions should be assigned to users of your organization signing up via SSO.
-    -   Tip: In order to enable self-serve API keys (i.e., allowing your users to generate their own API keys), make sure to select the **Allow the member to issue an API Key for her/himself** permission.
+    -   Tip: In order to enable self-serve licences (i.e., allowing your users to request their own license), make sure to select the **Allow member to issue a license for themselves (or a legacy API key)** permission.
 
 <img src="roles-permissions.png" width="600px" alt="User Roles and Permissions">

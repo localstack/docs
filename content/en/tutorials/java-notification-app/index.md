@@ -5,6 +5,27 @@ weight: 3
 description: >
   Build a Java Spring Boot application to configure Simple Email Service (SES) to send messages using AWS Java SDK in LocalStack. Learn how to configure Simple Queue Service (SQS) & Simple Notification Service (SNS) using CloudFormation templates deployed locally.
 type: tutorials
+teaser: ""
+services:
+- ses
+- sqs
+- sns
+- clf
+platform:
+- java
+deployment:
+- aws-java-sdk
+- CloudFormation
+tags:
+- Java
+- Spring Boot
+- AWS Java SDK
+- Simple Email Service
+- Simple Queue Service
+- Simple Notification Service
+- CloudFormation
+pro: true
+leadimage: "java-notification-app-featured-image.png"
 ---
 
 Java is a popular platform for cloud applications that use Amazon Web Services.
@@ -20,7 +41,7 @@ For this tutorial, you will need:
 
 - [LocalStack Pro](https://localstack.cloud/pricing/) to emulate the AWS services (SNS, SQS, SES, etc) locally
   - Don't worry, if you don't have a subscription yet, you can just get a trial license for free.
-- [awslocal](https://docs.localstack.cloud/integrations/aws-cli/#localstack-aws-cli-awslocal)
+- [awslocal]({{< ref "aws-cli#localstack-aws-cli-awslocal" >}})
 - [Docker](https://docker.io/)
 - Java 11+
 - Maven 3+
@@ -492,17 +513,15 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    container_name: "${LOCALSTACK_DOCKER_NAME:-localstack-main}"
     image: localstack/localstack
     ports:
       - "127.0.0.1:4510-4559:4510-4559"  # external service port range
       - "127.0.0.1:4566:4566"            # LocalStack Edge Proxy
     environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?}
       - DEBUG=1
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
       - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}
       - SMTP_HOST=smtp:1025
     volumes:
       - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
@@ -518,7 +537,7 @@ services:
 The above `docker-compose` file will start LocalStack and pull the MailHog image to start the SMTP server (if it doesn't exist yet!) on port `8025`. You can start LocalStack using the following command:
 
 {{< command >}}
-$ LOCALSTACK_API_KEY=<your-api-key> docker-compose up -d
+$ LOCALSTACK_AUTH_TOKEN=<your-auth-token> docker-compose up -d
 {{< / command >}}
 
 Once LocalStack is started, we can deploy the CloudFormation stack (which might take a few moments):
@@ -627,6 +646,6 @@ You can also navigate to the MailHog via the user-interface: [`localhost:8025`](
 In this tutorial, we have demonstrated, how you can:
 
 - Use CloudFormation to provision infrastructure for SNS & SQS subscriptions on LocalStack
-- Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages. 
+- Use the AWS Java SDK and Spring Boot to build an application that sends SQS and SES messages.
 
 Using [LocalStack Pro](https://app.localstack.cloud), you can use our Web user interface to view the email messages sent by SES. The code for this tutorial can be found in our [LocalStack Pro samples over GitHub](https://github.com/localstack/localstack-pro-samples/tree/master/java-notification-app).

@@ -106,23 +106,22 @@ Usually, all of LocalStack's services are available via a specific port on local
 
 Since the Lambda functions execute within the LocalStack Docker container, Lambda functions cannot access other services via the usual localhost endpoint. 
 
-Instead, LocalStack provides a special environment variable `LOCALSTACK_HOSTNAME` which contains the internal endpoint of the LocalStack services from within its runtime environment.
+Instead, LocalStack provides a special environment variable `AWS_ENDPOINT_URL` which contains the internal endpoint of the LocalStack services from within its runtime environment.
 
-Hence, you need to configure the Lambda functions to use the `LOCALSTACK_HOSTNAME` endpoint when accessing other AWS services in LocalStack.
+Hence, you need to configure the Lambda functions to use the `AWS_ENDPOINT_URL` endpoint when accessing other AWS services in LocalStack.
 
-In Python, this may look something like. The code detects if it is running in LocalStack by checking if the `LOCALSTACK_HOSTNAME` variable exists and then configures the endpoint URL accordingly.
+In Python, this may look something like. The code detects if it is running in LocalStack by checking if the `AWS_ENDPOINT_URL` variable exists and then configures the endpoint URL accordingly.
 
 ```python
 ...
-if 'LOCALSTACK_HOSTNAME' in os.environ:
-    dynamodb_endpoint = 'http://%s:4566' % os.environ['LOCALSTACK_HOSTNAME']
-    dynamodb = boto3.resource('dynamodb', endpoint_url=dynamodb_endpoint)
+if 'AWS_ENDPOINT_URL' in os.environ:
+    dynamodb = boto3.resource('dynamodb', endpoint_url=os.environ['AWS_ENDPOINT_URL'])
 else:
     dynamodb = boto3.resource('dynamodb')
 ...
 ```
 
-> Ideally, we want to make LocalStack's Lambda execution environment "LocalStack-agnostic", so that you are not required to adjust endpoints in your function code anymore. You want to help us with that? [Drop us a line in Slack](https://localstack-community.slack.com)!.
+In LocalStack Pro, no code changes are required using our [Transparent Endpoint Injection]({{< ref "user-guide/tools/transparent-endpoint-injection" >}}).
 
 ## Deploying to LocalStack
 You can now deploy your Serverless service to LocalStack.
@@ -191,25 +190,6 @@ custom:
 ```
 
 When this flag is set, the lambda code will be mounted into the container running the function directly from your local directory instead of packaging and uploading it.
-
-If you want to use this feature together with the local lambda executor (`LAMBDA_EXECUTOR=local`), you need to make sure the container running localstack itself can find the code.
-To do that, you need to manually mount the code into the localstack container, here is a snippet using a `docker-compose.yml` with the essentials.
-Where `/absolute/path/to/todos` is the path on your local machine that points to the `todos/` directory containing the lambda code from our previous example.
-
-```yaml
-# docker-compose.yml to start localstack
-
-services:
-  localstack:
-    # ...
-    environment:
-      - LAMBDA_EXECUTOR=local
-      - LAMBDA_REMOTE_DOCKER=0
-      # ...
-    volumes:
-      # ...
-      - "/absolute/path/to/todos:/absolute/path/to/todos"
-```
 
 ## Ran into trouble?
 

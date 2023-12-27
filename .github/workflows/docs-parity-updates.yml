@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout docs
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           path: docs
@@ -24,25 +24,11 @@ jobs:
         run: |
           sudo apt-get install jq wget
 
-      - name: Set up Python 3.10
+      - name: Set up Python 3.11
         id: setup-python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
-
-      - name: Download metrics data from Pro test pipeline (GitHub)
-        working-directory: docs
-        run: ./scripts/get_latest_github_metrics.sh ./target master
-        env:
-          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
-          REPOSITORY_NAME: localstack-ext
-          ARTIFACT_ID: parity-metric-ext-raw
-          WORKFLOW: "Integration Tests"
-          RENAME_ARTIFACT: pro-integration-test.csv
-
-      - name: Download metrics data from latest Community test run (CircleCI)
-        working-directory: docs
-        run: ./scripts/get_latest_circleci_metrics.sh ./target
+          python-version: "3.11"
 
       - name: Download metrics data from Moto Integration test pipeline (GitHub)
         working-directory: docs
@@ -52,15 +38,51 @@ jobs:
           REPOSITORY_NAME: localstack-moto-test-coverage 
           ARTIFACT_ID: test-metrics
           WORKFLOW: moto-integration-tests
-          RENAME_ARTIFACT: moto-integration-test.csv
+          PREFIX_ARTIFACT: moto-integration-test
           FILTER_SUCCESS: 0
+
+      - name: Download metrics data from Terraform Integration test pipeline (GitHub)
+        working-directory: docs
+        run: ./scripts/get_latest_github_metrics.sh ./target main
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack-terraform-test 
+          ARTIFACT_ID: test-metrics
+          WORKFLOW: "Terraform Tests"
+          FILTER_SUCCESS: 0
+
+      - name: Download metrics data from Pro pipeline (GitHub)
+        working-directory: docs
+        run: ./scripts/get_latest_github_metrics.sh ./target master
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack-ext
+          ARTIFACT_ID: parity-metric-ext-raw 
+          WORKFLOW: "Build, Test, Push" 
+          PREFIX_ARTIFACT: pro-integration-test
+      
+      - name: Download coverage (capture-notimplemented) data from Pro pipeline (GitHub)
+        working-directory: docs
+        run: ./scripts/get_latest_github_metrics.sh ./target master
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRO_ACCESS_TOKEN }}
+          REPOSITORY_NAME: localstack-ext
+          ARTIFACT_ID: capture-notimplemented-pro 
+          WORKFLOW: "Build, Test, Push" 
+          RESOURCE_FOLDER: "metrics-implementation-details"
+
+      - name: Download metrics data from latest Community test run (CircleCI)
+        working-directory: docs
+        run: ./scripts/get_latest_circleci_metrics.sh ./target
+
 
       - name: Create Parity Coverage Docs
         working-directory: docs
         run: |
-          python3 -m scripts.coverage_docs_utility target/metrics-implementation-details target/metrics-raw
+          python3 -m scripts.create_data_coverage -i target/metrics-implementation-details -r target/metrics-raw -o target/updated_coverage -s data/coverage/service_display_name.json
           # Move the resulting markdown file to the docs repo
-          mv -f target/metrics-raw/coverage.md content/en/references/
+          cp -r target/updated_coverage/md/* content/en/references/coverage && rm -R target/updated_coverage/md/
+          mv -f target/updated_coverage/data/*.json data/coverage
 
       - name: Check for changes
         id: check-for-changes
@@ -71,6 +93,7 @@ jobs:
           # Store the result in resources/diff-check.log and store the diff count in the GitHub Action output "diff-count"
           mkdir -p resources
           (git diff --name-only origin/parity-coverage-auto-updates content/en/references/ 2>/dev/null || git diff --name-only origin/${{ github.event.inputs.targetBranch || 'main' }} content/en/references/ 2>/dev/null) | tee resources/diff-check.log
+          (git diff --name-only origin/parity-coverage-auto-updates data/coverage/ 2>/dev/null || git diff --name-only origin/${{ github.event.inputs.targetBranch || 'main' }} data/coverage/ 2>/dev/null) | tee -a resources/diff-check.log
           echo "diff-count=$(cat resources/diff-check.log | wc -l)" >> $GITHUB_OUTPUT
 
       - name: Read PR markdown template
@@ -81,7 +104,7 @@ jobs:
           path: docs/.github/bot_templates/PARITY_COVERAGE_DOCS_PR.md
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         if: ${{ success() && steps.check-for-changes.outputs.diff-count != '0' && steps.check-for-changes.outputs.diff-count != '' }}
         with:
           path: docs

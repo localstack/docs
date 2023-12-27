@@ -11,7 +11,7 @@ Getting Started
 LocalStack Docs is using the following technology stack:
 - [Hugo](https://gohugo.io) to generate the static site.
 - [Docsy](https://docsy.dev) as a theme for Hugo.
-- [GitHub Pages](https://pages.github.com/) to automatically deploy every commit on the `main` branch of this repository on [docs.localstack.cloud](https://docs.localstack.cloud).  
+- [GitHub Pages](https://pages.github.com/) to automatically deploy every commit on the `main` branch of this repository on [docs.localstack.cloud](https://docs.localstack.cloud).
 
 
 ### Clone the repo
@@ -53,6 +53,13 @@ You can find an extensive documentation on how to use Hugo [in their docs](https
 
 Make sure to follow the best practices below when contributing content.
 
+#### Updating developer hub applications
+While contributing to the developer hub applications page i.e. editing `data/developerhub/applications.json` file, make sure to run the `create-applications.js` script in the `scripts` folder to create new application pages.
+
+Example usage in the project root:
+
+    node scripts/create-applications.js
+
 ## Best Practices
 
 Please follow these best practices when writing documentation in this repository:
@@ -84,9 +91,11 @@ This section covers common issues when working with LocalStack Docs:
 ### Missing shortcodes
 Example error:
 ```
-Start building sites … 
+Start building sites …
 hugo v0.88.1-5BC54738+extended linux/amd64 BuildDate=2021-09-04T09:39:19Z VendorInfo=gohugoio
 Error: Error building site: "/home/localstack/Repos/docs-test/content/en/get-started/_index.md:57:1": failed to extract shortcode: template for shortcode "alert" not found
 Built in 45 ms
 ```
-Make sure to correctly clone and initialize the git submodules of this repo. For details see the section "[Clone the repo](#clone-the-repo)" above.
+
+1. Make sure to correctly clone and initialize the git submodules of this repo. For details see the section "[Clone the repo](#clone-the-repo)" above.
+2. Delete the Hugo Module cache using `hugo mod clean` or `make clean`.

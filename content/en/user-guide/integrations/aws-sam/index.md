@@ -40,5 +40,4 @@ Please make sure to replace all `sam` calls with `samlocal` when following the A
 
 ### Configuration
 
-* `EDGE_PORT`: Port number under which the LocalStack edge service is available (default: `4566`)
-* `LOCALSTACK_HOSTNAME`: Host under which the LocalStack edge service is available (default: `localhost`)
+* `AWS_ENDPOINT_URL`: The endpoint URL (i.e., protocol, host, and port) to connect to LocalStack (default: `http://localhost:4566`)

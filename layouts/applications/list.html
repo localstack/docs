@@ -1,0 +1,88 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="{{ .Site.Language.Lang }}" class="no-js">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="td-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+    <header>
+      {{ partial "navbar.html" . }}
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap min-height-100vh">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            {{ partial "sidebar.html" . }}
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            {{ partial "developer-hub/filters-sidebar.html" . }}
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            {{ partial "version-banner.html" . }}
+            {{ if not .Site.Params.ui.breadcrumb_disable }}{{ partial "breadcrumb.html" . }}{{ end }}
+            <div class="td-content">
+                <h1>{{ .Title }}</h1>
+                {{ with .Params.description }}<div class="lead">{{ . | markdownify }}</div>{{ end }}
+                <a href="javascript:void(0)" id="show-all-apps-btn" style="display: none;">Show all Applications</a>
+                <header class="article-meta">
+                    {{ partial "taxonomy_terms_article_wrapper.html" . }}
+                    {{ if (and (not .Params.hide_readingtime) (.Site.Params.ui.readingtime.enable)) }}
+                        {{ partial "reading-time.html" . }}
+                    {{ end }}
+                </header>
+                {{ .Content }}
+
+                <div class="section-index">
+                    {{ $parent := .Page }}
+                    {{ $pages := (where .Site.Pages "Section" .Section).ByWeight }}
+                    {{ $pages = (where $pages "Type" "!=" "search") }}
+                    {{ $pages = (where $pages ".Params.hide_summary" "!=" true) }}
+                    {{ $pages = (where $pages ".Parent" "!=" nil) }}
+                    {{ $pages = (where $pages "Parent.File.UniqueID" "==" $parent.File.UniqueID) }}
+                    {{ if or $parent.Params.no_list (eq (len $pages) 0) }}
+                    {{/* If no_list is true or we don't have subpages we don't show a list of subpages */}}
+                    {{ else }}
+                    {{/* Otherwise we show a nice formatted list of subpages with page descriptions */}}
+                    <hr class="panel-line">
+                    {{ partial "developer-hub/applications.html" . }}
+                    {{ end }}
+                </div>
+
+                {{ if (and (not .Params.hide_feedback) (.Site.Params.ui.feedback.enable) (.Site.GoogleAnalytics)) }}
+                    {{ partial "feedback.html" .Site.Params.ui.feedback }}
+                    <br />
+                {{ end }}
+                {{ if (.Site.DisqusShortname) }}
+                    <br />
+                    {{ partial "disqus-comment.html" . }}
+                {{ end }}
+                {{ partial "page-meta-lastmod.html" . }}
+            </div>
+          </main>
+        </div>
+      </div>
+      {{ partial "footer.html" . }}
+    </div>
+    {{ partial "scripts.html" . }}
+  </body>
+  <style>
+    .social-share > .reading-time {
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+  </style>
+  <script>
+    var filtersConfig = {
+      data: {
+        services: {{.Site.Data.developerhub.services}},
+        deployments: {{.Site.Data.developerhub.deployments}},
+        platforms: {{.Site.Data.developerhub.platforms}},
+        levels: {{.Site.Data.developerhub.complexities.data}},
+      },
+      levelOrder: {{.Site.Data.developerhub.complexities.order}},
+      hasCloudPod: true,
+    };
+  </script>
+  <script src="{{ "js/filters-sidebar-script.js" | relURL }}"></script>
+
+</html>

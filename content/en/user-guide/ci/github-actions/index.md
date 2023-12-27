@@ -1,6 +1,6 @@
 ---
 title: "GitHub Actions"
-tags: ["continuous-integration", "ci", "continuous-delivery", "testing"] 
+tags: ["continuous-integration", "ci", "continuous-delivery", "testing"]
 weight: 5
 description: >
   Use LocalStack in [GitHub Actions](https://github.com/features/actions)
@@ -33,15 +33,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Start LocalStack
-        env:
-          LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
         run: |
           pip install localstack awscli-local[ver1] # install LocalStack cli and awslocal
           docker pull localstack/localstack         # Make sure to pull the latest version of the image
           localstack start -d                       # Start LocalStack in the background
-          
+
           echo "Waiting for LocalStack startup..."  # Wait 30 seconds for the LocalStack container
-          localstack wait -t 30                     # to become ready before timing out 
+          localstack wait -t 30                     # to become ready before timing out
           echo "Startup complete"
       - name: Run some Tests against LocalStack
         run: |
@@ -52,27 +50,29 @@ jobs:
 
 If you want to add further configuration for LocalStack, you can use the `env` section of your build step to set the configuration variables as described [here][2].
 
-## Activating LocalStack Pro
+{{< alert title="Note" >}}
+Deploying Lambdas targeting the `arm64` architecture on GitHub Actions can pose challenges. While the [`LAMBDA_IGNORE_ARCHITECTURE` configuration](https://docs.localstack.cloud/references/configuration/#lambda) is an option for cross-architecture compatible Lambdas, it may not be suitable for statically compiled Lambdas. To address this, users are recommended to leverage Docker's [`setup-qemu-action`](https://github.com/docker/setup-qemu-action) to enable emulation for the `arm64` architecture. It's important to note that using this approach may result in significantly slower build times.
+{{< /alert >}}
 
-If you want to use LocalStack Pro in your GitHub Actions job, you should use a [Github Encrypted Secret][3] to store your API key securely.
-In the above example, you can see us setting the `LOCALSTACK_API_KEY` environment variable to the value of the secret `LOCALSTACK_API_KEY`.
+## Configuring a CI key
 
-You can set your secret at an environment, repository or organization level, for more information see [here][3].
-In the simplest case, you just set it at the repository level.
-For this, you go, in your repository, to Settings => Secrets and press "New Repository Secret".
+You can easily enable LocalStack Pro by using the `localstack/localstack-pro` image and adding your CI key as a [Github Encrypted Secret][3] to store your CI key securely. You can set the `LOCALSTACK_API_KEY` environment variable to the value of the secret `LOCALSTACK_API_KEY`. You can set your secret at an environment, repository or organization level. Navigate to your repository **Settings**, click **Secrets**, and press **New Repository Secret**. Here is an example:
 
-There, you create the secret for your API key like in the following image, replacing `foobar` with your API key.
+```yaml
+- name: Start LocalStack
+  env:
+    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+  run: |
+    pip install localstack awscli-local[ver1] # install LocalStack cli and awslocal
+    docker pull localstack/localstack-pro     # Make sure to pull the latest version of the image
+    localstack start -d                       # Start LocalStack in the background
 
-![Adding the LocalStack API key as secret in GitHub](github-create-secret.png)
+    echo "Waiting for LocalStack startup..."  # Wait 30 seconds for the LocalStack container
+    localstack wait -t 30                     # to become ready before timing out
+    echo "Startup complete"
+```
 
-## Troubleshooting / FAQ
-
-### Installations fails with `AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'`
-
-The issue is caused by a conflict of the pre-installed version of `pyOpenSSL` with newer versions of `cryptography`.
-Please manually upgrade by running `pip install --upgrade pyopenssl` before installing localstack to solve this issue.
-
-[See here for more information](https://github.com/localstack/localstack/pull/6831#issuecomment-1241974114)
+![Adding the LocalStack CI key as secret in GitHub](github-create-secret.png)
 
 [1]: https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#steps "GitHub Action Build Steps"
 [2]: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsenv "GitHub Action Steps - Environment variables"

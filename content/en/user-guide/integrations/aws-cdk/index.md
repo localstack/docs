@@ -42,14 +42,13 @@ Using `cdklocal` locally (e.g. within the `node_modules` of your repo instead of
 {{< command >}}
 $ cdklocal --help
 {{< /command >}}
-### Configuration
 
+### Configuration
 
 The following environment variables can be configured:
 
-* `EDGE_PORT`: Port under which LocalStack edge service is accessible (default: `4566`)
-* `LOCALSTACK_HOSTNAME`: Target host under which LocalStack edge service is accessible (default: `localhost`)
-* `LAMBDA_MOUNT_CODE`: Whether to use local Lambda code mounting (via setting `__local__` S3 bucket name)
+* `AWS_ENDPOINT_URL`: The endpoint URL (i.e., protocol, host, and port) to connect to LocalStack (default: `http://localhost:4566`)
+* `LAMBDA_MOUNT_CODE`: Whether to use local Lambda code mounting (via setting `hot-reload` S3 bucket name)
 
 
 ### Example
@@ -66,6 +65,9 @@ The CDK command line ships with a sample app generator to run a quick test for g
 # create sample app
 mkdir /tmp/test; cd /tmp/test
 cdklocal init sample-app --language=javascript
+
+# bootstrap localstack environment
+cdklocal bootstrap
 
 # deploy the sample app
 cdklocal deploy
@@ -95,7 +97,7 @@ When this lambda is executed locally from the `/tmp` folder, the package can not
 
 ## Other resources
 
-- [Hot-swapping Lambda functions with CDK]({{< ref "user-guide/tools/lambda-tools/hot-swapping#aws-cloud-development-kit-cdk-configuration" >}})
+- [Hot-reloading Lambda functions with CDK]({{< ref "user-guide/tools/lambda-tools/hot-reloading#aws-cloud-development-kit-cdk-configuration" >}})
 
 ## External resources
 

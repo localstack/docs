@@ -1,6 +1,6 @@
 ---
 title: "Filesystem Layout"
-weight: 5
+weight: 50
 description: >
   Overview of runtime directory structure
 aliases:
@@ -114,7 +114,7 @@ The defaults are:
 
 * Mac: `~/Library/Caches/localstack/volume`
 * Linux: `~/.cache/localstack/volume`
-* Windows: `%LOCALAPPDATA%/localstack/cache/volume`
+* Windows: `%LOCALAPPDATA%\cache\localstack\volume`
 
 ## Host mode
 
