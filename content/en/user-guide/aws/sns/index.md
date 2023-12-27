@@ -57,7 +57,7 @@ $ awslocal sns publish \
    --message file://message.txt
 {{< /command >}}
 
-### Subscribing to SNS topic and setting subscription attributes
+### Subscribing to SNS topics and setting subscription attributes
 
 You can subscribe to the SNS topic using the [`Subscribe`](https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html) API. Run the following command to subscribe to the SNS topic:
 
@@ -68,7 +68,8 @@ $ awslocal sns subscribe \
    --notification-endpoint test@gmail.com
 {{< /command >}}
 
-You can configure the SNS Subscription attributes, using the `SubscriptionArn` from the previous step. Run the following command to set the `RawMessageDelivery` attribute for the subscription:
+You can configure the SNS Subscription attributes, using the `SubscriptionArn` returned by the previous step.
+For example, run the following command to set the `RawMessageDelivery` attribute for the subscription:
 
 {{< command >}}
 $ awslocal sns set-subscription-attributes \
@@ -76,10 +77,73 @@ $ awslocal sns set-subscription-attributes \
    --attribute-name RawMessageDelivery --attribute-value true
 {{< /command >}}
 
-You can list all the SNS subscriptions using the [`ListSubscriptions`](https://docs.aws.amazon.com/sns/latest/api/API_ListSubscriptions.html) API. Run the following command to list all the SNS subscriptions:
+### Working with SQS subscriptions for SNS
+
+The getting started covers email subscription, but SNS can integrate with many AWS technologies as seen in the [aws-cli docs](https://docs.aws.amazon.com/cli/latest/reference/sns/subscribe.html).
+A Common technology to integrate with is SQS.
+
+First we need to ensure we create an SQS queue named `my-queue`:
+{{< command >}}
+$ awslocal sqs create-queue --queue-name my-queue
+{
+    "QueueUrl": "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue"
+}
+{{< /command >}}
+
+Subscribe the SQS queue to the topic we created previously:
+{{< command >}}
+$ awslocal sns subscribe --topic-arn "arn:aws:sns:us-east-1:000000000000:localstack-topic" --protocol sqs --notification-endpoint "arn:aws:sqs:us-east-1:000000000000:my-queue"
+{
+    "SubscriptionArn": "arn:aws:sns:us-east-1:000000000000:localstack-topic:636e2a73-0dda-4e09-9fdf-77f113d0edd8"
+}
+{{< /command >}}
+
+Sending a message to the queue, via the topic
+{{< command >}}
+$ awslocal sns publish --topic-arn "arn:aws:sns:us-east-1:000000000000:localstack-topic" --message "hello"
+{
+    "MessageId": "5a1593ce-411b-44dc-861d-907daa05353b"
+}
+{{< /command >}}
+
+Check that our message has arrived:
+{{< command >}}
+$ awslocal receive-message --queue-url "http://sqs.us-east-1.localhost.localstack.cloud:4566/000000000000/my-queue"
+{
+    "Messages": [
+        {
+            "MessageId": "72a15a17-5652-45ab-b4db-937f60f0c6d8",
+            "ReceiptHandle": "YjQ0YjgzMjAtNTk2NC00ZDk0LWE4ZGYtNjljMTViOTkwOTFmIGFybjphd3M6c3FzOnVzLWVhc3QtMTowMDAwMDAwMDAwMDA6bXktcXVldWUgNzJhMTVhMTctNTY1Mi00NWFiLWI0ZGItOTM3ZjYwZjBjNmQ4IDE3MDM3MDQxMTEuNTI2MzEwNA==",
+            "MD5OfBody": "2664b540fb6ce6fd7467cd8fb071c30f",
+            "Body": "{\"Type\": \"Notification\", \"MessageId\": \"5a1593ce-411b-44dc-861d-907daa05353b\", \"TopicArn\": \"arn:aws:sns:us-east-1:000000000000:localstack-topic\", \"Message\": \"hello\", \"Timestamp\": \"2023-12-27T19:07:55.341Z\", \"SignatureVersion\": \"1\", \"Signature\": \"EXAMPLEpH+..\", \"SigningCertURL\": \"...\", \"UnsubscribeURL\": \"http://localhost.localstack.cloud:4566/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:000000000000:localstack-topic:636e2a73-0dda-4e09-9fdf-77f113d0edd8\"}"
+        }
+    ]
+}
+
+{{< /command >}}
+
+To remove the subscription you need the subscription ARN which you can find by listing the subscriptions.
+You can list all the SNS subscriptions using the [`ListSubscriptions`](https://docs.aws.amazon.com/sns/latest/api/API_ListSubscriptions.html) API.
+Run the following command to list all the SNS subscriptions:
 
 {{< command >}}
 $ awslocal sns list-subscriptions
+{
+    "Subscriptions": [
+        {
+            "SubscriptionArn": "arn:aws:sns:us-east-1:000000000000:localstack-topic:636e2a73-0dda-4e09-9fdf-77f113d0edd8",
+            "Owner": "000000000000",
+            "Protocol": "sqs",
+            "Endpoint": "arn:aws:sqs:us-east-1:000000000000:my-queue",
+            "TopicArn": "arn:aws:sns:us-east-1:000000000000:localstack-topic"
+        }
+    ]
+}
+{{< /command >}}
+
+Then, use the ARN to unsubscribe
+{{< command >}}
+$ awslocal sns unsubscribe --subscription-arn "arn:aws:sns:us-east-1:000000000000:localstack-topic:636e2a73-0dda-4e09-9fdf-77f113d0edd8"
 {{< /command >}}
 
 ## Accessing published Platform Messages
