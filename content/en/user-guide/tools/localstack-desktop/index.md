@@ -3,9 +3,15 @@ title: "LocalStack Desktop"
 weight: 8
 description: >
   Getting started with the LocalStack Desktop application
+aliases:
+  - /user-guide/tools/cockpit/
 ---
 
 LocalStack Desktop is a desktop client that allows users to easily control and interact with their LocalStack instance. Using LocalStack Desktop, users can start and stop their LocalStack instance with a single click, create a new container, view logs, interact with LocalStack container via cli and use our resource browser.
+
+{{< alert title="Note" >}}
+LocalStack Desktop replaces the previous LocalStack Cockpit application. Cockpit isn't available or maintained anymore and we recommend you to use LocalStack Desktop instead.
+{{< /alert >}}
 
 <img src="localstack-desktop-containers.png" alt="LocalStack Desktop" title="LocalStack Desktop" width="900" />
 
