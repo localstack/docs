@@ -151,10 +151,34 @@ git+https://github.com/localstack/localstack-extensions/#egg=localstack-extensio
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>- &lt;span style="color:#4e9a06">&amp;#34;/var/run/docker.sock:/var/run/docker.sock&amp;#34;&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
 &lt;/ul>
-&lt;p>When LocalStack starts up, you should see it tries to install the extensions and all their dependencies.&lt;/p></description></item><item><title>User-Guide: Developing extensions</title><link>/user-guide/extensions/developing-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/developing-extensions/</guid><description>
+&lt;p>When LocalStack starts up, you should see it tries to install the extensions and all their dependencies.&lt;/p>
+&lt;h2 id="extension-management-within-localstack">Extension Management within LocalStack&lt;/h2>
+&lt;p>Extensions in LocalStack are Python distributions that operate within their dedicated virtual environment, residing in the &lt;a href="/references/filesystem/">LocalStack Volume&lt;/a>. This involves the creation of a&amp;quot;variable packages folder &lt;code>/var/lib/localstack/lib&lt;/code>,&amp;quot; where the volume management system establishes both an &lt;code>extensions&lt;/code> folder and a virtual environment named &lt;code>python_venv&lt;/code>. Within this environment, all extensions and their dependencies are managed. LocalStack integrates its virtual environment, ensuring the resolution of all transitive dependencies associated with extensions.&lt;/p>
+&lt;p>Here&amp;rsquo;s an example what the default LocalStack volume looks like after installing the MailHog extension:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>$ &lt;span style="color:#204a87">pwd&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>~/.cache/localstack/volume
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>$ tree -L &lt;span style="color:#0000cf;font-weight:bold">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── cache
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ ├── ...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── lib
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ ├── extensions
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ └── python_venv
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── bin
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── include
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── lib
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ ├── lib64 -&amp;gt; lib
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ │ └── pyvenv.cfg
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ └── mailhog
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ └── v1.0.1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>│ └── MailHog_linux_amd64
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>├── logs
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>└── tmp
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> └── state
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Developing extensions</title><link>/user-guide/extensions/developing-extensions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/extensions/developing-extensions/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>This section provides a brief overview of how to develop your own extensions.&lt;/p>
-&lt;h2 id="overview">Overview&lt;/h2>
-&lt;h3 id="extensions-api">Extensions API&lt;/h3>
+&lt;h2 id="extensions-api">Extensions API&lt;/h2>
 &lt;p>LocalStack exposes a Python API for building extensions that can be found in the core codebase in &lt;a href="https://github.com/localstack/localstack/tree/master/localstack/extensions/api">&lt;code>localstack.extensions.api&lt;/code>&lt;/a>.&lt;/p>
 &lt;p>The basic interface to implement is as follows:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">class&lt;/span> &lt;span style="color:#000">Extension&lt;/span>&lt;span style="color:#000;font-weight:bold">(&lt;/span>&lt;span style="color:#000">BaseExtension&lt;/span>&lt;span style="color:#000;font-weight:bold">):&lt;/span>
@@ -243,7 +267,7 @@ you can also import other LocalStack modules outside the &lt;code>localstack.ext
 However, be aware that these modules are not part of our public API, and can change even with patch versions any time.
 Your extension may break in unexpected ways, and we cannot provide support for internal APIs.
 &lt;/div>
-&lt;h3 id="packaging-extensions">Packaging extensions&lt;/h3>
+&lt;h2 id="packaging-extensions">Packaging extensions&lt;/h2>
 &lt;p>Your extensions needs to be packaged as a Python distribution with a
 &lt;code>setup.cfg&lt;/code> or &lt;code>setup.py&lt;/code> config. LocalStack uses the
 &lt;a href="https://github.com/localstack/plux">Plux&lt;/a> code loading framework to load your
@@ -271,7 +295,7 @@ example below.&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The entry point group is the Plux namespace &lt;code>locastack.extensions&lt;/code>, and the
 entry point name is the plugin name &lt;code>my_ready_announcer&lt;/code>. The object
 reference points to the plugin class.&lt;/p>
-&lt;h3 id="using-the-extensions-developer-cli">Using the extensions developer CLI&lt;/h3>
+&lt;h2 id="using-the-extensions-developer-cli">Using the extensions developer CLI&lt;/h2>
 &lt;p>The extensions CLI has a set of developer commands that allow you to create new extensions, and toggle local dev mode for extensions.
 Extensions that are toggled for developer mode will be mounted into the localstack container so you don&amp;rsquo;t need to re-install them every time you change something.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-console" data-lang="console">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-style:italic">Usage: localstack extensions dev [OPTIONS] COMMAND [ARGS]...
