@@ -158,3 +158,32 @@ An example project could look something like this:
     ```
 
 When LocalStack starts up, you should see it tries to install the extensions and all their dependencies.
+
+## Extension Management within LocalStack
+
+Extensions in LocalStack are Python distributions that operate within their dedicated virtual environment, residing in the [LocalStack Volume]({{< ref "filesystem" >}}). This involves the creation of a"variable packages folder `/var/lib/localstack/lib`," where the volume management system establishes both an `extensions` folder and a virtual environment named `python_venv`. Within this environment, all extensions and their dependencies are managed. LocalStack integrates its virtual environment, ensuring the resolution of all transitive dependencies associated with extensions.
+
+Here's an example what the default LocalStack volume looks like after installing the MailHog extension:
+
+```bash
+$ pwd
+~/.cache/localstack/volume
+$ tree -L 4
+.
+├── cache
+│   ├── ...
+├── lib
+│   ├── extensions
+│   │   └── python_venv
+│   │       ├── bin
+│   │       ├── include
+│   │       ├── lib
+│   │       ├── lib64 -> lib
+│   │       └── pyvenv.cfg
+│   └── mailhog
+│       └── v1.0.1
+│           └── MailHog_linux_amd64
+├── logs
+└── tmp
+    └── state
+```
