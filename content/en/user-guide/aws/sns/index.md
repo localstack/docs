@@ -115,7 +115,7 @@ $ awslocal receive-message --queue-url "http://sqs.us-east-1.localhost.localstac
             "MessageId": "72a15a17-5652-45ab-b4db-937f60f0c6d8",
             "ReceiptHandle": "YjQ0YjgzMjAtNTk2NC00ZDk0LWE4ZGYtNjljMTViOTkwOTFmIGFybjphd3M6c3FzOnVzLWVhc3QtMTowMDAwMDAwMDAwMDA6bXktcXVldWUgNzJhMTVhMTctNTY1Mi00NWFiLWI0ZGItOTM3ZjYwZjBjNmQ4IDE3MDM3MDQxMTEuNTI2MzEwNA==",
             "MD5OfBody": "2664b540fb6ce6fd7467cd8fb071c30f",
-            "Body": "{\"Type\": \"Notification\", \"MessageId\": \"5a1593ce-411b-44dc-861d-907daa05353b\", \"TopicArn\": \"arn:aws:sns:us-east-1:000000000000:localstack-topic\", \"Message\": \"hello\", \"Timestamp\": \"2023-12-27T19:07:55.341Z\", \"SignatureVersion\": \"1\", \"Signature\": \"EXAMPLEpH+..\", \"SigningCertURL\": \"https://sns.us-east-1.amazonaws.com/SimpleNotificationService-0000000000000000000000.pem\", \"UnsubscribeURL\": \"http://localhost.localstack.cloud:4566/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:000000000000:localstack-topic:636e2a73-0dda-4e09-9fdf-77f113d0edd8\"}"
+            "Body": "{\"Type\": \"Notification\", \"MessageId\": \"5a1593ce-411b-44dc-861d-907daa05353b\", \"TopicArn\": \"arn:aws:sns:us-east-1:000000000000:localstack-topic\", \"Message\": \"hello\", \"Timestamp\": \"2023-12-27T19:07:55.341Z\", \"SignatureVersion\": \"1\", \"Signature\": \"EXAMPLEpH+..\", \"SigningCertURL\": \"...\", \"UnsubscribeURL\": \"http://localhost.localstack.cloud:4566/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:000000000000:localstack-topic:636e2a73-0dda-4e09-9fdf-77f113d0edd8\"}"
         }
     ]
 }
