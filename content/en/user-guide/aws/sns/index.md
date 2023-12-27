@@ -68,6 +68,14 @@ $ awslocal sns subscribe \
    --notification-endpoint test@gmail.com
 {{< /command >}}
 
+You can configure the SNS Subscription attributes, using the `SubscriptionArn` returned by the previous step.
+For example, run the following command to set the `RawMessageDelivery` attribute for the subscription:
+
+{{< command >}}
+$ awslocal sns set-subscription-attributes \
+   --subscription-arn arn:aws:sns:us-east-1:000000000000:test-topic:b6f5e924-dbb3-41c9-aa3b-589dbae0cfff \
+   --attribute-name RawMessageDelivery --attribute-value true
+{{< /command >}}
 
 ### Working with SQS subscriptions for SNS
 
@@ -136,17 +144,6 @@ $ awslocal sns list-subscriptions
 Then, use the ARN to unsubscribe
 {{< command >}}
 $ awslocal sns unsubscribe --subscription-arn "arn:aws:sns:us-east-1:000000000000:localstack-topic:636e2a73-0dda-4e09-9fdf-77f113d0edd8"
-{{< /command >}}
-
-### Setting subscription attributes
-
-You can configure the SNS Subscription attributes, using the `SubscriptionArn` from the previous step.
-For example, run the following command to set the `RawMessageDelivery` attribute for the subscription:
-
-{{< command >}}
-$ awslocal sns set-subscription-attributes \
-   --subscription-arn arn:aws:sns:us-east-1:000000000000:test-topic:b6f5e924-dbb3-41c9-aa3b-589dbae0cfff \
-   --attribute-name RawMessageDelivery --attribute-value true
 {{< /command >}}
 
 ## Accessing published Platform Messages
