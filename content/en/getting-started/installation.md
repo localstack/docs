@@ -221,7 +221,7 @@ See [LocalStack Desktop]({{< ref "localstack-desktop" >}}).
 ### LocalStack Docker Extension
 
 Install our [official Docker Desktop extension](https://hub.docker.com/extensions/localstack/localstack-docker-desktop) to manage LocalStack.
-See [LocalStack Docker Extension]({{< ref "localstack-docker-extension" >}}).
+See [LocalStack Docker Extension]({{< ref "docker-extension" >}}).
 
 ### Docker-Compose
 
