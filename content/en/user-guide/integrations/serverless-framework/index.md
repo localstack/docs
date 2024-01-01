@@ -1,11 +1,8 @@
 ---
 title: "Serverless Framework"
-tags: ["serverless-framework"] 
-weight: 4
+linkTitle: "Serverless Framework"
 description: >
   Use the Serverless Framework with LocalStack
-aliases:
-  - /integrations/serverless-framework/
 ---
 
 <img src="serverless-logo.png" width="600px" alt="Serverless logo">

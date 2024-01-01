@@ -1,10 +1,8 @@
 ---
 title: "CDK for Terraform"
-weight: 11
-tags: ["cdk", "terraform", "cdk-for-terraform", "CDKTF"]
-categories: []
+linkTitle: "CDK for Terraform"
 description: >
-  Getting started with CDK for Terraform to deploy AWS resources on your local machine with LocalStack
+  Use CDK for Terraform with LocalStack
 ---
 
 <img src="cdk-for-terraform.png" width="400px" alt="CDK for Terraform banner" />

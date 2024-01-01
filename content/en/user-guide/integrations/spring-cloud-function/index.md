@@ -1,20 +1,8 @@
 ---
 title: "Spring Cloud Function"
-tags: [
-  "serverless-framework",
-  "spring",
-  "spring-cloud",
-  "spring-cloud-function",
-  "jvm",
-  "kotlin"
-]
-categories: ["LocalStack Community", "LocalStack Pro"]
-date: 2021-09-28
-weight: 5
+linkTitle: "Spring Cloud Function"
 description: >
   Use Spring Cloud Function framework with LocalStack
-aliases:
-  - /integrations/spring-cloud-function/
 ---
 
 <img src="spring-logo.svg" width="600px" alt="Spring logo"><br />

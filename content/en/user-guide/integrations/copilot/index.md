@@ -1,11 +1,8 @@
 ---
 title: "AWS Copilot CLI"
-tags: ["continuous-delivery"]
-weight: 5
+linkTitle: "AWS Copilot CLI"
 description: >
   Build, Release and Operate Containerized Applications on AWS with AWS Copilot CLI
-aliases:
-  - /integrations/copilot/
 ---
 
 ## Overview

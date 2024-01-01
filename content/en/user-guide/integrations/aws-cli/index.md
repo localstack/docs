@@ -1,6 +1,6 @@
 ---
-title: "AWS Command Line Interface"
-weight: 2
+title: "AWS Command Line Interface (CLI)"
+linkTitle: "AWS Command Line Interface (CLI)"
 description: >
   Use AWS Command Line Interface (CLI) to create local AWS resources with LocalStack
 ---

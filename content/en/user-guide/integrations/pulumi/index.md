@@ -1,12 +1,8 @@
 ---
 title: "Pulumi"
-tags: ["pulumi", "infrastructure-as-code"]
-categories: []
-weight: 10
+linkTitle: "Pulumi"
 description: >
   Use the Pulumi Infrastructure as Code framework with LocalStack
-aliases:
-  - /integrations/pulumi/
 ---
 
 <img src="pulumi-logo.svg" width="600px" alt="Pulumi logo">

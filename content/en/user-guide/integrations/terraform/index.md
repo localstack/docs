@@ -1,6 +1,6 @@
 ---
 title: "Terraform"
-weight: 5
+linkTitle: "Terraform"
 description: >
   Use the Terraform Infrastructure as Code framework with LocalStack
 ---

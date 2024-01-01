@@ -1,11 +1,8 @@
 ---
 title: "Crossplane"
-tags: ["crossplane", "kubernetes", "infrastructure-as-code"]
-weight: 5
+linkTitle: "Crossplane"
 description: >
   Use the Crossplane cloud-native control plane framework with LocalStack
-aliases:
-  - /integrations/crossplane/
 ---
 
 <img src="logo-crossplane.svg" width="500px" alt="Crossplane logo">

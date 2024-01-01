@@ -1,11 +1,8 @@
 ---
 title: "Architect"
-tags: ["architect", "infrastructure-as-code"]
-weight: 5
+linkTitle: "Architect"
 description: >
   Use the Architect Infrastructure as Code framework with LocalStack
-aliases:
-  - /integrations/architect/
 ---
 
 <img src="architect_logo.png" width="600px" alt="architect logo">
