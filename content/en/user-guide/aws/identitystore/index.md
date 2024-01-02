@@ -18,7 +18,7 @@ Start your LocalStack container using your preferred method. This guide will dem
 
 ### Create a Group in Identity Store
 
-You can create a new group in the Identity Store using the [`CreateGroup`](https://docs.aws.amazon.com/identitystore/latest/APIReference/API_CreateGroup.html) API. Execute the following command to create a group with an identity store ID of `testls`:
+You can create a new group in the Identity Store using the [`CreateGroup`](https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_CreateGroup.html) API. Execute the following command to create a group with an identity store ID of `testls`:
 
 {{< command >}}
 $ awslocal identitystore create-group --identity-store-id testls
@@ -34,7 +34,7 @@ Copy the `GroupId` value from the output, as it will be needed in subsequent ste
 
 ### List all Groups in Identity Store
 
-After creating groups, you might want to list all groups within the Identity Store to manage or review them. Run the following command to list all groups using the [`ListGroups`](https://docs.aws.amazon.com/identitystore/latest/APIReference/API_ListGroups.html) API:
+After creating groups, you might want to list all groups within the Identity Store to manage or review them. Run the following command to list all groups using the [`ListGroups`](https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_ListGroups.html) API:
 
 {{< command >}}
 $ awslocal identitystore list-groups --identity-store-id testls
@@ -55,7 +55,7 @@ This command returns a list of all groups, including the group you created in th
 
 ### Describe a Group in Identity Store
 
-To view details about a specific group, use the [`DescribeGroup`](https://docs.aws.amazon.com/identitystore/latest/APIReference/API_DescribeGroup.html) API. Run the following command to describe the group you created in the previous step:
+To view details about a specific group, use the [`DescribeGroup`](https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_DescribeGroup.html) API. Run the following command to describe the group you created in the previous step:
 
 {{< command >}}
 $ awslocal describe-group --identity-store-id testls --group-id 38cec731-de22-45bf-9af7-b74457bba884
