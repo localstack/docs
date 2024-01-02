@@ -1321,7 +1321,155 @@ Then, simply run&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://delitescere.medium.com/pulumi-and-localstack-beyond-the-basics-d993f3b94d17">Pulumi and LocalStack &amp;ndash; beyond the basics. 2021-08-26&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://overflowed.dev/blog/how-to-deploy-localstack-with-pulumi">How to deploy LocalStack with Pulumi. 2020-09-22&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Self-managed Kafka cluster</title><link>/user-guide/integrations/kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/kafka/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Quarkus</title><link>/user-guide/integrations/quarkus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/quarkus/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>Quarkus is a Java framework optimized for cloud, serverless, and containerized environments. Quarkus leverages a Kubernetes Native Java stack tailored for GraalVM &amp;amp; OpenJDK HotSpot, which further builds on various Java libraries and standards.&lt;/p>
+&lt;p>Localstack is supported by Quarkus as a Dev service for Amazon Services. Quarkus Amazon Services automatically starts a LocalStack container in development mode and when running tests, and the extension client is configured automatically.&lt;/p>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>In this guide, we will demonstrate how you can create a service client for creating and managing Lambdas on LocalStack. The Lambda extension is based on &lt;a href="https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/welcome.html">AWS Java SDK 2.x&lt;/a>.&lt;/p>
+&lt;h3 id="prerequisites">Prerequisites&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.localstack.cloud/getting-started/installation">LocalStack&lt;/a> installed and running&lt;/li>
+&lt;li>&lt;a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">JDK 17+&lt;/a> with &lt;code>JAVA_HOME&lt;/code> configured properly&lt;/li>
+&lt;li>&lt;a href="https://maven.apache.org/download.cgi">Maven 3.8.1+&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.docker.com/get-docker/">Docker&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="create-a-maven-project">Create a Maven project&lt;/h3>
+&lt;p>Create a new project with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>mvn io.quarkus.platform:quarkus-maven-plugin:3.6.3:create \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -DprojectGroupId=org.acme \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -DprojectArtifactId=amazon-lambda-quickstart \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -DclassName=&amp;#34;org.acme.lambda.QuarkusLambdaSyncResource&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -Dpath=&amp;#34;/sync&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -Dextensions=&amp;#34;resteasy-reactive-jackson,amazon-lambda&amp;#34;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cd amazon-lambda-quickstart&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>The above command generates a Maven project structure with imports for RESTEasy Reactive/JAX-RS and Amazon Lambda Client extensions.&lt;/p>
+&lt;h3 id="configure-lambda-client">Configure Lambda Client&lt;/h3>
+&lt;p>Both Lambda clients (sync and async) can be configured through the &lt;code>application.properties&lt;/code> file, which should be located in the &lt;code>src/main/resources&lt;/code> directory. Additionally, ensure that a suitable implementation of the sync client is added to the &lt;code>classpath&lt;/code>. By default, the extension employs the URL connection HTTP client, so it&amp;rsquo;s necessary to include a URL connection client dependency in the &lt;code>pom.xml&lt;/code> file:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;groupId&amp;gt;&lt;/span>software.amazon.awssdk&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;artifactId&amp;gt;&lt;/span>url-connection-client&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you want to use Apache HTTP client instead, configure it as follows in &lt;code>application.properties&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>quarkus.lambda.sync-client.type=apache
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Add the following dependencies to the &lt;code>pom.xml&lt;/code> file:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;groupId&amp;gt;&lt;/span>software.amazon.awssdk&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;lt;artifactId&amp;gt;&lt;/span>apache-client&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To configure LocalStack, add the following properties to the &lt;code>application.properties&lt;/code> file:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>quarkus.lambda.endpoint-override&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>http://localhost:4566
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>quarkus.lambda.aws.region&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>us-east-1
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>quarkus.lambda.aws.credentials.type&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>static
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>quarkus.lambda.aws.credentials.static-provider.access-key-id&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>test-key
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>quarkus.lambda.aws.credentials.static-provider.secret-access-key&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>test-secret
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="package-the-application">Package the application&lt;/h3>
+&lt;p>You can package the application with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>./mvnw clean package&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>You can further run the application in dev mode with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>java -Dparameters.path=/quarkus/is/awesome/ -jar target/quarkus-app/quarkus-run.jar&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>With GraalVM installed, you can also create a native executable binary using the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>./mvnw clean package -Dnative.&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>Dev Services for Amazon Services is automatically enabled for each extension added to the &lt;code>pom.xml&lt;/code>, except in the following scenarios:&lt;/p>
+&lt;ul>
+&lt;li>When &lt;code>quarkus.devservices.enabled&lt;/code> is set to false.&lt;/li>
+&lt;li>When &lt;code>devservices.enabled&lt;/code> is set to false per extension (e.g., &lt;code>quarkus.s3.devservices.enabled=false&lt;/code>).&lt;/li>
+&lt;li>When the &lt;code>endpoint-override&lt;/code> is configured (e.g., &lt;code>quarkus.s3.endpoint-override=http://localhost:4566&lt;/code>).&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;h2 id="supported-extensions">Supported extensions&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-lambda.html">Lambda&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-s3.html">S3&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-ssm.html">SSM&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-sqs.html">SQS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-sns.html">SNS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-ses.html">SES&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-secretsmanager.html">Secrets Manager&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-kms.html">KMS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.quarkiverse.io/quarkus-amazon-services/dev/amazon-iam.html">IAM&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>The following configuration properties are fixed at build time. All the other configuration properties can be overridden at runtime.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Property&lt;/th>
+&lt;th>Type&lt;/th>
+&lt;th>Default&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.image-name&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>&lt;code>localstack/localstack:3.0.1&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.init-scripts-folder&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.init-scripts-classpath&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.init-completion-msg&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.container-properties&lt;/code>&lt;/td>
+&lt;td>&lt;code>Map&amp;lt;String,String&amp;gt;&lt;/code>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.additional-services.&amp;quot;additional-services&amp;quot;.enabled&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.additional-services.&amp;quot;additional-services&amp;quot;.shared&lt;/code>&lt;/td>
+&lt;td>boolean&lt;/td>
+&lt;td>&lt;code>false&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.additional-services.&amp;quot;additional-services&amp;quot;.service-name&lt;/code>&lt;/td>
+&lt;td>string&lt;/td>
+&lt;td>&lt;code>localstack&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>quarkus.aws.devservices.localstack.additional-services.&amp;quot;additional-services&amp;quot;.container-properties&lt;/code>&lt;/td>
+&lt;td>&lt;code>Map&amp;lt;String,String&amp;gt;&lt;/code>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;ul>
+&lt;li>If &lt;code>quarkus.aws.devservices.localstack.additional-services.&amp;quot;additional-services&amp;quot;.enabled&lt;/code> is set to &lt;code>true&lt;/code> and the endpoint-override is not configured, LocalStack will be started and utilized instead of the provided configuration. For all services excluding Cognito, LocalStack will function as the core cloud emulator. In the case of Cognito, the emulation/mocking will be done by Moto.&lt;/li>
+&lt;li>The &lt;code>quarkus.aws.devservices.localstack.additional-services.&amp;quot;additional-services&amp;quot;.shared&lt;/code> indicates whether the LocalStack container managed by Dev Services is shared. In shared mode, Quarkus utilizes label-based service discovery, specifically the &lt;code>quarkus-dev-service-localstack&lt;/code> label, to identify running containers. If a matching container is found, it is used. Otherwise, Dev Services initiates a new container. It&amp;rsquo;s important to note that sharing is not supported for the Cognito extension.&lt;/li>
+&lt;li>In &lt;code>quarkus.aws.devservices.localstack.additional-services.&amp;quot;additional-services&amp;quot;.service-name&lt;/code>, the value of the &lt;code>quarkus-dev-service-localstack&lt;/code> label is attached to the initiated container. In dev mode, when the shared flag is true, Dev Services checks for a container with the &lt;code>quarkus-dev-service-localstack&lt;/code> label set to the configured value before starting a new one. If found, it utilizes the existing container. Otherwise, it creates a new container with the &lt;code>quarkus-dev-service-localstack&lt;/code> label set to the specified value. In test mode, Dev Services groups services with the same service-name value into a single container instance. This property is useful when there&amp;rsquo;s a requirement for multiple shared LocalStack instances.&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;h3 id="specific-configuration">Specific configuration&lt;/h3>
+&lt;p>Dev Services can support specific configurations passed to the LocalStack container. These configurations can be globally applied to all containers or specified individually per service.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>quarkus.aws.devservices.localstack.image-name&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>localstack/localstack:3.0.3
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>quarkus.dynamodb.devservices.container-properties.DYNAMODB_HEAP_SIZE&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>1G
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="additional-services">Additional services&lt;/h3>
+&lt;p>To start additional services for which a Quarkus extension does not exist or is not imported in the project, use the &lt;code>additional-services&lt;/code> property:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>quarkus.aws.devservices.localstack.additional-services.&lt;span style="color:#4e9a06">&amp;#34;kinesis&amp;#34;&lt;/span>.enabled&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>quarkus.aws.devservices.localstack.additional-services.&lt;span style="color:#4e9a06">&amp;#34;redshift&amp;#34;&lt;/span>.enabled&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Self-managed Kafka cluster</title><link>/user-guide/integrations/kafka/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/kafka/</guid><description>
 &lt;p>LocalStack Pro supports &lt;a href="/user-guide/aws/managed-streaming-for-kafka/">AWS Managed Streaming for Kafka (MSK)&lt;/a> and you can create Kafka clusters directly through the MSK API that will run in LocalStack.
 In some cases, you may want to run your own self-managed Kafka cluster and integrate it with your applications, like triggering Lambdas from a Kafka stream running in your own cluster.
 The Lambda integration with self-managed Kafka clusters is also a LocalStack Pro feature.&lt;/p>
