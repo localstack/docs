@@ -190,6 +190,21 @@ You can find more information about this behavior in the [`DeleteQueue` API Refe
 By default, LocalStack disables this behavior.
 However, if you want to enable the delay for creating a recently deleted queue in LocalStack, you can start it with the `SQS_DELAY_RECENTLY_DELETED=1` environment variable.
 
+### Enabling `MessageRetentionPeriod`
+
+In AWS, you can set the `MessageRetentionPeriod` to control the length of time, in seconds, for which Amazon SQS retains a message.
+You can find more details in the [`SetQueueAttributes` API reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SetQueueAttributes.html#API_SetQueueAttributes_RequestParameters).
+
+You can enable this behavior in LocalStack by setting the `SQS_ENABLE_MESSAGE_RETENTION_PERIOD=1` environment variable.
+In AWS, valid values for message retention range from 60 (1 minute) to 1,209,600 (14 days).
+In LocalStack, we do not put constraints on the value which can be helpful for test scenarios.
+
+{{<alert>}}
+Note that, if you enable this option, [persistence]({{< ref "persistence-mechanism" >}}) or [cloud pods]({{<ref "/user-guide/cloud-pods/" >}}) for SQS may not work as expected.
+The reason is that, LocalStack does not adjust timestamps when restoring a state, so time appears to pass between LocalStack runs.
+Consequently, when you restart LocalStack after a period that is longer than the message retention period, LocalStack will remove all those messages when SQS starts.
+{{</alert>}}
+
 ### Disable CloudWatch Metrics Reporting
 
 When working with SQS messages, actions like sending, receiving, and deleting them will automatically trigger CloudWatch metrics.
@@ -537,4 +552,5 @@ The following code snippets and sample applications provide practical examples o
 
 ## Limitations
 
-A message's `ApproximateReceiveCount` attribute will be reset to 0 when the message moves to a DLQ.
+* A message's `ApproximateReceiveCount` attribute will be reset to 0 when the message moves to a DLQ.
+* Updating a queue's `MessageRetentionPeriod` currently has no effect on existing messages
