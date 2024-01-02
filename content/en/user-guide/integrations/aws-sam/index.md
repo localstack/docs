@@ -1,12 +1,8 @@
 ---
-title: "AWS SAM"
-tags: ["sam", "cloudformation", "infrastructure-as-code"]
-categories: []
-weight: 7
+title: "AWS Serverless Application Model (SAM)"
+linkTitle: "AWS Serverless Application Model (SAM)"
 description: >
   Use the AWS SAM (Serverless Application Model) with LocalStack
-aliases:
-  - /integrations/aws-sam/
 ---
 
 ![AWS SAM](aws-sam-logo.jpg)

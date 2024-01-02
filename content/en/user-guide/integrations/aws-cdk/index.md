@@ -1,12 +1,8 @@
 ---
 title: "AWS CDK"
-tags: ["cdk", "cloudformation", "infrastructure-as-code"]
-categories: []
-weight: 8
+linkTitle: "AWS CDK"
 description: >
   Use the AWS CDK (Cloud Development Kit) with LocalStack
-aliases:
-  - /integrations/aws-cdk/
 ---
 
 ![AWS CDK](aws-cdk-logo.svg)

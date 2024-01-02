@@ -1,10 +1,7 @@
 ---
 title: Kubernetes
 linktitle: Kubernetes
-weight: 50
 description: Running LocalStack on Kubernetes
-aliases:
-  - /references/localstack-on-kubernetes/
 ---
 
 ## Introduction

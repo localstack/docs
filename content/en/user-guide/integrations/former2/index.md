@@ -1,6 +1,6 @@
 ---
 title: "Former2"
-weight: 15
+linkTitle: "Former2"
 description: >
   Use Former2 to generate Infrastructure-as-Code outputs from existing resources with LocalStack
 ---

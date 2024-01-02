@@ -1,12 +1,8 @@
 ---
 title: "AWS Chalice"
-weight: 13
-tags: ["chalice"]
-categories: []
+linkTitle: "AWS Chalice"
 description: >
-  Understanding the usage of AWS Chalice with LocalStack
-aliases:
-  - /integrations/chalice/
+  Use AWS Chalice with LocalStack
 ---
 
 [AWS Chalice](https://aws.github.io/chalice/) is a serverless micro framework used to develop and deploy your serverless applications on AWS resources. Chalice provides integrated functionality with most of the AWS Toolings like S3 Storage, Simple Queue Service, API Gateway and more. It offers a handy CLI interface that allows you to easily create, develop & deploy your serverless applications.

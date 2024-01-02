@@ -1,8 +1,8 @@
 ---
 title: "Cloud Custodian"
-weight: 16
+linkTitle: "Cloud Custodian"
 description: >
-  Use Cloud Custodian to manage local cloud resources by filtering, tagging, and then applying actions with LocalStack
+  Use Cloud Custodian with LocalStack
 ---
 
 ## Introduction

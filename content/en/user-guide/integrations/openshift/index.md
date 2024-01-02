@@ -1,6 +1,6 @@
 ---
 title: "OpenShift"
-weight: 14
+linkTitle: "OpenShift"
 description: >
   Use the OpenShift managed Kubernetes cluster to deploy LocalStack
 ---
