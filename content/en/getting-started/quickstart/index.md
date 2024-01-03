@@ -194,7 +194,17 @@ zip lambda.zip handler.py
 rm -rf libs
 cd ../..
 {{< /tab >}}
-{{< tab header="Linux/Windows" lang="shell" >}}
+{{< tab header="Linux" lang="shell" >}}
+cd lambdas/resize
+rm -rf package lambda.zip
+mkdir package
+pip install -r requirements.txt -t package --platform manylinux_2_28_x86_64 --python-version 3.9 --no-deps
+zip lambda.zip handler.py
+cd package
+zip -r ../lambda.zip *;
+cd ../..
+{{< /tab >}}
+{{< tab header="Windows" lang="shell" >}}
 cd lambdas/resize
 rm -rf package lambda.zip
 mkdir package
