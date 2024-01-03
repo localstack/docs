@@ -40,7 +40,7 @@ An internal SES LocalStack testing endpoint (`/_localstack/aws/ses`) is configur
 - [LocalStack CLI](https://docs.localstack.cloud/getting-started/installation/#localstack-cli)
 - [LocalStack Web Application account](https://app.localstack.cloud/sign-up) & [Auth Token](https://docs.localstack.cloud/getting-started/auth-token/)
 - [Docker](https://docs.docker.com/get-docker/)
-- [Python 3.9+](https://www.python.org/downloads/)
+- [Python 3.9+](https://www.python.org/downloads/) & `pip`
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) & [`awslocal` wrapper](https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal)
 - `jq`, `zip` & `curl`
 
