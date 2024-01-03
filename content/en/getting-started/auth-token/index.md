@@ -172,13 +172,30 @@ Due to this error, Localstack has quit. LocalStack pro features can only be used
 - If you want to continue using LocalStack without pro features you can set `ACTIVATE_PRO=0`.
 ```
 
-Key activation in LocalStack can fail for several reasons:
+The key activation in LocalStack can fail for several reasons. The most common ones are documented below in this section.
 
--   **Missing Credentials:** Using the `localstack/localstack-pro` image typically requires an Auth Token or a legacy API key.
--   **Invalid License:** This occurs if there's no valid license linked to your account, possibly due to expiration.
--   **License Server Unreachable:** LocalStack attempts offline activation if the license server is inaccessible, but this necessitates re-activation every 24 hours.
+### Missing Credentials
 
-If you're using the `localstack/localstack-pro` image but are unable to activate your license, consider switching to the community version, `localstack/localstack`. If switching isn't feasible, setting `ACTIVATE_PRO=0` will try to start LocalStack without the Pro features.
+You need to provide either an Auth Token or an API Key to start the LocalStack Pro image successfully. You can find your Auth Token or API Key on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) or the [Legacy API Key page](https://app.localstack.cloud/workspace/api-keys) in the LocalStack Web Application.
 
-Navigate to our [FAQ page]({{< ref "faq" >}}) if your are having troubles with the LocalStack license activation.
+If you are using the `localstack` CLI, you can set the `LOCALSTACK_AUTH_TOKEN` environment variable to your Auth Token or use the following command to set it up:
+
+{{< command >}}
+$ localstack auth set-token <YOUR_AUTH_TOKEN>
+{{< / command >}}
+
+### Invalid License
+
+This issue occurs if there's no valid license linked to your account, possibly due to expiration or if it has not been assigned to you. You can check your license status on the [My License page](https://app.localstack.cloud/workspace/my-license) in the LocalStack Web Application.
+
+### License Server Unreachable
+
+LocalStack attempts offline activation if the license server is inaccessible, but this necessitates re-activation every 24 hours. Log output might indicate that your machine cannot resolve the domain of the LocalStack API. You can this by using a tool like `dig`:
+
+{{< command >}}
+$ dig api.localstack.cloud
+{{< / command >}}
+
+If the result has some other status than `status: NOERROR,` your machine cannot resolve this domain. Some corporate DNS servers might filter requests to certain domains. Contact your network administrator to safelist `localstack.cloud` domains.
+
 If you have any further problems concerning your license activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).
