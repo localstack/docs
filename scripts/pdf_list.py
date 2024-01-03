@@ -146,7 +146,7 @@ doc_list = [
     'lambda-tools',
     'hot-reloading',
     'remote-debugging',
-    'lambda-vscode-extension',
+    'vscode-extension',
     'dns-server',
     'localstack-web-application',
     'accounts',
