@@ -209,6 +209,19 @@ provider "aws" {
 }
 ```
 
+{{< alert title="Note" >}}
+To heuristically detect whether your Terraform configuration should be deployed against LocalStack, you can use the following snippet:
+
+```hcl
+data "aws_caller_identity" "current" {}
+output "is_localstack" {
+  value = data.aws_caller_identity.current.id == "000000000000"
+}
+```
+
+It will detect whether the AWS account ID is `000000000000`, which is the default value for LocalStack. If you use a different account ID within LocalStack, you can customize the snippet accordingly.
+{{< /alert >}}
+
 ## CDK for Terraform
 
 Cloud Development Kit for Terraform (CDKTF) allows you to use general-purpose programming languages, such as TypeScript, Python, Java, and more, to create infrastructure declaratively. It allows you to create, update, and delete AWS infrastructure by leveraging a Terraform backend without manually configuring Terraform using HCL and [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) to translate your code into infrastructure configuration files for Terraform. CDKTF supports every Terraform provider and module available on the [Terraform Registry](https://registry.terraform.io/).
