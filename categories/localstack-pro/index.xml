@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Pro</title><link>/categories/localstack-pro/</link><description>Recent content in LocalStack Pro on Docs</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/localstack-pro/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Hot Reloading</title><link>/user-guide/tools/lambda-tools/hot-reloading/</link><pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate><guid>/user-guide/tools/lambda-tools/hot-reloading/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docs – LocalStack Pro</title><link>/categories/localstack-pro/</link><description>Recent content in LocalStack Pro on Docs</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/localstack-pro/index.xml" rel="self" type="application/rss+xml"/><item><title>User-Guide: Hot Reloading</title><link>/user-guide/lambda-tools/hot-reloading/</link><pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate><guid>/user-guide/lambda-tools/hot-reloading/</guid><description>
 &lt;p>Hot reloading (formerly known as hot swapping) continuously applies code changes to Lambda functions without manual redeployment.&lt;/p>
 &lt;p>Quickly iterating over Lambda function code can be quite cumbersome, as you need to deploy your function on every change.
 LocalStack enables fast feedback cycles during development by automatically reloading your function code.
@@ -462,7 +462,7 @@ id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
 &lt;ul>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">Lambda Code Mounting and Debugging (Python)&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/sample-archive/spring-cloud-function-microservice">Spring Cloud Function on LocalStack (Kotlin JVM)&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Remote Debugging</title><link>/user-guide/tools/lambda-tools/debugging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/tools/lambda-tools/debugging/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: Remote Debugging</title><link>/user-guide/lambda-tools/debugging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/lambda-tools/debugging/</guid><description>
 &lt;h1 id="overview">Overview&lt;/h1>
 &lt;p>This guide covers remote debugging of Lambda functions with the IDEs &lt;a href="https://code.visualstudio.com/">Visual Studio Code&lt;/a> and &lt;a href="https://www.jetbrains.com/idea/">IntelliJ IDEA&lt;/a>.
 For a simple working example of this feature, check out Pro sample &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">lambda-mounting-and-debugging&lt;/a>.&lt;/p>
@@ -477,7 +477,7 @@ For a simple working example of this feature, check out Pro sample &lt;a href="h
 &lt;h2 id="debugging-python-lambdas">Debugging Python lambdas&lt;/h2>
 &lt;p>Lambda functions debugging used to be a difficult task. LocalStack changes that
 with the same local code mounting functionality that also helps you
-to &lt;a href="/user-guide/tools/lambda-tools/hot-reloading/">iterate quickly over your function code&lt;/a>.&lt;/p>
+to &lt;a href="/user-guide/lambda-tools/">iterate quickly over your function code&lt;/a>.&lt;/p>
 &lt;p>For a simple working example of this feature, you can refer to
 &lt;a href="https://github.com/localstack/localstack-pro-samples/tree/master/lambda-mounting-and-debugging">our samples&lt;/a>.
 There, the necessary code fragments for enabling debugging are already present.&lt;/p>
@@ -1807,7 +1807,7 @@ If your ECS containers depend on LocalStack services, this should be the network
 For more information regarding the configuration of LocalStack, please check the &lt;a href="/references/configuration/">LocalStack configuration&lt;/a> section.&lt;/p>
 &lt;p>If you are running LocalStack through a &lt;code>docker run&lt;/code> command, do not forget to enable the communication from the container to the Docker Engine API. You can provide the access by adding the following option &lt;code>-v /var/run/docker.sock:/var/run/docker.sock&lt;/code>.&lt;/p>
 &lt;h2 id="mounting-local-directories-for-ecs-tasks">Mounting local directories for ECS tasks&lt;/h2>
-&lt;p>In some cases, it can be useful to mount code from the host filesystem into the ECS container. For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task&amp;rsquo;s Docker image each time - similar to the &lt;a href="/user-guide/tools/lambda-tools/hot-reloading/">Lambda Hot Reloading&lt;/a> feature in LocalStack.&lt;/p>
+&lt;p>In some cases, it can be useful to mount code from the host filesystem into the ECS container. For example, to enable a quick debugging loop where you can test changes without having to build and redeploy the task&amp;rsquo;s Docker image each time - similar to the &lt;a href="/user-guide/lambda-tools/hot-reloading/">Lambda Hot Reloading&lt;/a> feature in LocalStack.&lt;/p>
 &lt;p>In order to leverage code mounting, we can use the ECS bind mounts feature, which is covered in the &lt;a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/bind-mounts.html">AWS Bind mounts documentation&lt;/a>.&lt;/p>
 &lt;p>For example, the Python sample code below registers a task definition, mounting a host path &lt;code>/host/path&lt;/code> into the container under &lt;code>/container/path&lt;/code>:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">ecs_client&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> boto3.client&lt;span style="color:#ce5c00;font-weight:bold">(&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;ecs&amp;#34;&lt;/span>, &lt;span style="color:#000">endpoint_url&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">)&lt;/span>
