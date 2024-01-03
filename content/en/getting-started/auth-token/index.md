@@ -19,20 +19,30 @@ The Auth Token remains unchanged unless manually rotated by the user, regardless
 
 ## Managing your License
 
-To begin using LocalStack, a license is required. If you don't already have a license, you can opt for a free 14-day trial by [signing up here](https://localstack.cloud/pricing/), with no credit card required. This trial allows full access to all LocalStack features.
+To begin using LocalStack, a license is required. You can get a license by signing up on the [LocalStack Web Application](https://app.localstack.cloud/sign-up). You can choose between a free 14-day trial or a [paid license](https://app.localstack.cloud/pricing). The trial allows full access to all LocalStack features.
 
-For license management, assign licenses to users via the [Users & Licenses page](https://app.localstack.cloud/workspace/members). To view your own assigned license, visit the [My License page](https://app.localstack.cloud/workspace/my-license).
+After starting your trial or purchasing a license, you need assign it to a user. Follow the steps below to assign a license to a user:
 
-{{< alert title="Important" color="danger" >}}
--   It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
--   Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
--   In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
--   For use in Continuous Integration (CI) or automated test environments, a CI key is necessary. Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
-{{< /alert >}}
+- Visit the [Users & Licenses page](https://app.localstack.cloud/workspace/members).
+- Select a user in the **Workspace Members** section for license assignment.
+- Define user's role via the **Member Role** dropdown. Single users automatically receive the **Admin** role.
+- Toggle **Advanced Permissions** to set specific permissions. Single users automatically receive full permissions.
+- Click **Save** to complete the assignment. Single users assign licenses to themselves.
 
-### Starting LocalStack via CLI
+{{< img src="assigning-a-license.png" class="img-fluid shadow rounded" width="800" >}}
+<br><br>
 
-LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain your Auth Token. You should set the `LOCALSTACK_AUTH_TOKEN` environment variable either before or during the startup of LocalStack using the `localstack` command-line interface (CLI).
+If you have joined a workspace, you need to be assigned a license by the workspace administrator. In case of switching workspaces or licenses, you need to make sure that you are assigned to the correct license. Without assigning a license, you will not be able to use LocalStack even if you have a valid Auth Token. 
+
+To view your own assigned license, visit the [My License page](https://app.localstack.cloud/workspace/my-license). You can further navigate to the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) to view your Auth Token.
+
+## Configuring your Auth Token
+
+LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain your Auth Token. You can configure your Auth Token in several ways, depending on your use case. The following sections describe the various methods of setting your Auth Token.
+
+### LocalStack CLI
+
+You should set the `LOCALSTACK_AUTH_TOKEN` environment variable either before or during the startup of LocalStack using the `localstack` command-line interface (CLI).
 
 {{< tabpane >}}
 {{< tab header="macOS/Linux" lang="shell" >}}
@@ -52,7 +62,7 @@ The `localstack` CLI automatically detects the Auth Token and appropriately conv
 If you are using LocalStack with an Auth Token, it's necessary to download the [LocalStack Pro image](https://docs.localstack.cloud/references/docker-images/#localstack-pro-image), which includes Pro services and several advanced features.
 {{< /alert >}}
 
-### Starting LocalStack via Docker
+### Docker
 
 To start LocalStack via Docker, you need to provide the Auth Token using the `-e` flag, which is used for setting environment variables.
 
@@ -67,7 +77,7 @@ $ docker run \
 
 For more information about starting LocalStack with Docker, take a look at our [Docker installation](https://docs.localstack.cloud/getting-started/installation/#docker) guide.
 
-### Starting LocalStack via Docker-Compose
+### Docker Compose
 
 To start LocalStack using `docker-compose`, you have to include the `LOCALSTACK_AUTH_TOKEN` environment variable in your `docker-compose.yml` file:
 
@@ -77,6 +87,13 @@ environment:
 ```
 
 You can manually set the Auth Token, or use the `export` command to establish the Auth Token in your current shell session. This ensures the Auth Token is transmitted to your LocalStack container, enabling key activation.
+
+{{< alert title="Important" color="danger" >}}
+-   It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
+-   Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
+-   In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
+-   For use in Continuous Integration (CI) or automated test environments, a CI key is necessary. Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
+{{< /alert >}}
 
 ## Licensing-related configuration
 
