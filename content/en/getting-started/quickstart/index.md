@@ -8,6 +8,8 @@ cascade:
   type: docs
 ---
 
+## Introduction
+
 In this quickstart guide, we'll walk you through the process of starting LocalStack on your local machine and deploying a [serverless image resizer application](https://github.com/localstack-samples/sample-serverless-image-resizer-s3-lambda) that utilizes several AWS services. This guide aims to help you understand how to use LocalStack for the development and testing of your AWS applications locally. It introduces you to the following key concepts:
 
 - Starting a LocalStack instance on your local machine.
