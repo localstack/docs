@@ -3042,7 +3042,17 @@ If there are any difficulties resolving this DNS record, you can utilize &lt;cod
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000"> sts&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;http://localhost:4566&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="cdk-for-terraform">CDK for Terraform&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+&lt;p>To heuristically detect whether your Terraform configuration should be deployed against LocalStack, you can use the following snippet:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-hcl" data-lang="hcl">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">data&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;aws_caller_identity&amp;#34; &amp;#34;current&amp;#34;&lt;/span> {}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">output&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;is_localstack&amp;#34;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000"> value&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#000"> data.aws_caller_identity.current.id&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">==&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;000000000000&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>It will detect whether the AWS account ID is &lt;code>000000000000&lt;/code>, which is the default value for LocalStack. If you use a different account ID within LocalStack, you can customize the snippet accordingly.&lt;/p>
+&lt;/div>
+&lt;h2 id="cdk-for-terraform">CDK for Terraform&lt;/h2>
 &lt;p>Cloud Development Kit for Terraform (CDKTF) allows you to use general-purpose programming languages, such as TypeScript, Python, Java, and more, to create infrastructure declaratively. It allows you to create, update, and delete AWS infrastructure by leveraging a Terraform backend without manually configuring Terraform using HCL and &lt;a href="https://aws.amazon.com/cdk/">AWS Cloud Development Kit&lt;/a> to translate your code into infrastructure configuration files for Terraform. CDKTF supports every Terraform provider and module available on the &lt;a href="https://registry.terraform.io/">Terraform Registry&lt;/a>.&lt;/p>
 &lt;h3 id="conifguration">Conifguration&lt;/h3>
 &lt;p>To configure your existing CDKTF configuration to work with LocalStack, manually configure the local service endpoints and credentials. It includes:&lt;/p>
@@ -3052,24 +3062,24 @@ If there are any difficulties resolving this DNS record, you can utilize &lt;cod
 &lt;li>Service configuration to point the individual services to LocalStack.&lt;/li>
 &lt;/ul>
 &lt;p>Here is a configuration example to use with Python &amp;amp; TypeScript CDKTF configurations:&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-6" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-7" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-py"
-id="tabs-06-00-tab" data-toggle="tab" href="#tabs-06-00" role="tab"
-onclick="persistLang(&amp;#34;py&amp;#34;);"aria-controls="tabs-06-00" aria-selected="false">
+id="tabs-07-00-tab" data-toggle="tab" href="#tabs-07-00" role="tab"
+onclick="persistLang(&amp;#34;py&amp;#34;);"aria-controls="tabs-07-00" aria-selected="false">
 localstack_config.py
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-ts"
-id="tabs-06-01-tab" data-toggle="tab" href="#tabs-06-01" role="tab"
-onclick="persistLang(&amp;#34;ts&amp;#34;);"aria-controls="tabs-06-01" aria-selected="false">
+id="tabs-07-01-tab" data-toggle="tab" href="#tabs-07-01" role="tab"
+onclick="persistLang(&amp;#34;ts&amp;#34;);"aria-controls="tabs-07-01" aria-selected="false">
 localstack-config.ts
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-6-content">
+&lt;div class="tab-content" id="tabs-7-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-06-00" role="tabpanel" aria-labelled-by="tabs-06-00-tab">
+id="tabs-07-00" role="tabpanel" aria-labelled-by="tabs-07-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">AWS_CONFIG&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;region&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;endpoints&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
@@ -3102,7 +3112,7 @@ id="tabs-06-00" role="tabpanel" aria-labelled-by="tabs-06-00-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span> &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-06-01" role="tabpanel" aria-labelled-by="tabs-06-01-tab">
+id="tabs-07-01" role="tabpanel" aria-labelled-by="tabs-07-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">export&lt;/span> &lt;span style="color:#204a87;font-weight:bold">const&lt;/span> &lt;span style="color:#000">AWS_CONFIG&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">region&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;us-east-1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">endpoints&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
@@ -3137,24 +3147,24 @@ id="tabs-06-01" role="tabpanel" aria-labelled-by="tabs-06-01-tab">
 &lt;/div>
 &lt;/div>
 &lt;p>You can further import the above configuration in your project&amp;rsquo;s code, and use it to configure the AWS provider:&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-7" role="tablist">
+&lt;ul class="nav nav-tabs" id="tabs-8" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-py"
-id="tabs-07-00-tab" data-toggle="tab" href="#tabs-07-00" role="tab"
-onclick="persistLang(&amp;#34;py&amp;#34;);"aria-controls="tabs-07-00" aria-selected="false">
+id="tabs-08-00-tab" data-toggle="tab" href="#tabs-08-00" role="tab"
+onclick="persistLang(&amp;#34;py&amp;#34;);"aria-controls="tabs-08-00" aria-selected="false">
 main.py
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-ts"
-id="tabs-07-01-tab" data-toggle="tab" href="#tabs-07-01" role="tab"
-onclick="persistLang(&amp;#34;ts&amp;#34;);"aria-controls="tabs-07-01" aria-selected="false">
+id="tabs-08-01-tab" data-toggle="tab" href="#tabs-08-01" role="tab"
+onclick="persistLang(&amp;#34;ts&amp;#34;);"aria-controls="tabs-08-01" aria-selected="false">
 main.ts
 &lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;div class="tab-content" id="tabs-7-content">
+&lt;div class="tab-content" id="tabs-8-content">
 &lt;div class="tab-pane fade show active"
-id="tabs-07-00" role="tabpanel" aria-labelled-by="tabs-07-00-tab">
+id="tabs-08-00" role="tabpanel" aria-labelled-by="tabs-08-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">localstack_config&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">AWS_CONFIG&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
@@ -3162,7 +3172,7 @@ id="tabs-07-00" role="tabpanel" aria-labelled-by="tabs-07-00-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-07-01" role="tabpanel" aria-labelled-by="tabs-07-01-tab">
+id="tabs-08-01" role="tabpanel" aria-labelled-by="tabs-08-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">...&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">AWS_CONFIG&lt;/span> &lt;span style="color:#000;font-weight:bold">}&lt;/span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;./localstack-config&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">...&lt;/span>
@@ -3186,56 +3196,6 @@ id="tabs-07-01" role="tabpanel" aria-labelled-by="tabs-07-01-tab">
 &lt;li>&lt;a href="https://www.npmjs.com/package/typescript">&lt;code>tsc&lt;/code>&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;p>Create a new directory named &lt;code>cdktf-localstack&lt;/code> and initialize a new CDKTF project using the following command:&lt;/p>
-&lt;ul class="nav nav-tabs" id="tabs-8" role="tablist">
-&lt;li class="nav-item">
-&lt;a class="nav-link active persistLang-py"
-id="tabs-08-00-tab" data-toggle="tab" href="#tabs-08-00" role="tab"
-onclick="persistLang(&amp;#34;py&amp;#34;);"aria-controls="tabs-08-00" aria-selected="false">
-Python
-&lt;/a>
-&lt;/li>&lt;li class="nav-item">
-&lt;a class="nav-link persistLang-ts"
-id="tabs-08-01-tab" data-toggle="tab" href="#tabs-08-01" role="tab"
-onclick="persistLang(&amp;#34;ts&amp;#34;);"aria-controls="tabs-08-01" aria-selected="false">
-TypeScript
-&lt;/a>
-&lt;/li>
-&lt;/ul>
-&lt;div class="tab-content" id="tabs-8-content">
-&lt;div class="tab-pane fade show active"
-id="tabs-08-00" role="tabpanel" aria-labelled-by="tabs-08-00-tab">
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">$&lt;/span> &lt;span style="color:#000">cdktf&lt;/span> &lt;span style="color:#000">init&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#204a87;font-weight:bold">continue&lt;/span> &lt;span style="color:#204a87;font-weight:bold">with&lt;/span> &lt;span style="color:#000">Terraform&lt;/span> &lt;span style="color:#000">Cloud&lt;/span> &lt;span style="color:#000">remote&lt;/span> &lt;span style="color:#000">state&lt;/span> &lt;span style="color:#000">management&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">No&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">What&lt;/span> &lt;span style="color:#000">template&lt;/span> &lt;span style="color:#000">do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">use&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">python&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">Initializing&lt;/span> &lt;span style="color:#000">a&lt;/span> &lt;span style="color:#000">project&lt;/span> &lt;span style="color:#000">using&lt;/span> &lt;span style="color:#000">the&lt;/span> &lt;span style="color:#000">python&lt;/span> &lt;span style="color:#000">template&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Project&lt;/span> &lt;span style="color:#000">Name&lt;/span> &lt;span style="color:#000">sample&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">app&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Project&lt;/span> &lt;span style="color:#000">Description&lt;/span> &lt;span style="color:#000">A&lt;/span> &lt;span style="color:#000">simple&lt;/span> &lt;span style="color:#000">getting&lt;/span> &lt;span style="color:#000">started&lt;/span> &lt;span style="color:#000">project&lt;/span> &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> &lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">start&lt;/span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">an&lt;/span> &lt;span style="color:#000">existing&lt;/span> &lt;span style="color:#000">Terraform&lt;/span> &lt;span style="color:#000">project&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">No&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">send&lt;/span> &lt;span style="color:#000">crash&lt;/span> &lt;span style="color:#000">reports&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">the&lt;/span> &lt;span style="color:#000">CDKTF&lt;/span> &lt;span style="color:#000">team&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Refer&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">https&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">//&lt;/span>&lt;span style="color:#000">developer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">hashicorp&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">com&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">terraform&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#204a87;font-weight:bold">and&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">deploy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">configuration&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">file&lt;/span>&lt;span style="color:#8f5902;font-style:italic">#enable-crash-reporting-for-the-cli for more information no&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">Note&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">You&lt;/span> &lt;span style="color:#000">can&lt;/span> &lt;span style="color:#000">always&lt;/span> &lt;span style="color:#000">add&lt;/span> &lt;span style="color:#000">providers&lt;/span> &lt;span style="color:#000">using&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;cdktf provider add&amp;#39;&lt;/span> &lt;span style="color:#000">later&lt;/span> &lt;span style="color:#000">on&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">What&lt;/span> &lt;span style="color:#000">providers&lt;/span> &lt;span style="color:#000">do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">use&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">aws&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;div class="tab-pane fade"
-id="tabs-08-01" role="tabpanel" aria-labelled-by="tabs-08-01-tab">
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">$&lt;/span> &lt;span style="color:#000">cdktf&lt;/span> &lt;span style="color:#000">init&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#204a87;font-weight:bold">continue&lt;/span> &lt;span style="color:#204a87;font-weight:bold">with&lt;/span> &lt;span style="color:#000">Terraform&lt;/span> &lt;span style="color:#000">Cloud&lt;/span> &lt;span style="color:#000">remote&lt;/span> &lt;span style="color:#000">state&lt;/span> &lt;span style="color:#000">management&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">No&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">What&lt;/span> &lt;span style="color:#000">template&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">use&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">typescript&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">Initializing&lt;/span> &lt;span style="color:#000">a&lt;/span> &lt;span style="color:#000">project&lt;/span> &lt;span style="color:#000">using&lt;/span> &lt;span style="color:#000">the&lt;/span> &lt;span style="color:#000">typescript&lt;/span> &lt;span style="color:#000">template&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Project&lt;/span> &lt;span style="color:#000">Name&lt;/span> &lt;span style="color:#000">sample&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">app&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Project&lt;/span> &lt;span style="color:#000">Description&lt;/span> &lt;span style="color:#000">A&lt;/span> &lt;span style="color:#000">simple&lt;/span> &lt;span style="color:#000">getting&lt;/span> &lt;span style="color:#000">started&lt;/span> &lt;span style="color:#000">project&lt;/span> &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> &lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">start&lt;/span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">an&lt;/span> &lt;span style="color:#000">existing&lt;/span> &lt;span style="color:#000">Terraform&lt;/span> &lt;span style="color:#000">project&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">No&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">send&lt;/span> &lt;span style="color:#000">crash&lt;/span> &lt;span style="color:#000">reports&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">the&lt;/span> &lt;span style="color:#000">CDKTF&lt;/span> &lt;span style="color:#000">team&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Refer&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">https&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#8f5902;font-style:italic">//developer.hashicorp.com/terraform/cdktf/create-and-deploy/configuration-file#enable-crash-reporting-for-the-cli for more information no
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">Note&lt;/span>: &lt;span style="color:#204a87;font-weight:bold">You&lt;/span> &lt;span style="color:#000">can&lt;/span> &lt;span style="color:#000">always&lt;/span> &lt;span style="color:#000">add&lt;/span> &lt;span style="color:#000">providers&lt;/span> &lt;span style="color:#000">using&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;cdktf provider add&amp;#39;&lt;/span> &lt;span style="color:#000">later&lt;/span> &lt;span style="color:#000">on&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">What&lt;/span> &lt;span style="color:#000">providers&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">use&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">aws&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">...&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
-&lt;/div>
-&lt;p>(Optional) If necessary, we can install the AWS provider separately for CDKTF, by running the following command:&lt;/p>
 &lt;ul class="nav nav-tabs" id="tabs-9" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-py"
@@ -3254,32 +3214,82 @@ TypeScript
 &lt;div class="tab-content" id="tabs-9-content">
 &lt;div class="tab-pane fade show active"
 id="tabs-09-00" role="tabpanel" aria-labelled-by="tabs-09-00-tab">
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">$&lt;/span> &lt;span style="color:#000">pipenv&lt;/span> &lt;span style="color:#000">install&lt;/span> &lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">provider&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">$&lt;/span> &lt;span style="color:#000">cdktf&lt;/span> &lt;span style="color:#000">init&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#204a87;font-weight:bold">continue&lt;/span> &lt;span style="color:#204a87;font-weight:bold">with&lt;/span> &lt;span style="color:#000">Terraform&lt;/span> &lt;span style="color:#000">Cloud&lt;/span> &lt;span style="color:#000">remote&lt;/span> &lt;span style="color:#000">state&lt;/span> &lt;span style="color:#000">management&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">No&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">What&lt;/span> &lt;span style="color:#000">template&lt;/span> &lt;span style="color:#000">do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">use&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">python&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">Initializing&lt;/span> &lt;span style="color:#000">a&lt;/span> &lt;span style="color:#000">project&lt;/span> &lt;span style="color:#000">using&lt;/span> &lt;span style="color:#000">the&lt;/span> &lt;span style="color:#000">python&lt;/span> &lt;span style="color:#000">template&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Project&lt;/span> &lt;span style="color:#000">Name&lt;/span> &lt;span style="color:#000">sample&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">app&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Project&lt;/span> &lt;span style="color:#000">Description&lt;/span> &lt;span style="color:#000">A&lt;/span> &lt;span style="color:#000">simple&lt;/span> &lt;span style="color:#000">getting&lt;/span> &lt;span style="color:#000">started&lt;/span> &lt;span style="color:#000">project&lt;/span> &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> &lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">start&lt;/span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">an&lt;/span> &lt;span style="color:#000">existing&lt;/span> &lt;span style="color:#000">Terraform&lt;/span> &lt;span style="color:#000">project&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">No&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">send&lt;/span> &lt;span style="color:#000">crash&lt;/span> &lt;span style="color:#000">reports&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">the&lt;/span> &lt;span style="color:#000">CDKTF&lt;/span> &lt;span style="color:#000">team&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">Refer&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">https&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">//&lt;/span>&lt;span style="color:#000">developer&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">hashicorp&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">com&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">terraform&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">create&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#204a87;font-weight:bold">and&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">deploy&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">configuration&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">file&lt;/span>&lt;span style="color:#8f5902;font-style:italic">#enable-crash-reporting-for-the-cli for more information no&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">Note&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">You&lt;/span> &lt;span style="color:#000">can&lt;/span> &lt;span style="color:#000">always&lt;/span> &lt;span style="color:#000">add&lt;/span> &lt;span style="color:#000">providers&lt;/span> &lt;span style="color:#000">using&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;cdktf provider add&amp;#39;&lt;/span> &lt;span style="color:#000">later&lt;/span> &lt;span style="color:#000">on&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">What&lt;/span> &lt;span style="color:#000">providers&lt;/span> &lt;span style="color:#000">do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">use&lt;/span>&lt;span style="color:#a40000">?&lt;/span> &lt;span style="color:#000">aws&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">...&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
 id="tabs-09-01" role="tabpanel" aria-labelled-by="tabs-09-01-tab">
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">$&lt;/span> &lt;span style="color:#000">npm&lt;/span> &lt;span style="color:#000">install&lt;/span> &lt;span style="color:#204a87;font-weight:bold">@cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">provider&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">$&lt;/span> &lt;span style="color:#000">cdktf&lt;/span> &lt;span style="color:#000">init&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#204a87;font-weight:bold">continue&lt;/span> &lt;span style="color:#204a87;font-weight:bold">with&lt;/span> &lt;span style="color:#000">Terraform&lt;/span> &lt;span style="color:#000">Cloud&lt;/span> &lt;span style="color:#000">remote&lt;/span> &lt;span style="color:#000">state&lt;/span> &lt;span style="color:#000">management&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">No&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">What&lt;/span> &lt;span style="color:#000">template&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">use&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">typescript&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">Initializing&lt;/span> &lt;span style="color:#000">a&lt;/span> &lt;span style="color:#000">project&lt;/span> &lt;span style="color:#000">using&lt;/span> &lt;span style="color:#000">the&lt;/span> &lt;span style="color:#000">typescript&lt;/span> &lt;span style="color:#000">template&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Project&lt;/span> &lt;span style="color:#000">Name&lt;/span> &lt;span style="color:#000">sample&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">app&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Project&lt;/span> &lt;span style="color:#000">Description&lt;/span> &lt;span style="color:#000">A&lt;/span> &lt;span style="color:#000">simple&lt;/span> &lt;span style="color:#000">getting&lt;/span> &lt;span style="color:#000">started&lt;/span> &lt;span style="color:#000">project&lt;/span> &lt;span style="color:#204a87;font-weight:bold">for&lt;/span> &lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#000;font-weight:bold">.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">start&lt;/span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">an&lt;/span> &lt;span style="color:#000">existing&lt;/span> &lt;span style="color:#000">Terraform&lt;/span> &lt;span style="color:#000">project&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">No&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">send&lt;/span> &lt;span style="color:#000">crash&lt;/span> &lt;span style="color:#000">reports&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">the&lt;/span> &lt;span style="color:#000">CDKTF&lt;/span> &lt;span style="color:#000">team&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">Refer&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">https&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">:&lt;/span>&lt;span style="color:#8f5902;font-style:italic">//developer.hashicorp.com/terraform/cdktf/create-and-deploy/configuration-file#enable-crash-reporting-for-the-cli for more information no
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">&lt;/span>&lt;span style="color:#000">Note&lt;/span>: &lt;span style="color:#204a87;font-weight:bold">You&lt;/span> &lt;span style="color:#000">can&lt;/span> &lt;span style="color:#000">always&lt;/span> &lt;span style="color:#000">add&lt;/span> &lt;span style="color:#000">providers&lt;/span> &lt;span style="color:#000">using&lt;/span> &lt;span style="color:#4e9a06">&amp;#39;cdktf provider add&amp;#39;&lt;/span> &lt;span style="color:#000">later&lt;/span> &lt;span style="color:#000">on&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">What&lt;/span> &lt;span style="color:#000">providers&lt;/span> &lt;span style="color:#204a87;font-weight:bold">do&lt;/span> &lt;span style="color:#000">you&lt;/span> &lt;span style="color:#000">want&lt;/span> &lt;span style="color:#000">to&lt;/span> &lt;span style="color:#000">use&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">?&lt;/span> &lt;span style="color:#000">aws&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">...&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;p>Add the following code to import the AWS provider and create a new S3 bucket in the relevant file:&lt;/p>
+&lt;p>(Optional) If necessary, we can install the AWS provider separately for CDKTF, by running the following command:&lt;/p>
 &lt;ul class="nav nav-tabs" id="tabs-10" role="tablist">
 &lt;li class="nav-item">
 &lt;a class="nav-link active persistLang-py"
 id="tabs-10-00-tab" data-toggle="tab" href="#tabs-10-00" role="tab"
 onclick="persistLang(&amp;#34;py&amp;#34;);"aria-controls="tabs-10-00" aria-selected="false">
-main.py
+Python
 &lt;/a>
 &lt;/li>&lt;li class="nav-item">
 &lt;a class="nav-link persistLang-ts"
 id="tabs-10-01-tab" data-toggle="tab" href="#tabs-10-01" role="tab"
 onclick="persistLang(&amp;#34;ts&amp;#34;);"aria-controls="tabs-10-01" aria-selected="false">
-main.ts
+TypeScript
 &lt;/a>
 &lt;/li>
 &lt;/ul>
 &lt;div class="tab-content" id="tabs-10-content">
 &lt;div class="tab-pane fade show active"
 id="tabs-10-00" role="tabpanel" aria-labelled-by="tabs-10-00-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">$&lt;/span> &lt;span style="color:#000">pipenv&lt;/span> &lt;span style="color:#000">install&lt;/span> &lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">provider&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;div class="tab-pane fade"
+id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">$&lt;/span> &lt;span style="color:#000">npm&lt;/span> &lt;span style="color:#000">install&lt;/span> &lt;span style="color:#204a87;font-weight:bold">@cdktf&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">/&lt;/span>&lt;span style="color:#000">provider&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">-&lt;/span>&lt;span style="color:#000">aws&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;/div>
+&lt;/div>
+&lt;p>Add the following code to import the AWS provider and create a new S3 bucket in the relevant file:&lt;/p>
+&lt;ul class="nav nav-tabs" id="tabs-11" role="tablist">
+&lt;li class="nav-item">
+&lt;a class="nav-link active persistLang-py"
+id="tabs-11-00-tab" data-toggle="tab" href="#tabs-11-00" role="tab"
+onclick="persistLang(&amp;#34;py&amp;#34;);"aria-controls="tabs-11-00" aria-selected="false">
+main.py
+&lt;/a>
+&lt;/li>&lt;li class="nav-item">
+&lt;a class="nav-link persistLang-ts"
+id="tabs-11-01-tab" data-toggle="tab" href="#tabs-11-01" role="tab"
+onclick="persistLang(&amp;#34;ts&amp;#34;);"aria-controls="tabs-11-01" aria-selected="false">
+main.ts
+&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-11-content">
+&lt;div class="tab-pane fade show active"
+id="tabs-11-00" role="tabpanel" aria-labelled-by="tabs-11-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#8f5902;font-style:italic">#!/usr/bin/env python&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">constructs&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">Construct&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#000">cdktf&lt;/span> &lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000">App&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">TerraformStack&lt;/span>
@@ -3310,7 +3320,7 @@ id="tabs-10-00" role="tabpanel" aria-labelled-by="tabs-10-00-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000">app&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">.&lt;/span>&lt;span style="color:#000">synth&lt;/span>&lt;span style="color:#000;font-weight:bold">()&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-pane fade"
-id="tabs-10-01" role="tabpanel" aria-labelled-by="tabs-10-01-tab">
+id="tabs-11-01" role="tabpanel" aria-labelled-by="tabs-11-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">Construct&lt;/span> &lt;span style="color:#000;font-weight:bold">}&lt;/span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;constructs&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">App&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#000">TerraformStack&lt;/span> &lt;span style="color:#000;font-weight:bold">}&lt;/span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;cdktf&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87;font-weight:bold">import&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span> &lt;span style="color:#000">AwsProvider&lt;/span> &lt;span style="color:#000;font-weight:bold">}&lt;/span> &lt;span style="color:#204a87;font-weight:bold">from&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;@cdktf/provider-aws/lib/provider&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">;&lt;/span>
