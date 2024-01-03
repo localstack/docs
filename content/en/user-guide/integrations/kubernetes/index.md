@@ -165,7 +165,7 @@ LocalStack enforces timeout configurations similar to AWS, using the `Timeout` f
 
 ### Custom DNS for Lambda on Kubernetes
 
-You can setup custom DNS configuration for Lambda on Kubernetes is not supported through the `LAMBDA_DOCKER_DNS` configuration variable.
+You can setup custom DNS configuration for Lambda on Kubernetes through the `LAMBDA_DOCKER_DNS` configuration variable.
 
 ### Customizing Lambda Runtime Behavior
 
