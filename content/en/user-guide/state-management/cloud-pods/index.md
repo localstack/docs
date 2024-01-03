@@ -1,5 +1,5 @@
 ---
-title: "Getting started"
+title: "Cloud Pods"
 weight: 3
 description: Get started with Cloud Pods to manage the state of your LocalStack instance state
 aliases:

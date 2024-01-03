@@ -14,14 +14,14 @@ With Cloud Pods, you can have individual or shared ownership of a snapshot of yo
 
 ## Usage
 
-You can use [Cloud Pods]({{< ref "user-guide/cloud-pods/" >}}) to manage your local AWS infrastructure and collaborate with others:
+You can use [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}) to manage your local AWS infrastructure and collaborate with others:
 
 - Cloud Pods are accessible to all LocalStack Team users in your organization namespace. Public Cloud Pods are accessible to all LocalStack users.
 - Cloud Pods version history is available, which allows you to view the version history of a Cloud Pod and access previous versions of specific Cloud Pods.
 - Cloud Pods can be made public, injected into a running LocalStack container, or deleted - all from the LocalStack Web Application.
 
 {{< alert title="Warning" color="warning">}}
-LocalStack Pro users cannot access the Cloud Pods Browser. Community & Pro users can use the [Community Cloud Pods]({{< ref "user-guide/cloud-pods/community" >}}) and save their Cloud Pods locally or share them via a GitHub/GitLab repository. The [Cloud Pods launchpad]({{< ref "user-guide/cloud-pods/launchpad" >}}) can be used to inject a Cloud Pod into a running LocalStack container through a simple click.
+LocalStack Pro users cannot access the Cloud Pods Browser. Community & Pro users can use the [Community Cloud Pods]({{< ref "user-guide/state-management/community" >}}) and save their Cloud Pods locally or share them via a GitHub/GitLab repository. The [Cloud Pods launchpad]({{< ref "user-guide/state-management/launchpad" >}}) can be used to inject a Cloud Pod into a running LocalStack container through a simple click.
 {{< /alert >}}
 
 ## Access the version history
