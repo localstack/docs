@@ -1,5 +1,5 @@
 ---
-title: "Lambda VSCode Extension"
+title: "VSCode Extension"
 weight: 3
 description: >
   Deploy and invoke Lambda functions in LocalStack directly from VSCode
@@ -9,7 +9,7 @@ aliases:
 
 ## Introduction
 
-[LocalStack Lambda VSCode Extension](https://github.com/localstack/localstack-vscode-extension) supports deploying and invoking Python Lambda functions through [AWS SAM](https://github.com/aws/serverless-application-model) or [AWS CloudFormation](https://aws.amazon.com/cloudformation/resources/templates/).
+[LocalStack VSCode Extension](https://github.com/localstack/localstack-vscode-extension) supports deploying and invoking Python Lambda functions through [AWS SAM](https://github.com/aws/serverless-application-model) or [AWS CloudFormation](https://aws.amazon.com/cloudformation/resources/templates/).
 
 ## Prerequisites
 
