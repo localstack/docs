@@ -210,7 +210,7 @@ provider "aws" {
 ```
 
 {{< alert title="Note" >}}
-To heuristically detect whether your Terraform configuration should be deployed against LocalStack, you can use the following module:
+To heuristically detect whether your Terraform configuration should be deployed against LocalStack, you can use the following snippet:
 
 ```hcl
 data "aws_caller_identity" "current" {}
@@ -219,7 +219,7 @@ output "is_localstack" {
 }
 ```
 
-It will detect whether the AWS account ID is `000000000000`, which is the default value for LocalStack. If you use a different account ID within LocalStack, you can customize the module accordingly.
+It will detect whether the AWS account ID is `000000000000`, which is the default value for LocalStack. If you use a different account ID within LocalStack, you can customize the snippet accordingly.
 {{< /alert >}}
 
 ## CDK for Terraform
