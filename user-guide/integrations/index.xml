@@ -765,10 +765,6 @@ You can refer to the additional reading material to learn and explore more advan
 &lt;h4 class="alert-heading">Warning&lt;/h4>
 Creating shared/hosted LocalStack instances may have some licensing implications. For example, a valid license might be necessary for each user who interacts with the instance. If you have any questions or uncertainties regarding the licensing implications, we encourage you to &lt;a href="https://localstack.cloud/contact">contact us&lt;/a> for further details.
 &lt;/div>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-LocalStack on Kubernetes can be used in conjunction with the &lt;a href="https://hub.docker.com/r/localstack/localstack">LocalStack Community image&lt;/a>. However, specific features such as execution of Lambda functions as Kubernetes pods is only available in the &lt;a href="https://hub.docker.com/r/localstack/localstack-pro">LocalStack Pro image&lt;/a>.
-&lt;/div>
 &lt;h2 id="getting-started">Getting started&lt;/h2>
 &lt;p>To deploy LocalStack in your &lt;a href="https://kubernetes.io/">Kubernetes&lt;/a> cluster, you can use &lt;a href="https://helm.sh/">Helm&lt;/a>.&lt;/p>
 &lt;h3 id="prerequisites">Prerequisites&lt;/h3>
@@ -850,7 +846,23 @@ LocalStack on Kubernetes can be used in conjunction with the &lt;a href="https:/
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;id&amp;#34;: &amp;#34;ses2pi5oap&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;#34;name&amp;#34;: &amp;#34;local-localstack-demo&amp;#34;,
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>We can then use a browser to open the &lt;a href="http://localhost:8081/archive-bucket/index.html">Web UI&lt;/a>, which should have been deployed to an S3 bucket inside LocalStack. The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.&lt;/p></description></item><item><title>User-Guide: OpenShift</title><link>/user-guide/integrations/openshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/openshift/</guid><description>
+&lt;p>We can then use a browser to open the &lt;a href="http://localhost:8081/archive-bucket/index.html">Web UI&lt;/a>, which should have been deployed to an S3 bucket inside LocalStack. The Web UI can be used to interact with the sample application, send new requests to the backend, inspect the state of existing requests, etc.&lt;/p>
+&lt;h2 id="lambda-on-kubernetes">Lambda on Kubernetes&lt;/h2>
+&lt;p>LocalStack on Kubernetes can be used in conjunction with the &lt;a href="https://hub.docker.com/r/localstack/localstack">LocalStack Community image&lt;/a>. However, specific features such as execution of Lambda functions as Kubernetes pods are only available in the &lt;a href="https://hub.docker.com/r/localstack/localstack-pro">LocalStack Pro image&lt;/a>. To configure LocalStack Lambdas to use Kubernetes Pods, you need to configure values in the &lt;a href="https://github.com/localstack/helm-charts/blob/ce47b1590605901650ab788556bc871efbd78b8d/charts/localstack/values.yaml#L178-L208">LocalStack Helm Chart&lt;/a>.&lt;/p>
+&lt;h3 id="scaling-lambda-execution">Scaling Lambda Execution&lt;/h3>
+&lt;p>The Kubernetes Lambda Executor in LocalStack handles Lambda execution scaling by spawning new environments (running in pods) when no existing environment is available due to concurrent invocations. An environment shuts down if it remains inactive for 10 minutes, a duration customizable through the &lt;code>LAMBDA_KEEPALIVE_MS&lt;/code> variable. All environments terminate when LocalStack stops running.&lt;/p>
+&lt;h3 id="lambda-scheduling-strategy">Lambda Scheduling Strategy&lt;/h3>
+&lt;p>For multiple Lambda functions, the executor schedules according to Kubernetes cluster defaults without specifying node affinity. Users can assign labels to lambda pods using the &lt;code>LAMBDA_K8S_LABELS&lt;/code> variable (e.g., &lt;code>LAMBDA_K8S_LABELS=key=value,key2=value2&lt;/code>). The &lt;a href="https://github.com/localstack/helm-charts">Helm Charts&lt;/a>, facilitates such advanced configurations, ensuring flexibility in node affinity decisions.&lt;/p>
+&lt;h3 id="lambda-limitations-and-configuration">Lambda Limitations and Configuration&lt;/h3>
+&lt;p>LocalStack enforces timeout configurations similar to AWS, using the &lt;code>Timeout&lt;/code> function parameter. There are no intrinsic limits on the number of Lambdas, with configurable limits on concurrent executions set at 1000 by default (&lt;code>LAMBDA_LIMITS_CONCURRENT_EXECUTIONS&lt;/code>).&lt;/p>
+&lt;h3 id="custom-dns-for-lambda-on-kubernetes">Custom DNS for Lambda on Kubernetes&lt;/h3>
+&lt;p>You can setup custom DNS configuration for Lambda on Kubernetes through the &lt;code>LAMBDA_DOCKER_DNS&lt;/code> configuration variable.&lt;/p>
+&lt;h3 id="customizing-lambda-runtime-behavior">Customizing Lambda Runtime Behavior&lt;/h3>
+&lt;p>Users can customize Lambda runtime behavior by building custom images based on provided ones, pushing them to their registry, and specifying these images using the &lt;code>LAMBDA_RUNTIME_IMAGE_MAPPING&lt;/code> configuration variable, as detailed in the &lt;a href="https://docs.localstack.cloud/references/configuration/#lambda">documentation&lt;/a>.&lt;/p>
+&lt;h3 id="warm-start-and-persistence">Warm Start and Persistence&lt;/h3>
+&lt;p>Lambda on Kubernetes supports Warm Start and Persistence. Persistence has to be configured for the LocalStack pod. The &lt;code>/var/lib/localstack&lt;/code> directory has to be persisted over LocalStack runs, in a volume for example.&lt;/p>
+&lt;h3 id="debugging-lambda-on-kubernetes">Debugging Lambda on Kubernetes&lt;/h3>
+&lt;p>Debugging is currently not supported. Lambda hot-reloading will not function, as the bind mounting into pods cannot be done at runtime.&lt;/p></description></item><item><title>User-Guide: OpenShift</title><link>/user-guide/integrations/openshift/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/openshift/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>OpenShift is a container orchestration platform as a service designed to simplify the deployment, scaling, and management of containerized applications. Built on Kubernetes, OpenShift provides a comprehensive set of tools and features that facilitate the orchestration, automation, and monitoring of containerized workloads.&lt;/p>
 &lt;p>With OpenShift, you can deploy LocalStack on a managed Kubernetes cluster, as a cloud sandbox that emulates various AWS services &amp;amp; APIs. This guide demonstrates how you can deploy LocalStack on OpenShift using Devfile. You can use the deployed LocalStack container to create AWS resources that you can use for local development and testing purposes.&lt;/p>
