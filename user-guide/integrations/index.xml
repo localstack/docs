@@ -618,7 +618,29 @@ You can refer to the additional reading material to learn and explore more advan
 &lt;li>Crossplane user docs: &lt;a href="https://docs.crossplane.io">https://docs.crossplane.io&lt;/a>&lt;/li>
 &lt;li>Crossplane AWS provider family: &lt;a href="https://marketplace.upbound.io/providers/upbound/provider-family-aws">https://marketplace.upbound.io/providers/upbound/provider-family-aws&lt;/a>&lt;/li>
 &lt;li>Crossplane AWS provider source code: &lt;a href="https://github.com/upbound/provider-aws">https://github.com/upbound/provider-aws&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>User-Guide: Former2</title><link>/user-guide/integrations/former2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/former2/</guid><description>
+&lt;/ul></description></item><item><title>User-Guide: eksctl</title><link>/user-guide/integrations/eksctl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/eksctl/</guid><description>
+&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>&lt;a href="https://eksctl.io/">eksctl&lt;/a> is a CLI tool for creating and managing EKS clusters, Amazon&amp;rsquo;s managed Kubernetes service. LocalStack supports running &lt;code>eksctl&lt;/code> on LocalStack to create EKS clusters locally. LocalStack&amp;rsquo;s EKS spin up embedded Kubernetes clusters using &lt;a href="https://github.com/k3s-io/k3s">K3s&lt;/a> to allow you to use the EKS APIs in your local environment.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The support for &lt;code>eksctl&lt;/code> is currently experimental and may not work in all cases. We are working on improving the support for &lt;code>eksctl&lt;/code> in LocalStack.
+&lt;/div>
+&lt;h2 id="getting-started">Getting started&lt;/h2>
+&lt;p>This guide is designed for users new to &lt;code>eksctl&lt;/code> and running EKS clusters with LocalStack. Start LocalStack using your preferred method. We will demonstrate how you can create a local EKS cluster using &lt;code>eksctl&lt;/code> and fetch the nodes in the cluster.&lt;/p>
+&lt;h3 id="pre-requisites">Pre-requisites&lt;/h3>
+&lt;ul>
+&lt;li>LocalStack with &lt;code>LOCALSTACK_AUTH_KEY&lt;/code> configured&lt;/li>
+&lt;li>&lt;a href="https://www.docker.com/">Docker&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://eksctl.io/">&lt;code>eksctl&lt;/code>&lt;/a> (version 0.167.0 or higher)&lt;/li>
+&lt;li>&lt;a href="https://kubernetes.io/docs/tasks/tools/#kubectl">&lt;code>kubectl&lt;/code>&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="create-a-cluster">Create a cluster&lt;/h3>
+&lt;p>To create a cluster, you can use the &lt;code>eksctl create cluster&lt;/code> command. You can use the &lt;code>--profile&lt;/code> flag to &lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cli/#configuring-a-custom-profile">specify the LocalStack profile&lt;/a> to use for the cluster.&lt;/p>
+&lt;p>Run the following command to create a cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>eksctl create cluster --nodes 1 --profile localstack&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="get-the-nodes">Get the nodes&lt;/h3>
+&lt;p>You can use the &lt;code>kubectl&lt;/code> command to get the nodes in the cluster:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl get nodes&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>User-Guide: Former2</title><link>/user-guide/integrations/former2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/user-guide/integrations/former2/</guid><description>
 &lt;h2 id="introduction">Introduction&lt;/h2>
 &lt;p>&lt;a href="https://github.com/iann0036/former2">Former2&lt;/a> allows you to generate Infrastructure-as-Code (IaC) outputs using your pre-existing AWS resources. It uses the AWS JavaScript SDK to make relevant API calls, scans your infrastructure, and provides you with a resource list. You can then select the resources for which you want to generate IaC outputs. Former2 currently supports the following outputs:&lt;/p>
 &lt;ul>
