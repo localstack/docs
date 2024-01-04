@@ -79,7 +79,7 @@ For more information about starting LocalStack with Docker, take a look at our [
 
 ### Docker Compose
 
-To start LocalStack using `docker-compose`, you have to include the `LOCALSTACK_AUTH_TOKEN` environment variable in your `docker-compose.yml` file:
+To start LocalStack using `docker compose`, you have to include the `LOCALSTACK_AUTH_TOKEN` environment variable in your `docker-compose.yml` file:
 
 ```yaml
 environment:
