@@ -35,29 +35,5 @@ To import the state, follow these steps:
 
 To confirm the successful injection of the container state, visit the respective [Resource Browser](https://app.localstack.cloud/inst/default/resources) for the services and verify the resources.
 
-## Cloud Pod (Team)
 
-Cloud Pod allows you to capture a snapshot of your LocalStack instance's state. This snapshot can be injected into another LocalStack instance for various purposes. Additionally, you have the option to share the Cloud Pod with team members, enabling them to import the state into their respective LocalStack instances.
 
-<img src="export-import-state-cloud-pod.png" alt="LocalStack Export/Import State Cloud Pod Mode" title="LocalStack Export/Import State Cloud Pod Mode" width="900" />
-
-### Export the State
-
-To export the state, follow these steps:
-
-1. Navigate to the **Cloud Pod** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page.
-2. Create AWS resources locally as needed.
-3. Enter the Pod name and toggle between the **New Pod** and **Existing Pod** options.
-4. Click on **Create New Pod**.
-
-A new Cloud Pod will be created and will be available for import into another LocalStack instance. You can check out the list of available Cloud Pods in the [Cloud Pod](https://app.localstack.cloud/pods) page.
-
-### Import the State
-
-To import the state, follow these steps:
-
-1. Navigate to the **Cloud Pod** tab within the [Export/Import State](https://app.localstack.cloud/inst/default/state) page.
-2. Choose the Cloud Pod from the drop-down list.
-3. Click on **Load State From Pod**.
-
-To confirm the successful injection of the container state, visit the respective [Resource Browser](https://app.localstack.cloud/inst/default/resources) for the services and verify the resources.
