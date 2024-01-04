@@ -232,6 +232,15 @@ However, the new provider still supports the following configuration options:
 * The `LAMBDA_DOCKER_DNS` option since LocalStack 2.2.
 * The `HOSTNAME_FROM_LAMBDA` option since LocalStack 3.0.
 
+## Lambda Event Source Mapping
+
+[Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services. The following event sources are supported in LocalStack:
+
+-   [DynamoDB](https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html)
+-   [Kinesis](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
+-   [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
+-   [Simple Queue Service (SQS)](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
+
 ## Examples
 
 The following code snippets and sample applications provide practical examples of how to use Lambda in LocalStack for various use cases:
