@@ -196,6 +196,6 @@ LocalStack attempts offline activation if the license server is inaccessible, bu
 $ dig api.localstack.cloud
 {{< / command >}}
 
-If the result has some other status than `status: NOERROR,` your machine cannot resolve this domain. Some corporate DNS servers might filter requests to certain domains. Contact your network administrator to safelist `localstack.cloud` domains.
+If the result shows a status other than `status: NOERROR`, your machine is unable to resolve this domain. Certain corporate DNS servers may filter requests to specific domains. Kindly reach out to your network administrator to safelist `localstack.cloud` domain.
 
 If you have any further problems concerning your license activation, or if the steps do not help, do not hesitate to [contact us](https://localstack.cloud/contact/).
