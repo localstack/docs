@@ -21,7 +21,7 @@ The Auth Token remains unchanged unless manually rotated by the user, regardless
 
 To use LocalStack, a license is required. You can get a license by registering on the [LocalStack Web Application](https://app.localstack.cloud/sign-up).Choose between a 14-day trial or explore additional features with our [paid offerring](https://app.localstack.cloud/pricing). During the trial period, you are welcome to use all the features of LocalStack.
 
-After starting your trial or purchasing a license, you need assign it to a user. Follow the steps below to assign a license to a user:
+After initiating your trial or acquiring a license, proceed to assign it to a user by following the steps outlined below:
 
 - Visit the [Users & Licenses page](https://app.localstack.cloud/workspace/members).
 - Select a user in the **Workspace Members** section for license assignment.
