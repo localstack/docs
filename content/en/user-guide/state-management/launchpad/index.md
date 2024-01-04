@@ -1,6 +1,6 @@
 ---
 title: "Launchpad"
-weight: 10
+weight: 4
 description: Get started with Cloud Pods Launchpad to share and inject Cloud Pods into your LocalStack instance via a URL
 aliases:
   - /user-guide/cloud-pods/launchpad/

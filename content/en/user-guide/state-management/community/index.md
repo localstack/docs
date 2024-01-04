@@ -1,6 +1,6 @@
 ---
 title: "Community Cloud Pods"
-weight: 99
+weight: 6
 description: >
   Get started with LocalStack Community Cloud Pods to to save and load your container state at will
 aliases:

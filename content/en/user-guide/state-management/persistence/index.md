@@ -1,6 +1,6 @@
 ---
 title: "Persistence"
-weight: 50
+weight: 2
 description: >
   Internals of LocalStack persistence mechanism
 aliases:
