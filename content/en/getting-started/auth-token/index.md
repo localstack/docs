@@ -186,7 +186,7 @@ $ localstack auth set-token <YOUR_AUTH_TOKEN>
 
 ### Invalid License
 
-This issue occurs if there's no valid license linked to your account, possibly due to expiration or if it has not been assigned to you. You can check your license status on the [My License page](https://app.localstack.cloud/workspace/my-license) in the LocalStack Web Application.
+The issue may occur if there is no valid license linked to your account due to expiration or if the license has not been assigned. You can check your license status in the LocalStack Web Application on the [My License page](https://app.localstack.cloud/workspace/my-license).
 
 ### License Server Unreachable
 
