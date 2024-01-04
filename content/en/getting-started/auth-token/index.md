@@ -172,7 +172,7 @@ Due to this error, Localstack has quit. LocalStack pro features can only be used
 - If you want to continue using LocalStack without pro features you can set `ACTIVATE_PRO=0`.
 ```
 
-The key activation in LocalStack can fail for several reasons. The most common ones are documented below in this section.
+The key activation in LocalStack may fail for several reasons, and the most common ones are listed below in this section.
 
 ### Missing Credentials
 
