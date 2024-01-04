@@ -5,6 +5,7 @@ description: >
   Internals of LocalStack persistence mechanism
 aliases:
   - /localstack/persistence-mechanism/
+  - /references/persistence-mechanism/
 ---
 
 By default, LocalStack is an ephemeral environment, meaning that, once you terminate your LocalStack instance, all state will be discarded.

@@ -314,7 +314,7 @@ $ localstack stop
 
 LocalStack is ephemeral, meaning it doesn't persist any data across restarts. It runs inside a Docker container, and once it's stopped, all locally created resources are automatically removed.
 
-To persist the local cloud resources across restarts, navigate to our [persistence documentation]({{< ref "references/persistence-mechanism" >}}) or learn about [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}), our next generation state management utility.
+To persist the local cloud resources across restarts, navigate to our [persistence documentation]({{< ref "user-guide/state-management/persistence" >}}) or learn about [Cloud Pods]({{< ref "user-guide/state-management/cloud-pods" >}}), our next generation state management utility.
 
 ## Next Steps
 

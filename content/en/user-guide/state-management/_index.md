@@ -24,7 +24,7 @@ These Cloud Pods are securely stored within an AWS storage backend, where each u
 
 ## Cloud Pods & Persistence
 
-[Persistence]({{< ref "persistence-mechanism" >}}) ensures that the service state persists across container restarts. You can enable persistence via a LocalStack config flag `PERSISTENCE=1` to restore your local resources, in case you’re stopping and re-starting the LocalStack instance on the same machine.
+[Persistence]({{< ref "persistence" >}}) ensures that the service state persists across container restarts. You can enable persistence via a LocalStack config flag `PERSISTENCE=1` to restore your local resources, in case you’re stopping and re-starting the LocalStack instance on the same machine.
 
 In contrast, Cloud Pods provide more detailed control over your state. Rather than just restoring a state during LocalStack restarts, Cloud Pods enable you to capture snapshots of your local instance using the `save` command and inject these snapshots into a running instance using the `load` command, all without needing to perform a full restart.
 
