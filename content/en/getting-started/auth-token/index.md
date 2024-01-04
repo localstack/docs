@@ -190,7 +190,7 @@ The issue may occur if there is no valid license linked to your account due to e
 
 ### License Server Unreachable
 
-LocalStack attempts offline activation if the license server is inaccessible, but this necessitates re-activation every 24 hours. Log output might indicate that your machine cannot resolve the domain of the LocalStack API. You can this by using a tool like `dig`:
+LocalStack initiates offline activation when the license server is unreachable, requiring re-activation every 24 hours. Log output may indicate issues with your machine resolving the LocalStack API domain, which can be verified using a tool like `dig`:
 
 {{< command >}}
 $ dig api.localstack.cloud
