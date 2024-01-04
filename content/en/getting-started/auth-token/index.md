@@ -32,13 +32,24 @@ After initiating your trial or acquiring a license, proceed to assign it to a us
 {{< img src="assigning-a-license.png" class="img-fluid shadow rounded" width="800" >}}
 <br><br>
 
-If you have joined a workspace, you need to be assigned a license by the workspace administrator. In case of switching workspaces or licenses, you need to make sure that you are assigned to the correct license. Without assigning a license, you will not be able to use LocalStack even if you have a valid Auth Token. 
+If you have joined a workspace, you need to be assigned a license by the workspace administrator. In case of switching workspaces or licenses, you need to make sure that you are assigned to the correct license.
+
+{{< alert title="Note" >}}
+If you do not assign a license, you will not be able to use LocalStack even if you have a valid Auth token.
+{{< /alert >}}
 
 To view your own assigned license, visit the [My License page](https://app.localstack.cloud/workspace/my-license). You can further navigate to the [Auth Token page](https://app.localstack.cloud/workspace/auth-token) to view your Auth Token.
 
 ## Configuring your Auth Token
 
 LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain your Auth Token. You can configure your Auth Token in several ways, depending on your use case. The following sections describe the various methods of setting your Auth Token.
+
+{{< alert title="Important" color="danger" >}}
+-   It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
+-   Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
+-   In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
+-   For use in Continuous Integration (CI) or automated test environments, a CI key is necessary. Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
+{{< /alert >}}
 
 ### LocalStack CLI
 
@@ -87,13 +98,6 @@ environment:
 ```
 
 You can manually set the Auth Token, or use the `export` command to establish the Auth Token in your current shell session. This ensures the Auth Token is transmitted to your LocalStack container, enabling key activation.
-
-{{< alert title="Important" color="danger" >}}
--   It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
--   Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
--   In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
--   For use in Continuous Integration (CI) or automated test environments, a CI key is necessary. Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
-{{< /alert >}}
 
 ## Licensing-related configuration
 
