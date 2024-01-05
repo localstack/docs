@@ -85,10 +85,10 @@ volumes:
 
 Here's how you can use `LOCALSTACK_VOLUME_DIR` in your commands:
 
-{{ <command> }}
+{{< command >}}
 export LOCALSTACK_VOLUME_DIR=/tmp/volume
 localstack extensions install file:///tmp/my_files/my-extension-1.0.0.tar.gz
-{{ </command> }}
+{{< / command >}}
 
 ## Automating extensions installation
 
