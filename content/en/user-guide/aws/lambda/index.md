@@ -103,13 +103,14 @@ The following output would be retrieved:
 The product of 10 and 10 is 100% 
 ```
 
-## Special Tools
+## Lambda Event Source Mappings
 
-LocalStack provides various tools to help you develop, debug, and test your AWS Lambda functions more efficiently.
+[Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services. The following event sources are supported in LocalStack:
 
-* **Hot reloading**: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our [hot reloading documentation]({{< ref "hot-reloading" >}}).
-* **Remote debugging**: LocalStack's remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our [debugging documentation]({{< ref "debugging" >}}).
-* **Lambda VS Code Extension**: LocalStack's Lambda VS Code Extension supports deploying and invoking Python Lambda functions through AWS SAM or AWS CloudFormation. To get started with the Lambda VS Code Extension, see our [Lambda VS Code Extension documentation]({{< ref "user-guide/lambda-tools/vscode-extension" >}}).
+-   [DynamoDB](https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html)
+-   [Kinesis](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
+-   [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
+-   [Simple Queue Service (SQS)](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
 
 ## Lambda Layers (Pro)
 
@@ -180,6 +181,14 @@ Replace `test-layer` and `1` with the name and version number of your layer, res
 
 After granting access, the next time you reference the layer in one of your local Lambda functions using the AWS Lambda layer ARN, the layer will be automatically pulled down and integrated into your local dev environment.
 
+## Special Tools
+
+LocalStack provides various tools to help you develop, debug, and test your AWS Lambda functions more efficiently.
+
+* **Hot reloading**: With Lambda hot reloading, you can continuously apply code changes to your Lambda functions without needing to redeploy them manually. To learn more about how to use hot reloading with LocalStack, check out our [hot reloading documentation]({{< ref "hot-reloading" >}}).
+* **Remote debugging**: LocalStack's remote debugging functionality allows you to attach a debugger to your Lambda function using your preferred IDE. To get started with remote debugging in LocalStack, see our [debugging documentation]({{< ref "debugging" >}}).
+* **Lambda VS Code Extension**: LocalStack's Lambda VS Code Extension supports deploying and invoking Python Lambda functions through AWS SAM or AWS CloudFormation. To get started with the Lambda VS Code Extension, see our [Lambda VS Code Extension documentation]({{< ref "user-guide/lambda-tools/vscode-extension" >}}).
+
 ## Resource Browser
 
 The LocalStack Web Application provides a [Resource Browser](https://docs.localstack.cloud/user-guide/web-application/resource-browser/) for managing Lambda resources. You can access the Resource Browser by opening the LocalStack Web Application in your browser, navigating to the **Resources** section, and then clicking on **Lambda** under the **Compute** section.
@@ -231,15 +240,6 @@ However, the new provider still supports the following configuration options:
 * The `LAMBDA_REMOVE_CONTAINERS` option.
 * The `LAMBDA_DOCKER_DNS` option since LocalStack 2.2.
 * The `HOSTNAME_FROM_LAMBDA` option since LocalStack 3.0.
-
-## Lambda Event Source Mapping
-
-[Lambda event source mappings](https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html) allows you to connect Lambda functions to other AWS services. The following event sources are supported in LocalStack:
-
--   [DynamoDB](https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html)
--   [Kinesis](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
--   [Managed Streaming for Apache Kafka (MSK)](https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
--   [Simple Queue Service (SQS)](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
 
 ## Examples
 
