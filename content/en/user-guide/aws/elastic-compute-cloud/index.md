@@ -9,9 +9,9 @@ aliases:
 
 ## Introduction
 
-EC2 (Elastic Compute Cloud) is a fundamental service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
-EC2 enables users to effortlessly launch and manage virtual servers, commonly referred to as instances.
-Users can create diverse computing environments tailored to specific needs by encompassing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.
+EC2 (Elastic Compute Cloud) is a core service within Amazon Web Services (AWS) that provides scalable and flexible virtual computing resources.
+EC2 enables users to launch and manage virtual servers, commonly referred to as instances.
+Users can create a range computing environments tailored to specific needs by employing a wide array of configurations, enabling users to select the desired combination of computing power, memory, storage, and networking capabilities.
 
 LocalStack supports a mock implementation of EC2 via the Community offering while a fully-emulated implementation is available in the Pro/Team offering, allowing you to use the EC2 APIs in your local environment to create and manage your EC2 instances.
 The supported APIs are available on our [API coverage page](https://docs.localstack.cloud/references/coverage/coverage_ec2/), which provides information on the extent of EC2's integration with LocalStack.
@@ -160,12 +160,14 @@ Any execution of this data is recorded in the `/var/log/cloud-init-output.log` f
 
 You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.
 
-This section assumes that you have created or imported an SSH keypair named `my-key` (see [instructions above](#create-a-key-pair)). When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
+This section assumes that you have created or imported an SSH keypair named `my-key` (see [instructions above](#create-a-key-pair)).
+When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
 {{< command >}}
 $ awslocal ec2 run-instances --key-name my-key ...
 {{< /command >}}
 
-Once the instance is up and running, we can use the `ssh` command to set up an SSH connection. Assuming the instance is available under `127.0.0.1:12862` (as per the LocalStack log output), use this command:
+Once the instance is up and running, we can use the `ssh` command to set up an SSH connection.
+Assuming the instance is available under `127.0.0.1:12862` (as per the LocalStack log output), use this command:
 {{< command >}}
 $ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< /command >}}
@@ -179,7 +181,7 @@ The Docker containers backing the EC2 instance continue running even after Local
 You need to explicitly call the [`TerminateInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html) API to stop and remove these containers before stopping the LocalStack.
 {{< /alert >}}
 
-## Docker backend
+## Docker Backend
 
 LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances.
 The Docker backend employs the [Docker Engine](https://docs.docker.com/engine/) to simulate EC2 instances.
@@ -235,7 +237,7 @@ You can also use the [`EC2_DOCKER_FLAGS`]({{< ref "configuration#ec2" >}}) Local
 This allows for adjustments such as commencing the container in privileged mode using `--privileged` or specifying an alternate CPU platform with `--platform`, and more.
 Keep in mind that these modifications apply to all instances launched within the LocalStack session.
 
-## Networking
+### Networking
 
 Network addresses for Dockerized instances are allocated by the Docker daemon.
 These addresses are printed in the logs while the instance is being initialized.
@@ -269,9 +271,10 @@ The port mapping details are provided in the logs during the instance initializa
 2022-12-20T19:43:44.544  INFO  Instance i-1d6327abf04e31be6 port mappings (container -> host): {'8080/tcp': 51747, '22/tcp': 55705}
 ```
 
-## Attaching EBS Block Devices to EC2 Instances
+### EBS Block Devices
 
-A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage. This section illustrates how this functionality can be achieved with EC2 Docker instances in LocalStack.
+A common use case is to attach an EBS block device to an EC2 instance, which can then be used to create a custom filesystem for additional storage.
+This section illustrates how this functionality can be achieved with EC2 Docker instances in LocalStack.
 
 {{< alert title="Note" >}}
 This feature is disabled by default, please configure `EC2_MOUNT_BLOCK_DEVICES=1` in your LocalStack environment to enable it.
@@ -296,7 +299,8 @@ $ awslocal ec2 run-instances --image-id ami-ff0fea8310f3 --count 1 --instance-ty
     --user-data file://init.sh
 {{< /command >}}
 
-Please note that, whereas real AWS uses GB for volume sizes, we use MB as the unit for `VolumeSize` in the command above (to avoid creating huge files locally). Also, by default block device images are limited to 1GB in size, but this can be customized by setting the `EC2_EBS_MAX_VOLUME_SIZE` config variable (defaults to `1000`).
+Please note that, whereas real AWS uses GB for volume sizes, we use MB as the unit for `VolumeSize` in the command above (to avoid creating huge files locally).
+Also, by default block device images are limited to 1GB in size, but this can be customized by setting the `EC2_EBS_MAX_VOLUME_SIZE` config variable (defaults to `1000`).
 
 Once the instance is successfully started and initialized, we can first determine the container ID via `docker ps`, and then list the contents of the mounted filesystem `/ebs-mounted`, which should contain our test file named `my-test-file`:
 {{< command >}}
@@ -306,6 +310,34 @@ CONTAINER ID   IMAGE                  PORTS           NAMES
 $ docker exec 5c60cf72d84a ls /ebs-mounted
 my-test-file
 {{< /command >}}
+
+
+### Instance Metadata Service
+
+LocalStack Pro supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which can be used to retrieve information about the running instance.
+
+Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) are implemented.
+If you would like support for more metadata categories, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
+
+Both IMDSv1 and IMDSv2 can be used.
+LocalStack does not strictly enforce either versions.
+If the `X-AWS-EC2-Metadata-Token` header is present, LocalStack will use IMDSv2, otherwise it will fall back to IMDSv1.
+
+To create an IMDSv2 token, run the following inside the EC2 container:
+
+{{< command >}}
+$ curl -X PUT "http://169.254.169.254/latest/api/token" -H "x-aws-ec2-metadata-token-ttl-seconds: 300"
+{{< /command >}}
+
+The token can be used in subsequent requests like so:
+
+{{< command >}}
+$ curl -H "x-aws-ec2-metadata-token: <TOKEN>" -v http://169.254.169.254/latest/meta-data/
+{{< /command >}}
+
+{{< alert title="Note" >}}
+IPv6 endpoint is currently not supported.
+{{< /alert >}}
 
 ## Resource Browser
 
