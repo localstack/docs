@@ -314,14 +314,11 @@ my-test-file
 
 ### Instance Metadata Service
 
-LocalStack Pro supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which can be used to retrieve information about the running instance.
-
-Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) are implemented.
-If you would like support for more metadata categories, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
+LocalStack Pro supports the [Instance Metadata Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) which is used to retrieve information about the running instance.
 
 Both IMDSv1 and IMDSv2 can be used.
 LocalStack does not strictly enforce either versions.
-If the `X-AWS-EC2-Metadata-Token` header is present, LocalStack will use IMDSv2, otherwise it will fall back to IMDSv1.
+If the `X-aws-ec2-metadata-token` header is present, LocalStack will use IMDSv2, otherwise it will fall back to IMDSv1.
 
 To create an IMDSv2 token, run the following inside the EC2 container:
 
@@ -335,8 +332,11 @@ The token can be used in subsequent requests like so:
 $ curl -H "x-aws-ec2-metadata-token: <TOKEN>" -v http://169.254.169.254/latest/meta-data/
 {{< /command >}}
 
+Currently a limited set of [metadata categories](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-categories.html) are implemented.
+If you would like support for more metadata categories, please make a feature request on [GitHub](https://github.com/localstack/localstack/issues/new/choose).
+
 {{< alert title="Note" >}}
-IPv6 endpoint is currently not supported.
+IMDS IPv6 endpoint is currently not supported.
 {{< /alert >}}
 
 ## Resource Browser
