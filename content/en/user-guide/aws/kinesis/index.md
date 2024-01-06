@@ -184,6 +184,11 @@ The Resource Browser allows you to perform the following actions:
 
 ## Examples
 
+You can discover reference architectures that offer insights into how Kinesis can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="kns">}}
+<br><br>
+
 The following code snippets and sample applications provide practical examples of how to use Kinesis in LocalStack for various use cases:
 
 - [Search application with Lambda, Kinesis, Firehose, ElasticSearch, S3](https://github.com/localstack/sample-fuzzy-movie-search-lambda-kinesis-elasticsearch)
