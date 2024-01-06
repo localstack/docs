@@ -1,6 +1,6 @@
 ---
 title: "CloudWatch Logs"
-linkTitle: "Logs"
+linkTitle: "CloudWatch Logs"
 description: Get started with AWS CloudWatch Logs on LocalStack
 categories: ["LocalStack Community"]
 aliases:
@@ -95,3 +95,10 @@ Similary, you can use filter-pattern to filter logs, like here:
 {{< command >}}
 $ awslocal logs filter-log-events --log-group-name test-filter --filter-pattern "{$.foo = \"bar\"}"
 {{< / command >}}
+
+## Examples
+
+You can discover reference architectures that offer insights into how CloudWatch Logs can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="cwl">}}
+<br><br>
