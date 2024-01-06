@@ -265,6 +265,10 @@ The Resource Browser allows you to perform the following actions:
 
 ## Examples
 
+You can discover reference architectures that offer insights into how S3 can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="s3">}}
+<br><br>
 The following code snippets and sample applications provide practical examples of how to use S3 in LocalStack for various use cases:
 
 - [Full-Stack application with Lambda, DynamoDB & S3 for shipment validation](https://github.com/localstack-samples/sample-shipment-list-demo-lambda-dynamodb-s3).
