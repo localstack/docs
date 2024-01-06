@@ -113,6 +113,7 @@ You can discover reference architectures that offer insights into how IAM can be
 
 {{< applications service_filter="iam">}}
 <br><br>
+
 The following code snippets and sample applications provide practical examples of how to use IAM in LocalStack for various use cases:
 
 - [Serverless Container-based APIs with Amazon ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
