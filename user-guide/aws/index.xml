@@ -8497,7 +8497,12 @@ By default, ECR returns a &lt;code>repositoryUri&lt;/code> starting with &lt;cod
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>kubectl describe pod fancier-nginx&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>In the events, we can see that the pull from ECR was successful:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span> Normal Pulled 10s kubelet Successfully pulled image &lt;span style="color:#4e9a06">&amp;#34;localhost.localstack.cloud:4510/fancier-nginx:latest&amp;#34;&lt;/span> in 2.412775896s
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="configuring-an-ingress-for-your-services">Configuring an Ingress for your services&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Public Docker images from &lt;code>registry.k8s.io&lt;/code> can be pulled without additional configuration from EKS nodes, but if you pull images from any other locations that resolve to S3 you can configure &lt;code>DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=&amp;lt;bucket-name&amp;gt;\.s3.*\.amazonaws\.com&lt;/code> in your &lt;a href="/references/configuration/">configuration&lt;/a>.
+&lt;/div>
+&lt;h3 id="configuring-an-ingress-for-your-services">Configuring an Ingress for your services&lt;/h3>
 &lt;p>To make an EKS service externally accessible, it is necessary to create an Ingress configuration, which exposes the service on a specific path to the load balancer.&lt;/p>
 &lt;p>For our sample deployment, we can create an &lt;code>nginx&lt;/code> Kubernetes service by applying the following configuration:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>cat &amp;lt;&amp;lt;EOF | kubectl apply -f -
