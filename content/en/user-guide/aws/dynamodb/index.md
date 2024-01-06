@@ -176,6 +176,10 @@ You can add your query in the editor and click on the **Execute** button to exec
 
 ## Examples
 
+You can discover reference architectures that offer insights into how DynamoDB can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="ddb">}}
+<br><br>
 The following code snippets and sample applications provide practical examples of how to use IAM in LocalStack for various use cases:
 
 -   [Serverless Container-based APIs with Amazon ECS & API Gateway](https://github.com/localstack/serverless-api-ecs-apigateway-sample)
