@@ -221,7 +221,7 @@ In the events, we can see that the pull from ECR was successful:
 ```
 
 {{< alert title="Note">}}
-To pull public Docker images from `registry.k8s.io`, you can configure `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=prod-registry-k8s-io-.*\.s3\.dualstack\..*\.amazonaws\.com` in your [configuration]({{< ref "configuration" >}}).
+Public Docker images from `registry.k8s.io` can be pulled without additional configuration from EKS nodes, but if you pull images from any other locations that resolve to S3 you can configure `DNS_NAME_PATTERNS_TO_RESOLVE_UPSTREAM=<bucket-name>\.s3.*\.amazonaws\.com` in your [configuration]({{< ref "configuration" >}}).
 {{< /alert >}}
 
 ### Configuring an Ingress for your services
