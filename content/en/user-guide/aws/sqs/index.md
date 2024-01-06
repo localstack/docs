@@ -543,6 +543,10 @@ The Resource Browser allows you to perform the following actions:
 
 ## Examples
 
+You can discover reference architectures that offer insights into how SQS can be used in LocalStack in our [Developer Hub](https://docs.localstack.cloud/developerhub/).
+
+{{< applications service_filter="sqs">}}
+<br><br>
 The following code snippets and sample applications provide practical examples of how to use SQS in LocalStack for various use cases:
 
 - [Serverless microservices with Amazon API Gateway, DynamoDB, SQS, and Lambda](https://github.com/localstack/microservices-apigateway-lambda-dynamodb-sqs-sample)
