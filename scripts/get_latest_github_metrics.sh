@@ -51,7 +51,7 @@ fi
 echo "Trying to download file with runid $RUN_ID..."
 
 # we do not want to exit if this command fails -> using or true
-gh run download $RUN_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -n $ARTIFACT_ID -D $TMP_FOLDER || true
+gh run download $RUN_ID --repo $REPOSITORY_OWNER/$REPOSITORY_NAME -p "$ARTIFACT_ID" -D $TMP_FOLDER || true
 
 # count the files with the pattern (we do not know the exact name) to check if we downloaded something
 if [ 0 -lt $(ls $TMP_FOLDER 2>/dev/null | wc -w) ]; then
@@ -91,10 +91,10 @@ echo "Moving artifact to $TARGET_FOLDER"
 mkdir -p $TARGET_FOLDER
 if [[ -z "${PREFIX_ARTIFACT}" ]]; then
     # pro implementation_coverage artifact download has a subfolder "pro"
-    cp -R $TMP_FOLDER/* $TARGET_FOLDER
+    cp -R $TMP_FOLDER/**/* $TARGET_FOLDER
 else
     # metrics-raw-data artifacts -> we are only want to keept the csv and rename it
-    for file in $TMP_FOLDER/*.csv; do
+    for file in $TMP_FOLDER/**/*.csv; do
       org_file_name=$(echo $file | sed "s/.*\///")
       mv -- "$file" "$TARGET_FOLDER/$PREFIX_ARTIFACT-$org_file_name"
     done
