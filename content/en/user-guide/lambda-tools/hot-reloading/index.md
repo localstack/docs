@@ -125,7 +125,7 @@ So, using the AWS example, this would be:
 
 {{< command >}}
 $ awslocal lambda create-function --function-name my-cool-local-function \
-    --code S3Bucket="hot-reload",S3Key="/tmp/aws-doc-sdk-examples/python/example_code/lambda/boto_client_examples" \
+    --code S3Bucket="hot-reload",S3Key="/tmp/aws-doc-sdk-examples/python/example_code/lambda" \
     --handler lambda_handler_basic.lambda_handler \
     --runtime python3.8 \
     --role arn:aws:iam::000000000000:role/lambda-role
@@ -139,7 +139,7 @@ We can also quickly make sure that it works by invoking it with a simple payload
 {{% tab header="AWS CLI v1" lang="shell" %}}
 {{< command >}}
 $ awslocal lambda invoke --function-name my-cool-local-function \
-    --payload '{"action": "square", "number": 3}' \
+    --payload '{"action": "increment", "number": 3}' \
     output.txt
 {{< /command >}}
 {{% /tab %}}
@@ -147,7 +147,7 @@ $ awslocal lambda invoke --function-name my-cool-local-function \
 {{< command >}}
 $ awslocal lambda invoke --function-name my-cool-local-function \
     --cli-binary-format raw-in-base64-out \
-    --payload '{"action": "square", "number": 3}' \
+    --payload '{"action": "increment", "number": 3}' \
     output.txt
 {{< /command >}}
 {{% /tab %}}
@@ -164,7 +164,7 @@ The invocation returns itself returns:
 ```
 and `output.txt` contains:
 ```json
-{"result":9}
+{"result":4}
 ```
 
 #### Changing things up
@@ -181,7 +181,7 @@ For example, we can now make a minor change to the API and replace the response 
 Without redeploying or updating the function, the result of the previous request will look like this:
 
 ```json
-{"math_result":9}
+{"math_result":4}
 ```
 Cool!
 
