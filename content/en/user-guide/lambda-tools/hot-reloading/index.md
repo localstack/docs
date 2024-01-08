@@ -181,7 +181,7 @@ For example, we can now make a minor change to the API and replace the response 
 Without redeploying or updating the function, the result of the previous request will look like this:
 
 ```json
-{"math_result":9}
+{"math_result":4}
 ```
 Cool!
 
