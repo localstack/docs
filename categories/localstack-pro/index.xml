@@ -89,7 +89,7 @@ The handler is then referenced by the filename of your lambda code and the funct
 &lt;/ol>
 &lt;p>So, using the AWS example, this would be:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda create-function --function-name my-cool-local-function \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;hot-reload&amp;#34;,S3Key=&amp;#34;/tmp/aws-doc-sdk-examples/python/example_code/lambda/boto_client_examples&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --code S3Bucket=&amp;#34;hot-reload&amp;#34;,S3Key=&amp;#34;/tmp/aws-doc-sdk-examples/python/example_code/lambda&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --handler lambda_handler_basic.lambda_handler \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --runtime python3.8 \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --role arn:aws:iam::000000000000:role/lambda-role&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
@@ -114,14 +114,14 @@ AWS CLI v2
 &lt;div class="tab-body tab-pane fade show active"
 id="tabs-05-00" role="tabpanel" aria-labelled-by="tabs-05-00-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;square&amp;#34;, &amp;#34;number&amp;#34;: 3}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;increment&amp;#34;, &amp;#34;number&amp;#34;: 3}&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;div class="tab-body tab-pane fade"
 id="tabs-05-01" role="tabpanel" aria-labelled-by="tabs-05-01-tab">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal lambda invoke --function-name my-cool-local-function \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cli-binary-format raw-in-base64-out \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;square&amp;#34;, &amp;#34;number&amp;#34;: 3}&amp;#39; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --payload &amp;#39;{&amp;#34;action&amp;#34;: &amp;#34;increment&amp;#34;, &amp;#34;number&amp;#34;: 3}&amp;#39; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> output.txt&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;/div>
 &lt;/div>
@@ -132,14 +132,14 @@ id="tabs-05-01" role="tabpanel" aria-labelled-by="tabs-05-01-tab">
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;ExecutedVersion&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;$LATEST&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>and &lt;code>output.txt&lt;/code> contains:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">9&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="changing-things-up">Changing things up&lt;/h4>
 &lt;p>Now, that we got everything up and running, the fun begins.
 Because the function is now mounted as a file in the executing container, any change that we save on the file will be there in an instant.&lt;/p>
 &lt;p>For example, we can now make a minor change to the API and replace the response in &lt;a href="https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/lambda/lambda_handler_basic.py#L41">line 41&lt;/a> with the following:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-python" data-lang="python">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000">response&lt;/span> &lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;math_result&amp;#39;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000">result&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Without redeploying or updating the function, the result of the previous request will look like this:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;math_result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">9&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>&lt;span style="color:#204a87;font-weight:bold">&amp;#34;math_result&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#0000cf;font-weight:bold">4&lt;/span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Cool!&lt;/p>
 &lt;h4 id="usage-with-virtualenv">Usage with Virtualenv&lt;/h4>
 &lt;p>For &lt;a href="https://virtualenv.pypa.io">virtualenv&lt;/a>-driven projects, all dependencies should be made
