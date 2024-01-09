@@ -1,11 +1,9 @@
 ---
-title: "Getting started"
-linkTitle: "Getting started"
+title: "Creating infra with Terraform locally"
+linkTitle: "Creating infra with Terraform locally"
 weight: 4
 description: >
-  Discover multiple ways to dive into LocalStack's world of cloud development. Learn the easiest
-  method, using the LocalStack CLI, or alternatively, you can pull the Docker image, run it or include it in
-  Docker Compose, and start using AWS services. 
+  In this video we will be using LocalStack's terraform integration to automate the process of deploying and configuring the resources on localstack. For this we will be using `tflocal` - a small wrapper script to run Terraform against LocalStack. If you don’t want to use tflocal, you can use terraform, with small changes to the tf file, which we will talk about later in the video. 
 length: 03:43
 leadimage: getting-started.png
 videoUrl: https://www.youtube.com/embed/CzX4mfiS058
@@ -22,8 +20,8 @@ You'll understand the diverse approaches to LocalStack installation:
 - Install `awscli-local` and `localstack` via `pip install`. On macOS you can use `brew install`.
 - Start LocalStack using `localstack start`.
 - Create a bucket and list buckets using `awslocal s3 mb s3://test` and `awslocal s3 ls`.
-2. Alternative - Docker: Dive into an alternate installation method using Docker: pull the image and run it, it's that easy.
-3. Docker Compose: Explore yet another approach via Docker Compose.
+1. Alternative - Docker: Dive into an alternate installation method using Docker: pull the image and run it, it's that easy.
+2. Docker Compose: Explore yet another approach via Docker Compose.
 
 Further reading:
 

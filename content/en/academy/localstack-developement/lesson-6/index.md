@@ -1,6 +1,6 @@
 ---
-title: "Full Project Demo"
-linkTitle: "Full Project Demo"
+title: "Setup GitHub Action workflow that starts up LocalStack and deploys the infrastructure"
+linkTitle: "Setup GitHub Action workflow that starts up LocalStack and deploys the infrastructure"
 weight: 6
 description: >
   This video explores one of our many Developer Hub sample applications, a note-taking application. We'll take you

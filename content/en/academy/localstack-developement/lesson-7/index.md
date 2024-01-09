@@ -1,11 +1,11 @@
 ---
-title: "Cloud Pods and Collaborative Work"
-linkTitle: "Cloud Pods and Collaborative Work"
+title: "Cloud pods - Team Collaboration"
+linkTitle: "Cloud pods - Team Collaboration"
 weight: 7
 description: >
-  Discover Cloud Pods: a mechanism offering persistent snapshots of LocalStack's application state. 
-  Uncover their significance in enabling reproducible applications, collaborative sandboxing, and 
-  consistent AWS API parity. Engage in a brief and enlightening demo showcasing their practicality.
+  In this video we will discuss about Cloud pods, extending the discussion from module - 1. By default, LocalStack is an ephemeral environment, meaning that, once you terminate your LocalStack instance, all state will be discarded. Cloud Pods are a mechanism that allows you to take a snapshot of the current state of your LocalStack instance and easily share it with your team members. Furthermore we will pick a `QuickStart` guide to cloudpod and follow the on-screen tutorial to load a cloudpod in our environment using the web app.
+
+This cloudpod would 'load' the infrastructure and the deployed application onto our running localstack instance. The cloudpod contains the same application we deployed in this module.
 length: 03:29
 leadimage: cloud-pod.png
 videoUrl: https://www.youtube.com/embed/InqTdSvxuag

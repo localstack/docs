@@ -1,11 +1,9 @@
 ---
-title: "Why LocalStack"
-linkTitle: "Why LocalStack"
+title: "LocalStack Integrations - Infrastructure-as-Code and CI tools "
+linkTitle: "LocalStack Integrations - Infrastructure-as-Code and CI tools "
 weight: 3
 description: >
-  LocalStack is a game-changing platform for cloud developers, offering enhanced productivity, cost savings, and simplified maintenance. 
-  With faster deployment and reduced dependency on infrastructure teams, developers can unleash their full
-  potential and streamline cloud workflows.
+  In the last video where we manually deployed some AWS resources, we realized that there were a lot of resources that needed to be deployed and doing it manually can be really hard and prone to errors. We mostly interacted with LocalStack through the CLI. However, large systems are hardly built this way. To the rescue comes LocalStack’s integrations. LocalStack supports a wide range of integrations from the cloud development ecosystem. One such integration is terraform, which is an Infrastructure as Code ( IaC ) tool, which we are going to use to setup the whole AWS infrastructure, that we discussed in the previous video.
 length: 03:39
 leadimage: why-ls.png
 videoUrl: https://www.youtube.com/embed/EDGIBpUpYWU
