@@ -121,4 +121,4 @@ if __name__ == '__main__':
 
 The following code snippets and sample applications provide practical examples of how to use Neptune in LocalStack for various use cases:
 
-- [Neptune Graph Database Demo](hhttps://github.com/localstack/localstack-pro-samples/tree/master/neptune-graph-db)
+- [Neptune Graph Database Demo](https://github.com/localstack/localstack-pro-samples/tree/master/neptune-graph-db)
