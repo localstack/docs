@@ -61,7 +61,7 @@ You can add extra configuration options by separating them with a comma.
 
 To enable LocalStack Pro+, you need to add your LocalStack CI API key to the project's environment variables. The LocalStack container will automatically pick it up and activate the licensed features. 
 
-Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key. To add the CI key to your CircleCI project, follow these steps:
+Go to the [CI Key Page](https://app.localstack.cloud/workspace/ci-keys) page and copy your CI key. To add the CI key to your GitHub project, follow these steps:
 
 - Navigate to your repository **Settings**, click **Secrets**, and press **New repository secret**.
 - Enter `LOCALSTACK_AUTH_TOKEN` as the name of the secret and paste your CI key as the value.
