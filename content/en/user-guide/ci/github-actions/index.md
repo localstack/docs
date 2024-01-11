@@ -82,7 +82,7 @@ Additionally, you need to modify your GitHub Action workflow to use the `localst
     configuration: DEBUG=1
     use-pro: 'true'
   env:
-    LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+    LOCALSTACK_AUTH_TOKEN: ${{ secrets.LOCALSTACK_AUTH_TOKEN }}
 ```
 
 ## Limitations
