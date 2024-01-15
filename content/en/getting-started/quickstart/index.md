@@ -266,7 +266,7 @@ Save these URLs for later use in the sample application.
 
 ### Run the sample AWS application
 
-To access the application, go to [**https://webapp.s3-website.localhost.localstack.cloud/**](https://webapp.s3-website.localhost.localstack.cloud/) in your browser.
+To access the application, go to [**https://webapp.s3-website.localhost.localstack.cloud:4566**](https://webapp.s3-website.localhost.localstack.cloud:4566) in your browser.
 
 <img src="serverless-image-resizer-application.png" alt="Serverless image resizer application" title="Serverless image resizer application" width="800px" />
 
