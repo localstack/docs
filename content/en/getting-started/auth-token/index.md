@@ -48,8 +48,15 @@ LocalStack requires the `LOCALSTACK_AUTH_TOKEN` environment variable to contain 
 -   It's crucial to keep your Auth Token confidential. Do not include it in source code management systems, such as Git repositories.
 -   Be aware that if an Auth Token is committed to a public repository, it's at risk of exposure, and could remain in the repository's history, even if attempts are made to rewrite it.
 -   In case your Auth Token is accidentally published, immediately rotate it on the [Auth Token page](https://app.localstack.cloud/workspace/auth-token).
--   For use in Continuous Integration (CI) or automated test environments, a CI key is necessary. Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
 {{< /alert >}}
+
+### Configuring your CI environment
+
+For use in Continuous Integration (CI) or automated test environments, a CI key is necessary.  
+Refer to our [CI documentation]({{< ref "user-guide/ci" >}}) for guidance on securely handling secrets, including storing your CI key in these environments.
+
+To configure your CI key, you need to set the `LOCALSTACK_API_KEY` environment variable to your CI key.
+You can find your CI key on the [CI Keys page](https://app.localstack.cloud/workspace/ci-keys) in the LocalStack Web Application.
 
 ### LocalStack CLI
 
