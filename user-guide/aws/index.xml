@@ -11160,7 +11160,7 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal kafka create-cluster \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --cluster-name &amp;#34;EventsCluster&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --broker-node-group-info file://brokernodegroupinfo.json \
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --kafka-version &amp;#34;2.2.1&amp;#34; \
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --kafka-version &amp;#34;2.8.0&amp;#34; \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --number-of-broker-nodes 3&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>The output of the command looks similar to this:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ce5c00;font-weight:bold">{&lt;/span>
@@ -11198,9 +11198,9 @@ CloudWatch Logs is available in the Community version. However, some specific fe
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-a-kafka-topic">Create a Kafka topic&lt;/h3>
 &lt;p>To use LocalStack MSK, you can download and utilize the Kafka command line interface (CLI) to create a topic for producing and consuming data.&lt;/p>
 &lt;p>To download Apache Kafka, execute the following commands.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>tar -xzf kafka_2.12-2.2.1.tgz&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Navigate to the &lt;strong>kafka_2.12-2.2.1&lt;/strong> directory. Execute the following command, replacing &lt;code>ZookeeperConnectString&lt;/code> with the value you saved after running the &lt;a href="https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster">&lt;code>DescribeCluster&lt;/code>&lt;/a> API:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.12-2.8.0.tgz
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>tar -xzf kafka_2.12-2.8.0.tgz&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;p>Navigate to the &lt;strong>kafka_2.12-2.8.0&lt;/strong> directory. Execute the following command, replacing &lt;code>ZookeeperConnectString&lt;/code> with the value you saved after running the &lt;a href="https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster">&lt;code>DescribeCluster&lt;/code>&lt;/a> API:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>bin/kafka-topics.sh \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --create \
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --zookeeper localhost:4510 \
