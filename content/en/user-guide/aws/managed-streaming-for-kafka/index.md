@@ -101,7 +101,7 @@ $ wget https://archive.apache.org/dist/kafka/2.8.0/kafka_2.12-2.8.0.tgz
 $ tar -xzf kafka_2.12-2.8.0.tgz
 {{< / command >}}
 
-Navigate to the **kafka_2.12-2.8.0.tgz** directory. Execute the following command, replacing `ZookeeperConnectString` with the value you saved after running the [`DescribeCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster) API:
+Navigate to the **kafka_2.12-2.8.0** directory. Execute the following command, replacing `ZookeeperConnectString` with the value you saved after running the [`DescribeCluster`](https://docs.aws.amazon.com/msk/1.0/apireference/clusters.html#DescribeCluster) API:
 
 {{< command >}}
 $ bin/kafka-topics.sh \
