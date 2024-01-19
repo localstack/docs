@@ -1567,9 +1567,7 @@ The supported APIs are available on our &lt;a href="https://docs.localstack.clou
 We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
-Docker Desktop on macOS does not expose the bridge network hence SSH access to the instance is not possible.
-You can however follow the steps below to test the setup of the EC2 instance.
-You also need to use LocalStack Pro/Team to test the setup of the EC2 instance, since it uses &lt;a href="#docker-backend">Docker backend&lt;/a> to emulate EC2 instances.
+You need to use LocalStack Pro/Team to test the setup of the EC2 instance, since it uses &lt;a href="#docker-backend">Docker Backend&lt;/a> to emulate EC2 instances.
 &lt;/div>
 &lt;h3 id="create-a-key-pair">Create a Key Pair&lt;/h3>
 &lt;p>To create a key pair, you can use the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html">&lt;code>CreateKeyPair&lt;/code>&lt;/a> API.
@@ -1651,22 +1649,14 @@ Any execution of this data is recorded in the &lt;code>/var/log/cloud-init-outpu
 &lt;h3 id="connecting-via-ssh">Connecting via SSH&lt;/h3>
 &lt;p>You can also set up an SSH connection to the locally emulated EC2 instance using the instance IP address.&lt;/p>
 &lt;p>This section assumes that you have created or imported an SSH keypair named &lt;code>my-key&lt;/code> (see &lt;a href="#create-a-key-pair">instructions above&lt;/a>).
-When running the EC2 instance, make sure to pass the &lt;code>--key-name&lt;/code> parameter to the command:
+When running the EC2 instance, make sure to pass the &lt;code>--key-name&lt;/code> parameter to the command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 run-instances --key-name my-key ...&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/p>
 &lt;p>Once the instance is up and running, we can use the &lt;code>ssh&lt;/code> command to set up an SSH connection.
-Assuming the instance is available under &lt;code>127.0.0.1:12862&lt;/code> (as per the LocalStack log output), use this command:
+Assuming the instance is available under &lt;code>127.0.0.1:12862&lt;/code> (as per the LocalStack log output), use this command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>ssh -p 12862 -i key.pem root@127.0.0.1&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-success" role="alert">
 &lt;h4 class="alert-heading">Hint&lt;/h4>
 If the &lt;code>ssh&lt;/code> command throws an error like &amp;ldquo;Identity file not accessible&amp;rdquo; or &amp;ldquo;bad permissions&amp;rdquo;, then please make sure that the key file has a restrictive &lt;code>0400&lt;/code> permission as illustrated &lt;a href="#create-a-key-pair">here&lt;/a>.
-&lt;/div>
-&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note&lt;/h4>
-LocalStack does not clean up any Dockerized instances when shutting down.
-The Docker containers backing the EC2 instance continue running even after LocalStack is stopped.
-You need to explicitly call the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html">&lt;code>TerminateInstances&lt;/code>&lt;/a> API to stop and remove these containers before stopping the LocalStack.
 &lt;/div>
 &lt;h2 id="docker-backend">Docker Backend&lt;/h2>
 &lt;p>LocalStack Pro supports the Docker backend, enabling the execution of emulated EC2 instances.
@@ -1676,6 +1666,12 @@ All restrictions associated with containers are also applicable to EC2 instances
 In order for LocalStack to function seamlessly, access to the Docker socket is essential, which can be facilitated by attaching the socket file during the launch process.&lt;/p>
 &lt;p>Instances encompass the mounted Docker socket (&lt;code>/var/run/docker.sock&lt;/code>), which facilitates scenarios involving Docker-in-Docker.
 This setup makes it feasible to engage in use cases that require interactions with Docker within the instances themselves.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+LocalStack does not clean up any Dockerized instances when shutting down.
+The Docker containers backing the EC2 instance continue running even after LocalStack is stopped.
+You need to explicitly call the &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html">&lt;code>TerminateInstances&lt;/code>&lt;/a> API to stop and remove these containers before stopping the LocalStack.
+&lt;/div>
 &lt;h3 id="operations">Operations&lt;/h3>
 &lt;p>The Docker backend supports the following operations:&lt;/p>
 &lt;table>
@@ -1716,13 +1712,21 @@ This setup makes it feasible to engage in use cases that require interactions wi
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;h3 id="base-images">Base Images&lt;/h3>
+&lt;h3 id="instances-and-amis">Instances and AMIs&lt;/h3>
 &lt;p>LocalStack utilizes a specific naming convention for recognition and management of its associated containers and images.
-Containers are designated with the name format &lt;code>localstack-ec2.&amp;lt;InstanceId&amp;gt;&lt;/code>, while images are tagged using the format &lt;code>localstack-ec2/&amp;lt;AmiName&amp;gt;:&amp;lt;AmiId&amp;gt;&lt;/code>.&lt;/p>
-&lt;p>Within the Docker backend, Docker images following the aforementioned naming pattern are treated as Amazon Machine Images (AMIs).
-For instance, you can associate the Ubuntu Focal image as &lt;code>ami-000001&lt;/code> using the command below:&lt;/p>
+Docker containers that back EC2 instances are named &lt;code>localstack-ec2.&amp;lt;InstanceId&amp;gt;&lt;/code>
+Similarly, Docker base images which are tagged with the scheme &lt;code>localstack-ec2/&amp;lt;AmiName&amp;gt;:&amp;lt;AmiId&amp;gt;&lt;/code> are recognized as Amazon Machine Images (AMIs).&lt;/p>
+&lt;p>You can mark any Docker base image as AMI using the below command:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;p>Such Docker-backed AMIs bear the resource tag &lt;code>ec2_vm_manager:docker&lt;/code> and can be listed using the subsequent command:&lt;/p>
+&lt;p>The above example will make LocalStack treat the &lt;code>ubuntu:focal&lt;/code> Docker image as an AMI with name &lt;code>ubuntu-focal-ami&lt;/code> and ID &lt;code>ami-000001&lt;/code>.&lt;/p>
+&lt;p>At startup, LocalStack downloads the following AMIs that can be used to launch Dockerized instances.
+This behaviour can be controlled using the &lt;code>EC2_DOWNLOAD_DEFAULT_IMAGES&lt;/code> configuration variable.&lt;/p>
+&lt;ul>
+&lt;li>Ubuntu 22.04 &lt;code>ami-df5de72bdb3b&lt;/code>&lt;/li>
+&lt;li>Amazon Linux 2023 &lt;code>ami-024f768332f0&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>All LocalStack-managed Docker AMIs bear the resource tag &lt;code>ec2_vm_manager:docker&lt;/code>.
+These AMIs can be listed using:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
@@ -1734,10 +1738,17 @@ Attempting to launch Dockerized instances using these specific AMIs will result 
 This allows for adjustments such as commencing the container in privileged mode using &lt;code>--privileged&lt;/code> or specifying an alternate CPU platform with &lt;code>--platform&lt;/code>, and more.
 Keep in mind that these modifications apply to all instances launched within the LocalStack session.&lt;/p>
 &lt;h3 id="networking">Networking&lt;/h3>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Network access to EC2 instance is not possible on macOS.
+This is because Docker Desktop on macOS does not expose the bridge network to the host system.
+&lt;/div>
 &lt;p>Network addresses for Dockerized instances are allocated by the Docker daemon.
 These addresses are printed in the logs while the instance is being initialized.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>2022-03-21T14:46:49.540 INFO Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>To be able to access the instance at additional ports from the host system, you can modify the default security group and incorporate the needed ingress ports.&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>When instances are launched, LocalStack attempts to start SSH server &lt;code>/usr/sbin/sshd&lt;/code> in the Docker base image.
+If not found, it installs and starts the &lt;a href="https://github.com/mkj/dropbear">Dropbear&lt;/a> SSH server.&lt;/p>
+&lt;p>To be able to access the instance at additional ports from the host system, you can modify the default security group and incorporate the needed ingress ports.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 &lt;h4 class="alert-heading">Note&lt;/h4>
 Security group ingress rules are applied only during the creation of the Dockerized instance.
