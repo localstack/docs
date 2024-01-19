@@ -24,9 +24,7 @@ Start your LocalStack container using your preferred method.
 We will demonstrate how to create an EC2 instance that runs a simple Python web server on port 8000 with the AWS CLI.
 
 {{< alert title="Note" >}}
-Docker Desktop on macOS does not expose the bridge network hence SSH access to the instance is not possible.
-You can however follow the steps below to test the setup of the EC2 instance.
-You also need to use LocalStack Pro/Team to test the setup of the EC2 instance, since it uses [Docker backend](#docker-backend) to emulate EC2 instances.
+You need to use LocalStack Pro/Team to test the setup of the EC2 instance, since it uses [Docker Backend](#docker-backend) to emulate EC2 instances.
 {{< /alert >}}
 
 ### Create a Key Pair
@@ -162,23 +160,20 @@ You can also set up an SSH connection to the locally emulated EC2 instance using
 
 This section assumes that you have created or imported an SSH keypair named `my-key` (see [instructions above](#create-a-key-pair)).
 When running the EC2 instance, make sure to pass the `--key-name` parameter to the command:
+
 {{< command >}}
 $ awslocal ec2 run-instances --key-name my-key ...
 {{< /command >}}
 
 Once the instance is up and running, we can use the `ssh` command to set up an SSH connection.
 Assuming the instance is available under `127.0.0.1:12862` (as per the LocalStack log output), use this command:
+
 {{< command >}}
 $ ssh -p 12862 -i key.pem root@127.0.0.1
 {{< /command >}}
+
 {{< alert title="Hint" color="success">}}
 If the `ssh` command throws an error like "Identity file not accessible" or "bad permissions", then please make sure that the key file has a restrictive `0400` permission as illustrated [here](#create-a-key-pair).
-{{< /alert >}}
-
-{{< alert title="Note">}}
-LocalStack does not clean up any Dockerized instances when shutting down.
-The Docker containers backing the EC2 instance continue running even after LocalStack is stopped.
-You need to explicitly call the [`TerminateInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html) API to stop and remove these containers before stopping the LocalStack.
 {{< /alert >}}
 
 ## Docker Backend
@@ -194,6 +189,13 @@ In order for LocalStack to function seamlessly, access to the Docker socket is e
 Instances encompass the mounted Docker socket (`/var/run/docker.sock`), which facilitates scenarios involving Docker-in-Docker.
 This setup makes it feasible to engage in use cases that require interactions with Docker within the instances themselves.
 
+{{< alert title="Note">}}
+LocalStack does not clean up any Dockerized instances when shutting down.
+The Docker containers backing the EC2 instance continue running even after LocalStack is stopped.
+You need to explicitly call the [`TerminateInstances`](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html) API to stop and remove these containers before stopping the LocalStack.
+{{< /alert >}}
+
+
 ### Operations
 
 The Docker backend supports the following operations:
@@ -208,19 +210,28 @@ The Docker backend supports the following operations:
 | `StartInstances`| Initiates the resumption of a paused container                                               |
 | `TerminateInstances`| Initiates the termination of a container                                                 |
 
-### Base Images
+### Instances and AMIs
 
 LocalStack utilizes a specific naming convention for recognition and management of its associated containers and images.
-Containers are designated with the name format `localstack-ec2.<InstanceId>`, while images are tagged using the format `localstack-ec2/<AmiName>:<AmiId>`.
+Docker containers that back EC2 instances are named `localstack-ec2.<InstanceId>`
+Similarly, Docker base images which are tagged with the scheme `localstack-ec2/<AmiName>:<AmiId>` are recognized as Amazon Machine Images (AMIs).
 
-Within the Docker backend, Docker images following the aforementioned naming pattern are treated as Amazon Machine Images (AMIs).
-For instance, you can associate the Ubuntu Focal image as `ami-000001` using the command below:
+You can mark any Docker base image as AMI using the below command:
 
 {{< command >}}
 $ docker tag ubuntu:focal localstack-ec2/ubuntu-focal-ami:ami-000001
 {{< /command >}}
 
-Such Docker-backed AMIs bear the resource tag `ec2_vm_manager:docker` and can be listed using the subsequent command:
+The above example will make LocalStack treat the `ubuntu:focal` Docker image as an AMI with name `ubuntu-focal-ami` and ID `ami-000001`.
+
+At startup, LocalStack downloads the following AMIs that can be used to launch Dockerized instances.
+This behaviour can be controlled using the `EC2_DOWNLOAD_DEFAULT_IMAGES` configuration variable.
+- Ubuntu 22.04 `ami-df5de72bdb3b`
+- Amazon Linux 2023 `ami-024f768332f0`
+
+
+All LocalStack-managed Docker AMIs bear the resource tag `ec2_vm_manager:docker`.
+These AMIs can be listed using:
 
 {{< command >}}
 $ awslocal ec2 describe-images --filters Name=tag:ec2_vm_manager,Values=docker
@@ -239,12 +250,20 @@ Keep in mind that these modifications apply to all instances launched within the
 
 ### Networking
 
+{{< alert title="Note" >}}
+Network access to EC2 instance is not possible on macOS. 
+This is because Docker Desktop on macOS does not expose the bridge network to the host system.
+{{< /alert >}}
+
 Network addresses for Dockerized instances are allocated by the Docker daemon.
 These addresses are printed in the logs while the instance is being initialized.
 
 ```bash
 2022-03-21T14:46:49.540  INFO  Instance i-1d6327abf04e31be6 will be accessible via SSH at: 127.0.0.1:55705
 ```
+
+When instances are launched, LocalStack attempts to start SSH server `/usr/sbin/sshd` in the Docker base image.
+If not found, it installs and starts the [Dropbear](https://github.com/mkj/dropbear) SSH server.
 
 To be able to access the instance at additional ports from the host system, you can modify the default security group and incorporate the needed ingress ports.
 
