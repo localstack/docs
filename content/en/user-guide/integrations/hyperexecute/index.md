@@ -18,7 +18,7 @@ To get started with HyperExecute, you need to fulfill the following prerequisite
 - [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 - [LambdaTest Account](https://hyperexecute.lambdatest.com/) and Access Key for HyperExecute (`he`)
 
-### Configuring the HyperExecute configuration
+### Configuring the HyperExecute environment
 
 Create a new file named `he.yml` in the root directory of your project and add the following content:
 
