@@ -70,7 +70,7 @@ sourcePayload:
   accessToken: ${{ .secrets.PAT }}
 ```
 
-Before running the tests, add your Personal Access Token (PAT) to your HyperExecute Portal as a secret. In this minimal configuration, you will setup our [`Serverless image resizer`](https://github.com/localstack-samples/sample-serverless-image-resizer-s3-lambda) application and run the tests using `pytest`. The `bin/deploy.sh` script is responsible for deploying the application to LocalStack. HyperExecute will automatically detect the tests and run them in parallel.
+Before running the tests, add your Personal Access Token (PAT) to your HyperExecute Portal as a secret. In this minimal configuration, you will set up our [`Serverless image resizer`](https://github.com/localstack-samples/sample-serverless-image-resizer-s3-lambda) application and run the tests using `pytest`. The `bin/deploy.sh` script is responsible for deploying the application to LocalStack. HyperExecute will automatically detect the tests and run them in parallel.
 
 ### Running the tests locally
 
