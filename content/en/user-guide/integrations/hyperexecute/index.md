@@ -44,7 +44,7 @@ pre:
 The above minimal configuration file starts LocalStack and creates an S3 bucket, SQS queue, and SNS topic.
 
 {{< alert title="Note" >}}
-To configure a LocalStack Auth Token to use Pro/Team features, you can append `LOCALSTACK_API_KEY=${{ .secrets.LOCALSTACK_API_KEY }}` to the `localstack start` command. Subsequently, you need to add your LocalStack Auth Token to your HyperExecute Portal as a secret.
+To configure a LocalStack Auth Token to use Pro/Team features, you can append `LOCALSTACK_AUTH_TOKEN=${{ .secrets.LOCALSTACK_AUTH_TOKEN }}` to the `localstack start` command. Subsequently, you need to add your LocalStack Auth Token to your HyperExecute Portal as a secret.
 {{< /alert >}}
 
 ### Enabling test execution on HyperExecute
