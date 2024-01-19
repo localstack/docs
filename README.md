@@ -33,7 +33,8 @@ or:
 ### Install Hugo
 LocalStack Docs is based on the [Hugo static site generator](https://gohugo.io).
 
-In order to contribute to LocalStack Docs, you need to [install Hugo](https://gohugo.io/getting-started/installing) in order to verify your changes. Make sure to install the _extended_ version of Hugo. You also need to make sure that `go` is installed in order to run hugo scripts. 
+In order to contribute to LocalStack Docs, you need to [install Hugo](https://gohugo.io/getting-started/installing) in order to verify your changes. Make sure to install the _extended_ version of Hugo.
+You also need to make sure that `go` is installed in order to run hugo scripts. 
 
 ### Run locally
 Once you have Hugo installed, you can start your local server with the following command:
