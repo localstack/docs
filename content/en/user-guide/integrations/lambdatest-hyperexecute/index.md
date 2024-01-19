@@ -1,7 +1,7 @@
 ---
-title: HyperExecute
-linktitle: HyperExecute
-description: Executing LocalStack tests on HyperExecute
+title: LambdaTest HyperExecute
+linktitle: LambdaTest HyperExecute
+description: Executing LocalStack tests on LambdaTest's HyperExecute
 ---
 
 [HyperExecute](https://www.lambdatest.com/hyperexecute) is a test orchestration platform designed to optimize the execution of automated tests in the cloud. It supports a wide range of testing frameworks and integrates seamlessly with CI/CD pipelines, such as GitHub Actions. You can use HyperExecute to run your LocalStack tests on your local machine or in the CI pipeline using a single configuration file.
