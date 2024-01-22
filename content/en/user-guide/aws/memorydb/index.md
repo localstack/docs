@@ -82,4 +82,3 @@ Resources necessary to operate a cluster, like parameter groups, security groups
 
 LocalStack currently doesn't support MemoryDB snapshots, failovers, users/passwords, service updates, replication scaling, SSL, migrations, service integration (like CloudWatch/Kinesis log delivery, SNS notifications) or tests.
 
-You can find a detailed list of covered API methods on the [MemoryDB coverage page]({{< ref "coverage_memorydb" >}}).
