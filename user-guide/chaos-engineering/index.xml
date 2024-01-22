@@ -8,12 +8,12 @@
 &lt;h3 id="prerequisites">Prerequisites&lt;/h3>
 &lt;p>The general prerequisites for this guide are:&lt;/p>
 &lt;ul>
-&lt;li>LocalStack Pro with &lt;a href="https://docs.localstack.cloud/getting-started/api-key/">LocalStack API key&lt;/a>&lt;/li>
+&lt;li>LocalStack Pro with &lt;a href="https://docs.localstack.cloud/getting-started/auth-token/">LocalStack Auth Token&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cli/">AWS CLI&lt;/a> with the &lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">&lt;code>awslocal&lt;/code> wrapper&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.docker.com/get-docker/">Docker&lt;/a> and &lt;a href="https://docs.docker.com/compose/install/">Docker Compose&lt;/a>&lt;/li>
 &lt;/ul>
-&lt;p>Start LocalStack by using the &lt;code>docker-compose.yml&lt;/code> file from the repository. Ensure to set your API key as an environment variable during this process. The cloud resources will be automatically created upon the LocalStack start.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_API_KEY=&amp;lt;YOUR_LOCALSTACK_API_KEY&amp;gt;
+&lt;p>Start LocalStack by using the &lt;code>docker-compose.yml&lt;/code> file from the repository. Ensure to set your Auth Token as an environment variable during this process. The cloud resources will be automatically created upon the LocalStack start.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_AUTH_TOKEN=&amp;lt;YOUR_LOCALSTACK_AUTH_TOKEN&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker compose up&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="application-architecture">Application Architecture&lt;/h3>
 &lt;p>The following diagram shows the architecture that this application builds and deploys:&lt;/p>
@@ -295,16 +295,16 @@ Outages Extension is currently available as part of the &lt;strong>LocalStack En
 &lt;h3 id="prerequisites">Prerequisites&lt;/h3>
 &lt;p>The general prerequisites for this guide are:&lt;/p>
 &lt;ul>
-&lt;li>LocalStack Pro with &lt;a href="https://docs.localstack.cloud/getting-started/installation/#localstack-cli">LocalStack CLI&lt;/a> &amp;amp; &lt;a href="https://docs.localstack.cloud/getting-started/api-key/">LocalStack API key&lt;/a>&lt;/li>
+&lt;li>LocalStack Pro with &lt;a href="https://docs.localstack.cloud/getting-started/installation/#localstack-cli">LocalStack CLI&lt;/a> &amp;amp; &lt;a href="https://docs.localstack.cloud/getting-started/auth-token/">LocalStack Auth Token&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cli/">AWS CLI&lt;/a> with the &lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">&lt;code>awslocal&lt;/code> wrapper&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.docker.com/get-docker/">Docker&lt;/a> and &lt;a href="https://docs.docker.com/compose/install/">Docker Compose&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.terraform.io/downloads.html">Terraform&lt;/a> and &lt;a href="https://docs.localstack.cloud/user-guide/integrations/terraform/#tflocal-wrapper-script">&lt;code>tflocal&lt;/code> wrapper&lt;/a>.&lt;/li>
 &lt;/ul>
-&lt;p>Start LocalStack by using the &lt;code>docker-compose.yml&lt;/code> file from the repository. Ensure to set your API key as an environment variable during this process.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_API_KEY=&amp;lt;YOUR_LOCALSTACK_API_KEY&amp;gt;
+&lt;p>Start LocalStack by using the &lt;code>docker-compose.yml&lt;/code> file from the repository. Ensure to set your Auth Token as an environment variable during this process.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_AUTH_TOKEN=&amp;lt;YOUR_LOCALSTACK_AUTH_TOKEN&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker compose up&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="installing-the-extension">Installing the extension&lt;/h3>
-&lt;p>To install the LocalStack Outages Extension, first set up your LocalStack API key in your environment. Once the API key is configured, use the command below to install the extension:&lt;/p>
+&lt;p>To install the LocalStack Outages Extension, first set up your LocalStack Auth Token in your environment. Once the token is configured, use the command below to install the extension:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>localstack extensions install localstack-extension-outages&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;p>Alternatively, you can enable automatic installation of the extension by setting the environment variable &lt;code>EXTENSION_AUTO_INSTALL=localstack-extension-outages&lt;/code> when you start the LocalStack container. This can be done by including it in your &lt;code>docker&lt;/code> command line interface (CLI) or in your &lt;code>docker-compose&lt;/code> configuration as an environment variable.&lt;/p>
 &lt;p>Follow our &lt;a href="https://docs.localstack.cloud/user-guide/extensions/managing-extensions/">Managing Extensions documentation&lt;/a> for more information on how to install &amp;amp; manage extensions.&lt;/p>
@@ -401,14 +401,14 @@ Route53 Failover with FIS is currently available as part of the &lt;strong>Local
 &lt;h3 id="prerequisites">Prerequisites&lt;/h3>
 &lt;p>The general prerequisites for this guide are:&lt;/p>
 &lt;ul>
-&lt;li>LocalStack Pro with a &lt;a href="https://docs.localstack.cloud/getting-started/api-key/">LocalStack API key&lt;/a>&lt;/li>
+&lt;li>LocalStack Pro with a &lt;a href="https://docs.localstack.cloud/getting-started/auth-token/">LocalStack Auth Token&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cli/">AWS CLI&lt;/a> with the &lt;a href="https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal">&lt;code>awslocal&lt;/code> wrapper&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.docker.com/get-docker/">Docker&lt;/a> and &lt;a href="https://docs.docker.com/compose/install/">Docker Compose&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.python.org/downloads/">Python-3&lt;/a>&lt;/li>
 &lt;li>&lt;code>dig&lt;/code>&lt;/li>
 &lt;/ul>
-&lt;p>Start LocalStack by using the &lt;code>docker-compose.yml&lt;/code> file from the repository. Ensure to set your API key as an environment variable during this process.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_API_KEY=&amp;lt;YOUR_LOCALSTACK_API_KEY&amp;gt;
+&lt;p>Start LocalStack by using the &lt;code>docker-compose.yml&lt;/code> file from the repository. Ensure to set your Auth Token as an environment variable during this process.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-text" data-lang="text">&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>LOCALSTACK_AUTH_TOKEN=&amp;lt;YOUR_LOCALSTACK_AUTH_TOKEN&amp;gt;
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span class="command-prefix">$ &lt;/span>docker compose up&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="application-architecture">Application Architecture&lt;/h3>
 &lt;p>The following diagram shows the architecture that this application builds and deploys:&lt;/p>
